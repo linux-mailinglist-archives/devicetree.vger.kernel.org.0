@@ -2,82 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9371C766EE6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 15:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5753766EFC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 16:02:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234826AbjG1N5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 09:57:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35574 "EHLO
+        id S236207AbjG1OCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 10:02:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233545AbjG1N5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 09:57:19 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964182D57;
-        Fri, 28 Jul 2023 06:57:17 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36SDiMIg022462;
-        Fri, 28 Jul 2023 13:57:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=15y0Ty6oih9ty6hZch5B/zAFsQYPV6AL1PQ9UOnltj8=;
- b=lDShtFYeZJPkmKTL/P50qldmgFCZ05cvUJQHoHwQeJcmbwN3EJcpOrmm/e9ZgDbTmprK
- wuMdibEIiHMzKpLHibxqiserhPSeYcKVt/iuPvYj/OnKXhhn6ypNV9tfQflW7it+aqZH
- 6VwtfKjcMUb5eaiJHf0vj5RoKeEH0u5kAn+95e5paQo8ye3nSjBLs9PK00sKcAGsf5/E
- MMU8T+YvROZHKLptrowtQZQ3Q7OZCAnmRjqRdAdEYO7cXjDvzCljT4WypRwX6DX3K1u8
- S47O+fvB6xIYjtaaL3myzJr+4OdGeBzc8mhaGfUEjBhTLp2ek/DIRs8vVCKG7XHwroDW Sg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s46tth1qd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Jul 2023 13:57:14 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36SDvCNm006419
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Jul 2023 13:57:12 GMT
-Received: from [10.214.230.142] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 28 Jul
- 2023 06:57:08 -0700
-Message-ID: <25bd2fe1-a981-b30b-ad99-71fe447bf67b@quicinc.com>
-Date:   Fri, 28 Jul 2023 19:27:05 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v5 1/2] dt-bindings: nvmem: sec-qfprom: Add bindings for
- secure qfprom
+        with ESMTP id S232825AbjG1OCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 10:02:10 -0400
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2042.outbound.protection.outlook.com [40.107.247.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B51852D7B;
+        Fri, 28 Jul 2023 07:02:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kl1VZzrwOfYBZEkBxSdpP8uGrx40SSFGMM8Evd4LyojFa4epHQiXkUmQ3By+CDarQk4PH/guv28cx8RzUKQlujCjudMCCkQhxP3U4wTFKF4/XRW5y8oGY3qe5wp2wB2KPtRxVIij7ACmPaM+e2zSty2odeEJL3pFAzJuz20ZC9s6ADenWwxfBb1kw2GgY/hUGWmagvyc2oXaKWo3jWCeEgqxJwDi1yNGeeQEDcmzcEBcbWXczrpeC0IozaMcFiFywlTJjrcqW8f38Cztb5Voa6c27g8owla3PTjzC/WMMkCijeuU7JhBocDhYlZO3TOmvkRLyw05m5JvmN1SyWHU3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QayTuuW+n/uW4Bg+8vheykhPm75RHSrCRErYHoXhqGI=;
+ b=Qb/4Xnx7gEnedjay6P9ZdETz0+4dofg6U1xCtVw59T21g7XhUEkuusi3eXP8V5f4V+Xe7ey1vDPyCQKXWahlo8A2a4BNCVu5ydYXN7my0FvDyom7d4+nGURoZwd/7cFVl0uZLVFTc+RGZ8tkf1fjw/ZyZTBt1/qhYXjXMvliqy9rPBfPNGSV8f67vIygSDn8v1DKgB1m2uI9hxmnwd+CkxcFgj2/o1rc8ar9Nky0yB47k/MWZjYHP9VwUkTMFccvricYj7qLI21WFuVbjuVJ2LiQGg7sLEiM+UT35Q1N4Du+VP/qA4cSB6Hnp3lWNGZheO/eknPbJLNO6OKaJRURHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QayTuuW+n/uW4Bg+8vheykhPm75RHSrCRErYHoXhqGI=;
+ b=L2+ppKaJghn2TVaQpl9fYDwxG1UtuCD5+0IDABR0F5Z29V97bGWyijcHRpk57CqSq4+J++0aaE6neEZc67XqlLtrcHSPsAiu43s09vF6A77ZKbOGOlIlvNiVozMqpuo2wrRXECkJX1q85G6cQeHCmh/TeLez+WZVoVjIh7n0sSA=
+Received: from GV1PR04MB9071.eurprd04.prod.outlook.com (2603:10a6:150:22::11)
+ by AS8PR04MB8562.eurprd04.prod.outlook.com (2603:10a6:20b:421::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Fri, 28 Jul
+ 2023 14:02:06 +0000
+Received: from GV1PR04MB9071.eurprd04.prod.outlook.com
+ ([fe80::deed:f6b5:5c93:15]) by GV1PR04MB9071.eurprd04.prod.outlook.com
+ ([fe80::deed:f6b5:5c93:15%4]) with mapi id 15.20.6631.026; Fri, 28 Jul 2023
+ 14:02:06 +0000
+From:   Han Xu <han.xu@nxp.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
+Thread-Topic: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
+Thread-Index: AQHZwRnieuqJEhf8wEGMPlVLLgzVWq/PNWHw
+Date:   Fri, 28 Jul 2023 14:02:05 +0000
+Message-ID: <GV1PR04MB907188709BEA225CA0B327F49706A@GV1PR04MB9071.eurprd04.prod.outlook.com>
+References: <20230728060804.22796-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230728060804.22796-1-alexander.stein@ew.tq-group.com>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230724083849.8277-1-quic_kbajaj@quicinc.com>
- <20230724083849.8277-2-quic_kbajaj@quicinc.com>
- <33f2d056-e65d-4bc2-8a1b-bb5815752014@quicinc.com>
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <33f2d056-e65d-4bc2-8a1b-bb5815752014@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: xV3rXZZQkr5Cjf_KUHs6qgjhglbJUNaX
-X-Proofpoint-GUID: xV3rXZZQkr5Cjf_KUHs6qgjhglbJUNaX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- impostorscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=541
- lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307280128
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GV1PR04MB9071:EE_|AS8PR04MB8562:EE_
+x-ms-office365-filtering-correlation-id: 7038b9b3-3025-4f3b-a9bc-08db8f7339fe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: eRBxOPHzvxKo6WlsHvxaF3SQDDz/XK9f+q1y12S4azRww+C1wSqXrzl/YcjSWm/z33KI3R8fzAMVDan8fxfI/GmGEIC6/AYzITmv/I6pFExTuTn2QZD4vpyKz9yeZ4xvfwxCTbnvARUggvi2+TKK4T9GHIkv+cVFKlV3WmEUvv8etDy6+nh3GnjNuZ7JrfrSYolGsUsoPXyOoRoEYkJOff6P4rW46f2/BgU1VGYmJSue2kr3LCzwJRPEfM3KRLNDz7xI5DOeIgJI8QFGoRiLirHjtryOcKrqf7bTEdmM1LF2xdLdvacTrniDv/huMYYUVu4NV40y7wVQ4FmSb9RUexnvhQZxPG0BCji0nDmSD8cPAlYuEyitOGinb0LA2hj+XFXOuff7XCEgrHEBzEiiubWHjytR07prkwuTObDBJCec4Iypn8BS7TshAoh1Mx+O6S5r0NZkNH3wC5RztB535Y4VYzVoBnL0OpN8CmfQ/VHhi7z+UqPk2s4SEoTpRDcsGBIa2oADL3/gm9ykRcipipXKs9l+I6S7Dd1WYycxmmoARCFDOsTlEfT4xz4bgGALw9cvEebJtKpS0L/KRwQY9vBBq2BQLVrLFeVDxVKrlK7keSEAqgqe59GphfBTjHAi
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(366004)(39860400002)(136003)(376002)(451199021)(26005)(71200400001)(186003)(6506007)(2906002)(9686003)(86362001)(38070700005)(316002)(55016003)(8676002)(8936002)(64756008)(110136005)(54906003)(7696005)(4326008)(478600001)(122000001)(38100700002)(5660300002)(52536014)(66446008)(41300700001)(33656002)(76116006)(66476007)(66556008)(44832011)(66946007)(53546011)(83380400001)(55236004);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bcCuMqTb02QhHx2h/AsniHiUAl04dLL1k+AdvV4oHNiO3RY2SjSzlf0YwqLk?=
+ =?us-ascii?Q?MPcHx9CPU7iilRD8NgUE62v29/Jhf8PBx0117MaB6wtNVh3WqFGynpJ7Vtsp?=
+ =?us-ascii?Q?E9Lum3iWEjcJClo82n6AelF1EkXB3FVWCu+GHamVMM7D9QLd+GeOKyw2ygv6?=
+ =?us-ascii?Q?gMW7Q1KgXjvliPssbB4knwbnQqq1lLnKriK2Vn1LH4LRF7K7HzfohQpWgGvX?=
+ =?us-ascii?Q?FqfVWp8i/YSZRDOsPLSkXDG3RkHzwGd5co+n+XyGBJcgrZTrlyAbydBLdRME?=
+ =?us-ascii?Q?D/IrONEKcLwiXa3cYinERxBG5dM6JrpXCCFvR4dc+6GKO108af7Ii6YZvvaW?=
+ =?us-ascii?Q?JBcCXdfbOAwsmJcv9v1SVYNisyL5vlmvcw9CHc9yXz8ZWzznYEu54sXHFf+7?=
+ =?us-ascii?Q?vjtKV8eKCw/90EIZjJSXFkQJYiWd2HSIuAqU33HeDYgpHm6flhcIRrhs6w8c?=
+ =?us-ascii?Q?e+G9zm17y7rfPgZiRSO2WVg/4n8tt2xXYor8m4YHSLVtTK8ETp30ApAvek+/?=
+ =?us-ascii?Q?jWH5zmUgzwogP6OyAYQj0mfv2OvjFi9RmpPEC5mI6vPiLOYvzraVFAIQJvoQ?=
+ =?us-ascii?Q?R0qbeJM/Og+RACDsG1OFtHSm54v0+RAkUldBH/HbQ9VJ0JEKCl8URh3poGjq?=
+ =?us-ascii?Q?rhGTkFbAI6UbMx0nmRTcz5mf+D8LqDMvW/CVfL8+PD598cLb9XmMrJtqjPiZ?=
+ =?us-ascii?Q?nag4SGdFY2OVqva7D0HhHoELFupO9jmGXAF2clWXltL/JOn2stjZE0++H7YI?=
+ =?us-ascii?Q?ra9kwOaD91yZA6dz9H+rcFXwA2Es1LbEVaJOjUyzvDeDmJnErr9ST2XosNK1?=
+ =?us-ascii?Q?8ipcmGdMcni4wVUXKH0Ep+7sjMv2lFmRiqD1Uyzox5ME31TnjmTFChrUDxtW?=
+ =?us-ascii?Q?muH/YRmyONI7wgekWJ0UL7mfHMEao4RAR62ah1Kf+gC1MLk4V/XRDX7iacAt?=
+ =?us-ascii?Q?ZtZ6wWve4Cpetb0B+fNy6HhUOO9mGwxSVfRLLSpIgYnv6aXWShZrOnjYEZhy?=
+ =?us-ascii?Q?tT/zUOZTxIX7nTEr/dYqT1YCCBqlUAsOOjiOJ+WaB6hS/Ej0YKZ03drgoqcC?=
+ =?us-ascii?Q?RojMaiuv0IN4r52VGLq4Vx4oyL4wldRJ4D9Cl48/dR11q8/EwlhncLVIia/r?=
+ =?us-ascii?Q?ooE4iHhr6PCS70yRkD+k15VNs0/z3AqcSSbeOFTI4LVARDqjjPnRnuc942mt?=
+ =?us-ascii?Q?ennB9V/jBNtqLsUYL+bUIn2daxyg+zt3hZHyyfIeumkauPj5+2AV1iSZeMlr?=
+ =?us-ascii?Q?wMBOYDCCl0a0+jP0/pcTj6u/3dmf8K2AyGpNP594LNe7I67Q0moJ39acvdyI?=
+ =?us-ascii?Q?ZrdNRq9qaaxO5huee7jame8R7T15AJYFRnOSEeKsNu2+A0Gdx3/wRWAIcAA9?=
+ =?us-ascii?Q?MZq2NOA7I2t5nMRFcud3JYzg7xFp/5L0xKOFldfUwsz0SQYEiAZL9VbwlX++?=
+ =?us-ascii?Q?do2KXOIaaMJgobkrTWvklbjzhX8RvC2zYAZpuSpj592BE2nw3jNKZ9PQQYsP?=
+ =?us-ascii?Q?ygZ7+EfbCqI0vpIIBAe2mkiMiT0o46MUMtAQ3M2/wOz1t5AzTKAZ20nrpsfe?=
+ =?us-ascii?Q?pjrIDgBkG84VxXoZ0bY=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9071.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7038b9b3-3025-4f3b-a9bc-08db8f7339fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2023 14:02:05.9506
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /46GPDdwtDsIXWYB48KLgRFlbvVNFP7YicEy7Awx3fIyPwFJ7R/NIqYPZM15v/Ij
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8562
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,85 +122,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 7/27/2023 2:39 PM, Pavan Kondeti wrote:
-> On Mon, Jul 24, 2023 at 02:08:48PM +0530, Komal Bajaj wrote:
->> This patch adds bindings for secure qfprom found in QCOM SOCs.
->> Secure QFPROM driver is based on simple nvmem framework.
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
->>   .../bindings/nvmem/qcom,sec-qfprom.yaml       | 58 +++++++++++++++++++
->>   1 file changed, 58 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/nvmem/qcom,sec-qfprom.yaml
->>
-> [...]
->
->> +$id: http://devicetree.org/schemas/nvmem/qcom,sec-qfprom.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies Inc, Secure QFPROM Efuse
->> +
->> +maintainers:
->> +  - Komal Bajaj <quic_kbajaj@quicinc.com>
->> +
->> +description: |
->> +  For some of the Qualcomm SoC's, it is possible that
->> +  the qfprom region is protected from non-secure access.
->> +  In such situations, linux will have to use secure calls
->> +  to read the region.
->> +
->> +allOf:
->> +  - $ref: nvmem.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - qcom,qdu1000-sec-qfprom
->> +      - const: qcom,sec-qfprom
->> +
->> +  reg:
->> +    items:
->> +      - description: The secure qfprom corrected region.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
->> +
-> minor nitpick:
->
-> Since this device does not have any clocks, the above header inclusion
-> can be dropped.
+> -----Original Message-----
+> From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Sent: Friday, July 28, 2023 1:08 AM
+> To: Han Xu <han.xu@nxp.com>; Bough Chen <haibo.chen@nxp.com>;
+> Yogesh Gaur <yogeshgaur.83@gmail.com>; Mark Brown
+> <broonie@kernel.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> <conor+dt@kernel.org>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; linux-
+> spi@vger.kernel.org; devicetree@vger.kernel.org
+> Subject: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
+>=20
+> i.MX8(X) based SoC use a power domain. Allow supplying this domain in
+> bindings.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Yes, it is not needed, will drop it.
+Acked-by: Han Xu <han.xu@nxp.com>
 
-Thanks
-Komal
-
->
->> +    soc {
->> +      #address-cells = <2>;
->> +      #size-cells = <2>;
->> +
->> +      efuse@221c8000 {
->> +        compatible = "qcom,qdu1000-sec-qfprom", "qcom,sec-qfprom";
->> +        reg = <0 0x221c8000 0 0x1000>;
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +
->> +        multi_chan_ddr: multi-chan-ddr@12b {
->> +          reg = <0x12b 0x1>;
->> +          bits = <0 2>;
->> +        };
->> +      };
->> +    };
->> +
-> Thanks,
-> Pavan
+> ---
+>  Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+> b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+> index a813c971ecf65..7fd5911454800 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+> @@ -45,6 +45,9 @@ properties:
+>        - const: fspi_en
+>        - const: fspi
+>=20
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.34.1
 
