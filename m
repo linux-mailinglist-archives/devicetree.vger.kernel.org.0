@@ -2,174 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFE54767331
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 19:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A9DF767337
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 19:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232367AbjG1RYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 13:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
+        id S232735AbjG1RYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 13:24:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232856AbjG1RYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 13:24:08 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814B635A9
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:24:05 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-686f19b6dd2so1571855b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:24:05 -0700 (PDT)
+        with ESMTP id S233260AbjG1RYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 13:24:39 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 421062D40
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:24:38 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b9d3dacb33so9335281fa.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:24:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1690565045; x=1691169845;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7m4Bow5Q2CxPa95nMlUxoGG8+BhvjSKp312SaaQNx2o=;
-        b=ChPXww841u7+TU4tGLL2yNTc/C1XzG2HkXupj8CK+8yX+qKZm1OH9ULAQWJv7eYzzQ
-         4ISyrE3OQQkz26EM3yhBAcoD+EERLGj6XMe9OrvdKv0DqM6aUC3Y9526DY9kMDPiFBmA
-         BLgB07AGYQZ/NdVGzxB3y8qp7mXj8yZ7l8+PU=
+        d=chromium.org; s=google; t=1690565073; x=1691169873;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OksjTSbasaKDlLBRiSbrJQqC1q20sr1fdGQKMyKb9RQ=;
+        b=JZf+w8ezLdoSOXCf47W17dSmEbb54lLC+M3L3jeqo5lIwoI80UjVrQ2ckHm0m7/CdM
+         GP2MLFMluojTIbIROiLX2rTVrhVo9J673I337dqwsFF9p7GgIKF8Sfd3eIsG+dDygm+s
+         pTr7U44OI3koM0ECqOJ0TRuWbqcf27nmF8hWY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690565045; x=1691169845;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7m4Bow5Q2CxPa95nMlUxoGG8+BhvjSKp312SaaQNx2o=;
-        b=fELdMI1NpNqgVe8gfPnJeIU9jkDJlTHINegcwYwhqfcEZOUPs45UN4oMkbG+MKcdPB
-         +yzU4HpwwpP7J09/H25fg665ZIc3Sov1QxOwIw11dkStBCbdF3ONtV9d9WQAQVAqE7uQ
-         phJ0WA6ohqVE9IWWahoVWeexafl+2mkqUUK5wxIlbpOuRyk2kpQfrHpJCRagjuAEht+b
-         sa3pMEvhaT9Jxn0oiETgVZ3kzoFYMO2yZlQWy0Xj1RH3dWayyXbCcdtill5SC9GvOO4M
-         VIU9pdTHYIipinW5i+r6WFy/9nFPOOhrnhY8+JEjF397m3blE7Lef9zzI56nQC/Faw8S
-         ef2w==
-X-Gm-Message-State: ABy/qLaZ/o6KrfDbdDZAfHeZTNdlvN3MySpDkF7AHBE0eH7Ei52hiGwr
-        4x5zSi+az/8o1dzMAbSlB1QSuA==
-X-Google-Smtp-Source: APBJJlFbcp/ytilDcbiXwzdzdbfHHKPkGvcfGVhrcCI4Jeq1PsefncU6xK+JFZkulvXKuzBAnhk7lw==
-X-Received: by 2002:a05:6a21:7782:b0:12e:ae87:45d2 with SMTP id bd2-20020a056a21778200b0012eae8745d2mr1967516pzc.51.1690565044929;
-        Fri, 28 Jul 2023 10:24:04 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id f14-20020a63754e000000b0056399ef039esm3830259pgn.77.2023.07.28.10.24.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 10:24:04 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: BCM53573: Disable second Ethernet on Luxul devices
-Date:   Fri, 28 Jul 2023 10:24:02 -0700
-Message-Id: <20230728172402.723509-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230724101159.5289-1-zajec5@gmail.com>
-References: <20230724101159.5289-1-zajec5@gmail.com>
+        d=1e100.net; s=20221208; t=1690565073; x=1691169873;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OksjTSbasaKDlLBRiSbrJQqC1q20sr1fdGQKMyKb9RQ=;
+        b=EJsoUqnq9ZS6eW7R83ppgdpCkJhWwgTSjv156Yrjp37GPK4VP1Jvh7KOzgZ40Xkr7k
+         mWOt2KExesmjcbLhE4+HrdyLXj2NYqSPV70Io9bP8aIww+tFSFPqzRpTpbtHhGfvfbPa
+         sCh9AdLq/9l3UgQDPV5+qikqaSx8gMA5N11EdJck2vJeh+05WeCz61DAOBUant3fwFDi
+         AwwfBgwYpNQWHNPYvxtA5vSrToG5t+T0LULg7kW0nZd8bObMqRGUcrkxLg55jYuWLTG+
+         aewYYhDqgA6sSezKjzD1X7IfET9j3y90W34oO433+8GpboqA9QhdFomQMCtsJUT1j0j8
+         VqCQ==
+X-Gm-Message-State: ABy/qLa7FjZVHp9YDdoqobHK55uFHhluYNFqV8Ub+yV0C7qE8P14uCDa
+        F8tfGTHYEd0gaZuaYaiSHx8ycVNVE+LwqgUpeawyqg==
+X-Google-Smtp-Source: APBJJlEjVVbjuX/kvNTIrm93F1rGUVdLkeVWQ0R1wRvjdfCRvtNjaG4OhPJ7Wq3Wlb0j/gtRWdhQtA==
+X-Received: by 2002:a2e:a0d1:0:b0:2b6:a804:4cc with SMTP id f17-20020a2ea0d1000000b002b6a80404ccmr2236375ljm.53.1690565073023;
+        Fri, 28 Jul 2023 10:24:33 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id t7-20020a1709063e4700b0098d15d170a0sm2256553eji.202.2023.07.28.10.24.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jul 2023 10:24:32 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-3fd28ae8b90so3875e9.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:24:31 -0700 (PDT)
+X-Received: by 2002:a05:600c:690f:b0:3fd:e15:41e3 with SMTP id
+ fo15-20020a05600c690f00b003fd0e1541e3mr5980wmb.2.1690565071086; Fri, 28 Jul
+ 2023 10:24:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000fe3b6c06018f581c"
+References: <20230727171750.633410-1-dianders@chromium.org> <nn6cs4zvf27cxmtd3qcficyoyalcxi2iry6kgszb5oraplgaxy@sryeyseucdb3>
+In-Reply-To: <nn6cs4zvf27cxmtd3qcficyoyalcxi2iry6kgszb5oraplgaxy@sryeyseucdb3>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 28 Jul 2023 10:24:18 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wo5H-XohCz_sLnV=oT5cRm2tFrSAG9kpCGzK7pjSW_Xg@mail.gmail.com>
+Message-ID: <CAD=FV=Wo5H-XohCz_sLnV=oT5cRm2tFrSAG9kpCGzK7pjSW_Xg@mail.gmail.com>
+Subject: Re: [PATCH v4 00/11] drm/panel and i2c-hid: Allow panels and
+ touchscreens to power sequence together
+To:     Benjamin Tissoires <bentiss@kernel.org>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-arm-msm@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        hsinyi@google.com, Chris Morgan <macroalpha82@gmail.com>,
+        linux-input@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000fe3b6c06018f581c
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Hi,
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+On Fri, Jul 28, 2023 at 8:31=E2=80=AFAM Benjamin Tissoires <bentiss@kernel.=
+org> wrote:
+>
+> On Jul 27 2023, Douglas Anderson wrote:
+> >
+> > The big motivation for this patch series is mostly described in the pat=
+ch
+> > ("drm/panel: Add a way for other devices to follow panel state"), but t=
+o
+> > quickly summarize here: for touchscreens that are connected to a panel =
+we
+> > need the ability to power sequence the two device together. This is not=
+ a
+> > new need, but so far we've managed to get by through a combination of
+> > inefficiency, added costs, or perhaps just a little bit of brokenness.
+> > It's time to do better. This patch series allows us to do better.
+> >
+> > Assuming that people think this patch series looks OK, we'll have to
+> > figure out the right way to land it. The panel patches and i2c-hid
+> > patches will go through very different trees and so either we'll need
+> > an Ack from one side or the other or someone to create a tag for the
+> > other tree to pull in. This will _probably_ require the true drm-misc
+> > maintainers to get involved, not a lowly committer. ;-)
+> >
+> > Version 4 of this series adds a new patch that suspends i2c-hid
+> > devices at remove time even for non panel-followers to make things
+> > consistent. It also attempts to isolate the panel follower code a bit
+> > more as per Benjamin's feedback on v3 and adds an item to the DRM todo
+> > list as per Maxime's request. As per Maxime's response to my v3 cover
+> > letter, I added his Reviewed-by tag to all 10 patches that were part
+> > of v3 (but left it off of the new i2c-hid patch in v4).
+> >
+> > Version 3 of this series was a long time coming after v2. Maxime and I
+> > had a very long discussion trying to figure out if there was a beter
+> > way and in the end we didn't find one so he was OK with the series in
+> > general [1]. After that got resolved, I tried to resolve Benjamin's
+> > feedback but got stuck [2]. Eventually I made my best guess. The end
+> > result was a v3 that wasn't that different from v2 but that had a tiny
+> > bit more code split out.
+> >
+> > Version 2 of this patch series didn't change too much. At a high level:
+> > * I added all the forgotten "static" to functions.
+> > * I've hopefully made the bindings better.
+> > * I've integrated into fw_devlink.
+> > * I cleaned up a few descriptions / comments.
+> >
+> > As far as I can tell, as of v4 everyone is on the same page that this
+> > patch series looks like a reasonable solution to the problem and we
+> > just need to get all the nits fixed and figure out how to land it.
+>
+> Thanks a lot for the new version. I like it much more on the HID side:
+>
+> for the HID part:
+> Reviewed-by: Benjamin Tissoires <bentiss@kernel.org>
+>
+> I wouldn't mind having this series taken from the drm tree if that is
+> easier. i2c-hid is a low patch rate driver, so having it updated through
+> DRM should not be an issue.
+>
+> In that case:
+> Acked-by: Benjamin Tissoires <bentiss@kernel.org>
 
-On Mon, 24 Jul 2023 12:11:59 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> XAP-810 and XAP-1440 both have a single Ethernet port and BCM54210E PHY.
-> Their second Ethernet interface is not connected to anything.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+Thanks for your reviews and your help getting this whipped into shape.
 
-Applied to https://github.com/Broadcom/stblinux/commits/master, thanks!
---
-Florian
+Lading through drm makes sense to me. I'm a drm committer, so with
+your Ack I believe it should be fine for me to land the series (minus
+the dts) in drm-misc-next. This series has been around for a while,
+has been reviewed by relevant folks, and the last few changes haven't
+fundamentally changed anything about the design, so I'm not going to
+twiddle my thumbs too long. That being said, I'll still plan to wait
+until early next week (Tuesday?) before landing to allow for any last
+minute shouts.
 
---000000000000fe3b6c06018f581c
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Given how drm-misc works [1] and the fact that mainline is currently
+at v6.5-rc3 (it will be -rc4 when I land it), I'd expect that these
+commits will find their way into v6.6.
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOmE2Q/MT+qoHMjD
-lFFoNrnehSUFPeo9nbkUtqiSDaWMMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcyODE3MjQwNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAhSJBVkU+plaC0vP//f/l2T7I+EUJ2MvQj
-I0iwS+xKHvODAVOq5xJhpzgjoJfbZ8xqt7n0YWE2lKTncYD00dJz+uDEqErKsn0QRd7OIqTvIOX8
-N/d9Db0cWN8rMObAmfebHt+GNRpWVJbJb6dVLSDdNnfGEdc6sDH93pc1XAgA6ohnqo862AMwd41m
-KSt/lvkTFNPaUOFK/c4lxUtYcSFD4q2YsiJTX0vjiHkMb+jz8ysTF27ylm+6Nyd5eunv/uienHdR
-O429DD63x3MVjiGlCT87YTvDqs98hw9vhEqHh/4eokk5SkISLd1CVKwwOCp5CuhAIfpiDa+z9een
-NqRD
---000000000000fe3b6c06018f581c--
+[1] https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
