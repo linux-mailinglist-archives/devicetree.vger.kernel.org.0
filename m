@@ -2,253 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1D776717E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 695C3767190
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234832AbjG1QHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 12:07:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51592 "EHLO
+        id S229871AbjG1QLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 12:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234254AbjG1QHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:07:09 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5999C30D4;
-        Fri, 28 Jul 2023 09:07:08 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b962c226ceso34809411fa.3;
-        Fri, 28 Jul 2023 09:07:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690560426; x=1691165226;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=N16GEP2/m3aZjHw0K8KYPGsCcy8BI//VCr6xCVcthrc=;
-        b=HLex0g8P13+bvEwTBuGSp1Obd4O0IaGoeW/uFyTRb4tIHtmem9LxelkIHETBCG2c2v
-         y1zQEA6aMEKig54053DTtuttHr+IYIrdjgpN6oneo8OdfV12kObe6/72lUGukSb4RybX
-         MoLnk5ixmwvE2aSBB+HCZdsRufNLie3OdxDiqSeDyn3uyquBEf0gH4AMD2yZ2EBQzKNH
-         5tVHeD1beij2SisqKrlVfPvvDP0mN4itte9hWsN8//ReOC07SRegAMvJNVLi7bi94VWe
-         GwALN6HXvl/zV9pjxqvjfQarS0WYBn/RIdBN0O+ZNtM8Az9iuMaQV/Emc/xgQEv6awVO
-         O+Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690560426; x=1691165226;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N16GEP2/m3aZjHw0K8KYPGsCcy8BI//VCr6xCVcthrc=;
-        b=aSdUyR8uYTkRaIVdTT+kX8HPIftwnjarHKgcTv1KDuW9fFLJyzJyVToak4l3/73HAK
-         XPBbJy9yu+oZ0cL5SMq7IMkQrfUxORLsbPqOh0e2R2+QocB1eCcqrBc+lXz++cbUMFhV
-         KuuVurhTlWEYKEm5wV87rYcP8kTho/CFOZJ8f7nL1DEJGQ9Kbkrmg8sc5Va9NXL+f79W
-         s50JlRmhdkz+bVgscDXi7lfXm7B8tSiwU4kEA8ing+lQSQl4fHaJOJ1HqdjcXrNvL1Qg
-         SJPYNDrkT9jwV68YnP9QYKemUCR45XDDVF0Hug2lAAzqgs4TjVM6qocJEnGRcTRNeo6D
-         oDIA==
-X-Gm-Message-State: ABy/qLY/y0ho1qQhmSSIN+LfsWweN0GhTnw4g6h4Hj1F6BFX/j8Uubrr
-        eUJ6FrdRrkpITDu9Lue9+9jViSq7Kg4=
-X-Google-Smtp-Source: APBJJlHB1HqHToxS6Ete/aD4vnQV5+/I1La2Pph1hLvIhC6vInjYqQDffSIoCvB3yCKJtVs2FHscow==
-X-Received: by 2002:a2e:3012:0:b0:2b9:bc5c:1b28 with SMTP id w18-20020a2e3012000000b002b9bc5c1b28mr2199769ljw.49.1690560426277;
-        Fri, 28 Jul 2023 09:07:06 -0700 (PDT)
-Received: from mobilestation ([93.157.254.210])
-        by smtp.gmail.com with ESMTPSA id u7-20020a2ea167000000b002b93cb80acbsm1014887ljl.91.2023.07.28.09.07.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 09:07:05 -0700 (PDT)
-Date:   Fri, 28 Jul 2023 19:07:03 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v18 09/20] PCI: dwc: Add PCI_EXP_LNKCAP_MLW handling
-Message-ID: <2zv7mcxa7skywhxe2ene3c5ycine6tsmsfwmpf4nknhoeye7rx@m525r5ph3xow>
-References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
- <20230721074452.65545-10-yoshihiro.shimoda.uh@renesas.com>
- <20230724110344.GH6291@thinkpad>
- <TYBPR01MB534165847452C8A2398B03D9D800A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230728025119.GB4433@thinkpad>
- <TYBPR01MB534130DF2431F0A49E0C5C3BD806A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        with ESMTP id S229823AbjG1QLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:11:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F85AFC;
+        Fri, 28 Jul 2023 09:11:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C6D3A62196;
+        Fri, 28 Jul 2023 16:11:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4871FC433C7;
+        Fri, 28 Jul 2023 16:10:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690560670;
+        bh=tjGuSrDwTbS2bQDCEbJvPIHSpBadcYgXq8DyDZNK8XU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gyAzu+W+m+DUr2THVKr8nlypPSMO/0fSh5RLpztO0wYLpGqCdkGeG9LwczxcmgwFh
+         1xsiWwYcgbX3PSQ2CIVG2rBb9D1JRNcAnfchiXceCXcI4a4Frro59/iv/kWqBzLW4O
+         aDEpZE6AH3utAOsXGRNYIIh/UGblZeJpwXYsh2/4DoLWPJW6K6/qrimrbrkQTl41sz
+         pfb15Sb49WK7O5dU14vI9hUNF+g44dcyEG6oEn4klzDM5xARx60q3qkBkxJ7cbepuZ
+         jMvTa9PMJm0QNsb1YUchIAU+F66g+DsywJoKLaSb3mKTaOcZehRaF/9JYoBOzmscUm
+         oSkxewggZst+w==
+Date:   Fri, 28 Jul 2023 17:10:54 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Varshini Rajendran <varshini.rajendran@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
+        andi.shyti@kernel.org, tglx@linutronix.de, maz@kernel.org,
+        lee@kernel.org, ulf.hansson@linaro.org, tudor.ambarus@linaro.org,
+        richard@nod.at, vigneshr@ti.com, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, linus.walleij@linaro.org,
+        sre@kernel.org, p.zabel@pengutronix.de, olivia@selenic.com,
+        a.zummo@towertech.it, radu_nicolae.pirea@upb.ro,
+        richard.genoud@gmail.com, gregkh@linuxfoundation.org,
+        lgirdwood@gmail.com, broonie@kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, linux@armlinux.org.uk,
+        durai.manickamkr@microchip.com, andrew@lunn.ch,
+        jerry.ray@microchip.com, andre.przywara@arm.com, mani@kernel.org,
+        alexandre.torgue@st.com, gregory.clement@bootlin.com,
+        arnd@arndb.de, rientjes@google.com, deller@gmx.de,
+        42.hyeyoo@gmail.com, vbabka@suse.cz, mripard@kernel.org,
+        mihai.sain@microchip.com, codrin.ciubotariu@microchip.com,
+        eugen.hristev@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3 00/50] Add support for sam9x7 SoC family
+Message-ID: <20230728-perfectly-online-499ba99ce421@spud>
+References: <20230728102223.265216-1-varshini.rajendran@microchip.com>
+ <c0792cfd-db4f-7153-0775-824912277908@linaro.org>
+ <20230728-floss-stark-889158f968ea@spud>
+ <20230728180443.55363550@xps-13>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="JwCxVt0P/WwXvHk3"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYBPR01MB534130DF2431F0A49E0C5C3BD806A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230728180443.55363550@xps-13>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 04:19:38AM +0000, Yoshihiro Shimoda wrote:
-> Hi Manivannan,
-> 
-> > From: Manivannan Sadhasivam, Sent: Friday, July 28, 2023 11:51 AM
-> > 
-> > On Wed, Jul 26, 2023 at 02:12:15AM +0000, Yoshihiro Shimoda wrote:
-> > > Hi Manivannan,
-> > >
-> > > > From: Manivannan Sadhasivam, Sent: Monday, July 24, 2023 8:04 PM
-> > > >
-> > > > Subject should contain the word "missing". Like, "Add missing PCI_EXP_LNKCAP_MLW
-> > > > handling".
-> > >
-> > > I got it.
-> > >
-> > > > On Fri, Jul 21, 2023 at 04:44:41PM +0900, Yoshihiro Shimoda wrote:
-> > > > > Update dw_pcie_link_set_max_link_width() to set PCI_EXP_LNKCAP_MLW.
-> > > > > In accordance with the DW PCIe RC/EP HW manuals [1,2,3,...] aside with
-> > > > > the PORT_LINK_CTRL_OFF.LINK_CAPABLE and GEN2_CTRL_OFF.NUM_OF_LANES[8:0]
-> > > > > field there is another one which needs to be updated. It's
-> > > > > LINK_CAPABILITIES_REG.PCIE_CAP_MAX_LINK_WIDTH. If it isn't done at
-> > > > > the very least the maximum link-width capability CSR won't expose
-> > > > > the actual maximum capability.
-> > > > >
-> > > > > [1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > > >     Version 4.60a, March 2015, p.1032
-> > > > > [2] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > > >     Version 4.70a, March 2016, p.1065
-> > > > > [3] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > > >     Version 4.90a, March 2016, p.1057
-> > > > > ...
-> > > > > [X] DesignWare Cores PCI Express Controller Databook - DWC PCIe Endpoint,
-> > > > >       Version 5.40a, March 2019, p.1396
-> > > > > [X+1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > > >       Version 5.40a, March 2019, p.1266
-> > > > >
-> > > > > Suggested-by: Serge Semin <fancer.lancer@gmail.com>
-> > > >
-> > > > Add Reported-by also?
-> > >
-> > > I don't think so because Serge suggested the commit description from my submitted patch [1].
-> > >
-> > > [1]
-> > >
-> <snip URL>
-> > >
-> > 
-> > Fine then.
-> > 
-> > > > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > >
-> > > > This looks like a potential bug fix to me. So please move this change before the
-> > > > previous patch that introduces dw_pcie_link_set_max_link_width(), tag fixes and
-> > > > CC stable list for backporting.
-> > >
-> > > I think that this patch should be a next branch because this is possible to
-> > > cause side effective. Almost all drivers/pcie/controller/dwc/ host drivers except
-> > > pcie-tegra194.c doesn't have this setting, but I assume that the drivers work correctly
-> > > without this setting.
-> > >
-> > > Also, to be honest, I could not find a suitable commit ID for this patch's "Fixes" tag.
-> > > Additionally, I could not determine which old kernel versions should have this patch
-> > > applied as backporting.
-> > >
-> > 
 
-> > Ok. But you can still move this patch as I suggested. If we happen to hit any
-> > issue with this setting, then we can easily revert it.
-> 
-> I got it. I'll move this patch as you suggested.
+--JwCxVt0P/WwXvHk3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No. By moving this patch to be implemented before the patch:
-[PATCH v18 08/20] PCI: dwc: Add dw_pcie_link_set_max_link_width()
-you won't be able to easily revert it afterwards because the patch #8
-will move the code added by the patch #9 to the
-dw_pcie_link_set_max_link_width() function. Basically you suggest to
-switch the preparation and functional patches order which doesn't look
-right.
+On Fri, Jul 28, 2023 at 06:04:43PM +0200, Miquel Raynal wrote:
+> Hi Conor,
+>=20
+> conor@kernel.org wrote on Fri, 28 Jul 2023 16:50:24 +0100:
+>=20
+> > On Fri, Jul 28, 2023 at 01:32:12PM +0200, Krzysztof Kozlowski wrote:
+> > > On 28/07/2023 12:22, Varshini Rajendran wrote: =20
+> > > > This patch series adds support for the new SoC family - sam9x7.
+> > > >  - The device tree, configs and drivers are added
+> > > >  - Clock driver for sam9x7 is added
+> > > >  - Support for basic peripherals is added
+> > > >  - Target board SAM9X75 Curiosity is added
+> > > >  =20
+> > >=20
+> > > Your threading is absolutely broken making it difficult to review and=
+ apply. =20
+> >=20
+> > I had a chat with Varshini today, they were trying to avoid sending the
+> > patches to a massive CC list, but didn't set any in-reply-to header.
+> > For the next submission whole series could be sent to the binding &
+> > platform maintainers and the individual patches additionally to their
+> > respective lists/maintainers. Does that sound okay to you, or do you
+> > think it should be broken up?
+>=20
+> I usually prefer receiving the dt-bindings *and* the driver changes, so
+> I can give my feedback on the description side, as well as looking at
+> the implementation and see if that really matches what was discussed
+> with you :)
 
-Basically the Link-width-related part of this series currently implies
-the next logic:
+Right, that is what I was suggesting. Respective maintainers would get
+the drivers *and* bindings for their subsystems - IOW, each patch is
+sent to what get_maintainer.pl outputs for it.
 
-1. Prepare the DW PCIe core driver to implementing a comprehensive
-Max-link-width setup methods (aka as it's done in
-dw_pcie_link_set_max_speed()) by moving the Link-width related code to
-a dedicated method:
-[PATCH v18 08/20] PCI: dwc: Add dw_pcie_link_set_max_link_width()
+--JwCxVt0P/WwXvHk3
+Content-Type: application/pgp-signature; name="signature.asc"
 
-2. Add the PCI_EXP_LNKCAP_MLW field update, which
-dw_pcie_link_set_max_link_width() lacks to be comprehensive:
-[PATCH v18 09/20] PCI: dwc: Add PCI_EXP_LNKCAP_MLW handling
+-----BEGIN PGP SIGNATURE-----
 
-3. Drop the duplicating code from the Tegra194 PCIe driver:
-[PATCH v18 10/20] PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMPojgAKCRB4tDGHoIJi
+0kkfAP4ga1L8W2nIhESI6nBrFIrWddcSQtR9qdorSuJaMVMayQD8DIEJcInDpQKd
+xcNO0xMMpnCF1rhZL6BPvkIZHuZ5Ygk=
+=CpFU
+-----END PGP SIGNATURE-----
 
-In case if the patch #9 appears to be a bug fix, then it will need to
-be backported together with patch #8 which isn't a problem at all
-(though it's doubtfully to happen since nobody reported any problem
-with that so far). But if patch #9 turns out to break something in
-current circumstances we'll be able to either easily revert it (since
-it's applied after the preparation patch) or fix somehow. If you
-switch patch #8 and #9 order, the reversion will require to be
-performed for both these patches to avoid the conflicts. Thus I'd
-suggest to leave the patches order as is which looks more natural and
-won't cause any problems to revert the functional change or to
-backport it.
-
--Serge(y)
-
-> 
-> Best regards,
-> Yoshihiro Shimoda
-> 
-> > - Mani
-> > 
-> > > Best regards,
-> > > Yoshihiro Shimoda
-> > >
-> > > > - Mani
-> > > >
-> > > > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> > > > > ---
-> > > > >  drivers/pci/controller/dwc/pcie-designware.c | 9 ++++++++-
-> > > > >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> > > > > index 5cca34140d2a..c4998194fe74 100644
-> > > > > --- a/drivers/pci/controller/dwc/pcie-designware.c
-> > > > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> > > > > @@ -730,7 +730,8 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
-> > > > >
-> > > > >  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
-> > > > >  {
-> > > > > -	u32 lwsc, plc;
-> > > > > +	u32 lnkcap, lwsc, plc;
-> > > > > +	u8 cap;
-> > > > >
-> > > > >  	if (!num_lanes)
-> > > > >  		return;
-> > > > > @@ -766,6 +767,12 @@ static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
-> > > > >  	}
-> > > > >  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, plc);
-> > > > >  	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, lwsc);
-> > > > > +
-> > > > > +	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> > > > > +	lnkcap = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
-> > > > > +	lnkcap &= ~PCI_EXP_LNKCAP_MLW;
-> > > > > +	lnkcap |= FIELD_PREP(PCI_EXP_LNKCAP_MLW, num_lanes);
-> > > > > +	dw_pcie_writel_dbi(pci, cap + PCI_EXP_LNKCAP, lnkcap);
-> > > > >  }
-> > > > >
-> > > > >  void dw_pcie_iatu_detect(struct dw_pcie *pci)
-> > > > > --
-> > > > > 2.25.1
-> > > > >
-> > > >
-> > > > --
-> > > > மணிவண்ணன் சதாசிவம்
-> > 
-> > --
-> > மணிவண்ணன் சதாசிவம்
+--JwCxVt0P/WwXvHk3--
