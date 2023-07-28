@@ -2,127 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57449766519
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:17:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADAD876651E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234033AbjG1HRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:17:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49398 "EHLO
+        id S234072AbjG1HTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:19:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234043AbjG1HR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:17:26 -0400
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04053ABE;
-        Fri, 28 Jul 2023 00:17:23 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 8423910000B;
-        Fri, 28 Jul 2023 10:17:22 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8423910000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1690528642;
-        bh=THLBRWDsl5iTK9u472zi5OUc76M58zPFkwRfjKmJhec=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=kqdd3nJVJhpGdhuCZrTZfWzI2s2RabtHQlb8otG6RJY97QX5bdQ2Q+jKgjiVNlFP1
-         48JhFTI6TwMXPZ6sBnB1AuXHASXmYNkDtAdVpru68MxcIFVz6KRqZ3g4yLdbmQe24J
-         86Ss7J4oQEgMTRaXQE99fEbVSDM6vnpADX4hgrL4SFFvIK0LeOIhoE74jA4zHXNvY0
-         eHalq5fueMzU7c2UVgOKYPFgmrApiQUFlBPqoagNbg7qXH8oZVi/DYuvwYjIQegOLS
-         4oH0yV9fSdyuqZAz8dS1HSU0tf4fcYj+DzHEgNEzdmfRAsdnUJpgUh8GY6lI5AUZoP
-         46ZQU3FHOBkTw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Fri, 28 Jul 2023 10:17:22 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 28 Jul
- 2023 10:16:59 +0300
-Date:   Fri, 28 Jul 2023 10:17:22 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Huqiang Qin <huqiang.qin@amlogic.com>
-CC:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>,
-        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: dts: Add watchdog node for Amlogic-T7 SoCs
-Message-ID: <20230728071722.dpytlujrzosb7owa@CAB-WSD-L081021>
-References: <20230726112146.1127145-1-huqiang.qin@amlogic.com>
- <20230726112146.1127145-5-huqiang.qin@amlogic.com>
+        with ESMTP id S234040AbjG1HSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:18:50 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 147CC2122
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:18:49 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e2a6a3768so2308744a12.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:18:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690528727; x=1691133527;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZFRs+1l4ttYgce/W/Q/lR0//anrGUYTWZshXgYuQpfM=;
+        b=X+8YpOCRlNu+CrYzZ9s51R51phORgLLkvU1YXhrdW4w3DQXRasewx+yxyK/GVhvqv0
+         m6wo2m08SQArbieyg2c9eHYamZfJHMvQ9UMYU4EX7bqS7UsOWwi2wSpsgeopvZLgt1RD
+         w2LMTxdQQrn6oenHpc2ZPpAlYtMuDy+TsEYOIo8gyykcJqYmkCtkC05G3M+MZvhuZeZn
+         MwraUPRQUDxjDLIyH0g2yPlWHU/fQLHCbpDH4pLVw+2Iwm+HolXeILpXhjvWOcXJPBnE
+         ZdtTKK9oXIu1mRsBQDqmTgeylHBOBDnikFUMkUw2GqVA3KYLHHoLXnJ7hsaTn2NAuudZ
+         xyvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690528727; x=1691133527;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZFRs+1l4ttYgce/W/Q/lR0//anrGUYTWZshXgYuQpfM=;
+        b=iF/MiacWviUlNOVC1jfq1WXHfyCvXNOreiEbmrzT2OJrTXV0cHtu28Zj346NkoFOzq
+         78hwUIQQXH+ggVW2nuJXZSKLYKQ/nia8kJLW+XgEtOD4nJWNrKd6S2dneSZfFKFQfWZn
+         LUy3TFYz+q3I06lEId0pJVZFOsLlDMqYf/+wJHxhvm3KfCpGSlaltnCtGBbxlMmh99Nt
+         A+Qnros+iNLunWG+fB6UD8HuDB9hDTiLNNLo0TIdPwZiX60CvgKU2BMy7RK5kRjjRiFG
+         IWg/EX+2QV0J5QoVYAPmZ3+S4E3gY5h1te3yMtqwEksuEclbPucmMKA9J1Xqp5o6teeE
+         QQcw==
+X-Gm-Message-State: ABy/qLZMNok9mxkyjYiJ/cvyzDJvLDzHlKVBXosqGMMAhmiEbuhib3af
+        aQZ79+zRGl+KSMuBDSZ2c8nyRw==
+X-Google-Smtp-Source: APBJJlHB7YcDxfEFdwmeU91iDamcQPeuv4jgYP8CBYnnw95qVTyfL/9+3ouqOSWZtgQ1H53Yh82/3w==
+X-Received: by 2002:aa7:df89:0:b0:522:3aae:c69b with SMTP id b9-20020aa7df89000000b005223aaec69bmr918747edy.20.1690528727494;
+        Fri, 28 Jul 2023 00:18:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id e8-20020a056402148800b0052227c4384esm1467532edv.34.2023.07.28.00.18.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jul 2023 00:18:46 -0700 (PDT)
+Message-ID: <fe60d09a-aa79-f3b9-cf9d-e8ae8ff58d09@linaro.org>
+Date:   Fri, 28 Jul 2023 09:18:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230726112146.1127145-5-huqiang.qin@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/23 10:45:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/23 10:46:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 4/9] dt-bindings: clock: Add Marvell PXA1908 clock
+ bindings
+Content-Language: en-US
+To:     =?UTF-8?Q?Duje_Mihanovi=c4=87?= <duje.mihanovic@skole.hr>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afaerber@suse.com
+References: <20230727162909.6031-1-duje.mihanovic@skole.hr>
+ <20230727162909.6031-5-duje.mihanovic@skole.hr>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230727162909.6031-5-duje.mihanovic@skole.hr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 26, 2023 at 07:21:46PM +0800, Huqiang Qin wrote:
-> Add watchdog device.
+On 27/07/2023 18:29, Duje Mihanović wrote:
+> Add dt bindings and documentation for the Marvell PXA1908 clock
+> controller.
 > 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 > ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 1423d4a79156..6e34d11214b7 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -143,6 +143,12 @@ apb4: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->  
-> +			watchdog@2100 {
-> +				compatible = "amlogic,t7-wdt";
-> +				reg = <0x0 0x2100 0x0 0x10>;
-> +				clocks = <&xtal>;
-> +			};
-> +
->  			uart_a: serial@78000 {
->  				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
->  				reg = <0x0 0x78000 0x0 0x18>;
-> -- 
-> 2.37.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
--- 
-Thank you,
-Dmitry
+...
+
+> +/* apb (apbc) peripherals */
+> +#define PXA1908_CLK_UART0		1
+> +#define PXA1908_CLK_UART1		2
+> +#define PXA1908_CLK_GPIO		3
+> +#define PXA1908_CLK_PWM0		4
+> +#define PXA1908_CLK_PWM1		5
+> +#define PXA1908_CLK_PWM2		6
+> +#define PXA1908_CLK_PWM3		7
+> +#define PXA1908_CLK_SSP0		8
+> +#define PXA1908_CLK_SSP1		9
+> +#define PXA1908_CLK_IPC_RST		10
+> +#define PXA1908_CLK_RTC			11
+> +#define PXA1908_CLK_TWSI0		12
+> +#define PXA1908_CLK_KPC			13
+> +#define PXA1908_CLK_SWJTAG		17
+> +#define PXA1908_CLK_SSP2		20
+> +#define PXA1908_CLK_TWSI1		25
+> +#define PXA1908_CLK_THERMAL		28
+> +#define PXA1908_CLK_TWSI3		29
+> +#define PXA1908_APBC_NR_CLKS		48
+> +
+> +/* apb (apbcp) peripherals */
+> +#define PXA1908_CLK_UART2		7
+> +#define PXA1908_CLK_TWSI2		10
+> +#define PXA1908_CLK_AICER		14
+> +#define PXA1908_APBCP_NR_CLKS		14
+> +
+> +/* axi (apmu) peripherals */
+> +#define PXA1908_CLK_CCIC1		9
+> +#define PXA1908_CLK_ISP			14
+
+Why do you have gaps between IDs? The clock IDs are supposed to be
+continuous, otherwise it is not an ID.
+
+> +#define PXA1908_CLK_GATE_CTRL		16
+
+Best regards,
+Krzysztof
+
