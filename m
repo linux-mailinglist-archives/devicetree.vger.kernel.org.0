@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542F3767209
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95C62767218
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:41:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231578AbjG1Qkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 12:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43972 "EHLO
+        id S229808AbjG1Qlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 12:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232397AbjG1Qkp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:40:45 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02114203
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 09:40:43 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbc59de009so23368235e9.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 09:40:43 -0700 (PDT)
+        with ESMTP id S229825AbjG1Qly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:41:54 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0D34483
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 09:41:48 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e429e1eabso2974512a12.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 09:41:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690562442; x=1691167242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1690562507; x=1691167307;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vHUNO/IrnfFN0MhhDh/0mFjdxBVg/OLd4PkUkNG7FnI=;
-        b=ZGdTtBipas8Fy5PIhI/L5R3iS9ZPXGscxN4xBXd6FBdKqKbV0JJJysUIYY4sFfVdOu
-         Mpw3cAvkDHFxP769McZZH2VRi3SQB7vCv7zE+PblnNc9Sat7NOp/agTaNpTEdNcihR+D
-         aaDdXIXpyWHSU2bamemLdDUMV6LN65U2QC1cp/mlPHs89xo7qEmRCj45XR/Qa+jD9bsG
-         u3oXvA+Rn3UUxA0rpB+zlsRxrsawNxdN3pvJCysyFlVeiuZ/MQ343VdrSWLc2TavimaX
-         Ynh+Ati5bMSuJ+rm1qVy7ZfEOYqaZXQ2+PxscO0AbdPkpFx+3eJiRZCQlBsfpoPmX+Y8
-         1TKg==
+        bh=orpfdfVEmFYyWCeY7K4CEDuayTWlQJluljmwDPaIJMo=;
+        b=mwZIO7Gspo6sMkmffElsuFvo0BcnCnlzeyCERZ9wG0iSUPIXbFuWNMpdgPmb4IEMdg
+         sRBo+2uCGXF9Z5UMaHuS9yGM8iTW27IWYBrYCRmPWNhNDQaWQPLYwKoLUU2SzGr+nxZJ
+         dtRoNV/12YVV7eeo239sqsieXUH3MDoQ6sAfMLQypfHAwzzTBp8lK3rm7tKMQKp6+lTl
+         d3eIShO++HI+IRiuj72pP2Mix3proUCeTToz1My1axqxx2LRJTO9E8+3u05XA5Z5BIq0
+         vAvCdFnjxRn6ClNMaBQeF+46zPuQTGnfCK8UESIJLA3/ZSKJPEhK7y4mi+c31/tk+0WU
+         6UHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690562442; x=1691167242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1690562507; x=1691167307;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vHUNO/IrnfFN0MhhDh/0mFjdxBVg/OLd4PkUkNG7FnI=;
-        b=SUPwJ5iebA5/dcRsXVXedKWfffb90+efLhaciBhImSpRwzxspBItndI/Jef53UPcTy
-         5zEIuPx2Q/U5xUjc955N5Mq7ja3FyoCgTcktr2CcWSJVHFExHeOkTKpL4uFvh8VliA8b
-         ihJ5Q9SLbt3DYVOTfvWChSFdz9dDk4bo69DlDOrJo6ulhekyPabT9kQrOvut8QBIZyuC
-         BRd4diXhXl6qyQUL1SxU8jHpKXArHwS6Ro0rlEI6wlJdqmSUchYZPnn969B+zAy/+Oxs
-         lJMz8nY1FXHCrAxYR8zyZp+qjF6lqHmnHFTFvMtRwWch6W0SAZhaMKO1jRv9pnDhEjxs
-         cnZw==
-X-Gm-Message-State: ABy/qLZheaki5JvgKBRjyutlML0rYIdFMUYoASbMA5UqFevOcBORdhup
-        RXDIgyCKuzWoBhRYjK6ephS8oQ==
-X-Google-Smtp-Source: APBJJlGShlM1dO3+fMhExjYv6Dh8m7h06nmIvJBTl25b1p7ACzbItvuCgoGAcNo1XJsyv0g0/4Kb5Q==
-X-Received: by 2002:a05:600c:3789:b0:3f7:678c:74b0 with SMTP id o9-20020a05600c378900b003f7678c74b0mr2106898wmr.12.1690562442214;
-        Fri, 28 Jul 2023 09:40:42 -0700 (PDT)
+        bh=orpfdfVEmFYyWCeY7K4CEDuayTWlQJluljmwDPaIJMo=;
+        b=DCdMoapCp9fsM7xl969j7qWdj5rIfYvME+bk3kT83YqQjRcq+E1SIPowb2kn0D5MP7
+         qpQUQ6z2uEdb4D7JvaLL5qE7lScTDsfI6z2ybcEnWHWkBTHrrGFR3Lb9cRbSUFKPMKWc
+         6MBsoApPvR0FcOdWw3eec0lw/YZg/QxLAzd0OeWbMF5kadAlEGXGpymij/83ma3FfxB5
+         XF8vCaVae7KjKY5uFe7zjnPxfJAfPaYcb80Tsb0vVrHMRaO/WWvhLAHKRCKKD3xMXBa+
+         XDKn1Q/+/0hQ63T4T7biS/ZVQdu0+QN1MN+jJuvCjbOljVJs5imvTlIWaANiSZ8kO9Xn
+         Gyyw==
+X-Gm-Message-State: ABy/qLbifuSV9m5DVt1aK81X16/2+I2RzvCSMx+HW9ADkiKC7F7z8CY9
+        GKQS4hwg2mRr27MaRLPtNk4kXw==
+X-Google-Smtp-Source: APBJJlGibJvtVcDgz5ibKZkDiY/s+WjsQMgg3+FkI4BP6RD+oYwseU4rOkmRxVxGch/QiIOtfVX4Lw==
+X-Received: by 2002:a05:6402:1a29:b0:522:1d80:7549 with SMTP id be9-20020a0564021a2900b005221d807549mr1839629edb.26.1690562506830;
+        Fri, 28 Jul 2023 09:41:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n5-20020a1c7205000000b003fe11148055sm1185888wmc.27.2023.07.28.09.40.40
+        by smtp.gmail.com with ESMTPSA id f25-20020a056402151900b005224ec27dd7sm1976375edw.66.2023.07.28.09.41.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 09:40:41 -0700 (PDT)
-Message-ID: <68b7d772-8dc4-a781-031b-ea33dae41751@linaro.org>
-Date:   Fri, 28 Jul 2023 18:40:39 +0200
+        Fri, 28 Jul 2023 09:41:46 -0700 (PDT)
+Message-ID: <e8ca771a-d023-d112-04cc-48f6704547cf@linaro.org>
+Date:   Fri, 28 Jul 2023 18:41:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic C3 Reset Controller
+Subject: Re: [PATCH v3 29/50] dt-bindings: irqchip/atmel-aic5: Add support for
+ sam9x7 aic
 Content-Language: en-US
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        zelong dong <zelong.dong@amlogic.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, kelvin.zhang@amlogic.com
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
- <20230719060954.14864-2-zelong.dong@amlogic.com>
- <f7b72ee90009f6749700a7bd79a3a63786a82a32.camel@pengutronix.de>
+To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230728102811.266759-1-varshini.rajendran@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f7b72ee90009f6749700a7bd79a3a63786a82a32.camel@pengutronix.de>
+In-Reply-To: <20230728102811.266759-1-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,20 +78,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 17:49, Philipp Zabel wrote:
->>      maxItems: 1
->> diff --git a/include/dt-bindings/reset/amlogic,c3-reset.h b/include/dt-bindings/reset/amlogic,c3-reset.h
->> new file mode 100644
->> index 000000000000..d9127863f603
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/amlogic,c3-reset.h
+On 28/07/2023 12:28, Varshini Rajendran wrote:
+> Document the support added for the Advanced interrupt controller(AIC)
+> chip in the sam9x7 SoC family.
 > 
-> Given that this is only included by
-> arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi, should this header be
-> moved to arch/arm64/boot/dts/amlogic ?
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
 
-I think there is ongoing work or at least plan to use the IDs also in
-clock/reset drivers for all Amlogic platforms. Do I recall this correctly?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
