@@ -2,84 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7769C766B95
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 13:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA351766BA7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 13:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbjG1LVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 07:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33286 "EHLO
+        id S234153AbjG1L2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 07:28:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232825AbjG1LVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 07:21:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5491731;
-        Fri, 28 Jul 2023 04:21:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 652D1620FF;
-        Fri, 28 Jul 2023 11:21:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA6EC433C7;
-        Fri, 28 Jul 2023 11:21:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690543289;
-        bh=5Ljg5W9xJaG5OJJ6VBPirbBblULOZWgo2u2fBfwRRzs=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=nAxu22Kn7bch92daBwFiFa+4mSC/bM0i0o4OUjpIayEoZRQr32PFJbtLu8x8yc40L
-         1T73YSkZLu2c9vRysRVSvFlW2pM5hNZHMoFtiTtBEpHyDOAdmFr4otf48YtyP7mRma
-         wkwcf0OMeLh3k/ThE95bXZmfP5U4T2ZZzblf2mInK0vW5wocHtRIVZ6dImvTS5eiCP
-         Xsb6i9MxCBRNRJtPJLGjORtZVg0BEUBjeJpt0pGTJaRc+pE1W+Hhz2oLeVz5T9jiPn
-         YDMHB4pjUpjSLSywB3BV/AiJDcPZSUBjNgjuEKL3TkmweCluXnZjlDmE9DGSg796G3
-         0iTxBoEIg2QlA==
-From:   Lee Jones <lee@kernel.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230726065633.74924-1-krzysztof.kozlowski@linaro.org>
-References: <20230726065633.74924-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: st,stpmic1: Merge patterns
- for nodes
-Message-Id: <169054328743.350271.8132596639688808363.b4-ty@kernel.org>
-Date:   Fri, 28 Jul 2023 12:21:27 +0100
+        with ESMTP id S235218AbjG1L2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 07:28:49 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3E43ABA;
+        Fri, 28 Jul 2023 04:28:45 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DDE43755;
+        Fri, 28 Jul 2023 13:27:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690543662;
+        bh=zlio+8q8WgE1cCASCSlihC71qwk96p4bbXHtv0glq0w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iuWPhIO/YYEgbfTIXWn3aTKbMP5acyGC5ff9vDZeRXRQoQgQUa3qS8BRp/nClMsF6
+         uAm2wil99ELCQFUzuc11RFuItkW5saS3ItEaW3rywSFgJeW7Jg9TwVinicYnnSNvwy
+         DabGrmgnL5Lqnq3hy4clnPVNBvD1EKrI1kA4kDgY=
+Date:   Fri, 28 Jul 2023 14:28:47 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Umang Jain <umang.jain@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Lee Jackson <lee.jackson@arducam.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH 0/2] media: i2c: imx519: Support for Sony IMX519 sensor
+Message-ID: <20230728112847.GA5094@pendragon.ideasonboard.com>
+References: <20230727154108.308320-1-umang.jain@ideasonboard.com>
+ <169053432818.137962.5791887898514618663@Monstersaurus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <169053432818.137962.5791887898514618663@Monstersaurus>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jul 2023 08:56:32 +0200, Krzysztof Kozlowski wrote:
-> Properties should be described only once, thus having separate pattern
-> for children just to specify the $ref to regulator.yaml is not correct.
-> It also makes impossible to finish it with
-> additional/unevaluatedProperties:false to restrict allowed properties in
-> regulator node.
+On Fri, Jul 28, 2023 at 09:52:08AM +0100, Kieran Bingham wrote:
+> Hi Umang,
 > 
-> Merge the patterns, so each regulator subnode has regulator.yaml $ref,
-> additional properties and ends with additionalProperties:false.  This
-> points to missing regulator-min/max-microvolt in LDO4 node.
+> Quoting Umang Jain (2023-07-27 16:41:06)
+> > Series adds driver support for Sony IMX519 sensor.
+> > 
+> > Lee, can do add S-o-B tags please to these patches
+> > since I've updated your email IDs at various places from
+> > info@ to lee.jackson@.
 > 
-> [...]
+> Can you dig and find out what your start point was here please?
+> 
+> This series should already be numbered at least v6, there are 5 previous
+> postings. The most recent of which was already Signed off by
+> 'lee.jackson@arducam.com' So that makes me weary that v5 was not used as
+> the start point for this refresh.
+> 
+> Previous versions are identifiable here:
+> 
+> - https://patchwork.linuxtv.org/project/linux-media/list/?series=&submitter=&state=*&q=imx519&archive=both&delegate=
+> 
+> Could you check through any previous review comments and make sure they
+> have all been addressed too please?
+> 
+> It would be useful if the cover letter or patch described a changelog
+> from the previous version too to identify what has been updated.
 
-Applied, thanks!
+I second this. A summary of the major changes in the cover letter plus a
+detailed changelog in each patch is invaluable for review.
 
-[1/2] dt-bindings: mfd: st,stpmic1: Merge patterns for nodes
-      commit: 36392f2ca024765039fa45fc5b085210998ffc7a
-[2/2] dt-bindings: mfd: stericsson,db8500-prcmu: Add missing unevaluatedProperties for each regulator
-      commit: 3d2b5d02738ee802f44f3f9c6ae8932e548188d6
+> I see the kernel test robot reported failures based on missing
+> dependencies.
+> 
+> It's helpful to list any dependency information here in the cover
+> letter too.
 
---
-Lee Jones [李琼斯]
+You can use the --base argument to git-format-patch to record the base
+commit, and point in the cover letter to a public branch where the
+series can be found.
 
+> > Thanks!
+> > 
+> > Lee Jackson (2):
+> >   media: dt-bindings: imx519: Add IMX519 DT bindings
+> >   media: i2c: imx519: Support for the Sony IMX519 sensor
+> > 
+> >  .../bindings/media/i2c/sony,imx519.yaml       |  113 +
+> >  MAINTAINERS                                   |    8 +
+> >  drivers/media/i2c/Kconfig                     |   11 +
+> >  drivers/media/i2c/Makefile                    |    1 +
+> >  drivers/media/i2c/imx519.c                    | 2134 +++++++++++++++++
+> >  5 files changed, 2267 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> >  create mode 100644 drivers/media/i2c/imx519.c
+
+-- 
+Regards,
+
+Laurent Pinchart
