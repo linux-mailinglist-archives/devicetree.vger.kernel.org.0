@@ -2,153 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02DDA76703D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 17:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B688767057
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 17:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235293AbjG1PLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 11:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46004 "EHLO
+        id S234703AbjG1PS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 11:18:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbjG1PL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 11:11:29 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 740DE10CB;
-        Fri, 28 Jul 2023 08:11:28 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36SCxYmu021467;
-        Fri, 28 Jul 2023 15:11:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=+M1QcnslsutWlO5X/4Ecy8tXoGFGslAYbFb1EjhoPe8=;
- b=fD2x+4iEWo2Y5j6649zpeBgY5WzVO1ojQBHFIwRUiKHm56AxvceZfr8faNNeYQa4ND0Y
- 8lPjSndLvM0HytKxLIvZAVD1xBolDnYbR5zM+57pV5axGDp/ZAMs8eXchKw2zjf7g0Mi
- 5uu3ujBjMePVuyLStoo8/sNfG0W49ICP/n3TUZhxZAcFcArqwCcedImeoze1/IU2gK+G
- 0IydaomdgAOkiNsZYuLJ3jL/nI/Jgsyh1nvrPGcl6/QoSfhiUxhs2WlSl/N/2J8mkwbK
- BSrkXVEOofw73EZWDtlPpUPOu8m3Pd/KFsDNFa0WmiTKw0GWGOSBMBiH7tuS1ayOvGkE +g== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s469hha2a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Jul 2023 15:11:21 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36SFBKJM008061
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Jul 2023 15:11:20 GMT
-Received: from [10.216.26.20] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 28 Jul
- 2023 08:10:58 -0700
-Message-ID: <f3d5c72d-90d3-b091-f995-5ad0bf93ae1d@quicinc.com>
-Date:   Fri, 28 Jul 2023 20:40:54 +0530
+        with ESMTP id S234573AbjG1PS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 11:18:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1656430FC;
+        Fri, 28 Jul 2023 08:18:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DCDC62173;
+        Fri, 28 Jul 2023 15:18:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62509C433C8;
+        Fri, 28 Jul 2023 15:18:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690557506;
+        bh=4CAHd/2r0jRCEBdeMRRG/xbAeKcA6Rjt+NeWrcq7040=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f8XoCTCn3tpOxd6XF8c8QZxi1Xn7N1hTaVnUIPI3fNndomp5AxOqkwQAQ0zcRsXx7
+         cpceRit7q95Xz2UOzpVhsSX1YuV3VFYUrr1mF+e/9R0ccqHDCE4fvSCeVsnSrE793E
+         aYv652LYImnjokxHsM97tk5pkbCrfIZRBzYuHaC9COQl0nIPqEDe6D8tkLLpnW/4ET
+         jTLem+01z8cM9ToiR8MP5pQbfCSKU9DyAj2KdH7jZZdV6PtftvEopRMYT58cLcUHBS
+         LiHai2TR2UHlf8cWFBkUdAzaVz3bHCsd6oCLexfmVTJ8UOOmQFZThaDC+gP4X/tD5A
+         cSFviGT3GqR0Q==
+Date:   Fri, 28 Jul 2023 16:18:18 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     broonie@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linus.walleij@linaro.org, lgirdwood@gmail.com,
+        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/6] soundwire: bus: Allow SoundWire peripherals to
+ register IRQ handlers
+Message-ID: <20230728151818.GL8175@google.com>
+References: <20230725102532.2567580-1-ckeepax@opensource.cirrus.com>
+ <20230725102532.2567580-2-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add PCIe0 node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <manivannan.sadhasivam@linaro.org>
-CC:     <helgaas@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_parass@quicinc.com>,
-        "reviewer:ARM/QUALCOMM CHROMEBOOK SUPPORT" 
-        <cros-qcom-dts-watchers@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1690540760-20191-1-git-send-email-quic_krichai@quicinc.com>
- <17c2ba50-3b72-523c-d92b-1ecbf9be7450@linaro.org>
-From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <17c2ba50-3b72-523c-d92b-1ecbf9be7450@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: hOlM99BQYESLq8VgbD3ILXuwJl74JUvh
-X-Proofpoint-GUID: hOlM99BQYESLq8VgbD3ILXuwJl74JUvh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- priorityscore=1501 impostorscore=0 malwarescore=0 phishscore=0
- adultscore=0 clxscore=1015 mlxlogscore=999 mlxscore=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2306200000 definitions=main-2307280140
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230725102532.2567580-2-ckeepax@opensource.cirrus.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Vinod, Bard, Pierre-Louis, Sanyog,
 
-On 7/28/2023 5:33 PM, Krzysztof Kozlowski wrote:
-> On 28/07/2023 12:39, Krishna chaitanya chundru wrote:
->> Add PCIe dtsi node for PCIe0 controller on sc7280 platform.
->>
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Thank you for your patch. There is something to discuss/improve.
->
->
->> +		pcie0_phy: phy@1c06000 {
->> +			compatible = "qcom,sm8250-qmp-gen3x1-pcie-phy";
->> +			reg = <0 0x01c06000 0 0x1c0>;
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +			ranges;
->> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_CLKREF_EN>,
->> +				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
->> +
->> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
->> +			reset-names = "phy";
->> +
->> +			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->> +			assigned-clock-rates = <100000000>;
->> +
->> +			status = "disabled";
->> +
->> +			pcie0_lane: phy@1c0e6200 {
-> Isn't this old-style of bindings? Wasn't there a change? On what tree
-> did you base it?
-Let me rebase and send it again.
->> +
->> +			pcie0_wake_n: pcie0-wake-n {
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
->
-> Nodes end with 'state'.
+This has been on the list for some time now.
 
-I will run it send it again.
+Would one of you please review this, so we can get it merged?
 
-Thanks,
+On Tue, 25 Jul 2023, Charles Keepax wrote:
 
-KC
+> From: Lucas Tanure <tanureal@opensource.cirrus.com>
+> 
+> Currently the in-band alerts for SoundWire peripherals can only
+> be communicated to the driver through the interrupt_callback
+> function. This however is slightly inconvient for devices that wish to
+> share IRQ handling code between SoundWire and I2C/SPI, the later would
+> normally register an IRQ handler with the IRQ subsystem. However there
+> is no reason the SoundWire in-band IRQs can not also be communicated
+> as an actual IRQ to the driver.
+> 
+> Add support for SoundWire peripherals to register a normal IRQ handler
+> to receive SoundWire in-band alerts, allowing code to be shared across
+> control buses. Note that we allow users to use both the
+> interrupt_callback and the IRQ handler, this is useful for devices which
+> must clear additional chip specific SoundWire registers that are not a
+> part of the normal IRQ flow, or the SoundWire specification.
+> 
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> ---
+> 
+> No changes since v5.
+> 
+> Thanks,
+> Charles
+> 
+>  drivers/soundwire/bus.c       | 32 ++++++++++++++++++++++++++++++++
+>  drivers/soundwire/bus_type.c  | 12 ++++++++++++
+>  include/linux/soundwire/sdw.h |  9 +++++++++
+>  3 files changed, 53 insertions(+)
+> 
+> diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
+> index dba920ec88f6f..cf55386256f3f 100644
+> --- a/drivers/soundwire/bus.c
+> +++ b/drivers/soundwire/bus.c
+> @@ -3,6 +3,7 @@
+>  
+>  #include <linux/acpi.h>
+>  #include <linux/delay.h>
+> +#include <linux/irq.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/soundwire/sdw_registers.h>
+> @@ -25,6 +26,23 @@ static int sdw_get_id(struct sdw_bus *bus)
+>  	return 0;
+>  }
+>  
+> +static int sdw_irq_map(struct irq_domain *h, unsigned int virq,
+> +		       irq_hw_number_t hw)
+> +{
+> +	struct sdw_bus *bus = h->host_data;
+> +
+> +	irq_set_chip_data(virq, bus);
+> +	irq_set_chip(virq, &bus->irq_chip);
+> +	irq_set_nested_thread(virq, 1);
+> +	irq_set_noprobe(virq);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops sdw_domain_ops = {
+> +	.map	= sdw_irq_map,
+> +};
+> +
+>  /**
+>   * sdw_bus_master_add() - add a bus Master instance
+>   * @bus: bus instance
+> @@ -151,6 +169,14 @@ int sdw_bus_master_add(struct sdw_bus *bus, struct device *parent,
+>  	bus->params.curr_bank = SDW_BANK0;
+>  	bus->params.next_bank = SDW_BANK1;
+>  
+> +	bus->irq_chip.name = dev_name(bus->dev);
+> +	bus->domain = irq_domain_create_linear(fwnode, SDW_MAX_DEVICES,
+> +					       &sdw_domain_ops, bus);
+> +	if (!bus->domain) {
+> +		dev_err(bus->dev, "Failed to add IRQ domain\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(sdw_bus_master_add);
+> @@ -187,6 +213,9 @@ static int sdw_delete_slave(struct device *dev, void *data)
+>  void sdw_bus_master_delete(struct sdw_bus *bus)
+>  {
+>  	device_for_each_child(bus->dev, NULL, sdw_delete_slave);
+> +
+> +	irq_domain_remove(bus->domain);
+> +
+>  	sdw_master_device_del(bus);
+>  
+>  	sdw_bus_debugfs_exit(bus);
+> @@ -1725,6 +1754,9 @@ static int sdw_handle_slave_alerts(struct sdw_slave *slave)
+>  				struct device *dev = &slave->dev;
+>  				struct sdw_driver *drv = drv_to_sdw_driver(dev->driver);
+>  
+> +				if (slave->prop.use_domain_irq && slave->irq)
+> +					handle_nested_irq(slave->irq);
+> +
+>  				if (drv->ops && drv->ops->interrupt_callback) {
+>  					slave_intr.sdca_cascade = sdca_cascade;
+>  					slave_intr.control_port = clear;
+> diff --git a/drivers/soundwire/bus_type.c b/drivers/soundwire/bus_type.c
+> index 1f43ee848eac8..fafbc284e82da 100644
+> --- a/drivers/soundwire/bus_type.c
+> +++ b/drivers/soundwire/bus_type.c
+> @@ -122,6 +122,12 @@ static int sdw_drv_probe(struct device *dev)
+>  	if (drv->ops && drv->ops->read_prop)
+>  		drv->ops->read_prop(slave);
+>  
+> +	if (slave->prop.use_domain_irq) {
+> +		slave->irq = irq_create_mapping(slave->bus->domain, slave->dev_num);
+> +		if (!slave->irq)
+> +			dev_warn(dev, "Failed to map IRQ\n");
+> +	}
+> +
+>  	/* init the sysfs as we have properties now */
+>  	ret = sdw_slave_sysfs_init(slave);
+>  	if (ret < 0)
+> @@ -166,7 +172,13 @@ static int sdw_drv_remove(struct device *dev)
+>  	int ret = 0;
+>  
+>  	mutex_lock(&slave->sdw_dev_lock);
+> +
+>  	slave->probed = false;
+> +
+> +	if (slave->prop.use_domain_irq)
+> +		irq_dispose_mapping(irq_find_mapping(slave->bus->domain,
+> +						     slave->dev_num));
+> +
+>  	mutex_unlock(&slave->sdw_dev_lock);
+>  
+>  	if (drv->remove)
+> diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
+> index f523ceabd0596..8923387a7405b 100644
+> --- a/include/linux/soundwire/sdw.h
+> +++ b/include/linux/soundwire/sdw.h
+> @@ -6,6 +6,8 @@
+>  
+>  #include <linux/bug.h>
+>  #include <linux/lockdep_types.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqdomain.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/bitfield.h>
+>  
+> @@ -370,6 +372,7 @@ struct sdw_dpn_prop {
+>   * @clock_reg_supported: the Peripheral implements the clock base and scale
+>   * registers introduced with the SoundWire 1.2 specification. SDCA devices
+>   * do not need to set this boolean property as the registers are required.
+> + * @use_domain_irq: call actual IRQ handler on slave, as well as callback
+>   */
+>  struct sdw_slave_prop {
+>  	u32 mipi_revision;
+> @@ -394,6 +397,7 @@ struct sdw_slave_prop {
+>  	u8 scp_int1_mask;
+>  	u32 quirks;
+>  	bool clock_reg_supported;
+> +	bool use_domain_irq;
+>  };
+>  
+>  #define SDW_SLAVE_QUIRKS_INVALID_INITIAL_PARITY	BIT(0)
+> @@ -641,6 +645,7 @@ struct sdw_slave_ops {
+>   * struct sdw_slave - SoundWire Slave
+>   * @id: MIPI device ID
+>   * @dev: Linux device
+> + * @irq: IRQ number
+>   * @status: Status reported by the Slave
+>   * @bus: Bus handle
+>   * @prop: Slave properties
+> @@ -670,6 +675,7 @@ struct sdw_slave_ops {
+>  struct sdw_slave {
+>  	struct sdw_slave_id id;
+>  	struct device dev;
+> +	int irq;
+>  	enum sdw_slave_status status;
+>  	struct sdw_bus *bus;
+>  	struct sdw_slave_prop prop;
+> @@ -885,6 +891,7 @@ struct sdw_master_ops {
+>   * is used to compute and program bus bandwidth, clock, frame shape,
+>   * transport and port parameters
+>   * @debugfs: Bus debugfs
+> + * @domain: IRQ domain
+>   * @defer_msg: Defer message
+>   * @clk_stop_timeout: Clock stop timeout computed
+>   * @bank_switch_timeout: Bank switch timeout computed
+> @@ -920,6 +927,8 @@ struct sdw_bus {
+>  #ifdef CONFIG_DEBUG_FS
+>  	struct dentry *debugfs;
+>  #endif
+> +	struct irq_chip irq_chip;
+> +	struct irq_domain *domain;
+>  	struct sdw_defer defer_msg;
+>  	unsigned int clk_stop_timeout;
+>  	u32 bank_switch_timeout;
+> -- 
+> 2.30.2
+> 
 
->
->> +				pins = "gpio89";
->> +				function = "gpio";
->> +
->> +				drive-strength = <2>;
->> +				bias-pull-up;
->> +			};
-> Best regards,
-> Krzysztof
->
+-- 
+Lee Jones [李琼斯]
