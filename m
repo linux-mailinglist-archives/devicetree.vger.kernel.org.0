@@ -2,118 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EC3766AF5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 12:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3C2766B17
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 12:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235157AbjG1KrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 06:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
+        id S236029AbjG1Kyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 06:54:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233660AbjG1KrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 06:47:02 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6EBFC0;
-        Fri, 28 Jul 2023 03:47:01 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 764225C0101;
-        Fri, 28 Jul 2023 06:46:59 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 28 Jul 2023 06:46:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1690541219; x=1690627619; bh=zE
-        uCJaOzZh+kBMJcn4jBJfpUMI5wNH9AosgDceJjJKc=; b=MTuWCUeFiHnLM2pwyo
-        zxp7ZCSmgM5/ugQQxma3Fu8kFrD8gVNAvaeI1F+n4ZQ9+QIN/r9bNQ8rDTH5u4mX
-        oMUSp3YvTKphMsBOfe/yEqOyPOKZlK1eldq6fVlU3vIxG5B0ixRomK5Qa/DZhdMk
-        0sRxHDL3VaXX2lxI16n/jmP9SIjkz8Jrg8oF7wdTUGeqp4wt1cJkvZBPbRkpw5zk
-        f6V8wBTwuCQtQHXwrUuDcOTJqgNTWnqj/hTi1pOj5G66x5UGX0w+dp5RM76MRW9b
-        7WoPEXugDvpMIVay2TFPSLMYZ+Emv8Ykib2mZ3byADE6Mqpj0sSV+aJljddvptan
-        bLLA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1690541219; x=1690627619; bh=zEuCJaOzZh+kB
-        MJcn4jBJfpUMI5wNH9AosgDceJjJKc=; b=2ujtNkF3iobFUBQyjYpHbbTVpTvJU
-        9oSuSnziGy+Bo073zVeiCXjQqqwmuS12JnK1xOL4EG72nmAbYjV23Cwv1sY5kR5V
-        QgGcwRAAT4Hdiy4+zOODXp6AD4bDozYEZkbkKQYbMe144L014OYZrL2TPqTA9wri
-        g6lDD5R77Mm2SxtFDXmwDHd5/KyCE+P8scwM9ndL/ZzK1JLFwsiGQUVUrPmpuhEv
-        j+g2XRVJA8MfCqddOmxlHWiSgkWiFxxdib3eHwB1vFSSiogcY1Ow/Elb+eIYjE64
-        6BVmk+QFMO0gaCDIY+zD+VW2huel7ydKXiR40M/OcUXuBsxayp7AoP89g==
-X-ME-Sender: <xms:opzDZI98trAehFkKvf0kk9fihbJRsmAQzapfWOLZKgbbdw8ftdgdZQ>
-    <xme:opzDZAufZU8eWY7n3t6ViaPBoSVBnykIOr8WrmBLRwlAxcIShNp6sC2t37gNFUI_b
-    wE3MY83GuzT3Z2Nm5Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrieeigdeftdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:opzDZODxrDq_NX-fn6UaZDVNvSQ8gnIWWtYQzI3_pLPouFR8CWVPxw>
-    <xmx:opzDZIeoVdzIIKh3hfCd-F5sTKHEJoQZBCi_Tmg1mjwKbGRZcqW9xQ>
-    <xmx:opzDZNPPmXCwiknk_tolo-KHDUmIfV5YE7HEwzws9iW-CeT3kr2vaA>
-    <xmx:o5zDZOH8r6YJfRUXBUtBjfhh1QpKi1zyrUR9vMkpRu2akCLQCyGUag>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 1563CB60089; Fri, 28 Jul 2023 06:46:57 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-592-ga9d4a09b4b-fm-defalarms-20230725.001-ga9d4a09b
-Mime-Version: 1.0
-Message-Id: <569a1c8e-234a-442f-9b9e-956f5bac26dc@app.fastmail.com>
-In-Reply-To: <20230728074944.26746-3-zhuyinbo@loongson.cn>
-References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
- <20230728074944.26746-3-zhuyinbo@loongson.cn>
-Date:   Fri, 28 Jul 2023 12:46:37 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        with ESMTP id S235178AbjG1Kyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 06:54:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF472680;
+        Fri, 28 Jul 2023 03:54:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 48323620E8;
+        Fri, 28 Jul 2023 10:54:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA10DC433C7;
+        Fri, 28 Jul 2023 10:54:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690541682;
+        bh=GrVo5rdpC3v6HS0sIdUz8Rz5/UMGf7Gur3+ENNLuLvE=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=IyRtGeBrBtzXwNMYwNT1RVORrQN1IGXgDCmVBm9XIhf/0Dfj9zzEtbQy5GIluUqcU
+         qll1FW/qh+Vh5VpaXAV2/cdK9NiPQsWgr/YSx0MPlD3g+l5XMmONd3tFMD7zifjZvo
+         C6LvxkkQzKLr6IFcP+pdxwO9aqHiFrSVN8uVp1MAwuzWjB7GxHrFQaXBRtVAXvsF9s
+         Y5JQrSoRdJL21y7c7d2gnHA9ZdUc/JKMNFc2KLZJTvJNVXWW/WTbce8rXOu5ye/zgz
+         9EF/B9yarjOZOHsJgjmCnbE1UtI1G7ghgzCMC9DiUskbDhF+PphGVy9RTRVelmBpH0
+         E/vQFc8gpqXew==
+From:   Lee Jones <lee@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     "Jianmin Lv" <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        "Liu Peibao" <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, "Liu Yun" <liuyun@loongson.cn>
-Subject: Re: [PATCH v5 2/2] soc: loongson2_pm: add power management support
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230720083525.73622-1-krzysztof.kozlowski@linaro.org>
+References: <20230720083525.73622-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: qcom,spmi-pmic: document
+ PMC8180 and PMC8180C
+Message-Id: <169054167957.335784.17462397007717489314.b4-ty@kernel.org>
+Date:   Fri, 28 Jul 2023 11:54:39 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023, at 09:49, Yinbo Zhu wrote:
-> The Loongson-2's power management controller was ACPI, supports ACPI
-> S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-> Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
-> (USB, GMAC, PWRBTN, etc.). This driver was to add power management
-> controller support that base on dts for Loongson-2 series SoCs.
->
-> Co-developed-by: Liu Yun <liuyun@loongson.cn>
-> Signed-off-by: Liu Yun <liuyun@loongson.cn>
-> Co-developed-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+On Thu, 20 Jul 2023 10:35:25 +0200, Krzysztof Kozlowski wrote:
+> Document qcom,pmc8180 and qcom,pmc8180c compatibles already used in DTS:
+> 
+>   sc8180x-primus.dtb: pmic@1: compatible:0: 'qcom,pmc8180' is not one of ...
+> 
+> 
 
-Adding Ulf Hansson to Cc
+Applied, thanks!
 
-Ulf has recently split out the "genpd" framework and split out
-drivers/genpd from drivers/soc since I'm generally not that involved
-in the pwoer management side.
+[1/1] dt-bindings: mfd: qcom,spmi-pmic: document PMC8180 and PMC8180C
+      commit: fbf6784f7bab600edc890e61438bb2674ee1ef66
 
-Can you have a look at whether this driver should also be part
-of drivers/genpd rather than drivers/soc, and/or converted
-to use the genpd infrastructure?
+--
+Lee Jones [李琼斯]
 
-Thanks,
-
-       Arnd
