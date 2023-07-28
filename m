@@ -2,106 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2853F76761C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 21:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F476767635
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 21:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231309AbjG1TPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 15:15:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41026 "EHLO
+        id S231880AbjG1TUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 15:20:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbjG1TPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 15:15:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E001C3C06;
-        Fri, 28 Jul 2023 12:15:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 70C38621D8;
-        Fri, 28 Jul 2023 19:15:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D455C433C8;
-        Fri, 28 Jul 2023 19:15:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690571721;
-        bh=7nzeD4OG5R60IdpA9pA5gs1FjPrFySMLyGJy7bncXK4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dTB/QMT0kAkyH3U3pWSEc1d0F7nimYpzDvIgsAgHf/gJhyelEZpiwRbR4RPWwb+UH
-         RP4adOgXtSidC2l6ls1h603jiXFnz/wg8o3Q9+GEskggSiQDIk9HSZf3JiUBIZHIqH
-         xmpmQbakO887Ps7lH3GCFoZHRwfYiLdlc2sWGw/bO6YgDVAWuVhkiRE9vPgaeEWCWE
-         Ca6ysL1dr2LDWCOPtXrJovRA8vgmD+zylEYoO/gl2SqpK7nzbxWc2ECHyLvZu1OoTZ
-         lruRSK09D0dMvCWv8zlrcsPS7jQT7fDZ8Z5izy+kA4Zbw4Pt1iZ7Ea94gqdSVPtY/z
-         kMWfwERX96bRQ==
-Received: (nullmailer pid 1121284 invoked by uid 1000);
-        Fri, 28 Jul 2023 19:15:18 -0000
-Date:   Fri, 28 Jul 2023 13:15:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Varshini Rajendran <varshini.rajendran@microchip.com>,
-        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 27/50] dt-bindings: usb: atmel: add sam9x7
-Message-ID: <20230728191518.GA869757-robh@kernel.org>
-References: <20230728102753.266660-1-varshini.rajendran@microchip.com>
- <f042b194-659a-b128-7f5a-572150bf532f@linaro.org>
+        with ESMTP id S229622AbjG1TUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 15:20:22 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F2119A1;
+        Fri, 28 Jul 2023 12:20:17 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b962c226ceso37566871fa.3;
+        Fri, 28 Jul 2023 12:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690572016; x=1691176816;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TYEWkHSYcduFek+PO+7j9FDj8sl1ZVG8Sli0W6im7aU=;
+        b=siTBRNtsAvOAVYQ/uzSXsPLB+yZ4GKo8hMFmknQaZMGLxZE5Y2Alif88gEIVBjN6Et
+         O4NA1PIL8qxSk7G9qGdjvdhCPSTyJIOc8MXcxT2DEELStTq7rWZ4OQYe/QklCaAozHaX
+         nMtlHcgNajI1AuA/uZxX12n6okwkfgsKX2pvnadHxXtDYlve6sHV0i8eh/+C8znQXOfH
+         pkVv2rauxlCGxE+IgdCFqDGA5VChUMoJYoJDbWgQ6gEIZS10FXCAwtB3Z3/bcD6FT0j2
+         rIJ7c0Iu3WX6EvPErA93GqI9EnvbYR37erHtBhehuHRbUXX+iu89ipsoj2kgZB3l7gwP
+         T7fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690572016; x=1691176816;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TYEWkHSYcduFek+PO+7j9FDj8sl1ZVG8Sli0W6im7aU=;
+        b=GEi+GHTpCUPLknMh+wzeUNs0Z3OmmiyDEGblEBjhW3Zqb6yLPOHuMbVmS3fBKgPDp8
+         flrLbJAXy7DfaAa1yCFIbf+iUV1zQCKlW/HZZFc8tois61CY76oOQlKpzMrmqcTijdAD
+         M5BAhx0q+oxy0APYXZmvovlA/TJgnKx7VuWUCqSPxqfizXbm9TSa6l/MVQ7+BIUbciTv
+         QDubG+JE2z0TNdlQIFMPCNksRBgbtVZiOfj28YdtiRFgs1dPvzjaxxLly7neup3RcXKZ
+         xyAryVx2oakAsDG5UjOOwX+Kc3Itysr7RNxAQs2zACSl7pCQNqymImUDDN8i8CYuFUi8
+         d8Lg==
+X-Gm-Message-State: ABy/qLaWgKs86jsFNDG29xx8/JyylQYJ+MHHU1ccAhZaqMPODgvwy9RQ
+        KCHD168m53n9wXTlc8FqEt0=
+X-Google-Smtp-Source: APBJJlGOhxk0I4bO1Wjypwep0rikNr3/mEj74cNkX53Mxi5voMhM70HT6skZ74ciz5OPnXhNoP8MqQ==
+X-Received: by 2002:a2e:958b:0:b0:2b4:6bc2:a540 with SMTP id w11-20020a2e958b000000b002b46bc2a540mr2744363ljh.15.1690572015764;
+        Fri, 28 Jul 2023 12:20:15 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id br7-20020a170906d14700b0098ce63e36e9sm2394909ejb.16.2023.07.28.12.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 12:20:15 -0700 (PDT)
+Date:   Fri, 28 Jul 2023 21:20:13 +0200
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [RFC] dt-bindings: gpio: brcm,kona-gpio: convert to YAML
+Message-ID: <ZMQU7ap9CxfY5eIu@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f042b194-659a-b128-7f5a-572150bf532f@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 06:42:53PM +0200, Krzysztof Kozlowski wrote:
-> On 28/07/2023 12:27, Varshini Rajendran wrote:
-> > Add sam9x7 bindings.
-> > 
-> > Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/atmel-usb.txt | 11 +++++++----
-> >  1 file changed, 7 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/atmel-usb.txt b/Documentation/devicetree/bindings/usb/atmel-usb.txt
-> > index 12183ef47ee4..82bd0dbc2a48 100644
-> > --- a/Documentation/devicetree/bindings/usb/atmel-usb.txt
-> > +++ b/Documentation/devicetree/bindings/usb/atmel-usb.txt
-> > @@ -3,8 +3,9 @@ Atmel SOC USB controllers
-> >  OHCI
-> >  
-> >  Required properties:
-> > - - compatible: Should be "atmel,at91rm9200-ohci" for USB controllers
-> > -   used in host mode.
-> > + - compatible: Should be "atmel,at91rm9200-ohci" or
-> > +   "microchip,sam9x7-ohci", "atmel,at91rm9200-ohci"
-> > +   for USB controllers used in host mode.
-> >   - reg: Address and length of the register set for the device
-> >   - interrupts: Should contain ohci interrupt
-> >   - clocks: Should reference the peripheral, host and system clocks
-> > @@ -30,8 +31,9 @@ usb0: ohci@500000 {
-> >  EHCI
-> >  
-> >  Required properties:
-> > - - compatible: Should be "atmel,at91sam9g45-ehci" for USB controllers
-> > -   used in host mode.
-> > + - compatible: Should be "atmel,at91sam9g45-ehci" or
-> > +   "microchip,sam9x7-ehci", "atmel,at91sam9g45-ehci"
-> 
-> This confuses me. Isn't microchip,sam9x7-ehci already described in EHCI
-> bindings?
+Convert Broadcom Kona family GPIO controller bindings to DT schema.
 
-The Atmel .dts (including the one in this series) files use usb-ohci and 
-usb-ehci compatibles, but they have extra properties (and clocks are 
-different IIRC). So they aren't 'generic' and should drop those 
-compatibles. There's already warnings generated for this, but obviously 
-no one is paying attention.
+Changes during conversion:
+  - add used, but previously undocumented SoC-specific compatibles
 
-Rob
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+RFC since dt_binding_check is giving me these errors/warnings:
+
+Documentation/devicetree/bindings/gpio/brcm,kona-gpio.example.dts:21.23-34.11: Warning (interrupts_property): /example-0/gpio@35003000: Missing interrupt-parent
+
+The old txt bindings and all current DTs do not use interrupt-parent AFAICT,
+so I'm not sure what to do about that.
+
+Documentation/devicetree/bindings/gpio/brcm,kona-gpio.example.dtb: gpio@35003000: interrupts: [[0], [106], [4], [0], [115], [4], [0], [114], [4], [0], [113], [4], [0], [112], [4], [0], [111], [4]] is too long
+
+Here I'm not even sure what the issue is.
+
+ .../bindings/gpio/brcm,kona-gpio.txt          | 52 -------------
+ .../bindings/gpio/brcm,kona-gpio.yaml         | 77 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 78 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt b/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
+deleted file mode 100644
+index 4a63bc96b687..000000000000
+--- a/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-Broadcom Kona Family GPIO
+-=========================
+-
+-This GPIO driver is used in the following Broadcom SoCs:
+-  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
+-
+-The Broadcom GPIO Controller IP can be configured prior to synthesis to
+-support up to 8 banks of 32 GPIOs where each bank has its own IRQ. The
+-GPIO controller only supports edge, not level, triggering of interrupts.
+-
+-Required properties
+--------------------
+-
+-- compatible: "brcm,bcm11351-gpio", "brcm,kona-gpio"
+-- reg: Physical base address and length of the controller's registers.
+-- interrupts: The interrupt outputs from the controller. There is one GPIO
+-  interrupt per GPIO bank. The number of interrupts listed depends on the
+-  number of GPIO banks on the SoC. The interrupts must be ordered by bank,
+-  starting with bank 0. There is always a 1:1 mapping between banks and
+-  IRQs.
+-- #gpio-cells: Should be <2>. The first cell is the pin number, the second
+-  cell is used to specify optional parameters:
+-  - bit 0 specifies polarity (0 for normal, 1 for inverted)
+-  See also "gpio-specifier" in .../devicetree/bindings/gpio/gpio.txt.
+-- #interrupt-cells: Should be <2>. The first cell is the GPIO number. The
+-  second cell is used to specify flags. The following subset of flags is
+-  supported:
+-  - trigger type (bits[1:0]):
+-      1 = low-to-high edge triggered.
+-      2 = high-to-low edge triggered.
+-      3 = low-to-high or high-to-low edge triggered
+-      Valid values are 1, 2, 3
+-  See also .../devicetree/bindings/interrupt-controller/interrupts.txt.
+-- gpio-controller: Marks the device node as a GPIO controller.
+-- interrupt-controller: Marks the device node as an interrupt controller.
+-
+-Example:
+-	gpio: gpio@35003000 {
+-		compatible = "brcm,bcm11351-gpio", "brcm,kona-gpio";
+-		reg = <0x35003000 0x800>;
+-		interrupts =
+-		       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+-		#gpio-cells = <2>;
+-		#interrupt-cells = <2>;
+-		gpio-controller;
+-		interrupt-controller;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
+new file mode 100644
+index 000000000000..9d0b0a1af832
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/brcm,kona-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Kona family GPIO controller
++
++description:
++  The Broadcom GPIO Controller IP can be configured prior to synthesis to
++  support up to 8 banks of 32 GPIOs where each bank has its own IRQ. The
++  GPIO controller only supports edge, not level, triggering of interrupts.
++
++maintainers:
++  - Ray Jui <rjui@broadcom.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm11351-gpio
++          - brcm,bcm21664-gpio
++          - brcm,bcm23550-gpio
++      - const: brcm,kona-gpio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      The interrupt outputs from the controller. There is one GPIO interrupt
++      per GPIO bank. The number of interrupts listed depends on the number of
++      GPIO banks on the SoC. The interrupts must be ordered by bank, starting
++      with bank 0. There is always a 1:1 mapping between banks and IRQs.
++
++  '#gpio-cells':
++    const: 2
++
++  '#interrupt-cells':
++    const: 2
++
++  gpio-controller: true
++
++  interrupt-controller: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#gpio-cells'
++  - '#interrupt-cells'
++  - gpio-controller
++  - interrupt-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    gpio@35003000 {
++        compatible = "brcm,bcm11351-gpio", "brcm,kona-gpio";
++        reg = <0x35003000 0x800>;
++        interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH
++                      GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH
++                      GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH
++                      GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH
++                      GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH
++                      GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
++        #gpio-cells = <2>;
++        #interrupt-cells = <2>;
++        gpio-controller;
++        interrupt-controller;
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 733bcfa0209a..368fee1ef5b0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4221,7 +4221,7 @@ BROADCOM KONA GPIO DRIVER
+ M:	Ray Jui <rjui@broadcom.com>
+ R:	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+ S:	Supported
+-F:	Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
++F:	Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
+ F:	drivers/gpio/gpio-bcm-kona.c
+ 
+ BROADCOM MPI3 STORAGE CONTROLLER DRIVER
+-- 
+2.34.1
+
