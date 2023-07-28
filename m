@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38775767327
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 19:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9E8767328
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 19:22:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232592AbjG1RV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 13:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50718 "EHLO
+        id S232749AbjG1RWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 13:22:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232814AbjG1RVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 13:21:54 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CFB035A2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:21:54 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1bbf0f36ce4so4147275ad.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:21:54 -0700 (PDT)
+        with ESMTP id S232793AbjG1RWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 13:22:18 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 571222D71
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:22:17 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b89cfb4571so18712185ad.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 10:22:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1690564914; x=1691169714;
+        d=broadcom.com; s=google; t=1690564937; x=1691169737;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=++a/CXz2mUeBMeXrFHGBI+wvi7ncypltkLwE3gLPnn0=;
-        b=WrfvxJGmCS2ePJxrO0GG6DsqGtj3DtfAWaa9HKXvtj31L0dybMgnlDFWneDR58gamS
-         atnSgrkRE6p2UF6uX10y2n11k3beBjvvw89qJgYrjfENB98cc/FVVCJMfzSoSYFY6VrN
-         Jiy+PXDFOIguo5MII7ntmgAKT0QLljrzgNPxc=
+        bh=DYDp+wak5MXamAbHcK7ZDbq+aS4iZ9pEzHk0tvVy3fE=;
+        b=WijGuw5biDL7ZVqERNztO2/biDMxGNsyydTgZV0bj/yUOZrWpiZqMY3A/UWDn/gBCE
+         CmaIAZ0AkwppoLi1lgYnX7qjJbK3Kcp+SFf7qJdjxojvChjIh2ImyiYULd/OX9Xz8RS5
+         nBFRmJ+lbKhYipAuLDUfqplRfZta5h/DJXpDE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690564914; x=1691169714;
+        d=1e100.net; s=20221208; t=1690564937; x=1691169737;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=++a/CXz2mUeBMeXrFHGBI+wvi7ncypltkLwE3gLPnn0=;
-        b=ARPmMhSbmRw6pR0Ep0xf43D66RNIJdWjsP8WYCX4IuLd00VoKN3mSwEE6zxj2Y1q63
-         vsbN6o/LibbsDbkqOFLg6musMM4V/bJ8wBPf1naBD7CWh+inh8NtgNqKpnI3eMSudlo8
-         z6R27hODuAM46Kgg84CYT+NSV3aWnLrG30BhRflJpPE2KuXDwJ3/g6p0WHR+nKOoBtPK
-         UbS0wXKhvRFDx+kpSrfrPUrhtSOmiYRPa+e6xmTLpo1tKoOsd49O+0b4+nGsm0fLUPpm
-         //ARRUph3hcmfj9/ClewLOYyGuxJckhv0hDkSTHDXWtVFPaPU5+FFh0gTJfyPSf6OkjI
-         ekJw==
-X-Gm-Message-State: ABy/qLZ7aneGD6b2IFq5g8zp1TkQtuKqjgv0w5HhqtCVTbqthe1SWN8m
-        7mQJDKJW64JkafFd6IYbbBBrng==
-X-Google-Smtp-Source: APBJJlFPWsrYWxQFTeYA6r3wjYVaj4rk3YIh54Qr0MBDyVk9ondDDnL4GvKM94dtZ5RIYdpj+nas4A==
-X-Received: by 2002:a17:902:a510:b0:1b8:1fe3:bd2c with SMTP id s16-20020a170902a51000b001b81fe3bd2cmr1888605plq.20.1690564913678;
-        Fri, 28 Jul 2023 10:21:53 -0700 (PDT)
+        bh=DYDp+wak5MXamAbHcK7ZDbq+aS4iZ9pEzHk0tvVy3fE=;
+        b=BWwutrCUb/k2M/6i2ocsDnzxtT1pegE4awlH/RKEllwELnPQCqK+kqlQ8F4LA6Gu+m
+         JXkiNV8zEe2rCiUN0tIn49OUh3eMAN9QYlAeQiejzyKZykDlfPkYZ/WQxkRU0Y7/e24p
+         e4XnZ8kxfnipQrs5i7FanbCDlt6X0HF0VHHl/t7s/0SqRH0e8wm8BjyWd1pZu906dXLI
+         E5O2yOc80PSCK0lmSLhN8iD491p9+sBfECRk3l3YDoF7tVOeWt19xg196PrNw4oKHXeh
+         yp3l+NvXV5bCWtigWkpWiuDJxUyKc0oDlOTydxdJe4wXA/xNC4rL4XfYxvsGA9eLLbQE
+         vjFQ==
+X-Gm-Message-State: ABy/qLbgAe6LtUMznfbspnb46gGki3lqBVgofJsSvMFdebxPjJRucHYD
+        GWxRi6Q+b2WYNd/UwHLgKVcrDQ==
+X-Google-Smtp-Source: APBJJlHbrL+BRCBr2pGYJmFgBTRllbhruK1qHKkUn6yccmsQTTGQa6yFr1/BekYapujEYZuao8S0vA==
+X-Received: by 2002:a17:903:22c1:b0:1bb:cf58:531d with SMTP id y1-20020a17090322c100b001bbcf58531dmr2724020plg.10.1690564936788;
+        Fri, 28 Jul 2023 10:22:16 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id w8-20020a170902e88800b001b83e5ec666sm3867655plg.6.2023.07.28.10.21.52
+        by smtp.gmail.com with ESMTPSA id t7-20020a170902bc4700b001b881a8251bsm3860021plz.106.2023.07.28.10.22.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 10:21:53 -0700 (PDT)
+        Fri, 28 Jul 2023 10:22:16 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
@@ -53,37 +53,39 @@ Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/3] ARM: dts: BCM53573: Fix Tenda AC9 switch CPU port
-Date:   Fri, 28 Jul 2023 10:21:51 -0700
-Message-Id: <20230728172151.723198-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH 2/3] ARM: dts: BCM53573: Describe BCM53125 switch ports in the main DTS
+Date:   Fri, 28 Jul 2023 10:22:14 -0700
+Message-Id: <20230728172214.723281-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230723195416.7831-1-zajec5@gmail.com>
-References: <20230723195416.7831-1-zajec5@gmail.com>
+In-Reply-To: <20230723195416.7831-2-zajec5@gmail.com>
+References: <20230723195416.7831-1-zajec5@gmail.com> <20230723195416.7831-2-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000002b1f4006018f5180"
+        boundary="0000000000008b922f06018f52e3"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000002b1f4006018f5180
+--0000000000008b922f06018f52e3
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Sun, 23 Jul 2023 21:54:14 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+On Sun, 23 Jul 2023 21:54:15 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Primary Ethernet interface is connected to the port 8 (not 5).
+> BCM53125 always has 5 ports with GPHYs (for LAN/WAN ports) and 2 IMP
+> ports. It seems the best place to describe that in the main .dtsi.
+> Device specific bits can go to device .dts files. This will help
+> avoiding some code duplication.
 > 
-> Fixes: 64612828628c ("ARM: dts: BCM53573: Add Tenda AC9 switch ports")
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
 
@@ -91,7 +93,7 @@ Applied to https://github.com/Broadcom/stblinux/commits/master, thanks!
 --
 Florian
 
---0000000000002b1f4006018f5180
+--0000000000008b922f06018f52e3
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -162,14 +164,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICiD+w4t+hYY7gps
-rEWMVtBVAOjjGAtG/iCK+KSWnAcKMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcyODE3MjE1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBkK2y6ZxTv3Ayf3
+4b+oUgQSaZNqMfMvbQejG3rdYhWlMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDcyODE3MjIxN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBh4ymhKS0OPJYlkU7T1FXGQ20fP8cI3+gw
-bS6DIKYFJhYfyxulv5rg28yhdApwiKek3qTvdgbWsFXP/kwWgAwJJwVKnaRd6wSxnsTPs+M3L9Fb
-pjQYWAeAkzgUgo2+Hg/t+Tn4LqR3p1g4xrmuOtuhDt1IEVS4mFhp2NqddK/ziuO9g19Trx9HQlwu
-mRBqXuJU/f2CjUwoujFLXJLExeEvG55URZlqjHfEqX1U5OZz5Jl/bI1ToLymY5xOTIRNMml+EvrP
-0cRHNeBjy9juM7vo7aD8HXcdhN63I7Q0K1X3A/FHDy7wD1dd6L4jfMsZM0IX1/VUOjKzA7g6De3O
-HWj4
---0000000000002b1f4006018f5180--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDzMY/U0yjBaDhTvPsZKVGCc0L4OHOLGBvZ
++MoeJEYW0Ls3kNpLWFCB+OARtpuHfpB6HkSy5OQVtabjcZ6+lZ66dPMf2k1HWcy0Crxzp0bhrus/
+zSGt4+tgJ3fR6fmAFqupCX5PUsPY5h+eSwIJbA4f3L+wHfB2Z4PoNdKwBKOjUHRnwLYsKlLPiLhL
+6NAsCipHFNlA7oMk8QFWRwU3KXeJlnEzbEnx/WY9M+ge0zumRdxU4k1BZnpdpKKeLFk9XOKruymp
+QnydU+bPOMOj2gnKNKZX9Hvc2G1zLgF2/PD5LAl/fyrkfbyzQ0kySO1HeSUlieuR2YukO9HMbfXS
+55Zq
+--0000000000008b922f06018f52e3--
