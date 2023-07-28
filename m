@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 617E6766A38
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 12:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE498766A36
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 12:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235807AbjG1KX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 06:23:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51634 "EHLO
+        id S235802AbjG1KYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 06:24:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235836AbjG1KXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 06:23:52 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF246421D;
-        Fri, 28 Jul 2023 03:23:39 -0700 (PDT)
+        with ESMTP id S233284AbjG1KXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 06:23:53 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB374222;
+        Fri, 28 Jul 2023 03:23:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690539819; x=1722075819;
+  t=1690539820; x=1722075820;
   h=from:to:cc:subject:date:message-id:mime-version:
    content-transfer-encoding;
-  bh=8Jf6mTT0NG93rr1p7HYLhKRrI65Z3mrLqeiz6Xw3TYg=;
-  b=e7OODQby1qQ16al9a3lz4h0JqEboRVpz7ghj3aqI4FfNpuyj5f4ojFdB
-   rinNljzZ8OQiYzaxzbB7Cqj2E/Q/GZxpqGPQcLLJkSG9XAFKb0KgqBrSn
-   H4kvhGMOe0BBG4x+900fbIkSvEVVgV5kg4yusIKSFwd6pYVuigYCqupQD
-   SfQpVZwm2jxuLyBOe+0snHD/zclyBSfmW8MvVu3WrgrsJFUhik8VLjhUn
-   moH+2mrkvRviD7DpGsy9+rmfWJkWwQJ9HONttHTcX7NKHPYoHYfZeey+/
-   OPqod5kRqd41Ka5C4cf/5pgm9GhB888O36nraDRDK4W/3EUUhSopaP8xE
+  bh=XK07AlwoF/gbKHVZLICK+wzmR0BpaenZ7oeapx98PA4=;
+  b=kZnEtXViaVW2GWD6GVztdjGuee9LqE/zqIO1uuHTBGPCwe4V75RA1Owr
+   vjSDiqH+MTuLUVc5wvo9nGeIJ9MU5JMa2vLRcBL0BHaAH+HmiH/AThxW6
+   1K2W4qTZuAHDlmTihSqjfICQ/T+jR6Mvxv5hl85VtgIYw9OBmd6US5w2E
+   P6HEFmwIYraq9utyKDRwNbEqamaVV5G/Kl2MWmzdopt96CcC9zdU4bGdL
+   KtQ0PZFJhczlDfhSIu39Up7fmEz7oZqj/6Zn9H6dgOmQ+woO5oV+9cavA
+   EPMfo3E3uBZ8HD8M7k57ka6bTKJkAXgStOi8f4r2w6LcmN+T+Ax0Xxul7
    A==;
 X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; 
-   d="scan'208";a="227046886"
+   d="scan'208";a="225812923"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 03:23:38 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 03:23:38 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 28 Jul 2023 03:23:27 -0700
+ 15.1.2507.21; Fri, 28 Jul 2023 03:23:36 -0700
 Received: from che-lt-i67070.amer.actel.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Fri, 28 Jul 2023 03:23:23 -0700
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Fri, 28 Jul 2023 03:23:30 -0700
 From:   Varshini Rajendran <varshini.rajendran@microchip.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
 CC:     <varshini.rajendran@microchip.com>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 02/50] dt-bindings: usb: ehci: Add atmel at91sam9g45-ehci compatible
-Date:   Fri, 28 Jul 2023 15:53:18 +0530
-Message-ID: <20230728102318.265360-1-varshini.rajendran@microchip.com>
+Subject: [PATCH v3 03/50] dt-bindings: net: cdns,macb: add sam9x7 ethernet interface
+Date:   Fri, 28 Jul 2023 15:53:28 +0530
+Message-ID: <20230728102328.265410-1-varshini.rajendran@microchip.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,26 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document at91sam9g45-ehci compatible for usb-ehci.
+Add documentation for sam9x7 ethernet interface.
 
 Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/net/cdns,macb.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-index b956bb5fada7..e5c8f4e085de 100644
---- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-@@ -67,6 +67,7 @@ properties:
-           - const: generic-ehci
-       - items:
-           - enum:
-+              - atmel,at91sam9g45-ehci
-               - cavium,octeon-6335-ehci
-               - ibm,usb-ehci-440epx
-               - ibm,usb-ehci-460ex
+diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+index bf8894a0257e..c9840a284322 100644
+--- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
++++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+@@ -59,6 +59,12 @@ properties:
+           - cdns,gem                  # Generic
+           - cdns,macb                 # Generic
+ 
++      - items:
++          - enum:
++              - microchip,sam9x7-gem  # Microchip SAM9X7 gigabit ethernet interface
++          - enum:
++              - microchip,sama7g5-gem # Microchip SAMA7G5 gigabit ethernet interface
++
+   reg:
+     minItems: 1
+     items:
 -- 
 2.25.1
 
