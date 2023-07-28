@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54BA076652C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4077D766535
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234106AbjG1HWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
+        id S234153AbjG1HYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234100AbjG1HWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:22:14 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37EBC170D
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:22:11 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5221cf2bb8cso2408350a12.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:22:11 -0700 (PDT)
+        with ESMTP id S234147AbjG1HYI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:24:08 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D5292733
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:24:07 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9891c73e0fbso374498366b.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690528929; x=1691133729;
+        d=linaro.org; s=google; t=1690529045; x=1691133845;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LHDLdEESCjLfjZtmp5s10YbAT+aGJz2CpcqQwun1R0A=;
-        b=ydMrkBv3UGAyLB3YqiDyqtrAeuLzqUngTBZgg7uyT6+sBO17SjL+yjB4oCJiRTMS4D
-         zWFPeJV7sevWXc6L2CX9og3MWXhURwBJrU/RrY+wtuEnt+OMUs34Ni61fON79QCXvYZC
-         +pGhZowtv+Eq3Mc0czMKOj0iK/nQAwgjldIE6iWNssgBlkIz8WollVODcsHJuuSRTbbY
-         5bW53J8WVyf/8NRg5oLeHXUsKR6ixRQY5y1F34KUiroPY5XSP1IsiTbHSJAPbq1H1pKe
-         CkoqYtJFYDr33WN/GUi9BDR0JtftHC9jJ1VnCtwBZJGawKXVU4GpH+yI8oWhvNE/rk2l
-         zIcw==
+        bh=ylqFWXB1rfa4ekZeOmWjSZhJufiEsrgCcDb7+OfY36I=;
+        b=Qq8P3+WZ5MxIuo+NUS9hFgdeQdI0plvCmMiPpj0i1OaGLtR483lJCBumrDFM/SA7bt
+         0PmVzGC/RYp9sl2wI+g0zmn2Z4Vi5pCODpilgzoM6wXPPlinUbCz7S6CRb4LKC9JDgIN
+         Eo4vdV1Vgt/SRBdx241LL8X5C80ThB3jssZ/ImrN/ilQRI4o1QweGzfejIxwUp1Cgbag
+         6jTWEGMRU/N6s3Nbu9wg4AP3PKNQFYC1ahXzWrcWEqLg9uNf6yfvOTl4L5+QNDyDZDG4
+         Pgp2KX+C6b4y3Ql3iJ6aNKbCXEAzfEq+/KmkgLtDisNAW8oGV4dBuzYloW9Scao96RWy
+         OUJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690528929; x=1691133729;
+        d=1e100.net; s=20221208; t=1690529045; x=1691133845;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LHDLdEESCjLfjZtmp5s10YbAT+aGJz2CpcqQwun1R0A=;
-        b=V7EprjyQRRQ1C6fZXrD+ubCCBKQVlkyTWtWtc0s2o/P+FuoSaZa9hhS4Bru9tXKvb4
-         iibPzYTZ0fLS/FfbSK3jb35QsQ9EKGJgNPuqmEu+VLnbSrkFxzHaYnBlfy3yjABSk0xf
-         7RV64WiyOUrdZZHTTr3NDnx4r+RPTt8dGyYPmGVdraexcacKpeLfdv0+lmJpmWCBhxBZ
-         41UR+GgRi+D9uXJ5DAbB3mKryEpGQVX01H4BvcTTkWF1mRChCjK8yYxwl6N2zNfJruTt
-         SQP8DVETTq4O1LIbBDFh7zjjRPoAKX7pVi/FD6LPQky1DGNdGAJ50YxPHroNOVf7Tfd7
-         FYIA==
-X-Gm-Message-State: ABy/qLalIOYlhCML4w/Ix0P9Lrrm2VC+en2vMXI9AUk+RYm5fU4o8OlP
-        Ly1vLyBxcu7agy0HNX8P3L/qbw==
-X-Google-Smtp-Source: APBJJlEzqjGfgX2NmTh6Z8QsYYzU1kCY6wPXAwFGUh5MAwyOuaLmyon2kf2ATQApaA2l5lNXc1XfcA==
-X-Received: by 2002:aa7:d5d0:0:b0:522:2ada:c207 with SMTP id d16-20020aa7d5d0000000b005222adac207mr1234455eds.34.1690528929619;
-        Fri, 28 Jul 2023 00:22:09 -0700 (PDT)
+        bh=ylqFWXB1rfa4ekZeOmWjSZhJufiEsrgCcDb7+OfY36I=;
+        b=LVN5kQ+jOyuXXZuQfZy2QIimzAtJEFq0JQQ2S4LycXb3tjfLK8O07HU+MWLl1LX87j
+         HH4wihVSNoqj+Tk4jBRw0vToiVTGSzLphPR0RxRXSjMXsndh5dL3HpjFHMW90gKEUs7+
+         3cNDPS60Ar2zL9Dmn1iy0rX+hiMOeIxYtuRcbtlotNuovH4AQD5cBelct4YhUKRT0/Yc
+         vl5fgtc5X0qs++YrX+nxhrpQ2nhm0VAjsrN3e8LPGEKFQ43Sf7DVb8vAPJVWRRRvkscT
+         njVTO8SUC3l1rkWN+6tk6pXocdv+uHhNN60mplGr9YnRcGUTTBv88Sd5pJFDUsB/nMRo
+         zC/Q==
+X-Gm-Message-State: ABy/qLZYXTwiaCoMF2PW90sixMYQ+t+4euPWiOWf/yCo6BenDeye0/sO
+        n2Uc2NoC4c86cnlAJduFWOMwAw==
+X-Google-Smtp-Source: APBJJlGIoa4HpI0EcNBu0u0r1n7uQm+9exnSU9drvy7dCi2NN82V+a22/XCiaSMwdqM+RvtyiUx2Pw==
+X-Received: by 2002:a17:906:de:b0:99b:65fa:fc24 with SMTP id 30-20020a17090600de00b0099b65fafc24mr1642466eji.36.1690529045490;
+        Fri, 28 Jul 2023 00:24:05 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id b8-20020aa7c908000000b0052255cbad8dsm1485151edt.94.2023.07.28.00.22.08
+        by smtp.gmail.com with ESMTPSA id n7-20020a170906688700b0099bc2d1429csm1722780ejr.72.2023.07.28.00.24.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 00:22:09 -0700 (PDT)
-Message-ID: <42782c4e-1dab-d99c-4ca3-6e0ff12ffd19@linaro.org>
-Date:   Fri, 28 Jul 2023 09:22:07 +0200
+        Fri, 28 Jul 2023 00:24:05 -0700 (PDT)
+Message-ID: <0374b5b4-abc8-9aed-e49c-21287f415734@linaro.org>
+Date:   Fri, 28 Jul 2023 09:24:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 02/14] dt-bindings: display: add st,stih418-vtg compatible
- for sti vtg
+Subject: Re: [PATCH 12/14] ARM: dts: sti: addition of display nodes for
+ stih418 platform
 Content-Language: en-US
 To:     Alain Volmat <avolmat@me.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230727215141.53910-1-avolmat@me.com>
- <20230727215141.53910-3-avolmat@me.com>
+ <20230727215141.53910-13-avolmat@me.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230727215141.53910-3-avolmat@me.com>
+In-Reply-To: <20230727215141.53910-13-avolmat@me.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,13 +81,200 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/07/2023 23:51, Alain Volmat wrote:
-> Add a new compatible in st,stih4xx.txt in order to support sti vtg on
-> stih418 platforms.
+> Addition of a first set of nodes (compositor/tvout/hdmi/dvo) in order
+> to allow graphic plane usage via HDMI or DVO on the stih418 based boards.
 > 
 > Signed-off-by: Alain Volmat <avolmat@me.com>
+> ---
+>  arch/arm/boot/dts/st/stih418-clock.dtsi |   2 +-
+>  arch/arm/boot/dts/st/stih418.dtsi       | 154 ++++++++++++++++++++++++
+>  2 files changed, 155 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/stih418-clock.dtsi b/arch/arm/boot/dts/st/stih418-clock.dtsi
+> index e1749e92a2e7..93641df58bf2 100644
+> --- a/arch/arm/boot/dts/st/stih418-clock.dtsi
+> +++ b/arch/arm/boot/dts/st/stih418-clock.dtsi
+> @@ -17,7 +17,7 @@ clk_sysin: clk-sysin {
+>  	clk_tmdsout_hdmi: clk-tmdsout-hdmi {
+>  		#clock-cells = <0>;
+>  		compatible = "fixed-clock";
+> -		clock-frequency = <0>;
+> +		clock-frequency = <594000000>;
+>  	};
+>  
+>  	clocks {
+> diff --git a/arch/arm/boot/dts/st/stih418.dtsi b/arch/arm/boot/dts/st/stih418.dtsi
+> index b35b9b7a7ccc..b41de235fffa 100644
+> --- a/arch/arm/boot/dts/st/stih418.dtsi
+> +++ b/arch/arm/boot/dts/st/stih418.dtsi
+> @@ -6,6 +6,7 @@
+>  #include "stih418-clock.dtsi"
+>  #include "stih407-family.dtsi"
+>  #include "stih410-pinctrl.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+>  / {
+>  	cpus {
+>  		#address-cells = <1>;
+> @@ -114,5 +115,158 @@ thermal@91a0000 {
+>  			clocks = <&clk_sysin>;
+>  			interrupts = <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>;
+>  		};
+> +
+> +		sti-display-subsystem@0 {
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+display-subsystem@
+or display-controller@
 
+Although 0 is a bit weird address... are you sure this is correct?
+
+> +			compatible = "st,sti-display-subsystem";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			reg = <0 0>;
+> +			assigned-clocks = <&clk_s_d2_quadfs 0>,
+> +					  <&clk_s_d2_quadfs 1>,
+> +					  <&clk_s_d2_flexgen CLK_TMDS_HDMI_DIV2>,
+> +					  <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> +					  <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>,
+> +					  <&clk_s_d2_flexgen CLK_PIX_AUX_DISP>,
+> +					  <&clk_s_c0_flexgen CLK_MAIN_DISP>,
+> +					  <&clk_s_c0_flexgen CLK_AUX_DISP>,
+> +					  <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> +					  <&clk_s_c0_flexgen CLK_PROC_MIXER>;
+> +
+> +			assigned-clock-parents = <0>,
+> +						 <0>,
+> +						 <&clk_tmdsout_hdmi>,
+> +						 <&clk_tmdsout_hdmi>,
+> +						 <&clk_s_d2_quadfs 0>,
+> +						 <&clk_s_d2_quadfs 1>,
+> +						 <&clk_s_c0_pll1 0>,
+> +						 <&clk_s_c0_pll1 0>,
+> +						 <&clk_s_c0_pll0 0>,
+> +						 <&clk_s_c0_pll0 0>;
+> +
+> +			assigned-clock-rates = <297000000>,
+> +					       <108000000>,
+> +					       <297000000>,
+> +					       <0>,
+> +					       <74250000>,
+> +					       <13500000>,
+> +					       <400000000>,
+> +					       <400000000>,
+> +					       <355000000>,
+> +					       <355000000>;
+> +
+> +			ranges;
+> +
+> +			sti_compo: sti-compositor@a600000 {
+
+compositor@
+
+> +				compatible = "st,stih418-compositor";
+> +				reg = <0xa600000 0x200000>;
+> +
+> +				clock-names = "compo_main",
+> +					      "compo_aux",
+> +					      "pix_main",
+> +					      "pix_aux",
+> +					      "proc_mixer";
+> +
+> +				clocks = <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> +					 <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> +					 <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>,
+> +					 <&clk_s_d2_flexgen CLK_PIX_AUX_DISP>,
+> +					 <&clk_s_c0_flexgen CLK_PROC_MIXER>;
+> +
+> +				reset-names = "compo-main", "compo-aux";
+> +				resets = <&softreset STIH407_COMPO_SOFTRESET>,
+> +					 <&softreset STIH407_COMPO_SOFTRESET>;
+> +				st,vtg = <&vtg_main>, <&vtg_aux>;
+> +
+> +				status = "disabled";
+> +			};
+> +
+> +			sti_tvout: sti-tvout@a900000 {
+
+hdmi@
+or something else
+
+> +				compatible = "st,stih418-tvout";
+> +				reg = <0xa900000 0x1000>;
+> +				reg-names = "tvout-reg";
+> +				reset-names = "tvout";
+> +				resets = <&softreset STIH407_HDTVOUT_SOFTRESET>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				assigned-clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
+> +						  <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> +						  <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
+> +						  <&clk_s_d0_flexgen CLK_PCM_0>,
+> +						  <&clk_s_d2_flexgen CLK_PIX_HDDAC>,
+> +						  <&clk_s_d2_flexgen CLK_HDDAC>;
+> +
+> +				assigned-clock-parents = <&clk_s_d2_quadfs 0>,
+> +							 <&clk_tmdsout_hdmi>,
+> +							 <&clk_s_d2_quadfs 0>,
+> +							 <&clk_s_d0_quadfs 0>,
+> +							 <&clk_s_d2_quadfs 0>,
+> +							 <&clk_s_d2_quadfs 0>;
+> +				assigned-clock-rates = <74250000>,
+> +						       <0>,
+> +						       <74250000>,
+> +						       <0>,
+> +						       <74250000>,
+> +						       <148500000>;
+> +
+> +				status = "disabled";
+> +			};
+> +
+> +			sti_dvo: sti-dvo@a800400 {
+
+I don't know, but definitely sti is not a generic name.
+
+> +				compatible = "st,stih407-dvo";
+> +				reg = <0xa800400 0x200>;
+> +				reg-names = "dvo-reg";
+> +				clock-names = "dvo_pix", "dvo",
+> +					      "main_parent", "aux_parent";
+> +				clocks = <&clk_s_d2_flexgen CLK_PIX_DVO>,
+> +					 <&clk_s_d2_flexgen CLK_DVO>,
+> +					 <&clk_s_d2_quadfs 0>, <&clk_s_d2_quadfs 1>;
+> +				status = "disabled";
+> +			};
+> +
+> +			sti_hdmi: sti-hdmi@a804000 {
+
+hdmi@
+
+> +				compatible = "st,stih418-hdmi";
+> +				reg = <0xa804000 0x1000>;
+> +				reg-names = "hdmi-reg";
+> +				#sound-dai-cells = <0>;
+> +				interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-names = "irq";
+> +				clock-names = "pix",
+> +					      "tmds",
+> +					      "phy",
+> +					      "audio",
+> +					      "main_parent",
+> +					      "aux_parent";
+> +
+> +				clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
+> +					 <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> +					 <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
+> +					 <&clk_s_d0_flexgen CLK_PCM_0>,
+> +					 <&clk_s_d2_quadfs 0>,
+> +					 <&clk_s_d2_quadfs 1>;
+> +
+> +				hdmi,hpd-gpio = <&pio5 3 GPIO_ACTIVE_LOW>;
+> +				reset-names = "hdmi";
+> +				resets = <&softreset STIH407_HDMI_TX_PHY_SOFTRESET>;
+> +
+> +				status = "disabled";
+> +			};
+> +		};
 Best regards,
 Krzysztof
 
