@@ -2,149 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D037664BF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8DB7664CA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233271AbjG1HEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:04:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
+        id S232339AbjG1HGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:06:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232943AbjG1HEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:04:53 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C832696
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:04:49 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-686efdeabaeso1221877b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:04:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690527889; x=1691132689;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Wrwpb7rVTyYgrDu2LzfWhd5QBSrpJqCmxUGFCtGyRxE=;
-        b=HnNBF9FNxGUGcdq72feS4vzTAgz0S2xFrpjfptHFXDmIUUMf0+rsfFDBqC2ScjUbKz
-         umiiQMv2yfwN/+2EI2WvRogXyZJdWr6bLFFsUu3iSptlbMQawDUr7bHclNJPap/lp0kD
-         kGz6QmaoOBFvXiNpicfwfM93W5ym8He5JnV+XRbLknn+OJltHWHesQIhVqS7KUQ44fxC
-         up4WV6A7BcSSto/oqS+D1YE1nZ6jPVDvDx4cocNpgn0bAztE0SaLeo/DCjamR0zH4GvK
-         2zNMASq10UNnA4vVGokkrN8MvD2HG17cKKJphE9dD7L+MFm09drbK7kMQfIMVZiJPeop
-         X3mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690527889; x=1691132689;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wrwpb7rVTyYgrDu2LzfWhd5QBSrpJqCmxUGFCtGyRxE=;
-        b=htk4nKcuojwEJaCwtxirInKXRh+Z6alzCszaVHBMUrSyZ4OSn1k+rGd7ACY0cALXmH
-         kkl5k9k21prSSv7xrLgtCEMXMKc86xAj8lnl+yDMgYspGLs3y1EdGgwk4X1itabnVa1T
-         PxSuj3GaiDBLQqbBpOmek84o4M3v+M7gS4n/YDC8pxZmbRDQjmHaqiRrnVYK5sAhD+dh
-         JRyHKfvrQabKE2krYgiQc2Kb+p4dhNrXWQrIIZkl1RZlXuPbXxCG7pw3+eL7SBetNyf1
-         KwRuJLT0wc8qd6YfomCSiprQFVY9KwfGVDlDYgU/tshcS8SE4NbFjOWnAJwyjvvUeh/a
-         5Gjg==
-X-Gm-Message-State: ABy/qLYusSmNI76inXOwWFIgkH24SnUk4qGjYMSrbPB6h1OP13qqIi1T
-        tcn3fHq0VbLCRrmYSevQklG1Uw==
-X-Google-Smtp-Source: APBJJlE+60gGNtiTwkvVvvyxDJd0BPxR2w6cPhZ0ordld8aOmQaaiK95ErAlh1vP12HcALZGJ8odjQ==
-X-Received: by 2002:a05:6a20:968d:b0:12f:a373:ba95 with SMTP id hp13-20020a056a20968d00b0012fa373ba95mr611563pzc.19.1690527888967;
-        Fri, 28 Jul 2023 00:04:48 -0700 (PDT)
-Received: from x1 ([2601:1c2:1800:f680:dacb:3a1a:fcaf:c0fc])
-        by smtp.gmail.com with ESMTPSA id o14-20020a170902d4ce00b001bb750189desm2778063plg.255.2023.07.28.00.04.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 00:04:48 -0700 (PDT)
-Date:   Fri, 28 Jul 2023 00:04:46 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Xi Ruoyao <xry111@linuxfromscratch.org>
-Cc:     Jisheng Zhang <jszhang@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
-Message-ID: <ZMNojqwLxcG8FcHN@x1>
-References: <20230617161529.2092-1-jszhang@kernel.org>
- <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
- <20230725-unheard-dingy-42f0fafe7216@wendy>
- <ZL/jMYL3akl78ZZN@xhacker>
- <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
- <ZME1J4mpVf5yth32@xhacker>
- <866eab3e30a18c50742a75d62aee223fdc7e3cee.camel@linuxfromscratch.org>
- <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
- <ZMKXQpreSr47MFj6@xhacker>
- <290101d386866f639a7c482527d7a78c5108d49b.camel@linuxfromscratch.org>
+        with ESMTP id S233801AbjG1HG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:06:29 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37729268B;
+        Fri, 28 Jul 2023 00:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690527985; x=1722063985;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YV/HherCTDGw+ls4/jLdsAyaf6VBOQkF2Uf7NZiBfII=;
+  b=WQP/BC+00hmQAj2QkA+0SPtlcQzErmCG+jmPXpM85yNL+EV2X5HCfxj5
+   /8a5pUG+ptFu1wjDXUDaHX8L7GnIIV+AaXtjrRAszlhLGB9JuE5MgSpko
+   KczGV19hrJw8S4lWB2Qgy31qRuRwxB/9HcFa/Ipq1XZmzmJtMSaCFXYS3
+   Ic8fSTipn3JkMqS+lYXTl6DxA7iGglZvDroDGUjZBaBMd0bGEVuz06mPp
+   gcZ8QliWvrJcn5hDhR161SX1GHL6eigx4IRCv7RZ2lJdEX9y2nWyOsHb1
+   BGXEzFZDr3rpTE1nP63G0qGMrAp5pmK/QvujsLc/j/Y8pcgWfGMN6DGhB
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
+   d="asc'?scan'208";a="227027311"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 00:06:24 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 28 Jul 2023 00:06:23 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 28 Jul 2023 00:06:20 -0700
+Date:   Fri, 28 Jul 2023 08:05:46 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Eric Lin <eric.lin@sifive.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
+        <will@kernel.org>, <mark.rutland@arm.com>, <tglx@linutronix.de>,
+        <peterz@infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <zong.li@sifive.com>, <greentime.hu@sifive.com>,
+        <vincent.chen@sifive.com>, Nick Hu <nick.hu@sifive.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+Message-ID: <20230728-facedown-husked-9813fa79d9a0@wendy>
+References: <20230720135125.21240-1-eric.lin@sifive.com>
+ <20230720135125.21240-2-eric.lin@sifive.com>
+ <20230720-slept-guru-216e2803061e@spud>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CLBf1mcbqLUt7ULL"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <290101d386866f639a7c482527d7a78c5108d49b.camel@linuxfromscratch.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230720-slept-guru-216e2803061e@spud>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 12:29:44AM +0800, Xi Ruoyao wrote:
-> On Fri, 2023-07-28 at 00:11 +0800, Jisheng Zhang wrote:
-> > On Thu, Jul 27, 2023 at 08:54:59AM +0800, Xi Ruoyao wrote:
-> > > On Thu, 2023-07-27 at 08:14 +0800, Xi Ruoyao wrote:
-> > > > On Wed, 2023-07-26 at 23:00 +0800, Jisheng Zhang wrote:
-> > > > > which dts r u using? see below.
-> > > > > 
-> > > > > > 
-> > > > > > Or maybe my toolchain (GCC 13.1.0, Binutils-2.40, with no
-> > > > > > patches) can
-> > > > > > miscompile the kernel?
-> > > > 
-> > > > /* snip */
-> > > > 
-> > > > > > Boot HART ID              : 0
-> > > > > > Boot HART Domain          : root
-> > > > > > Boot HART Priv Version    : v1.11
-> > > > > > Boot HART Base ISA        : rv64imafdcvx
-> > > > > 
-> > > > > what? I don't think the mainline dts provide v and x. 
-> > > > 
-> > > > I copied the compiled arch/riscv/boot/dts/thead/th1520-lichee-pi-
-> > > > 4a.dtb
-> > > > into /boot and loaded it with u-boot "load" command onto
-> > > > 0x46000000, and
-> > > > passed this address to the booti command.
-> > > > 
-> > > > But maybe I've copied the wrong file or made some other mistake...
-> > > > I'll
-> > > > recheck.
-> > > 
-> > > Hmm, and if I read OpenSBI code correctly, this line reflects the
-> > > content of the misa CSR, not the DT riscv,isa value.
-> > > 
-> > 
-> > Aha indeed the "vx" isa extensions are not from the DT riscv,isa
-> > property. I will try your opensbi/linux/uboot combinations on my
-> > lpi4a board tomorrow.
-> 
-> My kernel config attached.  Maybe you can find some stupid mistake in
-> it, I'm not familiar with RISC-V, nor DT-based systems :(.
+--CLBf1mcbqLUt7ULL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It seems like your kernel config is the problem. I used it and I saw
-the same result of a panic in riscv_intc_irq:
-https://gist.github.com/pdp7/1a26ebe20017a3b90c4e9c005f8178e1
+On Thu, Jul 20, 2023 at 06:10:51PM +0100, Conor Dooley wrote:
+> Hey Eric,
+>=20
+> On Thu, Jul 20, 2023 at 09:51:19PM +0800, Eric Lin wrote:
+> > This add YAML DT binding documentation for SiFive Private L2
+> > cache controller
+> >=20
+> > Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> > Reviewed-by: Zong Li <zong.li@sifive.com>
+> > Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> > ---
+> >  .../bindings/cache/sifive,pl2cache.yaml       | 62 +++++++++++++++++++
+>=20
+> btw, your $subject should be "dt-bindings: cache: ...." rather than
+> "riscv: sifive".
+>=20
+> >  1 file changed, 62 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/cache/sifive,pl2c=
+ache.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/cache/sifive,pl2cache.ya=
+ml b/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml
+> > new file mode 100644
+> > index 000000000000..ee8356c5eeee
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (C) 2023 SiFive, Inc.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/cache/sifive,pl2cache.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: SiFive Private L2 Cache Controller
+> > +
+> > +maintainers:
+> > +  - Greentime Hu  <greentime.hu@sifive.com>
+> > +  - Eric Lin  <eric.lin@sifive.com>
+>=20
+> There's extra spaces in these lines for some reason.
+>=20
+> > +
+> > +description:
+> > +  The SiFive Private L2 Cache Controller is per core and
+> > +  communicates with both the upstream L1 caches and
+> > +  downstream L3 cache or memory, enabling a high-performance
+> > +  cache subsystem.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/cache-controller.yaml#
+> > +
+>=20
+> I'm pretty sure that I pointed out last time around that you need to add
+> something like in the ccache driver:
+>=20
+> select:
+>   properties:
+>     compatible:
+>       contains:
+>         enum:
+>           - sifive,ccache0
+>           - sifive,fu540-c000-ccache
+>           - sifive,fu740-c000-ccache
+>=20
+> otherwise this binding will be used for anything containing "cache" in
+> the dt-binding.
+> For this binding, I think that the following is sufficient:
+>=20
+> select:
+>   properties:
+>     compatible:
+>       contains:
+>           const: sifive,pl2cache1
+>=20
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: sifive,pl2cache1
+> > +      - const: cache
+>=20
+> You omitted the pl2cache0 from here, that needs to come back! You'll end
+> up with 2 items entries.
+> Either way, I can't take this binding without a soc-specific compatible,
+> per sifive-blocks-ip-versioning.txt..
 
-This is the config I have been using successfully:
-https://gist.github.com/pdp7/ecb34ba1e93fc6cfc4dce66d71e14f82
-
-Could you try that config?
-
-Linux 6.5-rc3 boots okay when built with it:
-https://gist.github.com/pdp7/580b072f9a5bf9be87cf88b5f81e50e3
+Further, "sifive,perfmon-counters" is an undocumented property.
 
 Thanks,
-Drew
+Conor.
+
+--CLBf1mcbqLUt7ULL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMNoygAKCRB4tDGHoIJi
+0t7lAP4l8gcLhmzGLDZoKSuera2y1ijqtLLcIiiMvpnoAU9Z6gEA3sHmaOCWY5wC
+Dp6THGXUlDytdskVE4dXvgAel5laawk=
+=Bv67
+-----END PGP SIGNATURE-----
+
+--CLBf1mcbqLUt7ULL--
