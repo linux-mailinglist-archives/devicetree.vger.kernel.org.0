@@ -2,122 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9341776606D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 01:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B73176608A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 02:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbjG0X7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 19:59:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45192 "EHLO
+        id S231578AbjG1ALO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 20:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbjG0X7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 19:59:41 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E04D1FC4
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 16:59:40 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-563e860df0fso1057674a12.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 16:59:40 -0700 (PDT)
+        with ESMTP id S229600AbjG1ALM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 20:11:12 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363AABF
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 17:11:11 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1bbc06f830aso10113855ad.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 17:11:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690502379; x=1691107179;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yOKiUxDPKvRLa/kPi76r2pwEo1sFcVBEnyuTNjKRcD0=;
-        b=YESZl38UaRZ05Obt17gN/zrCA22IzUrY4yM0wvLjlSkPxTNrR0gjFfgvLX48MAv2vH
-         NETGf2BXTaccmfT43k6Jfr0QubkNMBZntPyuDxA5eG4FLAxDEDwTuzlTkVxuipg5XC/T
-         +P3hZZmlsveCgC664VMh5Y22YmwJdm09CWdUlmG2JKWddTl0Kt9wtU2QkKtRmdAXJZiC
-         O1Hosbtg5vF2J2V3Jjn3nM8FKG0fBygvanqLwAaDMPm/9knYAxOlWq+yekhZ7vEHXRTR
-         CfgPUDI0jvghpou5vwA07o5qHsB27o3rPLm35svKAqnBK6bnBP4tbd+PQMKRkL7ObyVC
-         f0Ug==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690503070; x=1691107870;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gqNRWVrOFVBkH+VSmfu09hLMLUWIZedxHx1Mg4rsMuQ=;
+        b=d2OF3EM9KD1Gz+cvj2pCUh/1Yj5q9pjk4yeRolGJ5YrTetpr/fOe8CuP+jxce2Ukpi
+         Uly+gxlwzxpflH6nRUYG5wuOd8oDmFsPt1zUs6vw0EMfQ2aLHSY4M35IW/9uFEfDiHLA
+         iAOVYMVPUu8E2/VQwufyh94Gprvod9xICH9rwpwpkOwpjAGghf5ui+eulfS/tyZDKU6b
+         vsp550qP7XgPuYI7mzx10za+Z73Rqj133QVRDXeyg9l49Kz3o14NeljzexJVo5CkEAoo
+         YUHwS98wLbaOM0u+mKrRiI5t8sTOcEwSyHO9y/OW1Tuqinmo7beDX3HALza/PlNc1ZnB
+         cFMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690502379; x=1691107179;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yOKiUxDPKvRLa/kPi76r2pwEo1sFcVBEnyuTNjKRcD0=;
-        b=UQqzCSge6/SITpW7rL+7lhLxM7hSI1HoHa046Z0OZPoYPyPFfVKWZU2djdTb3Y0Hzd
-         wYto8jOCfdn/IKcxCeUmdGjFaVgLhrgmU5RJjHC8lxCmM6WtmCGQkRb+CjMQt8TyJmgm
-         rn5NBkywcBJ58ir6+PUo7M4XzuqxoBIaMSPhpqnLASguJF2SJo8nmaypZ5iV7dgV/X2V
-         BPqVtJpXTWC6wJiJGfOodfOZ4Oz2EgSiChM13Z1nj2pNSMyjWDBFxzVALxaaaXyLduwr
-         DG8Q3oI1L4U+SPrtgnUQa7tJg+ADsFgJ3zgk8p2lKyUnIzNuDJVfex5f48fjPoB+qNLV
-         eNSg==
-X-Gm-Message-State: ABy/qLaUqEFw83X0XuEBYEjvEr7U/q7pwivXhvTPNvo40JYcQPD+Axhq
-        P3PwXh9sZeyd7htw5rUsuq5TUA==
-X-Google-Smtp-Source: APBJJlGMw2cf+CJchqdgDNVLwOuXKaGnK5e4Us9yFYLovgmZPrtW19QVwG5gqf8OYeTtOv1aSbOsHQ==
-X-Received: by 2002:a17:902:bd4b:b0:1b8:8af0:416f with SMTP id b11-20020a170902bd4b00b001b88af0416fmr117522plx.1.1690502379302;
-        Thu, 27 Jul 2023 16:59:39 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690503070; x=1691107870;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gqNRWVrOFVBkH+VSmfu09hLMLUWIZedxHx1Mg4rsMuQ=;
+        b=JYyt+FbqLS7O99Y6RKDA12jULyBjctfHCE3rAwrBDcZvXvwnmGi+uQ8PdBKB8GbpPg
+         jSS/uQvIetxVUPxASaXFWgqhMfT490oL5mNvhe3wiLWzsK/vKjRoiX5S/8yogvp9prJH
+         EW8A1YOYDpcJ/EZvz+VLOHnW+s/lTNsteftL2EZVELruSaR41C7GPzO7tEsesS1zRs1v
+         e2z2uFvBA9CnCfvx3pQjixLsgdOJ1pdDI+e1ztOxkNS8pxlit4mvGGhU4+GPIpFaoOv9
+         RBhRbWk8h/bhzjyVci4zS0y+BtOyfXm7GETsZFuUT1GvZoSpFyfMxNZN5QNc4Neh2P+x
+         nchA==
+X-Gm-Message-State: ABy/qLZuOWkEz8OGY/R2WHdDByrQ01ZNeidAUccosn6DEUbdPoxUvo6C
+        01jcuXwiX6Nwdk1zUYJjWBm0gQ==
+X-Google-Smtp-Source: APBJJlHiOMKTmPn4xexa7u68szd4odgOExv7eGQ9Eaq77/8uCykPj7QdZYFF40DGQ4hv5SQqsug33w==
+X-Received: by 2002:a17:903:32cf:b0:1b9:d38d:efb1 with SMTP id i15-20020a17090332cf00b001b9d38defb1mr290557plr.8.1690503070496;
+        Thu, 27 Jul 2023 17:11:10 -0700 (PDT)
 Received: from x1 ([2601:1c2:1800:f680:dacb:3a1a:fcaf:c0fc])
-        by smtp.gmail.com with ESMTPSA id je12-20020a170903264c00b001bbb598b8bbsm2220874plb.41.2023.07.27.16.59.38
+        by smtp.gmail.com with ESMTPSA id l16-20020a170902f69000b001b8a3729c23sm2230932plg.17.2023.07.27.17.11.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 16:59:38 -0700 (PDT)
-Date:   Thu, 27 Jul 2023 16:59:37 -0700
+        Thu, 27 Jul 2023 17:11:10 -0700 (PDT)
+Date:   Thu, 27 Jul 2023 17:11:08 -0700
 From:   Drew Fustini <dfustini@baylibre.com>
-To:     Kwanghoon Son <k.son@samsung.com>
-Cc:     'Jisheng Zhang' <jszhang@kernel.org>,
-        'Conor Dooley' <conor@kernel.org>,
-        'Guo Ren' <guoren@kernel.org>, 'Fu Wei' <wefu@redhat.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        'Conor Dooley' <conor+dt@kernel.org>,
-        'Paul Walmsley' <paul.walmsley@sifive.com>,
-        'Palmer Dabbelt' <palmer@dabbelt.com>,
-        'Albert Ou' <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        'Robert Nelson' <robertcnelson@beagleboard.org>,
-        'Jason Kridner' <jkridner@beagleboard.org>
-Subject: Re: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
- tree
-Message-ID: <ZMME6cHQzHMLUCq+@x1>
-References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
- <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
- <20230723-savor-trolling-e35ed4a7a751@spud>
- <ZL1jlacHj7sgNg8M@x1>
- <CGME20230724003542epcas1p4c6c8dbd042af792bc168e10c6e81e45d@epcas1p4.samsung.com>
- <ZL3Eenj4lGZDhZTM@xhacker>
- <000001d9c070$82638290$872a87b0$@samsung.com>
+To:     Xi Ruoyao <xry111@linuxfromscratch.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Message-ID: <ZMMHnPQ5xkY2+fB+@x1>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+ <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
+ <20230725-unheard-dingy-42f0fafe7216@wendy>
+ <ZL/jMYL3akl78ZZN@xhacker>
+ <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
+ <ZME1J4mpVf5yth32@xhacker>
+ <866eab3e30a18c50742a75d62aee223fdc7e3cee.camel@linuxfromscratch.org>
+ <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <000001d9c070$82638290$872a87b0$@samsung.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 06:55:37PM +0900, Kwanghoon Son wrote:
-> > On Sun, Jul 23, 2023 at 10:29:57AM -0700, Drew Fustini wrote:
-> > > On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
-> > > > On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
-> > > >
-> > > > > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> > > > > @@ -0,0 +1,61 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > >
-> > > > Hmm, should this not be dual licensed?
-> > > > I notice the other th1520 stuff isn't either..
-> > >
-> > > Good point, I'll resubmit with a dual license.
-> > >
-> > > Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
-> > > changing to a dual license?
+On Thu, Jul 27, 2023 at 08:54:59AM +0800, Xi Ruoyao wrote:
+> On Thu, 2023-07-27 at 08:14 +0800, Xi Ruoyao wrote:
+> > On Wed, 2023-07-26 at 23:00 +0800, Jisheng Zhang wrote:
+> > > which dts r u using? see below.
+> > > 
+> > > > 
+> > > > Or maybe my toolchain (GCC 13.1.0, Binutils-2.40, with no patches) can
+> > > > miscompile the kernel?
 > > 
-> > When cooking the initial patch, I wrote the lpi4a dts files from
-> > scratch based on sipeed opened sch file, and currently only I made
-> > contributions to them, so it's easy to make the lpi4a dts files
-> > dual license.
+> > /* snip */
+> > 
+> > > > Boot HART ID              : 0
+> > > > Boot HART Domain          : root
+> > > > Boot HART Priv Version    : v1.11
+> > > > Boot HART Base ISA        : rv64imafdcvx
+> > > 
+> > > what? I don't think the mainline dts provide v and x. 
+> > 
+> > I copied the compiled arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dtb
+> > into /boot and loaded it with u-boot "load" command onto 0x46000000, and
+> > passed this address to the booti command.
+> > 
+> > But maybe I've copied the wrong file or made some other mistake... I'll
+> > recheck.
 > 
-> Thanks for your work.
-> Is there any datasheet or user manual can get on public?
-> I'm going to contribute drivers in my spare time,
-> but it's hard to know the register file and dma information.
- 
-We (the BeagleBoard.org Foundation) have asked T-Head to publish public
-documentation for the TH1520. It is our understanduing that this should
-happen soon but we do not know exactly when. I'll followup in the this
-thread once that happens.
+> Hmm, and if I read OpenSBI code correctly, this line reflects the
+> content of the misa CSR, not the DT riscv,isa value.
+> 
+> The log of successful boot provided by Drew also contains
+> "rv64imafdcvx":
+> 
+> https://gist.github.com/pdp7/23259595a7570f1f11086d286e16dfb6
 
-Thanks,
-Drew
+In case it helps, the thead fork of u-boot contains an important file
+include/configs/light-c910.h that defines the boot scripts for each
+board. Here is the BeagleV Ahead:
+https://git.beagleboard.org/beaglev-ahead/beaglev-ahead-u-boot/-/blob/beaglev-v2020.01-1.1.2/include/configs/light-c910.h#L361
+
+It might give some clues as to want commands to try.
+
+From the lpi4a config:
+https://github.com/revyos/thead-u-boot/blob/09e2c3f93f1a64c10ca51d9b9c0c22fbc0947c43/configs/light_lpi4a_defconfig
+
+It looks like it sets:
+CONFIG_TARGET_LIGHT_FM_C910_LPI4A=y
+
+And that corresponds to:
+https://github.com/revyos/thead-u-boot/blob/09e2c3f93f1a64c10ca51d9b9c0c22fbc0947c43/include/configs/light-c910.h#L425
+
+Anyways, I finally got my Lichee Pi 4a out of the box, and I am going
+to try it out too.
+
+-Drew
