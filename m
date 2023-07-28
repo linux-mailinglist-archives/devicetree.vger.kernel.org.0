@@ -2,159 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 031DD7671B0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3A1767170
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:05:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231923AbjG1QQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 12:16:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
+        id S235067AbjG1QFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 12:05:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbjG1QQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:16:07 -0400
-X-Greylist: delayed 1197 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 28 Jul 2023 09:16:00 PDT
-Received: from 9.mo563.mail-out.ovh.net (9.mo563.mail-out.ovh.net [46.105.73.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6AF3C33
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 09:16:00 -0700 (PDT)
-Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net [51.68.80.175])
-        by mo563.mail-out.ovh.net (Postfix) with ESMTPS id 8E3FF22927;
-        Fri, 28 Jul 2023 15:37:43 +0000 (UTC)
-Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net. [127.0.0.1])
-        by director1.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
-        for <conor+dt@kernel.org>; Fri, 28 Jul 2023 15:37:43 +0000 (UTC)
-Received: from pro2.mail.ovh.net (unknown [10.109.138.11])
-        by director1.derp.mail-out.ovh.net (Postfix) with ESMTPS id 30653201386;
-        Fri, 28 Jul 2023 15:37:43 +0000 (UTC)
-Received: from traphandler.com (88.161.25.233) by DAG1EX1.emp2.local
- (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 28 Jul
- 2023 17:37:42 +0200
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [RESEND] [PATCH v11 2/4] leds: class: store the color index in struct led_classdev
-Date:   Fri, 28 Jul 2023 17:37:29 +0200
-Message-ID: <20230728153731.3742339-3-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230728153731.3742339-1-jjhiblot@traphandler.com>
-References: <20230728153731.3742339-1-jjhiblot@traphandler.com>
+        with ESMTP id S230473AbjG1QFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:05:10 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32E53C1D;
+        Fri, 28 Jul 2023 09:05:06 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 47AE9FF802;
+        Fri, 28 Jul 2023 16:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1690560303;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=DOwouwDm/Kasz+cImp4ZpLSYmghBWaSXArlXLO1rpH0=;
+        b=ljouRWt14CzNxKdUZLfGcvVcD/MG5DdymZazb90A1RiBoJhkZfx33QMCamA/nq64KgQViJ
+        5j94ziGUbCxvMyciw8LIg6YwFQkSf7yHDnrs3zIfxUjdSzdBKykEKG0kWvz/aV8i05xP78
+        mqj89PddP7bz5a6JA8nBI8sawR22k7xKkRbiJMjIfLhDef/HPbnKzJyS+UFodCJ+DT53ZN
+        A4VJB+/3Z1hacM8uhegA536VPmo5HTtstM9AcUBZ8j7k+5ooOrDw8+C3Kc1ufE3I2crSNT
+        VFHW+ZQvhNQgc6+HqrnlnydP17EiBNygti/FGEhzRdi0EfCxPi4SUnCrthjHlQ==
+Date:   Fri, 28 Jul 2023 18:04:43 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Varshini Rajendran <varshini.rajendran@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
+        andi.shyti@kernel.org, tglx@linutronix.de, maz@kernel.org,
+        lee@kernel.org, ulf.hansson@linaro.org, tudor.ambarus@linaro.org,
+        richard@nod.at, vigneshr@ti.com, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, linus.walleij@linaro.org,
+        sre@kernel.org, p.zabel@pengutronix.de, olivia@selenic.com,
+        a.zummo@towertech.it, radu_nicolae.pirea@upb.ro,
+        richard.genoud@gmail.com, gregkh@linuxfoundation.org,
+        lgirdwood@gmail.com, broonie@kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, linux@armlinux.org.uk,
+        durai.manickamkr@microchip.com, andrew@lunn.ch,
+        jerry.ray@microchip.com, andre.przywara@arm.com, mani@kernel.org,
+        alexandre.torgue@st.com, gregory.clement@bootlin.com,
+        arnd@arndb.de, rientjes@google.com, deller@gmx.de,
+        42.hyeyoo@gmail.com, vbabka@suse.cz, mripard@kernel.org,
+        mihai.sain@microchip.com, codrin.ciubotariu@microchip.com,
+        eugen.hristev@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3 00/50] Add support for sam9x7 SoC family
+Message-ID: <20230728180443.55363550@xps-13>
+In-Reply-To: <20230728-floss-stark-889158f968ea@spud>
+References: <20230728102223.265216-1-varshini.rajendran@microchip.com>
+        <c0792cfd-db4f-7153-0775-824912277908@linaro.org>
+        <20230728-floss-stark-889158f968ea@spud>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: CAS4.emp2.local (172.16.1.4) To DAG1EX1.emp2.local
- (172.16.2.1)
-X-Ovh-Tracer-Id: 16196914586505263579
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedviedrieeigdekkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofgjfhgggfgtihesthekredtredttdenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepudetveelveevgffgvdeuffffjefhheehueeitdegtdejgefhheeuuddugeeffeeunecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopeguihhrvggtthhorhdurdguvghrphdrmhgrihhlqdhouhhtrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhlvggushesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeife
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Store the color of the LED so that it is not lost after the LED's
-name has been composed. This color information can then be exposed to
-the user space or used by the LED consumer.
+Hi Conor,
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
- Documentation/ABI/testing/sysfs-class-led |  9 +++++++++
- drivers/leds/led-class.c                  | 21 +++++++++++++++++++++
- include/linux/leds.h                      |  1 +
- 3 files changed, 31 insertions(+)
+conor@kernel.org wrote on Fri, 28 Jul 2023 16:50:24 +0100:
 
-diff --git a/Documentation/ABI/testing/sysfs-class-led b/Documentation/ABI/testing/sysfs-class-led
-index 2e24ac3bd7ef..b2ff0012c0f2 100644
---- a/Documentation/ABI/testing/sysfs-class-led
-+++ b/Documentation/ABI/testing/sysfs-class-led
-@@ -59,6 +59,15 @@ Description:
- 		brightness. Reading this file when no hw brightness change
- 		event has happened will return an ENODATA error.
- 
-+What:		/sys/class/leds/<led>/color
-+Date:		June 2023
-+KernelVersion:	6.5
-+Description:
-+		Color of the LED.
-+
-+		This is a read-only file. Reading this file returns the color
-+		of the LED as a string (e.g: "red", "green", "multicolor").
-+
- What:		/sys/class/leds/<led>/trigger
- Date:		March 2006
- KernelVersion:	2.6.17
-diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-index 78068b06d009..4bcbd46ec75a 100644
---- a/drivers/leds/led-class.c
-+++ b/drivers/leds/led-class.c
-@@ -76,6 +76,19 @@ static ssize_t max_brightness_show(struct device *dev,
- }
- static DEVICE_ATTR_RO(max_brightness);
- 
-+static ssize_t color_show(struct device *dev,
-+		struct device_attribute *attr, char *buf)
-+{
-+	const char *color_text = "invalid";
-+	struct led_classdev *led_cdev = dev_get_drvdata(dev);
-+
-+	if (led_cdev->color < LED_COLOR_ID_MAX)
-+		color_text = led_colors[led_cdev->color];
-+
-+	return sysfs_emit(buf, "%s\n", color_text);
-+}
-+static DEVICE_ATTR_RO(color);
-+
- #ifdef CONFIG_LEDS_TRIGGERS
- static BIN_ATTR(trigger, 0644, led_trigger_read, led_trigger_write, 0);
- static struct bin_attribute *led_trigger_bin_attrs[] = {
-@@ -90,6 +103,7 @@ static const struct attribute_group led_trigger_group = {
- static struct attribute *led_class_attrs[] = {
- 	&dev_attr_brightness.attr,
- 	&dev_attr_max_brightness.attr,
-+	&dev_attr_color.attr,
- 	NULL,
- };
- 
-@@ -486,6 +500,10 @@ int led_classdev_register_ext(struct device *parent,
- 			fwnode_property_read_u32(init_data->fwnode,
- 				"max-brightness",
- 				&led_cdev->max_brightness);
-+
-+			if (fwnode_property_present(init_data->fwnode, "color"))
-+				fwnode_property_read_u32(init_data->fwnode, "color",
-+							 &led_cdev->color);
- 		}
- 	} else {
- 		proposed_name = led_cdev->name;
-@@ -495,6 +513,9 @@ int led_classdev_register_ext(struct device *parent,
- 	if (ret < 0)
- 		return ret;
- 
-+	if (led_cdev->color >= LED_COLOR_ID_MAX)
-+		dev_warn(parent, "LED %s color identifier out of range\n", final_name);
-+
- 	mutex_init(&led_cdev->led_access);
- 	mutex_lock(&led_cdev->led_access);
- 	led_cdev->dev = device_create_with_groups(leds_class, parent, 0,
-diff --git a/include/linux/leds.h b/include/linux/leds.h
-index 8740b4e47f88..aa16dc2a8230 100644
---- a/include/linux/leds.h
-+++ b/include/linux/leds.h
-@@ -100,6 +100,7 @@ struct led_classdev {
- 	const char		*name;
- 	unsigned int brightness;
- 	unsigned int max_brightness;
-+	unsigned int color;
- 	int			 flags;
- 
- 	/* Lower 16 bits reflect status */
--- 
-2.34.1
+> On Fri, Jul 28, 2023 at 01:32:12PM +0200, Krzysztof Kozlowski wrote:
+> > On 28/07/2023 12:22, Varshini Rajendran wrote: =20
+> > > This patch series adds support for the new SoC family - sam9x7.
+> > >  - The device tree, configs and drivers are added
+> > >  - Clock driver for sam9x7 is added
+> > >  - Support for basic peripherals is added
+> > >  - Target board SAM9X75 Curiosity is added
+> > >  =20
+> >=20
+> > Your threading is absolutely broken making it difficult to review and a=
+pply. =20
+>=20
+> I had a chat with Varshini today, they were trying to avoid sending the
+> patches to a massive CC list, but didn't set any in-reply-to header.
+> For the next submission whole series could be sent to the binding &
+> platform maintainers and the individual patches additionally to their
+> respective lists/maintainers. Does that sound okay to you, or do you
+> think it should be broken up?
 
+I usually prefer receiving the dt-bindings *and* the driver changes, so
+I can give my feedback on the description side, as well as looking at
+the implementation and see if that really matches what was discussed
+with you :)
+
+Thanks,
+Miqu=C3=A8l
