@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C13E766C04
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 13:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A874E766C07
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 13:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234911AbjG1LsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 07:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44952 "EHLO
+        id S236315AbjG1LsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 07:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233693AbjG1LsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 07:48:06 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133EA35B5
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 04:48:05 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so292785466b.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 04:48:04 -0700 (PDT)
+        with ESMTP id S236313AbjG1LsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 07:48:21 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8BA4201
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 04:48:17 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9891c73e0fbso422909566b.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 04:48:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690544883; x=1691149683;
+        d=linaro.org; s=google; t=1690544895; x=1691149695;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GxgOtzBuLYyfviZOOW9JXIN01QggGcxGmGJNSoHve2c=;
-        b=KjP90aul3E1qUz5a7QjFSxgi0PymJO63gA2TGEZ7fLtBeGWkT16EaPL2cnNZbCzKsD
-         gvtZ8vvfryQc0kwy5t/jQDXRWNLW3HIw9rrDhpvi1GnXby/ZgiEKXSO4i/v+Af0nVhcg
-         8Q5X/H91IQtIb/kAWLLHqtLL8bu8xWQcMzyr4kE37emQ/ZHQvvFur5VxV84lvkXo/E2G
-         xB6HzNvDxZpTnWthal/gTeSHoAUxS83VSFcC0xOKMK9HJKNzZX11ee0vGWTz20gqvbIl
-         JgGV6NjMiCRaHQuZSYAmXisEJ3McIFOeaLgFOV6Wj8GYtpnfKZVURiEM6KUvmyUs9q+R
-         PHYg==
+        bh=OuzUyywHxT84EL99s/bvwXYrYcfjNmcsDh9sDx8tOW0=;
+        b=mD9j05W91EisOUuFMiWr/AiUJLILh/ARnNVvyMNOB4nHCrxhYMTXwCNiSE7cGf+4JO
+         M2GuQI4Uh4kKMTXSB1u/4k2WS5ut3NfxGfC68aoTWT1DWL5oFThepmJg84h5G8febWNg
+         0Uobzl8dWM48vd+rHuR7Uk7bZtM2vZHPuEBFKQ/8aweaa8vF61xfTXwphRmEY4Pl/u4a
+         nJDCmiHwuLcoMQdjVznZIfjYysRCor+g0ak3MBejxuqpQgnmiSzssGOEOIHoZVuionem
+         G60vIK9vD/64mXZlzukSmuUEHyyCdqPeV9Kn72biGcFoyehHq+1vxBEpu5/qh6lIpN8B
+         btzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690544883; x=1691149683;
+        d=1e100.net; s=20221208; t=1690544895; x=1691149695;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GxgOtzBuLYyfviZOOW9JXIN01QggGcxGmGJNSoHve2c=;
-        b=LqEpN8lZY+rAF/WJde6gq4s0rEWolHkyqOunBerqNpE4S+lAKf86fwLgu0v1FHNzNB
-         I/JGbgUMQY126M0gDr1BMa8uWlyPg8gMSOvwaoNdSBpbSvIrLg5YnZNCCG4pp4Ib5AIz
-         31ZD1cTM/4aPjp+MCWK93t/DltSIY/zRDK5BJTX22/p/vkoBXP5TfCqnJ74sOBKAGdsI
-         aES8DaNX3RbxMucVunDRr+Juzu6vAAjfxN2uBB9zJsk+chDuIe8jkGZqROsZelJa2A7X
-         dGk4VYZMHckBTcKR1F/9AeIvyiULDrsCFhgWQdsLbqE9GcBk0QJAdpb+BS7FfEEYqg5g
-         KYzw==
-X-Gm-Message-State: ABy/qLaPHlbTpoNf2rkCATxwDNXFpcd5f7fLPrmBfWoCTU91pNOKOtwv
-        QK2n9t8Vd5y7M8cctSK1gVIpTQ==
-X-Google-Smtp-Source: APBJJlEOJTYXsUqSyoBXk9V8NH/2sBHkUas8PA2itvpjORW5eb4j5gim/aHfTji1iBZPzqn9UK4vkg==
-X-Received: by 2002:a17:906:3f1b:b0:99b:5689:1331 with SMTP id c27-20020a1709063f1b00b0099b56891331mr2096268ejj.59.1690544883508;
-        Fri, 28 Jul 2023 04:48:03 -0700 (PDT)
+        bh=OuzUyywHxT84EL99s/bvwXYrYcfjNmcsDh9sDx8tOW0=;
+        b=Av3NzebvjMVlLTAu9BvhtL7WOV2Wu6qa/cREf32tLSF8zNG499OEq3aIuCVR6S30Fm
+         qHttSnKLZ1aldSZ3g1ecBxCz16kz11gFqdYSsz5oDNN8hcJMF2v79eTqniqy3itMZVKw
+         eSOIqT5mS29MtfUJJm1yEQoSA365uISv8fG1t05LvSRO4k9uYfOZ/joSep1m8/t5NyT6
+         DsoHlgKmKQbq65ACiYleaIpT47xG7PKKiHKCbEi+BKX/RtkiiPyHUjPGcQyKx1yU1KSu
+         z0Xg61TsPTrlTQx7HQFTEKI4rDxqpQEbQf/9oultZ9UyS9gI2zwqBn7f/uXeE5O+GqMY
+         oN0w==
+X-Gm-Message-State: ABy/qLaOTerQ+f/BEqnq4VoSTbf5aGzN7vvcK/K4VVqq2N5mAS9xyh/5
+        Qmu5pUuoEfmIMVe7oR+IQMvxHA==
+X-Google-Smtp-Source: APBJJlFN40fawfB2fPkyvs17Fx56bmLcdHZCsN5xZrwBk3BeuyDYH1/Jc5kIbpeFt4dhtEVuMqjwVw==
+X-Received: by 2002:a17:907:c0f:b0:99b:56d4:82bb with SMTP id ga15-20020a1709070c0f00b0099b56d482bbmr6567885ejc.6.1690544895724;
+        Fri, 28 Jul 2023 04:48:15 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h15-20020a1709063c0f00b009929ab17be0sm1972098ejg.162.2023.07.28.04.48.02
+        by smtp.gmail.com with ESMTPSA id se27-20020a170906ce5b00b00992d122af63sm1980122ejb.89.2023.07.28.04.48.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 04:48:03 -0700 (PDT)
-Message-ID: <c03f4364-3d97-531a-8acc-aae68de39562@linaro.org>
-Date:   Fri, 28 Jul 2023 13:48:01 +0200
+        Fri, 28 Jul 2023 04:48:15 -0700 (PDT)
+Message-ID: <60a915aa-520a-b275-cc7f-9a409610181b@linaro.org>
+Date:   Fri, 28 Jul 2023 13:48:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 33/50] dt-bindings: usb: add sam9x7
+Subject: Re: [PATCH v3 32/50] dt-bindings: usb: ehci: Add sam9x7
 Content-Language: en-US
 To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
         gregkh@linuxfoundation.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230728102843.266967-1-varshini.rajendran@microchip.com>
+References: <20230728102836.266918-1-varshini.rajendran@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230728102843.266967-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20230728102836.266918-1-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -77,33 +77,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 28/07/2023 12:28, Varshini Rajendran wrote:
-> Document sam9x7 compatible for usb ohci.
+> Document sam9x7 compatible for usb-ehci.
 > 
 > Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > ---
->  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 6 ++++++
+>  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 6 ++++++
 >  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> index be268e23ca79..a2490759f694 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> @@ -57,6 +57,12 @@ properties:
->                - nxp,ohci-nxp
->                - st,spear600-ohci
->            - const: usb-ohci
+> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> index e5c8f4e085de..afc4da89dde5 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> @@ -82,6 +82,12 @@ properties:
+>            - nuvoton,npcm845-ehci
+>            - ti,ehci-omap
+>            - usb-ehci
 > +      - items:
 > +          - enum:
-> +              - microchip,sam9x7-ohci
+> +              - microchip,sam9x7-ehci
 > +          - enum:
+> +              - atmel,at91sam9g45-ehci
 
-That's not an enum. You cannot have here different compatibles.
-
-> +              - atmel,at91rm9200-ohci
-> +          - const: usb-ohci
->  
->    reg:
->      maxItems: 1
+Same problem.
 
 Best regards,
 Krzysztof
