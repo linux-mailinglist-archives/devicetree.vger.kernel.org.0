@@ -2,60 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56BB57665CE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 275FE76669E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234490AbjG1Hye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:54:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39236 "EHLO
+        id S234549AbjG1INy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 04:13:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbjG1HyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:54:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1294173F;
-        Fri, 28 Jul 2023 00:54:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BAB762035;
-        Fri, 28 Jul 2023 07:54:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE90BC433C7;
-        Fri, 28 Jul 2023 07:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690530863;
-        bh=O1cNWXEo+9YOHgwHktZITvHAmMXU2sDKw5f8LCDKsEs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AGGC/2vlpzLcRfPtqNVhu8REJqrZ9oHbnDRVcCaYv/csppwg+D3IpWHxZVz05hDTg
-         PEb52eabt+Hzk7wvDNoAYBmnXlQNiCzrxKaEV0Hgu0dZ0Dn7yx8qq+TWLHTHZO9RR5
-         d8faLTTaj6BW1Qq6BqxASzOuS89qlTOdAFgP5vNc28FoaqxDWL4KHREpVMoz5pNQN6
-         1sDzXe2zwPIhD6Q/DYDdMV8Yfl3A96wSFYyAcTRc5+yr4+GEP/Ne59P7i48jzFLTC2
-         E/XFNKehofRueCgh4oMEObSOZoZkHoRCWKoMyznYKevJ0m5EdPNUW5iFQtOTZXjtNW
-         Bmq8QmP0sInUQ==
-Date:   Fri, 28 Jul 2023 08:54:16 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234756AbjG1INg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:13:36 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86F073C11;
+        Fri, 28 Jul 2023 01:13:26 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99454855de1so245528066b.2;
+        Fri, 28 Jul 2023 01:13:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690532005; x=1691136805;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S8jQrccsPc+Yci+ONr3TsmC4imyyjo9X+IFR2I4Ay5I=;
+        b=GmOdYJLbZqJo3SA5BqvtqN7S2msoqTc8OXT9WGmg/YUlNeR6ayCRn7jqA2TRw7+VVa
+         Qd20oAqCvl+vEKTo8NT1k/uGOVt0e9857bbDT9lnOsgKqJ9so2uqY7LxyJIVFZAODx99
+         JhjBjc4CRVQGrYZ4oDfCQxfBU4maEo9Ls1tkKJmJELfq1YJhKKEYUmqaQMbZL4qAzA7f
+         v3k/NIehKZQsFIIv4WXDmOlHnY6bdy1SGsURMuIgNxFBvnBVMsL5+7bgUHuQpsjGyALu
+         H8yvjD/Ng6OIYVpetSvt1c4NHPTXOLmD3Xh4K+WnW0rf1l7lsRG0FuGHysTCjHaXc1Fz
+         nGlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690532005; x=1691136805;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S8jQrccsPc+Yci+ONr3TsmC4imyyjo9X+IFR2I4Ay5I=;
+        b=asyyTUymBs2IwWcgBPFZmXX+syOdaRdHQzRBP0uGjAeqim5N1aNudSt4TvNuvaTr7T
+         urkNKQNmyHqTrAAPcofVG4rzXljn0yS/VQsOJ/lA/gKWx2acAc7f6807rDey5jfhL5CY
+         XaDiOKMgtqDi1Q0SiVNbKls+inEq2Q9x5vO5h6ahWl+vGsg7BwJP0SYJ0o2d4io+EehR
+         /dcvrfKAbk1xdn4yFzb3PhodM3Y6LNpEHqc8nfoXzVKWbC8gr/rHiOHurVbzchKh6IU5
+         Sj7WZP8JbboS58ItN19kdwPZR6QKGKsrL8BJqLQc5q8XPFH2B/x4RUPNf2iK54N/D2IT
+         nHBA==
+X-Gm-Message-State: ABy/qLb5KipmfJF6AQ1HDq5ZgpoAR7WZxZZ09trjNzxp9z+rpT1DB5y5
+        prPFBxal9mD0T1qGAQq/9Xs=
+X-Google-Smtp-Source: APBJJlFy7shLRCnh1rx0nPjpKfoveclxsf4mIU6Cr1i93tFVItp3jezGvRFx9BiegdVzXsOX/b4OqA==
+X-Received: by 2002:a17:907:a06c:b0:99b:bc52:8d2 with SMTP id ia12-20020a170907a06c00b0099bbc5208d2mr1296250ejc.6.1690532004876;
+        Fri, 28 Jul 2023 01:13:24 -0700 (PDT)
+Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id e6-20020a1709067e0600b00992b66e54e9sm1736948ejr.214.2023.07.28.01.13.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 01:13:24 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] treewide: Update Guru Das Srinagesh's email address
-Message-ID: <20230728075416.GC8175@google.com>
-References: <20230728001622.4938-1-quic_gurus@quicinc.com>
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: pwm: brcm,kona-pwm: convert to YAML
+Date:   Fri, 28 Jul 2023 10:13:20 +0200
+Message-ID: <169053199369.3516709.17303093302143505470.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230618142327.GA20367@standask-GA-A55M-S2HP>
+References: <20230618142327.GA20367@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230728001622.4938-1-quic_gurus@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,54 +79,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Jul 2023, Guru Das Srinagesh wrote:
 
-> Clean up my email address as the codeaurora.org address is not used
-> anymore.
+On Sun, 18 Jun 2023 16:23:27 +0200, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family PWM controller bindings to DT schema.
 > 
-> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
->  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
-
-2 patches isn't exactly 'treewide'.
-
-Anyway, since there are not dependencies between the changes, please
-separate them out, one per subsystem.
-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> Change during conversion:
+>   - add used, but previously undocumented brcm,bcm11351-pwm compatible
 > 
-> diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> index 2c8cf6aab19a..6b80518cbf62 100644
-> --- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> +++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Qualcomm Technologies, Inc. PM8941 USB ID Extcon device
->  
->  maintainers:
-> -  - Guru Das Srinagesh <gurus@codeaurora.org>
-> +  - Guru Das Srinagesh <quic_gurus@quicinc.com>
->  
->  description: |
->    Some Qualcomm PMICs have a "misc" module that can be used to detect when
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> index e6a2387d8650..9e4eed34dae8 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Qualcomm Technologies, Inc. PM8008 PMIC
->  
->  maintainers:
-> -  - Guru Das Srinagesh <gurus@codeaurora.org>
-> +  - Guru Das Srinagesh <quic_gurus@quicinc.com>
->  
->  description: |
->    Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that integrates
-> 
-> base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
-> -- 
-> 2.40.0
 > 
 
+Applied, thanks!
+
+[1/1] dt-bindings: pwm: brcm,kona-pwm: convert to YAML
+      commit: 8b9d91d23c18423d4e4bda735f20b669fb28115f
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Thierry Reding <thierry.reding@gmail.com>
