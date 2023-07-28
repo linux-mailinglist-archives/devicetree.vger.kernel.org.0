@@ -2,78 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE86766816
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA92676681C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235047AbjG1JDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 05:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
+        id S233728AbjG1JEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 05:04:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235195AbjG1JCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:02:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D24EC;
-        Fri, 28 Jul 2023 02:02:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5262662085;
-        Fri, 28 Jul 2023 09:02:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 202C2C433C8;
-        Fri, 28 Jul 2023 09:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690534972;
-        bh=F4MlZOcBpEKK00nFvTALje1M7bOaW3WRhlZHcwt1nao=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=t2sdqRkzZxjRGaZIzB/6N1dB4o3jIjD2eeKwFqjErhzXlraIdfxNGpnWTroScTPZY
-         IhjYz9QULSkJsnlSvZ9MAcHjiCA2O1g8x5B75tc8AFyqT5aH9Fn2seZKDSCe0BZiHI
-         pbCvUAIbFbfZYxPtXP0qdpymnATRcLRov6FoscGht+jP138WQvY3Ggx7xFWfA84bQg
-         29YtZlWRz/yEuSmoEJLC3lblPnMvHRz5n82miq+Pjtpifxb3RZ2fsZ4Hx/75WphGee
-         Jel02Ldy4v+cHIYQVXZFf2FsN65n90I7lofstPrgI6nYHElloeeOYsXl8HUeYLjuFG
-         PHlw+2r3tV+Vg==
-From:   Lee Jones <lee@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Vadim Pasternak <vadimp@nvidia.com>,
-        Riku Voipio <riku.voipio@iki.fi>, Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230714174651.4058753-1-robh@kernel.org>
-References: <20230714174651.4058753-1-robh@kernel.org>
-Subject: Re: (subset) [PATCH] leds: Explicitly include correct DT includes
-Message-Id: <169053497081.290679.18222053479750049432.b4-ty@kernel.org>
-Date:   Fri, 28 Jul 2023 10:02:50 +0100
+        with ESMTP id S233376AbjG1JEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:04:37 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9091106
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:04:35 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b9cdba1228so9518951fa.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:04:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1690535074; x=1691139874;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QoUjJ9zL9e663eyjUh3+yZMV+gsB92P640Sm3159mYQ=;
+        b=GWE2v5GO0nR84rzpqfnEgejBzGhN8kmeIhUex9shslMfLPk8x4dv8QTreZX6Xth0FC
+         SJeQBMwslj3Hg8jppS7yNQ41Jg+5J0l6/aJ5iPM0raqiZN+GpksIu2nXTlyYkCXNNw4S
+         VPHZWoR4IgMDrMmwkp3ms++fNSTf/MykV8Ugh41L+duzNuhm2XvaRObJa9FOZgr7uI6y
+         amAEVguzKhWS8ui7CoNHnTNhIjJFZohoStgGhN7io2g3TVUDTHvkeyYhINgDBQYrEDZe
+         mW0R3+Yg0QnEfTlQbNFhmxx90NlZjF7MX3YyJypumLONO3cERP2TLnj3r0TibU9nN/um
+         MpqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690535074; x=1691139874;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QoUjJ9zL9e663eyjUh3+yZMV+gsB92P640Sm3159mYQ=;
+        b=g7ala9R06kkbkxbKOcvzkgRc/HxqI+P7ssOmqG6Gc/sJ0eaqiqqE0RWmchxGNylJ+i
+         nMWRkxD2d0oy6WPjJ/Zhf2eihlfZtvJFsVFBS80zdTShk/HCGk6XIpEo+HFxSCrOIOyy
+         rBB7D9pgVbZPRxrMA7fX+K2tuu/yNicqUFULmfmnP8zCARoUX0G7nqEeznmzMwR8WEUh
+         UTUbDdG2+IPVdpY1Azy5BVrb4d/999cX1FUYBKmnarKN3XR3TqKB0qIrmjxUTmEqWDr1
+         OyoEz0WXv5KhG6irumnWRM5QNdRqjYzif9mW46pbOB20O2m0RcG7jOIr5KeB/5D8vrBq
+         goAw==
+X-Gm-Message-State: ABy/qLbVmaD1sVXZuz+1GDHTtkUKo24VtF1h3/qLBxWiEq6XDXEHJU69
+        1W1sgnxwr9kr/7n7upEv1SG2M0Am9opMc2HoPrD5gQ==
+X-Google-Smtp-Source: APBJJlE2xC/ePHFkPLVLV9/WTr37CR88KoeWLBzMv1tBu7gB0t5QjfHg6H1TPAqSzSN+blmCxSh5RZhbRETHKEBz5Gs=
+X-Received: by 2002:a2e:97d7:0:b0:2b6:fa60:85a1 with SMTP id
+ m23-20020a2e97d7000000b002b6fa6085a1mr1301429ljj.21.1690535074159; Fri, 28
+ Jul 2023 02:04:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230720135125.21240-1-eric.lin@sifive.com> <20230720135125.21240-2-eric.lin@sifive.com>
+ <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org> <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
+ <be748338-987b-d474-d040-82af7cfb5f01@linaro.org>
+In-Reply-To: <be748338-987b-d474-d040-82af7cfb5f01@linaro.org>
+From:   Eric Lin <eric.lin@sifive.com>
+Date:   Fri, 28 Jul 2023 17:04:23 +0800
+Message-ID: <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jul 2023 11:46:50 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> [...]
+On Fri, Jul 28, 2023 at 2:58=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/07/2023 08:01, Eric Lin wrote:
+> > Hi Krzysztof,
+> >
+> > On Fri, Jul 21, 2023 at 4:35=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 20/07/2023 15:51, Eric Lin wrote:
+> >>> This add YAML DT binding documentation for SiFive Private L2
+> >>> cache controller
+> >>>
+> >>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> >>> Reviewed-by: Zong Li <zong.li@sifive.com>
+> >>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> >>
+> >>
+> >> ...
+> >>
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - const: sifive,pl2cache1
+> >>
+> >> I still have doubts that it is not used in any SoC. This is what you
+> >> said last time: "is not part of any SoC."
+> >> If not part of any SoC, then where is it? Why are you adding it to the
+> >> kernel?
+> >>
+> >
+> > Sorry for the late reply. I didn't describe it clearly last time.
+> > Currently, we have two hardware versions of pl2cache: pl2cache0 and pl2=
+cache1.
+> > The pl2cache0 is used in unmatched board SoC. The pl2cache1 is
+> > utilized in our internal FPGA platform for evaluation; it's our core
+> > IP.
+>
+> And why do you add bindings for some internal FPGA IP block which does
+> not interface with any SW?
+>
 
-Applied, thanks!
+Hi Krzysztof,
+The pl2cache has mmio interface for SW. Thanks.
 
-[1/1] leds: Explicitly include correct DT includes
-      commit: 3192f141240336dd6d7675ff374757006fed1916
+Best regards,
+Eric Lin
 
---
-Lee Jones [李琼斯]
-
+> Best regards,
+> Krzysztof
+>
