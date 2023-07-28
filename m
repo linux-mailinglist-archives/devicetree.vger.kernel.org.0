@@ -2,418 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83202766ACA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 12:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B9B766AE5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 12:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233701AbjG1Ke7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 06:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58596 "EHLO
+        id S233855AbjG1Kkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 06:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235978AbjG1Kef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 06:34:35 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B696468B;
-        Fri, 28 Jul 2023 03:32:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690540337; x=1722076337;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EBzGP6WnxviijVISZi6yqDkJC+1RwHcRaalxK6q0ZDA=;
-  b=c3xyDGq/ezcvZupbaqD08m2B9I7hEUw/XXr87pqh7+qTXqPuiMzg2jH2
-   Oa9B6Zukhf/KWVGP0BtgXeCi7y7rnCHZPXIYo3BIvEk2EeT8441Abc0pG
-   lGQiZ+cDcKGnXWKtxXehL8oScELST+rQuH/V74OE0hq5S4kyOExeLUOkH
-   pIGxlrDOKm10HZ/6hm7spoNNEFTCmi9dfsvYpYfJnICyt4dfqx0OLUlv7
-   ouxk/i4wEYjGXv7u84wPnKmednIHskOQa0CNQRqgjm5PPa55z87BjKND9
-   gpu6Q6E5E6k5eux0Pf+FKVQ8JLKqN2v+f7RG1btTNzSGq9lpMcRi+FWHp
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; 
-   d="scan'208";a="238401992"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 03:31:28 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 28 Jul 2023 03:31:21 -0700
-Received: from che-lt-i67070.amer.actel.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Fri, 28 Jul 2023 03:31:17 -0700
-From:   Varshini Rajendran <varshini.rajendran@microchip.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <andre.przywara@arm.com>, <f.fainelli@gmail.com>,
-        <romain.perier@gmail.com>, <varshini.rajendran@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 50/50] ARM: dts: at91: sam9x75_curiosity: add sam9x75 curiosity board
-Date:   Fri, 28 Jul 2023 16:01:14 +0530
-Message-ID: <20230728103114.267845-1-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S233788AbjG1Kkb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 06:40:31 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52DD422A;
+        Fri, 28 Jul 2023 03:39:32 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36S9sTu8023774;
+        Fri, 28 Jul 2023 10:39:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=qDA2bs6TKfyaFunm8MiXQdC/hksUD0tB1joNGNtj0LQ=;
+ b=OIQDUDa75WXSVWAyl5Idet8MtwoiSx5f7eAKRNaKnchY21arTjoGJrdIz9GlKlSJeM4B
+ IEqLpy/Lfz2kVb3aya233HcC0yzcemWmdqtVVJbOdq7G7LJYlN0/E6sWkw2ChsUX8WZZ
+ qPmjb0dNJQ27ZZULRkctns5GYZ849h+Y4LVfUtQ2ja6GezCdch0DB7tEjtbUrqYBdB/P
+ xsz39o/FJ2OJfm6pSZ8AWx+FriD7zMs6n23E0PvXmkioiPlzHNJEKqbpZOz7FE2ZzXwl
+ VEXROuere/fjbqj9TzoDGxa/OzuyX5bwPUakhEwc5SOgIcF3KelhIaLxu2xKmbLbvlNc tA== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s403vh7a8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Jul 2023 10:39:27 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36SAdNT6002036;
+        Fri, 28 Jul 2023 10:39:23 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3s086mfary-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Fri, 28 Jul 2023 10:39:23 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36SAdMfU002031;
+        Fri, 28 Jul 2023 10:39:22 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 36SAdMhX002030;
+        Fri, 28 Jul 2023 10:39:22 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id BD9C54B48; Fri, 28 Jul 2023 16:09:21 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     manivannan.sadhasivam@linaro.org
+Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
+        quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        cros-qcom-dts-watchers@chromium.org (reviewer:ARM/QUALCOMM CHROMEBOOK
+        SUPPORT), Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add PCIe0 node
+Date:   Fri, 28 Jul 2023 16:09:20 +0530
+Message-Id: <1690540760-20191-1-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gXCL2E3lPdN9sjD7dWy1ErmCv_JPbHdZ
+X-Proofpoint-ORIG-GUID: gXCL2E3lPdN9sjD7dWy1ErmCv_JPbHdZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 suspectscore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 phishscore=0
+ mlxlogscore=999 mlxscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307280097
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree file for sam9x75 curiosity board.
+Add PCIe dtsi node for PCIe0 controller on sc7280 platform.
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 ---
- arch/arm/boot/dts/microchip/Makefile          |   5 +
- .../dts/microchip/at91-sam9x75_curiosity.dts  | 311 ++++++++++++++++++
- 2 files changed, 316 insertions(+)
- create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 144 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 143 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-index 0f5193d05a31..f3d604c30325 100644
---- a/arch/arm/boot/dts/microchip/Makefile
-+++ b/arch/arm/boot/dts/microchip/Makefile
-@@ -10,6 +10,7 @@ DTC_FLAGS_at91-sama5d3_eds := -@
- DTC_FLAGS_at91-sama5d3_xplained := -@
- DTC_FLAGS_at91-sama5d4_xplained := -@
- DTC_FLAGS_at91-sama7g5ek := -@
-+DTC_FLAGS_at91-sam9x75_curiosity := -@
- dtb-$(CONFIG_SOC_AT91RM9200) += \
- 	at91rm9200ek.dtb \
- 	mpa1600.dtb
-@@ -61,6 +62,10 @@ dtb-$(CONFIG_SOC_SAM9X60) += \
- 	at91-sam9x60_curiosity.dtb \
- 	at91-sam9x60ek.dtb
- # Enables support for device-tree overlays
-+DTC_FLAGS_at91-sam9x75_curiosity := -@
-+dtb-$(CONFIG_SOC_SAM9X7) += \
-+	at91-sam9x75_curiosity.dtb
-+# Enables support for device-tree overlays
- DTC_FLAGS_at91-sama5d27_som1_ek := -@
- DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
- DTC_FLAGS_at91-sama5d2_icp := -@
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-new file mode 100644
-index 000000000000..a9ecb02a9f3c
---- /dev/null
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-@@ -0,0 +1,311 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
-+ *
-+ * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
-+ */
-+/dts-v1/;
-+#include "sam9x7.dtsi"
-+#include <dt-bindings/input/input.h>
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index a0e8db8..8629575 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -868,7 +868,7 @@
+ 			reg = <0 0x00100000 0 0x1f0000>;
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
+ 				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+-				 <0>, <&pcie1_lane>,
++				 <&pcie0_lane>, <&pcie1_lane>,
+ 				 <0>, <0>, <0>, <0>;
+ 			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+ 				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+@@ -2088,6 +2088,123 @@
+ 			qcom,smem-state-names = "wlan-smp2p-out";
+ 		};
+ 
++		pcie0: pci@1c00000 {
++			compatible = "qcom,pcie-sc7280";
++			reg = <0 0x01c00000 0 0x3000>,
++			      <0 0x60000000 0 0xf1d>,
++			      <0 0x60000f20 0 0xa8>,
++			      <0 0x60001000 0 0x1000>,
++			      <0 0x60100000 0 0x100000>;
 +
-+/ {
-+	model = "Microchip SAM9X75 Curiosity";
-+	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
++			reg-names = "parf", "dbi", "elbi", "atu", "config";
++			device_type = "pci";
++			linux,pci-domain = <0>;
++			bus-range = <0x00 0xff>;
++			num-lanes = <1>;
 +
-+	aliases {
-+		i2c0 = &i2c6;
-+		i2c1 = &i2c7;
-+	};
++			#address-cells = <3>;
++			#size-cells = <2>;
 +
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
++			ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
++				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0x3d00000>;
 +
-+	clocks {
-+		clock-slowxtal {
-+			clock-frequency = <32768>;
++			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi";
++			#interrupt-cells = <1>;
++			interrupt-map-mask = <0 0 0 0x7>;
++			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>,
++					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>,
++					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>,
++					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>;
++
++			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
++				 <&gcc GCC_PCIE_0_PIPE_CLK_SRC>,
++				 <&pcie0_lane>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_PCIE_0_AUX_CLK>,
++				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
++				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
++				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
++				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
++				 <&gcc GCC_DDRSS_PCIE_SF_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>;
++
++			clock-names = "pipe",
++				      "pipe_mux",
++				      "phy_pipe",
++				      "ref",
++				      "aux",
++				      "cfg",
++				      "bus_master",
++				      "bus_slave",
++				      "slave_q2a",
++				      "tbu",
++				      "ddrss_sf_tbu",
++				      "aggre0",
++				      "aggre1";
++
++			assigned-clocks = <&gcc GCC_PCIE_0_AUX_CLK>;
++			assigned-clock-rates = <19200000>;
++
++			resets = <&gcc GCC_PCIE_0_BCR>;
++			reset-names = "pci";
++
++			power-domains = <&gcc GCC_PCIE_0_GDSC>;
++
++			phys = <&pcie0_lane>;
++			phy-names = "pciephy";
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&pcie0_clkreq_n>, <&pcie0_reset_n>, <&pcie0_wake_n>;
++
++			dma-coherent;
++
++			interconnects = <&aggre1_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
++					<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_PCIE_0 0>;
++			interconnect-names = "pcie-mem", "cpu-pcie";
++
++			iommu-map = <0x0 &apps_smmu 0x1c00 0x1>,
++				   <0x100 &apps_smmu 0x1c01 0x1>;
++
++			status = "disabled";
 +		};
 +
-+		clock-mainxtal {
-+			clock-frequency = <24000000>;
-+		};
-+	};
++		pcie0_phy: phy@1c06000 {
++			compatible = "qcom,sm8250-qmp-gen3x1-pcie-phy";
++			reg = <0 0x01c06000 0 0x1c0>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
++				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
++				 <&gcc GCC_PCIE_CLKREF_EN>,
++				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
++			clock-names = "aux", "cfg_ahb", "ref", "refgen";
 +
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
++			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
++			reset-names = "phy";
 +
-+		button-user {
-+			label = "USER";
-+			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_PROG1>;
-+			wakeup-source;
-+		};
-+	};
++			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
++			assigned-clock-rates = <100000000>;
 +
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_led_gpio_default>;
++			status = "disabled";
 +
-+		led-0 {
-+			label = "red";
-+			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
-+		};
++			pcie0_lane: phy@1c0e6200 {
++				reg = <0 0x01c06200 0 0x200>, /* tx */
++				      <0 0x01c06400 0 0x200>, /* rx */
++				      <0 0x01c06800 0 0x200>, /* pcs */
++				      <0 0x01c06c00 0 0x200>; /* pcs_pcie */
++				clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
++				clock-names = "pipe0";
 +
-+		led-1 {
-+			label = "green";
-+			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			label = "blue";
-+			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory@20000000 {
-+		device_type = "memory";
-+		reg = <0x20000000 0x10000000>;
-+	};
-+};
-+
-+&dbgu {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_dbgu>;
-+	status = "okay";
-+};
-+
-+&dma0 {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&flx6 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+
-+	i2c6 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flx6_default>;
-+		i2c-analog-filter;
-+		i2c-digital-filter;
-+		i2c-digital-filter-width-ns = <35>;
-+		status = "okay";
-+
-+		pmic@5b {
-+			compatible = "microchip,mcp16502";
-+			reg = <0x5b>;
-+
-+			regulators {
-+				vdd_3v3: VDD-IO {
-+					regulator-name = "VDD_IO";
-+					regulator-min-microvolt = <3000000>;
-+					regulator-max-microvolt = <3600000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vddioddr: VDD-DDR {
-+					regulator-name = "VDD_DDR";
-+					regulator-min-microvolt = <1283000>;
-+					regulator-max-microvolt = <1450000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vddcore: VDD-CORE {
-+					regulator-name = "VDD_CORE";
-+					regulator-min-microvolt = <500000>;
-+					regulator-max-microvolt = <1210000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vddcpu: VDD-OTHER {
-+					regulator-name = "VDD_OTHER";
-+					regulator-min-microvolt = <1700000>;
-+					regulator-max-microvolt = <3600000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-ramp-delay = <3125>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vldo1: LDO1 {
-+					regulator-name = "LDO1";
-+					regulator-min-microvolt = <1200000>;
-+					regulator-max-microvolt = <3700000>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+					};
-+				};
-+
-+				vldo2: LDO2 {
-+					regulator-name = "LDO2";
-+					regulator-min-microvolt = <1200000>;
-+					regulator-max-microvolt = <3700000>;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+					};
-+				};
++				#phy-cells = <0>;
++				#clock-cells = <0>;
++				clock-output-names = "pcie_0_pipe_clk";
 +			};
 +		};
-+	};
-+};
 +
-+&ohci0 {
-+	num-ports = <3>;
-+	atmel,vbus-gpio = <0
-+			   &pioC 27 GPIO_ACTIVE_HIGH
-+			   &pioB 18 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb_default>;
-+	status = "okay";
-+};
+ 		pcie1: pci@1c08000 {
+ 			compatible = "qcom,pcie-sc7280";
+ 			reg = <0 0x01c08000 0 0x3000>,
+@@ -4341,6 +4458,31 @@
+ 				function = "mi2s1_ws";
+ 			};
+ 
++			pcie0_reset_n: pcie0-reset-n {
++				pins = "gpio87";
++				function = "gpio";
 +
-+&pinctrl {
++				drive-strength = <16>;
++				output-low;
++				bias-disable;
++			};
 +
-+	dbgu {
-+		pinctrl_dbgu: dbgu-0 {
-+			atmel,pins = <AT91_PIOA 26 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				      AT91_PIOA 27 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+		};
-+	};
++			pcie0_wake_n: pcie0-wake-n {
++				pins = "gpio89";
++				function = "gpio";
 +
-+	flexcom {
-+		pinctrl_flx6_default: flx6-twi {
-+			atmel,pins =
-+				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				 AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-+		};
-+	};
++				drive-strength = <2>;
++				bias-pull-up;
++			};
 +
-+	gpio-keys {
-+		pinctrl_key_gpio_default: key-gpio-default {
-+			atmel,pins = <AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
++			pcie0_clkreq_n: pcie0-clkreq-n-state {
++				pins = "gpio88";
++				function = "pcie0_clkreqn";
 +
-+	leds {
-+		pinctrl_led_gpio_default: led-gpio-default {
-+			atmel,pins = <AT91_PIOC 19 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOC 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOC 20 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
++				bias-pull-up;
++				drive-strength = <2>;
++			};
 +
-+	ohci0 {
-+		pinctrl_usb_default: usb-default {
-+			atmel,pins = <AT91_PIOC 27 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOB 18 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	sdmmc0 {
-+		pinctrl_sdmmc0_default: sdmmc0 {
-+			atmel,pins =
-+				<AT91_PIOA 2 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)					/* PA2 CK  periph A with pullup */
-+				 AT91_PIOA 1 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA1 CMD periph A with pullup */
-+				 AT91_PIOA 0 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA0 DAT0 periph A */
-+				 AT91_PIOA 3 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA3 DAT1 periph A with pullup */
-+				 AT91_PIOA 4 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA4 DAT2 periph A with pullup */
-+				 AT91_PIOA 5 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)>;	/* PA5 DAT3 periph A with pullup */
-+		};
-+	};
-+
-+	usb0 {
-+		pinctrl_usba_vbus: usba-vbus {
-+			atmel,pins = <AT91_PIOC 8 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+}; /* pinctrl */
-+
-+&rtt {
-+	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-+	cd-gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&power_management {
-+	debounce-delay-us = <976>;
-+	status = "okay";
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&trng {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	atmel,vbus-gpio = <&pioC 8 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usba_vbus>;
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
+ 			pcie1_clkreq_n: pcie1-clkreq-n-state {
+ 				pins = "gpio79";
+ 				function = "pcie1_clkreqn";
 -- 
-2.25.1
+2.7.4
 
