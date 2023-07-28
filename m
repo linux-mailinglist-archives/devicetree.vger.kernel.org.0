@@ -2,106 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8566A766761
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE74876678C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:45:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232861AbjG1IiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 04:38:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37340 "EHLO
+        id S235129AbjG1Io7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 04:44:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233909AbjG1Ihk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:37:40 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F254214
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 01:36:46 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31758eb5db8so1869531f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 01:36:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690533404; x=1691138204;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BtwvNBoqPreZzrIHNt/kSe+j+nQ7Y0O3XISTfz5OulI=;
-        b=vFQXpN02JfsMoWYpIwLMuDCbn0Qez745NESDhZvY9t8YMmRTsET0j7GvKKpiXCkQ/w
-         HXzMoM6xiNHyGIuu7Dix/pdoD/fzLlQa1/L9nFM9od6sK4A+HpIJTt6KOGdLPTPNT1pd
-         km8aMeN7istZEsXQiXN5srzbEiR0Sy3B/jlGyLE/F9K7VrsNlpG1OtvnlF4i2hDwHbAN
-         eQs2ZSrtkROaqoaomokdGeQXuH+aaWwrp58xrkfMqZa0lhng8AZv9QicP9C65ot0mNga
-         sxeXOj4HZednJRoJg3fY2K6o1dwv/iAEgNfoRShlQOEkGlVDnJ8gjAU7MN1spRIbZGT1
-         MuOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690533404; x=1691138204;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BtwvNBoqPreZzrIHNt/kSe+j+nQ7Y0O3XISTfz5OulI=;
-        b=GP/V/a2L+qx1A8mPbHr/8Bi4NqbhvufQkkecV4u7CWMTHP+C9eM6i4Tl+ZemurS3m6
-         Da5goW9dd80NNkudgpe+K5Uk+pMOkJAl37x8bHXLmVRM/lLB5DF/kArpUg57xkaHPltZ
-         r3FmDINokgnHKRJ/bNs5bLmtem7egMgbeEthhFesxESSH659q1jqsg4CV9PMvBfZqsCV
-         e1+phhl0ps4SzVkPAxh07+he5yKN+QXL3ZjXEppMnONKJoKXJFcY9VygDpflfi6etSzd
-         BrGaEWZASDzg0gyhQLbPwoIf1KxoPWL8rTSQCcrD3/3k9y+ciwgAsRshotVA2S9ZxD5M
-         /znA==
-X-Gm-Message-State: ABy/qLbjjRo6WlseFyXi9nNgG30QjZ79fv3wBkIr0cm+8jGtbfUS4Q4s
-        PmY9yNlF5HvKKb/reXM97q6BWA==
-X-Google-Smtp-Source: APBJJlHMMcwnrlSEE2C7l5Zov4GM6ePQqbR7DDm3U7Bv54eXEkKfSzlMUEICGEWs7EOdoCVFwnhFVg==
-X-Received: by 2002:adf:ef8c:0:b0:313:f4e2:901d with SMTP id d12-20020adfef8c000000b00313f4e2901dmr1246487wro.22.1690533404559;
-        Fri, 28 Jul 2023 01:36:44 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s1-20020a5d4ec1000000b003063db8f45bsm4188750wrv.23.2023.07.28.01.36.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 01:36:44 -0700 (PDT)
-Message-ID: <1c8b12b4-79c3-5018-c7df-946fe690e8c8@linaro.org>
-Date:   Fri, 28 Jul 2023 10:36:42 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
-Content-Language: en-US
-To:     =?UTF-8?B?6ZmI5Y2O5omN?= <chenhuacai@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234978AbjG1IoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:44:23 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520732738;
+        Fri, 28 Jul 2023 01:44:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690533862; x=1722069862;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Xljk28C8TabJn6D88mq8XQ/vv5LsrMcLddBbYGMpq5U=;
+  b=Xec4lLIDT9QfpDG9G2aIRFm8BJTBgCBXz4ThaSuY7FLDM2SWjOpLeRvo
+   xo2HspP9zdTyoXYuIh3qYpylTCzIISBn1WMaeVIayTyK9UqviskOaVTad
+   PDxgcI9AywncJ+M6KhLbSEZrVuB1Er6Eb2dIG1bdaqHHj2/qgc9OAPN8s
+   NV40jUUoWkrpoUMWSfvnRhjljpZVRwJ9vH3KL/7knCftbp8CEUBSHIan3
+   08/fxdntIhz/1B+2LqO8lJujrEMVCkYZ407Et3bDS601Zx3B0CgcauZ8b
+   a5WFSOHjukwd/7B72OYCiNZL6xTT6oG0/ZKfjTfczqKdgsFVbYBmsIBma
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
+   d="asc'?scan'208";a="238388894"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 01:44:21 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 28 Jul 2023 01:44:21 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 28 Jul 2023 01:44:18 -0700
+Date:   Fri, 28 Jul 2023 09:43:43 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+CC:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>, Liu Yun <liuyun@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
+        <loongson-kernel@lists.loongnix.cn>, Liu Yun <liuyun@loongson.cn>,
+        <chenhuacai@kernel.org>, <kernel@xen0n.name>
+Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
+Message-ID: <20230728-cornball-preacher-a7e4644fcbef@wendy>
 References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
- <74a37e9d.9a24.1899b9bea85.Coremail.chenhuacai@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <74a37e9d.9a24.1899b9bea85.Coremail.chenhuacai@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UZdMYQzKkfUUS+1M"
+Content-Disposition: inline
+In-Reply-To: <20230728074944.26746-1-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 10:27, 陈华才 wrote:
-> Reviewd-by: Huacai Chen <chenhuacai@loongson.cn>
+--UZdMYQzKkfUUS+1M
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
+Hey,
 
-> 
-> 
-> 本邮件及其附件含有龙芯中科的商业秘密信息，仅限于发送给上面地址中列出的个人或群组。禁止任何其他人以任何形式使用（包括但不限于全部或部分地泄露、复制或散发）本邮件及其附件中的信息。如果您错收本邮件，请您立即电话或邮件通知发件人并删除本邮件。 
-> This email and its attachments contain confidential information from Loongson Technology , which is intended only for the person or entity whose address is listed above. Any use of the information contained herein in any way (including, but not limited to, total or partial disclosure, reproduction or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this email in error, please notify the sender by phone or email immediately and delete it. 
++CC Huacai & WANG.
 
+On Fri, Jul 28, 2023 at 03:49:42PM +0800, Yinbo Zhu wrote:
+> Loongson-2 platform support Power Management Controller (ACPI) and this
+> series patch was to add PM driver that base on dts and PM binding support.
+>=20
+> Change in v5:
+> 		1. The patch "[PATCH v3 1/3] loongarch: export some arch-specific
+> 		   pm interfaces" had been merged into linux-next tree thus this
+> 		   v4 series patch need drop it and need depend on it and it's
+> 		   patch link was:
+> https://lore.kernel.org/all/20230615091757.24686-2-zhuyinbo@loongson.cn/
 
-Ooops!
+Just to note, it might be in linux-next, but more importantly it is also
+in v6.5-rc1, so there is no issue with dependencies.
 
-Are we intended person/entities to receive your Reviewed-by tag? We will
-be using it (total/partial disclosure, reproduction, dissemination).
-People not on To/Cc will also do it and for sure they are not intended
-recipients.
+> 		2. Swap the positions of compatible for 2k1000 and 2k0500.
 
-Please talk with your IT that such disclaimers in open-source are not
-desired (if not harmful even).
+I noticed you sent a mail pinging the v4 of this series yesterday as it
+had not been picked up. Who do you actually expect to apply these
+patches? There does not appear to be a maintainer listed for the
+drivers/soc/loongson directory, just one for your GUTS driver.
 
-Best regards,
-Krzysztof
+As a result, patches like
+<https://lore.kernel.org/all/a69170cb55cfc73e378b40ccf1d9c16f@208suo.com/>
+have gone ignored. Granted, that patch is probably crap that does not
+apply, due to 208suo.com people sending corrupted patches, but you the
+point.
 
+More interestingly there is also
+<https://lore.kernel.org/all/40b324af-3483-4b3d-b65a-a97944aa4a70@app.fastm=
+ail.com/>
+which seems to have also gone missing (I don't see it in linux-next),
+despite some discussion about how the patch should be merged.
+
+Looks to me like drivers/soc/loongson/ needs someone to take
+responsibility for picking up patches for the directory & sending them
+to the soc maintainers (with a new MAINTAINERS entry reflecting that) so
+that patches don't fall through the cracks.
+
+Thanks,
+Conor.
+
+--UZdMYQzKkfUUS+1M
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMN/vwAKCRB4tDGHoIJi
+0qmiAQDS9mvW/41YU9HvBHC4ZwNsN5yzGwb0yF2EJGqQ0hFbhAD9FqrgePMsjoB9
+mLXY8P6BfLNBh4fDjgk+LEl4mnwIWg4=
+=3HUz
+-----END PGP SIGNATURE-----
+
+--UZdMYQzKkfUUS+1M--
