@@ -2,139 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBC9B767145
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 17:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 031DD7671B0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:16:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234471AbjG1P6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 11:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45676 "EHLO
+        id S231923AbjG1QQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 12:16:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236174AbjG1P5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 11:57:53 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756D84202
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 08:57:50 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-991da766865so318784666b.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 08:57:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690559869; x=1691164669;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J3k2wrLxfWSkDK/Y1m8f2Pt0Rfn4qiNug0qbBZtToG0=;
-        b=byZzrObqM1awjhRH6ayU77OLhZUhdGlbuO5PvixRZZOczNwAGLCu6SNQS9aL83Gl1D
-         LiSSiJQulyfppGS8zrC5ATucF710+dD+DWjZZbAMr8b6CmFCFpC7lLa2ei0dkZVCBNDr
-         fDQRYCPK+u+p5yOpAocE+11ZybK0fhyt0pwJbQdjKq8cPhvUvZsS5+7AB6bJGVtPgKMO
-         iQbGf2/+p+46gt7sUkRMkXiQZpCtK7Frxk9Q8MWYPM5EEKCT9eAmZWolF4PEsxRWQr1l
-         thKCDhKCri1gFM9nPDwHNMzzgOEkQyIzgygmgamirCWcLiZo2VRoigzZNSAr5NE4jF/o
-         nGnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690559869; x=1691164669;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J3k2wrLxfWSkDK/Y1m8f2Pt0Rfn4qiNug0qbBZtToG0=;
-        b=g9wTL881OsUFuZAudoK1SYKWTOJ2E/jmNzBfhcFxxSuUeCevYchNXgxrZ4n71OdfPN
-         15ARoo8yR+G/SQjPxbkl8o5Kv3HC5ApW7LI/ptdpMBfJF0NBU8XNi6rMakOz7js+TnKm
-         X9N5/NU3w+Y6twgl5DHyv5JHDWnr696B+lUhpn+eWNeYV3XuHFZCyqv61TdpQ4XXyUHJ
-         DPkKDrSg95xzCh0/bdLJsPuBIT+K4ETGsoNNxQS6ijzqHXZd2LOLQC+Ygh1TGPQCSaTN
-         IZhbKiiUADWH0rm15UgLi20yHEXbSEQjup315QHx0EUPTAhHO2qza+G86dZ9NDjoaNh4
-         gm/w==
-X-Gm-Message-State: ABy/qLahcCemKzxVRv+oMDDz6cbjg13ykAUkKmWaTJ2Pl4LDXYBEjuBx
-        DgY95WOx/oFxJjUh6m8jyi4vGw==
-X-Google-Smtp-Source: APBJJlHFwTIAeiAKV/aZGLjJnIMrwD7AUm86fYh7o74TwOqlcm7xVzwDHHCwwMay/wyIZqIHJo/OUg==
-X-Received: by 2002:a17:906:8a45:b0:977:ecff:3367 with SMTP id gx5-20020a1709068a4500b00977ecff3367mr2317200ejc.40.1690559868653;
-        Fri, 28 Jul 2023 08:57:48 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id pw3-20020a17090720a300b00987e2f84768sm2197937ejb.0.2023.07.28.08.57.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 08:57:48 -0700 (PDT)
-Message-ID: <a2024453-e749-b659-52a0-83ded8bb5c38@linaro.org>
-Date:   Fri, 28 Jul 2023 17:57:44 +0200
+        with ESMTP id S231146AbjG1QQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:16:07 -0400
+X-Greylist: delayed 1197 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 28 Jul 2023 09:16:00 PDT
+Received: from 9.mo563.mail-out.ovh.net (9.mo563.mail-out.ovh.net [46.105.73.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6AF3C33
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 09:16:00 -0700 (PDT)
+Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net [51.68.80.175])
+        by mo563.mail-out.ovh.net (Postfix) with ESMTPS id 8E3FF22927;
+        Fri, 28 Jul 2023 15:37:43 +0000 (UTC)
+Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net. [127.0.0.1])
+        by director1.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+        for <conor+dt@kernel.org>; Fri, 28 Jul 2023 15:37:43 +0000 (UTC)
+Received: from pro2.mail.ovh.net (unknown [10.109.138.11])
+        by director1.derp.mail-out.ovh.net (Postfix) with ESMTPS id 30653201386;
+        Fri, 28 Jul 2023 15:37:43 +0000 (UTC)
+Received: from traphandler.com (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 28 Jul
+ 2023 17:37:42 +0200
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [RESEND] [PATCH v11 2/4] leds: class: store the color index in struct led_classdev
+Date:   Fri, 28 Jul 2023 17:37:29 +0200
+Message-ID: <20230728153731.3742339-3-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230728153731.3742339-1-jjhiblot@traphandler.com>
+References: <20230728153731.3742339-1-jjhiblot@traphandler.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add PCIe0 node
-Content-Language: en-US
-To:     Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-        manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        quic_parass@quicinc.com,
-        "reviewer:ARM/QUALCOMM CHROMEBOOK SUPPORT" 
-        <cros-qcom-dts-watchers@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <1690540760-20191-1-git-send-email-quic_krichai@quicinc.com>
- <17c2ba50-3b72-523c-d92b-1ecbf9be7450@linaro.org>
- <f3d5c72d-90d3-b091-f995-5ad0bf93ae1d@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f3d5c72d-90d3-b091-f995-5ad0bf93ae1d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: CAS4.emp2.local (172.16.1.4) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 16196914586505263579
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedviedrieeigdekkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofgjfhgggfgtihesthekredtredttdenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepudetveelveevgffgvdeuffffjefhheehueeitdegtdejgefhheeuuddugeeffeeunecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopeguihhrvggtthhorhdurdguvghrphdrmhgrihhlqdhouhhtrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhlvggushesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeife
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 17:10, Krishna Chaitanya Chundru wrote:
-> 
-> On 7/28/2023 5:33 PM, Krzysztof Kozlowski wrote:
->> On 28/07/2023 12:39, Krishna chaitanya chundru wrote:
->>> Add PCIe dtsi node for PCIe0 controller on sc7280 platform.
->>>
->>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>
->>> +		pcie0_phy: phy@1c06000 {
->>> +			compatible = "qcom,sm8250-qmp-gen3x1-pcie-phy";
->>> +			reg = <0 0x01c06000 0 0x1c0>;
->>> +			#address-cells = <2>;
->>> +			#size-cells = <2>;
->>> +			ranges;
->>> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->>> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->>> +				 <&gcc GCC_PCIE_CLKREF_EN>,
->>> +				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->>> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
->>> +
->>> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
->>> +			reset-names = "phy";
->>> +
->>> +			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->>> +			assigned-clock-rates = <100000000>;
->>> +
->>> +			status = "disabled";
->>> +
->>> +			pcie0_lane: phy@1c0e6200 {
->> Isn't this old-style of bindings? Wasn't there a change? On what tree
->> did you base it?
+Store the color of the LED so that it is not lost after the LED's
+name has been composed. This color information can then be exposed to
+the user space or used by the LED consumer.
 
-The work was here:
-https://lore.kernel.org/all/20230324022514.1800382-5-dmitry.baryshkov@linaro.org/
+Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+---
+ Documentation/ABI/testing/sysfs-class-led |  9 +++++++++
+ drivers/leds/led-class.c                  | 21 +++++++++++++++++++++
+ include/linux/leds.h                      |  1 +
+ 3 files changed, 31 insertions(+)
 
-But I don't remember the status.
-
-> Let me rebase and send it again.
-
-This anyway looks like wrong compatible. You used sm8250.
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/ABI/testing/sysfs-class-led b/Documentation/ABI/testing/sysfs-class-led
+index 2e24ac3bd7ef..b2ff0012c0f2 100644
+--- a/Documentation/ABI/testing/sysfs-class-led
++++ b/Documentation/ABI/testing/sysfs-class-led
+@@ -59,6 +59,15 @@ Description:
+ 		brightness. Reading this file when no hw brightness change
+ 		event has happened will return an ENODATA error.
+ 
++What:		/sys/class/leds/<led>/color
++Date:		June 2023
++KernelVersion:	6.5
++Description:
++		Color of the LED.
++
++		This is a read-only file. Reading this file returns the color
++		of the LED as a string (e.g: "red", "green", "multicolor").
++
+ What:		/sys/class/leds/<led>/trigger
+ Date:		March 2006
+ KernelVersion:	2.6.17
+diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
+index 78068b06d009..4bcbd46ec75a 100644
+--- a/drivers/leds/led-class.c
++++ b/drivers/leds/led-class.c
+@@ -76,6 +76,19 @@ static ssize_t max_brightness_show(struct device *dev,
+ }
+ static DEVICE_ATTR_RO(max_brightness);
+ 
++static ssize_t color_show(struct device *dev,
++		struct device_attribute *attr, char *buf)
++{
++	const char *color_text = "invalid";
++	struct led_classdev *led_cdev = dev_get_drvdata(dev);
++
++	if (led_cdev->color < LED_COLOR_ID_MAX)
++		color_text = led_colors[led_cdev->color];
++
++	return sysfs_emit(buf, "%s\n", color_text);
++}
++static DEVICE_ATTR_RO(color);
++
+ #ifdef CONFIG_LEDS_TRIGGERS
+ static BIN_ATTR(trigger, 0644, led_trigger_read, led_trigger_write, 0);
+ static struct bin_attribute *led_trigger_bin_attrs[] = {
+@@ -90,6 +103,7 @@ static const struct attribute_group led_trigger_group = {
+ static struct attribute *led_class_attrs[] = {
+ 	&dev_attr_brightness.attr,
+ 	&dev_attr_max_brightness.attr,
++	&dev_attr_color.attr,
+ 	NULL,
+ };
+ 
+@@ -486,6 +500,10 @@ int led_classdev_register_ext(struct device *parent,
+ 			fwnode_property_read_u32(init_data->fwnode,
+ 				"max-brightness",
+ 				&led_cdev->max_brightness);
++
++			if (fwnode_property_present(init_data->fwnode, "color"))
++				fwnode_property_read_u32(init_data->fwnode, "color",
++							 &led_cdev->color);
+ 		}
+ 	} else {
+ 		proposed_name = led_cdev->name;
+@@ -495,6 +513,9 @@ int led_classdev_register_ext(struct device *parent,
+ 	if (ret < 0)
+ 		return ret;
+ 
++	if (led_cdev->color >= LED_COLOR_ID_MAX)
++		dev_warn(parent, "LED %s color identifier out of range\n", final_name);
++
+ 	mutex_init(&led_cdev->led_access);
+ 	mutex_lock(&led_cdev->led_access);
+ 	led_cdev->dev = device_create_with_groups(leds_class, parent, 0,
+diff --git a/include/linux/leds.h b/include/linux/leds.h
+index 8740b4e47f88..aa16dc2a8230 100644
+--- a/include/linux/leds.h
++++ b/include/linux/leds.h
+@@ -100,6 +100,7 @@ struct led_classdev {
+ 	const char		*name;
+ 	unsigned int brightness;
+ 	unsigned int max_brightness;
++	unsigned int color;
+ 	int			 flags;
+ 
+ 	/* Lower 16 bits reflect status */
+-- 
+2.34.1
 
