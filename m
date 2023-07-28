@@ -2,170 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 100087661E5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 04:40:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9275B766211
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 04:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232793AbjG1CkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 22:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
+        id S231587AbjG1CvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 22:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232747AbjG1CkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 22:40:15 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E41A230E0;
-        Thu, 27 Jul 2023 19:40:13 -0700 (PDT)
-X-UUID: 0e6d70ca2cf011eeb20a276fd37b9834-20230728
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=EgTVB8/wFgscxLDYs3qg9WMPyo6Fp8L2xH8FV1ZxS8Y=;
-        b=XMdBzmum+SG6fGxWNJugtbkHpY5NWMvaaTTNGdoAE39+kBAGZC/w8bQFR8qDH+8p8wajVetTCJxfgtKvFErGyZaDupGwl6vz5CenCxj2VezL45yLsDf+MiR8k175PgBfrktZPWX9dI5NIgflaW4rSfhaxOMZXYzrFxP0SIiJ2Sc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.30,REQID:7b70016a-b75c-432e-9d6f-54f9bd2a4115,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:1fcc6f8,CLOUDID:e5759ea0-0933-4333-8d4f-6c3c53ebd55b,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 0e6d70ca2cf011eeb20a276fd37b9834-20230728
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1530414196; Fri, 28 Jul 2023 10:40:04 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 28 Jul 2023 10:40:03 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 28 Jul 2023 10:40:03 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S229786AbjG1CvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 22:51:16 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12CE2139;
+        Thu, 27 Jul 2023 19:51:13 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qPDZ9-00008m-1J;
+        Fri, 28 Jul 2023 02:50:55 +0000
+Date:   Fri, 28 Jul 2023 03:50:47 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Felix Fietkau <nbd@nbd.name>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v16 14/14] arm64: dts: mediatek: mt8195: Add SCP 2nd core
-Date:   Fri, 28 Jul 2023 10:39:59 +0800
-Message-ID: <20230728023959.12293-15-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230728023959.12293-1-tinghan.shen@mediatek.com>
-References: <20230728023959.12293-1-tinghan.shen@mediatek.com>
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/2] dt-bindings: mt76: support setting per-band MAC
+ address
+Message-ID: <6e9cfac5758dd06429fadf6c1c70c569c86f3a95.1690512516.git.daniel@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H4,
-        RCVD_IN_MSPIKE_WL,RDNS_NONE,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rewrite the MT8195 SCP device node as a cluster and
-add the SCP 2nd core in it.
+Introduce support for setting individual per-band MAC addresses using
+NVMEM cells by adding a 'bands' object with enumerated child nodes
+representing the 2.4 GHz, 5 GHz and 6 GHz bands.
 
-Since the SCP device node is changed to multi-core structure,
-enable SCP cluster to enable probing SCP core 0.
+In case it is defined, call of_get_mac_address for the per-band child
+node, otherwise try with of_get_mac_address on the main device node and
+fall back to a random address like it used to be.
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+While at it, add MAC address related properties also for the main node
+and update example to use EEPROM via nvmem-cells instead of deprecated
+mediatek,mtd-eeprom property.
+
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
- .../boot/dts/mediatek/mt8195-cherry.dtsi      |  6 +++-
- arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 34 ++++++++++++++-----
- 2 files changed, 30 insertions(+), 10 deletions(-)
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 59 ++++++++++++++++++-
+ 1 file changed, 58 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 37a3e9de90ff..4584077d3a4c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -991,7 +991,11 @@
- 	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
- };
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 252207adbc54c..2474f4f7e34b0 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -37,6 +37,12 @@ properties:
+     description:
+       MT7986 should contain 3 regions consys, dcm, and sku, in this order.
  
--&scp {
-+&scp_cluster {
-+	status = "okay";
-+};
++  '#address-cells':
++    const: 1
 +
-+&scp_c0 {
- 	status = "okay";
- 
- 	firmware-name = "mediatek/mt8195/scp.img";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 48b72b3645e1..7809118f74fb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -922,14 +922,30 @@
- 			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
- 		};
- 
--		scp: scp@10500000 {
--			compatible = "mediatek,mt8195-scp";
--			reg = <0 0x10500000 0 0x100000>,
--			      <0 0x10720000 0 0xe0000>,
--			      <0 0x10700000 0 0x8000>;
--			reg-names = "sram", "cfg", "l1tcm";
--			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-+		scp_cluster: scp@10500000 {
-+			compatible = "mediatek,mt8195-scp-dual";
-+			reg = <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
-+			reg-names = "cfg", "l1tcm";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x10500000 0x100000>;
- 			status = "disabled";
++  '#size-cells':
++    const: 0
 +
-+			scp_c0: scp@0 {
-+				compatible = "mediatek,scp-core";
-+				reg = <0x0 0xa0000>;
-+				reg-names = "sram";
-+				interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-+				status = "disabled";
-+			};
+   interrupts:
+     maxItems: 1
+ 
+@@ -72,13 +78,23 @@ properties:
+ 
+   ieee80211-freq-limit: true
+ 
++  address: true
 +
-+			scp_c1: scp@a0000 {
-+				compatible = "mediatek,scp-core";
-+				reg = <0xa0000 0x20000>;
-+				reg-names = "sram";
-+				interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
-+				status = "disabled";
-+			};
- 		};
++  local-mac-address: true
++
++  mac-address: true
++
+   nvmem-cells:
++    minItems: 1
+     items:
+       - description: NVMEM cell with EEPROM
++      - description: NVMEM cell with the MAC address
  
- 		scp_adsp: clock-controller@10720000 {
-@@ -2374,7 +2390,7 @@
+   nvmem-cell-names:
++    minItems: 1
+     items:
+       - const: eeprom
++      - const: mac-address
  
- 		video-codec@18000000 {
- 			compatible = "mediatek,mt8195-vcodec-dec";
--			mediatek,scp = <&scp>;
-+			mediatek,scp = <&scp_c0>;
- 			iommus = <&iommu_vdo M4U_PORT_L21_VDEC_MC_EXT>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
-@@ -2540,7 +2556,7 @@
- 				 <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
- 				 <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
- 			interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
--			mediatek,scp = <&scp>;
-+			mediatek,scp = <&scp_c0>;
- 			clocks = <&vencsys CLK_VENC_VENC>;
- 			clock-names = "venc_sel";
- 			assigned-clocks = <&topckgen CLK_TOP_VENC>;
+   mediatek,eeprom-data:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+@@ -213,6 +229,30 @@ properties:
+                     description:
+                       Half-dBm power delta for different numbers of antennas
+ 
++patternProperties:
++  '^band@[0-2]+$':
++    type: object
++    additionalProperties: false
++    properties:
++      reg:
++        maxItems: 1
++
++      address: true
++      local-mac-address: true
++      mac-address: true
++
++      nvmem-cells:
++        description: NVMEM cell with the MAC address
++
++      nvmem-cell-names:
++        items:
++          - const: mac-address
++
++    required:
++      - reg
++
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
+@@ -225,10 +265,13 @@ examples:
+       #address-cells = <3>;
+       #size-cells = <2>;
+       wifi@0,0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
+         compatible = "mediatek,mt76";
+         reg = <0x0000 0 0 0 0>;
+         ieee80211-freq-limit = <5000000 6000000>;
+-        mediatek,mtd-eeprom = <&factory 0x8000>;
++        nvmem-cells = <&factory_eeprom>;
++        nvmem-cell-names = "eeprom";
+         big-endian;
+ 
+         led {
+@@ -257,6 +300,20 @@ examples:
+              };
+           };
+         };
++
++        band@0 {
++          /* 2.4 GHz */
++          reg = <0>;
++          nvmem-cells = <&macaddr 0x4>;
++          nvmem-cell-names = "mac-address";
++        };
++
++        band@1 {
++          /* 5 GHz */
++          reg = <1>;
++          nvmem-cells = <&macaddr 0xa>;
++          nvmem-cell-names = "mac-address";
++        };
+       };
+     };
+ 
 -- 
-2.18.0
-
+2.41.0
