@@ -2,128 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D59A766527
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54BA076652C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234069AbjG1HUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:20:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51626 "EHLO
+        id S234106AbjG1HWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:22:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234080AbjG1HUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:20:48 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C1B2129
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:20:45 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b974031aeaso27010901fa.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:20:45 -0700 (PDT)
+        with ESMTP id S234100AbjG1HWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:22:14 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37EBC170D
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:22:11 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5221cf2bb8cso2408350a12.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:22:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1690528843; x=1691133643;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LkEJgaTxs/ddkAEFRCk2052gAcbygjssKU7AjsGzwec=;
-        b=PKQK3qh1VT8jWnxGjPqzEVsJuktxUM1+9+LsRoGobu0ema7mHkV2H7s6B44fGP6u0y
-         vYu6LWth0HrM+LQQpLoXSUx5GaLx8NtfKPAWlWnIYc0/RLtOewMQhwXBz2FShmr9NO02
-         MYxGpnAgxWm1C1bmbIs+P8NwK/IwN99YZkfj/PnK7QNXzBTEWJyq3RY55mpICMpteKf7
-         IcztGUSxxtggRc0qNgriTRKa9zOJmvGxUIbPZ16XNNAeAB0vyYPHFgKFibRMZPxwaNOu
-         MiSVRpatWcyzTLZjpEQyCYAX6xzBAw4hIaD9CbgmNd1rOnYRTeSrtCIzXGsUOXLf0vta
-         kmng==
+        d=linaro.org; s=google; t=1690528929; x=1691133729;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LHDLdEESCjLfjZtmp5s10YbAT+aGJz2CpcqQwun1R0A=;
+        b=ydMrkBv3UGAyLB3YqiDyqtrAeuLzqUngTBZgg7uyT6+sBO17SjL+yjB4oCJiRTMS4D
+         zWFPeJV7sevWXc6L2CX9og3MWXhURwBJrU/RrY+wtuEnt+OMUs34Ni61fON79QCXvYZC
+         +pGhZowtv+Eq3Mc0czMKOj0iK/nQAwgjldIE6iWNssgBlkIz8WollVODcsHJuuSRTbbY
+         5bW53J8WVyf/8NRg5oLeHXUsKR6ixRQY5y1F34KUiroPY5XSP1IsiTbHSJAPbq1H1pKe
+         CkoqYtJFYDr33WN/GUi9BDR0JtftHC9jJ1VnCtwBZJGawKXVU4GpH+yI8oWhvNE/rk2l
+         zIcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690528843; x=1691133643;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LkEJgaTxs/ddkAEFRCk2052gAcbygjssKU7AjsGzwec=;
-        b=kY4LgoWDpaTATSeqgSAR8RkySfWJuR2QHBX+t6HjwfZiAocmWnx5zYsdW6LLdYcdUH
-         IAJ6TU2DfBSP9FulgdFdS0RGmV0YGWb0C/A5BwnpmYh+8qRDrLZAYs2x73Gx4GkiKvjB
-         0k8gPwVr+qLvhxwnY2VaNjQ/mHnBTCnJCsfvW44shmIz4w38MAc5JRlt0q3mRB7pf4gE
-         JJ0772U0Cu/RvPQoCf4t/7juIpxNekgK2Hh87C9g2C2p7T0uox+EhaFLUcW5kIWVGTHl
-         SAb6FuMQabQQLhRuO2+jO/adkcKLbbXRLP0JEb9tsre50m4cjx8oUrfsCqvpYkpAcufr
-         5bEw==
-X-Gm-Message-State: ABy/qLbP8d6a5DkgTPG2/fb7Q84veCPP5J5dXWa3eG7Wm95sjMzCW4mo
-        jMjfqM9g3Fm7eY5TCAhlsebKDtGJIl17DTkBpCPA5Q==
-X-Google-Smtp-Source: APBJJlEYv4VXz8ssay967YiIFAwaE1Bq5ymyjMJx4WO3gnt0z/waK2x38yUfDHp5coKHkN/e3yk5XwZu3CgAkivseE8=
-X-Received: by 2002:a2e:84c6:0:b0:2b9:ac48:d804 with SMTP id
- q6-20020a2e84c6000000b002b9ac48d804mr1129754ljh.38.1690528843528; Fri, 28 Jul
- 2023 00:20:43 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690528929; x=1691133729;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LHDLdEESCjLfjZtmp5s10YbAT+aGJz2CpcqQwun1R0A=;
+        b=V7EprjyQRRQ1C6fZXrD+ubCCBKQVlkyTWtWtc0s2o/P+FuoSaZa9hhS4Bru9tXKvb4
+         iibPzYTZ0fLS/FfbSK3jb35QsQ9EKGJgNPuqmEu+VLnbSrkFxzHaYnBlfy3yjABSk0xf
+         7RV64WiyOUrdZZHTTr3NDnx4r+RPTt8dGyYPmGVdraexcacKpeLfdv0+lmJpmWCBhxBZ
+         41UR+GgRi+D9uXJ5DAbB3mKryEpGQVX01H4BvcTTkWF1mRChCjK8yYxwl6N2zNfJruTt
+         SQP8DVETTq4O1LIbBDFh7zjjRPoAKX7pVi/FD6LPQky1DGNdGAJ50YxPHroNOVf7Tfd7
+         FYIA==
+X-Gm-Message-State: ABy/qLalIOYlhCML4w/Ix0P9Lrrm2VC+en2vMXI9AUk+RYm5fU4o8OlP
+        Ly1vLyBxcu7agy0HNX8P3L/qbw==
+X-Google-Smtp-Source: APBJJlEzqjGfgX2NmTh6Z8QsYYzU1kCY6wPXAwFGUh5MAwyOuaLmyon2kf2ATQApaA2l5lNXc1XfcA==
+X-Received: by 2002:aa7:d5d0:0:b0:522:2ada:c207 with SMTP id d16-20020aa7d5d0000000b005222adac207mr1234455eds.34.1690528929619;
+        Fri, 28 Jul 2023 00:22:09 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id b8-20020aa7c908000000b0052255cbad8dsm1485151edt.94.2023.07.28.00.22.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jul 2023 00:22:09 -0700 (PDT)
+Message-ID: <42782c4e-1dab-d99c-4ca3-6e0ff12ffd19@linaro.org>
+Date:   Fri, 28 Jul 2023 09:22:07 +0200
 MIME-Version: 1.0
-References: <20230720135125.21240-1-eric.lin@sifive.com> <20230720135125.21240-2-eric.lin@sifive.com>
- <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org> <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
- <20230728-penpal-prelude-29a952c03827@wendy>
-In-Reply-To: <20230728-penpal-prelude-29a952c03827@wendy>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Fri, 28 Jul 2023 15:20:32 +0800
-Message-ID: <CAPqJEFo3LPuwm6dtgdMP243jYtT23LjaFvXDVQiF876WmOw1bQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 02/14] dt-bindings: display: add st,stih418-vtg compatible
+ for sti vtg
+Content-Language: en-US
+To:     Alain Volmat <avolmat@me.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230727215141.53910-1-avolmat@me.com>
+ <20230727215141.53910-3-avolmat@me.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230727215141.53910-3-avolmat@me.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 2:47=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Fri, Jul 28, 2023 at 02:01:28PM +0800, Eric Lin wrote:
-> > Hi Krzysztof,
-> >
-> > On Fri, Jul 21, 2023 at 4:35=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > On 20/07/2023 15:51, Eric Lin wrote:
-> > > > This add YAML DT binding documentation for SiFive Private L2
-> > > > cache controller
-> > > >
-> > > > Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> > > > Reviewed-by: Zong Li <zong.li@sifive.com>
-> > > > Reviewed-by: Nick Hu <nick.hu@sifive.com>
-> > >
-> > >
-> > > ...
-> > >
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    items:
-> > > > +      - const: sifive,pl2cache1
-> > >
-> > > I still have doubts that it is not used in any SoC. This is what you
-> > > said last time: "is not part of any SoC."
-> > > If not part of any SoC, then where is it? Why are you adding it to th=
-e
-> > > kernel?
-> > >
-> >
-> > Sorry for the late reply. I didn't describe it clearly last time.
-> > Currently, we have two hardware versions of pl2cache: pl2cache0 and pl2=
-cache1.
-> > The pl2cache0 is used in unmatched board SoC.
->
-> Wait a second, does the fu740 on the unmatched not have a ccache as
-> it's L2 cache?
->
+On 27/07/2023 23:51, Alain Volmat wrote:
+> Add a new compatible in st,stih4xx.txt in order to support sti vtg on
+> stih418 platforms.
+> 
+> Signed-off-by: Alain Volmat <avolmat@me.com>
 
-Hi Conor,
-Sorry, I misremember the L2 cache on the unmatched board.
-I just check again. The unmatched board L2 cache is ccache not
-pl2cache0. You are right. Thanks.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Eric Lin
+Krzysztof
 
-> > The pl2cache1 is
-> > utilized in our internal FPGA platform for evaluation; it's our core
-> > IP.
