@@ -2,145 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B73176608A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 02:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B675F7660A0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 02:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231578AbjG1ALO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 20:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51758 "EHLO
+        id S229939AbjG1AQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 20:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjG1ALM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 20:11:12 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363AABF
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 17:11:11 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1bbc06f830aso10113855ad.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 17:11:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690503070; x=1691107870;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gqNRWVrOFVBkH+VSmfu09hLMLUWIZedxHx1Mg4rsMuQ=;
-        b=d2OF3EM9KD1Gz+cvj2pCUh/1Yj5q9pjk4yeRolGJ5YrTetpr/fOe8CuP+jxce2Ukpi
-         Uly+gxlwzxpflH6nRUYG5wuOd8oDmFsPt1zUs6vw0EMfQ2aLHSY4M35IW/9uFEfDiHLA
-         iAOVYMVPUu8E2/VQwufyh94Gprvod9xICH9rwpwpkOwpjAGghf5ui+eulfS/tyZDKU6b
-         vsp550qP7XgPuYI7mzx10za+Z73Rqj133QVRDXeyg9l49Kz3o14NeljzexJVo5CkEAoo
-         YUHwS98wLbaOM0u+mKrRiI5t8sTOcEwSyHO9y/OW1Tuqinmo7beDX3HALza/PlNc1ZnB
-         cFMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690503070; x=1691107870;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gqNRWVrOFVBkH+VSmfu09hLMLUWIZedxHx1Mg4rsMuQ=;
-        b=JYyt+FbqLS7O99Y6RKDA12jULyBjctfHCE3rAwrBDcZvXvwnmGi+uQ8PdBKB8GbpPg
-         jSS/uQvIetxVUPxASaXFWgqhMfT490oL5mNvhe3wiLWzsK/vKjRoiX5S/8yogvp9prJH
-         EW8A1YOYDpcJ/EZvz+VLOHnW+s/lTNsteftL2EZVELruSaR41C7GPzO7tEsesS1zRs1v
-         e2z2uFvBA9CnCfvx3pQjixLsgdOJ1pdDI+e1ztOxkNS8pxlit4mvGGhU4+GPIpFaoOv9
-         RBhRbWk8h/bhzjyVci4zS0y+BtOyfXm7GETsZFuUT1GvZoSpFyfMxNZN5QNc4Neh2P+x
-         nchA==
-X-Gm-Message-State: ABy/qLZuOWkEz8OGY/R2WHdDByrQ01ZNeidAUccosn6DEUbdPoxUvo6C
-        01jcuXwiX6Nwdk1zUYJjWBm0gQ==
-X-Google-Smtp-Source: APBJJlHiOMKTmPn4xexa7u68szd4odgOExv7eGQ9Eaq77/8uCykPj7QdZYFF40DGQ4hv5SQqsug33w==
-X-Received: by 2002:a17:903:32cf:b0:1b9:d38d:efb1 with SMTP id i15-20020a17090332cf00b001b9d38defb1mr290557plr.8.1690503070496;
-        Thu, 27 Jul 2023 17:11:10 -0700 (PDT)
-Received: from x1 ([2601:1c2:1800:f680:dacb:3a1a:fcaf:c0fc])
-        by smtp.gmail.com with ESMTPSA id l16-20020a170902f69000b001b8a3729c23sm2230932plg.17.2023.07.27.17.11.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 17:11:10 -0700 (PDT)
-Date:   Thu, 27 Jul 2023 17:11:08 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Xi Ruoyao <xry111@linuxfromscratch.org>
-Cc:     Jisheng Zhang <jszhang@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229487AbjG1AQo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 20:16:44 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB889BF;
+        Thu, 27 Jul 2023 17:16:42 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RNoRRw013016;
+        Fri, 28 Jul 2023 00:16:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
+ : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=zJR1jw+QW48A8QP2ruc3rX3PS9EPvrW1qhzuznSeZDQ=;
+ b=doX94rr0F3Vv0Atsab/E1l7sR/h551sucDWLpvN+ejd9EZQ69lpDsB2qX2lVMVXGbqYv
+ mPcxD6L6ZZWBCWhO/qv2hu+Qsa+3CYZUAmGXfCFUP5QjlTP42zdoThTygTrJAAqe94Da
+ OnEWqfDFVvMn0E8K9gvFnrQke72ZCRNySOqpsYF3AQhcYyoZynP4neAw6ItRN7lAQSEq
+ mfE0OLJyNv01ogsOYQs93Gt8qrtOniT6upd7J37R8Gq3IxQkXFS/Ap2z4t12RlijMK8y
+ ADEE4u0kXs2/e2YpmLFnSfz2X5c7heuyzSiig5nIvrtJdbu9HsD+otMd88h+p4Jl2lch +Q== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3ufuryrb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Jul 2023 00:16:30 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36S0GTAw001924
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Jul 2023 00:16:29 GMT
+Received: from hu-gurus-sd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 27 Jul 2023 17:16:29 -0700
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
-Message-ID: <ZMMHnPQ5xkY2+fB+@x1>
-References: <20230617161529.2092-1-jszhang@kernel.org>
- <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
- <20230725-unheard-dingy-42f0fafe7216@wendy>
- <ZL/jMYL3akl78ZZN@xhacker>
- <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
- <ZME1J4mpVf5yth32@xhacker>
- <866eab3e30a18c50742a75d62aee223fdc7e3cee.camel@linuxfromscratch.org>
- <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
+        "Lee Jones" <lee@kernel.org>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH] treewide: Update Guru Das Srinagesh's email address
+Date:   Thu, 27 Jul 2023 17:16:22 -0700
+Message-ID: <20230728001622.4938-1-quic_gurus@quicinc.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: JslbfQktpq8v7PiRbdJ1b4jjIIrSsaq6
+X-Proofpoint-ORIG-GUID: JslbfQktpq8v7PiRbdJ1b4jjIIrSsaq6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 bulkscore=0 mlxlogscore=720 mlxscore=0
+ clxscore=1011 priorityscore=1501 adultscore=0 phishscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307280000
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 08:54:59AM +0800, Xi Ruoyao wrote:
-> On Thu, 2023-07-27 at 08:14 +0800, Xi Ruoyao wrote:
-> > On Wed, 2023-07-26 at 23:00 +0800, Jisheng Zhang wrote:
-> > > which dts r u using? see below.
-> > > 
-> > > > 
-> > > > Or maybe my toolchain (GCC 13.1.0, Binutils-2.40, with no patches) can
-> > > > miscompile the kernel?
-> > 
-> > /* snip */
-> > 
-> > > > Boot HART ID              : 0
-> > > > Boot HART Domain          : root
-> > > > Boot HART Priv Version    : v1.11
-> > > > Boot HART Base ISA        : rv64imafdcvx
-> > > 
-> > > what? I don't think the mainline dts provide v and x. 
-> > 
-> > I copied the compiled arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dtb
-> > into /boot and loaded it with u-boot "load" command onto 0x46000000, and
-> > passed this address to the booti command.
-> > 
-> > But maybe I've copied the wrong file or made some other mistake... I'll
-> > recheck.
-> 
-> Hmm, and if I read OpenSBI code correctly, this line reflects the
-> content of the misa CSR, not the DT riscv,isa value.
-> 
-> The log of successful boot provided by Drew also contains
-> "rv64imafdcvx":
-> 
-> https://gist.github.com/pdp7/23259595a7570f1f11086d286e16dfb6
+Clean up my email address as the codeaurora.org address is not used
+anymore.
 
-In case it helps, the thead fork of u-boot contains an important file
-include/configs/light-c910.h that defines the boot scripts for each
-board. Here is the BeagleV Ahead:
-https://git.beagleboard.org/beaglev-ahead/beaglev-ahead-u-boot/-/blob/beaglev-v2020.01-1.1.2/include/configs/light-c910.h#L361
+Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+---
+ Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
+ Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-It might give some clues as to want commands to try.
+diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+index 2c8cf6aab19a..6b80518cbf62 100644
+--- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
++++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm Technologies, Inc. PM8941 USB ID Extcon device
+ 
+ maintainers:
+-  - Guru Das Srinagesh <gurus@codeaurora.org>
++  - Guru Das Srinagesh <quic_gurus@quicinc.com>
+ 
+ description: |
+   Some Qualcomm PMICs have a "misc" module that can be used to detect when
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+index e6a2387d8650..9e4eed34dae8 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm Technologies, Inc. PM8008 PMIC
+ 
+ maintainers:
+-  - Guru Das Srinagesh <gurus@codeaurora.org>
++  - Guru Das Srinagesh <quic_gurus@quicinc.com>
+ 
+ description: |
+   Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that integrates
 
-From the lpi4a config:
-https://github.com/revyos/thead-u-boot/blob/09e2c3f93f1a64c10ca51d9b9c0c22fbc0947c43/configs/light_lpi4a_defconfig
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+-- 
+2.40.0
 
-It looks like it sets:
-CONFIG_TARGET_LIGHT_FM_C910_LPI4A=y
-
-And that corresponds to:
-https://github.com/revyos/thead-u-boot/blob/09e2c3f93f1a64c10ca51d9b9c0c22fbc0947c43/include/configs/light-c910.h#L425
-
-Anyways, I finally got my Lichee Pi 4a out of the box, and I am going
-to try it out too.
-
--Drew
