@@ -2,121 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A257766D24
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 14:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E661766D63
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 14:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235048AbjG1MYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 08:24:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39422 "EHLO
+        id S236598AbjG1Mjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 08:39:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237013AbjG1MXo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 08:23:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883F4448C
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:21:43 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1qPMTE-00071I-In; Fri, 28 Jul 2023 14:21:24 +0200
-Message-ID: <f511c66b-10b3-0af1-3bb5-801060c3a55e@pengutronix.de>
-Date:   Fri, 28 Jul 2023 14:21:19 +0200
+        with ESMTP id S233367AbjG1Mjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 08:39:46 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A22A35A8
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:39:43 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9891c73e0fbso432909966b.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:39:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690547981; x=1691152781;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/rBzfWXB7xNQDsEV4qCRmgvtd9bp9OhfVonlnSy76S8=;
+        b=A0D05NGxqfkg31cngaT2LDDxF3MQdZ3uo3q4ewllKU7r4sbqg+/pW0u7LK04KDAI3z
+         FWFT1Xu2v0sY/fFwrj4D4bMCVc7o5Tb08dljKXwq8+mvtWTlraqN2xnYq8Pd/tXEStL/
+         DLnKgnyNgGWefEPzk0F2v1GrnrVpaANTSmwPfnaTFYY367+nmp/QYdy+vBPZ2T3+/5V2
+         bSuu5bdGrXkpD2E0oPRlOfmrCS2w4PHtPCtnWu06JcGfBqr10OJM0qE7kUGjA2Yj5tAr
+         Uo+I+oRxfUp8kOROYhZ+ggZ1PnVtzlWAY9BF+O3Fhcd3meE7oqxU4ITONwBwgxZb1VVf
+         NBwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690547981; x=1691152781;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/rBzfWXB7xNQDsEV4qCRmgvtd9bp9OhfVonlnSy76S8=;
+        b=lR10F7z/MqcFYhaoPz4zoUB1sebmP2QMDdxOd8lZI56l8sGoRaePu+2/NuB84k5pfi
+         LIOys8HCWxa+n5zA03eiZuo/6BcJ2/ZyTNNK0YP9onBKWDq759i8ZKqTY7E7ygpe2x2v
+         TE0zfaqHqkznHxpJ5aPzDEHpPVmPKm1q+DKo3vPcp6abEX5u9uTU1+R6uNmvE+G+0e5U
+         MEHqHYgnmpFaZjDdjvZ4znm94fnkT0C7dGW7tA7hF7nO33RCLyNyEPvuVb6t51y0VAgf
+         RFgsES6lbbt3zYYUW87KKhTiD+SMxJyUjvvDSeEL+ixFK9LfJTEPaRSZjDuLjXZsPVTj
+         AFDw==
+X-Gm-Message-State: ABy/qLakGg63Ow3SObmfggax/Zr/0CaAYSLQkWThT8s7XPdj0o6PFtdC
+        au2YhFJN9nUg2/EUr/4xwHz6LQ==
+X-Google-Smtp-Source: APBJJlEWHsZu0sU6xKqxR3mcuZD7XYG2BIHCSX3zHi7HmYycGTD1JKEV0OksBYVVI8xrnx0iB3MgoA==
+X-Received: by 2002:a17:907:7b9d:b0:98d:4b97:acc8 with SMTP id ne29-20020a1709077b9d00b0098d4b97acc8mr6574780ejc.25.1690547981591;
+        Fri, 28 Jul 2023 05:39:41 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id n16-20020a1709067b5000b009927a49ba94sm2009719ejo.169.2023.07.28.05.39.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jul 2023 05:39:41 -0700 (PDT)
+Message-ID: <bfd3d138-5cfa-1ee3-f578-1f2452900f9f@linaro.org>
+Date:   Fri, 28 Jul 2023 14:39:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 3/3] drm/panel-simple: allow LVDS format override
-Content-Language: en-US, de-DE
-To:     Dan Carpenter <dan.carpenter@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Dan Carpenter <error27@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        patchwork-jzi@pengutronix.de, David Airlie <airlied@gmail.com>,
-        kernel@pengutronix.de, kernel test robot <lkp@intel.com>
-References: <20230523-simplepanel_support_nondefault_datamapping-v3-0-78ede374d3d9@pengutronix.de>
- <20230523-simplepanel_support_nondefault_datamapping-v3-3-78ede374d3d9@pengutronix.de>
- <1cd00596-604d-4fbf-b9d1-9ee0f05cb373@kadam.mountain>
-From:   Johannes Zink <j.zink@pengutronix.de>
-In-Reply-To: <1cd00596-604d-4fbf-b9d1-9ee0f05cb373@kadam.mountain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 28/50] dt-bindings: watchdog: sama5d4-wdt: add
+ compatible for sam9x7-wdt
+Content-Language: en-US
+To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, eugen.hristev@collabora.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230728102801.266709-1-varshini.rajendran@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230728102801.266709-1-varshini.rajendran@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
-
-thanks for your feedback.
-
-On 7/28/23 14:03, Dan Carpenter wrote:
-> On Fri, Jul 28, 2023 at 01:54:40PM +0200, Johannes Zink wrote:
->> @@ -556,7 +602,7 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
->>   	struct device_node *ddc;
->>   	int connector_type;
->>   	u32 bus_flags;
->> -	int err;
->> +	int err, ret;
+On 28/07/2023 12:28, Varshini Rajendran wrote:
+> Add compatible microchip,sam9x7-wdt to DT bindings documentation.
 > 
-> I don't like this at all...
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
+>  .../bindings/watchdog/atmel,sama5d4-wdt.yaml      | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
 > 
->>   
->>   	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
->>   	if (!panel)
->> @@ -601,6 +647,13 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
->>   			panel_simple_parse_panel_timing_node(dev, panel, &dt);
->>   	}
->>   
->> +	if (desc->connector_type == DRM_MODE_CONNECTOR_LVDS) {
->> +		/* Optional data-mapping property for overriding bus format */
->> +		ret = panel_simple_override_nondefault_lvds_datamapping(dev, panel);
->> +		if (ret)
->> +			goto free_ddc;
-> 
-> This *looks* like we are returning an error but we aren't.  I think we
-> should be.  If not then we need to have a discussion about that and
-> add some comments.
-> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> index 816f85ee2c77..ce3d046e7244 100644
+> --- a/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> @@ -14,10 +14,17 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - atmel,sama5d4-wdt
+> -      - microchip,sam9x60-wdt
+> -      - microchip,sama7g5-wdt
+> +    oneOf:
+> +      - items:
 
-Good catch. This should actually be err instead of ret. This way we'd make sure
-to return -ENOMEM from panel_simple_probe() in case an error occured due
-to devm_kmemdup failing in panel_simple_override_nondefault_lvds_datamapping().
+Drop items.
 
-I'll send a v4 with that fixed.
+> +          - enum:
+> +              - atmel,sama5d4-wdt
+> +              - microchip,sam9x60-wdt
+> +              - microchip,sama7g5-wdt
+> +      - items:
+> +          - enum:
+> +              - microchip,sam9x7-wdt
+> +          - enum:
 
-Thanks for having my back!
-Johannes
+Not an enum.
 
-> regards,
-> dan carpenter
-> 
->> +	}
->> +
->>   	connector_type = desc->connector_type;
->>   	/* Catch common mistakes for panels. */
->>   	switch (connector_type) {
->>
->> -- 
->> 2.39.2
-> 
-> 
+It is surprising how the same change look different between two of your
+patches.
 
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
+Best regards,
+Krzysztof
 
