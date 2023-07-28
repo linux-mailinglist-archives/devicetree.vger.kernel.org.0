@@ -2,47 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEA6C7667CA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 964937667E0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:53:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233379AbjG1Ix1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 04:53:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49040 "EHLO
+        id S235232AbjG1Ixn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 04:53:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235197AbjG1Iwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:52:42 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4EAA5586
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 01:50:48 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:12b0:7b7e:d1ff:7873])
-        by albert.telenet-ops.be with bizsmtp
-        id SYqi2A00f0d1nm806Yqi8L; Fri, 28 Jul 2023 10:50:43 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qPJB7-002lSm-JC;
-        Fri, 28 Jul 2023 10:50:42 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qPJBK-00AjtU-NC;
-        Fri, 28 Jul 2023 10:50:42 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
-Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 13/13] of: unittest-data: Fix whitespace - angular brackets
-Date:   Fri, 28 Jul 2023 10:50:39 +0200
-Message-Id: <af37e6e73f16d0240a2a1696e21d1d6a3c423ba4.1690533838.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1690533838.git.geert+renesas@glider.be>
-References: <cover.1690533838.git.geert+renesas@glider.be>
+        with ESMTP id S235374AbjG1IxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:53:13 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B593590;
+        Fri, 28 Jul 2023 01:52:13 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 33CB843;
+        Fri, 28 Jul 2023 10:51:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690534271;
+        bh=RBNPBgVBOEtkucU4s3YaHbDxMVYGoCMmlyMjuaes4ho=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=i/b+djCcpDYm5rwVsJVU77a62ezAr5lwrjk9tiGSDGN/zr3oo4wif8kBaPjgYpGOv
+         o20d4/QDbCwMEUDocQ9t48QOPSQNDr9WMsIe0gMbgAW+ap53nniP0xJ1goxUaKq0RL
+         o1sbsotNo9mkdlvWN5IRCqCj1td2MKh0sLnm/w3w=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230727154108.308320-1-umang.jain@ideasonboard.com>
+References: <20230727154108.308320-1-umang.jain@ideasonboard.com>
+Subject: Re: [PATCH 0/2] media: i2c: imx519: Support for Sony IMX519 sensor
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Lee Jackson <lee.jackson@arducam.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        jacopo.mondi@ideasonboard.com,
+        Umang Jain <umang.jain@ideasonboard.com>
+To:     Umang Jain <umang.jain@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Date:   Fri, 28 Jul 2023 09:52:08 +0100
+Message-ID: <169053432818.137962.5791887898514618663@Monstersaurus>
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,248 +58,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No space after opening or before closing angular bracket.
+Hi Umang,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - No changes.
----
- drivers/of/unittest-data/overlay.dtso         | 30 ++++++++--------
- .../overlay_bad_add_dup_node.dtso             |  4 +--
- .../overlay_bad_add_dup_prop.dtso             |  4 +--
- .../of/unittest-data/overlay_bad_phandle.dtso |  4 +--
- .../of/unittest-data/overlay_bad_symbol.dtso  |  4 +--
- drivers/of/unittest-data/overlay_common.dtsi  | 34 +++++++++----------
- 6 files changed, 40 insertions(+), 40 deletions(-)
+Quoting Umang Jain (2023-07-27 16:41:06)
+> Series adds driver support for Sony IMX519 sensor.
+>=20
+> Lee, can do add S-o-B tags please to these patches
+> since I've updated your email IDs at various places from
+> info@ to lee.jackson@.
 
-diff --git a/drivers/of/unittest-data/overlay.dtso b/drivers/of/unittest-data/overlay.dtso
-index 0c078b08ef083561..b3e807b99852363e 100644
---- a/drivers/of/unittest-data/overlay.dtso
-+++ b/drivers/of/unittest-data/overlay.dtso
-@@ -7,8 +7,8 @@ &electric_1 {
- 
- 	hvac_2: hvac-large-1 {
- 		compatible = "ot,hvac-large";
--		heat-range = < 40 75 >;
--		cool-range = < 65 80 >;
-+		heat-range = <40 75>;
-+		cool-range = <65 80>;
- 	};
- };
- 
-@@ -23,11 +23,11 @@ ride@100 {
- 		#size-cells = <1>;
- 
- 		track@30 {
--			incline-up = < 48 32 16 >;
-+			incline-up = <48 32 16>;
- 		};
- 
- 		track@40 {
--			incline-up = < 47 31 15 >;
-+			incline-up = <47 31 15>;
- 		};
- 	};
- 
-@@ -35,22 +35,22 @@ ride_200: ride@200 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "ot,ferris-wheel";
--		reg = < 0x00000200 0x100 >;
--		hvac-provider = < &hvac_2 >;
--		hvac-thermostat = < 27 32 > ;
--		hvac-zones = < 12 5 >;
-+		reg = <0x00000200 0x100>;
-+		hvac-provider = <&hvac_2>;
-+		hvac-thermostat = <27 32> ;
-+		hvac-zones = <12 5>;
- 		hvac-zone-names = "operator", "snack-bar";
--		spin-controller = < &spin_ctrl_1 3 >;
--		spin-rph = < 30 >;
--		gondolas = < 16 >;
--		gondola-capacity = < 6 >;
-+		spin-controller = <&spin_ctrl_1 3>;
-+		spin-rph = <30>;
-+		gondolas = <16>;
-+		gondola-capacity = <6>;
- 
- 		ride_200_left: track@10 {
--			reg = < 0x00000010 0x10 >;
-+			reg = <0x00000010 0x10>;
- 		};
- 
- 		ride_200_right: track@20 {
--			reg = < 0x00000020 0x10 >;
-+			reg = <0x00000020 0x10>;
- 		};
- 	};
- };
-@@ -58,5 +58,5 @@ ride_200_right: track@20 {
- &lights_2 {
- 	status = "okay";
- 	color = "purple", "white", "red", "green";
--	rate = < 3 256 >;
-+	rate = <3 256>;
- };
-diff --git a/drivers/of/unittest-data/overlay_bad_add_dup_node.dtso b/drivers/of/unittest-data/overlay_bad_add_dup_node.dtso
-index 11aa1401244d9685..9b53412b20796e29 100644
---- a/drivers/of/unittest-data/overlay_bad_add_dup_node.dtso
-+++ b/drivers/of/unittest-data/overlay_bad_add_dup_node.dtso
-@@ -15,13 +15,13 @@
- &electric_1 {
- 	motor-1 {
- 		controller {
--			power_bus = < 0x1 0x2 >;
-+			power_bus = <0x1 0x2>;
- 		};
- 	};
- };
- 
- &spin_ctrl_1 {
- 	controller {
--		power_bus_emergency = < 0x101 0x102 >;
-+		power_bus_emergency = <0x101 0x102>;
- 	};
- };
-diff --git a/drivers/of/unittest-data/overlay_bad_add_dup_prop.dtso b/drivers/of/unittest-data/overlay_bad_add_dup_prop.dtso
-index 5af099cc2174e273..e03f791655b07b3f 100644
---- a/drivers/of/unittest-data/overlay_bad_add_dup_prop.dtso
-+++ b/drivers/of/unittest-data/overlay_bad_add_dup_prop.dtso
-@@ -26,13 +26,13 @@
- &electric_1 {
- 	motor-1 {
- 		electric {
--			rpm_avail = < 100 >;
-+			rpm_avail = <100>;
- 		};
- 	};
- };
- 
- &spin_ctrl_1 {
- 	electric {
--		rpm_avail = < 100 200 >;
-+		rpm_avail = <100 200>;
- 	};
- };
-diff --git a/drivers/of/unittest-data/overlay_bad_phandle.dtso b/drivers/of/unittest-data/overlay_bad_phandle.dtso
-index ab2c7df1019674f1..a61ffc0738e3bf01 100644
---- a/drivers/of/unittest-data/overlay_bad_phandle.dtso
-+++ b/drivers/of/unittest-data/overlay_bad_phandle.dtso
-@@ -7,7 +7,7 @@ &electric_1 {
- 	// is applied.  There is already a phandle value
- 	// in the base tree for motor-1.
- 	spin_ctrl_1_conflict: motor-1 {
--		accelerate = < 3 >;
--		decelerate = < 5 >;
-+		accelerate = <3>;
-+		decelerate = <5>;
- 	};
- };
-diff --git a/drivers/of/unittest-data/overlay_bad_symbol.dtso b/drivers/of/unittest-data/overlay_bad_symbol.dtso
-index 5d4e34baf1d8e3ed..07f730384cdde1f8 100644
---- a/drivers/of/unittest-data/overlay_bad_symbol.dtso
-+++ b/drivers/of/unittest-data/overlay_bad_symbol.dtso
-@@ -8,8 +8,8 @@ &electric_1 {
- 	// in the base tree
- 	hvac_1: hvac-medium-2 {
- 		compatible = "ot,hvac-medium";
--		heat-range = < 50 75 >;
--		cool-range = < 60 80 >;
-+		heat-range = <50 75>;
-+		cool-range = <60 80>;
- 	};
- 
- };
-diff --git a/drivers/of/unittest-data/overlay_common.dtsi b/drivers/of/unittest-data/overlay_common.dtsi
-index 491b89c43cf38321..a9d7cdbd5ddc470c 100644
---- a/drivers/of/unittest-data/overlay_common.dtsi
-+++ b/drivers/of/unittest-data/overlay_common.dtsi
-@@ -16,19 +16,19 @@ testcase-data-2 {
- 
- 		electric_1: substation@100 {
- 			compatible = "ot,big-volts-control";
--			reg = < 0x00000100 0x100 >;
-+			reg = <0x00000100 0x100>;
- 			status = "disabled";
- 
- 			hvac_1: hvac-medium-1 {
- 				compatible = "ot,hvac-medium";
--				heat-range = < 50 75 >;
--				cool-range = < 60 80 >;
-+				heat-range = <50 75>;
-+				cool-range = <60 80>;
- 			};
- 
- 			spin_ctrl_1: motor-1 {
- 				compatible = "ot,ferris-wheel-motor";
- 				spin = "clockwise";
--				rpm_avail = < 50 >;
-+				rpm_avail = <50>;
- 			};
- 
- 			spin_ctrl_2: motor-8 {
-@@ -41,27 +41,27 @@ rides_1: fairway-1 {
- 			#size-cells = <1>;
- 			compatible = "ot,rides";
- 			status = "disabled";
--			orientation = < 127 >;
-+			orientation = <127>;
- 
- 			ride@100 {
- 				#address-cells = <1>;
- 				#size-cells = <1>;
- 				compatible = "ot,roller-coaster";
--				reg = < 0x00000100 0x100 >;
--				hvac-provider = < &hvac_1 >;
--				hvac-thermostat = < 29 > ;
--				hvac-zones = < 14 >;
-+				reg = <0x00000100 0x100>;
-+				hvac-provider = <&hvac_1>;
-+				hvac-thermostat = <29> ;
-+				hvac-zones = <14>;
- 				hvac-zone-names = "operator";
--				spin-controller = < &spin_ctrl_2 5 &spin_ctrl_2 7 >;
-+				spin-controller = <&spin_ctrl_2 5 &spin_ctrl_2 7>;
- 				spin-controller-names = "track_1", "track_2";
--				queues = < 2 >;
-+				queues = <2>;
- 
- 				track@30 {
--					reg = < 0x00000030 0x10 >;
-+					reg = <0x00000030 0x10>;
- 				};
- 
- 				track@40 {
--					reg = < 0x00000040 0x10 >;
-+					reg = <0x00000040 0x10>;
- 				};
- 
- 			};
-@@ -69,19 +69,19 @@ track@40 {
- 
- 		lights_1: lights@30000 {
- 			compatible = "ot,work-lights";
--			reg = < 0x00030000 0x1000 >;
-+			reg = <0x00030000 0x1000>;
- 			status = "disabled";
- 		};
- 
- 		lights_2: lights@40000 {
- 			compatible = "ot,show-lights";
--			reg = < 0x00040000 0x1000 >;
-+			reg = <0x00040000 0x1000>;
- 			status = "disabled";
--			rate = < 13 138 >;
-+			rate = <13 138>;
- 		};
- 
- 		retail_1: vending@50000 {
--			reg = < 0x00050000 0x1000 >;
-+			reg = <0x00050000 0x1000>;
- 			compatible = "ot,tickets";
- 			status = "disabled";
- 		};
--- 
-2.34.1
+Can you dig and find out what your start point was here please?
 
+This series should already be numbered at least v6, there are 5 previous
+postings. The most recent of which was already Signed off by
+'lee.jackson@arducam.com' So that makes me weary that v5 was not used as
+the start point for this refresh.
+
+Previous versions are identifiable here:
+
+- https://patchwork.linuxtv.org/project/linux-media/list/?series=3D&submitt=
+er=3D&state=3D*&q=3Dimx519&archive=3Dboth&delegate=3D
+
+Could you check through any previous review comments and make sure they
+have all been addressed too please?
+
+It would be useful if the cover letter or patch described a changelog
+from the previous version too to identify what has been updated.
+
+I see the kernel test robot reported failures based on missing
+dependencies.
+
+It's helpful to list any dependency information here in the cover
+letter too.
+
+--
+Kieran
+
+
+
+>=20
+> Thanks!
+>=20
+> Lee Jackson (2):
+>   media: dt-bindings: imx519: Add IMX519 DT bindings
+>   media: i2c: imx519: Support for the Sony IMX519 sensor
+>=20
+>  .../bindings/media/i2c/sony,imx519.yaml       |  113 +
+>  MAINTAINERS                                   |    8 +
+>  drivers/media/i2c/Kconfig                     |   11 +
+>  drivers/media/i2c/Makefile                    |    1 +
+>  drivers/media/i2c/imx519.c                    | 2134 +++++++++++++++++
+>  5 files changed, 2267 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx5=
+19.yaml
+>  create mode 100644 drivers/media/i2c/imx519.c
+>=20
+> --=20
+> 2.39.1
+>
