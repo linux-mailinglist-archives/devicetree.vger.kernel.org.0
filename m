@@ -2,92 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9090976653F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A0A76654D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234299AbjG1HZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:25:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55014 "EHLO
+        id S234250AbjG1H11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:27:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234227AbjG1HZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:25:35 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1302D5B
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:25:25 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fb4146e8fcso12151495e9.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:25:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690529124; x=1691133924;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NC2uPCbToE0m3ZToGXtqKgfNYoGwnR2bOs0T+f4TQb4=;
-        b=krhHtg/yZG28sgoKDE4q3E0qt1xKkATMNX7S9hgWxcNXVhXB0WtCWYAbedtQnnsXvZ
-         2ThZm40tzSe5LL4VHeC85M4j3LKlgppVdsbgtggeLHmcuMRt4OXbevYUl0S8kRFlAdAy
-         1Mrm/pgf/NLqJNeImWoEfRNDz9G+xLjuRch9n3ZGMltabpexIcylSC8bqOU0T6iLvQxH
-         ZmDSUmv4rDQdrLlrTf969I7FcVunYXprrqK0c+Bt5q0RhJD+WJ7uT55PRKwnmkeZ6fq2
-         iQMgtfawbQqCF4LtP8nbh0quXheR7qUX/PBwJQcB7nzGhLLexSBa9/TX+2Ukj2dfJulH
-         IqIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690529124; x=1691133924;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NC2uPCbToE0m3ZToGXtqKgfNYoGwnR2bOs0T+f4TQb4=;
-        b=CrBuKv0jvUo8jMXG+225zXgpoBd+Rxh95f1BwBMFUny6fleui8JpSZASJF5aTDPW8P
-         lXvJPM1X+I8BY9lO6vEh+KE7qJ8/ommMIidX53/kvzGoj9yRgquoikvlYWc5HyuaSRZ2
-         SpWAj3orzdlDYwkl2PyU2v7405gy2xIlnuNr6vNJf9pqMpbsHNmoxOs5GJomocmYf+SY
-         9n1ObKJnTXVegi9AD6jPNSmBF9iDNWacYr+gwgM75UlU+vVWDgWXEAa2PrS79RT+r61+
-         kKN+XEym1lKjge6ut8w1tB4IPxdstLIMq8jkx3QgBFVyhrmVqokdIwFOD70oO3iM/iK0
-         XSAg==
-X-Gm-Message-State: ABy/qLbw8CqttryTpL4vDZwaQIaF/diTienHCuvkILJ85hKZhh6xYUOL
-        az5HPS3nTqSRgdfIou1wDB1QUA==
-X-Google-Smtp-Source: APBJJlGxDsJHoN183tKnzmjRp61u82uZlHM4MzMqviCdk6CR2wdFNVMjPnD1hSjVTNyE8calyxsKNA==
-X-Received: by 2002:a1c:750a:0:b0:3fb:af9a:bf30 with SMTP id o10-20020a1c750a000000b003fbaf9abf30mr1221542wmc.2.1690529123882;
-        Fri, 28 Jul 2023 00:25:23 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id s1-20020a5d4ec1000000b003063db8f45bsm4029311wrv.23.2023.07.28.00.25.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 00:25:23 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Richard Alpe <richard@bit42.se>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        niklas.soderlund+renesas@ragnatech.se
-In-Reply-To: <20230410082051.2948510-1-richard@bit42.se>
-References: <20230410082051.2948510-1-richard@bit42.se>
-Subject: Re: [PATCH v5 1/2] dt-bindings: nvmem: Add t1023-sfp efuse support
-Message-Id: <169052912292.84958.2878083739379282423.b4-ty@linaro.org>
-Date:   Fri, 28 Jul 2023 08:25:22 +0100
+        with ESMTP id S234266AbjG1H1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:27:03 -0400
+Received: from mgamail.intel.com (unknown [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD47C2D5A;
+        Fri, 28 Jul 2023 00:26:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690529219; x=1722065219;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4mUBuKQHXM+NNtp1lxugGVSkC/2iGT32uWxUetY8AQk=;
+  b=D+hQTcXqPegBpLbq+VxoWgsPJb/OCkPCZKGFLC0bpvubn/qhcdXx5IsS
+   MHrRayMS4lpX4bqw9QcmVRllrlfbr+Kme3VzlG4YUWP5TWflRpwE6vqP4
+   6IJst8IHGDadML2/qgcnKSarkhdDmGR6EU+3ocEQyrUAIlszFv6IMd9Yg
+   +/0tSs9jI7AbcwhHUSxtCzBVqnhuUKxzZJKHFSHh4GWarixJz2eIf2x6h
+   JbdtKVGANtjC8q1aKaJYXlzocgVG5tjmlBH/K9+amOUHGKRGHYVIzXz1I
+   nAcqEqrtRmq4VbZx8f+aKGtdsR2u4JEdvaSHjQehRo5QVGLitod/3mH8G
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="399466547"
+X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
+   d="scan'208";a="399466547"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2023 00:26:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="841183018"
+X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
+   d="scan'208";a="841183018"
+Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
+  by fmsmga002.fm.intel.com with ESMTP; 28 Jul 2023 00:26:55 -0700
+Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qPHsE-0002yZ-1e;
+        Fri, 28 Jul 2023 07:26:54 +0000
+Date:   Fri, 28 Jul 2023 15:26:40 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Umang Jain <umang.jain@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Lee Jackson <lee.jackson@arducam.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        kieran.bingham@ideasonboard.com,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        jacopo.mondi@ideasonboard.com,
+        Umang Jain <umang.jain@ideasonboard.com>
+Subject: Re: [PATCH 2/2] media: i2c: imx519: Support for the Sony IMX519
+ sensor
+Message-ID: <202307281538.bqZ5kcV9-lkp@intel.com>
+References: <20230727154108.308320-3-umang.jain@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230727154108.308320-3-umang.jain@ideasonboard.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Umang,
 
-On Mon, 10 Apr 2023 10:20:50 +0200, Richard Alpe wrote:
-> Add a schema for the NVMEM eFuse (SFP) layout on the NXP QorIQ SOC.
-> 
-> 
+kernel test robot noticed the following build errors:
 
-Applied, thanks!
+[auto build test ERROR on media-tree/master]
+[also build test ERROR on soc/for-next linus/master v6.5-rc3 next-20230727]
+[cannot apply to sailus-media-tree/streams]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-[1/2] dt-bindings: nvmem: Add t1023-sfp efuse support
-      commit: ed5254aa4a61373570657ac66d9362dc89027ca1
-[2/2] nvmem: add new NXP QorIQ eFuse driver
-      commit: 435e3ef5a1d39a2c7b00963e0bff9e5eed5e1147
+url:    https://github.com/intel-lab-lkp/linux/commits/Umang-Jain/media-dt-bindings-imx519-Add-IMX519-DT-bindings/20230727-234440
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20230727154108.308320-3-umang.jain%40ideasonboard.com
+patch subject: [PATCH 2/2] media: i2c: imx519: Support for the Sony IMX519 sensor
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230728/202307281538.bqZ5kcV9-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230728/202307281538.bqZ5kcV9-lkp@intel.com/reproduce)
 
-Best regards,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307281538.bqZ5kcV9-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/media/i2c/imx519.c: In function 'imx519_open':
+>> drivers/media/i2c/imx519.c:1170:30: error: 'MEDIA_BUS_FMT_SENSOR_DATA' undeclared (first use in this function)
+    1170 |         try_fmt_meta->code = MEDIA_BUS_FMT_SENSOR_DATA;
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/imx519.c:1170:30: note: each undeclared identifier is reported only once for each function it appears in
+   drivers/media/i2c/imx519.c: In function 'imx519_enum_mbus_code':
+   drivers/media/i2c/imx519.c:1319:30: error: 'MEDIA_BUS_FMT_SENSOR_DATA' undeclared (first use in this function)
+    1319 |                 code->code = MEDIA_BUS_FMT_SENSOR_DATA;
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/imx519.c: In function 'imx519_enum_frame_size':
+   drivers/media/i2c/imx519.c:1346:34: error: 'MEDIA_BUS_FMT_SENSOR_DATA' undeclared (first use in this function)
+    1346 |                 if (fse->code != MEDIA_BUS_FMT_SENSOR_DATA || fse->index > 0)
+         |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/imx519.c: In function 'imx519_update_metadata_pad_format':
+   drivers/media/i2c/imx519.c:1382:28: error: 'MEDIA_BUS_FMT_SENSOR_DATA' undeclared (first use in this function)
+    1382 |         fmt->format.code = MEDIA_BUS_FMT_SENSOR_DATA;
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/media/i2c/imx519.c: In function 'imx519_get_pad_format':
+   drivers/media/i2c/imx519.c:1404:33: error: 'MEDIA_BUS_FMT_SENSOR_DATA' undeclared (first use in this function)
+    1404 |                                 MEDIA_BUS_FMT_SENSOR_DATA;
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/MEDIA_BUS_FMT_SENSOR_DATA +1170 drivers/media/i2c/imx519.c
+
+  1149	
+  1150	static int imx519_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+  1151	{
+  1152		struct imx519 *imx519 = to_imx519(sd);
+  1153		struct v4l2_mbus_framefmt *try_fmt_img =
+  1154			v4l2_subdev_get_try_format(sd, fh->state, IMAGE_PAD);
+  1155		struct v4l2_mbus_framefmt *try_fmt_meta =
+  1156			v4l2_subdev_get_try_format(sd, fh->state, METADATA_PAD);
+  1157		struct v4l2_rect *try_crop;
+  1158	
+  1159		mutex_lock(&imx519->mutex);
+  1160	
+  1161		/* Initialize try_fmt for the image pad */
+  1162		try_fmt_img->width = supported_modes_10bit[0].width;
+  1163		try_fmt_img->height = supported_modes_10bit[0].height;
+  1164		try_fmt_img->code = imx519_get_format_code(imx519);
+  1165		try_fmt_img->field = V4L2_FIELD_NONE;
+  1166	
+  1167		/* Initialize try_fmt for the embedded metadata pad */
+  1168		try_fmt_meta->width = IMX519_EMBEDDED_LINE_WIDTH;
+  1169		try_fmt_meta->height = IMX519_NUM_EMBEDDED_LINES;
+> 1170		try_fmt_meta->code = MEDIA_BUS_FMT_SENSOR_DATA;
+  1171		try_fmt_meta->field = V4L2_FIELD_NONE;
+  1172	
+  1173		/* Initialize try_crop */
+  1174		try_crop = v4l2_subdev_get_try_crop(sd, fh->state, IMAGE_PAD);
+  1175		try_crop->left = IMX519_PIXEL_ARRAY_LEFT;
+  1176		try_crop->top = IMX519_PIXEL_ARRAY_TOP;
+  1177		try_crop->width = IMX519_PIXEL_ARRAY_WIDTH;
+  1178		try_crop->height = IMX519_PIXEL_ARRAY_HEIGHT;
+  1179	
+  1180		mutex_unlock(&imx519->mutex);
+  1181	
+  1182		return 0;
+  1183	}
+  1184	
+
 -- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
