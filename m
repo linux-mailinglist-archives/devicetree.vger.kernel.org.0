@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29A867672FD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 19:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B87876725F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 18:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231229AbjG1RLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 13:11:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44762 "EHLO
+        id S234774AbjG1Qt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 12:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231165AbjG1RLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 13:11:36 -0400
-Received: from mgamail.intel.com (unknown [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0672D71;
-        Fri, 28 Jul 2023 10:11:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690564294; x=1722100294;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=eoQ6QIQA0eurvt4IsYsxuOVhy6X7PCzpPdYc+so7TII=;
-  b=XaAEnlDgxiXc9lkLldOBzQmFX88Y9j6PzRW2k+UyYvYnmzyF/u+0cKjc
-   KCsKzoeqoaGmZ8j5CLjfcpdbq1MMSGK16bAtLmmvdLsJuK7qvTPvDaKN5
-   VNLT98P28mRWZ1LUBJfZ5uZu3urVoPewU6t1p/ui/u0FFCW3p5pmQIlU6
-   PPUf6WTpnxrpSSpJ+KGYyN+KtcsO8V9LJkcrg6sriZ7SHkoiKcrs5QG8v
-   y16KMbn2qoeNV94uZMK7tWOSwOp691M1jBILHtqB0rnH+yem+r+Rx3wz1
-   UiXZJdkaRuRyuXwGgukfKdAwUAa2FBUAMYcXkhitPu+HmPcoSn9eY6DR1
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="399580352"
-X-IronPort-AV: E=Sophos;i="6.01,238,1684825200"; 
-   d="scan'208";a="399580352"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2023 10:11:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="841384724"
-X-IronPort-AV: E=Sophos;i="6.01,238,1684825200"; 
-   d="scan'208";a="841384724"
-Received: from shuaibah-mobl.amr.corp.intel.com (HELO [10.212.30.166]) ([10.212.30.166])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2023 10:11:33 -0700
-Message-ID: <db5f1478-8aca-fb57-c3fc-aa09071a0829@linux.intel.com>
-Date:   Fri, 28 Jul 2023 18:44:45 +0200
+        with ESMTP id S234730AbjG1Qts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 12:49:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C564EDB;
+        Fri, 28 Jul 2023 09:48:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 43855621A4;
+        Fri, 28 Jul 2023 16:47:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D8FC433C7;
+        Fri, 28 Jul 2023 16:47:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690562839;
+        bh=E+BBnk3RDEGiisZTgnk5OrVLcmfDGwyEhlMJ/f0gh0g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DP5EthyxgcrHbJKE7M0ukykkhOu3fmPyHc9Yjbewo6NFKbOmLq23O6nreTLIRmV+A
+         YJOHMB1Jc+DxrBkQOfeSg9NFpFiob5EUJ1PRG6hvG/XCGbfo8uM2QGimjsUjYi+Q8n
+         NR5Ncnowh2P3uMgFFggto+0scodbtvALQjY7eR6/FSpOuQORBdgUovaZcyjsHJiLSm
+         q66YovxwnqYCGytwggWikHmwoSTIbmiivdL+bYTksjBfCpJr90DfYHZpw9vrsT3ezy
+         s3PHkOKNSarSPoAWX60w+MD50+SMEGXWf0Svn69f2PsF9981twKbOVZeBr2zoXBCa3
+         aIil/a5B/t+oQ==
+Date:   Fri, 28 Jul 2023 17:47:15 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>
+Subject: Re: [PATCH v3] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+Message-ID: <20230728-heave-ripening-2046c2d1a890@spud>
+References: <20230724111843.18706-1-shubhrajyoti.datta@amd.com>
+ <20230724-direness-syrup-14c0b50c8018@spud>
+ <BY5PR12MB4902A95CD14D934BCF3B7C658103A@BY5PR12MB4902.namprd12.prod.outlook.com>
+ <20230725-untaxed-footman-0c764cc9792f@spud>
+ <BY5PR12MB49023F377CB6A3A1D7C78B7D8106A@BY5PR12MB4902.namprd12.prod.outlook.com>
+ <20230728-slit-constrain-641d33f9f99b@spud>
+ <010713ed-1fe7-788c-868d-26149c21d7a7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Subject: Re: [PATCH v6 1/6] soundwire: bus: Allow SoundWire peripherals to
- register IRQ handlers
-Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linus.walleij@linaro.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230725102532.2567580-1-ckeepax@opensource.cirrus.com>
- <20230725102532.2567580-2-ckeepax@opensource.cirrus.com>
- <20230728151818.GL8175@google.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20230728151818.GL8175@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ApbpXvBYf9oF6f71"
+Content-Disposition: inline
+In-Reply-To: <010713ed-1fe7-788c-868d-26149c21d7a7@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,31 +72,102 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--ApbpXvBYf9oF6f71
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 7/28/23 17:18, Lee Jones wrote:
-> Vinod, Bard, Pierre-Louis, Sanyog,
-> 
-> This has been on the list for some time now.
-> 
-> Would one of you please review this, so we can get it merged?
+On Fri, Jul 28, 2023 at 06:39:23PM +0200, Krzysztof Kozlowski wrote:
+> On 28/07/2023 18:19, Conor Dooley wrote:
+> > On Fri, Jul 28, 2023 at 06:41:50AM +0000, Datta, Shubhrajyoti wrote:
+> >> [AMD Official Use Only - General]
+> >>
+> >>> -----Original Message-----
+> >>> From: Conor Dooley <conor@kernel.org>
+> >>> Sent: Wednesday, July 26, 2023 12:57 AM
+> >>> To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>
+> >>> Cc: devicetree@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>; linux-
+> >>> clk@vger.kernel.org; Simek, Michal <michal.simek@amd.com>;
+> >>> conor+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> >>> robh+dt@kernel.org; sboyd@kernel.org; mturquette@baylibre.com
+> >>> Subject: Re: [PATCH v3] dt-bindings: clock: versal: Convert the xlnx,=
+zynqmp-
+> >>> clk.txt to yaml
+> >>>
+> >>> On Tue, Jul 25, 2023 at 05:28:07AM +0000, Datta, Shubhrajyoti wrote:
+> >>>> [AMD Official Use Only - General]
+> >>>>
+> >>
+> >> <snip>
+> >>>>>>    clocks:
+> >>>>>>      description: List of clock specifiers which are external input
+> >>>>>>        clocks to the given clock controller.
+> >>>>>> -    items:
+> >>>>>> -      - description: reference clock
+> >>>>>> -      - description: alternate reference clock
+> >>>>>> -      - description: alternate reference clock for programmable l=
+ogic
+> >>>>>> +    minItems: 3
+> >>>>>> +    maxItems: 7
+> >>>>>
+> >>>>> This doesn't seem right to me. The original binding requires 5 clock
+> >>>>> inputs, but this will relax it such that only three are needed, no?
+> >>>>> You'll need to set constraints on a per compatible basis.
+> >>>>>
+> >>>> Does below look good.
+> >>>
+> >>> I don't think that you tested it with < 5 clocks (hint, if you remove=
+ one of the
+> >>> clocks from your example below, dt_binding_check should fail).
+> >>> All the constraints need to move into the `if` bits AFAIU.
+> >>
+> >>
+> >> https://lore.kernel.org/all/20230720113110.25047-1-shubhrajyoti.datta@=
+amd.com/
+> >> Here I had it in the if .
+> >> Then what I understood from below is that
+> >>
+> >> https://lore.kernel.org/all/745fccb0-e49d-7da7-9556-eb28aee4a32b@linar=
+o.org/
+> >> it should be dropped from the if and added to the above.
+> >>
+> >> Maybe I am missing something.
+> >=20
+> > (Background I got this mail once off-list and tried to make the
+> > binding's validation work)
+> >=20
+> > With the current conditions, validation is completely broken. You can
+> > put in just 1 clock and 1 clock-name and dt-binding-check will pass. The
+> > only way I could satisfy it,=20
+>=20
+> I don't understand why you think 1 clock would work. The binding has
+> clear min/max constraints in top level and strict constraints per each
+> variant (through listing items). In my opinion this is correct, except
+> what I wrote - mismatched number of clocks for zynqmp (8 against 7).
 
-Sorry, I thought I provided my tag on an earlier version, but apparently
-that never reached the ML. All my earlier feedback was taken into
-account so no objections from me - just one typo below...
+I didn't expect it would work - I tried 4 w/ the zynqmp compatible,
+which passed, although it should not have. And then I took it to the
+extreme (1) which also passed. There's something wrong with either the
+binding or the example that I can't spot.
 
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> > while keeping 7 as the maximum number of
+> > clocks, was moving the constraints into the if/else. My guess was that 7
+> > being fewer than the number of clocks in the items: list is part of the
+> > problem.
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-> On Tue, 25 Jul 2023, Charles Keepax wrote:
-> 
->> From: Lucas Tanure <tanureal@opensource.cirrus.com>
->>
->> Currently the in-band alerts for SoundWire peripherals can only
->> be communicated to the driver through the interrupt_callback
->> function. This however is slightly inconvient for devices that wish to
+--ApbpXvBYf9oF6f71
+Content-Type: application/pgp-signature; name="signature.asc"
 
-inconvenient
+-----BEGIN PGP SIGNATURE-----
 
->> share IRQ handling code between SoundWire and I2C/SPI, the later would
->> normally register an IRQ handler with the IRQ subsystem. However there
->> is no reason the SoundWire in-band IRQs can not also be communicated
->> as an actual IRQ to the driver.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMPxEgAKCRB4tDGHoIJi
+0p5DAQC79oJdmZBG81C3bVhks+fdmXC4vQojwIPuWf/1+4cilwD+LmadFgBPYGZo
+9t7mqffOV1ezUbp7dV9uJNwPUTATWAA=
+=5ewH
+-----END PGP SIGNATURE-----
+
+--ApbpXvBYf9oF6f71--
