@@ -2,136 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B6D17675F0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 21:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80064767609
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 21:06:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbjG1TAE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jul 2023 15:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33184 "EHLO
+        id S233272AbjG1TGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 15:06:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjG1TAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 15:00:03 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E9F30F7;
-        Fri, 28 Jul 2023 12:00:00 -0700 (PDT)
-Received: from [185.230.175.137] (helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1qPSgp-0000vt-Fe; Fri, 28 Jul 2023 20:59:51 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Javier Martinez Canillas <javierm@redhat.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for Pinephone Pro
- to 1.5 MB
-Date:   Fri, 28 Jul 2023 20:59:50 +0200
-Message-ID: <4495367.TLkxdtWsSY@phil>
-In-Reply-To: <87pm4kuanl.fsf@minerva.mail-host-address-is-not-set>
-References: <20230403175937.2842085-1-javierm@redhat.com> <3797122.KgjxqYA5nG@diego>
- <87pm4kuanl.fsf@minerva.mail-host-address-is-not-set>
+        with ESMTP id S231403AbjG1TGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 15:06:42 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F24D73C01
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 12:06:35 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1b8b2886364so15383245ad.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 12:06:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690571195; x=1691175995;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NF0r9eMdsRlfx+fQNhsp0XsqZFCxcupFF3OG9UsICFo=;
+        b=cmdPjnKZGl31IJIA7yqBzK039eXHjdL/oax5B08GDm2piQtz8J4/mxsW9NeOL/x1+t
+         CvN/XCEeMge+mNEXXjV2jCCW/x67qrE7pVUVSVdrlxG6NcCo0YMevdqz0LFz27HbiOV2
+         ng1WrFQrHvQw5mdPdNkQpYoM7SQI6zNln6248JVTfvcPQ2soODtq6r0UjFnaHNWvPuiY
+         qxPIcU/4saAIRjZVfzTrEH3a/Yzvz7mU84cAQhFjGUcjWkFeHjGZkmGQMuEDtX8x1L7V
+         XnOorLhjCtv4GF8qVWDtyXB1aRz9cEFz5hmfH/k/gDnZaTYGAGFiI7ThocBh6BjyZ+4e
+         fXDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690571195; x=1691175995;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NF0r9eMdsRlfx+fQNhsp0XsqZFCxcupFF3OG9UsICFo=;
+        b=hfj/0WF/G5iY0r/4yQ3b6UVNa9a/A8Nfv5LPeZGBg8u5r6XDrPBx7OXtXHsGBKeSrj
+         EWMsFXjyrT+IizVq75x6IBPDTZTXIjv2hUcmPBWtiOzDi+vICyauDSaHSqqXZaTQLvXK
+         uHmer2ZLGkDUnfOAXv8WFR/rj6XWXqw4ZDYB1SxoExPozqwiE7M824z9D0z6H11ctfvJ
+         Bdo1iifL8+ZPv0mnB45f9MRwZ4h/AQyUS57F9LOITGAAMfDTXRs5yQ3etcpC+AvRlOVl
+         pwgm2l/YSI1y8p1mvwrpcQHJz7R0PWxLdr9k7G5O5biSxNNmz0GRzCBHJU4Nc8aPagOe
+         qKUA==
+X-Gm-Message-State: ABy/qLYGrMwr2gLBX1lJPKeYorgzIeeZkFcal4eF/TtGsAcuVvEEygiB
+        0XA7L6Y879WZb5kwdHNqm6Sp1g==
+X-Google-Smtp-Source: APBJJlG6XFoP1LhFMTBznXGOJwP8YxSSulmHWjhYJ1NDAzk8KWNKByfw3HTiT206vlHYDjBoVhy7Yg==
+X-Received: by 2002:a17:902:e741:b0:1b8:28f4:f259 with SMTP id p1-20020a170902e74100b001b828f4f259mr2501220plf.69.1690571195271;
+        Fri, 28 Jul 2023 12:06:35 -0700 (PDT)
+Received: from localhost ([75.172.135.98])
+        by smtp.gmail.com with ESMTPSA id h13-20020a170902f54d00b001ac5896e96esm3901266plf.207.2023.07.28.12.06.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 12:06:34 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: Replace the IRQ number with the IRQID
+ macro definition
+In-Reply-To: <9da24c47-341b-1581-0043-a6c1cdce462d@amlogic.com>
+References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
+ <20230721073214.1876417-4-huqiang.qin@amlogic.com>
+ <7hcz0ei9r4.fsf@baylibre.com>
+ <9da24c47-341b-1581-0043-a6c1cdce462d@amlogic.com>
+Date:   Fri, 28 Jul 2023 12:06:34 -0700
+Message-ID: <7hh6pnhn45.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+Huqiang Qin <huqiang.qin@amlogic.com> writes:
 
-Am Samstag, 22. Juli 2023, 01:06:54 CEST schrieb Javier Martinez Canillas:
-> Heiko Stübner <heiko@sntech.de> writes:
-> > Am Dienstag, 18. April 2023, 14:11:53 CEST schrieb Javier Martinez Canillas:
-> >> Heiko Stübner <heiko@sntech.de> writes:
-> >> > Am Dienstag, 4. April 2023, 14:52:02 CEST schrieb Peter Geis:
-> >> >> On Tue, Apr 4, 2023 at 3:55 AM Heiko Stübner <heiko@sntech.de> wrote:
-> >> >> > Am Montag, 3. April 2023, 19:59:37 CEST schrieb Javier Martinez Canillas:
-> >> >> > > This baud rate is set for the device by mainline u-boot and is also what
-> >> >> > > is set in the Pinebook Pro Device Tree, which is a device similar to the
-> >> >> > > PinePhone Pro but with a different form factor.
-> >> >> > >
-> >> >> > > Otherwise, the baud rate of the firmware and Linux don't match by default
-> >> >> > > and a 'console=ttyS2,1500000n8' kernel command line parameter is required
-> >> >> > > to have proper output for both.
-> >> >> >
-> >> >> > The interesting question is always if this will break someone else's setup.
-> >> >> > I've never really understood the strange setting of 1.5MBps, but on the
-> >> >> > other hand it _is_ a reality on most boards.
-> >> >
-> >> >> The 1.5M baud is default because the clock structure on rockchip
-> >> >> devices does not allow a clean 115200 baud. By attempting to force
-> >> >> 115200, it will always be slightly off (either low or high depending
-> >> >> on how the driver decided to round). If this actually causes any
-> >> >> problems is the subject of much debate.
-> >> >
-> >> > thanks so much for this piece of clock-detail. As I wrote, I never really
-> >> > understood the why _before_ but also never cared that much to dive
-> >> > into it and find out.
-> >> >
-> >> > So your explanation closes one knowledge gap in my head.
-> >> >
-> >> > Thanks a lot :-)
-> >> 
-> >> Did you make a decision about this? I guess the clock explanation is yet
-> >> another argument in favour of switching the PPP to a 1.5 Mbps baud rate ?
-> >
-> > Sorry, but no decision made here. Either way it's breaking for someone,
-> > which makes this quite hard.
-> >
-> 
-> Another ping on this patch.
-> 
-> > The rate accuracy is the one side, the two-boot issue is the other side.
-> > And mainline u-boot (and levinboot - whatever that is) provides a 3rd side.
-> >
-> > People starting with the phone probably won't replace the bootloader
-> > in a first step but instead might play with a system image or newer kernel.
-> > So if the uart will break for everyone using the default bootloader from
-> > the factory that is somewhat bad.
-> >
-> 
-> Probably won't replace the DTB shipped with the firmware either? If one is
-> replacing the firmware provided DTB witch the one in the mainline kernel,
-> probably such person is also using mainline u-boot?
+> Hi Kevin Hilman,
+>
+> On 2023/7/27 6:33, Kevin Hilman wrote:
+>>> Replacing IRQ numbers with IRQID macro definitions makes node properties
+>>> easier to understand and also makes GPIO interrupts easier to use.
+>>>
+>>> Associated platforms:
+>>> - Amlogic Meson-G12A
+>>> - Amlogic Meson-G12B
+>>> - Amlogic Meson-SM1
+>> Does this mean you tested/validated these changes on those platforms
+>> also?
+>
+> Amlogic's G12A/G12B/SM1 have the same GPIO, and the GPIO interrupt number
+> is also the same, so I only tested on the SM1 platform, and the test results
+> prove that these changes are good.
 
-Not necessarily.
+OK, thank you for the explanation.
 
-I.e. putting an extlinux.conf on an sd-card with a kernel-image and dtb
-is not rocket science ;-)
+For future reference, this kind of detail is helpful to describe in the
+patch or cover letter so maintainers & reviewers better understand how
+the changes were tested.
 
+Thanks,
 
-> > I don't have a Pinephone Pro myself, so I really hoped for some Acks
-> > or similar to appear in the meantime.
-> >
-> 
-> For someone like me who is only using mainline u-boot, linux, etc then
-> having a consistent uart baud rate across all components is really useful.
-> 
-> Otherwise I either have serial console for u-boot or the kernel, but can't
-> have both working so is annoying.
-> 
-> It would be good to have a definite answer on this. Since every time that
-> I try to hack on my PPP, I end changing my DTS and remember this patch :)
-
-So far people only reported "breaks my setup". I'm in a pickle here ;-) .
-Without anybody saying "I want to also move into this direction" I really
-feel I should not merge a patch that breaks other peoples setups.
-
-
-Heiko
-
-
+Kevin
