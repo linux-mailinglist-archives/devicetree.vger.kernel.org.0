@@ -2,113 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043BC766914
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE6F176691F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235570AbjG1JiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 05:38:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50826 "EHLO
+        id S234382AbjG1JkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 05:40:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235596AbjG1JiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:38:16 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888F7173F;
-        Fri, 28 Jul 2023 02:38:14 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7EFE26605835;
-        Fri, 28 Jul 2023 10:38:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1690537092;
-        bh=x/NC9kRms1NVzTGvKisnxeIx9pk+AWAePM5eU3NJJEE=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=cFsn/MCB70uY4rbKGJ8wTrwILnk7lT3fOOncZ8C8E4B95hFd23zxEUYEobQOWvDRG
-         MCOI6OpNFHN5h1baDmQO2d5zHnzLbxyPAbiApr7rQrHFkZANZCNJZrcqLNsrMg7kH0
-         XuO2p5lJslgF1X6KyAfwHBeHVZIxp+dp3ljoWERIm4qEjRESjn0jbfPOmM+KCn8b2V
-         kErrCb7mhiICxvUNLPQIXq6pZwsJ7QHphPn2oCw/oRTJGxqjQfu3s8WuuEoXI0yFgh
-         od5aNQkQEA3/0N53GWxqHm4GWQLWAvLSlDnNWUkrPf6iZrRz9n4u1FoGx+JMuR5G0R
-         y8OWTa3enGTcA==
-Message-ID: <4eb32bcc-9a1b-c477-71b1-823bd96c0450@collabora.com>
-Date:   Fri, 28 Jul 2023 11:38:09 +0200
+        with ESMTP id S234839AbjG1JkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:40:00 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD50519B5
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:39:56 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so6660056a12.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:39:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690537195; x=1691141995;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YzOjDa/NiFfXAukG8EL/eyfE/m/LqMSufMn6fl5Fd5Q=;
+        b=aELCmPUKOnOtKtdIdrm1ftrjdJY25iLwulcwpTSbyw3xoxyRfGgMUQLyqC/+aYAePg
+         UvMPnLwyBdbseFNQ1JAylEiuzCN7CKvfl8ZkzseqD97oBAsgz04T6tTGgRB5gHsCsUQj
+         P+dKNM6UY2calrABEpr42Ers0QQc/9Nh+0pO+h66YrLdJsZwnq7HELwOktlD3FcDth6P
+         yTFQqrCIkJPWlUw5/b+qKo3REf2s+h+i/dyqmM1KtBAIhmhZfBW5k1cP5JuYaUO12oz/
+         ILPMZsnUrJafM7hxQQHnh8972Qh64Od7CzZTM0AfVHQ0x2DcoZ7aXXbPL0BSD+kwXldV
+         uwRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690537195; x=1691141995;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YzOjDa/NiFfXAukG8EL/eyfE/m/LqMSufMn6fl5Fd5Q=;
+        b=Q5GlWXN86WHnXX+LRdZ/Ey/rk5ddU9kHXwljSPAhqP88QUnuMZRvc5rujSRHTzqNjx
+         ZA6Bhq+cY8VMrNK/MZ4o6jrxmrh/FVSXZWbponQ+RoEoPquTZC3HIG30kU9JgcuBLwdv
+         059kmBFGcunxybEU11m+ayUqYFjAzFnG5bigRcx0dW9DqzQkME1+iv3IGlHeHCNxgJeK
+         SM56dNhG2onFsPFzgn1S6Pv3SMURPJL6uwgN+g49mLdcgl46AioemKxBZslntR+7e3H5
+         HSKILaGT6HDG0mtaqTI4i6tx0eyhx7LuKKWrL1XfJGcGjVlCcBb5DxpYXEdABY5lAusy
+         GxxA==
+X-Gm-Message-State: ABy/qLYA+InyXWwL5WgdGYR5CqRY5xYR7HAeo4rTSnmqBal2obICL6a8
+        hRgOdD3wuUwGVM6aJea+fERulQ==
+X-Google-Smtp-Source: APBJJlEzVY3nftGhMOjUKhGUDDP2LVoqOpi/EgmGWeNfXear+Hqdo+hio8an3wet4513dTrvaHivKQ==
+X-Received: by 2002:a17:907:784d:b0:99b:50ea:2f96 with SMTP id lb13-20020a170907784d00b0099b50ea2f96mr1995415ejc.12.1690537195124;
+        Fri, 28 Jul 2023 02:39:55 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id si15-20020a170906cecf00b00992e265495csm1860758ejb.212.2023.07.28.02.39.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jul 2023 02:39:54 -0700 (PDT)
+Message-ID: <f7df407e-1deb-f667-912c-81415fffcbfd@linaro.org>
+Date:   Fri, 28 Jul 2023 11:39:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 3/6] ASoC: mediatek: mt7986: add platform driver
-To:     Maso Huang <maso.huang@mediatek.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230728090819.18038-1-maso.huang@mediatek.com>
- <20230728090819.18038-4-maso.huang@mediatek.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230728090819.18038-4-maso.huang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To:     Eric Lin <eric.lin@sifive.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com
+References: <20230720135125.21240-1-eric.lin@sifive.com>
+ <20230720135125.21240-2-eric.lin@sifive.com>
+ <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org>
+ <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
+ <be748338-987b-d474-d040-82af7cfb5f01@linaro.org>
+ <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/07/23 11:08, Maso Huang ha scritto:
-> Add mt7986 platform driver.
+On 28/07/2023 11:04, Eric Lin wrote:
+> On Fri, Jul 28, 2023 at 2:58 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 28/07/2023 08:01, Eric Lin wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Fri, Jul 21, 2023 at 4:35 PM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 20/07/2023 15:51, Eric Lin wrote:
+>>>>> This add YAML DT binding documentation for SiFive Private L2
+>>>>> cache controller
+>>>>>
+>>>>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+>>>>> Reviewed-by: Zong Li <zong.li@sifive.com>
+>>>>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+>>>>
+>>>>
+>>>> ...
+>>>>
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - const: sifive,pl2cache1
+>>>>
+>>>> I still have doubts that it is not used in any SoC. This is what you
+>>>> said last time: "is not part of any SoC."
+>>>> If not part of any SoC, then where is it? Why are you adding it to the
+>>>> kernel?
+>>>>
+>>>
+>>> Sorry for the late reply. I didn't describe it clearly last time.
+>>> Currently, we have two hardware versions of pl2cache: pl2cache0 and pl2cache1.
+>>> The pl2cache0 is used in unmatched board SoC. The pl2cache1 is
+>>> utilized in our internal FPGA platform for evaluation; it's our core
+>>> IP.
+>>
+>> And why do you add bindings for some internal FPGA IP block which does
+>> not interface with any SW?
+>>
 > 
-> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
-> ---
->   sound/soc/mediatek/Kconfig                 |  10 +
->   sound/soc/mediatek/Makefile                |   1 +
->   sound/soc/mediatek/mt7986/Makefile         |   8 +
->   sound/soc/mediatek/mt7986/mt7986-afe-pcm.c | 622 +++++++++++++++++++++
->   4 files changed, 641 insertions(+)
->   create mode 100644 sound/soc/mediatek/mt7986/Makefile
->   create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-pcm.c
-> 
+> Hi Krzysztof,
+> The pl2cache has mmio interface for SW. Thanks.
 
-..snip..
+Then did you mean that FPGA represented some model of your SoC? If so,
+what are other bindings for that FPGA components?
 
-> +	/* register component */
-> +	ret = devm_snd_soc_register_component(&pdev->dev,
-> +					      &mt7986_afe_component,
-> +					      NULL, 0);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "err_platform\n");
+Best regards,
+Krzysztof
 
-I know I only said about using dev_err_probe(), but "err_platform" doesn't
-mean anything!
-
-Please write a human readable error message, like "Cannot register AFE component\n"
-
-> +
-> +	ret = devm_snd_soc_register_component(afe->dev,
-> +					      &mt7986_afe_pcm_dai_component,
-> +					      afe->dai_drivers,
-> +					      afe->num_dai_drivers);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "err_dai_component\n");
-
-And the same here, "Cannot register PCM DAI component\n"
-
-After which:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
