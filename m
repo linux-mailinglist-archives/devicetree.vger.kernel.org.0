@@ -2,90 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 594CE766E04
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 15:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08593766E67
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 15:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236483AbjG1NW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 09:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
+        id S236845AbjG1N3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 09:29:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236527AbjG1NW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 09:22:56 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF431BC6
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 06:22:54 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe110de3b6so3169625e9.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 06:22:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690550573; x=1691155373;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t86fEk1B48Jhf5PGXA8uJZQumipRoCPOJsUE1d8YRCM=;
-        b=I5pAB+18R2+dx1wq/ZGauDPjeDbH0NfpPC5bHPSwYGWvSKcCsgREL+dEaLCCscjJfX
-         faKocywBv3vgb/20PmviQnUnE8DF4z3yPJmwjGLszgYFmNSSAxqx4DYhC112fmIYJZSJ
-         50bigVm9HhJcF9S1kJJaI4DQqkjLhamBTF0ndwqDaTie7cYu+eLJ4lQCm5t7wVN52jeH
-         fTMla8zNu0rKI1FL4cD88rY/VUEspZp9wIL0U4L6CwzU3cw7+MNy4OA/MgNFK/5AKiD/
-         9FGB0CxuLDbUYogCp5O9jmTd2+rW1yzlE06cvKtjGe76zsFSi9Cx2+I5wFaQEHsRMihe
-         a3Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690550573; x=1691155373;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t86fEk1B48Jhf5PGXA8uJZQumipRoCPOJsUE1d8YRCM=;
-        b=UFoKu2RFvVAN4SzUbMH61GF7HiXgVn0BzjaLfwHGjMt6uBD1yEA6oHX6nYhZLSYGnU
-         uAHYbHOtAMH4dW/wxB1p62c2/ziUj55qHBicCQ1fGE0z7dQlgGcT6QoyTAs1e1mn+YzG
-         +rLmz3aEnavm1B8BAFA3xIpn2f53Ovv3dHgFRrvxDA15CSYDSoK+chF3guMdll4MNgir
-         SDkquo3ZBGV4xAB+Ph85n76t6iBfh0a47DBcE3qXO/nLRd8ZcSsHRuolVvNQoamND3se
-         yU3VOCxyMBZHrIeUNTKiTAM42nLTBP1VVNjxciypDhKTmveMwpsJ7yhmaDnm+STqw27X
-         4dPA==
-X-Gm-Message-State: ABy/qLZM8stQ7lSOaVFaNMcvFAXKdx823y+crYWGAf5v3NTg29iKUvQg
-        kRwxPX7af5XNXpXMxP2OU7wUcQ==
-X-Google-Smtp-Source: APBJJlHImMAVgco6lnO2EZ30XvL84WDSKwCfHrqNfAxxnVJY79gWRp11k/XtM/0DucWy4yuI+ySlKg==
-X-Received: by 2002:a05:600c:82c7:b0:3fa:821e:1fb5 with SMTP id eo7-20020a05600c82c700b003fa821e1fb5mr5010086wmb.5.1690550572892;
-        Fri, 28 Jul 2023 06:22:52 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05600c240900b003fa98908014sm7009317wmp.8.2023.07.28.06.22.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 06:22:52 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S236843AbjG1N2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 09:28:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94E63C2A;
+        Fri, 28 Jul 2023 06:28:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6995462155;
+        Fri, 28 Jul 2023 13:26:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05421C433C7;
+        Fri, 28 Jul 2023 13:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690550814;
+        bh=lpIxrmKmbOC7WRk7UtNOjkyEwzHrgZsH0CggdVA8FGc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=q5EVvaCzpJQ4I3pL/dqanw4An88CDoDbuoxNALg0XrSbi+gG8ZdD18x/u13pPRFvs
+         szdS5EFpi7oxt3xFKvDYOxTm8D5z8Gp3V86McLswxN0c+UChvniaenoibuvyAxQ/vG
+         u2p+TbOnwF9T87wQ3w6DqrgPk/5v0wqKbZ3Xq/oly9L/XSG4gkl6X1icdEcLra3Tyh
+         spwuMgqoY3ckyUtxgqTSacvHP+XihYaz6/x74xu/H/8dIh3wp83EwmhzY/gwKZBtr1
+         azeL+cbsqfGQCJGjSyw6Gd3UnyCXPinEl+Vl81NwPm0vQOxKqzmtUkMUmFsSC97Kz6
+         /hgp/mm0jbUiQ==
+Date:   Fri, 28 Jul 2023 14:26:47 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Maso Huang <maso.huang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
-In-Reply-To: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
-References: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
-Subject: Re: (subset) [PATCH 0/6] QCM2290 compatibles
-Message-Id: <169055057157.6557.3890207774670962574.b4-ty@linaro.org>
-Date:   Fri, 28 Jul 2023 14:22:51 +0100
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 6/6] ASoC: dt-bindings: mediatek,mt7986-afe: add audio
+ afe document
+Message-ID: <557424df-a8bf-4b52-af4e-7f6dbe660cea@sirena.org.uk>
+References: <20230728090819.18038-1-maso.huang@mediatek.com>
+ <20230728090819.18038-7-maso.huang@mediatek.com>
+ <a4f071a0-9e41-4de1-6721-f8d47475f41e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="XT3kLeQv44OA4A+I"
+Content-Disposition: inline
+In-Reply-To: <a4f071a0-9e41-4de1-6721-f8d47475f41e@linaro.org>
+X-Cookie: Ontogeny recapitulates phylogeny.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -93,18 +75,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 14 Mar 2023 13:52:55 +0100, Konrad Dybcio wrote:
-> Document a couple of compatibles for IPs found on the QCM2290 that don't
-> require any specific driver changes
-> 
-> 
+--XT3kLeQv44OA4A+I
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Applied, thanks!
+On Fri, Jul 28, 2023 at 02:51:26PM +0200, Krzysztof Kozlowski wrote:
+> On 28/07/2023 11:08, Maso Huang wrote:
 
-[3/6] dt-bindings: nvmem: Add compatible for QCM2290
-      commit: 4b71b2a44d7d692ae681961a9b2865724652d1f6
+> > +  - assigned-clocks
+> > +  - assigned-clock-parents
 
-Best regards,
--- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> You should constrain your clocks per variants. I doubt that they are
+> really so flexible/optional on each SoC... or maybe missing clocks are
+> result of unimplemented parts in the driver? But then this should not
+> really affect bindings. Bindings still should require such clocks. Your
+> DTS can always provide a <0>, if needed.
 
+Depending on what the clocks are some of them might genuinely be
+optional, it's fairly common for audio devices to have multiple clock
+inputs and be able to select between them depending on system
+requirements or to have bidirectional clock pins which may be either a
+provider or consumer depending on system configuration.  No idea how
+that applies with this specific device.
+
+--XT3kLeQv44OA4A+I
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTDwhYACgkQJNaLcl1U
+h9AF5gf+NIN7ZO19dqJ/AAyoSKsZgUmZxvpWcqc20xa2BWORhhpXVszso2nROeQY
+jsefIMUnAc0ZTUc+dTecZiFZBTZKRAjeIa2yoESwzssTXpGzFjJl8Nik7G+RCTcM
+Cz283cPsg9KbhhSqcBwKrmcFfnNpGpjgk9r6/gCtt01raGtRdzRlWJAWJH3eqe9T
+OuE/jOaguHuHjkw49hcGqUdlSj5BqdPjO/6wMm9cuS1jQ0VPwAraH97T2JXH9sGK
+ufNZ9h8Bh2XQGOFgK+ADXUP2DdGNuIP/uxz1kBRSL+1+VI8DjFD09wRJB1/92bye
+JQFqsIVQhdj19h5m2Y/IKt/qut1ppQ==
+=zUSr
+-----END PGP SIGNATURE-----
+
+--XT3kLeQv44OA4A+I--
