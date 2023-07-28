@@ -2,152 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B297668DE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 043BC766914
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235594AbjG1J3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 05:29:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
+        id S235570AbjG1JiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 05:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235598AbjG1J22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:28:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3470E5B90;
-        Fri, 28 Jul 2023 02:25:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S235596AbjG1JiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:38:16 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888F7173F;
+        Fri, 28 Jul 2023 02:38:14 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B26DD620A2;
-        Fri, 28 Jul 2023 09:25:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98F40C433C7;
-        Fri, 28 Jul 2023 09:25:49 +0000 (UTC)
-Message-ID: <2d9eeb0e-71b3-157c-b947-6dd5485f46e3@xs4all.nl>
-Date:   Fri, 28 Jul 2023 11:25:47 +0200
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7EFE26605835;
+        Fri, 28 Jul 2023 10:38:11 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1690537092;
+        bh=x/NC9kRms1NVzTGvKisnxeIx9pk+AWAePM5eU3NJJEE=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=cFsn/MCB70uY4rbKGJ8wTrwILnk7lT3fOOncZ8C8E4B95hFd23zxEUYEobQOWvDRG
+         MCOI6OpNFHN5h1baDmQO2d5zHnzLbxyPAbiApr7rQrHFkZANZCNJZrcqLNsrMg7kH0
+         XuO2p5lJslgF1X6KyAfwHBeHVZIxp+dp3ljoWERIm4qEjRESjn0jbfPOmM+KCn8b2V
+         kErrCb7mhiICxvUNLPQIXq6pZwsJ7QHphPn2oCw/oRTJGxqjQfu3s8WuuEoXI0yFgh
+         od5aNQkQEA3/0N53GWxqHm4GWQLWAvLSlDnNWUkrPf6iZrRz9n4u1FoGx+JMuR5G0R
+         y8OWTa3enGTcA==
+Message-ID: <4eb32bcc-9a1b-c477-71b1-823bd96c0450@collabora.com>
+Date:   Fri, 28 Jul 2023 11:38:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7,0/11] media: mediatek: vcodec: separate encoder and
- decoder
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 3/6] ASoC: mediatek: mt7986: add platform driver
+To:     Maso Huang <maso.huang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230728090819.18038-1-maso.huang@mediatek.com>
+ <20230728090819.18038-4-maso.huang@mediatek.com>
 Content-Language: en-US
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230722074230.30558-1-yunfei.dong@mediatek.com>
- <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
-In-Reply-To: <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230728090819.18038-4-maso.huang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 11:58, Hans Verkuil wrote:
-> On 22/07/2023 09:42, Yunfei Dong wrote:
->> From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
->>
->> With the driver more and more complex, encoder and decoder need to add more parameter
->> in shared struct 'mtk_vcodec_ctx' and 'mtk_vcodec_dev'. Encoder use about 40% and
->> decoder use 60% parameter. Need to allocate extra unused memory when encoder and decoder
->> working.
->>
->> Separate encoder and decoder in different folder and use independent data struct.
->>
->> patch 1 remove unused parameter.
->> patch 2~3 align fw and interrupt related interface.
->> patch 4~6 remove the dependency of debug log
->> patch 7~8 separate mtk_vcodec_ctx and mtk_vcodec_dev
->> patch 9 fix unreasonable parameter
->> patch 10 removed unused header files
->> patch 11 separate encoder and decoder in different folder
->> ---
->> Changed from v6:
->> - rebase to: https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=fo-v6.6g.
->> Changed from v5:
->> - fix some words error for patch 3/6/11.
->> - rename mtk_vcodec_comm_drv.h to mtk_vcodec_cmn_drv.h for patch 7.
->> Changed from v4:
->> - add one parameter to record register base for reg_base for patch 3.
->> - add debug string for non ctx log for patch 6.
->> - change the comment of struct mtk_vcodec_dec_ctx and struct mtk_vcodec_enc_ctx for patch 7.
->> - prefer to use struct mtk_vcodec_dec_dev an current period, will re-construct in the future for patch 8.
->> Changed from v3:
->> - re-write commit message for patch 3.
->> Changed from v2:
->> - This patch main changed:
->>   1: add different macro mtk_dec_debug and mtk_enc_debug calling common
->>      macro mtk_vcodec_debug in order to use dev_dbg instead of pr_debug.
->>   2: add different macro mtk_v4l2_venc_dbg and mtk_v4l2_vdec_dbg calling common
->>      macro  in order to use dev_dbg instead of pr_debug.
->> Changed from v1:
->> - Change pr_dbg to dev_dbg for mtk_v4l2_level and mtk_vcodec_dbg for patch 4.
->> - Change pr_err to dev_err for mtk_v4l2_err and mtk_vcodec_err for patch 5.
->> - Fix unreasonable parameter for patch 8.
->> ---
->> Yunfei Dong (11):
->>   media: mediatek: vcodec: remove unused parameter
->>   media: mediatek: vcodec: align fw interface
->>   media: mediatek: vcodec: Removing struct 'mtk_vcodec_ctx/dev' for
->>     shared interface
->>   media: mediatek: vcodec: Removing useless debug log
->>   media: mediatek: vcodec: remove the dependency of vcodec debug log
->>   media: mediatek: vcodec: replace pr_* with dev_* for v4l2 debug
->>     message
->>   media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'
->>   media: mediatek: vcodec: separate struct mtk_vcodec_dev
->>   media: mediatek: vcodec: fix unreasonable parameter definition and
->>     style
->>   media: mediatek: vcodec: remove unused include header
->>   media: mediatek: vcodec: separate decoder and encoder
+Il 28/07/23 11:08, Maso Huang ha scritto:
+> Add mt7986 platform driver.
 > 
-> Besides the missing argument in patch 6/11 I also get this compiler warning:
+> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
+> ---
+>   sound/soc/mediatek/Kconfig                 |  10 +
+>   sound/soc/mediatek/Makefile                |   1 +
+>   sound/soc/mediatek/mt7986/Makefile         |   8 +
+>   sound/soc/mediatek/mt7986/mt7986-afe-pcm.c | 622 +++++++++++++++++++++
+>   4 files changed, 641 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt7986/Makefile
+>   create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-pcm.c
 > 
-> drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c: In function 'vpu_enc_ipi_handler':
-> drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c:64:31: warning: 'vpu' may be used uninitialized [-Wmaybe-uninitialized]
->    64 |         struct venc_vpu_inst *vpu;
->       |                               ^~~
-> 
-> and this smatch error:
-> 
-> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:138 mtk_vcodec_get_reg_bases() error: buffer overflow 'mtk_dec_reg_names' 11 <= 11
-> 
-> However, I believe that was introduced by Nicolas' patch series.
-> 
-> I'll try to pinpoint the precise patch.
 
-That smatch error is now found and fixed in the staging tree.
+..snip..
 
-Can you post a v8 fixing the other issues?
+> +	/* register component */
+> +	ret = devm_snd_soc_register_component(&pdev->dev,
+> +					      &mt7986_afe_component,
+> +					      NULL, 0);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "err_platform\n");
 
-Thanks!
+I know I only said about using dev_err_probe(), but "err_platform" doesn't
+mean anything!
 
-Regards,
+Please write a human readable error message, like "Cannot register AFE component\n"
 
-	Hans
+> +
+> +	ret = devm_snd_soc_register_component(afe->dev,
+> +					      &mt7986_afe_pcm_dai_component,
+> +					      afe->dai_drivers,
+> +					      afe->num_dai_drivers);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "err_dai_component\n");
 
-> 
-> Regards,
-> 
-> 	Hans
+And the same here, "Cannot register PCM DAI component\n"
 
+After which:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
