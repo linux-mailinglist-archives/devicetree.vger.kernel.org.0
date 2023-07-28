@@ -2,96 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C9F766508
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB802766510
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:16:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233969AbjG1HPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
+        id S233990AbjG1HQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:16:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233944AbjG1HPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:15:40 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582192680
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:15:34 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fe0e23a4b1so3059361e87.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:15:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690528532; x=1691133332;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fotJlPLg/3aVUxDnfpn1ssIHFZgy6nasrdy2qS4uw1o=;
-        b=G9zqfbBE7oUr1T5JHk0Kxp40aesKAkeUkCeMGoowd7iZ6Tx8/opQxO2k4/AYGBq+qo
-         80+NVU24n9WaHdlAIdaXH3s1PLfE5Rb7l9X2bsIK6g1cm9/JD/Xtmfwrfi+Qruv95zN5
-         DfJ0mTTaNJixDo08F8c1f9F3+R9NjIfqWuMvAdS7w795HnFFZ30se0hFVrJK6DLVzHP+
-         WUVavpibE6QCdQDlFt9ikbA7ASbV9AfOUFjSgvOq5zVmnRNvp4FlH7cevhiO/glydjMg
-         TgpIUTfms0a8HyVtBdJAdqWNzsL1QYz56XmCQEmpGbXVbXrBmskrXkH2lhJoyPezKXLk
-         +b7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690528532; x=1691133332;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fotJlPLg/3aVUxDnfpn1ssIHFZgy6nasrdy2qS4uw1o=;
-        b=DDHNBeKRnBgyHMq1ua07eVKExT7j2LzqY/92qXKQE9YedoT5MS/ToRJCXKf6AIaqq+
-         97V6F23G8/m3m6Ky8oITgmBOkpijyjV7g7D3ZzkasiQY+ljPy+MSjuRtBTzU2pBCpzKT
-         L7oRwmiomkk2cRtZFTrevRm1SQhLwkuh05VU10hA616g7nLLgABLrsAXF9KyrjaAQ9l0
-         PS3KMYvYy8F/Y13r8k8KnW3TzIDHUro4lDr6Qz7XP5pCXyjbDSQPQKAXTRPblZXO9++9
-         UwXR/7AWabUA0TLYfVdExXH+0SwMRASjO+2bSnfLLw2Tuils3c/t6pJ/tIx2V8Sn46r6
-         Ye+w==
-X-Gm-Message-State: ABy/qLb5yOCJs77TWrNG7x8AfnwY2rUDa/SGMx/svGJ0fglubkH+PezX
-        pnbsKJ16xhBurUgkJGS6epeTSA==
-X-Google-Smtp-Source: APBJJlHDzG9r3L89z7e8mDuIPzOfkoQJTIEtNvhM5Z9fsZxbzQztOLAMUV0qIc6ViSlMzQbcQwx9Pg==
-X-Received: by 2002:ac2:5b9a:0:b0:4f8:7333:d1fd with SMTP id o26-20020ac25b9a000000b004f87333d1fdmr1168724lfn.34.1690528532577;
-        Fri, 28 Jul 2023 00:15:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n10-20020aa7c44a000000b0052238bc70ccsm1469189edr.89.2023.07.28.00.15.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 00:15:32 -0700 (PDT)
-Message-ID: <11718654-24ed-ed89-81ac-f773168e216d@linaro.org>
-Date:   Fri, 28 Jul 2023 09:15:30 +0200
+        with ESMTP id S233986AbjG1HQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:16:36 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1902696;
+        Fri, 28 Jul 2023 00:16:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690528593; x=1722064593;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w3eh8JVhG0BhAwkcoX2/P9LJ94Oz2UTVlcrpf201yuk=;
+  b=zOS96z7Qw6CdkwRzk3OQ+oAGJ0yO2UwWcte9SDVSBdyYYwtmrgK4JOYQ
+   C5TOhYfEsOabdnohyh1xJF+bZouQWX0N5bcclvuFWkpWt0LNKmBc+vVxW
+   Khm/Kn3soZVmxSgN2dBm7crOb2Q/KSGAC1iZx00I70WyoKk86g4IZcIWT
+   cG4Fdk4JsnqTj0j4B6hH1ORT3YGSZmKluiY3bBDdcLduUPza/FWHdicMb
+   gQuaeAUNXnUD6HfBjqY2KDeQMTSTELllrY9Ie+Ew8X/PYeXNszrQxTYkm
+   i+cvZoVaQWFSvBpgK5/X2qW+jDY/A0xREGz2jMP/xvsnRg2w+V0CuLjF5
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
+   d="asc'?scan'208";a="163690791"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 00:16:32 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 28 Jul 2023 00:16:22 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 28 Jul 2023 00:16:19 -0700
+Date:   Fri, 28 Jul 2023 08:15:44 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Eric Lin <eric.lin@sifive.com>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <will@kernel.org>,
+        <mark.rutland@arm.com>, <tglx@linutronix.de>,
+        <peterz@infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <zong.li@sifive.com>, <greentime.hu@sifive.com>,
+        <vincent.chen@sifive.com>, Nick Hu <nick.hu@sifive.com>
+Subject: Re: [PATCH v2 2/3] soc: sifive: Add SiFive private L2 cache driver
+Message-ID: <20230728-nintendo-umpire-3ca2388fa826@wendy>
+References: <20230720135125.21240-1-eric.lin@sifive.com>
+ <20230720135125.21240-3-eric.lin@sifive.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 1/3] dt-bindings: remoteproc: qcom,sm6375-pas: Document
- remoteprocs
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230725-topic-6375_rproc-v5-0-a8e9cde56a20@linaro.org>
- <20230725-topic-6375_rproc-v5-1-a8e9cde56a20@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230725-topic-6375_rproc-v5-1-a8e9cde56a20@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tDKcUoKE7397b15h"
+Content-Disposition: inline
+In-Reply-To: <20230720135125.21240-3-eric.lin@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 19:33, Konrad Dybcio wrote:
-> SM6375 hosts an ADSP, CDSP and modem as remote processors. Create
-> related bindings.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+--tDKcUoKE7397b15h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hey,
 
-Best regards,
-Krzysztof
+On Thu, Jul 20, 2023 at 09:51:20PM +0800, Eric Lin wrote:
+> This adds SiFive private L2 cache driver which will show
+> cache config information when booting and add cpu hotplug
+> callback functions.
+>=20
+> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> Co-developed-by: Nick Hu <nick.hu@sifive.com>
+> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
 
+> +static void pl2_config_read(void __iomem *pl2_base, int cpu)
+
+This function's prefix does not match the rest of the driver.
+
+> +{
+> +	u32 cfg, banks, ways, cacheline, sets;
+> +
+> +	cfg =3D readl(pl2_base + SIFIVE_PL2CACHE_CONFIG);
+> +	banks =3D FIELD_GET(SIFIVE_PL2CACHE_CONFIG_BANK_MASK, cfg);
+> +	ways =3D FIELD_GET(SIFIVE_PL2CACHE_CONFIG_WAYS_MASK, cfg);
+> +	cacheline =3D FIELD_GET(SIFIVE_PL2CACHE_CONFIG_BLKS_MASK, cfg);
+> +	sets =3D FIELD_GET(SIFIVE_PL2CACHE_CONFIG_SETS_MASK, cfg);
+> +	pr_info("%u banks, ways/bank=3D%u, bytes/block=3D%llu, sets:%llu, size:=
+%d for CPU:%d\n",
+> +		banks, ways, BIT_ULL(cacheline), BIT_ULL(sets), ways << (sets + cachel=
+ine), cpu);
+> +}
+
+My OCD quite dislikes how the formatting here is not consistent.
+"%u banks"
+"ways/bank=3D%u"
+"sets:%llu"
+
+Could you please do me a favour and pick just one style here?
+
+> +
+> +static int sifive_pl2_cache_dev_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *cpu_node, *pl2_node;
+> +	struct sifive_pl2_state *pl2_state =3D NULL;
+> +	struct resource *res;
+> +	void __iomem *pl2_base;
+> +	int cpu;
+> +
+> +	/* Traverse all cpu nodes to find the one mapping to its pl2 node. */
+
+While comments like this are somewhat useful...
+
+> +	for_each_cpu(cpu, cpu_possible_mask) {
+> +		cpu_node =3D of_cpu_device_node_get(cpu);
+> +		pl2_node =3D of_parse_phandle(cpu_node, "next-level-cache", 0);
+> +
+> +		/* Found it! */
+> +		if (dev_of_node(&pdev->dev) =3D=3D pl2_node) {
+> +			/* Use cpu to get its percpu data sifive_pl2_state. */
+> +			pl2_state =3D per_cpu_ptr(&sifive_pl2_state, cpu);
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (!pl2_state) {
+> +		pr_err("Failed to find CPU node for %s.\n", pdev->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Set base address of select and counter registers. */
+
+=2E..something like this just restates what this function always does.
+It's the same in some other places, with things like:
+	/* save the state */
+	save_state();
+Could you drop the ones that restate the obvious please?
+
+> +	pl2_base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(pl2_base))
+> +		return PTR_ERR(pl2_base);
+> +
+> +	/* Print pL2 configs. */
+> +	pl2_config_read(pl2_base, cpu);
+> +	pl2_state->pl2_base =3D pl2_base;
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver sifive_pl2_cache_driver =3D {
+> +	.driver =3D {
+> +		   .name =3D "SiFive-pL2-cache",
+> +		   .of_match_table =3D sifive_pl2_cache_of_ids,
+> +		   },
+> +	.probe =3D sifive_pl2_cache_dev_probe,
+> +};
+> +
+> +static int __init sifive_pl2_cache_init(void)
+
+Why is the split between initcall and normal probe function required?
+Does the hotplug stuff require that?
+
+> +{
+> +	int ret;
+> +
+> +	ret =3D cpuhp_setup_state(CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
+> +				"soc/sifive/pl2:online",
+> +				sifive_pl2_online_cpu,
+> +				sifive_pl2_offline_cpu);
+> +	if (ret < 0) {
+> +		pr_err("Failed to register CPU hotplug notifier %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret =3D platform_driver_register(&sifive_pl2_cache_driver);
+> +	if (ret) {
+> +		pr_err("Failed to register sifive_pl2_cache_driver: %d\n", ret);
+> +		cpuhp_remove_state(CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE);
+> +		return ret;
+> +	}
+> +
+> +	sifive_pl2_pm_init();
+> +
+> +	return 0;
+> +}
+
+Cheers,
+Conor.
+
+--tDKcUoKE7397b15h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMNrIAAKCRB4tDGHoIJi
+0lUMAQC+YBZKyezcpOdepBSTcDE8d/8KKQhLZWlOf3Dxgmpf3wD9G00D01RwYreP
+xr5jQCN1+kjS9dv4O3bCi+fMO5E/qAU=
+=/HJJ
+-----END PGP SIGNATURE-----
+
+--tDKcUoKE7397b15h--
