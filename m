@@ -2,273 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B688767057
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 17:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBC2A767085
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 17:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234703AbjG1PS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 11:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48010 "EHLO
+        id S233818AbjG1P3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 11:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234573AbjG1PS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 11:18:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1656430FC;
-        Fri, 28 Jul 2023 08:18:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DCDC62173;
-        Fri, 28 Jul 2023 15:18:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62509C433C8;
-        Fri, 28 Jul 2023 15:18:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690557506;
-        bh=4CAHd/2r0jRCEBdeMRRG/xbAeKcA6Rjt+NeWrcq7040=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f8XoCTCn3tpOxd6XF8c8QZxi1Xn7N1hTaVnUIPI3fNndomp5AxOqkwQAQ0zcRsXx7
-         cpceRit7q95Xz2UOzpVhsSX1YuV3VFYUrr1mF+e/9R0ccqHDCE4fvSCeVsnSrE793E
-         aYv652LYImnjokxHsM97tk5pkbCrfIZRBzYuHaC9COQl0nIPqEDe6D8tkLLpnW/4ET
-         jTLem+01z8cM9ToiR8MP5pQbfCSKU9DyAj2KdH7jZZdV6PtftvEopRMYT58cLcUHBS
-         LiHai2TR2UHlf8cWFBkUdAzaVz3bHCsd6oCLexfmVTJ8UOOmQFZThaDC+gP4X/tD5A
-         cSFviGT3GqR0Q==
-Date:   Fri, 28 Jul 2023 16:18:18 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linus.walleij@linaro.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/6] soundwire: bus: Allow SoundWire peripherals to
- register IRQ handlers
-Message-ID: <20230728151818.GL8175@google.com>
-References: <20230725102532.2567580-1-ckeepax@opensource.cirrus.com>
- <20230725102532.2567580-2-ckeepax@opensource.cirrus.com>
+        with ESMTP id S229734AbjG1P3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 11:29:35 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9367735A8;
+        Fri, 28 Jul 2023 08:29:33 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fe1c285690so2632369e87.3;
+        Fri, 28 Jul 2023 08:29:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690558172; x=1691162972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sWY5MitYzqJ4d1bWl5n1gXmIbqPwv+V3mvdT6pw4Joo=;
+        b=spL3/dRcoa3f8wiIiP4KqpRnJi5z+v7W8ANf+zhQjBOBZZo931y9+BgkQkiNBesEtg
+         atYPhabihDsA3VLHbn7Dz08mDbJGqwdJPsliHSHanX0fVDB6WEFf1WnCiJjkrk195LtG
+         WimZisfkapB/STS57H7637OhqQ5SuV1fA3uiQCk5QwCD5Lc/bSizj6/trIl/g6AxU2H2
+         FiUnXlPE6e9l1sKVkqU0w9etFNmp1tDgw/etFEND+xo7SPaVF0cHQe0smbkpyBNQMLHS
+         quujH7k9Vk0rZwusd+jLvaKgIonLmUT/JCeO+57s/O/3oTEGSuPTvF3Khbc8HTkvrCxO
+         gBfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690558172; x=1691162972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sWY5MitYzqJ4d1bWl5n1gXmIbqPwv+V3mvdT6pw4Joo=;
+        b=DdDZtkZQ2Rd5jZOpxE08fITE7wLVniAe7DsM5a2nm84nR+T0QqfY42MHyhdVGuYA3d
+         R94nX+3CIG+gL3xPgXPBXebQ1bkE3DimpTBS6GD9d3IR3/1UvEdKCc6RDwgOIojtitkO
+         h4b4hQ1n0MOU+Vd901VGAUH0OImVNEqd/0PBgy+IPPiRu360qkgE5Es8oT7k1RStcDGV
+         SHKZUUhMn1TBfhkJSr/DFHaMz6N4iJkXnKNfdNWT5PKSsehoPtk46tEOJPPO21rwAqjO
+         wPEFHUWaJmvDMpsL8bA1jpxUjRKEohDLKzeFFlq28Uie3MzHUKxK9QmYP57Eyv+BECus
+         m0gw==
+X-Gm-Message-State: ABy/qLYZwnwn46A8J3BuVxssVgY6i+98pS4ePF1+WeJW0/0sKKt8rmvK
+        aTDi8X0fI9emkmuWCTp7K6/ziAowT87ue/VgTsrmb2C13LtcTg==
+X-Google-Smtp-Source: APBJJlG9HA1renQSWWmK4jFIFA634+RbkACkuwQYa0S4sEwxKAw6D1WHjQhQGkb90LkAwDcSFZFj21mMVuuM+mbHCA4=
+X-Received: by 2002:a05:6512:2253:b0:4fd:faa5:64ed with SMTP id
+ i19-20020a056512225300b004fdfaa564edmr2283534lfu.11.1690558171553; Fri, 28
+ Jul 2023 08:29:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230725102532.2567580-2-ckeepax@opensource.cirrus.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230727212208.102501-1-robdclark@gmail.com> <20230727212208.102501-13-robdclark@gmail.com>
+ <08cd9bb5-678f-e03e-4598-dd1785f0d7a7@linaro.org>
+In-Reply-To: <08cd9bb5-678f-e03e-4598-dd1785f0d7a7@linaro.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Fri, 28 Jul 2023 08:29:19 -0700
+Message-ID: <CAF6AEGu-aRzi6ADqCnLU46DC0ZoWmSmhYU2sZj83wTyTbazbxg@mail.gmail.com>
+Subject: Re: [PATCH v2 12/13] dt-bindings: drm/msm/gpu: Extend bindings for chip-id
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vinod, Bard, Pierre-Louis, Sanyog,
+On Fri, Jul 28, 2023 at 12:27=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/07/2023 23:20, Rob Clark wrote:
+> > From: Rob Clark <robdclark@chromium.org>
+> >
+> > Upcoming GPUs use an opaque chip-id for identifying the GPU.
+>
+> Examples?
 
-This has been on the list for some time now.
+We'll know when we bring up the hw.  But the main point is that we
+shouldn't expect, for example, the high 8 bits to tell us the
+generation, any more than we could if it was a pci id.
 
-Would one of you please review this, so we can get it merged?
+We may not end up needing to use this new binding much, I _think_ we
+should be able to read it from the fw in most cases, at least for
+android devices.  I'm unsure at this point about windows/chromebooks.
 
-On Tue, 25 Jul 2023, Charles Keepax wrote:
+> Anyway, I think we should insist here of using something human-readable,
+> even if Qualcomm/Adreno internally use some weird numbers.
 
-> From: Lucas Tanure <tanureal@opensource.cirrus.com>
-> 
-> Currently the in-band alerts for SoundWire peripherals can only
-> be communicated to the driver through the interrupt_callback
-> function. This however is slightly inconvient for devices that wish to
-> share IRQ handling code between SoundWire and I2C/SPI, the later would
-> normally register an IRQ handler with the IRQ subsystem. However there
-> is no reason the SoundWire in-band IRQs can not also be communicated
-> as an actual IRQ to the driver.
-> 
-> Add support for SoundWire peripherals to register a normal IRQ handler
-> to receive SoundWire in-band alerts, allowing code to be shared across
-> control buses. Note that we allow users to use both the
-> interrupt_callback and the IRQ handler, this is useful for devices which
-> must clear additional chip specific SoundWire registers that are not a
-> part of the normal IRQ flow, or the SoundWire specification.
-> 
-> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> ---
-> 
-> No changes since v5.
-> 
-> Thanks,
-> Charles
-> 
->  drivers/soundwire/bus.c       | 32 ++++++++++++++++++++++++++++++++
->  drivers/soundwire/bus_type.c  | 12 ++++++++++++
->  include/linux/soundwire/sdw.h |  9 +++++++++
->  3 files changed, 53 insertions(+)
-> 
-> diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
-> index dba920ec88f6f..cf55386256f3f 100644
-> --- a/drivers/soundwire/bus.c
-> +++ b/drivers/soundwire/bus.c
-> @@ -3,6 +3,7 @@
->  
->  #include <linux/acpi.h>
->  #include <linux/delay.h>
-> +#include <linux/irq.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/soundwire/sdw_registers.h>
-> @@ -25,6 +26,23 @@ static int sdw_get_id(struct sdw_bus *bus)
->  	return 0;
->  }
->  
-> +static int sdw_irq_map(struct irq_domain *h, unsigned int virq,
-> +		       irq_hw_number_t hw)
-> +{
-> +	struct sdw_bus *bus = h->host_data;
-> +
-> +	irq_set_chip_data(virq, bus);
-> +	irq_set_chip(virq, &bus->irq_chip);
-> +	irq_set_nested_thread(virq, 1);
-> +	irq_set_noprobe(virq);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops sdw_domain_ops = {
-> +	.map	= sdw_irq_map,
-> +};
-> +
->  /**
->   * sdw_bus_master_add() - add a bus Master instance
->   * @bus: bus instance
-> @@ -151,6 +169,14 @@ int sdw_bus_master_add(struct sdw_bus *bus, struct device *parent,
->  	bus->params.curr_bank = SDW_BANK0;
->  	bus->params.next_bank = SDW_BANK1;
->  
-> +	bus->irq_chip.name = dev_name(bus->dev);
-> +	bus->domain = irq_domain_create_linear(fwnode, SDW_MAX_DEVICES,
-> +					       &sdw_domain_ops, bus);
-> +	if (!bus->domain) {
-> +		dev_err(bus->dev, "Failed to add IRQ domain\n");
-> +		return -EINVAL;
-> +	}
-> +
->  	return 0;
->  }
->  EXPORT_SYMBOL(sdw_bus_master_add);
-> @@ -187,6 +213,9 @@ static int sdw_delete_slave(struct device *dev, void *data)
->  void sdw_bus_master_delete(struct sdw_bus *bus)
->  {
->  	device_for_each_child(bus->dev, NULL, sdw_delete_slave);
-> +
-> +	irq_domain_remove(bus->domain);
-> +
->  	sdw_master_device_del(bus);
->  
->  	sdw_bus_debugfs_exit(bus);
-> @@ -1725,6 +1754,9 @@ static int sdw_handle_slave_alerts(struct sdw_slave *slave)
->  				struct device *dev = &slave->dev;
->  				struct sdw_driver *drv = drv_to_sdw_driver(dev->driver);
->  
-> +				if (slave->prop.use_domain_irq && slave->irq)
-> +					handle_nested_irq(slave->irq);
-> +
->  				if (drv->ops && drv->ops->interrupt_callback) {
->  					slave_intr.sdca_cascade = sdca_cascade;
->  					slave_intr.control_port = clear;
-> diff --git a/drivers/soundwire/bus_type.c b/drivers/soundwire/bus_type.c
-> index 1f43ee848eac8..fafbc284e82da 100644
-> --- a/drivers/soundwire/bus_type.c
-> +++ b/drivers/soundwire/bus_type.c
-> @@ -122,6 +122,12 @@ static int sdw_drv_probe(struct device *dev)
->  	if (drv->ops && drv->ops->read_prop)
->  		drv->ops->read_prop(slave);
->  
-> +	if (slave->prop.use_domain_irq) {
-> +		slave->irq = irq_create_mapping(slave->bus->domain, slave->dev_num);
-> +		if (!slave->irq)
-> +			dev_warn(dev, "Failed to map IRQ\n");
-> +	}
-> +
->  	/* init the sysfs as we have properties now */
->  	ret = sdw_slave_sysfs_init(slave);
->  	if (ret < 0)
-> @@ -166,7 +172,13 @@ static int sdw_drv_remove(struct device *dev)
->  	int ret = 0;
->  
->  	mutex_lock(&slave->sdw_dev_lock);
-> +
->  	slave->probed = false;
-> +
-> +	if (slave->prop.use_domain_irq)
-> +		irq_dispose_mapping(irq_find_mapping(slave->bus->domain,
-> +						     slave->dev_num));
-> +
->  	mutex_unlock(&slave->sdw_dev_lock);
->  
->  	if (drv->remove)
-> diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
-> index f523ceabd0596..8923387a7405b 100644
-> --- a/include/linux/soundwire/sdw.h
-> +++ b/include/linux/soundwire/sdw.h
-> @@ -6,6 +6,8 @@
->  
->  #include <linux/bug.h>
->  #include <linux/lockdep_types.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqdomain.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/bitfield.h>
->  
-> @@ -370,6 +372,7 @@ struct sdw_dpn_prop {
->   * @clock_reg_supported: the Peripheral implements the clock base and scale
->   * registers introduced with the SoundWire 1.2 specification. SDCA devices
->   * do not need to set this boolean property as the registers are required.
-> + * @use_domain_irq: call actual IRQ handler on slave, as well as callback
->   */
->  struct sdw_slave_prop {
->  	u32 mipi_revision;
-> @@ -394,6 +397,7 @@ struct sdw_slave_prop {
->  	u8 scp_int1_mask;
->  	u32 quirks;
->  	bool clock_reg_supported;
-> +	bool use_domain_irq;
->  };
->  
->  #define SDW_SLAVE_QUIRKS_INVALID_INITIAL_PARITY	BIT(0)
-> @@ -641,6 +645,7 @@ struct sdw_slave_ops {
->   * struct sdw_slave - SoundWire Slave
->   * @id: MIPI device ID
->   * @dev: Linux device
-> + * @irq: IRQ number
->   * @status: Status reported by the Slave
->   * @bus: Bus handle
->   * @prop: Slave properties
-> @@ -670,6 +675,7 @@ struct sdw_slave_ops {
->  struct sdw_slave {
->  	struct sdw_slave_id id;
->  	struct device dev;
-> +	int irq;
->  	enum sdw_slave_status status;
->  	struct sdw_bus *bus;
->  	struct sdw_slave_prop prop;
-> @@ -885,6 +891,7 @@ struct sdw_master_ops {
->   * is used to compute and program bus bandwidth, clock, frame shape,
->   * transport and port parameters
->   * @debugfs: Bus debugfs
-> + * @domain: IRQ domain
->   * @defer_msg: Defer message
->   * @clk_stop_timeout: Clock stop timeout computed
->   * @bank_switch_timeout: Bank switch timeout computed
-> @@ -920,6 +927,8 @@ struct sdw_bus {
->  #ifdef CONFIG_DEBUG_FS
->  	struct dentry *debugfs;
->  #endif
-> +	struct irq_chip irq_chip;
-> +	struct irq_domain *domain;
->  	struct sdw_defer defer_msg;
->  	unsigned int clk_stop_timeout;
->  	u32 bank_switch_timeout;
-> -- 
-> 2.30.2
-> 
+I mean qcom,sc8280cx-adreno is human readable but not really very
+informative.  Encoding the chip-id is just a way to avoid the
+qcom,chipid field in the bindings, which qcom used downstream.  The
+new pattern accomplishes the same thing as the existing one, but
+without trying to imply some meaning that becomes increasingly
+non-existent as qc moves to decouple the id from marketing names.
 
--- 
-Lee Jones [李琼斯]
+> >
+> > Signed-off-by: Rob Clark <robdclark@chromium.org>
+> > ---
+> >  Documentation/devicetree/bindings/display/msm/gpu.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/D=
+ocumentation/devicetree/bindings/display/msm/gpu.yaml
+> > index 58ca8912a8c3..56b9b247e8c2 100644
+> > --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
+> > +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+> > @@ -13,6 +13,12 @@ maintainers:
+> >  properties:
+> >    compatible:
+> >      oneOf:
+> > +      - description: |
+> > +          The driver is parsing the compat string for Adreno to
+> > +          figure out the chip-id.
+> > +        items:
+> > +          - pattern: '^qcom,adreno-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-=
+9a-f][0-9a-f][0-9a-f][0-9a-f]$'
+>
+> {8} should work?
+>
+
+so '^qcom,adreno-[0-9a-f]{8}$'
+
+BR,
+-R
+
+>
+>
+> Best regards,
+> Krzysztof
+>
