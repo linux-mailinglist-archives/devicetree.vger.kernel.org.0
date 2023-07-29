@@ -2,176 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC71D768062
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 17:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C090A76807A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 18:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbjG2PcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jul 2023 11:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44566 "EHLO
+        id S229462AbjG2QJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jul 2023 12:09:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230403AbjG2PcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 11:32:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC6762D71;
-        Sat, 29 Jul 2023 08:32:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5AB7D60C74;
-        Sat, 29 Jul 2023 15:32:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B561C433C8;
-        Sat, 29 Jul 2023 15:32:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690644723;
-        bh=arfJjyoj6bnNUk+Ht4kjfA6xcBR5noSAdP8ZO3gscJ8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=Us2BtoP8txnTyyPyHwIip329r1qowNU9zbHkrYzoOpNyMK3BtCffb1gOO6sSEU4CB
-         9eJzSQxy+kSEm65Yw2gicWP2pvmqTHcaXvIdh8HMTEeAzc1Y6lF0VbcwK7DHkMigSJ
-         ZqWJGFWPdpKIqx7DFdvsrbf+vndkded0ZMXLHMTAq1pSLeLLmnvZIL8FrvlSNuhKQX
-         IseoWyrplGS3dTjUT/XdB+MKFpHmy3vTXF4y9j7NF1UFfCfR/dTxhj2WV9DQK06QjO
-         J++k5bZs8Om6iAw8Bxb7YRJ9iLiw6j/u8UPZsn0Ju9kbyrciqZhnIOQNi61FsC10n6
-         b5dGfVpTFZeFA==
-Date:   Sat, 29 Jul 2023 10:32:01 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Damien Le Moal <dlemoal@kernel.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Minghuan Lian <minghuan.Lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        Srikanth Thokala <srikanth.thokala@intel.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v18 02/20] PCI: Rename PCI_EPC_IRQ_LEGACY to
- PCI_EPC_IRQ_INTX
-Message-ID: <20230729153201.GA852521@bhelgaas>
+        with ESMTP id S229379AbjG2QJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 12:09:27 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F6EA8;
+        Sat, 29 Jul 2023 09:09:26 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b9dc1bff38so6975011fa.1;
+        Sat, 29 Jul 2023 09:09:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690646965; x=1691251765;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kYuOI65YzPrj3n+lLQ6cTdOtLO/GiTyHb3SVK41xJL0=;
+        b=T4NbtfL5FaqYm+mdCgKbufrc7EjCOxUovoV+JIx4PGuceIV38teYQyza+3ly+p+h7C
+         rvPSqPc91EVn7T2N9Y8zft15HndkjRj4HDiqS+J5QDjlk+oPR/8Z7+qtDyKB4lsJYXNB
+         exZD7P3iwAkglYsrN4hzBV5839nmu+5X18WzzXykh9JLsPmrrxSICcsd632u5M+l8YLX
+         cSjYztcHeR8NGAqq+cIJB5ERQns+mNFHe9yUAnn1wsN0K4EWpnG9G7mmi6SpeOJw9iGE
+         JUPG29huPwAglcGc+u8PI7OTKI3pQQNjJhGYSrL1a7zRJnsk6c+zLEb8rADuXju/Srs7
+         /Mzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690646965; x=1691251765;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kYuOI65YzPrj3n+lLQ6cTdOtLO/GiTyHb3SVK41xJL0=;
+        b=Y03d6Hv8exjTWfdDPS2YJI66hvuEYr2U2+Ajt+QCafN97AQMRDiJleOpIiPTZAaXx3
+         ufTtLmptrP/H8LQn/+/gx2gjUPar8LDhNj0E/jCU0mePGyZ4Rg4Rf9VHUuG6+D4jysYX
+         oYQNoEAxsDwJOlTsNxLClUDoxFZKFRxNkbudpQ9KBqoUpdgrfrlqOCLHs28oFmJfcrQT
+         ON1LiHujzVrRBDleo3j6j466pa6NKCyzhvIgzemUWibiUd30rNenRDK+MugE1i2dFlL/
+         YJnFAe2HazAIaJouyzBUL7Esg/SKlPtkODBE5VMrc7MetGoSGzfB6SouDqIXj6r6edoq
+         qYTg==
+X-Gm-Message-State: ABy/qLbbXM3DgdoVmsA7jtT3/mPQ9vYYWYd8it+LL6J8fGrLzEWGCrkN
+        jG2vnd7irCiZtoIwm12XHDG+HvhZ5PebUg==
+X-Google-Smtp-Source: APBJJlFUFhd+ptGTWIR2/XIehd1W1q97EaDiefhCvwjmtmYrhEAObEDy2Tstemz3GwyVG0i77H+wwQ==
+X-Received: by 2002:a2e:9150:0:b0:2b9:b27c:f727 with SMTP id q16-20020a2e9150000000b002b9b27cf727mr4056532ljg.8.1690646964408;
+        Sat, 29 Jul 2023 09:09:24 -0700 (PDT)
+Received: from xeon.. ([188.163.112.48])
+        by smtp.gmail.com with ESMTPSA id f10-20020a2ea0ca000000b002b6daa3fa2csm1346886ljm.69.2023.07.29.09.09.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jul 2023 09:09:24 -0700 (PDT)
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] GPIO-based hotplug i2c bus
+Date:   Sat, 29 Jul 2023 19:08:55 +0300
+Message-Id: <20230729160857.6332-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dea62385-7f3a-9396-dcec-4a743bda0fca@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 29, 2023 at 10:58:46AM +0900, Damien Le Moal wrote:
-> On 7/29/23 10:55, Damien Le Moal wrote:
-> > On 7/29/23 10:35, Serge Semin wrote:
-> >> On Mon, Jul 24, 2023 at 01:02:11PM +0530, Manivannan Sadhasivam wrote:
-> >>> On Fri, Jul 21, 2023 at 05:10:27PM +0900, Damien Le Moal wrote:
-> >>>> On 7/21/23 16:44, Yoshihiro Shimoda wrote:
-> >>>>> Using "INTx" instead of "legacy" is more specific. So, rename
-> >>>>> PCI_EPC_IRQ_LEGACY to PCI_EPC_IRQ_INTX.
-> >>>>>
-> >>>>> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> >>>>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> >>>>> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> >>>>> Acked-by: Jesper Nilsson <jesper.nilsson@axis.com> # ARTPEC
-> >>>>> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> >>>>
-> >>
-> >>>> I would rather drop completely the PCI_EPC_IRQ_XXX enum and simply use the
-> >>>> PCI_IRQ_XXX macros used everywhere. Less definitions :)
-> >>>>
-> >>>> See attached patch that I have in my queue (about to send that).
-> >>>>
-> >>>
-> >>> It looks better! This patch should be dropped.
-> >>
-> >> Back then Bjorn specifically asked to change the names suffix in a
-> >> preparation patch before adding the INTx support to the DW PCIe core
-> >> driver (see the Sb tag in the patch log). Damien, seeing you cleanup
-> >> the names anyway what about fixing the macro suffix too: INTx instead
-> >> of LEGACY)?
-> > 
-> > Sure, I can do that. That is going to be a gigantic patch though given that
-> > PCI_IRQ_LEGACY is used well beyond the ep/pcie controller drivers.
-> > While I agree it would be nice to do, not sure it is worth such code churn.
-> > 
-> >> Mani, Damien, what do you suggest to Yoshihiro to do with the
-> >> LEGACY/INTx names in the following up patches of this series?
-> > 
-> > If everyone is OK with the patch I proposed (the PCI_IRQ_LEGACY -> PCI_IRQ_INTx
-> > change can go on top), then I can rebase it and send it next week (the remaining
-> > of my EP cleanup series needs some more testing & rebasing). Yoshihiro can
-> > either include it in his series or rebase on it if the patch is added to
-> > pci-next quickly.
-> 
-> Note that we could start by simply defining an alias:
-> 
-> #define PCI_IRQ_INTx	PCI_IRQ_LEGACY
-> 
-> and gradually convert all drivers using it until we can get rid of PCI_IRQ_LEGACY.
+ASUS Transformers require this driver for proper work with their dock.
+Dock is controlled by EC and its presence is detected by a GPIO.
 
-I try to catch additions of "legacy," e.g., in new drivers, but I
-agree this patch looks like it might be more churn than it's worth.
+The Transformers have a connector that's used for USB, charging or
+for attaching a keyboard (called a dock; it also has a battery and
+a touchpad). This connector probably (I don't have the means to verify
+that) has an I2C bus lines and a "detect" line (pulled low on the dock
+side) among the pins. I guess there is either no additional chip or
+a transparent bridge/buffer chip, but nothing that could be controlled
+by software. For DT this setup could be modelled like an I2C gate or
+a 2-port mux with enable joining two I2C buses (one "closer" to the
+CPU as a parent).
 
-But I like your idea of an alias, Damien.  Maybe something like the
-below to make it more obvious that the preferred usage is the "INTX"
-form.
+In this case it's hard to tell the difference if this is real or virtual
+hardware.
 
-diff --git a/include/linux/pci-epc.h b/include/linux/pci-epc.h
-index 5cb694031072..6c0bb4c5d12e 100644
---- a/include/linux/pci-epc.h
-+++ b/include/linux/pci-epc.h
-@@ -21,11 +21,13 @@ enum pci_epc_interface_type {
- 
- enum pci_epc_irq_type {
- 	PCI_EPC_IRQ_UNKNOWN,
--	PCI_EPC_IRQ_LEGACY,
-+	PCI_EPC_IRQ_INTX,
- 	PCI_EPC_IRQ_MSI,
- 	PCI_EPC_IRQ_MSIX,
- };
- 
-+#define PCI_EPC_IRQ_LEGACY	PCI_EPC_IRQ_INTX
-+
- static inline const char *
- pci_epc_interface_string(enum pci_epc_interface_type type)
- {
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index c69a2cc1f412..6638e0cd487f 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1048,11 +1048,13 @@ enum {
- 	PCI_SCAN_ALL_PCIE_DEVS	= 0x00000040,	/* Scan all, not just dev 0 */
- };
- 
--#define PCI_IRQ_LEGACY		(1 << 0) /* Allow legacy interrupts */
-+#define PCI_IRQ_INTX		(1 << 0) /* Allow INTx interrupts */
- #define PCI_IRQ_MSI		(1 << 1) /* Allow MSI interrupts */
- #define PCI_IRQ_MSIX		(1 << 2) /* Allow MSI-X interrupts */
- #define PCI_IRQ_AFFINITY	(1 << 3) /* Auto-assign affinity */
- 
-+#define PCI_IRQ_LEGACY 		PCI_IRQ_INTX	/* prefer PCI_IRQ_INTX */
-+
- /* These external functions are only available when PCI support is enabled */
- #ifdef CONFIG_PCI
- 
+This patchset is a predecessor of a possible larger patchset which
+should bring support for a asus-ec, an i2c mfd device programmed by
+Asus for their Transformers tablet line. Similar approach is used in
+Microsoft Surface RT for attachable Type Cover.
+
+> What is this actually doing?
+Basically it duplicates the parent i2c bus once detection GPIO triggers
+and probes all hot-pluggable devices which are connected to it. Once
+GPIO triggers a detach signal all hot-pluggable devices are unprobed and
+bus removed.
+
+> Is the GPIO an irq line for signalling hoplugging and can be used by
+> any driver or just this one?
+It can be shared if necessary but usually all hot-pluggable devices
+are gathered in one container and are plugged simultaneously.
+
+---
+Changes from v2:
+- expanded descryption of driver implementation commit
+- expanded descryption in patchset cover
+- no changes to code or yaml from v2
+
+Changes from v1:
+- documentation changes:
+  - dropped | from description
+  - dropped nodename
+  - unified use of quotes
+  - used GPIO_ACTIVE_LOW define
+  - used phandle instead of path
+---
+
+Michał Mirosław (1):
+  i2c: Add GPIO-based hotplug gate
+
+Svyatoslav Ryhel (1):
+  dt-bindings: i2c: add binding for i2c-hotplug-gpio
+
+ .../bindings/i2c/i2c-hotplug-gpio.yaml        |  65 +++++
+ drivers/i2c/Kconfig                           |  11 +
+ drivers/i2c/Makefile                          |   1 +
+ drivers/i2c/i2c-hotplug-gpio.c                | 266 ++++++++++++++++++
+ 4 files changed, 343 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+ create mode 100644 drivers/i2c/i2c-hotplug-gpio.c
+
+-- 
+2.39.2
+
