@@ -2,81 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84517767EB2
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 13:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC483767EBF
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 13:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjG2L3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jul 2023 07:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42576 "EHLO
+        id S230155AbjG2LjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jul 2023 07:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbjG2L3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 07:29:42 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6592B1701
-        for <devicetree@vger.kernel.org>; Sat, 29 Jul 2023 04:29:34 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3175d5ca8dbso2755368f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Jul 2023 04:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690630173; x=1691234973;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yl2EKCv4YXbcjRsX9gIcMNI5UcqTI5Buzhhnk6Ju+qU=;
-        b=P7noIDsXbNnRhgZ1Mg3Z6aypdp1IfKBXuSfbDb6P+Y4WdJIRu8DanXwPlS9AVO2hbT
-         jZ3NSkpiAR1i89IgUTyjN0WwgAo5BPK9pt+yrIN8+CvZEi/QPZCmQNhwNX0VgskvMikR
-         0yYM504A/wqMl/1wf2sPqb7JrsLSrPJoripGqlv9ePgBnR5yDVPE08vx/4GGmcOcjlr/
-         PG05+rkdkWJfPT+1ldi96YIqim1KM421qUQGQinyuPZ7GJ59f7u6cinCMtKr7Yn7nA6C
-         T2S8U1WNRMlyKUVpUvA3bq1wxPXG7xld7mWMIvZxM4k/Xd5HrE6FBng13CfT0vwlIDVx
-         /LuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690630173; x=1691234973;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yl2EKCv4YXbcjRsX9gIcMNI5UcqTI5Buzhhnk6Ju+qU=;
-        b=O4oRPGfzg8u7yuorNaJ7eIj2xkcWUxBnwXlZWaMQyRrYYJA6VHg9h8VQzGeznCy7mR
-         7VXh/otQQsyUfdCTjnJRjVLjxohpzHPzo+lnEY0uYTRCSQR8mAMLtcDkeeMWRhHDulsU
-         9J56E3mHp1/9AeDR1s/nSilqFcVWSs3eYS8EeV/0HFFjECLhcBNUsMWWiIgk/jdL2rLt
-         qJqg+cqWkBVjVd+I1MyUfwOSWO2523gTUAn+JKp6aJ2JLP6lo2itWIONBsoGS9VHxRiM
-         8fdmJ+FMBDUV9t6rUli68to+EhSXF6roOtJFu3fe96kckhFc3GGXvL29/9wjVaC5lyQY
-         XY5g==
-X-Gm-Message-State: ABy/qLZ3MHd6cUS8dkih9pKEn2VQL4ZdFoYtF5hA+DA4zObugZfqRnGS
-        wkonoTbhWLhv/rhLAScihX3mXA==
-X-Google-Smtp-Source: APBJJlEy4rj/lqQ6TbWxXc1ZF0trMQbNs5KXGdjrzM2nkfjDzE3xUyG1e4YjtrkMvWKeBrYRYVhf0g==
-X-Received: by 2002:adf:fa09:0:b0:317:3deb:a899 with SMTP id m9-20020adffa09000000b003173deba899mr3659091wrr.1.1690630172870;
-        Sat, 29 Jul 2023 04:29:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z8-20020adfec88000000b0031773a8e5c4sm7224137wrn.37.2023.07.29.04.29.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jul 2023 04:29:32 -0700 (PDT)
-Message-ID: <c4cc2dfa-ca3f-1d51-8a3b-a131ccc54d03@linaro.org>
-Date:   Sat, 29 Jul 2023 13:29:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH V3 5/5] ASoC: codecs: aw88261 chip register file, Kconfig
- and Makefile
-Content-Language: en-US
-To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-        rf@opensource.cirrus.com, shumingf@realtek.com,
-        ryans.lee@analog.com, 13916275206@139.com,
-        herve.codina@bootlin.com, ckeepax@opensource.cirrus.com,
-        doug@schmorgal.com, fido_max@inbox.ru, povik+lin@cutebit.org,
-        liweilei@awinic.com, yijiangtao@awinic.com, colin.i.king@gmail.com,
-        trix@redhat.com, alsa-devel@alsa-project.org,
+        with ESMTP id S229502AbjG2LjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 07:39:09 -0400
+Received: from mgamail.intel.com (unknown [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE904E4B;
+        Sat, 29 Jul 2023 04:39:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690630748; x=1722166748;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VYVphgUxW/IZwuTVDTy1kBZK4eLOSr3761Byb5rYCFU=;
+  b=cR3cqK0eR/U+FmeteYyPajN8I9hgWFIfpOa9iGERmNcC0d4OoLpw9fBy
+   2V1IBsupQ/qhVQs3HWFbs/8XhDkK26IT+jO8IL9mNhWqPwEhuupjIzY/r
+   3+syV7UhCFq4JzM76Ms0qPiRQhooFKr11Nf/5MHLHSzTE8Lp24nJluaFG
+   EkMe2W30GY3eBydsu07NzzW47D0fzeqxGsXSkHF3kcrVeS2Afjngo9nCu
+   dzYCw+Or0KwUHj/XwsIBxQkYOVMiY4Bmyf3UQBenJHN7PRc+3+GrVD5lz
+   8eUyYx7d1NEhQAA3xfJZMio1Uk4IPUttVHAVfGSXKENGA+lIBmohljMWI
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10785"; a="455115504"
+X-IronPort-AV: E=Sophos;i="6.01,240,1684825200"; 
+   d="scan'208";a="455115504"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jul 2023 04:39:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10785"; a="797706733"
+X-IronPort-AV: E=Sophos;i="6.01,240,1684825200"; 
+   d="scan'208";a="797706733"
+Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 29 Jul 2023 04:39:05 -0700
+Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qPiHo-00040R-22;
+        Sat, 29 Jul 2023 11:39:04 +0000
+Date:   Sat, 29 Jul 2023 19:38:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     zhangjianming@awinic.com
-References: <20230729091223.193466-1-wangweidong.a@awinic.com>
- <20230729091223.193466-6-wangweidong.a@awinic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230729091223.193466-6-wangweidong.a@awinic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Subject: Re: [PATCH v3] of: dynamic: Refactor action prints to not use "%pOF"
+ inside devtree_lock
+Message-ID: <202307291901.IEr9LCpd-lkp@intel.com>
+References: <20230728231950.1619073-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230728231950.1619073-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,84 +71,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/07/2023 11:12, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
-> 
-> Mainly includes aw88261 register table, Makefile and Kconfig.
-> 
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
-> ---
->  sound/soc/codecs/Kconfig               |  15 +
->  sound/soc/codecs/Makefile              |   3 +
->  sound/soc/codecs/aw88261/aw88261_reg.h | 374 +++++++++++++++++++++++++
->  3 files changed, 392 insertions(+)
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_reg.h
-> 
-> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> index c2de4ee72183..1e3526812cc8 100644
-> --- a/sound/soc/codecs/Kconfig
-> +++ b/sound/soc/codecs/Kconfig
-> @@ -55,6 +55,7 @@ config SND_SOC_ALL_CODECS
->  	imply SND_SOC_ALC5632
->  	imply SND_SOC_AW8738
->  	imply SND_SOC_AW88395
-> +	imply SND_SOC_AW88261
->  	imply SND_SOC_BT_SCO
->  	imply SND_SOC_BD28623
->  	imply SND_SOC_CHV3_CODEC
-> @@ -640,6 +641,20 @@ config SND_SOC_AW88395
->  	  digital Smart K audio amplifier with an integrated 10V
->  	  smart boost convert.
->  
-> +config SND_SOC_AW88261
-> +	tristate "Soc Audio for awinic aw88261"
-> +	depends on I2C
-> +	select CRC8
-> +	select REGMAP_I2C
-> +	select GPIOLIB
-> +	select SND_SOC_AW88395_LIB
-> +	help
-> +	  This option enables support for aw88261 Smart PA.
-> +	  The awinic AW88261 is an I2S/TDM input, high efficiency
-> +	  digital Smart K audio amplifier. The output voltage of
-> +	  boost converter can be adjusted smartly according to
-> +	  the input amplitude.
-> +
->  config SND_SOC_BD28623
->  	tristate "ROHM BD28623 CODEC"
->  	help
-> diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-> index b48a9a323b84..9df43de213f0 100644
-> --- a/sound/soc/codecs/Makefile
-> +++ b/sound/soc/codecs/Makefile
-> @@ -49,6 +49,8 @@ snd-soc-aw8738-objs := aw8738.o
->  snd-soc-aw88395-lib-objs := aw88395/aw88395_lib.o
->  snd-soc-aw88395-objs := aw88395/aw88395.o \
->  			aw88395/aw88395_device.o
-> +snd-soc-aw88261-objs := aw88261/aw88261.o \
-> +			aw88261/aw88261_device.o
->  snd-soc-bd28623-objs := bd28623.o
->  snd-soc-bt-sco-objs := bt-sco.o
->  snd-soc-chv3-codec-objs := chv3-codec.o
-> @@ -431,6 +433,7 @@ obj-$(CONFIG_SND_SOC_ARIZONA)	+= snd-soc-arizona.o
->  obj-$(CONFIG_SND_SOC_AW8738)	+= snd-soc-aw8738.o
->  obj-$(CONFIG_SND_SOC_AW88395_LIB) += snd-soc-aw88395-lib.o
->  obj-$(CONFIG_SND_SOC_AW88395)	+=snd-soc-aw88395.o
-> +obj-$(CONFIG_SND_SOC_AW88261)	+=snd-soc-aw88261.o
->  obj-$(CONFIG_SND_SOC_BD28623)	+= snd-soc-bd28623.o
->  obj-$(CONFIG_SND_SOC_BT_SCO)	+= snd-soc-bt-sco.o
->  obj-$(CONFIG_SND_SOC_CHV3_CODEC) += snd-soc-chv3-codec.o
-> diff --git a/sound/soc/codecs/aw88261/aw88261_reg.h b/sound/soc/codecs/aw88261/aw88261_reg.h
-> new file mode 100644
-> index 000000000000..7ef128a3e6ee
-> --- /dev/null
-> +++ b/sound/soc/codecs/aw88261/aw88261_reg.h
-> @@ -0,0 +1,374 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+Hi Rob,
 
-If you add the headers now, it means they are not used in any previous
-patches. Therefore drop the header - it is useless.
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.5-rc3 next-20230728]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring/of-dynamic-Refactor-action-prints-to-not-use-pOF-inside-devtree_lock/20230729-072155
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230728231950.1619073-1-robh%40kernel.org
+patch subject: [PATCH v3] of: dynamic: Refactor action prints to not use "%pOF" inside devtree_lock
+config: i386-randconfig-i014-20230728 (https://download.01.org/0day-ci/archive/20230729/202307291901.IEr9LCpd-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce: (https://download.01.org/0day-ci/archive/20230729/202307291901.IEr9LCpd-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307291901.IEr9LCpd-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/of/dynamic.c:74:6: warning: no previous prototype for function 'of_changeset_action_print' [-Wmissing-prototypes]
+   void of_changeset_action_print(unsigned long action, struct device_node *np, const char *prop_name)
+        ^
+   drivers/of/dynamic.c:74:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void of_changeset_action_print(unsigned long action, struct device_node *np, const char *prop_name)
+   ^
+   static 
+>> drivers/of/dynamic.c:87:6: error: expected expression
+           if (pr_debug("notify "))
+               ^
+   include/linux/printk.h:579:2: note: expanded from macro 'pr_debug'
+           dynamic_pr_debug(fmt, ##__VA_ARGS__)
+           ^
+   include/linux/dynamic_debug.h:267:2: note: expanded from macro 'dynamic_pr_debug'
+           _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+           ^
+   include/linux/dynamic_debug.h:248:2: note: expanded from macro '_dynamic_func_call'
+           _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+           ^
+   include/linux/dynamic_debug.h:246:2: note: expanded from macro '_dynamic_func_call_cls'
+           __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+           ^
+   include/linux/dynamic_debug.h:219:58: note: expanded from macro '__dynamic_func_call_cls'
+   #define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {   \
+                                                            ^
+   drivers/of/dynamic.c:571:6: error: expected expression
+           if (pr_debug("changeset: applying: cset<%p> ", ce))
+               ^
+   include/linux/printk.h:579:2: note: expanded from macro 'pr_debug'
+           dynamic_pr_debug(fmt, ##__VA_ARGS__)
+           ^
+   include/linux/dynamic_debug.h:267:2: note: expanded from macro 'dynamic_pr_debug'
+           _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+           ^
+   include/linux/dynamic_debug.h:248:2: note: expanded from macro '_dynamic_func_call'
+           _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+           ^
+   include/linux/dynamic_debug.h:246:2: note: expanded from macro '_dynamic_func_call_cls'
+           __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+           ^
+   include/linux/dynamic_debug.h:219:58: note: expanded from macro '__dynamic_func_call_cls'
+   #define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {   \
+                                                            ^
+   1 warning and 2 errors generated.
+
+
+vim +87 drivers/of/dynamic.c
+
+    81	
+    82	int of_reconfig_notify(unsigned long action, struct of_reconfig_data *p)
+    83	{
+    84		int rc;
+    85		struct of_reconfig_data *pr = p;
+    86	
+  > 87		if (pr_debug("notify "))
+    88			of_changeset_action_print(action, pr->dn, pr->prop ? pr->prop->name : NULL);
+    89	
+    90		rc = blocking_notifier_call_chain(&of_reconfig_chain, action, p);
+    91		return notifier_to_errno(rc);
+    92	}
+    93	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
