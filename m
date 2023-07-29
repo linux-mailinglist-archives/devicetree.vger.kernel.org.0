@@ -2,130 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD471767CB7
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 09:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 748D8767D85
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 11:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjG2HLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jul 2023 03:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41628 "EHLO
+        id S231926AbjG2JOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jul 2023 05:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjG2HLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 03:11:45 -0400
-Received: from rivendell.linuxfromscratch.org (rivendell.linuxfromscratch.org [208.118.68.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8C83C44BE;
-        Sat, 29 Jul 2023 00:11:43 -0700 (PDT)
-Received: from [192.168.124.11] (unknown [113.140.29.5])
-        by rivendell.linuxfromscratch.org (Postfix) with ESMTPSA id D31131C1D3F;
-        Sat, 29 Jul 2023 07:11:34 +0000 (GMT)
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 1.0.0 at rivendell.linuxfromscratch.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfromscratch.org;
-        s=cert4; t=1690614701;
-        bh=GtWup6G69OxGe9NTbfxKk/AU+VDZ7uQHTSJ8d2QGmfQ=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References;
-        b=Bj1leRvNyevEtj8TzesgVIBZYbWbdWg23CPM/Xn5iwZyDxfdaMspe2ttJVf9hZnGl
-         q67wOPsfDIm7OX52dFItVqoytUuczsto/umSo/psLgv7r4ZD9lOLOEsSYQ9EhUaHPw
-         7PmcJ8PNVoml/FFf7xUuP+KZNzIlHDAvT5vKAvh7QZjceBnG4ipFEPv2ggBz9z4A8n
-         J+S47IMhVlhXBjpDiAO/QGKyTlf9osQwNKpIu3e2Pz8xxtIRCoqNA7hGgJCu8ZIywN
-         naYpGypcuG/4c4oKhZeryhCqS+HN6xw3CxyrsTIHlOJUvF7ju5vPx2rVhQ4X8MPbA2
-         mD0mxJ8IlVLpw==
-Message-ID: <a4e5c82728d053b6888fdb6870ec69bd83cb6405.camel@linuxfromscratch.org>
-Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
-From:   Xi Ruoyao <xry111@linuxfromscratch.org>
-To:     Drew Fustini <dfustini@baylibre.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Jisheng Zhang <jszhang@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Date:   Sat, 29 Jul 2023 15:11:27 +0800
-In-Reply-To: <ZMQAqUfb0y/igQs2@x1>
-References: <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
-         <ZME1J4mpVf5yth32@xhacker>
-         <866eab3e30a18c50742a75d62aee223fdc7e3cee.camel@linuxfromscratch.org>
-         <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
-         <ZMKXQpreSr47MFj6@xhacker>
-         <290101d386866f639a7c482527d7a78c5108d49b.camel@linuxfromscratch.org>
-         <ZMNojqwLxcG8FcHN@x1>
-         <af41edfe515373530d3d1ffc43c581131e6f6038.camel@linuxfromscratch.org>
-         <0f528aa0d4e6f2491835c9a78bb38dd162b75810.camel@linuxfromscratch.org>
-         <CAJM55Z9SeT_-5vDWVUAOKeNGZ0TmBPQMjdaZuyVcnbNJuxNCBQ@mail.gmail.com>
-         <ZMQAqUfb0y/igQs2@x1>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+        with ESMTP id S230219AbjG2JOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 05:14:05 -0400
+Received: from out28-5.mail.aliyun.com (out28-5.mail.aliyun.com [115.124.28.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45D54EE3;
+        Sat, 29 Jul 2023 02:13:30 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1943245|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0227548-0.000323795-0.976921;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047204;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.U3WkWdS_1690621946;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.U3WkWdS_1690621946)
+          by smtp.aliyun-inc.com;
+          Sat, 29 Jul 2023 17:12:29 +0800
+From:   wangweidong.a@awinic.com
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
+        wangweidong.a@awinic.com, shumingf@realtek.com,
+        ryans.lee@analog.com, 13916275206@139.com,
+        herve.codina@bootlin.com, ckeepax@opensource.cirrus.com,
+        doug@schmorgal.com, fido_max@inbox.ru, povik+lin@cutebit.org,
+        liweilei@awinic.com, yijiangtao@awinic.com, colin.i.king@gmail.com,
+        trix@redhat.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     zhangjianming@awinic.com
+Subject: [PATCH V3 0/5] ASoC: codecs: Add awinic AW88261 audio amplifier driver
+Date:   Sat, 29 Jul 2023 17:12:18 +0800
+Message-ID: <20230729091223.193466-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2023-07-28 at 10:53 -0700, Drew Fustini wrote:
-> On Fri, Jul 28, 2023 at 12:23:12PM +0200, Emil Renner Berthing wrote:
-> > On Fri, 28 Jul 2023 at 12:07, Xi Ruoyao <xry111@linuxfromscratch.org> w=
-rote:
-> > >=20
-> > > On Fri, 2023-07-28 at 15:40 +0800, Xi Ruoyao wrote:
-> > > > On Fri, 2023-07-28 at 00:04 -0700, Drew Fustini wrote:
-> > > > > It seems like your kernel config is the problem. I used it and I =
-saw
-> > > > > the same result of a panic in riscv_intc_irq:
-> > > > > https://gist.github.com/pdp7/1a26ebe20017a3b90c4e9c005f8178e1
-> > > > >=20
-> > > > > This is the config I have been using successfully:
-> > > > > https://gist.github.com/pdp7/ecb34ba1e93fc6cfc4dce66d71e14f82
-> > > > >=20
-> > > > > Could you try that config?
-> > > > >=20
-> > > > > Linux 6.5-rc3 boots okay when built with it:
-> > > > > https://gist.github.com/pdp7/580b072f9a5bf9be87cf88b5f81e50e3
-> > > >=20
-> > > > Yes, your configuration works.
-> > > >=20
-> > > > I'll try to figure out which specific configuration item is problem=
-atic
-> > > > in my origin one...
-> > >=20
-> > > Ah, I found it... If I deselect CONFIG_FRAME_POINTER it will crash.
-> > >=20
-> > > And I see RISC-V selects ARCH_WANT_FRAME_POINTERS, so it seems frame
-> > > pointer is mandated.=C2=A0 But then why I'm able to deselect
-> > > CONFIG_FRAME_POINTER?
-> >=20
-> > You've probably run into this issue:
-> > https://lore.kernel.org/linux-riscv/20230716001506.3506041-1-guoren@ker=
-nel.org/
-> >=20
-> > Try applying those two patches.
-> >=20
-> > /Emil
->=20
-> Thanks, I think that fixes the issue with CONFIG_FRAME_POINTER=3Dn. I had
-> the same kernel crash [1] when trying the config from Xi [2].
->=20
-> I just did 'b4 shazam 20230716001506.3506041-1-guoren@kernel.org' and
-> the riscv_intc_irq panic no longer occurs [3]. I don't have the mmc
-> patches applied on this branch so the boot just hangs at mounting rootfs
-> but I think it is otherwise okay.
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-Again thanks for your help!  I'm looking forward to your MMC driver :).
+The awinic AW88261 is an I2S/TDM input, high efficiency
+digital Smart K audio amplifier
 
-> [1] https://gist.github.com/pdp7/1a26ebe20017a3b90c4e9c005f8178e1
-> [2] https://gist.github.com/pdp7/c6e358be892d506826be304dcc346a7a
-> [3] https://gist.github.com/pdp7/871ada434febeca4ff93f2381352c038
+v1 -> v2: Submit the yaml file as a separate patch file
+          Modify word capitalization in the Kconfig file
+          Delete unused macro definitions 
+
+Weidong Wang (5):
+  ASoC: dt-bindings: Add schema for "awinic,aw88261"
+  ASoC: codecs: Add code for bin parsing compatible with aw88261
+  ASoC: codecs: Add aw88261 amplifier driver
+  ASoC: codecs: aw88261 device related operation functions
+  ASoC: codecs: aw88261 chip register file, Kconfig and Makefile
+
+ .../bindings/sound/awinic,aw88395.yaml        |   4 +-
+ sound/soc/codecs/Kconfig                      |  15 +
+ sound/soc/codecs/Makefile                     |   3 +
+ sound/soc/codecs/aw88261/aw88261.c            | 517 +++++++++++
+ sound/soc/codecs/aw88261/aw88261.h            |  52 ++
+ sound/soc/codecs/aw88261/aw88261_device.c     | 877 ++++++++++++++++++
+ sound/soc/codecs/aw88261/aw88261_device.h     |  79 ++
+ sound/soc/codecs/aw88261/aw88261_reg.h        | 374 ++++++++
+ sound/soc/codecs/aw88395/aw88395_lib.c        | 193 +++-
+ sound/soc/codecs/aw88395/aw88395_reg.h        |   1 +
+ 10 files changed, 2097 insertions(+), 18 deletions(-)
+ create mode 100644 sound/soc/codecs/aw88261/aw88261.c
+ create mode 100644 sound/soc/codecs/aw88261/aw88261.h
+ create mode 100644 sound/soc/codecs/aw88261/aw88261_device.c
+ create mode 100644 sound/soc/codecs/aw88261/aw88261_device.h
+ create mode 100644 sound/soc/codecs/aw88261/aw88261_reg.h
+
+
+base-commit: ffabf7c731765da3dbfaffa4ed58b51ae9c2e650
+-- 
+2.41.0
 
