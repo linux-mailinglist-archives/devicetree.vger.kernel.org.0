@@ -2,124 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B620767FD8
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 15:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3885767FDF
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 16:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbjG2N6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jul 2023 09:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50510 "EHLO
+        id S231578AbjG2OBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jul 2023 10:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231365AbjG2N6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 09:58:24 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92FD01707;
-        Sat, 29 Jul 2023 06:58:22 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C6A241C0004;
-        Sat, 29 Jul 2023 13:58:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-        t=1690639101;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cOPjuFWRIoL4Z0Eeol5gO6QE7SM7OBiqVr5rmWDNiY0=;
-        b=EBG41HMYCfHzsxX3Lu9wjhkOhuazVRfwvQjx8aikqyaWwoErHMXsViXnbGoqg8Nond5/Ie
-        HFcvgQ+1rSLKe6Noru8SdP36Q08DwtfLx+vnxlUmQwTyyJPL/qs3ONncHX5t9vasJE0DoX
-        /eUthf9xVwmkfO/rLXQZWdtFLykvy0nRUlIhEylCGqp+qNxw+t3FQG17qIEomftqzei86U
-        nf9JFAW3gXQsm8cxVOQEkEImwkkNkMtC/LEaxEvx4UslsC1bvpwcAcgGqreWQFtlGkpm8B
-        phERC66B0NTICUCuh6LsJeHI82jprLe45uKr1PAdK/4+AvNSTuhPiGZt3sxqiQ==
-Message-ID: <cef11e4e-d96e-8cc8-045c-adcf006bdcf0@arinc9.com>
-Date:   Sat, 29 Jul 2023 16:58:10 +0300
+        with ESMTP id S231379AbjG2OBD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jul 2023 10:01:03 -0400
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7172D1730
+        for <devicetree@vger.kernel.org>; Sat, 29 Jul 2023 07:01:02 -0700 (PDT)
+Received: by mail-vs1-xe36.google.com with SMTP id ada2fe7eead31-447805165e9so75688137.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Jul 2023 07:01:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1690639261; x=1691244061;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MZVAQTl/KJwMx5MiWB8LXWVD/Og4xmNjpD5ZpeSnK7c=;
+        b=ln2TgybqxMOQuiLgVhRhLYsqCFV+8HwlugaM1KqCgC8XMYyjTTJNTczBAf5RteyRiu
+         EnUxo6Gpx7MnahdGEifLBxDmjnoVDHsU27yOxV0EIgSw/JqfZgF2ut6XolsFdcpXFgY/
+         NLRO6vNtbqi4z7Wb2HqwcIQnCUk/VasMlHM5rjHx0EsvjMseLj2EFhhA3Ge2jCMmxm1p
+         JwExs0c8Fz+1a7PfrbKqaeukn5dPUJ5eMgKPTD1GYc3f3LXY6uta9uVlq9eSrmmni1iB
+         pTg1bU2dZouz/HV0Hh7D1+Qsgbzk6Lg2vxhW0bCyG6Ok0JRfsIhDE5Sl1s+eJc6EU1R8
+         skIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690639261; x=1691244061;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MZVAQTl/KJwMx5MiWB8LXWVD/Og4xmNjpD5ZpeSnK7c=;
+        b=C4vMFeaoy/0z7hPjg+mLaiGxU6vd85UpJSS3oZzXXcJBR2TDXFoJAACaBDivBQ/WTb
+         CIu167AVz08p6SoPOHqd3jtHb3BglT+TvNh1jGSzR8L/tr/TSssGp6+M6s2R2UwPhFLw
+         1q1tNi8UJKybcYZ8NPxVprU90zZLRdWCx9Xd2APIg2TArNXoQHoK62V/zHzq0pTAVtRS
+         uGwGG6gSRbQCSN9m1WI5n4ufZuM3pU4EgPaZMub6NwUyOaD+0/19/kebfQ1V+xPkNLWN
+         8yQFXuLlMFLLyaK+u47OOjJBDPIsGoF36GSDo8cK5Ru6WkCQe0pAc9LG60jTaDZoybz5
+         h8dg==
+X-Gm-Message-State: ABy/qLY2osIGz2XUP6LSDjkWQUueJZbFpSVtvMX1gRNQWHUVNAGJ48Dh
+        awnIJroVM6foUtczEFymw4zqnprEtM53pCH5jEOwKQ==
+X-Google-Smtp-Source: APBJJlEi2RKDbITIjmlsevHI7wqEnXUgQewcF8UvMqd3GbsnOxKtGzuN1hsrPvplsPt4ahSEpNWCfRcs3dx1OhXil1E=
+X-Received: by 2002:a1f:ed83:0:b0:471:1785:e838 with SMTP id
+ l125-20020a1fed83000000b004711785e838mr3717737vkh.2.1690639261551; Sat, 29
+ Jul 2023 07:01:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: MediaTek Frame Engine Ethernet: does it need any resets?
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Felix Fietkau <nbd@nbd.name>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Network Development <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-mips@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>
-References: <2a4da319-a78a-7cb1-6f18-f59180de779f@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <2a4da319-a78a-7cb1-6f18-f59180de779f@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230724063520.182888-1-alexander.stein@ew.tq-group.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Sat, 29 Jul 2023 16:00:50 +0200
+Message-ID: <CAMRc=Me3PAf7vuBS9MbLDh1t2MMWiTjA1CTW38UyMLmioYEowg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Add gpio-line-names to STMPE GPIO
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29.07.2023 14:45, Rafał Miłecki wrote:
-> Hi,
-> 
-> I'm trying to understand MediaTek's Ethernet controller resets.
-> 
-> I noticed there is sth fishy when checking dts files. See following
-> errors:
-> 
-> arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dtb: 
-> ethernet@1e100000: resets: [[2, 6], [2, 23]] is too short
->          From schema: 
-> Documentation/devicetree/bindings/net/mediatek,net.yaml
-> arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dtb: 
-> ethernet@1e100000: reset-names:1: 'gmac' was expected
->          From schema: 
-> Documentation/devicetree/bindings/net/mediatek,net.yaml
-> arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dtb: 
-> ethernet@1e100000: reset-names: ['fe', 'eth'] is too short
->          From schema: 
-> Documentation/devicetree/bindings/net/mediatek,net.yaml
-> arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dtb: 
-> ethernet@1e100000: Unevaluated properties are not allowed 
-> ('reset-names', 'resets' were unexpected)
->          From schema: 
-> Documentation/devicetree/bindings/net/mediatek,net.yaml
+On Mon, Jul 24, 2023 at 8:35=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> This is a gpio-controller, so gpio-line-names should be allowed as well.
+> stmpe2403 supports up to 24 GPIOs.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Changes in v2:
+> * Add min/maxItems
+>
+>  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml b/=
+Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> index 22c0cae73425..4555f1644a4d 100644
+> --- a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> @@ -28,6 +28,10 @@ properties:
+>
+>    gpio-controller: true
+>
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 24
+> +
+>    interrupt-controller: true
+>
+>    st,norequest-mask:
+> --
+> 2.34.1
+>
 
-Sigh, looks like this patch was applied regardless of my points here. 
-Now we're here picking up the pieces.
+Applied, thanks!
 
-https://lore.kernel.org/netdev/b6c7462d-99fc-a8e1-1cc2-d0a1efc7c34d@arinc9.com/
-
-> 
-> 
-> 1. Binding mediatek,net.yaml
-> It says that when present, there must be 3 resets: fe, gmac, ppe
-> 
-> 2. mt7621.dtsi
-> It specifies 2 resets: fe, eth
-> 
-> 3. mt7622.dtsi
-> It doesn't specify any resets
-> 
-> 4. mt7629.dtsi
-> It doesn't specify any resets
-> 
-> 5. drivers/net/ethernet/mediatek/
-> I don't see any reset_control_* code at all
-> 
-> 
-> Can someone help me what's the actual case with resets? Are they needed?
-> Are they used?
-
-I'm adding Sergio to CC as they've been the one working on this on 
-mt7621.dtsi.
-
-There's relevant information here.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=64b2d6ffff862c0e7278198b4229e42e1abb3bb1
-
-Arınç
+Bart
