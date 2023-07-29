@@ -2,358 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49F85767B89
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 04:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68C0A767BA0
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 04:54:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbjG2CjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 22:39:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38802 "EHLO
+        id S232828AbjG2Cy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 22:54:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjG2CjO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 22:39:14 -0400
-X-Greylist: delayed 484 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 28 Jul 2023 19:39:10 PDT
-Received: from mail-m118111.qiye.163.com (mail-m118111.qiye.163.com [115.236.118.111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C915C1711;
-        Fri, 28 Jul 2023 19:39:10 -0700 (PDT)
-Received: from [172.16.12.33] (unknown [58.22.7.114])
-        by mail-m118111.qiye.163.com (Hmail) with ESMTPA id 59FE9580196;
-        Sat, 29 Jul 2023 10:30:52 +0800 (CST)
-Message-ID: <b0556e36-6a25-6956-4e61-d031c7e360b4@rock-chips.com>
-Date:   Sat, 29 Jul 2023 10:30:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable TYPE-C PD for ROC-RK3399-PC
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>,
-        kernel <kernel@collabora.com>, linux-usb@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>, Da Xue <da@lessconfused.com>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        wmc@rock-chips.com
-References: <20230719122123.3702588-1-jagan@amarulasolutions.com>
- <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
- <8ec1c4bb97ba0857275a540590fb302929436ba4.camel@collabora.com>
- <4659362.yKVeVyVuyW@phil>
- <CAMty3ZB5LE-GcFChZK3HXY6o6RMiuKoaYS4S7QasixiVqNK9gw@mail.gmail.com>
+        with ESMTP id S229668AbjG2Cy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 22:54:27 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704B0EB;
+        Fri, 28 Jul 2023 19:54:18 -0700 (PDT)
+X-UUID: 3383bbbe2dbb11ee9cb5633481061a41-20230729
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=R1j8sBk73oX5QHTRGQh2/R6lKFtLAQwm6sBNI+6P0pg=;
+        b=FHNbbejuUJ6P9Qjx/WzDV+R4WhTVmNK8qMNeA5QPWBiDT63SI4EMMnRZk002JsMXg3xzrB39pgL4SvWuJ229XYRYdLvZ8A/iRQ7L9pno3YZwCmRnF+K5LeUferKjmbm2qs1GwORjhjU9X5tz9Bw2TdKaAkuCSw1lcE1Kdn85wSU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.30,REQID:9bc258c9-d13b-42af-8604-f8e04f246984,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.30,REQID:9bc258c9-d13b-42af-8604-f8e04f246984,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:1fcc6f8,CLOUDID:1faee9b3-a467-4aa9-9e04-f584452e3794,B
+        ulkID:230728172600KU21SN27,BulkQuantity:7,Recheck:0,SF:38|29|28|17|19|48|1
+        02,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:40,QS:nil,BEC:nil,CO
+        L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:PA,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_FSD,TF_CID_SPAM_ULS,TF_CID_SPAM_SNR,TF_CID_SPAM_SDM,
+        TF_CID_SPAM_FAS
+X-UUID: 3383bbbe2dbb11ee9cb5633481061a41-20230729
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 349599497; Sat, 29 Jul 2023 10:54:14 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sat, 29 Jul 2023 10:54:12 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sat, 29 Jul 2023 10:54:12 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W3m2oVKZQT+akPLM74aYq4vKzetWV8BCWNQB5xp4y7iHzoqlj/2V4/YYprr80sCyOIgjdIdaLQF74OSHh9Ndc5pHfFIIwyE7xEXoDqBM7zYtX/dIy8UHd3nBbPvHWCULY5GLG8Eu/6Aq1fXz+s4NT7RPXskQKIqRa4f7GipxGhRlyOsVc8zHDlAav+rEKbgW1+68i4tVA/Tqh6phNkKyRlzUBLGM7aAa3PisGj4axqQoWgPlOvGwgkI9fd0pf4Es9x2PVLXawbsO2zeEeU7SAHhBKZZd6BbTGWK4XQ+I8ZDoysWvonxVwoGyiIIRYmWVINRLw2JoRfyTZXGUmSsG0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=R1j8sBk73oX5QHTRGQh2/R6lKFtLAQwm6sBNI+6P0pg=;
+ b=jZHZjLAC7LmHC0G7ynlntxmt3C2RGXSF+n96T5spKVn63V9N2Yb6U8XgJdUnHiFPdnw3VDj2rhL8C6SRyfxBG1HlNGflPVODFrfdEX863jSEYUe8phpZrAVm6rmtWAj1BbDZ6QyhGMUjq5Hv96MYTU5ZUK+iJ1VfHaNl5R5/L5g5+zPpNXLdpKvEhCZ9IlURZSLJPxnZynE7bCFpLFD34v9P4BnQmitYBZ2GLPHKPJA3U6p62g94YPtOqBQ0QpEq71lar60ELtlZXbC8VBOM6w1y2mcegDIlozfloAicMjB3mKtYvuN3b4p9nxniJYzHNZh8YcCHGY53xZD6IaIviQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R1j8sBk73oX5QHTRGQh2/R6lKFtLAQwm6sBNI+6P0pg=;
+ b=vHwFLKcdH3jInX5867yD9Vb0d3W2OYRRNm9G8Hu8JuyTfalapdHCp8V9MdIAtQuYxsLs0BNBxzzvIv0HuJKuTsQfubCTffrMQ87k4TrDUFmkL7hVFCnDgOE93Cq01x7q49w5xZghGd9YPNxHgZ+iTf9KS2d4WbqfInqjEho3w3M=
+Received: from SL2PR03MB4153.apcprd03.prod.outlook.com (2603:1096:100:4e::10)
+ by PSAPR03MB5542.apcprd03.prod.outlook.com (2603:1096:301:4e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.34; Sat, 29 Jul
+ 2023 02:54:09 +0000
+Received: from SL2PR03MB4153.apcprd03.prod.outlook.com
+ ([fe80::b637:cc4e:c9bd:64d]) by SL2PR03MB4153.apcprd03.prod.outlook.com
+ ([fe80::b637:cc4e:c9bd:64d%3]) with mapi id 15.20.6631.026; Sat, 29 Jul 2023
+ 02:54:08 +0000
+From:   =?utf-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>
+To:     "nhebert@chromium.org" <nhebert@chromium.org>,
+        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+        "nfraprado@collabora.com" <nfraprado@collabora.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "frkoenig@chromium.org" <frkoenig@chromium.org>,
+        "stevecho@chromium.org" <stevecho@chromium.org>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v7,0/11] media: mediatek: vcodec: separate encoder and
+ decoder
+Thread-Topic: [PATCH v7,0/11] media: mediatek: vcodec: separate encoder and
+ decoder
+Thread-Index: AQHZvHAYvJOvd9IgRkKaXq4ywXAFwq/KREcAgASt1ICAASTmgA==
+Date:   Sat, 29 Jul 2023 02:54:08 +0000
+Message-ID: <881a8f1860bab64ca9f03e90e3595c451f6dab31.camel@mediatek.com>
+References: <20230722074230.30558-1-yunfei.dong@mediatek.com>
+         <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
+         <2d9eeb0e-71b3-157c-b947-6dd5485f46e3@xs4all.nl>
+In-Reply-To: <2d9eeb0e-71b3-157c-b947-6dd5485f46e3@xs4all.nl>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-From:   Frank Wang <frank.wang@rock-chips.com>
-In-Reply-To: <CAMty3ZB5LE-GcFChZK3HXY6o6RMiuKoaYS4S7QasixiVqNK9gw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkIeTFZMSk9OTU1OTx4aS01VEwETFh
-        oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSkpLQ0hIVUpLS1VLWQ
-        Y+
-X-HM-Tid: 0a899f7c06222eb7kusn59fe9580196
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mk06LRw*TD1KTz1RLgw1PApP
-        KDUKCVFVSlVKTUJLTkJMQ05ISEtNVTMWGhIXVR0JGhUQVQwaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-        EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKTE9KQjcG
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SL2PR03MB4153:EE_|PSAPR03MB5542:EE_
+x-ms-office365-filtering-correlation-id: c43115e0-ca9d-4a5c-91b8-08db8fdf1427
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DLWSciKVkmxhCGv0lMdSVM43YWM2Igagov/qYTFB7Ox0kyRashRtvDq0ZSux7HABc1nNRAb3yDycMliIYFYTcd8M+Tf82sDsrgGNeH4v9e0NeCxPGr3b3e91WK39dFRKVQsmExPzLGeOq9A+lfn8QitX6neQUsebF0sMGifMIBoRSokP/OrrhEeNcM0NvPF9QdO2qVJ6ahScsHXkj/WT7IjCBQdpf8NZjwzrBM8ADyxhWd5Jso0yvY9Wy9BaAgYIjN5+O5g/01bs1YHeuLwQ0HWNx62LOCxGWtENel+16DrKFStzHdPgRwfNcvOadZp/Jm94Bpvq063hPudrRsPMp8i4t42toKP1CS7x7d4JgnckaHH6zFbvgtgo/iy0ElHtAK30be9R0saA5LvETGaptXTaKM/9J/RHJCSX8JY8hWlpAsmPr0c+T1ASr/AXyx0tbc8vgjmtTyesvTP28hw6NLuN+r/eX2H59PEdeRevkWF6nlt29YO/pQtoeiADK+y6ix8hup8E8wN7lxU4gMCPqBntyCTy9YRk7euzhHX9zamOx84dthV8vzhyjlkhA+ohstydeNw8CNYqPix8eaNRu8xRMTt2+yPxzNz4gICj6KqIPpOqNha5BhVd3LUgHEE99uQc4cZwW15VNRurr+5OsL46TxWrc6kpOwMZ+SE+BqiBZXO8togGCTTC6lGRf7Vx
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2PR03MB4153.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(136003)(376002)(346002)(366004)(451199021)(85182001)(66946007)(2616005)(64756008)(66556008)(83380400001)(66476007)(66446008)(41300700001)(122000001)(5660300002)(36756003)(86362001)(8676002)(8936002)(6512007)(966005)(6486002)(110136005)(54906003)(71200400001)(478600001)(316002)(4326008)(38100700002)(38070700005)(2906002)(7416002)(76116006)(91956017)(53546011)(6506007)(186003)(26005)(99106002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bEpmck5uVDlzNVVrQmt2RnY1cERESkU0ZENzUU9rZGVZODJrbG1OZ1JOeUtW?=
+ =?utf-8?B?TlkzakUvTFdTSUpCYWgyOE5jZkJmOEdQMElkTWVPR2NoandycWVPTnVPQ2R2?=
+ =?utf-8?B?WVpzbHo4Uk51OGs3QXM2VGl5SmMvMTBnbkVpUGtlaEFmc1RhTnJoK3FrUWFp?=
+ =?utf-8?B?MDZrQlZSVTYzUnFLbFBFS000am1WaEIveU5MUHdaZHp6UVZDMGpPWXoxdjcz?=
+ =?utf-8?B?N1VXcUpZQmVtbmxpeGdSalRjMmdkUG9WUFVmeGFYVDdRNkRzSlk1OFYxZXdl?=
+ =?utf-8?B?SWJJbXcwSDRvS3pOaG52bWFKcEx0a1RueEpGWG0zeWV2WWloUFF0cHpMdDZn?=
+ =?utf-8?B?UjhYQWdqVDJvUC9CQ05mRzFEMm1ESzRvU2RqTVN4Y29ybWpKRnVtNHpiU3hm?=
+ =?utf-8?B?RUt4anRiN2hIUUY0S3JZcWZ6QklPbnArczQ1TlU1LzZLLytBQkh6VUNOM1FF?=
+ =?utf-8?B?aCtpZ1FTZWdZc0w1a3hGWlhhT3ArTUR5MXBEa0I3REVSaWVEVGNYdlhEZXBT?=
+ =?utf-8?B?bWd2dGtubm56NEw4bWFicmxtaFhrRHBTVDQvUnByVWkrYkxHaVdkU0s1TXhV?=
+ =?utf-8?B?OEVTbElHOXFUWEtlNnpDbVBwTXVDbFViUGlidG1SN0d1emlDTFQxWGIwT0kr?=
+ =?utf-8?B?OS90bHBzOWNpYWE3clZkcUhxS3lyM2krTERTVWtBWmo5OTZJZzNYOHFVVk9l?=
+ =?utf-8?B?d2FPUVVlQjlBOXZrdGUvRllRUDdiKzE0VUYzanphd0JqblBDQ1lKNnVhbUNO?=
+ =?utf-8?B?RXZucks2aXNCUXFGOTVKK0VkY3pjZnBwcDc3K2NaMUl3U3g1R09xNWovRCsv?=
+ =?utf-8?B?TjVjRU1keG5mYm1Rc3pLeFVTK0QwckFhc0tpNjN1cG9Sd3NzV1NwL3hZN1pT?=
+ =?utf-8?B?VVB4WWFWVk1GTjAxWGZvaHVmSnVwZnRFV1E4NGQyTi9WKzAxaWEwcnZ1MXZU?=
+ =?utf-8?B?NkNPWTZlSHlMZTdXQ3BJcnBVUjdnRjdlQTNSTFd2amNwRWxmKzVOSkE1ejlr?=
+ =?utf-8?B?bUdLSHdPMTc1VlVkSkJ6V3BoMWhSZXAwbGdoQW43RHRzQVN0V3RwSkdMZ1JE?=
+ =?utf-8?B?anlHL0Z5T0gxUW05VU5ENzNqcjVvOElCdzV3aHltWmZRZ3NXcDhybHNrUXhT?=
+ =?utf-8?B?T1RiMEpFZG1kWitwaGFCL1pnWk5WVk1VdFBYYjZvRjdPbFk5Yzc0M2N3QmNt?=
+ =?utf-8?B?Y3hlN0hESlNhZWlkakxGZTZlbStZQWZmdko2d0RVU2ZkQTVDYUphOEwyN0pJ?=
+ =?utf-8?B?b3ZncnJ4TStVcG83M25SY1QrT3JEeTVacnlsQTF4cjBzSStDZXdJeW5pVzdo?=
+ =?utf-8?B?dExGZHFtMW51VTNzb1kzVjRWc3BmcU9GY3BCUXlHem9uM2J1dUpTSDB2QUxk?=
+ =?utf-8?B?NjV5aTB0eFYzTXVrUjVkOTZpNEFHdW5kOXczb3hlKyt0cUtkbFBoWXRHVjgw?=
+ =?utf-8?B?OC93WW1WUGJSMC9xdjBzV1NhdG9MK0VWWndwbmNCWEszakVlNnoxSy9Qd0dl?=
+ =?utf-8?B?OTVMWHdqcXQzeHgxWmsxb0dBczlCbzVFZHdVYmRNN2lqVEFLWVR2Y1NMOEFr?=
+ =?utf-8?B?L0FvcTVHcTJWNEFDVTRMUXgvRTY5UFJzVytMMnBTQjl0cEhYbG0xV2tMM0JB?=
+ =?utf-8?B?aUJYaXhUK2hTZVZuNThnUlgxODJDdWJDSjZSMEpEbFlyY2ZwM1Jja0NOOFR6?=
+ =?utf-8?B?VExjd0lRN0NiZFZ0VTZxM0NxVzIzOXBEOGtWZVhmYmNoMnZMV0h2MEdWeUJE?=
+ =?utf-8?B?NGh2cWZpUTBaUmYwVzE1OTlMYWlKZ28xa2VlWC94UklkMVg0R1ZhcmVXYVRU?=
+ =?utf-8?B?TmlyVEQ5dVVHQ0lwOHFVVUMzMlFxWS9DY3FKdUNCOWg3WVRTSEF1cjE4ZFpZ?=
+ =?utf-8?B?alNySG02bFUybE95ampDWGZPZ1ZuZFlMdHVqUlZIVXJ4ajIyU2ZtOUsyRFAy?=
+ =?utf-8?B?WGUzZEdWR2cwSklnYm4vaDUreW1HYjhqcWFXWlVickU2ME82ZDVLb0tGZlZt?=
+ =?utf-8?B?RHp0c2cwV3Q4NUt4ZlNGMU1zc0Z4TUs3bTVlYU55NzhST0ovcGhMWldQUGt4?=
+ =?utf-8?B?K3ZjK1MwdzZyRUUwUzJQZXpTRldLQ1FIU2JqSlNoSlJNb1lmWVlQalFWRUFw?=
+ =?utf-8?B?Y0IwdHNwNVVjWTJ1bElYbnh0aE9MUEorcGV5Z3hBaUdhcnR3RmNzUENod1Jt?=
+ =?utf-8?B?QVE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <604ABB9BAA24814E8D47CE5C68414AF4@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SL2PR03MB4153.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c43115e0-ca9d-4a5c-91b8-08db8fdf1427
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2023 02:54:08.1669
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KV4VPbI+5GpO3vovJ0u7Bhof6kCfMN4O9zeTTtZYqux6d0E426aC11BsfXskB6YQN51pFw7JIp12cnbYQNzjheCSksNbzju0KPsaF5Yielw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR03MB5542
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
-
-In my view, it is the problem that the fusb302 missed the Source caps of 
-PD charger (I assume the charger is normal), maybe the RX interrupt was 
-missed or its FIFO had been touched.
-
-The patch you mentioned ([1] in your mail) may be able to fix your issue 
-if the FIFO of the fusb302 is flushed by set_pd_rx() invoked in TCPM, 
-but it has no effort for RX interrupt missed.
-
-Anyway, It is the defect of the fusb302 driver and should be fixed in it 
-.  Hope my analysis is helpful to you.
-
-
-BR,
-Frank
-
-On 2023/7/29 2:45, Jagan Teki wrote:
-> + Frank
-> + Guenter
-> + linux-usb
-> (for any suggestions)
->
-> On Sat, Jul 29, 2023 at 12:00 AM Heiko Stuebner <heiko@sntech.de> wrote:
->> Am Dienstag, 25. Juli 2023, 10:02:21 CEST schrieb Christopher Obbard:
->>> Hi Da, Jagan,
->>>
->>> On Tue, 2023-07-25 at 03:39 -0400, Da Xue wrote:
->>>> On Mon, Jul 24, 2023 at 9:55 AM Christopher Obbard
->>>> <chris.obbard@collabora.com> wrote:
->>>>> On Wed, 2023-07-19 at 17:51 +0530, Jagan Teki wrote:
->>>>>> The power supply circuit in ROC-RK3399-PC is
->>>>>>
->>>>>> Power Supply (or PPS) => FUSB => MP8859
->>>>>>
->>>>>> VUBS pin of FUSB and IN pin of MP8859 is supplied via TYPEC_IN.
->>>>>>
->>>>>> The MP8859 operated with 2.8V to 22V supply voltage and typical
->>>>>> applications this supply can be 12V.
->>>>>>
->>>>>> This patch is trying to support the PD by changing the FUSB VBUS supply
->>>>>> to 12V and tune the I2C7 timings from downstream kernel.
->>>>>>
->>>>>> Tested with PD3.0 PPS with supply voltages of 12V/3A and 20V/5A.
->>>>> Hi Jagan,
->>>>>
->>>>> This series works fine with a "dumb" (no PD negotiation) 5.1V Raspberry Pi PSU.
->>>>>
->>>>> It also works fine with a Dell 45W USB-C Laptop Power Supply (model AA45NM170) which provides 5V@3A,9V@3A,15V@3A,20V@2.25A, where Linux master fails and just tells the USB-PD PSU to power-off.
->>>> I think this depends on the recent Rockchip TCPM changes. FUSB302 has
->>>> been a pain in the USB or else this platform would have launched a lot
->>>> longer ago.
->>> Sorry, I was testing this patch on top of next-20230724 which includes https://patchwork.kernel.org/project/linux-rockchip/list/?series=757752:
->>>
->>>   8be558dcffe69b078b34b1fa93b82acaf4ce4957 ("usb: typec: tcpm: add get max power support")
->>>   1e35f074399dece73d5df11847d4a0d7a6f49434 ("usb: typec: tcpm: fix cc role at port reset")
->>>
->>> Can you check if I am missing any other patches ?
->> so I guess the question is, are there any new clues and/or does this patch
->> make the situaton better or worse for the roc-rk3399-pc board as it stands
->> now.
-> It is working with PD3.0 (EHO 100W GaN) but seems to be inconsistent.
-> For the non-working cases, I did check in RK3399 and RK3588 designs
-> the PD run machine setup in tcpm with respect to the fusb302 chip
-> receiving hard reset due to BC_LVL, handler pending.
->
-> Here, is the sample log (please don't mind, the log combined with
-> other functions as I've enabled the static tcpm logs)
-> [    0.342297] FUSB: sw reset
-> [    0.346084] FUSB: fusb302 device ID: 0x91
-> [    0.346331] TCPM: Setting usb_comm capable false
-> [    0.351365] FUSB: pd := off
-> [    0.351772] FUSB: vbus is already Off
-> [    0.352019] FUSB: charge is already Off
-> [    0.352342] FUSB: vconn is already Off
-> [    0.352680] TCPM: Setting voltage/current limit 0 mV 0 mA
-> [    0.353023] TCPM: polarity 0
-> [    0.353497] TCPM: Requesting mux state 0, usb-role 0, orientation 0
-> [    0.354544] FUSB: pd header := Sink, Device
-> [    0.355097] TCPM: state change INVALID_STATE -> SNK_UNATTACHED
-> [rev1 NONE_AMS]
-> [    0.355469] FUSB: cc1=Open, cc2=Open
-> [    0.356107] TCPM: state change SNK_UNATTACHED -> PORT_RESET [rev1 NONE_AMS]
-> [    0.356424] TCPM: 1-0022: registered
-> [    0.356428] TCPM: Setting usb_comm capable false
-> [    0.357964] i2c 3-0011: Fixed dependency cycle(s) with
-> /i2s@fe470000/port/endpoint
-> [    0.362173] FUSB: pd := off
-> [    0.362182] FUSB: vbus is already Off
-> [    0.362445] FUSB: charge is already Off
-> [    0.362778] FUSB: vconn is already Off
-> [    0.363126] TCPM: Setting voltage/current limit 0 mV 0 mA
-> [    0.363479] TCPM: polarity 0
-> [    0.363970] TCPM: Requesting mux state 0, usb-role 0, orientation 0
-> [    0.364339] sdhci: Secure Digital Host Controller Interface driver
-> [    0.365298] FUSB: pd header := Sink, Device
-> [    0.365440] sdhci: Copyright(c) Pierre Ossman
-> [    0.366110] Synopsys Designware Multimedia Card Interface Driver
-> [    0.366222] TCPM: cc:=2
-> [    0.366758] FUSB: cc := Rd
-> [    0.367564] sdhci-pltfm: SDHCI platform and OF driver helper
-> [    0.370341] ledtrig-cpu: registered to indicate activity on CPUs
-> [    0.371295] scmi_protocol scmi_dev.1: Enabled polling mode TX
-> channel - prot_id:16
-> [    0.372067] arm-scmi firmware:scmi: SCMI Notifications - Core Enabled.
-> [    0.372670] arm-scmi firmware:scmi: SCMI Protocol v2.0 'rockchip:'
-> Firmware version 0x0
-> [    0.374620] TCPM: pending state change PORT_RESET ->
-> PORT_RESET_WAIT_OFF @ 100 ms [rev1 NONE_AMS]
-> [    0.374638] TCPM: state change PORT_RESET -> PORT_RESET_WAIT_OFF
-> [delayed 100 ms]
-> [    0.375435] TCPM: pending state change PORT_RESET_WAIT_OFF ->
-> SNK_UNATTACHED @ 920 ms [rev1 NONE_AMS]
-> [    0.379490] SMCCC: SOC_ID: ARCH_SOC_ID not implemented, skipping ....
-> [    0.381481] usbcore: registered new interface driver usbhid
-> [    0.381972] usbhid: USB HID core driver
-> [    0.385775] hw perfevents: enabled with armv8_cortex_a55 PMU
-> driver, 7 counters available
-> [    0.387875] hw perfevents: enabled with armv8_cortex_a76 PMU
-> driver, 7 counters available
-> [    0.390529] optee: probing for conduit method.
-> [    0.390926] optee: api uid mismatch
-> [    0.391234] optee: probe of firmware:optee failed with error -22
-> [    0.394071] NET: Registered PF_PACKET protocol family
-> [    0.394571] 9pnet: Installing 9P2000 support
-> [    0.394986] Key type dns_resolver registered
-> [    0.399904] registered taskstats version 1
-> [    0.400365] Loading compiled-in X.509 certificates
-> [    0.400933] mmc0: SDHCI controller on fe2e0000.mmc [fe2e0000.mmc] using ADMA
-> [    0.407446] mmc0: Failed to initialize a non-removable card
-> [    0.442034] rk808-regulator rk808-regulator.1.auto: there is no dvs0 gpio
-> [    0.443181] rk808-regulator rk808-regulator.1.auto: there is no dvs1 gpio
-> [    0.448771] vdd_2v0_pldo_s3: Bringing 1975000uV into 2000000-2000000uV
-> [    0.450335] vcc_3v3_s3: Bringing 3275000uV into 3300000-3300000uV
-> [    0.452301] vcc_1v8_s3: Bringing 1775000uV into 1800000-1800000uV
-> [    0.475134] ehci-platform fc800000.usb: EHCI Host Controller
-> [    0.475656] ehci-platform fc800000.usb: new USB bus registered,
-> assigned bus number 1
-> [    0.476412] ehci-platform fc800000.usb: irq 67, io mem 0xfc800000
-> [    0.476870] ohci-platform fc840000.usb: Generic Platform OHCI controller
-> [    0.477563] ohci-platform fc840000.usb: new USB bus registered,
-> assigned bus number 2
-> [    0.478298] ohci-platform fc840000.usb: irq 68, io mem 0xfc840000
-> [    0.480664] fan53555-regulator 0-0042: FAN53555 Option[10] Rev[1] Detected!
-> [    0.481424] fan53555-regulator 0-0043: FAN53555 Option[10] Rev[1] Detected!
-> [    0.484586] dwmmc_rockchip fe2c0000.mmc: IDMAC supports 32-bit address mode.
-> [    0.485274] dwmmc_rockchip fe2c0000.mmc: Using internal DMA controller.
-> [    0.485875] dwmmc_rockchip fe2c0000.mmc: Version ID is 270a
-> [    0.486417] dwmmc_rockchip fe2c0000.mmc: DW MMC controller at irq
-> 69,32 bit host data width,256 deep fifo
-> [    0.488188] dwmmc_rockchip fe2c0000.mmc: Got CD GPIO
-> [    0.491377] cfg80211: Loading compiled-in X.509 certificates for
-> regulatory database
-> [    0.492171] ehci-platform fc880000.usb: EHCI Host Controller
-> [    0.492179] ohci-platform fc8c0000.usb: Generic Platform OHCI controller
-> [    0.492680] ehci-platform fc880000.usb: new USB bus registered,
-> assigned bus number 3
-> [    0.493271] ohci-platform fc8c0000.usb: new USB bus registered,
-> assigned bus number 4
-> [    0.493350] ehci-platform fc800000.usb: USB 2.0 started, EHCI 1.00
-> [    0.494008] ehci-platform fc880000.usb: irq 70, io mem 0xfc880000
-> [    0.494520] hub 1-0:1.0: USB hub found
-> [    0.494542] hub 1-0:1.0: 1 port detected
-> [    0.494745] ohci-platform fc8c0000.usb: irq 71, io mem 0xfc8c0000
-> [    0.501157] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req
-> 400000Hz, actual 400000HZ div = 0)
-> [    0.508986] ehci-platform fc880000.usb: USB 2.0 started, EHCI 1.00
-> [    0.510401] hub 3-0:1.0: USB hub found
-> [    0.510779] hub 3-0:1.0: 1 port detected
-> [    0.542084] hub 2-0:1.0: USB hub found
-> [    0.542438] hub 2-0:1.0: 1 port detected
-> [    0.562045] hub 4-0:1.0: USB hub found
-> [    0.562506] hub 4-0:1.0: 1 port detected
-> [    0.595247] mmc_host mmc1: Bus speed (slot 0) = 198000000Hz (slot
-> req 200000000Hz, actual 198000000HZ div = 0)
-> [    0.748985] usb 1-1: new high-speed USB device number 2 using ehci-platform
-> [    0.906736] hub 1-1:1.0: USB hub found
-> [    0.907309] hub 1-1:1.0: 4 ports detected
-> [    0.923345] dwmmc_rockchip fe2c0000.mmc: Successfully tuned phase to 51
-> [    0.923962] mmc1: new ultra high speed SDR104 SDHC card at address aaaa
-> [    0.925357] mmcblk1: mmc1:aaaa SD32G 29.7 GiB
-> [    0.932234]  mmcblk1: p1 p2 p3
-> [    0.986929] Freeing initrd memory: 24648K
-> [    1.000498] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
-> [    1.001061] clk: Disabling unused clocks
-> [    1.001925] ALSA device list:
-> [    1.002190]   No soundcards found.
-> [    1.002595] dw-apb-uart feb50000.serial: forbid DMA for kernel console
-> [    1.004969] platform regulatory.0: Direct firmware load for
-> regulatory.db failed with error -2
-> [    1.005732] cfg80211: failed to load regulatory.db
-> [    1.007117] Freeing unused kernel memory: 9216K
-> [    1.029098] Run /init as init process
-> Loading, please wait...
-> Starting version 247.3-7+deb11u1
-> [    1.296214] TCPM: state change PORT_RESET_WAIT_OFF ->
-> SNK_UNATTACHED [delayed 920 ms]
-> [    1.301978] FUSB: start drp toggling
-> [    1.302699] TCPM: state change SNK_UNATTACHED -> TOGGLING [rev1 NONE_AMS]
-> [    1.304531] FUSB: IRQ: VBUS_OK, vbus=On
-> [    1.307751] FUSB: IRQ: TOGDONE
-> [    1.314498] FUSB: detected cc1=Rp-3.0, cc2=Open
-> [    1.314880] FUSB: cc1=Rp-3.0, cc2=Open
-> [    1.315309] TCPM: state change TOGGLING -> SNK_ATTACH_WAIT [rev1 NONE_AMS]
-> Begin: Loading essential drivers ... done.
-> Begin: Running /scripts/init-premount ... done.
-> Begin: Mounting root file system ... Begin: Running /scripts/local-top ... done.
-> Begin: Running /scripts/local-premount ... done.
-> Begin: Will now check root file system ... fsck from util-linux 2.36.1
-> [/sbin/fsck.ext4 (1) -- /dev/mmcblk1p3] fsck.ext4 -a -C0 /dev/mmcblk1p3
-> [    1.315655] TCPM: pending state change SNK_ATTACH_WAIT ->
-> SNK_DEBOUNCED @ 200 ms [rev1 NONE_AMS]
-> [    1.516302] TCPM: state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED
-> [delayed 200 ms]
-> [    1.517159] TCPM: state change SNK_DEBOUNCED -> SNK_ATTACHED [rev1 NONE_AMS]
-> [    1.517824] TCPM: polarity 0
-> [    1.518454] TCPM: Requesting mux state 1, usb-role 2, orientation 1
-> [    1.519744] FUSB: pd header := Sink, Device
-> [    1.520320] TCPM: state change SNK_ATTACHED -> SNK_STARTUP [rev1 NONE_AMS]
-> [    1.520745] TCPM: state change SNK_STARTUP -> SNK_DISCOVERY [rev3 NONE_AMS]
-> [    1.521388] TCPM: Setting voltage/current limit 5000 mV 3000 mA
-> [    1.522016] TCPM: vbus=0 charge:=1
-> [    1.522547] FUSB: vbus is already Off
-> ram: recovering journal
-> [    1.522857] TCPM: state change SNK_DISCOVERY ->
-> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
-> [    1.528181] FUSB: pd := on
-> ram: clean, 1521/594512 files, 74956/2374144 blocks
-> done.
-> [    1.528977] TCPM: pending state change SNK_WAIT_CAPABILITIES ->
-> SNK_SOFT_RESET @ 310 ms [rev3 NONE_AMS]
-> [    1.568848] EXT4-fs (mmcblk1p3): mounted filesystem
-> b550eef1-48e4-4bac-9312-2ea23c77a372 r/w with ordered data mode. Quota
-> mode: none.
-> done.
-> Begin: Running /scripts/local-bottom ... done.
-> Begin: Running /scripts/init-bottom ... done.
-> [    1.650560] EXT4-fs (mmcblk1p3): re-mounted
-> b550eef1-48e4-4bac-9312-2ea23c77a372 r/w. Quota mode: none.
-> Starting syslogd: OK
-> Starting klogd: OK
-> Running sysctl: OK
-> Initializing random number generator: OK
-> Saving random seed: [    1.839341] TCPM: state change
-> SNK_WAIT_CAPABILITIES -> SNK_SOFT_RESET [delayed 310 ms]
-> [    1.839362] TCPM: AMS SOFT_RESET_AMS start
-> [    1.840087] TCPM: state change SNK_SOFT_RESET -> AMS_START [rev3
-> SOFT_RESET_AMS]
-> [    1.840461] TCPM: state change AMS_START -> SOFT_RESET_SEND [rev3
-> SOFT_RESET_AMS]
-> [    1.841161] TCPM: PD TX, header: 0x8d
-> [    1.844492] FUSB: sending PD message header: 8d
-> [    1.844836] FUSB: sending PD message len: 0
-> [    1.847576] FUSB: IRQ: BC_LVL, handler pending
-> [    1.847964] FUSB: IRQ: PD tx success
-> [    1.850111] FUSB: PD message header: 161
-> [    1.850445] FUSB: PD message len: 0
-> [    1.850802] TCPM: PD TX complete, status: 0
-> [    1.851211] TCPM: pending state change SOFT_RESET_SEND ->
-> HARD_RESET_SEND @ 60 ms [rev3 SOFT_RESET_AMS]
-> [    1.853070] FUSB: IRQ: BC_LVL, handler pending
-> [    1.853914] FUSB: IRQ: PD sent good CRC
-> [    1.856233] FUSB: PD message header: 1a3
-> [    1.856590] FUSB: PD message len: 0
-> [    1.857065] TCPM: PD RX, header: 0x1a3 [1]
-> [    1.857402] TCPM: AMS SOFT_RESET_AMS finished
-> [    1.857774] TCPM: state change SOFT_RESET_SEND ->
-> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
-> [    1.864223] FUSB: pd := on
-> [    1.864967] TCPM: pending state change SNK_WAIT_CAPABILITIES ->
-> HARD_RESET_SEND @ 310 ms [rev3 NONE_AMS]
-> [    1.877754] FUSB: IRQ: BC_LVL, handler pending
-> [    1.878606] FUSB: IRQ: PD received hardreset
-> [    1.879902] TCPM: state change SNK_WAIT_CAPABILITIES ->
-> HARD_RESET_START [rev3 HARD_RESET]
-> [    1.887331] FUSB: pd := off
-> [    1.888078] TCPM: state change HARD_RESET_START ->
-> SNK_HARD_RESET_SINK_OFF [rev3 HARD_RESET]
-> [    1.888339] TCPM: vconn:=0
-> [    1.889118] FUSB: vconn is already Off
-> [    1.889370] TCPM: Requesting mux state 1, usb-role 2, orientation 1
-> [    1.890621] FUSB: pd header := Sink, Device
->
-> Look like Frank sent some patch related(not 100% sure) to this in
-> linux-usb [1], but the result is the same even with this change. I'm
-> still debugging tcpm, any pointers on this would be useful.
->
-> [1] https://patchwork.kernel.org/project/linux-usb/patch/20230313025843.17162-5-frank.wang@rock-chips.com/
->
-> Thanks,
-> Jagan.
-
+SGkgSGFucywNCg0KVGhhbmtzIGZvciB5b3VyIGhlbHAgYW5kIHN1Z2dlc3Rpb24uDQoNCk9uIEZy
+aSwgMjAyMy0wNy0yOCBhdCAxMToyNSArMDIwMCwgSGFucyBWZXJrdWlsIHdyb3RlOg0KPiAgCSAN
+Cj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0
+YWNobWVudHMgdW50aWwNCj4geW91IGhhdmUgdmVyaWZpZWQgdGhlIHNlbmRlciBvciB0aGUgY29u
+dGVudC4NCj4gIE9uIDI1LzA3LzIwMjMgMTE6NTgsIEhhbnMgVmVya3VpbCB3cm90ZToNCj4gPiBP
+biAyMi8wNy8yMDIzIDA5OjQyLCBZdW5mZWkgRG9uZyB3cm90ZToNCj4gPj4gRnJvbTogWXVuZmVp
+IERvbmcgPHl1bmZlaS5kb25nQG1lZGlhdGVrLmNvcnAtcGFydG5lci5nb29nbGUuY29tPg0KPiA+
+Pg0KPiA+PiBXaXRoIHRoZSBkcml2ZXIgbW9yZSBhbmQgbW9yZSBjb21wbGV4LCBlbmNvZGVyIGFu
+ZCBkZWNvZGVyIG5lZWQgdG8NCj4gYWRkIG1vcmUgcGFyYW1ldGVyDQo+ID4+IGluIHNoYXJlZCBz
+dHJ1Y3QgJ210a192Y29kZWNfY3R4JyBhbmQgJ210a192Y29kZWNfZGV2Jy4gRW5jb2Rlcg0KPiB1
+c2UgYWJvdXQgNDAlIGFuZA0KPiA+PiBkZWNvZGVyIHVzZSA2MCUgcGFyYW1ldGVyLiBOZWVkIHRv
+IGFsbG9jYXRlIGV4dHJhIHVudXNlZCBtZW1vcnkNCj4gd2hlbiBlbmNvZGVyIGFuZCBkZWNvZGVy
+DQo+ID4+IHdvcmtpbmcuDQo+ID4+DQo+ID4+IFNlcGFyYXRlIGVuY29kZXIgYW5kIGRlY29kZXIg
+aW4gZGlmZmVyZW50IGZvbGRlciBhbmQgdXNlDQo+IGluZGVwZW5kZW50IGRhdGEgc3RydWN0Lg0K
+PiA+Pg0KPiA+PiBwYXRjaCAxIHJlbW92ZSB1bnVzZWQgcGFyYW1ldGVyLg0KPiA+PiBwYXRjaCAy
+fjMgYWxpZ24gZncgYW5kIGludGVycnVwdCByZWxhdGVkIGludGVyZmFjZS4NCj4gPj4gcGF0Y2gg
+NH42IHJlbW92ZSB0aGUgZGVwZW5kZW5jeSBvZiBkZWJ1ZyBsb2cNCj4gPj4gcGF0Y2ggN344IHNl
+cGFyYXRlIG10a192Y29kZWNfY3R4IGFuZCBtdGtfdmNvZGVjX2Rldg0KPiA+PiBwYXRjaCA5IGZp
+eCB1bnJlYXNvbmFibGUgcGFyYW1ldGVyDQo+ID4+IHBhdGNoIDEwIHJlbW92ZWQgdW51c2VkIGhl
+YWRlciBmaWxlcw0KPiA+PiBwYXRjaCAxMSBzZXBhcmF0ZSBlbmNvZGVyIGFuZCBkZWNvZGVyIGlu
+IGRpZmZlcmVudCBmb2xkZXINCj4gPj4gLS0tDQo+ID4+IENoYW5nZWQgZnJvbSB2NjoNCj4gPj4g
+LSByZWJhc2UgdG86IA0KPiBodHRwczovL2dpdC5saW51eHR2Lm9yZy9odmVya3VpbC9tZWRpYV90
+cmVlLmdpdC9sb2cvP2g9Zm8tdjYuNmcuDQo+ID4+IENoYW5nZWQgZnJvbSB2NToNCj4gPj4gLSBm
+aXggc29tZSB3b3JkcyBlcnJvciBmb3IgcGF0Y2ggMy82LzExLg0KPiA+PiAtIHJlbmFtZSBtdGtf
+dmNvZGVjX2NvbW1fZHJ2LmggdG8gbXRrX3Zjb2RlY19jbW5fZHJ2LmggZm9yIHBhdGNoDQo+IDcu
+DQo+ID4+IENoYW5nZWQgZnJvbSB2NDoNCj4gPj4gLSBhZGQgb25lIHBhcmFtZXRlciB0byByZWNv
+cmQgcmVnaXN0ZXIgYmFzZSBmb3IgcmVnX2Jhc2UgZm9yIHBhdGNoDQo+IDMuDQo+ID4+IC0gYWRk
+IGRlYnVnIHN0cmluZyBmb3Igbm9uIGN0eCBsb2cgZm9yIHBhdGNoIDYuDQo+ID4+IC0gY2hhbmdl
+IHRoZSBjb21tZW50IG9mIHN0cnVjdCBtdGtfdmNvZGVjX2RlY19jdHggYW5kIHN0cnVjdA0KPiBt
+dGtfdmNvZGVjX2VuY19jdHggZm9yIHBhdGNoIDcuDQo+ID4+IC0gcHJlZmVyIHRvIHVzZSBzdHJ1
+Y3QgbXRrX3Zjb2RlY19kZWNfZGV2IGFuIGN1cnJlbnQgcGVyaW9kLCB3aWxsDQo+IHJlLWNvbnN0
+cnVjdCBpbiB0aGUgZnV0dXJlIGZvciBwYXRjaCA4Lg0KPiA+PiBDaGFuZ2VkIGZyb20gdjM6DQo+
+ID4+IC0gcmUtd3JpdGUgY29tbWl0IG1lc3NhZ2UgZm9yIHBhdGNoIDMuDQo+ID4+IENoYW5nZWQg
+ZnJvbSB2MjoNCj4gPj4gLSBUaGlzIHBhdGNoIG1haW4gY2hhbmdlZDoNCj4gPj4gICAxOiBhZGQg
+ZGlmZmVyZW50IG1hY3JvIG10a19kZWNfZGVidWcgYW5kIG10a19lbmNfZGVidWcgY2FsbGluZw0K
+PiBjb21tb24NCj4gPj4gICAgICBtYWNybyBtdGtfdmNvZGVjX2RlYnVnIGluIG9yZGVyIHRvIHVz
+ZSBkZXZfZGJnIGluc3RlYWQgb2YNCj4gcHJfZGVidWcuDQo+ID4+ICAgMjogYWRkIGRpZmZlcmVu
+dCBtYWNybyBtdGtfdjRsMl92ZW5jX2RiZyBhbmQgbXRrX3Y0bDJfdmRlY19kYmcNCj4gY2FsbGlu
+ZyBjb21tb24NCj4gPj4gICAgICBtYWNybyAgaW4gb3JkZXIgdG8gdXNlIGRldl9kYmcgaW5zdGVh
+ZCBvZiBwcl9kZWJ1Zy4NCj4gPj4gQ2hhbmdlZCBmcm9tIHYxOg0KPiA+PiAtIENoYW5nZSBwcl9k
+YmcgdG8gZGV2X2RiZyBmb3IgbXRrX3Y0bDJfbGV2ZWwgYW5kIG10a192Y29kZWNfZGJnDQo+IGZv
+ciBwYXRjaCA0Lg0KPiA+PiAtIENoYW5nZSBwcl9lcnIgdG8gZGV2X2VyciBmb3IgbXRrX3Y0bDJf
+ZXJyIGFuZCBtdGtfdmNvZGVjX2VyciBmb3INCj4gcGF0Y2ggNS4NCj4gPj4gLSBGaXggdW5yZWFz
+b25hYmxlIHBhcmFtZXRlciBmb3IgcGF0Y2ggOC4NCj4gPj4gLS0tDQo+ID4+IFl1bmZlaSBEb25n
+ICgxMSk6DQo+ID4+ICAgbWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IHJlbW92ZSB1bnVzZWQgcGFy
+YW1ldGVyDQo+ID4+ICAgbWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IGFsaWduIGZ3IGludGVyZmFj
+ZQ0KPiA+PiAgIG1lZGlhOiBtZWRpYXRlazogdmNvZGVjOiBSZW1vdmluZyBzdHJ1Y3QgJ210a192
+Y29kZWNfY3R4L2RldicNCj4gZm9yDQo+ID4+ICAgICBzaGFyZWQgaW50ZXJmYWNlDQo+ID4+ICAg
+bWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IFJlbW92aW5nIHVzZWxlc3MgZGVidWcgbG9nDQo+ID4+
+ICAgbWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IHJlbW92ZSB0aGUgZGVwZW5kZW5jeSBvZiB2Y29k
+ZWMgZGVidWcNCj4gbG9nDQo+ID4+ICAgbWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IHJlcGxhY2Ug
+cHJfKiB3aXRoIGRldl8qIGZvciB2NGwyIGRlYnVnDQo+ID4+ICAgICBtZXNzYWdlDQo+ID4+ICAg
+bWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IHNlcGFyYXRlIHN0cnVjdCAnbXRrX3Zjb2RlY19jdHgn
+DQo+ID4+ICAgbWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IHNlcGFyYXRlIHN0cnVjdCBtdGtfdmNv
+ZGVjX2Rldg0KPiA+PiAgIG1lZGlhOiBtZWRpYXRlazogdmNvZGVjOiBmaXggdW5yZWFzb25hYmxl
+IHBhcmFtZXRlciBkZWZpbml0aW9uDQo+IGFuZA0KPiA+PiAgICAgc3R5bGUNCj4gPj4gICBtZWRp
+YTogbWVkaWF0ZWs6IHZjb2RlYzogcmVtb3ZlIHVudXNlZCBpbmNsdWRlIGhlYWRlcg0KPiA+PiAg
+IG1lZGlhOiBtZWRpYXRlazogdmNvZGVjOiBzZXBhcmF0ZSBkZWNvZGVyIGFuZCBlbmNvZGVyDQo+
+ID4gDQo+ID4gQmVzaWRlcyB0aGUgbWlzc2luZyBhcmd1bWVudCBpbiBwYXRjaCA2LzExIEkgYWxz
+byBnZXQgdGhpcyBjb21waWxlcg0KPiB3YXJuaW5nOg0KPiA+IA0KPiA+IGRyaXZlcnMvbWVkaWEv
+cGxhdGZvcm0vbWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvdmVuY192cHVfaWYuYzogSW4NCj4gZnVu
+Y3Rpb24gJ3ZwdV9lbmNfaXBpX2hhbmRsZXInOg0KPiA+IGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0v
+bWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvdmVuY192cHVfaWYuYzo2NDozMToNCj4gd2FybmluZzog
+J3ZwdScgbWF5IGJlIHVzZWQgdW5pbml0aWFsaXplZCBbLVdtYXliZS11bmluaXRpYWxpemVkXQ0K
+PiA+ICAgIDY0IHwgICAgICAgICBzdHJ1Y3QgdmVuY192cHVfaW5zdCAqdnB1Ow0KPiA+ICAgICAg
+IHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+DQo+ID4gDQo+ID4gYW5kIHRoaXMg
+c21hdGNoIGVycm9yOg0KPiA+IA0KPiA+DQo+IGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0
+ZWsvdmNvZGVjL2RlY29kZXIvbXRrX3Zjb2RlY19kZWNfZHJ2LmM6MQ0KPiAzOCBtdGtfdmNvZGVj
+X2dldF9yZWdfYmFzZXMoKSBlcnJvcjogYnVmZmVyIG92ZXJmbG93DQo+ICdtdGtfZGVjX3JlZ19u
+YW1lcycgMTEgPD0gMTENCj4gPiANCj4gPiBIb3dldmVyLCBJIGJlbGlldmUgdGhhdCB3YXMgaW50
+cm9kdWNlZCBieSBOaWNvbGFzJyBwYXRjaCBzZXJpZXMuDQo+ID4gDQo+ID4gSSdsbCB0cnkgdG8g
+cGlucG9pbnQgdGhlIHByZWNpc2UgcGF0Y2guDQo+IA0KPiBUaGF0IHNtYXRjaCBlcnJvciBpcyBu
+b3cgZm91bmQgYW5kIGZpeGVkIGluIHRoZSBzdGFnaW5nIHRyZWUuDQo+IA0KPiBDYW4geW91IHBv
+c3QgYSB2OCBmaXhpbmcgdGhlIG90aGVyIGlzc3Vlcz8NCj4gDQo+IFRoYW5rcyENCg0KVGhlIGJ1
+aWxkIGZhaWwgZm9yIHBhdGNoIDA2IGFuZCBzbWF0Y2ggZmFpbCB3aWxsIGJlIGZpeGVkIGluIG5l
+eHQNCnBhdGNoLg0KDQpCZXN0IFJlZ2FyZHMsDQpZdW5mZWkgRG9uZw0KDQo+IA0KPiBSZWdhcmRz
+LA0KPiANCj4gSGFucw0KPiANCj4gPiANCj4gPiBSZWdhcmRzLA0KPiA+IA0KPiA+IEhhbnMNCj4g
+DQo=
