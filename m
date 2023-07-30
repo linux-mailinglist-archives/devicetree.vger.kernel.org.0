@@ -2,56 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C515876840E
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 08:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51BCE76846B
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 10:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbjG3Gmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 02:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50792 "EHLO
+        id S229618AbjG3IYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 04:24:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjG3Gmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 02:42:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC4E10CB;
-        Sat, 29 Jul 2023 23:42:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4796960B3F;
-        Sun, 30 Jul 2023 06:42:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D4C4C433C9;
-        Sun, 30 Jul 2023 06:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690699351;
-        bh=WN7Qt+nbl0/4iHAEWJM+rZFL0e1kn7laryW2NscqO+E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vFuyycwTRfRDllXlaF43uwvad1SPeVzs6mgE8o8YcFHZQWLs+PEU7jYNuZa+SmPlp
-         Kjf1yX+pv/n3bjhJfwd+706Vyk9himvjFo6Y+Ua9mu1x+RcT85ja/OZYJp+mSJpKgZ
-         eDmmxwlf7n5LPwT+keowhxr25M1sZEMlKwaRiuoppiS3lvJMSJlRZKzDRRxDVMrNoI
-         tyRY8NTPmRw87zYdwcL34dPfXvRFAdXlx7P+urIZFdD10UrDC3JqN9YKdwu9tmQbM6
-         XRjMQdMRZ4OeLjzRnXxLAlVQwFTZU0aGbNTKdGyVrWKTVoourTYQWdaZVqDAZ3tz6M
-         rcT5Gymqcl8rQ==
-Date:   Sun, 30 Jul 2023 14:42:20 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        S.Riedmueller@phytec.de, S.Mueller-Klieser@phytec.de,
-        upstream@phytec.de
-Subject: Re: [PATCH v2 3/3] ARM: dts: imx6: phycore: Rely on PMIC
- reboot/reset handler
-Message-ID: <20230730064220.GA151430@dragon>
-References: <20230719114328.2239818-1-andrej.picej@norik.com>
- <20230719114328.2239818-3-andrej.picej@norik.com>
+        with ESMTP id S229477AbjG3IYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 04:24:41 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3821709
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 01:24:39 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bf3f59905so311192466b.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 01:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690705478; x=1691310278;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VRYMQY9BPGlo18Ue9wdGHPc8r7gHT9j4qAfo4pAR8pg=;
+        b=owbVRypjlOyFlexhfqt/MhVKvgt6pkZQ6hihoLu51y5Jh3JByEO4nEwPiJaNXo3PrI
+         UscLe6JozUMO+Rc40R8nU/QC/TOrpmuGoLRb/nMW4tL9uTPrX0W6rqB8TuKinVY+z1uy
+         RIj+jk6EM+r/2XBSxb/5PzzumbxxzRFL7LF4irjZiGScTD++D5R/wREKA7rRKYFk6n6b
+         2MBmu72lyG31rEGTMupL240EblAVlQjjR2cdpFAm8QMJ7ZTz6H0jFP2q0ZrHSpgugFaB
+         LCT1jGKL4I003wQdlocf/DrelkJnFECwuCLRrT1rAb+YQLg46aLKW821WofZN9hSQPwN
+         wYDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690705478; x=1691310278;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VRYMQY9BPGlo18Ue9wdGHPc8r7gHT9j4qAfo4pAR8pg=;
+        b=Fce5P2GH3Gzak5aHP/C7kXqxMDgxaBBVY5mK+vPIp7h38XCxerv8gowINLuEPzZq0q
+         el3c8t215gw308Oc+qL+a6enboGtdtZQDKKZfJ50usZDUHUN50PDVtaVEa3Hp/7of40A
+         ZCekL8nN/7ym7EQCUbJKIDOJwFxGP+aZvC9PmPb9o6+dZUeEzuEhjiE2ntXoEcgeyuvM
+         dk1yrefaEIa2hlFEXFtk4E27SplERFPySiPQsp+r9lJ59rQ7qcRMf7nt7HTtnyNQ3izt
+         X6OEpGC5Rlf9lQJr6YeWWiTUyZazNNx7EYW5pWVA4ICuLLO3IRwwgVvloWPclfsjWb54
+         jEaA==
+X-Gm-Message-State: ABy/qLZTxcJilRJDIv227xKc3cv/0qAsYxlwZxp/Wv4HGhd9ppg4Wqwq
+        xerjVtFrrOVxJL9NtfqlPsvnlYvO/r9gtOgKMBM=
+X-Google-Smtp-Source: APBJJlGPd1tmqLalRo51udpNx2aE3VHYZNSILqkQSfgCqquKiYK0kHBII2lYw5i4zn//fesICVN0qg==
+X-Received: by 2002:a17:907:1dd9:b0:98e:3b89:5dc6 with SMTP id og25-20020a1709071dd900b0098e3b895dc6mr4944156ejc.48.1690705477808;
+        Sun, 30 Jul 2023 01:24:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id h15-20020a1709063c0f00b009929ab17be0sm4347881ejg.162.2023.07.30.01.24.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Jul 2023 01:24:37 -0700 (PDT)
+Message-ID: <551ac5ae-2ccf-0a7e-46df-e1b05e8163cc@linaro.org>
+Date:   Sun, 30 Jul 2023 10:24:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230719114328.2239818-3-andrej.picej@norik.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 06/17] MIPS: loongson32: Convert platform IRQ driver to DT
+To:     Keguang Zhang <keguang.zhang@gmail.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
+ <20230729134318.1694467-7-keguang.zhang@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230729134318.1694467-7-keguang.zhang@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,15 +79,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 01:43:28PM +0200, Andrej Picej wrote:
-> Due to the missing signal connection between i.MX6 WDOG_B pin and the
-> PMICs external reset, the internal i.MX6 watchdog is not able to reset
-> the phyCORE i.MX6 SoM properly. Thus disable the internal i.MX6 watchdog
-> to prevent unexpected PMIC settings after reset.
+On 29/07/2023 15:43, Keguang Zhang wrote:
+> This patch enables Loongson-1 irqchip driver
+> by adding platform INTC device nodes.
+> And drop the legacy platform IRQ driver accordingly.
 > 
-> NOTE: This patch should not be backported as it might break existing
-> uses and fixes in bootloaders.
+> Based on previous patch by Jiaxun Yang.
 > 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> Link: https://lore.kernel.org/all/20190411121915.8040-3-jiaxun.yang@flygoat.com
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+>  arch/mips/boot/dts/loongson/loongson1.dtsi  |  53 ++++++
+>  arch/mips/boot/dts/loongson/loongson1c.dtsi |  13 ++
 
-Applied, thanks!
+DTS is always separate from the drivers.
+
+>  arch/mips/loongson32/common/Makefile        |   2 +-
+>  arch/mips/loongson32/common/irq.c           | 191 --------------------
+>  arch/mips/loongson32/init.c                 |   5 +
+>  5 files changed, 72 insertions(+), 192 deletions(-)
+>  delete mode 100644 arch/mips/loongson32/common/irq.c
+> 
+
+
+
+Best regards,
+Krzysztof
+
