@@ -2,161 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E940768727
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 20:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3BF9768732
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 20:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjG3SoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 14:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33248 "EHLO
+        id S229982AbjG3S4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 14:56:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbjG3SoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 14:44:03 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED0D10EB
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 11:44:02 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-58451ecf223so40545887b3.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 11:44:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1690742641; x=1691347441;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mV4wFSEyjoEY9pYdwsrYWeY+hPWaapNTWL+un8R4OrA=;
-        b=jG4aTcAoSTtL0EJHFxlyogO9Q4sljHMv1PMWAp/NnG7+dBnvUNI/rRJi1bL56pkLbe
-         VD0wqhGdjcK84qcFFLfzpF+ZhyBVM+FjirfISTqJboWspkM/naqp+3UO1Kock92Epjbm
-         S0W1aGipCh44lhM6wDSRvJLnQjTtZRnHoY4TE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690742641; x=1691347441;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mV4wFSEyjoEY9pYdwsrYWeY+hPWaapNTWL+un8R4OrA=;
-        b=brNyvlWVAiHRqYu9IB3dLnBL/Bb7vdr/M/hgHn1mx53XIrx0mHychKzJ/xngurCLFn
-         dYco105Osrl89J0g6lflqmeGVd0Aqpy0siTNx9JNl1BPqvwX9v53JjHZwQoU5wrzBo4q
-         fvB8q6Rk79EWO48FYO9MxxOQU7Z1Zu0EKdOdyjpBSmW93WiJVkPC6kpRnvy+49OGHSsH
-         g4WBuloLfOTP310f+e8Of/M0En3m4xCXRzzVUix2eDxsuFiBNBEcLGIQgIfk/koBR9DP
-         rS7YR5g0EDu5LULy58iDRqiBNsFI9K7dHtvPw4YGt5E5PX0lL6WzLw9hmg6ksZEwgddP
-         RmzQ==
-X-Gm-Message-State: ABy/qLYFxUGZ2TIFjPc32cE6p6nCN2eI6GaKF1gLcU3mXN9eT4bkpZCj
-        kIvW1HqB/BXmsb/rxesJyUFHbter3oFapbfnB4MlfQ==
-X-Google-Smtp-Source: APBJJlGuUwZcoYHVfSP7Pg9L7UJYwZqgSYNijNwHqZ3gvdLFBu+pcGziBVKxeLz2wlFEX1rjZg3cbxGNRI+AzUjmWyU=
-X-Received: by 2002:a0d:d9c9:0:b0:586:9ab:5cc with SMTP id b192-20020a0dd9c9000000b0058609ab05ccmr4114704ywe.42.1690742641568;
- Sun, 30 Jul 2023 11:44:01 -0700 (PDT)
+        with ESMTP id S229972AbjG3S4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 14:56:35 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A3910F5;
+        Sun, 30 Jul 2023 11:56:31 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36UIuAst001274;
+        Sun, 30 Jul 2023 13:56:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690743370;
+        bh=yG/C1vbEErBlqYLn5hHGKIm0ols70MLrcZtSkgmvJic=;
+        h=From:Subject:Date:To:CC;
+        b=ZCttN7hdARyCLRCqFTy1CyIY73o2EWl9QxW8BVe1DppRtKQZFAwsAp/3Z/D2amwYX
+         QG+e08SOw9DF6b7uBrx6ox0Fxmu0A/f7GB1nniBgovWa86mc2qDQmH2h2E18gTjOBu
+         lNJ/Dbk8TJEeONFZX1g3Zi6MFloC/ADGqc9xbM3I=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36UIuA6L124302
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 30 Jul 2023 13:56:10 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 30
+ Jul 2023 13:56:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 30 Jul 2023 13:56:10 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36UIu9Zg015546;
+        Sun, 30 Jul 2023 13:56:10 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+Subject: [PATCH 0/5] Add support for Texas Instruments MCRC64 engine
+Date:   Mon, 31 Jul 2023 00:25:53 +0530
+Message-ID: <20230719-mcrc-upstream-v1-0-dc8798a24c47@ti.com>
 MIME-Version: 1.0
-References: <20230720071430.259892-1-victor.liu@nxp.com> <20230720071430.259892-3-victor.liu@nxp.com>
-In-Reply-To: <20230720071430.259892-3-victor.liu@nxp.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Mon, 31 Jul 2023 00:13:49 +0530
-Message-ID: <CAMty3ZABMfRPiXM-N0d=AK8+CJZgBqd4zUeFz5-R8GY3fQQRrA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] drm/bridge: synopsys: dw-mipi-dsi: Add input bus
- format negotiation support
-To:     Ying Liu <victor.liu@nxp.com>
-Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADmyxmQC/x2NywqDQAwAf0VyNuCDsthfEQ/ZNNUcdiuJloL47
+ 649DsMwB7iYisOzOsDkq66fXKCtK+CF8iyor8LQNV3fhHbAxMa4r76ZUMJAMlB4MMU+QGkiuWA
+ 0yrzcVSLfxG6xmrz19x+N03leeUoT6XgAAAA=
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC:     <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "rfoss@kernel.org" <rfoss@kernel.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        "sam@ravnborg.org" <sam@ravnborg.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Kamlesh Gurudasani <kamlesh@ti.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1690743368; l=1888;
+ i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
+ bh=6RXzhJuPKeQVT8yLoZOXGWG94dhuDQSE8rTpk961348=;
+ b=jwvxNJyk0a+aMYzVanzcXvyehNYsQJdWePIz/+o/sCCT/07HIFTvMa3m8AQqkwx6Yyfvpzk1e
+ DQ+nUXijCgADfC/XP1BL70vN4fklgYGgaJYGvN1tyJRlThAriGWPSLT
+X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
+ pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 20, 2023 at 12:40=E2=80=AFPM Ying Liu <victor.liu@nxp.com> wrot=
-e:
->
-> Introduce ->get_input_bus_fmts() callback to struct dw_mipi_dsi_plat_data
-> so that vendor drivers can implement specific methods to get input bus
-> formats for Synopsys DW MIPI DSI.
->
-> While at it, implement a generic callback for ->atomic_get_input_bus_fmts=
-(),
-> where we try to get the input bus formats through pdata->get_input_bus_fm=
-ts()
-> first.  If it's unavailable, fall back to the only format - MEDIA_BUS_FMT=
-_FIXED,
-> which matches the default behavior if ->atomic_get_input_bus_fmts() is no=
-t
-> implemented as ->atomic_get_input_bus_fmts()'s kerneldoc indicates.
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v1->v2:
-> * No change.
->
->  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 30 +++++++++++++++++++
->  include/drm/bridge/dw_mipi_dsi.h              | 11 +++++++
->  2 files changed, 41 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/=
-drm/bridge/synopsys/dw-mipi-dsi.c
-> index 57eae0fdd970..8580b8a97fb1 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-> @@ -12,6 +12,7 @@
->  #include <linux/component.h>
->  #include <linux/debugfs.h>
->  #include <linux/iopoll.h>
-> +#include <linux/media-bus-format.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
->  #include <linux/pm_runtime.h>
-> @@ -536,6 +537,34 @@ static const struct mipi_dsi_host_ops dw_mipi_dsi_ho=
-st_ops =3D {
->         .transfer =3D dw_mipi_dsi_host_transfer,
->  };
->
-> +static u32 *
-> +dw_mipi_dsi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-> +                                            struct drm_bridge_state *bri=
-dge_state,
-> +                                            struct drm_crtc_state *crtc_=
-state,
-> +                                            struct drm_connector_state *=
-conn_state,
-> +                                            u32 output_fmt,
-> +                                            unsigned int *num_input_fmts=
-)
-> +{
-> +       struct dw_mipi_dsi *dsi =3D bridge_to_dsi(bridge);
-> +       const struct dw_mipi_dsi_plat_data *pdata =3D dsi->plat_data;
-> +       u32 *input_fmts;
-> +
-> +       if (pdata->get_input_bus_fmts)
-> +               return pdata->get_input_bus_fmts(pdata->priv_data,
-> +                                                bridge, bridge_state,
-> +                                                crtc_state, conn_state,
-> +                                                output_fmt, num_input_fm=
-ts);
+Add support for MCRC64 engine to calculate 64-bit CRC in Full-CPU mode
 
-Why do we need platform-controlled bus formats? The supported bridge
-formats are common across all platforms and it is specific to the list
-of formats supported by DW-MIPI DSI. isn't it?
+MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
+according to the ISO 3309 standard.
 
-Thanks,
-Jagan.
+Generator polynomial: x^64 + x^4 + x^3 + x + 1
+Polynomial value: 0x000000000000001b
+
+Tested with
+
+and tcrypt,
+sudo modprobe tcrypt mode=329 sec=1
+
+Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+---
+Kamlesh Gurudasani (5):
+      crypto: crc64 - add crc64-iso test vectors
+      dt-bindings: crypto: Add binding for TI MCRC64 driver
+      crypto: ti - add driver for MCRC64 engine
+      arm64: dts: ti: k3-am62: Add dt node, cbass_main ranges for MCRC64
+      arm64: defconfig: enable MCRC module
+
+ Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml |  42 +++++++
+ MAINTAINERS                                             |   7 ++
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi                |   7 ++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi                     |   1 +
+ arch/arm64/configs/defconfig                            |   2 +
+ crypto/tcrypt.c                                         |   5 +
+ crypto/testmgr.c                                        |   7 ++
+ crypto/testmgr.h                                        | 401 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/crypto/Kconfig                                  |   1 +
+ drivers/crypto/Makefile                                 |   1 +
+ drivers/crypto/ti/Kconfig                               |  10 ++
+ drivers/crypto/ti/Makefile                              |   2 +
+ drivers/crypto/ti/mcrc64.c                              | 360 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 13 files changed, 846 insertions(+)
+---
+base-commit: d7b3af5a77e8d8da28f435f313e069aea5bcf172
+change-id: 20230719-mcrc-upstream-7ae9a75cab37
+
+Best regards,
+-- 
+Kamlesh Gurudasani <kamlesh@ti.com>
+
