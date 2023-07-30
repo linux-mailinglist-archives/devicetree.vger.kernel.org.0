@@ -2,74 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A87C9768909
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 00:12:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81599768913
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 00:19:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbjG3WM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 18:12:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51584 "EHLO
+        id S229597AbjG3WTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 18:19:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjG3WM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 18:12:28 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71AC10D3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 15:12:17 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31771bb4869so4166317f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 15:12:17 -0700 (PDT)
+        with ESMTP id S229478AbjG3WTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 18:19:50 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74E010F4;
+        Sun, 30 Jul 2023 15:19:48 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3178dd81ac4so2508560f8f.3;
+        Sun, 30 Jul 2023 15:19:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690755136; x=1691359936;
+        d=gmail.com; s=20221208; t=1690755587; x=1691360387;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vtuBnXNxPgvHLp32dg4O7hROuouKTCJLgRkrSEU7S9Y=;
-        b=MFTkH8uA98xFHuA9w+azJIOzU/ThrYlowNg/jAHxORqqPAFL74QyPPzDJfBTjGxnRM
-         siQMoOrWcSdsnUapxemSg+G1fvcBq1KZMNKGpn8rgUh7+zrJvJibDmRFvfmAAm9IkdPQ
-         Hvs3YwdsFCbzKNx5BkG6SkSYK6qq3xBbxIYAjJibPvUZ87nD5M01/81fYO/Szujmrii0
-         gXxB8tPNa0ANvoI6NcIwgAigZYT4n7HEWFbxEiuSNDDEhofQl8YgrVBKUv5ilOQ/qCT7
-         1nZgFXmAkUrVWADiKn/RkisZoPpZwKYKv/KV1L7ajjgAMg1gDAgij8UXMskj6ERPeto5
-         irug==
+        bh=wc/+C+AJRRP3wZqyNPfzz3Cgo44jHnLGmmlbexMEhKA=;
+        b=cl5onc+TkxuEATcjD6uyVY7nH/Vz7ZkRqu9JxWsgfv4SoPnzoPuj4UYgsSxMX4DmhN
+         EbKH4KNoyGqNS1sDmy9WPnVudE7zyM5LAixHPtl9LhQN4/Y11NaWw5hciNNR9xqmFpDI
+         jUxLHWGe2o7k91QBJv2Dj0G7vecaM5dVGMn3rpNojwwl/nBKXvfX62Zgd2Wk+PNHMd5F
+         lciKG1RUQTDhjvSskhmAgEEOj5rAaI9Raeqr53hWDgXglo54RMDQ5w9HCfxSz+ehAeUe
+         14kbku6uFYUNnBKXbK5+sabAjDsDY50Q+XhPkTCq6JzLn9+4yXYHCvueRbhilg/sLmRN
+         sVRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690755136; x=1691359936;
+        d=1e100.net; s=20221208; t=1690755587; x=1691360387;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vtuBnXNxPgvHLp32dg4O7hROuouKTCJLgRkrSEU7S9Y=;
-        b=DfNHxY5wGkjZlveKMn7Owm2SSx7VoWB5HlEZW+x3uJevSq7qWiEWfxCfplkP/tvKYJ
-         AP7/tVtI0CskLnCExDDamJdm33DqKcMuWpsF/050prbcxtRUYAO3VHHBGI7vkG2sq2Sg
-         ghod2cXTwFOEvlSdlj9JTHUl/COoZkCPvN8u6NOfkAyRJkXaZO+It65f5ZqBQtQlpd0P
-         Iwnjux9IfhPxRNd43aPggHZjMLmgvnlFnuSFwxlR7YmdTKHF1IhIzR0cjXTBBvsfFOFp
-         DAoFbsqVvQNzXjLO5CGvEQ+30IcMf0Qf+7RcwZIEWXR/titHDi6RYHtEf4p1CgTw0T+0
-         8INg==
-X-Gm-Message-State: ABy/qLZLhSfr2VdmRXt+hR+gLC0D3BP1wQkHDh0exVNdM3XMs1TGL0n0
-        nR/2mCirepF1Iy+Pas1c1SwN5i47qCJP6A==
-X-Google-Smtp-Source: APBJJlGXlScYBBs+iAYWkiiV0upOZtT714/JzadzkjCMveztStxiMhJzsfAFInHaE8MT1P/IhwcpuQ==
-X-Received: by 2002:a5d:43c3:0:b0:314:1aed:8f5f with SMTP id v3-20020a5d43c3000000b003141aed8f5fmr6506724wrr.34.1690755135829;
-        Sun, 30 Jul 2023 15:12:15 -0700 (PDT)
+        bh=wc/+C+AJRRP3wZqyNPfzz3Cgo44jHnLGmmlbexMEhKA=;
+        b=VIR4vOpdHsB7cSGOubhaBTOBtmakvbTRkqba88ukJvOsQJEXZKYOoa7yjX20VXi2+7
+         hW7j5A+V2mBf+Y3jhKnc3t5Yxd83e7ZWxEIlcvr5hXGSY7ylpXegViF2vrY3zp56X/Pa
+         /3Djds66tsUDRE4MiSJJ1B2VC7JrtFvRBuBC4ZNlTmjP1ZeOytzjxLH2f/f1YO5Hh/WT
+         SyJOrOPjxa5S8EXXd2AUmLDR94HAdTrJr2ZeB4Ripll2RV6Y68PPWq9gN3saxA0uUOzY
+         eh0lqbXec/TS5C2ML4sFbdQ04FSFkV32Ccv3CT71y8DOV8nMIJNnWmckgk+gsPhfTJ9K
+         20pA==
+X-Gm-Message-State: ABy/qLZOa2VgkEIjP4JjH2J12b3NGWcVTjuNeXKYJp1oMXLuwIn0ZQrH
+        1pJnqa2rtUB32orfx03s3mwyAfe0pSPsWxHR
+X-Google-Smtp-Source: APBJJlGn9QQ0KC3d+6nE6FU7hS1U6dLdyswmnOJX3ZD6J+r5QpKVi1LURDmwkv8hjOYhZJhMt1p4yQ==
+X-Received: by 2002:adf:e50e:0:b0:317:57f0:fae with SMTP id j14-20020adfe50e000000b0031757f00faemr6721588wrm.63.1690755587148;
+        Sun, 30 Jul 2023 15:19:47 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id s11-20020adfeb0b000000b003176a4394d7sm11126116wrn.24.2023.07.30.15.12.14
+        by smtp.gmail.com with ESMTPSA id e5-20020a5d5005000000b00311d8c2561bsm11020850wrt.60.2023.07.30.15.19.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 15:12:15 -0700 (PDT)
+        Sun, 30 Jul 2023 15:19:46 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Moessbauer Felix <felix.moessbauer@siemens.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     linux-iio@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
-        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
-        Quirin Gylstorff <quirin.gylstorff@siemens.com>,
-        manuel.matzinger@siemens.com, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/1] arm: dts: Enable device-tree overlay support for sun8i-h3 pi
- devices
-Date:   Mon, 31 Jul 2023 00:12:14 +0200
-Message-ID: <4818881.GXAFRqVoOG@jernej-laptop>
-In-Reply-To: <17c7a0c952913e21d9a323f42a1cfad84ed8a51b.camel@siemens.com>
-References: <20230627133703.355893-1-felix.moessbauer@siemens.com>
- <1830379.atdPhlSkOF@jernej-laptop>
- <17c7a0c952913e21d9a323f42a1cfad84ed8a51b.camel@siemens.com>
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Leonard =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Maxime Ripard <mripard@kernel.org>,
+        Quentin Schulz <quentin.schulz@free-electrons.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 4/4] riscv: dts: allwinner: d1: Add GPADC node
+Date:   Mon, 31 Jul 2023 00:19:37 +0200
+Message-ID: <2150270.irdbgypaU6@jernej-laptop>
+In-Reply-To: <20230619154252.3951913-5-bigunclemax@gmail.com>
+References: <20230619154252.3951913-1-bigunclemax@gmail.com>
+ <20230619154252.3951913-5-bigunclemax@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -80,149 +100,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sreda, 19. julij 2023 ob 14:26:13 CEST je Moessbauer Felix napisal(a):
-> On Tue, 2023-07-11 at 21:42 +0200, Jernej =C5=A0krabec wrote:
-> > Dne torek, 27. junij 2023 ob 15:37:03 CEST je Felix Moessbauer
-> >=20
-> > napisal(a):
-> > > Add the '-@' DTC option for the sun8i-h3 pi-class devices. This
-> > > option
-> > > populates the '__symbols__' node that contains all the necessary
-> > > symbols
-> > > for supporting device-tree overlays (for instance from the firmware
-> > > or
-> > > the bootloader) on these devices.
-> > >=20
-> > > These devices allow various modules to be connected and this
-> > > enables
-> > > users to create out-of-tree device-tree overlays for these modules.
-> > >=20
-> > > Please note that this change does increase the size of the
-> > > resulting DTB
-> > > by ~30%. For example, with v6.4 increase in size is as follows:
-> > >=20
-> > > 22909 -> 29564 sun8i-h3-orangepi-lite.dtb
-> > > 24214 -> 30935 sun8i-h3-bananapi-m2-plus.dtb
-> > > 23915 -> 30664 sun8i-h3-nanopi-m1-plus.dtb
-> > > 22969 -> 29537 sun8i-h3-nanopi-m1.dtb
-> > > 24157 -> 30836 sun8i-h3-nanopi-duo2.dtb
-> > > 24110 -> 30845 sun8i-h3-orangepi-plus2e.dtb
-> > > 23472 -> 30037 sun8i-h3-orangepi-one.dtb
-> > > 24600 -> 31410 sun8i-h3-orangepi-plus.dtb
-> > > 23618 -> 30230 sun8i-h3-orangepi-2.dtb
-> > > 22170 -> 28548 sun8i-h3-orangepi-zero-plus2.dtb
-> > > 23258 -> 29795 sun8i-h3-nanopi-neo-air.dtb
-> > > 23113 -> 29699 sun8i-h3-zeropi.dtb
-> > > 22803 -> 29270 sun8i-h3-nanopi-neo.dtb
-> > > 24674 -> 31318 sun8i-h3-nanopi-r1.dtb
-> > > 23477 -> 30038 sun8i-h3-orangepi-pc.dtb
-> > > 24622 -> 31380 sun8i-h3-bananapi-m2-plus-v1.2.dtb
-> > > 23750 -> 30366 sun8i-h3-orangepi-pc-plus.dtb
-> > >=20
-> > > Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
-> > > ---
-> > > Please note that I only tested the overlay on the sun8i-h3-nanopi-
-> > > neo
-> > > device. However, the devices are quite similar and in general the
-> > > change to add symbols should be pretty safe. Similar patches have
-> > > been
-> > > applied to various other devices in the past without any negative
-> > > effect (except for the increased size).
-> >=20
-> > I'm not a fan of this approach. What's wrong with letting kernel
-> > builders
-> > specify this flag on their own at compile time? That way size is
-> > still
-> > completely in domain of builder.
->=20
-> That's easier said than done. These symbols are only needed for some
-> targets (that are commonly used with overlays). But how should a
-> general purpose kernel builder like Debian know which DT to build with
-> symbols and which without? In Yocto the overlays are not really needed,
-> as often the original dts is just patched directly.
+Dne ponedeljek, 19. junij 2023 ob 17:42:27 CEST je Maksim Kiselev napisal(a):
+> This patch adds declaration of the general purpose ADC for D1
+> and T113s SoCs.
+> 
+> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
 
-LibreELEC (distro I help with) has support for DT overlays for some time an=
-d=20
-it was easy to enable symbols for all DTs with simple "DTC_FLAGS=3D-@" addi=
-tion=20
-to build command [1]. Do you see any downside except knowing you have to=20
-include it? On the upside, there is no need to patch each and every file an=
-d=20
-kernel builder has a choice if overlays should be supported or not. Note th=
-at=20
-in some cases overlays can be needed even in the case when board doesn't ha=
-ve=20
-expansion ports.
+Applied, thanks!
 
 Best regards,
 Jernej
-
-[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/linux/
-package.mk#L213
-
->=20
-> There has been a discussion in 2017 to improve the situation in
-> general, but without any final decision or implementation [1]. By that,
-> these patches got more and more common. I recently sent a very similar
-> patch for a riscv board that got accepted [2].
->=20
-> IMHO it is better to have these patches in the kernel instead of
-> carrying different variants of this in each Linux distro. IMHO, the
-> board vendors themselves should add this when they add a board.
->=20
-> [1]
-> https://lore.kernel.org/lkml/1502831736-28282-1-git-send-email-trini@kons=
-ulk
-> o.com/ [2]
-> https://lore.kernel.org/linux-devicetree/20230627080620.329873-1-felix.mo=
-ess
-> bauer@siemens.com/
->=20
-> Best regards,
-> Felix
->=20
-> > Best regards,
-> > Jernej
-> >=20
-> > > Felix Moessbauer
-> > > Siemens AG
-> > >=20
-> > >  arch/arm/boot/dts/allwinner/Makefile | 19 +++++++++++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm/boot/dts/allwinner/Makefile
-> > > b/arch/arm/boot/dts/allwinner/Makefile index
-> > > 589a1ce1120a..eebb5a0c873a
-> > > 100644
-> > > --- a/arch/arm/boot/dts/allwinner/Makefile
-> > > +++ b/arch/arm/boot/dts/allwinner/Makefile
-> > > @@ -179,6 +179,25 @@ dtb-$(CONFIG_MACH_SUN7I) +=3D \
-> > >         sun7i-a20-pcduino3-nano.dtb \
-> > >         sun7i-a20-wexler-tab7200.dtb \
-> > >         sun7i-a20-wits-pro-a20-dkt.dtb
-> > > +
-> > > +# Enables support for device-tree overlays for all pis
-> > > +DTC_FLAGS_sun8i-h3-orangepi-lite :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-bananapi-m2-plus :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-nanopi-m1-plus :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-nanopi-m1 :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-nanopi-duo2 :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-plus2e :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-one :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-plus :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-2 :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-zero-plus2 :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-nanopi-neo-air :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-zeropi :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-nanopi-neo :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-nanopi-r1 :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-pc :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 :=3D -@
-> > > +DTC_FLAGS_sun8i-h3-orangepi-pc-plus :=3D -@
-> > >  dtb-$(CONFIG_MACH_SUN8I) +=3D \
-> > >         sun8i-a23-evb.dtb \
-> > >         sun8i-a23-gt90h-v4.dtb \
-
-
 
 
