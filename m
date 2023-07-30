@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 479E77687DC
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0132B7687E3
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230082AbjG3UUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 16:20:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57016 "EHLO
+        id S230076AbjG3UVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 16:21:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbjG3UT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:19:59 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A0B173D
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:19:19 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5221ee899a0so5109325a12.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:19:19 -0700 (PDT)
+        with ESMTP id S229808AbjG3UVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:21:01 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79ADC199
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:20:59 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso5096633a12.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:20:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690748357; x=1691353157;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=out/Q40ODaDczCCdOyB/xqmUqSDZmlaofXUk01AB65g=;
-        b=fKxtcaSdcT8bH7VrE+QhAegnLRS8O6Nm9x/wziovFu8TnP53TX/XXLEqXZhnQKJbhB
-         Nki8wL9phBqkEHDniP5QzuTTyn4QJLQxAixyocskvgebj8MQOzJI36YoQP14JJytQ7MU
-         bvM3qv/a0RQ7ZCoa5t6ISrCQoum+Te1I4sTT3drdrM/lHb3/sjHu/lIddRe6g+8vRnBM
-         xtecL9ak0fa25jBRS72ItWM0J0zPIbc+uJUq/iOqXVdA7T5RBUA1L+X+sGGpwNCJtI0P
-         nIv2RwXybmZygEz68GYpsb6aCDv/OOeAr2XvWPOPa5cTpvASF46ELPb2BMWcgTysm49D
-         nHdg==
+        d=linaro.org; s=google; t=1690748458; x=1691353258;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8f/MgDrEv8Tw5VaLnW3VcLxIwrS6Qd/GuTI2klbB/as=;
+        b=pb/mOZGqU4gvRpiwlnn7bHtk5y1t8Zlci00vsSjMi6KXB/5z7EnVF7UnwFF37vxs/q
+         /JHPiF+WDMD6TvloGE+goL0s1lISx0gQbq5tx44PSBhQYQjGgY+r5D+eOmlStfkPvEUD
+         pcCajAVX91Ef6RusRfytRtiqHFm5/0ziEfUzmS/a/p0G2egsQ1I3+wEq57FusDQESfRn
+         k1HrTjBw+9smfgGqFWDlBKHL7JZQ8f9JpPTALclXnCE3/Pi5aCQ+AN1Ohu9d/QfsGFPo
+         CUJbXY4EF+invy4vpmU8CDPYI9T4MYXNf3lKe0rtc6I4r0uuzSYXwrsnLJ58i+MfjoF3
+         /yHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690748357; x=1691353157;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=out/Q40ODaDczCCdOyB/xqmUqSDZmlaofXUk01AB65g=;
-        b=Kt3G2o9pD4xBvvX3DepeuIFeALSjrVBNjxvt+JvEnhzqogBW55tQ9p8lJsIvEGiPa9
-         DmvEYvEqrynIK+Ffi0n5bYpIPazP2jHvyNUgHJ31qIqPkCyqp/rpeq9V437pRiOKX24C
-         4hxeG7I5RkSvClk8LvcZxeyewWcXs3/nqWU292/sz4N2sV9RSoG4rc0LrbKycZ/WFPOT
-         3bqqsauRQhec9Dq4ecpMvCTo7pXlZFpmQNlUyWkc7CEFfxsYAOcPddxUMa141QNS6bJU
-         +AyBGs/ZR/f2JBQwKaq+yMUAIWL5kQWKqaOcPz6xvdc8Bzsq84GdBB9j8tx+wClw6j/N
-         LOHA==
-X-Gm-Message-State: ABy/qLZ9ifAnTp82OR4U6jf68lxh+nDGkPXuFotkHfm08CnNabJSXTsP
-        FjUwoZflQz5Oq5mJF5g1ugH/fQ==
-X-Google-Smtp-Source: APBJJlFvEEGxJ/hMAIyBj4/fO1CefNoL30i3WJ4oALs3HotLTPXCDb47HutWaE1MorBkVGXhw0AlOA==
-X-Received: by 2002:a17:906:300f:b0:99b:c949:5ef9 with SMTP id 15-20020a170906300f00b0099bc9495ef9mr4853164ejz.11.1690748357349;
-        Sun, 30 Jul 2023 13:19:17 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690748458; x=1691353258;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8f/MgDrEv8Tw5VaLnW3VcLxIwrS6Qd/GuTI2klbB/as=;
+        b=WtDgb8fzTAqgEOsDsZuvJlkuJoDrtAFHFA6Ky66XlYlZ7yzgYvbLQOfUnnzrKWvvXL
+         k6DVrl4UUIqDw2PCiR2BK16t+c4wYaqAdJwAeOAEmw425tPLSbgZsoaIQetD0LOw9w8j
+         Wn3pMF47pl3ezwM/xp2IP85LX9vHqwLhLLiMRdWGW5oWjg8pHh2ZmYwSiTRHH3jZuh/j
+         uml0gKvJNgfgVi0smKrLCoJx0UCXHy8aV1lBf4KtbLIMSlsN5qY/laiN2K0thQNk2m51
+         Ga2A6+gb3qJwFJlgtuHsEY74WlHM+sEcb62cXKPCsiV4JPCtM4aQX9pvR5dcEbrlfWJA
+         W/SQ==
+X-Gm-Message-State: ABy/qLaKm9IHaV0hhQ3cWyh0FHdOIImDAU5WMbZQtJZUdgRMvrjJSxFe
+        sB9splcBOadkkXNXOKeghG3EEQ==
+X-Google-Smtp-Source: APBJJlGU7AKTZgnUH7tZLhdoNMXBGmqsRp6wlJ6rIt/BwPXPqtzqgMF4PF4altfte1iWVEf70DFpAQ==
+X-Received: by 2002:a17:906:329b:b0:988:9621:d855 with SMTP id 27-20020a170906329b00b009889621d855mr4326827ejw.61.1690748457920;
+        Sun, 30 Jul 2023 13:20:57 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id gq15-20020a170906e24f00b00992b510089asm5066885ejb.84.2023.07.30.13.19.16
+        by smtp.gmail.com with ESMTPSA id h19-20020a17090634d300b0098e422d6758sm5066254ejb.219.2023.07.30.13.20.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 13:19:17 -0700 (PDT)
+        Sun, 30 Jul 2023 13:20:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,17 +58,15 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sdm845-enchilada: use 0 as speaker DAI cells
-Date:   Sun, 30 Jul 2023 22:19:13 +0200
-Message-Id: <20230730201913.70667-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: msm8953-daisy: use new speaker maxim,interleave-mode
+Date:   Sun, 30 Jul 2023 22:20:51 +0200
+Message-Id: <20230730202051.71099-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230730201913.70667-1-krzysztof.kozlowski@linaro.org>
-References: <20230730201913.70667-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,36 +74,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MAX98927 speaker amplifier has only one DAI, so DAI cells can be just 0
-(as expected by bindings).
+MAX98927 speaker amplifier "interleave_mode" property was never
+documented.  Corrected bindings expect "maxim,interleave-mode" instead,
+which is already supported by Linux driver.  Change is not compatible
+with older Linux kernels.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-index 62fe72ff3763..4005e04d998a 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-@@ -39,7 +39,7 @@ &i2c4 {
- 	max98927_codec: max98927@3a {
- 		compatible = "maxim,max98927";
- 		reg = <0x3a>;
--		#sound-dai-cells = <1>;
-+		#sound-dai-cells = <0>;
+---
+
+Depends on:
+https://lore.kernel.org/linux-devicetree/20230730201826.70453-2-krzysztof.kozlowski@linaro.org/T/#u
+---
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
+index 790d19c99af1..a5957e79b818 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
++++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
+@@ -125,7 +125,7 @@ speaker_codec: audio-codec@3a {
  
- 		pinctrl-0 = <&speaker_default>;
- 		pinctrl-names = "default";
-@@ -66,7 +66,7 @@ &sound {
+ 		vmon-slot-no = <1>;
+ 		imon-slot-no = <1>;
+-		interleave_mode = <0>;
++		maxim,interleave-mode;
  
- &speaker_playback_dai {
- 	codec {
--		sound-dai = <&max98927_codec 0>;
-+		sound-dai = <&max98927_codec>;
+ 		#sound-dai-cells = <0>;
  	};
- };
- 
 -- 
 2.34.1
 
