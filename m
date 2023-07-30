@@ -2,79 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55FBA7687E7
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89AD57687F2
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjG3UZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 16:25:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59150 "EHLO
+        id S230132AbjG3UbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 16:31:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjG3UZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:25:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80318E6F;
-        Sun, 30 Jul 2023 13:25:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1316D60CA3;
-        Sun, 30 Jul 2023 20:25:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3DAAC433C8;
-        Sun, 30 Jul 2023 20:25:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690748710;
-        bh=x1t0wCpNg2HmSz334jJtp+B33GOT7KvodGTWYjxWMcY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O96Knyjpbnv+P1a9fe0v+3sttKCx2Am5WWJ36UC1DFi5g9hoFz0bdOv3aBbGkg+D1
-         loE2omnCWusus7JTKey3qGoR/scHz1jZ0N2Me99L2hNTTe1NrKPZbDIYXtRo8gTH5q
-         fbN43ZRtzAGIkCyPoQs8/b8aID+vWwBbTDky51dG3s6KAszwzpYxxkdjoYHNsSUJIr
-         HG/0xsYAmaC/Lg2+3r0kaE1GNv5n8MmHOrJwGMBhDmdPM+38WQqgSc2KysE7bx50Gm
-         vMTpcDAbSeZHc4SPG+EZ+bksDwH/0419N7cQoEfybCiNJ+7zOk8w+d6kOvi/H7Ng25
-         aOi6PupPCaPhQ==
-Date:   Sun, 30 Jul 2023 22:25:07 +0200
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230129AbjG3UbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:31:03 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E4CE78
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:31:00 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c10ba30afso106983966b.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690749059; x=1691353859;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vxg8TeRb0NZN4rPS9q09YPBYQiS+mNKDuiZUWy7sPoE=;
+        b=T2n6ZC3LdIPpNjPMhN0clIMSRupAJ5wmAIrIV2AoJfro+kU5iA8/4yn42jO6rr69KY
+         wlFKXo9FYxNLBpVmMuMD7xjD7OfDUHbdkDV5H4bL5F1gwwgYCoBVQziK2Ov72H+8AYXD
+         dAs3n55aJS/5MJTM41Sk2zeIycwOvxCY392vlX/oUddRdV4BebFpNM/2yxnMzjPoILmv
+         kL6nr9rbvkKvpw2Z+POeAAWSI5wmttSM6ttgdwlNXQZ1xhi2CPIzvSdVAGv4oFnZQPsb
+         oNKKsCSf/9bgaDzt1UY1bsmaolIp+qu61sqcEKIHVawKKhkzmGr2oTGz8jxq1KQq1KDT
+         aMzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690749059; x=1691353859;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vxg8TeRb0NZN4rPS9q09YPBYQiS+mNKDuiZUWy7sPoE=;
+        b=NBArn58EkrgnM1XFrfwyus3xvKoiOSi1VxjJeyqmCOMUhNFGu+9uVRamrI0HBcvbaB
+         GVkYfQpU+pnO360Z4vrhvofmzUoz4ekY20GLFMojmg6L+K2Bvem7LA81F832WquUie1o
+         IP9Gboa2Y3hI1HTMziCjxQMrIpWPqe26WNu92KFFLn+o0FuP0nq/klypFL1pdBde2HV+
+         85YEwmArcs/SYee8l3tBvBbs5ZEg0ZiLuW8tQBE/DTPKCd/8xQrMGRE4ri7sA95Vqwvo
+         Fl/fdSyBV4iC2pcVPxK6DyapB9y0hkpYUVc7nk+yueVSd4K7roTcrOqsjZ/s+8ieESez
+         oSXg==
+X-Gm-Message-State: ABy/qLYYK6/mJG4E6erQq9V11mOodFjehOejqhChI9RMs+6YPqVO9259
+        78Qkz0gxUGquk0vSH7furg1UuA==
+X-Google-Smtp-Source: APBJJlHOTxeh1CTXqfEUzI4IuLFNKbWoKOerY31UzGFO9qNi7Sim6hqRNPHAsYOXrUACqIz4IMuq6Q==
+X-Received: by 2002:a17:906:53d0:b0:99b:4d3d:c9b7 with SMTP id p16-20020a17090653d000b0099b4d3dc9b7mr6068918ejo.31.1690749059260;
+        Sun, 30 Jul 2023 13:30:59 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id n22-20020a170906841600b009934707378fsm5072399ejx.87.2023.07.30.13.30.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Jul 2023 13:30:58 -0700 (PDT)
+Message-ID: <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
+Date:   Sun, 30 Jul 2023 22:30:56 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Wolfram Sang <wsa@kernel.org>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
-Message-ID: <20230730202507.ojwinyjsx7ygyavp@intel.intel>
 References: <20230729160857.6332-1-clamor95@gmail.com>
  <20230729160857.6332-3-clamor95@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 In-Reply-To: <20230729160857.6332-3-clamor95@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Svyatoslav,
-
-(I'm not going to comment at this stage on some coding issues)
-
-On Sat, Jul 29, 2023 at 07:08:57PM +0300, Svyatoslav Ryhel wrote:
+On 29/07/2023 18:08, Svyatoslav Ryhel wrote:
 > From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 > 
 > Implement driver for hot-plugged I2C busses, where some devices on
 > a bus are hot-pluggable and their presence is indicated by GPIO line.
 > 
 > This feature is mainly used by the ASUS Transformers family. The
-
-But not just Asus, right?
-
 > Transformers have a connector that's used for USB, charging or for
 > attaching a dock-keyboard (which also has a battery and a touchpad).
 > This connector probably (can't be verified since no datasheets or
@@ -84,72 +97,62 @@ But not just Asus, right?
 > but nothing that could be controlled by software. For DT this setup
 > could be modelled like an I2C gate or 2-port mux with enable joining
 > two I2C buses (one "closer" to the CPU as a parent).
+> 
+> Co-developed-by: Ion Agorria <ion@agorria.com>
+> Signed-off-by: Ion Agorria <ion@agorria.com>
+> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 
-the description looks like it's hiding many doubts for a commit
-log :)
+...
 
-In the commit log we want to be sure on what we are doing.
-
-[...]
-
-> +static int i2c_hotplug_activate(struct i2c_hotplug_priv *priv)
-
-there is no point for this to be "integer".
-
-> +{
-> +	int ret;
+> +	ret = devm_add_action_or_reset(&pdev->dev, devm_i2c_put_adapter,
+> +				       parent);
+> +	if (ret)
+> +		return ret;
 > +
-> +	if (priv->adap.algo_data)
-> +		return 0;
+> +	priv->gpio = devm_gpiod_get(&pdev->dev, "detect", GPIOD_IN);
+> +	if (IS_ERR(priv->gpio))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->gpio),
+> +				     "failed to get detect GPIO\n");
 > +
-> +	/*
-> +	 * Store the dev data in adapter dev, since
-> +	 * previous i2c_del_adapter might have wiped it.
-> +	 */
-> +	priv->adap.dev.parent = priv->dev;
-> +	priv->adap.dev.of_node = priv->dev->of_node;
+> +	is_i2c = parent->algo->master_xfer;
+> +	is_smbus = parent->algo->smbus_xfer;
 > +
-> +	dev_dbg(priv->adap.dev.parent, "connection detected");
-> +
-> +	ret = i2c_add_adapter(&priv->adap);
-> +	if (!ret)
-> +		priv->adap.algo_data = (void *)1;
-
-You want to set algo_data to "1" in order to keep the
-activate/deactivate ordering.
-
-But if we fail to add the adapter, what's the point to keep it
-active?
-
-> +	return ret;
-> +}
-> +
-> +static void i2c_hotplug_deactivate(struct i2c_hotplug_priv *priv)
-> +{
-> +	if (!priv->adap.algo_data)
-> +		return;
-> +
-> +	dev_dbg(priv->adap.dev.parent, "disconnection detected");
-> +
-> +	i2c_del_adapter(&priv->adap);
+> +	snprintf(priv->adap.name, sizeof(priv->adap.name),
+> +		 "i2c-hotplug (master i2c-%d)", i2c_adapter_id(parent));
+> +	priv->adap.owner = THIS_MODULE;
+> +	priv->adap.algo = i2c_hotplug_algo[is_i2c][is_smbus];
 > +	priv->adap.algo_data = NULL;
-> +}
+> +	priv->adap.lock_ops = &i2c_hotplug_lock_ops;
+> +	priv->adap.class = parent->class;
+> +	priv->adap.retries = parent->retries;
+> +	priv->adap.timeout = parent->timeout;
+> +	priv->adap.quirks = parent->quirks;
+> +	if (parent->bus_recovery_info)
+> +		priv->adap.bus_recovery_info = &i2c_hotplug_recovery_info;
 > +
-> +static irqreturn_t i2c_hotplug_interrupt(int irq, void *dev_id)
-> +{
-> +	struct i2c_hotplug_priv *priv = dev_id;
+> +	if (!priv->adap.algo)
+> +		return -EINVAL;
 > +
-> +	/* debounce */
-> +	msleep(20);
-
-can you explain this waiting and why 20ms?
-
-Andi
-
-> +	if (gpiod_get_value_cansleep(priv->gpio))
-> +		i2c_hotplug_activate(priv);
-> +	else
-> +		i2c_hotplug_deactivate(priv);
+> +	priv->irq = platform_get_irq(pdev, 0);
+> +	if (priv->irq < 0)
+> +		return dev_err_probe(&pdev->dev, priv->irq,
+> +				     "failed to get IRQ %d\n", priv->irq);
 > +
-> +	return IRQ_HANDLED;
-> +}
+> +	ret = devm_request_threaded_irq(&pdev->dev, priv->irq, NULL,
+> +					i2c_hotplug_interrupt,
+> +					IRQF_ONESHOT | IRQF_SHARED,
+
+Shared IRQ with devm is a recipe for disaster. Are you sure this is a
+shared one? You have a remove() function which also points that it is
+not safe. You can:
+1. investigate to be sure it is 100% safe (please document why do you
+think it is safe)
+2. drop devm
+3. drop shared flag.
+
+
+
+Best regards,
+Krzysztof
+
