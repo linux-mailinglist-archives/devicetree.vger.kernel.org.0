@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6F237686E5
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A0E67686EA
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbjG3RuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 13:50:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50806 "EHLO
+        id S229547AbjG3RzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 13:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbjG3RuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:50:05 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688A91708
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:50:04 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99bf3f59905so360136566b.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:50:04 -0700 (PDT)
+        with ESMTP id S229545AbjG3Ry7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:54:59 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7857CF
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:54:52 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bc0a20b54so616185966b.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:54:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690739403; x=1691344203;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yKdWXJFxJOmvyguMabmhrddMvFGn8oXWx7/tkmVRvZo=;
-        b=CPmpGeWzZs3ZL/cGyJyLCAYINXnwa8buI2DaqarinlaeP0atyea+Gg52V6zg2EbzFr
-         XyLyaILCl/HRUQKAA0+a28N8kgavE/I/q7xwtvTD9eWnjHTHCiOkto61goP5DEyH1CKE
-         zBgpLdPI7nbWs9ngARyiMSS7SVMZqok6Q3Jak0VQgJSxzd7y44rlvLcH3UDC+PiyjmgB
-         7f4QHoi1TAO4jnvYo/Q+J79xffCyiEBWxY97M47hFYHO9qZibnIJt7+UnmA5pq3RgXbe
-         JU88sehUMYk4MJzGHHAkhz8vQhjvVE82fLEYCUE/s4yeYkTkriY9Uh0ogNVRU+ZWobuE
-         9AYw==
+        d=linaro.org; s=google; t=1690739691; x=1691344491;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mbjS6TBC9NtU6oekBePBL31Nw/0x/d6yu4TOb6mnKIY=;
+        b=P6jbYQ5csvD+4BbInxE1FPGjPTs2AnewX7WnsbjMJJTq1EGfetuG3xSy0ZMuXtqCJ3
+         o9AoI1/Lw/WQKNpVpn6emK3roLzIW+M7xKJ5eBsnY93SBI0uUd2XF2jERi7d5g9NdzzF
+         KbHkXXv8jBA5YtV/6F2dpt6+44XF/NjeovU8WmQqfZ1LnjvBORzorbZoI4SvePFazmMV
+         WbG9QJ5j4f6RIz0GG0k285iwJDjNxAKLEolpuk9RD+r0d6Y7U6wmLc5PBPizOp+SkLCc
+         CjuOvYnzSY5xhj1flC3DiycTNUatTKTkPYl34xm6+SmW8rO4K/jdz09gOQIZMdKX/NLd
+         eSmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690739403; x=1691344203;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yKdWXJFxJOmvyguMabmhrddMvFGn8oXWx7/tkmVRvZo=;
-        b=XzLhEiDwl1BAIVxDt4WqerVqmuYqaUQFbdKLZDmC3VRHLrhYVz3w4WuV7RGshsRdcV
-         2bdkYbQhfL/Bp+D2RaLoIMbZ6XbOS6dRzwdVjlfRoWFqkxGU7EBcroNnp0UceHaW036S
-         3E1ziq3uII9PvGNYBVgl7PGao4YTPPeGW6rTmAuGyVYCX1aSJYrDlECAZu8vzu7dZ1x+
-         AEiqmTkWhMcBoofMJSeB0RrKVGmqjDLQQVePWBHtiN4qP7jConcb61mo0YIs1MYfcjuf
-         Oo5waXFFEppjU3fjjOCBzvqtEBTSEAfAw2a8piDCOsCaGTJxAqciODn+yy6MtbOGBAOl
-         aIlg==
-X-Gm-Message-State: ABy/qLbNPANfUIDy03xHRStPaKkQhGOmNtpC3YFgAxIV0w1mxx0+hE10
-        IX+LxWDxor5tH1mmwIdyF0vpA3w+w1U16HbcgXE=
-X-Google-Smtp-Source: APBJJlGC3sCLh5foHeUM1Fe+v1Io+TMzDHc0uyIKAFYSSMPfT+pMaUaoyiVW/Ba3seMgfmcKBGAthw==
-X-Received: by 2002:a17:907:7798:b0:96b:e93:3aa8 with SMTP id ky24-20020a170907779800b0096b0e933aa8mr6102323ejc.21.1690739402898;
-        Sun, 30 Jul 2023 10:50:02 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id f19-20020a170906495300b00992c4103cb5sm4913537ejt.129.2023.07.30.10.50.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 10:50:02 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        d=1e100.net; s=20221208; t=1690739691; x=1691344491;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mbjS6TBC9NtU6oekBePBL31Nw/0x/d6yu4TOb6mnKIY=;
+        b=Y+uuHx0Q05LuSyHV6O7Qs5exO2SFLsd2ivH6Mm6XKuQV1Qd4Pa4tGztjml92ldePjN
+         kvB7c+N5IFhaplnsSIWSiEndt59ToXlOyEKWAZP5Q5G89YTim8tjaOD1KzTgG5I9g3d6
+         8X+AH1/x75nYUtF7dlJUKQ2hIsR9FxfbXexzNTBOo09K2GYWkOgdsC1j3svEvQpY9S2Q
+         sNS5YhxjfbvK5dTu21XSY7x7N35cdA53Ke8FcpZFhb8Ao6Ct1cZ+PjmThdaQkLIqetem
+         AVR2tUAkDupVa3zhEY8NAvy1gdGZRniVKc/QSnSU6rO8hzmSqUcCeCmjgrdCfOcaRwuB
+         3q2A==
+X-Gm-Message-State: ABy/qLZwfXBZB6YVHwEASSxm11zZVO9us/RZGHgEXL/nGR+56lCNRq5N
+        ePPpz8PYsmeP49PUaclYvwBwtt7knDvdwbH8e1o=
+X-Google-Smtp-Source: APBJJlGKotrJF4ynR3yW3bafZKtRVjvSfy65pHmi1rA3GyhmcmsJZikumlPXSdF9eBN8iCEA/B9qfA==
+X-Received: by 2002:a17:907:7711:b0:99b:d1cb:5add with SMTP id kw17-20020a170907771100b0099bd1cb5addmr5645098ejc.35.1690739691213;
+        Sun, 30 Jul 2023 10:54:51 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id t7-20020a1709063e4700b0098d15d170a0sm4875349eji.202.2023.07.30.10.54.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Jul 2023 10:54:50 -0700 (PDT)
+Message-ID: <acd8e4ea-0d8f-3dc2-16ef-4c1deee281d8@linaro.org>
+Date:   Sun, 30 Jul 2023 19:54:49 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH RESEND v2] dt-bindings: sound: gtm601: convert to YAML
+Content-Language: en-US
+To:     David Heidelberg <david@ixit.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 4/4] ARM: dts: st: stih407: drop max-duty-cycle
-Date:   Sun, 30 Jul 2023 19:49:54 +0200
-Message-Id: <20230730174954.5293-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230730174954.5293-1-krzysztof.kozlowski@linaro.org>
-References: <20230730174954.5293-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Conor Dooley <conor+dt@kernel.org>, - <kernel@puri.sm>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230730115150.38887-1-david@ixit.cz>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230730115150.38887-1-david@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,33 +79,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"max-duty-cycle" property was removed in the commit f747a1fe7848
-("regulator: pwm-regulator: Remove obsoleted property"):
+On 30/07/2023 13:51, David Heidelberg wrote:
+> Convert GTM601 binding to the YAML format.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> 
 
-  stih418-b2199.dtb: pwm-regulator: Unevaluated properties are not allowed ('max-duty-cycle' was unexpected)
+No need for blank line between tags.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: kernel@puri.sm
+> ---
+> v2:
+>  - add #sound-dai-cells
+>  - put kernel@puri.sm into maintainers
+> 
+>  .../devicetree/bindings/sound/gtm601.txt      | 19 ----------
+>  .../devicetree/bindings/sound/gtm601.yaml     | 36 +++++++++++++++++++
 
----
+Filename like compatible, please, so option,gtm601.yaml
 
-Changes in v2:
-1. Correct subject prefix: AMR->ARM
----
- arch/arm/boot/dts/st/stih407-family.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+>  2 files changed, 36 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/gtm601.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/gtm601.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/gtm601.txt b/Documentation/devicetree/bindings/sound/gtm601.txt
+> deleted file mode 100644
+> index efa32a486c4a..000000000000
+> --- a/Documentation/devicetree/bindings/sound/gtm601.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -GTM601 UMTS modem audio interface CODEC
+> -
+> -This device has no configuration interface. The sample rate and channels are
+> -based on the compatible string
+> -	"option,gtm601" = 8kHz mono
+> -	"broadmobi,bm818" = 48KHz stereo
+> -
+> -Required properties:
+> -
+> -  - compatible : one of
+> -	"option,gtm601"
+> -	"broadmobi,bm818"
+> -
+> -
+> -Example:
+> -
+> -codec: gtm601_codec {
+> -	compatible = "option,gtm601";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/gtm601.yaml b/Documentation/devicetree/bindings/sound/gtm601.yaml
+> new file mode 100644
+> index 000000000000..e81a6aa75522
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/gtm601.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/gtm601.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GTM601 UMTS modem audio interface CODEC
+> +
+> +maintainers:
+> +  - kernel@puri.sm
+> +
+> +description: >
+> +  This device has no configuration interface. The sample rate and channels are
+> +  based on the compatible string
+> +
 
-diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
-index 3f58383a7b59..29302e74aa1d 100644
---- a/arch/arm/boot/dts/st/stih407-family.dtsi
-+++ b/arch/arm/boot/dts/st/stih407-family.dtsi
-@@ -111,7 +111,6 @@ pwm_regulator: pwm-regulator {
- 		regulator-min-microvolt = <784000>;
- 		regulator-max-microvolt = <1299000>;
- 		regulator-always-on;
--		max-duty-cycle = <255>;
- 		status = "okay";
- 	};
- 
--- 
-2.34.1
+Missing $ref to dai-common.yaml
+
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: broadmobi,bm818
+> +          - const: option,gtm601
+> +      - items:
+
+No "items" needed here, just use enum.
+
+> +          - enum:
+> +              - broadmobi,bm818  # 48 kHz stereo
+> +              - option,gtm601  # 8 kHz mono
+
+This does not make much sense. bm818 is either compatible with gtm601 or
+is not. Cannot be both.
+
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gtm601_codec {
+
+No underscores, generic names, so "codec" or "audio-codec".
+
+> +        compatible = "option,gtm601";
+
+Add dai cells also to the example to make it complete.
+
+> +    };
+
+Best regards,
+Krzysztof
 
