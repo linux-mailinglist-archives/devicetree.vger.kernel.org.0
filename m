@@ -2,77 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89AD57687F2
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7BDE7687F6
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:31:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbjG3UbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 16:31:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
+        id S230147AbjG3Ubh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 16:31:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjG3UbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:31:03 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E4CE78
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:31:00 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c10ba30afso106983966b.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:31:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690749059; x=1691353859;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vxg8TeRb0NZN4rPS9q09YPBYQiS+mNKDuiZUWy7sPoE=;
-        b=T2n6ZC3LdIPpNjPMhN0clIMSRupAJ5wmAIrIV2AoJfro+kU5iA8/4yn42jO6rr69KY
-         wlFKXo9FYxNLBpVmMuMD7xjD7OfDUHbdkDV5H4bL5F1gwwgYCoBVQziK2Ov72H+8AYXD
-         dAs3n55aJS/5MJTM41Sk2zeIycwOvxCY392vlX/oUddRdV4BebFpNM/2yxnMzjPoILmv
-         kL6nr9rbvkKvpw2Z+POeAAWSI5wmttSM6ttgdwlNXQZ1xhi2CPIzvSdVAGv4oFnZQPsb
-         oNKKsCSf/9bgaDzt1UY1bsmaolIp+qu61sqcEKIHVawKKhkzmGr2oTGz8jxq1KQq1KDT
-         aMzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690749059; x=1691353859;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vxg8TeRb0NZN4rPS9q09YPBYQiS+mNKDuiZUWy7sPoE=;
-        b=NBArn58EkrgnM1XFrfwyus3xvKoiOSi1VxjJeyqmCOMUhNFGu+9uVRamrI0HBcvbaB
-         GVkYfQpU+pnO360Z4vrhvofmzUoz4ekY20GLFMojmg6L+K2Bvem7LA81F832WquUie1o
-         IP9Gboa2Y3hI1HTMziCjxQMrIpWPqe26WNu92KFFLn+o0FuP0nq/klypFL1pdBde2HV+
-         85YEwmArcs/SYee8l3tBvBbs5ZEg0ZiLuW8tQBE/DTPKCd/8xQrMGRE4ri7sA95Vqwvo
-         Fl/fdSyBV4iC2pcVPxK6DyapB9y0hkpYUVc7nk+yueVSd4K7roTcrOqsjZ/s+8ieESez
-         oSXg==
-X-Gm-Message-State: ABy/qLYYK6/mJG4E6erQq9V11mOodFjehOejqhChI9RMs+6YPqVO9259
-        78Qkz0gxUGquk0vSH7furg1UuA==
-X-Google-Smtp-Source: APBJJlHOTxeh1CTXqfEUzI4IuLFNKbWoKOerY31UzGFO9qNi7Sim6hqRNPHAsYOXrUACqIz4IMuq6Q==
-X-Received: by 2002:a17:906:53d0:b0:99b:4d3d:c9b7 with SMTP id p16-20020a17090653d000b0099b4d3dc9b7mr6068918ejo.31.1690749059260;
-        Sun, 30 Jul 2023 13:30:59 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id n22-20020a170906841600b009934707378fsm5072399ejx.87.2023.07.30.13.30.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jul 2023 13:30:58 -0700 (PDT)
-Message-ID: <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
-Date:   Sun, 30 Jul 2023 22:30:56 +0200
+        with ESMTP id S230011AbjG3Ubg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:31:36 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3E4E78
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:31:33 -0700 (PDT)
+Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 842B83F0AC;
+        Sun, 30 Jul 2023 22:31:30 +0200 (CEST)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+Subject: [PATCH v5 0/2] dts: qcom: Use labels with generic node names for
+ ADC channels
+Date:   Sun, 30 Jul 2023 22:31:24 +0200
+Message-Id: <20230730-generic-adc-channels-v5-0-e6c69bda8034@somainline.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
-To:     Svyatoslav Ryhel <clamor95@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJzIxmQC/0WMQQ6CMBBFr0K6dsi0YBtceQ/josIAQ2BKWjQmh
+ Ltb3bj6ecl/b1eJIlNSl2JXkV6cOEiG86lQ7ehlIOAuszJoKnQVwkCSjRZ818L3ITQnsNgYRKc
+ f2muV1TVSz+9f9nbP3MewwDZG8v9YrTFvo11pametBQ2LjzxJmZ48bSTXFBbPMrNQGeKgjuMD4
+ 3scNq4AAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230729160857.6332-1-clamor95@gmail.com>
- <20230729160857.6332-3-clamor95@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230729160857.6332-3-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Marijn Suijten <marijn.suijten@somainline.org>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,78 +60,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/07/2023 18:08, Svyatoslav Ryhel wrote:
-> From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
-> 
-> Implement driver for hot-plugged I2C busses, where some devices on
-> a bus are hot-pluggable and their presence is indicated by GPIO line.
-> 
-> This feature is mainly used by the ASUS Transformers family. The
-> Transformers have a connector that's used for USB, charging or for
-> attaching a dock-keyboard (which also has a battery and a touchpad).
-> This connector probably (can't be verified since no datasheets or
-> special equipment is available) has an I2C bus lines and a "detect"
-> line (pulled low on the dock side) among the pins. I guess there
-> is either no additional chip or a transparent bridge/buffer chip,
-> but nothing that could be controlled by software. For DT this setup
-> could be modelled like an I2C gate or 2-port mux with enable joining
-> two I2C buses (one "closer" to the CPU as a parent).
-> 
-> Co-developed-by: Ion Agorria <ion@agorria.com>
-> Signed-off-by: Ion Agorria <ion@agorria.com>
-> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+As discussed in [1] it is more convenient to use a generic `channel`
+node name for ADC channels while storing a friendly - board-specific
+instead of PMIC-specific - name in the label, if/when desired to
+overwrite the channel description already contained (but previously
+unused) in the driver [2].
 
-...
+The same `channel` node name pattern has also been set in
+iio/adc/adc.yaml, but this generic binding is not inherited as base for
+qcom,spmi-vadc bindings due to not having any other generic elements in
+common, besides the node name rule and reg property.
 
-> +	ret = devm_add_action_or_reset(&pdev->dev, devm_i2c_put_adapter,
-> +				       parent);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->gpio = devm_gpiod_get(&pdev->dev, "detect", GPIOD_IN);
-> +	if (IS_ERR(priv->gpio))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->gpio),
-> +				     "failed to get detect GPIO\n");
-> +
-> +	is_i2c = parent->algo->master_xfer;
-> +	is_smbus = parent->algo->smbus_xfer;
-> +
-> +	snprintf(priv->adap.name, sizeof(priv->adap.name),
-> +		 "i2c-hotplug (master i2c-%d)", i2c_adapter_id(parent));
-> +	priv->adap.owner = THIS_MODULE;
-> +	priv->adap.algo = i2c_hotplug_algo[is_i2c][is_smbus];
-> +	priv->adap.algo_data = NULL;
-> +	priv->adap.lock_ops = &i2c_hotplug_lock_ops;
-> +	priv->adap.class = parent->class;
-> +	priv->adap.retries = parent->retries;
-> +	priv->adap.timeout = parent->timeout;
-> +	priv->adap.quirks = parent->quirks;
-> +	if (parent->bus_recovery_info)
-> +		priv->adap.bus_recovery_info = &i2c_hotplug_recovery_info;
-> +
-> +	if (!priv->adap.algo)
-> +		return -EINVAL;
-> +
-> +	priv->irq = platform_get_irq(pdev, 0);
-> +	if (priv->irq < 0)
-> +		return dev_err_probe(&pdev->dev, priv->irq,
-> +				     "failed to get IRQ %d\n", priv->irq);
-> +
-> +	ret = devm_request_threaded_irq(&pdev->dev, priv->irq, NULL,
-> +					i2c_hotplug_interrupt,
-> +					IRQF_ONESHOT | IRQF_SHARED,
+Replace the .* name pattern with the `channel` literal, but leave the
+label property optional for bindings to choose to fall back a channel
+label hardcoded in the driver [2] instead.
 
-Shared IRQ with devm is a recipe for disaster. Are you sure this is a
-shared one? You have a remove() function which also points that it is
-not safe. You can:
-1. investigate to be sure it is 100% safe (please document why do you
-think it is safe)
-2. drop devm
-3. drop shared flag.
+[1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
+[2]: https://lore.kernel.org/linux-arm-msm/20230116220909.196926-4-marijn.suijten@somainline.org/
 
+Changes since v4:
+- Dropped iio (dt-bindings) patches that have been merged, leaving only
+  ARM/arm64 DTS patches;
+- Rebased against next-20230728.
 
+v4: https://lore.kernel.org/linux-arm-msm/20230410202917.247666-1-marijn.suijten@somainline.org/
+
+Changes since v3:
+- Switch generic node name to `channel`, matching iio/adc/adc.yaml;
+- Besides switching arbitrary names to `channel`, now also rename all
+  existing `adc-chan` names to `channel`, including ARM tree;
+- Rebase on next-20230406 and apply rename to newer PMIC files.
+
+v3: https://lore.kernel.org/linux-arm-msm/20230201204447.542385-1-marijn.suijten@somainline.org/T/#u
+
+Changes since v2:
+- Reorder DT changes before dt-bindings changes;
+- Update adc-chan generic node name in tm5 example bindings.
+
+v2: https://lore.kernel.org/linux-arm-msm/20230119212632.185881-1-marijn.suijten@somainline.org/T/#u
+
+Changes since v1:
+- Require adc-chan name in dt-bindings;
+- Replace more node names with adc-chan and a descriptive label, that
+  were found by running dtbs_check on adjusted bindings;
+- sm8250-mtp.dts: Fix accidental adc-chan2 node name with pa_therm
+  label, which should have been adc-chan with pa_therm2 label.
+
+v1: https://lore.kernel.org/linux-arm-msm/20221209215308.1781047-1-marijn.suijten@somainline.org/
+
+--
+2.40.0
+
+---
+Marijn Suijten (2):
+      ARM: dts: qcom: Use labels with generic node names for ADC channels
+      arm64: dts: qcom: Use labels with generic node names for ADC channels
+
+ arch/arm/boot/dts/qcom/qcom-pm8226.dtsi            | 12 +++----
+ arch/arm/boot/dts/qcom/qcom-pm8941.dtsi            | 14 ++++----
+ arch/arm/boot/dts/qcom/qcom-pma8084.dtsi           | 12 +++----
+ arch/arm/boot/dts/qcom/qcom-pmx55.dtsi             |  8 ++---
+ arch/arm64/boot/dts/qcom/pm6125.dtsi               | 18 ++++++----
+ arch/arm64/boot/dts/qcom/pm6150.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/pm6150l.dtsi              |  8 ++---
+ arch/arm64/boot/dts/qcom/pm660.dtsi                | 33 ++++++++++++------
+ arch/arm64/boot/dts/qcom/pm7250b.dtsi              | 24 ++++++-------
+ arch/arm64/boot/dts/qcom/pm8150.dtsi               |  6 ++--
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi              |  8 ++---
+ arch/arm64/boot/dts/qcom/pm8150l.dtsi              |  6 ++--
+ arch/arm64/boot/dts/qcom/pm8916.dtsi               | 14 ++++----
+ arch/arm64/boot/dts/qcom/pm8950.dtsi               | 39 ++++++++++++++--------
+ arch/arm64/boot/dts/qcom/pm8953.dtsi               | 12 +++----
+ arch/arm64/boot/dts/qcom/pm8994.dtsi               | 12 +++----
+ arch/arm64/boot/dts/qcom/pm8998.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/pmi8950.dtsi              | 12 +++----
+ arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi          |  6 ++--
+ arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi          |  6 ++--
+ arch/arm64/boot/dts/qcom/pmp8074.dtsi              | 27 ++++++++++-----
+ arch/arm64/boot/dts/qcom/pms405.dtsi               | 21 ++++++++----
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           | 15 ++++++---
+ .../boot/dts/qcom/sc7180-trogdor-coachz-r1.dts     |  4 +--
+ .../arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi |  3 +-
+ .../boot/dts/qcom/sc7180-trogdor-homestar.dtsi     |  3 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi |  2 +-
+ .../boot/dts/qcom/sc7180-trogdor-pompom-r1.dts     |  2 +-
+ .../boot/dts/qcom/sc7180-trogdor-pompom-r2.dts     |  2 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi |  3 +-
+ .../boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  3 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi       |  3 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  2 +-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi         |  4 +--
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     | 26 +++++++--------
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi         | 10 +++---
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts            | 12 +++----
+ .../dts/qcom/sm6125-sony-xperia-seine-pdx201.dts   | 15 ++++++---
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  |  6 ++--
+ arch/arm64/boot/dts/qcom/sm8250-mtp.dts            | 21 ++++++++----
+ 41 files changed, 254 insertions(+), 186 deletions(-)
+---
+base-commit: d7b3af5a77e8d8da28f435f313e069aea5bcf172
+change-id: 20230730-generic-adc-channels-60920071b1a1
 
 Best regards,
-Krzysztof
+-- 
+Marijn Suijten <marijn.suijten@somainline.org>
 
