@@ -2,91 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81599768913
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 00:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A71876891E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 00:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjG3WTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 18:19:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52130 "EHLO
+        id S229568AbjG3War (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 18:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjG3WTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 18:19:50 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74E010F4;
-        Sun, 30 Jul 2023 15:19:48 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3178dd81ac4so2508560f8f.3;
-        Sun, 30 Jul 2023 15:19:48 -0700 (PDT)
+        with ESMTP id S229539AbjG3Waq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 18:30:46 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0DC910E9;
+        Sun, 30 Jul 2023 15:30:44 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-317716a4622so3599121f8f.1;
+        Sun, 30 Jul 2023 15:30:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690755587; x=1691360387;
+        d=gmail.com; s=20221208; t=1690756243; x=1691361043;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wc/+C+AJRRP3wZqyNPfzz3Cgo44jHnLGmmlbexMEhKA=;
-        b=cl5onc+TkxuEATcjD6uyVY7nH/Vz7ZkRqu9JxWsgfv4SoPnzoPuj4UYgsSxMX4DmhN
-         EbKH4KNoyGqNS1sDmy9WPnVudE7zyM5LAixHPtl9LhQN4/Y11NaWw5hciNNR9xqmFpDI
-         jUxLHWGe2o7k91QBJv2Dj0G7vecaM5dVGMn3rpNojwwl/nBKXvfX62Zgd2Wk+PNHMd5F
-         lciKG1RUQTDhjvSskhmAgEEOj5rAaI9Raeqr53hWDgXglo54RMDQ5w9HCfxSz+ehAeUe
-         14kbku6uFYUNnBKXbK5+sabAjDsDY50Q+XhPkTCq6JzLn9+4yXYHCvueRbhilg/sLmRN
-         sVRw==
+        bh=Gel3Fe0n25TUws0Hk9Qd0MUUJAa6WDx17jjyONCSFYw=;
+        b=mWiBPv+dmsQZhbaLCfWQxgfy10UsWYdTTx1NN4VSLkepwadA05OqGDb32V6/5+FtD6
+         Dl1y2FLquhOJs9mF5RkaoODP3PxnpVmBF7XU4bvoqCCoAccf+f1dk7h5h+7WlsIRh5Xr
+         zLejcg+HXTF7del6cv16A9NDcn4PMiprf+m250AP04Jiab3U1eBaqSLv7/8EspuTInvs
+         MCLsh8STYfbLIyqjXQj1Rex2L3RcgakqCgbA9n47+4RCF1ilH6GvN1rO8ZnPNJbHDx/+
+         LUDW8RbaJ7f2RmDwr3581Do1OXJVuRaWoG0Es7+6JTu7CvwbVfYn8cEpmJPRY5SD1H2I
+         iRyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690755587; x=1691360387;
+        d=1e100.net; s=20221208; t=1690756243; x=1691361043;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wc/+C+AJRRP3wZqyNPfzz3Cgo44jHnLGmmlbexMEhKA=;
-        b=VIR4vOpdHsB7cSGOubhaBTOBtmakvbTRkqba88ukJvOsQJEXZKYOoa7yjX20VXi2+7
-         hW7j5A+V2mBf+Y3jhKnc3t5Yxd83e7ZWxEIlcvr5hXGSY7ylpXegViF2vrY3zp56X/Pa
-         /3Djds66tsUDRE4MiSJJ1B2VC7JrtFvRBuBC4ZNlTmjP1ZeOytzjxLH2f/f1YO5Hh/WT
-         SyJOrOPjxa5S8EXXd2AUmLDR94HAdTrJr2ZeB4Ripll2RV6Y68PPWq9gN3saxA0uUOzY
-         eh0lqbXec/TS5C2ML4sFbdQ04FSFkV32Ccv3CT71y8DOV8nMIJNnWmckgk+gsPhfTJ9K
-         20pA==
-X-Gm-Message-State: ABy/qLZOa2VgkEIjP4JjH2J12b3NGWcVTjuNeXKYJp1oMXLuwIn0ZQrH
-        1pJnqa2rtUB32orfx03s3mwyAfe0pSPsWxHR
-X-Google-Smtp-Source: APBJJlGn9QQ0KC3d+6nE6FU7hS1U6dLdyswmnOJX3ZD6J+r5QpKVi1LURDmwkv8hjOYhZJhMt1p4yQ==
-X-Received: by 2002:adf:e50e:0:b0:317:57f0:fae with SMTP id j14-20020adfe50e000000b0031757f00faemr6721588wrm.63.1690755587148;
-        Sun, 30 Jul 2023 15:19:47 -0700 (PDT)
+        bh=Gel3Fe0n25TUws0Hk9Qd0MUUJAa6WDx17jjyONCSFYw=;
+        b=Dcg4HCi6d2aomttIsIt+kgde4OvF9gxOgg44hoGFOxwcHvs0uf9ICyT18qqbuzmien
+         8Lm+L2DSufKzC91qo+IIGzezx0EA+ut/rA4aYWOE4aEX2FWDGUMAZc8RR5TZQVf1ATYC
+         wP1VvFAgdsnmkomdBRguWa6vPMXe3ftSASisRMoPIcS/BnbU3c6h0VcCHyt9EVF4sgRo
+         qVUq8Znj5mFEWMcxXPqUXjjwPCKPZijBay5+sO5NQbCWUXAHokSmIyCvqe4BFIWfhGLE
+         6CrW0PHHUbalGM3K75ujjeF9vp8rNBBImsqSRUMmVs42ld2aZTrxEk2Z4wTos9640Fko
+         N3IQ==
+X-Gm-Message-State: ABy/qLY2saY3pQUG7QBN2mLKk6aknvWfwl8ST5cFNB0v6LuoiXKHIC21
+        hChWsuLn9cWZsII6OsbgZmk7CfPq9Z/mBV23
+X-Google-Smtp-Source: APBJJlFXiQpqspdOBp7EzGDoS/QjTssDdL+zkH+BSXifpt+9Tx+StGhiesv1d9FzlyBMIIudJbBf4g==
+X-Received: by 2002:a5d:43c3:0:b0:30f:af19:81f3 with SMTP id v3-20020a5d43c3000000b0030faf1981f3mr4712223wrr.41.1690756243005;
+        Sun, 30 Jul 2023 15:30:43 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id e5-20020a5d5005000000b00311d8c2561bsm11020850wrt.60.2023.07.30.15.19.41
+        by smtp.gmail.com with ESMTPSA id w4-20020adfec44000000b00317614b6a5dsm11125160wrn.50.2023.07.30.15.30.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 15:19:46 -0700 (PDT)
+        Sun, 30 Jul 2023 15:30:42 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     linux-iio@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
+To:     linux-spi@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
 Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Mark Brown <broonie@kernel.org>,
         Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Leonard =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Maxime Ripard <mripard@kernel.org>,
-        Quentin Schulz <quentin.schulz@free-electrons.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 4/4] riscv: dts: allwinner: d1: Add GPADC node
-Date:   Mon, 31 Jul 2023 00:19:37 +0200
-Message-ID: <2150270.irdbgypaU6@jernej-laptop>
-In-Reply-To: <20230619154252.3951913-5-bigunclemax@gmail.com>
-References: <20230619154252.3951913-1-bigunclemax@gmail.com>
- <20230619154252.3951913-5-bigunclemax@gmail.com>
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] riscv: dts: allwinner: d1: Add QSPI pins node for pinmux
+ PC port
+Date:   Mon, 31 Jul 2023 00:30:39 +0200
+Message-ID: <10311404.nUPlyArG6x@jernej-laptop>
+In-Reply-To: <20230624131632.2972546-4-bigunclemax@gmail.com>
+References: <20230624131632.2972546-1-bigunclemax@gmail.com>
+ <20230624131632.2972546-4-bigunclemax@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -100,15 +85,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 19. junij 2023 ob 17:42:27 CEST je Maksim Kiselev napisal(a):
-> This patch adds declaration of the general purpose ADC for D1
-> and T113s SoCs.
+Dne sobota, 24. junij 2023 ob 15:16:24 CEST je Maksim Kiselev napisal(a):
+> Add pinmux node that describes pins on PC port which required for
+> QSPI mode.
 > 
 > Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> ---
+>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi index
+> 1bb1e5cae602..9f754dd03d85 100644
+> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> @@ -131,6 +131,13 @@ uart3_pb_pins: uart3-pb-pins {
+>  				pins = "PB6", "PB7";
+>  				function = "uart3";
+>  			};
+> +
+> +			/omit-if-no-ref/
+> +			qspi0_pc_pins: qspi0-pc-pins {
+> +				pins = "PC2", "PC3", "PC4", "PC5", 
+"PC6",
+> +				       "PC7";
+> +				function = "spi0";
+> +			};
 
-Applied, thanks!
+Sorry for late review, but it seems I'm missing something. D1 manual says 
+those are pins for ordinary SPI, with HOLD and WP signals. Can they be 
+repurposed for quad SPI?
 
 Best regards,
 Jernej
+
+
+>  		};
+> 
+>  		ccu: clock-controller@2001000 {
+
+
 
 
