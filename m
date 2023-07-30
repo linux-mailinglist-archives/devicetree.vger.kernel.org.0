@@ -2,71 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 652CC7686CA
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0357686D1
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:46:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229667AbjG3Rgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 13:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48252 "EHLO
+        id S229543AbjG3RqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 13:46:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjG3Rgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:36:52 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCADA7
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:36:50 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b933bbd3eeso55253711fa.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:36:50 -0700 (PDT)
+        with ESMTP id S229468AbjG3RqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:46:07 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03FE61701
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:46:06 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9923833737eso548948066b.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:46:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690738609; x=1691343409;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8EJGgzQqutJFDlzcKppgukpynrnTTIYEegbSwRHtF+g=;
-        b=dwlur2vcNk+3lQbYsHR8idChosu1y732RAlIpWVi2Gi3ltkSqq84OlhNlAyOlhOCzn
-         XzfGKbht41Zu6/j9l1ihwpokKwxeNpKuou5cREB/l8+0W7xO3F1l1r68Lozr+jezR493
-         ndhSNksE08NDXp8aQbo+/VPYsj7cOPCMufduk7XYoPIozd2B6aC22QvWbaVaOV0H5XdF
-         NmSrLL9yk3jB6Q2D2IF+8ODl66GKmsTVXH73J2du/brT05gU/p1NjCiW1TMGlfRyZrPN
-         Dqyx6zXWTLg0YBWCxwhMl61GXUyw1vO185r5mYwmRNyTO+PTIT6iEJSs0PeKnJZwxk9s
-         NewA==
+        d=linaro.org; s=google; t=1690739164; x=1691343964;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S1YU29zqeUxaos3hVgNC2yaFaW8qpla0dKTdA5NLg2Y=;
+        b=VbFECZP5mT8avx6h4h2FtXj91veskHtt7LLqUb/ZMy8y6GAfHwKQXJPL99sA2yU4H8
+         6GDde+ybLziKJQmTsdwYDqhrR5x8KXrMv1mFNodhxs/3H3k6RjAoFq7ZAuBcX56p3Xrx
+         quJN7lOt+7SyIy2xmViZk/Oy0r0b1i/t4mVPptwx/ZxghvptSsvZgN66tc6H++dzMZs2
+         lIl/io3wjZR/CXO4MvipJvlK8NvmnphuRWu1cpXQXWxKgBqHdNZM0OHclRPjaKSsRKkL
+         oPT59y1KnNJwisfVmQeVM+xwLcyHujyvYL48QZMN9AOTiAJNzabaz07YK+w3W0hqXLna
+         waDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690738609; x=1691343409;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8EJGgzQqutJFDlzcKppgukpynrnTTIYEegbSwRHtF+g=;
-        b=V6/6UmW2OdkggjJaOdFX6eGWaZ2/Sqgf/FcyYKNLiX4eIcy2MB2hcQzLFGcWEF3NYb
-         aAgl4DUbihJBfVUV+ST7ubyWe6xpJKP2m2iJT2DNfjTnmZFYMvYwtTcf0h3DrbnPviBv
-         Md4cFRaunZNoFmZYYH4J4+UZyDiAuEOBKXw/sTrJfZnkCFyrA5IlUBAwZYt9lnAtouM4
-         rTObDXc4c5rVsh/97mfzDcLK0Dcwn2N2OFL59AicYyfx52l1sDRJsbPIaJ3Nv25NILHI
-         mTbeuUHRk1uhwW5FLFmdY8i4LUYAnqJlv14c56PVwblxprQRaDYNBF1+ry3hJEdR24uW
-         dBxQ==
-X-Gm-Message-State: ABy/qLbwW582zROhWd+JDcZ7W1Zpf5ihDos4wPHq2K+iy2sPMfKj0Sgy
-        4ks+rE5ya1xFhGdz/YGGmEAp+ZvGPRH2NsLDNiM=
-X-Google-Smtp-Source: APBJJlFNq8w39Oiu+stRgSEVBSeXWmslJ2ZBZW0373IZUigP4IM+c/xMilssyj89v2nzXKrCRxrAII+oFkfrgogOSFw=
-X-Received: by 2002:a2e:b6c2:0:b0:2b6:df25:1ab0 with SMTP id
- m2-20020a2eb6c2000000b002b6df251ab0mr5200834ljo.34.1690738608692; Sun, 30 Jul
- 2023 10:36:48 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690739164; x=1691343964;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S1YU29zqeUxaos3hVgNC2yaFaW8qpla0dKTdA5NLg2Y=;
+        b=eqWc0BQfs9OR0PDADlsVc1atF905N91oUpRpFSw5wzO/gZGuqgGBWKWgnm0eaLIzvx
+         BU7crQlz65J/DQhNHmyEM4IoNcEXjQRw34MjZKYFw+lk+pS9spZ+fMtcVVMTGutkLl+1
+         QQJsmKM5DCT9zWcwWvJXx+w5/6QuDUXpQkzXyG4Kh0OXxG8wHV+Za5nBRFWtI1rHAToK
+         F04mEh4B5yjd/6lRKxkt1JzsV4YgBcvPrh1OOPbd5BGpOkv3oclQEFjPQX+Gkg1Oay3p
+         X46Os3fThJw7ys7q1d6jfEZqzhTICEXFvTWhjXt1maiEdf/gcMrU3HM/QOXkzKEQObhU
+         svsw==
+X-Gm-Message-State: ABy/qLZTkirT2Qh+1DVt8Ub8KrC27f2c9QyoxsHlIpAYXbVm6GOrGVHn
+        r5VvFC2U5CeRCaRZh0mQpJ1yTA==
+X-Google-Smtp-Source: APBJJlGKsuK7EedFMznaZ471QDNb0j4xmicTbpYHSCeYH5o7U2syAJlFJjxwzLFRaQJN9JF01cuJSw==
+X-Received: by 2002:a17:906:2487:b0:993:e94e:7234 with SMTP id e7-20020a170906248700b00993e94e7234mr4162336ejb.77.1690739164410;
+        Sun, 30 Jul 2023 10:46:04 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id j13-20020a17090686cd00b0098884f86e41sm4890420ejy.123.2023.07.30.10.46.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Jul 2023 10:46:03 -0700 (PDT)
+Message-ID: <4707bdea-9398-8cbe-8f96-d56c1744b207@linaro.org>
+Date:   Sun, 30 Jul 2023 19:46:01 +0200
 MIME-Version: 1.0
-Received: by 2002:a2e:82ca:0:b0:2b9:a622:1baf with HTTP; Sun, 30 Jul 2023
- 10:36:48 -0700 (PDT)
-Reply-To: fionahill142@gmail.com
-From:   Fiona Hill <briandickson084@gmail.com>
-Date:   Sun, 30 Jul 2023 17:36:48 +0000
-Message-ID: <CAOUDwrAO7zUk1==3qAtP=udA2zDQ_PPMuCcAxMkDpPvH1dWfGQ@mail.gmail.com>
-Subject: Hello, did you receive my email?
-To:     fionahill142@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_50,BODY_SINGLE_WORD,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SCC_BODY_SINGLE_WORD,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH] dt-bindings: gpio: brcm,kona-gpio: convert to YAML
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <ZMaAdG9Zj9AL1NiR@standask-GA-A55M-S2HP>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZMaAdG9Zj9AL1NiR@standask-GA-A55M-S2HP>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-5L2g5aW977yM5L2g5pS25Yiw5oiR55qE6YKu5Lu25LqG5ZCX77yfDQo=
+On 30/07/2023 17:23, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family GPIO controller bindings to DT schema.
+> 
+> Changes during conversion:
+>   - add used, but previously undocumented SoC-specific compatibles
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+> Changes since RFC:
+>   - fix interrupts maxItems
+>   - narrow interrupts min/maxItems per each variant
+>   - thanks for the feedback Linus, Krzysztof :)
+
+For the future
+RFC is v1, so this should be v2. And it matters, because:
+
+b4 diff '<ZMaAdG9Zj9AL1NiR@standask-GA-A55M-S2HP>'
+ERROR: Could not auto-find previous revision
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
