@@ -2,69 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C428768550
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 14:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C44768552
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 14:52:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbjG3Mst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 08:48:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48478 "EHLO
+        id S229764AbjG3MwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 08:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjG3Msr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 08:48:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13667A7
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 05:48:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 91F6660C19
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 12:48:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27F99C433C8;
-        Sun, 30 Jul 2023 12:48:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690721325;
-        bh=pynRTUKDgbZU1B4MT3zkRpAOouvngXIFQZGQFeKraY0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ScpANEWgcxB+HQOg+x2ufL2muO/JLlye4HR1fczRYG2ZVmh+mX3xqHfOI+ZY7mLDz
-         vU/972Ke8Pc7prC/g5OOcRltCX3ZPddKZYnuM7GAHnnpRcc99FKZdbPxq+4WvfCoO0
-         lLMTuSoZ8oiclK2zi9QXiFfwpfrfjmnEftAMXWtsnRIpb15HfdmoaCKJOdSwPP+LCb
-         ZgPy6Wund3hF3MKcdCAS0+mPFTDZkCM4ycYFqwGtU1phPwT8bVsuDs/ejqiq80iOyT
-         xBPO0oxjz2W9B8vSvZbPhwoIhRSJqvcSxM93mpOB6Db8Tq/z2G/9cmKzgGLPQmb1p9
-         rK+MVN3XkluQA==
-Date:   Sun, 30 Jul 2023 20:48:35 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229483AbjG3MwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 08:52:13 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805C3A7;
+        Sun, 30 Jul 2023 05:52:12 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe0e201f87so4517496e87.0;
+        Sun, 30 Jul 2023 05:52:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690721530; x=1691326330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TS4d77RuuSBWqhkL5Vq49qXAEaDvIl/yRrOhHnAUGH4=;
+        b=gujmOCbyF4Am/Pf2J+TtM42XEFaMCdAmVYGJU1LKKKiI0ZD1LBi2E7GshD03i9hkN3
+         /bqrCzgAWIW53KXHNy6MB/N8DCRWD5HdXrgAIEAHY4+LBXbPuzaJdKzjR1rpRqLbWbU7
+         BoPXYFAUDrqHjyCyQChZDsnJ7IGlRT9QAOoBNUBV7ld+bQgNZlhQvPJkBrTCnlSfzcz2
+         yneUTe70vrIsM2BsWjIGmq05HuEPWWcYo9LKcFQMzl9wuogHsX2UYgICcYjqBL8suBLS
+         Bxwuo1ZOQpUw6n8AN2FX6i63O+oYvVXHB7UgiUKuuIxlELOWDLI2kY/8lLh/c6tpY2aD
+         p6FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690721530; x=1691326330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TS4d77RuuSBWqhkL5Vq49qXAEaDvIl/yRrOhHnAUGH4=;
+        b=YmWE2WIkdkPmVd78IU0ANf7pneyuk8GmUU2sZcFJMltgK4pzofX3w/V45ODp/ZUGc0
+         uxe91S4gwJ943NwgV3UknYPN395RcCANM5wvfMZKCQ1LETaQqNaU7itCYYBsrCrIH0XJ
+         mqw9WTkpMNvcaFPQM0YLthctY7x5Rr3GXFbcGxTTcJ9HEEU3jiBUMeSAOnXeQ2+Fah+j
+         SSuupHuAGZrWFcuGML25qIaTmbzuPcauCczzUpq8KBxRZxwfKS2bl3C4+Xnzx36GTki/
+         XigPerwOrer6xTywLyPMDdFXBUbOTZxhORUP4EbYyeg41TaDyC+Hvn2fF7zN0HzFKDaN
+         bykQ==
+X-Gm-Message-State: ABy/qLaVPzks2qdrMIIXbGIDmaJTSpbZtbC+nLNKkIuRsTuVDTaOndwD
+        x/UiCtNQ8zO4FWJJFKfEex8=
+X-Google-Smtp-Source: APBJJlGZy2NGNLweeuBQKWKTR6C+XgyxgaTyr+AQ9NH4V4aq6OQBizRe9JaxXdx4hWvWRfvUbxKO9g==
+X-Received: by 2002:ac2:5df3:0:b0:4fb:8ff3:1f74 with SMTP id z19-20020ac25df3000000b004fb8ff31f74mr2544734lfq.20.1690721529998;
+        Sun, 30 Jul 2023 05:52:09 -0700 (PDT)
+Received: from xeon.. ([188.163.112.48])
+        by smtp.gmail.com with ESMTPSA id e6-20020ac25466000000b004fe1f37035csm1227273lfn.224.2023.07.30.05.52.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Jul 2023 05:52:09 -0700 (PDT)
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] ARM: dts: imx6qdl-tqma6x: Add missing vs-supply for
- lm75
-Message-ID: <20230730124835.GI151430@dragon>
-References: <20230721082628.1189087-1-alexander.stein@ew.tq-group.com>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/1] Transformers: switch from paths to labels in device tree
+Date:   Sun, 30 Jul 2023 15:51:49 +0300
+Message-Id: <20230730125150.4716-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230721082628.1189087-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 10:26:28AM +0200, Alexander Stein wrote:
-> Fixes the warning:
-> lm75 0-0048: supply vs not found, using dummy regulator
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Use phandles in aliases instead of paths to ease device tree comprehension.
 
-Applied, thanks!
+Svyatoslav Ryhel (1):
+  ARM: tegra: transformer: use labels for mmc in aliases
+
+ arch/arm/boot/dts/tegra114-asus-tf701t.dts           | 12 ++++++------
+ .../boot/dts/tegra30-asus-transformer-common.dtsi    | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
+
+-- 
+2.39.2
+
