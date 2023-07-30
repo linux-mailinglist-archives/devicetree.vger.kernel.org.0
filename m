@@ -2,71 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0132B7687E3
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55FBA7687E7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 22:25:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjG3UVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 16:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57986 "EHLO
+        id S229764AbjG3UZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 16:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbjG3UVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:21:01 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79ADC199
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:20:59 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso5096633a12.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 13:20:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690748458; x=1691353258;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8f/MgDrEv8Tw5VaLnW3VcLxIwrS6Qd/GuTI2klbB/as=;
-        b=pb/mOZGqU4gvRpiwlnn7bHtk5y1t8Zlci00vsSjMi6KXB/5z7EnVF7UnwFF37vxs/q
-         /JHPiF+WDMD6TvloGE+goL0s1lISx0gQbq5tx44PSBhQYQjGgY+r5D+eOmlStfkPvEUD
-         pcCajAVX91Ef6RusRfytRtiqHFm5/0ziEfUzmS/a/p0G2egsQ1I3+wEq57FusDQESfRn
-         k1HrTjBw+9smfgGqFWDlBKHL7JZQ8f9JpPTALclXnCE3/Pi5aCQ+AN1Ohu9d/QfsGFPo
-         CUJbXY4EF+invy4vpmU8CDPYI9T4MYXNf3lKe0rtc6I4r0uuzSYXwrsnLJ58i+MfjoF3
-         /yHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690748458; x=1691353258;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8f/MgDrEv8Tw5VaLnW3VcLxIwrS6Qd/GuTI2klbB/as=;
-        b=WtDgb8fzTAqgEOsDsZuvJlkuJoDrtAFHFA6Ky66XlYlZ7yzgYvbLQOfUnnzrKWvvXL
-         k6DVrl4UUIqDw2PCiR2BK16t+c4wYaqAdJwAeOAEmw425tPLSbgZsoaIQetD0LOw9w8j
-         Wn3pMF47pl3ezwM/xp2IP85LX9vHqwLhLLiMRdWGW5oWjg8pHh2ZmYwSiTRHH3jZuh/j
-         uml0gKvJNgfgVi0smKrLCoJx0UCXHy8aV1lBf4KtbLIMSlsN5qY/laiN2K0thQNk2m51
-         Ga2A6+gb3qJwFJlgtuHsEY74WlHM+sEcb62cXKPCsiV4JPCtM4aQX9pvR5dcEbrlfWJA
-         W/SQ==
-X-Gm-Message-State: ABy/qLaKm9IHaV0hhQ3cWyh0FHdOIImDAU5WMbZQtJZUdgRMvrjJSxFe
-        sB9splcBOadkkXNXOKeghG3EEQ==
-X-Google-Smtp-Source: APBJJlGU7AKTZgnUH7tZLhdoNMXBGmqsRp6wlJ6rIt/BwPXPqtzqgMF4PF4altfte1iWVEf70DFpAQ==
-X-Received: by 2002:a17:906:329b:b0:988:9621:d855 with SMTP id 27-20020a170906329b00b009889621d855mr4326827ejw.61.1690748457920;
-        Sun, 30 Jul 2023 13:20:57 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id h19-20020a17090634d300b0098e422d6758sm5066254ejb.219.2023.07.30.13.20.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 13:20:57 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229478AbjG3UZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 16:25:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80318E6F;
+        Sun, 30 Jul 2023 13:25:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1316D60CA3;
+        Sun, 30 Jul 2023 20:25:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3DAAC433C8;
+        Sun, 30 Jul 2023 20:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690748710;
+        bh=x1t0wCpNg2HmSz334jJtp+B33GOT7KvodGTWYjxWMcY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O96Knyjpbnv+P1a9fe0v+3sttKCx2Am5WWJ36UC1DFi5g9hoFz0bdOv3aBbGkg+D1
+         loE2omnCWusus7JTKey3qGoR/scHz1jZ0N2Me99L2hNTTe1NrKPZbDIYXtRo8gTH5q
+         fbN43ZRtzAGIkCyPoQs8/b8aID+vWwBbTDky51dG3s6KAszwzpYxxkdjoYHNsSUJIr
+         HG/0xsYAmaC/Lg2+3r0kaE1GNv5n8MmHOrJwGMBhDmdPM+38WQqgSc2KysE7bx50Gm
+         vMTpcDAbSeZHc4SPG+EZ+bksDwH/0419N7cQoEfybCiNJ+7zOk8w+d6kOvi/H7Ng25
+         aOi6PupPCaPhQ==
+Date:   Sun, 30 Jul 2023 22:25:07 +0200
+From:   Andi Shyti <andi.shyti@kernel.org>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Wolfram Sang <wsa@kernel.org>,
+        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: msm8953-daisy: use new speaker maxim,interleave-mode
-Date:   Sun, 30 Jul 2023 22:20:51 +0200
-Message-Id: <20230730202051.71099-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
+Message-ID: <20230730202507.ojwinyjsx7ygyavp@intel.intel>
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-3-clamor95@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20230729160857.6332-3-clamor95@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,34 +61,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MAX98927 speaker amplifier "interleave_mode" property was never
-documented.  Corrected bindings expect "maxim,interleave-mode" instead,
-which is already supported by Linux driver.  Change is not compatible
-with older Linux kernels.
+Hi Svyatoslav,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+(I'm not going to comment at this stage on some coding issues)
 
----
+On Sat, Jul 29, 2023 at 07:08:57PM +0300, Svyatoslav Ryhel wrote:
+> From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> 
+> Implement driver for hot-plugged I2C busses, where some devices on
+> a bus are hot-pluggable and their presence is indicated by GPIO line.
+> 
+> This feature is mainly used by the ASUS Transformers family. The
 
-Depends on:
-https://lore.kernel.org/linux-devicetree/20230730201826.70453-2-krzysztof.kozlowski@linaro.org/T/#u
----
- arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+But not just Asus, right?
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
-index 790d19c99af1..a5957e79b818 100644
---- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
-@@ -125,7 +125,7 @@ speaker_codec: audio-codec@3a {
- 
- 		vmon-slot-no = <1>;
- 		imon-slot-no = <1>;
--		interleave_mode = <0>;
-+		maxim,interleave-mode;
- 
- 		#sound-dai-cells = <0>;
- 	};
--- 
-2.34.1
+> Transformers have a connector that's used for USB, charging or for
+> attaching a dock-keyboard (which also has a battery and a touchpad).
+> This connector probably (can't be verified since no datasheets or
+> special equipment is available) has an I2C bus lines and a "detect"
+> line (pulled low on the dock side) among the pins. I guess there
+> is either no additional chip or a transparent bridge/buffer chip,
+> but nothing that could be controlled by software. For DT this setup
+> could be modelled like an I2C gate or 2-port mux with enable joining
+> two I2C buses (one "closer" to the CPU as a parent).
 
+the description looks like it's hiding many doubts for a commit
+log :)
+
+In the commit log we want to be sure on what we are doing.
+
+[...]
+
+> +static int i2c_hotplug_activate(struct i2c_hotplug_priv *priv)
+
+there is no point for this to be "integer".
+
+> +{
+> +	int ret;
+> +
+> +	if (priv->adap.algo_data)
+> +		return 0;
+> +
+> +	/*
+> +	 * Store the dev data in adapter dev, since
+> +	 * previous i2c_del_adapter might have wiped it.
+> +	 */
+> +	priv->adap.dev.parent = priv->dev;
+> +	priv->adap.dev.of_node = priv->dev->of_node;
+> +
+> +	dev_dbg(priv->adap.dev.parent, "connection detected");
+> +
+> +	ret = i2c_add_adapter(&priv->adap);
+> +	if (!ret)
+> +		priv->adap.algo_data = (void *)1;
+
+You want to set algo_data to "1" in order to keep the
+activate/deactivate ordering.
+
+But if we fail to add the adapter, what's the point to keep it
+active?
+
+> +	return ret;
+> +}
+> +
+> +static void i2c_hotplug_deactivate(struct i2c_hotplug_priv *priv)
+> +{
+> +	if (!priv->adap.algo_data)
+> +		return;
+> +
+> +	dev_dbg(priv->adap.dev.parent, "disconnection detected");
+> +
+> +	i2c_del_adapter(&priv->adap);
+> +	priv->adap.algo_data = NULL;
+> +}
+> +
+> +static irqreturn_t i2c_hotplug_interrupt(int irq, void *dev_id)
+> +{
+> +	struct i2c_hotplug_priv *priv = dev_id;
+> +
+> +	/* debounce */
+> +	msleep(20);
+
+can you explain this waiting and why 20ms?
+
+Andi
+
+> +	if (gpiod_get_value_cansleep(priv->gpio))
+> +		i2c_hotplug_activate(priv);
+> +	else
+> +		i2c_hotplug_deactivate(priv);
+> +
+> +	return IRQ_HANDLED;
+> +}
