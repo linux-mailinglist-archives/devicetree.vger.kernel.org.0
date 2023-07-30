@@ -2,60 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1612B7684B9
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 12:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8669D7684CB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 12:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjG3KFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 06:05:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50502 "EHLO
+        id S229615AbjG3KN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 06:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjG3KFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 06:05:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0477B1987;
-        Sun, 30 Jul 2023 03:05:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 85713606A0;
-        Sun, 30 Jul 2023 10:05:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08A7DC433C8;
-        Sun, 30 Jul 2023 10:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690711516;
-        bh=uOCk5v0cyP6RW8hFIA0Q6PFQ6s4G0QrkYFOB5/6POr8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LT4eAcY5XhRvLvdH93Bkd5xsfSPDiJfQnzf9cooDdJS2UZrjbmdXzh8IM/nwLTwVf
-         Pth60zkM5VDPFPix/oU8BWI5VwSl/vygiOJQ8ErThM8XbW68EPCkIaPRaiA7HM2+cm
-         34MXibtCvfsIX8QkZ8MyR3G1v5TiDmIFFEMvTjLDx3rZdNC3QFyKeMfLR5SHR75rjQ
-         QU51C+uZNpZOfphoWMfTrsyzfjSmmW0XtgypvYQFqnURcG7u3UA5xHiOdGp45+EmfR
-         W0drXq5jQ1u773SJC1orh9Qcy10urhzPN4tMNe1RyrBOBlzoHJUrr5I4WKEtok/1Gz
-         wzwsQgU8m/aMA==
-Date:   Sun, 30 Jul 2023 11:05:12 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S229917AbjG3KNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 06:13:25 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1EB7E4A
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 03:13:22 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52256241c66so7409266a12.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 03:13:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690712001; x=1691316801;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mUIpalybnyNZGM7m37yQpOMZS097BrfIytGo6aYsQJk=;
+        b=TARhLjvjexOmPMBQ2eWGFYVDYxr20CqJxGLHdw8WuUi6qh2HFY1Xr3MvWfOyVaVC1u
+         bu4jZtQWs9JceDRXmwABMqFVBMz1wLeC68Pp+pb+BvE3Qtm9FRL3Y4dInRuN7bEnTsV2
+         kmX6IEjEL3MD8iG3Aw7W+hRNwmx0kusl7+sWpFpiZniwlr4mln7exmMKgaEY0mEP6hNf
+         W8+hv5UfVTtdivQ2bsYrb1KNKsmnZmpg02+uy5lVRVSTTS+fbeyQtUTkqYcIkkZw2nNe
+         0Z+q2fWix+X9PSUBuu2J5dX2XEixXTtKNRwp4hfvvkmUByB//4PddiArKBeEOfT/pXvV
+         c04Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690712001; x=1691316801;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mUIpalybnyNZGM7m37yQpOMZS097BrfIytGo6aYsQJk=;
+        b=IEHK5GhoivSSBYnuc2FRwF7v2KfwK/ez3Q9GfuI6TLzQiYlHWFgLg8nkXkPPy+HgYb
+         V8eHRyLBJTTKPgj5Pfx4+ObfMITmNqms2rfboX6rK/bXucdfaZkDu9ikITvdvuE14V9J
+         MlfWtf0JdpbqUCwcrlmH/wKbPGHBMVYndivLs8EyODKAM2SURqKkprD0/FFoYePb0d3/
+         2qNC4OxNBnWYKtWmp/35Jh1QQWl+Uc1q5AJWh++gH/lsv3VW8217YYVIXALVRN1gkYoi
+         x3ynyFOmRnYTCiZxWqHXOVRVufAV5pNIPtFEbsnpgR9KjXaozNtT7TqIrAzSU9sSnh97
+         Hv5w==
+X-Gm-Message-State: ABy/qLY0/anmmErzWlcYbCaVdDGqmftEIUtE5ZiFLj5ilaJ6rdcITaID
+        pc3Skk49t3DYVfWqI8sNI7IZ2A==
+X-Google-Smtp-Source: APBJJlFZ3wYP/rI7D5Oz71dJDhBVM2ZfhYomsADL9hmNt8xm8/qpGkVdVghkrJnOoXreZb2+tyE9Bg==
+X-Received: by 2002:a05:6402:3508:b0:51d:cf7b:c9f0 with SMTP id b8-20020a056402350800b0051dcf7bc9f0mr11812010edd.12.1690712001238;
+        Sun, 30 Jul 2023 03:13:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id p17-20020aa7d311000000b005224f840130sm3914851edq.60.2023.07.30.03.13.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Jul 2023 03:13:20 -0700 (PDT)
+Message-ID: <8ee50871-e299-7a2e-2ece-a43e8263f6b5@linaro.org>
+Date:   Sun, 30 Jul 2023 12:13:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH v4 1/4] arm64: dts: lx2160a: describe the SerDes block #2
+To:     Josua Mayer <josua@solid-run.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: power: supply: Add pm8916 VM-BMS
-Message-ID: <20230730-clustered-untidy-e943b4a65d71@spud>
-References: <20230728-pm8916-bms-lbc-v1-0-56da32467487@trvn.ru>
- <20230728-pm8916-bms-lbc-v1-1-56da32467487@trvn.ru>
- <20230729-facecloth-trembling-3311ca245505@spud>
- <25e933dc3f28fd73a9b76f172dacfdb2@trvn.ru>
- <20230729-splatter-garland-495a414c323e@spud>
- <0b41a93ee82674e65a3801f5a37edd5a@trvn.ru>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jEPzFvG+l0KcHHNb"
-Content-Disposition: inline
-In-Reply-To: <0b41a93ee82674e65a3801f5a37edd5a@trvn.ru>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230730092422.16771-1-josua@solid-run.com>
+ <20230730092422.16771-2-josua@solid-run.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230730092422.16771-2-josua@solid-run.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,67 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/07/2023 11:24, Josua Mayer wrote:
+> Add description for the LX2160A second SerDes block.
+> It is functionally identical to the first one already added in:
+> 
+> 3cbe93a "arch: arm64: dts: lx2160a: describe the SerDes block #1"
 
---jEPzFvG+l0KcHHNb
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please use proper commit xxx syntax as asked by checkpatch.
 
-On Sat, Jul 29, 2023 at 05:15:06PM +0500, Nikita Travkin wrote:
-> Conor Dooley =D0=BF=D0=B8=D1=81=D0=B0=D0=BB(=D0=B0) 29.07.2023 17:10:
-> > On Sat, Jul 29, 2023 at 05:06:14PM +0500, Nikita Travkin wrote:
-> >> Conor Dooley =D0=BF=D0=B8=D1=81=D0=B0=D0=BB(=D0=B0) 29.07.2023 15:03:
-> >> > On Fri, Jul 28, 2023 at 10:19:30PM +0500, Nikita Travkin wrote:
-> >=20
-> >> >> +  interrupt-names:
-> >> >> +    items:
-> >> >> +      - const: fifo
-> >> >
-> >> > Same here, but do you really need a name, when you have only one
-> >> > interrupt?
-> >> >
-> >>
-> >> Hm, thinking of this more, the hardware actually has more than one
-> >> interrupt, even though this one seems to be the only really useful
-> >> one. Would a better way forward be to list all of them
-> >=20
-> > Yes.
-> >=20
-> >> (and fix
-> >> the driver to get the value by it's name)
-> >=20
-> > It's not a fix to do that, the order of the interrupts is not variable,
-> > so there's nothing wrong with using the indices. You can do it if you
-> > like.
-> >=20
-> >> or it would be
-> >> acceptable to leave the names here and extend the list at a later
-> >> date when (if ever) other interrupts are needed?
-> >=20
-> > If you know what they are, please describe them now, even if the driver
-> > does not use them (yet).
-> >=20
->=20
-> Thanks for the clarification! Will make sure both drivers have all
-> interrupts described in v2
 
-Note that bindings describe hardware, not the driver. The driver need
-not touch the other interrupts if it does not use them, but make the
-hardware description (IOW the dt-binding) accurate & as complete as you
-can.
 
-Thanks,
-Conor.
+Best regards,
+Krzysztof
 
---jEPzFvG+l0KcHHNb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMY10wAKCRB4tDGHoIJi
-0hbHAP0XUtnKtw/UNbikUvhnQxyenApvfmv5T5vsTNrJ2nJQBAD+N70WAQYlMFim
-l0UKWHTL0bMfQZOTyejhQCMs7tlq1AA=
-=T3/R
------END PGP SIGNATURE-----
-
---jEPzFvG+l0KcHHNb--
