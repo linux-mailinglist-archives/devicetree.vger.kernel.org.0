@@ -2,57 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5053768570
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 15:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB908768582
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 15:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbjG3NPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 09:15:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53160 "EHLO
+        id S229570AbjG3NUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 09:20:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbjG3NPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 09:15:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C700D10D8;
-        Sun, 30 Jul 2023 06:15:32 -0700 (PDT)
+        with ESMTP id S229868AbjG3NTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 09:19:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21CF1AE;
+        Sun, 30 Jul 2023 06:19:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BA3E60C4F;
-        Sun, 30 Jul 2023 13:15:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1277AC433C7;
-        Sun, 30 Jul 2023 13:15:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6EBB160C19;
+        Sun, 30 Jul 2023 13:19:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C93B5C433C7;
+        Sun, 30 Jul 2023 13:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690722931;
-        bh=BK1r8DOIxzdujiBN1L0w5O9SUnU/br1497dAezYTeIg=;
+        s=k20201202; t=1690723188;
+        bh=VFrpwpxcLavxMY3HOmr+OiukVNHupv8GzfGgfplcls0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uvdKWb5GJjIemnTazj8fgX5tCfLUK1DaqAf3qxBlXF0q8vUTMN+bsWu5IKFQP7tlJ
-         MM9Ao3fJfcSPZHDImMsUXVozebvDTlxYGnbwFaQNlN9v4gbZRmCTtAuVHwnlj48qcm
-         GOYOFuWBz5d7ebNVNB4NwVfmIvUyFQsvQfrTBOulnbwT09Yxs3MyuKr+PI548WMFvM
-         maX5l4Z30tFosSjmk4QsJRiWqd3W0n6MfHoS9BUn73nU4+AyWSsDUTUxC0CDUsow3x
-         qO0HEnC5cfgP/Cd8A4Y4ByEYy/Hf8w1twowYVjQGMt9t9W+BQw+U9ESfs1ES5ihoow
-         WSh9kpmeI61sQ==
-Date:   Sun, 30 Jul 2023 21:15:09 +0800
+        b=bKUf8CFQGFdgx0wcdsvqLNWLHUMhKZIj2b4E35AOfJj2lpMcxvx6rqOO8F1YbsK7m
+         2CJLGz8H84q2eEbNDaR9OoT9ePQPDELQ5xcC+ugVY4yg69zfl5pfzWI5WzftAGW5WS
+         W2UrnZegcYjrJINKJGADOUgXynsMSu3wee1XzHS0tooGh46/modtQYrxx735X4A/xH
+         l+U84JySIn/sXLSrU6Hg1Wx3rs4911P28K8rEOz5y5FBmj9kNRarwlPLPHxl7BBpmL
+         wuyZtFaO3ZowwXNmHqaozgO6cj8ajUMKxx0nITCaW6V7Ra6CRYuPjsvZ3eEGfVduMo
+         KOfjgBg8AlCYg==
+Date:   Sun, 30 Jul 2023 21:19:37 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mm-phycore: drop uncorrect vselect-en
-Message-ID: <20230730131509.GL151430@dragon>
-References: <20230725142653.157510-1-krzysztof.kozlowski@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 00/10] arm64: dts: imx8ulp: add more nodes
+Message-ID: <20230730131937.GN151430@dragon>
+References: <20230724075833.2763190-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230725142653.157510-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230724075833.2763190-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,12 +57,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 04:26:53PM +0200, Krzysztof Kozlowski wrote:
-> There is no "vselect-en" property, neither in the bindings nor in the
-> Linux driver:
+On Mon, Jul 24, 2023 at 03:58:23PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
->   imx8mm-phyboard-polis-rdk.dtb: pmic@8: regulators:ldo2: Unevaluated properties are not allowed ('vselect-en' was unexpected)
+> V2:
+>  Add blank line between property and child node in patch 3
+>  Move compatible in the beginning in patch 8
+>  For patch 9, the pinctrl settings are same, because drive strengh only
+>  has a enable/disable bit.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add flexspi, cm33, thermal, cpuidle, reserved memory nodes
+> Enable flexspi, lpi2c7, spi-nor, cm33 for i.MX8ULP-EVK
+> Set default clock for SDHC
+> 
+> Haibo Chen (3):
+>   arm64: dts: imx8ulp: add flexspi node
+>   arm64: dts: imx8ulp-evk: add 100MHz/200MHz pinctrl setting for eMMC
+>   arm64: dts: imx8ulp-evk: enable lpi2c7 bus
+> 
+> Han Xu (1):
+>   arm64: dts: imx8ulp-evk: add spi-nor device support
+> 
+> Peng Fan (6):
+>   arm64: dts: imx8ulp: add cm33 node
+>   arm64: dts: imx8ulp: set default clock for SDHC
+>   arm64: dts: imx8ulp: add thermal node
+>   arm64: dts: imx8ulp: add cpuidle node
+>   arm64: dts: imx8ulp-evk: add reserved memory for cma
+>   arm64: dts: imx8ulp-evk: enable CM33 node
 
-Applied, thanks!
+Applied all, thanks!
