@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DBD67686D4
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1357686D7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:48:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229527AbjG3RrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 13:47:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49436 "EHLO
+        id S229686AbjG3RsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 13:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbjG3RrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:47:15 -0400
+        with ESMTP id S229625AbjG3RsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:48:11 -0400
 Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A301310CA
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:47:14 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c0290f0a8so159231066b.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:47:14 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A189103
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:48:10 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c0cb7285fso90916166b.0
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 10:48:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690739233; x=1691344033;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1690739289; x=1691344089;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IrOgs61XoD6nvvo7RE9vpo1zP/qDlQlSvbRMk98MHmE=;
-        b=lLAQYQmQybExgDwErsMMs2tiRFkJcqSBK4ZUfoDM5/qlY9wW8yMHznQs/eWuXnm+uU
-         dr0ZyedzRJuD5XXTWxjcGy1Pqvk3doIB4JqYfwtTZsfoNjwjRSWGbSMQEtZOZ7jcC04S
-         lp+JtVR5p3r83Sp65/kBfe9D6Kf5UNi5EGEG8i6uTPlEj/pk9uH+dRLBFAM6DASb28DO
-         ZUNWo9WofF+Os1cfsFTL0/O/QFHoL7kq0vGY6d/i4RWdM3eAZwcBf4j+VTF1N1f6N5Fz
-         LQKjm9JQdjHpsGdyxVMCiweuHuBuH65EoVgNlipbxx3GHXl3265JwVou/e0Sn+WhOJV4
-         Byeg==
+        bh=vXKQ+FT+ekXbJrRPEIuPYA+iGs9lD32lLjaVB8WOkqg=;
+        b=NZXsMIFMSLCs4+QDwceXzmBnaaK14KVhIqegweudBDG32KMjauPNLPeLqW/387BC45
+         SkiJXPT5Hr1Z0C9T8pTN9zhHJBwhXeLbHoj8inInwwBeUWWUq0VXKoS40e8q0Axj+fLK
+         6pou8JxL1U2EaASYK22MCaq/54iiV4depgEG3CaEkSKkkBKGRMFdThbyy0DpkkAvbvbV
+         rri+j6QoqREMkludmGpAVJOGe+kiqUMOWj0yS1Kp79rnpDIypCVtQpdkwONM7N84rew6
+         8Q1enUJ/u8dKQFk2yTmGVLSt//LxWUUfOwdONFLAPB0Nez9Bs5mUhDu4daUsoWaRR9bf
+         re1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690739233; x=1691344033;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1690739289; x=1691344089;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IrOgs61XoD6nvvo7RE9vpo1zP/qDlQlSvbRMk98MHmE=;
-        b=GE2bDygIiOzn4K5/E1ieggvwrU2t5u2pm2gKOhEaIuWINF3+4nwJVi8Vu/RKMjsnx9
-         TI6W+kpll3HAso9MLR6UMmwFUFF+tA6Pmf78JUvaZZd3iri8T8L8VuOL9aCegAxR/M6K
-         DZ7+YVfFah8Bq2fnfpJqkmB3ZQ29dPA6BeQDDCXQTtbpA+kjkBRRejdIP9QmvXrZYrHZ
-         PLX5o1XaAwPVuH9cdfVzCWgNX1JtwxYvjQ+lDxQ3OZdse6aMRteQ5JkxqNRL/h5MYjCD
-         wyj5DSKHS7lPJvcAn5gbuwv/pvYMDClAyvWxbxZargN99GwO7ScgYF0LYN+00BaWQzzk
-         ZIBg==
-X-Gm-Message-State: ABy/qLZSlm/zu4b9v6XFOO41RLzpiXupZ6cnjDLKBi4C2PKp58xsSlkL
-        jQv7VYpHMx4Yfi1c9ji3WYVC4Q==
-X-Google-Smtp-Source: APBJJlEBjOqJner1DTxmBIEUGCo5UvcdSUdWwZw493BQF113hSPsa5smAwjJGJIIU8/Tu7yNtMOmmw==
-X-Received: by 2002:a17:906:18:b0:982:7505:fafa with SMTP id 24-20020a170906001800b009827505fafamr4312331eja.47.1690739233011;
-        Sun, 30 Jul 2023 10:47:13 -0700 (PDT)
+        bh=vXKQ+FT+ekXbJrRPEIuPYA+iGs9lD32lLjaVB8WOkqg=;
+        b=TxEhSiG61OM64co8sHJxMdbUwIAHz596S7/eujMDYufQIgp0pcuYXPpydB6ICZFC9Z
+         OmuKh4q17ObYguWhXP+62evhzWzMKfuNDeQCM7LgvLQtwC8GJzrPq0u41GDyenkvwj/H
+         TzwsPIIoUbsQm/0KgY2TofC8OAb4XZZDB7Zq3OklH3gpAQyh6Uq8BmUaxFcHtpcx+oao
+         l4Ww0DcEUQmqArOAbLs2bf81dcU/i8zJRTkNZhlzVTjqo1U2lUyZGT37xxsP7Iibo7gb
+         GZjCBYuBCeBNzj8iprqgAr7xVw4q7dheoxdSYW1JyJIJ6DDYNVMZYteRcaYFZT2gzAce
+         lZHw==
+X-Gm-Message-State: ABy/qLYFTjXQU2RXU8kBjMks8Eh7ZZn4A83E2m2ib2tdtytKjsCYnW5U
+        EGMGgYNLqnq9KLW6wZYBNOfFdg==
+X-Google-Smtp-Source: APBJJlFZSxLeec25a5kiJaaoHg3q/S3QWVUH2q6ROn1ceOrFwC2RtorZVHCxlbc8BcE8bpP1BWThTA==
+X-Received: by 2002:a17:907:7709:b0:983:cb6c:8aa3 with SMTP id kw9-20020a170907770900b00983cb6c8aa3mr4127267ejc.59.1690739288810;
+        Sun, 30 Jul 2023 10:48:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id g2-20020a1709064e4200b00992025654c1sm4985351ejw.179.2023.07.30.10.47.11
+        by smtp.gmail.com with ESMTPSA id y22-20020a170906449600b00992e51fecfbsm4976102ejo.64.2023.07.30.10.48.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jul 2023 10:47:12 -0700 (PDT)
-Message-ID: <69ed96c2-17d8-7362-cf61-93e895e22ff3@linaro.org>
-Date:   Sun, 30 Jul 2023 19:47:10 +0200
+        Sun, 30 Jul 2023 10:48:08 -0700 (PDT)
+Message-ID: <222ae956-213e-264d-c217-45bb8d624382@linaro.org>
+Date:   Sun, 30 Jul 2023 19:48:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.1
-Subject: Re: [PATCH 1/8] AMR: dts: imx6sx-nitrogen6sx: drop incorrect
- regulator clock-names
+Subject: Re: [PATCH 3/4] AMR: dts: st: ste: switch to enable-gpios
 Content-Language: en-US
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com
-References: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
- <20230730134446.GV151430@dragon>
+References: <20230726070353.103989-1-krzysztof.kozlowski@linaro.org>
+ <20230726070353.103989-3-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230730134446.GV151430@dragon>
+In-Reply-To: <20230726070353.103989-3-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,18 +82,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/07/2023 15:44, Shawn Guo wrote:
-> On Wed, Jul 26, 2023 at 09:03:15AM +0200, Krzysztof Kozlowski wrote:
->> regulator-fixed does not take "clock-names" property:
->>
->>   imx6sx-nitrogen6sx.dtb: regulator-wlan: Unevaluated properties are not allowed ('clock-names' was unexpected)
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 26/07/2023 09:03, Krzysztof Kozlowski wrote:
+> The recommended name for enable GPIOs property in regulator-gpio is
+> "enable-gpios".  This is also required by bindings:
 > 
-> Fixed the typo of 'AMR' in subject of 1/8 ~ 4/8 (Thanks Fabio!), and
-> applied all, thanks!
+>   ste-hrefv60plus-stuib.dtb: regulator-gpio: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
+> 
 
-Oh! Thank you for fixing the subject.
+Subject prefix needs fixes (AMR->ARM)
 
 Best regards,
 Krzysztof
