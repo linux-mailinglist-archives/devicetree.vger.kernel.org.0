@@ -2,133 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D463776871E
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 20:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D39768722
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 20:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjG3SVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 14:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59840 "EHLO
+        id S229651AbjG3Sip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 14:38:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjG3SVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 14:21:35 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D615BB;
-        Sun, 30 Jul 2023 11:21:33 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-522c7b81ef8so536446a12.2;
-        Sun, 30 Jul 2023 11:21:32 -0700 (PDT)
+        with ESMTP id S229437AbjG3Sio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 14:38:44 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2E810EB
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 11:38:42 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-583d63ca1e9so41650467b3.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 11:38:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690741291; x=1691346091;
+        d=amarulasolutions.com; s=google; t=1690742322; x=1691347122;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tUGo+n+RgR5Sa/qBNUoOesuoOXhRiF1v9D1Aw6QoVVY=;
-        b=qE0LzVzgI9U+HMZI4WrP5+cSWOogEIarjkvnSP8RxGYUsgolbTvj+n6RjaU3lMOLyJ
-         +k94uNLxH6PFIcO3FKIua4a5snkIqcTce4S9FO261QREGJltf5cAdAPXEnkDR5b1kDYb
-         aiPOwe0DybmmbGUSf1UzQR8oCQmN359XsMQPD9FRMiO46y/ze1BoLVUf8EUKRvlVEDub
-         EsnHtowyTcjyDISL160bRBRoo9VQr69BVRbB9iWlIjrTcCEA+8NvQdi1YgQgDKBvHmE4
-         9Uaw6XGnIJMz70ANHDhwfSY7V117hVe3+f/a4o/6Drp0K/YhMymGf/xTkzsLUPviJvpi
-         Awrg==
+        bh=roA0tWjvqavbQ4acl8taxufGVjwHX3uQinPIePa4MD0=;
+        b=cLHER+FLjgqiPZAD9LL3+9esSOQkimanV8m3rX8/an4cSvj4XpZL0SE4EK4IWzQLPR
+         XIbPlWJN6lNUGs4HIjA0ETKa+fjhu4wJmDxzruMQzHyP+jvdCOtMg5SjOcLsW7jMQDnB
+         G7ymQY0bigZS4Y7XjKaLSoP9lXU6k8D08I6B8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690741291; x=1691346091;
+        d=1e100.net; s=20221208; t=1690742322; x=1691347122;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tUGo+n+RgR5Sa/qBNUoOesuoOXhRiF1v9D1Aw6QoVVY=;
-        b=UuDvKiIReBNFryk1+0hkN73y5fb9KGDvThHBYNM2BZY7gscOdosxvq1OLRn7mBMt/g
-         zO2JQWlCnPK/np6T0mjhTUAXOK9cChIuOOI5GgCvzgOO9U7TAUcZz5XlVemH7CQR7MYT
-         SbaJX1zJ2l1i5BoUt4NDZdQblednl7gufVuBy2jciiKicILV1mZMSdKBzfj7eeJMgoeZ
-         7bz05axt0o5ErX6PJijVIUqPyay1v0F4N/d/xzJZFTSobq6Gtv5Y62lzR/ChiQo9Kgpx
-         IQ7LB3KvQo91uKI9f3vQqLiMC2oYrffkWeDL62CbVBXm1HWTKzmnEdSNTCprKQkd92ZL
-         49dA==
-X-Gm-Message-State: ABy/qLYfWGireFtmVXPswWTOxaJxt0E8kZHUw6AACaV6Hha/czZRxZY4
-        tdzGAMv4UjMtcRdpOCL7Nd1VjNkPNCp/+KNY/sA=
-X-Google-Smtp-Source: APBJJlE3kBCBErT82ZozGqPli/BMonXd4eDmSbOdJC5z+PoCpj7y7mZfECZqpdRHX0rOG9CgjpCRyGyiZcEnPeki05k=
-X-Received: by 2002:a17:906:21b:b0:99b:55e3:bbd with SMTP id
- 27-20020a170906021b00b0099b55e30bbdmr5379713ejd.34.1690741290921; Sun, 30 Jul
- 2023 11:21:30 -0700 (PDT)
+        bh=roA0tWjvqavbQ4acl8taxufGVjwHX3uQinPIePa4MD0=;
+        b=VCMzKT0zSy25u09KaZvzlMxCUZh11qz8IDC7SS6qlSnD2Er8YhtTosn2bOy0S6Mb+Z
+         Ns4p2yWg1poxq9KgOdXRKNqd9MjRYl6lX7oQlqWgOBGCIbaVR/WD/8ewx43RRxl6SSoj
+         sv5vPrMfOG2ZBO36mck+qe4ROdMA/HKbI0lemc1bcv1GoXG3jvUsSZz488TvwuvYSusw
+         1Wt4QVp5iZgRtsVAQhuAeExoLO4bmxZElD10dB38U4hS+H0K5HWhBgdX4RmTE3L7QQrs
+         DrYSH+srdzgLSKc0mfWDXaNc+jszKNnLJhpCAybfGCCO6Oin1MA7YC8DvtSw4H6sAefw
+         DbzQ==
+X-Gm-Message-State: ABy/qLYLixVKcJVToXFqydP6GN1XTmhTPsGQCN1ClJhCWfODvpwtJ28S
+        U0dJk+Gp4bA+pKUjnSHsWF5MjBc/V8DL5LDIwxvNaQ==
+X-Google-Smtp-Source: APBJJlEDgCTEsMELmfhJau1t59rKk1J6hEIaKoeDsyL7smaHNlccmT8Uj3eU+lgaqACKVUifo3s4FoAFooRnyuKYaRk=
+X-Received: by 2002:a81:8381:0:b0:577:dddb:c289 with SMTP id
+ t123-20020a818381000000b00577dddbc289mr8487976ywf.7.1690742322158; Sun, 30
+ Jul 2023 11:38:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230729160857.6332-1-clamor95@gmail.com> <20230730174934.vobmyhubi7jsqzjv@intel.intel>
-In-Reply-To: <20230730174934.vobmyhubi7jsqzjv@intel.intel>
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-Date:   Sun, 30 Jul 2023 21:21:19 +0300
-Message-ID: <CAPVz0n1WUm6tg4Uhp8US_-1A5gBoJXAenqBz-EhVBNTmyC2=dg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] GPIO-based hotplug i2c bus
-To:     Andi Shyti <andi.shyti@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <20230717061831.1826878-1-victor.liu@nxp.com> <20230717061831.1826878-10-victor.liu@nxp.com>
+ <CAMty3ZAdzASJCz+j4iOTJ+wCXWP2Z48jFL687kxDmJLPU7T6gA@mail.gmail.com>
+ <AM7PR04MB7046BF03266ED1CE21CFC3A99838A@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <CAMty3ZDy7Ty2AUV+Ab60nvgBzyLB-ejM=Yij9RFyTNvJBG_EvA@mail.gmail.com>
+ <DB8PR04MB7051B5AB0D57BCEF2FBEBAE99838A@DB8PR04MB7051.eurprd04.prod.outlook.com>
+ <CAMty3ZDBSwxFZM0FE2ytvvQ0PXU9WNyWwvd_DOrKpe43HH2x+w@mail.gmail.com> <AM7PR04MB7046B44596C4C331D01F88479839A@AM7PR04MB7046.eurprd04.prod.outlook.com>
+In-Reply-To: <AM7PR04MB7046B44596C4C331D01F88479839A@AM7PR04MB7046.eurprd04.prod.outlook.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 31 Jul 2023 00:08:30 +0530
+Message-ID: <CAMty3ZBmPU9CvbjDt-q_bJbUoWm-SHoDTtzF6gYvpCE0R-A+sw@mail.gmail.com>
+Subject: Re: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+To:     Ying Liu <victor.liu@nxp.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "rfoss@kernel.org" <rfoss@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BD=D0=B4, 30 =D0=BB=D0=B8=D0=BF. 2023=E2=80=AF=D1=80. =D0=BE 20:49 Andi=
- Shyti <andi.shyti@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+On Wed, Jul 19, 2023 at 2:05=E2=80=AFPM Ying Liu <victor.liu@nxp.com> wrote=
+:
 >
-> Hi Svyatoslav,
->
-> On Sat, Jul 29, 2023 at 07:08:55PM +0300, Svyatoslav Ryhel wrote:
-> > ASUS Transformers require this driver for proper work with their dock.
-> > Dock is controlled by EC and its presence is detected by a GPIO.
+> On Tuesday, July 18, 2023 6:51 PM Jagan Teki <jagan@amarulasolutions.com>=
+ wrote:
 > >
-> > The Transformers have a connector that's used for USB, charging or
-> > for attaching a keyboard (called a dock; it also has a battery and
-> > a touchpad). This connector probably (I don't have the means to verify
-> > that) has an I2C bus lines and a "detect" line (pulled low on the dock
-> > side) among the pins. I guess there is either no additional chip or
-> > a transparent bridge/buffer chip, but nothing that could be controlled
-> > by software. For DT this setup could be modelled like an I2C gate or
-> > a 2-port mux with enable joining two I2C buses (one "closer" to the
-> > CPU as a parent).
+> > Hi,
+>
+> Hi,
+>
 > >
-> > In this case it's hard to tell the difference if this is real or virtua=
-l
-> > hardware.
+> > On Tue, Jul 18, 2023 at 3:19=E2=80=AFPM Ying Liu <victor.liu@nxp.com> w=
+rote:
+> > >
+> > > On Tuesday, July 18, 2023 5:35 PM Jagan Teki
+> > <jagan@amarulasolutions.com> wrote:
+> > > >
+> > > > >
+> > > > > Hi Jagan,
+> > > > >
+> > > > > On Monday, July 17, 2023 2:44 PM Jagan Teki
+> > > > <jagan@amarulasolutions.com> wrote:
+> > > > > > On Mon, Jul 17, 2023 at 11:44=E2=80=AFAM Liu Ying <victor.liu@n=
+xp.com>
+> > wrote:
+> > > > > > >
+> > > > > > > Freescale i.MX93 SoC embeds a Synopsys Designware MIPI DSI ho=
+st
+> > > > > > > controller and a Synopsys Designware MIPI DPHY.  Some
+> > configurations
+> > > > > > > and extensions to them are controlled by i.MX93 media blk-ctr=
+l.
+> > > > > > >
+> > > > > > > Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIP=
+I DSI
+> > > > > > > bridge helpers and implementing i.MX93 MIPI DSI specific
+> > extensions.
+> > > > > >
+> > > > > > I think the better way would add compatibility to be part of ex=
+isting
+> > > > > > dw-mipi-dsi.c with specific driver data. This way it avoids all=
+ the
+> > > > > > platform-related helpers(extensions) and makes the driver gener=
+ic to
+> > > > > > all SoCs which use DW DSI IP. It would be a straightforward cha=
+nge as
+> > > > > > the imx93 drm pipeline already supports bridge topology.
+> > > > >
+> > > > > The platform-related stuff is handed over to dw-mipi-dsi.c via st=
+ruct
+> > > > > dw_mipi_dsi_plat_data as an argument of dw_mipi_dsi_probe().  It
+> > looks
+> > > > > ok for vendor drivers to call dw_mipi_dsi_probe() to set the plat=
+form-
+> > > > related
+> > > > > information(rockchip, meson and stm do that), like pdata.phy_ops =
+and
+> > > > > pdata.host_ops.
+> > > >
+> > > > I understand this topology of having soc-platform drivers with
+> > > > dw-mipi-dsi bridge. What I'm suggesting is to not add a soc-platfor=
+m
+> > > > driver for imx93 instead add add support directly on dw-mipi-dsi
+> > > > bridge.
+> > >
+> > > It seems that directly supporting i.MX93 MIPI DSI in dw-mipi-dsi.c is
+> > > not feasible.  The main reason is that struct dw_mipi_dsi_plat_data
+> > > contains phy_ops and each vendor driver provides very different
+> > > methods for phy, while...
+> >
+> > Cannot this phy_ops goes to PHY core somewhere around and even it is
+> > possible to add via driver data for imx93 by untouching existing
+> > handling? I know it is not as direct as I describe but it is worth
+> > maintaining the driver this way to keep control of the future
+> > soc-drivers to include in dw-mipi-dsi instead of handling platform
+> > code separately.
 >
-> How did you test this device?
+> Like I said, each vendor driver provides very different methods for phy.
+> The reason is that phy IPs are different and SoC integration things are
+> handled via struct dw_mipi_dsi_phy_ops.  Meson calls devm_phy_get()
+> to get a phy.  Rockchip calls devm_phy_create() to create a phy.  Meson,
+> rockchip and stm have their own struct dw_mipi_dsi_phy_ops
+> implementations, same to i.MX93.  Different pixel format control is
+> implemented in meson's and i.MX93's ->init() callback. Meson additionally
+> handles clocks in ->init() callback.
 >
-Using devices, which relay on this patch, here is a list of those:
-- ASUS Eee Pad Transformer TF101 (mainlined)
-- ASUS Transformer Prime TF201 (mainlined)
-- ASUS Transformer Pad TF300T/TF300TG/TF300TL (mainlined)
-- ASUS Transformer Infinity TF700T (mainlined)
-- ASUS VivoTab RT TF600T (WIP)
-- ASUS Transformer Pad TF701T (mainlined)
-
-Non ASUS device is Microsoft Surface RT
-
-Tested by many owners and users for more than a year iirc.
-
-> > This patchset is a predecessor of a possible larger patchset which
-> > should bring support for a asus-ec, an i2c mfd device programmed by
-> > Asus for their Transformers tablet line. Similar approach is used in
-> > Microsoft Surface RT for attachable Type Cover.
+> Generally speaking, it's a no-go to put phy_ops into PHY core for all the
+> vendors, IMHO.
 >
-> Would be nice to have a driver using this support in the series,
-> otherwise it looks like thrown there without any use. Do you have
-> any use of it already? Even in your private repository just to
-> take a look.
+> In particular, i.MX93 MIPI DPHY's PLL can be fully controlled by media
+> blk-ctrl(as a syscon) thru the PLL's SoC control interface, while PHY
+> registers can be controlled by DW MIPI DSI testdin/out control interface
+> alternatively including a part of the PLL registers.  So, adding a PHY
+> driver for i.MX93 MIPI DPHY doesn't make sense since the PLL controlled
+> by media blk-ctrl doesn't constitute a PHY.  Instead, dw_mipi_dsi_phy_ops
+> may cover all the PHY control well.
 >
+> From my PoV, w/wo this series, dw-mipi-dsi.c looks fine to keep being
+> generic and easy to maintain.  All vendor drivers do is to handle platfor=
+m
+> specific stuff, which is good.
 
-Bindings which call gpio hotplug i2c bus:
-ASUS TF https://github.com/clamor-s/linux/commit/360f62f706670ab13101ef15b7=
-f2bc8880da7a48
-ASUS TF600T/TF701T
-https://github.com/clamor-s/linux/blob/transformer/arch/arm/boot/dts/tegra3=
-0-asus-tf600t.dts#L1050-L1089
-Surface RT https://github.com/grate-driver/linux/blob/master/arch/arm/boot/=
-dts/tegra30-microsoft-surface-rt.dts#L35-L53
+Thanks for the explanation. I agreed with on you most of the points
+from the perspective of PoV which are difficult to FIT into a common
+bridge. However, I'm still believing that the having bridge does only
+the bridge job, and keeping the PHY or other PoV-specific stuff on
+respective driver subsystems would be great synergy for the bridge
+drivers or any common IP driver's point-of-view.
 
-> Thanks,
-> Andi
+Anyway, I might not control i.MX93 PoV stuff, but I can try on it for
+the new DSI which uses this IP, and keep you in CC if it is a possible
+land in the near future.
+
+>
+> >
+> > >
+> > > >
+> > > > >
+> > > > > dw-mipi-dsi.c is generic w/wo this patch series.
+> > > > >
+> > > > > Can you elaborate more about adding compatibility to be part of
+> > existing
+> > > > > dw-mipi-dsi.c with specific driver data?  I don't see clear appro=
+ach to do
+> > > > > that.
+> > > >
+> > > > Please check the above comments, an example of samsung-dsim.c
+> > >
+> > > ... it seems that samsung-dsim.c uses struct samsung_dsim_driver_data=
+ to
+> > > differential platform information and it doesn't contain any callback=
+, which
+> > > means comparing to DW MIPI DSI, Samsung DSIM shows more consistency
+> > > across vendor SoCs from HW IP/SoC integration PoV.
+> >
+> > Yes, but is it possible to adjust struct according to DW MIPI DSI.
+>
+> Looking at the vendor drivers, they show a lot diversity, which cannot be
+> parameterized into a struct like the samsung dsim driver does.
+>
+> struct dw_mipi_dsi_plat_data hides all platform specific information from
+> dw-mipi-dsi.c well, IMHO.
+
+Okay.
+
+Thanks,
+Jagan.
