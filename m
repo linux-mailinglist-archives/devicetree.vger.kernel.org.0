@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E1F7684FB
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 13:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F205768505
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 13:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229987AbjG3LPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 07:15:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60508 "EHLO
+        id S229697AbjG3LUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 07:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229993AbjG3LPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 07:15:48 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C5211BFB
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:15:46 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b9e6cc93c6so3718671fa.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:15:46 -0700 (PDT)
+        with ESMTP id S229652AbjG3LUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 07:20:34 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F79C1993
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:20:29 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52164adea19so4741980a12.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:20:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690715744; x=1691320544;
+        d=linaro.org; s=google; t=1690716027; x=1691320827;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rI8PZ46CRm5rPlprnsD+h3GA3M1guin49VXQfC/Qzsc=;
-        b=gibJm5ppqm4ax8BfuMdCqXN9mpAG7VxJnpOby1ce/dffOebRVZOtt7yQcFe+FkFXjU
-         sxCCqG3e4CszNwF4QTCgaJScyo3IbmeFWs1/h+NNXvTylb+Vor08wGvJoB2dEXjppXSh
-         dUPuFaHl10DZijg2cklP2150ySxqYvCHafuIBOlFhDlufhn/9ECue4sbPnt28UHfR8u3
-         DGs82RyHTmOVrGhgfmjYyadwX2lb9XEKF/Qt6xrTCiTko0ZVvwGFEwMHXhNiZ2dNs+CK
-         QsOpnEvPnuylA97Q2EEVxIwoc2TQZr1tE09kHcM+ZYgt6HTPRCA6PWWxv1eRfDrMPwEV
-         /1ow==
+        bh=dbkpHrgM0RLW6a5i0Umen1/SqpOGIJ8G6Jf/9uq8g3E=;
+        b=nt03HVzw5EXg69Ewy3rrz3GN1JLFq5DCnlZyobLskkNSdssz0FuLPSlBtkbOvS0XoS
+         gQFY+yhsoQ8BNpH1zAjfoUOYGVXyDHW9f+0mfcyZMaexy4FVApO/ysnRW1ZbS3bLO8og
+         GrY5naK0lixL2J872qg1GH/MLY4hfeNnsn4mvFz+P7XN1bfkzN8UASYRek4haGsydlix
+         7dc1Zcjn7OQlvvJNp7JsNjpq9fmiD3ZjCB8nm95Lth9SQQITwKhnY385k4X1A9xS2BZJ
+         esP0Do10+VXNlfEgPuMeLceY+E5AkXmIbNf3EQtcinnXYJbIppxDNZUBVjXZjFEjr4nX
+         fiNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690715744; x=1691320544;
+        d=1e100.net; s=20221208; t=1690716027; x=1691320827;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rI8PZ46CRm5rPlprnsD+h3GA3M1guin49VXQfC/Qzsc=;
-        b=NsCF2DOg96ydPhm7m65KpbWF7wEN0TaT/HL2KGFn9fWPwDCLrIxVHKRVmX8iN+Pzfr
-         OM+upVix5jPboYeSDpl1UkfW2ARCtltiqb8qeCMNhl5f5h1NA/vsJawV2sg63hOgFkzC
-         FqsbvsqM6QgCWEgphZs6EwdIBRlRnNH75y7qCo35dqKWWpS2CjNxwceQ1O9igeaa0HwX
-         wEyf4XdZqL/g6Iz9ZjQPIW8JRPXW017NujGrdfR9FnLuSwZZ08PHvTkaJEelhjAlPsJf
-         YdaW85Wo/GlptRzZsfT+Us9rOP1rub9tLov/rpYAtnIoLWmmXSRZ+qp4J+G+56Z/vooV
-         P8/g==
-X-Gm-Message-State: ABy/qLZCOf4AkoEb9CWL7RqrlwlRYa+fbJHC771+vRj/mw7Ztv3qs13z
-        zGyULoqufQTu9yFqzPm7RmComw==
-X-Google-Smtp-Source: APBJJlETLxtPgdHDxR2ZmU6WGc7SOPYH5KwjsWNAWugCASiRjbLdKI2Kkb2Ji14bYZYGRjI/34tg3Q==
-X-Received: by 2002:ac2:5f9c:0:b0:4f9:5d2a:e0f6 with SMTP id r28-20020ac25f9c000000b004f95d2ae0f6mr3897035lfe.14.1690715744420;
-        Sun, 30 Jul 2023 04:15:44 -0700 (PDT)
+        bh=dbkpHrgM0RLW6a5i0Umen1/SqpOGIJ8G6Jf/9uq8g3E=;
+        b=VruceOOcXaPIiWGQVYJjuT1WRPHPP9YdDkM814TyVsMnusxxYFd5CiJo/NSsg3L6UY
+         7IDWHguLRiSaXAkCZtzwJonjaqVDrIEBCgJQ4h526XQF38/eWICBG5MQFg16ziH0ZxJf
+         6FjNdZxefA1Dlgy+hBT5eUaD+jFTr+XibXXev/ukmwG6ShxMJzHp48QO/c36KfjHJJSK
+         Jo8VVkDn3VyM5XyFlmO1j4llmudVo1jrSKsgwm1+Mc5yvYvAtnhH7NjEQTAUnVlZfFuf
+         zo2Wf+7eERucRonl7wsb6lgCXARjFE14/H7mS0Ks5cTx9RUu7gA8Bzw9ioICoR9APCSq
+         v04Q==
+X-Gm-Message-State: ABy/qLbLNeBJsslC9xwAqpnRk7lgnCQc4mhpYViQdgVva6x62MbWSx/U
+        m6Z0h1xzfyezjoCssXaUIaKiNw==
+X-Google-Smtp-Source: APBJJlF2tcexHoMj9D2Oec55kG3jzWL3qJq3OWDY0EKRIftui9QDxkRuHi2rQ7xkKU/JkGeVN8s7vQ==
+X-Received: by 2002:a05:6402:50d:b0:522:2a3c:6eb with SMTP id m13-20020a056402050d00b005222a3c06ebmr5353777edv.39.1690716027593;
+        Sun, 30 Jul 2023 04:20:27 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id h2-20020aa7c602000000b00522536c2e6esm4045756edq.38.2023.07.30.04.15.42
+        by smtp.gmail.com with ESMTPSA id l5-20020aa7cac5000000b005222dd0b2fbsm1643569edt.92.2023.07.30.04.20.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 04:15:44 -0700 (PDT)
+        Sun, 30 Jul 2023 04:20:27 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: microchip: split interrupts per cells
-Date:   Sun, 30 Jul 2023 13:15:41 +0200
-Message-Id: <20230730111542.98238-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: use defines for interrupts
+Date:   Sun, 30 Jul 2023 13:20:24 +0200
+Message-Id: <20230730112024.120903-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,193 +74,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each interrupt should be in its own cell.  This is much more readable.
+Replace hard-coded interrupt parts (GIC, flags) with standard defines
+for readability.  No changes in resulting DTBs.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/microchip/at91rm9200.dtsi  | 12 +++---
- arch/arm/boot/dts/microchip/at91sam9260.dtsi | 12 +++---
- arch/arm/boot/dts/microchip/sama5d2.dtsi     |  6 +--
- arch/arm/boot/dts/microchip/sama7g5.dtsi     | 40 ++++++++++----------
- 4 files changed, 35 insertions(+), 35 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8939.dtsi |  2 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi  | 16 ++++++++--------
+ 2 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/microchip/at91rm9200.dtsi b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
-index 37b500f6f395..16c675e3a890 100644
---- a/arch/arm/boot/dts/microchip/at91rm9200.dtsi
-+++ b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
-@@ -135,9 +135,9 @@ tcb0: timer@fffa0000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				reg = <0xfffa0000 0x100>;
--				interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0
--					      18 IRQ_TYPE_LEVEL_HIGH 0
--					      19 IRQ_TYPE_LEVEL_HIGH 0>;
-+				interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <18 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <19 IRQ_TYPE_LEVEL_HIGH 0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 17>, <&pmc PMC_TYPE_PERIPHERAL 18>, <&pmc PMC_TYPE_PERIPHERAL 19>, <&slow_xtal>;
- 				clock-names = "t0_clk", "t1_clk", "t2_clk", "slow_clk";
+diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+index af6d644a5d38..6e24f0f2374f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+@@ -1975,7 +1975,7 @@ wcnss_iris: iris {
  			};
-@@ -147,9 +147,9 @@ tcb1: timer@fffa4000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				reg = <0xfffa4000 0x100>;
--				interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0
--					      21 IRQ_TYPE_LEVEL_HIGH 0
--					      22 IRQ_TYPE_LEVEL_HIGH 0>;
-+				interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <21 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <22 IRQ_TYPE_LEVEL_HIGH 0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 20>, <&pmc PMC_TYPE_PERIPHERAL 21>, <&pmc PMC_TYPE_PERIPHERAL 22>, <&slow_xtal>;
- 				clock-names = "t0_clk", "t1_clk", "t2_clk", "slow_clk";
+ 
+ 			smd-edge {
+-				interrupts = <GIC_SPI 142 1>;
++				interrupts = <GIC_SPI 142 IRQ_TYPE_EDGE_RISING>;
+ 				qcom,ipc = <&apcs1_mbox 8 17>;
+ 				qcom,smd-edge = <6>;
+ 				qcom,remote-pid = <4>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 25124acf705f..1b2c82a1db43 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -2290,50 +2290,50 @@ timer@17920000 {
+ 
+ 			frame@17921000 {
+ 				frame-number = <0>;
+-				interrupts = <0 8 0x4>,
+-						<0 7 0x4>;
++				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17921000 0x1000>,
+ 					<0x17922000 0x1000>;
  			};
-diff --git a/arch/arm/boot/dts/microchip/at91sam9260.dtsi b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
-index 27b4a21f13c1..e56d5546554c 100644
---- a/arch/arm/boot/dts/microchip/at91sam9260.dtsi
-+++ b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
-@@ -148,9 +148,9 @@ tcb0: timer@fffa0000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				reg = <0xfffa0000 0x100>;
--				interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0
--					      18 IRQ_TYPE_LEVEL_HIGH 0
--					      19 IRQ_TYPE_LEVEL_HIGH 0>;
-+				interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <18 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <19 IRQ_TYPE_LEVEL_HIGH 0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 17>, <&pmc PMC_TYPE_PERIPHERAL 18>, <&pmc PMC_TYPE_PERIPHERAL 19>, <&pmc PMC_TYPE_CORE PMC_SLOW>;
- 				clock-names = "t0_clk", "t1_clk", "t2_clk", "slow_clk";
- 			};
-@@ -160,9 +160,9 @@ tcb1: timer@fffdc000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				reg = <0xfffdc000 0x100>;
--				interrupts = <26 IRQ_TYPE_LEVEL_HIGH 0
--					      27 IRQ_TYPE_LEVEL_HIGH 0
--					      28 IRQ_TYPE_LEVEL_HIGH 0>;
-+				interrupts = <26 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <27 IRQ_TYPE_LEVEL_HIGH 0>,
-+					     <28 IRQ_TYPE_LEVEL_HIGH 0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 26>, <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_PERIPHERAL 28>, <&pmc PMC_TYPE_CORE PMC_SLOW>;
- 				clock-names = "t0_clk", "t1_clk", "t2_clk", "slow_clk";
- 			};
-diff --git a/arch/arm/boot/dts/microchip/sama5d2.dtsi b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-index daeeb24e5f4d..5f8e297e19ed 100644
---- a/arch/arm/boot/dts/microchip/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-@@ -382,9 +382,9 @@ AT91_XDMAC_DT_PERID(21))>,
- 			macb0: ethernet@f8008000 {
- 				compatible = "atmel,sama5d2-gem";
- 				reg = <0xf8008000 0x1000>;
--				interrupts = <5  IRQ_TYPE_LEVEL_HIGH 3		/* Queue 0 */
--					      66 IRQ_TYPE_LEVEL_HIGH 3          /* Queue 1 */
--					      67 IRQ_TYPE_LEVEL_HIGH 3>;        /* Queue 2 */
-+				interrupts = <5  IRQ_TYPE_LEVEL_HIGH 3>,	/* Queue 0 */
-+					     <66 IRQ_TYPE_LEVEL_HIGH 3>,	/* Queue 1 */
-+					     <67 IRQ_TYPE_LEVEL_HIGH 3>;        /* Queue 2 */
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 5>, <&pmc PMC_TYPE_PERIPHERAL 5>;
- 				clock-names = "hclk", "pclk";
+ 
+ 			frame@17923000 {
+ 				frame-number = <1>;
+-				interrupts = <0 9 0x4>;
++				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17923000 0x1000>;
  				status = "disabled";
-diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-index 9642a42d84e6..269e0a3ca269 100644
---- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-@@ -366,8 +366,8 @@ can0: can@e0828000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe0828000 0x100>, <0x100000 0x7800>;
- 			reg-names = "m_can", "message_ram";
--			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 61>, <&pmc PMC_TYPE_GCK 61>;
- 			clock-names = "hclk", "cclk";
-@@ -382,8 +382,8 @@ can1: can@e082c000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe082c000 0x100>, <0x100000 0xbc00>;
- 			reg-names = "m_can", "message_ram";
--			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 62>, <&pmc PMC_TYPE_GCK 62>;
- 			clock-names = "hclk", "cclk";
-@@ -398,8 +398,8 @@ can2: can@e0830000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe0830000 0x100>, <0x100000 0x10000>;
- 			reg-names = "m_can", "message_ram";
--			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 63>, <&pmc PMC_TYPE_GCK 63>;
- 			clock-names = "hclk", "cclk";
-@@ -414,8 +414,8 @@ can3: can@e0834000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe0834000 0x100>, <0x110000 0x4400>;
- 			reg-names = "m_can", "message_ram";
--			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 64>, <&pmc PMC_TYPE_GCK 64>;
- 			clock-names = "hclk", "cclk";
-@@ -430,8 +430,8 @@ can4: can@e0838000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe0838000 0x100>, <0x110000 0x8800>;
- 			reg-names = "m_can", "message_ram";
--			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 65>, <&pmc PMC_TYPE_GCK 65>;
- 			clock-names = "hclk", "cclk";
-@@ -446,8 +446,8 @@ can5: can@e083c000 {
- 			compatible = "bosch,m_can";
- 			reg = <0xe083c000 0x100>, <0x110000 0xcc00>;
- 			reg-names = "m_can", "message_ram";
--			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 66>, <&pmc PMC_TYPE_GCK 66>;
- 			clock-names = "hclk", "cclk";
-@@ -845,12 +845,12 @@ uart7: serial@200 {
- 		gmac0: ethernet@e2800000 {
- 			compatible = "microchip,sama7g5-gem";
- 			reg = <0xe2800000 0x1000>;
--			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 51>, <&pmc PMC_TYPE_PERIPHERAL 51>, <&pmc PMC_TYPE_GCK 51>, <&pmc PMC_TYPE_GCK 53>;
- 			clock-names = "pclk", "hclk", "tx_clk", "tsu_clk";
- 			assigned-clocks = <&pmc PMC_TYPE_GCK 51>;
-@@ -861,8 +861,8 @@ GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH
- 		gmac1: ethernet@e2804000 {
- 			compatible = "microchip,sama7g5-emac";
- 			reg = <0xe2804000 0x1000>;
--			interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH
--				      GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 52>, <&pmc PMC_TYPE_PERIPHERAL 52>;
- 			clock-names = "pclk", "hclk";
- 			status = "disabled";
+ 			};
+ 
+ 			frame@17924000 {
+ 				frame-number = <2>;
+-				interrupts = <0 10 0x4>;
++				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17924000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17925000 {
+ 				frame-number = <3>;
+-				interrupts = <0 11 0x4>;
++				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17925000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17926000 {
+ 				frame-number = <4>;
+-				interrupts = <0 12 0x4>;
++				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17926000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17927000 {
+ 				frame-number = <5>;
+-				interrupts = <0 13 0x4>;
++				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17927000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17928000 {
+ 				frame-number = <6>;
+-				interrupts = <0 14 0x4>;
++				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17928000 0x1000>;
+ 				status = "disabled";
+ 			};
 -- 
 2.34.1
 
