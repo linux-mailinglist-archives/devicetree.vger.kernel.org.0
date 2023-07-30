@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8AA876846D
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 10:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0CAA768477
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 10:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbjG3I0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 04:26:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36962 "EHLO
+        id S229682AbjG3I2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 04:28:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbjG3I0J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 04:26:09 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109F1170F
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 01:26:08 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-977e0fbd742so491449466b.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 01:26:07 -0700 (PDT)
+        with ESMTP id S229729AbjG3I2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 04:28:42 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AD419AC
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 01:28:14 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5221f3affe4so4638188a12.0
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 01:28:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690705566; x=1691310366;
+        d=linaro.org; s=google; t=1690705666; x=1691310466;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cbca5dXAA/CsAVzj5b0FSbHE1+BN0Gm2+1XNguRAkFY=;
-        b=axmbOWocWR1Hs5AWePpS2pz35Ro2v3chDLV3qo7j6McOKGhGC7dMlbAeyRHhUGS/0E
-         0ca9lOwQPJCAfLvCpYpxuVH1nxCA2vxAGWZt5f8r2LsF8NEA+jBiulnaX6a+QGBJJoxr
-         TMKELJ9iPdsJPJuYl4WCjIjtdeNOzHrHHx2BbONnQlOmwFnHEpoK+VKljN9mCuJb0OFJ
-         aa/kbz2PE+tUtFhWTnvB0P48b76Oy8Vfik3QBUcfDLx+kZWfMr4zuxk9OBo/rTRK+E9A
-         0DLMa8LYr9GZ9l9bXLtVWu+yQASAdCH1qkYpiUzPfhnnf6/hYYvUfMP0s7vyaVLD4QD3
-         sQWg==
+        bh=D60VbFymTmhk33TulwzZUfrsQML4Fn7VfvjzkkAQ+Fw=;
+        b=v9LyuYPhpC6zcLchqJqp+K/pksVlx/CBkDNKjRiTnvqtKr3pmNJXzl3FHUDjuzf18E
+         9b2h1St0PpofjI++XeuayZCfHG0TDgEsZIE6DPoQeVeuPyj16CpLCQqWeBS5HByjtv8z
+         sZP5LqylaJZTUptNhODkx0aw1jfyJN64TzQCVxQp0a6XYhEq6I4jjbBNI+MDOAv+vaU4
+         0bOzSJFO4PhEobSuRRgAwgdWiLCJqxxQ+2juO08hKddXwcIMDwPN5Q3ZqHz+rYjYRqn1
+         Vg6mNtBGtlUg0HnvkU9h2bV9l1+ayXOpo6264yJBjV+rrXYosNdd1xtRVSIMdh5MPKRo
+         nVhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690705566; x=1691310366;
+        d=1e100.net; s=20221208; t=1690705666; x=1691310466;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cbca5dXAA/CsAVzj5b0FSbHE1+BN0Gm2+1XNguRAkFY=;
-        b=A0sUvWE9wTmz82Q0eA4Fad2K2TNYi2UauaEFDnBUemvdIJH8GPNMF36NE6jt9cwUSn
-         UvUjfl242BENQJAE8rdSrQeg7by67PE1N2ZeKjtzR80asaYyW7vCzY6cUAl5qiVKKbCp
-         d/wCspRkZp16EZEVacgoKtuIKRkVJyUzi+x/dLPPRN4xrHrcJtnY8PJBdEMZr+7S29Pt
-         +WuUn+BDtOtp/oBRn8J1aSOvrZHfGsWy2vE9YdtqXFe2sQlsWQtYchusSZ+RXjhNynt/
-         4mdh7uEhfjzYIYcGG2cXHNOcgH19S6FbfubUlLOCO3l5Kcuv4PVanY5akV1exHtFMdiB
-         CfwQ==
-X-Gm-Message-State: ABy/qLZ8FF9fzM1uawP0VNSrX6lasboux1vsekCX6Xd70F3WJ0ozNamP
-        4nMb4laE0RcE/NewLEje+T1SaQ==
-X-Google-Smtp-Source: APBJJlF+hgS+GuCqh01N/8YF2wf89TRNJBobKe9fSDk653BjvVHt9a51l9CtA0cRjaq51px+7TsaCg==
-X-Received: by 2002:a17:907:7638:b0:997:deb1:ff6a with SMTP id jy24-20020a170907763800b00997deb1ff6amr3215763ejc.22.1690705565846;
-        Sun, 30 Jul 2023 01:26:05 -0700 (PDT)
+        bh=D60VbFymTmhk33TulwzZUfrsQML4Fn7VfvjzkkAQ+Fw=;
+        b=QRk75mAJqkSV+nGM1NQcmaoGS7r5iTk5dghRJYsVh3ApvpBnvr0UnDZXuwCa3ILkXo
+         CQEn+JsTvMiO/fAmylictjB4bG/g30C4pNkSYGZ+jBi6PmTNlMU44aGeaKLXrL6Bm1cH
+         1E3krx/qKb5Ne2v9y2bWiRtIOrTHorn1GI/NkczG3cqqoiY6Jwa1vJ1rR75LnQ/kWNNQ
+         iyw1/XznWTR77RUMtZp7yCgPW8GSd15TIVHVyiwiAL5PN37uv+JqjIDt+lm+VsRM8DEq
+         Thcjy9JXoKxUHy3PummVJknIhgn40XpuF+lNDLCiwxKAt1tQEGuPHmeCVFQZ0zeDOXo3
+         rHsQ==
+X-Gm-Message-State: ABy/qLaSvoas+cJfKcDa6ipQxE2klYMT2MyZBl+keXoYnLWzJfe4kf/m
+        bc2I2XYgf9VmThHVOk60CSR9nA==
+X-Google-Smtp-Source: APBJJlEkx8evuqe35HveMmTK6Z9zxyAvK3EkdcIpk1D+eGhBx5CLd26uF+T5+BYxOm63+kwz6uVdTQ==
+X-Received: by 2002:a17:907:784f:b0:99b:d693:cb8e with SMTP id lb15-20020a170907784f00b0099bd693cb8emr3556505ejc.71.1690705666463;
+        Sun, 30 Jul 2023 01:27:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id f25-20020a1709067f9900b009934855d8f1sm4305188ejr.34.2023.07.30.01.26.04
+        by smtp.gmail.com with ESMTPSA id v23-20020a1709067d9700b00993860a6d37sm4314892ejo.40.2023.07.30.01.27.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jul 2023 01:26:05 -0700 (PDT)
-Message-ID: <2ee2336c-d54f-6fb7-0142-8d0e08cce25b@linaro.org>
-Date:   Sun, 30 Jul 2023 10:26:03 +0200
+        Sun, 30 Jul 2023 01:27:45 -0700 (PDT)
+Message-ID: <dfd8be75-6ae7-8989-4717-db82c5c0656d@linaro.org>
+Date:   Sun, 30 Jul 2023 10:27:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 07/17] MIPS: loongson32: Convert UART platform device to
- DT
+Subject: Re: [PATCH 14/17] mips: dts: loongson1b: Add PWM timer clocksource
 Content-Language: en-US
 To:     Keguang Zhang <keguang.zhang@gmail.com>,
         linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
@@ -65,9 +64,9 @@ Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
- <20230729134318.1694467-8-keguang.zhang@gmail.com>
+ <20230729134318.1694467-15-keguang.zhang@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230729134318.1694467-8-keguang.zhang@gmail.com>
+In-Reply-To: <20230729134318.1694467-15-keguang.zhang@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,19 +80,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/07/2023 15:43, Keguang Zhang wrote:
-> Add UART device nodes for Loongson-1 boards,
-> and drop the legacy platform devices and data accordingly.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
->  arch/mips/boot/dts/loongson/loongson1.dtsi    | 54 +++++++++++++++++++
+> Add the device node of PWM timer clocksource
+> for Loongson-1B boards.
 
-Same problem - DTS is always separate. It seems you made this mistake
-everywhere, so entire patchset needs to be fixed. Keep all DTS - your
-base board and extending it - at the end of the patchset and squash it.
-There is little point to add new DTS in steps (e.g. first add incomplete
-broken DTS and then immediately fix it... no, instead just add correct
-and complete DTS).
+Don't split adding new DTS into many small commits. There is little
+point in adding broken/incomplete DTS and immediately fix it. Just add
+complete one. We do the same for each drivers and DTS is not different here.
+
+It would be entirely different if you followed 'release early, release
+often' approach, so release pieces as fast as you have them ready. You
+decided to ignore that rule, so no, you don't get 20 commits fixing DTS
+you added in first commit of the same patchset.
+
 
 
 Best regards,
