@@ -2,95 +2,346 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB18768675
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 18:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15DF076869D
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 19:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbjG3Qde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 12:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34888 "EHLO
+        id S229492AbjG3RLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 13:11:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjG3Qdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 12:33:33 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9E8C3;
-        Sun, 30 Jul 2023 09:33:32 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36UGXO2K101207;
-        Sun, 30 Jul 2023 11:33:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690734804;
-        bh=UbK6VczzUc+IeuNsHfdHRJGM+KHDFC25Yriv34c97yE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=p2FcX4JGfERSwgqdwa8Ur4vi+wxLiaG94cf0C9x+YlUgrf03LJdh2KEUQ9RwFGmdl
-         Wl39u2sgzy3elqZuBzj+6wPwtQEbyv6C7YxY7eUuEuwzPxaB7jlNHiVfC2HUyMWiJc
-         0hAuqKJKaC62W0Aab6BfWqwDkeY40jqd5oGW3xDM=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36UGXNjP025254
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 30 Jul 2023 11:33:23 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 30
- Jul 2023 11:33:23 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 30 Jul 2023 11:33:23 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36UGXNoc065888;
-        Sun, 30 Jul 2023 11:33:23 -0500
-Date:   Sun, 30 Jul 2023 11:33:23 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229449AbjG3RLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 13:11:15 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E96610CC;
+        Sun, 30 Jul 2023 10:11:14 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e429e1eabso5229607a12.2;
+        Sun, 30 Jul 2023 10:11:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690737073; x=1691341873;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rINeYgAe2vWhDTqaE4dNqaz5whR3/rodCQD83wYGPSA=;
+        b=hpv/S4CN6eOm6FJZ35c2VwAJgs4Pe25/en1e7BCtSlW0+Qb8MdnDp5/F6vVoF19arz
+         FbKIL3dq25ni+8wRTzOwOSW9CY106Yg067ngdUmoBU002DvJoQhgOw3cW9UGKFx4Q50r
+         S8QE1X1ZRE/B2UAinA3avVFZXRZxXFnkzOe8WCmxRG/l7iFIE0l2efquhhoZkvMbC2eC
+         yz5sq9VzDm56QHNErPAUvpZdiLmMzi1JEiRO2Kx2YW44FpWiURgbkLVGgyGQccyh1P9c
+         fmNa7BuYxBnbSE5zAbqC+tsN15Ds+GTv4IKEIkJjPWiS8M4BLjNpXOXU3qk+bhw6cbuq
+         FE8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690737073; x=1691341873;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rINeYgAe2vWhDTqaE4dNqaz5whR3/rodCQD83wYGPSA=;
+        b=g52UT0QV8W2uFivnQ8je67guLr33CTrZzJSIPCTjgwTkR27e3f12Tw2w44H/eMXwM7
+         OIw66XgMUxdKbtu/2btWkwdLRXX1qh0bhIHmlKYbvDZLew9C0dnrcuuNVPjT37PswzMl
+         ZS8usW+OQcQ+3S4ocPd9cWX97ebnrn6oubUOw0P4F45Nms80pxiOkhxTa54zK1t4oFfL
+         GcDngrw+QPuloFqdtlTUJPQDSea/G2RKuIIxxHH9tGYvvvcoRorxSRoJZ8WLH1e2ZYKK
+         4bPzAuXkQGRADKO6QRhORZALusdpW9mlscY++TweXQIXz9EKj/o6IwnOa2FVX2Ck2iAQ
+         2l/w==
+X-Gm-Message-State: ABy/qLYrjtBYFKMW3+NMzh47CFpCjeqdnvOLTt9oT29eIL9Cl9qwOu98
+        RuK08pVNhV8kzRUeUTJSnslpigrRSXSNUOz/ODweW4R2GlBLsg==
+X-Google-Smtp-Source: APBJJlH9Zt3gdvhmq1i8yEj+qg/u7Gs2dp8bd7HOb1u6g1X4ipRKMAQiiY8sjrPfNi5rESjl0vsCdRs1VByyoS6gVg8=
+X-Received: by 2002:aa7:d452:0:b0:522:c877:5690 with SMTP id
+ q18-20020aa7d452000000b00522c8775690mr984265edr.17.1690737072488; Sun, 30 Jul
+ 2023 10:11:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230729134318.1694467-1-keguang.zhang@gmail.com> <20230729134318.1694467-4-keguang.zhang@gmail.com>
+In-Reply-To: <20230729134318.1694467-4-keguang.zhang@gmail.com>
+From:   Du Huanpeng <u74147@gmail.com>
+Date:   Mon, 31 Jul 2023 01:11:00 +0800
+Message-ID: <CANvTkNbss+ovB_nXYvAXT9dZt4H1KsF41EQ4f3zHf1dEnpdreA@mail.gmail.com>
+Subject: Re: [PATCH 03/17] MIPS: dts: Add basic DT support for Loongson-1 boards
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-Subject: Re: [PATCH v3 6/8] arm64: dts: ti: k3-am625-beagleplay: Add DSS
- pinmux info
-Message-ID: <20230730163323.fp62ehguxz4u4s7l@manhole>
-References: <20230728173438.12995-1-a-bhatia1@ti.com>
- <20230728173438.12995-7-a-bhatia1@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230728173438.12995-7-a-bhatia1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23:04-20230728, Aradhya Bhatia wrote:
-[...]
-
-> +&dss {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&dss0_pins_default &oldi0_pins_default>;
-
-Same - 
-pinctrl-0 = <&dss0_pins_default>, <&oldi0_pins_default>;
+Keguang Zhang <keguang.zhang@gmail.com> =E4=BA=8E2023=E5=B9=B47=E6=9C=8829=
+=E6=97=A5=E5=91=A8=E5=85=AD 21:45=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Add initial devicetree for Loongson-1 boards, including
+> LSGZ_1B_DEV and SMARTLOONG_1C board.
+> These basic DTs contain CPU, clock and core INTC.
+>
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+>  arch/mips/boot/dts/Makefile                   |  1 +
+>  arch/mips/boot/dts/loongson/Makefile          |  3 +
+>  arch/mips/boot/dts/loongson/loongson1.dtsi    | 22 ++++++
+>  arch/mips/boot/dts/loongson/loongson1b.dtsi   | 75 +++++++++++++++++++
+>  arch/mips/boot/dts/loongson/loongson1c.dtsi   | 29 +++++++
+>  arch/mips/boot/dts/loongson/lsgz_1b_dev.dts   | 25 +++++++
+>  arch/mips/boot/dts/loongson/smartloong_1c.dts | 25 +++++++
+>  7 files changed, 180 insertions(+)
+>  create mode 100644 arch/mips/boot/dts/loongson/loongson1.dtsi
+>  create mode 100644 arch/mips/boot/dts/loongson/loongson1b.dtsi
+>  create mode 100644 arch/mips/boot/dts/loongson/loongson1c.dtsi
+>  create mode 100644 arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
+>  create mode 100644 arch/mips/boot/dts/loongson/smartloong_1c.dts
+>
+> diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
+> index 928f38a79dff..2e040b1ba97b 100644
+> --- a/arch/mips/boot/dts/Makefile
+> +++ b/arch/mips/boot/dts/Makefile
+> @@ -6,6 +6,7 @@ subdir-$(CONFIG_FIT_IMAGE_FDT_BOSTON)   +=3D img
+>  subdir-$(CONFIG_MACH_INGENIC)          +=3D ingenic
+>  subdir-$(CONFIG_LANTIQ)                        +=3D lantiq
+>  subdir-$(CONFIG_MACH_LOONGSON64)       +=3D loongson
+> +subdir-$(CONFIG_MACH_LOONGSON32)       +=3D loongson
+>  subdir-$(CONFIG_SOC_VCOREIII)          +=3D mscc
+>  subdir-$(CONFIG_MIPS_MALTA)            +=3D mti
+>  subdir-$(CONFIG_LEGACY_BOARD_SEAD3)    +=3D mti
+> diff --git a/arch/mips/boot/dts/loongson/Makefile b/arch/mips/boot/dts/lo=
+ongson/Makefile
+> index 5c6433e441ee..9d95f1351d5f 100644
+> --- a/arch/mips/boot/dts/loongson/Makefile
+> +++ b/arch/mips/boot/dts/loongson/Makefile
+> @@ -6,4 +6,7 @@ dtb-$(CONFIG_MACH_LOONGSON64)   +=3D loongson64c_8core_rs=
+780e.dtb
+>  dtb-$(CONFIG_MACH_LOONGSON64)  +=3D loongson64g_4core_ls7a.dtb
+>  dtb-$(CONFIG_MACH_LOONGSON64)  +=3D loongson64v_4core_virtio.dtb
+>
+> +dtb-$(CONFIG_LOONGSON1B_LSGZ_DEV)      +=3D lsgz_1b_dev.dtb
+> +dtb-$(CONFIG_LOONGSON1C_SMARTLOONG)    +=3D smartloong_1c.dtb
+> +
+>  obj-$(CONFIG_BUILTIN_DTB)      +=3D $(addsuffix .o, $(dtb-y))
+> diff --git a/arch/mips/boot/dts/loongson/loongson1.dtsi b/arch/mips/boot/=
+dts/loongson/loongson1.dtsi
+> new file mode 100644
+> index 000000000000..a2b5c828bbbd
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/loongson/loongson1.dtsi
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Keguang Zhang <keguang.zhang@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/clock/loongson,ls1x-clk.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <1>;
+> +
+> +       cpu_intc: interrupt-controller {
+> +               compatible =3D "mti,cpu-interrupt-controller";
+> +               #address-cells =3D <0>;
+> +
+> +               interrupt-controller;
+> +               #interrupt-cells =3D <1>;
+> +       };
 > +};
-> -- 
-> 2.40.1
-> 
+> diff --git a/arch/mips/boot/dts/loongson/loongson1b.dtsi b/arch/mips/boot=
+/dts/loongson/loongson1b.dtsi
+> new file mode 100644
+> index 000000000000..784ae9b6572d
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/loongson/loongson1b.dtsi
+> @@ -0,0 +1,75 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Keguang Zhang <keguang.zhang@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "loongson1.dtsi"
+> +
+> +/ {
+> +       cpus {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               cpu@0 {
+> +                       device_type =3D "cpu";
+> +                       reg =3D <0>;
+> +                       #clock-cells =3D <1>;
+> +                       clocks =3D <&clkc LS1X_CLKID_CPU>;
+> +                       operating-points-v2 =3D <&cpu_opp_table>;
+> +               };
+> +       };
+> +
+> +       cpu_opp_table: opp-table {
+> +               compatible =3D "operating-points-v2";
+> +               opp-shared;
+> +
+> +               opp-44000000 {
+> +                       opp-hz =3D /bits/ 64 <44000000>;
+> +               };
+> +               opp-47142000 {
+> +                       opp-hz =3D /bits/ 64 <47142000>;
+> +               };
+> +               opp-50769000 {
+> +                       opp-hz =3D /bits/ 64 <50769000>;
+> +               };
+> +               opp-55000000 {
+> +                       opp-hz =3D /bits/ 64 <55000000>;
+> +               };
+> +               opp-60000000 {
+> +                       opp-hz =3D /bits/ 64 <60000000>;
+> +               };
+> +               opp-66000000 {
+> +                       opp-hz =3D /bits/ 64 <66000000>;
+> +               };
+> +               opp-73333000 {
+> +                       opp-hz =3D /bits/ 64 <73333000>;
+> +               };
+> +               opp-82500000 {
+> +                       opp-hz =3D /bits/ 64 <82500000>;
+> +               };
+> +               opp-94285000 {
+> +                       opp-hz =3D /bits/ 64 <94285000>;
+> +               };
+> +               opp-110000000 {
+> +                       opp-hz =3D /bits/ 64 <110000000>;
+> +               };
+> +               opp-132000000 {
+> +                       opp-hz =3D /bits/ 64 <132000000>;
+> +               };
+> +               opp-165000000 {
+> +                       opp-hz =3D /bits/ 64 <165000000>;
+> +               };
+> +               opp-220000000 {
+> +                       opp-hz =3D /bits/ 64 <220000000>;
+> +               };
+> +       };
+> +
+> +       clkc: clock-controller@1fe78030 {
+> +               compatible =3D "loongson,ls1b-clk";
+> +               reg =3D <0x1fe78030 0x8>;
+> +
+> +               clocks =3D <&xtal>;
+> +               #clock-cells =3D <1>;
+> +       };
+> +};
+> diff --git a/arch/mips/boot/dts/loongson/loongson1c.dtsi b/arch/mips/boot=
+/dts/loongson/loongson1c.dtsi
+> new file mode 100644
+> index 000000000000..d552e1668984
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/loongson/loongson1c.dtsi
+> @@ -0,0 +1,29 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Keguang Zhang <keguang.zhang@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "loongson1.dtsi"
+> +
+> +/ {
+> +       cpus {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               cpu@0 {
+> +                       device_type =3D "cpu";
+> +                       reg =3D <0>;
+> +                       #clock-cells =3D <1>;
+> +                       clocks =3D <&clkc LS1X_CLKID_CPU>;
+> +               };
+> +       };
+> +
+> +       clkc: clock-controller@1fe78030 {
+> +               compatible =3D "loongson,ls1c-clk";
+> +               reg =3D <0x1fe78030 0x8>;
+> +
+> +               clocks =3D <&xtal>;
+> +               #clock-cells =3D <1>;
+> +       };
+> +};
+> diff --git a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts b/arch/mips/boot=
+/dts/loongson/lsgz_1b_dev.dts
+> new file mode 100644
+> index 000000000000..d12c723b0a2b
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
+> @@ -0,0 +1,25 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Keguang Zhang <keguang.zhang@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "loongson1b.dtsi"
+> +
+> +/ {
+> +       compatible =3D "loongson,lsgz-1b-dev", "loongson,ls1b";
+> +       model =3D "LSGZ_1B_DEV Board";
+> +
+> +       memory@0 {
+> +               device_type =3D "memory";
+> +               reg =3D <0x0 0x4000000>;
+> +       };
+> +
+> +       xtal: xtal {
+for your information, hope it helps:
+in <devicetree-specification-v0.4.pdf> Page: 8
+The name of a node should be somewhat generic, reflecting the function
+of the device and not its precise programming model. If appropriate,
+ the name should be one of the following choices:
+... clock ...
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> +               compatible =3D "fixed-clock";
+> +               clock-frequency =3D <33000000>;
+> +               clock-output-names =3D "xtal";
+> +               #clock-cells =3D <0>;
+> +       };
+> +};
+> diff --git a/arch/mips/boot/dts/loongson/smartloong_1c.dts b/arch/mips/bo=
+ot/dts/loongson/smartloong_1c.dts
+> new file mode 100644
+> index 000000000000..64e869acfd86
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/loongson/smartloong_1c.dts
+> @@ -0,0 +1,25 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 Keguang Zhang <keguang.zhang@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "loongson1c.dtsi"
+> +
+> +/ {
+> +       compatible =3D "loongmasses,smartloong-1c", "loongson,ls1c";
+> +       model =3D "Smartloong_1C Board";
+> +
+> +       memory@0 {
+> +               device_type =3D "memory";
+> +               reg =3D <0x0 0x2000000>;
+> +       };
+> +
+> +       xtal: xtal {
+> +               compatible =3D "fixed-clock";
+> +               clock-frequency =3D <24000000>;
+> +               clock-output-names =3D "xtal";
+> +               #clock-cells =3D <0>;
+> +       };
+> +};
+> --
+> 2.39.2
+>
+
+---
+Du Huanpeng
