@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA617684F8
+	by mail.lfdr.de (Postfix) with ESMTP id 8461A7684F7
 	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 13:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjG3LPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229998AbjG3LPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 30 Jul 2023 07:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbjG3LPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 07:15:43 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7AD1730
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:15:40 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c10ba30afso51627266b.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:15:40 -0700 (PDT)
+        with ESMTP id S229637AbjG3LPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 07:15:46 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7551BC9
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:15:43 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5221c6a2d3dso5165252a12.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 04:15:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690715739; x=1691320539;
+        d=linaro.org; s=google; t=1690715741; x=1691320541;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=60SWNJaNV4tC0O+dHQ6OkEZk+glu++Ik9FCyrUU58Lk=;
-        b=HxX+d5RYKg8L7BfQAP0Pc+GsXgpgr86jB0DPj3Qcm8yE2+C0EVQ/grUOnjNs5/aq6d
-         qHTCkA2R1Uu83AepVmP+KmENuCJbZtsht34v64gqp7iY79DnkhhQObC1AcTjAdYHbtlK
-         iClklxqLxMmDQ2K37xrh9lePd9oF+7g8mkiSUlkZYOxlq5LWGQGASWabODHOgzynLeLk
-         kwafgBdQSicgdGiJcbEftWsgUr+mlWr5gy8NLSfeki7I8HsdFbaQXzQxHyIrBM2nakxA
-         N7EjPqEuE0W1trYflhK5uXvEJE04aJMrCJXhaJoehiVgQJoX5AKx2FUuePzZQzA5Z6n5
-         iqgg==
+        bh=FdrXrw0tM7qLPBUw96LDt57zzlXAWOZHTbDIVs5pK4U=;
+        b=MVhYnMrsEtVuDCtnvjWStQcJHE5mWSvQEbcp+lrXRsRdVJTr7N9u147+h3Zu9zHbAg
+         mScVBt2yVdAS6UR4HCEnrLMyaKhxuDXy/JIlI2BUfbPO5TEqkTQmwpwB9jTgpXGM21lt
+         sVKYnt/Y8qMptmFFyHy9T71Tj2AMenOF87s4KhYzD6RlNRmV0pjKK15lcn0BXZ+U7WVA
+         JKri/ZKgSk4J/YzMMNQ0wVitYBTL8BTeWq/sbNBYG1moUu7ixXszQm23Ggvk0GDOc4x6
+         zB+JEzXaUmOUriesZv5fe5X36gzPxw8PEtsoxCeDoMfOnxxmKf/r2Eafb2wYSjjQeu81
+         rkpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690715739; x=1691320539;
+        d=1e100.net; s=20221208; t=1690715741; x=1691320541;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=60SWNJaNV4tC0O+dHQ6OkEZk+glu++Ik9FCyrUU58Lk=;
-        b=iv9V12nLwPrHpU5BODOD3bJIhrarr+YF2DTT1qiOacUXy/O90Jbhhs/wchXQNP4yPf
-         Sga1sQloPmaEHembIc/fnsOPgA6PXyr54vDNVY5xsQleGdPjQx4uw2oPWdHp8NyYrBKV
-         dxAhi54FZQWFSJFslXt9WF2t/+28XiMQnUa9yDpnnGQQaDqt3ak4wmq9GVcoKEKtinqH
-         esgAoBoh+V2niPTn/d5yZQJvltkAQ+5+q1HOytuNy+ZUCR7orgAQAKK6nMu57FV+y4lS
-         y8HAGFYLXQPMaov5mjifXDuf+Xg1Zyeu4POVbB7lkuQKZeABJkuKafqsm619/v5wHKRl
-         xWKQ==
-X-Gm-Message-State: ABy/qLYSWX5motvxco0JZx2MDSM9/Nl6EEl0FJjFm1ExmvMukW6BCAFM
-        QjZxcYmw5NjUtCRQvm9846anTrinw5G1ggLEmZI=
-X-Google-Smtp-Source: APBJJlFXBaGmENNJpHK3sP89cHAxgA5CghPTpwI7R9ank1cMWDM137kN2j6bPnnYiX0+7W0CQpFaqw==
-X-Received: by 2002:a17:906:8a54:b0:99b:ce6d:fc90 with SMTP id gx20-20020a1709068a5400b0099bce6dfc90mr4598020ejc.2.1690715738867;
-        Sun, 30 Jul 2023 04:15:38 -0700 (PDT)
+        bh=FdrXrw0tM7qLPBUw96LDt57zzlXAWOZHTbDIVs5pK4U=;
+        b=ZE7M3dyPAlUaogRwqA2DgMQ9VibTyqvHIY4jXBAbl12LcbAT87zkn2n7Qv/FeqH3U5
+         VRCfujO12hyew95TLqhbOR/hWWmS2uxIWBCcR1JHrfEzL0Po6dWptWhDRkU1CimI1tG1
+         LR6t+w1T27jTDA5DJGRfuEgR1wql5YJ0P9MbZWod8QV31TQsH+3WOrGVziOrl2TmPu4N
+         CPIodFtTfxW+xGu0uKdC0jFrhI0kt7eF6ttc4JSEXAn0nj/yUxoDyP4WmJ7Qv/5SSweD
+         QCzV4NvGMaw7xsw09knVV1zX+IWIDXbZaojzPERgUI9ozh96ic25waU6X0uao277O3w+
+         R5cg==
+X-Gm-Message-State: ABy/qLak0BpyLpBTteSrALPwZF1564SHTGfE8Ya8aOpBakybblarCG3Z
+        FjV/XKkvQx1zJQ8fACy8Pa9MkQ==
+X-Google-Smtp-Source: APBJJlFVFF2fBIppVxMb0htrH9acaHpmQ6oEPL5dD+VejnT8yIxzzEgCqy+2uqb4wLl8hl8qS0yuDA==
+X-Received: by 2002:aa7:c68f:0:b0:522:2c44:a915 with SMTP id n15-20020aa7c68f000000b005222c44a915mr6812406edq.24.1690715741628;
+        Sun, 30 Jul 2023 04:15:41 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id z10-20020a170906714a00b00985bdb7dd5fsm4471018ejj.201.2023.07.30.04.15.37
+        by smtp.gmail.com with ESMTPSA id l1-20020a056402028100b005224d15d3dfsm4007591edv.87.2023.07.30.04.15.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 04:15:38 -0700 (PDT)
+        Sun, 30 Jul 2023 04:15:41 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: st: spear: split interrupts per cells
-Date:   Sun, 30 Jul 2023 13:15:36 +0200
-Message-Id: <20230730111536.98164-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: nxp: mxs: split interrupts per cells
+Date:   Sun, 30 Jul 2023 13:15:39 +0200
+Message-Id: <20230730111539.98210-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,97 +80,138 @@ Each interrupt should be in its own cell.  This is much more readable.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/st/spear1340.dtsi |  8 ++++----
- arch/arm/boot/dts/st/spear13xx.dtsi | 24 ++++++++++++------------
- 2 files changed, 16 insertions(+), 16 deletions(-)
+ arch/arm/boot/dts/nxp/mxs/imx23.dtsi | 21 +++++++++++----------
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi | 24 ++++++++++++------------
+ 2 files changed, 23 insertions(+), 22 deletions(-)
 
-diff --git a/arch/arm/boot/dts/st/spear1340.dtsi b/arch/arm/boot/dts/st/spear1340.dtsi
-index d54e10629a7d..51f6ffd08b42 100644
---- a/arch/arm/boot/dts/st/spear1340.dtsi
-+++ b/arch/arm/boot/dts/st/spear1340.dtsi
-@@ -63,8 +63,8 @@ i2s-play@b2400000 {
- 			compatible = "snps,designware-i2s";
- 			reg = <0xb2400000 0x10000>;
- 			interrupt-names = "play_irq";
--			interrupts = <0 98 0x4
--				      0 99 0x4>;
-+			interrupts = <0 98 0x4>,
-+				     <0 99 0x4>;
- 			play;
- 			channel = <8>;
- 			status = "disabled";
-@@ -74,8 +74,8 @@ i2s-rec@b2000000 {
- 			compatible = "snps,designware-i2s";
- 			reg = <0xb2000000 0x10000>;
- 			interrupt-names = "record_irq";
--			interrupts = <0 100  0x4
--				      0 101 0x4>;
-+			interrupts = <0 100 0x4>,
-+				     <0 101 0x4>;
- 			record;
- 			channel = <8>;
- 			status = "disabled";
-diff --git a/arch/arm/boot/dts/st/spear13xx.dtsi b/arch/arm/boot/dts/st/spear13xx.dtsi
-index 913553367687..3b6897084e26 100644
---- a/arch/arm/boot/dts/st/spear13xx.dtsi
-+++ b/arch/arm/boot/dts/st/spear13xx.dtsi
-@@ -39,8 +39,8 @@ gic: interrupt-controller@ec801000 {
- 
- 	pmu {
- 		compatible = "arm,cortex-a9-pmu";
--		interrupts = <0 6 0x04
--			      0 7 0x04>;
-+		interrupts = <0 6 0x04>,
-+			     <0 7 0x04>;
- 	};
- 
- 	L2: cache-controller {
-@@ -141,10 +141,10 @@ fsmc: flash@b0000000 {
- 			       0xb0820000 0x0010	/* NAND Base ADDR */
- 			       0xb0810000 0x0010>;	/* NAND Base CMD */
- 			reg-names = "fsmc_regs", "nand_data", "nand_addr", "nand_cmd";
--			interrupts = <0 20 0x4
--				      0 21 0x4
--				      0 22 0x4
--				      0 23 0x4>;
-+			interrupts = <0 20 0x4>,
-+				     <0 21 0x4>,
-+				     <0 22 0x4>,
-+				     <0 23 0x4>;
- 			st,mode = <2>;
- 			status = "disabled";
- 		};
-@@ -152,8 +152,8 @@ fsmc: flash@b0000000 {
- 		gmac0: eth@e2000000 {
- 			compatible = "st,spear600-gmac";
- 			reg = <0xe2000000 0x8000>;
--			interrupts = <0 33 0x4
--				      0 34 0x4>;
-+			interrupts = <0 33 0x4>,
-+				     <0 34 0x4>;
- 			interrupt-names = "macirq", "eth_wake_irq";
- 			status = "disabled";
- 		};
-@@ -263,8 +263,8 @@ i2s@e0180000 {
- 				compatible = "st,designware-i2s";
- 				reg = <0xe0180000 0x1000>;
- 				interrupt-names = "play_irq", "record_irq";
--				interrupts = <0 10 0x4
--					      0 11 0x4 >;
-+				interrupts = <0 10 0x4>,
-+					     <0 11 0x4>;
- 				status = "disabled";
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx23.dtsi b/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
+index a3668a0827fc..5eca942a52fd 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
++++ b/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
+@@ -62,8 +62,8 @@ icoll: interrupt-controller@80000000 {
+ 			dma_apbh: dma-controller@80004000 {
+ 				compatible = "fsl,imx23-dma-apbh";
+ 				reg = <0x80004000 0x2000>;
+-				interrupts = <0 14 20 0
+-					      13 13 13 13>;
++				interrupts = <0>, <14>, <20>, <0>,
++					     <13>, <13>, <13>, <13>;
+ 				#dma-cells = <1>;
+ 				dma-channels = <8>;
+ 				clocks = <&clks 15>;
+@@ -415,10 +415,10 @@ emi@80020000 {
+ 			dma_apbx: dma-apbx@80024000 {
+ 				compatible = "fsl,imx23-dma-apbx";
+ 				reg = <0x80024000 0x2000>;
+-				interrupts = <7 5 9 26
+-					      19 0 25 23
+-					      60 58 9 0
+-					      0 0 0 0>;
++				interrupts = <7>, <5>, <9>, <26>,
++					     <19>, <0>, <25>, <23>,
++					     <60>, <58>, <9>, <0>,
++					     <0>, <0>, <0>, <0>;
+ 				interrupt-names = "audio-adc", "audio-dac", "spdif-tx", "i2c",
+ 						  "saif0", "empty", "auart0-rx", "auart0-tx",
+ 						  "auart1-rx", "auart1-tx", "saif1", "empty",
+@@ -431,7 +431,7 @@ dma_apbx: dma-apbx@80024000 {
+ 			dcp: crypto@80028000 {
+ 				compatible = "fsl,imx23-dcp";
+ 				reg = <0x80028000 0x2000>;
+-				interrupts = <53 54>;
++				interrupts = <53>, <54>;
+ 				status = "okay";
  			};
  
-@@ -272,8 +272,8 @@ i2s@e0200000 {
- 				compatible = "st,designware-i2s";
- 				reg = <0xe0200000 0x1000>;
- 				interrupt-names = "play_irq", "record_irq";
--				interrupts = <0 26 0x4
--					      0 53 0x4>;
-+				interrupts = <0 26 0x4>,
-+					     <0 53 0x4>;
+@@ -456,7 +456,7 @@ axi-ahb@8002e000 {
+ 			lcdif@80030000 {
+ 				compatible = "fsl,imx23-lcdif";
+ 				reg = <0x80030000 2000>;
+-				interrupts = <46 45>;
++				interrupts = <46>, <45>;
+ 				clocks = <&clks 38>;
  				status = "disabled";
+ 			};
+@@ -525,7 +525,8 @@ audio-in@8004c000 {
+ 			lradc: lradc@80050000 {
+ 				compatible = "fsl,imx23-lradc";
+ 				reg = <0x80050000 0x2000>;
+-				interrupts = <36 37 38 39 40 41 42 43 44>;
++				interrupts = <36>, <37>, <38>, <39>, <40>,
++					     <41>, <42>, <43>, <44>;
+ 				status = "disabled";
+ 				clocks = <&clks 26>;
+ 				#io-channel-cells = <1>;
+@@ -568,7 +569,7 @@ pwm: pwm@80064000 {
+ 			timrot@80068000 {
+ 				compatible = "fsl,imx23-timrot", "fsl,timrot";
+ 				reg = <0x80068000 0x2000>;
+-				interrupts = <28 29 30 31>;
++				interrupts = <28>, <29>, <30>, <31>;
+ 				clocks = <&clks 28>;
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+index 29e37b1fae66..763adeb995ee 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
++++ b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+@@ -81,10 +81,10 @@ hsadc: hsadc@80002000 {
+ 			dma_apbh: dma-controller@80004000 {
+ 				compatible = "fsl,imx28-dma-apbh";
+ 				reg = <0x80004000 0x2000>;
+-				interrupts = <82 83 84 85
+-					      88 88 88 88
+-					      88 88 88 88
+-					      87 86 0 0>;
++				interrupts = <82>, <83>, <84>, <85>,
++					     <88>, <88>, <88>, <88>,
++					     <88>, <88>, <88>, <88>,
++					     <87>, <86>, <0>, <0>;
+ 				#dma-cells = <1>;
+ 				dma-channels = <16>;
+ 				clocks = <&clks 25>;
+@@ -993,10 +993,10 @@ etm: etm@80022000 {
+ 			dma_apbx: dma-apbx@80024000 {
+ 				compatible = "fsl,imx28-dma-apbx";
+ 				reg = <0x80024000 0x2000>;
+-				interrupts = <78 79 66 0
+-					      80 81 68 69
+-					      70 71 72 73
+-					      74 75 76 77>;
++				interrupts = <78>, <79>, <66>, <0>,
++					     <80>, <81>, <68>, <69>,
++					     <70>, <71>, <72>, <73>,
++					     <74>, <75>, <76>, <77>;
+ 				#dma-cells = <1>;
+ 				dma-channels = <16>;
+ 				clocks = <&clks 26>;
+@@ -1005,7 +1005,7 @@ dma_apbx: dma-apbx@80024000 {
+ 			dcp: crypto@80028000 {
+ 				compatible = "fsl,imx28-dcp", "fsl,imx23-dcp";
+ 				reg = <0x80028000 0x2000>;
+-				interrupts = <52 53 54>;
++				interrupts = <52>, <53>, <54>;
+ 				status = "okay";
+ 			};
+ 
+@@ -1136,8 +1136,8 @@ saif1: saif@80046000 {
+ 			lradc: lradc@80050000 {
+ 				compatible = "fsl,imx28-lradc";
+ 				reg = <0x80050000 0x2000>;
+-				interrupts = <10 14 15 16 17 18 19
+-						20 21 22 23 24 25>;
++				interrupts = <10>, <14>, <15>, <16>, <17>, <18>, <19>,
++					     <20>, <21>, <22>, <23>, <24>, <25>;
+ 				status = "disabled";
+ 				clocks = <&clks 41>;
+ 				#io-channel-cells = <1>;
+@@ -1193,7 +1193,7 @@ pwm: pwm@80064000 {
+ 			timer: timrot@80068000 {
+ 				compatible = "fsl,imx28-timrot", "fsl,timrot";
+ 				reg = <0x80068000 0x2000>;
+-				interrupts = <48 49 50 51>;
++				interrupts = <48>, <49>, <50>, <51>;
+ 				clocks = <&clks 26>;
  			};
  
 -- 
