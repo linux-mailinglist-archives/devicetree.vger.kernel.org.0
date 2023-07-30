@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C51876874D
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 21:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90667768755
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 21:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbjG3TNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 15:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39590 "EHLO
+        id S230004AbjG3TP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 15:15:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbjG3TNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 15:13:36 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3602D10FC
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 12:13:35 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3178dd81ac4so2419872f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 12:13:35 -0700 (PDT)
+        with ESMTP id S229674AbjG3TP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 15:15:58 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A333F1708
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 12:15:53 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bd1d0cf2fso600962366b.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 12:15:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690744413; x=1691349213;
+        d=linaro.org; s=google; t=1690744552; x=1691349352;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j0ecqV+zQBrvHKU8P7urlBJt6tFNPZIqLBFcAYgaXHc=;
-        b=aeN5dBIw8dAZs1vLJMDO/AnhsBq0W8SZSb3g3qrWn7K/gRBEtE7SgRRPqLxCKx+hoZ
-         7h6xApke7c+HdKTWCApjr7owhXz0sDbIEuhVQcxqzpY3p3zA99oi/95GvesWzBkjqMhk
-         wRxxPz2Q6aAUJqEHtj3tpKIWf6jyDb7rBn41AljRYo3oMju5p8NtcUF6KBF4ZQpnA2nP
-         +/NOIdw2ulfvkQdH5rG44/m/OnDG1J44gwoahNHBqhFK8yRR1r0XrYyOLvhlCH4hT9Bh
-         gxAvT1Ok3UeKOr2AC5J79tn1/r9nRDhiZwGNzces5VybhhAaGdSgZu2Z3+lzyg/NYvZs
-         8TaA==
+        bh=bAdDlvNo2vLdfcsDPkJen+iBi4ac4UvVpMaDLLPdBg4=;
+        b=N5KWFa365inzuu97p0Hlj4dphVbT6YW8++Knq7ZXcnWyZzQQI5zb708SBazsItYwTs
+         LXpt7ztZ1aU1ZYgnlHORxIJ8YVy9nKS+bjQsRcX4reXTAQGSCXnclXT9VFAd3a6UH14t
+         HL95/2YSY2m1L2Ai/bIqbP1xOcNFuOE9GMQwCTQFzBGZyAuopL7u6JT/NThigc7Gxjtc
+         IKUI6CkPg4A/5q7P7+xlMFFENsOAN67u6q2p+qrm8Fo/Wj56snPiESkmXcmSqlqSQhn6
+         RY479HdpB9pYphd0gpJei6BfxDeJxAET4ScdRVFDEwVG9znT8Qig5RlX4ac11nnRglvr
+         EtqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690744413; x=1691349213;
+        d=1e100.net; s=20221208; t=1690744552; x=1691349352;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j0ecqV+zQBrvHKU8P7urlBJt6tFNPZIqLBFcAYgaXHc=;
-        b=HBf+b0BKHHAiMd9vSgdk3SpKUBjU52prOQFDN/HqjFLYKiMHpUmZz0uxpzClt7AFHG
-         7HYyU+OtMHFfXu3BWM8XbK19hIvD9bVLnCNkv/GgI9AxOkSBzB+tMt8U0lOogOVICaVJ
-         ZkITlpTTQ7C55i2K+mxZ5u+LQf9vcLwlboeIjliPhMuqa1lpr4nVrNwG+rEm+lCjKGAV
-         IujxC2QdncyK97DTtFNw2qkFfMYEOYnle3qVoryOfzah0Wh/iqtusIH+siYSXgs540Ok
-         tHyBcN+A5gXjR8/jnLwgwtMB2d4QWCa4j+kSBikY8BdTBrplBPZigKLbjK+dGXVLQZTB
-         P/sQ==
-X-Gm-Message-State: ABy/qLaMRpk6iVsGkbnY37SaA2SHVm0mrdb+U3GwkUaKbtezsKmCeasy
-        451UEFRaGVSfrUAysefe1LtRiA==
-X-Google-Smtp-Source: APBJJlHgJTuWoq/+j8ZmgJoc3K/QqyIwwtGgg/uMn9KDVYpruhtGFWsefLl9lfof8594VrGyYM6lXg==
-X-Received: by 2002:a05:6000:12d2:b0:317:5e73:7594 with SMTP id l18-20020a05600012d200b003175e737594mr6080504wrx.28.1690744413699;
-        Sun, 30 Jul 2023 12:13:33 -0700 (PDT)
+        bh=bAdDlvNo2vLdfcsDPkJen+iBi4ac4UvVpMaDLLPdBg4=;
+        b=bdqUHJiYiQ8QY4JjIthm8vHsPjVNmNx97BBXJ9QNRLALz2+RM1rQemxNNGcLuhzihj
+         2FCyO6S/yU9zzXoqqJrgYCZOLXsCutdzD3TU/35/Uh0tCc+TLQQTJWJ2gq8AGDRIcTBo
+         kRLmbcgnC+hvyeNayQqxbGhBd3AFEEtY7cm1HxHEJK9M6+keL/noiiLYSkwtLA0RsHF1
+         I5SJlDsk1u1r/usefb/yrLL3m+zsGiT57FqPGXPVxBUBPdjefPf5FZa6/gd+yQ783Zlo
+         KKpedXR1J3lY63PS1H5hh3aZ893ZZbolQ1+z7xGRUGqICpE6Qa9XVylVjTAI6xeOywEH
+         RfZw==
+X-Gm-Message-State: ABy/qLbz5tW0E15SPtdm4mWgkDvi3HiBd2N+XXd7zlZZ23Lx4S40cqxB
+        GkNvXVswszE8oetUW1bALg7cvg==
+X-Google-Smtp-Source: APBJJlENFI8r0s0dm1vmxCNCtoyiiHZ+kTqoFDnQ/fMkWAclhRP5VUEXkQcU3Cpdq2nz8a5eXAyvtA==
+X-Received: by 2002:a17:907:2712:b0:97e:aace:b6bc with SMTP id w18-20020a170907271200b0097eaaceb6bcmr4961797ejk.53.1690744551930;
+        Sun, 30 Jul 2023 12:15:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id f1-20020a05640214c100b0052276921a28sm4463825edx.78.2023.07.30.12.13.32
+        by smtp.gmail.com with ESMTPSA id dk8-20020a170906f0c800b00992f2befcbcsm5006941ejb.180.2023.07.30.12.15.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jul 2023 12:13:33 -0700 (PDT)
-Message-ID: <8fc36939-49e7-4422-be94-ce57a82a56f6@linaro.org>
-Date:   Sun, 30 Jul 2023 21:13:31 +0200
+        Sun, 30 Jul 2023 12:15:51 -0700 (PDT)
+Message-ID: <8ea4f777-5645-96ae-164f-ff9f7b736eda@linaro.org>
+Date:   Sun, 30 Jul 2023 21:15:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.1
-Subject: Re: [PATCH v3] dt-bindings: sound: gtm601: convert to YAML
+Subject: Re: [PATCH 2/5] dt-bindings: crypto: Add binding for TI MCRC64 driver
 Content-Language: en-US
-To:     David Heidelberg <david@ixit.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Kamlesh Gurudasani <kamlesh@ti.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, - <kernel@puri.sm>
-Cc:     =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230730190243.113105-1-david@ixit.cz>
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230719-mcrc-upstream-v1-0-dc8798a24c47@ti.com>
+ <20230719-mcrc-upstream-v1-2-dc8798a24c47@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230730190243.113105-1-david@ixit.cz>
+In-Reply-To: <20230719-mcrc-upstream-v1-2-dc8798a24c47@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,35 +84,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/07/2023 21:02, David Heidelberg wrote:
-> Convert GTM601 binding to the YAML format.
+On 30/07/2023 20:55, Kamlesh Gurudasani wrote:
+> Add binding for Texas Instruments MCRC64 driver
+
+A nit, subject: drop second/last, redundant "binding for". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+Here and subject: drop driver. Bindings are for hardware.
+
+Neither commit nor bindings in description: field explain what is this
+hardware.
+
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
 > ---
-> v3:
->  - incorporated feedback from Krzysztof
+>  Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml | 42 ++++++++++++++++++++++++++++++++++++++++++
+>  MAINTAINERS                                             |  5 +++++
+>  2 files changed, 47 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml b/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
+> new file mode 100644
+> index 000000000000..1d1e3f87638c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/ti,mcrc64.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments MCRC64 bindings
 
-...
+Drop bindings. If you tested your code, you would see a warning, so:
 
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
+
+> +
+> +maintainers:
+> +  - Kamlesh Gurudasani <kamlesh@ti.com>
+> +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +      - items:  # 48 kHz stereo
-> +          - const: broadmobi,bm818
-> +          - const: option,gtm601
-> +      - const: option,gtm601  # 8 kHz mono
+> +    const: ti,mcrc64
+
+What's this? Part of SoC? Then the compatible is not correct.
+
 > +
-> +  '#sound-dai-cells':
-> +    const: 0
+> +  reg:
+> +    maxItems: 1
 > +
-> +allOf:
-> +  - $ref: dai-common.yaml#
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - power-domains
 > +
 > +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mcrc64: mcrc64@30300000 {
 
-I missed one thing in the previous review, sorry. Something was looking
-here as missing but my brain did not work. Please add "required:" with
-compatible.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +      compatible = "ti,mcrc64";
+> +      reg = <0x00 0x30300000 0x00 0x1000>;
+> +      clocks = <&k3_clks 116 0>;
+> +      power-domains = <&k3_pds 116 TI_SCI_PD_EXCLUSIVE>;
+> +      };
+
+Indentation is messed up.
+> 
 
 Best regards,
 Krzysztof
