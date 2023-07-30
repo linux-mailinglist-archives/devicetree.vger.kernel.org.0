@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E007684D3
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 12:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C49A37684D7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jul 2023 12:45:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbjG3Kak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 06:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
+        id S229615AbjG3Ko7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 06:44:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjG3Kaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 06:30:39 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAEE10C8
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 03:30:37 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bf91956cdso187814466b.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 03:30:37 -0700 (PDT)
+        with ESMTP id S229554AbjG3Ko6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 06:44:58 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290461981
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 03:44:57 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bc512526cso556358166b.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 03:44:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690713036; x=1691317836;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jkEYPWgZTlQhSv5LCikyH90HRgzZdU7DFZTtwFHAaoM=;
-        b=kGufy1f+o2U8lT8/RMltsbHJNQdTRWnBrBk0tmgTDkgeTFGrT7eerVE0HOAtR35TaH
-         +AW6SAQ5SjfXrREsGQLLCBUDv3ZTGGY4rKwFXCxnHgM8+7sYSy/Cr56Yo5fb1p9uoLeK
-         wK+lkHYC5tpNb1UD2XtLv97X5lE/rbeu5ygKi8fffqRWrgBD80dU1U+CF2bpepi+25/I
-         MOYr/6XIHrpdojRT8Rdaesf64SRKqbYBGeudf+dFHWzHG6ME+qS6hnY+CYSa84GLBuOl
-         RtyQS+5AHidj/EvC0a2DnslJyMaAfPz7wKy+EPCU+NrVNJOB9V9NKoY1VCQqrmUitvJa
-         KUVQ==
+        d=linaro.org; s=google; t=1690713895; x=1691318695;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pvks5yY1E7N6EZzE9v93J4jxOXQSUnmzcPH5eaYu9/k=;
+        b=GxFw/gQPVacNnJHRn8SzlVNdZ/g7cJlKJB/Wzy7FiuT0fyke9TUC3V/ocD7kRjRXyl
+         zBOps0xNULUIorJMcDnoXzoWgN6gk5CLIK+x6taL4HgxRiUgnwohSuxqqtfIA4JIckFj
+         6/HnoC9CUAMDrnuqule0ssdrS5J3ndnXBZWnidcfw4YuSfEa3CnY7k+GKvn7wLadK7GA
+         zaXOgpbzF6S3BaB6X4lzDHj0o+HffDEscoKfN3JiH7EsBn2qwE8ncQouo4xwQ+r2NQ+v
+         2eKCXf/siL6iEqojTp/wFzu3oOpraxoSu1bdqT5NvBZzp0O65oollozleL6UhIRBhItY
+         FRIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690713036; x=1691317836;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jkEYPWgZTlQhSv5LCikyH90HRgzZdU7DFZTtwFHAaoM=;
-        b=JB0vhTKeBLvp0lvGYqGCpWq/Al4R1ol1+EPOmerj7ubLwafLS+G4OnHqzKeb8baVNQ
-         buihZ89904uVMKT9Pu2Q+GMna0XXDaJcyVrdMFD6NHlUwuJq++wHP350YA3B9DTIbV83
-         Ai34cWJasJIB0BAH1AMCE4HjUcdBKQfHJjgbRExfrY7Z4mgL95VzLIO6NgJbbLhkQKoT
-         Qhh8vXdRwyN9pKf41kFJbkJiyHXbclO4SPSkBw55xi3oysBBtLdyEJH4W4EuK05Y2Va8
-         9svxar86eXeDjN8S43YBEnD4Lxh8uJPZ9yLshEd6jchB0eZ/NGOe3WHYLxy3tLoyAl0T
-         u7mA==
-X-Gm-Message-State: ABy/qLbFVJmDgYsykaDEapt+HDmnGooM2CHI5LpmHEp5+oCmBzZmgF7q
-        lY12anXImQsctEV0HdPWMFORpQ==
-X-Google-Smtp-Source: APBJJlGSIvRHw43C7JXpRLSOvfAeIXm0am8VZFecI32r1RXZxITtlxaiYwncRIz4Zx6VWrdLXQcXzw==
-X-Received: by 2002:a17:907:2722:b0:994:5b1:6f92 with SMTP id d2-20020a170907272200b0099405b16f92mr3360286ejl.3.1690713035715;
-        Sun, 30 Jul 2023 03:30:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id i10-20020a170906250a00b0099304c10fd3sm4458169ejb.196.2023.07.30.03.30.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jul 2023 03:30:35 -0700 (PDT)
-Message-ID: <0a9b2ce4-a76a-8ba3-592f-3312bba06e1e@linaro.org>
-Date:   Sun, 30 Jul 2023 12:30:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [RFC] dt-bindings: gpio: brcm,kona-gpio: convert to YAML
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1690713895; x=1691318695;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pvks5yY1E7N6EZzE9v93J4jxOXQSUnmzcPH5eaYu9/k=;
+        b=GFVZJrrukVf9hJqihkTzqjSFkBYonsOh8MLw07Fv1OKt7HoBFeVUeLJY8GhfP+n7Q/
+         DC5YQ1e2mUrabEdlErRa9Tj+WS6NN6wlCj0ITHUiFvX9GYiabgV6nC5oTH/sqT9COvAQ
+         YUh+Ii141m4nkbd1W3osKcS6VEM4crRD6P6amt35M6LofVo2MUnE0zOTY7e9lFiF4IIG
+         pnOIAD6xqw0SP2DNJDritYEj/c3y3pe8Oyp5/uxtJchU2iLLnFyjrsqTR0v42qhthkSc
+         mdnz50DqrzIb3Ru6nEKqcFTLkbObTdNp1EQ2izoPCSeMl1yludMFQ9l2dNnOcW7mEYsO
+         r+rA==
+X-Gm-Message-State: ABy/qLZ9/oGBOlYYBss3U/3vdZz9ytjwOGARqmf767diPGmuhJJOTXtA
+        i0Eb8Iex73aTmUIHcqjF2ZTw4g==
+X-Google-Smtp-Source: APBJJlGBK0hIBPmiKeAMU2D5B5LAQTlyKhUrgDg+47cONQAOnz+jsSugbOaXgqAtSNiNrN4LO1qbWg==
+X-Received: by 2002:a17:906:3f1e:b0:98d:cd3e:c193 with SMTP id c30-20020a1709063f1e00b0098dcd3ec193mr4380032ejj.46.1690713895474;
+        Sun, 30 Jul 2023 03:44:55 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id j13-20020a17090686cd00b0098884f86e41sm4447546ejy.123.2023.07.30.03.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Jul 2023 03:44:55 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
         Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <ZMQU7ap9CxfY5eIu@standask-GA-A55M-S2HP>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZMQU7ap9CxfY5eIu@standask-GA-A55M-S2HP>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH] ARM: dts: broadcom: split interrupts per cells
+Date:   Sun, 30 Jul 2023 12:44:52 +0200
+Message-Id: <20230730104452.32230-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,133 +78,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 21:20, Stanislav Jakubek wrote:
-> Convert Broadcom Kona family GPIO controller bindings to DT schema.
-> 
-> Changes during conversion:
->   - add used, but previously undocumented SoC-specific compatibles
-> 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
-> RFC since dt_binding_check is giving me these errors/warnings:
-> 
-> Documentation/devicetree/bindings/gpio/brcm,kona-gpio.example.dts:21.23-34.11: Warning (interrupts_property): /example-0/gpio@35003000: Missing interrupt-parent
-> 
-> The old txt bindings and all current DTs do not use interrupt-parent AFAICT,
-> so I'm not sure what to do about that.
-> 
-> Documentation/devicetree/bindings/gpio/brcm,kona-gpio.example.dtb: gpio@35003000: interrupts: [[0], [106], [4], [0], [115], [4], [0], [114], [4], [0], [113], [4], [0], [112], [4], [0], [111], [4]] is too long
-> 
-> Here I'm not even sure what the issue is.
-> 
->  .../bindings/gpio/brcm,kona-gpio.txt          | 52 -------------
->  .../bindings/gpio/brcm,kona-gpio.yaml         | 77 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 78 insertions(+), 53 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt b/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
-> deleted file mode 100644
-> index 4a63bc96b687..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.txt
-> +++ /dev/null
-> @@ -1,52 +0,0 @@
-> -Broadcom Kona Family GPIO
-> -=========================
-> -
-> -This GPIO driver is used in the following Broadcom SoCs:
-> -  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
-> -
-> -The Broadcom GPIO Controller IP can be configured prior to synthesis to
-> -support up to 8 banks of 32 GPIOs where each bank has its own IRQ. The
-> -GPIO controller only supports edge, not level, triggering of interrupts.
-> -
-> -Required properties
-> --------------------
-> -
-> -- compatible: "brcm,bcm11351-gpio", "brcm,kona-gpio"
-> -- reg: Physical base address and length of the controller's registers.
-> -- interrupts: The interrupt outputs from the controller. There is one GPIO
-> -  interrupt per GPIO bank. The number of interrupts listed depends on the
-> -  number of GPIO banks on the SoC. The interrupts must be ordered by bank,
-> -  starting with bank 0. There is always a 1:1 mapping between banks and
-> -  IRQs.
-> -- #gpio-cells: Should be <2>. The first cell is the pin number, the second
-> -  cell is used to specify optional parameters:
-> -  - bit 0 specifies polarity (0 for normal, 1 for inverted)
-> -  See also "gpio-specifier" in .../devicetree/bindings/gpio/gpio.txt.
-> -- #interrupt-cells: Should be <2>. The first cell is the GPIO number. The
-> -  second cell is used to specify flags. The following subset of flags is
-> -  supported:
-> -  - trigger type (bits[1:0]):
-> -      1 = low-to-high edge triggered.
-> -      2 = high-to-low edge triggered.
-> -      3 = low-to-high or high-to-low edge triggered
-> -      Valid values are 1, 2, 3
-> -  See also .../devicetree/bindings/interrupt-controller/interrupts.txt.
-> -- gpio-controller: Marks the device node as a GPIO controller.
-> -- interrupt-controller: Marks the device node as an interrupt controller.
-> -
-> -Example:
-> -	gpio: gpio@35003000 {
-> -		compatible = "brcm,bcm11351-gpio", "brcm,kona-gpio";
-> -		reg = <0x35003000 0x800>;
-> -		interrupts =
-> -		       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH
-> -			GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH
-> -			GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH
-> -			GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH
-> -			GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH
-> -			GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
-> -		#gpio-cells = <2>;
-> -		#interrupt-cells = <2>;
-> -		gpio-controller;
-> -		interrupt-controller;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
-> new file mode 100644
-> index 000000000000..9d0b0a1af832
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/brcm,kona-gpio.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/brcm,kona-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom Kona family GPIO controller
-> +
-> +description:
-> +  The Broadcom GPIO Controller IP can be configured prior to synthesis to
-> +  support up to 8 banks of 32 GPIOs where each bank has its own IRQ. The
-> +  GPIO controller only supports edge, not level, triggering of interrupts.
-> +
-> +maintainers:
-> +  - Ray Jui <rjui@broadcom.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - brcm,bcm11351-gpio
-> +          - brcm,bcm21664-gpio
-> +          - brcm,bcm23550-gpio
-> +      - const: brcm,kona-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
+Each interrupt should be in its own cell.  This is much more readable.
 
-As Linus pointed out, you do not have one interrupt. Put here the widest
-constraints (min/maxItems) and narrow it per each variant in
-allOf:if:then:. Also fix the syntax in example. Each interrupt is in its
-own <>.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
 
-Best regards,
-Krzysztof
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+---
+ arch/arm/boot/dts/broadcom/bcm-hr2.dtsi  |  4 ++--
+ arch/arm/boot/dts/broadcom/bcm-nsp.dtsi  |  4 ++--
+ arch/arm/boot/dts/broadcom/bcm11351.dtsi | 13 ++++++-------
+ arch/arm/boot/dts/broadcom/bcm21664.dtsi |  9 ++++-----
+ arch/arm/boot/dts/broadcom/bcm23550.dtsi |  9 ++++-----
+ 5 files changed, 18 insertions(+), 21 deletions(-)
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm-hr2.dtsi b/arch/arm/boot/dts/broadcom/bcm-hr2.dtsi
+index 33e6ba63a1ee..788a6806191a 100644
+--- a/arch/arm/boot/dts/broadcom/bcm-hr2.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm-hr2.dtsi
+@@ -54,8 +54,8 @@ cpu0: cpu@0 {
+ 
+ 	pmu {
+ 		compatible = "arm,cortex-a9-pmu";
+-		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH
+-			      GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-affinity = <&cpu0>;
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/broadcom/bcm-nsp.dtsi b/arch/arm/boot/dts/broadcom/bcm-nsp.dtsi
+index 5b1dc58d40ba..9d20ba3b1ffb 100644
+--- a/arch/arm/boot/dts/broadcom/bcm-nsp.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm-nsp.dtsi
+@@ -72,8 +72,8 @@ cpu1: cpu@1 {
+ 
+ 	pmu {
+ 		compatible = "arm,cortex-a9-pmu";
+-		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH
+-			      GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-affinity = <&cpu0>, <&cpu1>;
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/broadcom/bcm11351.dtsi b/arch/arm/boot/dts/broadcom/bcm11351.dtsi
+index b271a9bf06a9..53857e572080 100644
+--- a/arch/arm/boot/dts/broadcom/bcm11351.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm11351.dtsi
+@@ -111,13 +111,12 @@ timer@35006000 {
+ 	gpio: gpio@35003000 {
+ 		compatible = "brcm,bcm11351-gpio", "brcm,kona-gpio";
+ 		reg = <0x35003000 0x800>;
+-		interrupts =
+-		       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+ 		#gpio-cells = <2>;
+ 		#interrupt-cells = <2>;
+ 		gpio-controller;
+diff --git a/arch/arm/boot/dts/broadcom/bcm21664.dtsi b/arch/arm/boot/dts/broadcom/bcm21664.dtsi
+index 2eb7f5b0c1dc..fa73600e883e 100644
+--- a/arch/arm/boot/dts/broadcom/bcm21664.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm21664.dtsi
+@@ -101,11 +101,10 @@ timer@35006000 {
+ 	gpio: gpio@35003000 {
+ 		compatible = "brcm,bcm21664-gpio", "brcm,kona-gpio";
+ 		reg = <0x35003000 0x524>;
+-		interrupts =
+-		       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH
+-			GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+ 		#gpio-cells = <2>;
+ 		#interrupt-cells = <2>;
+ 		gpio-controller;
+diff --git a/arch/arm/boot/dts/broadcom/bcm23550.dtsi b/arch/arm/boot/dts/broadcom/bcm23550.dtsi
+index 445eadb8d871..50ebe93d6bd0 100644
+--- a/arch/arm/boot/dts/broadcom/bcm23550.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm23550.dtsi
+@@ -101,11 +101,10 @@ resetmgr: reset-controller@1001f00 {
+ 		gpio: gpio@1003000 {
+ 			compatible = "brcm,bcm23550-gpio", "brcm,kona-gpio";
+ 			reg = <0x01003000 0x524>;
+-			interrupts =
+-			       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH
+-				GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH
+-				GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH
+-				GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+ 			#gpio-cells = <2>;
+ 			#interrupt-cells = <2>;
+ 			gpio-controller;
+-- 
+2.34.1
 
