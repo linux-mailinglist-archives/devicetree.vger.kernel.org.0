@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA1B769286
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B98F576928B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbjGaJ7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40170 "EHLO
+        id S232367AbjGaJ7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:59:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232579AbjGaJ6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:33 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6736E10C7
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:35 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-98377c5d53eso612330866b.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:35 -0700 (PDT)
+        with ESMTP id S232596AbjGaJ6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:34 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32552106
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:36 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99c0290f0a8so237894266b.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690797454; x=1691402254;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ge5Y7e80bFTSfkAsJqtzum36Yq9ImlNuV8r4LpCez9Q=;
-        b=iF7H4X5LMK2f9JBc7gEO1OHfCB2DE0uzwiR3fLL3hC3P0P7He8K+uJhUKT6O7qvg4J
-         hisqSpRSyLdr1sZfkEDCiWtKset4HpCUul75BrBxg5qqgaJHB0hkANumnlHXu63Bnznq
-         Qv42a/7bGRyjiqXVXnyXwUNpS+AHlzvhJYYFYq64g5UFQCE6031+EaWJ3ek7V44eyOe9
-         8ngDibUCNh+ysNYoQsogznIZEXqPfeXRcbOGp7qTZO9rOGts0al6r9iF++dXGfe0SNQk
-         Okh2HEcXRWW3fyWg4yFTUjdi1yo4/LEWNxFPFNVEHeG67O2/MfMSyK3suorDrh6pjcIe
-         vy/w==
+        d=linaro.org; s=google; t=1690797455; x=1691402255;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zfg4ljS/G5hMXyWN2ybdTjORVp3riaVQeb5S/esVdkk=;
+        b=Qh2reV8J3b6DOV5dQBvY+Ke9EcprVGYC7vPLfFQNe5jmOaOSLewH4yhj1rs8bAnyQ0
+         5kYQeOyaZqNxfeV1XfQCl5Fa3DsxPYSWheE5/L1dF3F+TsAiiqUMlnZS9gYKdbkESNzy
+         tj/WTgNSFWk08Zy7B5le8O302OjKjJY5MRqFORs8pVCQl8BnTiPjlC8Dpi2cKQz4kmct
+         QQAn++GTaV+22JnmVV4Y1+fixidEyDLLYfDDRpjmFWuSqr0SvFK8Ml5xWPGLlASjbaS6
+         HuYC0okeMTsTaPVVJW/rqbwmHNGlYQVOLjG1HbcYWP7cKRYihZMc8ydbWrHGuVtuTGxk
+         UXbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690797454; x=1691402254;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ge5Y7e80bFTSfkAsJqtzum36Yq9ImlNuV8r4LpCez9Q=;
-        b=HpkOAqiJZ10gMlIZBOzJ+bSWSZDC8Ux3mIqwM1sfvuCu7Klz9BMJL2aa8tFTt2JiHD
-         e1kQZE8W79tePeLUgQPBDjYb8Hg+MEpStRRsTbZX/yuKz0PZNh437UKbabmFixDWybcs
-         Q79KS1rSESLX4EAAHzrCNvHGT1UVslSNCyuzk8akg+6ZVaP6ooEgSHg1CnnuTWJ8lY8r
-         4NuGSx9BxpgmPmBAxN8UKyAuwEH0MFbIV6xlgDV19+vGxcLiCGCH5W3JPggZw7RGweYo
-         +ajOxAs8A+HuiR4DBgZPnhLNzwQMT7FxHoPh2NyDFWWBO+Jv+0tOApB/dcJEOss3RuV0
-         XGqA==
-X-Gm-Message-State: ABy/qLau0F/T4QY1Wa7QsdXBaTYD6cWiFmLamUBXNv35kRP99hg/53FD
-        Cl1uCZ5VASIQTfTi9AbOgworxQ==
-X-Google-Smtp-Source: APBJJlEjATbEhOL4PmJ/hRm1ugmxVneNd5jaJ1KdIV7BKfcULd2kVvlLBr+9XK92p3JR8op4koslyg==
-X-Received: by 2002:a17:907:b13:b0:99b:5574:7d0f with SMTP id h19-20020a1709070b1300b0099b55747d0fmr5889800ejl.23.1690797453930;
-        Mon, 31 Jul 2023 02:57:33 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690797455; x=1691402255;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zfg4ljS/G5hMXyWN2ybdTjORVp3riaVQeb5S/esVdkk=;
+        b=OXPIfcSyJweSHLjpitZNMs0C8oVE/WkwhmFT1/GQXC6+39qRkkOmodhcasGhzW7YZh
+         +fk43Jzx3FLhf1pFr/nFB71qCTswNuxc7npvC8cZqrvxyPhJpg7JjsP4aIPRckeS48NW
+         8RRz34MgT+yfsJf7WfKXHl/xyRWhOys3+PoWxPzUlOjcIfYTZWPc7XAFYRYg1gbSqnZr
+         dp0XOlANGT4amFnEmom/vfoS/O5ac0EzK+Jfe2VyJPbMTUpYPzHktxCd9eZsJhhyCEkN
+         C1juovxGuGl55wZKiS0iTh2PLKfEnQdY0wNQWYURNqeJIVwZQ1dIsOhzdkVFz/qs9boS
+         W7OA==
+X-Gm-Message-State: ABy/qLZezJ363ZvnLSSwCk0uM5tkXA0Rc4JM2Brkf+dSCu+aGC9qyYvE
+        EQp+dr4Ng2tAvN/tn3+wfn3CTg==
+X-Google-Smtp-Source: APBJJlFeUa2mlh8RvHfFZuQSnVyR7+J8aqs/JkQaBAT2t6IPASs8mtV+RKQjzjUk18opMhPc3AvpMQ==
+X-Received: by 2002:a17:907:a077:b0:993:d536:3cb8 with SMTP id ia23-20020a170907a07700b00993d5363cb8mr5558534ejc.2.1690797455143;
+        Mon, 31 Jul 2023 02:57:35 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.32
+        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:57:33 -0700 (PDT)
+        Mon, 31 Jul 2023 02:57:34 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -56,10 +57,12 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/8] arm64: dts: exynos: exynos5433-tm2: switch sound card to audio-routing
-Date:   Mon, 31 Jul 2023 11:57:23 +0200
-Message-Id: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/8] ARM: dts: samsung: exynos4212-tab3: switch sound card to audio-routing
+Date:   Mon, 31 Jul 2023 11:57:24 +0200
+Message-Id: <20230731095730.204567-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
+References: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,43 +85,68 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Change depends on ASoC:
 https://lore.kernel.org/linux-devicetree/20230731094303.185067-1-krzysztof.kozlowski@linaro.org/T/#t
 ---
- .../dts/exynos/exynos5433-tm2-common.dtsi     | 21 +++++++++----------
- 1 file changed, 10 insertions(+), 11 deletions(-)
+ .../arm/boot/dts/samsung/exynos4212-tab3.dtsi | 41 +++++++++----------
+ 1 file changed, 20 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-index d163891cd399..2a4dc560252e 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-@@ -124,19 +124,18 @@ sound {
- 		audio-amplifier = <&max98504>;
- 		mic-bias-gpios = <&gpr3 2 GPIO_ACTIVE_HIGH>;
- 		model = "wm5110";
+diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+index ce81e42bf5eb..d7954ff466b4 100644
+--- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
++++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
+@@ -300,34 +300,33 @@ sound: sound {
+ 		mic-bias-supply = <&mic_bias_reg>;
+ 		submic-bias-supply = <&submic_bias_reg>;
+ 
 -		samsung,audio-routing =
--			/* Headphone */
 -			"HP", "HPOUT1L",
 -			"HP", "HPOUT1R",
-+		audio-routing = /* Headphone */
-+				"HP", "HPOUT1L",
++		audio-routing = "HP", "HPOUT1L",
 +				"HP", "HPOUT1R",
  
--			/* Speaker */
--			"SPK", "SPKOUT",
--			"SPKOUT", "HPOUT2L",
--			"SPKOUT", "HPOUT2R",
-+				/* Speaker */
-+				"SPK", "SPKOUT",
-+				"SPKOUT", "HPOUT2L",
-+				"SPKOUT", "HPOUT2R",
+-			"SPK", "SPKOUTLN",
+-			"SPK", "SPKOUTLP",
+-			"SPK", "SPKOUTRN",
+-			"SPK", "SPKOUTRP",
++				"SPK", "SPKOUTLN",
++				"SPK", "SPKOUTLP",
++				"SPK", "SPKOUTRN",
++				"SPK", "SPKOUTRP",
  
--			/* Receiver */
--			"RCV", "HPOUT3L",
--			"RCV", "HPOUT3R";
-+				/* Receiver */
-+				"RCV", "HPOUT3L",
-+				"RCV", "HPOUT3R";
- 	};
- };
+-			"RCV", "HPOUT2N",
+-			"RCV", "HPOUT2P",
++				"RCV", "HPOUT2N",
++				"RCV", "HPOUT2P",
  
+-			"LINE", "LINEOUT2N",
+-			"LINE", "LINEOUT2P",
++				"LINE", "LINEOUT2N",
++				"LINE", "LINEOUT2P",
+ 
+-			"HDMI", "LINEOUT1N",
+-			"HDMI", "LINEOUT1P",
++				"HDMI", "LINEOUT1N",
++				"HDMI", "LINEOUT1P",
+ 
+-			"IN2LP:VXRN", "MICBIAS1",
+-			"IN2LN", "MICBIAS1",
+-			"Main Mic", "MICBIAS1",
++				"IN2LP:VXRN", "MICBIAS1",
++				"IN2LN", "MICBIAS1",
++				"Main Mic", "MICBIAS1",
+ 
+-			"IN1RP", "MICBIAS2",
+-			"IN1RN", "MICBIAS2",
+-			"Sub Mic", "MICBIAS2",
++				"IN1RP", "MICBIAS2",
++				"IN1RN", "MICBIAS2",
++				"Sub Mic", "MICBIAS2",
+ 
+-			"IN1LP", "Headset Mic",
+-			"IN1LN", "Headset Mic";
++				"IN1LP", "Headset Mic",
++				"IN1LN", "Headset Mic";
+ 
+ 		cpu {
+ 			sound-dai = <&i2s0 0>;
 -- 
 2.34.1
 
