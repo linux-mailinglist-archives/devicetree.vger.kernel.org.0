@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C57BE769282
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA1B769286
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbjGaJ6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:58:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40244 "EHLO
+        id S232050AbjGaJ7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:59:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230451AbjGaJ5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:57:42 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A664E5D
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:13 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31751d7d96eso3575267f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:13 -0700 (PDT)
+        with ESMTP id S232579AbjGaJ6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:33 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6736E10C7
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:35 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-98377c5d53eso612330866b.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690797431; x=1691402231;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NzAUT/ZDau86t8TFCapt9e4TK2GEcNG0/asajNbvhAY=;
-        b=erfQOYF/A3fjkJkXyUaO1epcPX2oVaro2+DPnPMOKL5pWklugRjasqvnVdZ+bCY/Xm
-         l9AnlBv/HYFrYMznWluqDH2YO7+2gGiyDQ2Om1NhlHwUqWF0za2bMMxyoX9JhCAc/mcN
-         AnqNrZcdA422DZR3rX66O8hAp/wbe7XIH2cDCyqSGElxWc4X+etS1dmJHjqbJF0Ylf4k
-         c0IjGLqtIojuimzukEi+Cnhz/2p6u6SDgH0VoP8i3NaEuCBEGTceY8DdMoObzhjC8CPF
-         grI6B0Kzo8bZQ1uLTx85urj8p72yAjXNIJwmYWM/0aUzct49w7Y5zdEMLwk43iPiRDLA
-         eFpw==
+        d=linaro.org; s=google; t=1690797454; x=1691402254;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ge5Y7e80bFTSfkAsJqtzum36Yq9ImlNuV8r4LpCez9Q=;
+        b=iF7H4X5LMK2f9JBc7gEO1OHfCB2DE0uzwiR3fLL3hC3P0P7He8K+uJhUKT6O7qvg4J
+         hisqSpRSyLdr1sZfkEDCiWtKset4HpCUul75BrBxg5qqgaJHB0hkANumnlHXu63Bnznq
+         Qv42a/7bGRyjiqXVXnyXwUNpS+AHlzvhJYYFYq64g5UFQCE6031+EaWJ3ek7V44eyOe9
+         8ngDibUCNh+ysNYoQsogznIZEXqPfeXRcbOGp7qTZO9rOGts0al6r9iF++dXGfe0SNQk
+         Okh2HEcXRWW3fyWg4yFTUjdi1yo4/LEWNxFPFNVEHeG67O2/MfMSyK3suorDrh6pjcIe
+         vy/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690797431; x=1691402231;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NzAUT/ZDau86t8TFCapt9e4TK2GEcNG0/asajNbvhAY=;
-        b=NDFm577WWPdmTCdadf86kySjNFzonfrHTUGVrvtbLs4Ixr1PHxAxPru1EESmjsYwfc
-         wYI7GTqqug+t9wCvuguLilywRtJwQRXCKsemMot2XCRqskxU5Gsjztkq5OarGJQMVtvU
-         VkqVbmRbSitgARudvL9QhUHdh9U80RBzhAO1DrFqHW6xdACsjxPsM2440BoDDgETaemE
-         RhPM1DptIu6rRwuZYK5AOwy+O1mhvvmfJvoZy8S94F/8XQcF4AWwbFxhVbAm3thKGEuk
-         TuzCimBAPH12p/Ckzym8+2LS7rqRFWML2b2zDIko9q679nZt8tyCZmmHPX8wNBIplZKQ
-         yS+A==
-X-Gm-Message-State: ABy/qLZ4E22x3A4DiL5eynlRaZzlpZYD14KuJQGUKv1gFSUZOnHD7UVu
-        UxCdkyuoH3RxaqBN3oObWNk1YA==
-X-Google-Smtp-Source: APBJJlGZSmVvYv3ec6G3JAUBNm4NksXaZ+h1NntarAk2oAYLTlrujbke1RIMcvjHGtocXLeP8Hwjnw==
-X-Received: by 2002:a5d:5101:0:b0:317:5af3:caa4 with SMTP id s1-20020a5d5101000000b003175af3caa4mr6521173wrt.38.1690797431128;
-        Mon, 31 Jul 2023 02:57:11 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id s7-20020adff807000000b00313e2abfb8dsm12506312wrp.92.2023.07.31.02.57.10
+        d=1e100.net; s=20221208; t=1690797454; x=1691402254;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ge5Y7e80bFTSfkAsJqtzum36Yq9ImlNuV8r4LpCez9Q=;
+        b=HpkOAqiJZ10gMlIZBOzJ+bSWSZDC8Ux3mIqwM1sfvuCu7Klz9BMJL2aa8tFTt2JiHD
+         e1kQZE8W79tePeLUgQPBDjYb8Hg+MEpStRRsTbZX/yuKz0PZNh437UKbabmFixDWybcs
+         Q79KS1rSESLX4EAAHzrCNvHGT1UVslSNCyuzk8akg+6ZVaP6ooEgSHg1CnnuTWJ8lY8r
+         4NuGSx9BxpgmPmBAxN8UKyAuwEH0MFbIV6xlgDV19+vGxcLiCGCH5W3JPggZw7RGweYo
+         +ajOxAs8A+HuiR4DBgZPnhLNzwQMT7FxHoPh2NyDFWWBO+Jv+0tOApB/dcJEOss3RuV0
+         XGqA==
+X-Gm-Message-State: ABy/qLau0F/T4QY1Wa7QsdXBaTYD6cWiFmLamUBXNv35kRP99hg/53FD
+        Cl1uCZ5VASIQTfTi9AbOgworxQ==
+X-Google-Smtp-Source: APBJJlEjATbEhOL4PmJ/hRm1ugmxVneNd5jaJ1KdIV7BKfcULd2kVvlLBr+9XK92p3JR8op4koslyg==
+X-Received: by 2002:a17:907:b13:b0:99b:5574:7d0f with SMTP id h19-20020a1709070b1300b0099b55747d0fmr5889800ejl.23.1690797453930;
+        Mon, 31 Jul 2023 02:57:33 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:57:10 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230714175124.4066972-1-robh@kernel.org>
-References: <20230714175124.4066972-1-robh@kernel.org>
-Subject: Re: [PATCH] soc: amlogic: Explicitly include correct DT includes
-Message-Id: <169079743023.199115.14539344901147605814.b4-ty@linaro.org>
-Date:   Mon, 31 Jul 2023 11:57:10 +0200
+        Mon, 31 Jul 2023 02:57:33 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/8] arm64: dts: exynos: exynos5433-tm2: switch sound card to audio-routing
+Date:   Mon, 31 Jul 2023 11:57:23 +0200
+Message-Id: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,46 +72,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+"samsung,audio-routing" property is being deprecated, so switch to
+generic "audio-routing".
 
-On Fri, 14 Jul 2023 11:51:23 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> [...]
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/drivers)
+---
 
-[1/1] soc: amlogic: Explicitly include correct DT includes
-      https://git.kernel.org/amlogic/c/83147971318a3adeb48e75a61722b0f2a60a4b9a
+Change depends on ASoC:
+https://lore.kernel.org/linux-devicetree/20230731094303.185067-1-krzysztof.kozlowski@linaro.org/T/#t
+---
+ .../dts/exynos/exynos5433-tm2-common.dtsi     | 21 +++++++++----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
 
-These changes has been applied on the intermediate git tree [1].
-
-The v6.6/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+index d163891cd399..2a4dc560252e 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+@@ -124,19 +124,18 @@ sound {
+ 		audio-amplifier = <&max98504>;
+ 		mic-bias-gpios = <&gpr3 2 GPIO_ACTIVE_HIGH>;
+ 		model = "wm5110";
+-		samsung,audio-routing =
+-			/* Headphone */
+-			"HP", "HPOUT1L",
+-			"HP", "HPOUT1R",
++		audio-routing = /* Headphone */
++				"HP", "HPOUT1L",
++				"HP", "HPOUT1R",
+ 
+-			/* Speaker */
+-			"SPK", "SPKOUT",
+-			"SPKOUT", "HPOUT2L",
+-			"SPKOUT", "HPOUT2R",
++				/* Speaker */
++				"SPK", "SPKOUT",
++				"SPKOUT", "HPOUT2L",
++				"SPKOUT", "HPOUT2R",
+ 
+-			/* Receiver */
+-			"RCV", "HPOUT3L",
+-			"RCV", "HPOUT3R";
++				/* Receiver */
++				"RCV", "HPOUT3L",
++				"RCV", "HPOUT3R";
+ 	};
+ };
+ 
 -- 
-Neil
+2.34.1
 
