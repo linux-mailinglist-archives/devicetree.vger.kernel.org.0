@@ -2,144 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02CB87692AC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EE6C769344
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:38:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232446AbjGaKFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 06:05:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47122 "EHLO
+        id S229437AbjGaKi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 06:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232166AbjGaKEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:04:43 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD5D1BD2
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:04:04 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3179ed1dfbbso1028037f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:04:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690797843; x=1691402643;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=xmu3IjUQ2taW3zTxDp9/zo0P78kimt745EhKwmVkMfQ=;
-        b=Vz8bn6xtRr9ajaVL2BYH/aU5C5qeoqk0tN1tW8v5Bz3+absmnMeoDLPOTrnC4mkk/M
-         9+D9rninKuwW61xhv+cDJcG0P33QMQ5HZz1mfs7UiwCXi6dIM/vsZyh3HjQ9922kj/4s
-         +jIin1qddCBn41gsu0Eo3jA+DxF8aM+9VZV6koeVX4ph6OqSYHlQ54AaEJNN4iEc1wD8
-         3yclrtFuxve6PCVDn+11GlYIJWc0Ha3DyBodOsez5rv8FHqjZNRq2htMQzNF9Ho13HT8
-         h/RrB+CklDlcmR7qAzMy0Ink/xkNE7JCgUqwrQsDQYYWQ6E9D+lOkpmzCoYZNzO26OPs
-         82ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690797843; x=1691402643;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xmu3IjUQ2taW3zTxDp9/zo0P78kimt745EhKwmVkMfQ=;
-        b=hsXNSvPckRVQJ701srNLic5Pnua4UySQcNDztUSZeOee+ma+zLZUNbB4SrVVK9nh4M
-         wqHt1jWl6nPIi5teVHZhXwAM0kTV7LkTnOCBgL5iaNrLf7UL8mWAmBrAVDUSPhEAnXA0
-         a4x5h7qOCMuOCpaz7akg0ni+5w5aXd/PfQikUF/4Hxep8TIFQZRSK86YgBqnjFTV6DK3
-         ZkDyyEAmeNqhQj6j5cv8DJyFep0Pn7fKUW1VF6qzZbF7I6CCiey5QR+fhXfltNV49+El
-         lfkrypbrODUbN1G57XXslIq0FV8QGj9CoxM/LiGft0vmtt+YujhAVXAU4GCRIWUiQygb
-         PTGg==
-X-Gm-Message-State: ABy/qLZbch6glWyd+bNEuNbAzFKdVStV7anirJp2meWY76CksLpmhRXa
-        1uV6KmrtkOzaw/+qM4jqJoGbMQ==
-X-Google-Smtp-Source: APBJJlG/6YtIJ2PZyWt5JPzeSkuVMJs1cDNhO+1x9k/xAk4VYOxr9uirGMxr5kOpAVkpkBapLLbIcQ==
-X-Received: by 2002:adf:f681:0:b0:314:46af:e1e7 with SMTP id v1-20020adff681000000b0031446afe1e7mr8192622wrp.34.1690797842657;
-        Mon, 31 Jul 2023 03:04:02 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:686f:cc54:f527:35c0])
-        by smtp.gmail.com with ESMTPSA id f11-20020adff58b000000b003143aa0ca8asm12553696wro.13.2023.07.31.03.04.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 03:04:02 -0700 (PDT)
-References: <20230731094303.185067-1-krzysztof.kozlowski@linaro.org>
- <20230731094303.185067-2-krzysztof.kozlowski@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Rohit kumar <quic_rohkumar@quicinc.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Rao Mandadapu <srivasam@codeaurora.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 01/12] ASoC: dt-bindings: amlogic,gx-sound-card: correct
- maxItems constraints
-Date:   Mon, 31 Jul 2023 11:52:53 +0200
-In-reply-to: <20230731094303.185067-2-krzysztof.kozlowski@linaro.org>
-Message-ID: <1jr0oowg6m.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S229927AbjGaKi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:38:26 -0400
+X-Greylist: delayed 1137 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 31 Jul 2023 03:38:24 PDT
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [91.198.224.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1359E75;
+        Mon, 31 Jul 2023 03:38:24 -0700 (PDT)
+Received: from [127.0.0.1] (helo=localhost)
+        by relay.expurgate.net with smtp (Exim 4.92)
+        (envelope-from <prvs=6590db4e63=fe@dev.tdt.de>)
+        id 1qQPkr-00B9DH-2t; Mon, 31 Jul 2023 12:03:57 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+        by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1qQPkq-00CHpV-6R; Mon, 31 Jul 2023 12:03:56 +0200
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+        by securemail.tdt.de (Postfix) with ESMTP id B9817240052;
+        Mon, 31 Jul 2023 12:03:54 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+        by securemail.tdt.de (Postfix) with ESMTP id 10792240040;
+        Mon, 31 Jul 2023 12:03:54 +0200 (CEST)
+Received: from localhost.localdomain (unknown [10.2.3.40])
+        by mail.dev.tdt.de (Postfix) with ESMTPSA id 7D2E121055;
+        Mon, 31 Jul 2023 12:03:53 +0200 (CEST)
+From:   Florian Eckert <fe@dev.tdt.de>
+To:     mturquette@baylibre.com, sboyd@kernel.org, yzhu@maxlinear.com,
+        rtanwar@maxlinear.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Eckert.Florian@googlemail.com
+Subject: [PATCH 0/2] clk: mxl: add mxl,control-gate dts property
+Date:   Mon, 31 Jul 2023 12:03:47 +0200
+Message-ID: <20230731100349.184553-1-fe@dev.tdt.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+Content-Transfer-Encoding: quoted-printable
+X-purgate-type: clean
+X-purgate: clean
+X-purgate-ID: 151534::1690797836-B1432B19-5003AA54/0/0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Gate clocks can be controlled either from this cgu clk driver or directly
+from power management driver/daemon. It is dependent on the power
+policy/profile requirements of the end product. To take control of gate c=
+lks
+from this driver.
 
-On Mon 31 Jul 2023 at 11:42, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Until now, the source code had to be changed for this purpose by adding t=
+he
+flag 'GATE_CLK_HW' to the LGM_GATE macro in the source file
+'drivers/clk/x86/clk-lgm.c'.
 
-> minItems without maxItems implies upper limit, so add some high maxItems
-> to fix dtbs_check warnings like:
->
->   meson-gxm-s912-libretech-pc.dtb: sound: audio-routing: ['AU2 INL', 'ACODEC LOLN', 'AU2 INR', 'ACODEC LORN', '7J4-14 LEFT', 'AU2 OUTL', '7J4-11 RIGHT', 'AU2 OUTR'] is too long
+This can be better handled via the device tree, so that the source no
+longer needs to be changed. For this purpose, a new option
+'mxl,control-gate' is added, which specifies that the gate is controlled
+by this driver.
 
-The only contraints is that values come in pair and there is no upper
-limit to the number of routes a device (using this driver) may have.
+Florian Eckert (2):
+  clk: mxl: add mxl,control-gate dts property
+  dt-bindings: clock: intel,cgu-lgm: add mxl,control-gate option
 
-The upper limit of 8 might work now but is very likely to be wrong for
-the next device to come.
+ .../bindings/clock/intel,cgu-lgm.yaml         | 11 +++++++
+ drivers/clk/x86/clk-cgu.c                     | 30 +++++++++++--------
+ 2 files changed, 28 insertions(+), 13 deletions(-)
 
-Is there way to correctly describe this "pair" contraint with DT schema ?
-
-If not, then I guess the most adequate solution is to drop minItems and
-give no bound, like simple-card is doing for the same type of properties.
-
-Same goes for the audio-widgets property
-
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-> index b358fd601ed3..45d6202d9730 100644
-> --- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-> @@ -21,6 +21,7 @@ properties:
->    audio-routing:
->      $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->      minItems: 2
-> +    maxItems: 32
->      description: |-
->        A list of the connections between audio components. Each entry is a
->        pair of strings, the first being the connection's sink, the second
-> @@ -29,6 +30,7 @@ properties:
->    audio-widgets:
->      $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->      minItems: 2
-> +    maxItems: 8
->      description: |-
->        A list off component DAPM widget. Each entry is a pair of strings,
->        the first being the widget type, the second being the widget name
+--=20
+2.30.2
 
