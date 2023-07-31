@@ -2,63 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE9076A0F4
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 21:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F0076A10A
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 21:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230481AbjGaTOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 15:14:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50422 "EHLO
+        id S230093AbjGaTVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 15:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbjGaTOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 15:14:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AB3D1BD2;
-        Mon, 31 Jul 2023 12:14:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D443B6129E;
-        Mon, 31 Jul 2023 19:14:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32AE9C433C7;
-        Mon, 31 Jul 2023 19:14:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690830885;
-        bh=SyJU7Qt2aBIN4OyFcC5oEmHd0DxKwQmqDlVAGFvHAGo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mfZY9GbnMx+aOUhNak8hhNx+W4RQngWJkELmDVGW8q222cnSMnvbobDN1oms+zhPq
-         cbVaocl89DiKxBWlHYimi8lIVjOKKdGuWYEqGxdADX6HTYgNkF/bhaNpRm+5thXsSY
-         95pSQw5/dAnIbHeWNjq0VSi+To/RKfwFY9qNzU6d/4/eUCt6xAJXOAcUW5q+AntKar
-         0ORk/O7jvBbHgP4x2jVPEcuU93ljKLAk2vQDp2COzlYpPQo/dsMr+jYANsNy2HLrST
-         UBrBWz75Wxw3pzn3gUxpb0wnlkuByXvUEP/1l3Fv5WdcsVQuTaTpKYdvVRdwI4VJOk
-         N5mKreLQOiTOQ==
-Date:   Mon, 31 Jul 2023 20:14:38 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        with ESMTP id S229654AbjGaTVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 15:21:32 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 460DB198
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:21:30 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so72880231fa.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690831288; x=1691436088;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u3cpx9y286QZ8BgwC7urTNONFjOP9T8Enk3jLPXhzF4=;
+        b=aZOvjK8w0EVdbnm/FU4q1BzmSlPvkD2ujGOHB4zYUSuJczaTEzRhaqCeuAMMUDlwgg
+         dDnKLOnZ95oZmVXFiM/WZyW5FqlYjJLmSdgIPfSaE3i3e15CA+/Spj5gIbTM+FHLkBha
+         7TkuCLDZIHMN0Xe9YDMPlUOJ1gEq0uZBxVANYdVvSIJlL75eP4xSbCdSURq6CVsNeQsn
+         pPoFJF23wx4e3HvzYLR730XD9EEoL32IzirhxdSnTyP6r+voJKRGfPaPUu/SVu1P+nyB
+         PiReMUqy1JtGwYnWNmG8OgszK2CVHq76+vjA+9CSUQBhJNJc2AvLcYlyI1I7HBQIqr8q
+         7XQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690831288; x=1691436088;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u3cpx9y286QZ8BgwC7urTNONFjOP9T8Enk3jLPXhzF4=;
+        b=Ydl/vX9RJlLumxd3kgECCL90gJ8KNTITvxlDWx8kEqUMqSORYnSbKamlxVvic6klVr
+         qCtkEt8YgAsKEDQglnIvNfC2rDOlhTDpIZMKF5WeQ+Tq/llvk1AiRJ4Fir+gfcZ1n27l
+         7jNC5vjbMyKDJoGqdNgHSE6eWU6xtza+UcqqDYfE6O89ighiuxKdgSnINDLl6s+/w2Fb
+         3CZU+3xZ85wCfO03kNwNT8+NdkU4MI9Q7RanYitIin+JMOVi6MRYanuuHqV56HfrkGBn
+         wcBNlQrZMipbWN3/omdgherxX55dOy467WfJVQVGy9olMk/URB/aj6nB+AXuOP/08F+A
+         qzLw==
+X-Gm-Message-State: ABy/qLanbRHv1bp94L5NbeHhzJd2fxgHEyZH0p8ncG0E87ljYYYnYnFm
+        e0WvOWxsGijTkNdzcGjSq8ZGng==
+X-Google-Smtp-Source: APBJJlHIgkm0eePC229k1nnW+GljEiu9tlEMK0AoLIEee85NKPgLtdz2nW3wOAMkX9Uppp0jRllugw==
+X-Received: by 2002:a2e:3806:0:b0:2b6:decf:5cbd with SMTP id f6-20020a2e3806000000b002b6decf5cbdmr597035lja.36.1690831287802;
+        Mon, 31 Jul 2023 12:21:27 -0700 (PDT)
+Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
+        by smtp.gmail.com with ESMTPSA id h4-20020a2eb0e4000000b002b6ee99fff2sm2699202ljl.34.2023.07.31.12.21.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 12:21:27 -0700 (PDT)
+Message-ID: <6883c9e1-fd16-c0a0-7c7c-dc92df5b209b@linaro.org>
+Date:   Mon, 31 Jul 2023 21:21:25 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/13] arm64: dts: qcom: ipq6018: switch PCIe QMP PHY
+ to new style of bindings
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] ASoC: starfive: Add JH7110 PWM-DAC driver
-Message-ID: <9b03c7ed-845c-494b-8c40-10d1fe923b15@sirena.org.uk>
-References: <20230731032829.127864-1-hal.feng@starfivetech.com>
- <20230731032829.127864-3-hal.feng@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7WRSfejFGo+r56WO"
-Content-Disposition: inline
-In-Reply-To: <20230731032829.127864-3-hal.feng@starfivetech.com>
-X-Cookie: Single tasking: Just Say No.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
+ <20230731105759.3997549-5-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230731105759.3997549-5-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,79 +118,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 31.07.2023 12:57, Dmitry Baryshkov wrote:
+> Change the PCIe QMP PHY to use newer style of QMP PHY bindings (single
+> resource region, no per-PHY subnodes).
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
---7WRSfejFGo+r56WO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Jul 31, 2023 at 11:28:28AM +0800, Hal Feng wrote:
-
-> +static const struct jh7110_ct_pwmdac pwmdac_ct_data_shift[] = {
-> +	{ .name = "left 0 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_0 },
-> +	{ .name = "left 1 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_1 },
-> +	{ .name = "left 2 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_2 },
-> +	{ .name = "left 3 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_3 },
-> +	{ .name = "left 4 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_4 },
-> +	{ .name = "left 5 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_5 },
-> +	{ .name = "left 6 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_6 },
-> +	{ .name = "left 7 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_7 }
-> +};
-
-It's not clear to me why this is user selectable - what does the control
-do?
-
-> +static int jh7110_pwmdac_put(struct snd_kcontrol *kcontrol,
-> +			     struct snd_ctl_elem_value *ucontrol,
-> +			     int pwmdac_ct)
-> +{
-> +	struct snd_soc_component *component = snd_kcontrol_chip(kcontrol);
-> +	struct jh7110_pwmdac_dev *dev = snd_soc_component_get_drvdata(component);
-> +	int sel = ucontrol->value.enumerated.item[0];
-> +	unsigned int items;
-
-> +	if (pwmdac_ct == PWMDAC_CT_SHIFT)
-> +		dev->shift = pwmdac_ct_shift[sel].vals;
-> +	else if (pwmdac_ct == PWMDAC_CT_DUTY_CYCLE)
-> +		dev->duty_cycle = pwmdac_ct_duty_cycle[sel].vals;
-> +	else if (pwmdac_ct == PWMDAC_CT_DATA_CHANGE)
-> +		dev->data_change = pwmdac_ct_data_change[sel].vals;
-> +	else if (pwmdac_ct == PWMDAC_CT_DATA_MODE)
-> +		dev->data_mode = pwmdac_ct_data_mode[sel].vals;
-> +	else if (pwmdac_ct == PWMDAC_CT_DATA_SHIFT)
-> +		dev->data_shift = pwmdac_ct_data_shift[sel].vals;
-> +
-> +	return 0;
-> +}
-
-_put() operations should return 1 if the control value changes so event
-generation works - please test a card using this driver with the
-mixer-test selftest, it'll identify this and a bunch of other potential
-issues.
-
-> +static int jh7110_pwmdac_component_probe(struct snd_soc_component *component)
-> +{
-> +	snd_soc_add_component_controls(component, jh7110_pwmdac_snd_controls,
-> +				       ARRAY_SIZE(jh7110_pwmdac_snd_controls));
-> +	return 0;
-> +}
-
-The driver can just point to the controls from the _driver struct and
-skip having a probe() function.
-
-
---7WRSfejFGo+r56WO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTICB4ACgkQJNaLcl1U
-h9Bkogf7B5sn9Y3g1mTAAspid/NHj9EJnpyylKVFcCH8D0UOo11qJLylO7cb8DQw
-3M6ifjvdgMPSgZiwoshQnv3dS0yPr422sWUV65Dnm9pI0lwju9mFo4mh6i0zexdi
-AvQWj6reLoNjF1zn3ZSLU0qkqSTxaOebz1O9RkldqqmbcVixM4sLJOoDzhb5K76O
-lfD2y7zU3/GBt/+OwRObmMLz/AlrPbPkT2YF+0txEYEIitxWHgMoqJFWJI9cdg9I
-8WBjG+5nh/yKozj2EYOEGhKNjBegDGOOp/7sqWdUMdrkRNdtczS3sp5/jRHLv6ph
-1AMqKDncC9OfgKfFLfJy2saNmIxWlg==
-=JSoy
------END PGP SIGNATURE-----
-
---7WRSfejFGo+r56WO--
+Konrad
