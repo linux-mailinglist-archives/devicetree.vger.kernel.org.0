@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D5C769408
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 816F676940B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230476AbjGaLAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 07:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
+        id S230478AbjGaLBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 07:01:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbjGaLAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:00:51 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1FD3127
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:00:49 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1bb84194bf3so26307005ad.3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:00:49 -0700 (PDT)
+        with ESMTP id S230080AbjGaLBA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:01:00 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30FBD1B8
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:00:57 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1bbc2e1c6b2so26895245ad.3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:00:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690801249; x=1691406049;
+        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690801256; x=1691406056;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=H0WMB/rKA9SZTAI1IQRgHdLwr9J9XpTfTTdRysuLNm8=;
-        b=B5wiNiUNBpQ5/cm40/5mR4Euud/LcpM2S1MDoIhxXQh4qa0LaT3RnuFzQxcKYIZVtK
-         OIYrOjJcN4e2IcQt/rEdX/G/Qac+0oT/hHO/kJHGblNusnkn0KMYmETjY13t9ygONCag
-         iiL1zd6KVsTRyjR3NfxaHbbXPNoB8l30xTG/wfcYEXg9FvCL4jKVTl/K14hA7SXaCXEI
-         pHPARmy76/91ptYMjZmOiB7aIoiRY6w+0AFbtQCD1+FL59+47pX9+JpD7p3We8E4rLO4
-         zqBW+mogigC1d1nu+LhrHDWribUeFW02vbxg41RqM3hWGkjZFiIAcGPdu55womGQX6KM
-         qd3Q==
+        bh=eWLb2QHv80Gf4hwq5O1c/PTUIS8nb/DSOgdSZjWSOkI=;
+        b=szE/qciLc8Z98Doz/74pVkBcEuCdDBO9Vdeqiu6uxqO8/Tag4moUTJL1pnf/26mP2w
+         3VDZlNSmK1cIPh/X8UPWMicfXHWQQ/HqM6uqUsMHQMwbBMuU2sEmjOs1vjbWRcng8wx+
+         tunWvfHXl7PZsTkLEfI8lgRdtnm5kxCxMpMNzuNQzS6U6xAVcaFO2WGsH4rrFrPcpEHD
+         dmwj9awzAicODG5WK2EJEmEGu+SDqLbsWd1UGUiMBSJZOSUs0ihxxJJsdEDxQECkhyw1
+         jD4zif/BsMut4BuZRKjxYDr4JFmdSZnSvZn8mYZ3hAwsDLxUCeDR8a5wjd5D/VJUVwJA
+         LRfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690801249; x=1691406049;
+        d=1e100.net; s=20221208; t=1690801256; x=1691406056;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=H0WMB/rKA9SZTAI1IQRgHdLwr9J9XpTfTTdRysuLNm8=;
-        b=NwG+fkRI9SAfodZaeV1Aa2YHf4aLYfyJhEwZi4OuuUiN3oygdC4AyzS0lO95UPu9kG
-         1sV2W7Hkj8PE+I9POjCMkZyhkagPDosjQNyhNkQCLzh4Wh/B5C+gbZlTIhnzu3R+XbPX
-         nypMGfVZcVuo+GsnNbnfqYUNiZL1CaUQ1/ibeX5/CbFHqPTrtsQ2wqYbo2viiQ/+LPl/
-         M4ia/nabS2jS6eEoYHEQyuwKNwK0XN1PMUlluyxJth43WZjz77efOXT7C7dbe5UVNIx9
-         ZRVc1qXR41CnIDrqr5hXVazb4LkqjzCgigczqnk9vdBlv41L/ZdVEAA4+gZnOiwZHIvZ
-         fdyA==
-X-Gm-Message-State: ABy/qLYgXgKaMdI17Pmg1jlyu8qyKnK2klu5rkeAoursMZnN/7KPTjUi
-        +R9+SlIWc9gZtVdigjDMk774Tg==
-X-Google-Smtp-Source: APBJJlEL6GyYYARcEpmECY3j7mHuoZbCzpcyxxbV86ML15IxgqlhlJDvc/OuaitgyiGInsT10WH8eQ==
-X-Received: by 2002:a17:902:a40d:b0:1bb:20ee:e29e with SMTP id p13-20020a170902a40d00b001bb20eee29emr8855585plq.1.1690801249350;
-        Mon, 31 Jul 2023 04:00:49 -0700 (PDT)
+        bh=eWLb2QHv80Gf4hwq5O1c/PTUIS8nb/DSOgdSZjWSOkI=;
+        b=U/aL/DeTa9VKlxqBSxk/Vb+sWUlA4JYCl74osl23DcwNj6vC56Z41rbcC18AnDvA0m
+         aK31I24tM9+ygBPoMRE103XZZx5HMnR6mabZ5efS2Cw16ZjvcT7drfdqsStj8ogHCVV2
+         4cGh6pEK0nSGizM8yrnzxHwvjDj6rrB1E63hfk7W5IpTgwITzaq7/DXs7zjB5afbwpIf
+         +diHhCUd3mwKhAs6hAgcTKTpsiQPam2EvF8harve6PyrG5b907iEykPj8GUZTTUqXwfW
+         5CPYdNElo1T49mmVNgJvwiPGUDzidwOAlAMj3KPz2okkX1K0Apqh3+oTGhgY2qFL6QSv
+         VfNw==
+X-Gm-Message-State: ABy/qLa1IYOqwoeH82rJXR7KiCSa+OMmbe0nCvxekrGgh1GQx9FFLhzV
+        NmgfSq/VY+CyW5QnmgoKh8nyCg==
+X-Google-Smtp-Source: APBJJlFzMR4Ag+omLupQiZPSx5mTCYomZZuF1agtSxo5hBpOA9cERdu3r1bU+bJt30kzbkiKl7yIEQ==
+X-Received: by 2002:a17:902:ec89:b0:1bb:6875:5a73 with SMTP id x9-20020a170902ec8900b001bb68755a73mr9190006plg.2.1690801256700;
+        Mon, 31 Jul 2023 04:00:56 -0700 (PDT)
 Received: from localhost.localdomain ([49.205.243.15])
-        by smtp.gmail.com with ESMTPSA id t14-20020a1709028c8e00b001b1a2c14a4asm8281096plo.38.2023.07.31.04.00.44
+        by smtp.gmail.com with ESMTPSA id t14-20020a1709028c8e00b001b1a2c14a4asm8281096plo.38.2023.07.31.04.00.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 04:00:48 -0700 (PDT)
+        Mon, 31 Jul 2023 04:00:56 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-Cc:     Jagan Teki <jagan@edgeble.ai>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+Cc:     Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sandy Huang <hjc@rock-chips.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH 07/14] dt-bindings: display: rockchip-dw-mipi-dsi: Document rv1126 DSI
-Date:   Mon, 31 Jul 2023 16:30:05 +0530
-Message-Id: <20230731110012.2913742-8-jagan@edgeble.ai>
+        Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 09/14] ARM: dts: rockchip: rv1126: Add PD_VO entry
+Date:   Mon, 31 Jul 2023 16:30:07 +0530
+Message-Id: <20230731110012.2913742-10-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230731110012.2913742-1-jagan@edgeble.ai>
 References: <20230731110012.2913742-1-jagan@edgeble.ai>
@@ -77,42 +74,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the MIPI DSI for Rockchip RV1126.
+PD_VO power-domain tree diagram in RV1126 is connected to
+- BIU_VO
+- VOP
+- RGA
+- IEP
+- DSIHOST
+
+Add PD_VO power-domain entry in RV1126.
 
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
-Cc: dri-devel@lists.freedesktop.org
 Cc: devicetree@vger.kernel.org
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Sandy Huang <hjc@rock-chips.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
 
- .../bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/rockchip/rv1126.dtsi | 39 ++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-index 8e8a40879140..ccf79e738fa1 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-@@ -18,6 +18,7 @@ properties:
-           - rockchip,rk3288-mipi-dsi
-           - rockchip,rk3399-mipi-dsi
-           - rockchip,rk3568-mipi-dsi
-+          - rockchip,rv1126-mipi-dsi
-       - const: snps,dw-mipi-dsi
+diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+index afa5a68f766f..4d74d3d998ab 100644
+--- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
++++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+@@ -125,6 +125,26 @@ qos_sdio: qos@fe86c000 {
+ 		reg = <0xfe86c000 0x20>;
+ 	};
  
-   interrupts:
-@@ -77,6 +78,7 @@ allOf:
-             enum:
-               - rockchip,px30-mipi-dsi
-               - rockchip,rk3568-mipi-dsi
-+              - rockchip,rv1126-mipi-dsi
++	qos_iep: qos@fe8a0000 {
++		compatible = "rockchip,rv1126-qos", "syscon";
++		reg = <0xfe8a0000 0x20>;
++	};
++
++	qos_rga_rd: qos@fe8a0080 {
++		compatible = "rockchip,rv1126-qos", "syscon";
++		reg = <0xfe8a0080 0x20>;
++	};
++
++	qos_rga_wr: qos@fe8a0100 {
++		compatible = "rockchip,rv1126-qos", "syscon";
++		reg = <0xfe8a0100 0x20>;
++	};
++
++	qos_vop: qos@fe8a0180 {
++		compatible = "rockchip,rv1126-qos", "syscon";
++		reg = <0xfe8a0180 0x20>;
++	};
++
+ 	gic: interrupt-controller@feff0000 {
+ 		compatible = "arm,gic-400";
+ 		interrupt-controller;
+@@ -170,6 +190,25 @@ power-domain@RV1126_PD_SDIO {
+ 				pm_qos = <&qos_sdio>;
+ 				#power-domain-cells = <0>;
+ 			};
++
++			power-domain@RV1126_PD_VO {
++				reg = <RV1126_PD_VO>;
++				clocks = <&cru ACLK_RGA>,
++					 <&cru HCLK_RGA>,
++					 <&cru CLK_RGA_CORE>,
++					 <&cru ACLK_VOP>,
++					 <&cru HCLK_VOP>,
++					 <&cru DCLK_VOP>,
++					 <&cru PCLK_DSIHOST>,
++					 <&cru ACLK_IEP>,
++					 <&cru HCLK_IEP>,
++					 <&cru CLK_IEP_CORE>;
++				pm_qos = <&qos_rga_rd>,
++					 <&qos_rga_wr>,
++					 <&qos_vop>,
++					 <&qos_iep>;
++				#power-domain-cells = <0>;
++			};
+ 		};
+ 	};
  
-     then:
-       properties:
 -- 
 2.25.1
 
