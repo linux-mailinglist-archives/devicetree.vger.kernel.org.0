@@ -2,116 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D95F37696AA
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 14:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F617696DB
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 14:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232871AbjGaMpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 08:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34208 "EHLO
+        id S232036AbjGaM4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 08:56:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232873AbjGaMpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 08:45:38 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAA81732;
-        Mon, 31 Jul 2023 05:45:32 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36VCjLVG052749;
-        Mon, 31 Jul 2023 07:45:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690807521;
-        bh=0SPxnqfcfXqJPJHs3ZuUuj1K0BeWP3lEXqx31mscRxs=;
-        h=From:Date:Subject:References:In-Reply-To:To:CC;
-        b=NWHNiKj0EA7uEIJz3quLOuXfpVBFR2EkLXL+PMM8ysxheJYi/g4MJTuR4ZCgx9cZN
-         IHZGPw05uQfn84/PQhmXq0iteslspKCm0xu5TLMLBt0kV+sOjgrlSot432mX5pFh3X
-         9xKjzj2y6U2Br3NvyM/66dce6lvzXoTEs7JEpSz8=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36VCjLuP129524
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 31 Jul 2023 07:45:21 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 31
- Jul 2023 07:45:20 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 31 Jul 2023 07:45:20 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36VCjJLZ053839;
-        Mon, 31 Jul 2023 07:45:19 -0500
-From:   Jai Luthra <j-luthra@ti.com>
-Date:   Mon, 31 Jul 2023 18:14:42 +0530
-Subject: [PATCH 5/5] arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+        with ESMTP id S232016AbjGaM4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 08:56:18 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425D8E46
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 05:56:16 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b9b5ee9c5aso65269941fa.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 05:56:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690808174; x=1691412974;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yeab3hRKzRRNGLOjMXr0iXoy2HNqWyAcv3g5XRkaUmM=;
+        b=pxZOTtW/wJ3qBELi3L6zMYnyYqpX14bJwKXnWi1AUnupEKgjkyxnfzdpX4yid2cSJm
+         0FFV9izrYUGoj/4s7QKh4XEvFnb0wxXJZydDLeeqP7JYTuCqI+5pDbZrDhXxU6YWIJ2s
+         x85iUL841tZ5Dns1b+254LTYMq8DotwmNGJufiWHUyfypj5yQI3tai5q51XbTi/hfV4p
+         zKciUGXQlO305xBMmZQUpsZIK95jOekRck8HKTpoBtaE4q6sYaouSIq+tg9alGFyVsbe
+         r1BmNQhMov5Wa6agEMLWFIoc+TO6evOWMRfILEHGXGDXQEqfOpGY1E3Fgt0SkTOf+j3f
+         Wx4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690808174; x=1691412974;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yeab3hRKzRRNGLOjMXr0iXoy2HNqWyAcv3g5XRkaUmM=;
+        b=AEKZoK35QPphLRSp8G4uThg47mIkH0PgbmK1H+VmfHmbWr6utXsjA8CrSPRKbeo+3j
+         Yae9rET8L11l8PKcM3HSJA+NjAMqDSxtqmXlzXEdQTHY/7HZ8cGYx6t5QtRe1JL/Qcvy
+         S7v7kzrzfhqa0vvNWyvec0A8XCJog3Xo7PB0uINa6ckTbVWZ8t548uwkzSwQM53hWCzc
+         GXE2wVGpgON73i843qYGO+mGaPVwwHoxCUxFIc6QsgqWSH9NyQs/ApjiRL9BzNeFZ8kC
+         DXTZta356/iARbwy53u+Th/iTdaTDcaZPK5oDmbzjqd2/voFH2b2XXjYWLMQC5QCHlmu
+         J9hg==
+X-Gm-Message-State: ABy/qLY3UZpg/lAORdnNFXqT79DNyA7yuRE7ZgXZXbWTkutMIjy76fAA
+        euxHk1USvTSmbMjdUtDT98+rZ5BWTGtI/EIbo4rvkg==
+X-Google-Smtp-Source: APBJJlG10segcU6p/qJGd016zmMQaAHHVpQz++etRMwLMJMUqFSZVVo6vmk4Y1G2m4DjAhALKekhnA==
+X-Received: by 2002:a2e:9f0a:0:b0:2b9:b693:c906 with SMTP id u10-20020a2e9f0a000000b002b9b693c906mr5477784ljk.27.1690808174464;
+        Mon, 31 Jul 2023 05:56:14 -0700 (PDT)
+Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
+        by smtp.gmail.com with ESMTPSA id f9-20020a2ea0c9000000b002b6dba16f28sm2560545ljm.127.2023.07.31.05.56.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 05:56:14 -0700 (PDT)
+Message-ID: <1e6029e3-9e4f-c0f0-201c-627e2c748111@linaro.org>
+Date:   Mon, 31 Jul 2023 14:56:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230731-mcasp_am62a-v1-5-8bd137ffa8f1@ti.com>
-References: <20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com>
-In-Reply-To: <20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/13] phy: qcom-qmp-pcie: simplify clock handling
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jai Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=819; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=0ijyOKlC5ndUpjhAONPKbgHmRC/lYyw8qmoHFT7gdmc=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkx6zaQrBUCUwdQO74KzDtYXrr5YpgT68L0VR/J
- v0FSy7sMzOJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZMes2gAKCRBD3pH5JJpx
- RS0eD/0QjulXmCkUghLeoQFqcpKeHNiDXqjyJ7oULO4akslP8vI1WvxjVyzt+7wvYsbNcqlJDEe
- lMdPSLO1A2NM3R6LQ0BvA5baX8qGvfeAuPV+k3GA/lnbzwPz62TABPU4s7CzrP425vdGvso529z
- /AjBA+tAh/HioHc957AatgMDJKUPtImLIFh6X2YPKmn6rpXnjq9nyyIJn2mqiUEo8heazSyIprG
- 2gR/Fhe4sN96CyBhpifckYcvb2zLLZUOZnuzi5nHq37jT/Y/ExP7/AbguGjmtLrbzPiTbDaflBx
- t15EySsAL4JMdSJDY6htUm2bP58HXNWKbPUlymec86N7s8+vDUzv4cN1x7Rq61ByDyXVP+JwC/8
- NhoBRjbYfRypxsUHVSTR2TV5s/3ORC9zdRylISpYZXKuvZNFahExeJfM9Nn+6PqnocWcv8bptqP
- COUNLgdKijt+zzJnLr7NepMbj16CHUmrx8h72ZBQkNSe8cQTjJZCwmwxjQmL29LguUuv6j4xGDu
- zU1ph4x6YxZ3efvvz2GI1uKnSUv/VZyymhYLQoib4PrVj+0ZU002RxW6sDBT+CLSD6p7ZUR0Hri
- yCIwyoTKnf9jMsTDIjmUAWBEgfX2DiPFLH5eFIi7ys+mgd/o++kojGYyU/qRe9lCQQSNJgN4HHN
- 2Qr2w3WALwCNHpQ==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
+ <20230731105759.3997549-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230731105759.3997549-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SK-AM62A-LP uses TPS6593x PMIC (interfaced over I2C) to power the SoC
-and various other peripherals on the board [1].
+On 31.07.2023 12:57, Dmitry Baryshkov wrote:
+> For some of existing PHYs for new binding we are going to change refgen
+> to more correct "rchng". Rather than introducing additional code
+> to handle legacy vs current bindings (and clock names), use
+> devm_clk_bulk_get_optional().
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Nice!
 
-Specifically, the audio codec (TLV320AIC3106) on the board relies on the
-PMIC for the DVDD (1.8V) supply.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-[1]: https://www.ti.com/lit/zip/sprr459
-
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 03fce1752521..9bcfa9b50876 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -714,6 +714,7 @@ CONFIG_MFD_SEC_CORE=y
- CONFIG_MFD_SL28CPLD=y
- CONFIG_RZ_MTU3=y
- CONFIG_MFD_TPS65219=y
-+CONFIG_MFD_TPS6594_I2C=m
- CONFIG_MFD_TI_AM335X_TSCADC=m
- CONFIG_MFD_ROHM_BD718XX=y
- CONFIG_MFD_WCD934X=m
-
--- 
-2.41.0
+Konrad
 
