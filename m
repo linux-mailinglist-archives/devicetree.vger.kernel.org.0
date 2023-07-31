@@ -2,132 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DD9C769521
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68345769553
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:55:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbjGaLph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 07:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48254 "EHLO
+        id S232095AbjGaLzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 07:55:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbjGaLpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:45:36 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24923A1;
-        Mon, 31 Jul 2023 04:45:35 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id ca18e2360f4ac-77ac14ff51bso179730939f.3;
-        Mon, 31 Jul 2023 04:45:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690803934; x=1691408734;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3qqk/kt6+Ga7PWsdfCK1cL1LbXt2AwvGMSRMyEpCfxI=;
-        b=okzYRkktr+nRrSVtBCUlShJ4iEpZ4pP6gbHywAWdvOlXSUoGQKdU1X0HWGYabemgKH
-         ytJtYPBeUmdTwPScRayYq5tIJ7ak5hhR0ew7NKN/Yo+fqw8AZAX2VpLThA7e6RhhpeGw
-         hnmLHI7Y6YN/pNZbqjNKJQBi5RKYL1MV2iktpmMb4E2/ruFT59/jbxVqJXmmQHo2/HAT
-         05fUJ8tb3NGegcZhmZjThREc4+fFBqwwcSiAz4nVC7Ez4xC/5904A9vnR4KY8kqEX+rD
-         kIxNYijsDgmpEmDesKraaqvWv9+SAElTQ+yLhbTsaQfeADCySqlFkzj9r8xzKkC/A4Td
-         PyhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690803934; x=1691408734;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3qqk/kt6+Ga7PWsdfCK1cL1LbXt2AwvGMSRMyEpCfxI=;
-        b=OC1cFdOLl0qG1hJyPlTdxK7NBPhhi901H4f6LjrbJ5Db2Yb2XSiHlMNz5QNsMNWAPW
-         x7B+q4zAxSYXueXdRlJ6gdx/6sFB71FCR8YhhFS3fyhlgH0r+kfeqdGXfR2elTK/RglJ
-         QXA7Ms3Fl4lNBqYvVIh1jIX+CZvV88eEYncmzG2r6FQUcEANtgoBo18rugZR+PAwUomr
-         AJ485S5s0IPLqh0X3sCIhqC0l8wous+gQhyBBM7whgWp00xygVj6DTYbVmoc3xmw6Afl
-         EU7v1nRo9qWVOkG+Pd/PSGF/CpyS/gO7ABYyI0TwC/OhXYjydpx5GSW/Ul5bOseqX79Z
-         ODwg==
-X-Gm-Message-State: ABy/qLZ2ccpquaAp54WxzUxJldHawzCvorizs7mxGue86zkPzoICoClX
-        7vwPhd7u2g+sE4dbrlmqNJM73K/Rp4K9iXSd0aw=
-X-Google-Smtp-Source: APBJJlFrThYBjex3opWL4ObHhYJCyDIqwz8yyEyTGf1e1HNfu2R5yX7uSTL8+3rOH2emiyhCqRd8wSTGDCFWcr7gH1E=
-X-Received: by 2002:a05:6602:8b:b0:786:26f0:3092 with SMTP id
- h11-20020a056602008b00b0078626f03092mr7456305iob.3.1690803934488; Mon, 31 Jul
- 2023 04:45:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230702203429.237615-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230702203429.237615-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <ZMZ6XB6gX2kFd/Nt@xhacker> <CA+V-a8u3F_XDjBfVVVvNMfjrni8pgpcRgbVt6_Ax1TmG2fJdEg@mail.gmail.com>
- <20230731-tribute-splashing-6a90f443cefe@wendy>
-In-Reply-To: <20230731-tribute-splashing-6a90f443cefe@wendy>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 31 Jul 2023 12:45:08 +0100
-Message-ID: <CA+V-a8uHAQBZJBVtLbhxczwAAZYcVSRz+CGoQX0EmPDU5OxEFA@mail.gmail.com>
-Subject: Re: [PATCH v10 3/6] riscv: mm: dma-noncoherent: nonstandard cache
- operations support
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Jisheng Zhang <jszhang@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org,
-        Christoph Hellwig <hch@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229986AbjGaLzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:55:44 -0400
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A3B919F
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:55:43 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:c83:0:640:84f9:0])
+        by forward501b.mail.yandex.net (Yandex) with ESMTP id BBC595E6CB;
+        Mon, 31 Jul 2023 14:55:36 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id YtOFgmgWpKo0-KjdseJcn;
+        Mon, 31 Jul 2023 14:55:35 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1690804536;
+        bh=T92X+EUlvoAMejkCYSSobL4yVNXCuJQ8ClSXRwBBscE=;
+        h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+        b=cqR0tmSOK/p/Ol82ofhZt4rIB52qEUzA4yZThe2ErgfRRGvDlqlwlEb8UxuK6Im6m
+         9UIp14u8ss6Nyr2pahp4y70CpcBv1DKpKHLwUd2UEym2lFClnBg5yr+38sekadk9KV
+         p/Fha8cLk6a0U1QwSr9v2N4ILNCAqsg9L61wIDI8=
+Authentication-Results: mail-nwsmtp-smtp-production-main-45.sas.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <e89067eed9055cd0f299bc6bb8e40a61232abfc0.camel@maquefel.me>
+Subject: Re: [PATCH v3 35/42] ARM: dts: ep93xx: add ts7250 board
+From:   Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Lennert Buytenhek <kernel@wantstofly.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Michael Peters <mpeters@embeddedts.com>,
+        Kris Bahnsen <kris@embeddedts.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 31 Jul 2023 14:55:34 +0300
+In-Reply-To: <CACRpkdYA2MLdX5xY-rTcKyKH2eFXZyHHXcX9G-vdWT5GmChwaA@mail.gmail.com>
+References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
+         <20230605-ep93xx-v3-35-3d63a5f1103e@maquefel.me>
+         <4b0f8b39-bec5-6f5d-1b98-8145e334ed94@linaro.org>
+         <2c7e838ae4e49b72185626935f886d07895e8192.camel@maquefel.me>
+         <CACRpkdYA2MLdX5xY-rTcKyKH2eFXZyHHXcX9G-vdWT5GmChwaA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.46.3 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Hello Linus!
 
-On Mon, Jul 31, 2023 at 12:39=E2=80=AFPM Conor Dooley
-<conor.dooley@microchip.com> wrote:
->
-> On Mon, Jul 31, 2023 at 12:30:43PM +0100, Lad, Prabhakar wrote:
-> > On Sun, Jul 30, 2023 at 4:09=E2=80=AFPM Jisheng Zhang <jszhang@kernel.o=
-rg> wrote:
-> > > On Sun, Jul 02, 2023 at 09:34:26PM +0100, Prabhakar wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> > > > +config RISCV_NONSTANDARD_CACHE_OPS
-> > > > +     bool
-> > > > +     depends on RISCV_DMA_NONCOHERENT
-> > > > +     help
-> > > > +       This enables function pointer support for non-standard nonc=
-oherent
-> > > > +       systems to handle cache management.
-> > >
-> > > Per Documentation/riscv/patch-acceptance.rst:
-> > >
-> > > "we'll only consider patches for extensions that either:
-> > >
-> > > - Have been officially frozen or ratified by the RISC-V Foundation, o=
-r
-> > > - Have been implemented in hardware that is widely available, per sta=
-ndard
-> > >   Linux practice."
-> > >
-> > > I'm not sure which item this patch series belongs to.
-> > >
-> > Maybe Conor can help me here ;)
->
-> I'm not entirely sure why you need my help, it's your company that
-> manufactures the SoC that needs this after all.. I think Emil already
-> pointed out that it was the latter of the two. I guess it is not an
-> "extension" in the strictest sense of the word, but it fills the same
-> gap as one, so /shrug.
->
-Aaha I was wondering If there had to be an additional entry here to
-fit this case, but if it already does fit in ignore me. Thanks for the
-clarification.
+On Sat, 2023-07-29 at 22:59 +0200, Linus Walleij wrote:
+> On Mon, Jul 24, 2023 at 3:45=E2=80=AFPM Nikita Shubin
+> <nikita.shubin@maquefel.me> wrote:
+>=20
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nand-controller@60000000 {
+> > >=20
+> > > Where is this address? It does not work like that. If this is
+> > > part of
+> > > SoC, then should be in DTSI and part of soc node. If not, then it
+> > > is
+> > > some other bus which needs some description. Top-level is not a
+> > > bus.
+> > >=20
+> >=20
+> > It's some kind of EBI, but it doesn't need a driver it is
+> > transparent
+> > on ts7250, the logic is controlled through installed CPLD.
+> >=20
+> > The EBI it self is a part of the SoC through:
+> >=20
+> > https://elixir.bootlin.com/linux/v6.5-rc3/source/arch/arm/mach-ep93xx/s=
+oc.h#L35
+> >=20
+> > EP93XX_CS0_PHYS_BASE_ASYNC to EP93XX_CS0_PHYS_BASE_SYNC.
+> >=20
+> > So for ts7250 this includes:
+> >=20
+> > - NAND
+> > - m48t86
+> > - watchdog
+> >=20
+> > I don't even know how to represent it correctly, would "simple-bus"
+> > with "ranges" defined suit here, so it will represent hierarchy but
+> > won't do anything ?
+>=20
+> Check how I solved this on the IXP4xx EBI for an example:
+> Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-
+> expansion-bus-controller.yaml
+>=20
+> Top level bus inside soc:
+> arch/arm/boot/dts/intel/ixp/intel-ixp4xx.dtsi
+> Example platform:
+> arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts
+>=20
+> Notice chip select number in first cell.
+>=20
+> I think you want to do something similar here?
 
-Cheers,
-Prabhakar
+Thank you - it looks like what i need !
+
+>=20
+> Yours,
+> Linus Walleij
+
