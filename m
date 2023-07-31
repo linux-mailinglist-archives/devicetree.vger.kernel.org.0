@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19FE5769233
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A215769234
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjGaJsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59380 "EHLO
+        id S230096AbjGaJsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbjGaJrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:47:45 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790A4172C
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:47:01 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31783d02093so3924177f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:47:01 -0700 (PDT)
+        with ESMTP id S231533AbjGaJrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:47:47 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 795871737
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:47:02 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3110ab7110aso4513322f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:47:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690796820; x=1691401620;
+        d=linaro.org; s=google; t=1690796821; x=1691401621;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BRAAlSEqORL6Se6LTybe1yHsw0jhZLERYrRRtVClc94=;
-        b=k6EPxM3uLXMkqpzDJespFM5M355FTMELH0xEI+R8ZOTZAmxD+pqNtbLPQvAf20pjLA
-         8xn2e/hoPTesm4A+6OCgtpW98BVI3IEetcC3S6QV7wug7Z2HXS+cjAnHix2u4+wb0DdZ
-         tVo9pUMdZLRdHNxhNuBBqmPwQObIEz/1NlTdWmc926Qr0BmxPIt1wm3N1wLNY37fp7Ti
-         QB8Xai9Y3tGyHMSBPLHK/+N3eJ+sNMDc1YlJAP8rqlCheWgvBZZonG4C6DVaO6QXBlrI
-         8K7jHPbQXE7Xtuf5Qvp1QVqFmBibJNNiQw9wH/O317Q2uNIEjh2+8mtCxU7U6wt7AMOz
-         GspA==
+        bh=zClCjZjOdixGCLkxsyJvj3NbPUjrYERXcvMYfwjLNfE=;
+        b=TilFRbTFqa4TuaX6WgCSre6+GR3T3GgCkO/0zcJ0BwEZiLsOO1AtT4uArKHRBiQadM
+         TQybXelE1vzPKw3YOUBUYc6QQm2O75tInpgLqiCOnJ9WZFa7jD1keWuBYGEMB2RJkaz5
+         fyJp+8t8V/MfyqbA2vAKKpHLoHg2ilPCGpv7I90w6h0AEzQAWEX1oIAhL7bM01dIWCxF
+         NlBCPGN9FYkGOxMVf92bWa1U2U5xuQ8XGUhU+vEpIkV8GVXzHlcNIVY72SsLrIoXh1d1
+         Z1vxty/Ycinf3Tef/hO/iwdwxekiw5pBge/LmCrfIyqcsgz0fYwhpyN1klMtZnXiKtzQ
+         TWPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690796820; x=1691401620;
+        d=1e100.net; s=20221208; t=1690796821; x=1691401621;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BRAAlSEqORL6Se6LTybe1yHsw0jhZLERYrRRtVClc94=;
-        b=Zk8fZaS8eVYeW6fvpboGEEtkF4uXiex/QIAluQsPaiGfQ998RJXFdglOl1bPONSriG
-         tCZxSGJa5/zjBlFAb/EdgWrC6rmaOg5NMKsoqLS8NS6m2vFgzid5MajLmdo7Vk/M+zdJ
-         VpRwPnEwLblqIMEHYcjg0u8cgo7/nL1FaB17W1rwglOvZ7SGpfW+UB3hAHFCL2DKnLdh
-         Z+z0mK2CSR/Oap2TPuCQ7nXkoohGYT/sK0TokqwlIMkIXCGPgKaoIrWB4FcI0oUkdlDJ
-         NfdkpEBOwH3+zSSIuaLWv4fBtNgIQ2wC/+/pPQcw8idy1Wq4D7JJ0vaO8emi4vKqxEqZ
-         pBfg==
-X-Gm-Message-State: ABy/qLae63PbOfyNwjkf7ny+C6GyQfVTk0H3LX1gw+3MEfMvJVj9m1yh
-        cYT59ZEWp1CQh3UIEOlDRZi34w==
-X-Google-Smtp-Source: APBJJlGLaqSOORf3q94JYqUiTa1G4BtmOVF6jOvRxVk2rdvsCMTJOJ+JF6gOj4flgXIWkHeKe7gEAA==
-X-Received: by 2002:a5d:4c43:0:b0:314:3740:7f69 with SMTP id n3-20020a5d4c43000000b0031437407f69mr8864082wrt.37.1690796819858;
-        Mon, 31 Jul 2023 02:46:59 -0700 (PDT)
+        bh=zClCjZjOdixGCLkxsyJvj3NbPUjrYERXcvMYfwjLNfE=;
+        b=DA59LvE9YIFFNIBH5ljgdj+uZ23dnsweYAoxFejK6TB+FcgBi89nCSDgaej2A3UgUb
+         wflDBCRiVlGH+A8lw7c0z49Bb4P2Ogd9RbWVfjuwAgvramO741fLYvy5s5CmB1tiRSO+
+         Ln0cWoYY66Lqo8c3OBNjiX0/b1cfDSF2+qtL6BS1h8UACuJ0O1CSScaBf2szZfsnIfoz
+         /JDA4wiGGcMg4PFYsTyjxYL0w4hDG4WET4itlT1suhTTPFHzF6zmyNFFyGQlsDp42QhY
+         euWQ5spkR5WIJRD8LsZ/4CMP4nIqy2tuKal8W0t3tEBEtxgfASRcv9OmIVHeT8zDv3uR
+         Qi/g==
+X-Gm-Message-State: ABy/qLahNx67M22cGpj8MWUgNePGmLhLY3oDhCnuovE+ZPt6itV1umgK
+        07V8btB8uIPILcgdK4V/BNl1iQ==
+X-Google-Smtp-Source: APBJJlE+g5uUfGniF+8kFuxO1Nky2BcsSvbHb1jzL9PNTzoCO3wc1waETL2Y9ABFdvHQELPLFaSrNQ==
+X-Received: by 2002:adf:cd11:0:b0:317:759a:8ca6 with SMTP id w17-20020adfcd11000000b00317759a8ca6mr8047426wrm.62.1690796821004;
+        Mon, 31 Jul 2023 02:47:01 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id p9-20020a5d48c9000000b0031433443265sm12556878wrs.53.2023.07.31.02.46.58
+        by smtp.gmail.com with ESMTPSA id p9-20020a5d48c9000000b0031433443265sm12556878wrs.53.2023.07.31.02.46.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:46:59 -0700 (PDT)
+        Mon, 31 Jul 2023 02:47:00 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
@@ -59,11 +59,11 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
-References: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH 0/2] Devicetree for board AN400 based Amlogic T7 SoC
-Message-Id: <169079681850.186625.7568524984807296520.b4-ty@linaro.org>
-Date:   Mon, 31 Jul 2023 11:46:58 +0200
+In-Reply-To: <20230706091954.3301224-1-xianwei.zhao@amlogic.com>
+References: <20230706091954.3301224-1-xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH V2 0/2] Devicetree for board AN400 based Amlogic T7 SoC
+Message-Id: <169079681994.186625.5295354786398700202.b4-ty@linaro.org>
+Date:   Mon, 31 Jul 2023 11:46:59 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -80,20 +80,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Tue, 04 Jul 2023 11:16:34 +0800, Xianwei Zhao wrote:
+On Thu, 06 Jul 2023 17:19:51 +0800, Xianwei Zhao wrote:
 > Add the board AN400 tree bindings based Amloigc T7 SoC.
 > 
 > Add devicetree support for Amlogic AN400  board based T7 SoC.
 > 
-> Xianwei Zhao (2):
->   dt-bindings: arm: amlogic: add board AN400
->   arm64: dts: add board AN400
+> Changes Since v1:
+>  -in memory node use properties "reg" instead of "linux,usable-memory"
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/arm64-dt)
 
-[1/2] dt-bindings: arm: amlogic: add board AN400
+[1/1] dt-bindings: arm: amlogic: add board AN400
       https://git.kernel.org/amlogic/c/015623ec05f96b1614ec2753d25f36743c17c530
 [2/2] arm64: dts: add board AN400
       https://git.kernel.org/amlogic/c/6f048cc7a635b8736b4c7ae0e5230a92e3e648eb
