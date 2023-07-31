@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E83769B9E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA9DE769BA6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 18:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233219AbjGaP72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36580 "EHLO
+        id S229752AbjGaQA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 12:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232944AbjGaP7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:59:19 -0400
+        with ESMTP id S231875AbjGaQA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 12:00:56 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2C8197;
-        Mon, 31 Jul 2023 08:59:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CF911B;
+        Mon, 31 Jul 2023 09:00:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E9C62611AE;
-        Mon, 31 Jul 2023 15:59:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0CDDC433C7;
-        Mon, 31 Jul 2023 15:59:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1690819157;
-        bh=bARmeZQNZ2oW/i/ATn/SsjymAS/u/4AFuLf3YB2kxTM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qLnX78qtX4ZGXwo70VXa/VBNBF6PZ5WWYwiygEpUyECVc3c4+qKCd/SxSJHJEut4B
-         fhlQp2l2Du0UyZGJw5sUqfOmJKUXBB2GDztsPIN5/buAxj+OrTtnFam3EladqLNjv3
-         bSig1vbZPHU86g2pAFWZwrsDKs2nTdFC8QxVlFX0=
-Date:   Mon, 31 Jul 2023 17:59:14 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Subject: Re: [PATCH v9 08/10] serial: sc16is7xx: add call to get rs485 DT
- flags and properties
-Message-ID: <2023073146-gauntlet-lake-0b77@gregkh>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
- <20230725142343.1724130-9-hugo@hugovil.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C71E61207;
+        Mon, 31 Jul 2023 16:00:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6E6EC433C8;
+        Mon, 31 Jul 2023 16:00:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690819254;
+        bh=/dCet8XmUJipf8WggPxSXVgBhmmfgN+TAydOUhSvMGQ=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=d1zxR5Mk+D5JLrut+8x9jS2F0dxofTZYmGLjEVxMUxurvldI48m3ju9cwhR2ztJiA
+         OT98uB6vyNPpc0+qwEErShKAu49ggw9FqFqYMbDWf1CNXOEJGIflB9dadlzHJ8huI8
+         tidJgVGkVuT1kh23OaO3aCQsXM4M9JFZ7wI3wbYbGL2Zw+B90CV4cwFT2r/rFELzzq
+         KtLzXv+1ZJUIcLfg4QqRXyBiXIavJAwjD7nOGafJRoy+DQ3rHtFTv/hSynSr51cilc
+         ejVha9g2kcDonh0+4tRkQZDNa+8aDVZl26nS2VSE1I8HFAmYWgbpSyQW/VVu/QkhaD
+         ufbxqt6tGMqOw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, - <kernel@puri.sm>,
+        David Heidelberg <david@ixit.cz>
+Cc:     =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230730191742.117013-1-david@ixit.cz>
+References: <20230730191742.117013-1-david@ixit.cz>
+Subject: Re: [PATCH v4] dt-bindings: sound: gtm601: convert to YAML
+Message-Id: <169081925251.69703.15494857199278505179.b4-ty@kernel.org>
+Date:   Mon, 31 Jul 2023 17:00:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230725142343.1724130-9-hugo@hugovil.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-034f2
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -60,15 +60,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 10:23:40AM -0400, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Sun, 30 Jul 2023 22:17:42 +0300, David Heidelberg wrote:
+> Convert GTM601 binding to the YAML format.
 > 
-> Add call to uart_get_rs485_mode() to probe for RS485 flags and
-> properties from device tree.
+> 
 
-Again, you are saying what you are doing, but not why.  I have no hint
-as to if this is a bugfix, or a new features, or something else?
+Applied to
 
-thanks,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-greg k-h
+Thanks!
+
+[1/1] dt-bindings: sound: gtm601: convert to YAML
+      commit: cd8ee8aba1f3b5dd4118dc8cea05b73734983288
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
