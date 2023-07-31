@@ -2,173 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C814768A4D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 05:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85008768A58
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 05:32:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjGaD2p convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 30 Jul 2023 23:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51544 "EHLO
+        id S229495AbjGaDcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 23:32:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbjGaD2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 23:28:42 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0EB1E6F;
-        Sun, 30 Jul 2023 20:28:40 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9888524E225;
-        Mon, 31 Jul 2023 11:28:34 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 31 Jul
- 2023 11:28:34 +0800
-Received: from ubuntu.localdomain (113.72.147.196) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 31 Jul
- 2023 11:28:33 +0800
-From:   Hal Feng <hal.feng@starfivetech.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "Claudiu Beznea" <claudiu.beznea@microchip.com>,
+        with ESMTP id S229437AbjGaDcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 23:32:24 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AFB189;
+        Sun, 30 Jul 2023 20:32:22 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-522294c0d5bso5280543a12.2;
+        Sun, 30 Jul 2023 20:32:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690774341; x=1691379141;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qN7NEm8kJ8Lg4BhAheGJ8bEapl5h32Ub6hisYq5saj8=;
+        b=k9s2U5iYbLF9Q9em+E7+oVYuLwHwh3AmH0cKkLWUSo//TF6EVRN7cYz8ULkqwIHMMk
+         2CZmiqKbXZdWLOfpPO08TQ9+2tk18cMltEYrFNkSgZnkTcKp4PyKW/B4v0kMcpWneP5N
+         Mqmhly+u+N0AwwTNFZ1m7twxiA//DzwdgpWW+muKx9MIvhyBMvJae3Fq49sBSmb2RegU
+         2wXS0hr2HgCBk634Mo1NZMBuuiooiAAMxy/dQ3kTEiVuPEXcaxHetmpQWWJXYm5XzLXy
+         Q6cMKkNYieJGmWS2axFFpPhhzIOHtc2IXrVxfiV5FiAfLUA2VzRCQrd5ZyZVtI2pUtzk
+         x+Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690774341; x=1691379141;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qN7NEm8kJ8Lg4BhAheGJ8bEapl5h32Ub6hisYq5saj8=;
+        b=C3zP5+9HDLnzyEfxG5xJzpxsJz3QQdJiz5zQYH0tMnxYgZjN/mYth+S/tDf/wpmkBL
+         I9uAzYRQmS96xaRNAdamox3R0UGOBtOAOmSLbdjLY0zYaPFSKS5zAvaPoxs/qX8ZFwlw
+         4AF00wFeD/mATwAyfHl9JT1jX57hiaRJJlbd07KoG0pRmiLa+Z1sSvTG1stgc0lYL0A9
+         G8rn+cw0PUEgZI+veZ39BCFGtybShhVT5Gta+H9oJKp1q+MzzQV2ith4pFlYiF4tDh7+
+         FM9Lz197LLZSo2ZpeXBz9lSTcxSikzsfA6085gOj91ySexmjRyx9tkPNTM/yDtjclUTS
+         8LtQ==
+X-Gm-Message-State: ABy/qLaXITlSMXCbMcY7BI0fjtrj5YZzZKVhMBf3J49dH2ede2F5Z69M
+        tEDjnFT/NIMMYLp4bM4ljWRkBCA4voaeltv/1Bg=
+X-Google-Smtp-Source: APBJJlFRYHJwJWavld9Z7LIKd9SdNykbKrJzbQCOcMnNmAKp4Gf7qQUrpy7gt3vIZKJIxZzoya+XNXJtdLXJ2EyeBsc=
+X-Received: by 2002:a17:906:768d:b0:993:ce9d:6fc1 with SMTP id
+ o13-20020a170906768d00b00993ce9d6fc1mr5398653ejm.3.1690774341113; Sun, 30 Jul
+ 2023 20:32:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
+ <20230729134318.1694467-8-keguang.zhang@gmail.com> <2ee2336c-d54f-6fb7-0142-8d0e08cce25b@linaro.org>
+ <CAJhJPsXbW-JkzPTH+fHW3PD9J9+s0_F3Fbs3sb44tC12iTCk-Q@mail.gmail.com>
+In-Reply-To: <CAJhJPsXbW-JkzPTH+fHW3PD9J9+s0_F3Fbs3sb44tC12iTCk-Q@mail.gmail.com>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Mon, 31 Jul 2023 11:32:04 +0800
+Message-ID: <CAJhJPsXT+T7z4Av6tsQX00CAh8p6r-2ypggY+_iDufZhxToAWQ@mail.gmail.com>
+Subject: Re: [PATCH 07/17] MIPS: loongson32: Convert UART platform device to DT
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Add JH7110 PWM-DAC support
-Date:   Mon, 31 Jul 2023 11:28:29 +0800
-Message-ID: <20230731032829.127864-4-hal.feng@starfivetech.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230731032829.127864-1-hal.feng@starfivetech.com>
-References: <20230731032829.127864-1-hal.feng@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.147.196]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PWM-DAC support for StarFive JH7110 SoC.
+On Mon, Jul 31, 2023 at 11:04=E2=80=AFAM Keguang Zhang <keguang.zhang@gmail=
+.com> wrote:
+>
+> On Sun, Jul 30, 2023 at 4:26=E2=80=AFPM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 29/07/2023 15:43, Keguang Zhang wrote:
+> > > Add UART device nodes for Loongson-1 boards,
+> > > and drop the legacy platform devices and data accordingly.
+> > >
+> > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > > ---
+> > >  arch/mips/boot/dts/loongson/loongson1.dtsi    | 54 +++++++++++++++++=
+++
+> >
+> > Same problem - DTS is always separate. It seems you made this mistake
+> > everywhere, so entire patchset needs to be fixed. Keep all DTS - your
+> > base board and extending it - at the end of the patchset and squash it.
+> > There is little point to add new DTS in steps (e.g. first add incomplet=
+e
+> > broken DTS and then immediately fix it... no, instead just add correct
+> > and complete DTS).
+> >
+> Sorry. I thought it would be easier to review for split patches.
+> Thanks for the explanation.
+> Will send v2 with one complete DTS.
 
-Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 49 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 13 +++++
- 2 files changed, 62 insertions(+)
+Hello Thomas,
+May I ask your opinion about the way to delete the obsolete platform device=
+s?
+Should I delete them in one patch? Or in separated patches?
+Thanks!
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index f874d31006a6..98373b743019 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -38,6 +38,33 @@ gpio-restart {
- 		gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
- 		priority = <224>;
- 	};
-+
-+	pwmdac_codec: pwmdac-codec {
-+		compatible = "linux,spdif-dit";
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	sound-pwmdac {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "StarFive-PWMDAC-Sound-Card";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		simple-audio-card,dai-link@0 {
-+			reg = <0>;
-+			format = "left_j";
-+			bitclock-master = <&sndcpu0>;
-+			frame-master = <&sndcpu0>;
-+
-+			sndcpu0: cpu {
-+				sound-dai = <&pwmdac>;
-+			};
-+
-+			codec {
-+				sound-dai = <&pwmdac_codec>;
-+			};
-+		};
-+	};
- };
- 
- &dvp_clk {
-@@ -185,6 +212,12 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&pwmdac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwmdac_pins>;
-+	status = "okay";
-+};
-+
- &spi0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi0_pins>;
-@@ -254,6 +287,22 @@ GPOEN_SYS_I2C6_DATA,
- 		};
- 	};
- 
-+	pwmdac_pins: pwmdac-0 {
-+		pwmdac-pins {
-+			pinmux = <GPIOMUX(33, GPOUT_SYS_PWMDAC_LEFT,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>,
-+				 <GPIOMUX(34, GPOUT_SYS_PWMDAC_RIGHT,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			drive-strength = <2>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 05f843b8ca03..7f508b4475e0 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -512,6 +512,19 @@ tdm: tdm@10090000 {
- 			status = "disabled";
- 		};
- 
-+		pwmdac: pwmdac@100b0000 {
-+			compatible = "starfive,jh7110-pwmdac";
-+			reg = <0x0 0x100b0000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_PWMDAC_APB>,
-+				 <&syscrg JH7110_SYSCLK_PWMDAC_CORE>;
-+			clock-names = "apb", "core";
-+			resets = <&syscrg JH7110_SYSRST_PWMDAC_APB>;
-+			dmas = <&dma 22>;
-+			dma-names = "tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		usb0: usb@10100000 {
- 			compatible = "starfive,jh7110-usb";
- 			ranges = <0x0 0x0 0x10100000 0x100000>;
--- 
-2.38.1
+> >
+> > Best regards,
+> > Krzysztof
+> >
+>
+>
+> --
+> Best regards,
+>
+> Keguang Zhang
 
+
+
+--=20
+Best regards,
+
+Keguang Zhang
