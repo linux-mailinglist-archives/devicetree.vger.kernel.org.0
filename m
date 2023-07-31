@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD2976928C
+	by mail.lfdr.de (Postfix) with ESMTP id AA67676928E
 	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbjGaJ7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:59:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40196 "EHLO
+        id S232425AbjGaJ7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:59:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232604AbjGaJ6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:35 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADFD610D3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:37 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bf1f632b8so443059466b.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:37 -0700 (PDT)
+        with ESMTP id S232623AbjGaJ6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:37 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43477210C
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:39 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99bc0a20b54so705185666b.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690797456; x=1691402256;
+        d=linaro.org; s=google; t=1690797457; x=1691402257;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p3Vi3YksCGCOpys5s2S1isiXjJ58pK8I2do3CJIG8is=;
-        b=qXD0FZMJApl4Mp3Bmbcu1JKQXXzNDllLdrv529BiQqs99pL1pEfemp3T/ZTVBeORKJ
-         iMjJPNgpf0DaYxxpkwu+5hLIWI6Y47Lw2ebBfav9aS40MERd9ZH5ZlwU4H/wa11SaTpM
-         /le8FItPRToM0N/gtmfT2BNlIKfZCTs3eWGkr42uR0hh0BhF0g6W0u5kuYMTlMylhSSs
-         okY3TB1gd/IoPIE/w3GCXNdfqkvdNSc1Daw+LDpMn82Fhw8I02hR7ZjIKsmYkGPFeB3V
-         UVQT7iBtd4G2bhDeLu45mMn7OqLSuvHpwvzF6ob3mlheQGImCyDdinCmMw45BD1QYMsu
-         cdpQ==
+        bh=G4xCUnvnajAMffo2tQXzXco0sqRw4y5MSAi7V6IpqSc=;
+        b=ztFrXwmjIr3RyuCrEofPXVRRQ5k26Vo8kxVM8mq2xIsonEuDi9jI4txDcx15PjOrMq
+         Xneo6ilBVxSAxME/g+XfeuoQctrRuIfpNASpyxNQhhjaQ+49xIZmvXH411JnaxlpxaXE
+         5YP4cay3g2PNHUNC/dKgbtLm8334mjd6al/JpxV13vxYqA8amGHJTCj9vXA7t7BSc3NU
+         ufUcKLlm1j6qjKz+GSO7x+SzkdBhWbF9FB7eJ2IvroOUFucI8AQCYhqvx82W0V/X1ndv
+         C7LLgZCoVD8fiiOWhyVAr1nbsNUgwVXmOt/IATMd26RUgk3nRdY/o4OhuzJOxK80lu3W
+         Ne8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690797456; x=1691402256;
+        d=1e100.net; s=20221208; t=1690797457; x=1691402257;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=p3Vi3YksCGCOpys5s2S1isiXjJ58pK8I2do3CJIG8is=;
-        b=YLeauiu2gNLmfpXNGphHUHv251zFUpMmZZ52VEc/xoL4oKuKO4MktOvMI/nU26TrQf
-         oC675rM+Jdgvrr/qchBKBP+/r1maRhRXoBLvg4FXL/ePgC8zAjrOS3LhvCWmnG41tCzq
-         P+2yk/iSB2WN83RZx68CZS4x7/PommmMLkZIopOU5edK9P1elTj2N1mDkJ1Vz0kpTYvM
-         CNKxrU1NaFIIJPyWJ2AJytQtxSIULNngxoSTTu+LuhPokU9UYevtHTNbsimvFKoYNqAo
-         YYpGbN4BB3EKq16iJu5TDMPOeMDL/bn3Icov+gNrtOrHCnTnk0IoTRElvSxgRvl6QDES
-         Yg6g==
-X-Gm-Message-State: ABy/qLbzXPeZnLzO9K0yVSMfwL+GnhhJj4xhHRh3iNz0L+Pbd9SbT3dA
-        kFgitli8HOy5bUkiB2WTNE6OWg==
-X-Google-Smtp-Source: APBJJlFQZZi4RBD7sSRP3CH9OMsVajRevarlT6gCxGV11wtdzKkHMAmUDGAIaGoJ2+cHAVtBTT5K7g==
-X-Received: by 2002:a17:907:7743:b0:99b:f392:10b0 with SMTP id kx3-20020a170907774300b0099bf39210b0mr6514452ejc.37.1690797456264;
-        Mon, 31 Jul 2023 02:57:36 -0700 (PDT)
+        bh=G4xCUnvnajAMffo2tQXzXco0sqRw4y5MSAi7V6IpqSc=;
+        b=kr85NLnc+eWS0Mp+Cs02u5vkH8Y8zybBR6Kv4LIdaqnFsCuJg85eXvE1tTajMkK0yd
+         qN1Xj9NXuWSx5ISehXXdBYqDHHuAoorkO/txgiK4M/uboo5wo4yrbgHiFVXL0gR1uYHj
+         Rd3KD/on5zgpXBsDyuJZ7W+z8ZItATY1A+RYTwZBpeRiHoXLIwz7FyaCpnXTj7rebt77
+         8k9Q2+T3QEXYaDEvEkJxeKzL22R2P5BqUxk5ZmwuJjmpOYPRvFAz0fUuMkSXF/0Jt4P9
+         jQSwyL38/lsGbeXdro5ULBeYUC+PoKNmegbkpNcfcFftLcRHRutPg2V2Ukxil2M/UXcH
+         lORQ==
+X-Gm-Message-State: ABy/qLZDI6meeKEVZqtvLeki5jsFCEvoMWSuTXvTIZ0KC82ASlm4fDXk
+        lT5b9o+4uzhBthvVDqSMCOQTuw==
+X-Google-Smtp-Source: APBJJlFn3ZlVsvPPiPpm8oX/qFYOcB7wdnVWDdBaGtr/0cKHqgTzV15smjb3dX99cybUxZ0O8Fmz7g==
+X-Received: by 2002:a17:906:518f:b0:99b:ed53:5bff with SMTP id y15-20020a170906518f00b0099bed535bffmr7183670ejk.10.1690797457393;
+        Mon, 31 Jul 2023 02:57:37 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.35
+        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:57:35 -0700 (PDT)
+        Mon, 31 Jul 2023 02:57:37 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -57,16 +57,16 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/8] ARM: dts: samsung: exynos4412-galaxy-s3: switch sound card to audio-routing
-Date:   Mon, 31 Jul 2023 11:57:25 +0200
-Message-Id: <20230731095730.204567-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/8] ARM: dts: samsung: exynos4412-n710x: switch sound card to audio-routing
+Date:   Mon, 31 Jul 2023 11:57:26 +0200
+Message-Id: <20230731095730.204567-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
 References: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,14 +80,14 @@ generic "audio-routing".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../dts/samsung/exynos4412-galaxy-s3.dtsi     | 43 +++++++++----------
- 1 file changed, 21 insertions(+), 22 deletions(-)
+ .../arm/boot/dts/samsung/exynos4412-n710x.dts | 39 +++++++++----------
+ 1 file changed, 19 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-galaxy-s3.dtsi b/arch/arm/boot/dts/samsung/exynos4412-galaxy-s3.dtsi
-index 94122e9c6625..54e1a57ae886 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-galaxy-s3.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4412-galaxy-s3.dtsi
-@@ -173,36 +173,35 @@ &s5c73m3 {
+diff --git a/arch/arm/boot/dts/samsung/exynos4412-n710x.dts b/arch/arm/boot/dts/samsung/exynos4412-n710x.dts
+index 9ae05b0d684c..0a151437fc73 100644
+--- a/arch/arm/boot/dts/samsung/exynos4412-n710x.dts
++++ b/arch/arm/boot/dts/samsung/exynos4412-n710x.dts
+@@ -76,34 +76,33 @@ &s5c73m3 {
  };
  
  &sound {
@@ -99,12 +99,8 @@ index 94122e9c6625..54e1a57ae886 100644
  
 -		"SPK", "SPKOUTLN",
 -		"SPK", "SPKOUTLP",
--		"SPK", "SPKOUTRN",
--		"SPK", "SPKOUTRP",
 +			"SPK", "SPKOUTLN",
 +			"SPK", "SPKOUTLP",
-+			"SPK", "SPKOUTRN",
-+			"SPK", "SPKOUTRP",
  
 -		"RCV", "HPOUT2N",
 -		"RCV", "HPOUT2P",
@@ -121,22 +117,22 @@ index 94122e9c6625..54e1a57ae886 100644
 +			"LINE", "LINEOUT2N",
 +			"LINE", "LINEOUT2P",
  
--		"IN1LP", "MICBIAS1",
--		"IN1LN", "MICBIAS1",
--		"Main Mic", "MICBIAS1",
-+			"IN1LP", "MICBIAS1",
-+			"IN1LN", "MICBIAS1",
-+			"Main Mic", "MICBIAS1",
+-		"IN1LP", "MICBIAS2",
+-		"IN1LN", "MICBIAS2",
+-		"Headset Mic", "MICBIAS2",
++			"IN1LP", "MICBIAS2",
++			"IN1LN", "MICBIAS2",
++			"Headset Mic", "MICBIAS2",
  
 -		"IN1RP", "Sub Mic",
 -		"IN1RN", "Sub Mic",
 +			"IN1RP", "Sub Mic",
 +			"IN1RN", "Sub Mic",
  
--		"IN2LP:VXRN", "MICBIAS2",
--		"Headset Mic", "MICBIAS2",
-+			"IN2LP:VXRN", "MICBIAS2",
-+			"Headset Mic", "MICBIAS2",
+-		"IN2LP:VXRN", "Main Mic",
+-		"IN2LN", "Main Mic",
++			"IN2LP:VXRN", "Main Mic",
++			"IN2LN", "Main Mic",
  
 -		"IN2RN", "FM In",
 -		"IN2RP:VXRP", "FM In";
