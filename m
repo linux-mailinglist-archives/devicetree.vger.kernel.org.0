@@ -2,98 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD70769A1D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC4E769A2A
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:56:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232080AbjGaOvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 10:51:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54884 "EHLO
+        id S231719AbjGaO4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 10:56:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbjGaOvp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:51:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB911E79
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 07:51:44 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qQUFA-0008Qa-6S; Mon, 31 Jul 2023 16:51:32 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qQUF8-0009HZ-J9; Mon, 31 Jul 2023 16:51:30 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qQUF7-009LwZ-L8; Mon, 31 Jul 2023 16:51:29 +0200
-Date:   Mon, 31 Jul 2023 16:51:29 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 01/13] dt-bindings: pwm: rockchip: Document rv1126-pwm
-Message-ID: <20230731145129.mrrkb6tcuvlpmxan@pengutronix.de>
-References: <20230731103518.2906147-1-jagan@edgeble.ai>
- <20230731103518.2906147-2-jagan@edgeble.ai>
+        with ESMTP id S229637AbjGaO4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:56:45 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16DBDB
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 07:56:43 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b9c55e0fbeso62154691fa.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 07:56:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690815402; x=1691420202;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Oa1SB02KtfMLxNE4mkxxs1OYoxXlIjwBI7+LigCTgCc=;
+        b=Bps7HKIGU1d7zGk6EnCBSZB+lUHreffolw38t62M9CWeJ/hAtTcLbWEyRGx0OLdxN+
+         tVMbbmbRF2ohu2WxxLjNYl3IyaP6ok/GnwlqlRN29C3tUtFbSqIks28iNf8Ip0n3TGVQ
+         ZauRAK3cDiIdUD/7Fu+6khTozBYPwXrwsueNQklYPH4vrbltQb4xTuyZ2h2GKYMpFzYh
+         5Q9Lc9qZWNJwsss83IMWvph8fAq0e2bgQavQ2H3qcjE5rf3kzV+sqjYnCqFfs+Lc8znr
+         R2I9f4B8oxB6w1zJ5akEPy0M0Q7S5mHA5OPRYR+cBxdd/K8CBZV/lFEYIJcLPjhl60FZ
+         ahYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690815402; x=1691420202;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oa1SB02KtfMLxNE4mkxxs1OYoxXlIjwBI7+LigCTgCc=;
+        b=YHVTTOgM1XIf7z9A//foBcWtcewTBamlLxnVu5DDgOPwL2BqVyOu6+V37jlS8ZOHGK
+         qNT5as4t+pvk4oYJxSgw/aA2oema87HlnYrxQEBBN2qYHnb6mz1DvzR4UvMcfbh1U7c6
+         RqVlHXOoHD7ArEqGgKyCCM65u6DKadILftIHwi2nhkfOMX7qxmd3jx7Ca8nRMVgjUt9G
+         IfraOeNMpJZv2WHElLqk4abLpTnRpg2lVOO8SezYT9ZcPaV4XS3aeavG4th8uJ8iUwvH
+         U2Yf3tPltyqwoyhxFt8wL26Jm82Oh9hYMq7brERCBMtXEk6kQmZFQep+uLBmOVo3NOVw
+         HgLg==
+X-Gm-Message-State: ABy/qLZlgZn00QY7iUqtvq6ex9Rv7Q04d8QcLd1mBB5pV3P0pZy4N6fg
+        9ojH03MQXOLuKIEhitXp67hMhVLJJ3vJu8mEM/o=
+X-Google-Smtp-Source: APBJJlF7zuWD7Kp6ngSgGXo2OLttXqzIQ2Sxj/NgV2Jy37GYeVH1VK7pokm/jJZBd1ud+kDxL8TYug==
+X-Received: by 2002:a2e:8e92:0:b0:2b9:edcd:8770 with SMTP id z18-20020a2e8e92000000b002b9edcd8770mr138066ljk.43.1690815402023;
+        Mon, 31 Jul 2023 07:56:42 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id u17-20020a1709060b1100b00992bea2e9d2sm6335878ejg.62.2023.07.31.07.56.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 07:56:41 -0700 (PDT)
+Message-ID: <26224f81-9993-0a4c-4c46-91acd1ff5f42@linaro.org>
+Date:   Mon, 31 Jul 2023 16:56:39 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pw7azdqrl3tex3z3"
-Content-Disposition: inline
-In-Reply-To: <20230731103518.2906147-2-jagan@edgeble.ai>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH v3 5/6] ASoC: dt-bindings: mediatek,mt7986-wm8960: add
+ mt7986-wm8960 document
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     =?UTF-8?B?TWFzbyBIdWFuZyAo6buD5Yqg56u5KQ==?= 
+        <Maso.Huang@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "chenxiangrui@huaqin.corp-partner.google.com" 
+        <chenxiangrui@huaqin.corp-partner.google.com>,
+        =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsik=?= 
+        <Allen-KH.Cheng@mediatek.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>, "arnd@arndb.de" <arnd@arndb.de>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
+References: <20230728090819.18038-1-maso.huang@mediatek.com>
+ <20230728090819.18038-6-maso.huang@mediatek.com>
+ <7d70f893-ee75-d355-4b4c-4afe7a72cd7c@linaro.org>
+ <5f794f6d3595e845433aab3c48eb47ec7962c929.camel@mediatek.com>
+ <ab66c8a4-6a5e-651b-8f77-047980ebc238@linaro.org>
+Content-Language: en-US
+In-Reply-To: <ab66c8a4-6a5e-651b-8f77-047980ebc238@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 31/07/2023 10:14, Krzysztof Kozlowski wrote:
+>>>> +  mediatek,audio-codec:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> +    description: The phandle of wm8960 codec.
+>>>> +
+>>>
+>>> How did you implement Rob's comment? Or did you just ignore it?
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> Hi Krzysztof,
+>>
+>> Sorry, I did not mean to ignore Rob's comment.
+>> I waited for some suggestion in mail below, but it seems Rob was a
+>> little busy.
+>>
+>> https://lore.kernel.org/lkml/8c6316e79e40406e4d46709f602dcb14a4c00562.camel@mediatek.com/
+>>
+>> After gentle ping last week and receiving your advice, I thought that
+>> means to send the v3 patch and might discuss dtbingding in v3 series.
+>>
+>> So sorry for misunderstanding it, I'll check the details with Rob in v3
+>> series then refine it in v4.
+> 
+> The problem is that you did not reference in this patch any ongoing
+> discussion and further questions, so comment looks like addressed, while
+> it was not.
+> 
+> Rob said:
+> "in a common schema and reference them "
+> You said:
+> "common part yaml and reference to it"
+> so I think you both agreed on the same.
+> 
+> The advice would be to create common binding which is then referenced by
+> other and your bindings. However if you start doing it, you will notice
+> that it is impossible, because you have conflicting types for
+> "audio-codec", so you cannot have one definition.
+> 
+> This leads to the point - property is probably wrong and you need
+> dai-link with sound-dai property, just like most cards are doing.
 
---pw7azdqrl3tex3z3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+BTW, might be useful for you, just sent:
+https://lore.kernel.org/linux-devicetree/20230731094303.185067-1-krzysztof.kozlowski@linaro.org/T/#t
 
-On Mon, Jul 31, 2023 at 04:05:06PM +0530, Jagan Teki wrote:
-> Document pwm compatible for rv1126 which is fallback compatible
-> of rk3328-pwm group.
->=20
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+Anyway you need dai-links, I think.
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+Best regards,
+Krzysztof
 
-Should this go in via the pwm tree, or together with the other patches
-via rockchip?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---pw7azdqrl3tex3z3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmTHynAACgkQj4D7WH0S
-/k6Oswf+NrRkCSIkCjS0PNm/4XljpGTPt7t/xZod4oajzSRm5rrn5u9xsuToJ/Rw
-maqCge4jIZj81PVgYgBxcL80AS7w8PEHeT3F42RH0Q55eG+rvfdrx31zp8ZYhejO
-YyakgUW1zKinFx26KJYUGWOmqxBty4Kt2vFiTvMpJx2Pe8vWYJAOw/4KcSnveh73
-uudNJPauEVLrz7j7QOxwr0sK6xiJacTjHsfbV0SxH5sW8tUW+6V5WaPwTKEjHwn6
-l8q21z1pOdVJUh/xFTJI/NNf3CkZENPnA4ILEg4SJUF9azMe02kt2mIVESyol/Vs
-UqDbmTn1ZulIygN86BUTCR10n+sCFQ==
-=YcxI
------END PGP SIGNATURE-----
-
---pw7azdqrl3tex3z3--
