@@ -2,163 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF2A5769D16
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 18:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25E0C769D29
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 18:52:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232223AbjGaQqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 12:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48434 "EHLO
+        id S233386AbjGaQwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 12:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjGaQqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 12:46:10 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA7F1989;
-        Mon, 31 Jul 2023 09:46:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=V7LYZHk85S0LI4siidMWcKMqDbXK1bLv/yuz6F1RLm8=; b=Fy0Hz75EHjZzZBRkW56/NraHk5
-        jYw5uhQqXHa0kn5P/EaDN/SYTYybe6vXj2uTSKzQGQUmzpQ04Bs0fWckI/8autDGyBDVmINv7G9m+
-        VWmXLpm32civzImJrr1kQxPurp7pCVODEe73k0eGHGHofLlzNT3k1c0KLPGCsM4cRuwM=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:34026 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qQW1w-0006gy-VD; Mon, 31 Jul 2023 12:46:01 -0400
-Date:   Mon, 31 Jul 2023 12:46:00 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230731124600.39eb8d5c132f9338c2897543@hugovil.com>
-In-Reply-To: <CAL_JsqL8rjwONd6UAitKik0U44BKSD6m8zbachgfq0R9oHBW8w@mail.gmail.com>
-References: <20230721161840.1393996-1-hugo@hugovil.com>
-        <20230721161840.1393996-7-hugo@hugovil.com>
-        <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
-        <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com>
-        <2023072240-supremacy-shallot-a77f@gregkh>
-        <20230724115428.d191186852c0bd0ee0d78398@hugovil.com>
-        <CAL_JsqL8rjwONd6UAitKik0U44BKSD6m8zbachgfq0R9oHBW8w@mail.gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S229998AbjGaQwD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 12:52:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8712AA6;
+        Mon, 31 Jul 2023 09:52:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1939F61230;
+        Mon, 31 Jul 2023 16:52:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E0D0C433C8;
+        Mon, 31 Jul 2023 16:52:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690822321;
+        bh=CGzW4Z4n87oXkmDgD3NYNy1uk7m9r4O9fbpQ0K4fcrw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=JwP2f6UiI/vu1DP9is9j8UII+ounDJXNS96unDEUTuoypnss/KVF645UcDhKT1oX+
+         MxD72lxig3/MfG2acIqu6QYXzcHTRD5Gu2QeJ6BWlTu+W14gikM9dg20Pvkl4iGC+G
+         Wb3fiR6p4u6l0Lw05mRLbxTf3rRvNlY/kN5F1TO9wnosooHIRdQdF2wn+c9Fk0QW8T
+         sEteJiW0DkcJXo8tJiRf+5rIuQbj1/OEKValoXbf/8RXyTqb50vvXO7t4kezgIE4mw
+         /TrUY9WAxRAxGCdWYmP88TLvkiq7acc2xKsWUdoHC2bewk8jBZdMPE/Ua1P2QOVY4t
+         L2Af9fI3xDQMw==
+Date:   Mon, 31 Jul 2023 09:51:59 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Md Danish Anwar <a0501179@ti.com>
+Cc:     MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v12 06/10] net: ti: icssg-prueth: Add ICSSG ethernet
+ driver
+Message-ID: <20230731095159.3b7e3b75@kernel.org>
+In-Reply-To: <8790da4f-1378-410c-f637-f85ca4d34604@ti.com>
+References: <20230727112827.3977534-1-danishanwar@ti.com>
+        <20230727112827.3977534-7-danishanwar@ti.com>
+        <20230728172419.702b4ac0@kernel.org>
+        <8790da4f-1378-410c-f637-f85ca4d34604@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
- GPIO configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jul 2023 09:31:53 -0600
-Rob Herring <robh+dt@kernel.org> wrote:
-
-> On Mon, Jul 24, 2023 at 9:54 AM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> >
-> > On Sat, 22 Jul 2023 17:15:26 +0200
-> > Greg KH <gregkh@linuxfoundation.org> wrote:
-> >
-> > > On Sat, Jul 22, 2023 at 10:47:24AM -0400, Hugo Villeneuve wrote:
-> > > > On Fri, 21 Jul 2023 13:24:19 -0600
-> > > > Rob Herring <robh+dt@kernel.org> wrote:
-> > > >
-> > > > > On Fri, Jul 21, 2023 at 10:19 AM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > > > >
-> > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > > >
-> > > > > > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control lines")
-> > > > > > and commit 21144bab4f11 ("sc16is7xx: Handle modem status lines")
-> > > > > > changed the function of the GPIOs pins to act as modem control
-> > > > > > lines without any possibility of selecting GPIO function.
-> > > > >
-> > > > > Requiring a new DT property is not fixing a kernel regression. You
-> > > > > should be returning the kernel to original behavior and then have a
-> > > > > new DT property for new behavior.
-> > > >
-> > > > Hi Rob,
-> > > > please read the entire patch history starting from V1
-> > > >  and you will understand why this course of action was
-> > > >  not selected.
-> > >
-> > > That's not going to happen, sorry, you need to explain it here, in this
-> > > patch series, why a specific action is being taken over another one, as
-> > > no one has time to go dig through past history, sorry.
-> >
-> > Hi Rob,
-> > I initially submitted a patch to revert the kernel to original
-> > behavior, but it created more problems because the patch was
-> > unfortunately split in two separate patches, and mixed with other non
-> > closely-related changes. It was also noted to me that reverting to the
-> > old behavior would break things for some users.
-> >
-> > It was suggested to me by a more experienced kernel developer to
-> > "suggest a fix, instead of hurrying a revert":
-> >
-> >     https://lkml.org/lkml/2023/5/17/758
+On Mon, 31 Jul 2023 16:49:59 +0530 Md Danish Anwar wrote:
+> There are five error handling cases in xmit().
 > 
-> Do I have to go read this to decipher the justification and reasoning?
-> When Greg says "in this patch series", he means in the commit messages
-> of the patches. You send v9 already and it doesn't have that. The
-> patchset needs to stand on its own summarizing any relevant prior
-> discussions.
+> 1. DMA Mapping the linear buffer -- If we fail to map dma, we will return
+> NETDEV_TX_OK and goto drop_free_skb which will free the skb and drop the packet.
 > 
-> I never suggested doing a revert.
+> 2. Allocating descriptor for linear buffer -- If we fail to allocate descriptor
+> this means it is a occupancy issue and we will goto drop_stop_q_busy which will
+> stop queue and return NETDEV_TX_BUSY.
+> 
+> 3. Allocating descriptor when skb is fragmented. -- If we fail to allocate
+> descriptor when skb is fragmented, we will goto drop_stop_q which will stop the
+> queue, free the descriptor, free the skb, drop the packet and return NETDEV_TX_OK.
 
-Hi Rob,
-I am sorry, but this is exactly what I "deciphered" from your
-original email.
+This one should be BUSY, right? goto free_desc_stop_q_busy
 
-I am trying very hard to understand exactly what you mean, but it is
-not that obvious for me. If something is not clear in my commit message,
-I will try to improve it. But before, let's try to focus on making sure
-I understand more clearly what you want exactly.
+> 4. DMA mapping for fragment. -- If DMA mapping for fragment fails, we will go
+> to drop_free_descs which will free the descriptor, free the skb, drop the
+> packet and return NETDEV_TX_OK.
+> 
+> 5. Tx push failed. -- If tx push fails we will goto drop_free_descs which will
+> free the descriptor, free the skb, drop the packet and return.
+> 
+> We will only stop queue in case 2 and 3 where we failed to allocate descriptor.
+> In case 1, 4 and 5 we are encountering dma mapping error, so for these cases we
+> will not stop the queue.
+> 
+> Below will be my goto labels.
+> 
+> drop_stop_q:
+> 	netif_tx_stop_queue(netif_txq);
+> 
+> drop_free_descs:
+> 	prueth_xmit_free(tx_chn, first_desc);
+> 
+> drop_free_skb:
+> 	dev_kfree_skb_any(skb);
+> 
+> 	/* error */
+> 	ndev->stats.tx_dropped++;
+> 	netdev_err(ndev, "tx: error: %d\n", ret);
+> 
+> 	return ret;
 
-> Obviously, someone still wants the
-> new feature.
-
-I assume that you refer to the "new feature" as what was added in
-the commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control
-lines")?
-
-Because I did not add a "new feature" myself, I simply restored (or
-want to restore) what was working before commit 679875d1d880
-(restore GPIO pins as GPIO functions).
-
-I will wait for your clarification on this, and answer your other
-comments after.
-
-Hugo.
-
-
-> The issue is a new feature was added to the kernel, but
-> you are requiring a DT change to platforms NOT using the feature.
-> Make
-> the platforms wanting the new feature to need a DT change. That's
-> still not great, but it's much better to affect new platforms rather
-> than old, stable platforms. The period of time that regresses is much
-> smaller (a few kernel releases vs. years potentially). Of course, if
-> it's just those 3 platforms and their maintainers are fine with
-> needing this DT change, then that works too. But there's no evidence
-> here that they are okay with it. You didn't even do the update of the
-> dts files and just left them broken.
+free_desc_stop_q_busy:
+ 	prueth_xmit_free(tx_chn, first_desc);
+> drop_stop_q_busy:
+> 	netif_tx_stop_queue(netif_txq);
+> 	return NETDEV_TX_BUSY;
