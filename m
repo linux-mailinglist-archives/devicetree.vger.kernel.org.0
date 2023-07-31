@@ -2,122 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5852976A13C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 21:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B39976A13E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 21:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjGaT2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 15:28:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57144 "EHLO
+        id S229905AbjGaT3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 15:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbjGaT2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 15:28:41 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300491982;
-        Mon, 31 Jul 2023 12:28:39 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id B9E253200929;
-        Mon, 31 Jul 2023 15:28:34 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 31 Jul 2023 15:28:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
-        1690831714; x=1690918114; bh=21+XkpRUbLZeIKu442d4wnN+PugW/pbxjsI
-        iw4nwl6s=; b=HSLUgxtRyDJ3TBxG7lOWEX74r9gkMIVidtdkMmbNtWe6pS++Wj8
-        2+uBak2i0yJcVxT2S3mwD/iRi2XsmoV3OgxVT4RFvIsBNoBHR8nFFnAwQ8gYaZeI
-        5kC3AkFxbCFf5gSOMAB/FOowr9fKr/8acteguNjxtwvTYO3kxH7jk5qYGf5IOoCy
-        qiKB5MDEIIMqPx/D0Lg9yZCofKzx/4iFGDf+wAOWlHk+Rh3Fq/TpvBsa3K1lJW8H
-        1dIChU/d7137/z1IEkVR7RIzSutLC/77j+REXhRQwiiKFQSa7rjik9RNPe9hGXxD
-        SA2gCRA4SUlP98/SDSVQuOj54SQ/FvOgFWQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-        1690831714; x=1690918114; bh=21+XkpRUbLZeIKu442d4wnN+PugW/pbxjsI
-        iw4nwl6s=; b=kE/jvzz99/pNxixJimgFSalnUt9k1Nl9+jEGgda8lPZcdDSGjmB
-        WkUKUn0NIlLO8ckItJFXQW7XZyZVKZU1Jw+uhsbSaaVn/5CC3Irk1Oj7yW0J0Fno
-        sce0bGtzgx6xu4L3e6gCqpSPZNNwHvcq5zkv3UWOk/Zp0BsYlBykwMewa3Npc9tM
-        B+tBlPqxAFZpx0wvgtN9Ffp81JgLfKq8WGKouzBlTn6GTfdRbNzFkt1ui1BPpmsR
-        xg3Yx8wUmX5X+eUUyMyGtVNRus0JgZaAU06bL9akJPWVYOHdWIQOGpa5JI5m74Ry
-        aKAVFOkiN9ZHSvVw5J+Fi4DcuVl1iYuZSNw==
-X-ME-Sender: <xms:YAvIZGZbAr3tIwZZdo3m5br1FpKey5bfxtoikAPFsCqKEfIG7PLlfg>
-    <xme:YAvIZJaqHJZ6iDEsg-1-zD1lESh9EMfKKQlRwL_Rb7bxwq6C-QUQX5I4vOy6aBtr-
-    skCy5Vf46cw2tjtHUs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrjeeggdduudefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:YAvIZA--H_mj92HwTymatoWq4T4xIQAuozShgGXezVEDFE8DAm5cDw>
-    <xmx:YAvIZIrS_BMAmuajwOwrQeVSvT9fK6BVa6sxIXlyyb-zs5IVWXE_cQ>
-    <xmx:YAvIZBplSaciC4t2M9551OFsq9-Zw8PJhB2uUG38cfw1lzVzth2Kjw>
-    <xmx:YgvIZPiC-y-lEYLDHJdeKcNuOGyGiwG8OC0RxV_q0fxw7R_JcXusgw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id AACC3B60089; Mon, 31 Jul 2023 15:28:32 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-592-ga9d4a09b4b-fm-defalarms-20230725.001-ga9d4a09b
-Mime-Version: 1.0
-Message-Id: <58500dc7-af1b-4edb-bb2b-93be454ec151@app.fastmail.com>
-In-Reply-To: <CAAhV-H7jVp2fX5Rosd8YSj_6oFdmsu5iHsBmYH_8iX2qan7r+w@mail.gmail.com>
-References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
- <20230728-cornball-preacher-a7e4644fcbef@wendy>
- <CAAhV-H5cfGZLvThzu_mBOphGJeUSFAu_4nZvGNFJqF5++DN2OA@mail.gmail.com>
- <20230728-unedited-thank-366462ab471d@wendy>
- <CAAhV-H7jVp2fX5Rosd8YSj_6oFdmsu5iHsBmYH_8iX2qan7r+w@mail.gmail.com>
-Date:   Mon, 31 Jul 2023 21:28:11 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Huacai Chen" <chenhuacai@kernel.org>,
-        "Conor.Dooley" <conor.dooley@microchip.com>
-Cc:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Jianmin Lv" <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        "Liu Peibao" <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, "Liu Yun" <liuyun@loongson.cn>,
-        "WANG Xuerui" <kernel@xen0n.name>
-Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231180AbjGaT27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 15:28:59 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0961BCD
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:28:54 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f954d7309fso6052520e87.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:28:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690831732; x=1691436532;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=82BusmWAADmtk7vv48/FxzoLHr+P/oFf4P79sHOkxSE=;
+        b=zhyVK7X4MRijHbYwL4eu/uxDqZ1gN3Iflk6AV3zbh7XI2sAoeXyS6qUGvUp3V4+VVB
+         Hh2VVzZfTy9wiLP8265zZ+V6jTzhsHIp1NNWxpfYJvxFD0zuQSmISFe88RsS56p2yTuZ
+         +d8ciMpYDMe+xyfIBXI1whD9PaTPR22KXyT3VEiQ+9v2MAxLaFguBkeQBb0WlF7zfpVH
+         UHPtXtOYhKO+vYd3EThIrZgTX2DtBl6OiQwb6SbG2JHg0PwSsBXS5w7xhE30NWl7Jc8c
+         m4TmshM8Fh0AMJj6xWbqiVKvdCWl7zR5/B7gmIgdRqmx4jVv792o7N1E/eLo3KNtMZgo
+         wvOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690831732; x=1691436532;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=82BusmWAADmtk7vv48/FxzoLHr+P/oFf4P79sHOkxSE=;
+        b=DXyzBxozSulRQlEMWvTGWWR1urM1lzCxqn4Tu5pVqU1SzZkiEAN6i5fhUyx79HkTCd
+         kwbi5fCSK9yolW3izuLJ6fUMCCHGMF0xebpetguaonU/ggvsjvHtKZumg+y+rr91w9sm
+         c67G6fuQZfgYyEglEfe93QfoqbQ/9ASVc+MyVoaC+SAQe0MxzdgWNlkHfULTz82MuUkK
+         DryHkXB9nc5nkle6FM4ajf5/GGZp4l4PkEQJFjpaYKBRgYQoIQMvpeydlfruVlCSyADM
+         NSc39hPhd/bhJFqWvH8+QD5d02REg8ScIGjA+nmVCk7pH5uuZqG4X+7mB0YX1kPIRydD
+         g8KA==
+X-Gm-Message-State: ABy/qLYNOqFHE6ITMhwhegOwy2xX4GNlfme7XGKNV2UBagJcMy+qIX68
+        TwbbjYWOw1UOnoLFoHL2Wm2PaLZS6Re/dbFwxgt8kg==
+X-Google-Smtp-Source: APBJJlHSK8AD42fnHHC2YDb9XVqrJQVlsbQchwi69MHau1245gZJ4uLblbI2zeBcLBo3g4zHj/pWXg==
+X-Received: by 2002:a19:654e:0:b0:4f8:6831:fd70 with SMTP id c14-20020a19654e000000b004f86831fd70mr218803lfj.3.1690831732629;
+        Mon, 31 Jul 2023 12:28:52 -0700 (PDT)
+Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
+        by smtp.gmail.com with ESMTPSA id u7-20020ac248a7000000b004fba6f38f87sm2190572lfg.24.2023.07.31.12.28.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 12:28:52 -0700 (PDT)
+Message-ID: <a6adbeae-eb73-9941-55a6-8df60d5a42a4@linaro.org>
+Date:   Mon, 31 Jul 2023 21:28:51 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/13] arm64: dts: qcom: sm8450: switch PCIe QMP PHY to
+ new style of bindings
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
+ <20230731105759.3997549-13-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230731105759.3997549-13-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 31, 2023, at 16:13, Huacai Chen wrote:
-> On Fri, Jul 28, 2023 at 6:18=E2=80=AFPM Conor Dooley <conor.dooley@mic=
-rochip.com> wrote:
+On 31.07.2023 12:57, Dmitry Baryshkov wrote:
+> Change the PCIe QMP PHY to use newer style of QMP PHY bindings (single
+> resource region, no per-PHY subnodes). As a part of this conversion also
+> change the "refgen" name to more correct "rchng".
+Usually that's dodgy, but since this commit aligns things with
+bindings, I'll allow it.
 
->>
->> Perhaps that someone is you, or maybe it is Yinbo, up to you guys to
->> decide :)
-> I'm a "merge hater" and "rebase lover", so I think it is better that
-> Arnd picks up these patches to the soc tree directly. But if
-> necessary, I can also create a "soc-loongson-next" branch in my tree
-> and then send PR to Arnd.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Separate patches are fine for a short series, it doesn't have
-to be a pull request, but do make sure to send it to
-soc@kernel.org after review is complete so I'll be sure to
-take care of it in patchwork, I otherwise skip a lot of
-patches as I expect them to be picked up into a platform
-specific tree first.
+Konrad
 
-Also, if this ends up being a genpd driver, then patches
-after 6.6-rc1 need to go through Ulf's tree instead, not
-the soc tree.
-
-      Arnd
