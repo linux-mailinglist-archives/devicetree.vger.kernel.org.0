@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691077699DB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C247699EF
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231173AbjGaOn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 10:43:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50246 "EHLO
+        id S232730AbjGaOoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 10:44:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231913AbjGaOn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:43:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E459F18E;
-        Mon, 31 Jul 2023 07:43:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 835BC61187;
-        Mon, 31 Jul 2023 14:43:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D868C433CB;
-        Mon, 31 Jul 2023 14:43:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690814605;
-        bh=ZZP/+vM0qz6EaB+8dhpI2Dpi6RMKi1QnNhcTct6HcJc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gcf81MxHKfKQ6cb1/4LQVxpQJQBDyR9UMg13U+PabS/04OLLUefmHt1dU84ssOZZ9
-         c0d2AZj+FB2qTva5iWdNN2E2AnFwsvtEv2Ks3VIQVYigWOnFqi8McciDtMf9PLGZ6M
-         E7L790xhMnUuSiTkRqelk95M70e9aKxn9e36LUlS8rJrhYMm0ZfWUxDKfAz65ycs4a
-         Yh9WU014M9UDp6ZN2WSStBAcAdiA4qFE270JVmBfnzxtgCdX8k3+ni8PhdGty4vieM
-         iYEXJaLGPnQkoKYur2AJgZnuT44dfJ5BZ1fdXMvd/eCtycaMLqAzSXuqnMchXyUc2W
-         prELTN76RjOsw==
-Received: (nullmailer pid 2936636 invoked by uid 1000);
-        Mon, 31 Jul 2023 14:43:21 -0000
-Date:   Mon, 31 Jul 2023 08:43:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rohit kumar <quic_rohkumar@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-mediatek@lists.infradead.org,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rao Mandadapu <srivasam@codeaurora.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 07/12] ASoC: dt-bindings: samsung,tm2: use common sound
- card
-Message-ID: <169081460128.2936591.465135796589060685.robh@kernel.org>
-References: <20230731094303.185067-1-krzysztof.kozlowski@linaro.org>
- <20230731094303.185067-8-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232812AbjGaOo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:44:29 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C45711C;
+        Mon, 31 Jul 2023 07:44:25 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 36VD2OcO002849;
+        Mon, 31 Jul 2023 10:44:22 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3s65y9bpdc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 10:44:22 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 36VEiL8X022831
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Jul 2023 10:44:21 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 31 Jul 2023 10:44:20 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 31 Jul 2023 10:44:20 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 31 Jul 2023 10:44:20 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.194])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 36VEi8M3007605;
+        Mon, 31 Jul 2023 10:44:10 -0400
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v2] dt-bindings: iio: admv1014: make all regs required
+Date:   Mon, 31 Jul 2023 17:44:04 +0300
+Message-ID: <20230731144404.389255-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230731094303.185067-8-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 5iyFEbzMSbBHYr3-uhIitBIJQ2Ndhrvq
+X-Proofpoint-GUID: 5iyFEbzMSbBHYr3-uhIitBIJQ2Ndhrvq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-31_07,2023-07-31_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 spamscore=0 suspectscore=0 mlxlogscore=999
+ clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2306200000 definitions=main-2307310131
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,18 +72,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Make the regulators required in the dt bindings.
 
-On Mon, 31 Jul 2023 11:42:58 +0200, Krzysztof Kozlowski wrote:
-> Reference the common sound card properties and deprecate the
-> custom "samsung,audio-routing" in favor of generic one.  This allows to
-> remove "model" property and make the binding closer to other sounds
-> cards.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/sound/samsung,tm2.yaml   | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
-> 
+Despite the fact that the datasheet is not explicit enough, all the
+specifications of the part are built around these pins being supplied.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+changes in v2:
+ - improve commit description.
+ .../devicetree/bindings/iio/frequency/adi,admv1014.yaml   | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+index ab86daa2c56e..8e4c5ff0da14 100644
+--- a/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+@@ -103,6 +103,14 @@ required:
+   - clocks
+   - clock-names
+   - vcm-supply
++  - vcc-if-bb-supply
++  - vcc-vga-supply
++  - vcc-vva-supply
++  - vcc-lna-3p3-supply
++  - vcc-lna-1p5-supply
++  - vcc-bg-supply
++  - vcc-quad-supply
++  - vcc-mixer-supply
+ 
+ allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+-- 
+2.41.0
 
