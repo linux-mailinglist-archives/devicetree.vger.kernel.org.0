@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B4D276920B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54CF476920F
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:44:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbjGaJoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59286 "EHLO
+        id S232396AbjGaJoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:44:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232035AbjGaJnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:43:49 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22976E5D
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:43:32 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5221f3affe4so5795863a12.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:43:32 -0700 (PDT)
+        with ESMTP id S232403AbjGaJn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:43:58 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3692519AA
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:43:36 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe28e4671dso2435672e87.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690796611; x=1691401411;
+        d=linaro.org; s=google; t=1690796614; x=1691401414;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nDlAiDCsa5OyQV1o1rM++WZe4Dne9dcJk7rWwMzlcwg=;
-        b=uoOLAF+GuBMic8HTce18DnIFS64ebzdbM2EqcooL5fF8d9NfvcCA2EsZ9DH2ZW+2vq
-         JAp06pifF/KwIrU7D2KX8hkW4YFSelrfKCthdZrMTpunL77cpbWyXm7pOLULH0GbcxsX
-         xiGijdmOXAIqny29Ln1PeOYEQvyoBdFfNos/61um7aaWB8N4/9CaNnAQ+vDzK86Ca0+i
-         8xVL7FLjTyEhrNWZ6/XSYwCLys8HXLJzXe9pUTeonmVyQjCleDAUC2I8tt4UfyKx/WJh
-         RPgBvG90IsjMLgdDH68+yzCieqA443GpBQOUDy+dJbCx0b2NhnHhyMdTyccm7P4UxJRt
-         7VFw==
+        bh=HYK3gBdbZNa0sNOQK67Ss/5e2crqIr7FWYCpvQqQW+g=;
+        b=vGH2+BfyMZGVx2Mz2PghzNpH2Lq5fZhfgnQWWX6qIyUW7F+xe7yVIUgCvVGyO2jckw
+         IhVxKo6jzyu9LgUCN+ZkGVOY3UHU4c4kbWcOCmwgeznYnO1nOX9iM1Y3SavG9vo56r1f
+         nn7SRqa4w7Ohzz1EhhcN7Yn4waZCQTbIO24AlLB/qebcEymJ5BDEAUtGPxbKWlpvi1WV
+         PPsNZXmmo8fZyOp4mM3g+ki5WCAgos85P6XQHdI3mYj/xUUWdl8B4HGsKc4k8TrR3JXv
+         cgvoMuxzaih01U5doR1E2cYbIexG8RsB0ECGoC4deTSNRX89YVXAOyf5eX+pNR9Kz+7X
+         dYrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690796611; x=1691401411;
+        d=1e100.net; s=20221208; t=1690796614; x=1691401414;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nDlAiDCsa5OyQV1o1rM++WZe4Dne9dcJk7rWwMzlcwg=;
-        b=YLx0B1Yia45cuOUQr/WpmSHRvLdCsAG1deFL6AvK89BKDVi1UMGfZ2JLHreO5GEDMj
-         eP3qCZa50E6RyDP7l2tkeBbM7zhMNBkp5ENToOUyQeSE/xEY7V0MC3+TRym0b0UuhMrU
-         EvLzBmTUqXatdRzW/B47nurRBXNfTCO2mWeDOR0Br2+L1/mXFJgY4kxzgiGCGnLALKA4
-         r0b3od5u72ZEhsUldi0aXjTNnZ2+oSI/ozV9/g8f8wAYAsQz6snjnBrcfBE6uKnsGdP5
-         uL9U3AkD2xbMgLr3Jw5K+sdP477gc3b+MZ1lsNpXymMNma85K0oWSKM4iELpIwLngYQa
-         ywrw==
-X-Gm-Message-State: ABy/qLZcJeKnKx5Jignlk5GQn1aL+ylCYlP4qI8m1Ima7nMeezkkdmag
-        U0edgMu7esN3e/brPUrw1uYocA==
-X-Google-Smtp-Source: APBJJlHPZE8l2UiavjYohAlal1BncG7+low027lOhN5gE0MMRSv0AOJLmfRkvZE/XcvYn+EHfGTb/A==
-X-Received: by 2002:a17:907:2c77:b0:993:d75b:63ea with SMTP id ib23-20020a1709072c7700b00993d75b63eamr5408717ejc.16.1690796610988;
-        Mon, 31 Jul 2023 02:43:30 -0700 (PDT)
+        bh=HYK3gBdbZNa0sNOQK67Ss/5e2crqIr7FWYCpvQqQW+g=;
+        b=bLsegaxU8pHgFXrU6W6NQG6THvUjbFQeVqvgpysjipFO0q8f6Bc1pHT1xORqp4AgtV
+         f8o5lhaXAfuuL+I3Bb8yRCCsj9sjjHslEJM2yu8U6lUW/pR+siAjuYvhJl3i5iDNc8Ru
+         Gv8ezNFAN9jdOMqI0++hFeuVjH14TV+46qUbhMrgtQua7dcro2P5hfehUDVX/fDNyTED
+         zSiXl/bZcclB/L4l08WnShbOfObMxqESHfShzfzqAVOpf9VCeM0Ya21IvTezzTv7SRnA
+         Zt7ZJhIjRirUEJ4w0C+AKnCLpjKKfNLaiusxxytb9VmpQ3UzbrEb4NZQSP6tckT80Vl/
+         Hx7A==
+X-Gm-Message-State: ABy/qLbWZNk9XxBZwxq6qpvT1jZl6Fke+/3Blq7yXY+IL/BuIxaQ7hDM
+        vFPR01qV0cXIj4poA/7qXJTQRQ==
+X-Google-Smtp-Source: APBJJlFi4tF2DDSDAGSo3/0U9Umv+lZh1Ow6pAepScqbXZ2BXO/rwOwioy/FJVCRSkz8wfIlGQX0uQ==
+X-Received: by 2002:a05:6512:2399:b0:4f8:77f1:299a with SMTP id c25-20020a056512239900b004f877f1299amr6925105lfv.42.1690796613836;
+        Mon, 31 Jul 2023 02:43:33 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id z17-20020a170906815100b0099bcdfff7cbsm5867547ejw.160.2023.07.31.02.43.28
+        by smtp.gmail.com with ESMTPSA id z17-20020a170906815100b0099bcdfff7cbsm5867547ejw.160.2023.07.31.02.43.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:43:30 -0700 (PDT)
+        Mon, 31 Jul 2023 02:43:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -78,16 +78,16 @@ To:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 07/12] ASoC: dt-bindings: samsung,tm2: use common sound card
-Date:   Mon, 31 Jul 2023 11:42:58 +0200
-Message-Id: <20230731094303.185067-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 08/12] ASoC: samsung: odroid: use of_property_present to check for property
+Date:   Mon, 31 Jul 2023 11:42:59 +0200
+Message-Id: <20230731094303.185067-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230731094303.185067-1-krzysztof.kozlowski@linaro.org>
 References: <20230731094303.185067-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -96,71 +96,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reference the common sound card properties and deprecate the
-custom "samsung,audio-routing" in favor of generic one.  This allows to
-remove "model" property and make the binding closer to other sounds
-cards.
+"samsung,audio-widgets" and "samsung,audio-routing" are not boolean
+properties, thus more appropriate is to use of_property_present() to
+check if they are present.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/sound/samsung,tm2.yaml   | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ sound/soc/samsung/odroid.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2.yaml b/Documentation/devicetree/bindings/sound/samsung,tm2.yaml
-index 491e08019c04..760592599143 100644
---- a/Documentation/devicetree/bindings/sound/samsung,tm2.yaml
-+++ b/Documentation/devicetree/bindings/sound/samsung,tm2.yaml
-@@ -10,6 +10,9 @@ maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
-   - Sylwester Nawrocki <s.nawrocki@samsung.com>
+diff --git a/sound/soc/samsung/odroid.c b/sound/soc/samsung/odroid.c
+index a5442592bde4..1743bd55ba1a 100644
+--- a/sound/soc/samsung/odroid.c
++++ b/sound/soc/samsung/odroid.c
+@@ -223,14 +223,14 @@ static int odroid_audio_probe(struct platform_device *pdev)
+ 	if (ret < 0)
+ 		return ret;
  
-+allOf:
-+  - $ref: sound-card-common.yaml#
-+
- properties:
-   compatible:
-     const: samsung,tm2-audio
-@@ -32,6 +35,8 @@ properties:
-       being the connection's source; valid names for sources and sinks are the
-       WM5110's and MAX98504's pins and the jacks on the board: HP, SPK, Main
-       Mic, Sub Mic, Third Mic, Headset Mic.
-+      Deprecated, use audio-routing.
-+    deprecated: true
-     $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+-	if (of_property_read_bool(dev->of_node, "samsung,audio-widgets")) {
++	if (of_property_present(dev->of_node, "samsung,audio-widgets")) {
+ 		ret = snd_soc_of_parse_audio_simple_widgets(card,
+ 						"samsung,audio-widgets");
+ 		if (ret < 0)
+ 			return ret;
+ 	}
  
-   i2s-controller:
-@@ -44,20 +49,15 @@ properties:
-   mic-bias-gpios:
-     description: GPIO pin that enables the Main Mic bias regulator.
- 
--  model:
--    description: The user-visible name of this sound complex.
--    $ref: /schemas/types.yaml#/definitions/string
--
- required:
-   - compatible
-   - audio-amplifier
-   - audio-codec
--  - samsung,audio-routing
-+  - audio-routing
-   - i2s-controller
-   - mic-bias-gpios
--  - model
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-@@ -70,7 +70,7 @@ examples:
-         audio-amplifier = <&max98504>;
-         mic-bias-gpios = <&gpr3 2 GPIO_ACTIVE_HIGH>;
-         model = "wm5110";
--        samsung,audio-routing = "HP", "HPOUT1L",
-+        audio-routing = "HP", "HPOUT1L",
-                                 "HP", "HPOUT1R",
-                                 "SPK", "SPKOUT",
-                                 "SPKOUT", "HPOUT2L",
+-	if (of_property_read_bool(dev->of_node, "samsung,audio-routing")) {
++	if (of_property_present(dev->of_node, "samsung,audio-routing")) {
+ 		ret = snd_soc_of_parse_audio_routing(card,
+ 						"samsung,audio-routing");
+ 		if (ret < 0)
 -- 
 2.34.1
 
