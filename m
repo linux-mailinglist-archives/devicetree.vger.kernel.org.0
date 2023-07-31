@@ -2,53 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72ACD769AFC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:43:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1160769B78
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:55:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231510AbjGaPnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:43:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52462 "EHLO
+        id S232960AbjGaPzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 11:55:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbjGaPnD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:43:03 -0400
+        with ESMTP id S232948AbjGaPzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:55:39 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67601E0;
-        Mon, 31 Jul 2023 08:43:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4687E199E;
+        Mon, 31 Jul 2023 08:55:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 042A0611A5;
-        Mon, 31 Jul 2023 15:43:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFBFDC433C7;
-        Mon, 31 Jul 2023 15:42:59 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3ED3B611E4;
+        Mon, 31 Jul 2023 15:55:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E5CDC433C7;
+        Mon, 31 Jul 2023 15:55:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690818181;
-        bh=/W2XVVZ70Suilz4XvS7nOUajHcrXgB3wWG6Dueczvec=;
+        s=k20201202; t=1690818931;
+        bh=NpBtSIJSQAMZgop0+UrbZFjO72hykmWioT0INVInNzM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=G7a4tQ+VUMK3V3PwL5NEu/9uYkedTQ3kVuTjAYB3miHf3Y7eZ5vTngYi+6MQ7LVLX
-         qGPG9FmZoWF3PVEN35T3Gn4D+q+D6p49dqaByDVjBaxFlAiuouikbN/SAmhflwJFuO
-         tCbVVda20TQUHk0nsN9vOnIyKWqrrerK7ghpTzSn3YgsgZnKD/5WekLN8zwNNLClxc
-         HiAbuVMCIa0ceP9b3j9L4qDHTvfpGvOCoiL10KyOUzVICTm7ESKMw+pTYdEUwCOv/X
-         RX9qWAuJguSrFfE0rb3WTG/Zkpp7au75bKBX9fyB6Khbh0wg9poiBgumU1UEe8yKnx
-         0TsODjJipaI0w==
-Date:   Mon, 31 Jul 2023 16:42:57 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 2/2] dt-bindings: usb: ci-hdrc-usb2: Fix
- clocks/clock-names maxItems
-Message-ID: <20230731-snide-unrented-45886c0317c7@spud>
-References: <20230731144422.1532498-1-festevam@gmail.com>
- <20230731144422.1532498-2-festevam@gmail.com>
+        b=Xsiktcq6yFo8bOa1grhEAGYy7DsiCxGQ61akQuSRbSwgdbkw9u2hCxXeagc3bSYfW
+         UxwX+nPP9ioKXtvf/dOVtbUtbW2QUKfnDjPwdLPZ9Yj03LIV2NnploqVk+yNOSQKo3
+         lIn23gUH61k3GeZ5aAm5B6WjRfJtwyxQcnJQUrOwTKIbGN3u24EsVzIOF4eQBSnCt9
+         LeW53R+OyWgIL3cnlrgbfVVFuoeW1fiusxzu2NwTtIEErbXofC/yCejdXWSm/BHL3P
+         Ynnp4jVgwfx1aj7I1kiGCuh2tIXDsSltWmnH+32lJC8m8QqxE3Vavb8Hx4QTLfD1n4
+         zSSrN7Jy0bO2Q==
+Date:   Mon, 31 Jul 2023 23:43:52 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     guoren <guoren@kernel.org>,
+        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org,
+        Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v10 3/6] riscv: mm: dma-noncoherent: nonstandard cache
+ operations support
+Message-ID: <ZMfWuHPdcHuIeUHQ@xhacker>
+References: <20230702203429.237615-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230702203429.237615-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <ZMZ6XB6gX2kFd/Nt@xhacker>
+ <CAJM55Z8vF8_xq0QyByLUGM2W-8m6R-_6SdOFdLETV7J-yo5DMQ@mail.gmail.com>
+ <92c00ddb-e956-4861-af80-5f5558c9a8f5@app.fastmail.com>
+ <CAJF2gTTRHzT+CEtb1LVYdfCorVUdLvCh_eMxrmC=xjdQ_JS6Sg@mail.gmail.com>
+ <8b3466e4-a295-4249-bd05-2edbf7b3f6e3@app.fastmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zYizTsKi2BEF7P6Z"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230731144422.1532498-2-festevam@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8b3466e4-a295-4249-bd05-2edbf7b3f6e3@app.fastmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -59,35 +79,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 31, 2023 at 07:39:30AM +0200, Arnd Bergmann wrote:
+> On Mon, Jul 31, 2023, at 02:49, Guo Ren wrote:
+> > On Mon, Jul 31, 2023 at 4:36 AM Arnd Bergmann <arnd@arndb.de> wrote:
+> >>
+> >> On Sun, Jul 30, 2023, at 17:42, Emil Renner Berthing wrote:
+> >> > On Sun, 30 Jul 2023 at 17:11, Jisheng Zhang <jszhang@kernel.org> wrote:
+> >>
+> >> >> > +
+> >> >> >  static inline void arch_dma_cache_wback(phys_addr_t paddr, size_t size)
+> >> >> >  {
+> >> >> >       void *vaddr = phys_to_virt(paddr);
+> >> >> >
+> >> >> > +#ifdef CONFIG_RISCV_NONSTANDARD_CACHE_OPS
+> >> >> > +     if (unlikely(noncoherent_cache_ops.wback)) {
+> >> >>
+> >> >> I'm worried about the performance impact here.
+> >> >> For unified kernel Image reason, RISCV_NONSTANDARD_CACHE_OPS will be
+> >> >> enabled by default, so standard CMO and T-HEAD's CMO platform's
+> >> >> performance will be impacted, because even an unlikely is put
+> >> >> here, the check action still needs to be done.
+> >> >
+> >> > On IRC I asked why not use a static key so the overhead is just a
+> >> > single nop when the standard CMO ops are available, but the consensus
+> >> > seemed to be that the flushing would completely dominate this branch.
+> >> > And on platforms with the standard CMO ops the branch be correctly
+> >> > predicted anyway.
+> >>
+> >> Not just the flushing, but also loading back the invalidated
+> >> cache lines afterwards is just very expensive. I don't think
+> >> you would be able to measure a difference between the static
 
---zYizTsKi2BEF7P6Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I read this as: the cache clean/inv is so expensive that the static
+key saving percentage is trivial, is this understanding right?
 
-On Mon, Jul 31, 2023 at 11:44:22AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam  <festevam@denx.de>
->=20
-> imx35.dtsi has three USB clocks. Adjust the maxItems to fix the following
-> schema warnings:
->=20
-> imx35-eukrea-mbimxsd35-baseboard.dtb: usb@53ff4400: clock-names: ['ipg', =
-'ahb', 'per'] is too long
+this could be measured by writing a small benchmark kernel module
+which just calls cache clean/inv a buf(for example 1500Bytes)in a loop. 
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---zYizTsKi2BEF7P6Z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMfWgQAKCRB4tDGHoIJi
-0vLdAQDgMhOyofofEdKvAkLRXrSxJqb8QUtFomnfYQ2ja/DZXQEA2vtKKUOmTqIs
-6ZCBGACUuAQlmXC6rdA2d2u0/RJpRQ0=
-=MpVH
------END PGP SIGNATURE-----
-
---zYizTsKi2BEF7P6Z--
+> >> key and a correctly predicted branch on any relevant usecase here.
+> > Maybe we should move CMO & THEAD ops to the noncoherent_cache_ops, and
+> > only keep one of them.
+> >
+> > I prefer noncoherent_cache_ops, it's more maintance than ALTERNATIVE.
+> 
+> I think moving the THEAD ops at the same level as all nonstandard
+> operations makes sense, but I'd still leave CMO as an explicit
+> fast path that avoids the indirect branch. This seems like the right
+> thing to do both for readability and for platforms on which the
+> indirect branch has a noticeable overhead.
+> 
+>     Arnd
