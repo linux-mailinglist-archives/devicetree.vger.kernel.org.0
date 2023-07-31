@@ -2,99 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A0C76A045
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2604F76A057
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbjGaSXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 14:23:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51150 "EHLO
+        id S229758AbjGaS0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 14:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbjGaSXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:23:19 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A6319AC
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 11:23:16 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99bcc0adab4so760879966b.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 11:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690827794; x=1691432594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rf2SueqzGQo0vJNgUag9FW9PB32GASllyVQGKBWgKls=;
-        b=5dLyn4WKWw7B3rxWFFir/LC1tRlLJAoVZpvvQdLTEpU8+nwbw8vVlqMnf/IwuBFgj0
-         d2v2k7swJJ4fJ5Q7P7F4Zmz23MLi9vA98/kr0qQpd2VkGi/l1LtMlTY+WL8PsJUbEcsa
-         7RoEWNAD/Y0NnmWYIo43QmdHJCaPiBufBaDpv4w7lGUqSGjXaIG43gMJIVVOKAQPpIVC
-         Y0GxhlMsozAB2XQC2jFr3IWwA/Ex+Ow/T0Qa0o/ZU8Y6bgXIREJGMQhvZn1oBa3st+nk
-         lAxIBmANtX3D0xD9tZ0lLzNmey8ygWVd17YrmfmlmwqBoQHWlniU7OU5U9LDXR6fppF+
-         IEQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690827794; x=1691432594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rf2SueqzGQo0vJNgUag9FW9PB32GASllyVQGKBWgKls=;
-        b=kNZsnsIIzh8T8GEKODbCbuxMn0DspTeKZgyQpCv4S/6ya9IUbMikje2GjuZB9tf0Ih
-         AdiPuHl7ZCgp+LFkjyn7ydplwhuE7e26LPHK4i5U1rTh8rB22BAufQp6dB3pVXmJoUuP
-         x1NyTg4RkDw3yEgJrpPpUpqYKQbtCZAsvw60qgHzFbTcF1nuVROC1Ue4nEzsYuLtWbwZ
-         a7tzbmVTo4sg2DLF5LeZKdQ9yFHU4e6yTQL8YJyW7G589CSqlGgFZXgjP/g3R8GpXwOL
-         4X+oOK8OLsuQPdCL8QUMpk6oTwVbAZSQ3tamhlrimG+o1OnImTcnC6UE0tNgokbckogj
-         5pMA==
-X-Gm-Message-State: ABy/qLagWQsua91BCYi0sgMU4Wp/8bBtn/gPFvUukNkYp6eCmxUNxEon
-        0M6AlkK9Whxt7vLWDAhGlMXaDw==
-X-Google-Smtp-Source: APBJJlEqhF6H+EF9UPW9v/50+fttk+UTCFn+fLaauftKmdzDXQ7UgKfy7xULxO8s4MFkZ/WstAheqg==
-X-Received: by 2002:a17:906:530b:b0:992:ef60:ab0d with SMTP id h11-20020a170906530b00b00992ef60ab0dmr321850ejo.69.1690827793970;
-        Mon, 31 Jul 2023 11:23:13 -0700 (PDT)
-Received: from blmsp ([2001:4090:a246:80e3:766f:be78:d79a:8686])
-        by smtp.gmail.com with ESMTPSA id e3-20020a17090681c300b00997d76981e0sm6457533ejx.208.2023.07.31.11.23.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 11:23:13 -0700 (PDT)
-Date:   Mon, 31 Jul 2023 20:23:11 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH v4 0/6] can: tcan4x5x: Introduce tcan4552/4553
-Message-ID: <20230731182311.fxq56r35y75j6vde@blmsp>
-References: <20230728141923.162477-1-msp@baylibre.com>
- <20230731-issuing-unshackle-20c6cbcbca98-mkl@pengutronix.de>
+        with ESMTP id S229585AbjGaS0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:26:16 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C4310E4;
+        Mon, 31 Jul 2023 11:26:14 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36VIJX7i012157;
+        Mon, 31 Jul 2023 18:26:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Z7LdVphXCks6GiWOPlKZrBdmPfxG266TsB9xC6epCc0=;
+ b=CiNpbE3VHUno+5Qo2hWHzuwlQcAb9wBjAK+MH3ttztrlAh48aoRNQCeHoJt97S1oNBlK
+ X6bphMCLbKHIgItfZhZ8yDz9iCzd3R2jMNnfbbhYK0Nd7KtW2L12pr5+FqEcKKLzFwZk
+ 60X1SeJZk/nM3PjrTUaVnz0L/1T6keb3mvIsD9zltaeVy4ld13w3gwJQBYoAC1vzPZCw
+ y1JYr0zbXdJxHWWkGThkvFcpNv4Oo3/qXHBmhfRosuKDwDORghXbtgS2KBrrqDM0qM3j
+ CrCjksbUVFcOXDaCo07/q3oZvzz47qOS4am5IjCBPVJ+a/Cl9W6SW+T/Ae056336FPhe ew== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s6j4er0b3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 18:26:01 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36VIQ0Jq007297
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 18:26:00 GMT
+Received: from [10.110.123.68] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 31 Jul
+ 2023 11:25:59 -0700
+Message-ID: <6442edbc-a69c-ad1f-85f9-58013c3089d2@quicinc.com>
+Date:   Mon, 31 Jul 2023 11:25:58 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230731-issuing-unshackle-20c6cbcbca98-mkl@pengutronix.de>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 3/7] soc: qcom: add QCOM PBS driver
+Content-Language: en-US
+To:     Anjelique Melendez <quic_amelende@quicinc.com>, <pavel@ucw.cz>,
+        <lee@kernel.org>, <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>
+CC:     <luca.weiss@fairphone.com>, <konrad.dybcio@linaro.org>,
+        <u.kleine-koenig@pengutronix.de>, <quic_subbaram@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+References: <20230725193423.25047-1-quic_amelende@quicinc.com>
+ <20230725193423.25047-4-quic_amelende@quicinc.com>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <20230725193423.25047-4-quic_amelende@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jrHXpeQspC5uyKBLcLwVW7P-urskjFNM
+X-Proofpoint-ORIG-GUID: jrHXpeQspC5uyKBLcLwVW7P-urskjFNM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-31_12,2023-07-31_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
+ adultscore=0 malwarescore=0 mlxscore=0 mlxlogscore=875 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 bulkscore=0 phishscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307310167
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 31, 2023 at 03:47:18PM +0200, Marc Kleine-Budde wrote:
-> On 28.07.2023 16:19:17, Markus Schneider-Pargmann wrote:
-> > Hi everyone,
-> > 
-> > This series introduces two new chips tcan-4552 and tcan-4553. The
-> > generic driver works in general but needs a few small changes. These are
-> > caused by the removal of wake and state pins.
-> > 
-> > v4 updates the printks to use '%pe'.
-> 
-> Applied to linux-can-next/testing.
+On 7/25/2023 12:34 PM, Anjelique Melendez wrote:
+> +out:
+> +	mutex_unlock(&pbs->lock);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(qcom_pbs_trigger_event);
 
-Thank you, Marc!
+EXPORT_SYMBOL_GPL only please.
 
-Best,
-Markus
+-- 
+---Trilok Soni
+
