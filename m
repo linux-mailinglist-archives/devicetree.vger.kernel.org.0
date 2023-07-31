@@ -2,48 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B44276912A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E82E2769136
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbjGaJLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42166 "EHLO
+        id S230057AbjGaJOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:14:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbjGaJLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:11:23 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 38672103;
-        Mon, 31 Jul 2023 02:11:20 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8BxJvG2esdkSSINAA--.31625S3;
-        Mon, 31 Jul 2023 17:11:18 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxriOkesdk1DFCAA--.2097S4;
-        Mon, 31 Jul 2023 17:11:17 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229911AbjGaJON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:14:13 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52EE810B
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:14:12 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so11454983a12.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:14:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690794851; x=1691399651;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KPT5psZDnsv1eUHcgQJHOsimNQGLNtcaN5J7ygYlDy4=;
+        b=M7BNZwumUjhbY2urw+cFRMviIALm8akB70pZrN+ASUNvSZXwli+LSPNYrJRWCPtjpy
+         eopB+e2clJTNLo+65vhKA4U5dlQAtcjOaMqOsjV/BcE8AmtvA62SfikEJsi1R6WV+Ue3
+         rwrv6QGQ2sYiZxAjnDAPKVNmLbqy19QPX60lSe7SaUZCpzdWe7IuEeOuYrYrS0NguJvt
+         1VyYYz2HoerpULcNzBgomAkq96JjTKAhpqEcAVZIbKQeFSzDVLxr9EAfnkSBjEu6ZebW
+         V2vzMHVBBqF0Le1PWyVA42fnVVcyK1kRxLkHem8am8ddqURojaSqfQ0k4TiJwXKzBztG
+         Bkig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690794851; x=1691399651;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KPT5psZDnsv1eUHcgQJHOsimNQGLNtcaN5J7ygYlDy4=;
+        b=THctOr2lf3z9ZClXhl5W2k4tZrOoduuHa7hnN7PGnZaFL4yWd6r9Ur3P2q67e1tDgv
+         +NOIFcclBWidXdnS04gLHAbIZ7QNC8GH+XF7z1taVfAkVZXqzMSh/b08nVqqfnN3i0Ml
+         G6OeqPfFY0pGOAvv6qtPUPm89hiW2Pxayd87Tf9HDtHTJKWIJXi1VUjVkQin+OBEjhyJ
+         t10KFTDwYBNL6G4hK7FKx5KcOfkShzt3cmjiLOgwxPs8VeIzIrI11KzfyLPsj9ECZrqv
+         LgDweUGP5r5Joe8G1J5m+ZXT87ee78DjpWfuJi+1cySF6Nb5r4WK4wdwTfT+QZrgtk2T
+         Ai9w==
+X-Gm-Message-State: ABy/qLZRGDSumdH0CDj7A9vH28DoOitPROyJF4EmHWRsqR6Ew9+DSWNA
+        mhE+6I4HG8I6+wndE2KpL2SSGaKvVczgkcvJ0Ig=
+X-Google-Smtp-Source: APBJJlEZ1rkfhNblIOIRMbTUx5jFLxhco5Gyqdv5hePXck3o0BhkXRH1fttcm2t5zZM/QX2/nCxPZA==
+X-Received: by 2002:a17:906:3143:b0:993:d632:2c3 with SMTP id e3-20020a170906314300b00993d63202c3mr6790210eje.21.1690794850768;
+        Mon, 31 Jul 2023 02:14:10 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id qc8-20020a170906d8a800b00989828a42e8sm5872867ejb.154.2023.07.31.02.14.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 02:14:10 -0700 (PDT)
+Message-ID: <21f654b5-5b9e-2486-889a-f6c884706f7f@linaro.org>
+Date:   Mon, 31 Jul 2023 11:14:09 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH] ARM: dts: qcom: use defines for interrupts
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v2 2/2] gpio: loongson: add firmware offset parse support
-Date:   Mon, 31 Jul 2023 17:10:59 +0800
-Message-Id: <20230731091059.17323-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230731091059.17323-1-zhuyinbo@loongson.cn>
-References: <20230731091059.17323-1-zhuyinbo@loongson.cn>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxriOkesdk1DFCAA--.2097S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230730111530.98105-1-krzysztof.kozlowski@linaro.org>
+ <e274df6d-d34b-8a5d-8792-261ae51e2f66@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e274df6d-d34b-8a5d-8792-261ae51e2f66@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,142 +80,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Loongson GPIO controllers come in multiple variants that are compatible
-except for certain register offset values.  Add support for device
-properties allowing to specify them in ACPI or DT.
+On 31/07/2023 10:07, Konrad Dybcio wrote:
+> On 30.07.2023 13:15, Krzysztof Kozlowski wrote:
+>> Replace hard-coded interrupt parts (GIC, flags) with standard defines
+>> for readability.  No changes in resulting DTBs.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 44 ++++++++++++------------
+>>  arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi |  2 +-
+>>  arch/arm/boot/dts/qcom/qcom-msm8660.dtsi | 22 ++++++------
+>>  arch/arm/boot/dts/qcom/qcom-msm8974.dtsi |  6 ++--
+>>  arch/arm/boot/dts/qcom/qcom-sdx55.dtsi   | 18 +++++-----
+>>  arch/arm/boot/dts/qcom/qcom-sdx65.dtsi   | 26 +++++++-------
+>>  6 files changed, 59 insertions(+), 59 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+>> index e0adf237fc5c..c693bfc63488 100644
+>> --- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+>> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+>> @@ -190,7 +190,7 @@ cpu_crit3: trip1 {
+>>  
+>>  	cpu-pmu {
+>>  		compatible = "qcom,krait-pmu";
+>> -		interrupts = <1 10 0x304>;
+>> +		interrupts = <GIC_PPI 10 0x304>;
+> Looks like 0x304 would be (IRQ_TYPE_LEVEL_HIGH | IRQ_LEVEL | IRQ_PER_CPU)
+> 
+> 
+> [...]
+> 
+>>  	timer {
+>>  		compatible = "arm,armv7-timer";
+>> -		interrupts = <1 2 0xf08>,
+>> +		interrupts = <GIC_PPI 2 0xf08>,
+> 0xf08 -> (IRQ_LEVEL | IRQ_PER_CPU | IRQ_NOPROBE | IRQ_NOREQUEST | IRQ_TYPE_LEVEL_LOW)
+> 
+> there's a couple more 0x3XX and 0xfXX in there
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
- drivers/gpio/gpio-loongson-64bit.c | 71 +++++++++++++++++++++++++++---
- 1 file changed, 64 insertions(+), 7 deletions(-)
+I was too lazy to decode these, but since you did the hard part, I will
+change them. :) Thanks
 
-diff --git a/drivers/gpio/gpio-loongson-64bit.c b/drivers/gpio/gpio-loongson-64bit.c
-index 06213bbfabdd..7f92cb6205b2 100644
---- a/drivers/gpio/gpio-loongson-64bit.c
-+++ b/drivers/gpio/gpio-loongson-64bit.c
-@@ -26,6 +26,7 @@ struct loongson_gpio_chip_data {
- 	unsigned int		conf_offset;
- 	unsigned int		out_offset;
- 	unsigned int		in_offset;
-+	unsigned int		inten_offset;
- };
- 
- struct loongson_gpio_chip {
-@@ -117,7 +118,17 @@ static void loongson_gpio_set(struct gpio_chip *chip, unsigned int pin, int valu
- 
- static int loongson_gpio_to_irq(struct gpio_chip *chip, unsigned int offset)
- {
-+	unsigned int u;
- 	struct platform_device *pdev = to_platform_device(chip->parent);
-+	struct loongson_gpio_chip *lgpio = to_loongson_gpio_chip(chip);
-+
-+	if (lgpio->chip_data->mode == BIT_CTRL_MODE) {
-+		u = readl(lgpio->reg_base + lgpio->chip_data->inten_offset + offset / 32 * 4);
-+		u |= BIT(offset % 32);
-+		writel(u, lgpio->reg_base + lgpio->chip_data->inten_offset + offset / 32 * 4);
-+	} else {
-+		writeb(1, lgpio->reg_base + lgpio->chip_data->inten_offset + offset);
-+	}
- 
- 	return platform_get_irq(pdev, offset);
- }
-@@ -127,11 +138,30 @@ static int loongson_gpio_init(struct device *dev, struct loongson_gpio_chip *lgp
- {
- 	int ret;
- 	u32 ngpios;
-+	unsigned int io_width;
- 
- 	lgpio->reg_base = reg_base;
-+	if (device_property_read_u32(dev, "ngpios", &ngpios) || !ngpios)
-+		return -EINVAL;
-+
-+	ret = DIV_ROUND_UP(ngpios, 8);
-+	switch (ret) {
-+	case 1 ... 2:
-+		io_width = ret;
-+		break;
-+	case 3 ... 4:
-+		io_width = 0x4;
-+		break;
-+	case 5 ... 8:
-+		io_width = 0x8;
-+		break;
-+	default:
-+		dev_err(dev, "unsupported io width\n");
-+		return -EINVAL;
-+	}
- 
- 	if (lgpio->chip_data->mode == BIT_CTRL_MODE) {
--		ret = bgpio_init(&lgpio->chip, dev, 8,
-+		ret = bgpio_init(&lgpio->chip, dev, io_width,
- 				lgpio->reg_base + lgpio->chip_data->in_offset,
- 				lgpio->reg_base + lgpio->chip_data->out_offset,
- 				NULL, NULL,
-@@ -151,16 +181,35 @@ static int loongson_gpio_init(struct device *dev, struct loongson_gpio_chip *lgp
- 		spin_lock_init(&lgpio->lock);
- 	}
- 
--	device_property_read_u32(dev, "ngpios", &ngpios);
--
--	lgpio->chip.can_sleep = 0;
- 	lgpio->chip.ngpio = ngpios;
--	lgpio->chip.label = lgpio->chip_data->label;
--	lgpio->chip.to_irq = loongson_gpio_to_irq;
-+	lgpio->chip.can_sleep = 0;
-+	if (lgpio->chip_data->label)
-+		lgpio->chip.label = lgpio->chip_data->label;
-+	else
-+		lgpio->chip.label = kstrdup(to_platform_device(dev)->name, GFP_KERNEL);
-+
-+	if (lgpio->chip_data->inten_offset)
-+		lgpio->chip.to_irq = loongson_gpio_to_irq;
- 
- 	return devm_gpiochip_add_data(dev, &lgpio->chip, lgpio);
- }
- 
-+static int loongson_gpio_get_props(struct device *dev,
-+				    struct loongson_gpio_chip *lgpio)
-+{
-+	const struct loongson_gpio_chip_data *d = lgpio->chip_data;
-+
-+	if (device_property_read_u32(dev, "loongson,gpio-conf-offset", (u32 *)&d->conf_offset)
-+	    || device_property_read_u32(dev, "loongson,gpio-in-offset", (u32 *)&d->in_offset)
-+	    || device_property_read_u32(dev, "loongson,gpio-out-offset", (u32 *)&d->out_offset)
-+	    || device_property_read_u32(dev, "loongson,gpio-ctrl-mode", (u32 *)&d->mode))
-+		return -EINVAL;
-+
-+	device_property_read_u32(dev, "loongson,gpio-inten-offset", (u32 *)&d->inten_offset);
-+
-+	return 0;
-+}
-+
- static int loongson_gpio_probe(struct platform_device *pdev)
- {
- 	void __iomem *reg_base;
-@@ -172,7 +221,12 @@ static int loongson_gpio_probe(struct platform_device *pdev)
- 	if (!lgpio)
- 		return -ENOMEM;
- 
--	lgpio->chip_data = device_get_match_data(dev);
-+	lgpio->chip_data = devm_kzalloc(dev, sizeof(*lgpio->chip_data), GFP_KERNEL);
-+	if (!lgpio->chip_data)
-+		return -ENOMEM;
-+
-+	if (loongson_gpio_get_props(dev, lgpio))
-+		lgpio->chip_data = device_get_match_data(dev);
- 
- 	reg_base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(reg_base))
-@@ -215,6 +269,9 @@ static const struct acpi_device_id loongson_gpio_acpi_match[] = {
- 		.id = "LOON0002",
- 		.driver_data = (kernel_ulong_t)&loongson_gpio_ls7a_data,
- 	},
-+	{
-+		.id = "LOON0007",
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(acpi, loongson_gpio_acpi_match);
--- 
-2.20.1
+Best regards,
+Krzysztof
 
