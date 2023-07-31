@@ -2,119 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D2976923E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F59576924B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231610AbjGaJsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59108 "EHLO
+        id S231969AbjGaJvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:51:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232404AbjGaJrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:47:51 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E3E10D0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:47:08 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fba8e2aa52so48334975e9.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:47:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690796827; x=1691401627;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=asm9zeLSnj+DVNI/7QpgE3JFU76xoN5im/QuaTgnZIU=;
-        b=z37yyX/XzZJlZeZ0lzPgzCwwAL4KvWqVFWgPuxUP4JivmOT3KEY5SrB3EqOjeCkZi2
-         byQkVzj2GMQ0k7SrTsn/8gb9zydO866wgbTOZR9qDiezhMvm29h9cdWOJqumB4dCHVSw
-         cYO1mZAGNrSh/dnRbaTxdOwRaAaz3FluTVhmnMczAxM/bp80pTeTneLD8XLxvsuD5xGd
-         1CXphhUCDq/Vp7XWer5nS4dIUjLCqknd7piSejiK/18clTqs9Ovd1LQer/9SYR8+xN/N
-         RC6Q9N3v69wbY7behpuj9wGVARrtPQ+XjsTkqnFXXz8eV38OFGC3tNqCKOmzubtVNW5q
-         pmbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690796827; x=1691401627;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=asm9zeLSnj+DVNI/7QpgE3JFU76xoN5im/QuaTgnZIU=;
-        b=TwAwFsLbul6Axgj0VobZDsg1hApg3dN19zSrB+aRcwPUmScUmdi3q1gztPsWDUhoug
-         ILaRFukaqVFo0PBTkbp7u6149vnftCU0htX5l1RqDZZwQ0goi9nOUemF43mvLs1oKHlz
-         OGNbvrED9xfZ+xCXzQuW3poGM7Vg5RRlo7364BiRAO/dMWL/Ujbr57Gbg08TZqpBe0Z7
-         rS2g8yphoi2Vcb6i8oyVsFGjPPx6ckWS3oMmEDd5xlKc1Gv4iXimXv4AMkiZRLch6vNv
-         p6KJjKinfMISgNHcMZcTc94vYb15MUhjv75k2d8rQC1xDJT0nSgTSBT6Fb2NULBeQ7LT
-         zq8A==
-X-Gm-Message-State: ABy/qLal1yapisJ5z4kprRkq+UXWvqXSIN6e1O61rfYHqCHsvASri1ZB
-        TZsbFMWgjWd0mdH84ZrnXSVc+Q==
-X-Google-Smtp-Source: APBJJlExt1d8q52X9aHUegudjzzuNNSUxWFxlU+r81ID4axWBk68R+noqcm6gLP//X8Sel6ShEz8DA==
-X-Received: by 2002:a5d:640f:0:b0:317:5d1c:9719 with SMTP id z15-20020a5d640f000000b003175d1c9719mr8738160wru.9.1690796827118;
-        Mon, 31 Jul 2023 02:47:07 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id p9-20020a5d48c9000000b0031433443265sm12556878wrs.53.2023.07.31.02.47.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:47:06 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230511AbjGaJvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:51:17 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2055.outbound.protection.outlook.com [40.107.92.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05EA810D;
+        Mon, 31 Jul 2023 02:50:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VYJmq2ORVLrIbJ4JEFdgVwbSqTmjUygblfBMQC9NFlT1pp7B8JGyyWSalWSbttAPGKZGAiKxI/NAr/EwIq8Fxbcjp3hA3pPf9Hmn6jUfhY0cUxkIcHbZhZBL0eGvgA9SCvUT/4lvagc0vHUSPM1xqcwA7fx3YouU7z95HaFA7ggC+ea3l2DRpU2f6oXmwJ+4hkxybZ8EOISvJAIKLbqy/cAKFJ6WjY7zVknBfQRY+wn3r6Mth969G4dxItBQHao8P4ZMWGf0+V4d48vyqiDP/7GLxcADc8K/ShM8e4T6H8Zif8VbB847iFYNkz5FvJxfB9jBBn55ZUEh8rcqpHIa4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ike59PuTkkPz0thAr6u49OH90yIlaioDS28OPuEx37A=;
+ b=bGPX6l3wkchwoCaAty/H9dBEXTXzC75VMNsgoae0udg0e5MRbplxShCw38x12H5cSvGnH0akXj6ziVNAzux7XRA5GRGwPCUzx4R9XLAKYOGt6jRILveShT1SgcfWaUDaVaVZW80JVwJccU7e5NZ197RqF0zlwIUiC+ztL6dpxhvt+3n3/Z7O/2LG3IfEOG2Q8/ZnPdKxf5sMrOR0WugIzEpqRx61CaLITzWUDR8vMHsaGYawOEQIXxLQh+8/nhxb5Opyh64ypFQHZWO1tn5lhP6Jd9ztb5mIvhw5yXPAlvY8x5aCn4BXW8elH55vTx8GiJ1GloeLrekyIdpP3Olgjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ike59PuTkkPz0thAr6u49OH90yIlaioDS28OPuEx37A=;
+ b=uITGHKmtWs5QQ3JGFPrGnb18KeFStqGEOtW+hcSJ5smwX6kUo0p5G26DyAKpmnsZcANDRtWHldSzN/pu0fPLGEDbvKgkrU2E1idesA2CPxG2awtGeayIKkDWKsGI8uDO1xsd+EEln2vGBZax71hBqnZtfDQAhVP/Z5wb1Xjkcjs=
+Received: from MW4PR03CA0203.namprd03.prod.outlook.com (2603:10b6:303:b8::28)
+ by IA0PR12MB8694.namprd12.prod.outlook.com (2603:10b6:208:488::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Mon, 31 Jul
+ 2023 09:50:33 +0000
+Received: from CO1PEPF000044F6.namprd21.prod.outlook.com
+ (2603:10b6:303:b8:cafe::1a) by MW4PR03CA0203.outlook.office365.com
+ (2603:10b6:303:b8::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.43 via Frontend
+ Transport; Mon, 31 Jul 2023 09:50:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1PEPF000044F6.mail.protection.outlook.com (10.167.241.196) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6652.0 via Frontend Transport; Mon, 31 Jul 2023 09:50:32 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 31 Jul
+ 2023 04:50:32 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 31 Jul
+ 2023 02:50:31 -0700
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Mon, 31 Jul 2023 04:50:27 -0500
+From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Michal Simek <michal.simek@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
-References: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
-Subject: Re: [PATCH 0/3] arm64: meson: bunch of DT fixes, take 3
-Message-Id: <169079682605.186625.9628829620831683924.b4-ty@linaro.org>
-Date:   Mon, 31 Jul 2023 11:47:06 +0200
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Tanmay Shah <tanmay.shah@amd.com>,
+        Ben Levinsky <ben.levinsky@amd.com>,
+        Marek Vasut <marex@denx.de>,
+        Roman Gushchin <roman.gushchin@linux.dev>,
+        Arnd Bergmann <arnd@arndb.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <saikrishna12468@gmail.com>,
+        <git@amd.com>, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH v3 0/4] pinctrl: pinctrl-zynqmp: Add tri-state configuration support
+Date:   Mon, 31 Jul 2023 15:20:22 +0530
+Message-ID: <20230731095026.3766675-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F6:EE_|IA0PR12MB8694:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f519d8a-1116-42bd-221b-08db91ab9522
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: IQQywT+fJL8TkX0AcYjZpe43J19G42YWko9ZFPgAvlMoxRMRlv7Ixui48ooINq86eOcJt5VPoxzPIbVO4eJeWs11+vyQdE8ppuYbQLTNcjBJAnVz40bcLJfWX54+RIIrEddXvWTvvcc1l2KSb249MEPk5Na1dpN9p1DbWFHHt0V0yi6eXgG//tMUP1AjenxgVPXsURx18ErhGvHruq3S5VlXQLYfmWoO671XwDNuZo5NJ3zw778CwVmfHPM+Y3OSOqtCFLVARaUEG9Wyjzvl+2hHjBQKIYSZKPs6kM+LwyV2ZCzreamwfOnj1anuKRZCM/7UeigwFiwqFlzhDwFT25KSMNSkqkDx6cscdvBfyVRZiqaz+jZZyBo8Pi6P/sCRmq491Lyob6qJx7yQTM3UuOrWWQ+07PTSV/qdhY+csAqK+HvbsMXGFRzCxXt6/V0nIRerPO4ixFXZCXEnvFf0WZvDeDW51JA3UOXC6HsE91D5h0dxHkAwF6/1+sPVNKUjS1Xr9ajAknJbNTNE+uFVtz8hHzLSPSBuh9oT77EMmglmCZqg/LlqKLFW6nIhhI0Ho9tu2lUqCJE5Nk7zBxMaJAIk131k/d2Q82MTIHritM31qdFuTf7X/sjIss7JqMRvJuqqGWlN0LjrvGgWuE1CkjBf0zmpAovD+ZyS62+mfB+qI6F+8QWgMGnfkdLfu2u/7G3YhZ2Mn5TE2noh4EgOe8hrVEGeYQ4uY82btYqx2PPRPk98YUHRWS30p4Kj92HgJlzMotJ5oAUk5nZLTuTnCEn/dyNDD2s1q0ftD4eUYzY=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(39860400002)(396003)(346002)(82310400008)(451199021)(40470700004)(36840700001)(46966006)(40460700003)(2616005)(1076003)(26005)(426003)(186003)(41300700001)(47076005)(70206006)(36860700001)(336012)(4326008)(70586007)(83380400001)(8936002)(7416002)(5660300002)(8676002)(316002)(6666004)(478600001)(110136005)(54906003)(2906002)(40480700001)(82740400003)(81166007)(921005)(356005)(36756003)(86362001)(103116003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2023 09:50:32.8815
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f519d8a-1116-42bd-221b-08db91ab9522
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F6.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8694
+X-Spam-Status: No, score=3.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add pinctrl driver support to handle 'output-enable' and
+'bias-high-impedance' configurations with proper Configuration Set version
+check. This will ensure system not to crash even if older Xilinx ZynqMP
+Platform Management Firmware is used.
+Initial Commit details:
+Commit 133ad0d9af99bdca9070 ("dt-bindings: pinctrl-zynqmp: Add
+output-enable configuration").
+Commit ad2bea79ef0144043721 ("pinctrl: pinctrl-zynqmp: Add support
+for output-enable and bias-high-impedance").
 
-On Thu, 06 Jul 2023 10:00:18 +0200, Neil Armstrong wrote:
-> This is a bunch of fixes against the current applied and reviewed bindings.
-> 
-> 
+With the above patches, using these pinctrl properties in the device-tree
+cause system hang issues with older Xilinx ZynqMP Platform Management
+Firmware, hence reverted the patches.
+Reverted Commit details:
+Commit ff8356060e3a5e126abb ("Revert "dt-bindings: pinctrl-zynqmp: Add
+output-enable configuration"").
+Commit 9989bc33c4894e075167 ("Revert "pinctrl: pinctrl-zynqmp: Add support
+for output-enable and bias-high-impedance"").
+With the latest firmware and driver changes, driver will ask firmware if
+that feature is supported or not by checking the version. This way it
+works with all Xilinx firmwares.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/arm64-dt)
+changes in v3:
+- Used GENMASK for Family and SubFamily macros instead of individual LSB
+and MSB macros as suggested by Michal Simek.
 
-[1/3] arm64: dts: amlogic: meson-g12b-odroid-n2: fix usb hub hog name
-      https://git.kernel.org/amlogic/c/6ae51d90457c93fb2e184ef02ea6f6bcf0199e4f
-[2/3] arm64: dtb: amlogic: meson-g12-common: change aobus-pinctrl node name
-      https://git.kernel.org/amlogic/c/7bb717411be07405cf750541b731f01fd2a1f8f9
-[3/3] arm64: dts: amlogic: drop cooling-[min|max]-state from pwm-fan
-      https://git.kernel.org/amlogic/c/cf4befdc463a32cb4a74ed4ca3ba60964e24f7b5
+changes in v2:
+- Updated commit description in 3/4 patch as suggested by Conor Dooley.
 
-These changes has been applied on the intermediate git tree [1].
+Dhaval Shah (1):
+  firmware: xilinx: Add support to get platform information
 
-The v6.6/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Sai Krishna Potthuri (3):
+  firmware: xilinx: Add version check for TRISTATE configuration
+  dt-bindings: pinctrl-zynqmp: Add output-enable configuration
+  pinctrl: pinctrl-zynqmp: Add support for output-enable and bias-high
+    impedance
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+ .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml |  4 ++
+ drivers/firmware/xilinx/zynqmp.c              | 49 +++++++++++++++++++
+ drivers/pinctrl/pinctrl-zynqmp.c              |  9 ++++
+ include/linux/firmware/xlnx-zynqmp.h          | 13 +++++
+ 4 files changed, 75 insertions(+)
 
 -- 
-Neil
+2.25.1
 
