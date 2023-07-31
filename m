@@ -2,65 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E4CA769FC4
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 19:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48C09769FFC
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbjGaRur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 13:50:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
+        id S231613AbjGaSFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 14:05:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbjGaRur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 13:50:47 -0400
+        with ESMTP id S229871AbjGaSFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:05:02 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 561E995;
-        Mon, 31 Jul 2023 10:50:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5F2E52;
+        Mon, 31 Jul 2023 11:05:01 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ABFE161265;
-        Mon, 31 Jul 2023 17:50:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0C4AC43391;
-        Mon, 31 Jul 2023 17:50:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 42C386125E;
+        Mon, 31 Jul 2023 18:05:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6E7CC433CB;
+        Mon, 31 Jul 2023 18:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690825837;
-        bh=yWKGZpq/+KlEiVpsQJNfxvQ7UA5Sm8iHfPI9KfQO9s4=;
+        s=k20201202; t=1690826700;
+        bh=NlIuvQdLsbZRs9xKKZPU9QNmPufa9SXsdYZpx7GsOCY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tRyAhL3YwXZ0rUUdSxMGDzJfJSLs7GUgYJ7dUZm61tZ3KdSL5a5/pEzOx/95xu3kn
-         l9KoCpk8XT73JeGqa/2Q4oS2LEC91zcxD6DkIsZsAzn2FEHW0307m0EBKeuQCkIwdS
-         1TjZxARbx/wbqCMXNI3Ij5my3Nkuw9rqFHpPpvaninQUROt/lEpfulnT6cTuIcsLV+
-         z+qfpcxARim6VGFc786BnV63J9AAh9AVyOGx4jXet2Sy8jMfrK+V9L2yqgLhwgl5qI
-         UgIpG9iBRG5QyUQo1Kdw7La5OYpi9G3E4gm/b82WwiVANrCMWAdJYCclevhYItQPBJ
-         IgK4wz9QWHQRQ==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2b9cdba1228so54737351fa.2;
-        Mon, 31 Jul 2023 10:50:36 -0700 (PDT)
-X-Gm-Message-State: ABy/qLZs6pxVeiFP81gWgJ9QR+sejw/ZxtJucc/ofqgwQIEAbF24mUK1
-        ezgeaD5RG0Mm4U7Bn42bfgs/xES43cMRigJ4bWk=
-X-Google-Smtp-Source: APBJJlGawuiG3+hdVed8tBfx9F1ZlXAQCAlN4eYkU/Y7f1S1t10pKbn4gYh2VqCZKlCoKOdbgwm7/VbzrcEPKGkiIWs=
-X-Received: by 2002:a2e:80d7:0:b0:2b6:d63d:cc1e with SMTP id
- r23-20020a2e80d7000000b002b6d63dcc1emr477626ljg.51.1690825834895; Mon, 31 Jul
- 2023 10:50:34 -0700 (PDT)
+        b=YxN4v45sggOP8u25Ga6OHNMRp/yaTP+cCGVRCQ+m5LbGA7uXBoDQYJF35LL78/TDd
+         QnXPEGL3qXBiv5hoIAsM0YQCRCHdY9CLj/Y19FUnLCmHD61AgY4XCc6BET91FsO0Lv
+         bWwGCab4hgJgYb/OYgNUoCQkJYfymAwVIv8y2qBg4zYmAFz738GL2cM9a8Wq7pd6hf
+         kbhkqq1lLm1O7i3jWGbeJFg+PGTUvVe/1IANrBOs6Q6BF49aTyBxECju9lHzU2cLPM
+         FeBnb5Zi0dItNzZRsvQNcOY0catZvJF7Q7HWHzfq17viEutKrsqfMqQpXydYTX9Xk/
+         I+NrfAa1fI5zw==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b9d3dacb33so44931071fa.1;
+        Mon, 31 Jul 2023 11:05:00 -0700 (PDT)
+X-Gm-Message-State: ABy/qLYjpn8Nj+qfIrR+QXhhZ82NuAhCeUNUMTgPOSds+pkkwi1T9VVz
+        KfVDFzVACYikZIg++Zs69Vg2B2vxF0jApHsqyA==
+X-Google-Smtp-Source: APBJJlHmYoa7wNWCoPioGv/c7TslSfI7mb6yLjssF2FXna8gHSJ2JLwRBMq2SeYMDBgzkoTpB9YDIiByhdszSZOiHD4=
+X-Received: by 2002:a2e:9c94:0:b0:2b9:dd3b:cf43 with SMTP id
+ x20-20020a2e9c94000000b002b9dd3bcf43mr520218lji.13.1690826698551; Mon, 31 Jul
+ 2023 11:04:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230719-mcrc-upstream-v1-0-dc8798a24c47@ti.com> <20230719-mcrc-upstream-v1-3-dc8798a24c47@ti.com>
-In-Reply-To: <20230719-mcrc-upstream-v1-3-dc8798a24c47@ti.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Mon, 31 Jul 2023 19:50:23 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXHpLsPU1p0eoW0meCx-NGP7bgD2ZzQkgX4OUssGdONSnA@mail.gmail.com>
-Message-ID: <CAMj1kXHpLsPU1p0eoW0meCx-NGP7bgD2ZzQkgX4OUssGdONSnA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] crypto: ti - add driver for MCRC64 engine
-To:     Kamlesh Gurudasani <kamlesh@ti.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+References: <20230721161840.1393996-1-hugo@hugovil.com> <20230721161840.1393996-7-hugo@hugovil.com>
+ <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
+ <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com> <2023072240-supremacy-shallot-a77f@gregkh>
+ <20230724115428.d191186852c0bd0ee0d78398@hugovil.com> <CAL_JsqL8rjwONd6UAitKik0U44BKSD6m8zbachgfq0R9oHBW8w@mail.gmail.com>
+ <20230731124600.39eb8d5c132f9338c2897543@hugovil.com>
+In-Reply-To: <20230731124600.39eb8d5c132f9338c2897543@hugovil.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 31 Jul 2023 12:04:45 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLaF70hNQndXpJfmH1TMGNbA7myQG0GK9fjyKOs63z-3w@mail.gmail.com>
+Message-ID: <CAL_JsqLaF70hNQndXpJfmH1TMGNbA7myQG0GK9fjyKOs63z-3w@mail.gmail.com>
+Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
+ GPIO configuration
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lech Perczak <lech.perczak@camlingroup.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -71,464 +77,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Jul 2023 at 20:56, Kamlesh Gurudasani <kamlesh@ti.com> wrote:
+On Mon, Jul 31, 2023 at 10:46=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.com>=
+ wrote:
 >
-> Add support for MCRC64 engine to calculate 64-bit CRC in Full-CPU mode.
+> On Mon, 31 Jul 2023 09:31:53 -0600
+> Rob Herring <robh+dt@kernel.org> wrote:
 >
-> In Full-CPU mode, the CPU does the data patterns transfer and signature
-> verification all by itself, only CRC calculation is being done by MCRC64
-> engine.
+> > On Mon, Jul 24, 2023 at 9:54=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.c=
+om> wrote:
+> > >
+> > > On Sat, 22 Jul 2023 17:15:26 +0200
+> > > Greg KH <gregkh@linuxfoundation.org> wrote:
+> > >
+> > > > On Sat, Jul 22, 2023 at 10:47:24AM -0400, Hugo Villeneuve wrote:
+> > > > > On Fri, 21 Jul 2023 13:24:19 -0600
+> > > > > Rob Herring <robh+dt@kernel.org> wrote:
+> > > > >
+> > > > > > On Fri, Jul 21, 2023 at 10:19=E2=80=AFAM Hugo Villeneuve <hugo@=
+hugovil.com> wrote:
+> > > > > > >
+> > > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > >
+> > > > > > > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem co=
+ntrol lines")
+> > > > > > > and commit 21144bab4f11 ("sc16is7xx: Handle modem status line=
+s")
+> > > > > > > changed the function of the GPIOs pins to act as modem contro=
+l
+> > > > > > > lines without any possibility of selecting GPIO function.
+> > > > > >
+> > > > > > Requiring a new DT property is not fixing a kernel regression. =
+You
+> > > > > > should be returning the kernel to original behavior and then ha=
+ve a
+> > > > > > new DT property for new behavior.
+> > > > >
+> > > > > Hi Rob,
+> > > > > please read the entire patch history starting from V1
+> > > > >  and you will understand why this course of action was
+> > > > >  not selected.
+> > > >
+> > > > That's not going to happen, sorry, you need to explain it here, in =
+this
+> > > > patch series, why a specific action is being taken over another one=
+, as
+> > > > no one has time to go dig through past history, sorry.
+> > >
+> > > Hi Rob,
+> > > I initially submitted a patch to revert the kernel to original
+> > > behavior, but it created more problems because the patch was
+> > > unfortunately split in two separate patches, and mixed with other non
+> > > closely-related changes. It was also noted to me that reverting to th=
+e
+> > > old behavior would break things for some users.
+> > >
+> > > It was suggested to me by a more experienced kernel developer to
+> > > "suggest a fix, instead of hurrying a revert":
+> > >
+> > >     https://lkml.org/lkml/2023/5/17/758
+> >
+> > Do I have to go read this to decipher the justification and reasoning?
+> > When Greg says "in this patch series", he means in the commit messages
+> > of the patches. You send v9 already and it doesn't have that. The
+> > patchset needs to stand on its own summarizing any relevant prior
+> > discussions.
+> >
+> > I never suggested doing a revert.
 >
-> MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
-> according to the ISO 3309 standard.
+> Hi Rob,
+> I am sorry, but this is exactly what I "deciphered" from your
+> original email.
 >
-> Generator polynomial: x^64 + x^4 + x^3 + x + 1
-> Polynomial value: 0x000000000000001b
+> I am trying very hard to understand exactly what you mean, but it is
+> not that obvious for me. If something is not clear in my commit message,
+> I will try to improve it. But before, let's try to focus on making sure
+> I understand more clearly what you want exactly.
 >
-> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
-> ---
->  MAINTAINERS                |   2 +
->  drivers/crypto/Kconfig     |   1 +
->  drivers/crypto/Makefile    |   1 +
->  drivers/crypto/ti/Kconfig  |  10 +++
->  drivers/crypto/ti/Makefile |   2 +
->  drivers/crypto/ti/mcrc64.c | 360 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 376 insertions(+)
+> > Obviously, someone still wants the
+> > new feature.
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d8680f6969e3..a2f50adb51ac 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21464,8 +21464,10 @@ F:     drivers/iio/adc/ti-lmp92064.c
->
->  TI MEMORY CYCLIC REDUNDANCY CHECK (MCRC64) DRIVER
->  M:     Kamlesh Gurudasani <kamlesh@ti.com>
-> +L:     linux-crypto@vger.kernel.org
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
-> +F:     drivers/crypto/ti/mcrc64.c
->
->  TI PCM3060 ASoC CODEC DRIVER
->  M:     Kirill Marinushkin <kmarinushkin@birdec.com>
-> diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-> index c761952f0dc6..2101f92ead66 100644
-> --- a/drivers/crypto/Kconfig
-> +++ b/drivers/crypto/Kconfig
-> @@ -796,5 +796,6 @@ config CRYPTO_DEV_SA2UL
->
->  source "drivers/crypto/aspeed/Kconfig"
->  source "drivers/crypto/starfive/Kconfig"
-> +source "drivers/crypto/ti/Kconfig"
->
->  endif # CRYPTO_HW
-> diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-> index d859d6a5f3a4..f1a151b73ff1 100644
-> --- a/drivers/crypto/Makefile
-> +++ b/drivers/crypto/Makefile
-> @@ -41,6 +41,7 @@ obj-$(CONFIG_CRYPTO_DEV_SAHARA) += sahara.o
->  obj-$(CONFIG_CRYPTO_DEV_SL3516) += gemini/
->  obj-y += stm32/
->  obj-$(CONFIG_CRYPTO_DEV_TALITOS) += talitos.o
-> +obj-$(CONFIG_ARCH_K3) += ti/
->  obj-$(CONFIG_CRYPTO_DEV_VIRTIO) += virtio/
->  obj-$(CONFIG_CRYPTO_DEV_VMX) += vmx/
->  obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
-> diff --git a/drivers/crypto/ti/Kconfig b/drivers/crypto/ti/Kconfig
-> new file mode 100644
-> index 000000000000..8e3b2b8b7623
-> --- /dev/null
-> +++ b/drivers/crypto/ti/Kconfig
-> @@ -0,0 +1,10 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config CRYPTO_DEV_TI_MCRC64
-> +       tristate "Support for TI MCRC64 crc64 accelerators"
-> +       depends on ARCH_K3
-> +       select CRYPTO_HASH
-> +       help
-> +         This enables support for the MCRC64 hw accelerator
-> +         which can be found on TI SOC.
-> +         MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
-> +         according to the ISO 3309 standard using Full-CPU mode.
-> \ No newline at end of file
-> diff --git a/drivers/crypto/ti/Makefile b/drivers/crypto/ti/Makefile
-> new file mode 100644
-> index 000000000000..94ffc2576137
-> --- /dev/null
-> +++ b/drivers/crypto/ti/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_CRYPTO_DEV_TI_MCRC64) += mcrc64.o
-> diff --git a/drivers/crypto/ti/mcrc64.c b/drivers/crypto/ti/mcrc64.c
-> new file mode 100644
-> index 000000000000..45f8ae6078ff
-> --- /dev/null
-> +++ b/drivers/crypto/ti/mcrc64.c
-> @@ -0,0 +1,360 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) Texas Instruments 2023 - http://www.ti.com
-> + * Author: Kamlesh Gurudasani <kamlesh@ti.com>
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include <crypto/internal/hash.h>
-> +
-> +#include <asm/unaligned.h>
-> +
-> +#define DRIVER_NAME            "mcrc64"
-> +#define CHKSUM_DIGEST_SIZE     8
-> +#define CHKSUM_BLOCK_SIZE      1
-> +
-> +/* Registers */
-> +#define CRC_CTRL0 0x0000 /* CRC Global Control Register 0 */
-> +#define CH_PSA_SWRE(ch) BIT(((ch) - 1) << 3) /* PSA Software Reset  */
-> +
-> +#define CRC_CTRL1 0x0008 /* CRC Global Control Register 1 */
-> +#define PWDN BIT(0) /* Power Down  */
-> +
-> +#define CRC_CTRL2 0x0010 /* CRC Global Control Register 2 */
-> +#define CH_MODE(ch, m) ((m) << (((ch) - 1) << 3))
-> +
-> +#define PSA_SIGREGL(ch) ((0x6 + (4 * ((ch) - 1))) << 4) /* Signature register */
-> +
-> +#define MCRC64_ALG_MASK 0x8000000000000000
-> +#define MCRC64_CRC64_POLY 0x000000000000001b
-> +
-> +#define MCRC64_AUTOSUSPEND_DELAY       50
-> +
-> +static struct device *mcrc64_k3_dev;
-> +
-> +enum mcrc64_mode {
-> +       MCRC64_MODE_DATA_CAPTURE = 0,
-> +       MCRC64_MODE_AUTO,
-> +       MCRC64_MODE_SEMI_CPU,
-> +       MCRC64_MODE_FULL_CPU,
-> +       MCRC64_MODE_INVALID,
-> +};
-> +
-> +enum mcrc64_channel {
-> +       MCRC64_CHANNEL_1 = 1,
-> +       MCRC64_CHANNEL_2,
-> +       MCRC64_CHANNEL_3,
-> +       MCRC64_CHANNEL_4,
-> +       MCRC64_CHANNEL_INVALID,
-> +};
-> +
-> +struct mcrc64_data {
-> +       struct device    *dev;
-> +       void __iomem     *regs;
-> +};
-> +
-> +struct mcrc64_ctx {
-> +       u32 key;
-> +};
-> +
-> +struct mcrc64_desc_ctx {
-> +       u64    signature;
-> +};
-> +
-> +static int mcrc64_set_mode(void __iomem *regs, u32 channel, u32 mode)
-> +{
-> +       u32 mode_set_val;
-> +       u32 crc_ctrl2_reg = 0;
-> +
-> +       if (mode < 0 || mode >= MCRC64_MODE_INVALID)
-> +               return -EINVAL;
-> +
-> +       if (channel <= 0 || channel >= MCRC64_CHANNEL_INVALID)
-> +               return -EINVAL;
-> +
-> +       mode_set_val = crc_ctrl2_reg | CH_MODE(channel, mode);
-> +
-> +       /* Write CRC_CTRL2, set mode */
-> +       writel_relaxed(mode_set_val, regs + CRC_CTRL2);
-> +
-> +       return 0;
-> +}
-> +
-> +static int mcrc64_reset_signature(void __iomem *regs, u32 channel)
-> +{
-> +       u32 crc_ctrl0_reg, reset_val, reset_undo_val;
-> +
-> +       if (channel <= 0 || channel >= MCRC64_CHANNEL_INVALID)
-> +               return -EINVAL;
-> +
-> +       /* reset PSA */
-> +       crc_ctrl0_reg = readl_relaxed(regs + CRC_CTRL0);
-> +
-> +       reset_val = crc_ctrl0_reg | CH_PSA_SWRE(channel);
-> +       reset_undo_val = crc_ctrl0_reg & ~CH_PSA_SWRE(channel);
-> +
-> +       /* Write CRC_CTRL0 register, reset PSA register */
-> +       writel_relaxed(reset_val, regs + CRC_CTRL0);
-> +       writel_relaxed(reset_undo_val, regs + CRC_CTRL0);
-> +
-> +       return 0;
-> +}
-> +
-> +/* This helper implements crc64 calculation using CPU */
-> +static u64 mcrc64_calculate_sw_crc(u64 crc, u8 byte)
-> +{
-> +       u64 bit = 0;
-> +       u8 j;
-> +
-> +       for (j = 0; j < 8; j++) {
-> +               bit = crc & MCRC64_ALG_MASK;
-> +               crc <<= 1;
-> +               if (byte & (0x80 >> j))
-> +                       bit ^= MCRC64_ALG_MASK;
-> +               if (bit)
-> +                       crc ^= MCRC64_CRC64_POLY;
-> +       }
-> +
-> +       return crc;
-> +}
-> +
-> +static int mcrc64_calculate_crc(void __iomem *regs, u32 channel,
-> +                               const u8 *d8, size_t length, u64 *crc64)
-> +{
-> +       void __iomem *psa_reg;
-> +       u64 signature = 0;
-> +
-> +       if (channel <= 0 || channel >= MCRC64_CHANNEL_INVALID)
-> +               return -EINVAL;
-> +
-> +       psa_reg = regs + PSA_SIGREGL(channel);
-> +
-> +       for (; length >= sizeof(u64); d8 += sizeof(u64), length -= sizeof(u64))
-> +               writeq_relaxed(cpu_to_be64p((u64 *)d8), psa_reg);
-> +
-> +       signature = readq_relaxed(psa_reg);
-> +
-> +       if (length) {
-> +               while (length--)
-> +                       signature = mcrc64_calculate_sw_crc(signature, *d8++);
-> +
-> +               /* set capture mode */
-> +               int ret = mcrc64_set_mode(regs, MCRC64_CHANNEL_1,
-> +                                       MCRC64_MODE_DATA_CAPTURE);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               ret = mcrc64_reset_signature(regs, MCRC64_CHANNEL_1);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               writeq_relaxed(signature, psa_reg);
-> +
-> +               ret = mcrc64_set_mode(regs, MCRC64_CHANNEL_1,
-> +                                     MCRC64_MODE_FULL_CPU);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       *crc64 = signature;
-> +
-> +       return 0;
-> +}
-> +
-> +static int mcrc64_cra_init(struct crypto_tfm *tfm)
-> +{
-> +       struct mcrc64_ctx *mctx = crypto_tfm_ctx(tfm);
-> +
-> +       struct mcrc64_data *dev_data = dev_get_drvdata(mcrc64_k3_dev);
-> +
-> +       pm_runtime_get_sync(dev_data->dev);
-> +
-> +       mctx->key = 0;
-> +
-> +       return 0;
-> +}
-> +
-> +static void mcrc64_cra_exit(struct crypto_tfm *tfm)
-> +{
-> +       struct mcrc64_data *dev_data = dev_get_drvdata(mcrc64_k3_dev);
-> +
-> +       pm_runtime_mark_last_busy(dev_data->dev);
-> +       pm_runtime_put_autosuspend(dev_data->dev);
-> +}
-> +
-> +static int mcrc64_setkey(struct crypto_shash *tfm, const u8 *key,
-> +                        unsigned int keylen)
-> +{
-> +       struct mcrc64_ctx *mctx = crypto_shash_ctx(tfm);
-> +
-> +       if (keylen != sizeof(u32))
-> +               return -EINVAL;
-> +
-> +       mctx->key = get_unaligned_le32(key);
-> +
+> I assume that you refer to the "new feature" as what was added in
+> the commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control
+> lines")?
 
-What is the point of this key?
+Shrug. It's one of the 2 commits mentioned, I don't know which one
+exactly. Whichever one changed default behavior from use GPIOs to use
+modem ctrl lines.
 
+Reading it again, I *think* this patch is correct. Default behavior is
+restored to use GPIOs. The DT property is needed to enable modem ctrl
+lines.
 
-> +       return 0;
-> +}
-> +
-> +static int mcrc64_init(struct shash_desc *desc)
-> +{
-> +       struct mcrc64_data *dev_data = dev_get_drvdata(mcrc64_k3_dev);
-> +
-> +       /* set full cpu mode */
-> +       int ret = mcrc64_set_mode(dev_data->regs, MCRC64_CHANNEL_1,
-> +                               MCRC64_MODE_FULL_CPU);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* reset PSA */
-> +       return mcrc64_reset_signature(dev_data->regs, MCRC64_CHANNEL_1);
-> +}
-> +
-> +static int mcrc64_update(struct shash_desc *desc, const u8 *d8,
-> +                        unsigned int length)
-> +{
-> +       struct mcrc64_desc_ctx *ctx = shash_desc_ctx(desc);
-> +       struct mcrc64_data *dev_data = dev_get_drvdata(mcrc64_k3_dev);
-> +
-> +       return mcrc64_calculate_crc(dev_data->regs, MCRC64_CHANNEL_1,
-> +                                 d8, length, &ctx->signature);
-> +}
-> +
-> +static int mcrc64_final(struct shash_desc *desc, u8 *out)
-> +{
-> +       struct mcrc64_desc_ctx *ctx = shash_desc_ctx(desc);
-> +
-> +       /* Send computed CRC */
-> +       put_unaligned_le64(ctx->signature, out);
-> +       return 0;
-> +}
-> +
-> +static int mcrc64_finup(struct shash_desc *desc, const u8 *data,
-> +                       unsigned int length, u8 *out)
-> +{
-> +       return mcrc64_update(desc, data, length) ?:
-> +               mcrc64_final(desc, out);
-> +}
-> +
-> +static int mcrc64_digest(struct shash_desc *desc, const u8 *data,
-> +                        unsigned int length, u8 *out)
-> +{
-> +       return mcrc64_init(desc) ?: mcrc64_finup(desc, data, length, out);
-> +}
-> +
-> +static struct shash_alg algs[] = {
-> +       /* CRC-64 */
-> +       {
-> +               .setkey         = mcrc64_setkey,
-> +               .init           = mcrc64_init,
-> +               .update         = mcrc64_update,
-> +               .final          = mcrc64_final,
-> +               .finup          = mcrc64_finup,
-> +               .digest         = mcrc64_digest,
-> +               .descsize       = sizeof(struct mcrc64_desc_ctx),
-> +               .digestsize     = CHKSUM_DIGEST_SIZE,
-> +               .base           = {
-> +                       .cra_name               = "crc64-iso",
-> +                       .cra_driver_name        = "mcrc64",
-> +                       .cra_priority           = 200,
-> +                       .cra_flags              = CRYPTO_ALG_OPTIONAL_KEY,
-> +                       .cra_blocksize          = CHKSUM_BLOCK_SIZE,
-> +                       .cra_alignmask          = 7,
-> +                       .cra_ctxsize            = sizeof(struct mcrc64_ctx),
-> +                       .cra_module             = THIS_MODULE,
-> +                       .cra_init               = mcrc64_cra_init,
-> +                       .cra_exit               = mcrc64_cra_exit,
-> +               }
-> +       }
-> +};
-> +
-> +static int mcrc64_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct mcrc64_data *dev_data;
-> +
-> +       dev_data = devm_kzalloc(dev, sizeof(*dev_data), GFP_KERNEL);
-> +       if (!dev_data)
-> +               return -ENOMEM;
-> +
-> +       mcrc64_k3_dev = dev;
-> +       dev_data->dev = dev;
-> +       dev_data->regs = devm_platform_ioremap_resource(pdev, 0);
-> +
-> +       platform_set_drvdata(pdev, dev_data);
-> +       dev_set_drvdata(mcrc64_k3_dev, dev_data);
-> +
-> +       crypto_register_shashes(algs, ARRAY_SIZE(algs));
-> +
-> +       pm_runtime_set_autosuspend_delay(dev, MCRC64_AUTOSUSPEND_DELAY);
-> +       pm_runtime_use_autosuspend(dev);
-> +
-> +       pm_runtime_get_noresume(dev);
-> +       pm_runtime_set_active(dev);
-> +       pm_runtime_enable(dev);
-> +
-> +       pm_runtime_put_sync(dev);
-> +
-> +       return 0;
-> +}
-> +
-> +static int mcrc64_remove(struct platform_device *pdev)
-> +{
-> +       struct mcrc64_data *dev_data = platform_get_drvdata(pdev);
-> +
-> +       int ret = pm_runtime_get_sync(dev_data->dev);
-> +
-> +       if (ret < 0) {
-> +               pm_runtime_put_noidle(dev_data->dev);
-> +               return ret;
-> +       }
-> +
-> +       crypto_unregister_shashes(algs, ARRAY_SIZE(algs));
-> +
-> +       pm_runtime_disable(dev_data->dev);
-> +       pm_runtime_put_noidle(dev_data->dev);
-> +
-> +       return 0;
-> +}
-> +
-> +static int __maybe_unused mcrc64_suspend(struct device *dev)
-> +{
-> +       return  pm_runtime_force_suspend(dev);
-> +}
-> +
-> +static int __maybe_unused mcrc64_resume(struct device *dev)
-> +{
-> +       return pm_runtime_force_resume(dev);
-> +}
-> +
-> +static const struct dev_pm_ops mcrc64_pm_ops = {
-> +       SET_SYSTEM_SLEEP_PM_OPS(mcrc64_suspend,
-> +                               mcrc64_resume)
-> +};
-> +
-> +static const struct of_device_id of_match[] = {
-> +       { .compatible = "ti,mcrc64", },
-> +       {},
-> +};
-> +MODULE_DEVICE_TABLE(of, of_match);
-> +
-> +static struct platform_driver mcrc64_driver = {
-> +       .probe  = mcrc64_probe,
-> +       .remove = mcrc64_remove,
-> +       .driver = {
-> +               .name           = DRIVER_NAME,
-> +               .pm             = &mcrc64_pm_ops,
-> +               .of_match_table = of_match,
-> +       },
-> +};
-> +
-> +module_platform_driver(mcrc64_driver);
-> +
-> +MODULE_AUTHOR("Kamlesh Gurudasani <kamlesh@ti.com>");
-> +MODULE_DESCRIPTION("Texas Instruments MCRC64 hardware driver");
-> +MODULE_LICENSE("GPL");
->
-> --
-> 2.34.1
->
+What's not okay is just saying, these platforms may or may not need an upda=
+te:
+
+    arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
+    mips/boot/dts/ingenic/cu1830-neo.dts
+    mips/boot/dts/ingenic/cu1000-neo.dts
+
+You need to figure that out. Have you checked with maintainers of
+these boards? When were they added and by who? At the same time or by
+the same person would be a good indication the platform uses modem
+ctrl lines. Or were these platforms in use before adding modem ctrl
+support? Then they probably use GPIOs or nothing.
+
+If there are platforms which would regress if the modem ctrl feature
+was just reverted, which ones are those?
+
+Rob
