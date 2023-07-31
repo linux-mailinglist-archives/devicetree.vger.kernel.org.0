@@ -2,54 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71BC3769687
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 14:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A974B7696A6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 14:45:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231247AbjGaMmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 08:42:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60536 "EHLO
+        id S229915AbjGaMpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 08:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjGaMmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 08:42:22 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0ECBE
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 05:42:20 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1qQSE5-0006f4-5g; Mon, 31 Jul 2023 14:42:17 +0200
-Message-ID: <a29cf254-80c9-50e6-c723-71a8f03e6e35@pengutronix.de>
-Date:   Mon, 31 Jul 2023 14:42:14 +0200
+        with ESMTP id S232864AbjGaMpd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 08:45:33 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2761AD;
+        Mon, 31 Jul 2023 05:45:26 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36VCjDYo052721;
+        Mon, 31 Jul 2023 07:45:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690807513;
+        bh=Tq9oN5If3f4ihk1CMDcdsYNfktnGDh8v5plLuwzELsw=;
+        h=From:Subject:Date:To:CC;
+        b=uh66Wu9ZBL7vXWDBgY+3bR98obAISu52RakBq7kTgUzUkLsZQpmo7sGXplcDd3U1Y
+         h1TuMH9aIs91+sS5u2R4+m6hZCZU2QHO0y28Q5shj64qgGmePHYQEqNaNdgGfdT0TW
+         lhYnsWT1FNQ0RFn2UQRyWs69Dy3JXW8vTDMW+gFM=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36VCjCUI031450
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Jul 2023 07:45:13 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 31
+ Jul 2023 07:45:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 31 Jul 2023 07:45:12 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36VCjBWF053720;
+        Mon, 31 Jul 2023 07:45:12 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH 0/5] arm64: ti: Enable audio on AM62A
+Date:   Mon, 31 Jul 2023 18:14:37 +0530
+Message-ID: <20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] arm64: dts: imx8mq-librem5-devkit: switch to vqmmc-supply
-Content-Language: en-US
-To:     =?UTF-8?Q?Guido_G=c3=bcnther?= <guido.gunther@puri.sm>,
-        David Heidelberg <david@ixit.cz>
-Cc:     devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALWsx2QC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDc2ND3dzkxOKC+MRcM6NE3cQ0QzMzAzMjkzRLcyWgjoKi1LTMCrBp0bG
+ 1tQBPXvzAXQAAAA==
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, kernel@puri.sm
-References: <20230730121047.43115-1-david@ixit.cz>
- <ZMebuXJKFMpjCuul@qwark.sigxcpu.org>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <ZMebuXJKFMpjCuul@qwark.sigxcpu.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1586; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=Jm3wva5xU4El5hjjfTCjoTAIbXbh1As2UzqxgDAcTGQ=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkx6zVMytyEghPNsnRYv/b0kbilsM8PP5f6JKPF
+ mJp/MvPq/iJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZMes1QAKCRBD3pH5JJpx
+ RTRLD/9ZKT/g+L/rtI0y49s/h/7+rnHa2ooW1EBtIhyU3eu5+Dmn7vuWfNyJ7O8/HhRUk9gWk9A
+ odO6VeqnNAyb1EYzjxxjPSIzemiY1S9VP8gLnSOh9GyinlmKoSIk2xcaQVoQpBPpILk+YhRoIHi
+ EwoOxTjiUjbewNefiOkR8r6/4FjnzV/x3Zp4bNpsFVG7OZwEmcfNRiHkXe0+cgdhC1f+gc8jz16
+ FzUC87PSSHoltDz7KCJEyS0+W/NrzW+fJ+OQktr5rTOlu9yxuGAjIIvIMlm1qiZk7CmB0brdptY
+ +UCCv9zky9i8LzGkKw/GeLzkVzbdn/gCa7DA+S/WwOsdHcOpWfaEC9XUe7w/oP0p8WBVY2T0Gus
+ yiC5b2UAGV2n6i1z/cNDHXwHx2XprGm2GPXpMGFXH6Rdu5O0bVNBT7171WexoNRYv+mf7lh0AGF
+ nQcpwfyRcBtPqDPJg3yYYCk8joNd57Kp+R0F4dUkH/AhzR0eAVBGOvMZhlwy9hRXLJi30p7pvs7
+ TncyLT/SZmHn8UG6EbTWmOyUZh0LRecLcVPHlhnFd5ib3jJ7/LrNAyhuQJMlypV/FRcjq0G5wHR
+ 4X/q60n1iyhT2znSmKUwpMXOu+9UBDN0qaX4IbXtixPxnQ1Q7uupDNFUitBuh42haIWkkhnWOWf
+ RMJEkm25n0BCaWQ==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,59 +89,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello David,
-Hello Guido,
+This patch series adds support for audio via headphone jack on
+SK-AM62A-LP. The jack is wired to TLV320AIC3106 (codec), which is
+connected to McASP1 (serializer) on the SoC.
 
-On 31.07.23 13:32, Guido Günther wrote:
-> Hi,
-> On Sun, Jul 30, 2023 at 03:10:46PM +0300, David Heidelberg wrote:
->> Resolves following warning:
->> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb: mmc@30b50000: Unevaluated properties are not allowed ('power-supply' was unexpected)
->> 	from schema $id: http://devicetree.org/schemas/mmc/fsl-imx-esdhc.yaml#
->>
->> Cc: kernel@puri.sm
->> Cc: Guido Günther <agx@sigxcpu.org>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>  arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
->> index b3549eae6278..a8b5da3ca08f 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
->> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
->> @@ -1031,7 +1031,7 @@ &usdhc2 {
->>  	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
->>  	bus-width = <4>;
->>  	vmmc-supply = <&reg_usdhc2_vmmc>;
->> -	power-supply = <&wifi_pwr_en>;
->> +	vqmmc-supply = <&wifi_pwr_en>;
-> 
-> From the schematics WIFI_PWR_EN connects to the Wifi card's `W_DISABLE`
-> so I don't think vqmmc is correct here. I wonder if there's a better way
-> to model that in DT? Any suggestions would be welcome.
+The TRRS 3.5mm jack can be used for simultaneous playback and recording.
 
-I think mmc-pwrseq is what you are after.
+The series depends on PMIC support:
+https://lore.kernel.org/all/20230727130908.10656-1-eblanc@baylibre.com/
 
-Cheers,
-Ahmad
+Some of the patches have been posted (and reviewed) before as part of a
+combined audio series (v9) for AM62 & AM62A:
+https://lore.kernel.org/all/20230313-mcasp_upstream-v9-0-6d937efe4ec4@ti.com/
 
-> 
-> Cheers,
->  -- Guido
-> 
->>  	broken-cd;
->>  	disable-wp;
->>  	cap-sdio-irq;
->> -- 
->> 2.40.1
->>
-> 
-> 
+Changes since v9 of last series:
+- Use DVDD (1.8V) supply from TPS6594 PMIC
+- Drop OCMV configuration as DVDD is present now
+- Lower i2c-1 rate to 100Khz after testing on multiple boards
+- Enable PMIC drivers (as modules) in defconfig
 
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Jai Luthra (5):
+      arm64: dts: ti: k3-am62a-main: Add nodes for McASP
+      arm64: dts: ti: k3-am62a7-sk: Split vcc_3v3 regulators
+      arm64: dts: ti: k3-am62a7-sk: Drop i2c-1 to 100Khz
+      arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
+      arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 60 ++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts   | 94 ++++++++++++++++++++++++++++++-
+ arch/arm64/configs/defconfig              |  1 +
+ 3 files changed, 152 insertions(+), 3 deletions(-)
+---
+base-commit: 46540e8a21d310a458d28fcb77f3e4276e3c8a9c
+change-id: 20230731-mcasp_am62a-af1660624f97
+
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Jai Luthra <j-luthra@ti.com>
 
