@@ -2,156 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACFFD768B29
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 07:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19FDE768B41
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 07:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbjGaFaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 01:30:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52796 "EHLO
+        id S229761AbjGaFiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 01:38:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjGaFaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 01:30:10 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1446EE5C;
-        Sun, 30 Jul 2023 22:30:10 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36V5HZwo021616;
-        Mon, 31 Jul 2023 05:30:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TfNJPRBwuW14VhhvfqZLWDeDCPiAPZ3dM663NzuDllk=;
- b=GYZ9+eL5665LKRPpKzQafpLQHpkH0l0cWt7RfIcMMMhbTdfVl6CbNqrfGsad0Uhxobfc
- J+ths8nUDfrwnRUl64Fh0I2WWtt6II1619FAyFcA9WYBF4880Xalua++Cks++jWFxJNg
- C7xav8qhZu1MIuhnv94Ag8bJWV0BlyRAIKpG/dg6J9k3pNBzUn9SdyOf51YE/ZsHmHWH
- DdpNAI+1Gta+nLLjVKW9Fd1FL/hHthOlkC3wuItW0j60AARkvxxXmR84Dqb6AD02J2TO
- ZOEsqzQLJeyRBrnN7cmH6p0yRGCFm0H8sWhYwSW66W+Bq1tBJb1FLwXtNSbx77vEieWJ zg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s4ueujpq7-1
+        with ESMTP id S230053AbjGaFiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 01:38:05 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF551706;
+        Sun, 30 Jul 2023 22:37:55 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36V2i1ae020809;
+        Mon, 31 Jul 2023 05:37:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=j1m1iVoDv+RAAKG7xoBKTJN3izlDX4RXutXbv64sR2U=;
+ b=E7QA04wGY+P4cy5I+ssyk/kgydB4Rh3hwnkO+6V6roXkhIkrzGcNHO7gyi4CMZ7V1+Of
+ FvKzmi2w/MkjSn4CwXmMqmdx45W/btvvDL7t5CZZycUj0d8ahmoA34Muh7EvtlP9hQOF
+ 4eVbSqQ3N0bQOSNrQtM8sHsFixVYxQsuV0G4VnhcEL/WXL0KXxuqmITC5MZO/85G3JMH
+ dnZY/CJFbOjUmb0wezt7sletaE+8pNldaeUrMGzq+wxb+jNk+PVVFlUA8CejqPYSPHLk
+ hRvq64pPM+VhWNe5jx0RZuPFwfWtuiNN6aEwmWeJfmsKeSEfHAz4bD3ZLo/qou/M61WD HA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s4uat2psj-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 31 Jul 2023 05:30:06 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36V5U5HE005197
+        Mon, 31 Jul 2023 05:37:51 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36V5bo41014068
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 31 Jul 2023 05:30:05 GMT
-Received: from [10.217.219.216] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Sun, 30 Jul
- 2023 22:29:59 -0700
-Message-ID: <1cfdf3c4-6e4f-e73d-c711-3890ceabb69d@quicinc.com>
-Date:   Mon, 31 Jul 2023 10:59:57 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add PCIe0 node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <manivannan.sadhasivam@linaro.org>
-CC:     <helgaas@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_parass@quicinc.com>,
-        "reviewer:ARM/QUALCOMM CHROMEBOOK SUPPORT" 
-        <cros-qcom-dts-watchers@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
+        Mon, 31 Jul 2023 05:37:50 GMT
+Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Sun, 30 Jul 2023 22:37:46 -0700
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <dmitry.baryshkov@linaro.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <1690540760-20191-1-git-send-email-quic_krichai@quicinc.com>
- <17c2ba50-3b72-523c-d92b-1ecbf9be7450@linaro.org>
- <f3d5c72d-90d3-b091-f995-5ad0bf93ae1d@quicinc.com>
- <a2024453-e749-b659-52a0-83ded8bb5c38@linaro.org>
-From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <a2024453-e749-b659-52a0-83ded8bb5c38@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_fenglinw@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <jestar@qti.qualcomm.com>
+Subject: [PATCH v4 2/3] dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
+Date:   Mon, 31 Jul 2023 13:37:07 +0800
+Message-ID: <20230731053712.2220898-3-quic_fenglinw@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230731053712.2220898-1-quic_fenglinw@quicinc.com>
+References: <20230731053712.2220898-1-quic_fenglinw@quicinc.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: E4f9m9AGOeiuf4H1X0iHjhlat3W8oNo3
-X-Proofpoint-ORIG-GUID: E4f9m9AGOeiuf4H1X0iHjhlat3W8oNo3
+X-Proofpoint-ORIG-GUID: Zc17qifmR0Wp9d3ROZ9ze16mOmEj72YB
+X-Proofpoint-GUID: Zc17qifmR0Wp9d3ROZ9ze16mOmEj72YB
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
  definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
- phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 mlxlogscore=848
- malwarescore=0 mlxscore=0 adultscore=0 impostorscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307310049
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 suspectscore=0 spamscore=0
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 impostorscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307310050
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add compatible string 'qcom,spmi-vib-gen2' to support vibrator module
+inside PMI632, PMI7250B, PM7325B, PM7550BA.
 
-On 7/28/2023 9:27 PM, Krzysztof Kozlowski wrote:
-> On 28/07/2023 17:10, Krishna Chaitanya Chundru wrote:
->> On 7/28/2023 5:33 PM, Krzysztof Kozlowski wrote:
->>> On 28/07/2023 12:39, Krishna chaitanya chundru wrote:
->>>> Add PCIe dtsi node for PCIe0 controller on sc7280 platform.
->>>>
->>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>> Thank you for your patch. There is something to discuss/improve.
->>>
->>>
->>>> +		pcie0_phy: phy@1c06000 {
->>>> +			compatible = "qcom,sm8250-qmp-gen3x1-pcie-phy";
->>>> +			reg = <0 0x01c06000 0 0x1c0>;
->>>> +			#address-cells = <2>;
->>>> +			#size-cells = <2>;
->>>> +			ranges;
->>>> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->>>> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->>>> +				 <&gcc GCC_PCIE_CLKREF_EN>,
->>>> +				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->>>> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
->>>> +
->>>> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
->>>> +			reset-names = "phy";
->>>> +
->>>> +			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->>>> +			assigned-clock-rates = <100000000>;
->>>> +
->>>> +			status = "disabled";
->>>> +
->>>> +			pcie0_lane: phy@1c0e6200 {
->>> Isn't this old-style of bindings? Wasn't there a change? On what tree
->>> did you base it?
-> The work was here:
-> https://lore.kernel.org/all/20230324022514.1800382-5-dmitry.baryshkov@linaro.org/
->
-> But I don't remember the status.
->
->> Let me rebase and send it again.
-> This anyway looks like wrong compatible. You used sm8250.
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+---
+ .../bindings/input/qcom,pm8xxx-vib.yaml          | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-The patch was send on latest linux-next only and the above change is not 
-merged yet.
+diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+index c8832cd0d7da..4a2319fc1e3f 100644
+--- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
++++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+@@ -11,10 +11,18 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,pm8058-vib
+-      - qcom,pm8916-vib
+-      - qcom,pm8921-vib
++    oneOf:
++      - enum:
++          - qcom,pm8058-vib
++          - qcom,pm8916-vib
++          - qcom,pm8921-vib
++      - items:
++          - enum:
++              - qcom,pmi632-vib
++              - qcom,pm7250b-vib
++              - qcom,pm7325b-vib
++              - qcom,pm7550b-vib
++          - const: qcom,spmi-vib-gen2
+ 
+   reg:
+     maxItems: 1
+-- 
+2.25.1
 
-We are using the same compatible string as sm8250 because the phy is 
-same both from hardware and software perspective for sm8250.
-
-that is why we are using the same compatible string.
-
-Can you let me know if we want create a separate compatible string for 
-this even though  we are using same phy?
-
-- KC.
-
->
-> Best regards,
-> Krzysztof
->
