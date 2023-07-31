@@ -2,113 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2008C768D53
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 09:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1969E768F67
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 10:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231126AbjGaHLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 03:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49266 "EHLO
+        id S231791AbjGaIC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 04:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231316AbjGaHLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 03:11:00 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77F931BF5
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 00:09:04 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bcd6c0282so656067366b.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 00:09:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690787342; x=1691392142;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eVEDYdCi9VbmjgNaz1k0ZbW7cJme7o0BuWFDpy6Kp8o=;
-        b=HoYCq4pbRC9Xi/WlSnZhW0MlQRyagYmSlOqMFxLgD3aB8Ir0Ejp6hFjBn6Nh/e5CVw
-         xw9aGepFGsURQZZYLDi5YK2c/jZSh9idnDtqPrDTWYjhA37GK7ydilzF+tjC4YsdE10F
-         Drr2Z0mFRA1ksYM4fUl/rnbfM7n4gDyPgqoNlxI60j/h/bAfe/r7SJvM7wO8lCjmt4Bm
-         MI3hSkWFvwYz3TLAid6k0N4HAF7NMHf3OiTCwIvfNiBvRnn6Bi5Z9SJt9mxu3bV/49mp
-         0J5i0wV01yDjesZ+WZD5levJpcpX5Sp8QI3kk9pwi7IBipnKBRDePQcAWFb44UlPAVeA
-         lsbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690787342; x=1691392142;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eVEDYdCi9VbmjgNaz1k0ZbW7cJme7o0BuWFDpy6Kp8o=;
-        b=GNI4NTLcXBS4KK47/sY24lsNDoX+kSatV1rwwF0fjEVtZGVxwRUngydaS77ySmSaPa
-         Lm8ntSv7k2sCh7NCTo/GNsZ9bjeNjyT24P5MADRQXfUY58ACO5qqgC4Aa6fiAvquzyWi
-         yDvLJ+Pou37L2wOWOEU0iQ+3N/K0kJXCv96qhnFYrvKGF0bUyuWwfIsinSAoENNkAS1N
-         rLNb6M2sS73XlyeSieQGlbbyauE38Oh9fG8cWluzcybz0bpEMQUF0tHaW+/rMD5sA8lT
-         t2G+wPkUDNsKTajMMw4fZ491X/cIZ3HZRkWZ7bVGTkgsF5j389RTtXaDNoBgLYRV7If5
-         OW1g==
-X-Gm-Message-State: ABy/qLabQ33IPpixXR+tOY3ILVTVx9PftAYHdocNVMY5n4KELJb9ey81
-        jBX9V0EYBKFWvbGEKndy8vUUGA==
-X-Google-Smtp-Source: APBJJlFhc4pWHIxjCtaIa6VcQ9RmldEFLC1DrbLUHLqPeOaPI6Vp7+hRl0WS6J17PAxe2zY2a9FE7g==
-X-Received: by 2002:a17:906:3294:b0:98e:1156:1a35 with SMTP id 20-20020a170906329400b0098e11561a35mr6211758ejw.74.1690787342507;
-        Mon, 31 Jul 2023 00:09:02 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id jj27-20020a170907985b00b00992b1c93279sm5682620ejc.110.2023.07.31.00.09.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jul 2023 00:09:02 -0700 (PDT)
-Message-ID: <35ca8c66-a14b-8a8f-afda-246347322ae2@linaro.org>
-Date:   Mon, 31 Jul 2023 09:09:00 +0200
+        with ESMTP id S231795AbjGaIBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 04:01:53 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E48E710F0;
+        Mon, 31 Jul 2023 01:01:37 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36V69ec5023307;
+        Mon, 31 Jul 2023 07:22:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=NQmFd9voUPRvPY48qtiUCgPcaqPB+4mxUGECcZrKvNA=;
+ b=gA9KBjBxU7Mngyvq9BvCIfFaoxBE6EB7AF1iEMxkRo2Gzh1Ypditnn9r+ik27yF8GUHS
+ gOt3qMT7qVRN4GdrlVrBBqpq7NwIED9oFdVxH3Ocle3yBABTRotY5SFsd421SNWw+HPd
+ oDyi/DZ/UNZmkWoPXUpkWAtgR7xJRdz2zjntgJHItIpxyCFyva67kFWcEKHhrQKUmgGQ
+ ZBszVx8DbL6ERVgBlUhzy5VpVKoAGGlm2xnEqQISwUKf8nWs4oUvjWYe43Wm+KVdFoCN
+ XYxoM+c9prtlMewHWSZO9bfaI6SZsqmLBoJ4gYLSeFYVp/Ew7bcm7A5VjmpuOHuJvKzC DQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s4urxau7d-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 07:22:02 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36V7M0oX005457
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 07:22:00 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 31 Jul
+ 2023 00:21:56 -0700
+Message-ID: <53132580-53b6-06bc-8b48-51a3f56ab71d@quicinc.com>
+Date:   Mon, 31 Jul 2023 15:21:53 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v2 6/9] dt-bindings: marvell: Document PXA1908 SoC
-Content-Language: en-US
-To:     =?UTF-8?Q?Duje_Mihanovi=c4=87?= <duje.mihanovic@skole.hr>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Cc:     phone-devel@vger.kernel.org, afaerber@suse.com
-References: <20230727162909.6031-1-duje.mihanovic@skole.hr>
- <20230727162909.6031-7-duje.mihanovic@skole.hr>
- <08deec6b-870b-d9cb-3ebd-b845340c4952@linaro.org>
- <3246035.aeNJFYEL58@radijator>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3246035.aeNJFYEL58@radijator>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/8] dt-bindings: arm: qcom,ids: Adjust the position of
+ QCOM_ID_QDU1010
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
+        <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230731061325.26431-1-quic_tengfan@quicinc.com>
+ <20230731061325.26431-6-quic_tengfan@quicinc.com>
+ <981a79ee-5258-eb76-020a-765f5f39866f@linaro.org>
+From:   Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <981a79ee-5258-eb76-020a-765f5f39866f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mWVzMPqibV4icecYAuxGdXJlpkFFO9S2
+X-Proofpoint-ORIG-GUID: mWVzMPqibV4icecYAuxGdXJlpkFFO9S2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=606
+ clxscore=1015 impostorscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
+ adultscore=0 phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307310065
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/07/2023 23:18, Duje Mihanović wrote:
-> On Friday, July 28, 2023 9:19:52 AM CEST Krzysztof Kozlowski wrote:
->> On 27/07/2023 18:29, Duje Mihanović wrote:
->>> Add dt bindings and documentation for Marvell PXA1908 SoC.
->>>
->>> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
->>> ---
+
+
+在 7/31/2023 3:00 PM, Krzysztof Kozlowski 写道:
+> On 31/07/2023 08:13, Tengfei Fan wrote:
+>> Adjust the position of QCOM_ID_QDU1010, so that there is a coherent
+>> sequence of numbers.
 >>
->> This is v2, so where is the changelog?
+>> Change-Id: Id083e1ecc92c063c1a07a81c66dcb034020964b0
 > 
-> Isn't it in the cover letter?
-
-There is no cover letter. And just in case before you pop-up here with
-lore link: If you decide not to send it to people, it counts as
-non-existing.
-
+> Please run scripts/checkpatch.pl and fix reported warnings. Some
+> warnings can be ignored, but the code here looks like it needs a fix.
+> Feel free to get in touch if the warning is not clear.
 > 
->> What happened with Rob's comment?
+sure, will do this check if this patch still need.
+>> ---
+>>   include/dt-bindings/arm/qcom,ids.h | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+>> index bcbe9ee2cdaf..977c235ed0d9 100644
+>> --- a/include/dt-bindings/arm/qcom,ids.h
+>> +++ b/include/dt-bindings/arm/qcom,ids.h
+>> @@ -249,8 +249,8 @@
+>>   #define QCOM_ID_SA8775P			534
+>>   #define QCOM_ID_QRU1000			539
+>>   #define QCOM_ID_QDU1000			545
+>> -#define QCOM_ID_QDU1010			587
+>>   #define QCOM_ID_IPQ5019			569
 > 
-> I'm not sure where I should move the bindings. I'm considering arm/mrvl/
-> mrvl.yaml where MMP2 and MMP3 are currently documented because as Rob said the 
-> PXA1908 is very similar to these.
+> I don't think this change is needed. Isn't IPQ5019 going away?
+Will remove this patch, another is handling this: 
+https://lore.kernel.org/lkml/20230724083745.1015321-1-quic_kathirav@quicinc.com/T/
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-For example.
-
-Best regards,
-Krzysztof
-
+-- 
+Thx and BRs,
+Tengfei Fan
