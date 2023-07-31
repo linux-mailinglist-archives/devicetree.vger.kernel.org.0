@@ -2,91 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A661576953B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4258769510
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbjGaLu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 07:50:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50654 "EHLO
+        id S229542AbjGaLja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 07:39:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbjGaLu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:50:27 -0400
-X-Greylist: delayed 599 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 31 Jul 2023 04:50:25 PDT
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E84B0;
-        Mon, 31 Jul 2023 04:50:25 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 21658FB03;
-        Mon, 31 Jul 2023 13:32:12 +0200 (CEST)
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id OTNelOZNj6Y2; Mon, 31 Jul 2023 13:32:11 +0200 (CEST)
-Date:   Mon, 31 Jul 2023 13:32:09 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229724AbjGaLj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:39:29 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103E8E4A;
+        Mon, 31 Jul 2023 04:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690803568; x=1722339568;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bk5DMwF7rZz6n/fcjLNabhMTSOkn7DumjJhcd9DMlSE=;
+  b=XlLteRVRzV+S+YpCo5BxMGl9BsndM1yF5onIh/u8+C+62EssvRVqrqeD
+   orc/gt6Xx/FuCdkFawqu79GD8riGZeP8okFTFCHqtvhIExy6jmxW3wth2
+   djWwj6mffbCgeAvGixxf0GwmUs9dVg7RyJBy12LbAIOqjgHOm/PJRH44+
+   3/1PWoYdST29VYetZ5KhfO8tQtgTi+mM8xIWEgAQoUGB8Zq3l/NAzrPll
+   FOqeHItdiRKKb8HPUAURC3eIna92SnOn4y2UTkgB6KGJ3nb+KV3D6cAE5
+   5msS/P+h+ISU1nu1lHQR15KylqKevXwYchNZouYb2dLGm45glv/jh2K2V
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; 
+   d="asc'?scan'208";a="223112760"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Jul 2023 04:39:26 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 31 Jul 2023 04:39:15 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 31 Jul 2023 04:39:12 -0700
+Date:   Mon, 31 Jul 2023 12:38:37 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC:     Jisheng Zhang <jszhang@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        <linux-riscv@lists.infradead.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, kernel@puri.sm,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mq-librem5-devkit: switch to vqmmc-supply
-Message-ID: <ZMebuXJKFMpjCuul@qwark.sigxcpu.org>
-References: <20230730121047.43115-1-david@ixit.cz>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v10 3/6] riscv: mm: dma-noncoherent: nonstandard cache
+ operations support
+Message-ID: <20230731-tribute-splashing-6a90f443cefe@wendy>
+References: <20230702203429.237615-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230702203429.237615-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <ZMZ6XB6gX2kFd/Nt@xhacker>
+ <CA+V-a8u3F_XDjBfVVVvNMfjrni8pgpcRgbVt6_Ax1TmG2fJdEg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="d/DKBGEaeBZfjJb+"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230730121047.43115-1-david@ixit.cz>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_FAIL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <CA+V-a8u3F_XDjBfVVVvNMfjrni8pgpcRgbVt6_Ax1TmG2fJdEg@mail.gmail.com>
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Sun, Jul 30, 2023 at 03:10:46PM +0300, David Heidelberg wrote:
-> Resolves following warning:
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb: mmc@30b50000: Unevaluated properties are not allowed ('power-supply' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/mmc/fsl-imx-esdhc.yaml#
-> 
-> Cc: kernel@puri.sm
-> Cc: Guido Günther <agx@sigxcpu.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> index b3549eae6278..a8b5da3ca08f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> @@ -1031,7 +1031,7 @@ &usdhc2 {
->  	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
->  	bus-width = <4>;
->  	vmmc-supply = <&reg_usdhc2_vmmc>;
-> -	power-supply = <&wifi_pwr_en>;
-> +	vqmmc-supply = <&wifi_pwr_en>;
+--d/DKBGEaeBZfjJb+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-From the schematics WIFI_PWR_EN connects to the Wifi card's `W_DISABLE`
-so I don't think vqmmc is correct here. I wonder if there's a better way
-to model that in DT? Any suggestions would be welcome.
+On Mon, Jul 31, 2023 at 12:30:43PM +0100, Lad, Prabhakar wrote:
+> On Sun, Jul 30, 2023 at 4:09=E2=80=AFPM Jisheng Zhang <jszhang@kernel.org=
+> wrote:
+> > On Sun, Jul 02, 2023 at 09:34:26PM +0100, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Cheers,
- -- Guido
+> > > +config RISCV_NONSTANDARD_CACHE_OPS
+> > > +     bool
+> > > +     depends on RISCV_DMA_NONCOHERENT
+> > > +     help
+> > > +       This enables function pointer support for non-standard noncoh=
+erent
+> > > +       systems to handle cache management.
+> >
+> > Per Documentation/riscv/patch-acceptance.rst:
+> >
+> > "we'll only consider patches for extensions that either:
+> >
+> > - Have been officially frozen or ratified by the RISC-V Foundation, or
+> > - Have been implemented in hardware that is widely available, per stand=
+ard
+> >   Linux practice."
+> >
+> > I'm not sure which item this patch series belongs to.
+> >
+> Maybe Conor can help me here ;)
 
->  	broken-cd;
->  	disable-wp;
->  	cap-sdio-irq;
-> -- 
-> 2.40.1
-> 
+I'm not entirely sure why you need my help, it's your company that
+manufactures the SoC that needs this after all.. I think Emil already
+pointed out that it was the latter of the two. I guess it is not an
+"extension" in the strictest sense of the word, but it fills the same
+gap as one, so /shrug.
+
+--d/DKBGEaeBZfjJb+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMedMAAKCRB4tDGHoIJi
+0otyAQCTdXhKY3ZMzXlhBusieryR8/T0KUnMSoyc/nJ6g+0HrQD/ama4ssLUZSV1
+/pCK2RUuXSCTW8uPY8nM87ygzQ/AbQ8=
+=NAG3
+-----END PGP SIGNATURE-----
+
+--d/DKBGEaeBZfjJb+--
