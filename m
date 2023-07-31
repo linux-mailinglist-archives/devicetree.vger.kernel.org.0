@@ -2,124 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DDCD76A31F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 23:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4755C76A365
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 23:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230421AbjGaVmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 17:42:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53866 "EHLO
+        id S229847AbjGaVw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 17:52:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbjGaVmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 17:42:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAD8130;
-        Mon, 31 Jul 2023 14:42:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 53D50612F2;
-        Mon, 31 Jul 2023 21:42:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94784C433C7;
-        Mon, 31 Jul 2023 21:42:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690839736;
-        bh=Iu978Lm0V72u8OFjnPHx80yu7uDx5IJV9cwyHqcixlY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pND/HZjsDfEoMrstHlrtfbI0w5JkC46OzgkAIBjPDJ5gMO0tsBHnZn/5Y0F/FaIUi
-         EjTijss5T1pBEyg5GYPgMb894tDOEJv0G3xzy/cvTzUe4W9y/iZHDmTaqJSpF1D7Yg
-         YBKkYZXhYQB2jo8BVxm3g+vmI7EWOUdBCwZ4q6k4Yjsg6Tm0xEWTPihJche2AU4WU3
-         aE73vJpjboSRWpCU/Wd8kQSsjAS12YxBun/6x668Drzh5W8wu7Rhs892wJXfPoM367
-         tPodV2RomJMGMhUHdK7dPoZ6+/GD9nXPdGgnCuDkMLqPhtceeymTeIs5AUYAB5uzR8
-         FMXwxUZ2OAXUA==
-Date:   Mon, 31 Jul 2023 14:45:21 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        with ESMTP id S229612AbjGaVwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 17:52:25 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E21CE7;
+        Mon, 31 Jul 2023 14:52:21 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3175f17a7baso4494091f8f.0;
+        Mon, 31 Jul 2023 14:52:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690840339; x=1691445139;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LgpOpS8zPiMqsk7e0dzu/7DJUbx/2+7u802O0JxbEFU=;
+        b=j9/na9J/IBRpLUmvKS2qVcLRYaHgOiOoVAVGyNW4LiHJQPz/vJiOFosZi4eXivz/HZ
+         h6Knd33uYpyoLsr+5B0j24rQZ/sY4DY49h4L0Gz78wCz5KLyRKSPfEUCnyfdcHVLgAi1
+         trIDXt6IwyJtJE3r5W36skOjI0sEdERY+eJIi+1Hlj2DUug6gMp75tpD+HcnvxEg2cE4
+         xlmTpHuK9CrfQG2o1G78oBlwxo+K0B544ZOUNZcBaIJQIEGK4wUIOmpiDTBpJPhppyxw
+         FTfm3v27OLir9Cii64rjzyIgq8PAHq8J7BD85jTCAQMQbHXGYIZLHDEJhK7MdE5/hVG0
+         lUJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690840339; x=1691445139;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LgpOpS8zPiMqsk7e0dzu/7DJUbx/2+7u802O0JxbEFU=;
+        b=GrLhNN0NBeMOqIEpWooM5O2anG/xlAPJ7ywVI4LNO7V2X+6eUEPuVv4nDZ9pr2ppBd
+         FMrvhPQjtPGmMcT2XOCisRrrkVzltVYT51oGfUs9kHNrzdoRLjM6jBwc3WExv3Z3i1tr
+         /kCzz4IH7vVVTplR+dmmh+n4eweW73o7f94hlL0THWbJ+LK9688NIMTovag7LKOX9xbI
+         MZaQ/896vNjHZhbzSh8G0SySlv5sQQyrnwCRpefc+i7VZUjHOB4CDdPxK9sw1Ob89UMS
+         YF9zwodWb+o2LM6sv0ncGXsNLsxx3Zk8Cc63UdNl/i/BecvpqDo8ufIZwg15Z7seb4q9
+         jbPA==
+X-Gm-Message-State: ABy/qLbDBg61PHPXDtGsgITXb0mNBgwdpXcWWZWageLQ4m6efqaIQ9iC
+        ddNyzG3eZcP07gtbvq4lHgCuYC6uc2A=
+X-Google-Smtp-Source: APBJJlHzrakuoVmqaVDMP5XX3A7XiukrqeVKsSpvrDgq2ptFhGBlv2rfpe6hvj8AANvXW1CXzXFZwQ==
+X-Received: by 2002:a5d:5259:0:b0:313:ee2e:dae1 with SMTP id k25-20020a5d5259000000b00313ee2edae1mr689304wrc.18.1690840339311;
+        Mon, 31 Jul 2023 14:52:19 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-59-106.cust.vodafonedsl.it. [188.217.59.106])
+        by smtp.gmail.com with ESMTPSA id q20-20020a1709060e5400b00992b3ea1ee4sm6858783eji.149.2023.07.31.14.52.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jul 2023 14:52:18 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     sakari.ailus@linux.intel.com, linuxfancy@googlegroups.com,
+        Tommaso Merciai <tomm.merciai@gmail.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Craig Tatlor <ctatlor97@gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: qcom: msm8974: correct qfprom node size
-Message-ID: <ff6fwomoik6kz4jtbm5jac7jahrtcia5fb6dj5ykxg7xt574sn@ti42sevqj6pk>
-References: <20230130-msm8974-qfprom-v2-1-3839cf41d9ee@z3ntu.xyz>
- <866f1f66-8845-2453-ab9c-d125e23ae758@linaro.org>
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] media: dt-bindings: ov5693: fix maintainer email address
+Date:   Mon, 31 Jul 2023 23:52:15 +0200
+Message-Id: <20230731215215.3045794-1-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <866f1f66-8845-2453-ab9c-d125e23ae758@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 08:20:41PM +0200, Konrad Dybcio wrote:
-> On 15.06.2023 20:17, Luca Weiss wrote:
-> > From: Craig Tatlor <ctatlor97@gmail.com>
-> > 
-> > The qfprom actually has size 0x3000, so adjust the reg.
-> > 
-> > Note that the non-ECC-corrected qfprom can be found at 0xfc4b8000
-> > (-0x4000). The current reg points to the ECC-corrected qfprom block
-> > which should have equivalent values at all offsets compared to the
-> > non-corrected version.
-> > 
-> > [luca@z3ntu.xyz: extract to standalone patch and adjust for review
-> > comments]
-> > 
-> > Fixes: c59ffb519357 ("arm: dts: msm8974: Add thermal zones, tsens and qfprom nodes")
-> > Signed-off-by: Craig Tatlor <ctatlor97@gmail.com>
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> Not sure of the actual size of the region, maybe Bjorn can help..
-> 
-> Downstream 3.10 suggests 0x60F0, 0x20F0 after adjusting for the ECC offset
-> 
+Switch my mail address from a company mail to a personal one.
 
-There is indeed 0x3000 bytes until the next region, but afaict the
-corrected ECC values only cover the first 0x800 bytes thereof.
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+---
+ Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Can you please let me know if this patch fixes a problem, or just
-makes the numbers look better?
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+index 359dc08440a8..d3df4fde34ba 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Omnivision OV5693 CMOS Sensor
+ 
+ maintainers:
+-  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
++  - Tommaso Merciai <tomm.merciai@gmail.com>
+ 
+ description: |
+   The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
+-- 
+2.34.1
 
-Regards,
-Bjorn
-
-> Konrad
-> > Changes in v2:
-> > - Keep base offset but expand reg from 0x1000 to 0x3000 (Konrad)
-> > - Link to v1: https://lore.kernel.org/r/20230130-msm8974-qfprom-v1-1-975aa0e5e083@z3ntu.xyz
-> > ---
-> >  arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > index 7ed0d925a4e9..3156fe25967f 100644
-> > --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > @@ -1194,7 +1194,7 @@ restart@fc4ab000 {
-> >  
-> >  		qfprom: qfprom@fc4bc000 {
-> >  			compatible = "qcom,msm8974-qfprom", "qcom,qfprom";
-> > -			reg = <0xfc4bc000 0x1000>;
-> > +			reg = <0xfc4bc000 0x3000>;
-> >  			#address-cells = <1>;
-> >  			#size-cells = <1>;
-> >  
-> > 
-> > ---
-> > base-commit: 858fd168a95c5b9669aac8db6c14a9aeab446375
-> > change-id: 20230130-msm8974-qfprom-619c0e8f26eb
-> > 
-> > Best regards,
