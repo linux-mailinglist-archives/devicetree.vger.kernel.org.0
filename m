@@ -2,131 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1946C76A41C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 00:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC4C76A45C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 00:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbjGaWYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 18:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
+        id S229873AbjGaWuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 18:50:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjGaWYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 18:24:33 -0400
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0BA112B;
-        Mon, 31 Jul 2023 15:24:32 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1qQbJO-0002SO-38;
-        Mon, 31 Jul 2023 22:24:23 +0000
-Date:   Mon, 31 Jul 2023 23:24:06 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Felix Fietkau <nbd@nbd.name>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230021AbjGaWuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 18:50:18 -0400
+Received: from rere.qmqm.pl (rere.qmqm.pl [91.227.64.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBAC1BD9;
+        Mon, 31 Jul 2023 15:50:08 -0700 (PDT)
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 4RFD313l6jzCY;
+        Tue,  1 Aug 2023 00:50:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1690843805; bh=0tPOp+JS5ixYfQHrHF0O6mJvd9r7PaF0dMi6lLuDr9k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BDK7Ld3dgMmPUsyXfLAEJHARvKa6QywWLiAMVNRmjE1JQmKHTa+eu4ZBa8Kav5DtK
+         PS1ZB4wmwnAg1H3KcLhD/sV4g5/+p+xmtMzlRyXEKRc2WcZTn1MdbWiPM41l15zEqO
+         umVDhKyd0AApiCw8JujYem19aM31ROvCw4s1AemV0/N68LdEpS3MzkImLI9fVLIGwK
+         cgZEi/qI/D9XomueW1b4wGiRLXyLWU8OdvtUHh81jTyI4O6aqU3OzQcPOciHyP/+YJ
+         ilXlfw7DX5lUIcUXAjlp3gHSTtA10UqkUvibgmg/fHtUnzheYJSgqeXIgQVA1hOTh5
+         7Lb2WILHGddPA==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.103.8 at mail
+Date:   Tue, 1 Aug 2023 00:50:03 +0200
+From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 2/2] wifi: mt76: support per-band MAC addresses from OF
- child nodes
-Message-ID: <c69fec6bd0b6e4e8a2a776cbc860fceb977fa4b6.1690841657.git.daniel@makrotopia.org>
-References: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
+Message-ID: <ZMg6m+Dru6rxCRqU@qmqm.qmqm.pl>
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-3-clamor95@gmail.com>
+ <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
+ <ZMbcb0yuTz6l6BYh@qmqm.qmqm.pl>
+ <b9183dfc-8e8a-9602-f31c-5de9e27acb88@linaro.org>
+ <ZMd1qI7RjQhpI8zO@qmqm.qmqm.pl>
+ <fdc513a3-c0e0-c57d-5c9a-8da6fa2f54e2@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-2
 Content-Disposition: inline
-In-Reply-To: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fdc513a3-c0e0-c57d-5c9a-8da6fa2f54e2@linaro.org>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With dual-band-dual-congruent front-ends which appear as two independent
-radios it is desirable to assign a per-band MAC address from device-tree,
-eg. using nvmem-cells.
-Support specifying MAC-address related properties in band-specific child
-nodes, e.g.
-        wifi@0,0 {
-                reg = <0x0000 0 0 0 0>;
-                #addr-cells = <1>;
-                #size-cells = <0>;
+On Mon, Jul 31, 2023 at 02:59:41PM +0200, Krzysztof Kozlowski wrote:
+> On 31/07/2023 10:49, Micha³ Miros³aw wrote:
+> > On Mon, Jul 31, 2023 at 08:58:14AM +0200, Krzysztof Kozlowski wrote:
+> >> On 30/07/2023 23:55, Micha³ Miros³aw wrote:
+> >>> On Sun, Jul 30, 2023 at 10:30:56PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 29/07/2023 18:08, Svyatoslav Ryhel wrote:
+> >>>>> From: Micha³ Miros³aw <mirq-linux@rere.qmqm.pl>
+> >>>>>
+> >>>>> Implement driver for hot-plugged I2C busses, where some devices on
+> >>>>> a bus are hot-pluggable and their presence is indicated by GPIO line.
+> >>> [...] 
+> >>>>> +	priv->irq = platform_get_irq(pdev, 0);
+> >>>>> +	if (priv->irq < 0)
+> >>>>> +		return dev_err_probe(&pdev->dev, priv->irq,
+> >>>>> +				     "failed to get IRQ %d\n", priv->irq);
+> >>>>> +
+> >>>>> +	ret = devm_request_threaded_irq(&pdev->dev, priv->irq, NULL,
+> >>>>> +					i2c_hotplug_interrupt,
+> >>>>> +					IRQF_ONESHOT | IRQF_SHARED,
+> >>>>
+> >>>> Shared IRQ with devm is a recipe for disaster. Are you sure this is a
+> >>>> shared one? You have a remove() function which also points that it is
+> >>>> not safe. You can:
+> >>>> 1. investigate to be sure it is 100% safe (please document why do you
+> >>>> think it is safe)
+> >>>
+> >>> Could you elaborate on what is unsafe in using devm with shared
+> >>> interrupts (as compared to non-shared or not devm-managed)?
+> >>>
+> >>> The remove function is indeed reversing the order of cleanup. The
+> >>> shutdown path can be fixed by removing `remove()` and adding
+> >>> `devm_add_action_or_reset(...deactivate)` before the IRQ is registered.
+> >> Shared interrupt might be triggered easily by other device between
+> >> remove() and irq release function (devm_free_irq() or whatever it is
+> >> called).
+> > 
+> > This is no different tham a non-shared interrupt that can be triggered
+> > by the device being removed. Since devres will release the IRQ first,
+> > before freeing the driver data, the interrupt hander will see consistent
+> > driver-internal state. (The difference between remove() and devres
+> > release phase is that for the latter sysfs files are already removed.)
+> 
+> True, therefore non-devm interrupts are recommended also in such case.
+> Maybe one of my solutions is actually not recommended.
+> 
+> However if done right, driver with non-shared interrupts, is expected to
+> disable interrupts in remove(), thus there is no risk. We have big
+> discussions in the past about it, so feel free to dig through LKML to
+> read more about. Anyway shared and devm is a clear no go.
 
-                band@0 {
-                        /* 2.4 GHz */
-                        reg = <0>;
-                        nvmem-cells = <&macaddr 2>;
-                        nvmem-cell-names = "mac-address";
-                };
+Can you share pointers to some of those discussions? Quick search
+about devm_request_irq() and friends found only a thread from 2013
+about conversions of RTC drivers to use devres. [1] IIRC the issue was
+then that the drivers requested IRQs before fully initializing the state
+(as many still do). Back to the original question: what is the risk
+in using devres with shared interrupts? (Let's assume the probe() is already
+fixed and remove() removed.)
 
-                band@1 {
-                        /* 5 GHz */
-                        reg = <1>;
-                        nvmem-cells = <&macaddr 3>;
-                        nvmem-cell-names = "mac-address";
-                };
-        };
+BTW, We have devres doc [2] in the kernel tree that, among other things,
+lists IRQs as a managed resource and mentions no warnings nor restictions
+for driver authors. I'd expect that if devm_request_threaded_irq() for
+shared iterrupts was indeed deprecated, it should be documented in a way
+easy to refer to.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Tested-by: Shiji Yang <yangshiji66@outlook.com>
----
-Changes since v2:
- * none
+[1] https://groups.google.com/g/linux.kernel/c/yi2ueo-sNJs
+[2] Documentation/udriver-api/driver-model/devres.rst
 
-Changes since v1:
- * refactor and add missing of_node_put()
-
- drivers/net/wireless/mediatek/mt76/eeprom.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/mediatek/mt76/eeprom.c b/drivers/net/wireless/mediatek/mt76/eeprom.c
-index 36564930aef12..c2b3386cada1c 100644
---- a/drivers/net/wireless/mediatek/mt76/eeprom.c
-+++ b/drivers/net/wireless/mediatek/mt76/eeprom.c
-@@ -161,9 +161,25 @@ void
- mt76_eeprom_override(struct mt76_phy *phy)
- {
- 	struct mt76_dev *dev = phy->dev;
--	struct device_node *np = dev->dev->of_node;
-+	struct device_node *np = dev->dev->of_node, *band_np;
-+	bool found_mac = false;
-+	u32 reg;
-+	int ret;
-+
-+	for_each_child_of_node(np, band_np) {
-+		ret = of_property_read_u32(band_np, "reg", &reg);
-+		if (ret)
-+			continue;
-+
-+		if (reg == phy->band_idx) {
-+			found_mac = !of_get_mac_address(band_np, phy->macaddr);
-+			of_node_put(band_np);
-+			break;
-+		}
-+	}
- 
--	of_get_mac_address(np, phy->macaddr);
-+	if (!found_mac)
-+		of_get_mac_address(np, phy->macaddr);
- 
- 	if (!is_valid_ether_addr(phy->macaddr)) {
- 		eth_random_addr(phy->macaddr);
--- 
-2.41.0
+Best Regards
+Micha³ Miros³aw
