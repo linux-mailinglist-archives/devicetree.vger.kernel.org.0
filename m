@@ -2,84 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D61EF768A40
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 05:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E1D2768A4A
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 05:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbjGaDPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 23:15:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
+        id S229892AbjGaD2m convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 30 Jul 2023 23:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjGaDPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 23:15:04 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 90485E8;
-        Sun, 30 Jul 2023 20:15:02 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8Bxyeo0J8dkqOwMAA--.21395S3;
-        Mon, 31 Jul 2023 11:15:00 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxWM0zJ8dkk75BAA--.42919S3;
-        Mon, 31 Jul 2023 11:14:59 +0800 (CST)
-Subject: Re: [PATCH v5 2/2] soc: loongson2_pm: add power management support
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S229522AbjGaD2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 23:28:41 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92E4B18C;
+        Sun, 30 Jul 2023 20:28:39 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 6785124E21B;
+        Mon, 31 Jul 2023 11:28:32 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 31 Jul
+ 2023 11:28:32 +0800
+Received: from ubuntu.localdomain (113.72.147.196) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 31 Jul
+ 2023 11:28:31 +0800
+From:   Hal Feng <hal.feng@starfivetech.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Claudiu Beznea" <claudiu.beznea@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Liu Yun <liuyun@loongson.cn>,
-        zhuyinbo@loongson.cn
-References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
- <20230728074944.26746-3-zhuyinbo@loongson.cn>
- <cefa57cf-2ff1-22f1-5cb3-ce0c04a30c57@infradead.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <9d96d0a6-b418-a45d-d616-51509e9afd8c@loongson.cn>
-Date:   Mon, 31 Jul 2023 11:14:58 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Conor Dooley <conor+dt@kernel.org>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] Add PWM-DAC audio support for StarFive JH7110 RISC-V SoC
+Date:   Mon, 31 Jul 2023 11:28:26 +0800
+Message-ID: <20230731032829.127864-1-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-In-Reply-To: <cefa57cf-2ff1-22f1-5cb3-ce0c04a30c57@infradead.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxWM0zJ8dkk75BAA--.42919S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [113.72.147.196]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds PWM-DAC audio support for the StarFive JH7110 SoC.
+The PWM-DAC module does not require a hardware codec, but a dummy codec is
+needed for the driver. The dummy spdif codec driver, which is already
+upstream, is compatible with the one which JH7110 PWM-DAC needed. So we
+use it as the dummy codec driver for the JH7110 PWM-DAC module.
+
+The third patch depends on tag next-20230728 in linux-next branch.
+
+Changes since v1:
+- Rebase on tag v6.5-rc3.
+- Drop patch 1 and 2.
+- Drop the unneeded space and line in patch 3.
+- Use the dummy spdif codec driver instead of adding a new one.
+- Change "dai_link->stop_dma_first = 1" to
+  "dai_link->trigger_stop = SND_SOC_TRIGGER_ORDER_LDC" in patch 4.
+- Drop the unneeded "status = "okay;" in patch 5.
+- Change some node names in patch 5.
+
+---
+v1: https://lore.kernel.org/all/20230626110909.38718-1-hal.feng@starfivetech.com/
+
+Hal Feng (3):
+  ASoC: dt-bindings: Add StarFive JH7110 PWM-DAC controller
+  ASoC: starfive: Add JH7110 PWM-DAC driver
+  riscv: dts: starfive: Add JH7110 PWM-DAC support
+
+ .../sound/starfive,jh7110-pwmdac.yaml         |  76 ++
+ MAINTAINERS                                   |   7 +
+ .../jh7110-starfive-visionfive-2.dtsi         |  99 +++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 156 ++++
+ sound/soc/starfive/Kconfig                    |   9 +
+ sound/soc/starfive/Makefile                   |   1 +
+ sound/soc/starfive/jh7110_pwmdac.c            | 787 ++++++++++++++++++
+ 7 files changed, 1135 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac.yaml
+ create mode 100644 sound/soc/starfive/jh7110_pwmdac.c
 
 
-在 2023/7/28 下午8:17, Randy Dunlap 写道:
-> Hi--
-> 
-> On 7/28/23 00:49, Yinbo Zhu wrote:
->> +config LOONGSON2_PM
->> +	bool "Loongson-2 SoC Power Management Controller Driver"
->> +	depends on LOONGARCH && OF
->> +	help
->> +	 The Loongson-2's power management controller was ACPI, supports ACPI
->> +	 S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
->> +	 Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
->> +	 (USB, GMAC, PWRBTN, etc.). This driver was to add power management
->> +	 controller support that base on dts for Loongson-2 series SoCs.
-> 
-> Kconfig help text should be indented with one tab +2 spaces, as documented
-> in Documentation/process/coding-style.rst.
-
-
-okay, I got it.
-
-Thanks,
-Yinbo
+base-commit: 6eaae198076080886b9e7d57f4ae06fa782f90ef
+-- 
+2.38.1
 
