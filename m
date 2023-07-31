@@ -2,108 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C697697B1
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 15:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B32176987E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 15:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjGaNef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 09:34:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36476 "EHLO
+        id S233089AbjGaNzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 09:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjGaNee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 09:34:34 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239A21708
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 06:34:34 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id 46e09a7af769-6b9da57da6bso498399a34.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 06:34:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690810473; x=1691415273;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KshR7HWMSbuCSMCUVNiESzXZo72NeDEXMY5byYWj2ys=;
-        b=j9w3Qj/q5tFM3UlR1audRQyz7PyvuR4h5kra1sDzLUjsyqPF8rA8HoyhxF5/q7rpd7
-         a03iqryRgDBGa81t0/A232cXxcX4olztKzshtgvuNsDlEsTiIR2bfdbhfsDMvcURK0qT
-         Vw4r6pX14Tg8+oPjluXhOytWBoqrtvgCsD4WUKmfXsPoIgYM9N5t3m5sk3o7nACxdW84
-         xRPLZD6wbI63odQE2KcDP1jjJguzWQbybgpik00od8jgXS+cauI07yqDHIsjdjqk5QmG
-         bk0nUJf/p33yJ22bsbtQP5LB8SNH0NiwVPCITYqqJuabU+VQl+EBGabUT4kNdYEm62e/
-         cLUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690810473; x=1691415273;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KshR7HWMSbuCSMCUVNiESzXZo72NeDEXMY5byYWj2ys=;
-        b=X/hA/m6oyUX00qCJMCo9VtwNl5onkSYARRiFy1Hb5j0MjStfdqi6WP8AnmAo/EtO0G
-         FOljlRtouLdvvRxnwWmQ8q8YGXBGDsvawVB1VLgFjq3RVN0AFcBS/hp/FzakX3Yj4sgd
-         hdfFcI+V3ZlL48lKnoyWbS+Ie0cJpmxJCiKqlAiXq+gPsOtGxB0JcjVh3REQB3sMFf63
-         PZKzlCoxio2FZKEzNwgY1iHivRmBTSUPsHgTrpszk4ETQqpWTLMvpHgg2V1GLNZMlhXW
-         cHuAyXWzGcN8ZepHa+/o5YUYEiixyrMOtw2HPTZrgIL0wO5fXMGVC/OiTxtUV538cfC4
-         Kvlw==
-X-Gm-Message-State: ABy/qLYSivtMRBvP2EcCOIoT41TbBgAqFQaRR5S0+Nx6IX/y8sLkzwh3
-        BJLe6tFFHJhuYkvtWD54UNg=
-X-Google-Smtp-Source: APBJJlHHPVR/H4yFiruEHzKd1upg5L6c+phgXyXkYNQatM0byalubIunrsZX+bGkB8gNSyXsNH0QPQ==
-X-Received: by 2002:a05:6830:6608:b0:6b9:f192:1f91 with SMTP id cp8-20020a056830660800b006b9f1921f91mr7881944otb.2.1690810473388;
-        Mon, 31 Jul 2023 06:34:33 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:fb3f:fd5:45fe:5e7a])
-        by smtp.gmail.com with ESMTPSA id t1-20020a9d66c1000000b006bc30d47673sm4059459otm.17.2023.07.31.06.34.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 06:34:32 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 3/3] ARM: dts: imx53-smd: Remove invalid SPI flash entry
-Date:   Mon, 31 Jul 2023 10:34:21 -0300
-Message-Id: <20230731133421.1499992-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230731133421.1499992-1-festevam@gmail.com>
-References: <20230731133421.1499992-1-festevam@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S232809AbjGaNzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 09:55:02 -0400
+X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 31 Jul 2023 06:52:59 PDT
+Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E791A19B0;
+        Mon, 31 Jul 2023 06:52:58 -0700 (PDT)
+Date:   Mon, 31 Jul 2023 15:35:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=default;
+        t=1690810576;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
+         references:references; bh=D0C9W4jLWSTvnH8GOqVr0jR88Cd4UebzZne1ky7oQew=;
+        b=MgCaJUUhtnwJoabwcOv/O2xDIrYyU6e2SrIdTvpRF6hQCBOUwM43hoGiBDHxfeOvLgytKm
+        E/s1em5jauL5/eDip6Z0a0Q4wmHaM0lHd/YUnaNq57TZAb+jQ76miKtoulqJTKefuzPPMh
+        YsK0EKUMHQKC6NxppBGQIvaQoi+KFwz6yBuWKu1lEg/FGUS2KWohgybOvHx031wiEV+pY1
+        w1sU6nGM0DHfDX4/FjJ/MiD69uxnqc+4j2tz8JpfD0MPUCv4NevSDVAmibrOwwJUaqP3p7
+        WL8TbB+VpJoKmCndRZDqIf+PGy3q9LgX0Ql1PsqQuunp4h+33rjJNlAH2JGdyw==
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Durai Manickam KR <durai.manickamkr@microchip.com>
+Cc:     Hari.PrasathGE@microchip.com,
+        balamanikandan.gunasundar@microchip.com,
+        manikandan.m@microchip.com, varshini.rajendran@microchip.com,
+        dharma.b@microchip.com, nayabbasha.sayed@microchip.com,
+        balakrishnan.s@microchip.com, cristian.birsan@microchip.com,
+        nicolas.ferre@microchip.com, krzysztof.kozlowski@linaro.org,
+        alexandre.belloni@bootlin.com, davem@davemloft.net, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kavyasree.Kotagiri@microchip.com, Horatiu.Vultur@microchip.com,
+        robh+dt@kernel.org, andrew@lunn.ch, michael@walle.cc,
+        jerry.ray@microchip.com, conor+dt@kernel.org,
+        jesper.nilsson@axis.com, andre.przywara@arm.com, ada@thorsis.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        gregkh@linuxfoundation.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: Re: [PATCHv3 2/2] ARM: dts: at91: sam9x60: fix the SOC detection
+Message-ID: <20230731-confess-prison-0ce898c937ba@ifak-system.com>
+Mail-Followup-To: Durai Manickam KR <durai.manickamkr@microchip.com>,
+        Hari.PrasathGE@microchip.com,
+        balamanikandan.gunasundar@microchip.com, manikandan.m@microchip.com,
+        varshini.rajendran@microchip.com, dharma.b@microchip.com,
+        nayabbasha.sayed@microchip.com, balakrishnan.s@microchip.com,
+        cristian.birsan@microchip.com, nicolas.ferre@microchip.com,
+        krzysztof.kozlowski@linaro.org, alexandre.belloni@bootlin.com,
+        davem@davemloft.net, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Kavyasree.Kotagiri@microchip.com,
+        Horatiu.Vultur@microchip.com, robh+dt@kernel.org, andrew@lunn.ch,
+        michael@walle.cc, jerry.ray@microchip.com, conor+dt@kernel.org,
+        jesper.nilsson@axis.com, andre.przywara@arm.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        gregkh@linuxfoundation.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20230718065735.10187-1-durai.manickamkr@microchip.com>
+ <20230718065735.10187-3-durai.manickamkr@microchip.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230718065735.10187-3-durai.manickamkr@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+Hello Durai,
 
-"st,m25p" is not a valid compatible according to jedec,spi-nor.yaml.
+Am Tue, Jul 18, 2023 at 12:27:35PM +0530 schrieb Durai Manickam KR:
+> Defining the dbgu compatible strings in the UART submodule of the
+> flexcom gives the below error log,
+> AT91: Could not find matching SoC description
+> This error arises due to defining the dbgu compatible strings to
+> the flexcom usart which is not valid because there is only one debug unit
+> in the sam9x60 SOC and it has the chipid register. The dbgu compatible
+> strings are valid only for debug usart and not valid for flexcom usart.
+> Thus removing the dbgu compatible strings in the UART submodule of the
+> flexcom for the proper SOC detection.
+> 
+> Fixes: 99c808335877 (ARM: dts: at91: sam9x60: Add missing flexcom definitions)
+> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
 
-Remove it.
+Acked-by: Alexander Dahl <ada@thorsis.com>
 
-Also, node names should be generic, so use 'flash' as the SPI NOR flash
-node name.
+(The diff of the patch is identical to the diff of a quick hacked
+patch I made weeks ago for my BSP which fixed the issue.  SoC variant
+was reported correctly on serial console on boot again.  However I did
+not actually test *your* patch on my hardware (sam9x60 curiosity),
+thus Acked-by and not Tested-by.)
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/nxp/imx/imx53-smd.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Greets
+Alex
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx53-smd.dts b/arch/arm/boot/dts/nxp/imx/imx53-smd.dts
-index f8d17967a67e..55435dfdff8a 100644
---- a/arch/arm/boot/dts/nxp/imx/imx53-smd.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx53-smd.dts
-@@ -67,10 +67,10 @@ zigbee: mc1323@0 {
- 		reg = <0>;
- 	};
- 
--	flash: m25p32@1 {
-+	flash: flash@1 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "st,m25p32", "st,m25p", "jedec,spi-nor";
-+		compatible = "st,m25p32", "jedec,spi-nor";
- 		spi-max-frequency = <20000000>;
- 		reg = <1>;
- 
--- 
-2.34.1
-
+> ---
+>  arch/arm/boot/dts/microchip/sam9x60.dtsi | 26 ++++++++++++------------
+>  1 file changed, 13 insertions(+), 13 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> index 8b53997675e7..73d570a17269 100644
+> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> @@ -172,7 +172,7 @@ flx4: flexcom@f0000000 {
+>  				status = "disabled";
+>  
+>  				uart4: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -240,7 +240,7 @@ flx5: flexcom@f0004000 {
+>  				status = "disabled";
+>  
+>  				uart5: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+>  					interrupts = <14 IRQ_TYPE_LEVEL_HIGH 7>;
+> @@ -370,7 +370,7 @@ flx11: flexcom@f0020000 {
+>  				status = "disabled";
+>  
+>  				uart11: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <32 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -419,7 +419,7 @@ flx12: flexcom@f0024000 {
+>  				status = "disabled";
+>  
+>  				uart12: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <33 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -576,7 +576,7 @@ flx6: flexcom@f8010000 {
+>  				status = "disabled";
+>  
+>  				uart6: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <9 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -625,7 +625,7 @@ flx7: flexcom@f8014000 {
+>  				status = "disabled";
+>  
+>  				uart7: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <10 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -674,7 +674,7 @@ flx8: flexcom@f8018000 {
+>  				status = "disabled";
+>  
+>  				uart8: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <11 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -723,7 +723,7 @@ flx0: flexcom@f801c000 {
+>  				status = "disabled";
+>  
+>  				uart0: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -791,7 +791,7 @@ flx1: flexcom@f8020000 {
+>  				status = "disabled";
+>  
+>  				uart1: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -859,7 +859,7 @@ flx2: flexcom@f8024000 {
+>  				status = "disabled";
+>  
+>  				uart2: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -927,7 +927,7 @@ flx3: flexcom@f8028000 {
+>  				status = "disabled";
+>  
+>  				uart3: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -1050,7 +1050,7 @@ flx9: flexcom@f8040000 {
+>  				status = "disabled";
+>  
+>  				uart9: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <15 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> @@ -1099,7 +1099,7 @@ flx10: flexcom@f8044000 {
+>  				status = "disabled";
+>  
+>  				uart10: serial@200 {
+> -					compatible = "microchip,sam9x60-dbgu", "microchip,sam9x60-usart", "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart";
+> +					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+>  					reg = <0x200 0x200>;
+>  					interrupts = <16 IRQ_TYPE_LEVEL_HIGH 7>;
+>  					dmas = <&dma0
+> -- 
+> 2.25.1
+> 
