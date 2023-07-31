@@ -2,192 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B896076949B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B457694AD
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbjGaLUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 07:20:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
+        id S232297AbjGaLVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 07:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbjGaLUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:20:46 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82803BF;
-        Mon, 31 Jul 2023 04:20:31 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36VBK6Ae086420;
-        Mon, 31 Jul 2023 06:20:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690802406;
-        bh=DRmU+9mTrUabLH+VCeLGv4Z0gxwz7F1zcQ3OZ35YsgA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Vp9Zz/fgAzRbYmLuCDAdWtF1jmFZFd2kDmxDrw+WTZMkPInrisUTzAfhLBSeivcXU
-         y073YwQBhBkbTAama17zzLAexpgJFs6OjPwpTJVFNWdqP/sCJ8Z91v/4EU4GUxYrKg
-         zXFYIoLqcaxXfCXjKXey0FR0T1t4K2FiV4bKUEY4=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36VBK68f117143
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 31 Jul 2023 06:20:06 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 31
- Jul 2023 06:20:06 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 31 Jul 2023 06:20:06 -0500
-Received: from [172.24.227.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36VBJxtJ062506;
-        Mon, 31 Jul 2023 06:20:00 -0500
-Message-ID: <8790da4f-1378-410c-f637-f85ca4d34604@ti.com>
-Date:   Mon, 31 Jul 2023 16:49:59 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v12 06/10] net: ti: icssg-prueth: Add ICSSG ethernet
- driver
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S232571AbjGaLV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:21:28 -0400
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205DA19A1;
+        Mon, 31 Jul 2023 04:21:16 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4RDwm11Lfxz49Pyr;
+        Mon, 31 Jul 2023 14:21:05 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1690802467;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=0yTUDvKr9KLJ6gBlgIFt0nRAFsoBYNTAi9NRqIkWAVs=;
+        b=AYI5iHHUBmc01ZiU7KqvPtIs4wGSE7vI+4Li73ZPtdwHGysuYtisKNz1RCt6gbkbHzHmSo
+        iesBV8KPLWj3hHXHfDev76TMOOoige9pF3e5Xel3hbfkcgzfeBaikLW957V48XhR37MuEK
+        ETFwRhT3mpleJfqSFTdhZ8iig7WZEyNQGIZPVtFtNSnSvQcj68GurDoHi5ZWI4F964AN1n
+        BcniA5OO6U+LtNI8bYRlqo0hoJyuCV+/LWmxDrZrzUmbkMvz8HgpZg/+V1ISl3t8lT1s01
+        k+Z0Y3xKD8IKVwTRqicfSCwUsYmS35r4CRjli1rPIxTBS/DiLPkEmslv9/MnzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=lahtoruutu; t=1690802467;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=0yTUDvKr9KLJ6gBlgIFt0nRAFsoBYNTAi9NRqIkWAVs=;
+        b=HAfq68Aq+b99nBng9aVkropwlrnjCcqaNtoRYITdsQe9etLceD09vCESqZrqjaA8CwpACC
+        WEAmhy2fq2WdZZQ4vhWexMBFsPe16SrR09wmxHHk4/bknq4nyugb0r07J50inqNQaG/rdC
+        hdwxSe0y2rf8qyEAr2hOk1IZHBjgW0pbUBu+T7HKhW/HshVRmUchm48BKwvpbSCgAlKz1I
+        iWsm19mWR/iAbNCqZK/mhBioBsff4WKk+nDE2CWGeIPNlaYlHnBuc40bTwoiZNmPf30gq9
+        tX6OdSOjIxfL14Y2RJHge4V6+1VYbmqqxJWhcN7aPiTlJ1TondA2YV9gi3Zkqw==
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1690802467; a=rsa-sha256;
+        cv=none;
+        b=wLTcZStgf+OVjSvMjtGKMLiN6mVJZN2XZsvK95TuF3IMgEYRmmTNNS4P0HYQ74Szh5+tEb
+        yy9TuluHhSdDkYs2nY4H+LwkXxWOR081H/snDEYNkGNBO74VG0bE+WfKcVo47+4sj3bkZC
+        TkVItmMuqxfh1xlOSPvRfQEWwwirp0jO3KoJsDRZEPhm9KKUsgIi4yQcWik/skv+HjMgeM
+        gAt19b+XyKRrwvyjMfGRm/aK7jSm1oI+RQQS+E4WBsyfJXhfVhbFLPOLpn33o99ivFqTle
+        tx+xRNQE8eLTmf+cnCqNNdgdaaFWwsEMmvyYTFisGGTCxswer2FT/DhYXa/Qnw==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id A9F60634C95;
+        Mon, 31 Jul 2023 14:21:04 +0300 (EEST)
+Date:   Mon, 31 Jul 2023 11:21:04 +0000
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230727112827.3977534-1-danishanwar@ti.com>
- <20230727112827.3977534-7-danishanwar@ti.com>
- <20230728172419.702b4ac0@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <20230728172419.702b4ac0@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Dafna Hirschfeld <dafna@fastmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] media: dt-bindings: Merge OV5695 into OV5693 binding
+Message-ID: <ZMeZIGyD+ET6gaox@valkosipuli.retiisi.eu>
+References: <20230707210604.868002-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230707210604.868002-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakub,
+Hi Rob,
 
-On 29/07/23 5:54 am, Jakub Kicinski wrote:
-> On Thu, 27 Jul 2023 16:58:23 +0530 MD Danish Anwar wrote:
->> +static int emac_tx_complete_packets(struct prueth_emac *emac, int chn,
->> +				    int budget)
->> +{
->> +	struct net_device *ndev = emac->ndev;
->> +	struct cppi5_host_desc_t *desc_tx;
->> +	struct netdev_queue *netif_txq;
->> +	struct prueth_tx_chn *tx_chn;
->> +	unsigned int total_bytes = 0;
->> +	struct sk_buff *skb;
->> +	dma_addr_t desc_dma;
->> +	int res, num_tx = 0;
->> +	void **swdata;
->> +
->> +	tx_chn = &emac->tx_chns[chn];
->> +
->> +	while (budget) {
->> +		res = k3_udma_glue_pop_tx_chn(tx_chn->tx_chn, &desc_dma);
->> +		if (res == -ENODATA)
->> +			break;
+On Fri, Jul 07, 2023 at 03:06:04PM -0600, Rob Herring wrote:
+> The OV5695 binding is almost the same as the OV5693 binding. The only
+> difference is 'clock-names' is defined for OV5695. However, the lack of
+> clock-names is an omission as the Linux OV5693 driver expects the same
+> 'xvclk' clock name.
 > 
-> You shouldn't limit the number of serviced packets to budget for Tx
-> NAPI.
-> 
-> https://docs.kernel.org/next/networking/napi.html#driver-api
+> 'link-frequencies' is required by OV5693, but not OV5695. Just drop it
+> from being required. Expressing it conditionally would be ugly. It
+> shouldn't really be required either as the driver only supports 1
+> frequency anyways.
 
-Sure, I will remove budget from here, instead will service packets in
-while(true) {} loop.
-> 
->> +	skb->dev = ndev;
->> +	if (!netif_running(skb->dev)) {
->> +		dev_kfree_skb_any(skb);
->> +		return 0;
->> +	}
-> 
-> why do you check if the interface is running?
-> If a packet arrives, it means the interface is running..
-> 
->> +drop_free_descs:
->> +	prueth_xmit_free(tx_chn, first_desc);
->> +drop_stop_q:
->> +	netif_tx_stop_queue(netif_txq);
-> 
-> Do not stop the queue on DMA errors. If the queue is empty nothing
-> will wake it up. Queue should only be stopped based on occupancy.
+The correct way to address this would appear to be to add link-frequencies
+for both of these devices. I think I've seen one or two sensors of this
+class (raw, CSI-2/parallel, external clock etc.) with link frequencies
+documented as "fixed" --- which is probably a documentation issue more than
+anything else.
 
-There are five error handling cases in xmit().
-
-1. DMA Mapping the linear buffer -- If we fail to map dma, we will return
-NETDEV_TX_OK and goto drop_free_skb which will free the skb and drop the packet.
-
-2. Allocating descriptor for linear buffer -- If we fail to allocate descriptor
-this means it is a occupancy issue and we will goto drop_stop_q_busy which will
-stop queue and return NETDEV_TX_BUSY.
-
-3. Allocating descriptor when skb is fragmented. -- If we fail to allocate
-descriptor when skb is fragmented, we will goto drop_stop_q which will stop the
-queue, free the descriptor, free the skb, drop the packet and return NETDEV_TX_OK.
-
-4. DMA mapping for fragment. -- If DMA mapping for fragment fails, we will go
-to drop_free_descs which will free the descriptor, free the skb, drop the
-packet and return NETDEV_TX_OK.
-
-5. Tx push failed. -- If tx push fails we will goto drop_free_descs which will
-free the descriptor, free the skb, drop the packet and return.
-
-We will only stop queue in case 2 and 3 where we failed to allocate descriptor.
-In case 1, 4 and 5 we are encountering dma mapping error, so for these cases we
-will not stop the queue.
-
-Below will be my goto labels.
-
-drop_stop_q:
-	netif_tx_stop_queue(netif_txq);
-
-drop_free_descs:
-	prueth_xmit_free(tx_chn, first_desc);
-
-drop_free_skb:
-	dev_kfree_skb_any(skb);
-
-	/* error */
-	ndev->stats.tx_dropped++;
-	netdev_err(ndev, "tx: error: %d\n", ret);
-
-	return ret;
-
-drop_stop_q_busy:
-	netif_tx_stop_queue(netif_txq);
-	return NETDEV_TX_BUSY;
-
-Please let me know if this looks OK or if you have any comment on this.
-
-> 
->> +	dev_kfree_skb_any(skb);
->> +
->> +	/* error */
->> +	ndev->stats.tx_dropped++;
->> +	netdev_err(ndev, "tx: error: %d\n", ret);
->> +
->> +	return ret;
+Also see:
+<URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#handling-clocks>.
 
 -- 
-Thanks and Regards,
-Danish.
+Kind regards,
+
+Sakari Ailus
