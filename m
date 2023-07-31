@@ -2,98 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D497696EE
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 14:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9D67696F0
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 14:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232243AbjGaM72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 08:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42990 "EHLO
+        id S232295AbjGaM7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 08:59:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232295AbjGaM70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 08:59:26 -0400
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF8A210E3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 05:59:25 -0700 (PDT)
-Received: from [127.0.0.1] (helo=localhost)
-        by relay.expurgate.net with smtp (Exim 4.92)
-        (envelope-from <prvs=6590db4e63=fe@dev.tdt.de>)
-        id 1qQSUX-00Fwx4-L1; Mon, 31 Jul 2023 14:59:17 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-        by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1qQSUW-00GpYy-LN; Mon, 31 Jul 2023 14:59:16 +0200
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-        by securemail.tdt.de (Postfix) with ESMTP id 4F9CA24004B;
-        Mon, 31 Jul 2023 14:59:15 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-        by securemail.tdt.de (Postfix) with ESMTP id 9FEC7240040;
-        Mon, 31 Jul 2023 14:59:14 +0200 (CEST)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-        by mail.dev.tdt.de (Postfix) with ESMTP id E4EF0313F9;
-        Mon, 31 Jul 2023 14:59:13 +0200 (CEST)
+        with ESMTP id S231794AbjGaM7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 08:59:46 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D240810E3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 05:59:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99c1d03e124so87479266b.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 05:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690808383; x=1691413183;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OjNUiGbK+r1sXqp9L+BG2Nwgnyi0n65xn60LuBTJ+Lo=;
+        b=ipE2GeHmGakEq92kZfr0zFwxnvW8Bm1NtgHlVo+VScWEywfWmiDQZ30e6NG4kzr8Nf
+         l0HE/lQrsj5Jw9gxLxsslNaqp3ue3LjUCFI3vNJ/mtEqCWHys0ED+BtfsA72/y3BZN1t
+         5NsQiqcsJSsiyrQdFUOpbUGliSd8ViYY+SiE6hZhgqWiIxApRkzMzWxjSB/ZnkMBB6BB
+         PvwHuEHVwhryClOh22M2lQ9jJHEeQYrDD0TzSFip7j8EyukgjkANeivDoC3zFJk9yYLn
+         9IiFw18Gu7fwb/OswNV5n1JITJ2O+Ia054m+SwYrVGFaZauSsFthBZlaknIg+WZR/+3I
+         dSaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690808383; x=1691413183;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OjNUiGbK+r1sXqp9L+BG2Nwgnyi0n65xn60LuBTJ+Lo=;
+        b=TdRnwPYoPMFpd1RpMnOGBHmLic+QUmE6GRqlt7N49DGif7oXaAZLrTvwax/adWrFRy
+         v4tzbPRWcK2RtX0cB0FfGAYGnOcbb366/KNsh6DyFjXsbFBQX+5GL7P6XUETwi+lTQJc
+         y+4nY3KNlCY1S7C8MuOqQqlvap+wmq6b+9hq5LFUq+ZJbKopSBXsAJdbmINf7NvaAjlw
+         blJomskhCDEPNtQJwMoLdU2PkRwTiNZsuYQHE6uYqKy27gkxthpFwPpkY3i8A8if3x+D
+         eFmlFVaucAxaTSKKgG8B5768dO24Q45VXx/S6kRqTKolsGSU79NW6aQ7cQ8MhHczAf3Z
+         KXLA==
+X-Gm-Message-State: ABy/qLbrumQOyzGYFDqAxiYtOVU9pImT8YXc3VPfju0xfXMzVbkgXwud
+        MXEWiyrnTkEJILMw9p3Q05/DkQ==
+X-Google-Smtp-Source: APBJJlH0RcpsHNdXqhQRW836eEcHu4DeD0tlvaSETRKyEWM2zSPKYNVvCssy+KLB5iMuHppPVtBekw==
+X-Received: by 2002:a17:906:768d:b0:99b:cd0e:a805 with SMTP id o13-20020a170906768d00b0099bcd0ea805mr5645412ejm.37.1690808383337;
+        Mon, 31 Jul 2023 05:59:43 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id um6-20020a170906cf8600b009930c61dc0esm6112815ejb.92.2023.07.31.05.59.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 05:59:42 -0700 (PDT)
+Message-ID: <fdc513a3-c0e0-c57d-5c9a-8da6fa2f54e2@linaro.org>
+Date:   Mon, 31 Jul 2023 14:59:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 31 Jul 2023 14:59:13 +0200
-From:   Florian Eckert <fe@dev.tdt.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, yzhu@maxlinear.com,
-        rtanwar@maxlinear.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Eckert.Florian@googlemail.com
-Subject: Re: [PATCH 2/2] dt-bindings: clock: intel,cgu-lgm: add
- mxl,control-gate option
-In-Reply-To: <780aa090-3a97-abab-271f-59790df29cc4@linaro.org>
-References: <20230731100349.184553-1-fe@dev.tdt.de>
- <20230731100349.184553-3-fe@dev.tdt.de>
- <780aa090-3a97-abab-271f-59790df29cc4@linaro.org>
-Message-ID: <11386dd27487075a9a0b1a2aa7794951@dev.tdt.de>
-X-Sender: fe@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.17
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
+Content-Language: en-US
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-3-clamor95@gmail.com>
+ <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
+ <ZMbcb0yuTz6l6BYh@qmqm.qmqm.pl>
+ <b9183dfc-8e8a-9602-f31c-5de9e27acb88@linaro.org>
+ <ZMd1qI7RjQhpI8zO@qmqm.qmqm.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZMd1qI7RjQhpI8zO@qmqm.qmqm.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-purgate-type: clean
-X-purgate: clean
-X-purgate-ID: 151534::1690808357-1373A9A0-4F2716CF/0/0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your reply,
+On 31/07/2023 10:49, Michał Mirosław wrote:
+> On Mon, Jul 31, 2023 at 08:58:14AM +0200, Krzysztof Kozlowski wrote:
+>> On 30/07/2023 23:55, Michał Mirosław wrote:
+>>> On Sun, Jul 30, 2023 at 10:30:56PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 29/07/2023 18:08, Svyatoslav Ryhel wrote:
+>>>>> From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+>>>>>
+>>>>> Implement driver for hot-plugged I2C busses, where some devices on
+>>>>> a bus are hot-pluggable and their presence is indicated by GPIO line.
+>>> [...] 
+>>>>> +	priv->irq = platform_get_irq(pdev, 0);
+>>>>> +	if (priv->irq < 0)
+>>>>> +		return dev_err_probe(&pdev->dev, priv->irq,
+>>>>> +				     "failed to get IRQ %d\n", priv->irq);
+>>>>> +
+>>>>> +	ret = devm_request_threaded_irq(&pdev->dev, priv->irq, NULL,
+>>>>> +					i2c_hotplug_interrupt,
+>>>>> +					IRQF_ONESHOT | IRQF_SHARED,
+>>>>
+>>>> Shared IRQ with devm is a recipe for disaster. Are you sure this is a
+>>>> shared one? You have a remove() function which also points that it is
+>>>> not safe. You can:
+>>>> 1. investigate to be sure it is 100% safe (please document why do you
+>>>> think it is safe)
+>>>
+>>> Could you elaborate on what is unsafe in using devm with shared
+>>> interrupts (as compared to non-shared or not devm-managed)?
+>>>
+>>> The remove function is indeed reversing the order of cleanup. The
+>>> shutdown path can be fixed by removing `remove()` and adding
+>>> `devm_add_action_or_reset(...deactivate)` before the IRQ is registered.
+>> Shared interrupt might be triggered easily by other device between
+>> remove() and irq release function (devm_free_irq() or whatever it is
+>> called).
+> 
+> This is no different tham a non-shared interrupt that can be triggered
+> by the device being removed. Since devres will release the IRQ first,
+> before freeing the driver data, the interrupt hander will see consistent
+> driver-internal state. (The difference between remove() and devres
+> release phase is that for the latter sysfs files are already removed.)
 
-> You described the desired Linux feature or behavior, not the actual
-> hardware. The bindings are about the latter, so instead you need to
-> rephrase the property and its description to match actual hardware
-> capabilities/features/configuration etc.
+True, therefore non-devm interrupts are recommended also in such case.
+Maybe one of my solutions is actually not recommended.
 
-You have correctly identified that this is not a hardware configuration,
-but a driver configuration. Currently, the driver is configured so that
-the gates cannot be switched via the clk subsystem callbacks. When
-registering the data structures from the driver, I have to pass a flag
-GATE_CLK_HW so that the gate is managed by the driver.
+However if done right, driver with non-shared interrupts, is expected to
+disable interrupts in remove(), thus there is no risk. We have big
+discussions in the past about it, so feel free to dig through LKML to
+read more about. Anyway shared and devm is a clear no go.
 
-I didn't want to always change the source of the driver when it has to 
-take
-care of the GATE, so I wanted to map this via the dts.
+Best regards,
+Krzysztof
 
-I have a board support package from Maxlinear for the Lightning Mountain 
-Soc
-with other drivers that are not upstream now. Some of them use the
-clock framework some of them does not.
-
-Due to missing documents it is not possible to send these drivers 
-upstream.
-Strictly speaking, this is about the gptc and the watchdog.
-
-Since it is a buildin_platform driver, it can also not work via
-module parameters.
-
-Best regards
-
-Florian
