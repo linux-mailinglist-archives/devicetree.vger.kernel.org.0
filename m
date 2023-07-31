@@ -2,139 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4232A7690CB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 10:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE62E7690D0
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 10:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231389AbjGaIwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 04:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58416 "EHLO
+        id S229965AbjGaIx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 04:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230514AbjGaIv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 04:51:57 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FB3E172C
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 01:49:11 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fe2048c910so6555185e9.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 01:49:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690793349; x=1691398149;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=h7W7YYE2gaBdXvF1/lo7GyDdBy4PWSaCW0nMcp8S290=;
-        b=tIPMOZHWC/DCPEOLEvFVLcVItIT0QU/S+4xWkQBcCZ9q7l6eNLELl5hlVuxn/dCxI8
-         ls0wK4RTi4m9/MnIcNx1cHV2lgaT9N51vwuHBqSWO7oebJGnUlc50+4QPtwN464XLYn8
-         J0MX6/ACCl7PMroV/sKIga+urSCV46HQVKBuGQ/DOwxI5CLCB++K3aHrN9g3ehJMZ0VI
-         DQUMmwywvWd9EyHscsVVDwfnLo5R4b/IRTIUWnzDAWUVHet9J+w3jM5tGB6f/ykWg5OR
-         R1d6jNIukr/g/kTSD7xsiK5cL9kQhRXNaDTmwUaW47DI0dJ8N5cgoRvhGGt0SAPUVJWA
-         5k/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690793349; x=1691398149;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h7W7YYE2gaBdXvF1/lo7GyDdBy4PWSaCW0nMcp8S290=;
-        b=k3gVNTbsddbHq/SSCRBlKyOBdWpvutxh6hHfIlID/IvZSrfgV0VCQcMalDmdP+rqAK
-         dqREkbIkDEbEVQHOvMpd80lMyRYzp3FRub2LFqtGfsFcYEtkdUUdTwyOdP7/g0MtqMmM
-         saHRiT62/yz1SCSRIsJlLeEhvhdNjLi1j5nnZ90f25u6+kds4jYTca2Q7BPFObe03Ylp
-         Co+5N8JLvW49STckDS+UjuaRaO1CYkpezpeCWIDEO61zb4Dc7cE5B9W/UVdHwy2+ijHE
-         eIrAQsAEoGlXXjXmm8rShb2fyYal48579Snt186SzUwu0sesTZf4Et/UTduAU6f7TMd0
-         KQYw==
-X-Gm-Message-State: ABy/qLa3YUFNWAw2C1+fqgdnut7j8OrvWZHKiaAwMmEycae3BQSg8fOJ
-        nvt88Oa9kNWKO5oYAGtu3rvv7A==
-X-Google-Smtp-Source: APBJJlEzjzzfHPdjAO4t1hPBRUhwt15TSOFm9fPyDYFdX2mgRKf7NwRsU4/mLyv8fkkRD5Pq6zI4Lw==
-X-Received: by 2002:adf:f611:0:b0:315:9ee6:132f with SMTP id t17-20020adff611000000b003159ee6132fmr7441633wrp.68.1690793349307;
-        Mon, 31 Jul 2023 01:49:09 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d? ([2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d])
-        by smtp.gmail.com with ESMTPSA id p16-20020a5d68d0000000b003140f47224csm12339740wrw.15.2023.07.31.01.49.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jul 2023 01:49:08 -0700 (PDT)
-Message-ID: <691102a4-e920-ef88-3c5b-8240b8f87c5b@linaro.org>
-Date:   Mon, 31 Jul 2023 10:49:07 +0200
+        with ESMTP id S229678AbjGaIwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 04:52:44 -0400
+Received: from rere.qmqm.pl (rere.qmqm.pl [91.227.64.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB12219B3;
+        Mon, 31 Jul 2023 01:49:48 -0700 (PDT)
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 4RDsPR0pfDz9j;
+        Mon, 31 Jul 2023 10:49:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1690793387; bh=o4XjcotNjTUFB2FgPspmvJ0v4ljlPDC2JjFINt0i4xY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hMIvpzgDs39MwGa1rHHrT95+B9BlLr9gG+zuR6mHAWzupUPAIBjJQq2GYmZ8CMvPQ
+         f4HCs3LdqvY7rEHgSSaIRKK3rTVLFdEEgTKvd6RUS/jjL4rsyxwJ5Pu14rGTo0tTnm
+         Pmy+iYlbX4DTy5JqiRk6uJxq2h96sow4htOo2R07LGWvH1b8TSwu5FJ6IbiYGgXUgo
+         1cU3Q8vFkj12fgYEBDatBCaCEXlrvOzf535tA59o8GSXfNmrReGK8boqHxjx0oQ/6W
+         ZBAf98jTvf16GC3gM92ESkCKcalOJi3mEMVquKDSDNhzmwKQJ3fGMfU06CJy3vfF+5
+         moCv2ImtovrQA==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.103.8 at mail
+Date:   Mon, 31 Jul 2023 10:49:44 +0200
+From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
+Message-ID: <ZMd1qI7RjQhpI8zO@qmqm.qmqm.pl>
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-3-clamor95@gmail.com>
+ <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
+ <ZMbcb0yuTz6l6BYh@qmqm.qmqm.pl>
+ <b9183dfc-8e8a-9602-f31c-5de9e27acb88@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH V2 0/3] Add binding header file for GPIO interrupt of
- Amlogic Meson-G12A
-Content-Language: en-US
-To:     linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, martin.blumenstingl@googlemail.com,
-        jbrunet@baylibre.com, khilman@baylibre.com, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Huqiang Qin <huqiang.qin@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-References: <20230724060108.1403662-1-huqiang.qin@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230724060108.1403662-1-huqiang.qin@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-2
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b9183dfc-8e8a-9602-f31c-5de9e27acb88@linaro.org>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Mon, Jul 31, 2023 at 08:58:14AM +0200, Krzysztof Kozlowski wrote:
+> On 30/07/2023 23:55, Micha³ Miros³aw wrote:
+> > On Sun, Jul 30, 2023 at 10:30:56PM +0200, Krzysztof Kozlowski wrote:
+> >> On 29/07/2023 18:08, Svyatoslav Ryhel wrote:
+> >>> From: Micha³ Miros³aw <mirq-linux@rere.qmqm.pl>
+> >>>
+> >>> Implement driver for hot-plugged I2C busses, where some devices on
+> >>> a bus are hot-pluggable and their presence is indicated by GPIO line.
+> > [...] 
+> >>> +	priv->irq = platform_get_irq(pdev, 0);
+> >>> +	if (priv->irq < 0)
+> >>> +		return dev_err_probe(&pdev->dev, priv->irq,
+> >>> +				     "failed to get IRQ %d\n", priv->irq);
+> >>> +
+> >>> +	ret = devm_request_threaded_irq(&pdev->dev, priv->irq, NULL,
+> >>> +					i2c_hotplug_interrupt,
+> >>> +					IRQF_ONESHOT | IRQF_SHARED,
+> >>
+> >> Shared IRQ with devm is a recipe for disaster. Are you sure this is a
+> >> shared one? You have a remove() function which also points that it is
+> >> not safe. You can:
+> >> 1. investigate to be sure it is 100% safe (please document why do you
+> >> think it is safe)
+> > 
+> > Could you elaborate on what is unsafe in using devm with shared
+> > interrupts (as compared to non-shared or not devm-managed)?
+> > 
+> > The remove function is indeed reversing the order of cleanup. The
+> > shutdown path can be fixed by removing `remove()` and adding
+> > `devm_add_action_or_reset(...deactivate)` before the IRQ is registered.
+> Shared interrupt might be triggered easily by other device between
+> remove() and irq release function (devm_free_irq() or whatever it is
+> called).
 
-On 24/07/2023 08:01, Huqiang Qin wrote:
-> After adding this binding header file, you can intuitively find
-> the interrupt number corresponding to each GPIO, and apply it
-> in the format of IRQID_XXX where it needs to be used.
-> 
-> Associated platforms:
-> - Amlogic Meson-G12A
-> - Amlogic Meson-G12B
-> - Amlogic Meson-SM1
-> 
-> [PATCH 1/3]:
->    V1 -> V2: Rename irq-meson-g12a-gpio.h to amlogic,meson-g12a-gpio-intc.h
-> 
-> [PATCH 2/3]:
->    V1 -> V2: Include header file changed to amlogic,meson-g12a-gpio-intc.h
-> 
-> [PATCH 3/3]:
->    V1 -> V2: Include header file changed to amlogic,meson-g12a-gpio-intc.h
-> 
-> Huqiang Qin (3):
->    dt-bindings: interrupt-controller: Add header file for Amlogic
->      Meson-G12A SoCs
->    pinctrl: Replace the IRQ number in the driver with the IRQID macro
->      definition
->    arm64: dts: Replace the IRQ number with the IRQID macro definition
+This is no different tham a non-shared interrupt that can be triggered
+by the device being removed. Since devres will release the IRQ first,
+before freeing the driver data, the interrupt hander will see consistent
+driver-internal state. (The difference between remove() and devres
+release phase is that for the latter sysfs files are already removed.)
 
-What's the best way to apply this patchset ?
-
-Thanks,
-Neil
-
-> 
->   .../boot/dts/amlogic/meson-g12-common.dtsi    |   1 +
->   .../boot/dts/amlogic/meson-g12a-x96-max.dts   |   2 +-
->   .../dts/amlogic/meson-g12b-bananapi-cm4.dtsi  |   2 +-
->   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi |   2 +-
->   .../amlogic/meson-g12b-odroid-go-ultra.dts    |   4 +-
->   .../dts/amlogic/meson-g12b-odroid-n2.dtsi     |   2 +-
->   .../boot/dts/amlogic/meson-g12b-w400.dtsi     |   2 +-
->   .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts |   2 +-
->   .../boot/dts/amlogic/meson-sm1-bananapi.dtsi  |   4 +-
->   .../boot/dts/amlogic/meson-sm1-h96-max.dts    |   2 +-
->   .../boot/dts/amlogic/meson-sm1-odroid.dtsi    |   2 +-
->   .../boot/dts/amlogic/meson-sm1-sei610.dts     |  12 +-
->   .../dts/amlogic/meson-sm1-x96-air-gbit.dts    |   2 +-
->   drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  35 ++---
->   .../amlogic,meson-g12a-gpio-intc.h            | 126 ++++++++++++++++++
->   15 files changed, 164 insertions(+), 36 deletions(-)
->   create mode 100644 include/dt-bindings/interrupt-controller/amlogic,meson-g12a-gpio-intc.h
-> 
-> 
-> base-commit: c58c49dd89324b18a812762a2bfa5a0458e4f252
-
+Best Regards
+Micha³ Miros³aw
