@@ -2,126 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82BCD769A6E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D8FB769A81
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233224AbjGaPJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:09:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
+        id S229811AbjGaPMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 11:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232965AbjGaPJK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:09:10 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B2A10FE
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:09:05 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb7589b187so7681885e87.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690816143; x=1691420943;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+GJI50mwxWlMPNP5cWPxpWEEdZG5lOnOefrq0yW+CGM=;
-        b=B1DYggB8eGqCpLsilfDjv+CtPtKA8mzBBJiX3DsqfFcVmRD3EHJVa1I3ui/adpLG4o
-         5L0OkqX16kwiG+alYKt7beRdvQIUy6Vqp3fytmEb5t72ZkLKEhGIgX3oVK/qbYP2dIf+
-         PcZ/IBYg5fcpqwrCWjYL+XwqkbsE3JJtqktw3OwnCLBUH9VtvguIXX/hX+tgZ2GTjPyB
-         R4x/Jm7nX/dzvKoX2oYUEEJP8wTaKuD9XBJLfoKlM1IVbZmntXqZyHRJzDJHiJGj94Ut
-         w2Rglkd43okEbIloEuKynBL4GOaTToBhU7MKjHy1yqnf8agEPfjNDDUg+3mo7/l84d8k
-         JPpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690816143; x=1691420943;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+GJI50mwxWlMPNP5cWPxpWEEdZG5lOnOefrq0yW+CGM=;
-        b=D01D3SOB4RA0gyyN6jL7zLcf1viRIlcqpxw8oFSddLWKuHsNuut74C1GFYhUrVwfFK
-         vMqxvm5Dws162egAm2tbkoi7nGIrDgAwp+BLquB1F/K99M/N6g39NR64XM3XbJszswcp
-         UecjOFdFIiSrRJo6KO+CDl0R+l25JVH3JKpkLZPscP43WFqa5P89IIn/pjXW8J/ZVuVX
-         GpXCNF7uY/VaY97sTCKap/w01s3fxkbX+QeEAwSm0OBS7QaweDIgctIV0ESv59Eby89e
-         46F46C/eyJCRwoaJOorM1vi4Osb4Rd1z67O72zX0apChoy9Ua2j1tr1oBvQFylH7NviP
-         puEQ==
-X-Gm-Message-State: ABy/qLY866t8vr/maK1Cs4KVo0uYa5YZY1N4bDtymuV7tOSkhP8uXQE9
-        VyYwzM+jR1HNsmZKvjLr4bsSBg==
-X-Google-Smtp-Source: APBJJlHa9zHDumGZmnru2O8XwCkJrQtDXNbzYwW+KavipyZYevSoqWizlwsA89+vnBqByZBXimV7aA==
-X-Received: by 2002:a05:6512:5ca:b0:4fe:599:5684 with SMTP id o10-20020a05651205ca00b004fe05995684mr71097lfo.34.1690816143625;
-        Mon, 31 Jul 2023 08:09:03 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id u22-20020a05600c211600b003fbcdba1a63sm11728791wml.12.2023.07.31.08.09.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 08:09:02 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 31 Jul 2023 17:08:58 +0200
-Subject: [PATCH v4 3/3] arm64: defconfig: enable STARTEK KD070FHFID015
- panel
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230711-startek_display-v4-3-fb1d53bfdef6@baylibre.com>
-References: <20230711-startek_display-v4-0-fb1d53bfdef6@baylibre.com>
-In-Reply-To: <20230711-startek_display-v4-0-fb1d53bfdef6@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229798AbjGaPM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:12:29 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C27810F7;
+        Mon, 31 Jul 2023 08:12:28 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-210-008.ewe-ip-backbone.de [91.248.210.8])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 94B60660709D;
+        Mon, 31 Jul 2023 16:12:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1690816346;
+        bh=3XhcVaBAyFWjCc129KgVjm+Ns/bjapharaVEYpGJmdQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nbPN5Co+R/you8H8WeD81T/ZpCF6pqoj74zF26G53CDHpiuvRN16kiJmypPRDhx3B
+         x3qJIj716Kzl90j8yKx+cznY10CjmgC8nKlMWmCPbPtbWpG9gMmgcO3Tf4y4WTQ73n
+         oS7WItLgDUz1IjJxwoRBTaUsQX5I94rQURdA2dA1KeWKoNnHso7YLTyXWurBMze5a2
+         iIbRloHVjOziiNxVDxcN7bjYAeek8H4/YML6gxN1C9yhQdF1QppcdGb61mgL4+Xw0h
+         9JRLMp/Y5R7KRbM1cRwxxNmwvdPxPZhqhVGEdHN1sAPnvX5em6HLjl5WqB6XGYsJF9
+         1jpH799snTe2Q==
+Received: by mercury (Postfix, from userid 1000)
+        id 3ABB71061FAC; Mon, 31 Jul 2023 17:12:24 +0200 (CEST)
+Date:   Mon, 31 Jul 2023 17:12:24 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=767; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=3ewdZnRTwiLei9nYvBO9iEQ33z/6iSvXdTZm6ylJVyY=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkx86JSWBe/R+WdTNSp+vNLNQkL6rWTTSurE2qm+F8
- Nb0tXdmJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZMfOiQAKCRArRkmdfjHURRqwD/
- 0doxKphu5595hSG80BpEmZ8DzSqvovKlEfgPCJMGL51vVD+dY6e02ieFPrS9uw6FyfIpq13lRYesi6
- DJr6qrgxwbKGSA2d46RkMnc1xYF7GovxIPzU1oevQjr81n3HYn9VJTva6SR0Vq+jgES8mC6jcXOJlY
- emtjChmuuolXVTe1JDMWRmZ/p2kIfVDIfeVZVB0l98kG6QBJit6oYvKix5iU2zuZknzxNDlIu3jn7N
- 9RJ4nLVJyarM43diGm0yzIAS4Kz8qmbIBcwaPMG9ShA4vr+kTNog1efaJnjGnKlqmqMTR66ILli16v
- widOVEVlnhBC5s/YwJnLMdupi4OkDu6oFcH0piuwpcmTH3qxGSGEW3xCV0MotrXj3t+FhsfOHn/R2H
- Nc+8ez34sEGbmqLNAi/Y30ypmLijfbumQr3WRn4AdovudtfBD41aZ0bB0utXD1awsLFyR8XsMaU/mX
- QFYZqfTD/S0UR9VNxvCH0onfYdfKMpZMUfWnwp9sS1/NxeH4DYUkvCwOqDIvx77wByJZcM7D/Ui5dT
- or30NjCl2/P2DLuC/IX6tF7KDBXgfXUBR8+ztt3rOT0kUN637geJRLBPqzp7MKw+ObOrJBilY5sfSi
- JwHqNfF5+QR+4m1I3vy8ZyeaDT/463ZSawnmTJtI7dn42Y7mAM7LDnm1DiMQ==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: add rk3588 compatible to
+ rockchip,dwc3
+Message-ID: <20230731151224.2vlk7bnabrqhz3pr@mercury.elektranox.org>
+References: <20230720173643.69553-1-sebastian.reichel@collabora.com>
+ <20230720173643.69553-2-sebastian.reichel@collabora.com>
+ <20230722-coleslaw-breeder-40827e23f717@spud>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="m6dzip35wy4zbmme"
+Content-Disposition: inline
+In-Reply-To: <20230722-coleslaw-breeder-40827e23f717@spud>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Build Startek KD070FHFID015 panel driver. This MIPI-DSI display
-can be used for the mt8365-evk board for example.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+--m6dzip35wy4zbmme
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 0777bcae9104..cb24a3d1219b 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -816,6 +816,7 @@ CONFIG_DRM_PANEL_EDP=m
- CONFIG_DRM_PANEL_MANTIX_MLAF057WE51=m
- CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
- CONFIG_DRM_PANEL_SITRONIX_ST7703=m
-+CONFIG_DRM_PANEL_STARTEK_KD070FHFID015=m
- CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
- CONFIG_DRM_PANEL_VISIONOX_VTDR6130=m
- CONFIG_DRM_LONTIUM_LT8912B=m
+Hi,
 
--- 
-2.25.1
+On Sat, Jul 22, 2023 at 12:42:09PM +0100, Conor Dooley wrote:
+> On Thu, Jul 20, 2023 at 07:36:41PM +0200, Sebastian Reichel wrote:
+> > RK3588 has three DWC3 controllers. Two of them are fully functional in
+> > host, device and OTG mode including USB2 support. They are connected to
+> > dedicated PHYs, that also support USB-C's DisplayPort alternate mode.
+> >=20
+> > The third controller is connected to one of the combphy's shared
+> > with PCIe and SATA. It can only be used in host mode and does not
+> > support USB2. Compared to the other controllers this one needs
+> > some extra clocks.
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> I feel like I say it a bunch for some of these Rockchip bindings
+> patches, but if you're adding more clocks for some SoCs, should some
+> per-SoC constraints not also be added?
 
+The extra clocks are not actually needed by all the USB3 controllers
+in the SoC. Only one of three USB3 controllers needs them. In v1 I
+used different compatible values to narrow the clock binding down
+and Krzysztof asked to remove that. So please tell me what it should
+look like.
+
+Greetings,
+
+-- Sebastian
+
+> > ---
+> >  .../devicetree/bindings/usb/rockchip,dwc3.yaml        | 11 +++++++++--
+> >  1 file changed, 9 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b=
+/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> > index 291844c8f3e1..cbc3e55e05e1 100644
+> > --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> > @@ -30,6 +30,7 @@ select:
+> >          enum:
+> >            - rockchip,rk3328-dwc3
+> >            - rockchip,rk3568-dwc3
+> > +          - rockchip,rk3588-dwc3
+> >    required:
+> >      - compatible
+> > =20
+> > @@ -39,6 +40,7 @@ properties:
+> >        - enum:
+> >            - rockchip,rk3328-dwc3
+> >            - rockchip,rk3568-dwc3
+> > +          - rockchip,rk3588-dwc3
+> >        - const: snps,dwc3
+> > =20
+> >    reg:
+> > @@ -58,7 +60,9 @@ properties:
+> >            Master/Core clock, must to be >=3D 62.5 MHz for SS
+> >            operation and >=3D 30MHz for HS operation
+> >        - description:
+> > -          Controller grf clock
+> > +          Controller grf clock OR UTMI clock
+> > +      - description:
+> > +          PIPE clock
+> > =20
+> >    clock-names:
+> >      minItems: 3
+> > @@ -66,7 +70,10 @@ properties:
+> >        - const: ref_clk
+> >        - const: suspend_clk
+> >        - const: bus_clk
+> > -      - const: grf_clk
+> > +      - enum:
+> > +          - grf_clk
+> > +          - utmi
+> > +      - const: pipe
+> > =20
+> >    power-domains:
+> >      maxItems: 1
+> > --=20
+> > 2.40.1
+> >=20
+
+
+
+--m6dzip35wy4zbmme
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmTHz0AACgkQ2O7X88g7
++pqKjg/+OYBPYuk3hSKFWkamZHuGn2rDB7jeHnXzTF7PG/ehiqqifOqn2ro376hZ
+Ays6PKMQR+4a+te/CSgLYvH5jc0AB+4v6tA5olENnyRF8XfMaUB6LGPv/HDBWU1v
+yhmleCXSeBGcJwpoxsB8UMhhUdzaXlLJ3tRfrtsJJnSOL2Hu8FHif/5RQ8BIoZg/
+Q89X9a2zYUlevNHiK63HIjih60/FagN7FvfuPRxz0OpZYewsFIJVfX6SltPuUUNa
+p6HuuEcbVzWklTshBax2IKSfT/DHEZAtdcuRaUhZ/7Xiy0BPvOHQQIunh8oKzLde
+MquuX8YesnPH/VQzWIElIUOej2RsOMNYE/o/Fw8jRL/j2jQtvUWYHr/dbQy940BW
+Pvci2+YO5TQtscLPIAngEqD65VGco9pzbZo9C2cMNXik/LmE+AGomcAFt/Ea4o3l
+Cq3UL87xcO/nIuj/wsaNfH0o9CZSbl6tOx4QTgt4EouXDk4kh3prLslOEnhhBGT+
+zB4Zbk7ZwH6Q8gWZdo5ED7JiXRsVx6W2NHdFAAkZMq2B/NCKykV/MI2hDDoO6AXC
+wd6cGFMCQKrmNO1bWtPBL3jBwwQadZf3M4wtBagB3AsE5UUhc+5JwjZEKWIKfnd3
+pRKq0qyv6KC/QaySyXYf1d3094JZL3Ks4rvKAlOHlKuHYesdzWU=
+=qk2b
+-----END PGP SIGNATURE-----
+
+--m6dzip35wy4zbmme--
