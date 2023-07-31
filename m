@@ -2,106 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CECA476976D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 15:23:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F05F7697A8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 15:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232930AbjGaNXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 09:23:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
+        id S230352AbjGaNcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 09:32:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbjGaNXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 09:23:53 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28728EB;
-        Mon, 31 Jul 2023 06:23:53 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 973EF5C00EE;
-        Mon, 31 Jul 2023 09:23:52 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 31 Jul 2023 09:23:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1690809832; x=1690896232; bh=Se
-        sJURo2GNIPxlgy2lU8LbgruKBtrrvOanK04f/Dc+s=; b=V/1rdpGPql22nPgVxI
-        u5FzGIJAqUQuZ/Mka1qBscZBPK+MRpt0wfyCiNuHXnSxwEsoT/8wewEjeK4iCxhS
-        1gssB0DgVUBMmYAh/aMwTvZ/qmTUQwGC9hB1iP3c43+f7i9JVHM7+M3QUdwWQUfT
-        daLF6XwGXefoMnoYl+yt351PG4+/FmkaPfJ9bhMJtC94UJpZepVnvNCZjz0Yn1hS
-        z2AoFV61CuXUxVFMWxiow+2UZJFK0QCmkSNkcVcsN1TBbfOAldHPkDzEf8pwObfS
-        kmGbaYPNFvI6ja0p+XAIg+YojC1wYWw2D7xFYs/0R8sURAudXP3hf+bR20Adz6Gc
-        7kIQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1690809832; x=1690896232; bh=SesJURo2GNIPx
-        lgy2lU8LbgruKBtrrvOanK04f/Dc+s=; b=qd8Q2IvEWgefIl0snyxbIWWwf0p1q
-        W9Mx8W07ywXgqbh5n5Fb6mlmCA8q+gXW3j/xE3smcdyCBy0JCyeR8egnzC/nvD4f
-        4GnYCHK+H3fqJTFuPKZRhj0wiaf5TGKZ7dtDcnXGoDFaT+aJg9X5JLjSyq7PhELA
-        aHzdq7+6/iut94tgoQC2JY4nTGWZh4LBF+iGv9gebe/mGjHHI1zGlAD91nYsOCUt
-        fz83rd2327tJ1epaEeejCkQV5V+ygsf19Sy3/6j502UA5+KJ86AeA/H4eyiCyp7s
-        /s2QSWPsgto9gTyIywFRnb7dQOW3lx2TR2GKflHwduf3UNm3oV+PoOz8g==
-X-ME-Sender: <xms:6LXHZGKv4Kri1x0pCHIb7BcvBDfI1yNvQl2oPTv6qPgufTR0AywU3g>
-    <xme:6LXHZOLUipGM2VC8tucp9n4aay3R48F8MYPRZaC891Ep6X2-BGac-dAPqwSrVV6ba
-    zHLe8ZS8W8ukYSeOF4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrjeeggdegtdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeegteejkefgtdekteekvdeukedvudegjeehkeeuheegueekieeuffelffdthfeg
-    udenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:6LXHZGsIGOdpIibmKb0AtYhv1MDa-Of8I5PRnUcRwQA70kApIbSU0A>
-    <xmx:6LXHZLYjU85LO--02hRJksWV7RV_Tgg1S75Ymb6_E-JSBJcbAsQeYg>
-    <xmx:6LXHZNZ8h4dUyi5fwXcmZtdJ9Fbe8iZvGppehrJ8ljCaMkNPJrvEDg>
-    <xmx:6LXHZLPhVQXXvG8PhHMr2cgtN_Cj1YmpPN0CR5ZOj2F9qOzEiVi7JA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 524C5B6008F; Mon, 31 Jul 2023 09:23:52 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-592-ga9d4a09b4b-fm-defalarms-20230725.001-ga9d4a09b
-Mime-Version: 1.0
-Message-Id: <0c948578-5cb1-4b4e-8fa6-9de1d658713b@app.fastmail.com>
-In-Reply-To: <20230731110239.107086-2-clamor95@gmail.com>
-References: <20230731110239.107086-1-clamor95@gmail.com>
- <20230731110239.107086-2-clamor95@gmail.com>
-Date:   Mon, 31 Jul 2023 15:23:32 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Svyatoslav Ryhel" <clamor95@gmail.com>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Samu Onkalo" <samu.p.onkalo@nokia.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: iio: light: add apds990x binding
-Content-Type: text/plain
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229555AbjGaNcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 09:32:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974D210E3;
+        Mon, 31 Jul 2023 06:32:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 23D926114E;
+        Mon, 31 Jul 2023 13:32:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B793C433C7;
+        Mon, 31 Jul 2023 13:32:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690810337;
+        bh=z+uAjZVNhz3LyIsdekBiHKjrJt8GwMtkgIpTiC3PAhA=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=kB01tzMRm0xGd46a/lcgXTdh7oLikepiXWJAdD8VSwE9ZBAEkWDo+TYXbogvXBgP9
+         AJ23A5d3Fq/rXkUPkZCk5FG6x+6wOgw05LSZhm/8oVNWbI1jQroLbsuHh3cscmQdt2
+         uRVnuLARcsiT1T1ydr16yNHdd7BwJUtENHPlZzBTzf+vtIX1GV9NmaO/ARfykaAFGt
+         m2NUtScqaxIMg7yiLb5xXR8tVV9P70OWi+gKX9fUuwToBmzCpKqv5jLqJNaDZsSM6U
+         O1ANB4DWnkC/flvt651yNsmqv6JmkQRc6yEgpwoXoHL+DKrdzi9C8ZtxDg1smtXDqI
+         ZhypNn1sURM7Q==
+Received: (nullmailer pid 2855850 invoked by uid 1000);
+        Mon, 31 Jul 2023 13:32:15 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     conor+dt@kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org,
+        tali.perry1@gmail.com, benjaminfair@google.com,
+        linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+        yuenn@google.com, linux-kernel@vger.kernel.org, joel@jms.id.au,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        venture@google.com, avifishman70@gmail.com
+In-Reply-To: <20230731122323.172834-2-tmaimon77@gmail.com>
+References: <20230731122323.172834-1-tmaimon77@gmail.com>
+ <20230731122323.172834-2-tmaimon77@gmail.com>
+Message-Id: <169081033533.2855823.7340412529584491141.robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and
+ GPIO documentation
+Date:   Mon, 31 Jul 2023 07:32:15 -0600
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 31, 2023, at 13:02, Svyatoslav Ryhel wrote:
 
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/avago,apds990x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Avago APDS990x ambient light and proximity sensor
-> +
+On Mon, 31 Jul 2023 15:23:22 +0300, Tomer Maimon wrote:
+> Added device tree binding documentation for Nuvoton Arbel BMC NPCM8XX
+> pinmux and GPIO controller.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  .../pinctrl/nuvoton,npcm845-pinctrl.yaml      | 215 ++++++++++++++++++
+>  1 file changed, 215 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+> 
 
-The APDS990x looks like a wildcard, which is not appropriate for
-the "compatible" property in DT, and should be replaced with a list
-of specific part numbers to which this applies.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-    Arnd
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml:77:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml: patternProperties: '-mux' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230731122323.172834-2-tmaimon77@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
