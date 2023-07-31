@@ -2,126 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C50B176939C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7AA17693D9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231516AbjGaKxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 06:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40924 "EHLO
+        id S229638AbjGaK6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 06:58:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232529AbjGaKxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:53:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B2D171A;
-        Mon, 31 Jul 2023 03:52:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC8156100F;
-        Mon, 31 Jul 2023 10:51:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 139D4C433C8;
-        Mon, 31 Jul 2023 10:51:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690800719;
-        bh=VRB/1XE21uItYhBv3v9HcbSnr1pNI+FT1F8W0UoZ4EQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Rx3XU9T/DfTBZmTe1X/pitgrSt+EjtnzJoqNRAZuy+u5vwBhkfxh+hUZZrw8G6eyB
-         lFooQITIfBmh8/jxn75ajaVWWyL+K/4SU45HngfcLfFTzUUGPBR5u+9IjcHh4p2VuV
-         Gn/BP1tBlmjRqXbGir615a2nw2/EGblZCbb/EdH53HfxfeXjlH0iUF72exIeOeH8ce
-         iI0zsUs/KwhnnNIx6Lxy7o7ockkHS9S04Qeay5vnvJcuIp6si4rRnNUb+xaSuY4dlr
-         /lvwh+EQxuP3f465WPY0yRWJu6eDmjBQECj4Tp33HLlFzlfhS5JD89tNI3MxRd9Faa
-         LZXL9lzdwZVlg==
-Received: (nullmailer pid 2405199 invoked by uid 1000);
-        Mon, 31 Jul 2023 10:51:46 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Jaroslav Kysela <perex@perex.cz>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-mediatek@lists.infradead.org,
+        with ESMTP id S229741AbjGaK6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:58:35 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A24541725
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:58:02 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe3c7f16bbso484559e87.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:58:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690801081; x=1691405881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MkWLzVZvkVwc4kbg9O6IOFav3DjG7Q36badDvS2EiRA=;
+        b=tHUCt0i9d3oi9Rb38U3RCWJIYllh/bEHGj+2OI9WiPfYxe/HNoToWx6m9pNE8JFtuq
+         6vqiHe0uE9dYzHp8S5SmF81bZ5FLPnp/NZkM+h8rywKJl1+BHFAA48395+2+hUH1fqX+
+         kD2mWbs0ZU6R1A1EX2a1Gf2XPgLL8hXUE7y2/Xq/N2PY7M82+yIqcSJiTUerrqhG4ont
+         o69ZtevxJApR0jBEUOELzoCZMeLC/c8n53+eNvWcfk3us4SliaF6HqN3sFkSCrWvGigJ
+         rqdXMOMgJAXSVW+F2wu9twAXRM07MkvHvvJT170ChPZ3cIV+HJfISpe395Z/RzffXeYe
+         HSPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690801081; x=1691405881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MkWLzVZvkVwc4kbg9O6IOFav3DjG7Q36badDvS2EiRA=;
+        b=NmPeaiGg1Tofd1h//ej69hDjOC1qHsTEyCHBY6riwFWVj4QwkludhKh7zlkX5ZyUGd
+         Ln8hzp402xgfzqh5QYDi1OpD8TdBaGtjpihrClHFRuFDv5jLnwC5nHLOXT/oqNRZJqRL
+         q1E//s4SC+majWTnLY4aMCv7YbvJRcQNIaf5qTtYS2ghk++lNlyPXfTDrMnrOWZRp+yI
+         d6e8BTawedYo4bi62fi0zDctGXchZsrUBLuYLVHis515IInYUyKipKmF6gAfbmNT271S
+         2VONt7klK/itMCZzRUeIrmyDj32XSEwakyMJWEhhIMd9Z4jn1qpHdxcX0c+xDoYsFw5m
+         D/qw==
+X-Gm-Message-State: ABy/qLZx+D7pw8Zo1xfW7rJ2q/M1EQw08hXW/uIzs5M1Nj0lt6w2nfC1
+        L1i4GVqt+Hxilxr0qkOzOKmZVA==
+X-Google-Smtp-Source: APBJJlHixnbIxwRPCZ8VCoGR+kynEHwVm2GhExWQRQpj7EBGGmHNZro5l3hl1viEJEghiMjSP90U+w==
+X-Received: by 2002:a05:6512:45b:b0:4fb:94fd:6465 with SMTP id y27-20020a056512045b00b004fb94fd6465mr5167030lfk.15.1690801080801;
+        Mon, 31 Jul 2023 03:58:00 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id c19-20020ac24153000000b004fb9fe34c27sm2025497lfi.92.2023.07.31.03.58.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jul 2023 03:58:00 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, Trevor Wu <trevor.wu@mediatek.com>,
-        linux-kernel@vger.kernel.org,
-        Rohit kumar <quic_rohkumar@quicinc.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rao Mandadapu <srivasam@codeaurora.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        alsa-devel@alsa-project.org, Takashi Iwai <tiwai@suse.com>,
-        Judy Hsiao <judyhsiao@chromium.org>,
         Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20230731094303.185067-7-krzysztof.kozlowski@linaro.org>
-References: <20230731094303.185067-1-krzysztof.kozlowski@linaro.org>
- <20230731094303.185067-7-krzysztof.kozlowski@linaro.org>
-Message-Id: <169080070445.2405101.15748974095026995722.robh@kernel.org>
-Subject: Re: [PATCH 06/12] ASoC: dt-bindings: samsung,odroid: use common
- sound card
-Date:   Mon, 31 Jul 2023 04:51:46 -0600
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 00/13] phy: qcom-qmp-pcie: convert to newer style of bindings
+Date:   Mon, 31 Jul 2023 13:57:46 +0300
+Message-Id: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Reviewing several patchsets for newer platforms made it clear that
+having two styles of QMP PHY bindings causes confusion. Despite binding
+documents having notes telling that old bindings should be used for
+older platforms, it is too easy to attempt adding new platform with
+older QMP PHY binding. Thus let's have just a single documented style of
+bindings.
 
-On Mon, 31 Jul 2023 11:42:57 +0200, Krzysztof Kozlowski wrote:
-> Reference the common sound card properties and deprecate the
-> custom "samsung,audio-routing" in favor of generic one.  This allows to
-> remove "model" property and make the binding closer to other sounds
-> cards.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/sound/samsung,odroid.yaml  | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
+Proposed merge strategy: immutable branch with binding and PHY patches,
+which can also be merged into Bjorn's dts-for-6.6
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Changes since v1:
+ - Split large patchset into smaller parts
+ - Rebased on phy/next
 
-yamllint warnings/errors:
+Dmitry Baryshkov (13):
+  dt-bindings: phy: migrate QMP PCIe PHY bindings to
+    qcom,sc8280xp-qmp-pcie-phy.yaml
+  phy: qcom-qmp-pcie: simplify clock handling
+  phy: qcom-qmp-pcie: populate offsets configuration
+  arm64: dts: qcom: ipq6018: switch PCIe QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: ipq8074: switch PCIe QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: msm8998: switch PCIe QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: sc7280: switch PCIe QMP PHY to new style of bindings
+  arm64: dts: qcom: sc8180x: switch PCIe QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: sdm845: switch PCIe QMP PHY to new style of bindings
+  arm64: dts: qcom: sm8150: switch PCIe QMP PHY to new style of bindings
+  arm64: dts: qcom: sm8250: switch PCIe QMP PHY to new style of bindings
+  arm64: dts: qcom: sm8450: switch PCIe QMP PHY to new style of bindings
+  ARM: dts: qcom-sdx55: switch PCIe QMP PHY to new style of bindings
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,odroid.yaml:
-Error in referenced schema matching $id: http://devicetree.org/schemas/sound/sound-card-common.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,odroid.example.dtb: sound: False schema does not allow {'compatible': ['hardkernel,odroid-xu3-audio'], 'model': ['Odroid-XU3'], 'audio-routing': ['Headphone Jack', 'HPL', 'Headphone Jack', 'HPR', 'IN1', 'Mic Jack', 'Mic Jack', 'MICBIAS'], 'cpu': {'sound-dai': [[4294967295, 0]]}, 'codec': {'sound-dai': [[4294967295], [4294967295]]}, '$nodename': ['sound']}
-	from schema $id: http://devicetree.org/schemas/sound/samsung,odroid.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,odroid.example.dtb: sound: Unevaluated properties are not allowed ('audio-routing', 'model' were unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/samsung,odroid.yaml#
+ .../phy/qcom,ipq8074-qmp-pcie-phy.yaml        | 278 +++---------------
+ .../phy/qcom,msm8998-qmp-pcie-phy.yaml        |  97 ++++++
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  34 ++-
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi        |  31 +-
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  32 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi         |  63 ++--
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  30 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |  36 +--
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi         | 140 ++++-----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  71 ++---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  70 ++---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 112 +++----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  82 +++---
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 162 +++++-----
+ 14 files changed, 520 insertions(+), 718 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,msm8998-qmp-pcie-phy.yaml
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230731094303.185067-7-krzysztof.kozlowski@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.39.2
 
