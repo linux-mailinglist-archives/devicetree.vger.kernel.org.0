@@ -2,82 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53A2F769FA4
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 19:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D95769FAC
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 19:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbjGaRob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 13:44:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57688 "EHLO
+        id S230274AbjGaRr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 13:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjGaRoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 13:44:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137E610B;
-        Mon, 31 Jul 2023 10:44:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DBF16124F;
-        Mon, 31 Jul 2023 17:44:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95F50C433C7;
-        Mon, 31 Jul 2023 17:44:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690825469;
-        bh=ERL5BDHihGjEFPJ2UxTVdlcp/qwmTYb2pctG9U8dKXY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S9wI4zjSS2eLIrbHx+v2W5ABu327IFBU7OpWsBtnWP7CyJKgH3MM2b74/KPrg+ZVo
-         RmxUepvPvmOwwVj48jucpb0t13CsAzF1h/x4gkiSb/U8Ht1sTX2LA25hmwn6P4yVMS
-         pzbxFVIKN1TFUtiF954RsmrsGYxaUkJYhStlIPl4z8kWouTB4L74UHpY2O/z/50usb
-         eKQYPdDFCZPxzDpIdB7WA5Qes8Uf+/AYxc4HuoJkJLnOcShzUwHZJMvz6asm1kVa5o
-         Wa7ccOI5eH8nqUEQvxHclgD1vCPkCU2kJNxEMJicQtrSs6/nC9ISiHRARoM1HWAu6E
-         mUe0wZSfDFVYA==
-From:   Will Deacon <will@kernel.org>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     kernel-team@android.com, Will Deacon <will@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S229650AbjGaRrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 13:47:25 -0400
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC9410FA
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 10:47:23 -0700 (PDT)
+Received: by mail-yb1-xb49.google.com with SMTP id 3f1490d57ef6-d1efa597303so9918303276.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 10:47:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1690825642; x=1691430442;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=X4UQueuuDKqCZDWve1EZkKBYX7ySf7wZF3eSylmwqIQ=;
+        b=UImtfvTxjlfO3sGKKMhZojZzHKpxu2WrBLaKXYfkeq8WAhMQ6+7CYaoNYv3XvHq9xe
+         n33k56E17YMj3wzzwb3TNM8nUyjS+QUpRrl+Jlj7TYeudah+3IDwqzj0XKMHwdVO8/j+
+         e0rFVJofV78eK3Z8fAwjKGpstxXK41S62V1Ht8bJkOfOldaL39RCuvylGG6UI7YcBB0L
+         4RuHOdcBptYnlTCWa3qtlqIGH37XHT1a65GXG30UvKjyJOZtPt075MINQGYz6VEeKHCd
+         acqa5tS3BFm0YXX5Gdl0uULmqbu+NJtrbzA2ArCdik3Kwo8Hk85yhoMNHGF6ZSYUy/6v
+         T22A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690825642; x=1691430442;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X4UQueuuDKqCZDWve1EZkKBYX7ySf7wZF3eSylmwqIQ=;
+        b=b+irpCCXnsV7LVC1QLaj0/8SzCxB46ZhZeiLGc6NCcex/P/r/DnEQWx3bzvVQ110fu
+         KUXf54Z3LrnrWlvfitBYfLjRYaJQFHVV8vystG4PyIunMB/KENklqNKz/dZwyqkOOrAd
+         IiphxUwAPEhA0WJxL7qFisn1SfdIGM4N6XNHr+6qEWxClHvg+UyQmEcJKw5Cs9u8fwgr
+         veswUffDMjhHU/khzawb677rDu1trD97eAYTupGcOftaO47u4f0xBBdpxTI7F4omPKwm
+         LssHB86OB2Oo2cvx0UKIRu/bop9ZjRJOKe5NloSq9uMY08bPOBV4tQK9o2cKxETnIizu
+         91kw==
+X-Gm-Message-State: ABy/qLb7z4PD4SyMmeJZim9E8tLngjWjUR4m0tDPFz0rSAN6t++ZA7F0
+        WZQ+Yp/6gSC+e3P7OuzDn37t/EdlkftX
+X-Google-Smtp-Source: APBJJlEbvyVqYfELN9HyzNzECBNQCQOL+vlWKMldvXgR48dyeIzdVtlR38PviPEAmpTCs9dXD21MS5+i1cjd
+X-Received: from davidai2.mtv.corp.google.com ([2620:15c:211:201:4949:e05:91e:bd74])
+ (user=davidai job=sendgmr) by 2002:a25:dfc3:0:b0:d15:53b5:509f with SMTP id
+ w186-20020a25dfc3000000b00d1553b5509fmr109830ybg.2.1690825642488; Mon, 31 Jul
+ 2023 10:47:22 -0700 (PDT)
+Date:   Mon, 31 Jul 2023 10:46:07 -0700
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.41.0.585.gd2178a4bd4-goog
+Message-ID: <20230731174613.4133167-1-davidai@google.com>
+Subject: [PATCH v3 0/2] Improve VM CPUfreq and task placement behavior
+From:   David Dai <davidai@google.com>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        David Dai <davidai@google.com>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     Quentin Perret <qperret@google.com>,
+        Masami Hiramatsu <mhiramat@google.com>,
+        Will Deacon <will@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Pavan Kondeti <quic_pkondeti@quicinc.com>,
+        Gupta Pankaj <pankaj.gupta@amd.com>,
+        Mel Gorman <mgorman@suse.de>, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: Explicitly include correct DT includes
-Date:   Mon, 31 Jul 2023 18:44:24 +0100
-Message-Id: <169081113966.3427180.6648898239320683110.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230714174021.4039807-1-robh@kernel.org>
-References: <20230714174021.4039807-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,TVD_PH_BODY_ACCOUNTS_PRE,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jul 2023 11:40:20 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> [...]
+Hi,
 
-Applied to arm64 (for-next/misc), thanks!
+This patch series is a continuation of the talk Saravana gave at LPC 2022
+titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
+of the talk is that workloads running in a guest VM get terrible task
+placement and CPUfreq behavior when compared to running the same workload
+in the host. Effectively, no EAS(Energy Aware Scheduling) for threads
+inside VMs. This would make power and performance terrible just by running
+the workload in a VM even if we assume there is zero virtualization
+overhead.
 
-[1/1] arm64: Explicitly include correct DT includes
-      https://git.kernel.org/arm64/c/b9d601249740
+With this series, a workload running in a VM gets the same task placement
+and CPUfreq behavior as it would when running in the host.
 
-Cheers,
+The idea is to improve VM CPUfreq/sched behavior by:
+- Having guest kernel do accurate load tracking by taking host CPU
+  arch/type and frequency into account.
+- Sharing vCPU frequency requirements with the host so that the
+  host can do proper frequency scaling and task placement on the host side.
+
+Based on feedback from RFC V1 proposal[4], we've revised our
+implementation to using MMIO reads and writes to pass information
+from/to host instead of using hypercalls. In our example, the
+VMM(Virtual Machine Manager) translates the frequency requests into
+Uclamp_min and applies it to the vCPU thread as a hint to the host
+kernel.
+
+To achieve the results below, configure the host to:
+- Affine vCPUs to specific clusters.
+- Set vCPU capacity to match the host CPU they are running on.
+
+To make it easy for folks to try this out with CrosVM, we have put up
+userspace patches[5][6]. With those patches, you can configure CrosVM
+correctly by adding the options "--host-cpu-topology" and "--virt-cpufreq".
+
+Results:
+========
+
+Here are some side-by-side comparisons of RFC V1 proposal vs the current
+RFC V3 proposal and are labelled as follows. Some of the numbers have
+changed due to using newer userspace binaries compared to RFC V1:
+
+- (RFC V1) UtilHyp = hypercall + util_guest
+- (V3) UClampMMIO = MMIO + UClamp_min
+
+Use cases running a minimal system inside a VM on a Pixel 6:
+============================================================
+
+FIO
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+| Usecase(avg MB/s) | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Seq Write         |     13.3 |    16.4 |   +23% |       13.4 |    +1% |
++-------------------+----------+---------+--------+------------+--------+
+| Rand Write        |     11.2 |    12.9 |   +15% |       11.2 |     0% |
++-------------------+----------+---------+--------+------------+--------+
+| Seq Read          |      100 |     168 |   +68% |        136 |   +36% |
++-------------------+----------+---------+--------+------------+--------+
+| Rand Read         |     20.5 |    35.6 |   +74% |       29.5 |   +44% |
++-------------------+----------+---------+--------+------------+--------+
+
+CPU-based ML Inference Benchmark
+Lower is better
++----------------+----------+------------+--------+------------+--------+
+| Test Case (ms) | Baseline | UtilHyp    | %delta | UClampMMIO | %delta |
++----------------+----------+------------+--------+------------+--------+
+| Cached Sample  |          |            |        |            |        |
+| Inference      |     3.40 |       2.37 |   -30% |       2.97 |   -13% |
++----------------+----------+------------+--------+------------+--------+
+| Small Sample   |          |            |        |            |        |
+| Inference      |     9.87 |       6.78 |   -31% |       7.92 |   -20% |
++----------------+----------+------------+--------+------------+--------+
+| Large Sample   |          |            |        |            |        |
+| Inference      |    33.35 |      26.74 |   -20% |      31.48 |    -6% |
++----------------+----------+------------+--------+------------+--------+
+
+Use cases running Android inside a VM on a Chromebook:
+======================================================
+
+PCMark (Emulates real world usecases)
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+| Test Case (score) | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Weighted Total    |     5970 |    7162 |   +20% |       6782 |   +14% |
++-------------------+----------+---------+--------+------------+--------+
+| Web Browsing      |     5558 |    5877 |    +6% |       5729 |    +3% |
++-------------------+----------+---------+--------+------------+--------+
+| Video Editing     |     4921 |    5140 |    +4% |       5079 |    +3% |
++-------------------+----------+---------+--------+------------+--------+
+| Writing           |     6864 |    9111 |   +33% |       8171 |   +10% |
++-------------------+----------+---------+--------+------------+--------+
+| Photo Editing     |     7983 |   11349 |   +42% |      10313 |   +29% |
++-------------------+----------+---------+--------+------------+--------+
+| Data Manipulation |     5814 |    6051 |    +4% |       6051 |    +1% |
++-------------------+----------+---------+--------+------------+--------+
+
+PCMark Performance/mAh
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+|                   | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Score/mAh         |       85 |     102 |   +20% |         94 |    10% |
++-------------------+----------+---------+--------+------------+--------+
+
+Roblox
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+|                   | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| FPS               |    20.88 |   25.64 |   +23% |      24.05 |   +15% |
++-------------------+----------+---------+--------+------------+--------+
+
+Roblox Frames/mAh
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+|                   | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Frames/mAh        |    85.29 |  102.31 |   +20% |     94.20  |    10% |
++-------------------+----------+---------+--------+------------+--------+
+
+We've simplified our implementation based on community feedback to make
+it less intrusive and to use a more generic MMIO interface for
+communication with the host. The results show that the current design
+still has tangible improvements over baseline. We'll continue looking
+into ways to reduce the overhead of the MMIO read/writes and submit
+separate and generic patches for that if we find any good optimizations.
+
+Thanks,
+David & Saravana
+
+Cc: Saravana Kannan <saravanak@google.com>
+Cc: Quentin Perret <qperret@google.com>
+Cc: Masami Hiramatsu <mhiramat@google.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Oliver Upton <oliver.upton@linux.dev>
+Cc: Dietmar Eggemann <dietmar.eggemann@arm.com>
+Cc: Pavan Kondeti <quic_pkondeti@quicinc.com>
+Cc: Gupta Pankaj <pankaj.gupta@amd.com>
+Cc: Mel Gorman <mgorman@suse.de>
+
+v2 -> v3:
+- Dropped patches adding new hypercalls
+- Dropped patch adding util_guest in sched/fair
+- Cpufreq driver now populates frequency using opp bindings
+- Removed transition_delay_us=1 cpufreq setting as it was configured too
+  agressively and resulted in poor I/O performance
+- Modified guest cpufreq driver to read/write MMIO regions instead of
+  using hypercalls to communicate with the host
+- Modified guest cpufreq driver to pass frequency info instead of
+  utilization of the current vCPU's runqueue which now takes
+  iowait_boost into account from the schedutil governor
+- Updated DT bindings for a virtual CPU frequency device
+Userspace changes:
+- Updated CrosVM patches to emulate a virtual cpufreq device
+- Updated to newer userspace binaries when collecting more recent
+  benchmark data
+
+v1 -> v2:
+- No functional changes.
+- Added description for EAS and removed DVFS in coverletter.
+- Added a v2 tag to the subject.
+- Fixed up the inconsistent "units" between tables.
+- Made sure everyone is To/Cc-ed for all the patches in the series.
+
+[1] - https://lpc.events/event/16/contributions/1195/
+[2] - https://lpc.events/event/16/contributions/1195/attachments/970/1893/LPC%202022%20-%20VM%20DVFS.pdf
+[3] - https://www.youtube.com/watch?v=hIg_5bg6opU
+[4] - https://lore.kernel.org/all/20230331014356.1033759-1-davidai@google.com/
+[5] - https://chromium-review.googlesource.com/c/crosvm/crosvm/+/4208668
+[6] - https://chromium-review.googlesource.com/c/crosvm/crosvm/+/4504738
+
+David Dai (2):
+  dt-bindings: cpufreq: add bindings for virtual cpufreq
+  cpufreq: add virtual-cpufreq driver
+
+ .../bindings/cpufreq/cpufreq-virtual.yaml     |  89 +++++++
+ drivers/cpufreq/Kconfig                       |  15 ++
+ drivers/cpufreq/Makefile                      |   1 +
+ drivers/cpufreq/virtual-cpufreq.c             | 237 ++++++++++++++++++
+ include/linux/arch_topology.h                 |   1 +
+ 5 files changed, 343 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
+ create mode 100644 drivers/cpufreq/virtual-cpufreq.c
+
 -- 
-Will
+2.41.0.585.gd2178a4bd4-goog
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
