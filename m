@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB41D76A015
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:13:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D103776A038
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:19:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjGaSNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 14:13:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45086 "EHLO
+        id S231172AbjGaST4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 14:19:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbjGaSM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:12:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B576CE4;
-        Mon, 31 Jul 2023 11:12:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5216A61245;
-        Mon, 31 Jul 2023 18:12:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07BAC433C7;
-        Mon, 31 Jul 2023 18:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690827177;
-        bh=+LoXBGC73LDdBqfU5YvRRgV4ri7WaMiK0YBWUkXbAio=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Q4NJvAYguFW6J0lMNQg+HqsEbIPbceiM+6wiK84nvGYZ8gp1+7tUrgeQ/KC1XBGp5
-         Xb0fILtfj+LtKm8nSAyqMHwZlUvFP5S754BUBWUY2zLPyRnSQOdpWR/NFlJ2OlQYdF
-         VAwD0/YJ+ifQMMtRae26U+5Yyl/mQOmaCjpPkyKCpExmxxB59NliLOMRqahd0iChkU
-         5S240BpNAoN69jym1T5P9fB0MpnHnOoMjOeth2//+u0uyTHWTeSPwq8othPVymimo+
-         iiFTsoX8OqypfLJrN8xSIFkNEpQCUWtVdYd+1iMfb6P8Vtsb071qGYJy41n0EXDoAC
-         2s3KOTsYpaI1w==
-Received: (nullmailer pid 3476368 invoked by uid 1000);
-        Mon, 31 Jul 2023 18:12:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S230248AbjGaSTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:19:55 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC50F119;
+        Mon, 31 Jul 2023 11:19:54 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36VGnCgQ024787;
+        Mon, 31 Jul 2023 18:19:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=1m8chiVrC0BiaOwGhXbnzapyxsLvLZAjLiFngURK47I=;
+ b=bNIQoUEexb8ib1bD7euvpxaN+LAbGaHlKLDpYOF2C5QhkYwmlXJHlEPdZDum4b8GXstr
+ tVPPeRsIST2VtKAwsy0Pk7+m1+lLgWnFiM8zqyXgpVKuOQpInFDHWDu7gUc74MtM+M0t
+ MrcvSA7m60ScCZ8+kt54qRA/OdB2bN+s/GzfLL3jbS3cr4m4qXM7AUIOuEhzReDY1tPu
+ HY6T1IvriKFFdCW1siuraAWj7uFsGkkMaYiAhoW4FFblTyOCwSrblHUM3vZyoPijmJ6o
+ zTvhXHCl3iVk35UACUHY1CfFamI1Alz+KdKqxdTj+bvEpg6453II7a0aiDRUi/v4a1pa Ug== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s4uxscqj0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 18:19:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36VIJRMW022223
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 18:19:27 GMT
+Received: from [10.110.93.66] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 31 Jul
+ 2023 11:19:26 -0700
+Message-ID: <c8161fb4-fa35-b2dd-6bfa-968ce7d4ead7@quicinc.com>
+Date:   Mon, 31 Jul 2023 11:19:25 -0700
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     David Dai <davidai@google.com>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Quentin Perret <qperret@google.com>,
-        linux-kernel@vger.kernel.org,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Masami Hiramatsu <mhiramat@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Mel Gorman <mgorman@suse.de>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Gupta Pankaj <pankaj.gupta@amd.com>, kernel-team@android.com,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        linux-pm@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>
-In-Reply-To: <20230731174613.4133167-2-davidai@google.com>
-References: <20230731174613.4133167-1-davidai@google.com>
- <20230731174613.4133167-2-davidai@google.com>
-Message-Id: <169082717438.3476261.13394216168233236806.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: cpufreq: add bindings for virtual
- cpufreq
-Date:   Mon, 31 Jul 2023 12:12:54 -0600
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <pavel@ucw.cz>, <lee@kernel.org>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>
+CC:     <luca.weiss@fairphone.com>, <konrad.dybcio@linaro.org>,
+        <u.kleine-koenig@pengutronix.de>, <quic_subbaram@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+References: <20230725193423.25047-1-quic_amelende@quicinc.com>
+ <20230725193423.25047-2-quic_amelende@quicinc.com>
+ <367ea415-6b33-248d-6725-de7330b3984b@linaro.org>
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+In-Reply-To: <367ea415-6b33-248d-6725-de7330b3984b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sYl_3TNi85lCE9oluGEGUp1AmD0_pRFj
+X-Proofpoint-GUID: sYl_3TNi85lCE9oluGEGUp1AmD0_pRFj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-31_12,2023-07-31_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ malwarescore=0 clxscore=1015 impostorscore=0 mlxlogscore=999
+ suspectscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307310166
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,76 +87,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 31 Jul 2023 10:46:08 -0700, David Dai wrote:
-> Adding bindings to represent a virtual cpufreq device.
+
+On 7/26/2023 12:53 AM, Krzysztof Kozlowski wrote:
+> On 25/07/2023 21:34, Anjelique Melendez wrote:
+>> Add binding for the Qualcomm Programmable Boot Sequencer device.
+>>
+>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+>> ---
+>>  .../bindings/soc/qcom/qcom-pbs.yaml           | 40 +++++++++++++++++++
+>>  1 file changed, 40 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml
 > 
-> Virtual machines may expose MMIO regions for a virtual cpufreq device for
-> guests to read frequency information or to request frequency selection. The
-> virtual cpufreq device has an individual controller for each CPU.
 > 
-> Co-developed-by: Saravana Kannan <saravanak@google.com>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Signed-off-by: David Dai <davidai@google.com>
-> ---
->  .../bindings/cpufreq/cpufreq-virtual.yaml     | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
+> Again not tested.
 > 
+> Also, you missed comments. :(
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+> 
+> Thank you.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+Hi Krzysztof,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Sorry about the testing, found that my dt_binding_checker was out dated and that
+is why it has not been picking up those dt_binding errors :/ 
 
-yamllint warnings/errors:
+I went back to take a look at the original comments I missed and just wanted to
+list them for a quick double check.
 
-dtschema/dtc warnings/errors:
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 909, in resolve_from_url
-    document = self.store[url]
-  File "/usr/local/lib/python3.10/dist-packages/jsonschema/_utils.py", line 28, in __getitem__
-    return self.store[self.normalize(uri)]
-KeyError: 'http://devicetree.org/meta-schemas/core.yamll'
+1. Rename binding to be qcom,pbs so that it matches compatible
+2. Include Soc specific compatibles i.e. 
+   compatible:
+     items:
+       - enum:
+         - qcom,pmi632-pbs
+       - const: qcom,pbs
+3. Fix the example node
 
-During handling of the above exception, another exception occurred:
+Thanks,
+Anjelique
 
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 912, in resolve_from_url
-    document = self.resolve_remote(url)
-  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 1011, in resolve_remote
-    result = self.handlers[scheme](uri)
-  File "/usr/local/lib/python3.10/dist-packages/dtschema/schema.py", line 91, in http_handler
-    raise RefResolutionError('Error in referenced schema matching $id: ' + uri)
-jsonschema.exceptions.RefResolutionError: Error in referenced schema matching $id: http://devicetree.org/meta-schemas/core.yamll
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 64, in <module>
-    ret |= check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 32, in check_doc
-    for error in sorted(dtsch.iter_errors(), key=lambda e: e.linecol):
-  File "/usr/local/lib/python3.10/dist-packages/dtschema/schema.py", line 130, in iter_errors
-    meta_schema = self.resolver.resolve_from_url(self['$schema'])
-  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 914, in resolve_from_url
-    raise exceptions.RefResolutionError(exc)
-jsonschema.exceptions.RefResolutionError: Error in referenced schema matching $id: http://devicetree.org/meta-schemas/core.yamll
-Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.example.dts:69.19-72.13: Warning (unit_address_vs_reg): /example-0/soc/cpufreq: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.example.dtb: /example-0/cpus/cpu@0: failed to match any schema with compatible: ['arm,arm-v8']
-Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.example.dtb: /example-0/cpus/cpu@1: failed to match any schema with compatible: ['arm,arm-v8']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230731174613.4133167-2-davidai@google.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+   
 
