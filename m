@@ -2,177 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8FB769A81
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8352769AA5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjGaPMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:12:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34156 "EHLO
+        id S231391AbjGaPSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 11:18:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbjGaPM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:12:29 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C27810F7;
-        Mon, 31 Jul 2023 08:12:28 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-210-008.ewe-ip-backbone.de [91.248.210.8])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 94B60660709D;
-        Mon, 31 Jul 2023 16:12:26 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1690816346;
-        bh=3XhcVaBAyFWjCc129KgVjm+Ns/bjapharaVEYpGJmdQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nbPN5Co+R/you8H8WeD81T/ZpCF6pqoj74zF26G53CDHpiuvRN16kiJmypPRDhx3B
-         x3qJIj716Kzl90j8yKx+cznY10CjmgC8nKlMWmCPbPtbWpG9gMmgcO3Tf4y4WTQ73n
-         oS7WItLgDUz1IjJxwoRBTaUsQX5I94rQURdA2dA1KeWKoNnHso7YLTyXWurBMze5a2
-         iIbRloHVjOziiNxVDxcN7bjYAeek8H4/YML6gxN1C9yhQdF1QppcdGb61mgL4+Xw0h
-         9JRLMp/Y5R7KRbM1cRwxxNmwvdPxPZhqhVGEdHN1sAPnvX5em6HLjl5WqB6XGYsJF9
-         1jpH799snTe2Q==
-Received: by mercury (Postfix, from userid 1000)
-        id 3ABB71061FAC; Mon, 31 Jul 2023 17:12:24 +0200 (CEST)
-Date:   Mon, 31 Jul 2023 17:12:24 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: add rk3588 compatible to
- rockchip,dwc3
-Message-ID: <20230731151224.2vlk7bnabrqhz3pr@mercury.elektranox.org>
-References: <20230720173643.69553-1-sebastian.reichel@collabora.com>
- <20230720173643.69553-2-sebastian.reichel@collabora.com>
- <20230722-coleslaw-breeder-40827e23f717@spud>
+        with ESMTP id S233016AbjGaPSE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:18:04 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC96710E3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:18:02 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe0e23a4b1so7300128e87.3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:18:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690816681; x=1691421481;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8EHSZTqhdf12dvB2wCgIzNCUIZxw+5/2MGAB0jSuGq8=;
+        b=TFLn7IUo8sDEb9ZgZCvceFM2KDMIn76Uv8sUYkDw5frYLNLQc0b93ePY9CM63UbQ7w
+         btp5G5tL4zsajz75UlAq9MzUALhNOOUJ+DwWBj8z06geNCMGHO+QxTLgJ067tm+xd2yo
+         yUEOfm+1X3fXXDKFiOOVpUqI+g/cT4k9bC2g3GynV5sPzLNJS4wlkc82QY0saCbnQPNt
+         eSP1ZKaO8qUxUsejufE/eLhzjIKNMe40dq4QVC2DVmkBPlm0tunF63m8Ldu2NP780u4g
+         1EK8BwqCw4DWhExaf//dOOMCknhQEGhv5TOfimrqx3UdUIsLwmcqDI0KPftzz9m1HBzS
+         U79g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690816681; x=1691421481;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8EHSZTqhdf12dvB2wCgIzNCUIZxw+5/2MGAB0jSuGq8=;
+        b=NVHpe9xQywZg/YH+0KOid19bD3GLbdqf+Wvl2ZszAUdaeJy2aAHvVB+VcPQBmAWjzd
+         HUVsqPJylS4ZrenLNxh0EwdeCOZsDRZWX+EZy0MPTehJTETVdqXeopU+esakob+P2gXZ
+         ZstYpt34jLTMGw6vXPnsMx+T0JR2v/TNgQfap9nlGk3mK633JQRizvHvh/ikXB8UORPE
+         9hQfYd7b2C2q+OIXf/OvfPrd9CAx+yngEQiSDqhe4YNaDw8o3+ApCiD6VXX2i8USsoUw
+         ya06jx7+M0aZt9bM26/cxpYDgRPvmO9q0N1oPjr+/wGlp53srt9So8oNbdHJ5SvbUlC6
+         NpSw==
+X-Gm-Message-State: ABy/qLajyk8yeK1hWkt4OHi+/hVlGruOKAneVo1XiFh4xDJvvPOL676Z
+        H8CILiSNgjVsOYdQrfM0YVTT2A==
+X-Google-Smtp-Source: APBJJlGdf4mBViLU9DywMnYgAiIENEFp5pjsZyncw/WX9zB7lUGTOD1GKie2/DFw+s4Ej6NjVqVX/w==
+X-Received: by 2002:ac2:58c8:0:b0:4fb:978e:95b8 with SMTP id u8-20020ac258c8000000b004fb978e95b8mr80421lfo.59.1690816681109;
+        Mon, 31 Jul 2023 08:18:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.183])
+        by smtp.gmail.com with ESMTPSA id w16-20020a50fa90000000b0052275deb475sm5568560edr.23.2023.07.31.08.17.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jul 2023 08:18:00 -0700 (PDT)
+Message-ID: <defe7fb9-37b0-df31-9e66-0a126a865813@linaro.org>
+Date:   Mon, 31 Jul 2023 17:17:59 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="m6dzip35wy4zbmme"
-Content-Disposition: inline
-In-Reply-To: <20230722-coleslaw-breeder-40827e23f717@spud>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH v2] dt-bindings: iio: admv1014: make all regs required
+Content-Language: en-US
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230731144404.389255-1-antoniu.miclaus@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230731144404.389255-1-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---m6dzip35wy4zbmme
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Sat, Jul 22, 2023 at 12:42:09PM +0100, Conor Dooley wrote:
-> On Thu, Jul 20, 2023 at 07:36:41PM +0200, Sebastian Reichel wrote:
-> > RK3588 has three DWC3 controllers. Two of them are fully functional in
-> > host, device and OTG mode including USB2 support. They are connected to
-> > dedicated PHYs, that also support USB-C's DisplayPort alternate mode.
-> >=20
-> > The third controller is connected to one of the combphy's shared
-> > with PCIe and SATA. It can only be used in host mode and does not
-> > support USB2. Compared to the other controllers this one needs
-> > some extra clocks.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> I feel like I say it a bunch for some of these Rockchip bindings
-> patches, but if you're adding more clocks for some SoCs, should some
-> per-SoC constraints not also be added?
-
-The extra clocks are not actually needed by all the USB3 controllers
-in the SoC. Only one of three USB3 controllers needs them. In v1 I
-used different compatible values to narrow the clock binding down
-and Krzysztof asked to remove that. So please tell me what it should
-look like.
-
-Greetings,
-
--- Sebastian
-
-> > ---
-> >  .../devicetree/bindings/usb/rockchip,dwc3.yaml        | 11 +++++++++--
-> >  1 file changed, 9 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b=
-/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > index 291844c8f3e1..cbc3e55e05e1 100644
-> > --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > @@ -30,6 +30,7 @@ select:
-> >          enum:
-> >            - rockchip,rk3328-dwc3
-> >            - rockchip,rk3568-dwc3
-> > +          - rockchip,rk3588-dwc3
-> >    required:
-> >      - compatible
-> > =20
-> > @@ -39,6 +40,7 @@ properties:
-> >        - enum:
-> >            - rockchip,rk3328-dwc3
-> >            - rockchip,rk3568-dwc3
-> > +          - rockchip,rk3588-dwc3
-> >        - const: snps,dwc3
-> > =20
-> >    reg:
-> > @@ -58,7 +60,9 @@ properties:
-> >            Master/Core clock, must to be >=3D 62.5 MHz for SS
-> >            operation and >=3D 30MHz for HS operation
-> >        - description:
-> > -          Controller grf clock
-> > +          Controller grf clock OR UTMI clock
-> > +      - description:
-> > +          PIPE clock
-> > =20
-> >    clock-names:
-> >      minItems: 3
-> > @@ -66,7 +70,10 @@ properties:
-> >        - const: ref_clk
-> >        - const: suspend_clk
-> >        - const: bus_clk
-> > -      - const: grf_clk
-> > +      - enum:
-> > +          - grf_clk
-> > +          - utmi
-> > +      - const: pipe
-> > =20
-> >    power-domains:
-> >      maxItems: 1
-> > --=20
-> > 2.40.1
-> >=20
+On 31/07/2023 16:44, Antoniu Miclaus wrote:
+> Make the regulators required in the dt bindings.
+> 
+> Despite the fact that the datasheet is not explicit enough, all the
+> specifications of the part are built around these pins being supplied.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
 
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---m6dzip35wy4zbmme
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmTHz0AACgkQ2O7X88g7
-+pqKjg/+OYBPYuk3hSKFWkamZHuGn2rDB7jeHnXzTF7PG/ehiqqifOqn2ro376hZ
-Ays6PKMQR+4a+te/CSgLYvH5jc0AB+4v6tA5olENnyRF8XfMaUB6LGPv/HDBWU1v
-yhmleCXSeBGcJwpoxsB8UMhhUdzaXlLJ3tRfrtsJJnSOL2Hu8FHif/5RQ8BIoZg/
-Q89X9a2zYUlevNHiK63HIjih60/FagN7FvfuPRxz0OpZYewsFIJVfX6SltPuUUNa
-p6HuuEcbVzWklTshBax2IKSfT/DHEZAtdcuRaUhZ/7Xiy0BPvOHQQIunh8oKzLde
-MquuX8YesnPH/VQzWIElIUOej2RsOMNYE/o/Fw8jRL/j2jQtvUWYHr/dbQy940BW
-Pvci2+YO5TQtscLPIAngEqD65VGco9pzbZo9C2cMNXik/LmE+AGomcAFt/Ea4o3l
-Cq3UL87xcO/nIuj/wsaNfH0o9CZSbl6tOx4QTgt4EouXDk4kh3prLslOEnhhBGT+
-zB4Zbk7ZwH6Q8gWZdo5ED7JiXRsVx6W2NHdFAAkZMq2B/NCKykV/MI2hDDoO6AXC
-wd6cGFMCQKrmNO1bWtPBL3jBwwQadZf3M4wtBagB3AsE5UUhc+5JwjZEKWIKfnd3
-pRKq0qyv6KC/QaySyXYf1d3094JZL3Ks4rvKAlOHlKuHYesdzWU=
-=qk2b
------END PGP SIGNATURE-----
-
---m6dzip35wy4zbmme--
