@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C09769FFC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB41D76A015
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 20:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231613AbjGaSFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 14:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
+        id S229501AbjGaSNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 14:13:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjGaSFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:05:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5F2E52;
-        Mon, 31 Jul 2023 11:05:01 -0700 (PDT)
+        with ESMTP id S231264AbjGaSM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 14:12:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B576CE4;
+        Mon, 31 Jul 2023 11:12:58 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 42C386125E;
-        Mon, 31 Jul 2023 18:05:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6E7CC433CB;
-        Mon, 31 Jul 2023 18:05:00 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5216A61245;
+        Mon, 31 Jul 2023 18:12:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07BAC433C7;
+        Mon, 31 Jul 2023 18:12:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690826700;
-        bh=NlIuvQdLsbZRs9xKKZPU9QNmPufa9SXsdYZpx7GsOCY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YxN4v45sggOP8u25Ga6OHNMRp/yaTP+cCGVRCQ+m5LbGA7uXBoDQYJF35LL78/TDd
-         QnXPEGL3qXBiv5hoIAsM0YQCRCHdY9CLj/Y19FUnLCmHD61AgY4XCc6BET91FsO0Lv
-         bWwGCab4hgJgYb/OYgNUoCQkJYfymAwVIv8y2qBg4zYmAFz738GL2cM9a8Wq7pd6hf
-         kbhkqq1lLm1O7i3jWGbeJFg+PGTUvVe/1IANrBOs6Q6BF49aTyBxECju9lHzU2cLPM
-         FeBnb5Zi0dItNzZRsvQNcOY0catZvJF7Q7HWHzfq17viEutKrsqfMqQpXydYTX9Xk/
-         I+NrfAa1fI5zw==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b9d3dacb33so44931071fa.1;
-        Mon, 31 Jul 2023 11:05:00 -0700 (PDT)
-X-Gm-Message-State: ABy/qLYjpn8Nj+qfIrR+QXhhZ82NuAhCeUNUMTgPOSds+pkkwi1T9VVz
-        KfVDFzVACYikZIg++Zs69Vg2B2vxF0jApHsqyA==
-X-Google-Smtp-Source: APBJJlHmYoa7wNWCoPioGv/c7TslSfI7mb6yLjssF2FXna8gHSJ2JLwRBMq2SeYMDBgzkoTpB9YDIiByhdszSZOiHD4=
-X-Received: by 2002:a2e:9c94:0:b0:2b9:dd3b:cf43 with SMTP id
- x20-20020a2e9c94000000b002b9dd3bcf43mr520218lji.13.1690826698551; Mon, 31 Jul
- 2023 11:04:58 -0700 (PDT)
+        s=k20201202; t=1690827177;
+        bh=+LoXBGC73LDdBqfU5YvRRgV4ri7WaMiK0YBWUkXbAio=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Q4NJvAYguFW6J0lMNQg+HqsEbIPbceiM+6wiK84nvGYZ8gp1+7tUrgeQ/KC1XBGp5
+         Xb0fILtfj+LtKm8nSAyqMHwZlUvFP5S754BUBWUY2zLPyRnSQOdpWR/NFlJ2OlQYdF
+         VAwD0/YJ+ifQMMtRae26U+5Yyl/mQOmaCjpPkyKCpExmxxB59NliLOMRqahd0iChkU
+         5S240BpNAoN69jym1T5P9fB0MpnHnOoMjOeth2//+u0uyTHWTeSPwq8othPVymimo+
+         iiFTsoX8OqypfLJrN8xSIFkNEpQCUWtVdYd+1iMfb6P8Vtsb071qGYJy41n0EXDoAC
+         2s3KOTsYpaI1w==
+Received: (nullmailer pid 3476368 invoked by uid 1000);
+        Mon, 31 Jul 2023 18:12:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230721161840.1393996-1-hugo@hugovil.com> <20230721161840.1393996-7-hugo@hugovil.com>
- <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
- <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com> <2023072240-supremacy-shallot-a77f@gregkh>
- <20230724115428.d191186852c0bd0ee0d78398@hugovil.com> <CAL_JsqL8rjwONd6UAitKik0U44BKSD6m8zbachgfq0R9oHBW8w@mail.gmail.com>
- <20230731124600.39eb8d5c132f9338c2897543@hugovil.com>
-In-Reply-To: <20230731124600.39eb8d5c132f9338c2897543@hugovil.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 31 Jul 2023 12:04:45 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLaF70hNQndXpJfmH1TMGNbA7myQG0GK9fjyKOs63z-3w@mail.gmail.com>
-Message-ID: <CAL_JsqLaF70hNQndXpJfmH1TMGNbA7myQG0GK9fjyKOs63z-3w@mail.gmail.com>
-Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
- GPIO configuration
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+From:   Rob Herring <robh@kernel.org>
+To:     David Dai <davidai@google.com>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Quentin Perret <qperret@google.com>,
+        linux-kernel@vger.kernel.org,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Masami Hiramatsu <mhiramat@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        Mel Gorman <mgorman@suse.de>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Gupta Pankaj <pankaj.gupta@amd.com>, kernel-team@android.com,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Pavan Kondeti <quic_pkondeti@quicinc.com>,
+        linux-pm@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>
+In-Reply-To: <20230731174613.4133167-2-davidai@google.com>
+References: <20230731174613.4133167-1-davidai@google.com>
+ <20230731174613.4133167-2-davidai@google.com>
+Message-Id: <169082717438.3476261.13394216168233236806.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: cpufreq: add bindings for virtual
+ cpufreq
+Date:   Mon, 31 Jul 2023 12:12:54 -0600
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,111 +75,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 31, 2023 at 10:46=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.com>=
- wrote:
->
-> On Mon, 31 Jul 2023 09:31:53 -0600
-> Rob Herring <robh+dt@kernel.org> wrote:
->
-> > On Mon, Jul 24, 2023 at 9:54=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.c=
-om> wrote:
-> > >
-> > > On Sat, 22 Jul 2023 17:15:26 +0200
-> > > Greg KH <gregkh@linuxfoundation.org> wrote:
-> > >
-> > > > On Sat, Jul 22, 2023 at 10:47:24AM -0400, Hugo Villeneuve wrote:
-> > > > > On Fri, 21 Jul 2023 13:24:19 -0600
-> > > > > Rob Herring <robh+dt@kernel.org> wrote:
-> > > > >
-> > > > > > On Fri, Jul 21, 2023 at 10:19=E2=80=AFAM Hugo Villeneuve <hugo@=
-hugovil.com> wrote:
-> > > > > > >
-> > > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > > > >
-> > > > > > > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem co=
-ntrol lines")
-> > > > > > > and commit 21144bab4f11 ("sc16is7xx: Handle modem status line=
-s")
-> > > > > > > changed the function of the GPIOs pins to act as modem contro=
-l
-> > > > > > > lines without any possibility of selecting GPIO function.
-> > > > > >
-> > > > > > Requiring a new DT property is not fixing a kernel regression. =
-You
-> > > > > > should be returning the kernel to original behavior and then ha=
-ve a
-> > > > > > new DT property for new behavior.
-> > > > >
-> > > > > Hi Rob,
-> > > > > please read the entire patch history starting from V1
-> > > > >  and you will understand why this course of action was
-> > > > >  not selected.
-> > > >
-> > > > That's not going to happen, sorry, you need to explain it here, in =
-this
-> > > > patch series, why a specific action is being taken over another one=
-, as
-> > > > no one has time to go dig through past history, sorry.
-> > >
-> > > Hi Rob,
-> > > I initially submitted a patch to revert the kernel to original
-> > > behavior, but it created more problems because the patch was
-> > > unfortunately split in two separate patches, and mixed with other non
-> > > closely-related changes. It was also noted to me that reverting to th=
-e
-> > > old behavior would break things for some users.
-> > >
-> > > It was suggested to me by a more experienced kernel developer to
-> > > "suggest a fix, instead of hurrying a revert":
-> > >
-> > >     https://lkml.org/lkml/2023/5/17/758
-> >
-> > Do I have to go read this to decipher the justification and reasoning?
-> > When Greg says "in this patch series", he means in the commit messages
-> > of the patches. You send v9 already and it doesn't have that. The
-> > patchset needs to stand on its own summarizing any relevant prior
-> > discussions.
-> >
-> > I never suggested doing a revert.
->
-> Hi Rob,
-> I am sorry, but this is exactly what I "deciphered" from your
-> original email.
->
-> I am trying very hard to understand exactly what you mean, but it is
-> not that obvious for me. If something is not clear in my commit message,
-> I will try to improve it. But before, let's try to focus on making sure
-> I understand more clearly what you want exactly.
->
-> > Obviously, someone still wants the
-> > new feature.
->
-> I assume that you refer to the "new feature" as what was added in
-> the commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control
-> lines")?
 
-Shrug. It's one of the 2 commits mentioned, I don't know which one
-exactly. Whichever one changed default behavior from use GPIOs to use
-modem ctrl lines.
+On Mon, 31 Jul 2023 10:46:08 -0700, David Dai wrote:
+> Adding bindings to represent a virtual cpufreq device.
+> 
+> Virtual machines may expose MMIO regions for a virtual cpufreq device for
+> guests to read frequency information or to request frequency selection. The
+> virtual cpufreq device has an individual controller for each CPU.
+> 
+> Co-developed-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: David Dai <davidai@google.com>
+> ---
+>  .../bindings/cpufreq/cpufreq-virtual.yaml     | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
+> 
 
-Reading it again, I *think* this patch is correct. Default behavior is
-restored to use GPIOs. The DT property is needed to enable modem ctrl
-lines.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-What's not okay is just saying, these platforms may or may not need an upda=
-te:
+yamllint warnings/errors:
 
-    arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-    mips/boot/dts/ingenic/cu1830-neo.dts
-    mips/boot/dts/ingenic/cu1000-neo.dts
+dtschema/dtc warnings/errors:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 909, in resolve_from_url
+    document = self.store[url]
+  File "/usr/local/lib/python3.10/dist-packages/jsonschema/_utils.py", line 28, in __getitem__
+    return self.store[self.normalize(uri)]
+KeyError: 'http://devicetree.org/meta-schemas/core.yamll'
 
-You need to figure that out. Have you checked with maintainers of
-these boards? When were they added and by who? At the same time or by
-the same person would be a good indication the platform uses modem
-ctrl lines. Or were these platforms in use before adding modem ctrl
-support? Then they probably use GPIOs or nothing.
+During handling of the above exception, another exception occurred:
 
-If there are platforms which would regress if the modem ctrl feature
-was just reverted, which ones are those?
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 912, in resolve_from_url
+    document = self.resolve_remote(url)
+  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 1011, in resolve_remote
+    result = self.handlers[scheme](uri)
+  File "/usr/local/lib/python3.10/dist-packages/dtschema/schema.py", line 91, in http_handler
+    raise RefResolutionError('Error in referenced schema matching $id: ' + uri)
+jsonschema.exceptions.RefResolutionError: Error in referenced schema matching $id: http://devicetree.org/meta-schemas/core.yamll
 
-Rob
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 64, in <module>
+    ret |= check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 32, in check_doc
+    for error in sorted(dtsch.iter_errors(), key=lambda e: e.linecol):
+  File "/usr/local/lib/python3.10/dist-packages/dtschema/schema.py", line 130, in iter_errors
+    meta_schema = self.resolver.resolve_from_url(self['$schema'])
+  File "/usr/local/lib/python3.10/dist-packages/jsonschema/validators.py", line 914, in resolve_from_url
+    raise exceptions.RefResolutionError(exc)
+jsonschema.exceptions.RefResolutionError: Error in referenced schema matching $id: http://devicetree.org/meta-schemas/core.yamll
+Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.example.dts:69.19-72.13: Warning (unit_address_vs_reg): /example-0/soc/cpufreq: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.example.dtb: /example-0/cpus/cpu@0: failed to match any schema with compatible: ['arm,arm-v8']
+Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.example.dtb: /example-0/cpus/cpu@1: failed to match any schema with compatible: ['arm,arm-v8']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230731174613.4133167-2-davidai@google.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
