@@ -2,154 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC4E769A2A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4FBB769A34
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbjGaO4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 10:56:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56342 "EHLO
+        id S230258AbjGaO6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 10:58:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjGaO4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:56:45 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16DBDB
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 07:56:43 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b9c55e0fbeso62154691fa.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 07:56:43 -0700 (PDT)
+        with ESMTP id S230075AbjGaO6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:58:42 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23681E7C;
+        Mon, 31 Jul 2023 07:58:40 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe0c566788so7488072e87.0;
+        Mon, 31 Jul 2023 07:58:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690815402; x=1691420202;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Oa1SB02KtfMLxNE4mkxxs1OYoxXlIjwBI7+LigCTgCc=;
-        b=Bps7HKIGU1d7zGk6EnCBSZB+lUHreffolw38t62M9CWeJ/hAtTcLbWEyRGx0OLdxN+
-         tVMbbmbRF2ohu2WxxLjNYl3IyaP6ok/GnwlqlRN29C3tUtFbSqIks28iNf8Ip0n3TGVQ
-         ZauRAK3cDiIdUD/7Fu+6khTozBYPwXrwsueNQklYPH4vrbltQb4xTuyZ2h2GKYMpFzYh
-         5Q9Lc9qZWNJwsss83IMWvph8fAq0e2bgQavQ2H3qcjE5rf3kzV+sqjYnCqFfs+Lc8znr
-         R2I9f4B8oxB6w1zJ5akEPy0M0Q7S5mHA5OPRYR+cBxdd/K8CBZV/lFEYIJcLPjhl60FZ
-         ahYg==
+        d=gmail.com; s=20221208; t=1690815518; x=1691420318;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ORB1Q+Iw/OFBqXFQvBc5swFMkKQ4r1p77ZHKyIsEFdc=;
+        b=szOQXcgZiZeR4Nmw9aSousAbXxal+kmPPVxKh+F14Md+xVK38h2x3p09hEaT+UxABm
+         c1oC92ctS3vDVt4IEjIG9z4mP0RjVabJWlOrly7YCr4V3ZsPXi2UazcwDr/GN902iTnZ
+         ArLnAogFOA3vqZAuUD2KpHYm2cX3HPtyRv0MbXkvCReMvVrym3L6h1geBf21Qwpwd0Hf
+         mOFBDd/iamkMAq7nO79njkVI8eIw52NJAmouSM+odeWVXVPIhJRruVxRcMoHBO3UQwwE
+         0xTECIbDS9QvP3fYz0n+r+Wdz17p07GbhfCX50wuLysjR9cWYTEIZf9od6EOaNk9zTRy
+         8qRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690815402; x=1691420202;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Oa1SB02KtfMLxNE4mkxxs1OYoxXlIjwBI7+LigCTgCc=;
-        b=YHVTTOgM1XIf7z9A//foBcWtcewTBamlLxnVu5DDgOPwL2BqVyOu6+V37jlS8ZOHGK
-         qNT5as4t+pvk4oYJxSgw/aA2oema87HlnYrxQEBBN2qYHnb6mz1DvzR4UvMcfbh1U7c6
-         RqVlHXOoHD7ArEqGgKyCCM65u6DKadILftIHwi2nhkfOMX7qxmd3jx7Ca8nRMVgjUt9G
-         IfraOeNMpJZv2WHElLqk4abLpTnRpg2lVOO8SezYT9ZcPaV4XS3aeavG4th8uJ8iUwvH
-         U2Yf3tPltyqwoyhxFt8wL26Jm82Oh9hYMq7brERCBMtXEk6kQmZFQep+uLBmOVo3NOVw
-         HgLg==
-X-Gm-Message-State: ABy/qLZlgZn00QY7iUqtvq6ex9Rv7Q04d8QcLd1mBB5pV3P0pZy4N6fg
-        9ojH03MQXOLuKIEhitXp67hMhVLJJ3vJu8mEM/o=
-X-Google-Smtp-Source: APBJJlF7zuWD7Kp6ngSgGXo2OLttXqzIQ2Sxj/NgV2Jy37GYeVH1VK7pokm/jJZBd1ud+kDxL8TYug==
-X-Received: by 2002:a2e:8e92:0:b0:2b9:edcd:8770 with SMTP id z18-20020a2e8e92000000b002b9edcd8770mr138066ljk.43.1690815402023;
-        Mon, 31 Jul 2023 07:56:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id u17-20020a1709060b1100b00992bea2e9d2sm6335878ejg.62.2023.07.31.07.56.40
+        d=1e100.net; s=20221208; t=1690815518; x=1691420318;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ORB1Q+Iw/OFBqXFQvBc5swFMkKQ4r1p77ZHKyIsEFdc=;
+        b=kpxcW1ddw8IW6s2WucpQsXWrkphEwBq5VVXqiEInDjUHwCAAPu3jVHRCGwwXFcoT5r
+         aWNQA1rpJ3v01wUgwj/61G8kPNbwbrCKPbNEy8tpslGQD4H0G36j+wlEXHoD6Yk+3/X9
+         CZmi9UwDylQ5D3tGkFJN6Q7+ye5q+k9/AuXb18nrVPAd8RcDHsIjow4cCMsrt742j9mj
+         x5/Nh+UvaeXoGRgVXnUcUU/msEfKFhdlRJOZvQ7Q0KSYFn8peCQL9yuS3AlAfvhchI2r
+         qvZZ1NTGJQg0UBAvmQ1viuy5P4N3i3YGdQfLI9Nz8xSg1F3GFyOg2eCtyOZn307WQ+YE
+         0h3w==
+X-Gm-Message-State: ABy/qLaIG6N6fNstxYvGB7E4xZA1lP+BCaRRjeKoiQ7BsVrOTSTBbdln
+        IJifFgnA0tA0d9y8pACdfL3a6QCDzQo=
+X-Google-Smtp-Source: APBJJlHxuIAEisOHSGuHnxUa55Fmdq5/4wuIatTtWjc8BIjedxOSUMoxPfgn47jjB4MnYkT6xHotAQ==
+X-Received: by 2002:a05:6512:281c:b0:4fb:7559:aea3 with SMTP id cf28-20020a056512281c00b004fb7559aea3mr38563lfb.39.1690815518014;
+        Mon, 31 Jul 2023 07:58:38 -0700 (PDT)
+Received: from [127.0.0.1] ([46.211.17.21])
+        by smtp.gmail.com with ESMTPSA id i18-20020ac25d32000000b004fe15185b67sm2154485lfb.229.2023.07.31.07.58.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jul 2023 07:56:41 -0700 (PDT)
-Message-ID: <26224f81-9993-0a4c-4c46-91acd1ff5f42@linaro.org>
-Date:   Mon, 31 Jul 2023 16:56:39 +0200
+        Mon, 31 Jul 2023 07:58:37 -0700 (PDT)
+Date:   Mon, 31 Jul 2023 17:58:37 +0300
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Samu Onkalo <samu.p.onkalo@nokia.com>
+CC:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] misc: adps990x: convert to OF
+User-Agent: K-9 Mail for Android
+In-Reply-To: <a16db5ac-2b9a-45ab-b693-2f459d689c7d@app.fastmail.com>
+References: <20230731110239.107086-1-clamor95@gmail.com> <20230731110239.107086-3-clamor95@gmail.com> <a16db5ac-2b9a-45ab-b693-2f459d689c7d@app.fastmail.com>
+Message-ID: <7C51AA15-DEBE-486B-9788-F84B260F8880@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v3 5/6] ASoC: dt-bindings: mediatek,mt7986-wm8960: add
- mt7986-wm8960 document
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     =?UTF-8?B?TWFzbyBIdWFuZyAo6buD5Yqg56u5KQ==?= 
-        <Maso.Huang@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "chenxiangrui@huaqin.corp-partner.google.com" 
-        <chenxiangrui@huaqin.corp-partner.google.com>,
-        =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsik=?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>, "arnd@arndb.de" <arnd@arndb.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
-References: <20230728090819.18038-1-maso.huang@mediatek.com>
- <20230728090819.18038-6-maso.huang@mediatek.com>
- <7d70f893-ee75-d355-4b4c-4afe7a72cd7c@linaro.org>
- <5f794f6d3595e845433aab3c48eb47ec7962c929.camel@mediatek.com>
- <ab66c8a4-6a5e-651b-8f77-047980ebc238@linaro.org>
-Content-Language: en-US
-In-Reply-To: <ab66c8a4-6a5e-651b-8f77-047980ebc238@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 10:14, Krzysztof Kozlowski wrote:
->>>> +  mediatek,audio-codec:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +    description: The phandle of wm8960 codec.
->>>> +
->>>
->>> How did you implement Rob's comment? Or did you just ignore it?
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> Hi Krzysztof,
->>
->> Sorry, I did not mean to ignore Rob's comment.
->> I waited for some suggestion in mail below, but it seems Rob was a
->> little busy.
->>
->> https://lore.kernel.org/lkml/8c6316e79e40406e4d46709f602dcb14a4c00562.camel@mediatek.com/
->>
->> After gentle ping last week and receiving your advice, I thought that
->> means to send the v3 patch and might discuss dtbingding in v3 series.
->>
->> So sorry for misunderstanding it, I'll check the details with Rob in v3
->> series then refine it in v4.
-> 
-> The problem is that you did not reference in this patch any ongoing
-> discussion and further questions, so comment looks like addressed, while
-> it was not.
-> 
-> Rob said:
-> "in a common schema and reference them "
-> You said:
-> "common part yaml and reference to it"
-> so I think you both agreed on the same.
-> 
-> The advice would be to create common binding which is then referenced by
-> other and your bindings. However if you start doing it, you will notice
-> that it is impossible, because you have conflicting types for
-> "audio-codec", so you cannot have one definition.
-> 
-> This leads to the point - property is probably wrong and you need
-> dai-link with sound-dai property, just like most cards are doing.
 
-BTW, might be useful for you, just sent:
-https://lore.kernel.org/linux-devicetree/20230731094303.185067-1-krzysztof.kozlowski@linaro.org/T/#t
 
-Anyway you need dai-links, I think.
+31 =D0=BB=D0=B8=D0=BF=D0=BD=D1=8F 2023 =D1=80=2E 16:18:16 GMT+03:00, Arnd =
+Bergmann <arnd@arndb=2Ede> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=D0=B2(-=D0=
+=BB=D0=B0):
+>On Mon, Jul 31, 2023, at 13:02, Svyatoslav Ryhel wrote:
+>> Add ability to use device tree bindings keeping existing setup=2E
+>
+>I see that there are no more in-tree users of the old
+>apds990x_platform_data, so I think it would be best to completely
+>remove that codepath and merge that structure into struct
+>apds990x_chip, to simplify the probing and avoid the extra
+>allocation=2E
+
+Thank you very much for your review, but is it mandatory to drop pdata in =
+this particular patch set? To be honest this driver needs serious upgrades =
+and refactoring, and I have no dedication to invest my time into refactorin=
+g it, moreover, I am not a maintainer of this driver, nor a full time kerne=
+l maintainer of any kind=2E I am doing what I am doing only because one of =
+my devices uses this als but it is not something crucial=2E
 
 Best regards,
-Krzysztof
+Svyatoslav R=2E
 
+>   Arnd
