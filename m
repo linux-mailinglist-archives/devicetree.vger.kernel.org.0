@@ -2,176 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 450B276A480
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 01:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 635C176A498
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 01:12:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230461AbjGaXIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 19:08:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33806 "EHLO
+        id S231846AbjGaXMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 19:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231332AbjGaXIe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 19:08:34 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599581728
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 16:08:26 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-4085ee5b1e6so14653851cf.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 16:08:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1690844905; x=1691449705;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iKX02dSq0jdiim1nxpzEjrEv9sFbp2UB09AV6am7rpU=;
-        b=YXEKtvOSipUUZIoOCxDZ5aVwVVb8VS3GzlLofUcqIIB3ROrTCaeALFs6LZRwkoaq2L
-         ub3ckK1prPJJL+Y4soPlSwE2Y2Zn+wXzP3Qdd6jMbdf1N1CJyaMEhdwvbwUI5aqg/f27
-         f4kg3RUgYcpnhJqzOfB782g/KCvoL8PQma4/w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690844905; x=1691449705;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iKX02dSq0jdiim1nxpzEjrEv9sFbp2UB09AV6am7rpU=;
-        b=l2xBgEjUSdHmL8BXkrJ0PVydti8QWmifmMH0Gd60tdLBTxeaWvm9RzwN49RRyg+X15
-         lmnozOe5bKY8cGFmdjjEzApPzZyOWrZ/s1ZkA/LtIdb08NmaKxkhYMWgm9MWl1KhlKmt
-         fF3uhTRYNmHKsk46vuB91nlPbzK52Xkrl4tCJus9aNl7h9sTcFg8LgDKtmM7ZKYE5mbR
-         UONPPjDi6Au14q/VULvV/jcWmIKmyxRUjLK9sN+Ts/ZOqbs//H4WAD8iJM0G/ygxItWM
-         tb7w9dC8/izHEz0jcSwTYesatWrHJEyQes26bVBh1YYs5kj8WX6MK1n1eIGRku3WC/IV
-         Uw4Q==
-X-Gm-Message-State: ABy/qLY/ohSGkmpF3JJM7CZdSyYnAoJi8baDL5ScFDY5FrFukjUFqbfn
-        OWtpPYzAHKpjklbo8vXVdM2qsg==
-X-Google-Smtp-Source: APBJJlGkcpDycfL6CHq4PwlzAAIFDjlYyLjFWdwq0e7mz0iPHvCYiMBwX5tkQyUSwS7DufF0CoAtnw==
-X-Received: by 2002:a05:622a:198a:b0:405:37fd:c0ba with SMTP id u10-20020a05622a198a00b0040537fdc0bamr14343910qtc.21.1690844905458;
-        Mon, 31 Jul 2023 16:08:25 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id p5-20020ac84085000000b0040b3aa5f7ecsm2442793qtl.70.2023.07.31.16.08.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 16:08:25 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S231855AbjGaXMj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 19:12:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2FE1FC8;
+        Mon, 31 Jul 2023 16:12:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B8B761220;
+        Mon, 31 Jul 2023 23:12:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F0DAC433C8;
+        Mon, 31 Jul 2023 23:12:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690845145;
+        bh=Nu9Zxt9VTHuAwj+frT44+k98BkcHvxSV6qXTkuyVlDs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=hjt9RVuZswOhkpkeENCGIM/9sWjcNIp545q3Q5LE4tsA3jJPt2T+kwakTCE/UtAIm
+         WjLD6C5y1Yw7kintnZA3HPs+3q3qXCTsmZ5k/2lV08hnPCOUIlinu8ng7WqhiRK6tl
+         xiUpV8/Egf7duc+WL+7x4/qEob30Vqqb2jiZJ6fTiOgZDfqVj4f1FlbqEUxZRMH138
+         +9lVwODWiKZCA1ApR6was22LDYsNxF/44VsX5qlEfH7uVzr7Lh/1eI57vKYBXm1hCo
+         jSTysIQEeVbJ1SVv30ZB0WpVJjbp1UkBGTmF7OuvbL0kd1+LGBqngBnAdHRjz+G1r9
+         P5Bq39udxyDxg==
+Date:   Mon, 31 Jul 2023 18:12:23 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Kevin Xie <kevin.xie@starfivetech.com>
+Cc:     Minda Chen <minda.chen@starfivetech.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH] ARM: dts: broadcom: split interrupts per cells
-Date:   Mon, 31 Jul 2023 16:08:22 -0700
-Message-Id: <20230731230822.2173923-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230730104452.32230-1-krzysztof.kozlowski@linaro.org>
-References: <20230730104452.32230-1-krzysztof.kozlowski@linaro.org>
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        "Maciej W. Rozycki" <macro@orcam.me.uk>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+Message-ID: <20230731231223.GA14721@bhelgaas>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000fa12920601d08123"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <66d794c5-3837-483e-87d1-4b745d7cb9c4@starfivetech.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000fa12920601d08123
-Content-Transfer-Encoding: 8bit
+[+cc Pali, Marek because I used f76b36d40bee ("PCI: aardvark: Fix link
+training") as an example]
 
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Sun, 30 Jul 2023 12:44:52 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Each interrupt should be in its own cell.  This is much more readable.
+On Mon, Jul 31, 2023 at 01:52:35PM +0800, Kevin Xie wrote:
+> On 2023/7/28 5:40, Bjorn Helgaas wrote:
+> > On Tue, Jul 25, 2023 at 03:46:35PM -0500, Bjorn Helgaas wrote:
+> >> On Mon, Jul 24, 2023 at 06:48:47PM +0800, Kevin Xie wrote:
+> >> > On 2023/7/21 0:15, Bjorn Helgaas wrote:
+> >> > > On Thu, Jul 20, 2023 at 06:11:59PM +0800, Kevin Xie wrote:
+> >> > >> On 2023/7/20 0:48, Bjorn Helgaas wrote:
+> >> > >> > On Wed, Jul 19, 2023 at 06:20:56PM +0800, Minda Chen wrote:
+> >> > >> >> Add StarFive JH7110 SoC PCIe controller platform
+> >> > >> >> driver codes.
+> >> 
+> >> > >> However, in the compatibility testing with several NVMe SSD, we
+> >> > >> found that Lenovo Thinklife ST8000 NVMe can not get ready in 100ms,
+> >> > >> and it actually needs almost 200ms.  Thus, we increased the T_PVPERL
+> >> > >> value to 300ms for the better device compatibility.
+> >> > > ...
+> >> > > 
+> >> > > Thanks for this valuable information!  This NVMe issue potentially
+> >> > > affects many similar drivers, and we may need a more generic fix so
+> >> > > this device works well with all of them.
+> >> > > 
+> >> > > T_PVPERL is defined to start when power is stable.  Do you have a way
+> >> > > to accurately determine that point?  I'm guessing this:
+> >> > > 
+> >> > >   gpiod_set_value_cansleep(pcie->power_gpio, 1)
+> >> > > 
+> >> > > turns the power on?  But of course that doesn't mean it is instantly
+> >> > > stable.  Maybe your testing is telling you that your driver should
+> >> > > have a hardware-specific 200ms delay to wait for power to become
+> >> > > stable, followed by the standard 100ms for T_PVPERL?
+> >> > 
+> >> > You are right, we did not take the power stable cost into account.
+> >> > T_PVPERL is enough for Lenovo Thinklife ST8000 NVMe SSD to get ready,
+> >> > and the extra cost is from the power circuit of a PCIe to M.2 connector,
+> >> > which is used to verify M.2 SSD with our EVB at early stage.
+> >> 
+> >> Hmm.  That sounds potentially interesting.  I assume you're talking
+> >> about something like this: https://www.amazon.com/dp/B07JKH5VTL
+> >> 
+> >> I'm not familiar with the timing requirements for something like this.
+> >> There is a PCIe M.2 spec with some timing requirements, but I don't
+> >> know whether or how software is supposed to manage this.  There is a
+> >> T_PVPGL (power valid to PERST# inactive) parameter, but it's
+> >> implementation specific, so I don't know what the point of that is.
+> >> And I don't see a way for software to even detect the presence of such
+> >> an adapter.
+> > 
+> > I intended to ask about this on the PCI-SIG forum, but after reading
+> > this thread [1], I don't think we would learn anything.  The question
+> > was:
+> > 
+> >   The M.2 device has 5 voltage rails generated from the 3.3V input
+> >   supply voltage
+> >   -------------------------------------------
+> >   This is re. Table 17 in PCI Express M.2 Specification Revision 1.1
+> >   Power Valid* to PERST# input inactive : Implementation specific;
+> >   recommended 50 ms
+> > 
+> >   What exactly does this mean ?
+> > 
+> >   The Note says
+> > 
+> >     *Power Valid when all the voltage supply rails have reached their
+> >     respective Vmin.
+> > 
+> >   Does this mean that the 50ms to PERSTn is counted from the instant
+> >   when all *5 voltage rails* on the M.2 device have become "good" ?
+> > 
+> > and the answer was:
+> > 
+> >   You wrote;
+> >   Does this mean that the 50ms to PERSTn is counted from the instant
+> >   when all 5 voltage rails on the M.2 device have become "good" ?
+> > 
+> >   Reply:
+> >   This means that counting the recommended 50 ms begins from the time
+> >   when the power rails coming to the device/module, from the host, are
+> >   stable *at the device connector*.
+> > 
+> >   As for the time it takes voltages derived inside the device from any
+> >   of the host power rails (e.g., 3.3V rail) to become stable, that is
+> >   part of the 50ms the host should wait before de-asserting PERST#, in
+> >   order ensure that most devices will be ready by then.
+> > 
+> >   Strictly speaking, nothing disastrous happens if a host violates the
+> >   50ms. If it de-asserts too soon, the device may not be ready, but
+> >   most hosts will try again. If the host de-asserts too late, the
+> >   device has even more time to stabilize. This is why the WG felt that
+> >   an exact minimum number for >>Tpvpgl, was not valid in practice, and
+> >   we made it a recommendation.
+> > 
+> > Since T_PVPGL is implementation-specific, we can't really base
+> > anything in software on the 50ms recommendation.  It sounds to me like
+> > they are counting on software to retry config reads when enumerating.
+> > 
+> > I guess the delays we *can* observe are:
+> > 
+> >   100ms T_PVPERL "Power stable to PERST# inactive" (CEM 2.9.2)
+> >   100ms software delay between reset and config request (Base 6.6.1)
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
+> Refer to Figure2-10 in CEM Spec V2.0, I guess this two delays are T2 & T4?
+> In the PATCH v2[4/4], T2 is the msleep(100) for T_PVPERL,
+> and T4 is done by starfive_pcie_host_wait_for_link().
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Yes, I think "T2" is T_PVPERL.  The CEM r2.0 Figure 2-10 note is
+"2. Minimum time from power rails within specified tolerance to
+PERST# inactive (T_PVPERL)."
 
---000000000000fa12920601d08123
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+As far as T4 ("Minimum PERST# inactive to PCI Express link out of
+electrical idle"), I don't see a name or a value for that parameter,
+and I don't think it is the delay required by PCIe r6.0, sec 6.6.1.
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMkOOfEL36iMFrNV
-MIkC1yGmLMgVr2H0anPdnydrp6SAMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDczMTIzMDgyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAvHIxd9Jwu8aJjgEhTvSoUkF4GzyzWycKw
-wJt+/oYsLBYzjttRmFST759gylDYMBWNGrNR0FTvfoLk3CzWldx84DaMHpetmV5mgowJvhWPXnjc
-EUi1P0YrJOsdEn9Jo7zD8jO8GCGJwZzXWASckD36zWDOMI7PaxyMOxERNlM3yg1mARr3pndT59Kq
-6yADW4J3ljONM6pilkiKRLyOuk0MIwlXa27grgWyjhnUbPaBzIme4pWlJQC3lqbHhNuTgXGymdZK
-GwqhDucgk8ID+zDUPeQ/BbR8JWkaZVGJ9RZaQxGebPPHbD11VyrOgQjkqd6l4N+7PnHIf59mcDz7
-gGfM
---000000000000fa12920601d08123--
+The delay required by sec 6.6.1 is a minimum of 100ms following exit
+from reset or, for fast links, 100ms after link training completes.
+
+The comment at the call of advk_pcie_wait_for_link() [2] says it is
+the delay required by sec 6.6.1, but that doesn't seem right to me.
+
+For one thing, I don't think 6.6.1 says anything about "link up" being
+the end of a delay.  So if we want to do the delay required by 6.6.1,
+"wait_for_link()" doesn't seem like quite the right name.
+
+For another, all the *_wait_for_link() functions can return success
+after 0ms, 90ms, 180ms, etc.  They're unlikely to return after 0ms,
+but 90ms is quite possible.  If we avoided the 0ms return and
+LINK_WAIT_USLEEP_MIN were 100ms instead of 90ms, that should be enough
+for slow links, where we need 100ms following "exit from reset."
+
+But it's still not enough for fast links where we need 100ms "after
+link training completes" because we don't know when training
+completed.  If training completed 89ms into *_wait_for_link(), we only
+delay 1ms after that.
+
+> > The PCI core doesn't know how to assert PERST#, so the T_PVPERL delay
+> > definitely has to be in the host controller driver.
+> > 
+> > The PCI core observes the second 100ms delay after a reset in
+> > pci_bridge_wait_for_secondary_bus().  But this 100ms delay does not
+> > happen during initial enumeration.  I think the assumption of the PCI
+> > core is that when the host controller driver calls pci_host_probe(),
+> > we can issue config requests immediately.
+> > 
+> > So I think that to be safe, we probably need to do both of those 100ms
+> > delays in the host controller driver.  Maybe there's some hope of
+> > supporting the latter one in the PCI core someday, but that's not
+> > today.
+> > 
+> > Bjorn
+> > 
+> > [1] https://forum.pcisig.com/viewtopic.php?f=74&t=1037
+
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/pci-aardvark.c?id=v6.4#n433
