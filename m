@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 230F2768C68
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 08:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A75C9768C6B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 08:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjGaGyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 02:54:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38894 "EHLO
+        id S229824AbjGaG43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 02:56:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjGaGyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 02:54:32 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C65AF1A5
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 23:54:29 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52256241c66so8658309a12.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 23:54:29 -0700 (PDT)
+        with ESMTP id S229445AbjGaG42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 02:56:28 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F1A10D
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 23:56:26 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52256241c66so8661185a12.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 23:56:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690786468; x=1691391268;
+        d=linaro.org; s=google; t=1690786585; x=1691391385;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4qUpAieG+xE08h9GZl+Gc2LW4JHHh2vTdj6E2mVehSY=;
-        b=QZQhRAtBIIZv+wMv6Lxz/k+jf0zqv0L4vBqgBg37tCl2/VZ2sjNccomO1Bbl3DcCBY
-         8aTMsta4hgFyt4+y2HEPbVx1/RwJh9suiK4o8EGnaIImBnM0L3hz5FJTMKluDfGrAsfH
-         5a5/i0Oy8MkSl03+PbLPMXMJqL1dMpKiDj7YtBb+lctxZ+iuWNwp/YbcaV5k70W7QJrL
-         fN9W/W5Ygb/zGvzJ5n0uHRMl/cqeexeZwBHtEOSKuQlE2tFZqQRl4Ogcyhns6/dQHEpl
-         3gKLQ3AHcA6MAIex5cr6tr5IRJlN+kCeLO7EzTdz0Rhd+dW9CmkCcQPCbWS0wWGpRuFJ
-         DyaQ==
+        bh=B+CfR0bQL2f6+lX0xcgogwy4lwpWoaSnfppJn89aXWk=;
+        b=GUWEp9EcVvFYEpYWiL5hR0u5tRun0bBc6gdFUvEBr2ca3dLBFSo6wwuoZiXMZyYcGD
+         toPpNRTJmFbjOdjqrqdN9KUbye/dlF3PdTH+hVVWddJ3NQm+3YemGfRml6CO3sQZz0AJ
+         k40y+yRttCxEEBZfU6nPOUUuRJb1y3VSgGEDu3AEyi/ON0hOWEvwOpeBRdXfZP1dY5hN
+         iIfhwvprSpoM5NNiKDagcfVcEz/9BE6EQQqPaByg1RwYmcjw+R3zzMI0VuCQhPL+y3w1
+         di6R+PU9hprzInMd9hTptP6RBthie/K7BbO0a2lbPIAlHveUdJqQN2yfVh77ZhR7hJi7
+         hqcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690786468; x=1691391268;
+        d=1e100.net; s=20221208; t=1690786585; x=1691391385;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4qUpAieG+xE08h9GZl+Gc2LW4JHHh2vTdj6E2mVehSY=;
-        b=ZvzdKGOsX68fsZLd+A7Zx/3zF64v4GlVo0cu6gK/fauiVXNxM1JC/qWtLaE+NLJHTw
-         JLcAEkoemY4v2+z3K6raAypXr5GOdnaX+P6xkNG3YeabkIp8WRl/Z66yP+205mIJFwfK
-         s2bmMPpGP+h0dJ7qCKhQB+3O6YCUZbYFlTp5Rcqq4ZivdrmQbrCmOcVUczkIWm14tRq5
-         RRaqVGHywMOaOJdSbgt9kbZmoLuBWiTAQzM4/s39lTjaGWcqdQgGPo+QbHp0uTsAjVgw
-         AhNATXFOutPRXtImos8+UOcJTHmTxmoSPH33FeWNk+YndkejQ6sDLd7rLEJ0IWJWQ32g
-         VoMQ==
-X-Gm-Message-State: ABy/qLZ+MkY/nnP3jsUwYxQydYxVvPF0GHqobnM1s5bEwntrYzDeFf25
-        dyqvTcRb6W0TzXlcIVaEx4YNgA==
-X-Google-Smtp-Source: APBJJlGCmJaHU50ObdvcR/6bwTGIuiXDtnox3Cuhxi7HnSlDCaucG+LhabDEzLzNd3EdVAvCwUifNw==
-X-Received: by 2002:aa7:db52:0:b0:522:abaf:1b0b with SMTP id n18-20020aa7db52000000b00522abaf1b0bmr7501888edt.18.1690786467642;
-        Sun, 30 Jul 2023 23:54:27 -0700 (PDT)
+        bh=B+CfR0bQL2f6+lX0xcgogwy4lwpWoaSnfppJn89aXWk=;
+        b=Fjc97RKTLXqpgH0l/NbnvxHgmhC50Rm2pyF5pa3N3IQONS+uVl2tQRKSXMhor0mYKT
+         Rb7eVgntdq/h4xS2SxpChsZk6N28Kro9u3v5jorEZunUcX76JhEQd7NBGSeVqAEbiV8s
+         FOAgyqz4Z1oRecoTkrOY+NoJSVsnPT3Ks6/bIA+uBXa4t/0a6S7W3KAxgWjmdjhZ9pE3
+         lpPqFlrDFQmxBMeQHyzS2m3qJeYOnmfJnUFO/UF6u3Uf95+UkMYkg1Y+DN1OxBWWs/4L
+         R0ayAd+Iqf+fJIFo5P1i6aWn/gq2XPXAAx+RYkkKi4l0Ty/OZ8X8YDIv/H/gn+BbmP+Y
+         x2uA==
+X-Gm-Message-State: ABy/qLZVnsMnZo8xOHdRcLjPh4xKPFXIkAQBtnkyOGyJjY+XbERg0zvB
+        UlD0hMV2lUAf1wm/+d9x3azq8Q==
+X-Google-Smtp-Source: APBJJlGCJK+vLRByTvuO6krg5VsOL4GRQzkfn6Akp0lQsgEeTOlxYlC1pqxpSpG6aT11G5ROzBnjWg==
+X-Received: by 2002:aa7:c84b:0:b0:51d:95ac:22ed with SMTP id g11-20020aa7c84b000000b0051d95ac22edmr9574982edt.1.1690786584828;
+        Sun, 30 Jul 2023 23:56:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id e12-20020a50ec8c000000b0051e0eba608bsm4953487edr.19.2023.07.30.23.54.25
+        by smtp.gmail.com with ESMTPSA id u24-20020a056402065800b0051bfc85afaasm5011296edx.86.2023.07.30.23.56.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jul 2023 23:54:27 -0700 (PDT)
-Message-ID: <0617841a-5d1f-b703-daa9-fedba148a05d@linaro.org>
-Date:   Mon, 31 Jul 2023 08:54:24 +0200
+        Sun, 30 Jul 2023 23:56:24 -0700 (PDT)
+Message-ID: <bdd0b66a-2741-9140-ea1d-14caf938da38@linaro.org>
+Date:   Mon, 31 Jul 2023 08:56:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.1
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add PCIe0 node
+Subject: Re: [PATCH 07/17] MIPS: loongson32: Convert UART platform device to
+ DT
 Content-Language: en-US
-To:     Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-        manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        quic_parass@quicinc.com,
-        "reviewer:ARM/QUALCOMM CHROMEBOOK SUPPORT" 
-        <cros-qcom-dts-watchers@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <1690540760-20191-1-git-send-email-quic_krichai@quicinc.com>
- <17c2ba50-3b72-523c-d92b-1ecbf9be7450@linaro.org>
- <f3d5c72d-90d3-b091-f995-5ad0bf93ae1d@quicinc.com>
- <a2024453-e749-b659-52a0-83ded8bb5c38@linaro.org>
- <1cfdf3c4-6e4f-e73d-c711-3890ceabb69d@quicinc.com>
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
+ <20230729134318.1694467-8-keguang.zhang@gmail.com>
+ <2ee2336c-d54f-6fb7-0142-8d0e08cce25b@linaro.org>
+ <CAJhJPsXbW-JkzPTH+fHW3PD9J9+s0_F3Fbs3sb44tC12iTCk-Q@mail.gmail.com>
+ <CAJhJPsXT+T7z4Av6tsQX00CAh8p6r-2ypggY+_iDufZhxToAWQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1cfdf3c4-6e4f-e73d-c711-3890ceabb69d@quicinc.com>
+In-Reply-To: <CAJhJPsXT+T7z4Av6tsQX00CAh8p6r-2ypggY+_iDufZhxToAWQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,66 +83,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 07:29, Krishna Chaitanya Chundru wrote:
-> 
-> On 7/28/2023 9:27 PM, Krzysztof Kozlowski wrote:
->> On 28/07/2023 17:10, Krishna Chaitanya Chundru wrote:
->>> On 7/28/2023 5:33 PM, Krzysztof Kozlowski wrote:
->>>> On 28/07/2023 12:39, Krishna chaitanya chundru wrote:
->>>>> Add PCIe dtsi node for PCIe0 controller on sc7280 platform.
->>>>>
->>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>> Thank you for your patch. There is something to discuss/improve.
->>>>
->>>>
->>>>> +		pcie0_phy: phy@1c06000 {
->>>>> +			compatible = "qcom,sm8250-qmp-gen3x1-pcie-phy";
->>>>> +			reg = <0 0x01c06000 0 0x1c0>;
->>>>> +			#address-cells = <2>;
->>>>> +			#size-cells = <2>;
->>>>> +			ranges;
->>>>> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->>>>> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->>>>> +				 <&gcc GCC_PCIE_CLKREF_EN>,
->>>>> +				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->>>>> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
->>>>> +
->>>>> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
->>>>> +			reset-names = "phy";
->>>>> +
->>>>> +			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->>>>> +			assigned-clock-rates = <100000000>;
->>>>> +
->>>>> +			status = "disabled";
->>>>> +
->>>>> +			pcie0_lane: phy@1c0e6200 {
->>>> Isn't this old-style of bindings? Wasn't there a change? On what tree
->>>> did you base it?
->> The work was here:
->> https://lore.kernel.org/all/20230324022514.1800382-5-dmitry.baryshkov@linaro.org/
+On 31/07/2023 05:32, Keguang Zhang wrote:
+> On Mon, Jul 31, 2023 at 11:04 AM Keguang Zhang <keguang.zhang@gmail.com> wrote:
 >>
->> But I don't remember the status.
->>
->>> Let me rebase and send it again.
->> This anyway looks like wrong compatible. You used sm8250.
+>> On Sun, Jul 30, 2023 at 4:26 PM Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 29/07/2023 15:43, Keguang Zhang wrote:
+>>>> Add UART device nodes for Loongson-1 boards,
+>>>> and drop the legacy platform devices and data accordingly.
+>>>>
+>>>> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+>>>> ---
+>>>>  arch/mips/boot/dts/loongson/loongson1.dtsi    | 54 +++++++++++++++++++
+>>>
+>>> Same problem - DTS is always separate. It seems you made this mistake
+>>> everywhere, so entire patchset needs to be fixed. Keep all DTS - your
+>>> base board and extending it - at the end of the patchset and squash it.
+>>> There is little point to add new DTS in steps (e.g. first add incomplete
+>>> broken DTS and then immediately fix it... no, instead just add correct
+>>> and complete DTS).
+>>>
+>> Sorry. I thought it would be easier to review for split patches.
+>> Thanks for the explanation.
+>> Will send v2 with one complete DTS.
 > 
-> The patch was send on latest linux-next only and the above change is not 
-> merged yet.
+> Hello Thomas,
+> May I ask your opinion about the way to delete the obsolete platform devices?
+> Should I delete them in one patch? Or in separated patches?
 
-I don't think we will want old DTS syntax... but this actually depends
-on the status of Dmitry's patchset.
-
-> 
-> We are using the same compatible string as sm8250 because the phy is 
-> same both from hardware and software perspective for sm8250.
-> 
-> that is why we are using the same compatible string.
-> 
-> Can you let me know if we want create a separate compatible string for 
-> this even though  we are using same phy?
-
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#42
-
+subsystem patches are split per subsystem. arch-code can be either
+together or also split per type of driver. Removal of code is
+incremental. Just add extending it, but your patch was not extending
+DTS, but adding new one.
 
 Best regards,
 Krzysztof
