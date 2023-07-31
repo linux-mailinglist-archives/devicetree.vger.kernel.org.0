@@ -2,164 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EDB769255
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BFFF769269
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbjGaJvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36590 "EHLO
+        id S231974AbjGaJy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:54:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjGaJvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:51:20 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2082.outbound.protection.outlook.com [40.107.93.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7899AE7C;
-        Mon, 31 Jul 2023 02:50:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L5Pvy7VMDcOdl55ifHSnHa8EpSfR66BmMJNcQUyWyH1IkhlcIH/tFoEW//yKZ7czqFWUpyrEGbjL0sjbCgqvxitq1khx55FPBFbsoUu9gLYbOGSgPIEEg4/Ja8itx4R0H//whOjbKQK0N2woVh4XjCTOEDmCcou+bWkVgBBrFc5/QYObJoCiuH21XUbKctBa3QJUtnXkx2lKx8FlR4DebUKwCGu/NQLJM/J31xkR4Ol0fZIKM98dQTQs6cMXEInCiIXFXQwtNF3rJQ2qXvVYQNcuMbQ0cVfhQ8nhV/UvpcLExc8y05xeahuVGSex8gv1flyJeNr+y1/LemP4w33kOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L5a6QEmM2KX38lNQl1P6r/u3Q9DZVE0Zv8YABYsrNro=;
- b=I52/IW+mlhl55U3K7q9W5MB0YYzhnOXjCbLvNiLayoCyRFOQ49ZZunQG86tzCX8BDsoqfjDtXJK5e9XH8NEUfVTh/4BlyZEo4NbLOFJdHzFd0YDmBU2CsMvaJ7Xqg88GXoTKysW5HdOqPp2WfdYOkT1UxBszDT1ewnVUQipglPj2yYz4txls85s2HjH08TSn4z5uFGnMagMSvIryOB9YCXerEKnAMapFPN9+9UrrJneI3G0jmaSy9qkj5jQ/nvi1VVf5u3hx9CsUFn/pIYI6n6aJ4ip0NU8CUIpn/S7r+6CEvJCZWX+RdIgSu2ZcVj1znP7w/6zPKWGubGdf/l77ew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L5a6QEmM2KX38lNQl1P6r/u3Q9DZVE0Zv8YABYsrNro=;
- b=0n8kVXNUcWA/wd8vfCZIrGC4CKwzpDCeTI1Lqelv1uf3ScuFeGbU5XJZ42VbZPpmIPtJHtWoXrmFsg6ReDlGqEYV0S6REAJH8+LXF4yoqkDD706pr/lAfbtONB3qNKVrMTYgDW7Wbmz2zPot0ijHHTjKOWficz0hm/8sX6ifnOU=
-Received: from BYAPR03CA0028.namprd03.prod.outlook.com (2603:10b6:a02:a8::41)
- by PH7PR12MB9067.namprd12.prod.outlook.com (2603:10b6:510:1f5::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.42; Mon, 31 Jul
- 2023 09:50:52 +0000
-Received: from CO1NAM11FT041.eop-nam11.prod.protection.outlook.com
- (2603:10b6:a02:a8:cafe::53) by BYAPR03CA0028.outlook.office365.com
- (2603:10b6:a02:a8::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.44 via Frontend
- Transport; Mon, 31 Jul 2023 09:50:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT041.mail.protection.outlook.com (10.13.174.217) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6631.44 via Frontend Transport; Mon, 31 Jul 2023 09:50:52 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 31 Jul
- 2023 04:50:51 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 31 Jul
- 2023 04:50:51 -0500
-Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Mon, 31 Jul 2023 04:50:46 -0500
-From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Michal Simek <michal.simek@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Tanmay Shah <tanmay.shah@amd.com>,
-        Ben Levinsky <ben.levinsky@amd.com>,
-        Marek Vasut <marex@denx.de>,
-        Roman Gushchin <roman.gushchin@linux.dev>,
-        Arnd Bergmann <arnd@arndb.de>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <saikrishna12468@gmail.com>,
-        <git@amd.com>, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Subject: [PATCH v3 4/4] pinctrl: pinctrl-zynqmp: Add support for output-enable and bias-high impedance
-Date:   Mon, 31 Jul 2023 15:20:26 +0530
-Message-ID: <20230731095026.3766675-5-sai.krishna.potthuri@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230731095026.3766675-1-sai.krishna.potthuri@amd.com>
-References: <20230731095026.3766675-1-sai.krishna.potthuri@amd.com>
+        with ESMTP id S231950AbjGaJyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:54:25 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7301410FE
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:53:48 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 33235D75;
+        Mon, 31 Jul 2023 02:54:31 -0700 (PDT)
+Received: from [10.32.102.42] (e110479.arm.com [10.32.102.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 472D73F59C;
+        Mon, 31 Jul 2023 02:53:45 -0700 (PDT)
+Message-ID: <a137cb78-f687-e9c6-e6f3-27be92c19da3@arm.com>
+Date:   Mon, 31 Jul 2023 10:53:38 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/1] arm: dts: Enable device-tree overlay support for
+ sun8i-h3 pi devices
+To:     "MOESSBAUER, Felix" <felix.moessbauer@siemens.com>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
+        "wens@csie.org" <wens@csie.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Matzinger, Manuel Josef" <manuel.matzinger@siemens.com>,
+        "Bovensiepen, Daniel (bovi)" <daniel.bovensiepen@siemens.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Gylstorff, Quirin" <quirin.gylstorff@siemens.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20230627133703.355893-1-felix.moessbauer@siemens.com>
+ <1830379.atdPhlSkOF@jernej-laptop>
+ <17c7a0c952913e21d9a323f42a1cfad84ed8a51b.camel@siemens.com>
+ <4818881.GXAFRqVoOG@jernej-laptop>
+ <6fbb0e557a97555876f8de4a283162a9e7d290b8.camel@siemens.com>
+Content-Language: en-US
+From:   Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <6fbb0e557a97555876f8de4a283162a9e7d290b8.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT041:EE_|PH7PR12MB9067:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa069868-fed7-43da-a2cb-08db91aba0d7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1gt5yB0nxs8utSzAOu3MSzk6uS5NdmdXMowX72HPlSWHBm3g1Ta3emI6/PaFI9RfrvvGioNtBnAybnOBNNw0JkUTIqaqjnh+0ovbNqb9TO5pmj7Fzbq0maxw5pWaag2wqpv86SMryyoAFNRdRCo1R8NSsgGRj4rsxenEHPxw5s9SAKwXgnvRCJ32G7p/xiMz/HBrzIXeTuX3lReIZ6fmit7gDv+tZU/cXmNw7zmA2UMwxk8d0xxZtQ5lUZFIC2YJotPAI+GT8CRmMetK0NEo1eHHfFU+iNoB4UJkE/9L4RAfp6UWTuEPzeM1GdMWhQQI6PbKcJs7hMZjXSxAxE1iEP511cJjoLzuZ6XRIhdHLEPT/AR1p47Y2XU9M3QtxkoimjipogmpUm1pkVo0wLsdmsHn2QyyhCMlu2vXLYq7PyKOeGXANWBsL0vuGu9FdMP+tWschnP6fRvKR6nb8nq6t4415LuoP3Bkxm2GINcTWuhkHzq2soMy25ykAweMfvUVzBaXvl7maDbzmgeYaCERdMBC112WTijsVwwJCHfMJWVNGPt0D9FfJrUUjV/Xh2U54ZSnJwY42+wa/ZR7HC0oNZAi4dNUnslapTtvDJKyPhEKXZ4UC1U5hEkqEwt7rGX2FI2Xe/EK2QB74rBNqYpKH5CS6hU7eA80F2kiFd70moy23p9nVGiM0hVHlxBg8GAPY81i1Kejqx8AC5dphmRGSzI2qr+jaa8Qxk7/EXNJlDHYI6t32CvF9Remu1+na1XmvLTriXaqBRdy2f2d5k28L8RprkKk0zQ0841BIcmZT8k=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(346002)(39860400002)(396003)(82310400008)(451199021)(36840700001)(46966006)(40470700004)(356005)(921005)(81166007)(82740400003)(40480700001)(86362001)(36756003)(103116003)(40460700003)(478600001)(6666004)(2616005)(336012)(186003)(1076003)(26005)(8676002)(8936002)(7416002)(5660300002)(70586007)(4326008)(70206006)(2906002)(54906003)(110136005)(41300700001)(316002)(36860700001)(426003)(83380400001)(47076005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2023 09:50:52.5572
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa069868-fed7-43da-a2cb-08db91aba0d7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT041.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9067
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to handle 'output-enable' and 'bias-high-impedance'
-configurations.
+Hi,
 
-Using these pinctrl properties observed hang issues with older PMUFW(Xilinx
-ZynqMP Platform Management Firmware), hence reverted the patch.
-Commit 9989bc33c4894e075167 ("Revert "pinctrl: pinctrl-zynqmp: Add support
-for output-enable and bias-high-impedance"").
+On 31/07/2023 03:46, MOESSBAUER, Felix wrote:
+> On Mon, 2023-07-31 at 00:12 +0200, Jernej Škrabec wrote:
+>> Dne sreda, 19. julij 2023 ob 14:26:13 CEST je Moessbauer Felix
+>> napisal(a):
+>>> On Tue, 2023-07-11 at 21:42 +0200, Jernej Škrabec wrote:
+>>>> Dne torek, 27. junij 2023 ob 15:37:03 CEST je Felix Moessbauer
+>>>>
+>>>> napisal(a):
+>>>>> Add the '-@' DTC option for the sun8i-h3 pi-class devices. This
+>>>>> option
+>>>>> populates the '__symbols__' node that contains all the
+>>>>> necessary
+>>>>> symbols
+>>>>> for supporting device-tree overlays (for instance from the
+>>>>> firmware
+>>>>> or
+>>>>> the bootloader) on these devices.
+>>>>>
+>>>>> These devices allow various modules to be connected and this
+>>>>> enables
+>>>>> users to create out-of-tree device-tree overlays for these
+>>>>> modules.
+>>>>>
+>>>>> Please note that this change does increase the size of the
+>>>>> resulting DTB
+>>>>> by ~30%. For example, with v6.4 increase in size is as follows:
+>>>>>
+>>>>> 22909 -> 29564 sun8i-h3-orangepi-lite.dtb
+>>>>> 24214 -> 30935 sun8i-h3-bananapi-m2-plus.dtb
+>>>>> 23915 -> 30664 sun8i-h3-nanopi-m1-plus.dtb
+>>>>> 22969 -> 29537 sun8i-h3-nanopi-m1.dtb
+>>>>> 24157 -> 30836 sun8i-h3-nanopi-duo2.dtb
+>>>>> 24110 -> 30845 sun8i-h3-orangepi-plus2e.dtb
+>>>>> 23472 -> 30037 sun8i-h3-orangepi-one.dtb
+>>>>> 24600 -> 31410 sun8i-h3-orangepi-plus.dtb
+>>>>> 23618 -> 30230 sun8i-h3-orangepi-2.dtb
+>>>>> 22170 -> 28548 sun8i-h3-orangepi-zero-plus2.dtb
+>>>>> 23258 -> 29795 sun8i-h3-nanopi-neo-air.dtb
+>>>>> 23113 -> 29699 sun8i-h3-zeropi.dtb
+>>>>> 22803 -> 29270 sun8i-h3-nanopi-neo.dtb
+>>>>> 24674 -> 31318 sun8i-h3-nanopi-r1.dtb
+>>>>> 23477 -> 30038 sun8i-h3-orangepi-pc.dtb
+>>>>> 24622 -> 31380 sun8i-h3-bananapi-m2-plus-v1.2.dtb
+>>>>> 23750 -> 30366 sun8i-h3-orangepi-pc-plus.dtb
+>>>>>
+>>>>> Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
+>>>>> ---
+>>>>> Please note that I only tested the overlay on the sun8i-h3-
+>>>>> nanopi-
+>>>>> neo
+>>>>> device. However, the devices are quite similar and in general
+>>>>> the
+>>>>> change to add symbols should be pretty safe. Similar patches
+>>>>> have
+>>>>> been
+>>>>> applied to various other devices in the past without any
+>>>>> negative
+>>>>> effect (except for the increased size).
+>>>>
+>>>> I'm not a fan of this approach. What's wrong with letting kernel
+>>>> builders
+>>>> specify this flag on their own at compile time? That way size is
+>>>> still
+>>>> completely in domain of builder.
+>>>
+>>> That's easier said than done. These symbols are only needed for
+>>> some
+>>> targets (that are commonly used with overlays). But how should a
+>>> general purpose kernel builder like Debian know which DT to build
+>>> with
+>>> symbols and which without? In Yocto the overlays are not really
+>>> needed,
+>>> as often the original dts is just patched directly.
+>>
+>> LibreELEC (distro I help with) has support for DT overlays for some
+>> time and
+>> it was easy to enable symbols for all DTs with simple "DTC_FLAGS=-@"
+>> addition
 
-Support for configuring these properties added in PMUFW Configuration Set
-version 2.0. When there is a request for these configurations from pinctrl
-driver for ZynqMP platform, xilinx firmware driver checks for this version
-before configuring these properties to avoid the hang issue and proceeds
-further only when firmware version is >=2 otherwise it returns error.
+So why don't you use the U-Boot provided copy of the DTB? We sync the 
+DTs regularly from the kernel repo to the U-Boot repo, and the U-Boot 
+build system builds all DTBs with overlay support already.
+This also saves you from the hassle to actually find and load the right 
+DTB, as it automatically comes as part of the U-Boot binary.
+On the U-Boot prompt (or rather in a script) you would then do:
+=> fdt move $fdtcontroladdr $fdt_addr_r
+=> load <source> $fdtoverlay_addr_r <your_overlay>.dtbo
+=> fdt apply $fdtoverlay_addr_r
 
-Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
----
- drivers/pinctrl/pinctrl-zynqmp.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+You could also chime in on this U-Boot patch of mine, that loads and 
+applies all .dtbo files found in a given directory:
+https://lore.kernel.org/u-boot/20230210110213.2531190-1-andre.przywara@arm.com/
 
-diff --git a/drivers/pinctrl/pinctrl-zynqmp.c b/drivers/pinctrl/pinctrl-zynqmp.c
-index 8d2cb0999f2f..f2be341f73e1 100644
---- a/drivers/pinctrl/pinctrl-zynqmp.c
-+++ b/drivers/pinctrl/pinctrl-zynqmp.c
-@@ -415,6 +415,10 @@ static int zynqmp_pinconf_cfg_set(struct pinctrl_dev *pctldev,
- 
- 			break;
- 		case PIN_CONFIG_BIAS_HIGH_IMPEDANCE:
-+			param = PM_PINCTRL_CONFIG_TRI_STATE;
-+			arg = PM_PINCTRL_TRI_STATE_ENABLE;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
- 		case PIN_CONFIG_MODE_LOW_POWER:
- 			/*
- 			 * These cases are mentioned in dts but configurable
-@@ -423,6 +427,11 @@ static int zynqmp_pinconf_cfg_set(struct pinctrl_dev *pctldev,
- 			 */
- 			ret = 0;
- 			break;
-+		case PIN_CONFIG_OUTPUT_ENABLE:
-+			param = PM_PINCTRL_CONFIG_TRI_STATE;
-+			arg = PM_PINCTRL_TRI_STATE_DISABLE;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
- 		default:
- 			dev_warn(pctldev->dev,
- 				 "unsupported configuration parameter '%u'\n",
--- 
-2.25.1
+Cheers,
+Andre
 
+> 
+> Thanks for the pointer. If this would be a kconfig option, I would
+> agree. There's a patch to add this option, but this did not get
+> accepted [3]. Just manually adding some "magic" options does not feel
+> correct.
+> 
+>> to build command [1]. Do you see any downside except knowing you have
+>> to
+>> include it? On the upside, there is no need to patch each and every
+>> file and
+>> kernel builder has a choice if overlays should be supported or not.
+> 
+> There is a similar feature request for Debian, but without a decision
+> yet [4]. I just cross-referenced it to this thread.
+> 
+>> Note that
+>> in some cases overlays can be needed even in the case when board
+>> doesn't have
+>> expansion ports.
+> 
+> If that is the case, why can't we at least add the patch from [3] and
+> provide the distros an easy option to enable overlays? Once integrated,
+> we can eventually get rid of all the per-device patches in the kernel.
+> 
+> Best regards,
+> Felix
+> 
+> [3] https://www.spinics.net/lists/kernel/msg4252361.html
+> [4] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910727
+> 
+>>
+>> Best regards,
+>> Jernej
+>>
+>> [1]
+>> https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/linux/
+>> package.mk#L213
+>>
+>>>
+>>> There has been a discussion in 2017 to improve the situation in
+>>> general, but without any final decision or implementation [1]. By
+>>> that,
+>>> these patches got more and more common. I recently sent a very
+>>> similar
+>>> patch for a riscv board that got accepted [2].
+>>>
+>>> IMHO it is better to have these patches in the kernel instead of
+>>> carrying different variants of this in each Linux distro. IMHO, the
+>>> board vendors themselves should add this when they add a board.
+>>>
+>>> [1]
+>>> https://lore.kernel.org/lkml/1502831736-28282-1-git-send-email-trini@konsulk
+>>> o.com/ [2]
+>>> https://lore.kernel.org/linux-devicetree/20230627080620.329873-1-felix.moess
+>>> bauer@siemens.com/
+>>>
+>>> Best regards,
+>>> Felix
+>>>
+>>>> Best regards,
+>>>> Jernej
+>>>>
+>>>>> Felix Moessbauer
+>>>>> Siemens AG
+>>>>>
+>>>>>   arch/arm/boot/dts/allwinner/Makefile | 19 +++++++++++++++++++
+>>>>>   1 file changed, 19 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/allwinner/Makefile
+>>>>> b/arch/arm/boot/dts/allwinner/Makefile index
+>>>>> 589a1ce1120a..eebb5a0c873a
+>>>>> 100644
+>>>>> --- a/arch/arm/boot/dts/allwinner/Makefile
+>>>>> +++ b/arch/arm/boot/dts/allwinner/Makefile
+>>>>> @@ -179,6 +179,25 @@ dtb-$(CONFIG_MACH_SUN7I) += \
+>>>>>          sun7i-a20-pcduino3-nano.dtb \
+>>>>>          sun7i-a20-wexler-tab7200.dtb \
+>>>>>          sun7i-a20-wits-pro-a20-dkt.dtb
+>>>>> +
+>>>>> +# Enables support for device-tree overlays for all pis
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-lite := -@
+>>>>> +DTC_FLAGS_sun8i-h3-bananapi-m2-plus := -@
+>>>>> +DTC_FLAGS_sun8i-h3-nanopi-m1-plus := -@
+>>>>> +DTC_FLAGS_sun8i-h3-nanopi-m1 := -@
+>>>>> +DTC_FLAGS_sun8i-h3-nanopi-duo2 := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-plus2e := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-one := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-plus := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-2 := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-zero-plus2 := -@
+>>>>> +DTC_FLAGS_sun8i-h3-nanopi-neo-air := -@
+>>>>> +DTC_FLAGS_sun8i-h3-zeropi := -@
+>>>>> +DTC_FLAGS_sun8i-h3-nanopi-neo := -@
+>>>>> +DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-pc := -@
+>>>>> +DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
+>>>>> +DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
+>>>>>   dtb-$(CONFIG_MACH_SUN8I) += \
+>>>>>          sun8i-a23-evb.dtb \
+>>>>>          sun8i-a23-gt90h-v4.dtb \
+>>
+>>
+>>
+>>
+> 
