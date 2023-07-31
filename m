@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F9176A36C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 23:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357A976A36D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 23:55:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjGaVzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 17:55:15 -0400
+        id S231604AbjGaVzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 17:55:16 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230266AbjGaVzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 17:55:14 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282D0118
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 14:55:13 -0700 (PDT)
+        with ESMTP id S230266AbjGaVzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 17:55:15 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E73DE7
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 14:55:14 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3671D512;
-        Mon, 31 Jul 2023 23:54:08 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DADD4982;
+        Mon, 31 Jul 2023 23:54:09 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1690840448;
-        bh=lzYP0wYMkgaG6Vnq6Vlygl1CsAL7HINusD6vdXBhXnc=;
-        h=From:To:Cc:Subject:Date:From;
-        b=CJtkPQzpNqKfNRNjFlxQKMxBaCWUNQGImwvSbS/BHWiC3kNfE5OpWZs7HXOYcLL60
-         aZkCdGzK5X0lXJfMgE5oguKgTspv79qU0BvB4PZBjaHjSKQguKY3mgnt46QrCJ+fEJ
-         unEMQZc88cQRy1phu42Zh7p1AAfDsI8QuaxfImng=
+        s=mail; t=1690840450;
+        bh=VW68c7LHYt5A4X71/eZ/VEWxBfzC2P5hQ+2/Jq5Gano=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=HGt0MaubyGxJF4et/25JR/fQ1E8BFPAXgjKBploaON8HI78eW6ivCbNATS26hw7qP
+         fqn25hIOMyfpg9IicruS5iqy+lrjXGNWQsTn6bMiWZ2ryhn4nx+2RMTNhPWPRNvLUC
+         iIHW8QQRGgNz0I43bULlmbpZIOquWW6t+jmqLIOY=
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
@@ -36,69 +36,99 @@ Cc:     linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Dave Stevenson <dave.stevenson@raspberrypi.com>,
         Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Umang Jain <umang.jain@ideasonboard.com>
-Subject: [PATCH v4 0/2] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a pinctrl-muxed i2c bus
-Date:   Tue,  1 Aug 2023 00:55:13 +0300
-Message-ID: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v4 1/2] ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
+Date:   Tue,  1 Aug 2023 00:55:14 +0300
+Message-ID: <20230731215515.20682-2-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
+References: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+From: Uwe Kleine-König <uwe@kleine-koenig.org>
 
-This series is an attempt to revive support for pinmuxed I2C0 on the
-Raspberry Pi BCM2711-based board.
+BCM2711-based Raspberry Pi boards (4B, CM4 and 400) multiplex the I2C0
+controller over two sets of pins, GPIO0+1 and GPIO44+45. The former is
+exposed on the 40-pin header, while the latter is used for the CSI and
+DSI connectors.
 
-On BCM2711-based boards, the I2C0 controller can be muxed between pins
-0+1 or 44+45. The former is exposed through the 40-pins GPIO connector,
-and the latter is used for the RTC on the CM4 I/O board, but also routed
-to the display and camera connectors on the Raspberry Pi 4B board. The
-other BCM2711-based board, the Raspberry Pi 400, does not expose or
-connect anything to pins 44+45.
+Add a pinctrl-based I2C bus multiplexer to bcm2711-rpi.dtsi to model
+this multiplexing. The two child buses are named i2c0_0 and i2c0_1.
 
-A previous version was posted ([1]) a year and a half ago by Uwe. It
-bundled the pinmuxing and RTC in a single patch, with the mux added to
-the CM4 I/O board device tree. This version splits this in two, and
-moves the pinumxing to the bcm2711-rpi.dtsi to also support the
-Raspberry Pi 4B.
+Note that if you modified the dts before to add devices to the i2c bus
+appearing on pins gpio0 + gpio1 (either directly in the dts or using an
+overlay), you have to put these into the i2c0_0 node introduced here
+now.
 
-The Raspberry Pi downstream kernel has a more complex DT architecture in
-order to support different I2C0 pinmuxing for other boards. Two files,
-bcm283x-rpi-i2c0mux_0_28.dtsi and bcm283x-rpi-i2c0mux_0_44.dtsi, define
-the two I2C0 pinxmuxing options (pins 0+1 and 28+29, or pins 0+1 and
-44+45). Each board .dts then includes the appropriate file. I'm hoping
-to avoid this additional complexity for now, by addressing the I2C0
-pinmuxing for BCM2711-based boards only. If/when support for I2C0
-pinmuxing on boards will be needed, we can revisit this topic.
+Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+Changes since v3:
 
-Compared to the Raspberry Pi downstream kernel, the two muxed I2C buses
-are labelled i2c0_0 and i2c0_1 instead of i2c0 and i2c_csi_dsi. This
-change was made to keep the naming of the I2C controller labels
-consistent, avoiding renaming of the I2C0 controller's label from i2c0
-to i2c0if.
+- Split addition of the RTC to a separate patch
+- Move the mux to bcm2711-rpi.dtsi
+---
+ arch/arm/boot/dts/bcm2711-rpi.dtsi | 31 ++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-Dave, are you fine with the differences between this patch series and
-the downstream kernel, or do you expect them to cause issues ?
-
-[1] https://lore.kernel.org/linux-arm-kernel/20211231115109.94626-1-uwe@kleine-koenig.org/
-
-Uwe Kleine-König (2):
-  ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
-  ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
-
- arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts | 16 ++++++++++++
- arch/arm/boot/dts/bcm2711-rpi.dtsi       | 31 ++++++++++++++++++++++++
- 2 files changed, 47 insertions(+)
-
+diff --git a/arch/arm/boot/dts/bcm2711-rpi.dtsi b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+index 5e95e2321218..7eb9f131cfd1 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi.dtsi
++++ b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+@@ -16,6 +16,32 @@ aliases {
+ 		pcie0 = &pcie0;
+ 		blconfig = &blconfig;
+ 	};
++
++	i2c0mux: i2c0mux {
++		compatible = "i2c-mux-pinctrl";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		i2c-parent = <&i2c0>;
++
++		pinctrl-names = "i2c0", "i2c0-vc";
++		pinctrl-0 = <&i2c0_gpio0>;
++		pinctrl-1 = <&i2c0_gpio44>;
++
++		status = "disabled";
++
++		i2c0_0: i2c@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		i2c0_1: i2c@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
+ };
+ 
+ &firmware {
+@@ -48,6 +74,11 @@ &hvs {
+ 	clocks = <&firmware_clocks 4>;
+ };
+ 
++&i2c0 {
++	/delete-property/ pinctrl-names;
++	/delete-property/ pinctrl-0;
++};
++
+ &rmem {
+ 	/*
+ 	 * RPi4's co-processor will copy the board's bootloader configuration
 -- 
 Regards,
 
