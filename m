@@ -2,55 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BFFF769269
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5850676926D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:55:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbjGaJy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40244 "EHLO
+        id S230183AbjGaJzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231950AbjGaJyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:54:25 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7301410FE
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:53:48 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 33235D75;
-        Mon, 31 Jul 2023 02:54:31 -0700 (PDT)
-Received: from [10.32.102.42] (e110479.arm.com [10.32.102.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 472D73F59C;
-        Mon, 31 Jul 2023 02:53:45 -0700 (PDT)
-Message-ID: <a137cb78-f687-e9c6-e6f3-27be92c19da3@arm.com>
-Date:   Mon, 31 Jul 2023 10:53:38 +0100
+        with ESMTP id S230035AbjGaJyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:54:36 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E8F1B3;
+        Mon, 31 Jul 2023 02:54:14 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36V9s2H4017246;
+        Mon, 31 Jul 2023 04:54:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690797242;
+        bh=M4kurL0krUI/VoC/6+ZREpjmoi2fExunt2SmgJRPaf0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=vQNaqFOy5rPUxZClxaQrTfnCM2n1iYn2RQ4PIER0j91Euku2qhsqpUK2JjUvYBnwf
+         3D9SIRr04aGJRqbCcTuSJsN5lHO2ZHlXY6dXiOGzXMZbIWYX3/+CyodkcVkMq6crug
+         7LWSJwNJPAHAxbLF8pDpY/poI3F43ZioibIZIXk4=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36V9s2SC010827
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Jul 2023 04:54:02 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 31
+ Jul 2023 04:54:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 31 Jul 2023 04:54:02 -0500
+Received: from [172.24.227.147] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36V9ruFF028228;
+        Mon, 31 Jul 2023 04:53:56 -0500
+Message-ID: <903337d5-2421-be7a-8b0b-9b684944f6a6@ti.com>
+Date:   Mon, 31 Jul 2023 15:24:00 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/1] arm: dts: Enable device-tree overlay support for
- sun8i-h3 pi devices
-To:     "MOESSBAUER, Felix" <felix.moessbauer@siemens.com>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
-        "wens@csie.org" <wens@csie.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Matzinger, Manuel Josef" <manuel.matzinger@siemens.com>,
-        "Bovensiepen, Daniel (bovi)" <daniel.bovensiepen@siemens.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Gylstorff, Quirin" <quirin.gylstorff@siemens.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20230627133703.355893-1-felix.moessbauer@siemens.com>
- <1830379.atdPhlSkOF@jernej-laptop>
- <17c7a0c952913e21d9a323f42a1cfad84ed8a51b.camel@siemens.com>
- <4818881.GXAFRqVoOG@jernej-laptop>
- <6fbb0e557a97555876f8de4a283162a9e7d290b8.camel@siemens.com>
+Subject: Re: [PATCH v8 15/16] media: dt-bindings: Add TI J721E CSI2RX
 Content-Language: en-US
-From:   Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <6fbb0e557a97555876f8de4a283162a9e7d290b8.camel@siemens.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <nm@ti.com>,
+        <devarsht@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benoit Parrot <bparrot@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
+ <20230731-upstream_csi-v8-15-fb7d3661c2c9@ti.com>
+ <169079588075.2176682.10224087620577481487.robh@kernel.org>
+From:   Jai Luthra <j-luthra@ti.com>
+In-Reply-To: <169079588075.2176682.10224087620577481487.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,206 +81,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob,
 
-On 31/07/2023 03:46, MOESSBAUER, Felix wrote:
-> On Mon, 2023-07-31 at 00:12 +0200, Jernej Škrabec wrote:
->> Dne sreda, 19. julij 2023 ob 14:26:13 CEST je Moessbauer Felix
->> napisal(a):
->>> On Tue, 2023-07-11 at 21:42 +0200, Jernej Škrabec wrote:
->>>> Dne torek, 27. junij 2023 ob 15:37:03 CEST je Felix Moessbauer
->>>>
->>>> napisal(a):
->>>>> Add the '-@' DTC option for the sun8i-h3 pi-class devices. This
->>>>> option
->>>>> populates the '__symbols__' node that contains all the
->>>>> necessary
->>>>> symbols
->>>>> for supporting device-tree overlays (for instance from the
->>>>> firmware
->>>>> or
->>>>> the bootloader) on these devices.
->>>>>
->>>>> These devices allow various modules to be connected and this
->>>>> enables
->>>>> users to create out-of-tree device-tree overlays for these
->>>>> modules.
->>>>>
->>>>> Please note that this change does increase the size of the
->>>>> resulting DTB
->>>>> by ~30%. For example, with v6.4 increase in size is as follows:
->>>>>
->>>>> 22909 -> 29564 sun8i-h3-orangepi-lite.dtb
->>>>> 24214 -> 30935 sun8i-h3-bananapi-m2-plus.dtb
->>>>> 23915 -> 30664 sun8i-h3-nanopi-m1-plus.dtb
->>>>> 22969 -> 29537 sun8i-h3-nanopi-m1.dtb
->>>>> 24157 -> 30836 sun8i-h3-nanopi-duo2.dtb
->>>>> 24110 -> 30845 sun8i-h3-orangepi-plus2e.dtb
->>>>> 23472 -> 30037 sun8i-h3-orangepi-one.dtb
->>>>> 24600 -> 31410 sun8i-h3-orangepi-plus.dtb
->>>>> 23618 -> 30230 sun8i-h3-orangepi-2.dtb
->>>>> 22170 -> 28548 sun8i-h3-orangepi-zero-plus2.dtb
->>>>> 23258 -> 29795 sun8i-h3-nanopi-neo-air.dtb
->>>>> 23113 -> 29699 sun8i-h3-zeropi.dtb
->>>>> 22803 -> 29270 sun8i-h3-nanopi-neo.dtb
->>>>> 24674 -> 31318 sun8i-h3-nanopi-r1.dtb
->>>>> 23477 -> 30038 sun8i-h3-orangepi-pc.dtb
->>>>> 24622 -> 31380 sun8i-h3-bananapi-m2-plus-v1.2.dtb
->>>>> 23750 -> 30366 sun8i-h3-orangepi-pc-plus.dtb
->>>>>
->>>>> Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
->>>>> ---
->>>>> Please note that I only tested the overlay on the sun8i-h3-
->>>>> nanopi-
->>>>> neo
->>>>> device. However, the devices are quite similar and in general
->>>>> the
->>>>> change to add symbols should be pretty safe. Similar patches
->>>>> have
->>>>> been
->>>>> applied to various other devices in the past without any
->>>>> negative
->>>>> effect (except for the increased size).
->>>>
->>>> I'm not a fan of this approach. What's wrong with letting kernel
->>>> builders
->>>> specify this flag on their own at compile time? That way size is
->>>> still
->>>> completely in domain of builder.
->>>
->>> That's easier said than done. These symbols are only needed for
->>> some
->>> targets (that are commonly used with overlays). But how should a
->>> general purpose kernel builder like Debian know which DT to build
->>> with
->>> symbols and which without? In Yocto the overlays are not really
->>> needed,
->>> as often the original dts is just patched directly.
+On 31/07/23 15:01, Rob Herring wrote:
+> 
+> On Mon, 31 Jul 2023 13:59:33 +0530, Jai Luthra wrote:
+>> From: Pratyush Yadav <p.yadav@ti.com>
 >>
->> LibreELEC (distro I help with) has support for DT overlays for some
->> time and
->> it was easy to enable symbols for all DTs with simple "DTC_FLAGS=-@"
->> addition
+>> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+>> capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
+>> parts together.
+>>
+>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>> v7->v8:
+>> - Drop "Device Tree Bindings" from title
+>> - Rename "Wrapper" to "Shim" in title as that is the name referred in
+>>    the TRM and other places
+>> - Update maintainer to myself
+>> - Drop items from compatible as only a single element is present
+>> - Rename compatible to "ti,j721e-csi2rx-shim" to distinguish from the
+>>    SoC-specific CSI2RX bridge compatible
+>>
+>>   .../bindings/media/ti,j721e-csi2rx-shim.yaml       | 100 +++++++++++++++++++++
+>>   1 file changed, 100 insertions(+)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.yaml:
+> Error in referenced schema matching $id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: ticsi2rx@4500000: csi-bridge@4504000: False schema does not allow {'compatible': ['ti,j721e-csi2rx', 'cdns,csi2rx'], 'reg': [[72368128, 4096]], 'clocks': [[4294967295, 26, 2], [4294967295, 26, 0], [4294967295, 26, 2], [4294967295, 26, 2], [4294967295, 26, 3], [4294967295, 26, 3]], 'clock-names': ['sys_clk', 'p_clk', 'pixel_if0_clk', 'pixel_if1_clk', 'pixel_if2_clk', 'pixel_if3_clk'], 'phys': [[4294967295]], 'phy-names': ['dphy'], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]], 'bus-type': [[4]], 'clock-lanes': [[0]], 'data-lanes': [[1, 2]]}}}}
+> 	from schema $id: http://devicetree.org/schemas/media/ti,j721e-csi2rx-shim.yaml#
+> Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['ti,j721e-csi2rx', 'cdns,csi2rx']
+> Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['ti,j721e-csi2rx', 'cdns,csi2rx']
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230731-upstream_csi-v8-15-fb7d3661c2c9@ti.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
 
-So why don't you use the U-Boot provided copy of the DTB? We sync the 
-DTs regularly from the kernel repo to the U-Boot repo, and the U-Boot 
-build system builds all DTBs with overlay support already.
-This also saves you from the hassle to actually find and load the right 
-DTB, as it automatically comes as part of the U-Boot binary.
-On the U-Boot prompt (or rather in a script) you would then do:
-=> fdt move $fdtcontroladdr $fdt_addr_r
-=> load <source> $fdtoverlay_addr_r <your_overlay>.dtbo
-=> fdt apply $fdtoverlay_addr_r
+Sorry I missed this warning from v7.
 
-You could also chime in on this U-Boot patch of mine, that loads and 
-applies all .dtbo files found in a given directory:
-https://lore.kernel.org/u-boot/20230210110213.2531190-1-andre.przywara@arm.com/
+This patch depends on 9536cc949235 ("media: dt-bindings: cadence-csi2rx: 
+Convert to DT schema") which is part of linux-next.
 
-Cheers,
-Andre
+The base for this series should be linux-next/master 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git 
+instead of 6.5-rc1.
 
 > 
-> Thanks for the pointer. If this would be a kconfig option, I would
-> agree. There's a patch to add this option, but this did not get
-> accepted [3]. Just manually adding some "magic" options does not feel
-> correct.
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
 > 
->> to build command [1]. Do you see any downside except knowing you have
->> to
->> include it? On the upside, there is no need to patch each and every
->> file and
->> kernel builder has a choice if overlays should be supported or not.
+> pip3 install dtschema --upgrade
 > 
-> There is a similar feature request for Debian, but without a decision
-> yet [4]. I just cross-referenced it to this thread.
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 > 
->> Note that
->> in some cases overlays can be needed even in the case when board
->> doesn't have
->> expansion ports.
-> 
-> If that is the case, why can't we at least add the patch from [3] and
-> provide the distros an easy option to enable overlays? Once integrated,
-> we can eventually get rid of all the per-device patches in the kernel.
-> 
-> Best regards,
-> Felix
-> 
-> [3] https://www.spinics.net/lists/kernel/msg4252361.html
-> [4] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=910727
-> 
->>
->> Best regards,
->> Jernej
->>
->> [1]
->> https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/linux/
->> package.mk#L213
->>
->>>
->>> There has been a discussion in 2017 to improve the situation in
->>> general, but without any final decision or implementation [1]. By
->>> that,
->>> these patches got more and more common. I recently sent a very
->>> similar
->>> patch for a riscv board that got accepted [2].
->>>
->>> IMHO it is better to have these patches in the kernel instead of
->>> carrying different variants of this in each Linux distro. IMHO, the
->>> board vendors themselves should add this when they add a board.
->>>
->>> [1]
->>> https://lore.kernel.org/lkml/1502831736-28282-1-git-send-email-trini@konsulk
->>> o.com/ [2]
->>> https://lore.kernel.org/linux-devicetree/20230627080620.329873-1-felix.moess
->>> bauer@siemens.com/
->>>
->>> Best regards,
->>> Felix
->>>
->>>> Best regards,
->>>> Jernej
->>>>
->>>>> Felix Moessbauer
->>>>> Siemens AG
->>>>>
->>>>>   arch/arm/boot/dts/allwinner/Makefile | 19 +++++++++++++++++++
->>>>>   1 file changed, 19 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm/boot/dts/allwinner/Makefile
->>>>> b/arch/arm/boot/dts/allwinner/Makefile index
->>>>> 589a1ce1120a..eebb5a0c873a
->>>>> 100644
->>>>> --- a/arch/arm/boot/dts/allwinner/Makefile
->>>>> +++ b/arch/arm/boot/dts/allwinner/Makefile
->>>>> @@ -179,6 +179,25 @@ dtb-$(CONFIG_MACH_SUN7I) += \
->>>>>          sun7i-a20-pcduino3-nano.dtb \
->>>>>          sun7i-a20-wexler-tab7200.dtb \
->>>>>          sun7i-a20-wits-pro-a20-dkt.dtb
->>>>> +
->>>>> +# Enables support for device-tree overlays for all pis
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-lite := -@
->>>>> +DTC_FLAGS_sun8i-h3-bananapi-m2-plus := -@
->>>>> +DTC_FLAGS_sun8i-h3-nanopi-m1-plus := -@
->>>>> +DTC_FLAGS_sun8i-h3-nanopi-m1 := -@
->>>>> +DTC_FLAGS_sun8i-h3-nanopi-duo2 := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-plus2e := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-one := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-plus := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-2 := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-zero-plus2 := -@
->>>>> +DTC_FLAGS_sun8i-h3-nanopi-neo-air := -@
->>>>> +DTC_FLAGS_sun8i-h3-zeropi := -@
->>>>> +DTC_FLAGS_sun8i-h3-nanopi-neo := -@
->>>>> +DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-pc := -@
->>>>> +DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
->>>>> +DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
->>>>>   dtb-$(CONFIG_MACH_SUN8I) += \
->>>>>          sun8i-a23-evb.dtb \
->>>>>          sun8i-a23-gt90h-v4.dtb \
->>
->>
->>
->>
-> 
+
+-- 
+Thanks,
+Jai
+
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
