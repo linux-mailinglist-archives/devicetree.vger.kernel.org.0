@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2741776919C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAA07691A6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232331AbjGaJYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50682 "EHLO
+        id S230242AbjGaJZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:25:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232253AbjGaJXr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:23:47 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200F910FB
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:21:21 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3110ab7110aso4491126f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:21:21 -0700 (PDT)
+        with ESMTP id S229753AbjGaJZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:25:10 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E551BF
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:23:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690795279; x=1691400079;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=xDLdel2Rhe994E8t59q5EvpZyXbsA6v8U1EBH//Jf5c=;
-        b=pbT4tIkmhIxq47nniPh5aZTwDD69epwzhf1XUckiDQowVbTuSfSbBvW3qLnjjy1ROK
-         gvsZCwxfXdvZ3jxZHoDJLPsDFvwG3jQ1DURoM7dKwASIrHQHoFCV4SjMwON7qL55B8U5
-         xfAivgd0q/LxIhbZCycHq2xJvA14z3QOSdNeupHn0zfD+ch1ECbfKIwdHa9bBSuXJ1ba
-         tt4sIpusTR4wk6dq84Awp+x/wIzKIScO+fDEBi7YMXHDFgQKlHBXGVYBYqIQKtL7t5ij
-         jxFBpYd8UZAhtAGDtsxfbBGIXSeomf0UzY+zWDckX+kkE3jtjW2k6j0URGTu0BGu1REX
-         Byvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690795279; x=1691400079;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xDLdel2Rhe994E8t59q5EvpZyXbsA6v8U1EBH//Jf5c=;
-        b=H7eXpkaadQ19bHpp+QeYDIHlwYjbea/jQSJ/mJ4P2lEtdE39erdV7P1rNENr0F6EIo
-         q6EKDPm3Gf9kLIBzc1EXgdYo455U48iY3fzq/3CKA0DBPw2LR2tkAfdCmp/IbKFpe64o
-         93aUOMmVUK5EKvjEjbn/ttK1AJgkrwBVr1hHAVP5Pujpme3s1FbGAkeMbzFc64d9vvAT
-         UOVuo/NIV01OpskOQ3wn8HONRM52sVXfN7bS2x37MjqoDpiRtq2obM+KQ41v1wPNRpdy
-         Pq7D6iPpcFYkapwFaq2FukzIukKH0entuCElkWnoWZnjrIaUps7GQslqPTsH+2KrowTN
-         X5KA==
-X-Gm-Message-State: ABy/qLbHRSSMvZTwy8HOhVqpf7e/QjnfIQqpCzk/ZE3bxWQHUcKinhls
-        wsF+06MOLo7WzipoCY/T0YPF5A==
-X-Google-Smtp-Source: APBJJlHsHDdvsIJ2bUTb4wdaCXnh4rHnl50RqfKbzz7Urb20yM0+LICum4NymicbKaVsEd8soQLuyQ==
-X-Received: by 2002:adf:dcc8:0:b0:30e:3caa:971b with SMTP id x8-20020adfdcc8000000b0030e3caa971bmr7529797wrm.51.1690795279502;
-        Mon, 31 Jul 2023 02:21:19 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d? ([2a01:e0a:982:cbb0:14b8:9aa7:6bf0:256d])
-        by smtp.gmail.com with ESMTPSA id g18-20020a5d6992000000b0031134bcdacdsm12437930wru.42.2023.07.31.02.21.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jul 2023 02:21:19 -0700 (PDT)
-Message-ID: <a867c31c-df94-5c6c-211c-e35138333922@linaro.org>
-Date:   Mon, 31 Jul 2023 11:21:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: drop redundant
- status=okay
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1690795422; x=1722331422;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=dkWoz/7yf/GCfGGYgfxkvJQP26NTC/OUtz+hzVnUK1Y=;
+  b=oAfm6GUSXbqVLHyQAc3Yc9GruYMW92icxU6PEh60ITgzj7ejrTKB3sCO
+   D34HQa3ri+AwM1qrd65DAc0938iqCQXU83fUf54fHGAMFkrbMptF53/rp
+   lWAAUwIVZ3gNin/b+GIjoozjFsLOk3hsAIZbzZUlo16TxA+t3Np7Y8RTa
+   VXqY7+Fx5vn9fVWkOkvaSyGgVsw06NUwvSA2Lax/ong2OUF3pmId/jIHv
+   al5MnOpj37q69CAvlXBp4/Vs/SAYnv5EgK200eZYu617W7fatm+xYJmbn
+   o2GCSlcOGM02Htd2/pAWwvFq6bCZ6PTsDSX8+yU/YGOgrhZ7DcgNBRlkg
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,244,1684792800"; 
+   d="scan'208";a="32199752"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 31 Jul 2023 11:23:37 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9424B280084;
+        Mon, 31 Jul 2023 11:23:37 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230731090442.100856-1-krzysztof.kozlowski@linaro.org>
- <273bd185-4aa5-510f-0f1d-1a4cab2d4a2d@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <273bd185-4aa5-510f-0f1d-1a4cab2d4a2d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 0/3] TQMLS1021A support
+Date:   Mon, 31 Jul 2023 11:23:28 +0200
+Message-Id: <20230731092331.358427-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 11:19, Krzysztof Kozlowski wrote:
-> On 31/07/2023 11:04, Krzysztof Kozlowski wrote:
->> status=okay is by default.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 1 -
->>   1 file changed, 1 deletion(-)
-> 
-> I found few more...
+Hi,
 
-You're faster than me, I planned to get rid of them this week!
+thanks everyone for the feedback. This is the fifth round of this series to
+add support for the TQMLS1021A using the MBLS1021A mainboard.
+Removing the 'dma-coherent' property was a workaround carried on from older
+downstream kernels and is not necessary anymore.
+The same goes for adjusting the size for 'scfg' node. Removing this also
+fixes the node label ordering.
 
-Neil
+Changes in v5:
+* Add newline for include header grouping
+* Put status property at the end of properties (lpuart0)
+* Do not remove 'dma-coherent' for sata
+* Do not adjust 'reg' property for 'scfg'
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes in v4:
+* Dropped display overlay for now as DCU patch is still pending
+* Rebase to next-20230721
+* Move status property to last position
+* Rename stmpe811 node name
+* Remove superfluous #address-cells and #size-cells for stmpe811
+* Add missing interrupt-controller properties for stmpe811
+* Remove superfluous ESDHCI compatible overwrite in SoM .dtsi
+
+Best regards,
+Alexander
+
+Alexander Stein (2):
+  ARM: dts: ls1021a: add TQ-Systems MBLS102xA device tree
+  ARM: dts: ls1021a: add TQMLS1021A flash partition layout
+
+Matthias Schiffer (1):
+  dt-bindings: arm: fsl: add TQ-Systems LS1021A board
+
+ .../devicetree/bindings/arm/fsl.yaml          |  10 +
+ arch/arm/boot/dts/nxp/ls/Makefile             |   1 +
+ .../nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts   | 405 ++++++++++++++++++
+ .../boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi   | 107 +++++
+ 4 files changed, 523 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts
+ create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi
+
+-- 
+2.34.1
 
