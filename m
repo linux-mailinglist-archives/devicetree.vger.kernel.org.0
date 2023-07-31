@@ -2,178 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EF2769AD8
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E252769AE8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:39:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjGaPcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:32:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46788 "EHLO
+        id S231204AbjGaPjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 11:39:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbjGaPcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:32:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649DCBF;
-        Mon, 31 Jul 2023 08:32:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0257B611A0;
-        Mon, 31 Jul 2023 15:32:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D35A5C433C8;
-        Mon, 31 Jul 2023 15:32:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690817565;
-        bh=W0IpSFwS67t8wZMVaiBzUL8aZ4W06IfVmvreY4qbGLc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T2K5ueSBGnVMsidOJRqwrd4MjEmjg+Hw3FDDf740xrfNrJZEP43f/YESO5YpUSVrp
-         ACOsDnY958gSrkfOzCOgVClGrmL3A4f/hHSKx09Ys/ySrp9DJfhgOC4Tw/+7EruT91
-         lEXwNmjptQx0YV8SvmJFwKjFDmWy2P/+rzBxS75CVoJVb3niIIfWe+m2wMrVzSwkVE
-         3bJyGkXW1wj/t0lbCZ4sHlIXg4wS+DXHLhXCLZX/0apuvdbe05xZcMbLvRju9w2ADt
-         23PNQZ3UgyXI/tcWHZs/pyc3eRqRAohZaqYBkl4E23N49vcUJDPHsu6uxQyirqekTt
-         4OcN/oZWxia/w==
-Date:   Mon, 31 Jul 2023 16:32:40 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: add rk3588 compatible to
- rockchip,dwc3
-Message-ID: <20230731-decipher-smuggler-2f83caa8c616@spud>
-References: <20230720173643.69553-1-sebastian.reichel@collabora.com>
- <20230720173643.69553-2-sebastian.reichel@collabora.com>
- <20230722-coleslaw-breeder-40827e23f717@spud>
- <20230731151224.2vlk7bnabrqhz3pr@mercury.elektranox.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ZiAI6f3sKG+VEhr4"
-Content-Disposition: inline
-In-Reply-To: <20230731151224.2vlk7bnabrqhz3pr@mercury.elektranox.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229871AbjGaPjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:39:23 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E97D8;
+        Mon, 31 Jul 2023 08:39:21 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 991E85C0115;
+        Mon, 31 Jul 2023 11:39:20 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 31 Jul 2023 11:39:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+        1690817960; x=1690904360; bh=3sigVTCHFGVp6funFXn9uMuJRWZKuRcAdPw
+        XsFRL79U=; b=euvsBWRLUcgYzXOv1gUR1dh6GsWM/6vgxNlLxFaWlFVPxBRK+Y5
+        vh2ASC2d2M/80LiY9f/xB9tqCii5mb6xmIGqOlzvlZCyyS8uJImpF5z909mG2RvD
+        4Yb+5faz+AGFAn05IIwkGQD7+pVTbO2z23gqA/MTSyFWSVZdKi+9YJRf4LS9aKIu
+        Xpvw8IbIZpVOOGCQH5P3/53IQc8VH5CtCe9mpcAhvRejuVevHS0VArXpmQPNuSeh
+        f7gjGEncdVNwVhUpoFueY3kBYVbknAaCyfbhtTV7AC8+EZ9s7Brhxj87YG/b3SoC
+        yI/aNBgtMLYUk4azI6ida25VQTdv6523X+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1690817960; x=1690904360; bh=3sigVTCHFGVp6funFXn9uMuJRWZKuRcAdPw
+        XsFRL79U=; b=HyWGJiXZ+MNH2y46FO1+cigNi91kIU4365wFjuNjNMtMGeumAf1
+        K5gjGXK6lndpZUxYot6IDZ7jH/k8dvYOHqCTqddLCImU0CPjNdShIOnGfVXgYuWE
+        mR0HQiceO2GsvtfsGm1QS7ah7G8hsVL7NerNtH7ayETLiic3ADu7voN97pzk1Y0c
+        phGWV+tPcrLVc5xnRspm7x3L+feofd19kq9lorOdzfWPjyM8V1fCH3rclBMq7TRq
+        bEyojzgHEeDYtpDjReh1Eq4HJLnUOHJTgxTzrDpDbXdnpZ/Xt8w6xqP12zhlViU7
+        A4+Vsd7mM9G3PsXmUtlKOwTpZVby9pY2PlA==
+X-ME-Sender: <xms:qNXHZI4kvdwJPdlvXkp6H3EQRNgSQRMfQwrECk61YoaEkL39jzEGCg>
+    <xme:qNXHZJ5APgqGiWebqlTjRr5x-ONt_2HHrZ6kZo9uAftnF65zgwx_pwIQEy15SQMCM
+    hZlQQOX2w0eC9nAGy4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrjeeggdeijecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
+    jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:qNXHZHfPl9ekhjjXlnW9-PY2Vr_lT25YYa6_jWHQwqlmUh0wpoTnNA>
+    <xmx:qNXHZNKrn-gD26nLbRak_Lkq-0wnU5XAIGA8ZYtqqnzSUG-g5GsA1g>
+    <xmx:qNXHZMKYNj4PfS7OO6NihWOZZ-ib3udGBHBpWZpglOXtHDHW1AHxxg>
+    <xmx:qNXHZL-DxcazecXQPWBgxihOE1ZM_w2xR59y9f0WEngbh0VgUSL3Xw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 0CAB4B60089; Mon, 31 Jul 2023 11:39:20 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-592-ga9d4a09b4b-fm-defalarms-20230725.001-ga9d4a09b
+Mime-Version: 1.0
+Message-Id: <c7526061-2f4e-4843-825c-98d9494af625@app.fastmail.com>
+In-Reply-To: <7C51AA15-DEBE-486B-9788-F84B260F8880@gmail.com>
+References: <20230731110239.107086-1-clamor95@gmail.com>
+ <20230731110239.107086-3-clamor95@gmail.com>
+ <a16db5ac-2b9a-45ab-b693-2f459d689c7d@app.fastmail.com>
+ <7C51AA15-DEBE-486B-9788-F84B260F8880@gmail.com>
+Date:   Mon, 31 Jul 2023 17:38:59 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Svyatoslav Ryhel" <clamor95@gmail.com>,
+        "Jonathan Cameron" <jic23@kernel.org>,
+        "Lars-Peter Clausen" <lars@metafoo.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Samu Onkalo" <samu.p.onkalo@nokia.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] misc: adps990x: convert to OF
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 31, 2023, at 16:58, Svyatoslav Ryhel wrote:
+> 31 =D0=BB=D0=B8=D0=BF=D0=BD=D1=8F 2023 =D1=80. 16:18:16 GMT+03:00, Arn=
+d Bergmann <arnd@arndb.de> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=D0=B2(-=D0=
+=BB=D0=B0):
+>>On Mon, Jul 31, 2023, at 13:02, Svyatoslav Ryhel wrote:
+>>> Add ability to use device tree bindings keeping existing setup.
+>>
+>>I see that there are no more in-tree users of the old
+>>apds990x_platform_data, so I think it would be best to completely
+>>remove that codepath and merge that structure into struct
+>>apds990x_chip, to simplify the probing and avoid the extra
+>>allocation.
+>
+> Thank you very much for your review, but is it mandatory to drop pdata=20
+> in this particular patch set? To be honest this driver needs serious=20
+> upgrades and refactoring, and I have no dedication to invest my time=20
+> into refactoring it, moreover, I am not a maintainer of this driver,=20
+> nor a full time kernel maintainer of any kind. I am doing what I am=20
+> doing only because one of my devices uses this als but it is not=20
+> something crucial.
 
---ZiAI6f3sKG+VEhr4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+We have a lot of drivers that are lacking the cleanup I'm asking
+for, so I don't think I'd mandate it at this point, but I don't
+actually expect the patch to be any more complicated in the end,
+so just try it out.
 
-On Mon, Jul 31, 2023 at 05:12:24PM +0200, Sebastian Reichel wrote:
-> Hi,
->=20
-> On Sat, Jul 22, 2023 at 12:42:09PM +0100, Conor Dooley wrote:
-> > On Thu, Jul 20, 2023 at 07:36:41PM +0200, Sebastian Reichel wrote:
-> > > RK3588 has three DWC3 controllers. Two of them are fully functional in
-> > > host, device and OTG mode including USB2 support. They are connected =
-to
-> > > dedicated PHYs, that also support USB-C's DisplayPort alternate mode.
-> > >=20
-> > > The third controller is connected to one of the combphy's shared
-> > > with PCIe and SATA. It can only be used in host mode and does not
-> > > support USB2. Compared to the other controllers this one needs
-> > > some extra clocks.
-> > >=20
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> >=20
-> > I feel like I say it a bunch for some of these Rockchip bindings
-> > patches, but if you're adding more clocks for some SoCs, should some
-> > per-SoC constraints not also be added?
->=20
-> The extra clocks are not actually needed by all the USB3 controllers
-> in the SoC. Only one of three USB3 controllers needs them. In v1 I
-> used different compatible values to narrow the clock binding down
-> and Krzysztof asked to remove that. So please tell me what it should
-> look like.
+I think at the minimum, please remove the include/platform_data
+header and move the contents into the driver itself, I'd be fine
+with that. If you can easily do further cleanup by dropping
+the separate allocation and folding the apds990x_fw_probe()
+function back into apds990x_probe(), please do that, just stop
+at the point where you feel it gets too complicated.
 
-Maybe Krzysztof and I were talking about different things. I was talking
-about constraining !3588 SoCs so that nobody tries to use a utmi and
-pipe clock on those, and only allowing them on a 3588. AFAICT, what
-Krzysztof objected to was having more than one compatible for
-controllers on the 3588. Maybe he weigh in.
-
-Thanks,
-Conor.
-
-> > > ---
-> > >  .../devicetree/bindings/usb/rockchip,dwc3.yaml        | 11 +++++++++=
---
-> > >  1 file changed, 9 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml=
- b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > > index 291844c8f3e1..cbc3e55e05e1 100644
-> > > --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > > @@ -30,6 +30,7 @@ select:
-> > >          enum:
-> > >            - rockchip,rk3328-dwc3
-> > >            - rockchip,rk3568-dwc3
-> > > +          - rockchip,rk3588-dwc3
-> > >    required:
-> > >      - compatible
-> > > =20
-> > > @@ -39,6 +40,7 @@ properties:
-> > >        - enum:
-> > >            - rockchip,rk3328-dwc3
-> > >            - rockchip,rk3568-dwc3
-> > > +          - rockchip,rk3588-dwc3
-> > >        - const: snps,dwc3
-> > > =20
-> > >    reg:
-> > > @@ -58,7 +60,9 @@ properties:
-> > >            Master/Core clock, must to be >=3D 62.5 MHz for SS
-> > >            operation and >=3D 30MHz for HS operation
-> > >        - description:
-> > > -          Controller grf clock
-> > > +          Controller grf clock OR UTMI clock
-> > > +      - description:
-> > > +          PIPE clock
-> > > =20
-> > >    clock-names:
-> > >      minItems: 3
-> > > @@ -66,7 +70,10 @@ properties:
-> > >        - const: ref_clk
-> > >        - const: suspend_clk
-> > >        - const: bus_clk
-> > > -      - const: grf_clk
-> > > +      - enum:
-> > > +          - grf_clk
-> > > +          - utmi
-> > > +      - const: pipe
-> > > =20
-> > >    power-domains:
-> > >      maxItems: 1
-> > > --=20
-> > > 2.40.1
-> > >=20
->=20
->=20
-
-
-
---ZiAI6f3sKG+VEhr4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMfUGAAKCRB4tDGHoIJi
-0gYdAQCtVymT2J92udmYoQAUhL5iDXjhAv7jPmdRlPyKGj/qHgEA/fz2olBaKF0u
-BkCLMkL5P1piybZ1GpYuKH/Qjf9ugg8=
-=3JZ5
------END PGP SIGNATURE-----
-
---ZiAI6f3sKG+VEhr4--
+    Arnd
