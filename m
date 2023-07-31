@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B77E976A110
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 21:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1384A76A114
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 21:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbjGaTVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 15:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53620 "EHLO
+        id S231684AbjGaTVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 15:21:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231526AbjGaTVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 15:21:41 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE528E5F
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:21:39 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe07f0636bso7882963e87.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:21:39 -0700 (PDT)
+        with ESMTP id S231572AbjGaTVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 15:21:46 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC94119BB
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:21:40 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe07f0636bso7882991e87.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 12:21:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690831298; x=1691436098;
+        d=linaro.org; s=google; t=1690831299; x=1691436099;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fgiy1L5xFFXzTL6vBU06WTwPPyk+2wiDw9CMMBxoAqU=;
-        b=BDN5aHHLy5f+8ZqWeFKahTozUsHMkbDIzeox+LKbsAUEdlRMAhTtlSid6HPBqTS3ah
-         YWA1H1rvCd9Yxtropqa6pGlppKi3xPL1VbOgHBS4HhCL8g8G4ZwZC7l7O24bMXw2RgMM
-         mwa+2Zm2xp3lsmT7U83U7TcLw+nDkXUxHWu68f1+nQ1TgGTLzC4DFAt2IxCyuuv3mk1N
-         TTqIjU7Yu7NmCB3cLIxGp4HhC57kbNgdhaoc2LFbABvxNK0CQAPFhj27EJm9RRoDUGLl
-         0HkHLuwRBrHwYkWhT/E7yA1sgyOPTPWY/WpGow9lVtYitKsoyC95OC9E5NMcumP/4JfY
-         Y+Mw==
+        bh=PH18c6fQCGlXIcWcVtPWcBFP7H4EemWa9GS7wznpGb8=;
+        b=UXRqATWltySUPqaR1HiGQaOLF9a471W0U00WWaBgT7YrHR8eNU9tpiGnEFCxZrChh1
+         9WGmsAGMbvHA62gNGcpEGQTo51vfgNHa9ofsSskkmnN0vFt/OindKHQ2F+txl9AvhUfc
+         1ih4ReqvagvwRDz49/AkMzYG5G/WmGHFkAArJaQyCXYNMmpzOUbfxbTQvqyI2T4SJqlb
+         uxE0wLBQyctkO5ylRyPYIt4euNiMj/IJMsrwfKYFu0+p7xn3uJz0pDotltqZ6UHG5Lv3
+         sRChh/ME3Vb3x1zTK+TutY95x4Vz0pXaFOPyoEIL9c1OhpV1xSoB3YW9L3MAHA5NWEkf
+         XHig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690831298; x=1691436098;
+        d=1e100.net; s=20221208; t=1690831299; x=1691436099;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fgiy1L5xFFXzTL6vBU06WTwPPyk+2wiDw9CMMBxoAqU=;
-        b=cpTvm9ElOwdTvqHDjVww6CDaaDh9NcYzz4bwRBz1HnuaNsMFOUbNWcTPJrxfLDY/MH
-         /lGaKfxlW/PlzvGzm57L1lDu90epxBSROLCn8YI+WYf/KSNnZJTiUMYGqGRsI326itA1
-         dSrNQIdxd9Xo+Rl2T+NLYW8X9ALwBjXMyLVGrts2oGqdYAl1Ap4nrLBzz4zv9BwtU8Ku
-         /OEoH1WqVFpWEhK+2CVEh+Xtxo9LCXOKxUNgA819euD2aeLvbgYyjTO9QsL3OhZM3tJ2
-         RaFaR2eMirEcOXpsoma72ggU5zwLRlRiQR6ZRVpq+fPPfVHheRJy1mjyMntFz3LMy1L2
-         ILBw==
-X-Gm-Message-State: ABy/qLacUj/bGN6sYWFIVp87ufrVQ3AKuiT8ouDxIrNWwJrmWVf+r1vA
-        PKJ197MJV0boDQBmD53SJAGqpA==
-X-Google-Smtp-Source: APBJJlFpN3Bb8twZNdS+ZKYDc6oIsWZ5yeH4TbKtJjzw2AzrHWElVbmYnMr0mMKxrFe8Bm/BJVXAbQ==
-X-Received: by 2002:a05:6512:5cd:b0:4fb:9a1e:125c with SMTP id o13-20020a05651205cd00b004fb9a1e125cmr439606lfo.45.1690831297882;
-        Mon, 31 Jul 2023 12:21:37 -0700 (PDT)
+        bh=PH18c6fQCGlXIcWcVtPWcBFP7H4EemWa9GS7wznpGb8=;
+        b=DLkoe6TUFBD5eGcU44Vv2WWpd4ftR0h582yQjlUGxSfs7Xa2u0ZqU2jmvrjq6J1pEE
+         XattxL4JYlgs9bihSxs3uhWyR2RRfH6GSN+T3wwSjmuo4IiriUJgkQ9OiI5nQs3Ndkqd
+         BacNU3Cfg0CwrRKByW3iwR0iU0corhiPv2vT/ipM1tsC/pyCAu0DzlohutTpT6Xd04bh
+         rT181d6KAFz1TC6yW0gbntXB1bU0vG8N5IiWcz9uO1ufy2HlSmmK90cgZlwCMkh3a1Zq
+         H7ppXhRjGconJfegWTFPC/AgRnqNOQewjVLd4ofMrc50D4mnov7MIKG4f/Nxh2Nj7tV3
+         1ChA==
+X-Gm-Message-State: ABy/qLbUnckQy//GqP0GwejRG0XIAYp2WhCPHt2wo56eGQ047zxKFOiq
+        4JelUPWm/lU7LpIl6eYBfa344w==
+X-Google-Smtp-Source: APBJJlG6VXtLarcsIVyYIR1fVvdn+qR2nYOLYfz3zVMaRj/0h6A3heIh/jX8GFK6xJuti9UDU42Vpg==
+X-Received: by 2002:a05:6512:1591:b0:4f8:752f:df48 with SMTP id bp17-20020a056512159100b004f8752fdf48mr653255lfb.29.1690831299247;
+        Mon, 31 Jul 2023 12:21:39 -0700 (PDT)
 Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
-        by smtp.gmail.com with ESMTPSA id ep28-20020a056512485c00b004fe1bac4080sm2024882lfb.222.2023.07.31.12.21.36
+        by smtp.gmail.com with ESMTPSA id ep28-20020a056512485c00b004fe1bac4080sm2024882lfb.222.2023.07.31.12.21.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 12:21:37 -0700 (PDT)
+        Mon, 31 Jul 2023 12:21:38 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 31 Jul 2023 21:21:32 +0200
-Subject: [PATCH v2 1/2] dt-bindings: clock: qcom,sm8350-videocc: Add
- SC8280XP
+Date:   Mon, 31 Jul 2023 21:21:33 +0200
+Subject: [PATCH v2 2/2] clk: qcom: videocc-sm8350: Add SC8280XP support
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230703-topic-8280_videocc-v2-1-c88269806269@linaro.org>
+Message-Id: <20230703-topic-8280_videocc-v2-2-c88269806269@linaro.org>
 References: <20230703-topic-8280_videocc-v2-0-c88269806269@linaro.org>
 In-Reply-To: <20230703-topic-8280_videocc-v2-0-c88269806269@linaro.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
@@ -71,13 +70,13 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1690831295; l=908;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1690831295; l=3984;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=09vaheOwPFgSKvoFFPC1+TxzhpnRaLHei7up05bRFww=;
- b=eWW9amWrxG5uiuQwj6XKg0uo9aY6AR9mGVP8x/iG039uc295/S37S4cgVj1KL+C4d8j5Brp+s
- lnKXQA4nY58CcHkmht1o3PFfQN9ew+5aVVk6FoC6zVfQz7iqv4hjrdI
+ bh=o5bVSx2gpTMciO9+T8/74+UVoyE1JD3fP/a+IZWVKbg=;
+ b=ZGbEbtkrYDpuq6H+9Oj/I0FpRhjvMeWlMmYt6iYbz989Pu2/4tIBrqVbdfNoqgOrlcN3n0E5R
+ GpYndhxqGTAAsstEIWon11A/mBN5nw3FnYGKP6gRbJRfDik2GABlMFM
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,30 +89,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SC8280XP reuses the SM8350 video clock controller block, changing just a
-couple tunables. Docuemnt it.
+SC8280XP, being a partial derivative of SM8350, shares almost the exact
+same videocc block. Extend the 8350 driver to support the bigger brother.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The only notable changes are higher possible frequencies on some clocks
+and some switcheroo within the XO/sleep registers (probably due to some
+different board crystal configuration).
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/clk/qcom/videocc-sm8350.c | 42 ++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml
-index 23505c8c3dbd..2114664978e1 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml
-@@ -19,7 +19,9 @@ description: |
+diff --git a/drivers/clk/qcom/videocc-sm8350.c b/drivers/clk/qcom/videocc-sm8350.c
+index b148877fc73d..7246f3c99492 100644
+--- a/drivers/clk/qcom/videocc-sm8350.c
++++ b/drivers/clk/qcom/videocc-sm8350.c
+@@ -41,6 +41,10 @@ static const struct pll_vco lucid_5lpe_vco[] = {
+ 	{ 249600000, 1750000000, 0 },
+ };
  
- properties:
-   compatible:
--    const: qcom,sm8350-videocc
-+    enum:
-+      - qcom,sc8280xp-videocc
-+      - qcom,sm8350-videocc
++static const struct pll_vco lucid_5lpe_vco_8280xp[] = {
++	{ 249600000, 1800000000, 0 },
++};
++
+ static const struct alpha_pll_config video_pll0_config = {
+ 	.l = 0x25,
+ 	.alpha = 0x8000,
+@@ -159,6 +163,16 @@ static const struct freq_tbl ftbl_video_cc_mvs0_clk_src[] = {
+ 	{ }
+ };
  
-   clocks:
-     items:
++static const struct freq_tbl ftbl_video_cc_mvs0_clk_src_8280xp[] = {
++	F(720000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
++	F(1014000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
++	F(1098000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
++	F(1332000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
++	F(1599000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
++	F(1680000000, P_VIDEO_PLL0_OUT_MAIN, 1, 0, 0),
++	{ }
++};
++
+ static struct clk_rcg2 video_cc_mvs0_clk_src = {
+ 	.cmd_rcgr = 0xb94,
+ 	.mnd_width = 0,
+@@ -181,6 +195,15 @@ static const struct freq_tbl ftbl_video_cc_mvs1_clk_src[] = {
+ 	{ }
+ };
+ 
++static const struct freq_tbl ftbl_video_cc_mvs1_clk_src_8280xp[] = {
++	F(840000000, P_VIDEO_PLL1_OUT_MAIN, 1, 0, 0),
++	F(1098000000, P_VIDEO_PLL1_OUT_MAIN, 1, 0, 0),
++	F(1332000000, P_VIDEO_PLL1_OUT_MAIN, 1, 0, 0),
++	F(1600000000, P_VIDEO_PLL1_OUT_MAIN, 1, 0, 0),
++	F(1800000000, P_VIDEO_PLL1_OUT_MAIN, 1, 0, 0),
++	{ }
++};
++
+ static struct clk_rcg2 video_cc_mvs1_clk_src = {
+ 	.cmd_rcgr = 0xbb4,
+ 	.mnd_width = 0,
+@@ -499,6 +522,7 @@ static struct qcom_cc_desc video_cc_sm8350_desc = {
+ 
+ static int video_cc_sm8350_probe(struct platform_device *pdev)
+ {
++	u32 video_cc_xo_clk_cbcr = 0xeec;
+ 	struct regmap *regmap;
+ 	int ret;
+ 
+@@ -510,6 +534,21 @@ static int video_cc_sm8350_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
++	if (of_device_is_compatible(pdev->dev.of_node, "qcom,sc8280xp-videocc")) {
++		video_cc_sleep_clk_src.cmd_rcgr = 0xf38;
++		video_cc_sleep_clk.halt_reg = 0xf58;
++		video_cc_sleep_clk.clkr.enable_reg = 0xf58;
++		video_cc_xo_clk_src.cmd_rcgr = 0xf14;
++		video_cc_xo_clk_cbcr = 0xf34;
++
++		video_pll0.vco_table = video_pll1.vco_table = lucid_5lpe_vco_8280xp;
++		/* No change, but assign it for completeness */
++		video_pll0.num_vco = video_pll1.num_vco = ARRAY_SIZE(lucid_5lpe_vco_8280xp);
++
++		video_cc_mvs0_clk_src.freq_tbl = ftbl_video_cc_mvs0_clk_src_8280xp;
++		video_cc_mvs1_clk_src.freq_tbl = ftbl_video_cc_mvs1_clk_src_8280xp;
++	}
++
+ 	regmap = qcom_cc_map(pdev, &video_cc_sm8350_desc);
+ 	if (IS_ERR(regmap)) {
+ 		pm_runtime_put(&pdev->dev);
+@@ -525,7 +564,7 @@ static int video_cc_sm8350_probe(struct platform_device *pdev)
+ 	 *      video_cc_xo_clk
+ 	 */
+ 	regmap_update_bits(regmap, 0xe58, BIT(0), BIT(0));
+-	regmap_update_bits(regmap, 0xeec, BIT(0), BIT(0));
++	regmap_update_bits(regmap, video_cc_xo_clk_cbcr, BIT(0), BIT(0));
+ 
+ 	ret = qcom_cc_really_probe(pdev, &video_cc_sm8350_desc, regmap);
+ 	pm_runtime_put(&pdev->dev);
+@@ -534,6 +573,7 @@ static int video_cc_sm8350_probe(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id video_cc_sm8350_match_table[] = {
++	{ .compatible = "qcom,sc8280xp-videocc" },
+ 	{ .compatible = "qcom,sm8350-videocc" },
+ 	{ }
+ };
 
 -- 
 2.41.0
