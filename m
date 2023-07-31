@@ -2,109 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED3C5769B17
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D702E769B20
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbjGaPsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:48:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55396 "EHLO
+        id S232573AbjGaPsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 11:48:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232749AbjGaPsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:48:07 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D863133
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:48:06 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fbc77e76abso43237215e9.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:48:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690818485; x=1691423285;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ea29XW2Oj6uA5+J/+a6EhPg6MOWcuGpScRnndteK92U=;
-        b=e2ZwWZgLNcH8SGcedF39ZGAunxZFRDJYoJJpY5ulm9q5lgR1UyglSAhgtwgo/JYiAQ
-         XV1bYqm3hhqWdk5qj36SgCliJ44gzZ/uAZLBIOQ0izMWQYR+3YeVeun1NKDM1GLHTJGy
-         N2K56LMuAFq6F5mOQL3NJSLX1dpDRXvHR5KQDmKjmfOTyCP+QzZW8EiI6cZAU7+en3HM
-         +BawqRHXgUFO+bK2pWcBw8RLRNHutC6+hbkptmruNs4LVFIevo4Jyv1z9D9bZHrBTImp
-         WDrqSmb5jdAu25MSTtaoRYiwjOEsdkS/HTSmwRUzBkVGrLC9N9SpKtOPo85/NqTufiiU
-         chIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690818485; x=1691423285;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ea29XW2Oj6uA5+J/+a6EhPg6MOWcuGpScRnndteK92U=;
-        b=Fd4GpLVsYzEm/uKoBIat9akGu4DJsYXBqM+r3AT2UIg/ctyG5VDsTN+qADloj0HPZ5
-         wAgqrpJLgfq7AsHdJWwA1qu5dvcwIDd0kzjTbmQG75Gyr/wZkVrjcTGaQ9co8NuRhKXV
-         P4oENl8Cq6lkuUp7enbAuTSPTWoB0jpwgMegMMIEVxtUCRkCgeJDROXrMfXPFpof1XrA
-         Yvd+3qWq2Yr1BB+OLgw5nJ3dGO86BqXQpaXw7G/yCNMJwdqc4Bs+akcddGCxF8odeh/s
-         /cJQILHCuEhbhbMUPlwcgVjjtP9UoFBhpth3Iftm9MJCim/ZY5hSnbupetYEOY0RkY4f
-         Yv0Q==
-X-Gm-Message-State: ABy/qLbcXGDCBi55+xFnZUoMZrJAMe9duYE8WWCceXXiSw1iyv9q2kUy
-        lq1MqypZdcGnmHOaYY5OWQ6LtQ==
-X-Google-Smtp-Source: APBJJlFHABHv2mXYYls1027lw8mNbIKOOxpDTaFUjQSeRtPCCAP0xOgS7nk+2w4RRUx62OlTIVSMzA==
-X-Received: by 2002:a1c:7310:0:b0:3fb:e189:3532 with SMTP id d16-20020a1c7310000000b003fbe1893532mr260226wmb.20.1690818485042;
-        Mon, 31 Jul 2023 08:48:05 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m10-20020a7bca4a000000b003fbc0a49b57sm11799628wml.6.2023.07.31.08.48.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 08:48:04 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232552AbjGaPs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:48:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0715B198B;
+        Mon, 31 Jul 2023 08:48:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 27D86611B6;
+        Mon, 31 Jul 2023 15:48:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4B9C433C8;
+        Mon, 31 Jul 2023 15:48:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690818502;
+        bh=m8ixijRMZAOC8xXD813MvkECftXap9fxbZmJs4qUrjk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RnlbfEelf7XNw9O+XPFTHvfkgD8Scu56CN6ZL1urjtMpZ2bGybgt/QN9yu++SVeMe
+         jtIf0/yKc487JZ4l/skphUCSPFtcmrJH1dMlwIe+tT1r7HU3fwtdGAXg9NJcRyU9sX
+         3YoNFSXM+A2g3Jm2JUuPPJIkIWszxZv90+rLxdGRrBr5Px+TZn3pKo4mKbjCu6CY3r
+         cWJd3bTtePrtJI8zNsUxaJQsU9OCDRfhEIjAJlHnhIsb+Yn1hXLiI8qQO0azh6ibja
+         YUZnxHGzEE37m5erQ2sQWGID+2gd9tGjOFOCOZbxmkTe72MVp76FNfz7iiCq8aFgeW
+         3tSD7SOl0FuXw==
+Date:   Mon, 31 Jul 2023 16:48:17 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20230711-startek_display-v4-0-fb1d53bfdef6@baylibre.com>
-References: <20230711-startek_display-v4-0-fb1d53bfdef6@baylibre.com>
-Subject: Re: (subset) [PATCH v4 0/3] Add startek-kd070fhfid015 display
- support
-Message-Id: <169081848410.590715.3216306012234783278.b4-ty@linaro.org>
-Date:   Mon, 31 Jul 2023 17:48:04 +0200
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Subject: Re: [PATCH 01/13] dt-bindings: pwm: rockchip: Document rv1126-pwm
+Message-ID: <20230731-doornail-shrunk-26c9948dacf9@spud>
+References: <20230731103518.2906147-1-jagan@edgeble.ai>
+ <20230731103518.2906147-2-jagan@edgeble.ai>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="svlWwtAlFNyPjpWF"
+Content-Disposition: inline
+In-Reply-To: <20230731103518.2906147-2-jagan@edgeble.ai>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Mon, 31 Jul 2023 17:08:55 +0200, Alexandre Mergnat wrote:
-> Add the support of the Startek KD070FHFID015 panel.
-> It's a 7-inch TFT LCD display with a resolution of 1024 x 600 pixels.
-> 
-> I use this display plugged to my mt8365-evk board.
-> 
-> This serie come from a bigger one [1]. Then I addressed the previous
-> comments for the related commits here.
-> 
-> [...]
+--svlWwtAlFNyPjpWF
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+On Mon, Jul 31, 2023 at 04:05:06PM +0530, Jagan Teki wrote:
+> Document pwm compatible for rv1126 which is fallback compatible
+> of rk3328-pwm group.
+>=20
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 
-[1/3] dt-bindings: display: panel: add startek kd070fhfid015 support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=5ede23d12b442750ba1298913cf3ce572f1b79d3
-[2/3] drm/panel: Support for startek-kd070fhfid015 MIPI-DSI panel
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=69312a77cd13e36f87378dfe83480b671ebf9216
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
--- 
-Neil
+Thanks,
+Conor.
 
+> ---
+> Cc: linux-pwm@vger.kernel.org
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: "Uwe Kleine-K=F6nig" <u.kleine-koenig@pengutronix.de>
+>=20
+>  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Do=
+cumentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> index f2d1dc7e7b3f..65bfb492b3a4 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> @@ -32,6 +32,7 @@ properties:
+>                - rockchip,rk3308-pwm
+>                - rockchip,rk3568-pwm
+>                - rockchip,rk3588-pwm
+> +              - rockchip,rv1126-pwm
+>            - const: rockchip,rk3328-pwm
+> =20
+>    reg:
+> --=20
+> 2.25.1
+
+--svlWwtAlFNyPjpWF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMfXwQAKCRB4tDGHoIJi
+0mUeAP9FfrnB/pm7rQ7mO6aHsHn/jUsaVsmx7s+8Dwkbx3KQnQD+OHt+J0rsv5CK
+UZeS0tqfxtrUSgvDrGKzYGeTNadu1Ak=
+=ova7
+-----END PGP SIGNATURE-----
+
+--svlWwtAlFNyPjpWF--
