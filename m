@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E55227697B0
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 15:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C697697B1
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 15:34:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231777AbjGaNee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 09:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36462 "EHLO
+        id S229935AbjGaNef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 09:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230044AbjGaNec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 09:34:32 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDF81708
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 06:34:31 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6bc66583289so259284a34.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 06:34:31 -0700 (PDT)
+        with ESMTP id S229685AbjGaNee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 09:34:34 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239A21708
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 06:34:34 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id 46e09a7af769-6b9da57da6bso498399a34.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 06:34:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690810471; x=1691415271;
+        d=gmail.com; s=20221208; t=1690810473; x=1691415273;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=f6jiMv0yk6Q9LnJH9ybPEu9DNGYUkcgRySBqiSqo5sQ=;
-        b=eyzjQzr9B34DKgoPCsfaG210S0PLniE0LH+m7dbK4xrTGxStahjpE8r94HhOKyZYuh
-         HkWGTVGcjWK/c2BYn8oLy7NXT+90HEmGUlFQOSHzdX6RdDS7dEiErAOrvRzKbeerKWsa
-         ht+WoXvt3O7sFfmsTUOkNulSqxg5Rqa3zu5MMpB4y+RhWHMBBZMl2xnoS9WcEz1zG4WP
-         5P8RTKdaQkp2kjQXGDtuW39FFNrOTRO2FRw1GERT7ruIfG+XMqJVFGSzQNJJV2YBM6EA
-         Tix//rqtFKlerg/qZA46t6xsAFMEqcl3RdzbK3vutvty1hiXz2KqOdTuzbi1SMJxXdD3
-         sxdA==
+        bh=KshR7HWMSbuCSMCUVNiESzXZo72NeDEXMY5byYWj2ys=;
+        b=j9w3Qj/q5tFM3UlR1audRQyz7PyvuR4h5kra1sDzLUjsyqPF8rA8HoyhxF5/q7rpd7
+         a03iqryRgDBGa81t0/A232cXxcX4olztKzshtgvuNsDlEsTiIR2bfdbhfsDMvcURK0qT
+         Vw4r6pX14Tg8+oPjluXhOytWBoqrtvgCsD4WUKmfXsPoIgYM9N5t3m5sk3o7nACxdW84
+         xRPLZD6wbI63odQE2KcDP1jjJguzWQbybgpik00od8jgXS+cauI07yqDHIsjdjqk5QmG
+         bk0nUJf/p33yJ22bsbtQP5LB8SNH0NiwVPCITYqqJuabU+VQl+EBGabUT4kNdYEm62e/
+         cLUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690810471; x=1691415271;
+        d=1e100.net; s=20221208; t=1690810473; x=1691415273;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=f6jiMv0yk6Q9LnJH9ybPEu9DNGYUkcgRySBqiSqo5sQ=;
-        b=f8WWZjSORHqGmXTn9H5nadeRq+L6Tn/gSsUEtpa1/B5zIWQNm9E11UYXzemqhUgQqu
-         JgAJ/kBInGl+/NKUoCIcGthkCHYrMj2gFZLmfZr2VUdpUcdgPxda1Kaw0/kdbMe3q5n1
-         MGffftTqIupMgbFXGlN21KUb0heahmAat7Zlheax28SZR2YUMRro0h1hyI/o7fTvO6eg
-         6QTkngdEo9MgjtSMfvK0TGVGr08v5bg38pQgy6CF2avWC4ny0Nyd1SQZeOn5M2sGodBr
-         c36ZOOAOqB89Ku/TZ6iJNhb9j3wCd1Qa/racXEku2NXRwtMR0QR/b+xdTH6zMZMJBR9/
-         f2mA==
-X-Gm-Message-State: ABy/qLZn/umPTm01KIEResQmWuI0IWacmsnePiIUTr+Xg7anWUEeQ4zj
-        N87DONFnMsB7A36o/BSqXrw=
-X-Google-Smtp-Source: APBJJlF8S7b9HT/gSfx+/bs3C1Po5UDuWIS8RHwo9ZIzGK0l+lA6zz1748BDlvaG5vjcIp/P74q1Ug==
-X-Received: by 2002:a05:6830:334b:b0:6b1:9646:2ea0 with SMTP id l11-20020a056830334b00b006b196462ea0mr5233261ott.1.1690810470414;
-        Mon, 31 Jul 2023 06:34:30 -0700 (PDT)
+        bh=KshR7HWMSbuCSMCUVNiESzXZo72NeDEXMY5byYWj2ys=;
+        b=X/hA/m6oyUX00qCJMCo9VtwNl5onkSYARRiFy1Hb5j0MjStfdqi6WP8AnmAo/EtO0G
+         FOljlRtouLdvvRxnwWmQ8q8YGXBGDsvawVB1VLgFjq3RVN0AFcBS/hp/FzakX3Yj4sgd
+         hdfFcI+V3ZlL48lKnoyWbS+Ie0cJpmxJCiKqlAiXq+gPsOtGxB0JcjVh3REQB3sMFf63
+         PZKzlCoxio2FZKEzNwgY1iHivRmBTSUPsHgTrpszk4ETQqpWTLMvpHgg2V1GLNZMlhXW
+         cHuAyXWzGcN8ZepHa+/o5YUYEiixyrMOtw2HPTZrgIL0wO5fXMGVC/OiTxtUV538cfC4
+         Kvlw==
+X-Gm-Message-State: ABy/qLYSivtMRBvP2EcCOIoT41TbBgAqFQaRR5S0+Nx6IX/y8sLkzwh3
+        BJLe6tFFHJhuYkvtWD54UNg=
+X-Google-Smtp-Source: APBJJlHHPVR/H4yFiruEHzKd1upg5L6c+phgXyXkYNQatM0byalubIunrsZX+bGkB8gNSyXsNH0QPQ==
+X-Received: by 2002:a05:6830:6608:b0:6b9:f192:1f91 with SMTP id cp8-20020a056830660800b006b9f1921f91mr7881944otb.2.1690810473388;
+        Mon, 31 Jul 2023 06:34:33 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:fb3f:fd5:45fe:5e7a])
-        by smtp.gmail.com with ESMTPSA id t1-20020a9d66c1000000b006bc30d47673sm4059459otm.17.2023.07.31.06.34.28
+        by smtp.gmail.com with ESMTPSA id t1-20020a9d66c1000000b006bc30d47673sm4059459otm.17.2023.07.31.06.34.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 06:34:29 -0700 (PDT)
+        Mon, 31 Jul 2023 06:34:32 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/3] ARM: dts: imx50-evk: Use generic node name for SPI NOR flash
-Date:   Mon, 31 Jul 2023 10:34:20 -0300
-Message-Id: <20230731133421.1499992-2-festevam@gmail.com>
+Subject: [PATCH 3/3] ARM: dts: imx53-smd: Remove invalid SPI flash entry
+Date:   Mon, 31 Jul 2023 10:34:21 -0300
+Message-Id: <20230731133421.1499992-3-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230731133421.1499992-1-festevam@gmail.com>
 References: <20230731133421.1499992-1-festevam@gmail.com>
@@ -75,32 +75,35 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@denx.de>
 
-Node names should be generic, so use 'flash' as the SPI NOR flash node
-name.
+"st,m25p" is not a valid compatible according to jedec,spi-nor.yaml.
 
-This fixes the following schema warning:
+Remove it.
 
-imx53-smd.dtb: m25p32@1: $nodename:0: 'm25p32@1' does not match '^(flash|.*sram|nand)(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mtd/jedec,spi-nor.yaml#
+Also, node names should be generic, so use 'flash' as the SPI NOR flash
+node name.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/nxp/imx/imx50-evk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/nxp/imx/imx53-smd.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx50-evk.dts b/arch/arm/boot/dts/nxp/imx/imx50-evk.dts
-index 4ea5c23f181b..3f45c01d9cce 100644
---- a/arch/arm/boot/dts/nxp/imx/imx50-evk.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx50-evk.dts
-@@ -23,7 +23,7 @@ &cspi {
- 	cs-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>, <&gpio4 13 GPIO_ACTIVE_LOW>;
- 	status = "okay";
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-smd.dts b/arch/arm/boot/dts/nxp/imx/imx53-smd.dts
+index f8d17967a67e..55435dfdff8a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-smd.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx53-smd.dts
+@@ -67,10 +67,10 @@ zigbee: mc1323@0 {
+ 		reg = <0>;
+ 	};
  
 -	flash: m25p32@1 {
 +	flash: flash@1 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "m25p32", "jedec,spi-nor";
+-		compatible = "st,m25p32", "st,m25p", "jedec,spi-nor";
++		compatible = "st,m25p32", "jedec,spi-nor";
+ 		spi-max-frequency = <20000000>;
+ 		reg = <1>;
+ 
 -- 
 2.34.1
 
