@@ -2,127 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B305A76892C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 00:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2636C768967
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 02:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbjG3WrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jul 2023 18:47:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57844 "EHLO
+        id S229530AbjGaAtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jul 2023 20:49:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjG3WrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 18:47:23 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79FAAB;
-        Sun, 30 Jul 2023 15:47:22 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fbd33a57b6so45354345e9.2;
-        Sun, 30 Jul 2023 15:47:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690757241; x=1691362041;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Nn/YS1vmiQY8qJ3o3Iu5t377DFn8tJLv5hlAgdngATI=;
-        b=EJ7Y/7SUErrk8Sz1k2UNNRDf/1WA8lVzktv1RE0w0DvCvcYdIgw8447LG7kNToN8uu
-         /zjNviu7QpKXQFfiCTUH7F/WuLt4r1s7y1hnOOUbXJzn/FkeAaiXmIVuvACECkivGoAa
-         HUXOi9sDw6nV715vLF4TPGavctjQ45nTJQ7cw0LCMOAfVFW7fjHAUeXGhk2OJ7A0xUbZ
-         tiGckM7OaU+0bP3gLoGOGAp3za+KBBP5kQJMWzP4do3Jf5Um3uPgP2bfmJPQHleDX2b3
-         cgLNtqZwqmAKLwBkdG0IRrGIds0i1WQ5db+4xOzdxLOAEEbt449a0ZdUjoBsLhtn5bpA
-         AP5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690757241; x=1691362041;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Nn/YS1vmiQY8qJ3o3Iu5t377DFn8tJLv5hlAgdngATI=;
-        b=UR/8TqdMi2YUAlu0gqyqDGifkvd9JnLZIBAtcMZD6oGR50m5WIsvZiJ7nHQAQ6IRq2
-         MjO5cosdGRL9OgMh4y44xemL+ghtZBB9OAuXSuvbg6wDyCZBwvPu7zKLSBIyju5UQUSE
-         pk8Maj5R9Rt78Uk/530r+X04t1jDBLyS6xkaVcfOvvrn5jcA/N+jDw/CvXL4Dn+z4kgN
-         sSfxuLRL/I5ZIQb4gfRDEoOKictnknehZQ7IkKgKi9mNUx1yUvJUU56m71BP1qt0Rsx9
-         8vokyl567cSLVfTcyxxCLuDN0SwYjz/Bphx1J7bSypAWSFWfzuivN/tLoevLVWpCwQzq
-         vBQA==
-X-Gm-Message-State: ABy/qLaG7W3Co5nU72JzOQrm2JtF39Kku/HsEner44Q3lfJbKVpgpekU
-        ob+vYKbm3WWQPNdiAHGf7eQ=
-X-Google-Smtp-Source: APBJJlEs7FmEW6uHsm7c/7UKGIUKbZfoVqCU1+8JIvTl0l8N1Ghi1Zm14ejT/MDuxwAvQGv3FCP0/w==
-X-Received: by 2002:a05:600c:acc:b0:3fd:30cb:18bd with SMTP id c12-20020a05600c0acc00b003fd30cb18bdmr7703035wmr.15.1690757240708;
-        Sun, 30 Jul 2023 15:47:20 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id x17-20020a05600c21d100b003fbca05faa9sm9674900wmj.24.2023.07.30.15.47.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 15:47:20 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] soc: sunxi: Explicitly include correct DT includes
-Date:   Mon, 31 Jul 2023 00:47:19 +0200
-Message-ID: <7549938.EvYhyI6sBW@jernej-laptop>
-In-Reply-To: <20230714175152.4068286-1-robh@kernel.org>
-References: <20230714175152.4068286-1-robh@kernel.org>
+        with ESMTP id S229468AbjGaAtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jul 2023 20:49:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F280E78;
+        Sun, 30 Jul 2023 17:49:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3124760DF9;
+        Mon, 31 Jul 2023 00:49:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9299CC43397;
+        Mon, 31 Jul 2023 00:49:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690764570;
+        bh=HSe9skEoxlUTuOZvdtNJpMW/Hkn8jkbcfx3F/K4PLVY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p+D7khP4AiP7n5c2GyfpNG+VVGVttTyGWAQRc+NtLtBozyiyHmuvJg4wLhYTRPoU3
+         O9cBmMMFPhdKcNDf02eZ/qCyEXOQjoZH9sC1zubZ+OvUqczlj8iMOoR0ScKqGqPZfi
+         /0GdSLc0GJj/ZdFSCR38HMGD1p2QSJoLhuRoaFnoe3zvSkoa/hOECqnC1pED6etxQL
+         aAOrXh8KdMZOjVBCN7o49+4wVhsaZQL4Zt9iVou7PcJs2jzmzXV1+Lbq68FSLQU/sM
+         UxduwZh/q3IBFeozIKt3xDmJ2r/x3wP2vzNIeAhaXc8QAvW3lwN3Br3OIZKpTpL6As
+         tvqnrlzZf/H/w==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-4fe1489ced6so6267536e87.0;
+        Sun, 30 Jul 2023 17:49:30 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZLCSqmX2Ds8EuQp9mJ8zu852jZc7fCThFSz0Z4VzJlnPyKMUIi
+        6mgisCRIi/8TQWIF0nVQ61UQygvcyN/0+b8kbV0=
+X-Google-Smtp-Source: APBJJlF7/ie/dP5ysn5qcMXEX8GaXG49PtXGNJVueUhetg/GlqbiKWs42dguiSGoTIKK9SRUFsaY3KxIgB75UtwPxKU=
+X-Received: by 2002:ac2:5047:0:b0:4fb:92df:a27b with SMTP id
+ a7-20020ac25047000000b004fb92dfa27bmr4330470lfm.39.1690764568411; Sun, 30 Jul
+ 2023 17:49:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230702203429.237615-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230702203429.237615-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <ZMZ6XB6gX2kFd/Nt@xhacker> <CAJM55Z8vF8_xq0QyByLUGM2W-8m6R-_6SdOFdLETV7J-yo5DMQ@mail.gmail.com>
+ <92c00ddb-e956-4861-af80-5f5558c9a8f5@app.fastmail.com>
+In-Reply-To: <92c00ddb-e956-4861-af80-5f5558c9a8f5@app.fastmail.com>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Mon, 31 Jul 2023 08:49:17 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTRHzT+CEtb1LVYdfCorVUdLvCh_eMxrmC=xjdQ_JS6Sg@mail.gmail.com>
+Message-ID: <CAJF2gTTRHzT+CEtb1LVYdfCorVUdLvCh_eMxrmC=xjdQ_JS6Sg@mail.gmail.com>
+Subject: Re: [PATCH v10 3/6] riscv: mm: dma-noncoherent: nonstandard cache
+ operations support
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org,
+        Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 14. julij 2023 ob 19:51:51 CEST je Rob Herring napisal(a):
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/soc/sunxi/sun20i-ppu.c | 2 +-
+On Mon, Jul 31, 2023 at 4:36=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrote=
+:
+>
+> On Sun, Jul 30, 2023, at 17:42, Emil Renner Berthing wrote:
+> > On Sun, 30 Jul 2023 at 17:11, Jisheng Zhang <jszhang@kernel.org> wrote:
+>
+> >> > +
+> >> >  static inline void arch_dma_cache_wback(phys_addr_t paddr, size_t s=
+ize)
+> >> >  {
+> >> >       void *vaddr =3D phys_to_virt(paddr);
+> >> >
+> >> > +#ifdef CONFIG_RISCV_NONSTANDARD_CACHE_OPS
+> >> > +     if (unlikely(noncoherent_cache_ops.wback)) {
+> >>
+> >> I'm worried about the performance impact here.
+> >> For unified kernel Image reason, RISCV_NONSTANDARD_CACHE_OPS will be
+> >> enabled by default, so standard CMO and T-HEAD's CMO platform's
+> >> performance will be impacted, because even an unlikely is put
+> >> here, the check action still needs to be done.
+> >
+> > On IRC I asked why not use a static key so the overhead is just a
+> > single nop when the standard CMO ops are available, but the consensus
+> > seemed to be that the flushing would completely dominate this branch.
+> > And on platforms with the standard CMO ops the branch be correctly
+> > predicted anyway.
+>
+> Not just the flushing, but also loading back the invalidated
+> cache lines afterwards is just very expensive. I don't think
+> you would be able to measure a difference between the static
+> key and a correctly predicted branch on any relevant usecase here.
+Maybe we should move CMO & THEAD ops to the noncoherent_cache_ops, and
+only keep one of them.
 
-Sorry, ppu driver was moved. Please rebase on top of:
+I prefer noncoherent_cache_ops, it's more maintance than ALTERNATIVE.
 
-git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm.git 
-genpd_create_dir
+Heiko, How do you think about this?
 
-Best regards,
-Jernej
-
->  drivers/soc/sunxi/sunxi_sram.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/soc/sunxi/sun20i-ppu.c b/drivers/soc/sunxi/sun20i-ppu.c
-> index 98cb41d36560..8700f9dd5f75 100644
-> --- a/drivers/soc/sunxi/sun20i-ppu.c
-> +++ b/drivers/soc/sunxi/sun20i-ppu.c
-> @@ -5,7 +5,7 @@
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
->  #include <linux/module.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
->  #include <linux/reset.h>
-> diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
-> index 4c4864cd2342..4458b2e0562b 100644
-> --- a/drivers/soc/sunxi/sunxi_sram.c
-> +++ b/drivers/soc/sunxi/sunxi_sram.c
-> @@ -15,7 +15,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_address.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
+>
+>      Arnd
 
 
 
-
+--=20
+Best Regards
+ Guo Ren
