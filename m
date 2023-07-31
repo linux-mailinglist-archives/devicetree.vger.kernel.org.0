@@ -2,163 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F597693F4
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC2EC769402
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 13:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbjGaK7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 06:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44654 "EHLO
+        id S230023AbjGaLAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 07:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230501AbjGaK6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:58:38 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1365E1B1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:58:13 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe1489ced6so6962159e87.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:58:12 -0700 (PDT)
+        with ESMTP id S229915AbjGaLAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 07:00:38 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7BB83
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:00:33 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1b8b4749013so34499685ad.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 04:00:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690801091; x=1691405891;
+        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690801233; x=1691406033;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rfVD0ReDE+afeEDVkr9DHXfR2daYWUMok3vB8NkGUyU=;
-        b=Rf3TvuUi8pvwXHXz8Wm6gSl0rG295QSKN8I5i52/5kgG67fhgcsPRx4DFDLyOs88cS
-         PMLt0TFKTrjVneyoXA6FueAo6mnfp8RSff5mrG+GFK8tdh7wCIxKnikgm7M85knjooC1
-         5XjL2EDbqdXM/8ZylXJP+nHwOXbMno2dUa4eVrPb5B++J+INsDJuINvvM9aw3yeuMdI2
-         FMU8KunFFxUSa70j4x2Jbomf+anQ91M6Euy+M+66MkwRQ83a7cPZIJxQifMn6LoMmHrP
-         M+8AofN9k/SRtYe6IyJpFKlb2rr6upLNPQzR7LrElx4PaXwDvNdUBOhj2/JOWtU16nWi
-         9v3g==
+        bh=1jP0HLi5iSHOi8Z3s8AoTEtv1xUnfOh/1w4uA8oZ1C8=;
+        b=2FgELMPX0iC03w8yv5a+jHnW+r6p/iK8CdEQAmkhGrzD3gBhPxC169nCe+ztk/F1PP
+         nFvxDdvhJj6n2aqLEXqpK0dzEH83J/QLG9fvkzPlLPhDpBd4telbjN/jbBkGOpnIYb8a
+         3il0dYWJtbA9A1zTiTp4KSJeYHuiiQcYgHEh5Kg8HmkfWjFayBnUcs8MyLM0zFSkrIPX
+         ArWnQ7sqJ55Am3XRLQ3U5uhqbu9B96mckKbM+DceMLRQcInXzYmnnl0RLw+7Huf6+hHQ
+         PKz1GGcsuTJziSe7huWsSjAidbMa5HWBgXLgoPEQ+vyU323EmyWMMru+ZSHMVlzMNafz
+         QYyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690801091; x=1691405891;
+        d=1e100.net; s=20221208; t=1690801233; x=1691406033;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rfVD0ReDE+afeEDVkr9DHXfR2daYWUMok3vB8NkGUyU=;
-        b=JDTtnvUPMQY4wXXiut8WCXqV/ln7G+os6d8+txFbuYZVOww9++QU/BBOO4DLNTm2Fj
-         nSTiu424tVd1GhpsiFYESYw+80QPd4/ZsuXFnZIVUVXlGoHb6KCcytixGOTBhdoYFS2j
-         rL8ZMhOAR54kPakTD8OAtCFYjpctwitsRndSIRE5eFW4Yrem3IZ/RjkY/Unm2wbl8Iwp
-         fBQyVKWtoNibfPChlZB0kW5nP/ocs4eoz3G/lU4Q1M6+fbrm/0lj4FMGb5R1kwq7CTQ5
-         OKEl4gczB+1OsRhx14qEEZnelkDg5OR9JILObBqhGxI7uh2aTfyIwZJyMiDABivs22/E
-         0YJQ==
-X-Gm-Message-State: ABy/qLZvsS3aTn5EnDW5qIfxlXHeKheibOZ6yxDT+vlAZBX0Zv29e8p7
-        kyMGWwxUZz0GkQhMc2g9iOR6bQ==
-X-Google-Smtp-Source: APBJJlGgXXnYuz6h6j5X73uGOl6giTP3wtGeaYMpIBgspE96MyJd6VIcEAI24qlCeSyu7kmwU3IsZw==
-X-Received: by 2002:a05:6512:5ca:b0:4fe:3724:fdb1 with SMTP id o10-20020a05651205ca00b004fe3724fdb1mr1224698lfo.41.1690801091216;
-        Mon, 31 Jul 2023 03:58:11 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id c19-20020ac24153000000b004fb9fe34c27sm2025497lfi.92.2023.07.31.03.58.10
+        bh=1jP0HLi5iSHOi8Z3s8AoTEtv1xUnfOh/1w4uA8oZ1C8=;
+        b=HkkXc0J+nIfIK4tYd57+S2wufu2Qxl6z/zVD6q4J9MWXcomnIT+fDyRxJNlHuozQSB
+         Y+Gcu3a2VhQcKFGRYcfMNq2kJXYR62RlSw5kFDzSZdl2SaVa8ng9/ppWmWVbIiErlUZH
+         qMKaVLzvgKHDXmFFIBDDX59edmZwPd/ksc73xR5An/MYIpYVv+PyvOxG5RHwPhfevFeH
+         xIsfQsXd4d1RK89GHin8yuMzdL3fMZjYGCirSipaoQ8V5ZqFaVSVrsgH3YxB8rziy7N/
+         mAzCVmGph+uOozaiRGXgZRBXN4HDbjv/qo78hYEjq5MWcGf7tesqK/hKKw6Rj9Ag6AL2
+         GsaQ==
+X-Gm-Message-State: ABy/qLa9WVSRAIOktDGeDE9p912//hB1m30E8IW4HDeh4uYyMUsX9/Oj
+        dBwQ+A+xrd4JJgBYyfLtDHknZw==
+X-Google-Smtp-Source: APBJJlF1fW/kkMkTA9HRVUtJsncJ2wrXby1awhzYBA08MEkd3zOioa9tGcY2NYeekLTXVVpQp1heaA==
+X-Received: by 2002:a17:902:820c:b0:1b8:4b87:20dc with SMTP id x12-20020a170902820c00b001b84b8720dcmr9063249pln.37.1690801232812;
+        Mon, 31 Jul 2023 04:00:32 -0700 (PDT)
+Received: from localhost.localdomain ([49.205.243.15])
+        by smtp.gmail.com with ESMTPSA id t14-20020a1709028c8e00b001b1a2c14a4asm8281096plo.38.2023.07.31.04.00.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 03:58:10 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        Mon, 31 Jul 2023 04:00:32 -0700 (PDT)
+From:   Jagan Teki <jagan@edgeble.ai>
+To:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Jagan Teki <jagan@edgeble.ai>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 13/13] ARM: dts: qcom-sdx55: switch PCIe QMP PHY to new style of bindings
-Date:   Mon, 31 Jul 2023 13:57:59 +0300
-Message-Id: <20230731105759.3997549-14-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
-References: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 03/14] dt-bindings: phy: rockchip-inno-dsidphy: Document rv1126
+Date:   Mon, 31 Jul 2023 16:30:01 +0530
+Message-Id: <20230731110012.2913742-4-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230731110012.2913742-1-jagan@edgeble.ai>
+References: <20230731110012.2913742-1-jagan@edgeble.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change the PCIe QMP PHY to use newer style of QMP PHY bindings (single
-resource region, no per-PHY subnodes).
+Document a compatible string for the rv1126 dsi-dphy.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 31 ++++++++++----------------
- 1 file changed, 12 insertions(+), 19 deletions(-)
+Cc: linux-phy@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-index 55ce87b75253..4b0039ccd0da 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-@@ -379,7 +379,7 @@ pcie_rc: pcie@1c00000 {
+ .../devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml          | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+index 5c35e5ceec0b..46e64fa293d5 100644
+--- a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
++++ b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+@@ -19,6 +19,7 @@ properties:
+       - rockchip,rk3128-dsi-dphy
+       - rockchip,rk3368-dsi-dphy
+       - rockchip,rk3568-dsi-dphy
++      - rockchip,rv1126-dsi-dphy
  
- 			power-domains = <&gcc PCIE_GDSC>;
- 
--			phys = <&pcie_lane>;
-+			phys = <&pcie_phy>;
- 			phy-names = "pciephy";
- 
- 			status = "disabled";
-@@ -428,7 +428,7 @@ pcie_ep: pcie-ep@1c00000 {
- 			resets = <&gcc GCC_PCIE_BCR>;
- 			reset-names = "core";
- 			power-domains = <&gcc PCIE_GDSC>;
--			phys = <&pcie_lane>;
-+			phys = <&pcie_phy>;
- 			phy-names = "pciephy";
- 			max-link-speed = <3>;
- 			num-lanes = <2>;
-@@ -438,18 +438,25 @@ pcie_ep: pcie-ep@1c00000 {
- 
- 		pcie_phy: phy@1c07000 {
- 			compatible = "qcom,sdx55-qmp-pcie-phy";
--			reg = <0x01c07000 0x1c4>;
-+			reg = <0x01c07000 0x2000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
- 			clocks = <&gcc GCC_PCIE_AUX_PHY_CLK_SRC>,
- 				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
- 				 <&gcc GCC_PCIE_0_CLKREF_CLK>,
--				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>;
-+				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>,
-+				 <&gcc GCC_PCIE_PIPE_CLK>;
- 			clock-names = "aux",
- 				      "cfg_ahb",
- 				      "ref",
--				      "refgen";
-+				      "refgen",
-+				      "pipe";
-+
-+			clock-output-names = "pcie_pipe_clk";
-+			#clock-cells = <0>;
-+
-+			#phy-cells = <0>;
- 
- 			resets = <&gcc GCC_PCIE_PHY_BCR>;
- 			reset-names = "phy";
-@@ -458,20 +465,6 @@ pcie_phy: phy@1c07000 {
- 			assigned-clock-rates = <100000000>;
- 
- 			status = "disabled";
--
--			pcie_lane: lanes@1c06000 {
--				reg = <0x01c06000 0x104>, /* tx0 */
--				      <0x01c06200 0x328>, /* rx0 */
--				      <0x01c07200 0x1e8>, /* pcs */
--				      <0x01c06800 0x104>, /* tx1 */
--				      <0x01c06a00 0x328>, /* rx1 */
--				      <0x01c07600 0x800>; /* pcs_misc */
--				clocks = <&gcc GCC_PCIE_PIPE_CLK>;
--				clock-names = "pipe0";
--
--				#phy-cells = <0>;
--				clock-output-names = "pcie_pipe_clk";
--			};
- 		};
- 
- 		ipa: ipa@1e40000 {
+   reg:
+     maxItems: 1
 -- 
-2.39.2
+2.25.1
 
