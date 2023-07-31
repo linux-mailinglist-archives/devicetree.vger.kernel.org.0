@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 796C6769295
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D645D769293
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 11:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230035AbjGaJ7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 05:59:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40230 "EHLO
+        id S229668AbjGaJ7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 05:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbjGaJ6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:39 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B76319A1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:41 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99bf9252eddso351761866b.3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:41 -0700 (PDT)
+        with ESMTP id S230242AbjGaJ6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 05:58:40 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F297210E
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:42 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-522bc9556f5so2255454a12.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 02:57:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690797459; x=1691402259;
+        d=linaro.org; s=google; t=1690797461; x=1691402261;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5b7lqvl9+xzm2M9ezYAd3WHYZ/uyZwwx1X/wyt05wXs=;
-        b=RrUPZyWin4v6xqhOb2Y1XmElltjSC5VEA1bvmL1f6XVdAM5G2xrevzWt/ggzRhCyWd
-         UxvIxwCPLekQmyBod/bvd9MorN68QPHzeZZZ5ZlOST5HHgtjoLR5Oz0kOzFYjUvhsqai
-         cKb2oRtqvzr1rxI4177VuTWcpcPFH9L69c5wg0ncp0XPGzDbpPCC7bHZzJiaXHVAjpVR
-         TclesxItc+RmNuwZbrMRvUtVw9JzwvKSNlAHp4uWAGpb9hJHES2CjgRYjxC4aQsEaS7T
-         GkQSA62MCWw4S4xZ2jtly7Qym4FGJvhj0kC3h2p+JA8pXSALTN6gA10RVhO28M4/J5ca
-         0ALA==
+        bh=Fo+0+vHRPXrDtZ0tjQ0v+C3nzYHHH+ZPuoUPguExYlo=;
+        b=bRdfh7zayUh7aqsg780V5bn+wNnhzY3nk6VWazS3ho77ejVFkv4/nvSEg+bdgvVrXm
+         XADgcLLTEptPX6ysTK9okJ9ZSr5vcsugy3/N9ipsO1wOPWJ2uq3mzpDZchB+ZOHmLEPF
+         nhfmSrmNLC2FVnAHrZUGVjXWzuL9Att+eAsBFGwHdyyewQ4XU8mP7R8cVQL/XsOyln1v
+         SQrmzU50ZEdu08/MFaVn5DKSfxUGxii7p92jVZI5gMVE5K/SJRMWa5eHlpY2bMIBq4CK
+         DJuCqcZl/MfpGWmqWLTPRBgNb3URC1lhOMYhkx3F3XuCeHQj+X3Du+NP7Gu0xJKuboLv
+         aLsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690797459; x=1691402259;
+        d=1e100.net; s=20221208; t=1690797461; x=1691402261;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5b7lqvl9+xzm2M9ezYAd3WHYZ/uyZwwx1X/wyt05wXs=;
-        b=WFu6qPxzduBLcVKu+Pu3tbEIdqS6hJYjSyAWtThVna5MUgdc4aGCjRJw+OAb3tL8ov
-         Gwep3T4hAvu8N/3bB/3NMe0UAuTwhptX3UQAhfOFD5GLJKKdtiw/2czAj6sW1RPfK3k9
-         Gu/dYtcg4IiipqI4Bfs5NKOrZbSYKvqpjK+M0psI/n3hMfFa5g5boZkEZr6/O+N7dO6T
-         u4OtPwDuBQDZUyq/bLN8vCHggoKnejCtM77iibnsxsT3BwDxV66owA4UDFwfhzyYulay
-         1RGgjN4S1BLqa6spPcYYdXBHeIvuFIhcpjCAuctxReXDQGBU5sB2beLkhNhtoq2kAFYt
-         TItA==
-X-Gm-Message-State: ABy/qLY6VbMb5JZqxPf6HNPXidXdAej/69IN0EaXL7s4becYRKZrCcSE
-        UAoN7fTsOCanrSt42ykddgR5uw==
-X-Google-Smtp-Source: APBJJlFh1J4/vop52FckddnD9utMIv9WonoVRPk4OYaP7UrWchTbyiVrHaCmN/ZYyijZ3PQJl1r07Q==
-X-Received: by 2002:a17:906:77d0:b0:99b:ef9c:e634 with SMTP id m16-20020a17090677d000b0099bef9ce634mr6089122ejn.65.1690797459730;
-        Mon, 31 Jul 2023 02:57:39 -0700 (PDT)
+        bh=Fo+0+vHRPXrDtZ0tjQ0v+C3nzYHHH+ZPuoUPguExYlo=;
+        b=ZGQxwwXM4B+kNI8VfrPi386u62J6bTM0Psv8SdboXdKM6oSdb9WDs4TFQrKSvXvAcD
+         VVWju4u7Amo1q6bbySC5qhjISXUXWlXPQsb7knqfvZeYQcjamD5G0Whq18CnL+wLhGU/
+         GJJRuA3+6DIc3WQMhBuL0qhPii3cmITVXZPbjypXcwkfk6XgsilUTJQqwpJ/JlAzB1iY
+         rHq3SwOvjp+jfoTjtPn6ttAd8jFRh7uWkWyylyid8m+El11DBPOYqH+Z6CgDnvLAm9rf
+         pTg2zLprC8ouxK5yDd9djGN08fr3tK9awRSzgzswBqqxK1Hl/lcdKbwa459/y8xnAjJc
+         07zg==
+X-Gm-Message-State: ABy/qLaRO9wiTp/7sT3ob4D2+gc/BYF1zzGOSKOxobXto7WPVs6zujJf
+        JoMFY/zmgyfFvEYzXQSUiYPhadY+/44OI60pThc=
+X-Google-Smtp-Source: APBJJlG7U0zWI7OPl82f1WVMHJKL4xOV+ZQ6cmw+FWnEq8/Et0UZbSHmy41qMNCFe4tv0h81tzEXlQ==
+X-Received: by 2002:a17:906:2181:b0:997:865a:77e5 with SMTP id 1-20020a170906218100b00997865a77e5mr7773666eju.45.1690797460913;
+        Mon, 31 Jul 2023 02:57:40 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.183])
-        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.38
+        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm5860678ejb.122.2023.07.31.02.57.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 02:57:39 -0700 (PDT)
+        Mon, 31 Jul 2023 02:57:40 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -57,16 +57,16 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 6/8] ARM: dts: samsung: exynos5422-odroid: switch sound card to audio-routing
-Date:   Mon, 31 Jul 2023 11:57:28 +0200
-Message-Id: <20230731095730.204567-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 7/8] ARM: dts: samsung: s5pv210-fascinate4g: switch sound card to audio-routing
+Date:   Mon, 31 Jul 2023 11:57:29 +0200
+Message-Id: <20230731095730.204567-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
 References: <20230731095730.204567-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,53 +80,60 @@ generic "audio-routing".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../samsung/exynos5422-odroidxu3-audio.dtsi   | 19 +++++++++----------
- .../boot/dts/samsung/exynos5422-odroidxu4.dts |  2 +-
- 2 files changed, 10 insertions(+), 11 deletions(-)
+ .../boot/dts/samsung/s5pv210-fascinate4g.dts  | 33 +++++++++----------
+ 1 file changed, 16 insertions(+), 17 deletions(-)
 
-diff --git a/arch/arm/boot/dts/samsung/exynos5422-odroidxu3-audio.dtsi b/arch/arm/boot/dts/samsung/exynos5422-odroidxu3-audio.dtsi
-index 86b96f9706db..52a1d8fd5452 100644
---- a/arch/arm/boot/dts/samsung/exynos5422-odroidxu3-audio.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos5422-odroidxu3-audio.dtsi
-@@ -18,16 +18,15 @@ sound: sound {
- 		samsung,audio-widgets =
- 			"Headphone", "Headphone Jack",
- 			"Speakers", "Speakers";
+diff --git a/arch/arm/boot/dts/samsung/s5pv210-fascinate4g.dts b/arch/arm/boot/dts/samsung/s5pv210-fascinate4g.dts
+index eaa7c4f0e257..149e488f8e74 100644
+--- a/arch/arm/boot/dts/samsung/s5pv210-fascinate4g.dts
++++ b/arch/arm/boot/dts/samsung/s5pv210-fascinate4g.dts
+@@ -74,30 +74,29 @@ sound {
+ 		headset-detect-gpios = <&gph0 6 GPIO_ACTIVE_HIGH>;
+ 		headset-key-gpios = <&gph3 6 GPIO_ACTIVE_HIGH>;
+ 
 -		samsung,audio-routing =
--			"Headphone Jack", "HPL",
--			"Headphone Jack", "HPR",
--			"Headphone Jack", "MICBIAS",
--			"IN12", "Headphone Jack",
--			"Speakers", "SPKL",
--			"Speakers", "SPKR",
--			"I2S Playback", "Mixer DAI TX",
--			"HiFi Playback", "Mixer DAI TX",
--			"Mixer DAI RX", "HiFi Capture";
-+		audio-routing = "Headphone Jack", "HPL",
-+				"Headphone Jack", "HPR",
-+				"Headphone Jack", "MICBIAS",
-+				"IN12", "Headphone Jack",
-+				"Speakers", "SPKL",
-+				"Speakers", "SPKR",
-+				"I2S Playback", "Mixer DAI TX",
-+				"HiFi Playback", "Mixer DAI TX",
-+				"Mixer DAI RX", "HiFi Capture";
+-			"HP", "HPOUT1L",
+-			"HP", "HPOUT1R",
++		audio-routing = "HP", "HPOUT1L",
++				"HP", "HPOUT1R",
  
- 		cpu {
- 			sound-dai = <&i2s0 0>, <&i2s0 1>;
-diff --git a/arch/arm/boot/dts/samsung/exynos5422-odroidxu4.dts b/arch/arm/boot/dts/samsung/exynos5422-odroidxu4.dts
-index f5fb617f46bd..363786f032cc 100644
---- a/arch/arm/boot/dts/samsung/exynos5422-odroidxu4.dts
-+++ b/arch/arm/boot/dts/samsung/exynos5422-odroidxu4.dts
-@@ -35,7 +35,7 @@ sound: sound {
- 		compatible = "samsung,odroid-xu3-audio";
- 		model = "Odroid-XU4";
+-			"SPK", "SPKOUTLN",
+-			"SPK", "SPKOUTLP",
++				"SPK", "SPKOUTLN",
++				"SPK", "SPKOUTLP",
  
--		samsung,audio-routing = "I2S Playback", "Mixer DAI TX";
-+		audio-routing = "I2S Playback", "Mixer DAI TX";
+-			"RCV", "HPOUT2N",
+-			"RCV", "HPOUT2P",
++				"RCV", "HPOUT2N",
++				"RCV", "HPOUT2P",
  
- 		cpu {
- 			sound-dai = <&i2s0 0>, <&i2s0 1>;
+-			"LINE", "LINEOUT2N",
+-			"LINE", "LINEOUT2P",
++				"LINE", "LINEOUT2N",
++				"LINE", "LINEOUT2P",
+ 
+-			"IN1LP", "Main Mic",
+-			"IN1LN", "Main Mic",
++				"IN1LP", "Main Mic",
++				"IN1LN", "Main Mic",
+ 
+-			"IN1RP", "Headset Mic",
+-			"IN1RN", "Headset Mic",
++				"IN1RP", "Headset Mic",
++				"IN1RN", "Headset Mic",
+ 
+-			"Modem Out", "Modem TX",
+-			"Modem RX", "Modem In",
++				"Modem Out", "Modem TX",
++				"Modem RX", "Modem In",
+ 
+-			"Bluetooth SPK", "TX",
+-			"RX", "Bluetooth Mic";
++				"Bluetooth SPK", "TX",
++				"RX", "Bluetooth Mic";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&headset_det &earpath_sel>;
 -- 
 2.34.1
 
