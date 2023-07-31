@@ -2,106 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F03317699F6
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96B667699FA
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 16:47:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233147AbjGaOo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 10:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51302 "EHLO
+        id S230076AbjGaOrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 10:47:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233003AbjGaOop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:44:45 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1440910EB;
-        Mon, 31 Jul 2023 07:44:38 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6bca018afe8so213874a34.0;
-        Mon, 31 Jul 2023 07:44:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690814677; x=1691419477;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+ePPa+IMosJbGz9DlPxTeDa00vTKu1/AT7FBwSGiTBk=;
-        b=eb7x1cBmHdaK/OUE0lzoHoC1UTCIO+0bpNyYJzbAUNF1Qpoas2J4X+PfAMioaSEmbJ
-         MF8tN5y6DrS3ImYEFgvC6xwQmalGXuDsXG1WvZl1VA8uVWef2XaIy4mBJ9+aZAAb8m8T
-         kxO9SD8WH5ej2fbJnuQ1jnog5A9iXhlyiO93UFZWKA8iSng43jU/ulbXLquZhdS5aTcS
-         81ci3C33BjmOtZeoOSjekXvp489IWNHV7wbsPfYMaXvtNxdbs0nlHGurDAqu6qxXezjd
-         dToVGr8UrKyolEjEsEi3bQTpyUq4Xn+P00Gedt8q4Bf/D0wq2pnM7iN8BYgcpue7b8AZ
-         +Xzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690814677; x=1691419477;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+ePPa+IMosJbGz9DlPxTeDa00vTKu1/AT7FBwSGiTBk=;
-        b=MVT6Tfk1iLdjOJPgdYjj6Y3/pYynf5j6AlAyLfa+44Aeesf2z1kWB4Pz5l/wfxM0Ga
-         0i1zHgogjFFvtSZo2HwohPyZeJiRygA7YonkGLhKcNzw35eXSrJ/VQxLKzhrfiMHZ9G8
-         ZX30ii/GuE9aPLrV8+Fe67kp/pKFJoJ12PdV1moZJOt8LLhGD397MSqBaXuAY1F9WMkJ
-         jSBSWs7K6cL8IoENinNa6M/hJjGt5FKqzQAwXJA3h+U7CRinD1i1JAbQNGI00QZjehX4
-         2iKOww6ntc1mtUHoto9twrOu/lSxw1tR7GwD0bP3wftEdbTCYJ2pBvzhlXHeC4zYx62g
-         lLNw==
-X-Gm-Message-State: ABy/qLY97HKZ2IiWrDzmQbWKami7747c9d/QI4W6HpUtLvW4zC3Jhmp9
-        chMsv+2PRP+9acLc8ShZZkt9lGubo2M=
-X-Google-Smtp-Source: APBJJlFObnpZxymWJzWvdscqEhaCkSLsHzUed1GmeZg0oubHvbxc7CBm6klJi/wqcq+M04AEDRRXWQ==
-X-Received: by 2002:a05:6870:d107:b0:1bb:724f:2bca with SMTP id e7-20020a056870d10700b001bb724f2bcamr6757750oac.1.1690814677195;
-        Mon, 31 Jul 2023 07:44:37 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:fb3f:fd5:45fe:5e7a])
-        by smtp.gmail.com with ESMTPSA id d44-20020a056870d2ac00b001beeaa10924sm822252oae.0.2023.07.31.07.44.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 07:44:36 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     gregkh@linuxfoundation.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] dt-bindings: usb: ci-hdrc-usb2: Fix clocks/clock-names maxItems
-Date:   Mon, 31 Jul 2023 11:44:22 -0300
-Message-Id: <20230731144422.1532498-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230731144422.1532498-1-festevam@gmail.com>
-References: <20230731144422.1532498-1-festevam@gmail.com>
+        with ESMTP id S230063AbjGaOq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 10:46:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D795111B;
+        Mon, 31 Jul 2023 07:46:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6B3E761172;
+        Mon, 31 Jul 2023 14:46:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FDC9C433C7;
+        Mon, 31 Jul 2023 14:46:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690814817;
+        bh=PqlYAMnZ+JfeuRXdftAEQ5hSDtUAYpYdfgTVGuT3sEo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TwBcAZY0NKbmJ5/K/4M5wt/q/Snl9MV8edbQpaIhW2ZSTntBQ5f77YrshzZRcfM+e
+         +F4hKqaNsjLncLgFqOvZfW0HTRgOF62Qj+B0thqCeMAO1sC0HScYVmGQXi9sCw3tlE
+         jNdt632W55A8xLfTP6hJe+b2z/6VkX4dsVXfN58691SetbITwgu8P2d5JsmecepkZz
+         cbcedP4GmD28lPvBAMgkr2cFU2ZZcTFJtp2TaoRVBUJEdVolw+8kdcbqOCBPDUY1vj
+         3eHpHAdbQdsOklnI7ZBoCcTqoia9YDAlfoAXiwlUaTTTfyYYY6J2NrnAvZbstdDn8M
+         XABBzcl7BB2VQ==
+Date:   Mon, 31 Jul 2023 15:46:49 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Rohit kumar <quic_rohkumar@quicinc.com>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Rao Mandadapu <srivasam@codeaurora.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 01/12] ASoC: dt-bindings: amlogic,gx-sound-card: correct
+ maxItems constraints
+Message-ID: <076d8a7d-8369-4e88-9997-d54b91b7920d@sirena.org.uk>
+References: <20230731094303.185067-1-krzysztof.kozlowski@linaro.org>
+ <20230731094303.185067-2-krzysztof.kozlowski@linaro.org>
+ <1jr0oowg6m.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hTgg8DCib5JQmztO"
+Content-Disposition: inline
+In-Reply-To: <1jr0oowg6m.fsf@starbuckisacylon.baylibre.com>
+X-Cookie: Single tasking: Just Say No.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam  <festevam@denx.de>
 
-imx35.dtsi has three USB clocks. Adjust the maxItems to fix the following
-schema warnings:
+--hTgg8DCib5JQmztO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-imx35-eukrea-mbimxsd35-baseboard.dtb: usb@53ff4400: clock-names: ['ipg', 'ahb', 'per'] is too long
+On Mon, Jul 31, 2023 at 11:52:53AM +0200, Jerome Brunet wrote:
 
-Signed-off-by: Fabio Estevam  <festevam@denx.de>
----
- Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> The upper limit of 8 might work now but is very likely to be wrong for
+> the next device to come.
 
-diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-index 85016dd2e187..d2303f9a638c 100644
---- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-@@ -77,11 +77,11 @@ properties:
- 
-   clocks:
-     minItems: 1
--    maxItems: 2
-+    maxItems: 3
- 
-   clock-names:
-     minItems: 1
--    maxItems: 2
-+    maxItems: 3
- 
-   dr_mode: true
- 
--- 
-2.34.1
+> Is there way to correctly describe this "pair" contraint with DT schema ?
 
+> If not, then I guess the most adequate solution is to drop minItems and
+> give no bound, like simple-card is doing for the same type of properties.
+
+> Same goes for the audio-widgets property
+
+Right, dropping minItems seems better than pulling a maxItems out of
+thin air.
+
+--hTgg8DCib5JQmztO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTHyVgACgkQJNaLcl1U
+h9CwBgf9GKwK7KuMoeQQsc9Rl6Sc5X+7lsuk+17rjQr+cd3VJNRkXwkjGCYVxgeP
+X6JVUsaKujgeRg/hH9ICfqh0FPemGcEpBh23RVIalVSMA8XZZMGzqwsUw4HUinch
+cMfTWev5z6ga9lBwr0CclsNVXu/JYkQXKWPBk3vIYH6sTGwblalUI5AbB6WlwH3F
+uzJ7ejviucxNzfnFYheFgckbVJ2MIM+IC4WESBp+Cychr+veWiyr9bihzgSe/9f5
+dwEhwsZzQAXdxL6eh5P/shLLT2qHgRFiDfKL101YuzqFSze8ZWSsZ/7Xd0GEkzQa
+OF73R/jk4LKgIilX+yNwWW545Ynefw==
+=iYq3
+-----END PGP SIGNATURE-----
+
+--hTgg8DCib5JQmztO--
