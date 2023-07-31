@@ -2,88 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28963769B04
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED3C5769B17
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 17:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232327AbjGaPpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 11:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
+        id S229896AbjGaPsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 11:48:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjGaPpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:45:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C137FE57;
-        Mon, 31 Jul 2023 08:45:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 56731611B5;
-        Mon, 31 Jul 2023 15:45:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D0BAC433C7;
-        Mon, 31 Jul 2023 15:45:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690818313;
-        bh=9udjBpt/Zp7OzlidJfQwT/FLES/wXTZtme7QhcIiy9U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YjiyKxs18gJnxgliICQ6rv7z8JEMhuY7FvsEUvs2TvrfT09YvvcoOllj7QpOPiHwg
-         H7TnPcKQjcXQcUMSKxAnRcWZpz76NuRz5XkayMvAO7xu/SwFDOMegbA1DKwUqg9QXK
-         bZeBkiLQUHyJuGP9cEZ+tsv9/A6J+Tb2w7itKxXb0vtYrvGsjfF//49DcmDVIcq5Ek
-         jwvANBnUJp6bsgILYRrEZuPSx30tNQbsxGmNFlmla7BmaAWCibaiPIM43EpJZqkf/8
-         gOwAZQ6SE8XiKj0nJ9zQtYFjyTjczzBPFO0uK/3ilYn6KYoim09WnwGJf44xbtudwV
-         aggbC9bEVokHQ==
-Date:   Mon, 31 Jul 2023 16:45:09 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: power: qcom,rpmpd: Add compatible
- for sdx75
-Message-ID: <20230731-recreate-gloomy-9ae9fdbbcd6b@spud>
-References: <1690803007-8640-1-git-send-email-quic_rohiagar@quicinc.com>
- <1690803007-8640-2-git-send-email-quic_rohiagar@quicinc.com>
+        with ESMTP id S232749AbjGaPsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 11:48:07 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D863133
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:48:06 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fbc77e76abso43237215e9.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 08:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690818485; x=1691423285;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ea29XW2Oj6uA5+J/+a6EhPg6MOWcuGpScRnndteK92U=;
+        b=e2ZwWZgLNcH8SGcedF39ZGAunxZFRDJYoJJpY5ulm9q5lgR1UyglSAhgtwgo/JYiAQ
+         XV1bYqm3hhqWdk5qj36SgCliJ44gzZ/uAZLBIOQ0izMWQYR+3YeVeun1NKDM1GLHTJGy
+         N2K56LMuAFq6F5mOQL3NJSLX1dpDRXvHR5KQDmKjmfOTyCP+QzZW8EiI6cZAU7+en3HM
+         +BawqRHXgUFO+bK2pWcBw8RLRNHutC6+hbkptmruNs4LVFIevo4Jyv1z9D9bZHrBTImp
+         WDrqSmb5jdAu25MSTtaoRYiwjOEsdkS/HTSmwRUzBkVGrLC9N9SpKtOPo85/NqTufiiU
+         chIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690818485; x=1691423285;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ea29XW2Oj6uA5+J/+a6EhPg6MOWcuGpScRnndteK92U=;
+        b=Fd4GpLVsYzEm/uKoBIat9akGu4DJsYXBqM+r3AT2UIg/ctyG5VDsTN+qADloj0HPZ5
+         wAgqrpJLgfq7AsHdJWwA1qu5dvcwIDd0kzjTbmQG75Gyr/wZkVrjcTGaQ9co8NuRhKXV
+         P4oENl8Cq6lkuUp7enbAuTSPTWoB0jpwgMegMMIEVxtUCRkCgeJDROXrMfXPFpof1XrA
+         Yvd+3qWq2Yr1BB+OLgw5nJ3dGO86BqXQpaXw7G/yCNMJwdqc4Bs+akcddGCxF8odeh/s
+         /cJQILHCuEhbhbMUPlwcgVjjtP9UoFBhpth3Iftm9MJCim/ZY5hSnbupetYEOY0RkY4f
+         Yv0Q==
+X-Gm-Message-State: ABy/qLbcXGDCBi55+xFnZUoMZrJAMe9duYE8WWCceXXiSw1iyv9q2kUy
+        lq1MqypZdcGnmHOaYY5OWQ6LtQ==
+X-Google-Smtp-Source: APBJJlFHABHv2mXYYls1027lw8mNbIKOOxpDTaFUjQSeRtPCCAP0xOgS7nk+2w4RRUx62OlTIVSMzA==
+X-Received: by 2002:a1c:7310:0:b0:3fb:e189:3532 with SMTP id d16-20020a1c7310000000b003fbe1893532mr260226wmb.20.1690818485042;
+        Mon, 31 Jul 2023 08:48:05 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m10-20020a7bca4a000000b003fbc0a49b57sm11799628wml.6.2023.07.31.08.48.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jul 2023 08:48:04 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Guillaume La Roque <glaroque@baylibre.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20230711-startek_display-v4-0-fb1d53bfdef6@baylibre.com>
+References: <20230711-startek_display-v4-0-fb1d53bfdef6@baylibre.com>
+Subject: Re: (subset) [PATCH v4 0/3] Add startek-kd070fhfid015 display
+ support
+Message-Id: <169081848410.590715.3216306012234783278.b4-ty@linaro.org>
+Date:   Mon, 31 Jul 2023 17:48:04 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wYnIjZfWQhSn+39l"
-Content-Disposition: inline
-In-Reply-To: <1690803007-8640-2-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---wYnIjZfWQhSn+39l
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 31 Jul 2023 17:08:55 +0200, Alexandre Mergnat wrote:
+> Add the support of the Startek KD070FHFID015 panel.
+> It's a 7-inch TFT LCD display with a resolution of 1024 x 600 pixels.
+> 
+> I use this display plugged to my mt8365-evk board.
+> 
+> This serie come from a bigger one [1]. Then I addressed the previous
+> comments for the related commits here.
+> 
+> [...]
 
-On Mon, Jul 31, 2023 at 05:00:06PM +0530, Rohit Agarwal wrote:
-> Add a compatible string for power domains in sdx75.
->=20
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+[1/3] dt-bindings: display: panel: add startek kd070fhfid015 support
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=5ede23d12b442750ba1298913cf3ce572f1b79d3
+[2/3] drm/panel: Support for startek-kd070fhfid015 MIPI-DSI panel
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=69312a77cd13e36f87378dfe83480b671ebf9216
 
-Thanks,
-Conor.
+-- 
+Neil
 
---wYnIjZfWQhSn+39l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMfXBQAKCRB4tDGHoIJi
-0rD4AQCdqF/j7wlwIBHAzNjMlWl6Ib1oZheQ8nC3xvsHeqicWwD9GKD8rstey1/E
-4EtgwQh0988AUnqbMuGY5fGOH2CQ+w0=
-=SlUC
------END PGP SIGNATURE-----
-
---wYnIjZfWQhSn+39l--
