@@ -2,210 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BAA76A1FD
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 22:34:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF5F76A207
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 22:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjGaUeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 16:34:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53738 "EHLO
+        id S230103AbjGaUg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 16:36:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjGaUeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 16:34:21 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F1D72100;
-        Mon, 31 Jul 2023 13:33:48 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso7699603e87.3;
-        Mon, 31 Jul 2023 13:33:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690835597; x=1691440397;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTESAFSkB0aaTymk9sxX1oQrfsO89OgDrbMH+b9wXKI=;
-        b=k6K2wgh3cLroSZ7rkX5zecFUGoyQr4ZcsKQes8piwSc9OW4vllgkPsrPsTMCRypdAv
-         EDVqrFEPoiKudDLG0BMtgDrAh/cyuVIgV4+178iHXq6Y0GPKu6LAhabc/Hy/lfcAU7Ss
-         kJuoX5cdMD4c7TQOe+gBtJkGsVdx1yqAin0uz2yTbLvC+ruN0CDrZqHiq0ruAKyyDMCL
-         2Xz38c8cnwmDYdPgpaKixYQvbO1xng0xXSA7CySEMFAL/nVV7YZ2gd2RONymozVpzRVl
-         KKiWwTeDb/OKGZSPFTnNK0TS3QFAMy9RQ1B3RXlNzhnn9fP2WgG3v01HFjxbYfj+buj0
-         MS3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690835597; x=1691440397;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RTESAFSkB0aaTymk9sxX1oQrfsO89OgDrbMH+b9wXKI=;
-        b=bGRkZ7l6XTxD61kuYR03VzZfck9N0jwpE/YbYcT2lQmgYLCwWt/3kIpI/JkjepaqtZ
-         71CHjY5L7l7XZ+LSfGoxq/OJg+uh0vx1s5F3TEztoC9YCjaW5Yf7n5BLcG9wqslSwBuz
-         AbLrxENqoDcNYhGoRlYwPqiXc+6+RRvR/h2y21DacmYgOfvAypzZ0XwBQebxhzujHoRU
-         E/p7TY4p07U0khd1kfoo2JXrtUSCt91W7Lf+7mHEFDFQ80Zk+uf+KtfqkZw3LjLJ02cc
-         K4PNPqCKaFCs9PLrzTxuGG0oYI2UZXwtiPgOFhbGXr4VrOV+r2MvFiz2X/mh5g0N6KW1
-         7g1g==
-X-Gm-Message-State: ABy/qLarY430XGL6F/YdJ6z45bmDKEruaYyD074OopwRtjblbT6ntETy
-        zJyqwxMDsFPQdIUSUFTyceA=
-X-Google-Smtp-Source: APBJJlHP0ft40ST4BERPBedmBxMjCZP12iUZ41sRbo2wacYzr+hd4R94uIVyD8sEPpzIiUZdJIZ9CQ==
-X-Received: by 2002:a19:6554:0:b0:4f9:5d2a:e0f6 with SMTP id c20-20020a196554000000b004f95d2ae0f6mr586041lfj.14.1690835597023;
-        Mon, 31 Jul 2023 13:33:17 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id w9-20020a056512098900b004fb761ed781sm2233800lft.109.2023.07.31.13.33.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 13:33:16 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Lee Jones <lee@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: mfd/clock: YAML for Broadcom PMU with ILP clock
-Date:   Mon, 31 Jul 2023 22:33:09 +0200
-Message-Id: <20230731203309.30278-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S230190AbjGaUg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 16:36:27 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47F941BD3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 13:36:24 -0700 (PDT)
+Received: from fabio-Precision-3551.. (unknown [IPv6:2804:14c:485:4b61:fb3f:fd5:45fe:5e7a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 413F4868F1;
+        Mon, 31 Jul 2023 22:36:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1690835781;
+        bh=ScbSiDCyVusg2CAWcManmJOXUSd8wOFhA8yhiRuk+f0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=lETGGMlJpNyPH+yYo9asAYGkzrnzsYBGtIg7viZyZ4foyfTpgEhqirudELDM9bivj
+         isiAUF1D3kJDVLYrJIahf6HzMK+UJpwm1C8EX0J+IJLEFrTBhyekitEhUbX11zE2NK
+         LS5m0JIFB36ZYwEN1nZQRoY+rqFGQfC2wkTwqghzZO+CmCQF53uL283X5EO7UjE0cq
+         orp9WneyCX+X+dxE18TmMdUywgi6teWk85yuKCtoYjXcksozbrYyAaE9OdEIIQSYsT
+         nuoUSbdHLAsD3fnDw/fPrDPcqZU7B3IZrdwKvf9BLPj16X7WlrMw3Ruqe2jPn7qnh7
+         T3+fgzSkYSrWg==
+From:   Fabio Estevam <festevam@denx.de>
+To:     shawnguo@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ARM: dts: imx6q-prti6q: Fix the SDIO wifi node
+Date:   Mon, 31 Jul 2023 17:36:10 -0300
+Message-Id: <20230731203610.1600482-1-festevam@denx.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+#address-cells, #size-cells and unit address are missing for the WL1271
+Wifi chip description, which causes the following schema warning:
 
-BCM53573 SoC has ILP clock that is part of the PMU block. So far PMU
-itself didn't have a proper binding and ILP wasn't converted to
-json-schema. Fix it up.
+imx6q-prti6q.dtb: mmc@2194000: Unevaluated properties are not allowed ('wifi' was unexpected)
 
-Add custom binding for Broadcom's BCM53573 PMU and include ILP's
-properties there (it's trivial and non-reusable binding).
+Pass the missing items to fix it.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- .../bindings/clock/brcm,bcm53573-ilp.txt      | 36 ----------
- .../bindings/mfd/brcm,bcm53573-pmu.yaml       | 67 +++++++++++++++++++
- 2 files changed, 67 insertions(+), 36 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml
+ arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt b/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
-deleted file mode 100644
-index 2ebb107331dd..000000000000
---- a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--Broadcom BCM53573 ILP clock
--===========================
--
--This binding uses the common clock binding:
--    Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--This binding is used for ILP clock (sometimes referred as "slow clock")
--on Broadcom BCM53573 devices using Cortex-A7 CPU.
--
--ILP's rate has to be calculated on runtime and it depends on ALP clock
--which has to be referenced.
--
--This clock is part of PMU (Power Management Unit), a Broadcom's device
--handing power-related aspects. Its node must be sub-node of the PMU
--device.
--
--Required properties:
--- compatible: "brcm,bcm53573-ilp"
--- clocks: has to reference an ALP clock
--- #clock-cells: should be <0>
--- clock-output-names: from common clock bindings, should contain clock
--		      name
--
--Example:
--
--pmu@18012000 {
--	compatible = "simple-mfd", "syscon";
--	reg = <0x18012000 0x00001000>;
--
--	ilp {
--		compatible = "brcm,bcm53573-ilp";
--		clocks = <&alp>;
--		#clock-cells = <0>;
--		clock-output-names = "ilp";
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml
-new file mode 100644
-index 000000000000..5b0a12bf4fe4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/brcm,bcm53573-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom PMU
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+description: |
-+  Broadcom PMU ("Power Management Unit"?) is a hardware block grouping smaller
-+  blocks. It contains few clocks and some shared registers (used to power
-+  control more than 1 block).
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: brcm,bcm53573-pmu
-+      - const: simple-mfd
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  clock-controller-ilp:
-+    description: ILP clock (sometimes referred as "slow clock")
-+    type: object
-+    allOf:
-+      - $ref: /schemas/clock/clock.yaml
-+      - properties:
-+          compatible:
-+            const: brcm,bcm53573-ilp
-+          clocks:
-+            description: ALP clock
-+            maxItems: 1
-+          clock-output-names:
-+            const: ilp
-+          "#clock-cells":
-+            const: 0
-+        required:
-+          - compatible
-+          - clocks
-+          - clock-output-names
-+          - "#clock-cells"
-+    unevaluatedProperties: false
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+  - clock-controller-ilp
-+
-+examples:
-+  - |
-+    pmu@18012000 {
-+        compatible = "brcm,bcm53573-pmu", "simple-mfd", "syscon";
-+        reg = <0x18012000 0x00001000>;
-+
-+        clock-controller-ilp {
-+            compatible = "brcm,bcm53573-ilp";
-+            clocks = <&alp>;
-+            clock-output-names = "ilp";
-+            #clock-cells = <0>;
-+        };
-+    };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts b/arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts
+index d8fa83effd63..3508a2cd928a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts
+@@ -359,8 +359,11 @@ &usdhc2 {
+ 	keep-power-in-suspend;
+ 	status = "okay";
+ 
+-	wifi {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	wifi@2 {
+ 		compatible = "ti,wl1271";
++		reg = <2>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_wifi>;
+ 		interrupts-extended = <&gpio1 30 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-2.35.3
+2.34.1
 
