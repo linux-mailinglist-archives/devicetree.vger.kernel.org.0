@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C97CA769339
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0745876933A
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 12:36:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbjGaKgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 06:36:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34486 "EHLO
+        id S230447AbjGaKgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 06:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbjGaKgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:36:19 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98072116
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:36:18 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-68706b39c4cso2272887b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:36:18 -0700 (PDT)
+        with ESMTP id S230222AbjGaKgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 06:36:22 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEA2E46
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:36:21 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-686b9920362so2968346b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 31 Jul 2023 03:36:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690799778; x=1691404578;
+        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690799781; x=1691404581;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DioTasdys/OXmMLgOafZ0sLUPs2ereraMNozwT0ZB+A=;
-        b=O8yw416rDQmRoqq5bQ13jt8/lTK5CR3edCZtMjn7eHFOvdfiK46iwYh+TJKVtitvGj
-         7U9CucDU21LyFootDCq4vVHu1q7RD4HFtfUGMiMmq3Yp/EzsBTg9hCkvEoZgndTkVHub
-         kuIIB6PnpVCnoiII3Qb1Y3mWYt/0jeZBwoNJvVaOqSPaYTaTSt8R9uuvkAsFAIASR5om
-         t+iCr64CzvjayzM1hBUdZpOh0tkbL4JZO3522SfKy6vUYq8NWnjCECD5Aplrofa6xQfT
-         7AzS0IeJT2wI5NBP0XHsM1n626j5vEOw4L03SfMWJXk/6EvLRogR2Hrieb7YQLt2tfUJ
-         8yLw==
+        bh=lr/IRa0Gy3cXDJfJQ3C/islU29JYFF9cRXQo0YY1xm8=;
+        b=yJ4OAXudxqBZFhr/OyaJCKK4Fpkr1LIhOPnfV6fQsYdVGfxWuqpmW9wYrIJxU9WSv0
+         7cbp4xvw/8YMZrBMS9VUZNTL2Zo5AwcIlW3wnS8JVcvkdBISE/GAYfQ1MH3dalhQM2vT
+         LWOqCprBIxP64zzmdEBECGxw5J9ZT7az3nIAnbSrA++/tV8BrASy+tO9xuMQt/JA1qY8
+         2itpno2Nmn5RS/20BJt1E8YZwlLhz/B1zs92OoA6FJN5466akXrJWO+09UwQprYeaKHe
+         3xPHjij63xrtEvBuS/w8enuvScep0c2A4lByrw+n9N9gCl7ccNRCNZfM9IT90n9nQFkR
+         PaNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690799778; x=1691404578;
+        d=1e100.net; s=20221208; t=1690799781; x=1691404581;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DioTasdys/OXmMLgOafZ0sLUPs2ereraMNozwT0ZB+A=;
-        b=hX6g7v9ot/3wavIFx4Jyih3Af55jWF+sTkqJBNN+JKo6Hqa55cwAMfGDAaEQMTghWz
-         c3BGjSX3/k9f40AXJs1M4bDbtxQVJacVZ+JPrf1Ly6HT9M4xcqBhkANx/m2SYQJR4pS7
-         7n6BgyDZW85WRgwXYUYuRhas3WK8Fz5751Lf+4Fi/AifFBO3izW3a0j6VAKsWvJTQmbR
-         3DzrbeJDtOxivvXFy73w2r15E7c+NG5m5n4t6Pq6YcQsUVJxaugCtM8V/3mKTiRf8ZQQ
-         0J6kW8z2+T4OxBc7RL7hbIOdI95CXYQD8jU8V6ZGFAqPzqeUkxDgn5rPe0NKozGJ8Rhg
-         65dw==
-X-Gm-Message-State: ABy/qLa9gmROFwdf2Zj40g3KkCmWbclbNSjCY9gU2B78QeO4uWBC8VCt
-        y8itllRbNOuijP+ooCUHT40C3A==
-X-Google-Smtp-Source: APBJJlE5MlJ+FgJj9kFGmyEg+iQJdeInkOsMRld/t+dbgm9A5XGIKfQ7skcTBPFIppCYfSlJeOJHyA==
-X-Received: by 2002:a05:6a20:4409:b0:134:9b83:9888 with SMTP id ce9-20020a056a20440900b001349b839888mr11126070pzb.0.1690799778061;
-        Mon, 31 Jul 2023 03:36:18 -0700 (PDT)
+        bh=lr/IRa0Gy3cXDJfJQ3C/islU29JYFF9cRXQo0YY1xm8=;
+        b=G9wCdXPta0WCqNy58cbfBBFuWgu5bNGkrx6W+VH9Ok9irsWISFEQSIkAavQa//C1gX
+         YytP43UQXHxR47HeVPRRNNpB1SELxxvjCctGbBSOqoCO2Q7svMgsRNWZJsoSR5hQ5p0i
+         AV75OsUZKifR6oPdKp6v3BrNaiyzQQ2a/0z/ZyVwe4TNJty2gkn9BoZvE3NVwx1Tlp7m
+         Wn3n64b52q8Ep5uMBkxmBWq+yrfAxiHMK7Ts9y+SUgcc00hm640endBsmX2ruifbOpBy
+         sh6DmsM/zcgWnF7ZM8W9dUFvh1VdCcZBwmaxvZxdupE70WB3MtIAZS4BPAKacHAW9DH+
+         gydQ==
+X-Gm-Message-State: ABy/qLbMD7Gbw8QEcbR0hieT83eSgO3aQVFJ7YsNUj2nK4pZDlJ4R4T7
+        1iAaa9XImCVhInf2eqiabqnswA==
+X-Google-Smtp-Source: APBJJlFRxY1Cy24Y086tRrFk21t6zff+ANEgQENQZLIdnmYNVKsJ+PFWvKSp6WojMQ2IOrtA7Rxe0g==
+X-Received: by 2002:a05:6a00:2296:b0:687:1be4:46e7 with SMTP id f22-20020a056a00229600b006871be446e7mr8645601pfe.9.1690799780782;
+        Mon, 31 Jul 2023 03:36:20 -0700 (PDT)
 Received: from localhost.localdomain ([49.205.243.15])
-        by smtp.gmail.com with ESMTPSA id c13-20020aa7880d000000b00640f51801e6sm5906115pfo.159.2023.07.31.03.36.15
+        by smtp.gmail.com with ESMTPSA id c13-20020aa7880d000000b00640f51801e6sm5906115pfo.159.2023.07.31.03.36.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 03:36:17 -0700 (PDT)
+        Mon, 31 Jul 2023 03:36:20 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 09/13] ARM: dts: rv1126: Enable pwm fan for edgeble-neu2
-Date:   Mon, 31 Jul 2023 16:05:14 +0530
-Message-Id: <20230731103518.2906147-10-jagan@edgeble.ai>
+Subject: [PATCH 10/13] ARM: dts: rv1126: Drop EMMC_RSTN for edgeble-neu2
+Date:   Mon, 31 Jul 2023 16:05:15 +0530
+Message-Id: <20230731103518.2906147-11-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230731103518.2906147-1-jagan@edgeble.ai>
 References: <20230731103518.2906147-1-jagan@edgeble.ai>
@@ -72,30 +72,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Edgeble Neu2 IO board Fan connected to PWM11.
+EMMC_RSTN GPIO1_A3 is connected to FSPI_CLK in Edgeble Neu2
+board.
 
-Enable the pwm fan for it.
+So, drop the same GPIO pin from eMMC.
 
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2-io.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2-io.dts b/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2-io.dts
-index 3340fc3f0739..bbc1cd50a1f6 100644
---- a/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2-io.dts
-+++ b/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2-io.dts
-@@ -59,6 +59,10 @@ eth_phy_rst: eth-phy-rst {
- 	};
- };
- 
-+&pwm11 {
-+	status = "okay";
-+};
-+
- &sdmmc {
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
+diff --git a/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2.dtsi b/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2.dtsi
+index cc64ba4be344..e3e5752fd6b7 100644
+--- a/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2.dtsi
++++ b/arch/arm/boot/dts/rockchip/rv1126-edgeble-neu2.dtsi
+@@ -52,7 +52,7 @@ &emmc {
+ 	bus-width = <8>;
+ 	non-removable;
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&emmc_bus8 &emmc_cmd &emmc_clk &emmc_rstnout>;
++	pinctrl-0 = <&emmc_bus8 &emmc_cmd &emmc_clk>;
+ 	rockchip,default-sample-phase = <90>;
+ 	vmmc-supply = <&vcc_3v3>;
+ 	vqmmc-supply = <&vccio_flash>;
 -- 
 2.25.1
 
