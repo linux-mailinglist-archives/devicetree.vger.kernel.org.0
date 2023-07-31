@@ -2,89 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50F32768AEB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 07:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B290768AFC
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 07:15:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbjGaFFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 01:05:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45332 "EHLO
+        id S229775AbjGaFO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 01:14:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbjGaFFs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 01:05:48 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E93E1BF
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 22:05:46 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-563d3e4f73cso2234742a12.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jul 2023 22:05:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690779946; x=1691384746;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/qMzozlS01EvhKSIYBdj8EYscxDwpJrojnj03ew/Nl0=;
-        b=vMLMmIv8UFxEoNtq9lst6r8TdPip2XqlRQvEUJ9YuMmzJFqV+b6HRa4PAkUQhZxqZO
-         j7ToKnFaS6g3/+hVXiRXPkUh318Y6LtxrbJe7Dy+Hi9nHKCMPHI2AdnlCx3riwHW8PSG
-         FHZO2a58LjQx08bx8UpNulujXQIFJ5XKIBXOjZnymt0MssA00ch6klqlwGB4UiamoAwc
-         PUvZkne5Gb+SESf79Wfg1nkXUOSfz7zLsaqmBchMn1aXARh97Y6zLDC14+YwmZDmM2Vy
-         OYz5pgoQBxFjnnKPQV94vGJx29No6Tgml8WMDDbBIZC2FNRw5jbXTqkG8JuEnauclqrd
-         NpVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690779946; x=1691384746;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/qMzozlS01EvhKSIYBdj8EYscxDwpJrojnj03ew/Nl0=;
-        b=OoHSYT3p70rT9tI4CGsWwsDB2BfcU4nRFRKhZwnWEp3kFhFVFUMXOvGgL6c/MI9Vpe
-         KQv0J6rcwypRmQjUA94SM1cF5w/+ENE98fKKCk5CloCpkl42AqkIzA2+f1Pljv9qDs06
-         nhaBwDlTmDzOoRXRCxnUlwOg8iXkookFQmuRaXxDwTDjchPjWKgxChGdAMTlhHPPWhVl
-         2ucJiqphtQKCwPu2kgn+APb8X/dXhBkCY68H02hGnJyIutqQ5xSvvE0tphK4r055lprz
-         +BPbAQRExuZXxIE61rI0rIY9ZcnQE086SZfzycpGIAKlErDc5JMxRbNCG2RZUFyukwwE
-         wC0w==
-X-Gm-Message-State: ABy/qLaHH/eeQ+muUZ5utlIVRlEDobi7InJQXS6EsxNN53xOcEASGyHy
-        oKivh9XBuT7upiLnLvYcY/RsbA==
-X-Google-Smtp-Source: APBJJlHkHWAlDNYLUb3vJ95nRjSnTPzvUIU0+adOasrwlsSU1tTRCXf9sg7a0lGvv/NSr1nWTOwy3g==
-X-Received: by 2002:a17:90a:86c7:b0:268:2b5c:14c with SMTP id y7-20020a17090a86c700b002682b5c014cmr7247025pjv.13.1690779945646;
-        Sun, 30 Jul 2023 22:05:45 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id j2-20020a17090a94c200b00263f33eef41sm7076501pjw.37.2023.07.30.22.05.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jul 2023 22:05:44 -0700 (PDT)
-Date:   Mon, 31 Jul 2023 10:35:42 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: st: spear: split interrupts per cells
-Message-ID: <20230731050542.uibx3cwfxzxydhpe@vireshk-i7>
-References: <20230730111536.98164-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229502AbjGaFO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 01:14:57 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1421B1A5;
+        Sun, 30 Jul 2023 22:14:55 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36V3ilEd003349;
+        Mon, 31 Jul 2023 05:14:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=yZwONjKHySnDZRuapdHrCNlECA9A+ypflVHU3EdKGfM=;
+ b=HOeyL1Z+DENmiQ0yjNW6kuIg2JsIb+iIhg0HrxqBP54f4zrV12psj3Bshxx4CcICj/0w
+ gGLtl7shc2zcjjzdAbJbOGikawy1VD9bb719UZb2w501pKWBuqCrlTr9fAYOnQfBQnm9
+ AhSZQU+OLxAk+4orBayBJ23VDZdnvTAHPuXY5AREbMoLbz6n/vR5naloTztIlzX3WCXb
+ te9IZWFOfBvvZVrVj5gAtky6uYUmDcCvXORtdfRq7MKn200Ow6i6sZRk4A5MLB1Aq9IT
+ wZvMUgnBnlGX0QL6sS3glb4jXIBRC7bPsR4t2C38jePFZP8wTfnOXBJquDC0JgeqEiXw dA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s4v2djmh8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 05:14:52 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36V5EpSW020030
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 31 Jul 2023 05:14:51 GMT
+Received: from [10.201.206.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Sun, 30 Jul
+ 2023 22:14:44 -0700
+Message-ID: <4d278763-153c-bb9c-56d4-4b262ed2cc99@quicinc.com>
+Date:   Mon, 31 Jul 2023 10:44:41 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230730111536.98164-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v4 07/11] firmware: qcom_scm: ipq5332: add msa lock/unlock
+ support
+Content-Language: en-US
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mathieu.poirier@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_eberman@quicinc.com>, <kvalo@kernel.org>,
+        <loic.poulain@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_varada@quicinc.com>
+References: <20230728063412.1641856-1-quic_mmanikan@quicinc.com>
+ <20230728063412.1641856-8-quic_mmanikan@quicinc.com>
+ <20230729003037.GA25463@quicinc.com>
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <20230729003037.GA25463@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4X2b7Cp-hv2RsNuR-_Oq4m9KWeOVgaIu
+X-Proofpoint-ORIG-GUID: 4X2b7Cp-hv2RsNuR-_Oq4m9KWeOVgaIu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ mlxlogscore=999 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ adultscore=0 impostorscore=0 bulkscore=0 mlxscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307310048
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-07-23, 13:15, Krzysztof Kozlowski wrote:
-> Each interrupt should be in its own cell.  This is much more readable.
+
+
+On 7/29/2023 6:00 AM, Guru Das Srinagesh wrote:
+> On Jul 28 2023 12:04, Manikanta Mylavarapu wrote:
+>> IPQ5332 user pd remoteproc firmwares need to be locked
+>> with MSA(modem secure access) features. This patch add
+>> support to lock/unlock MSA features.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+>> Changes in v4:
+>> 	- Rebased on linux-next
+>>
+>>   drivers/firmware/qcom_scm.c            | 78 ++++++++++++++++++++++++++
+>>   drivers/firmware/qcom_scm.h            |  2 +
+>>   include/linux/firmware/qcom/qcom_scm.h |  2 +
+>>   3 files changed, 82 insertions(+)
+>>
+>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>> index 3bc8c63a997f..2275cf7bc887 100644
+>> --- a/drivers/firmware/qcom_scm.c
+>> +++ b/drivers/firmware/qcom_scm.c
+>> @@ -676,6 +676,84 @@ bool qcom_scm_pas_supported(u32 peripheral)
+>>   }
+>>   EXPORT_SYMBOL(qcom_scm_pas_supported);
+>>   
+>> +/**
+>> + * qcom_scm_msa_lock() - Lock given peripheral firmware region as MSA
+>> + *
+>> + * @peripheral:	peripheral id
+>> + *
+>> + * Return 0 on success.
+>> + */
+>> +int qcom_scm_msa_lock(u32 peripheral)
+>> +{
+>> +	int ret;
+>> +	struct qcom_scm_desc desc = {
+>> +		.svc = QCOM_SCM_SVC_PIL,
+>> +		.cmd = QCOM_SCM_MSA_LOCK,
+>> +		.arginfo = QCOM_SCM_ARGS(1),
+>> +		.args[0] = peripheral,
+>> +		.owner = ARM_SMCCC_OWNER_SIP,
+>> +	};
+>> +	struct qcom_scm_res res;
+>> +
+>> +	if (!__qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_PIL,
+>> +					  QCOM_SCM_MSA_LOCK))
+>> +		return 0;
+>> +
+>> +	ret = qcom_scm_clk_enable();
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = qcom_scm_bw_enable();
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = qcom_scm_call(__scm->dev, &desc, &res);
+>> +	qcom_scm_bw_disable();
+>> +	qcom_scm_clk_disable();
+>> +
+>> +	return ret ? : res.result[0];
+>> +}
+>> +EXPORT_SYMBOL(qcom_scm_msa_lock);
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm/boot/dts/st/spear1340.dtsi |  8 ++++----
->  arch/arm/boot/dts/st/spear13xx.dtsi | 24 ++++++++++++------------
->  2 files changed, 16 insertions(+), 16 deletions(-)
+> Could you please convert this to EXPORT_SYMBOL_GPL?
+> 
+Ok, sure.
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+>> +
+>> +/**
+>> + * qcom_scm_msa_unlock() - Unlock given peripheral MSA firmware region
+>> + *
+>> + * @peripheral:	peripheral id
+>> + *
+>> + * Return 0 on success.
+>> + */
+>> +int qcom_scm_msa_unlock(u32 peripheral)
+>> +{
+>> +	int ret;
+>> +	struct qcom_scm_desc desc = {
+>> +		.svc = QCOM_SCM_SVC_PIL,
+>> +		.cmd = QCOM_SCM_MSA_UNLOCK,
+>> +		.arginfo = QCOM_SCM_ARGS(1),
+>> +		.args[0] = peripheral,
+>> +		.owner = ARM_SMCCC_OWNER_SIP,
+>> +	};
+>> +	struct qcom_scm_res res;
+>> +
+>> +	if (!__qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_PIL,
+>> +					  QCOM_SCM_MSA_UNLOCK))
+>> +		return 0;
+>> +
+>> +	ret = qcom_scm_clk_enable();
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = qcom_scm_bw_enable();
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = qcom_scm_call(__scm->dev, &desc, &res);
+>> +	qcom_scm_bw_disable();
+>> +	qcom_scm_clk_disable();
+>> +
+>> +	return ret ? : res.result[0];
+>> +}
+>> +EXPORT_SYMBOL(qcom_scm_msa_unlock);
+> 
+> This one too?
+> 
+Ok, sure.
 
--- 
-viresh
+> Reference: [1]
+> The whole driver has now moved to using EXPORT_SYMBOL_GPL() now.
+> 
+> [1] https://lore.kernel.org/lkml/19d9ac0bf79f957574ef9b3b73246ea0113cc0fd.1690503893.git.quic_gurus@quicinc.com/
+> 
+> Thank you.
+> 
+> Guru Das.
+
+Thanks & Regards,
+Manikanta.
