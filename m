@@ -2,121 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D4E2769C3A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 18:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EDD769C45
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jul 2023 18:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbjGaQWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jul 2023 12:22:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55240 "EHLO
+        id S233134AbjGaQXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jul 2023 12:23:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231444AbjGaQWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 12:22:31 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2659A7;
-        Mon, 31 Jul 2023 09:22:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=RBXOtrD3ZlEhqpLX1FdhLeJavuxWtGfwI1ATytFWQb8=; b=UiIuoVqEYu3NR1hGJVRxRVn3bQ
-        FcamShq7Ai1mI/W3PvHdyZJwpyAvpQc4W5Qac0gyeYVGB9lwiHktKxPNWmdbJ/A+yeeEZ91PkKcbs
-        ZP2Raqh4BqUHratH+wjTBGKT/RyOTxnCNC4FMMF+Sigzz4mtAwbL/mr49f5DDl+nTnNM=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:53968 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qQVev-0006ZN-7g; Mon, 31 Jul 2023 12:22:13 -0400
-Date:   Mon, 31 Jul 2023 12:22:12 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230731122212.3f64d0dc5adf8d23eee1de62@hugovil.com>
-In-Reply-To: <2023073108-footboard-chooser-d20e@gregkh>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
-        <20230725142343.1724130-3-hugo@hugovil.com>
-        <2023073108-footboard-chooser-d20e@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S232880AbjGaQXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jul 2023 12:23:22 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D9410D0;
+        Mon, 31 Jul 2023 09:23:18 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:281:8300:73::5f6])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id AA2B02C5;
+        Mon, 31 Jul 2023 16:23:17 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net AA2B02C5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+        t=1690820597; bh=yFSfFyUQXT4DT++sxUWwAVT0WoQ6QyQTZaoT9AgNIvo=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=Ru3FR0Ekg1gFV8rnHsCa289Fm+t2lemULUPWgU0OBPUqHBb0cX5+t91PdIKIxqQXi
+         UnD3psVJrhfeNBShkC6Rr9BGZCV0fYyST7yWz7fEO34BCv/a4ECniDKDIMfGJlt8Y4
+         c/IpuvyFTykpBy9+3Hv71ns/wX328fRUGSQP5x+/YzepM9sqnYBTqtojGHBclwn1v5
+         HDzQxgTqbehGT9Ri4skj8w5fzfCXaUfGf721/SF1TfVFt+xSj0cavFfdWa3Dz7TccC
+         Ko0oCeZAJodwZSGFoMmHBYwnEzqTpYxc45CGHlDs08S0XlgfnCoCb2b9zlb8fUGkXk
+         83MhZs3vc+j5w==
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+        arm@kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v3 1/3] MAINTAINERS: soc: reference maintainer profile
+In-Reply-To: <20230723131924.78190-1-krzysztof.kozlowski@linaro.org>
+References: <20230723131924.78190-1-krzysztof.kozlowski@linaro.org>
+Date:   Mon, 31 Jul 2023 10:23:17 -0600
+Message-ID: <87y1iwcaoa.fsf@meer.lwn.net>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v9 02/10] serial: sc16is7xx: mark IOCONTROL register as
- volatile
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jul 2023 17:50:40 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-> On Tue, Jul 25, 2023 at 10:23:34AM -0400, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Bit SRESET (3) is cleared when a reset operation is completed. Having
-> > the IOCONTROL register as non-volatile will always read SRESET as 1,
-> > which is incorrect.
-> > 
-> > Also, if IOCONTROL register is not a volatile register, the upcoming
-> > patch "serial: sc16is7xx: fix regression with GPIO configuration"
-> > doesn't work when setting some shared GPIO lines as modem control
-> > lines.
-> > 
-> > Therefore mark IOCONTROL register as a volatile register.
-> > 
-> > Cc: <stable@vger.kernel.org> # 6.1.x
-> 
-> Why 6.1.y?  What commit does this fix?
-> 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
-> > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
-> > ---
-> >  drivers/tty/serial/sc16is7xx.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-> > index 8ae2afc76a9b..306ae512b38a 100644
-> > --- a/drivers/tty/serial/sc16is7xx.c
-> > +++ b/drivers/tty/serial/sc16is7xx.c
-> > @@ -488,6 +488,7 @@ static bool sc16is7xx_regmap_volatile(struct device *dev, unsigned int reg)
-> >  	case SC16IS7XX_TXLVL_REG:
-> >  	case SC16IS7XX_RXLVL_REG:
-> >  	case SC16IS7XX_IOSTATE_REG:
-> > +	case SC16IS7XX_IOCONTROL_REG:
-> >  		return true;
-> >  	default:
-> >  		break;
-> 
-> Is this the same as this change:
-> 	https://lore.kernel.org/all/20230724034727.17335-1-hui.wang@canonical.com/
-> 
-> confused,
+> Mention the SoC maintainer profile in P: entry.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
 
-Hi Greg,
-yes this is the same.
+I've applied this series, thanks.
 
-You simply accepted an exact equivalent of my patch by someone else in
-your tree, no confusion there.
-
-I will remove this patch from my series and rebase it on your tree
-gregkh_tty/tty-next.
-
-Hugo.
+jon
