@@ -2,95 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFFD76AA7E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 10:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2413E76AA8F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 10:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230317AbjHAIEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 04:04:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58850 "EHLO
+        id S232124AbjHAIKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 04:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjHAIEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 04:04:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1001CC6;
-        Tue,  1 Aug 2023 01:04:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 96AD6614AD;
-        Tue,  1 Aug 2023 08:04:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 823D5C433C8;
-        Tue,  1 Aug 2023 08:04:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690877072;
-        bh=Tv+oYDR8L9V9W/c2l2OAdHIcJgsgGbcswiHtZzQaNhQ=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=I114Msy+sme9c8Xqqa/nLUtJEsHDs1ACQd4cp3G1yIxuGDbjrG8iwEG6x4by7ZNSH
-         bHOu12c4zWevOcO96Tz4nntB6501ZgchVnA6z9du0NVknqaNnsmsupZmfAncKadfq+
-         Tx4PoXAL4oyrcsFtWR08l1NYgkm9AT8c0WLygRyLteAZJW352I0lMv8m9KpOoiHf3s
-         p/299KpE27dGdrO/BVSaah1LYuYiSXTElxyIABR0XLzmnNNFT5U1ehbuPXkbc5E1ka
-         s12EYyRFq/BCKDDBAaHf7YDST3PkxF90VP+sTuqNWNMK48RZ0U2gVi+fxXBZM4488F
-         QPRXnUCo9BLSg==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     Felix Fietkau <nbd@nbd.name>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v3 1/2] dt-bindings: mt76: support setting
- per-band MAC address
-References: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
-Date:   Tue, 01 Aug 2023 11:04:25 +0300
-In-Reply-To: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
-        (Daniel Golle's message of "Mon, 31 Jul 2023 23:23:16 +0100")
-Message-ID: <874jljyyra.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+        with ESMTP id S232100AbjHAIJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 04:09:59 -0400
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FE811D
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 01:09:58 -0700 (PDT)
+Received: from [127.0.0.1] (helo=localhost)
+        by relay.expurgate.net with smtp (Exim 4.92)
+        (envelope-from <prvs=6591581bf9=fe@dev.tdt.de>)
+        id 1qQkS0-009cja-Vc; Tue, 01 Aug 2023 10:09:53 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+        by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1qQkRz-00AHHY-VB; Tue, 01 Aug 2023 10:09:51 +0200
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+        by securemail.tdt.de (Postfix) with ESMTP id 8CB2024004B;
+        Tue,  1 Aug 2023 10:09:51 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+        by securemail.tdt.de (Postfix) with ESMTP id DD65A240040;
+        Tue,  1 Aug 2023 10:09:50 +0200 (CEST)
+Received: from mail.dev.tdt.de (localhost [IPv6:::1])
+        by mail.dev.tdt.de (Postfix) with ESMTP id 7358431526;
+        Tue,  1 Aug 2023 10:09:50 +0200 (CEST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 01 Aug 2023 10:09:50 +0200
+From:   Florian Eckert <fe@dev.tdt.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, yzhu@maxlinear.com,
+        rtanwar@maxlinear.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Eckert.Florian@googlemail.com
+Subject: Re: [PATCH 2/2] dt-bindings: clock: intel,cgu-lgm: add
+ mxl,control-gate option
+In-Reply-To: <75cbeeed-84c9-7637-b2a7-b37d87f5872e@linaro.org>
+References: <20230731100349.184553-1-fe@dev.tdt.de>
+ <20230731100349.184553-3-fe@dev.tdt.de>
+ <780aa090-3a97-abab-271f-59790df29cc4@linaro.org>
+ <11386dd27487075a9a0b1a2aa7794951@dev.tdt.de>
+ <75cbeeed-84c9-7637-b2a7-b37d87f5872e@linaro.org>
+Message-ID: <2053f32f262911061e3e56540e4b51d4@dev.tdt.de>
+X-Sender: fe@dev.tdt.de
+User-Agent: Roundcube Webmail/1.3.17
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-purgate-ID: 151534::1690877392-85CBE7FE-FCBE3A86/0/0
+X-purgate-type: clean
+X-purgate: clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Daniel Golle <daniel@makrotopia.org> writes:
+Hello Krzysztof,
 
-> Introduce support for setting individual per-band MAC addresses using
-> NVMEM cells by adding a 'bands' object with enumerated child nodes
-> representing the 2.4 GHz, 5 GHz and 6 GHz bands.
->
-> In case it is defined, call of_get_mac_address for the per-band child
-> node, otherwise try with of_get_mac_address on the main device node and
-> fall back to a random address like it used to be.
->
-> While at it, add MAC address related properties also for the main node.
->
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>> You described the desired Linux feature or behavior, not the actual
+>>> hardware. The bindings are about the latter, so instead you need to
+>>> rephrase the property and its description to match actual hardware
+>>> capabilities/features/configuration etc.
+>> 
+>> You have correctly identified that this is not a hardware 
+>> configuration,
+>> but a driver configuration. Currently, the driver is configured so 
+>> that
+>> the gates cannot be switched via the clk subsystem callbacks. When
+>> registering the data structures from the driver, I have to pass a flag
+>> GATE_CLK_HW so that the gate is managed by the driver.
+>> 
+>> I didn't want to always change the source of the driver when it has to
+>> take
+>> care of the GATE, so I wanted to map this via the dts.
+>> 
+>> I have a board support package from Maxlinear for the Lightning 
+>> Mountain
+>> Soc
+>> with other drivers that are not upstream now. Some of them use the
+>> clock framework some of them does not.
+>> 
+>> Due to missing documents it is not possible to send these drivers
+>> upstream.
+> 
+> So when you upstream them, the binding becomes wrong or not needed?
+> Sorry, bindings are entirely independent of OS, so using this as an
+> argument is clear no-go.
 
-mt76 patches go to Felix's tree, not net-next. No need to resend because
-of this.
+Yes, that would probably be the case, as the maxlinear drivers are at
+an early stage and are not yet upstreamable in my opinion. If I had the
+documents, I would take a closer look. But they are developing behind
+closed doors. Nothing can be contributed. Not until the drivers are
+hopefully upstream at some point as the cgu-lgm.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+>> Strictly speaking, this is about the gptc and the watchdog.
+>> 
+>> Since it is a buildin_platform driver, it can also not work via
+>> module parameters.
+> 
+> None of this explains any hardware related part of this binding. You
+> created now policy for one specific OS. Devicetree, which is OS
+> independent, is not for such purposes.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Yes this would be the case. Maybe I need to patch the cgu-lgm.c [1]
+and send it upstream to restore the old behavior.
+Because the following commit has changed the behaviour [2].
+Unfortunately, it is also included in 5.15 stable branch.
+Which in my opinion should not have happened!
+
+Best regards,
+Florian
+
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/x86/clk-lgm.c?h=v6.5-rc4
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/drivers/clk/x86/clk-cgu.c?h=v5.15.123&id=a0583edea4fdb7b5b87a077263dddab476e9f138
