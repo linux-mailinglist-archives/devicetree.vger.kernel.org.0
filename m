@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 356C776B712
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 16:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F52F76B71B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 16:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234418AbjHAOST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 10:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42156 "EHLO
+        id S234545AbjHAOTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 10:19:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234601AbjHAOSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 10:18:08 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2392DC;
-        Tue,  1 Aug 2023 07:18:07 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B0C9B8DA;
-        Tue,  1 Aug 2023 16:17:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1690899423;
-        bh=sQG3vwXJXjbg01e7uLSpcCe0tx3QQknd3b3XmbiopR4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=t25R7aL4Kg+bsOWlL9diXbKSuX2T1nNxUuHOizgjXra8wstiHtFCrUBdjSOhmOrfq
-         YYR+IHX+8+j4lb95PZa/a7YM/jSkH7xnMW3XblpFIJUUIK7ACh9Z0fVvtrhbyQqnXW
-         UO/XENIsUJVpvxRKNIDwV+fmd8MVrzlzLf66nFn8=
-Message-ID: <3592f52b-42fc-6f50-07c5-df0ce4d74cd4@ideasonboard.com>
-Date:   Tue, 1 Aug 2023 17:18:02 +0300
+        with ESMTP id S234562AbjHAOTl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 10:19:41 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 359F4BF;
+        Tue,  1 Aug 2023 07:19:40 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 371EJWqX055662;
+        Tue, 1 Aug 2023 09:19:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690899572;
+        bh=n2rRx8pB8T/Zi6wh1widcHtcJC9FOdfiiBjMAQ0+Ras=;
+        h=From:To:CC:Subject:Date;
+        b=ZVSg8ir4Kkl0kq9EO4aT9AFj/VQbL/UJl93vLwYGxBu+5YX4j2ri9Bv++1RAl3g4r
+         ru2VZy16ab4KIcEUR84jfz2CJ8nXqf7nrHFSiNNHSK0WYZXjxeLXPUuttLw55PzN3i
+         jyvnjzPN1pU2IrlujweJXxvOiUOHTdfn3eJQtDBw=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 371EJW3T029849
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Aug 2023 09:19:32 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
+ Aug 2023 09:19:32 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 1 Aug 2023 09:19:32 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 371EJS3g022895;
+        Tue, 1 Aug 2023 09:19:29 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <t-konduru@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vaishnav.a@ti.com>
+CC:     Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for ospi
+Date:   Tue, 1 Aug 2023 19:49:20 +0530
+Message-ID: <20230801141920.3317697-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v8 12/16] media: cadence: csi2rx: Populate subdev devnode
-Content-Language: en-US
-To:     Jai Luthra <j-luthra@ti.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        niklas.soderlund+renesas@ragnatech.se,
-        Benoit Parrot <bparrot@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, nm@ti.com,
-        devarsht@ti.com
-References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
- <20230731-upstream_csi-v8-12-fb7d3661c2c9@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230731-upstream_csi-v8-12-fb7d3661c2c9@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,37 +65,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 11:29, Jai Luthra wrote:
-> From: Pratyush Yadav <p.yadav@ti.com>
-> 
-> The devnode can be used by media-ctl and other userspace tools to
-> perform configurations on the subdev. Without it, media-ctl returns
-> ENOENT when setting format on the sensor subdev.
-> 
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> v7->v8: No change
-> 
->   drivers/media/platform/cadence/cdns-csi2rx.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index cde7fd6463e1..d82a8938932f 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -678,6 +678,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->   	csi2rx->pads[CSI2RX_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
->   	for (i = CSI2RX_PAD_SOURCE_STREAM0; i < CSI2RX_PAD_MAX; i++)
->   		csi2rx->pads[i].flags = MEDIA_PAD_FL_SOURCE;
-> +	csi2rx->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->   
->   	ret = media_entity_pads_init(&csi2rx->subdev.entity, CSI2RX_PAD_MAX,
->   				     csi2rx->pads);
-> 
+After splitting wkup_pmx pin mux for J784S4 into four regions.
+Pin mux offset for OSPI nodes were not updated to align with new
+regions, due to this while setting ospi pin muxes out of range
+error was seen.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Pin mux offsets for OSPI nodes are corrected in this patch.
 
-  Tomi
+Fixes: 14462bd0b247 ("arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and pinctrl node offsets")
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+Original test log
+https://gist.github.com/uditkumarti/85b5076df99c3019aa56da4268724295
+line 1104 and 1107, out of range error is seen
+
+Test log with patch
+https://gist.github.com/uditkumarti/29b424d0a1527e77947f72d2e8a38f01
+
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 31 +++++++++++++++---------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+index 7ad152a1b90f..1961cd819f5e 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+@@ -379,21 +379,28 @@ J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (D34) MCU_OSPI0_D5 */
+ 			J784S4_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (E34) MCU_OSPI0_D6 */
+ 			J784S4_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (E33) MCU_OSPI0_D7 */
+ 			J784S4_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (C34) MCU_OSPI0_DQS */
+-			J784S4_WKUP_IOPAD(0x03c, PIN_OUTPUT, 6) /* (C32) MCU_OSPI0_CSn3.MCU_OSPI0_ECC_FAIL */
+-			J784S4_WKUP_IOPAD(0x038, PIN_OUTPUT, 6) /* (B34) MCU_OSPI0_CSn2.MCU_OSPI0_RESET_OUT0 */
++		>;
++	};
++};
++
++&wkup_pmx1 {
++	mcu_fss0_ospi0_pins1_default: mcu-fss0-ospi0-default-pins1 {
++		pinctrl-single,pins = <
++			J784S4_WKUP_IOPAD(0x004, PIN_OUTPUT, 6) /* (C32) MCU_OSPI0_ECC_FAIL */
++			J784S4_WKUP_IOPAD(0x000, PIN_OUTPUT, 6) /* (B34) MCU_OSPI0_RESET_OUT0 */
+ 		>;
+ 	};
+ 
+-	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-default-pins {
++	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-pins-default {
+ 		pinctrl-single,pins = <
+-			J784S4_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (F32) MCU_OSPI1_CLK */
+-			J784S4_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (G32) MCU_OSPI1_CSn0 */
+-			J784S4_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (E35) MCU_OSPI1_D0 */
+-			J784S4_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (D31) MCU_OSPI1_D1 */
+-			J784S4_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (G31) MCU_OSPI1_D2 */
+-			J784S4_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (F33) MCU_OSPI1_D3 */
+-			J784S4_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (F31) MCU_OSPI1_DQS */
+-			J784S4_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (C31) MCU_OSPI1_LBCLKO */
++			J784S4_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (F32) MCU_OSPI1_CLK */
++			J784S4_WKUP_IOPAD(0x024, PIN_OUTPUT, 0) /* (G32) MCU_OSPI1_CSn0 */
++			J784S4_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (E35) MCU_OSPI1_D0 */
++			J784S4_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (D31) MCU_OSPI1_D1 */
++			J784S4_WKUP_IOPAD(0x01C, PIN_INPUT, 0) /* (G31) MCU_OSPI1_D2 */
++			J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (F33) MCU_OSPI1_D3 */
++			J784S4_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F31) MCU_OSPI1_DQS */
++			J784S4_WKUP_IOPAD(0x00C, PIN_INPUT, 0) /* (C31) MCU_OSPI1_LBCLKO */
+ 		>;
+ 	};
+ };
+@@ -437,7 +444,7 @@ &fss {
+ &ospi0 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
++	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_pins1_default>;
+ 
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+-- 
+2.34.1
 
