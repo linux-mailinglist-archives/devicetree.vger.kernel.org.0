@@ -2,91 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7981676A815
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 06:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A8276A8B3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 08:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbjHAE6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 00:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
+        id S229959AbjHAGKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 02:10:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjHAE6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 00:58:43 -0400
+        with ESMTP id S229952AbjHAGKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 02:10:52 -0400
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC7B1FC0;
-        Mon, 31 Jul 2023 21:58:42 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3711fvgV012636;
-        Tue, 1 Aug 2023 04:58:30 GMT
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87BC510C1;
+        Mon, 31 Jul 2023 23:10:50 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3712OTub021976;
+        Tue, 1 Aug 2023 06:10:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=KZxbaDO7QuMFAxblJFKDY2rmUCa1JzWd9myMgUGIk38=;
- b=B5SiWdzYNVNwLOXeBOrmelu/6YBhoa9szETVNitnX72H1o0dVsTlgqypn9EEyxOyf5Gn
- yygL7kszE2g+WadPhdxwoq2CGWTDGP4aRpZUjuWn2C6z65cFqheTYljN4F785f0v2LQ6
- E0AlMEUpEojFAihm0bcCPWMjQL/z4UD42kvEuP7nM32I8tf5N0iLQJ0aqhAzPxnWZySQ
- izctGn02d2Uyvtlvo1ZAIIOrfB6Z66MVzlZBeOgzkC+GHq4iAnHM5xDcSbiV/YqFpdpW
- JlweTBsCRwHNXitF8FUNMDWVPJ1olk9MY1VSHUHZdHggpANfSB4AeAiyCZCfng+DQMv4 sQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s6fak9far-1
+ bh=k0aCpbnFwmp/8D1M9UqaS9hPY06JCFYLbdnWnW8RK8E=;
+ b=fCOJKRp5GCf1qyk/d1zmobaAC6VysUZp1oc1Aebnb8uWE2u15ny5kUKLsK5yPYRvhBdM
+ G1UfIRwoLDuoDRk9/5/dGkrkvRZpv1ldO4ctij3ncVaSHISQaHzf1ArsPkgl6tkQPu7s
+ eCSXv0tlLN+IR8CbsPwpxmcEe6chrPR8DzoA16q7GjMH7jqXphk0ceGbTm8lDphByCi5
+ BGYxTCalDRpp1lJCE4osQm4Z/OdWytMzhvucLUMTYdNQ2jlrH57weCN1q/c3hxiZnhJE
+ +RxT2vw6xtlfA9efdBPn2fJ+MI5R6kIxE+knhKkMi7EYMwTCboxTWqN1nqJCQ3BK2acY 1w== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s6rhare1u-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Aug 2023 04:58:29 +0000
+        Tue, 01 Aug 2023 06:10:47 +0000
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3714wS8t010784
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3716AkYc010211
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 1 Aug 2023 04:58:28 GMT
-Received: from [10.217.219.237] (10.80.80.8) by nalasex01b.na.qualcomm.com
+        Tue, 1 Aug 2023 06:10:46 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
  (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 31 Jul
- 2023 21:58:22 -0700
-Message-ID: <5481d9ca-4ba0-2545-131b-4a80669061c3@quicinc.com>
-Date:   Tue, 1 Aug 2023 10:28:18 +0530
+ 2023 23:10:42 -0700
+Message-ID: <71924c34-c398-22d7-bc79-50b0df482a22@quicinc.com>
+Date:   Tue, 1 Aug 2023 11:40:39 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 2/6] dt-bindings: phy: qcom,qmp: Add sa8775p QMP PCIe
- PHY
-To:     Andrew Halaney <ahalaney@redhat.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mani@kernel.org>,
-        <quic_shazhuss@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nayiluri@quicinc.com>,
-        <dmitry.baryshkov@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <1689311319-22054-1-git-send-email-quic_msarkar@quicinc.com>
- <1689311319-22054-3-git-send-email-quic_msarkar@quicinc.com>
- <132e9514-7eb9-8915-6130-5bf656c1aaac@linaro.org>
- <ca51b1dc-5805-5b01-01e0-a7dff535cb6c@quicinc.com>
- <y7tuvgc7r4o6jhe7hhyqxaksalld4zn5ou53ywdkwfrp2y773v@z3nvbgd2i6lz>
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v5 2/2] nvmem: sec-qfprom: Add Qualcomm secure QFPROM
+ support
 Content-Language: en-US
-From:   Mrinmay Sarkar <quic_msarkar@quicinc.com>
-In-Reply-To: <y7tuvgc7r4o6jhe7hhyqxaksalld4zn5ou53ywdkwfrp2y773v@z3nvbgd2i6lz>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Mukesh Ojha <quic_mojha@quicinc.com>
+CC:     <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <srinivas.kandagatla@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230724083849.8277-1-quic_kbajaj@quicinc.com>
+ <20230724083849.8277-3-quic_kbajaj@quicinc.com>
+ <9f417fea-38cf-942b-514e-99b47f27c544@quicinc.com>
+ <wst227b45le3ql6ctkdiyiynae7ipy3gqiz6ibhbxau4bogb5o@w25vnllnwnw7>
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <wst227b45le3ql6ctkdiyiynae7ipy3gqiz6ibhbxau4bogb5o@w25vnllnwnw7>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0kT6QFnbvNxd5NXSxvMwm7KtVb1BwWqB
-X-Proofpoint-GUID: 0kT6QFnbvNxd5NXSxvMwm7KtVb1BwWqB
+X-Proofpoint-GUID: B6VG5gmQ-zwu4vMHH6aINyuxfioYzfsU
+X-Proofpoint-ORIG-GUID: B6VG5gmQ-zwu4vMHH6aINyuxfioYzfsU
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-01_01,2023-07-31_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0 bulkscore=0
- phishscore=0 malwarescore=0 spamscore=0 clxscore=1011 impostorscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308010045
+ definitions=2023-08-01_03,2023-07-31_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ bulkscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308010056
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
@@ -98,150 +87,66 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 7/25/2023 11:21 PM, Andrew Halaney wrote:
-> On Fri, Jul 21, 2023 at 04:33:20PM +0530, Mrinmay Sarkar wrote:
->> On 7/17/2023 12:55 PM, Krzysztof Kozlowski wrote:
->>> On 14/07/2023 07:08, Mrinmay Sarkar wrote:
->>>> Add devicetree YAML binding for Qualcomm QMP PCIe PHY
->>>> for SA8775p platform.
->>>>
->>>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->>>> ---
->>>>    .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml      | 19 ++++++++++++++++++-
->>>>    1 file changed, 18 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>>> index a0407fc..ca55ed9 100644
->>>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>>> @@ -16,6 +16,8 @@ description:
->>>>    properties:
->>>>      compatible:
->>>>        enum:
->>>> +      - qcom,sa8775p-qmp-gen4x2-pcie-phy
->>>> +      - qcom,sa8775p-qmp-gen4x4-pcie-phy
->>>>          - qcom,sc8280xp-qmp-gen3x1-pcie-phy
->>>>          - qcom,sc8280xp-qmp-gen3x2-pcie-phy
->>>>          - qcom,sc8280xp-qmp-gen3x4-pcie-phy
->>>> @@ -30,7 +32,7 @@ properties:
->>>>      clocks:
->>>>        minItems: 5
->>>> -    maxItems: 6
->>>> +    maxItems: 7
->>>>      clock-names:
->>>>        minItems: 5
->>>> @@ -41,6 +43,7 @@ properties:
->>>>          - const: rchng
->>>>          - const: pipe
->>>>          - const: pipediv2
->>>> +      - const: phy_aux
->>>>      power-domains:
->>>>        maxItems: 1
->>>> @@ -141,6 +144,20 @@ allOf:
->>>>            compatible:
->>>>              contains:
->>>>                enum:
->>>> +              - qcom,sa8775p-qmp-gen4x2-pcie-phy
->>>> +              - qcom,sa8775p-qmp-gen4x4-pcie-phy
->>>> +    then:
->>>> +      properties:
->>>> +        clocks:
->>>> +          minItems: 7
->>>> +        clock-names:
->>>> +          minItems: 7
->>>> +
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>> This probably works but is not obvious and easy to read. You have here
->>> if:then:else: block, so else applies to your variant. Change all these
->>> if clauses for clocks into separate clauses per matching variant
->>> (if:then: ... if:then:... if:then:...)
-> As far as I can tell, this actually doesn't work :(
->
->>> Best regards,
->>> Krzysztof
->> My Bad here, This patch already applied we will take care this in next patch
->> set.
->>
->> Thanks,
->> Mrinmay
->>
-> Mrinmay, do you plan on spinning what Krzysztof suggested? I grabbed
-> linux-next today and ran into this (looks like clocks, clock-names in
-> binding is broken and looks like we're either missing the required
-> power-domain in the dts or it isn't actually required):
->
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % git diff
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1 DT_SCHEMA_FILES=phy/qcom,sc8280xp-qmp-pcie-phy.yaml qcom/sa8775p-ride.dtb
->        UPD     include/config/kernel.release
->        LINT    Documentation/devicetree/bindings
->        CHKDT   Documentation/devicetree/bindings/processed-schema.json
->        SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->      /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml: ignoring, error parsing file
->        DTC_CHK arch/arm64/boot/dts/qcom/sa8775p-ride.dtb
->      /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c04000: 'power-domains' is a required property
->          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
->      /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c04000: clocks: [[31, 66], [31, 68], [31, 94], [31, 72], [31, 74], [31, 77], [31, 70]] is too long
->          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
->      /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c04000: clock-names: ['aux', 'cfg_ahb', 'ref', 'rchng', 'pipe', 'pipediv2', 'phy_aux'] is too long
->          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
->      /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c14000: 'power-domains' is a required property
->          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
->      /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c14000: clocks: [[31, 80], [31, 82], [31, 94], [31, 86], [31, 88], [31, 91], [31, 84]] is too long
->          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
->      /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c14000: clock-names: ['aux', 'cfg_ahb', 'ref', 'rchng', 'pipe', 'pipediv2', 'phy_aux'] is too long
->          from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
->      ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1    7.65s user 0.52s system 99% cpu 8.231 total
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] %
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] %
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] %
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % # Total hack just to show our issues in current binding
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % git diff
->      diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->      index ca55ed9d74ac..5476cf2422da 100644
->      --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->      +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->      @@ -87,7 +87,6 @@ required:
->         - reg
->         - clocks
->         - clock-names
->      -  - power-domains
->         - resets
->         - reset-names
->         - vdda-phy-supply
->      @@ -132,12 +131,6 @@ allOf:
->                 maxItems: 5
->               clock-names:
->                 maxItems: 5
->      -    else:
->      -      properties:
->      -        clocks:
->      -          minItems: 6
->      -        clock-names:
->      -          minItems: 6
->       
->         - if:
->             properties:
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1 DT_SCHEMA_FILES=phy/qcom,sc8280xp-qmp-pcie-phy.yaml qcom/sa8775p-ride.dtb
->        UPD     include/config/kernel.release
->        LINT    Documentation/devicetree/bindings
->        CHKDT   Documentation/devicetree/bindings/processed-schema.json
->        SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->      /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml: ignoring, error parsing file
->        DTC_CHK arch/arm64/boot/dts/qcom/sa8775p-ride.dtb
->      ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1    7.58s user 0.87s system 98% cpu 8.618 total
->      (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] %
->
->
-> Thanks,
-> Andrew
 
-Hi Andrew,
-Yes, as I mentioned earlier we have plan to send the fixes for this.
+On 7/31/2023 10:05 PM, Bjorn Andersson wrote:
+> On Thu, Jul 27, 2023 at 12:09:07PM +0530, Mukesh Ojha wrote:
+>> On 7/24/2023 2:08 PM, Komal Bajaj wrote:
+> [..]
+>>> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+>>> index f82431ec8aef..e248d3daadf3 100644
+>>> --- a/drivers/nvmem/Makefile
+>>> +++ b/drivers/nvmem/Makefile
+>>> @@ -44,6 +44,8 @@ obj-$(CONFIG_NVMEM_NINTENDO_OTP)	+= nvmem-nintendo-otp.o
+>>>    nvmem-nintendo-otp-y			:= nintendo-otp.o
+>>>    obj-$(CONFIG_NVMEM_QCOM_QFPROM)		+= nvmem_qfprom.o
+>>>    nvmem_qfprom-y				:= qfprom.o
+>>> +obj-$(CONFIG_NVMEM_QCOM_SEC_QFPROM)	+= nvmem_sec_qfprom.o
+>>> +nvmem_sec_qfprom-y			:= sec-qfprom.o
+>> Are we just doing this for just renaming the object ?
+>>
+> Correct.
+>
+>>>    obj-$(CONFIG_NVMEM_RAVE_SP_EEPROM)	+= nvmem-rave-sp-eeprom.o
+>>>    nvmem-rave-sp-eeprom-y			:= rave-sp-eeprom.o
+>>>    obj-$(CONFIG_NVMEM_RMEM) 		+= nvmem-rmem.o
+>>> diff --git a/drivers/nvmem/sec-qfprom.c b/drivers/nvmem/sec-qfprom.c
+> [..]
+>>> +static int sec_qfprom_reg_read(void *context, unsigned int reg, void *_val, size_t bytes)
+>>> +{
+>>> +	struct sec_qfprom *priv = context;
+>>> +	unsigned int i;
+>>> +	u8 *val = _val;
+>>> +	u32 read_val;
+>>> +	u8 *tmp;
+>>> +
+>>> +	for (i = 0; i < bytes; i++, reg++) {
+>>> +		if (i == 0 || reg % 4 == 0) {
+>>> +			if (qcom_scm_io_readl(priv->base + (reg & ~3), &read_val)) {
+>>> +				dev_err(priv->dev, "Couldn't access fuse register\n");
+>>> +				return -EINVAL;
+>>> +			}
+>>> +			tmp = (u8 *)&read_val;
+>>> +		}
+>>> +
+>>> +		val[i] = tmp[reg & 3];
+>>> +	}
+>> Getting secure read from fuse region is fine here, since we have to read
+>> 4 byte from trustzone, but this restriction of reading is also there
+>> for sm8{4|5}50 soc's where byte by byte reading is protected and granularity
+>> set to 4 byte (qfprom_reg_read() in drivers/nvmem/qfprom.c)
+>> is will result in abort, in  that case this function need to export this
+>> logic.
+>>
+> If qfprom needs similar treatment, then let's land this first and then
+> consider generalizing (i.e. move to some library code) this - or if
+> infeasible, just fix qfprom_reg_read().
 
-Thanks,
-Mrinmay
+Agree, I will implement this logic into qfprom driver (into 
+qfprom_reg_read() ) in a separate patch.
+
+Thanks
+Komal
+>
+> Regards,
+> Bjorn
 
