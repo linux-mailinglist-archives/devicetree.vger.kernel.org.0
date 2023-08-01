@@ -2,121 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62BC376BED1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 22:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B22B76BEC7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 22:51:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbjHAUxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 16:53:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33822 "EHLO
+        id S229800AbjHAUvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 16:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjHAUxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 16:53:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B85C1FF0;
-        Tue,  1 Aug 2023 13:53:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 121A561707;
-        Tue,  1 Aug 2023 20:53:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A708C433C7;
-        Tue,  1 Aug 2023 20:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690923216;
-        bh=obhqLQxptseI0LHMuZyhYQYBOS6OSCE3jVqB3HSrzgw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HOEc0TLIPtm4ZvN3lzLjFSbZQU62W4m1Im2JRaopeOR2nHBPcEGqM3rfUqVxG8ivp
-         1jY8d/Cypozuwzb+9bVwkfWZju8q2OnU2FtRM9NDmWtLazQ/9iJKm9LdQKK/LNlU4m
-         E9nvf9CLwIc3PaTvAUr2LcK2TH6AZw+t+RZhNfzIw8un7/SZmhrWypL4KR4oc/m7xY
-         yUIge0NBxC72hLMNZ4G7p8e0TnbZ7bceG/9lCcTglIG8K2AxXAMclIHJaNN8mCcWGv
-         euVUzvyKTava5ISdpq5TBDaf5zWN2lYlPvd5W8GJqrMwJvk3r0L7TNSUTNm5F6Hvwp
-         NQflERAPP9iZw==
-Date:   Tue, 1 Aug 2023 21:53:31 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     niravkumar.l.rabara@intel.com
-Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, dinguyen@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        netdev@vger.kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-        wen.ping.teh@intel.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: intel: Add Intel Agilex5 compatible
-Message-ID: <20230801-blatancy-chill-efee6e93f2e0@spud>
-References: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-2-niravkumar.l.rabara@intel.com>
+        with ESMTP id S229626AbjHAUvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 16:51:37 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CC019B7;
+        Tue,  1 Aug 2023 13:51:35 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fb4146e8deso66969465e9.0;
+        Tue, 01 Aug 2023 13:51:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690923094; x=1691527894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9IES0zos/bI6j0U8igIT/6JUvKE2fcDpLlO5bVCh6r0=;
+        b=oCB4w+Gl+D2t7lRzLVAUJXr4f6u1jnWPnypk++jST37wqxR5pxyBb70GVGYfhMWU1D
+         j7VguKVgdlpCzx1w9Bl/pDLq/2P3eSuaqTPzG2ec33opLTBdGw36aK17xyPIwBUh6dXc
+         sf7knAsqpCbLjHoguX0F1rA48/YIZvB89S+dzF00qPBEIkD07142tbmOGSbSRITR6FdM
+         c4fmD4uy+RBueRcghpX6n8xRGpNMoqcqdgSlqY3SLEKtcOTY+qeQvd4r+SLQAUgSzzvL
+         xON6UFP6vjTcJa0MRLve/tS9t4E6mTilvWMQRayTz5gKqqZ1D2TWJil/d8a7aTbia2KU
+         LySQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690923094; x=1691527894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9IES0zos/bI6j0U8igIT/6JUvKE2fcDpLlO5bVCh6r0=;
+        b=Y4kdGUxzAXtWwHL7MlXF4HEL56CpchiOHhDnXbutL+ktMG03+EvP5PC6dA1H5JgjYY
+         S9ZGM3rhZo5CUeoyBVcGi74BPgWT8TcRcz30qbuZ32dKORWo1fAtwAxg4piuJE7ZP2dd
+         TgGvklZvolrQq/VJObQtJBPN0Q9DixGiN1ZN4SaltL7QL5Akzza3cQOu8A3l4r79Te2K
+         24BPTOrpcBx83MPC8sPmiuUjjTgS+4QeRSM600718tE4J5nVngD7r0dRlw4SXDGJnQIy
+         S6s63vPGrYBDVeRKcRM2uT/T40uXPZW+O3AExJeTpI8BJj9e3Jva+HNaeZuxNqQ1G2/5
+         VA5A==
+X-Gm-Message-State: ABy/qLbvplepnltMEafpxPrY7yGuVpsAHoQoF6RkIjqIB+g63jdCoERa
+        DBIhdNDTNl63h5Z26Elu9RY=
+X-Google-Smtp-Source: APBJJlE6PiNkJjq87PuqQnLz5kv7YUnoIM9/dLb51bSe5wbM6tc0xUXBV6T/v2ZhGYPKxog9mdqxvw==
+X-Received: by 2002:a5d:428e:0:b0:314:2d71:1f7a with SMTP id k14-20020a5d428e000000b003142d711f7amr3325273wrq.32.1690923094053;
+        Tue, 01 Aug 2023 13:51:34 -0700 (PDT)
+Received: from localhost ([2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e])
+        by smtp.gmail.com with ESMTPSA id f13-20020adfdb4d000000b003141e9e2f81sm17162490wrj.4.2023.08.01.13.51.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Aug 2023 13:51:33 -0700 (PDT)
+From:   Raphael Gallais-Pou <rgallaispou@gmail.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rapha=C3=ABl=20Gallais-Pou?= 
+        <raphael.gallais.pou@gmail.com>
+Subject: [PATCH] dt-bindings: phy: st: convert phy-stih407-usb to DT schema
+Date:   Tue,  1 Aug 2023 22:55:10 +0200
+Message-ID: <20230801205510.15713-1-rgallaispou@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yUkJXzVAcuN13gRW"
-Content-Disposition: inline
-In-Reply-To: <20230801010234.792557-2-niravkumar.l.rabara@intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Raphaël Gallais-Pou <raphael.gallais.pou@gmail.com>
 
---yUkJXzVAcuN13gRW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Convert the st,stih407-usb2-phy binding to DT schema format.
 
-On Tue, Aug 01, 2023 at 09:02:30AM +0800, niravkumar.l.rabara@intel.com wro=
-te:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
->=20
-> Agilex5 is a new SoCFPGA in Intel Agilex SoCFPGA Family,
-> include compatible string for Agilex5 SoCFPGA board.
->=20
-> Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Signed-off-by: Raphaël Gallais-Pou <raphael.gallais.pou@gmail.com>
+---
+ .../bindings/phy/phy-stih407-usb.txt          | 24 -------
+ .../bindings/phy/st,stih407-usb2-phy.yaml     | 63 +++++++++++++++++++
+ 2 files changed, 63 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt b/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+deleted file mode 100644
+index 35f03df00130..000000000000
+--- a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-ST STiH407 USB PHY controller
+-
+-This file documents the dt bindings for the usb picoPHY driver which is the PHY for both USB2 and USB3
+-host controllers (when controlling usb2/1.1 devices) available on STiH407 SoC family from STMicroelectronics.
+-
+-Required properties:
+-- compatible		: should be "st,stih407-usb2-phy"
+-- st,syscfg		: phandle of sysconfig bank plus integer array containing phyparam and phyctrl register offsets
+-- resets		: list of phandle and reset specifier pairs. There should be two entries, one
+-			  for the whole phy and one for the port
+-- reset-names		: list of reset signal names. Should be "global" and "port"
+-See: Documentation/devicetree/bindings/reset/st,stih407-powerdown.yaml
+-See: Documentation/devicetree/bindings/reset/reset.txt
+-
+-Example:
+-
+-usb2_picophy0: usbpicophy@f8 {
+-	compatible	= "st,stih407-usb2-phy";
+-	#phy-cells	= <0>;
+-	st,syscfg	= <&syscfg_core 0x100 0xf4>;
+-	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
+-			  <&picophyreset STIH407_PICOPHY0_RESET>;
+-	reset-names	= "global", "port";
+-};
+diff --git a/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+new file mode 100644
+index 000000000000..1f66ceddbf81
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/st,stih407-usb2-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics STiH407 USB PHY controller
++
++maintainers:
++  - Patrice Chotard <patrice.chotard@foss.st.com>
++
++description:
++  The USB picoPHY driver is the PHY for both USB2 and USB3 host controllers
++  (when controlling usb2/1.1 devices) available on STiH407 SoC family from
++  STMicroelectronics.
++
++properties:
++  compatible:
++    const: st,stih407-usb2-phy
++
++  st,syscfg:
++    description: Phandle to the syscfg bank
++    $ref: "/schemas/types.yaml#/definitions/uint32-array"
++    items:
++      - description: phandle to syscfg
++      - description: phyparam register offset
++      - description: phyctrl register offset
++
++  resets:
++    items:
++      - description: Phandle and reset specifier pair for the whole phy.
++      - description: Phandle and reset specifier pair for the port.
++
++  reset-names:
++    description: List of reset signal names.
++    items:
++      - const: "global"
++      - const: "port"
++
++  "#phy-cells":
++    const: 0
++
++required:
++  - compatible
++  - st,syscfg
++  - resets
++  - reset-names
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/reset/stih407-resets.h>
++    usb2_picophy0: usbpicophy {
++    	compatible	= "st,stih407-usb2-phy";
++    	#phy-cells	= <0>;
++    	st,syscfg	= <&syscfg_core 0x100 0xf4>;
++    	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
++    			  <&picophyreset STIH407_PICOPHY0_RESET>;
++    	reset-names	= "global", "port";
++    };
++...
+-- 
+2.41.0
 
-Cheers,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/arm/intel,socfpga.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml b/D=
-ocumentation/devicetree/bindings/arm/intel,socfpga.yaml
-> index 4b4dcf551eb6..2ee0c740eb56 100644
-> --- a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
-> +++ b/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
-> @@ -21,6 +21,11 @@ properties:
->                - intel,socfpga-agilex-n6000
->                - intel,socfpga-agilex-socdk
->            - const: intel,socfpga-agilex
-> +      - description: Agilex5 boards
-> +        items:
-> +          - enum:
-> +              - intel,socfpga-agilex5-socdk
-> +          - const: intel,socfpga-agilex5
-> =20
->  additionalProperties: true
-> =20
-> --=20
-> 2.25.1
->=20
-
---yUkJXzVAcuN13gRW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMlwygAKCRB4tDGHoIJi
-0vuEAP4uO+JAx0MD0FfkTsZr5gB6MYd9JQhZhpnnnCBxyuFFBwD8DyO4Tugog9dy
-Fi7aNet1WmUff9KNVUbPD2zxc564OQ8=
-=B376
------END PGP SIGNATURE-----
-
---yUkJXzVAcuN13gRW--
