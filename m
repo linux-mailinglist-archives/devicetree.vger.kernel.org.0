@@ -2,87 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A3576BA2B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 19:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD09F76BAF0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 19:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232062AbjHARAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 13:00:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44990 "EHLO
+        id S232507AbjHARRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 13:17:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230375AbjHARAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 13:00:51 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408EE10FA;
-        Tue,  1 Aug 2023 10:00:50 -0700 (PDT)
-Received: from fabio-Precision-3551.. (unknown [IPv6:2804:14c:485:4b61:7ec2:b247:1636:c87a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 6246E86A92;
-        Tue,  1 Aug 2023 19:00:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1690909248;
-        bh=aXEFQjxCgLWUDVbVYYJ8MF7PdHlma86ifvLEvAhinEE=;
-        h=From:To:Cc:Subject:Date:From;
-        b=w9jfvLTVpIebtm/Grk/ejMv+fJ2w8uuF7maImnFq/lermk6s5Zsj9XmGjEuUyYHXs
-         dUrkOB9tSYNtF1VJ8boUGF45pnGF1FjilC1dTm+8aE0y5JjJD3fkxdEke1c1hEQTn/
-         VDTC8MIGvsnBm3s1bXchMvz+BxL0sRuc/NznsUnR7yxRlNAkE+3aSewOrF3Qz/PUzX
-         JYi7ZHQ1D3Ss+eNcu+nS4mubk6ng7NSOGr/jRYf6aFODJEvvGLSHPmVg4yHu2HzEgb
-         0oCuwtp6MYwMjfX0tXAmp/aKjxbGRTv54Uwxi2/2uqlZQrnBYBrTZJ7liLwHs7cFhi
-         A0PnKE36mquJQ==
-From:   Fabio Estevam <festevam@denx.de>
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: trivial-devices: Remove the OV5642 entry
-Date:   Tue,  1 Aug 2023 14:00:15 -0300
-Message-Id: <20230801170015.40965-1-festevam@denx.de>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232155AbjHARRN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 13:17:13 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98FB2100;
+        Tue,  1 Aug 2023 10:17:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=n2VmzUQFn6cFV/kGZ1sLa3YSYX+PxGH4bL1ntE15zIw=; b=GahSqfs+RS7g361NfzoHIiEII1
+        hjeOwpOjVBcqZoVkfjmYCAEVWMU0CYy2PYO7V6rlgWFSlbp4jrGUgBm2cdRurYU4/atjXY7gLoD38
+        ykiEsnQEcSwvkk9oY67DTuuOZkMRJU1hNik4B1ExjKcOve6pp+V0MdE3Bn7GijKoyekE=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:39594 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qQszR-0000xr-4b; Tue, 01 Aug 2023 13:16:58 -0400
+Date:   Tue, 1 Aug 2023 13:16:55 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org,
+        Ilpo =?ISO-8859-1?Q?J?= =?ISO-8859-1?Q?=E4rvinen?= 
+        <ilpo.jarvinen@linux.intel.com>,
+        Lech Perczak <lech.perczak@camlingroup.com>
+Message-Id: <20230801131655.80bd8f97f018dda6155d65f6@hugovil.com>
+In-Reply-To: <2023073148-marshy-extenuate-2d45@gregkh>
+References: <20230725142343.1724130-1-hugo@hugovil.com>
+        <20230725142343.1724130-2-hugo@hugovil.com>
+        <2023073148-marshy-extenuate-2d45@gregkh>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v9 01/10] serial: sc16is7xx: fix broken port 0 uart init
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As explained in the description text:
+On Mon, 31 Jul 2023 17:52:26 +0200
+Greg KH <gregkh@linuxfoundation.org> wrote:
 
-"This is a list of trivial I2C and SPI devices that have simple device tree
-bindings, consisting only of a compatible field, an address and possibly an
-interrupt line."
- 
-A camera device does not fall into this category as it needs other
-properties such as regulators, reset and powerdown GPIOs, clocks,
-media endpoint.
+> On Tue, Jul 25, 2023 at 10:23:33AM -0400, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >=20
+> > The sc16is7xx_config_rs485() function is called only for the second
+> > port (index 1, channel B), causing initialization problems for the
+> > first port.
+> >=20
+> > For the sc16is7xx driver, port->membase and port->mapbase are not set,
+> > and their default values are 0. And we set port->iobase to the device
+> > index. This means that when the first device is registered using the
+> > uart_add_one_port() function, the following values will be in the port
+> > structure:
+> >     port->membase =3D 0
+> >     port->mapbase =3D 0
+> >     port->iobase  =3D 0
+> >=20
+> > Therefore, the function uart_configure_port() in serial_core.c will
+> > exit early because of the following check:
+> > 	/*
+> > 	 * If there isn't a port here, don't do anything further.
+> > 	 */
+> > 	if (!port->iobase && !port->mapbase && !port->membase)
+> > 		return;
+> >=20
+> > Typically, I2C and SPI drivers do not set port->membase and
+> > port->mapbase.
+> >=20
+> > The max310x driver sets port->membase to ~0 (all ones). By
+> > implementing the same change in this driver, uart_configure_port() is
+> > now correctly executed for all ports.
+> >=20
+> > Fixes: dfeae619d781 ("serial: sc16is7xx")
+>=20
+> That commit is in a very old 3.x release.
+>=20
+> > Cc: <stable@vger.kernel.org> # 6.1.x
+>=20
+> But you say this should only go to 6.1.y?  Why?  What is wrong with the
+> older kernels?
 
-Remove the OV5642 entry.
+Hi Greg,
+I have read (and reread a couple of times)
+Documentation/process/stable-kernel-rules.rst to try to understand how
+to format the tags, but unfortunately it doesn't contain "Everything
+you ever wanted to know about Linux -stable releases" as the title
+claims :)
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 --
- 1 file changed, 2 deletions(-)
+In particular, it doesn't explain or advise which older version we
+should target, that is why since I was not sure I specified 6.1.y
+because I could test it properly, but not v3.x.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 40bc475ee7e1..ab1423a4aa7f 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -313,8 +313,6 @@ properties:
-           - nuvoton,w83773g
-             # OKI ML86V7667 video decoder
-           - oki,ml86v7667
--            # OV5642: Color CMOS QSXGA (5-megapixel) Image Sensor with OmniBSI and Embedded TrueFocus
--          - ovti,ov5642
-             # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
-           - plx,pex8648
-             # Pulsedlight LIDAR range-finding sensor
--- 
-2.34.1
+Maybe it would be best to simply drop for now all the "Cc:
+<stable@vger.kernel.org>" tags for this series, and following Option 2,
+I send an email to stable@vger.kernel.org once the patches have been
+merged to Linus' tree?
 
+
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+> > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > ---
+> >  drivers/tty/serial/sc16is7xx.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is=
+7xx.c
+> > index 2e7e7c409cf2..8ae2afc76a9b 100644
+> > --- a/drivers/tty/serial/sc16is7xx.c
+> > +++ b/drivers/tty/serial/sc16is7xx.c
+> > @@ -1436,6 +1436,7 @@ static int sc16is7xx_probe(struct device *dev,
+> >  		s->p[i].port.fifosize	=3D SC16IS7XX_FIFO_SIZE;
+> >  		s->p[i].port.flags	=3D UPF_FIXED_TYPE | UPF_LOW_LATENCY;
+> >  		s->p[i].port.iobase	=3D i;
+> > +		s->p[i].port.membase	=3D (void __iomem *)~0;
+>=20
+> That's a magic value, some comment should be added here to explain why
+> setting all bits is ok.  Why does this work exactly?  You only say that
+> the max310x driver does this, but not why it does this at all.
+
+I do not understand, because my commit log message is quite long
+and, it seems to me, well documenting why this works the way it
+does when calling uart_configure_port() in serial_core.c?
+
+I say that the max310x driver also does this, because there is also no
+comment in the max310x driver for using the (void __iomem *)~0;
+construct. I also located the original commit message for the max310x
+driver but no comments were usefull there also.
+
+So, what about adding this comment:
+
+/*
+ * Use all ones as membase to make sure uart_configure_port() in
+ * serial_core.c does not abort for SPI/I2C devices where the
+ * membase address is not applicable.
+ */
+ s->p[i].port.membase	=3D (void __iomem *)~0;
+
+
+Also, keep in mind that in the original discussion about that patch,
+there was the following comment from Ilpo J=E4rvinen:
+
+------
+This changelog was really well describing the problem! :-)
+Yeah, some other solution should be devised. Maybe we should add
+another .iotype for thse kind of devices. But I'm fine with this for
+this fix. After editing the changelog, feel free to add:
+Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+------
+
+If wou want, I could also add the same comment to the max310 driver?
+
+Hugo.
