@@ -2,128 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2413E76AA8F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 10:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B3F76AAAD
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 10:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbjHAIKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 04:10:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
+        id S231313AbjHAIQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 04:16:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232100AbjHAIJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 04:09:59 -0400
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FE811D
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 01:09:58 -0700 (PDT)
-Received: from [127.0.0.1] (helo=localhost)
-        by relay.expurgate.net with smtp (Exim 4.92)
-        (envelope-from <prvs=6591581bf9=fe@dev.tdt.de>)
-        id 1qQkS0-009cja-Vc; Tue, 01 Aug 2023 10:09:53 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-        by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1qQkRz-00AHHY-VB; Tue, 01 Aug 2023 10:09:51 +0200
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-        by securemail.tdt.de (Postfix) with ESMTP id 8CB2024004B;
-        Tue,  1 Aug 2023 10:09:51 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-        by securemail.tdt.de (Postfix) with ESMTP id DD65A240040;
-        Tue,  1 Aug 2023 10:09:50 +0200 (CEST)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-        by mail.dev.tdt.de (Postfix) with ESMTP id 7358431526;
-        Tue,  1 Aug 2023 10:09:50 +0200 (CEST)
+        with ESMTP id S230514AbjHAIQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 04:16:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE32A0;
+        Tue,  1 Aug 2023 01:16:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0304E61499;
+        Tue,  1 Aug 2023 08:16:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47780C433C7;
+        Tue,  1 Aug 2023 08:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690877801;
+        bh=tigY7no064OHWqJe2mg96ovVkpSGcVq9HrOv1kXCDMg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ldF6mftrTEL5dXshnZ4HpWKR04fTfx3onp4pX/Hc9Q0wgHqUOAIZZBKQ38BdhS5uP
+         zjNr2Zu9yU+u+1B/5c/zGdX0Xu5re2fSsA6iiHPnE8BMfHcKtAu/jDdJRGZgVz/ffz
+         by8WGX3bX5OEd+yLoixEjp3LIqOf6D7gCf1yiqtwANitszOMwiQkagxPaMsEXcgGMq
+         tptw/Ej3gbMaGy/c60shm8dDDdTrjV8itD+5yv+BzBtLTBE++Tx+riDPuRlf+Ra5lT
+         JeaAeYlGLfrTAh11ok5a7pWHo4/KQZhSA2TALDSSomuPGipZcyuPO1RVVBKDTjZF1m
+         YFHt09FthS2Tg==
+Date:   Tue, 1 Aug 2023 09:16:35 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Liu Yun <liuyun@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>
+Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
+Message-ID: <20230801-unlighted-tree-440d6e8eb71f@spud>
+References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
+ <20230728-cornball-preacher-a7e4644fcbef@wendy>
+ <CAAhV-H5cfGZLvThzu_mBOphGJeUSFAu_4nZvGNFJqF5++DN2OA@mail.gmail.com>
+ <20230728-unedited-thank-366462ab471d@wendy>
+ <CAAhV-H7jVp2fX5Rosd8YSj_6oFdmsu5iHsBmYH_8iX2qan7r+w@mail.gmail.com>
+ <58500dc7-af1b-4edb-bb2b-93be454ec151@app.fastmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 01 Aug 2023 10:09:50 +0200
-From:   Florian Eckert <fe@dev.tdt.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, yzhu@maxlinear.com,
-        rtanwar@maxlinear.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Eckert.Florian@googlemail.com
-Subject: Re: [PATCH 2/2] dt-bindings: clock: intel,cgu-lgm: add
- mxl,control-gate option
-In-Reply-To: <75cbeeed-84c9-7637-b2a7-b37d87f5872e@linaro.org>
-References: <20230731100349.184553-1-fe@dev.tdt.de>
- <20230731100349.184553-3-fe@dev.tdt.de>
- <780aa090-3a97-abab-271f-59790df29cc4@linaro.org>
- <11386dd27487075a9a0b1a2aa7794951@dev.tdt.de>
- <75cbeeed-84c9-7637-b2a7-b37d87f5872e@linaro.org>
-Message-ID: <2053f32f262911061e3e56540e4b51d4@dev.tdt.de>
-X-Sender: fe@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.17
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Kqt3zn6oDBmFrkPv"
+Content-Disposition: inline
+In-Reply-To: <58500dc7-af1b-4edb-bb2b-93be454ec151@app.fastmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-purgate-ID: 151534::1690877392-85CBE7FE-FCBE3A86/0/0
-X-purgate-type: clean
-X-purgate: clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
 
->>> You described the desired Linux feature or behavior, not the actual
->>> hardware. The bindings are about the latter, so instead you need to
->>> rephrase the property and its description to match actual hardware
->>> capabilities/features/configuration etc.
->> 
->> You have correctly identified that this is not a hardware 
->> configuration,
->> but a driver configuration. Currently, the driver is configured so 
->> that
->> the gates cannot be switched via the clk subsystem callbacks. When
->> registering the data structures from the driver, I have to pass a flag
->> GATE_CLK_HW so that the gate is managed by the driver.
->> 
->> I didn't want to always change the source of the driver when it has to
->> take
->> care of the GATE, so I wanted to map this via the dts.
->> 
->> I have a board support package from Maxlinear for the Lightning 
->> Mountain
->> Soc
->> with other drivers that are not upstream now. Some of them use the
->> clock framework some of them does not.
->> 
->> Due to missing documents it is not possible to send these drivers
->> upstream.
-> 
-> So when you upstream them, the binding becomes wrong or not needed?
-> Sorry, bindings are entirely independent of OS, so using this as an
-> argument is clear no-go.
+--Kqt3zn6oDBmFrkPv
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yes, that would probably be the case, as the maxlinear drivers are at
-an early stage and are not yet upstreamable in my opinion. If I had the
-documents, I would take a closer look. But they are developing behind
-closed doors. Nothing can be contributed. Not until the drivers are
-hopefully upstream at some point as the cgu-lgm.
+On Mon, Jul 31, 2023 at 09:28:11PM +0200, Arnd Bergmann wrote:
+> On Mon, Jul 31, 2023, at 16:13, Huacai Chen wrote:
+> > On Fri, Jul 28, 2023 at 6:18=E2=80=AFPM Conor Dooley <conor.dooley@micr=
+ochip.com> wrote:
+>=20
+> >>
+> >> Perhaps that someone is you, or maybe it is Yinbo, up to you guys to
+> >> decide :)
+> > I'm a "merge hater" and "rebase lover", so I think it is better that
+> > Arnd picks up these patches to the soc tree directly. But if
+> > necessary, I can also create a "soc-loongson-next" branch in my tree
+> > and then send PR to Arnd.
+>=20
+> Separate patches are fine for a short series, it doesn't have
+> to be a pull request, but do make sure to send it to
+> soc@kernel.org after review is complete so I'll be sure to
+> take care of it in patchwork, I otherwise skip a lot of
+> patches as I expect them to be picked up into a platform
+> specific tree first.
+>=20
+> Also, if this ends up being a genpd driver, then patches
+> after 6.6-rc1 need to go through Ulf's tree instead, not
+> the soc tree.
 
->> Strictly speaking, this is about the gptc and the watchdog.
->> 
->> Since it is a buildin_platform driver, it can also not work via
->> module parameters.
-> 
-> None of this explains any hardware related part of this binding. You
-> created now policy for one specific OS. Devicetree, which is OS
-> independent, is not for such purposes.
+Just to get the ball rolling, I've made the maintainers entry for you
+Huacai :) Perhaps you can pick up the two patches I mentioned earlier in
+the thread, as both appear to be fixes?
 
-Yes this would be the case. Maybe I need to patch the cgu-lgm.c [1]
-and send it upstream to restore the old behavior.
-Because the following commit has changed the behaviour [2].
-Unfortunately, it is also included in 5.15 stable branch.
-Which in my opinion should not have happened!
+Thanks,
+Conor.
 
-Best regards,
-Florian
+-- >8 --
+=46rom 4423897634c0e54274df90a0a933e05f8f78074f Mon Sep 17 00:00:00 2001
+=46rom: Conor Dooley <conor.dooley@microchip.com>
+Date: Tue, 1 Aug 2023 09:08:21 +0100
+Subject: [PATCH] MAINTAINERS: add loongson soc driver entry
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/x86/clk-lgm.c?h=v6.5-rc4
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/drivers/clk/x86/clk-cgu.c?h=v5.15.123&id=a0583edea4fdb7b5b87a077263dddab476e9f138
+As a result of there being no entry covering Loongson SoC drivers, some
+fixes have fallen through the cracks. Add Huacai Chen as a supporter of
+drivers, who will forward patches to the SoC maintainers.
+
+Link: https://lore.kernel.org/all/58500dc7-af1b-4edb-bb2b-93be454ec151@app.=
+fastmail.com/
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ MAINTAINERS | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3be1bdfe8ecc..0225bf871bab 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12250,6 +12250,12 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+ F:	drivers/i2c/busses/i2c-ls2x.c
+=20
++LOONGSON SOC DRIVERS
++M:	Huacai Chen <chenhuacai@kernel.org>
++L:	loongarch@lists.linux.dev
++S:	Supported
++F:	drivers/soc/loongson/
++
+ LOONGSON-2 SOC SERIES CLOCK DRIVER
+ M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+ L:	linux-clk@vger.kernel.org
+--=20
+2.39.2
+
+
+
+--Kqt3zn6oDBmFrkPv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMi/YwAKCRB4tDGHoIJi
+0vp4AQDJgsZboWpRMuLKrDENlCYC7UyrNxuo40T4G6pkSuVuGQEArjcNmkZ7xWLg
+6+rRsWqMeaalakCF/MmV1L+ZdqaoLgE=
+=MTqu
+-----END PGP SIGNATURE-----
+
+--Kqt3zn6oDBmFrkPv--
