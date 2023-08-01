@@ -2,80 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B5D76AE8C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91EE376AE7D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:39:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233322AbjHAJjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 05:39:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39580 "EHLO
+        id S233293AbjHAJjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 05:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233195AbjHAJj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:39:26 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41384EE2;
-        Tue,  1 Aug 2023 02:37:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=FGgh4e/u0nE95gMrdCe+dqw90Rj4sKRfSKUYApsCC/Y=; b=RdyQXUNwnFn8Rqzex+Jjoy+yyd
-        QHP3O3jjTohOAQHBMujUjzyHmhPT8xwZ6KpDPRp6rZxJZLowUSZNFwpr4tweDnVkelcYwzQzbcQlj
-        oMdvQO3eW59xf8qUK3fEVnK/sB5kInWZgLAuB6zNNnKF9XS8A66IbhU4GxuCyMaNztCQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qQlo3-002mgr-Li; Tue, 01 Aug 2023 11:36:43 +0200
-Date:   Tue, 1 Aug 2023 11:36:43 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 10/28] soc: fsl: cpm1: qmc: Introduce
- qmc_chan_setup_tsa*
-Message-ID: <252d6a49-4a97-4ecc-844e-f23bda55debf@lunn.ch>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
- <20230726150225.483464-11-herve.codina@bootlin.com>
+        with ESMTP id S233180AbjHAJjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:39:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645F844B5;
+        Tue,  1 Aug 2023 02:36:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A1A796151A;
+        Tue,  1 Aug 2023 09:36:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFB59C433C8;
+        Tue,  1 Aug 2023 09:36:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690882617;
+        bh=bIbnAIV9LSgAjMhFNe8KGtjVPP3OHk1T9jk268LsK2g=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=hK3eWABuYlGQAcZLf9jiilYQuXlQlCOSOY8k25Qzu5b4FoeDtlJqZMdD4Zdvoj4BH
+         xUMmVlqi8pkwaqNQTlBtauaWF/xlXj+NMvsxjJlNBqpcdCLk/itpbPFJRa9aO9cSmM
+         QjGPBfNAwLc4xEaBxuXmBWJwWQJ+yBCIwRYHHfwWAccBlvLEOaQQfHOaFOKuI12uOR
+         Sh9vIOPpwuhKsdLm3TzFb2qz7UyeXh40sDZSzfSNoIq+GIwGJbP7E5t+9+kzT2ZkGG
+         snSj1RNcKQHBJlM/JsRSO1T4sMiy6GVwhpniE6n2SLbEqMiUKlDIa8GbVa7dqQV+Rh
+         joaPtNImr0miw==
+Received: (nullmailer pid 966827 invoked by uid 1000);
+        Tue, 01 Aug 2023 09:36:55 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230726150225.483464-11-herve.codina@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Luo Jie <quic_luoj@quicinc.com>
+Cc:     linux-clk@vger.kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        quic_srichara@quicinc.com, p.zabel@pengutronix.de,
+        konrad.dybcio@linaro.org, conor+dt@kernel.org
+In-Reply-To: <20230801085352.22873-3-quic_luoj@quicinc.com>
+References: <20230801085352.22873-1-quic_luoj@quicinc.com>
+ <20230801085352.22873-3-quic_luoj@quicinc.com>
+Message-Id: <169088261501.966799.11880171949914344373.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: clock: add qca8386/qca8084 clock and
+ reset definitions
+Date:   Tue, 01 Aug 2023 03:36:55 -0600
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static inline void qmc_clrsetbits16(void __iomem *addr, u16 clr, u16 set)
-> +{
-> +	qmc_write16(addr, (qmc_read16(addr) & ~clr) | set);
-> +}
-> +
 
-Please don't use inline in .c files. Let the compiler decide.
+On Tue, 01 Aug 2023 16:53:51 +0800, Luo Jie wrote:
+> QCA8386/QCA8084 includes the clock & reset controller that is
+> accessed by MDIO bus. Two work modes are supported, qca8386 works
+> as switch mode, qca8084 works as PHY mode.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  .../bindings/clock/qcom,nsscc-qca8k.yaml      |  59 ++++++++++
+>  include/dt-bindings/clock/qcom,nsscc-qca8k.h  | 102 ++++++++++++++++++
+>  include/dt-bindings/reset/qcom,nsscc-qca8k.h  |  76 +++++++++++++
+>  3 files changed, 237 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,nsscc-qca8k.h
+>  create mode 100644 include/dt-bindings/reset/qcom,nsscc-qca8k.h
+> 
 
-       Andrew
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dts:22.11-22: Warning (reg_format): /example-0/clock-controller@24:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: clock-controller@24: '#power-domain-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/qcom,nsscc-qca8k.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.example.dtb: clock-controller@24: Unevaluated properties are not allowed ('#clock-cells', '#reset-cells' were unexpected)
+	from schema $id: http://devicetree.org/schemas/clock/qcom,nsscc-qca8k.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230801085352.22873-3-quic_luoj@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
