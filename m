@@ -2,99 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F067476AFF8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5321976B009
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbjHAJxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 05:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
+        id S233558AbjHAJ5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 05:57:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233726AbjHAJxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:53:07 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856F9CF
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 02:53:04 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe1e1142caso22555535e9.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 02:53:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690883583; x=1691488383;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9h+KW3ibAIf8KPX3KGs5bvs7zvqsxoWDz8O/Xwhkhy8=;
-        b=v47ilscGmZpxF+Z12lrKGfwuBtWsmA4LSwGqNHEAgo//c8xAxKj3kTBVbkqhSzDPaM
-         iN1wgbkmy2vGofm8sPjh6bC3665MZCtI2wyCeMPni8FGSLODFePMAbS7JAxbdnu8u/X1
-         UkxtAj6sWp0BIVoNLqQTVuRRfct0u34y4lnzUj+48O7tDyidckvO5sqdO61ZTZGtf7ZB
-         iGSgx5gqiDr7onHpyyg6NeHE9c6KI2Ocg3oNmorNE53MRqtqKrQlQ918JtMTG8n2R9OG
-         gre4gt+Z4fRCQL20AgootTmcaBji/rDKkgyVZRhIgXEPG9n3X4rDpzHg4HtHSv74Lepm
-         9NUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690883583; x=1691488383;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9h+KW3ibAIf8KPX3KGs5bvs7zvqsxoWDz8O/Xwhkhy8=;
-        b=INNGVi+FbPFg/84KwaW5TLbMvwsTmicaBgUNPsqlgcrgWpBsfSzI9Wy4r07hvIrBus
-         DsSA6nhaEnoNv+MFa+ayviTggaLZDZHHf9TRYUY4f1L/TkEutu6PAPLNmUTHdmIYyxFI
-         yTKIKLD+qZygSUuK+YQvvgpW4E6D397WGxHi4kXDYp+Ru+c0FgNvLcKPXPQRnIeC3ZQj
-         olXYutRJBRW45PuQ0ZaMhDKJclAQULtfgm3PnTbX96IEnLg1gXFeDKoFZ0+JEyHc/XDu
-         E2aCwCz+bK82rqkSL1UWEMzHwDur6EeI1jc0BAXTc6FlhmZTrdKfcjvflLHozrRW5oxL
-         Ekiw==
-X-Gm-Message-State: ABy/qLaRghI+87KkB7fZhL9wEY+hDit+/pDSTcDP+94PMEWFc0RVq0yS
-        gH4exsKcgvWyD6cSSr06VFP6mw==
-X-Google-Smtp-Source: APBJJlHjXzXhv2pp/vvPsqmxwd1ov8bSEbdvjEvrOUpBtzBS2jbzXMK6+ZObuiHDLXpCN5LKoDDc1A==
-X-Received: by 2002:a7b:c8d2:0:b0:3fe:90f:8496 with SMTP id f18-20020a7bc8d2000000b003fe090f8496mr2058975wml.1.1690883582971;
-        Tue, 01 Aug 2023 02:53:02 -0700 (PDT)
-Received: from hackbox.lan ([86.123.96.80])
-        by smtp.gmail.com with ESMTPSA id 3-20020a05600c234300b003fc16ee2864sm13737640wmq.48.2023.08.01.02.53.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Aug 2023 02:53:02 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S233775AbjHAJ4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:56:48 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 799071BD3;
+        Tue,  1 Aug 2023 02:56:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=4mbju1g6RNmlbP/1/oylEMdzcfQdrO1pUJukrXW1CBI=; b=n39m5J39r5h8mIoSEvn5mrzHok
+        etwHc2WZci3TX7mlDVDDDRVqKbzNq8cKrWdEoEWv3ZoMNGC83J3+VIa5CmdJvGBOTUQwuZId1C9Oy
+        BUZSTXFyiWkhpeUzHPRRtRQIr0bOKU9T2Xbct0M9o3oBCYsxEVt8ylgKA0xEZL6PFA3A=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qQm6u-002mlq-Vo; Tue, 01 Aug 2023 11:56:12 +0200
+Date:   Tue, 1 Aug 2023 11:56:12 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: qcom: sm8550-mtp: Add missing supply for L1B regulator
-Date:   Tue,  1 Aug 2023 12:52:46 +0300
-Message-Id: <20230801095246.2884770-1-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 20/28] net: wan: Add framer framework support
+Message-ID: <84d6431f-bb55-4224-a4a5-45d7036f1e38@lunn.ch>
+References: <20230726150225.483464-1-herve.codina@bootlin.com>
+ <20230726150225.483464-21-herve.codina@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726150225.483464-21-herve.codina@bootlin.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even though currently there is no consumer for L1B, add the supply
-for it anyway.
+> +int framer_pm_runtime_get(struct framer *framer)
+> +{
+> +	int ret;
+> +
+> +	if (!framer)
+> +		return 0;
 
-Fixes: 71342fb91eae ("arm64: dts: qcom: Add base SM8550 MTP dts")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 1 +
- 1 file changed, 1 insertion(+)
+Can framer be a NULL pointer? This sort of test often covers up
+bugs. So either let it dereference the NULL pointer and opps, or
+return -EINVAL.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 00c7e1704a8c..0127c6c285b7 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -187,6 +187,7 @@ regulators-0 {
- 
- 		vdd-bob1-supply = <&vph_pwr>;
- 		vdd-bob2-supply = <&vph_pwr>;
-+		vdd-l1-l4-l10-supply = <&vreg_s6g_1p8>;
- 		vdd-l2-l13-l14-supply = <&vreg_bob1>;
- 		vdd-l3-supply = <&vreg_s4g_1p3>;
- 		vdd-l5-l16-supply = <&vreg_bob1>;
--- 
-2.34.1
-
+       Andrew
