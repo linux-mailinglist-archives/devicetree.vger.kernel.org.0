@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9A8176ACF7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F325076ACA1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:17:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232854AbjHAJYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 05:24:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52734 "EHLO
+        id S231434AbjHAJRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 05:17:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231862AbjHAJYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:24:18 -0400
-X-Greylist: delayed 762 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 01 Aug 2023 02:23:23 PDT
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3EE103;
-        Tue,  1 Aug 2023 02:23:23 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 7836342404;
-        Tue,  1 Aug 2023 14:09:33 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1690880973; bh=yNGffE2xORf7vTs2Y1W53hQMQRyrUgd9ZhG7sX37y4A=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-        b=hX1plOZNoNSYJ5Tes9r9w+Q/U6cB5DeuWOBj6NBaonWMsBKdPxBjBPNnspPmNgs+x
-         e5UtyXZClheTyYeO+gdrQX5tYyArOesq4lX2fw6Inc6GvneEMAisUuwylNh1C0ckNt
-         fwZPIiN2bBe5WjN1MnWpJgpOIwGxyjSpUmJGAsKF+Y/uNXXIgDROE3nrQYDlAeoHtm
-         yDEaaA2Fmj7ogEpEsdLrtukiaXgImjv08QDZCv9Jmk1RgfmBkUJJbm82s9mmVWI32x
-         7FN0e+Bk+D0SoZNCH4cCQKh7odpO8jBIPM8qm2RGN9pm0bpjAd+En3a2DjC5cBIHNk
-         P9zisnV7Z9uvA==
-From:   Nikita Travkin <nikita@trvn.ru>
-Date:   Tue, 01 Aug 2023 14:09:26 +0500
-Subject: [PATCH v4 2/2] input: zinitix: Add touchkey support
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230801-zinitix-tkey-v4-2-b85526c5a474@trvn.ru>
-References: <20230801-zinitix-tkey-v4-0-b85526c5a474@trvn.ru>
-In-Reply-To: <20230801-zinitix-tkey-v4-0-b85526c5a474@trvn.ru>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229931AbjHAJQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:16:54 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F85A26AF;
+        Tue,  1 Aug 2023 02:15:52 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3719Eg6N126127;
+        Tue, 1 Aug 2023 04:14:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690881282;
+        bh=6VOstsz3UCxzxiDJWRTo/lthIJRQdfEPdFrQeQ4nh3U=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=xiMFt3WQzUyYmVbUJ65Re7njD0Rqv7Zlk5v27ewD19PQqZnJ94iK6wiq0uuRo4bzj
+         ZziLKhJf1W97Co0L2t6PfXA49k1AhH3Fx73oesWVl7dK6OZNoawdvZieqcW641KREL
+         kexvGFmavfpAbA0fVmnw8qIXM/c/HoeXEnMSp3jo=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3719Egj9110282
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Aug 2023 04:14:42 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
+ Aug 2023 04:14:42 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 1 Aug 2023 04:14:41 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3719Efkd045324;
+        Tue, 1 Aug 2023 04:14:41 -0500
+Received: from localhost (uda0501179.dhcp.ti.com [172.24.227.217])
+        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 3719EfK9015823;
+        Tue, 1 Aug 2023 04:14:41 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5056; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=yNGffE2xORf7vTs2Y1W53hQMQRyrUgd9ZhG7sX37y4A=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBkyMvLM2Nf8SA/czU3HoTxrDPUJ/IPRby80sAm+
- rJumybz3nSJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZMjLywAKCRBDHOzuKBm/
- den8D/4khojf1r+/C8XgSbDvRhAGeqR63FHudPA1/rFI9dJOFGxCHsRRwOUn/E5a0WsltefurHX
- nZ7+wZ01WHndrfUZSHF2WiogfRhvupwPK+8IfQl6igrmOeKovmtVNFQRmd0ZAnzCPYVSdwHmiqD
- 6KfOaDngQte2j4mOG0/JvE5BwxWMA4oUPyAge5X6+CQ2NunhjgtcsNFjgClgRxZYdcNbJZxRMS4
- rUkybAPiiteX1VY2D6qtn9j20azMKI9rJhnIag0qlGs32szer8+Smd4FV+AW47u3Ac00cWcp29u
- s75Ctqf/8sf1C8zja9KsY4RcGDP6Pzx02dR+binCR2LY1Lg0uNQ46n1Mtsn+EnD1XhoGF7b8Ves
- VHk18/uJA1mwrVsfOu/9PqIiNOyeoizoRlSSVCeRsWh1fV+A6uXpDJliQNTx+bD6YJvEk3KbUFT
- 7EH5ky/dbcZrLt9uZGSA9KBE5ONIxdvej9bGigt2IpCgd8ifZMcIrhewnL+cknT0QUMmXfmIXhX
- T2Trqsil4o9IDJDESMNh4bV+UlrWfslFtU3iKOoUDRDKp4Wx/JtlDLxdPjxOkIbULOguvoHp0r+
- gEP4P3290bb0mGMmMFxd28ZrbEm9QB8cz0Ixu7Kuuwh6/Yvh5OKzW+zhsFesRCkF1jMvdcOqn+z
- dNH/XLZEht3ZWrA==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v13 01/10] net: ti: icssg-prueth: Add Firmware Interface for ICSSG Ethernet driver.
+Date:   Tue, 1 Aug 2023 14:44:19 +0530
+Message-ID: <20230801091428.1359979-2-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230801091428.1359979-1-danishanwar@ti.com>
+References: <20230801091428.1359979-1-danishanwar@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,158 +82,256 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Zinitix touch controllers can use some of the sense lines for virtual
-keys (like those found on many phones). Add support for those keys.
+Add firmware interface related headers and macros for ICSSG Ethernet
+driver. These macros will be later used by the ICSSG ethernet driver.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 ---
- drivers/input/touchscreen/zinitix.c | 61 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 58 insertions(+), 3 deletions(-)
+ .../net/ethernet/ti/icssg/icssg_switch_map.h  | 234 ++++++++++++++++++
+ 1 file changed, 234 insertions(+)
+ create mode 100644 drivers/net/ethernet/ti/icssg/icssg_switch_map.h
 
-diff --git a/drivers/input/touchscreen/zinitix.c b/drivers/input/touchscreen/zinitix.c
-index 1b4807ba4624..75390d67689e 100644
---- a/drivers/input/touchscreen/zinitix.c
-+++ b/drivers/input/touchscreen/zinitix.c
-@@ -119,6 +119,7 @@
- 
- #define DEFAULT_TOUCH_POINT_MODE		2
- #define MAX_SUPPORTED_FINGER_NUM		5
-+#define MAX_SUPPORTED_BUTTON_NUM		8
- 
- #define CHIP_ON_DELAY				15 // ms
- #define FIRMWARE_ON_DELAY			40 // ms
-@@ -146,6 +147,8 @@ struct bt541_ts_data {
- 	struct touchscreen_properties prop;
- 	struct regulator_bulk_data supplies[2];
- 	u32 zinitix_mode;
-+	u32 keycodes[MAX_SUPPORTED_BUTTON_NUM];
-+	int num_keycodes;
- };
- 
- static int zinitix_read_data(struct i2c_client *client,
-@@ -195,6 +198,7 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
- 	struct i2c_client *client = bt541->client;
- 	int i;
- 	int error;
-+	u16 int_flags = 0;
- 
- 	error = zinitix_write_cmd(client, ZINITIX_SWRESET_CMD);
- 	if (error) {
-@@ -225,6 +229,11 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
- 	if (error)
- 		return error;
- 
-+	error = zinitix_write_u16(client, ZINITIX_BUTTON_SUPPORTED_NUM,
-+				  bt541->num_keycodes);
-+	if (error)
-+		return error;
+diff --git a/drivers/net/ethernet/ti/icssg/icssg_switch_map.h b/drivers/net/ethernet/ti/icssg/icssg_switch_map.h
+new file mode 100644
+index 000000000000..424a7e945ea8
+--- /dev/null
++++ b/drivers/net/ethernet/ti/icssg/icssg_switch_map.h
+@@ -0,0 +1,234 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Texas Instruments ICSSG Ethernet driver
++ *
++ * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ */
 +
- 	error = zinitix_write_u16(client, ZINITIX_INITIAL_TOUCH_MODE,
- 				  bt541->zinitix_mode);
- 	if (error)
-@@ -235,9 +244,12 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
- 	if (error)
- 		return error;
- 
--	error = zinitix_write_u16(client, ZINITIX_INT_ENABLE_FLAG,
--				  BIT_PT_CNT_CHANGE | BIT_DOWN | BIT_MOVE |
--					BIT_UP);
-+	int_flags = BIT_PT_CNT_CHANGE | BIT_DOWN | BIT_MOVE | BIT_UP;
++#ifndef __NET_TI_ICSSG_SWITCH_MAP_H
++#define __NET_TI_ICSSG_SWITCH_MAP_H
 +
-+	if (bt541->num_keycodes)
-+		int_flags |= BIT_ICON_EVENT;
++/************************* Ethernet Switch Constants *********************/
 +
-+	error = zinitix_write_u16(client, ZINITIX_INT_ENABLE_FLAG, int_flags);
- 	if (error)
- 		return error;
- 
-@@ -350,6 +362,15 @@ static void zinitix_report_finger(struct bt541_ts_data *bt541, int slot,
- 	}
- }
- 
-+static void zinitix_report_keys(struct bt541_ts_data *bt541, u16 icon_events)
-+{
-+	int i;
++/* if bucket size is changed in firmware then this too should be changed
++ * because it directly impacts FDB ageing calculation
++ */
++#define NUMBER_OF_FDB_BUCKET_ENTRIES            (4)
 +
-+	for (i = 0; i < bt541->num_keycodes; i++)
-+		input_report_key(bt541->input_dev,
-+				 bt541->keycodes[i], !!(icon_events & BIT(i)));
-+}
++/* This is fixed in ICSSG */
++#define SIZE_OF_FDB                             (2048)
 +
- static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
- {
- 	struct bt541_ts_data *bt541 = bt541_handler;
-@@ -358,6 +379,7 @@ static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
- 	unsigned long finger_mask;
- 	int error;
- 	int i;
-+	__le16 icon_events = 0;
- 
- 	memset(&touch_event, 0, sizeof(struct touch_event));
- 
-@@ -368,6 +390,17 @@ static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
- 		goto out;
- 	}
- 
-+	if (le16_to_cpu(touch_event.status) & BIT_ICON_EVENT) {
-+		error = zinitix_read_data(bt541->client, ZINITIX_ICON_STATUS_REG,
-+					  &icon_events, sizeof(icon_events));
-+		if (error) {
-+			dev_err(&client->dev, "Failed to read icon events\n");
-+			goto out;
-+		}
++#define FW_LINK_SPEED_1G                           (0x00)
++#define FW_LINK_SPEED_100M                         (0x01)
++#define FW_LINK_SPEED_10M                          (0x02)
++#define FW_LINK_SPEED_HD                           (0x80)
 +
-+		zinitix_report_keys(bt541, le16_to_cpu(icon_events));
-+	}
++/* Time after which FDB entries are checked for aged out values.
++ * Values are in nanoseconds
++ */
++#define FDB_AGEING_TIMEOUT_OFFSET                          0x0014
 +
- 	finger_mask = touch_event.finger_mask;
- 	for_each_set_bit(i, &finger_mask, MAX_SUPPORTED_FINGER_NUM) {
- 		const struct point_coord *p = &touch_event.point_coord[i];
-@@ -453,6 +486,7 @@ static int zinitix_init_input_dev(struct bt541_ts_data *bt541)
- {
- 	struct input_dev *input_dev;
- 	int error;
-+	int i;
- 
- 	input_dev = devm_input_allocate_device(&bt541->client->dev);
- 	if (!input_dev) {
-@@ -470,6 +504,14 @@ static int zinitix_init_input_dev(struct bt541_ts_data *bt541)
- 	input_dev->open = zinitix_input_open;
- 	input_dev->close = zinitix_input_close;
- 
-+	if (bt541->num_keycodes) {
-+		input_dev->keycode = bt541->keycodes;
-+		input_dev->keycodemax = bt541->num_keycodes;
-+		input_dev->keycodesize = sizeof(bt541->keycodes[0]);
-+		for (i = 0; i < bt541->num_keycodes; i++)
-+			input_set_capability(input_dev, EV_KEY, bt541->keycodes[i]);
-+	}
++/* Default VLAN tag for Host Port */
++#define HOST_PORT_DF_VLAN_OFFSET                           0x001C
 +
- 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
- 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
- 	input_set_abs_params(input_dev, ABS_MT_WIDTH_MAJOR, 0, 255, 0, 0);
-@@ -534,6 +576,19 @@ static int zinitix_ts_probe(struct i2c_client *client)
- 		return error;
- 	}
- 
-+	bt541->num_keycodes = of_property_read_variable_u32_array(
-+					client->dev.of_node, "linux,keycodes",
-+					bt541->keycodes, 0,
-+					ARRAY_SIZE(bt541->keycodes));
-+	if (bt541->num_keycodes == -EINVAL) {
-+		bt541->num_keycodes = 0;
-+	} else if (bt541->num_keycodes < 0) {
-+		dev_err(&client->dev,
-+			"Unable to parse \"linux,keycodes\" property: %d\n",
-+			bt541->num_keycodes);
-+		return bt541->num_keycodes;
-+	}
++/* Same as HOST_PORT_DF_VLAN_OFFSET */
++#define EMAC_ICSSG_SWITCH_PORT0_DEFAULT_VLAN_OFFSET        HOST_PORT_DF_VLAN_OFFSET
 +
- 	error = zinitix_init_input_dev(bt541);
- 	if (error) {
- 		dev_err(&client->dev,
-
++/* Default VLAN tag for P1 Port */
++#define P1_PORT_DF_VLAN_OFFSET                             0x0020
++
++/* Same as P1_PORT_DF_VLAN_OFFSET */
++#define EMAC_ICSSG_SWITCH_PORT1_DEFAULT_VLAN_OFFSET        P1_PORT_DF_VLAN_OFFSET
++
++/* default VLAN tag for P2 Port */
++#define P2_PORT_DF_VLAN_OFFSET                             0x0024
++
++/* Same as P2_PORT_DF_VLAN_OFFSET */
++#define EMAC_ICSSG_SWITCH_PORT2_DEFAULT_VLAN_OFFSET        P2_PORT_DF_VLAN_OFFSET
++
++/* VLAN-FID Table offset. 4096 VIDs. 2B per VID = 8KB = 0x2000 */
++#define VLAN_STATIC_REG_TABLE_OFFSET                       0x0100
++
++/* VLAN-FID Table offset for EMAC  */
++#define EMAC_ICSSG_SWITCH_DEFAULT_VLAN_TABLE_OFFSET        VLAN_STATIC_REG_TABLE_OFFSET
++
++/* Packet descriptor Q reserved memory */
++#define PORT_DESC0_HI                                      0x2104
++
++/* Packet descriptor Q reserved memory */
++#define PORT_DESC0_LO                                      0x2F6C
++
++/* Packet descriptor Q reserved memory */
++#define PORT_DESC1_HI                                      0x3DD4
++
++/* Packet descriptor Q reserved memory */
++#define PORT_DESC1_LO                                      0x4C3C
++
++/* Packet descriptor Q reserved memory */
++#define HOST_DESC0_HI                                      0x5AA4
++
++/* Packet descriptor Q reserved memory */
++#define HOST_DESC0_LO                                      0x5F0C
++
++/* Packet descriptor Q reserved memory */
++#define HOST_DESC1_HI                                      0x6374
++
++/* Packet descriptor Q reserved memory */
++#define HOST_DESC1_LO                                      0x67DC
++
++/* Special packet descriptor Q reserved memory */
++#define HOST_SPPD0                                         0x7AAC
++
++/* Special acket descriptor Q reserved memory */
++#define HOST_SPPD1                                         0x7EAC
++
++/* IEP count cycle counter*/
++#define TIMESYNC_FW_WC_CYCLECOUNT_OFFSET                   0x83EC
++
++/* IEP count hi roll over count */
++#define TIMESYNC_FW_WC_HI_ROLLOVER_COUNT_OFFSET            0x83F4
++
++/* IEP count hi sw counter */
++#define TIMESYNC_FW_WC_COUNT_HI_SW_OFFSET_OFFSET           0x83F8
++
++/* Set clock descriptor */
++#define TIMESYNC_FW_WC_SETCLOCK_DESC_OFFSET                0x83FC
++
++/* IEP count syncout reduction factor */
++#define TIMESYNC_FW_WC_SYNCOUT_REDUCTION_FACTOR_OFFSET     0x843C
++
++/* IEP count syncout reduction counter */
++#define TIMESYNC_FW_WC_SYNCOUT_REDUCTION_COUNT_OFFSET      0x8440
++
++/* IEP count syncout start time cycle counter */
++#define TIMESYNC_FW_WC_SYNCOUT_START_TIME_CYCLECOUNT_OFFSET 0x8444
++
++/* Control variable to generate SYNC1 */
++#define TIMESYNC_FW_WC_ISOM_PIN_SIGNAL_EN_OFFSET           0x844C
++
++/* SystemTime Sync0 periodicity */
++#define TIMESYNC_FW_ST_SYNCOUT_PERIOD_OFFSET               0x8450
++
++/* pktTxDelay for P1 = link speed dependent p1 mac delay + p1 phy delay */
++#define TIMESYNC_FW_WC_PKTTXDELAY_P1_OFFSET                0x8454
++
++/* pktTxDelay for P2 = link speed dependent p2 mac delay + p2 phy delay */
++#define TIMESYNC_FW_WC_PKTTXDELAY_P2_OFFSET                0x8458
++
++/* Set clock operation done signal for next task */
++#define TIMESYNC_FW_SIG_PNFW_OFFSET                        0x845C
++
++/* Set clock operation done signal for next task */
++#define TIMESYNC_FW_SIG_TIMESYNCFW_OFFSET                  0x8460
++
++/* New list is copied at this time */
++#define TAS_CONFIG_CHANGE_TIME                             0x000C
++
++/* config change error counter */
++#define TAS_CONFIG_CHANGE_ERROR_COUNTER                    0x0014
++
++/* TAS List update pending flag */
++#define TAS_CONFIG_PENDING                                 0x0018
++
++/* TAS list update trigger flag */
++#define TAS_CONFIG_CHANGE                                  0x0019
++
++/* List length for new TAS schedule */
++#define TAS_ADMIN_LIST_LENGTH                              0x001A
++
++/* Currently active TAS list index */
++#define TAS_ACTIVE_LIST_INDEX                              0x001B
++
++/* Cycle time for the new TAS schedule */
++#define TAS_ADMIN_CYCLE_TIME                               0x001C
++
++/* Cycle counts remaining till the TAS list update */
++#define TAS_CONFIG_CHANGE_CYCLE_COUNT                      0x0020
++
++/* Base Flow ID for sending  Packets to Host for Slice0 */
++#define PSI_L_REGULAR_FLOW_ID_BASE_OFFSET                  0x0024
++
++/* Same as PSI_L_REGULAR_FLOW_ID_BASE_OFFSET */
++#define EMAC_ICSSG_SWITCH_PSI_L_REGULAR_FLOW_ID_BASE_OFFSET PSI_L_REGULAR_FLOW_ID_BASE_OFFSET
++
++/* Base Flow ID for sending mgmt and Tx TS to Host for Slice0 */
++#define PSI_L_MGMT_FLOW_ID_OFFSET                          0x0026
++
++/* Same as PSI_L_MGMT_FLOW_ID_OFFSET */
++#define EMAC_ICSSG_SWITCH_PSI_L_MGMT_FLOW_ID_BASE_OFFSET   PSI_L_MGMT_FLOW_ID_OFFSET
++
++/* Queue number for Special  Packets written here */
++#define SPL_PKT_DEFAULT_PRIORITY                           0x0028
++
++/* Express Preemptible Queue Mask */
++#define EXPRESS_PRE_EMPTIVE_Q_MASK                         0x0029
++
++/* Port1/Port2 Default Queue number for untagged  Packets, only 1B is used */
++#define QUEUE_NUM_UNTAGGED                                 0x002A
++
++/* Stores the table used for priority regeneration. 1B per PCP/Queue */
++#define PORT_Q_PRIORITY_REGEN_OFFSET                       0x002C
++
++/* For marking Packet as priority/express (this feature is disabled) or
++ * cut-through/S&F.
++ */
++#define EXPRESS_PRE_EMPTIVE_Q_MAP                          0x0034
++
++/* Stores the table used for priority mapping. 1B per PCP/Queue */
++#define PORT_Q_PRIORITY_MAPPING_OFFSET                     0x003C
++
++/* Used to notify the FW of the current link speed */
++#define PORT_LINK_SPEED_OFFSET                             0x00A8
++
++/* TAS gate mask for windows list0 */
++#define TAS_GATE_MASK_LIST0                                0x0100
++
++/* TAS gate mask for windows list1 */
++#define TAS_GATE_MASK_LIST1                                0x0350
++
++/* Memory to Enable/Disable Preemption on TX side */
++#define PRE_EMPTION_ENABLE_TX                              0x05A0
++
++/* Active State of Preemption on TX side */
++#define PRE_EMPTION_ACTIVE_TX                              0x05A1
++
++/* Memory to Enable/Disable Verify State Machine Preemption */
++#define PRE_EMPTION_ENABLE_VERIFY                          0x05A2
++
++/* Verify Status of State Machine */
++#define PRE_EMPTION_VERIFY_STATUS                          0x05A3
++
++/* Non Final Fragment Size supported by Link Partner */
++#define PRE_EMPTION_ADD_FRAG_SIZE_REMOTE                   0x05A4
++
++/* Non Final Fragment Size supported by Firmware */
++#define PRE_EMPTION_ADD_FRAG_SIZE_LOCAL                    0x05A6
++
++/* Time in ms the State machine waits for respond Packet */
++#define PRE_EMPTION_VERIFY_TIME                            0x05A8
++
++/* Memory used for R30 related management commands */
++#define MGR_R30_CMD_OFFSET                                 0x05AC
++
++/* HW Buffer Pool0 base address */
++#define BUFFER_POOL_0_ADDR_OFFSET                          0x05BC
++
++/* 16B for Host Egress MSMC Q (Pre-emptible) context */
++#define HOST_RX_Q_PRE_CONTEXT_OFFSET                       0x0684
++
++/* Buffer for 8 FDB entries to be added by 'Add Multiple FDB entries IOCTL' */
++#define FDB_CMD_BUFFER                                     0x0894
++
++/* TAS queue max sdu length list */
++#define TAS_QUEUE_MAX_SDU_LIST                             0x08FA
++
++/* Used by FW to generate random number with the SEED value */
++#define HD_RAND_SEED_OFFSET                                0x0934
++
++/* 16B for Host Egress MSMC Q (Express) context */
++#define HOST_RX_Q_EXP_CONTEXT_OFFSET                       0x0940
++
++/* Start of 32 bits PA_STAT counters */
++#define PA_STAT_32b_START_OFFSET                           0x0080
++
++#endif /* __NET_TI_ICSSG_SWITCH_MAP_H  */
 -- 
-2.41.0
+2.34.1
 
