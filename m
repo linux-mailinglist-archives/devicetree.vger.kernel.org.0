@@ -2,63 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F1D676BE61
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 22:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4FFB76BE7A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 22:33:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbjHAUSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 16:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46566 "EHLO
+        id S229719AbjHAUdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 16:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230418AbjHAUST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 16:18:19 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB372684;
-        Tue,  1 Aug 2023 13:18:17 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 371KIB0I025979;
-        Tue, 1 Aug 2023 15:18:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690921091;
-        bh=ashTlcfRtPLhp3kB8JNZO04TU5+S6vZUn713PBDKAqw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=N1TKSdj1VuvjtsgVnJgEnE5u1eQbR0a/bh94hbrsVZKZH4En+5QQWaXbrl2NRyUQS
-         m+tY4fWGN2aaGJpqyN+LldAYvsQFHECxYJK6H/KDcjf0ULRyxf+9fZzjlPkJ3k8R+0
-         uShZaSipe7PPjeFohIeaSNzCfYIOvsLBu0F0kdwk=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 371KIBdt007068
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Aug 2023 15:18:11 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
- Aug 2023 15:18:11 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 1 Aug 2023 15:18:11 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 371KIB0Z108278;
-        Tue, 1 Aug 2023 15:18:11 -0500
-Date:   Tue, 1 Aug 2023 15:18:11 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Udit Kumar <u-kumar1@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <t-konduru@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vaishnav.a@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset
- for ospi
-Message-ID: <20230801201811.sxf5zsbawpdfvvjf@exquisite>
-References: <20230801141920.3317697-1-u-kumar1@ti.com>
+        with ESMTP id S229500AbjHAUdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 16:33:06 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 600DD1FFD
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 13:33:05 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E6BE33D6;
+        Tue,  1 Aug 2023 22:31:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690921920;
+        bh=HNnBHcu58FwJlHMUcz7N9uZkPIq9yunUdcART+KHHBA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ykq6/uK/mOT9WlARkZJOYlOYwwuM1BpwMNxF3XkLCbuOkjuH+dMer/X5gvayfp7gK
+         HRCSAEtkvTQn+KMVC4cLjo4t6SmUnTv+M/wnHNXgjC+DRhxktM4dg+t9LsvqFoi4kl
+         Ahcd1VRWFTexwRlEjKG7C+Q2LYRjeasWrz5zE0j4=
+Date:   Tue, 1 Aug 2023 23:33:08 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Cyril Brulebois <kibi@debian.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Umang Jain <umang.jain@ideasonboard.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH v4 0/2] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
+ pinctrl-muxed i2c bus
+Message-ID: <20230801203308.GA8578@pendragon.ideasonboard.com>
+References: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
+ <CAPY8ntD07rCC5ttudKtbXkDcKFLJb5htRdawWR+S7p914ti4MA@mail.gmail.com>
+ <20230801144313.GB25590@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230801141920.3317697-1-u-kumar1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230801144313.GB25590@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,94 +59,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:49-20230801, Udit Kumar wrote:
-> After splitting wkup_pmx pin mux for J784S4 into four regions.
-> Pin mux offset for OSPI nodes were not updated to align with new
-> regions, due to this while setting ospi pin muxes out of range
-> error was seen.
-> 
-> Pin mux offsets for OSPI nodes are corrected in this patch.
-> 
-> Fixes: 14462bd0b247 ("arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and pinctrl node offsets")
+Hi Dave,
 
-I think the rename of pinnodes will get in the way of the automatic
-fixup in stable flow.
+On Tue, Aug 01, 2023 at 05:43:15PM +0300, Laurent Pinchart wrote:
+> On Tue, Aug 01, 2023 at 03:22:17PM +0100, Dave Stevenson wrote:
+> > On Mon, 31 Jul 2023 at 22:55, Laurent Pinchart wrote:
+> > >
+> > > Hello,
+> > >
+> > > This series is an attempt to revive support for pinmuxed I2C0 on the
+> > > Raspberry Pi BCM2711-based board.
+> > >
+> > > On BCM2711-based boards, the I2C0 controller can be muxed between pins
+> > > 0+1 or 44+45. The former is exposed through the 40-pins GPIO connector,
+> > > and the latter is used for the RTC on the CM4 I/O board, but also routed
+> > > to the display and camera connectors on the Raspberry Pi 4B board. The
+> > > other BCM2711-based board, the Raspberry Pi 400, does not expose or
+> > > connect anything to pins 44+45.
+> > >
+> > > A previous version was posted ([1]) a year and a half ago by Uwe. It
+> > > bundled the pinmuxing and RTC in a single patch, with the mux added to
+> > > the CM4 I/O board device tree. This version splits this in two, and
+> > > moves the pinumxing to the bcm2711-rpi.dtsi to also support the
+> > > Raspberry Pi 4B.
+> > >
+> > > The Raspberry Pi downstream kernel has a more complex DT architecture in
+> > > order to support different I2C0 pinmuxing for other boards. Two files,
+> > > bcm283x-rpi-i2c0mux_0_28.dtsi and bcm283x-rpi-i2c0mux_0_44.dtsi, define
+> > > the two I2C0 pinxmuxing options (pins 0+1 and 28+29, or pins 0+1 and
+> > > 44+45). Each board .dts then includes the appropriate file. I'm hoping
+> > > to avoid this additional complexity for now, by addressing the I2C0
+> > > pinmuxing for BCM2711-based boards only. If/when support for I2C0
+> > > pinmuxing on boards will be needed, we can revisit this topic.
+> > >
+> > > Compared to the Raspberry Pi downstream kernel, the two muxed I2C buses
+> > > are labelled i2c0_0 and i2c0_1 instead of i2c0 and i2c_csi_dsi. This
+> > > change was made to keep the naming of the I2C controller labels
+> > > consistent, avoiding renaming of the I2C0 controller's label from i2c0
+> > > to i2c0if.
+> > >
+> > > Dave, are you fine with the differences between this patch series and
+> > > the downstream kernel, or do you expect them to cause issues ?
+> > 
+> > I've checked with Phil. There's nothing too untoward that will cause
+> > us any significant grief.
+> 
+> Thanks for checking.
+> 
+> In the meantime, I realized that the CM4S is 2711-based and, according
+> to the downstream DT, multiplexes I2C0 on pins 28+29, not 44+45 :-(
+> Umang and Kieran also told me that we want to test camera support on the
+> Pi 3B. It looks like the only viable approach to support all that will
+> be to include per-board I2C0 pinmux .dtsi as done in the downstream
+> kernel. I'll send a v5.
+> 
+> > Phil has commented that the RTC is an PCF85063AT, so that compatible
+> > string should be "nxp,pcf85063a" if you actually want to make use of
+> > the alarm output.
+> > Then again the driver support for the alarm output appears to want it
+> > routed to an IRQ rather than as a system reset/wakeup, so it probably
+> > makes little difference. It llargely depends on how exact you want to
+> > be in your hardware description.
+> 
+> I'll update the compatible string, it's an easy change and it's nice to
+> be accurate.
 
-> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
-> ---
-> Original test log
-> https://gist.github.com/uditkumarti/85b5076df99c3019aa56da4268724295
-> line 1104 and 1107, out of range error is seen
-> 
-> Test log with patch
-> https://gist.github.com/uditkumarti/29b424d0a1527e77947f72d2e8a38f01
-> 
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 31 +++++++++++++++---------
->  1 file changed, 19 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index 7ad152a1b90f..1961cd819f5e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -379,21 +379,28 @@ J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (D34) MCU_OSPI0_D5 */
->  			J784S4_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (E34) MCU_OSPI0_D6 */
->  			J784S4_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (E33) MCU_OSPI0_D7 */
->  			J784S4_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (C34) MCU_OSPI0_DQS */
-> -			J784S4_WKUP_IOPAD(0x03c, PIN_OUTPUT, 6) /* (C32) MCU_OSPI0_CSn3.MCU_OSPI0_ECC_FAIL */
-> -			J784S4_WKUP_IOPAD(0x038, PIN_OUTPUT, 6) /* (B34) MCU_OSPI0_CSn2.MCU_OSPI0_RESET_OUT0 */
-> +		>;
-> +	};
-> +};
-> +
-> +&wkup_pmx1 {
-> +	mcu_fss0_ospi0_pins1_default: mcu-fss0-ospi0-default-pins1 {
-                                                               ^^^
-and below:
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x004, PIN_OUTPUT, 6) /* (C32) MCU_OSPI0_ECC_FAIL */
-> +			J784S4_WKUP_IOPAD(0x000, PIN_OUTPUT, 6) /* (B34) MCU_OSPI0_RESET_OUT0 */
->  		>;
->  	};
->  
-> -	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-default-pins {
-> +	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-pins-default {
+The driver will print a warning if the quartz-load-femtofarads property
+isn't set in DT (it can be either 7pF or 12.5pF). If I'm not mistaken,
+the quartz oscillator on the CM4 I/O board is calibrated for a 6pF load
+capacitance, so 7pF is the closest and best value. Could you confirm
+that ?
 
-Please run your check against https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/
-
->  		pinctrl-single,pins = <
-> -			J784S4_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (F32) MCU_OSPI1_CLK */
-> -			J784S4_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (G32) MCU_OSPI1_CSn0 */
-> -			J784S4_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (E35) MCU_OSPI1_D0 */
-> -			J784S4_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (D31) MCU_OSPI1_D1 */
-> -			J784S4_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (G31) MCU_OSPI1_D2 */
-> -			J784S4_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (F33) MCU_OSPI1_D3 */
-> -			J784S4_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (F31) MCU_OSPI1_DQS */
-> -			J784S4_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (C31) MCU_OSPI1_LBCLKO */
-> +			J784S4_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (F32) MCU_OSPI1_CLK */
-> +			J784S4_WKUP_IOPAD(0x024, PIN_OUTPUT, 0) /* (G32) MCU_OSPI1_CSn0 */
-> +			J784S4_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (E35) MCU_OSPI1_D0 */
-> +			J784S4_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (D31) MCU_OSPI1_D1 */
-> +			J784S4_WKUP_IOPAD(0x01C, PIN_INPUT, 0) /* (G31) MCU_OSPI1_D2 */
-> +			J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (F33) MCU_OSPI1_D3 */
-> +			J784S4_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F31) MCU_OSPI1_DQS */
-> +			J784S4_WKUP_IOPAD(0x00C, PIN_INPUT, 0) /* (C31) MCU_OSPI1_LBCLKO */
->  		>;
->  	};
->  };
-> @@ -437,7 +444,7 @@ &fss {
->  &ospi0 {
->  	status = "okay";
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_pins1_default>;
->  
->  	flash@0 {
->  		compatible = "jedec,spi-nor";
-> -- 
-> 2.34.1
-> 
+> > > [1] https://lore.kernel.org/linux-arm-kernel/20211231115109.94626-1-uwe@kleine-koenig.org/
+> > >
+> > > Uwe Kleine-König (2):
+> > >   ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
+> > >   ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
+> > >
+> > >  arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts | 16 ++++++++++++
+> > >  arch/arm/boot/dts/bcm2711-rpi.dtsi       | 31 ++++++++++++++++++++++++
+> > >  2 files changed, 47 insertions(+)
 
 -- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Laurent Pinchart
