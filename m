@@ -2,86 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C93B76BF6F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCD076BF6B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:43:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjHAVoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 17:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53712 "EHLO
+        id S231351AbjHAVnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 17:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232660AbjHAVoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:44:03 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576E61FFC;
-        Tue,  1 Aug 2023 14:44:00 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 658938697D;
-        Tue,  1 Aug 2023 23:43:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1690926238;
-        bh=+c2KmqoYIBq1SO1uRer1RdmeIEeeTNx+vtJwEYoJl6E=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=IolQ3ahTQgDKF0qHimOzB7oyH2pzZ+yiduak00q5NkeZwnGRxkMkWl8E/ZSbE3Ry2
-         on2q1nnM9XVGsRT43t7jjDEflmLGQkP/xOufDfsvw3Is3tHwDLRe9srqB6cQuBUJdM
-         XGWFDsLk5d+esIPV62eQBIJXG1H0G6GBnusigpFHCZGSRiGzsrxWXW1SX54bprPnVD
-         lP0okK7nkNbm/zQ3gYTTe1CWW8nkXUylMLhFatXXbn5W5EwkVs68GkkSZUaxcHCVLl
-         xhh2cZc1xdaH5TQXlQDrUfpwKLqF5wPEUvrCsGyrlvtLtmS7l/PSX9D128ika8Mu88
-         2N5fB5fq7luPw==
+        with ESMTP id S230126AbjHAVnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:43:23 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3082C1FDA;
+        Tue,  1 Aug 2023 14:43:22 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3179ed1dfbbso2757314f8f.1;
+        Tue, 01 Aug 2023 14:43:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690926200; x=1691531000;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ptisAxebow9uOm2s7VOrkfI5czz0rYnxrxEnVycD1E=;
+        b=rpeHpj8jkihFpBrbMKKdgF9fAH2g49kz+Yolz8n9KmLqQ6cGPTtKIhTp5IAcWKp1r4
+         JeP4X/00l8eKFYxvpavij4p58v5sDYdTDjxm6dPELJKJZnDs1sSZ0ODLe1RVa1q3pna3
+         N+RLlNjoc4a2o8+guoKVcDJk11IVa0jEguaHZu8x5T09C7KaTRwZP2vEhUtfNqAxzgnt
+         4oChVv/RHYTYgMfSHJrnF67hB4zxcStld5/QCaLPrERZcDyuUOeu3dWQlktGKK8GTvW+
+         E/DMq0HcwFh/amWUUzGlElUqpaZ0z2HtFoC0k9q82iFNSiiZDxUw49kZgKH+25vBYcgx
+         EqsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690926200; x=1691531000;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5ptisAxebow9uOm2s7VOrkfI5czz0rYnxrxEnVycD1E=;
+        b=N6W+ixv6TIxWZ/yafq9iXiSmRhdBOun6eHAqxO9/CyHmqvATPVMpfz0Ych40bW44bR
+         ldzbRDk5zS5eXK+u9kS+sxwd8/Mo3uC1jF21j0yXHqnVVN10a6Ua1jUIBukIMXrtxctq
+         iYwZcA2s6LJxmtEtS7Rdf66h/jbNLIU0//v2XvKRQW0qbwj/2JqvYI8MIY/U142FdAA6
+         gq7bHBl8B6WTFxOSFxtXbqgKD8IdnzLys6kEcrlbcRvexX4cj0BSlByfpzhAzSWltXHE
+         d6K+pZmLO/bJcejq21G83znjAPZ4PLB+KzipeMbCKm0hiMg8/P0BnoRm4uKKbq7RUEZm
+         Pt8g==
+X-Gm-Message-State: ABy/qLY7j2OvFEw3LdPovUsXh6cydgu5yBAXG0owoo2iamay6xRI12WX
+        tyKd52K+/9wT9BdATrRVej8=
+X-Google-Smtp-Source: APBJJlHmcp2zhL4aOFVsgqn+7zNqgzXWObWeOzXTdlEriW8Ej0ZxCfrSDvo3faa4PpskDMjUtJpLcw==
+X-Received: by 2002:adf:f74e:0:b0:314:46af:e1e7 with SMTP id z14-20020adff74e000000b0031446afe1e7mr3624085wrp.34.1690926200414;
+        Tue, 01 Aug 2023 14:43:20 -0700 (PDT)
+Received: from localhost ([2a01:e0a:32f:1f0:2bb:9098:9156:9ead])
+        by smtp.gmail.com with ESMTPSA id l6-20020adfe586000000b0031416362e23sm17221221wrm.3.2023.08.01.14.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Aug 2023 14:43:20 -0700 (PDT)
+From:   Raphael Gallais-Pou <rgallaispou@gmail.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: irqchip: convert st,stih407-irq-syscfg to DT schema
+Date:   Tue,  1 Aug 2023 23:46:51 +0200
+Message-ID: <20230801214651.27418-1-rgallaispou@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 01 Aug 2023 18:43:58 -0300
-From:   Fabio Estevam <festevam@denx.de>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: trivial-devices: Remove the OV5642 entry
-In-Reply-To: <20230801-selective-strife-b595804cdb27@spud>
-References: <20230801170015.40965-1-festevam@denx.de>
- <20230801-clobber-attempt-7033f92b3d08@spud>
- <8b0e048208220b2ae09eb1a3c52219b9@denx.de>
- <20230801-dividers-chooser-bd0df9b72d91@spud>
- <f9ab7525f048f3ce814d89f106947c34@denx.de>
- <20230801-selective-strife-b595804cdb27@spud>
-Message-ID: <deb6a4e60f37e9764d24e25b8a6d1d97@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Convert deprecated format to DT schema format.
 
-On 01/08/2023 18:28, Conor Dooley wrote:
+Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+---
+ .../st,sti-irq-syscfg.txt                     | 30 ---------
+ .../st,stih407-irq-syscfg.yaml                | 67 +++++++++++++++++++
+ 2 files changed, 67 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
 
-> I never said it was chief. Please re-read the quoted text.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt b/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
+deleted file mode 100644
+index 977d7ed3670e..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-STMicroelectronics STi System Configuration Controlled IRQs
+------------------------------------------------------------
+-
+-On STi based systems; External, CTI (Core Sight), PMU (Performance Management),
+-and PL310 L2 Cache IRQs are controlled using System Configuration registers.
+-This driver is used to unmask them prior to use.
+-
+-Required properties:
+-- compatible	: Should be "st,stih407-irq-syscfg"
+-- st,syscfg	: Phandle to Cortex-A9 IRQ system config registers
+-- st,irq-device	: Array of IRQs to enable - should be 2 in length
+-- st,fiq-device	: Array of FIQs to enable - should be 2 in length
+-
+-Optional properties:
+-- st,invert-ext	: External IRQs can be inverted at will.  This property inverts
+-		  these IRQs using bitwise logic.  A number of defines have been
+-		  provided for convenience:
+-			ST_IRQ_SYSCFG_EXT_1_INV
+-			ST_IRQ_SYSCFG_EXT_2_INV
+-			ST_IRQ_SYSCFG_EXT_3_INV
+-Example:
+-
+-irq-syscfg {
+-	compatible    = "st,stih407-irq-syscfg";
+-	st,syscfg     = <&syscfg_cpu>;
+-	st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
+-			<ST_IRQ_SYSCFG_PMU_1>;
+-	st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
+-			<ST_IRQ_SYSCFG_DISABLED>;
+-};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
+new file mode 100644
+index 000000000000..fce18d444c56
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/st,stih407-irq-syscfg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics STi System Configuration Controlled IRQs
++
++maintainers:
++  - Patrice Chotard <patrice.chotard@foss.st.com>
++
++description:
++  On STi based systems; External, CTI (Core Sight), PMU (Performance
++  Management), and PL310 L2 Cache IRQs are controlled using System
++  Configuration registers.  This driver is used to unmask them prior to use.
++
++properties:
++  compatible:
++    const: st,stih407-irq-syscfg
++
++  st,syscfg:
++    description: Phandle to Cortex-A9 IRQ system config registers
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++
++  st,irq-device:
++    description: Array of IRQs to enable.
++    $ref: "/schemas/types.yaml#/definitions/uint32-array"
++    items:
++      - description: Enable the IRQ of the channel one.
++      - description: Enable the IRQ of the channel two.
++
++  st,fiq-device:
++    description: Array of FIQs to enable.
++    $ref: "/schemas/types.yaml#/definitions/uint32-array"
++    items:
++      - description: Enable the IRQ of the channel one.
++      - description: Enable the IRQ of the channel two.
++
++  st,invert-ext:
++    description: External IRQs can be inverted at will. This property inverts
++      these IRQs using bitwise logic.
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    enum:
++      - ST_IRQ_SYSCFG_EXT_1_INV
++      - ST_IRQ_SYSCFG_EXT_2_INV
++      - ST_IRQ_SYSCFG_EXT_3_INV
++
++required:
++  - compatible
++  - st,syscfg
++  - st,irq-device
++  - st,fiq-device
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq-st.h>
++    irq-syscfg {
++        compatible    = "st,stih407-irq-syscfg";
++        st,syscfg     = <&syscfg_cpu>;
++        st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
++                        <ST_IRQ_SYSCFG_PMU_1>;
++        st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
++                        <ST_IRQ_SYSCFG_DISABLED>;
++    };
++...
+-- 
+2.41.0
 
-trivial-devices.yaml throws the following warning:
-
-imx6q-sabrelite.dtb: camera@42: 'clock-names', 'clocks', 'gp-gpios', 
-'port', 'powerdown-gpios', 'reset-gpios' do not match any of the 
-regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-
-Would it make sense to remove ovti,ov5642 from the trivial-devices 
-bindings as well as from the
-following devicetrees?
-
-arch/arm/boot/dts/nxp/imx/imx53-smd.dts
-arch/arm/boot/dts/nxp/imx/imx6qdl-sabrelite.dtsi
-arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-
-Please advise.
