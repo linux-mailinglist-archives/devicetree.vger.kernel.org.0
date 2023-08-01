@@ -2,144 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B0976B928
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 17:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 449AB76B9BD
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 18:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbjHAPy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 11:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
+        id S231223AbjHAQgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 12:36:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234314AbjHAPy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 11:54:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35FC1B2;
-        Tue,  1 Aug 2023 08:54:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 490A261602;
-        Tue,  1 Aug 2023 15:54:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1709EC433C8;
-        Tue,  1 Aug 2023 15:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690905266;
-        bh=YTzEex3MrsIyDif+LvWblgzD2IiqUMw1PvPWVyIP5XE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KBmNRYAAgpUp0cM58UfU95iiVTOQTs7Xj/HMrsf/cDa0yeS14/nG5xZv2R5sLBr9K
-         UwyZxNK/6t7zYIBcfJBsAr1sHPXGNMCm69BMUj4pRErj4KXJSAeXgIZCeFzz6dq+5x
-         g7543dFXFtsbW9RHas7xwHJFQgngDmeRj28rbd4W9g4q+/7FVR5j1PjEJCJm/uLYXr
-         GZizlotK6PtA8FoH/e7zmGRbEdW8UpPDvyWVrdYzAK2kUl6ziNT8vpA8dWlPxATbrg
-         rk7miwODq+6Z/Tc+SnrljDn91sN3h/VpbMsGm6mbgQC9JG2O717DHF/Q5KmZvjZbnq
-         OW74DewioDhjg==
-Date:   Tue, 1 Aug 2023 16:54:21 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229978AbjHAQgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 12:36:22 -0400
+Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B2D1BFD;
+        Tue,  1 Aug 2023 09:36:17 -0700 (PDT)
+Received: from [2001:a61:6215:d040:c80a:ff:fe00:409d] (helo=cs-wrt.lan.local); authenticated
+        by wp534.webpack.hosteurope.de running ExIM with esmtpa
+        id 1qQsM0-0007BE-KR; Tue, 01 Aug 2023 18:36:12 +0200
+From:   =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>
+To:     =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-Message-ID: <20230801-varsity-chemo-09cc5e250ded@spud>
-References: <20230731091059.17323-1-zhuyinbo@loongson.cn>
- <20230731091059.17323-2-zhuyinbo@loongson.cn>
- <20230731-setback-such-61815ee3ef51@spud>
- <041bf8a6-8d91-c2ce-6752-aa7255f946c7@loongson.cn>
- <20230801-whenever-imitation-b2759b212f6b@spud>
- <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 2/2] dt-bindings: hwmon: add renesas,isl28022
+Date:   Tue,  1 Aug 2023 18:35:46 +0200
+Message-Id: <20230801163546.3170-3-mail@carsten-spiess.de>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230801163546.3170-1-mail@carsten-spiess.de>
+References: <20230801163546.3170-1-mail@carsten-spiess.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="0s9XzvurofOEngPf"
-Content-Disposition: inline
-In-Reply-To: <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690907778;8db166c8;
+X-HE-SMSGID: 1qQsM0-0007BE-KR
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add dt-bindings for Renesas ISL28022 power monitor.
 
---0s9XzvurofOEngPf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
+---
+v3:
+- changelog added
+v2/v3:
+- schema errors fixed
+- properties reworked
+- shunt-resistor minimum and default value added
+---
+ .../bindings/hwmon/renesas,isl28022.yaml      | 65 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
 
-On Tue, Aug 01, 2023 at 04:34:30PM +0800, Yinbo Zhu wrote:
->=20
->=20
-> =E5=9C=A8 2023/8/1 =E4=B8=8B=E5=8D=883:23, Conor Dooley =E5=86=99=E9=81=
-=93:
-> > On Tue, Aug 01, 2023 at 02:39:49PM +0800, Yinbo Zhu wrote:
-> > >=20
-> > >=20
-> > > =E5=9C=A8 2023/7/31 =E4=B8=8B=E5=8D=8811:55, Conor Dooley =E5=86=99=
-=E9=81=93:
-> > > > On Mon, Jul 31, 2023 at 05:10:58PM +0800, Yinbo Zhu wrote:
-> > > > > Add parsing GPIO configure, input, output, interrupt register off=
-set
-> > > > > address and GPIO control mode support.
-> > > >=20
-> > > > This reeks of insufficient use of SoC specific compatibles. Do GPIO
-> > > > controllers on the same SoC have different register offsets?
-> > >=20
-> > >=20
-> > > Yes,
-> > >=20
-> > > > Where are the users for this?
-> > >=20
-> > >=20
-> > > For example, ls2k500 contains multiple GPIO chips with different
-> > > (configure, input, output, interrupt) offset addresses, but all others
-> > > are the same.
-> >=20
-> > Right. That's admittedly not what I expected to hear! Can you firstly
-> > explain this in the commit message,
->=20
->=20
-> I will add following explain in the commit message. Do you think it's
-> suitable?
->=20
-> Loongson GPIO controllers come in multiple variants that are compatible
-> except for certain register offset values.  Add support in yaml file for
-> device properties allowing to specify them in DT.
+diff --git a/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+new file mode 100644
+index 000000000000..1e0971287941
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/renesas,isl28022.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas ISL28022 power monitor
++
++maintainers:
++  - Carsten Spieß <mail@carsten-spiess.de>
++
++description: |
++  The ISL28022 is a power monitor with I2C interface. The device monitors
++  voltage, current via shunt resistor and calculated power.
++
++  Datasheets:
++    https://www.renesas.com/us/en/www/doc/datasheet/isl28022.pdf
++
++properties:
++  compatible:
++    enum:
++      - renesas,isl28022
++
++  reg:
++    maxItems: 1
++
++  shunt-resistor-micro-ohms:
++    description: |
++      Shunt resistor value in micro-Ohm
++    minimum: 800
++    default: 10000
++
++  renesas,shunt-range-microvolt:
++    description: |
++      Maximal shunt voltage range of +/- 40 mV, 80 mV, 160 mV or 320 mV
++    default: 320000
++    enum: [40000, 80000, 160000, 320000]
++
++  renesas,average-samples:
++    description: |
++      Number of samples to be used to report voltage, current and power values.
++    default: 1
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 4, 8, 16, 32, 64, 128]
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        power-monitor@40 {
++            compatible = "renesas,isl28022";
++            reg = <0x40>;
++            shunt-resistor-micro-ohms = <8000>;
++            renesas,shunt-range-microvolt = <40000>;
++            renesas,average-samples = <128>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b02e3b991676..23b8e8183ece 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11069,6 +11069,7 @@ ISL28022 HARDWARE MONITORING DRIVER
+ M:	Carsten Spieß <mail@carsten-spiess.de>
+ L:	linux-hwmon@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+ F:	Documentation/hwmon/isl28022.rst
+ F:	drivers/hwmon/isl28022.c
+ 
+-- 
+2.34.1
 
-Sure, that would be helpful.=20
-
-> > and secondly add a soc-specific
-> > compatible for the ls2k500 and only allow these properties on that SoC?
-
-> Sorry, I may not have described it clearly before, the ls2k500 was only
-> as a example, actually, Loongson GPIO controllers (2k500,2k1000,eg)come
-> in multiple variants that are compatible except for certain register
-> offset values.  So above all offset device property was used to in all
-> loongson gpio controller.
-
-But it would be good to know why they are different. Do they each
-support some different features, or was there some other reason for
-making controllers like this?
-
-Thanks,
-Conor.
-
---0s9XzvurofOEngPf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMkqrQAKCRB4tDGHoIJi
-0rYYAQCmEdeLBYxTd7t+7RjsCTt/+pN/qYxgXaG+jYXcxYXKbwD/XQzcWjqQVCtU
-+5Isrwhco0IFgjMo79+uFRBfy5RVSQc=
-=fUqV
------END PGP SIGNATURE-----
-
---0s9XzvurofOEngPf--
