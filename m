@@ -2,152 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 449AB76B9BD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 18:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1599B76B9D2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 18:40:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231223AbjHAQgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 12:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59248 "EHLO
+        id S231572AbjHAQk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 12:40:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229978AbjHAQgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 12:36:22 -0400
-Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B2D1BFD;
-        Tue,  1 Aug 2023 09:36:17 -0700 (PDT)
-Received: from [2001:a61:6215:d040:c80a:ff:fe00:409d] (helo=cs-wrt.lan.local); authenticated
-        by wp534.webpack.hosteurope.de running ExIM with esmtpa
-        id 1qQsM0-0007BE-KR; Tue, 01 Aug 2023 18:36:12 +0200
-From:   =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>
-To:     =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: hwmon: add renesas,isl28022
-Date:   Tue,  1 Aug 2023 18:35:46 +0200
-Message-Id: <20230801163546.3170-3-mail@carsten-spiess.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230801163546.3170-1-mail@carsten-spiess.de>
-References: <20230801163546.3170-1-mail@carsten-spiess.de>
+        with ESMTP id S231547AbjHAQk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 12:40:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253422108;
+        Tue,  1 Aug 2023 09:40:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B330461625;
+        Tue,  1 Aug 2023 16:40:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE837C433C7;
+        Tue,  1 Aug 2023 16:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690908024;
+        bh=9Zj4ne5Gw6euat2eGPvypb6viKCkkWGRlyGCVFFJRcc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=E9DcE+GSgFKqxSzSWJBElAs0Eto1a+wxzwLRpWuqlvCVEAo2qVQTNCm5W5kfDU6SM
+         kOCmemaorRqWdwSJoYfPG9Uv6ik1DPi9iuSOIJqUuBuIY5pDOgEGtHxdzQvlrG2SHT
+         JG2KPP4whaz/CRc956ZD/mHH9/wdlXOPBotTUXbYSnBC5xE8p6UhqRvpVq6TnzhraQ
+         iaYI/hV8cFVUc0+6NOHQP7pPAzqCSDwAZa5LYHOu0AxaTs/QAx34Ib6QC44yVNYbNw
+         iMGiGRq4QeRLod2YRfWl5Xy41VB9DQj72aufZSORroo1tExdgjyxDg0F6//18y2VQM
+         ZaK4M6ZJobCAw==
+Message-ID: <1cd8af90-c4f3-99c8-50b2-bf379d5b76f0@kernel.org>
+Date:   Tue, 1 Aug 2023 19:40:18 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v8 4/5] arm64: dts: ti: k3-j784s4-evm: Enable
+ DisplayPort-0
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com
+Cc:     s-vadapalli@ti.com, afd@ti.com, kristo@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, a-bhatia1@ti.com, r-ravikumar@ti.com,
+        sabiya.d@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230801070019.219660-1-j-choudhary@ti.com>
+ <20230801070019.219660-5-j-choudhary@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230801070019.219660-5-j-choudhary@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690907778;8db166c8;
-X-HE-SMSGID: 1qQsM0-0007BE-KR
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
-        T_SPF_TEMPERROR,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt-bindings for Renesas ISL28022 power monitor.
 
-Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
----
-v3:
-- changelog added
-v2/v3:
-- schema errors fixed
-- properties reworked
-- shunt-resistor minimum and default value added
----
- .../bindings/hwmon/renesas,isl28022.yaml      | 65 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
 
-diff --git a/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
-new file mode 100644
-index 000000000000..1e0971287941
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/renesas,isl28022.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas ISL28022 power monitor
-+
-+maintainers:
-+  - Carsten Spieß <mail@carsten-spiess.de>
-+
-+description: |
-+  The ISL28022 is a power monitor with I2C interface. The device monitors
-+  voltage, current via shunt resistor and calculated power.
-+
-+  Datasheets:
-+    https://www.renesas.com/us/en/www/doc/datasheet/isl28022.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - renesas,isl28022
-+
-+  reg:
-+    maxItems: 1
-+
-+  shunt-resistor-micro-ohms:
-+    description: |
-+      Shunt resistor value in micro-Ohm
-+    minimum: 800
-+    default: 10000
-+
-+  renesas,shunt-range-microvolt:
-+    description: |
-+      Maximal shunt voltage range of +/- 40 mV, 80 mV, 160 mV or 320 mV
-+    default: 320000
-+    enum: [40000, 80000, 160000, 320000]
-+
-+  renesas,average-samples:
-+    description: |
-+      Number of samples to be used to report voltage, current and power values.
-+    default: 1
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        power-monitor@40 {
-+            compatible = "renesas,isl28022";
-+            reg = <0x40>;
-+            shunt-resistor-micro-ohms = <8000>;
-+            renesas,shunt-range-microvolt = <40000>;
-+            renesas,average-samples = <128>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b02e3b991676..23b8e8183ece 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11069,6 +11069,7 @@ ISL28022 HARDWARE MONITORING DRIVER
- M:	Carsten Spieß <mail@carsten-spiess.de>
- L:	linux-hwmon@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
- F:	Documentation/hwmon/isl28022.rst
- F:	drivers/hwmon/isl28022.c
- 
+On 01/08/2023 10:00, Jayesh Choudhary wrote:
+> From: Rahul T R <r-ravikumar@ti.com>
+> 
+> Enable display for J784S4 EVM.
+> 
+> Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux for
+> DP HPD. Add the clock frequency for serdes_refclk.
+> 
+> Add the endpoint nodes to describe connection from:
+> DSS => MHDP => DisplayPort connector.
+> 
+> Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
+> required for controlling DP power. Set status for all required nodes
+> for DP-0 as "okay".
+> 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> [j-choudhary@ti.com: move all the changes together to enable DP-0 in EVM]
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 117 +++++++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index 7ad152a1b90f..1145a7f046e2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -249,6 +249,28 @@ vdd_sd_dv: regulator-TLV71033 {
+>  		states = <1800000 0x0>,
+>  			 <3300000 0x1>;
+>  	};
+> +
+> +	dp0_pwr_3v3: regulator-dp0-prw {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dp0-pwr";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	dp0: dp0-connector {
+
+dp0-connector is not a standard name.
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+how about connector-dp0?
+
+> +		compatible = "dp-connector";
+> +		label = "DP0";
+> +		type = "full-size";
+> +		dp-pwr-supply = <&dp0_pwr_3v3>;
+> +
+> +		port {
+> +			dp0_connector_in: endpoint {
+> +				remote-endpoint = <&dp0_out>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -286,6 +308,19 @@ vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
+>  			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+>  		>;
+>  	};
+> +
+> +	dp0_pins_default: dp0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x0cc, PIN_INPUT, 12) /* (AM37) SPI0_CS0.DP0_HPD */
+> +		>;
+> +	};
+> +
+> +	main_i2c4_pins_default: main-i2c4-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AG33) MCAN14_TX.I2C4_SCL */
+> +			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
+> +		>;
+> +	};
+>  };
+>  
+>  &wkup_pmx2 {
+> @@ -827,3 +862,85 @@ adc {
+>  		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>  	};
+>  };
+> +
+> +&serdes_refclk {
+> +	status = "okay";
+> +	clock-frequency = <100000000>;
+> +};
+> +
+> +&dss {
+> +	status = "okay";
+> +	assigned-clocks = <&k3_clks 218 2>,
+> +			  <&k3_clks 218 5>,
+> +			  <&k3_clks 218 14>,
+> +			  <&k3_clks 218 18>;
+> +	assigned-clock-parents = <&k3_clks 218 3>,
+> +				 <&k3_clks 218 7>,
+> +				 <&k3_clks 218 16>,
+> +				 <&k3_clks 218 22>;
+> +};
+> +
+> +&serdes_wiz4 {
+> +	status = "okay";
+> +};
+> +
+> +&serdes4 {
+> +	status = "okay";
+> +	serdes4_dp_link: phy@0 {
+> +		reg = <0>;
+> +		cdns,num-lanes = <4>;
+> +		#phy-cells = <0>;
+> +		cdns,phy-type = <PHY_TYPE_DP>;
+> +		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
+> +			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
+> +	};
+> +};
+> +
+> +&mhdp {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&dp0_pins_default>;
+> +	phys = <&serdes4_dp_link>;
+> +	phy-names = "dpphy";
+> +};
+> +
+> +&dss_ports {
+> +	port {
+> +		dpi0_out: endpoint {
+> +			remote-endpoint = <&dp0_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&main_i2c4 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c4_pins_default>;
+> +	clock-frequency = <400000>;
+> +
+> +	exp4: gpio@20 {
+> +		compatible = "ti,tca6408";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +};
+> +
+> +&dp0_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	port@0 {
+> +		reg = <0>;
+> +		dp0_in: endpoint {
+> +			remote-endpoint = <&dpi0_out>;
+> +		};
+> +	};
+> +
+> +	port@4 {
+> +		reg = <4>;
+> +		dp0_out: endpoint {
+> +			remote-endpoint = <&dp0_connector_in>;
+> +		};
+> +	};
+> +};
+
 -- 
-2.34.1
-
+cheers,
+-roger
