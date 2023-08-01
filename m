@@ -2,78 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA88F76B78F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 16:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E8376B7E2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 16:43:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234700AbjHAOeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 10:34:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        id S234830AbjHAOnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 10:43:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232198AbjHAOd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 10:33:59 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3A7871FEF;
-        Tue,  1 Aug 2023 07:33:53 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.43])
-        by gateway (Coremail) with SMTP id _____8BxIvDOF8lkiiYOAA--.32762S3;
-        Tue, 01 Aug 2023 22:33:50 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxJ83MF8lkyBdEAA--.44246S3;
-        Tue, 01 Aug 2023 22:33:48 +0800 (CST)
-Message-ID: <9f6ff24b-7e58-2dde-3b6d-eda9be1944ae@loongson.cn>
-Date:   Tue, 1 Aug 2023 22:33:09 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [v1,v1,5/7] drm/vs: Register DRM device
-From:   suijingfeng <suijingfeng@loongson.cn>
-To:     Keith Zhao <keith.zhao@starfivetech.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
+        with ESMTP id S235001AbjHAOnK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 10:43:10 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75FCD9C
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 07:43:09 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BB0F73D4;
+        Tue,  1 Aug 2023 16:42:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690900925;
+        bh=eGajjxKo0yeXO9peQAK9tT1JeL8F5e23z+8rJ4gjYuY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hn5QIkq9dIkDqU5KboicdVOl3psMUYs2c1zj++FVWVc3Rt5+IpRGMoxt82gK5AOuM
+         bzxMlqihYhxpeT08lPpNSpGANzDagXdWVpwfVEco+jt5VQ//6RS3ffA4axdB78Dabd
+         8MZWSMRYVC5agPQsTwB37WX/VJzgz7jWgMXgkaC0=
+Date:   Tue, 1 Aug 2023 17:43:13 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Cyril Brulebois <kibi@debian.org>,
         Maxime Ripard <mripard@kernel.org>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
-References: <20230801101030.2040-6-keith.zhao@starfivetech.com>
- <6b776c23-9cc1-5a7d-0a85-bd7eb42e847d@loongson.cn>
-Content-Language: en-US
-In-Reply-To: <6b776c23-9cc1-5a7d-0a85-bd7eb42e847d@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Umang Jain <umang.jain@ideasonboard.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH v4 0/2] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
+ pinctrl-muxed i2c bus
+Message-ID: <20230801144313.GB25590@pendragon.ideasonboard.com>
+References: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
+ <CAPY8ntD07rCC5ttudKtbXkDcKFLJb5htRdawWR+S7p914ti4MA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxJ83MF8lkyBdEAA--.44246S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
-        BjDU0xBIdaVrnRJUUUm2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
-        xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
-        j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxV
-        AFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x02
-        67AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
-        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2
-        jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
-        AS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF54CYxVAaw2AFwI0_Jw0_GFyl4c8EcI0E
-        c7CjxVAaw2AFwI0_GFv_Wryl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Wr
-        v_ZF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
-        17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_Xr1lIxAIcV
-        C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
-        6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxh
-        VjvjDU0xZFpf9x07jUSdgUUUUU=
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+In-Reply-To: <CAPY8ntD07rCC5ttudKtbXkDcKFLJb5htRdawWR+S7p914ti4MA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,22 +58,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Dave,
 
-On 2023/8/1 21:40, suijingfeng wrote:
->> +#define DRV_DATE    "202305161"
->
-> The date is not correct here, generally it should have 8 numbers,
->
-> while you have 9 digits, why you are so special ? 
+On Tue, Aug 01, 2023 at 03:22:17PM +0100, Dave Stevenson wrote:
+> On Mon, 31 Jul 2023 at 22:55, Laurent Pinchart wrote:
+> >
+> > Hello,
+> >
+> > This series is an attempt to revive support for pinmuxed I2C0 on the
+> > Raspberry Pi BCM2711-based board.
+> >
+> > On BCM2711-based boards, the I2C0 controller can be muxed between pins
+> > 0+1 or 44+45. The former is exposed through the 40-pins GPIO connector,
+> > and the latter is used for the RTC on the CM4 I/O board, but also routed
+> > to the display and camera connectors on the Raspberry Pi 4B board. The
+> > other BCM2711-based board, the Raspberry Pi 400, does not expose or
+> > connect anything to pins 44+45.
+> >
+> > A previous version was posted ([1]) a year and a half ago by Uwe. It
+> > bundled the pinmuxing and RTC in a single patch, with the mux added to
+> > the CM4 I/O board device tree. This version splits this in two, and
+> > moves the pinumxing to the bcm2711-rpi.dtsi to also support the
+> > Raspberry Pi 4B.
+> >
+> > The Raspberry Pi downstream kernel has a more complex DT architecture in
+> > order to support different I2C0 pinmuxing for other boards. Two files,
+> > bcm283x-rpi-i2c0mux_0_28.dtsi and bcm283x-rpi-i2c0mux_0_44.dtsi, define
+> > the two I2C0 pinxmuxing options (pins 0+1 and 28+29, or pins 0+1 and
+> > 44+45). Each board .dts then includes the appropriate file. I'm hoping
+> > to avoid this additional complexity for now, by addressing the I2C0
+> > pinmuxing for BCM2711-based boards only. If/when support for I2C0
+> > pinmuxing on boards will be needed, we can revisit this topic.
+> >
+> > Compared to the Raspberry Pi downstream kernel, the two muxed I2C buses
+> > are labelled i2c0_0 and i2c0_1 instead of i2c0 and i2c_csi_dsi. This
+> > change was made to keep the naming of the I2C controller labels
+> > consistent, avoiding renaming of the I2C0 controller's label from i2c0
+> > to i2c0if.
+> >
+> > Dave, are you fine with the differences between this patch series and
+> > the downstream kernel, or do you expect them to cause issues ?
+> 
+> I've checked with Phil. There's nothing too untoward that will cause
+> us any significant grief.
 
+Thanks for checking.
 
-I'm also interesting in RISCV arch, I got attracted by your patch.
+In the meantime, I realized that the CM4S is 2711-based and, according
+to the downstream DT, multiplexes I2C0 on pins 28+29, not 44+45 :-(
+Umang and Kieran also told me that we want to test camera support on the
+Pi 3B. It looks like the only viable approach to support all that will
+be to include per-board I2C0 pinmux .dtsi as done in the downstream
+kernel. I'll send a v5.
 
-I just want to join into the discussion at here (at my spare time),
+> Phil has commented that the RTC is an PCF85063AT, so that compatible
+> string should be "nxp,pcf85063a" if you actually want to make use of
+> the alarm output.
+> Then again the driver support for the alarm output appears to want it
+> routed to an IRQ rather than as a system reset/wakeup, so it probably
+> makes little difference. It llargely depends on how exact you want to
+> be in your hardware description.
 
-So when you see my comments, I hoping that you will not interpret it as 
-hostility.
+I'll update the compatible string, it's an easy change and it's nice to
+be accurate.
 
-Welcome contributing. :-)
+> > [1] https://lore.kernel.org/linux-arm-kernel/20211231115109.94626-1-uwe@kleine-koenig.org/
+> >
+> > Uwe Kleine-König (2):
+> >   ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
+> >   ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
+> >
+> >  arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts | 16 ++++++++++++
+> >  arch/arm/boot/dts/bcm2711-rpi.dtsi       | 31 ++++++++++++++++++++++++
+> >  2 files changed, 47 insertions(+)
 
+-- 
+Regards,
+
+Laurent Pinchart
