@@ -2,122 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0D876AFD1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F067476AFF8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233483AbjHAJuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 05:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
+        id S230452AbjHAJxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 05:53:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233729AbjHAJuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:50:03 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEE8212F
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 02:49:35 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bed101b70so663583566b.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 02:49:35 -0700 (PDT)
+        with ESMTP id S233726AbjHAJxH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:53:07 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856F9CF
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 02:53:04 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe1e1142caso22555535e9.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 02:53:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1690883374; x=1691488174;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=j8Aw/q2325QhvfRmv9aBcluZMD54mucilqUf7AAqeNY=;
-        b=6MjFQXPW/mZ+3XWbBfRbNcNoy53tZnxETpLjJSAtIpKe+cSorJsstEpg6WVvdiTiW8
-         2+iibuAEVZiriSShY+nTrlnWMKhu1f/fdG6tkwuzKbU1/6QyPGUBNUZa2A9kwdRah/Dg
-         MCX75gah/0Rt2Q3c/xyfE4SasPNuDRZ0vWpaHg+5BJiD8Uk85Xw4AK49GN3gt3Pb5Pjl
-         ib3mbA5Gz+vlCz6/8FRUj/lOd8snqoFRXSKE2lDgG17YuUq/huNyk8kcpmWwupjkk6aw
-         ZC/2Vt28Qnau8yZQKUX8MedyNlM5Gt7F8mfiXBh5S6HeOELAc4zNlnnhvLZN2bl603rw
-         54IQ==
+        d=linaro.org; s=google; t=1690883583; x=1691488383;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9h+KW3ibAIf8KPX3KGs5bvs7zvqsxoWDz8O/Xwhkhy8=;
+        b=v47ilscGmZpxF+Z12lrKGfwuBtWsmA4LSwGqNHEAgo//c8xAxKj3kTBVbkqhSzDPaM
+         iN1wgbkmy2vGofm8sPjh6bC3665MZCtI2wyCeMPni8FGSLODFePMAbS7JAxbdnu8u/X1
+         UkxtAj6sWp0BIVoNLqQTVuRRfct0u34y4lnzUj+48O7tDyidckvO5sqdO61ZTZGtf7ZB
+         iGSgx5gqiDr7onHpyyg6NeHE9c6KI2Ocg3oNmorNE53MRqtqKrQlQ918JtMTG8n2R9OG
+         gre4gt+Z4fRCQL20AgootTmcaBji/rDKkgyVZRhIgXEPG9n3X4rDpzHg4HtHSv74Lepm
+         9NUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690883374; x=1691488174;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j8Aw/q2325QhvfRmv9aBcluZMD54mucilqUf7AAqeNY=;
-        b=Ag2zKXrXSpNOn7ruvw88Ty09OVp1P6L0Y9Fb0v6xJSRg92De31KmspXYUepjpugPpr
-         ogsnWCHtjmoAYcumDNRGyS2dLHmZ873pZ5Y4kNQNCz8LEJlhXUCWO+pRb/nxfzBjOtbi
-         01cEGz3b+ELIMNdTvv6yUF3ppacGTjLqVEHQgaGgyfKywZBEoIUr7JGE0+Rlo2XpkxqO
-         rLbRwGX90yeyP9By1r49oNsgbVtZYEXHopH/cFyxa1NsyidV53HOU1NrKCk98vsgPSzy
-         WaKNJcd6jeJ8e92Kb/qyJylgEevBA2pBfV/MkfaxoCn34/+OmAJrqObim7Pxj+35JM06
-         7kbA==
-X-Gm-Message-State: ABy/qLbV51X9OfGjzwhbKwrpoB6mB8XWbwis0QR7U7MlKUsybaHVB40T
-        F5lu0BoTo7kRjMNMMsIYyQ7Zzg==
-X-Google-Smtp-Source: APBJJlGR0qLEiBW7LmZ6eMsyXyJJRH6PCqS7Js03DEAtTFa4qoOwaLAeE+I8AFK1mnaZSUFh4z4FeA==
-X-Received: by 2002:a17:907:2716:b0:98d:1f6a:fd47 with SMTP id w22-20020a170907271600b0098d1f6afd47mr2045278ejk.76.1690883374092;
-        Tue, 01 Aug 2023 02:49:34 -0700 (PDT)
-Received: from google.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id j10-20020a170906410a00b0098951bb4dc3sm7349407ejk.184.2023.08.01.02.49.33
+        d=1e100.net; s=20221208; t=1690883583; x=1691488383;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9h+KW3ibAIf8KPX3KGs5bvs7zvqsxoWDz8O/Xwhkhy8=;
+        b=INNGVi+FbPFg/84KwaW5TLbMvwsTmicaBgUNPsqlgcrgWpBsfSzI9Wy4r07hvIrBus
+         DsSA6nhaEnoNv+MFa+ayviTggaLZDZHHf9TRYUY4f1L/TkEutu6PAPLNmUTHdmIYyxFI
+         yTKIKLD+qZygSUuK+YQvvgpW4E6D397WGxHi4kXDYp+Ru+c0FgNvLcKPXPQRnIeC3ZQj
+         olXYutRJBRW45PuQ0ZaMhDKJclAQULtfgm3PnTbX96IEnLg1gXFeDKoFZ0+JEyHc/XDu
+         E2aCwCz+bK82rqkSL1UWEMzHwDur6EeI1jc0BAXTc6FlhmZTrdKfcjvflLHozrRW5oxL
+         Ekiw==
+X-Gm-Message-State: ABy/qLaRghI+87KkB7fZhL9wEY+hDit+/pDSTcDP+94PMEWFc0RVq0yS
+        gH4exsKcgvWyD6cSSr06VFP6mw==
+X-Google-Smtp-Source: APBJJlHjXzXhv2pp/vvPsqmxwd1ov8bSEbdvjEvrOUpBtzBS2jbzXMK6+ZObuiHDLXpCN5LKoDDc1A==
+X-Received: by 2002:a7b:c8d2:0:b0:3fe:90f:8496 with SMTP id f18-20020a7bc8d2000000b003fe090f8496mr2058975wml.1.1690883582971;
+        Tue, 01 Aug 2023 02:53:02 -0700 (PDT)
+Received: from hackbox.lan ([86.123.96.80])
+        by smtp.gmail.com with ESMTPSA id 3-20020a05600c234300b003fc16ee2864sm13737640wmq.48.2023.08.01.02.53.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Aug 2023 02:49:33 -0700 (PDT)
-Date:   Tue, 1 Aug 2023 09:49:30 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     David Dai <davidai@google.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        Tue, 01 Aug 2023 02:53:02 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Masami Hiramatsu <mhiramat@google.com>,
-        Will Deacon <will@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Gupta Pankaj <pankaj.gupta@amd.com>,
-        Mel Gorman <mgorman@suse.de>, kernel-team@android.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] cpufreq: add virtual-cpufreq driver
-Message-ID: <ZMjVKn1MwA2Avm7r@google.com>
-References: <20230731174613.4133167-1-davidai@google.com>
- <20230731174613.4133167-3-davidai@google.com>
- <ZMjUMk5xXzahXjno@google.com>
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sm8550-mtp: Add missing supply for L1B regulator
+Date:   Tue,  1 Aug 2023 12:52:46 +0300
+Message-Id: <20230801095246.2884770-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZMjUMk5xXzahXjno@google.com>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,FSL_HELO_FAKE,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 01 Aug 2023 at 09:45:22 (+0000), Quentin Perret wrote:
-> Hi David,
-> 
-> On Monday 31 Jul 2023 at 10:46:09 (-0700), David Dai wrote:
-> > +static unsigned int virt_cpufreq_set_perf(struct cpufreq_policy *policy)
-> > +{
-> > +	struct virt_cpufreq_drv_data *data = policy->driver_data;
-> > +	/*
-> > +	 * Use cached frequency to avoid rounding to freq table entries
-> > +	 * and undo 25% frequency boost applied by schedutil.
-> > +	 */
-> 
-> The VMM would be a better place for this scaling I think, the driver
-> can't/shouldn't make assumptions about the governor it is running with
-> given that this is a guest userspace decision essentially.
-> 
-> IIRC the fast_switch() path is only used by schedutil, so one could
-> probably make a case to scale things there, but it'd be inconsistent
-> with the "slow" switch case, and would create a fragile dependency, so
-> it's probably not worth pursuing.
+Even though currently there is no consumer for L1B, add the supply
+for it anyway.
 
-Alternatively we could make the schedutil margin configurable via the
-cmdline or something along those lines, so we can set it to 0 in the
-guest and avoid the issue entirely.
+Fixes: 71342fb91eae ("arm64: dts: qcom: Add base SM8550 MTP dts")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Some partners have been asking for this IIRC , so I suspect there would
-be interest from other parties.
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 00c7e1704a8c..0127c6c285b7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -187,6 +187,7 @@ regulators-0 {
+ 
+ 		vdd-bob1-supply = <&vph_pwr>;
+ 		vdd-bob2-supply = <&vph_pwr>;
++		vdd-l1-l4-l10-supply = <&vreg_s6g_1p8>;
+ 		vdd-l2-l13-l14-supply = <&vreg_bob1>;
+ 		vdd-l3-supply = <&vreg_s4g_1p3>;
+ 		vdd-l5-l16-supply = <&vreg_bob1>;
+-- 
+2.34.1
 
-Thanks,
-Quentin
