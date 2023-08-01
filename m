@@ -2,163 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A601F76B6A2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 16:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 059F376B6A7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 16:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234410AbjHAOCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 10:02:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56846 "EHLO
+        id S234418AbjHAODu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 10:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232064AbjHAOCj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 10:02:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C44E5F;
-        Tue,  1 Aug 2023 07:02:27 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S234188AbjHAODj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 10:03:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B97F7213D;
+        Tue,  1 Aug 2023 07:03:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8D28F6607187;
-        Tue,  1 Aug 2023 15:02:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1690898545;
-        bh=O+sOqle7nRll28/FmxMTrTj8mlyOiIx2mIEKBCwzSGA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=eoHmMrCkU2nYDXoxwl6GPyQUilti2nJ82i/ts2XxDBgQyKb4hPNwDuIUyLUSiSc8z
-         R0A5XpQtIjU1Qxnm7npVqJ0L60HTMNovgl/DNSe7hLGBeKMbt4gi1Wn78S2rTaMFk2
-         /IycX6R5OfRR2F3ujH3Oi8fKrwtmvWTwbRD9P9BpbauTpIooMAXxcAlSujIK86w57X
-         Ev/wQhrEPZYpwj1ohQlPVqzYHuQzmdef1CXDJGBnI4Q7U2OQA8eR53u3v5eHV7jR+P
-         /fGTEAhrG1+RgBECZ+Zd7hAloPlBzsoPuxwRXoE8ouT1h7DXIAmVjW0ox3q3Yuvi4j
-         oVssdzhph1nKQ==
-Message-ID: <9ae6616c-7799-8b0c-eff5-1a30d467fbda@collabora.com>
-Date:   Tue, 1 Aug 2023 16:02:21 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 572046158F;
+        Tue,  1 Aug 2023 14:03:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D135C433C8;
+        Tue,  1 Aug 2023 14:03:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690898615;
+        bh=J1Kv0/7tNUUdsgbJSV348cn2wjwWWI28VoiCD919J1w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cRKTjP5gMBMuoyifvof5VTmSNc6vDWI9l5DkvIxTqN4QHv+XXe7n40Rbnar0jyB4E
+         rhzGXQd0Q8thtuaf289xIFb0DvaVXzgJVlzdMSSBd/iKa+Qsk6cZ4BASCYKiYFl7Lv
+         4LeI9+5CILuHfqT6mu+1xMMp4xTeO/aq+4C5lV+nn+MyUx9K2nZm5fqbFE0jMorNaY
+         F4Y0KAz2vf1Y5mAyR0sUaDzx6kSNKGJcFwA2RFubIphJqnavP/xqSqNA6BPYP0PgPL
+         xsAaz/2mMR9o2fYVFrN8Ywj0stbVbxxK9a6VfXgdK5h9RXbPUX4BczmD/9tT+6NkRX
+         7BnuQyIex18Pw==
+Date:   Tue, 1 Aug 2023 15:03:27 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Keith Zhao <keith.zhao@starfivetech.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Shengyang Chen <shengyang.chen@starfivetech.com>,
+        Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: Re: [PATCH v1 v1 2/7] dt-bindings: display: Add yamls for JH7110
+ display system
+Message-ID: <20230801-cash-squad-8a2e9154af8b@spud>
+References: <20230801101030.2040-1-keith.zhao@starfivetech.com>
+ <20230801101030.2040-3-keith.zhao@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 2/6] iommu/qcom: Use the asid read from device-tree if
- specified
-Content-Language: en-US
-To:     Will Deacon <will@kernel.org>
-Cc:     agross@kernel.org, andersson@kernel.org, luca@z3ntu.xyz,
-        konrad.dybcio@linaro.org, dmitry.baryshkov@linaro.org,
-        joro@8bytes.org, robin.murphy@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        robdclark@gmail.com, linux-arm-msm@vger.kernel.org,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@collabora.com,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230622092742.74819-1-angelogioacchino.delregno@collabora.com>
- <20230622092742.74819-3-angelogioacchino.delregno@collabora.com>
- <20230801134953.GA26253@willie-the-truck>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230801134953.GA26253@willie-the-truck>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="e6NUZOkjskRZqTKd"
+Content-Disposition: inline
+In-Reply-To: <20230801101030.2040-3-keith.zhao@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/08/23 15:49, Will Deacon ha scritto:
-> On Thu, Jun 22, 2023 at 11:27:38AM +0200, AngeloGioacchino Del Regno wrote:
->> As specified in this driver, the context banks are 0x1000 apart but
->> on some SoCs the context number does not necessarily match this
->> logic, hence we end up using the wrong ASID: keeping in mind that
->> this IOMMU implementation relies heavily on SCM (TZ) calls, it is
->> mandatory that we communicate the right context number.
->>
->> Since this is all about how context banks are mapped in firmware,
->> which may be board dependent (as a different firmware version may
->> eventually change the expected context bank numbers), introduce a
->> new property "qcom,ctx-asid": when found, the ASID will be forced
->> as read from the devicetree.
->>
->> When "qcom,ctx-asid" is not found, this driver retains the previous
->> behavior as to avoid breaking older devicetrees or systems that do
->> not require forcing ASID numbers.
->>
->> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->> [Marijn: Rebased over next-20221111]
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/iommu/arm/arm-smmu/qcom_iommu.c | 18 +++++++++++++++---
->>   1 file changed, 15 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/iommu/arm/arm-smmu/qcom_iommu.c b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
->> index a503ed758ec3..8face57c4180 100644
->> --- a/drivers/iommu/arm/arm-smmu/qcom_iommu.c
->> +++ b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
->> @@ -531,7 +531,8 @@ static int qcom_iommu_of_xlate(struct device *dev, struct of_phandle_args *args)
->>   	 * index into qcom_iommu->ctxs:
->>   	 */
->>   	if (WARN_ON(asid < 1) ||
->> -	    WARN_ON(asid > qcom_iommu->num_ctxs)) {
->> +	    WARN_ON(asid > qcom_iommu->num_ctxs) ||
->> +	    WARN_ON(qcom_iommu->ctxs[asid - 1] == NULL)) {
->>   		put_device(&iommu_pdev->dev);
->>   		return -EINVAL;
->>   	}
->> @@ -617,7 +618,8 @@ static int qcom_iommu_sec_ptbl_init(struct device *dev)
->>   
->>   static int get_asid(const struct device_node *np)
->>   {
->> -	u32 reg;
->> +	u32 reg, val;
->> +	int asid;
->>   
->>   	/* read the "reg" property directly to get the relative address
->>   	 * of the context bank, and calculate the asid from that:
->> @@ -625,7 +627,17 @@ static int get_asid(const struct device_node *np)
->>   	if (of_property_read_u32_index(np, "reg", 0, &reg))
->>   		return -ENODEV;
->>   
->> -	return reg / 0x1000;      /* context banks are 0x1000 apart */
->> +	/*
->> +	 * Context banks are 0x1000 apart but, in some cases, the ASID
->> +	 * number doesn't match to this logic and needs to be passed
->> +	 * from the DT configuration explicitly.
->> +	 */
->> +	if (!of_property_read_u32(np, "qcom,ctx-asid", &val))
->> +		asid = val;
->> +	else
->> +		asid = reg / 0x1000;
->> +
->> +	return asid;
-> 
-> Shouldn't we at least have some error checking here? For example, ensuring
-> that the ASIDs are within range, aren't duplicates etc?
-> 
 
-The only check that we can perform here for ASID-in-range is
+--e6NUZOkjskRZqTKd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-if ((asid * 0x1000 > (mmio_start + mmio_size - 0x1000))
-	return -EINVAL;
+On Tue, Aug 01, 2023 at 06:10:25PM +0800, Keith Zhao wrote:
+> StarFive SoCs JH7110 display system:
+> lcd-controller bases verisilicon dc8200 IP,
+> and hdmi bases Innosilicon IP.
+> Add bindings for them.
 
-...as for duplicates, a check can *probably* (surely) be done... but I'm not
-sure I have any more time to feed more code to this series from years ago...
+Please, you can use more than 46 characters in a line!
 
-> Also, can you elaborate a little more on what sort of ASID-to-Context
-> mappings you actually see in practice?
-> 
+Also, "v1 v1" does not a v2 make.
 
-I'm sorry, but not really. The first version of this (including the whole research
-that I had to perform to write those patches) is from year 2019, so 4 years ago...
+>=20
+> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> ---
+>  .../starfive/starfive,display-subsystem.yaml  |  41 +++++++
+>  .../starfive/starfive,jh7110-dc8200.yaml      | 107 ++++++++++++++++++
+>  .../starfive/starfive,jh7110-inno-hdmi.yaml   |  92 +++++++++++++++
+>  3 files changed, 240 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/starfive/st=
+arfive,display-subsystem.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/starfive/st=
+arfive,jh7110-dc8200.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/starfive/st=
+arfive,jh7110-inno-hdmi.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,=
+display-subsystem.yaml b/Documentation/devicetree/bindings/display/starfive=
+/starfive,display-subsystem.yaml
+> new file mode 100644
+> index 000000000..86018a8e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,display=
+-subsystem.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,display-sub=
+system.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Starfive DRM master device
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +  - ShengYang Chen <shengyang.chen@starfivetech.com>
+> +
+> +description:
+> +  The Starfive DRM master device is a virtual device needed to list all
+> +  display controller or other display interface nodes that comprise the
+> +  graphics subsystem.
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,display-subsystem
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
 
-...I don't really remember the full details anymore - if not that all of this was
-done because context banks are fixed (and setup by TZ), tz takes an asid number
-when trying to perform any operation on the context bank, and there's no way to
-reset mappings because everything is protected by the hypervisor (which will fault
-and reboot the AP instantly if you try).
+A | is not needed when you do not have formatting to preserve.
+
+> +      Should contain a list of phandles pointing to display interface po=
+rts
+> +      of display controller devices. Display controller definitions as d=
+efined
+> +      in Documentation/devicetree/bindings/display/starfive/
+> +      starfive,jh7110-dc8200.yaml
+> +
+> +required:
+> +  - compatible
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    display-subsystem {
+> +        compatible =3D "starfive,display-subsystem";
+> +        ports =3D <&dc_out>;
+> +    };
+
+Given Rob's bot complains, it looks like you never tested this.
+
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,=
+jh7110-dc8200.yaml b/Documentation/devicetree/bindings/display/starfive/sta=
+rfive,jh7110-dc8200.yaml
+> new file mode 100644
+> index 000000000..bebe2050c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-=
+dc8200.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,jh7110-dc82=
+00.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive display controller
+> +
+> +description:
+> +  The StarFive SoC uses the display controller based on Verisilicon IP
+> +  to transfer the image data from a video memory
+> +  buffer to an external LCD interface.
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-dc8200
+> +
+> +  reg:
+> +    maxItems: 3
+
+What do each of these represent?
+
+> +
+> +  interrupts:
+> +    items:
+> +      - description: The interrupt will be generated when DC finish one =
+frame
+> +
+> +  clocks:
+> +    items:
+> +      - description: Clock for display system noc bus.
+> +      - description: Pixel clock for display channel 0.
+> +      - description: Pixel clock for display channel 1.
+> +      - description: Clock for axi interface of display controller.
+> +      - description: Core clock for display controller.
+> +      - description: Clock for ahb interface of display controller.
+> +      - description: External HDMI pixel clock.
+> +      - description: Parent clock for pixel clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: vout_noc_disp
+> +      - const: vout_pix0
+> +      - const: vout_pix1
+> +      - const: vout_axi
+> +      - const: vout_core
+> +      - const: vout_vout_ahb
+> +      - const: hdmitx0_pixel
+> +      - const: vout_dc8200
+> +
+> +  resets:
+> +    items:
+> +      - description: Reset for axi interface of display controller.
+> +      - description: Reset for ahb interface of display controller.
+> +      - description: Core reset of display controller.
+> +
+> +  reset-names:
+> +    items:
+> +      - const: vout_axi
+> +      - const: vout_ahb
+> +      - const: vout_core
+
+Please trim all the vouts from here & the clocks - especially the one
+named "vout_vout_ahb".
+
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      A port node with endpoint definitions as defined in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt.
+
+This file is empty, it has been converted to yaml.
+
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,=
+jh7110-inno-hdmi.yaml b/Documentation/devicetree/bindings/display/starfive/=
+starfive,jh7110-inno-hdmi.yaml
+> new file mode 100644
+> index 000000000..f6927acf6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-=
+inno-hdmi.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,jh7110-inno=
+-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Starfive JH7110 HDMI controller
+> +
+> +description:
+> +  The StarFive JH7110 SoC uses the HDMI signal transmiter based on innos=
+ilicon IP
+> +  to generate HDMI signal from its input and transmit the signal to the =
+screen.
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: "starfive,jh7110-inno-hdmi"
+> +
+> +  reg:
+> +    minItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: The HDMI hot plug detection interrupt.
+> +
+> +  clocks:
+> +    items:
+> +      - description: System clock of HDMI module.
+> +      - description: Mclk clock of HDMI audio.
+> +      - description: Bclk clock of HDMI audio.
+> +      - description: Pixel clock generated by HDMI module.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sysclk
+> +      - const: mclk
+> +      - const: bclk
+> +      - const: pclk
+> +
+> +  resets:
+> +    items:
+> +      - description: Reset for HDMI module.
+
+For this & resets, you don't have a list & don't need items:
 
 Cheers,
-Angelo
+Conor.
 
+--e6NUZOkjskRZqTKd
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMkQrwAKCRB4tDGHoIJi
+0hF/AQC/1GTXuwyc+w2g9RKifKromVQFlvBvFI0JlmYNLu6I9gEAqVJE6rLiklf3
+jktEbPFxEUmQR4+8/IvlY0DbYWbksgw=
+=bnBb
+-----END PGP SIGNATURE-----
+
+--e6NUZOkjskRZqTKd--
