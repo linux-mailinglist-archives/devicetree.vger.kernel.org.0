@@ -2,239 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56A1676B466
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 14:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0809776B47D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 14:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231868AbjHAMG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 08:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56800 "EHLO
+        id S232774AbjHAMPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 08:15:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234126AbjHAMGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 08:06:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC496198C;
-        Tue,  1 Aug 2023 05:06:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 698D06156E;
-        Tue,  1 Aug 2023 12:06:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D416C433C7;
-        Tue,  1 Aug 2023 12:06:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690891569;
-        bh=s6YECtfwRWz+nn+e8dtTgfPFMuDS2G9MlvdIBiOeJvo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KqMPTZxlteTlX/vW0spt/IyKiVoPJYdtMr2lPEmfbuQmmwhfCC21GhGz+yQWZ8GEd
-         RJW1lK9JN1DnTZJmTBwsvxtaZhWyU6xXWtVcaFKkx5L8z9m/yft5TuURPQh/J+IL7U
-         PHvcq8WNXFxjoQvwm9S5/fvJ1NcSpL5MoMmgslMiMQ5qDQ3DsuwUBL05Ll8j2x2V0T
-         Fmi+ZB4B+y3YDp+rI657BSpL6UbzABRJfYD+Czas7wkqLfwlQX9ueJGii9FSPJqKBt
-         8HPA9376cD/cny4bwakf8t2KopaxquTpFCkgWx5XoRWckS8rxRoyjnuCN7kB9nASW2
-         lheIZ7XLLLVog==
-Date:   Tue, 1 Aug 2023 14:06:06 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Keith Zhao <keith.zhao@starfivetech.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232172AbjHAMPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 08:15:54 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D0E319AD
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 05:15:52 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fe1e1142caso23847695e9.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 05:15:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690892150; x=1691496950;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cy69UTLPaMkgS867f19KBpP2TanFCy8uIWGJpynTc4M=;
+        b=dQcrKPIR1YSzeSBcWpFUlzV+txmJlH/J0DF9T/2uJe790esSjDcFQtB3E+kMbBLzM9
+         rzA7ChQORoIodjwM75v1oOVgAcQSOpuMZC7YtnnlHBQKKnrsub476uqiFrqJ6XWCl+62
+         5dMSBrIlznogy10YKqOc5iQKchYvJXvz/zTvXbtUy3JMIqB3ewbmApUMTRgaWH9zxgkG
+         AJQV7/gs50s62NA3BJNU+4lmUXaCNg8Ij0xinPbKaOTs1stqq24lGIzvcVqWHvgxLXyr
+         7bVifE4NJSK3SzrVrPEOJih0WP8RlH3oxFIMa7EcZqikGnTQ6zZWHT6jDbeilsHyqJ3s
+         9iRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690892150; x=1691496950;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cy69UTLPaMkgS867f19KBpP2TanFCy8uIWGJpynTc4M=;
+        b=ljN1UdrkTVpHfZdWipSLUlQSl+avnRsmRqgeFmGarnbDGa5amjKFNgd/TjsRopvMJh
+         jvrT685NxkRTIh2r9y26s8CUieoJb8rbwq0aCBPQw+f5baPh3DgM7xhA/0Lc4dqBIAyl
+         goJ4Od/RixUpz+awf/NZ1pLypthLUMZ2+YSxx7ae9yduFsZQ8icZdFci83Zmzk2eiQO1
+         lsTilFLOGhN+/IN90NSqujZK7h0UGzmAX9PxwEZ7f+57bBCohrz9gbHmdMOJ/axUrz7m
+         0HfidQ24ggCKwzmWdZTGVi+6togFi8gWRx+7z/g560/HRs8BBwgPORiLGFrn3iM8oTCE
+         Wdbg==
+X-Gm-Message-State: ABy/qLYi1kd3lLO9zttSkpx6aGA6JYWWVPJgDyOz2wynV7eG6WEuaHsd
+        yhsAQJBxHXxbV5UvT0OIjpRSCg==
+X-Google-Smtp-Source: APBJJlHfsFDHbaVf5nw4nEKhNpQnCwdEhr0FZNS+Kg1ebtodpF2mL9GQO6oQaQou5KmslFA2N0zRkQ==
+X-Received: by 2002:a5d:65d0:0:b0:317:5f04:bc00 with SMTP id e16-20020a5d65d0000000b003175f04bc00mr2153616wrw.27.1690892150441;
+        Tue, 01 Aug 2023 05:15:50 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id z7-20020a5d4407000000b0031766e99429sm15874351wrq.115.2023.08.01.05.15.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Aug 2023 05:15:49 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v5 0/4] input: touchscreen: add initial support for Goodix
+ Berlin touchscreen IC
+Date:   Tue, 01 Aug 2023 14:15:44 +0200
+Message-Id: <20230801-topic-goodix-berlin-upstream-initial-v5-0-079252935593@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHD3yGQC/53PwW7DIAwG4FepOM8TEBpCT3uPaQcgTmIpgwjSq
+ FOVd5/b29TTcvwt6/vtu6hYCKu4nO6i4EaVcuJwfjuJOPk0IlDPWWipG9nKFta8UIQx555uELD
+ MlOC61LWg/wZKtJKfIXhnscPYDSYKpoKvCKH4FCfG0nWeebgUHOj27P784jxRXXP5eZ6yqcf0n
+ 62bAgnGS2tU6DwO/Qev+ZLfcxnFo2HTR1TNqm4DP4MKncQXtTmiNqwO8mxtRN9b6V5Uc0Q1rEp
+ nbDSdC6jsH3Xf9183mgEy8AEAAA==
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH v1 v1 6/7] drm/vs: Add KMS crtc&plane
-Message-ID: <7sfzkc6b46izrfnhcoajllugfofh7otseocbiiftjx344hxiuf@jkjb5syqwo24>
-References: <20230801101030.2040-1-keith.zhao@starfivetech.com>
- <20230801101030.2040-7-keith.zhao@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="duuftomxabqjg5ol"
-Content-Disposition: inline
-In-Reply-To: <20230801101030.2040-7-keith.zhao@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Jeff LaBundy <jeff@labundy.com>
+Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4187;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=fd+qneyPqfEMIXH5ohAYLPVreAieRi3VQmuuDjoYVWE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkyPdzBMtMLU60jmuVK4dlZe/mNUKoOddka5KNT1Fk
+ ey8MSCeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZMj3cwAKCRB33NvayMhJ0bMNEA
+ CYq3UHf9Vd1i8mW4nvJcBEYz22xRV9AULjK0H2YQEx8q7LPFI2JixBNSO6RGNwHN10xZYh5K07mIyO
+ ulJ3S571loPaYpBnIJbAzI/ezrCGvgVcuFroLRxUmXgNbSNoFpwTDx4H30Bv8nyzh/G95s/KQftePq
+ JNwrh+e4+xAai4nGtE90AldT9/qRB6vmH27mMrKrc0xjT/jOcViXaEgIIDPAObA7Vk05K8wRiVQpTG
+ +vrlMvLj8g9D+RghbbMPoo3KXyruy+yC8X+LWUlV08qANwEWc0ZAttwsQb1YUtSJjS/Z1y8tH/5NQe
+ +oq/NKEC9kMovHqCeytRXGuVlOt/VS8BZyikphsiLHSh1E/99qOoo1Yx2JKk6Dc7W/L2NFvFltzmml
+ nFsLo8Lvji78Ag0KEMn5uNN/jpCfQzanciHxZn3N6bZbaiZs9mOqLHIGRqmh7z66plmd/z6PM+Z0xG
+ IlThS9+CzgvXQ0C7udzInsWNhxY+fwfy50Q9s28AuHJcMeQLOKifON2EzlAMMlfh36yo1kf9zhYYbZ
+ 052mrBR2O4o+C2F4G2zjecxe9z6XhinyrO8i/My0uCo1PlZpSoO3MhH68kiU2dS+1/tXvNrLT/fgSm
+ djRCOGUkWXAqS6KZGuHN73rbjXEu1vs6cF/urSZKOut1vTvLVDsEkmz4I2Lw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These touchscreen ICs support SPI, I2C and I3C interface, up to
+10 finger touch, stylus and gestures events.
 
---duuftomxabqjg5ol
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This initial driver is derived from the Goodix goodix_ts_berlin
+available at [1] and [2] and only supports the GT9916 IC
+present on the Qualcomm SM8550 MTP & QRD touch panel.
 
-Hi,
+The current implementation only supports BerlinD, aka GT9916.
 
-On Tue, Aug 01, 2023 at 06:10:29PM +0800, Keith Zhao wrote:
-> +static int vs_crtc_atomic_set_property(struct drm_crtc *crtc,
-> +				       struct drm_crtc_state *state,
-> +				       struct drm_property *property,
-> +				       uint64_t val)
-> +{
-> +	struct vs_crtc *vs_crtc = to_vs_crtc(crtc);
-> +	struct vs_crtc_state *vs_crtc_state = to_vs_crtc_state(state);
-> +
-> +	if (property == vs_crtc->sync_mode)
-> +		vs_crtc_state->sync_mode = val;
-> +	else if (property == vs_crtc->mmu_prefetch)
-> +		vs_crtc_state->mmu_prefetch = val;
-> +	else if (property == vs_crtc->bg_color)
-> +		vs_crtc_state->bg_color = val;
-> +	else if (property == vs_crtc->panel_sync)
-> +		vs_crtc_state->sync_enable = val;
-> +	else if (property == vs_crtc->dither)
-> +		vs_crtc_state->dither_enable = val;
-> +	else
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int vs_crtc_atomic_get_property(struct drm_crtc *crtc,
-> +				       const struct drm_crtc_state *state,
-> +				       struct drm_property *property,
-> +				       uint64_t *val)
-> +{
-> +	struct vs_crtc *vs_crtc = to_vs_crtc(crtc);
-> +	const struct vs_crtc_state *vs_crtc_state =
-> +		container_of(state, const struct vs_crtc_state, base);
-> +
-> +	if (property == vs_crtc->sync_mode)
-> +		*val = vs_crtc_state->sync_mode;
-> +	else if (property == vs_crtc->mmu_prefetch)
-> +		*val = vs_crtc_state->mmu_prefetch;
-> +	else if (property == vs_crtc->bg_color)
-> +		*val = vs_crtc_state->bg_color;
-> +	else if (property == vs_crtc->panel_sync)
-> +		*val = vs_crtc_state->sync_enable;
-> +	else if (property == vs_crtc->dither)
-> +		*val = vs_crtc_state->dither_enable;
-> +	else
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
+Support for advanced features like:
+- Firmware & config update
+- Stylus events
+- Gestures events
+- Previous revisions support (BerlinA or BerlinB)
+is not included in current version.
 
-Any new property needs to follow these requirements:
-https://docs.kernel.org/gpu/drm-kms.html#requirements
-https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-requirements
+The current support will work with currently flashed firmware
+and config, and bail out if firmware or config aren't flashed yet.
 
-Also, most of them are suspicious, like sync_mode, mmu_prefetch,
-panel_sync or dither_enable. Why would you want userspace to change
-those ?
+[1] https://github.com/goodix/goodix_ts_berlin
+[2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v5:
+- rebased on next-20230801
+- Link to v4: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v4-0-0947c489be17@linaro.org
 
-> +static int vs_crtc_late_register(struct drm_crtc *crtc)
-> +{
-> +	return 0;
-> +}
+Changes in v4:
+- Core updates:
+ - drop kconfig depends, deps will be handled by _SPI and _I2C
+ - change power_on() error labels
+ - print errors on all dev_err() prints
+ - remove useless default variable initialization
+ - switch irq touch checksum error to dev_err()
+ - add Jeff's review tag
+- I2C changes
+ - change REGMAP_I2C Kconfig from depends to select
+ - add Jeff's review tag
+- SPI changes
+ - add select REGMAP to Kconfig
+ - added GOODIX_BERLIN_ prefix to defines
+ - switched from ret to error
+ - add Jeff's review tag
+- Link to v3: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v3-0-f0577cead709@linaro.org
 
-You can drop that.
+Changes in v3:
+- Another guge cleanups after Jeff's review:
+ - appended goodix_berlin_ before all defines
+ - removed some unused defines
+ - removed retries on most of read functions, can be added back later
+ - added __le to ic_info structures
+ - reworked and simplified irq handling, dropped enum and ts_event structs
+ - added struct for touch data
+ - simplified and cleaned goodix_berlin_check_checksum & goodix_berlin_is_dummy_data
+ - moved touch_data_addr to the end of the main code_data
+ - reworked probe to get_irq last and right before setip input device
+ - cleaned probe by removing the "cd->dev"
+ - added short paragraph to justify new driver for berlin devices
+ - defined all offsets & masks
+- Added bindings review tag
+- Link to v2: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v2-0-26bc8fe1e90e@linaro.org
 
-> +static int vs_crtc_enable_vblank(struct drm_crtc *crtc)
-> +{
-> +	struct vs_crtc *vs_crtc = to_vs_crtc(crtc);
-> +
-> +	vs_dc_enable_vblank(vs_crtc->dev, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static void vs_crtc_disable_vblank(struct drm_crtc *crtc)
-> +{
-> +	struct vs_crtc *vs_crtc = to_vs_crtc(crtc);
-> +
-> +	vs_dc_enable_vblank(vs_crtc->dev, false);
-> +}
-> +
-> +static const struct drm_crtc_funcs vs_crtc_funcs = {
-> +	.set_config		= drm_atomic_helper_set_config,
-> +	.page_flip		= drm_atomic_helper_page_flip,
-> +	.reset			= vs_crtc_reset,
-> +	.atomic_duplicate_state = vs_crtc_atomic_duplicate_state,
-> +	.atomic_destroy_state	= vs_crtc_atomic_destroy_state,
-> +	.atomic_set_property	= vs_crtc_atomic_set_property,
-> +	.atomic_get_property	= vs_crtc_atomic_get_property,
-> +	.late_register		= vs_crtc_late_register,
-> +	.enable_vblank		= vs_crtc_enable_vblank,
-> +	.disable_vblank		= vs_crtc_disable_vblank,
-> +};
-> +
-> +static u8 cal_pixel_bits(u32 bus_format)
-> +{
-> +	u8 bpp;
-> +
-> +	switch (bus_format) {
-> +	case MEDIA_BUS_FMT_RGB565_1X16:
-> +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> +		bpp = 16;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB666_1X18:
-> +	case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
-> +		bpp = 18;
-> +		break;
-> +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> +		bpp = 20;
-> +		break;
-> +	case MEDIA_BUS_FMT_BGR888_1X24:
-> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> +	case MEDIA_BUS_FMT_YUV8_1X24:
-> +		bpp = 24;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> +	case MEDIA_BUS_FMT_YUV10_1X30:
-> +		bpp = 30;
-> +		break;
-> +	default:
-> +		bpp = 24;
-> +		break;
-> +	}
-> +
-> +	return bpp;
-> +}
-> +
-> +static bool vs_crtc_mode_fixup(struct drm_crtc *crtc,
-> +			       const struct drm_display_mode *mode,
-> +			       struct drm_display_mode *adjusted_mode)
-> +{
-> +	struct vs_crtc *vs_crtc = to_vs_crtc(crtc);
-> +
-> +	return vs_dc_mode_fixup(vs_crtc->dev, mode, adjusted_mode);
-> +}
+Changes in v2:
+- Huge cleanups after Jeff's review:
+ - switch to error instead of ret
+ - drop dummy vendor/product ids
+ - drop unused defined/enums
+ - drop unused ic_info and only keep needes values
+ - cleanup namings and use goodix_berlin_ everywhere
+ - fix regulator setup
+ - fix default variables value when assigned afterwars
+ - removed indirections
+ - dropped debugfs
+ - cleaned input_dev setup
+ - dropped _remove()
+ - sync'ed i2c and spi drivers
+- fixed yaml bindings
+- Link to v1: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org
 
-You should be using atomic_check.
+---
+Neil Armstrong (4):
+      dt-bindings: input: document Goodix Berlin Touchscreen IC
+      input: touchscreen: add core support for Goodix Berlin Touchscreen IC
+      input: touchscreen: add I2C support for Goodix Berlin Touchscreen IC
+      input: touchscreen: add SPI support for Goodix Berlin Touchscreen IC
 
-Maxime
+ .../bindings/input/touchscreen/goodix,gt9916.yaml  |  95 ++++
+ drivers/input/touchscreen/Kconfig                  |  31 ++
+ drivers/input/touchscreen/Makefile                 |   3 +
+ drivers/input/touchscreen/goodix_berlin.h          | 159 ++++++
+ drivers/input/touchscreen/goodix_berlin_core.c     | 581 +++++++++++++++++++++
+ drivers/input/touchscreen/goodix_berlin_i2c.c      |  69 +++
+ drivers/input/touchscreen/goodix_berlin_spi.c      | 173 ++++++
+ 7 files changed, 1111 insertions(+)
+---
+base-commit: a734662572708cf062e974f659ae50c24fc1ad17
+change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
 
---duuftomxabqjg5ol
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMj1LgAKCRDj7w1vZxhR
-xcuiAQDVAHuCXQLiF4aho3J76b/1omEGtDLrJYqMFou4trNeDQEA9a+4doYz0r8T
-e4MChnbgb7U5q3ndReWR8iY6I4VZ/wc=
-=sNPG
------END PGP SIGNATURE-----
-
---duuftomxabqjg5ol--
