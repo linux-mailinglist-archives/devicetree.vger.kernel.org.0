@@ -2,105 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 891BC76AC19
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:05:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6737C76AD7E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232466AbjHAJFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 05:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59728 "EHLO
+        id S233004AbjHAJ3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 05:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjHAJFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:05:12 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B00B30F1
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 02:03:37 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-686ed1d2594so5153509b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 02:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690880616; x=1691485416;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dl31qmpoVvkSjyLSpZPfwkWIRx8GhdUOBKx/4n/3L7U=;
-        b=aV+1dhYFoQbThS/XG6H4CkBcRwxAYBFxA8B3Q+sVquHfgQ5/TDAjK6as3P7Y/6eedr
-         dHTCVOlHqZL44kpDUtW2Hq0lmQVvKSe7GTxFwxalpwFrRu+gTUM7mArtdckgfAu6s3L4
-         Cgr4edYOU1UYHd3bVI8eNB4vAzAS9/eE3pFEGbDJrCnamnLFC807pss2LyoN9DQLuDaf
-         P2ceYyYr89Vy6nwgELd2tGgt7O8VYmSBPUriTwWp5XEeKMWOtfh989r87GMEJY9FDZnD
-         +OtnozrChpUhdiWa44+0CuEo9+j/SsfEmER4y3u/II6LpjFikdLNj8qI54P63YmcykCi
-         W6YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690880616; x=1691485416;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dl31qmpoVvkSjyLSpZPfwkWIRx8GhdUOBKx/4n/3L7U=;
-        b=dv76qHkKrICU5wbTGHlrzdYKBGEhe6B/rdNHQwPcGY1a0MpgBte9nG5KcWtNKWh+Ae
-         QwxdBqwxvLm9mu+gQWzUB1E1uHlKHMeDsmPiiXpTVB2xnK4Z5qIZJ90gSnugslnK1oB1
-         29Q1S7Ks67CLxPFrYOktOIwHiAd2arLesLzpI+AbbjQkZAuMXZbA5/YC3PXiZUGYn7z8
-         gL9iPn1DFH0O3VcSyZ0qbxOI8zWlgcPWtUsT5Ok+cFpsVpBEFDEmusOCeiq8d95ouWKi
-         AbH6rnBMEamov8Zws9qOuA4S6R2D3rY0wfYe2vyECGXIfETb+istv1HPR7Vo4dpJdngS
-         v1XQ==
-X-Gm-Message-State: ABy/qLYAwsOEZ/S5gJhwnsyCxPoA3G2Ot3sV6y/yu7Bu/eCVC4O1p1vz
-        JsV49MtXquzwyfxJzO2Td0PfRg==
-X-Google-Smtp-Source: APBJJlH6oCr2tZeWpewSHACfnDCdQHNervXhutIyQgatxkDxrpBPXL7suSS9iuOmjWItMEsVtIbYsg==
-X-Received: by 2002:a05:6a20:a11d:b0:13d:3b4d:e4b4 with SMTP id q29-20020a056a20a11d00b0013d3b4de4b4mr11186875pzk.9.1690880616089;
-        Tue, 01 Aug 2023 02:03:36 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id m8-20020aa78a08000000b00686bbf5c573sm5719659pfa.119.2023.08.01.02.03.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Aug 2023 02:03:35 -0700 (PDT)
-Date:   Tue, 1 Aug 2023 14:33:33 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jejb@linux.ibm.com, martin.petersen@oracle.com,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/6] scsi: ufs: host: Add support for parsing OPP
-Message-ID: <20230801090333.pqqugj4tcarwdl2o@vireshk-i7>
-References: <20230731163357.49045-1-manivannan.sadhasivam@linaro.org>
- <20230731163357.49045-5-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S231373AbjHAJ3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:29:38 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5EC30D0;
+        Tue,  1 Aug 2023 02:28:22 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id 25E2F40533;
+        Tue,  1 Aug 2023 14:09:31 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1690880972; bh=uMTAAyeF3I0QRs1D9Thykfo5n67qdtlh32dyUvRJIoo=;
+        h=From:Subject:Date:To:Cc:From;
+        b=OxEUVgVQVKN3Ob4Ke4YweJl2Ii4OF0ssF67kNUqbFyB4iihMLpFMUNuNz/QrE8AI0
+         ulPPEfIoiW4M1anM9CrNR6/eEdGmu3Uu0nDk2omPcI8ffJGOy7LbMZAeX3fpUEvnVa
+         XshoavGmGd5VFS28W4dl9EGPELezLuYqLIV+eVrBGe28D7VgWUlf4p4QewRHx8qCgM
+         9Z8MlfWNT1dMNfAMIQnzuWg1LhQN0pxqCoI9PqIrxy8MK4+AljYNkvIuFm/FMWaWQB
+         R4CLGy+BTTgv6CFFpFlkP6fnpalHZBOMQLoLWUuQsRzEF/92eDDZLs+fNPJq2RZlgY
+         W6RHhg5xExS1Q==
+From:   Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v4 0/2] Add touch-keys support to the Zinitix touch driver
+Date:   Tue, 01 Aug 2023 14:09:24 +0500
+Message-Id: <20230801-zinitix-tkey-v4-0-b85526c5a474@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230731163357.49045-5-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMTLyGQC/x2MQQqAIBAAvyJ7TjA1iL4SHcy2WgILlbDEvycdZ
+ 2AmQ0BPGGBgGTzeFOh0FXTDwO7GbchpqQxSSCV60fKXHEVKPB748M6o6merhLZQk8vjSunfjVM
+ pH983IYteAAAA
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+        Rob Herring <robh@kernel.org>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=808; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=uMTAAyeF3I0QRs1D9Thykfo5n67qdtlh32dyUvRJIoo=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBkyMvLRP12n2hUqUGzi+JO2sGIYpVs4QgRq6A16
+ d7ob2iFGOaJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZMjLywAKCRBDHOzuKBm/
+ de4kEACqAXg9t94H1AUHUFZmC5n/bliq4NpGExfVh4w9rxsLq2Moc7XuXXfbbgzdu8cQ5H0hEC2
+ obDpBEc4g3pq4hyQecdVUmsbliDxN5bNLLLf5fp7kOlfX/zh/OC21VoKdLoYqg5SyIBAyP2IVgl
+ S6sDdh16qHSCWxH9SJGQv0vsD07T7T0TCPmJ1xZ8wtKwHCiKGssNpUwEvDEMIkOZjFtSZq2DTty
+ Bq/geEdfTKQtPxCkJK0aIWAPC3X9aw8anSQANEX+5ma0txfdUDCfBZJGgmrzVlI7BXG0tEcwjFb
+ e6QMJwXkipvjo0wY/a/zHkHk0gJk/LrVyWoZjyI5gBVNi87pnJrXwRA2FxbIEN/fxu/PVSdqgfh
+ zl97hKVg1tY12Ip7hf2SQpXZQnnA4VOTCfg+CxvGHLSi2eC6Oq2RKQAMQ9EXLlHFLaLdGFwrD/4
+ WDnZsyZL/KRZhTzC6tJ95Bj9Lvx6Vjnm2C2jOWusT4fqonEjN08DIBKRRIL+tGIH67ChXGWLgao
+ ucLHBdOPjRE3tlIKc44YWgevUreAh0ULJRo5may+3T6xvW+mGQL49CRCLeT430u1+38kEasNUgP
+ tq70cVH4OuLEMSTlnvzlJpBXRTXAv6upiJm6e7cffMy6ZPonOgMzpf/iEPns1XCGMaADKYL6TAl
+ Z+zYqGgoiCq1UmA==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-07-23, 22:03, Manivannan Sadhasivam wrote:
-> +int ufshcd_opp_config_clks(struct device *dev, struct opp_table *opp_table,
-> +			   struct dev_pm_opp *opp, void *data,
-> +			   bool scaling_down)
-> +{
-> +	struct ufs_hba *hba = dev_get_drvdata(dev);
-> +	struct list_head *head = &hba->clk_list_head;
-> +	struct ufs_clk_info *clki;
-> +	unsigned long freq;
-> +	u8 idx = 0;
-> +	int ret;
-> +
-> +	list_for_each_entry(clki, head, list) {
-> +		if (!IS_ERR_OR_NULL(clki->clk)) {
+This series adds support for the touch-keys that can be present on some
+touchscreen configurations.
 
-NULL is considered as a valid clock AFAIR, so you must only be doing
-IS_ERR() here I guess.
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Changes in v4:
+- The series was partially applied, these patches dropped.
+- Link to v3: https://lore.kernel.org/r/20220106072840.36851-1-nikita@trvn.ru
 
+---
+Nikita Travkin (2):
+      dt-bindings: input: zinitix: Document touch-keys support
+      input: zinitix: Add touchkey support
+
+ .../bindings/input/touchscreen/zinitix,bt400.yaml  | 10 ++++
+ drivers/input/touchscreen/zinitix.c                | 61 ++++++++++++++++++++--
+ 2 files changed, 68 insertions(+), 3 deletions(-)
+---
+base-commit: a734662572708cf062e974f659ae50c24fc1ad17
+change-id: 20230801-zinitix-tkey-5a3023bc304c
+
+Best regards,
 -- 
-viresh
+Nikita Travkin <nikita@trvn.ru>
+
