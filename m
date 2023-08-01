@@ -2,57 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C055B76B8A3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 17:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 796F776B8AA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 17:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233008AbjHAPcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 11:32:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50882 "EHLO
+        id S232039AbjHAPfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 11:35:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbjHAPcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 11:32:22 -0400
+        with ESMTP id S231531AbjHAPfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 11:35:22 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBEF18B;
-        Tue,  1 Aug 2023 08:32:22 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4117FD;
+        Tue,  1 Aug 2023 08:35:21 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 865A4615F4;
-        Tue,  1 Aug 2023 15:32:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53163C433C9;
-        Tue,  1 Aug 2023 15:32:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A2F8615FF;
+        Tue,  1 Aug 2023 15:35:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB786C433C8;
+        Tue,  1 Aug 2023 15:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690903941;
-        bh=lJKVWrjk4zcCanmVu/5JW+TXf/1uu3riraFu5xuvn9U=;
+        s=k20201202; t=1690904120;
+        bh=+cwvm7KqAYEm8igIi7EJmbzhx3t4jk8qmDFYGUbK1n8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QISG0r7S3K1pZIoV+HgqFot4POLX9dhDCDEIzBqGGRm8qSb2jDdpNBufNiIoEZlAm
-         IKygsLEGMJAaqMS24yPpRJUwSQsPZCZYD7msuCCuWrF6Yk+jHmpZOAvXUvLj7CTDj5
-         2FOpB/6wFBv8Ehk0nCnVx7Rnr/NWrLcvBZVVNvt9Ag0aogm/JIcWTRzoz+jt/4pqOa
-         tOe2u31wZCRSOSy9cg3N0vuNiRLcnuW+aNXR0caU015aN3c1s0Kd0wAxaC/VysgnFn
-         kcTMQ/a9ly3eYyctv4CRIq11JOnqkkaodE10SjSXA9t6L4cOeYtbcjRSCt7V2tXpyZ
-         +Ae47ind/wwkQ==
-Date:   Tue, 1 Aug 2023 16:32:15 +0100
+        b=OEmQalPsnPZe5dV5+HC17mkbP5qQeyzyCPOd5J1148jUqRy9K+BautyRWQhFMVmog
+         QRra3+auWfmx+HwaVsac532wVtXfvuEBF5k/SPQSkViXMBif43d5Wo05aBB6FrKjmD
+         9nIgAsyhls9lr4/Njqv+fSJQ7ADkALfducrSizI/qNt5sjbXUgf82UT11S46dPEMtZ
+         0x4JWlcetqAsatuP1NbVmou5Tin60CL/F00blsnWlEY4rwbUHW4hB24Jh67uDK3DCo
+         hc/i7pKa0fqFz5exHyEqtC3UKMsIX2uGvKdqTM/v/G/i0qm4lChIYiFDpevZYtQ7Fm
+         WMTN/woDCkS3A==
+Date:   Tue, 1 Aug 2023 16:35:15 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Anvesh Jain P <quic_ajainp@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Venkata Rao Kakani <quic_vkakani@quicinc.com>
-Subject: Re: [PATCH] bindings: mfd: qcom-pm8xxx: add a property for rtc-pm8xxx
-Message-ID: <20230801-crawfish-impeding-c62bd0d5a4ca@spud>
-References: <20230801115143.27738-1-quic_ajainp@quicinc.com>
+To:     Mihai Sain <mihai.sain@microchip.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        andre.przywara@arm.com, andrei.simion@microchip.com,
+        jerry.ray@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cristian.birsan@microchip.com
+Subject: Re: [PATCH 1/2] dt-bindings: ARM: at91: Document Microchip SAMA5D29
+ Curiosity
+Message-ID: <20230801-unbalance-baguette-cd0d4e7e0107@spud>
+References: <20230801111151.6546-1-mihai.sain@microchip.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vcmA4+W9VwBO+AA+"
+        protocol="application/pgp-signature"; boundary="di4kJkj0aDyLBh4/"
 Content-Disposition: inline
-In-Reply-To: <20230801115143.27738-1-quic_ajainp@quicinc.com>
+In-Reply-To: <20230801111151.6546-1-mihai.sain@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -64,57 +62,66 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---vcmA4+W9VwBO+AA+
+--di4kJkj0aDyLBh4/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 01, 2023 at 05:21:43PM +0530, Anvesh Jain P wrote:
-> Update rtc-pm8xxx bindings with disable-alarm-wakeup property.
->=20
-> Signed-off-by: Venkata Rao Kakani <quic_vkakani@quicinc.com>
-> Signed-off-by: Anvesh Jain P <quic_ajainp@quicinc.com>
+Hey,
 
-The corresponding driver patch, afaict got NAKed.
-Why were they not sent together?
+On Tue, Aug 01, 2023 at 02:11:50PM +0300, Mihai Sain wrote:
+> From: Andrei Simion <andrei.simion@microchip.com>
+>=20
+> Document device tree binding of SAMA5D29 Curiosity, from Microchip.
+>=20
+> Reviewed-by: Mihai Sain <mihai.sain@microchip.com>
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+
+Your SoB is missing from here.
+
+> ---
+>  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Docu=
+mentation/devicetree/bindings/arm/atmel-at91.yaml
+> index dfb8fd089197..89d75fbb1de4 100644
+> --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> @@ -79,6 +79,13 @@ properties:
+>            - const: atmel,sama5d2
+>            - const: atmel,sama5
+> =20
+> +      - description: Microchip SAMA5D29 Curiosity
+> +        items:
+> +          - const: microchip,sama5d29-curiosity
+> +          - const: atmel,sama5d29
+> +          - const: atmel,sama5d2
+> +          - const: atmel,sama5
+
+What is the benefit of adding the two familial compatibles? Is there
+software that actually uses these?
 
 Thanks,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Doc=
-umentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> index 9c51c1b19067..e4f1d2ff02b6 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> @@ -42,6 +42,9 @@ properties:
-> =20
->    interrupt-controller: true
-> =20
-> +  disable-alarm-wakeup:
-> +    description: optional, disable alarm wake up capability.
 > +
->  patternProperties:
->    "led@[0-9a-f]+$":
->      type: object
->=20
-> base-commit: 0a8db05b571ad5b8d5c8774a004c0424260a90bd
+>        - items:
+>            - const: atmel,sama5d27
+>            - const: atmel,sama5d2
 > --=20
-> 2.17.1
+> 2.41.0
 >=20
 
---vcmA4+W9VwBO+AA+
+--di4kJkj0aDyLBh4/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMklfwAKCRB4tDGHoIJi
-0olmAP9RV+xteLcQWdAAcChWyBbR7rRX80Zq6JgajPI11F7QQwEAnEJyjcD/RUIt
-dFP/2UZjqilyGdsEzywMEKOMu4oyEA8=
-=9fHA
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMkmMwAKCRB4tDGHoIJi
+0gCxAPwLg4OkKMAdyQsxsIrHt/o8duTRmkAL09SwVKGyqc/NvQD+IgKaOpPQrPg6
+3wQ2YL6yd7uHCMTwNJR1qOstN+Fgug8=
+=kiwg
 -----END PGP SIGNATURE-----
 
---vcmA4+W9VwBO+AA+--
+--di4kJkj0aDyLBh4/--
