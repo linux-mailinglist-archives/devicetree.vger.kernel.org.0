@@ -2,91 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84F9076B360
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 13:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B83A576B2A5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 13:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232661AbjHALh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 07:37:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37480 "EHLO
+        id S234130AbjHALGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 07:06:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbjHALhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 07:37:25 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF1CD3;
-        Tue,  1 Aug 2023 04:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=BbIqX++u7tFTSva0KCFAR2Y+7S4v0rtzgJGAQYO1KzM=; b=rsR/yOJL9SkjbpT5u7oTNnltlY
-        yg9FUDUbGrezFAR7Ac/0PjGnwTNyoJAamuIjhPGujcC7XwpW9ndx6q4orSPtvEd6YYtcTw8Hsd4+i
-        uYtEQc/x7XyLZwul+/LOF9QPQoitYKTVSCm5coM9br7dxcY5DTTy+gl1PfpjFeab3HqM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qQmzN-002nH2-Hd; Tue, 01 Aug 2023 12:52:29 +0200
-Date:   Tue, 1 Aug 2023 12:52:29 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 23/28] net: wan: framer: Add support for the Lantiq
- PEF2256 framer
-Message-ID: <c27fa438-0885-4e02-a957-ee40b8ef6da1@lunn.ch>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
- <20230726150225.483464-24-herve.codina@bootlin.com>
- <4adae593-c428-4910-882e-7247727cf501@lunn.ch>
- <20230801124401.3883d16c@bootlin.com>
+        with ESMTP id S230409AbjHALGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 07:06:02 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD007AB4
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 03:59:47 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b9cdbf682eso63424911fa.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 03:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1690887585; x=1691492385;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F76i/7vGNisrChJeRqvuEQPeFIPFgiCjw08O3STlUnc=;
+        b=BPClByZTHs7jw3OZmeyJAD4PsN3zyPlaDbDLMU+3gZiyPb9Y5o8jW2P8Tlh5p6s+9r
+         BlAORineS72jryyv1aMOR7CAQ2QvqCqS/FShXPD9ckwFFobrBr11l6md0DRF8LeRFIz4
+         HCPs+ezWMsz/3i8x1k5giQ/4TLSXcYfFz1qdugHdRSJaAktMjWW27OnYbTbc26pq+uaA
+         TAsAgdfii8Q3g3jqkVlVDBMDeEzhdfHKh2CjtXZISoVLj3TOFhG4UACU0RVa8Uv6rnCE
+         j2R5L0KAqpYyOdyThqIB0o+bIGvj9QVRG1oJPwOhFBE6PomEkl6xWZjSuOSkBoTarhIp
+         0tuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690887585; x=1691492385;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F76i/7vGNisrChJeRqvuEQPeFIPFgiCjw08O3STlUnc=;
+        b=bAM9zmQ1dqiPLNAGjC8i3WS5nE7n+ltD7u+W+C86nPWLWVbRX23peJzOk6q49L7R9h
+         ZR+xGxSH19TVDvsVCuqG8Rq1TOSSBmrYMRAaoVNJvjj/IdoTo4cRrGVv9+kDxImsbgic
+         vYCak7tsFh36Ns9/GMLuAOmizir3X7plNOQ66sXpbJwjvZil3pqIOXc4sDyfBB3ky9Ho
+         7loyimyTJAXlBm0BNqKWUuzy5Pzet0OWaz9e0ZV35e68fJFm6ziTKpAXmdyAuqNiGQLw
+         7jGT1BLxn+6JJQBxuGtyhIhzyVdO/KD7PW2ZNEpjYlNpoUvftXdVyH7JpaJVrzoUXSq5
+         8XXQ==
+X-Gm-Message-State: ABy/qLacebDQi73x3CXGvzIZd8trXQ9wZGsXXIXGJtZ/0pLDNqzsN3S/
+        Z6+rRGH9IN+ZT6vCD79Yn7vaFOeGckMYzi2Y3hdHzQ==
+X-Google-Smtp-Source: APBJJlFNZI1VOiwUF6e/KUPHc2Zx0vZxESwSvI5tKYuKGB7IyFDDEb7la65niBvb/xQFqiAfDcQvct1KidT8ZF2BKmc=
+X-Received: by 2002:a2e:b0c1:0:b0:2b9:e93e:65d9 with SMTP id
+ g1-20020a2eb0c1000000b002b9e93e65d9mr2272839ljl.40.1690887585321; Tue, 01 Aug
+ 2023 03:59:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230801124401.3883d16c@bootlin.com>
+References: <20230720135125.21240-1-eric.lin@sifive.com> <20230720135125.21240-2-eric.lin@sifive.com>
+ <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org> <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
+ <be748338-987b-d474-d040-82af7cfb5f01@linaro.org> <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
+ <f7df407e-1deb-f667-912c-81415fffcbfd@linaro.org>
+In-Reply-To: <f7df407e-1deb-f667-912c-81415fffcbfd@linaro.org>
+From:   Eric Lin <eric.lin@sifive.com>
+Date:   Tue, 1 Aug 2023 18:59:34 +0800
+Message-ID: <CAPqJEFrYrbH2H5F=V4D4-exLjmnuJybj8L2GKPzqhTrDsqe-gA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +static void pef2256_isr_default_handler(struct pef2256 *pef2256, u8 nbr, u8 isr)
-> > > +{
-> > > +	dev_warn(pef2256->dev, "ISR%u: 0x%02x not handled\n", nbr, isr);
-> > > +}  
-> > 
-> > Should this be rate limited? It is going to be very noise if it gets
-> > called once per frame time.
-> 
-> This function should not be called.
-> It is wired on some interrupts and these interrupts should not be triggered.
-> It they fired, something was wrong.
-> 
-> I would prefer to keep this dev_warn() to keep the user informed about the
-> problem.
+On Fri, Jul 28, 2023 at 5:39=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/07/2023 11:04, Eric Lin wrote:
+> > On Fri, Jul 28, 2023 at 2:58=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 28/07/2023 08:01, Eric Lin wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>> On Fri, Jul 21, 2023 at 4:35=E2=80=AFPM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 20/07/2023 15:51, Eric Lin wrote:
+> >>>>> This add YAML DT binding documentation for SiFive Private L2
+> >>>>> cache controller
+> >>>>>
+> >>>>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> >>>>> Reviewed-by: Zong Li <zong.li@sifive.com>
+> >>>>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> >>>>
+> >>>>
+> >>>> ...
+> >>>>
+> >>>>> +properties:
+> >>>>> +  compatible:
+> >>>>> +    items:
+> >>>>> +      - const: sifive,pl2cache1
+> >>>>
+> >>>> I still have doubts that it is not used in any SoC. This is what you
+> >>>> said last time: "is not part of any SoC."
+> >>>> If not part of any SoC, then where is it? Why are you adding it to t=
+he
+> >>>> kernel?
+> >>>>
+> >>>
+> >>> Sorry for the late reply. I didn't describe it clearly last time.
+> >>> Currently, we have two hardware versions of pl2cache: pl2cache0 and p=
+l2cache1.
+> >>> The pl2cache0 is used in unmatched board SoC. The pl2cache1 is
+> >>> utilized in our internal FPGA platform for evaluation; it's our core
+> >>> IP.
+> >>
+> >> And why do you add bindings for some internal FPGA IP block which does
+> >> not interface with any SW?
+> >>
+> >
+> > Hi Krzysztof,
+> > The pl2cache has mmio interface for SW. Thanks.
+>
+> Then did you mean that FPGA represented some model of your SoC? If so,
+> what are other bindings for that FPGA components?
+>
+Hi Krzysztof,
 
-I would definitely keep it, but rate limit it. dev_warn_ratelimited().
+Sorry for the late reply.
+Yes, here are the devices dt-binding that we use on the internal FPGA
+SoC platform. Thanks.
 
-	Andrew
+uart:
+Documentation/devicetree/bindings/serial/sifive-serial.yaml
+
+gpio:
+Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+
+dma:
+Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+
+spi:
+Documentation/devicetree/bindings/spi/spi-sifive.yaml
+
+Best regards,
+Eric Lin
+
+> Best regards,
+> Krzysztof
+>
