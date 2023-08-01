@@ -2,43 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C13F76BF96
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FA2476BFB7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231651AbjHAVzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 17:55:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57612 "EHLO
+        id S232790AbjHAV6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 17:58:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230345AbjHAVzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:55:14 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5696F103;
-        Tue,  1 Aug 2023 14:55:06 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1690926903; bh=5cd3+VNLF8xZ6lJKYpj4LYc+fiVvPNDsifiAF5qrQSg=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=T4uYuXHSUmW78IqK7Nz0bGZ6cpWR+xquQKx8AsPI3POjrw0muX8ooGGSHs1hK913n
-         pozvZBiD0yS86wekdqQp3PVz6FQqKJ8O49TPnhalDxcVxrdN1zrxpS80mf2q93PR+j
-         MEJnFM6i5RJAScbP3+HgwceG5+2hZC1QcinwUp30=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH 2/2] dmaengine: apple-sio: Add Apple SIO driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <ZMlLjg9UBi3QO/qV@matsya>
-Date:   Tue, 1 Aug 2023 23:55:02 +0200
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S231749AbjHAV57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:57:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE60212A;
+        Tue,  1 Aug 2023 14:57:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BFA7B61741;
+        Tue,  1 Aug 2023 21:57:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5174C433C7;
+        Tue,  1 Aug 2023 21:57:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690927078;
+        bh=snm5QbsTw0Y2GRvaDzxRn/9vRq5/uytxCShgtBBi4YE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VXWC55U27QoycOfJabrmTQ9NhP3LYnV3OaQqP3xu6ILWhF75FHh98BvZVb/3qLSoz
+         MgJrQ7vJmoyW997UbmdsIdnR0gEtDQUFhsHyuwBcrG1YeSWddGKtmsXZ1VaHOHshm9
+         PJDkmlCUI9WLQHNpPtsJhIrfdQk5jSZKvVBU7S5a2P9Yx5cgJLp8n5O8z2Y0jfNthk
+         LiXB54NKfVM/UQe7wgQ1hDyDn0dgg9DIcD+K0X6WGCQB8ee8mGjF+J4bqlqk3KXhXx
+         AoXxBSNwDUasMDCYVzIQBtlDaZtNgsFpfwrF0nkZ4kBzJ+vHE8h1bXX+DX6xbEcxno
+         PwdYSdRihboJg==
+Date:   Tue, 1 Aug 2023 22:57:54 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Fabio Estevam <festevam@denx.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <7D43A9F3-892C-4E74-9618-DB37360B7641@cutebit.org>
-References: <20230712133806.4450-1-povik+lin@cutebit.org>
- <20230712133806.4450-3-povik+lin@cutebit.org> <ZMlLjg9UBi3QO/qV@matsya>
-To:     Vinod Koul <vkoul@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Remove the OV5642 entry
+Message-ID: <20230801-reconcile-preamble-8713b6b09ef5@spud>
+References: <20230801170015.40965-1-festevam@denx.de>
+ <20230801-clobber-attempt-7033f92b3d08@spud>
+ <8b0e048208220b2ae09eb1a3c52219b9@denx.de>
+ <20230801-dividers-chooser-bd0df9b72d91@spud>
+ <f9ab7525f048f3ce814d89f106947c34@denx.de>
+ <20230801-selective-strife-b595804cdb27@spud>
+ <deb6a4e60f37e9764d24e25b8a6d1d97@denx.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qkunuk7GoHQFqtuh"
+Content-Disposition: inline
+In-Reply-To: <deb6a4e60f37e9764d24e25b8a6d1d97@denx.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -47,184 +62,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod!
 
-> On 1. 8. 2023, at 20:14, Vinod Koul <vkoul@kernel.org> wrote:
+--qkunuk7GoHQFqtuh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Aug 01, 2023 at 06:43:58PM -0300, Fabio Estevam wrote:
+> Hi Conor,
 >=20
-> On 12-07-23, 15:38, Martin Povi=C5=A1er wrote:
+> On 01/08/2023 18:28, Conor Dooley wrote:
 >=20
->> +struct sio_chan {
->> +	unsigned int no;
->> +	struct sio_data *host;
->> +	struct dma_chan chan;
->> +	struct tasklet_struct tasklet;
->> +	struct work_struct terminate_wq;
->> +
->> +	spinlock_t lock;
->> +	struct sio_tx *current_tx;
->> +	/*
->> +	 * 'tx_cookie' is used for distinguishing between transactions =
-from
->> +	 * within tag ack/nack callbacks. Without it, we would have no =
-way
->> +	 * of knowing if the current transaction is the one the callback =
-handler
->> +	 * was installed for.
+> > I never said it was chief. Please re-read the quoted text.
 >=20
-> not sure what you mean by here.. I dont see why you would need to =
-store
-> cookie here, care to explain?
-
-I could have clarified this is not meant to be the dmaengine cookie, =
-just
-a driver-level cookie to address a race between
-
-	a dmaengine user calling terminate_all to terminate a running
-	cyclic transaction, then issuing a new one
-
-on one hand, and
-
-	the coprocessor acking the issuing of one of the coprocessor
-	transactions that correspond to the first dmaengine transaction
-
-on the other hand. With the cookie the driver should not get confused
-about which dmaengine transaction the ACK belongs to, since if =
-`current_tx`
-changed in the meantime the cookie won=E2=80=99t match.
-
-But now that I look at it... huh, I never increment that `tx_cookie` =
-field!
-I don=E2=80=99t know if I have considered using the dmaengine cookie to =
-the same
-effect. Maybe we can do that, I see how that would be much desirable.
-
->> +	 */
->> +	unsigned long tx_cookie;
->> +	int nperiod_acks;
->> +
->> +	/*
->> +	 * We maintain a 'submitted' and 'issued' list mainly for =
-interface
->> +	 * correctness. Typical use of the driver (per channel) will be
->> +	 * prepping, submitting and issuing a single cyclic transaction =
-which
->> +	 * will stay current until terminate_all is called.
->> +	 */
->> +	struct list_head submitted;
->> +	struct list_head issued;
->> +
->> +	struct list_head to_free;
+> trivial-devices.yaml throws the following warning:
 >=20
-> can you use virt_dma_chan, that should simplify list handling etc
-
-I looked into that when I wrote the sister driver apple-admac.c, I =
-don=E2=80=99t
-remember anymore why I decided against it, and I don=E2=80=99t think it =
-came up
-during review. Now that this driver is done, I hope we can take it as =
-is.
-
-There=E2=80=99s some benefit from the drivers having a similar =
-structure, I sent
-one or two fixes to apple-admac for things I found out because I was
-writing this other driver.
-
->> +};
->> +
->> +#define SIO_NTAGS		16
->> +
->> +typedef void (*sio_ack_callback)(struct sio_chan *, void *, bool);
+> imx6q-sabrelite.dtb: camera@42: 'clock-names', 'clocks', 'gp-gpios', 'por=
+t',
+> 'powerdown-gpios', 'reset-gpios' do not match any of the regexes:
+> 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
 >=20
-> any reason not to use dmaengine callbacks?
+> Would it make sense to remove ovti,ov5642 from the trivial-devices bindin=
+gs
+> as well as from the
+> following devicetrees?
 
-Not sure what dmaengine callback you mean here. This callback means
-the coprocessor acked a tag, not sure how we can fit something dmaengine
-onto it.
+I would rather that you documented it, rather than removed it, please.
 
->> +static int sio_alloc_tag(struct sio_data *sio)
->> +{
->> +	struct sio_tagdata *tags =3D &sio->tags;
->> +	int tag, i;
->> +
->> +	/*
->> +	 * Because tag number 0 is special, the usable tag range
->> +	 * is 1...(SIO_NTAGS - 1). So, to pick the next usable tag,
->> +	 * we do modulo (SIO_NTAGS - 1) *then* plus one.
->> +	 */
->> +
->> +#define SIO_USABLE_TAGS (SIO_NTAGS - 1)
->> +	tag =3D (READ_ONCE(tags->last_tag) % SIO_USABLE_TAGS) + 1;
->> +
->> +	for (i =3D 0; i < SIO_USABLE_TAGS; i++) {
->> +		if (!test_and_set_bit(tag, &tags->allocated))
->> +			break;
->> +
->> +		tag =3D (tag % SIO_USABLE_TAGS) + 1;
->> +	}
->> +
->> +	WRITE_ONCE(tags->last_tag, tag);
->> +
->> +	if (i < SIO_USABLE_TAGS)
->> +		return tag;
->> +	else
->> +		return -EBUSY;
->> +#undef SIO_USABLE_TAGS
->> +}
->=20
-> can you use kernel mechanisms like ida to alloc and free the tags...
+--qkunuk7GoHQFqtuh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I can look into that.
+-----BEGIN PGP SIGNATURE-----
 
->> +static struct dma_async_tx_descriptor *sio_prep_dma_cyclic(
->> +		struct dma_chan *chan, dma_addr_t buf_addr, size_t =
-buf_len,
->> +		size_t period_len, enum dma_transfer_direction =
-direction,
->> +		unsigned long flags)
->> +{
->> +	struct sio_chan *siochan =3D to_sio_chan(chan);
->> +	struct sio_tx *siotx =3D NULL;
->> +	int i, nperiods =3D buf_len / period_len;
->> +
->> +	if (direction !=3D sio_chan_direction(siochan->no))
->> +		return NULL;
->> +
->> +	siotx =3D kzalloc(struct_size(siotx, siodesc, nperiods), =
-GFP_NOWAIT);
->> +	if (!siotx)
->> +		return NULL;
->> +
->> +	init_completion(&siotx->done);
->> +	dma_async_tx_descriptor_init(&siotx->tx, chan);
->> +	siotx->period_len =3D period_len;
->> +	siotx->nperiods =3D nperiods;
->> +
->> +	for (i =3D 0; i < nperiods; i++) {
->> +		struct sio_coproc_desc *d;
->> +
->> +		siotx->siodesc[i] =3D d =3D =
-sio_alloc_desc(siochan->host);
->> +		if (!d) {
->> +			sio_tx_free(&siotx->tx);
->> +			return NULL;
->> +		}
->> +
->> +		d->flag =3D 1; // not sure what's up with this
->> +		d->iova =3D buf_addr + period_len * i;
->> +		d->size =3D period_len;
->> +	}
->> +	dma_wmb();
->=20
-> why use barrier here? and to what purpose..
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMl/4gAKCRB4tDGHoIJi
+0tQUAQDRYUSIv3MMaL9eDBUovmubABz6C6LbU82pfzERKSPrJAD+OzF0Yswm/a5d
+Sq1uOoR8IoqteIM596VWEyOuuTlM6gM=
+=UkMR
+-----END PGP SIGNATURE-----
 
-Few lines above we are modifying a shared memory buffer that=E2=80=99s =
-mapped into
-the coprocessor=E2=80=99s address space (it=E2=80=99s what `d` points =
-to).
-
-> --=20
-> ~Vinod
->=20
-
-Best regards, Martin
-
+--qkunuk7GoHQFqtuh--
