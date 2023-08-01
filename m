@@ -2,150 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3459C76BE8F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 22:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D4576BEB3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 22:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232461AbjHAUis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 16:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52248 "EHLO
+        id S229873AbjHAUrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 16:47:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232608AbjHAUip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 16:38:45 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A102122;
-        Tue,  1 Aug 2023 13:38:42 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 371KcZhJ030414;
-        Tue, 1 Aug 2023 15:38:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690922315;
-        bh=acKsWicC/063sA6Vjz99L74RVEC0X48cDQU5y9gOy9U=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=r/EynYSRe1iU+yWZ5Taf2Vjr/OfpW7VBY4PQe8SeSe7YkUUfe0DYwVTWAMIy3j+M1
-         FI83QRz81xK+9U7BEsr2atYuLBmt23zMYNwu5F8Fllfs+ghvbySNOJKVvKGy8/FEwE
-         PCRQBST3BB/O1l6HyiGLFkZtje3EUEcX0J0e+X4M=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 371KcZKW085220
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Aug 2023 15:38:35 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
- Aug 2023 15:38:34 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 1 Aug 2023 15:38:34 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 371KcYdl027208;
-        Tue, 1 Aug 2023 15:38:34 -0500
-Date:   Tue, 1 Aug 2023 15:38:34 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Udit Kumar <u-kumar1@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <sinthu.raja@ti.com>, <t-konduru@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-som-p0: Correct pinmux offset
- for ospi0
-Message-ID: <20230801203834.kpshdyiml4vysgi4@swaddling>
-References: <20230801125626.3287306-1-u-kumar1@ti.com>
+        with ESMTP id S229517AbjHAUru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 16:47:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9537B1982;
+        Tue,  1 Aug 2023 13:47:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 29CC461700;
+        Tue,  1 Aug 2023 20:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2661EC433C8;
+        Tue,  1 Aug 2023 20:47:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690922868;
+        bh=c/w4VL2J8uHP5ZIb48hOKtiDw/YDEZ6xJOJtc8VvBxI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u3DDZ5iY2x0AT8PvRlmN9IPjLASTVxZ8AYKDHpGJK6Hi+2NGwYYLrJM1U2hsFJsh4
+         dPuLHTVXAjwPm8gDYhqLKPQUg3Q39azMZP2KW4eAtrv0lCI63hqVzMGDz1HOwE732i
+         GsmHJTrew3CUNnGETYIjBq8qwD/GaeM9wKEjpMvB/bvNxinc/Fcr5Jz/zfoujqFLmh
+         Q0/1ybfTo/CrGZy6sb/NKb7kO0ByCIy4kDU2zTzgY2voAmkjRpRusAh2yp6NpUgfIn
+         EGzf3JSOkuZ8Fp773rj7mT1jZyhOc/TlA4gSymtd9+FJTweP5XbkQKje92q7rg9VW/
+         MEy3SK/ij4pvg==
+Date:   Tue, 1 Aug 2023 21:47:44 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Fabio Estevam <festevam@denx.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Remove the OV5642 entry
+Message-ID: <20230801-clobber-attempt-7033f92b3d08@spud>
+References: <20230801170015.40965-1-festevam@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CKmBG76A66lRswJw"
 Content-Disposition: inline
-In-Reply-To: <20230801125626.3287306-1-u-kumar1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20230801170015.40965-1-festevam@denx.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:26-20230801, Udit Kumar wrote:
-> Due to non-addressable regions in J721S2 SOC wkup_pmx was split
-> into four regions from wkup_pmx0 to wkup_pmx3.
-> 
-> After split while updating the pin mux references to newly defined
-> four wkup_pmx, pin mux for OSPI0 was left.
-> 
-> Pin mux for OSPI0 is spread over two range wkup_pmx0
-> and wkup_pmx1, along with correcting pin mux for ospi
-> adding correct pin mux setting within ospi node.
-> 
-> Fixes: 6bc829ceea41 ("arm64: dts: ti: k3-j721s2: Fix wkup pinmux range")
-> 
-> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+
+--CKmBG76A66lRswJw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Aug 01, 2023 at 02:00:15PM -0300, Fabio Estevam wrote:
+> As explained in the description text:
+>=20
+> "This is a list of trivial I2C and SPI devices that have simple device tr=
+ee
+> bindings, consisting only of a compatible field, an address and possibly =
+an
+> interrupt line."
+> =20
+> A camera device does not fall into this category as it needs other
+> properties such as regulators, reset and powerdown GPIOs, clocks,
+> media endpoint.
+>=20
+> Remove the OV5642 entry.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+
+Removing it without re-adding it elsewhere does not seem right, since
+there'll now be some undocumented compatibles in the tree, no?
+
 > ---
-> Test log without patch
-> https://gist.github.com/uditkumarti/41d3d7ccf278d4e00e6da349478e58aa
-> (line 1192) reports pin mux is out of range for ospi
-> 
-> Test log with patch
-> https://gist.github.com/uditkumarti/46999c99911c9ff3777493fbaea243c6
-> 
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> index d57dd43da0ef..1a9d13237c2d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> @@ -45,8 +45,6 @@ mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
->  			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
->  			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
->  			J721S2_WKUP_IOPAD(0x030, PIN_OUTPUT, 0) /* (G17) MCU_OSPI0_CSn1 */
-> -			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-> -			J721S2_WKUP_IOPAD(0x03c, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
->  			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
->  			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
->  			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
-> @@ -61,6 +59,15 @@ J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
->  	};
->  };
->  
-> +&wkup_pmx1 {
-> +	mcu_fss0_ospi0_pins1_default: mcu-fss0-ospi0-default-pins1 {
-patternProperties:
-  '-pins(-[0-9]+)?$|-pin$':
-
-Unless we have a strong reason, I'd leave it as
-mcu-fss0-ospi0-1-default-pins or something
-
-But, please ensure we dont get warnings with:
-https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/
-
-(Side note: Linus W is on vacation, so it might be a few days for this
- to hit next)
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-> +			J721S2_WKUP_IOPAD(0x004, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
-> +		>;
-> +	};
-> +};
-> +
->  &wkup_pmx2 {
->  	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
->  		pinctrl-single,pins = <
-> @@ -127,7 +134,7 @@ &main_mcan16 {
->  &ospi0 {
->  	status = "okay";
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_pins1_default>;
->  
->  	flash@0 {
->  		compatible = "jedec,spi-nor";
-> -- 
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 --
+>  1 file changed, 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
+umentation/devicetree/bindings/trivial-devices.yaml
+> index 40bc475ee7e1..ab1423a4aa7f 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -313,8 +313,6 @@ properties:
+>            - nuvoton,w83773g
+>              # OKI ML86V7667 video decoder
+>            - oki,ml86v7667
+> -            # OV5642: Color CMOS QSXGA (5-megapixel) Image Sensor with O=
+mniBSI and Embedded TrueFocus
+> -          - ovti,ov5642
+>              # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
+>            - plx,pex8648
+>              # Pulsedlight LIDAR range-finding sensor
+> --=20
 > 2.34.1
-> 
+>=20
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+--CKmBG76A66lRswJw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMlvcAAKCRB4tDGHoIJi
+0kYAAP0frR1hHHkqCch70fSRkgZ5/jGlWL0EURa+XUQhvWUmlAD8CJx7omm/YugB
+S4qDWaxBiBRcUGZNACCf5GcGpKlHKgQ=
+=vyl9
+-----END PGP SIGNATURE-----
+
+--CKmBG76A66lRswJw--
