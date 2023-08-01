@@ -2,92 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C92B76B645
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 15:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B39176B64C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 15:53:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbjHANxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 09:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51702 "EHLO
+        id S233899AbjHANxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 09:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234007AbjHANw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 09:52:56 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B58EA
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 06:52:54 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-313e742a787so3853384f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 06:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690897973; x=1691502773;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UXUStV/k8ExcjG5bEMfsjTalaVoKA6nTdSvi56sS+yw=;
-        b=UrcMQkJH2/LmlPi04LmT1Awqax6mNB88Z+qxMeNomi1CQLF7n8C+nGl4zg2IpUO000
-         xhqTFK4eNEXjy0EzXz8SC3Jxm3+2Q88M+Zz0a75/BjQxZHLETmrgvGfBRXXampBb8oP5
-         TzDfHXsMFhpF/JfqOfi702BI2MSwfRxYWKlOEj5pzre/KpYNv9M9tjT9zv1agSjsY89u
-         0VjVYAaqNGih8ICfmWCMYedSEJi3HYbntU5N20GhsbI+FV5j6dgYMnCrpY0pXnZK9JIs
-         vOsw0Okh7IVxvm6/+OV4kfTDaMLr+6KVm2HpVVCw2wc5v8SBoAS+FfF99Gw3sfvXeJ8R
-         B4fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690897973; x=1691502773;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UXUStV/k8ExcjG5bEMfsjTalaVoKA6nTdSvi56sS+yw=;
-        b=jp1uhOXZH+8md3ktMWg17E75FOJHW6vUMJXxrGJMuMEXnH3f0wpVvY2uz5qKsnFCGD
-         S5n8OHKOf0Zv8J5Tc4iiQZnMdqC5TdK1ZXcPlyA7gPQ4N2gZB/8+FgX76hhffVOEhtMP
-         zYRRCwyV11mooLLdMKbryyS20jj/P/6TpMuPjs/1WAsmGwxIL/TvMQhITiaRxAbR42oq
-         oqMiKB1XOjtnJXk0wY3iH5mDPe3JGe+u0LDuGNsoRcnCZIzol89zsY3ZihOCwLqxxt8a
-         tlzKrdOkj2Z5oJST0Q+7rEoq9Apaio0YqDNalmos6de2634bHv/5j/2NDlnBDFKZnPQi
-         rLVA==
-X-Gm-Message-State: ABy/qLaUH9u1TJrjk2LmAEtlfPx+W3v9WzXPOwknUGGUtxTAaWR+qk0F
-        vVYvh8fAI3mMwpjuOucAURcQVw==
-X-Google-Smtp-Source: APBJJlEoyP+hdnGu4WBDl85EWrTlVIh+/QsC3aO15ODMrsTdWGEJLSPYL93d2Ef9MUAaNTt9ims50Q==
-X-Received: by 2002:a05:6000:1011:b0:317:5e91:cf5 with SMTP id a17-20020a056000101100b003175e910cf5mr2562855wrx.7.1690897972898;
-        Tue, 01 Aug 2023 06:52:52 -0700 (PDT)
-Received: from [192.168.69.115] ([176.176.174.59])
-        by smtp.gmail.com with ESMTPSA id g8-20020a7bc4c8000000b003fe1a092925sm8511971wmk.19.2023.08.01.06.52.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Aug 2023 06:52:52 -0700 (PDT)
-Message-ID: <a0528da5-eb04-fd3b-fc78-d57ff16cbfc5@linaro.org>
-Date:   Tue, 1 Aug 2023 15:52:50 +0200
+        with ESMTP id S233931AbjHANxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 09:53:44 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE4FBEC;
+        Tue,  1 Aug 2023 06:53:41 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.43])
+        by gateway (Coremail) with SMTP id _____8Cxc_BkDslkfCEOAA--.33318S3;
+        Tue, 01 Aug 2023 21:53:40 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxriNiDslkGQxEAA--.5911S3;
+        Tue, 01 Aug 2023 21:53:38 +0800 (CST)
+Message-ID: <00f8d896-7465-384c-dd94-823ad5524e50@loongson.cn>
+Date:   Tue, 1 Aug 2023 21:53:38 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.13.0
-Subject: Re: [PATCH 02/17] MIPS: Modify the Loongson1 PRID_REV
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [v1,v1,5/7] drm/vs: Register DRM device
 Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+From:   suijingfeng <suijingfeng@loongson.cn>
+To:     Keith Zhao <keith.zhao@starfivetech.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Shengyang Chen <shengyang.chen@starfivetech.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jagan Teki <jagan@edgeble.ai>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
- <20230729134318.1694467-3-keguang.zhang@gmail.com>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <20230729134318.1694467-3-keguang.zhang@gmail.com>
+        Chris Morgan <macromorgan@hotmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
+References: <20230801101030.2040-6-keith.zhao@starfivetech.com>
+ <6b776c23-9cc1-5a7d-0a85-bd7eb42e847d@loongson.cn>
+In-Reply-To: <6b776c23-9cc1-5a7d-0a85-bd7eb42e847d@loongson.cn>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8CxriNiDslkGQxEAA--.5911S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj9xXoW7XFyrXryxJw15Aw17Zr1rKrX_yoW3ArbEyw
+        sYqr18W3W8JFWUJF1UtFn3ZryIqryj9as5Jay5Ar15Z3W7Xrsavan8JwnYvr4Ygan7G3Wf
+        Grs8ur1fAa47XosvyTuYvTs0mTUanT9S1TB71UUUU17qnTZGkaVYY2UrUUUUj1kv1TuYvT
+        s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+        cSsGvfJTRUUUbgxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+        vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+        w2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+        WxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+        xVWxJr0_GcWln4kS14v26r1q6r43M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+        xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26rWY
+        6Fy7McIj6I8E87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+        8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vI
+        r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Wrv_ZF1lx2IqxVAqx4xG67
+        AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIY
+        rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14
+        v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_
+        Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jMeH
+        DUUUUU=
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/7/23 15:43, Keguang Zhang wrote:
-> Because LS1B and LS1C share the same PRID,
-> it's reasonable to rename their PRID_REVs to PRID_REV_LOONGSON1.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
->   arch/mips/include/asm/cpu.h  | 3 +--
->   arch/mips/kernel/cpu-probe.c | 6 +++---
->   2 files changed, 4 insertions(+), 5 deletions(-)
+Hi,
 
-Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
+On 2023/8/1 21:40, suijingfeng wrote:
+>> +if DRM_VERISILICON
+>> +
+>> +config STARFIVE_HDMI
+>> +    bool "Starfive specific extensions HDMI"
+>> +    help
+>> +       This selects support for StarFive SoC specific extensions
+>> +       for the Innosilicon HDMI driver. If you want to enable
+>> +       HDMI on JH7110 based SoC, you should select this option.
+>> +
+>> +       To compile this driver as a module, choose M here.
+>> +endif
+>
+> Why not use 
+
+  Why not use the 'depends on DRM_VERISILICON'  here ?
+
+
+```
+
+config STARFIVE_HDMI
+
+     depends on DRM_VERISILICON
+     bool "Starfive specific extensions HDMI"
+
+     help
+
+```
+
+
+I see the Kconfig of VC4 using the 'depends on', and most  driver using 
+the 'depends on'
 
