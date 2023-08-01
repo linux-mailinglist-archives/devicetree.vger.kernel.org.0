@@ -2,237 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 975CE76BEEA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1DD76BEEF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbjHAVDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 17:03:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36476 "EHLO
+        id S229738AbjHAVFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 17:05:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbjHAVDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:03:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFCE7129;
-        Tue,  1 Aug 2023 14:03:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8380E61703;
-        Tue,  1 Aug 2023 21:03:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAA65C433C7;
-        Tue,  1 Aug 2023 21:03:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690923811;
-        bh=bRaGNrdA6mbdebRWZ2SiPpqLmfPgqs4lfhQeF0BLc0U=;
+        with ESMTP id S229500AbjHAVFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:05:00 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D916F12B
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 14:04:58 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C6B8F8D;
+        Tue,  1 Aug 2023 23:03:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690923834;
+        bh=GCyqxzdxlfTG19N37VCSuLtmZ4uuNPL0pnSnjwteoBs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=imAVNwWen4mh/Ge3YFUWnaKno6Mcx5CIXBKgLyHteuv1ghPJU6NbOqmn6H4BD85aM
-         twdhdhlWvE2ZYvLnRd2kaYVKewzwlC6XLohkYndvG5DPep3h8JNSHhwk5pWL2tZ8FC
-         7uO97ngHFzlW3mNpYtaynGUwAF5DOZ6LGIZf3SPaDAtx91ZUQ4HQo4QDcv9z+qmfB9
-         8EdYr7TRSZckoXMJtOm8NRpmt2Qs6G0euV5THS5KM0MKlUSTl6E/VuzJg+3/xQDU8q
-         P6jEB9Amn5jmVuZHjV8DRrD0dcz8wzvEl88S3RxJH//AOLKBMCZhazNHMU54jptEtC
-         /Y7LpXGTwtGtA==
-Date:   Tue, 1 Aug 2023 22:03:27 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Lee Jones <lee@kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        b=dyiuBR92QL1Tuu8WN5JuTk5l9s8vvRiJ0Fke37IXvYfZJypQ65q1cpSItN/IvUNfZ
+         x0MeHEcCxRbhIoMz1ZnqJOcfAfd7TliL0G6fRxynoDcly9wT83UKlIWJ5EGMcRvnDT
+         TgNfhzadDCCcDPoRTlQMYnU2MCNlWWrq34g7+VAA=
+Date:   Wed, 2 Aug 2023 00:05:02 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: mfd/clock: YAML for Broadcom PMU with ILP
- clock
-Message-ID: <20230801-jinx-uncheck-b51220682e75@spud>
-References: <20230731203309.30278-1-zajec5@gmail.com>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Cyril Brulebois <kibi@debian.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Umang Jain <umang.jain@ideasonboard.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH v4 0/2] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
+ pinctrl-muxed i2c bus
+Message-ID: <20230801210502.GB8578@pendragon.ideasonboard.com>
+References: <20230731215515.20682-1-laurent.pinchart@ideasonboard.com>
+ <CAPY8ntD07rCC5ttudKtbXkDcKFLJb5htRdawWR+S7p914ti4MA@mail.gmail.com>
+ <20230801144313.GB25590@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="srXFNgO/DHLJcu1C"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230731203309.30278-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230801144313.GB25590@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 01, 2023 at 05:43:15PM +0300, Laurent Pinchart wrote:
+> On Tue, Aug 01, 2023 at 03:22:17PM +0100, Dave Stevenson wrote:
+> > On Mon, 31 Jul 2023 at 22:55, Laurent Pinchart wrote:
+> > >
+> > > Hello,
+> > >
+> > > This series is an attempt to revive support for pinmuxed I2C0 on the
+> > > Raspberry Pi BCM2711-based board.
+> > >
+> > > On BCM2711-based boards, the I2C0 controller can be muxed between pins
+> > > 0+1 or 44+45. The former is exposed through the 40-pins GPIO connector,
+> > > and the latter is used for the RTC on the CM4 I/O board, but also routed
+> > > to the display and camera connectors on the Raspberry Pi 4B board. The
+> > > other BCM2711-based board, the Raspberry Pi 400, does not expose or
+> > > connect anything to pins 44+45.
+> > >
+> > > A previous version was posted ([1]) a year and a half ago by Uwe. It
+> > > bundled the pinmuxing and RTC in a single patch, with the mux added to
+> > > the CM4 I/O board device tree. This version splits this in two, and
+> > > moves the pinumxing to the bcm2711-rpi.dtsi to also support the
+> > > Raspberry Pi 4B.
+> > >
+> > > The Raspberry Pi downstream kernel has a more complex DT architecture in
+> > > order to support different I2C0 pinmuxing for other boards. Two files,
+> > > bcm283x-rpi-i2c0mux_0_28.dtsi and bcm283x-rpi-i2c0mux_0_44.dtsi, define
+> > > the two I2C0 pinxmuxing options (pins 0+1 and 28+29, or pins 0+1 and
+> > > 44+45). Each board .dts then includes the appropriate file. I'm hoping
+> > > to avoid this additional complexity for now, by addressing the I2C0
+> > > pinmuxing for BCM2711-based boards only. If/when support for I2C0
+> > > pinmuxing on boards will be needed, we can revisit this topic.
+> > >
+> > > Compared to the Raspberry Pi downstream kernel, the two muxed I2C buses
+> > > are labelled i2c0_0 and i2c0_1 instead of i2c0 and i2c_csi_dsi. This
+> > > change was made to keep the naming of the I2C controller labels
+> > > consistent, avoiding renaming of the I2C0 controller's label from i2c0
+> > > to i2c0if.
+> > >
+> > > Dave, are you fine with the differences between this patch series and
+> > > the downstream kernel, or do you expect them to cause issues ?
+> > 
+> > I've checked with Phil. There's nothing too untoward that will cause
+> > us any significant grief.
+> 
+> Thanks for checking.
+> 
+> In the meantime, I realized that the CM4S is 2711-based and, according
+> to the downstream DT, multiplexes I2C0 on pins 28+29, not 44+45 :-(
+> Umang and Kieran also told me that we want to test camera support on the
+> Pi 3B. It looks like the only viable approach to support all that will
+> be to include per-board I2C0 pinmux .dtsi as done in the downstream
+> kernel. I'll send a v5.
 
---srXFNgO/DHLJcu1C
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This I2C pin muxing is getting trickier than I initially thought :-S
+Naming the child buses i2c0_0 and i2c0_1 means that boards exposing I2C0
+on the 40-pins GPIO headers would have different labels for that I2C0
+interface depending on whether they multiplex I2C0 on other pins (e.g.
+on pins 44+45 for the camera connector of the Pi 4B) or not (e.g. the Pi
+400). Overlays would thus not be compatible, which I suppose would be
+annoying for users.
 
-On Mon, Jul 31, 2023 at 10:33:09PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> BCM53573 SoC has ILP clock that is part of the PMU block. So far PMU
-> itself didn't have a proper binding and ILP wasn't converted to
-> json-schema. Fix it up.
->=20
-> Add custom binding for Broadcom's BCM53573 PMU and include ILP's
-> properties there (it's trivial and non-reusable binding).
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> ---
->  .../bindings/clock/brcm,bcm53573-ilp.txt      | 36 ----------
->  .../bindings/mfd/brcm,bcm53573-pmu.yaml       | 67 +++++++++++++++++++
->  2 files changed, 67 insertions(+), 36 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm53573=
--ilp.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,bcm53573-p=
-mu.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.tx=
-t b/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
-> deleted file mode 100644
-> index 2ebb107331dd..000000000000
-> --- a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
-> +++ /dev/null
-> @@ -1,36 +0,0 @@
-> -Broadcom BCM53573 ILP clock
-> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> -
-> -This binding uses the common clock binding:
-> -    Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -This binding is used for ILP clock (sometimes referred as "slow clock")
-> -on Broadcom BCM53573 devices using Cortex-A7 CPU.
-> -
-> -ILP's rate has to be calculated on runtime and it depends on ALP clock
-> -which has to be referenced.
-> -
-> -This clock is part of PMU (Power Management Unit), a Broadcom's device
-> -handing power-related aspects. Its node must be sub-node of the PMU
-> -device.
-> -
-> -Required properties:
-> -- compatible: "brcm,bcm53573-ilp"
-> -- clocks: has to reference an ALP clock
-> -- #clock-cells: should be <0>
-> -- clock-output-names: from common clock bindings, should contain clock
-> -		      name
-> -
-> -Example:
-> -
-> -pmu@18012000 {
-> -	compatible =3D "simple-mfd", "syscon";
-> -	reg =3D <0x18012000 0x00001000>;
-> -
-> -	ilp {
-> -		compatible =3D "brcm,bcm53573-ilp";
-> -		clocks =3D <&alp>;
-> -		#clock-cells =3D <0>;
-> -		clock-output-names =3D "ilp";
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml=
- b/Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml
-> new file mode 100644
-> index 000000000000..5b0a12bf4fe4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,bcm53573-pmu.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/brcm,bcm53573-pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom PMU
-> +
-> +maintainers:
-> +  - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> +
-> +description: |
-> +  Broadcom PMU ("Power Management Unit"?) is a hardware block grouping s=
-maller
+Before I send a new version of the series, I'd like to know what
+direction I should take. Is overlay compatibility between the two cases
+listed above important ? If so, I can imagine at least two solutions:
 
-Why the ? ? The text binding doesn't have one.
+- On boards that use I2C0 pinmuxing, we can rename the physical
+  interface to i2c0if and name the two child buses i2c0 and i2c_csi_dsi.
+  This is the solution used in the downstream kernel. It is implemented
+  with a crude (in my opinion) hack though: board files have constructs
+  such as
 
-> +  blocks. It contains few clocks and some shared registers (used to power
-> +  control more than 1 block).
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: brcm,bcm53573-pmu
-> +      - const: simple-mfd
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clock-controller-ilp:
+  #define i2c0 i2c0if
+  #include "bcm2711.dtsi"
+  #undef i2c0
 
-The old text binding didn't have this "-ilp". Why not name the node in a
-standard manner & use "clock-controller" alone?
+- Always mux the I2C0 bus, on pins 0+1 and 28+29 or 0+1 and 44+45,
+  depending on the board. Boards that don't connect anything to the I2C
+  bus on pins 28+29 or 44+45 would still pick one of the two options. As
+  there will be no I2C device on the second bus, the corresponding
+  pinctrl entry will never be selected, so this should be harmless. The
+  downside is that there will be an I2C mux instantiated in the kernel,
+  adding a level of indirection to the I2C operations.
 
-> +    description: ILP clock (sometimes referred as "slow clock")
-> +    type: object
-> +    allOf:
-> +      - $ref: /schemas/clock/clock.yaml
-> +      - properties:
-> +          compatible:
-> +            const: brcm,bcm53573-ilp
-> +          clocks:
-> +            description: ALP clock
-> +            maxItems: 1
+Other solutions may be possible.
 
-Is this description actually helpful, if it only has one clock?
+What would be everybody's favourite option ?
 
-Thanks,
-Conor.
+> > Phil has commented that the RTC is an PCF85063AT, so that compatible
+> > string should be "nxp,pcf85063a" if you actually want to make use of
+> > the alarm output.
+> > Then again the driver support for the alarm output appears to want it
+> > routed to an IRQ rather than as a system reset/wakeup, so it probably
+> > makes little difference. It llargely depends on how exact you want to
+> > be in your hardware description.
+> 
+> I'll update the compatible string, it's an easy change and it's nice to
+> be accurate.
+> 
+> > > [1] https://lore.kernel.org/linux-arm-kernel/20211231115109.94626-1-uwe@kleine-koenig.org/
+> > >
+> > > Uwe Kleine-König (2):
+> > >   ARM: dts: bcm2711-rpi: Add pinctrl-based multiplexing for I2C0
+> > >   ARM: dts: bcm2711-rpi-cm4-io: Add RTC on I2C0
+> > >
+> > >  arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts | 16 ++++++++++++
+> > >  arch/arm/boot/dts/bcm2711-rpi.dtsi       | 31 ++++++++++++++++++++++++
+> > >  2 files changed, 47 insertions(+)
 
-> +          clock-output-names:
-> +            const: ilp
-> +          "#clock-cells":
-> +            const: 0
-> +        required:
-> +          - compatible
-> +          - clocks
-> +          - clock-output-names
-> +          - "#clock-cells"
-> +    unevaluatedProperties: false
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +  - clock-controller-ilp
-> +
-> +examples:
-> +  - |
-> +    pmu@18012000 {
-> +        compatible =3D "brcm,bcm53573-pmu", "simple-mfd", "syscon";
-> +        reg =3D <0x18012000 0x00001000>;
-> +
-> +        clock-controller-ilp {
-> +            compatible =3D "brcm,bcm53573-ilp";
-> +            clocks =3D <&alp>;
-> +            clock-output-names =3D "ilp";
-> +            #clock-cells =3D <0>;
-> +        };
-> +    };
-> --=20
-> 2.35.3
->=20
+-- 
+Regards,
 
---srXFNgO/DHLJcu1C
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMlzHwAKCRB4tDGHoIJi
-0joRAP4ur2Th01jv0W4HdWxgSoQD2yRF068Ch/1N/rMsrMZ4XgD/ezvzy0ukquz+
-6wI5D2o+BbR0neFQOuxqBKhTHXHxPQA=
-=li1M
------END PGP SIGNATURE-----
-
---srXFNgO/DHLJcu1C--
+Laurent Pinchart
