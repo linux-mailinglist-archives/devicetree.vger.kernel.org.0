@@ -2,192 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E467E76BCE4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 20:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F0676BCEB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 20:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbjHASsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 14:48:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
+        id S231980AbjHAStK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 14:49:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232027AbjHASr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 14:47:57 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7209F2700;
-        Tue,  1 Aug 2023 11:47:37 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 964E58D;
-        Tue,  1 Aug 2023 20:46:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1690915592;
-        bh=ffDp7O3afC7Y615B58rFG/L3MZSJl9ezabb6Gkyw+vM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C0TObPG/iYraSTtqErbiYAaX/ohD9htCX1BxBDPgHxHAoplB48AV2cI1tnpGMfLmv
-         TAniiGebmwUJBBgFENZPZoywsZq5lGcerLALs3vNts/EJF0oKRK3unCUyMu+BU+UhT
-         KjRSN463tQ/LT8YJkak/Ur/8VTbYRfxqMa28cuC8=
-Date:   Tue, 1 Aug 2023 21:47:41 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jack Zhu <jack.zhu@starfivetech.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v7 4/6] media: starfive: camss: Add video driver
-Message-ID: <20230801184741.GB30382@pendragon.ideasonboard.com>
-References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
- <20230619112838.19797-5-jack.zhu@starfivetech.com>
- <8e381fd6-9475-88fc-9159-927f119a8b9c@xs4all.nl>
- <7c4e63e7-ce28-139f-373d-0fecca6839b9@starfivetech.com>
+        with ESMTP id S232230AbjHAStC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 14:49:02 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E1B2702;
+        Tue,  1 Aug 2023 11:48:53 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 371GA6pf001835;
+        Tue, 1 Aug 2023 18:48:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=QxwyS3/sNwp0tL3VMiwf7gLqShqkMYpOrrA7vE/7Z1w=;
+ b=Q3qmQ5yzh5AuHILxf28Qi44dIhZTqyw07ujaOQHsQCpmxypr2toPDu53/HbBlYK/T49E
+ prR9jTE2CEWAFeDkTxhq1Lk5nCeo1j3xqU6WF8pWp2VWN6P82cxOD6KJ1WEM6BUDUqzl
+ i8XsXORh8h2JYyR8lqrCsFQNWu79TAzT8dJfGLEjI+Wv3FE68a85gSZU9MTIQzU8rGAG
+ llcgcc5mPVg5qr0lKe+qELIkBH/kMXLHhGjltUK8HJGVDjZNQkr+C+MgJOWXiy1zwt91
+ 0ad9+hVwIff5wXozPSf+rcJKwlhhyhUYoGifMSDXHPNSIs0fCFpHF407xJFpabYOv8ax dQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s75b30avd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Aug 2023 18:48:39 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 371Imcmo012798
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 1 Aug 2023 18:48:38 GMT
+Received: from [10.110.112.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 1 Aug
+ 2023 11:48:37 -0700
+Message-ID: <6a304661-28df-0868-e222-b0be8dcef00c@quicinc.com>
+Date:   Tue, 1 Aug 2023 11:48:37 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7c4e63e7-ce28-139f-373d-0fecca6839b9@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 3/7] soc: qcom: add QCOM PBS driver
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <pavel@ucw.cz>,
+        <lee@kernel.org>, <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>
+CC:     <luca.weiss@fairphone.com>, <u.kleine-koenig@pengutronix.de>,
+        <quic_subbaram@quicinc.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+References: <20230725193423.25047-1-quic_amelende@quicinc.com>
+ <20230725193423.25047-4-quic_amelende@quicinc.com>
+ <de3b4739-5446-c1ab-571f-a36c4aff5e0f@linaro.org>
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+In-Reply-To: <de3b4739-5446-c1ab-571f-a36c4aff5e0f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Izg-M7hnepr_H2pzZLxQQyuAIgDT7-dk
+X-Proofpoint-ORIG-GUID: Izg-M7hnepr_H2pzZLxQQyuAIgDT7-dk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-01_16,2023-08-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ suspectscore=0 phishscore=0 lowpriorityscore=0 priorityscore=1501
+ mlxscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308010168
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
 
-On Tue, Aug 01, 2023 at 02:23:07PM +0800, Jack Zhu wrote:
-> On 2023/7/27 16:49, Hans Verkuil wrote:
-> > On 19/06/2023 13:28, Jack Zhu wrote:
-> >> Add video driver for StarFive Camera Subsystem.
-> >> 
-> >> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
-> >> ---
-> >>  .../media/platform/starfive/camss/Makefile    |   4 +-
-> >>  .../media/platform/starfive/camss/stf_video.c | 724 ++++++++++++++++++
-> >>  .../media/platform/starfive/camss/stf_video.h |  92 +++
-> >>  3 files changed, 819 insertions(+), 1 deletion(-)
-> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_video.c
-> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_video.h
 
-[snip]
-
-> >> diff --git a/drivers/media/platform/starfive/camss/stf_video.c b/drivers/media/platform/starfive/camss/stf_video.c
-> >> new file mode 100644
-> >> index 000000000000..2e6472fe51c6
-> >> --- /dev/null
-> >> +++ b/drivers/media/platform/starfive/camss/stf_video.c
-> >> @@ -0,0 +1,724 @@
-
-[snip]
-
-> >> +int stf_video_register(struct stfcamss_video *video,
-> >> +		       struct v4l2_device *v4l2_dev, const char *name)
-> >> +{
-> >> +	struct video_device *vdev;
-> >> +	struct vb2_queue *q;
-> >> +	struct media_pad *pad = &video->pad;
-> >> +	int ret;
-> >> +
-> >> +	vdev = &video->vdev;
-> >> +
-> >> +	mutex_init(&video->q_lock);
-> >> +
-> >> +	q = &video->vb2_q;
-> >> +	q->drv_priv = video;
-> >> +	q->mem_ops = &vb2_dma_contig_memops;
-> >> +	q->ops = &stf_video_vb2_q_ops;
-> >> +	q->type = video->type;
-> >> +	q->io_modes = VB2_DMABUF | VB2_MMAP | VB2_READ;
-> > 
-> > VB2_READ support does not generally make sense for uncompressed video since
-> > read() always requires a memcpy, and that makes it very inefficient.
-> > 
-> > It doesn't hurt though, so it is up to you whether or not you want this.
+On 7/26/2023 8:36 AM, Konrad Dybcio wrote:
+> On 25.07.2023 21:34, Anjelique Melendez wrote:
+>> Add the Qualcomm PBS (Programmable Boot Sequencer) driver. The QCOM PBS
+>> driver supports configuring software PBS trigger events through PBS RAM
+>> on Qualcomm Technologies, Inc (QTI) PMICs.
+>>
+>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+>> ---
+> [...]
 > 
-> Yes, we would like to retain this feature to meet some possible special needs.
+>> +
+>> +	u32			base;
+>> +};
+>> +
+>> +static int qcom_pbs_read(struct pbs_dev *pbs, u32 address, u8 *val)
+>> +{
+>> +	int ret;
+>> +
+>> +	address += pbs->base;
+> Any reason not to just keep the base address in struct pbs_dev and use
+> normal regmap r/w helpers?
+> 
+> [...]
 
-The issue with enabling READ support in drivers is that it encourages
-applications to do the wrong thing. If you want to keep it, I'd like to
-know what use cases you envision would strongly require it.
+We created the qcom_pbs read/write helpers to limit code duplication when printing
+error messages. 
+I am ok with calling regmap_bulk_read/write() and regmap_update_bits()
+in code instead of these helpers but wondering how everyone would feel with the error messages
+either being duplicated or if error messages should just be removed?
 
-> >> +	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
-> >> +	q->buf_struct_size = sizeof(struct stfcamss_buffer);
-> >> +	q->dev = video->stfcamss->dev;
-> >> +	q->lock = &video->q_lock;
-> >> +	q->min_buffers_needed = STFCAMSS_MIN_BUFFERS;
-> >> +	ret = vb2_queue_init(q);
-> >> +	if (ret < 0) {
-> >> +		dev_err(video->stfcamss->dev,
-> >> +			"Failed to init vb2 queue: %d\n", ret);
-> >> +		goto err_vb2_init;
-> >> +	}
-> >> +
-> >> +	pad->flags = MEDIA_PAD_FL_SINK;
-> >> +	ret = media_entity_pads_init(&vdev->entity, 1, pad);
-> >> +	if (ret < 0) {
-> >> +		dev_err(video->stfcamss->dev,
-> >> +			"Failed to init video entity: %d\n", ret);
-> >> +		goto err_vb2_init;
-> >> +	}
-> >> +
-> >> +	mutex_init(&video->lock);
-> >> +
-> >> +	if (video->id == STF_V_LINE_WR) {
-> >> +		video->formats = formats_pix_wr;
-> >> +		video->nformats = ARRAY_SIZE(formats_pix_wr);
-> >> +		video->bpl_alignment = 8;
-> >> +	} else {
-> >> +		video->formats = formats_pix_isp;
-> >> +		video->nformats = ARRAY_SIZE(formats_pix_isp);
-> >> +		video->bpl_alignment = 1;
-> >> +	}
-> >> +
-> >> +	ret = stf_video_init_format(video);
-> >> +	if (ret < 0) {
-> >> +		dev_err(video->stfcamss->dev,
-> >> +			"Failed to init format: %d\n", ret);
-> >> +		goto err_vid_init_format;
-> >> +	}
-> >> +
-> >> +	vdev->fops = &stf_vid_fops;
-> >> +	vdev->ioctl_ops = &stf_vid_ioctl_ops;
-> >> +	vdev->device_caps = V4L2_CAP_VIDEO_CAPTURE;
-> >> +	vdev->vfl_dir = VFL_DIR_RX;
-> >> +	vdev->device_caps |= V4L2_CAP_STREAMING | V4L2_CAP_READWRITE;
-> >> +	vdev->release = stf_video_release;
-> >> +	vdev->v4l2_dev = v4l2_dev;
-> >> +	vdev->queue = &video->vb2_q;
-> >> +	vdev->lock = &video->lock;
-> >> +	strscpy(vdev->name, name, sizeof(vdev->name));
-> >> +
-> >> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, video->id);
-> >> +	if (ret < 0) {
-> >> +		dev_err(video->stfcamss->dev,
-> >> +			"Failed to register video device: %d\n", ret);
-> >> +		goto err_vid_reg;
-> >> +	}
-> >> +
-> >> +	video_set_drvdata(vdev, video);
-> >> +	return 0;
-> >> +
-> >> +err_vid_reg:
-> >> +err_vid_init_format:
-> >> +	media_entity_cleanup(&vdev->entity);
-> >> +	mutex_destroy(&video->lock);
-> >> +err_vb2_init:
-> >> +	mutex_destroy(&video->q_lock);
-> >> +	return ret;
-> >> +}
-
-[snip]
-
--- 
-Regards,
-
-Laurent Pinchart
+qcom_pbs_read() is called twice, qcom_pbs_write() is called twice(), and 
+qcom_pbs_masked_write() is called 6 times.
+> 
+>> +
+>> +static int qcom_pbs_wait_for_ack(struct pbs_dev *pbs, u8 bit_pos)
+>> +{
+>> +	u16 retries = 2000, delay = 1000;
+>> +	int ret;
+>> +	u8 val;
+>> +
+>> +	while (retries--) {
+>> +		ret = qcom_pbs_read(pbs, PBS_CLIENT_SCRATCH2, &val);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		if (val == 0xFF) {
+> This should be a constant, not a magic value
+ack
+> 
+>> +			/* PBS error - clear SCRATCH2 register */
+>> +			ret = qcom_pbs_write(pbs, PBS_CLIENT_SCRATCH2, 0);
+>> +			if (ret < 0)
+>> +				return ret;
+>> +
+>> +			dev_err(pbs->dev, "NACK from PBS for bit %u\n", bit_pos);
+>> +			return -EINVAL;
+>> +		}
+>> +
+>> +		if (val & BIT(bit_pos)) {
+>> +			dev_dbg(pbs->dev, "PBS sequence for bit %u executed!\n", bit_pos);
+>> +			break;
+>> +		}
+>> +
+>> +		usleep_range(delay, delay + 100);
+> So worst case scenario this will wait for over 2 seconds?
+Yes, worst case scenario will result in waiting for 2.2 seconds
+> 
+>> +	}
+>> +
+>> +	if (!retries) {
+>> +		dev_err(pbs->dev, "Timeout for PBS ACK/NACK for bit %u\n", bit_pos);
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	return 0;
+> return 0 instead of break above?
+ack
+> 
+>> +}
+>> +
+>> +/**
+>> + * qcom_pbs_trigger_event() - Trigger the PBS RAM sequence
+>> + * @pbs: Pointer to PBS device
+>> + * @bitmap: bitmap
+>> + *
+>> + * This function is used to trigger the PBS RAM sequence to be
+>> + * executed by the client driver.
+>> + *
+>> + * The PBS trigger sequence involves
+>> + * 1. setting the PBS sequence bit in PBS_CLIENT_SCRATCH1
+>> + * 2. Initiating the SW PBS trigger
+>> + * 3. Checking the equivalent bit in PBS_CLIENT_SCRATCH2 for the
+>> + *    completion of the sequence.
+>> + * 4. If PBS_CLIENT_SCRATCH2 == 0xFF, the PBS sequence failed to execute
+>> + *
+>> + * Returns: 0 on success, < 0 on failure
+>> + */
+>> +int qcom_pbs_trigger_event(struct pbs_dev *pbs, u8 bitmap)
+>> +{
+>> +	u8 val, mask;
+>> +	u16 bit_pos;
+>> +	int ret;
+>> +
+>> +	if (!bitmap) {
+>> +		dev_err(pbs->dev, "Invalid bitmap passed by client\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (IS_ERR_OR_NULL(pbs))
+>> +		return -EINVAL;
+>> +
+>> +	mutex_lock(&pbs->lock);
+>> +	ret = qcom_pbs_read(pbs, PBS_CLIENT_SCRATCH2, &val);
+>> +	if (ret < 0)
+>> +		goto out;
+>> +
+>> +	if (val == 0xFF) {
+>> +		/* PBS error - clear SCRATCH2 register */
+>> +		ret = qcom_pbs_write(pbs, PBS_CLIENT_SCRATCH2, 0);
+>> +		if (ret < 0)
+>> +			goto out;
+>> +	}
+>> +
+>> +	for (bit_pos = 0; bit_pos < 8; bit_pos++) {
+>> +		if (bitmap & BIT(bit_pos)) {
+>> +			/*
+>> +			 * Clear the PBS sequence bit position in
+>> +			 * PBS_CLIENT_SCRATCH2 mask register.
+>> +			 */
+> Don't think the "in the X register" parts are useful.
+ack
+> 
+>> +			ret = qcom_pbs_masked_write(pbs, PBS_CLIENT_SCRATCH2, BIT(bit_pos), 0);
+>> +			if (ret < 0)
+>> +				goto error;
+>> +
+>> +			/*
+>> +			 * Set the PBS sequence bit position in
+>> +			 * PBS_CLIENT_SCRATCH1 register.
+>> +			 */
+>> +			val = mask = BIT(bit_pos);
+> You're using mask/val for half the function calls..
+> Stick with one approach.
+ack
+> 
+> [...]
+> 
+>> +struct pbs_dev *get_pbs_client_device(struct device *dev)
+>> +{
+>> +	struct device_node *pbs_dev_node;
+>> +	struct platform_device *pdev;
+>> +	struct pbs_dev *pbs;
+>> +
+>> +	pbs_dev_node = of_parse_phandle(dev->of_node, "qcom,pbs", 0);
+>> +	if (!pbs_dev_node) {
+>> +		dev_err(dev, "Missing qcom,pbs property\n");
+>> +		return ERR_PTR(-ENODEV);
+>> +	}
+>> +
+>> +	pdev = of_find_device_by_node(pbs_dev_node);
+>> +	if (!pdev) {
+>> +		dev_err(dev, "Unable to find PBS dev_node\n");
+>> +		pbs = ERR_PTR(-EPROBE_DEFER);
+>> +		goto out;
+>> +	}
+>> +
+>> +	pbs = platform_get_drvdata(pdev);
+>> +	if (!pbs) {
+> This check seems unnecessary, the PBS driver would have had to fail
+> probing if set_drvdata never got called.
+> > Konrad
