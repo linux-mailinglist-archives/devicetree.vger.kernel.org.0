@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 055AB76B9E1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 18:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4280776B9E9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 18:50:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230477AbjHAQsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 12:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36734 "EHLO
+        id S232126AbjHAQua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 12:50:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231960AbjHAQsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 12:48:12 -0400
+        with ESMTP id S232050AbjHAQu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 12:50:29 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7AD10E;
-        Tue,  1 Aug 2023 09:48:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50E22114;
+        Tue,  1 Aug 2023 09:50:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 66E0261635;
-        Tue,  1 Aug 2023 16:48:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52CB7C433C8;
-        Tue,  1 Aug 2023 16:48:06 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 817AB61632;
+        Tue,  1 Aug 2023 16:50:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9E2C433C8;
+        Tue,  1 Aug 2023 16:50:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690908489;
-        bh=dAGSBpdgP559FQfd7iCLmLEEcO7xGZkJcOuwn1Nlil8=;
+        s=k20201202; t=1690908627;
+        bh=CMXomY4yotIp2kIkZChPB9St3sxEG+GKrqn91PhJDqw=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=sqaFUW4wBrWJpdPRWZQ+TG6HaObURMrJlIV6GAauSFNYhfGFydQ4LxHDHTjxSvPFk
-         O7B8W6EYZoXFN87b/qwxYqjdlQKhxFi4yGBQJjOKvITbyIWaoxqFO+zUTWZchWI26M
-         7ASrONtD1obsvVpEl5VCmLlp9dkg/ga0RdaVRUkcmNSSZjJqC1nU/nt/dZxfozqE9P
-         ISypzgMxpl4y0WtVNOMjvaikAJW+gRQSHsAf8SQyEPWINNoH19S2gbG92EsMTwror+
-         +EDrK7whevGWqUGxwk6FnIoxyI+KBKY9Sj1TKwFPCn2EXt5K9HLRCCXRIVlHEuu5TM
-         hQg/icLzo7NVQ==
-Message-ID: <b7d18f79-9063-2bc0-f17e-3f96abde5827@kernel.org>
-Date:   Tue, 1 Aug 2023 19:48:03 +0300
+        b=FAT7aNs/561AUrM0GVltCTks2f5kyQS/a68fwFq4srLQYyFH1g6m0PZk6bgj0c16h
+         OSq1b2QKmneqwx65qmFZUYp0JyWm90CF9CFYLwT0ozKI8y72CvTdAkifcC8m5xinlN
+         NceaVWngozJhDvq1Lnn15zN210aoU7JKyaOFJCW2D6W0dX+Sk9EJsiJBHiE+QJHMHh
+         chCTGeHsOvzGfEMrg7v0y98fqd7dFwML3os0bnlfQBVP6hyKmqJOeJk/faUpq2hEHZ
+         CpLXOWJUidtJglXY7zz2gk3UQ++l6PNswkVfZwDRsKI+JSUtEBIjgeObAxZGd90tbt
+         M3/qb++3q+U3w==
+Message-ID: <390ef20d-a225-e7cb-73bd-9ba8c1985a98@kernel.org>
+Date:   Tue, 1 Aug 2023 19:50:21 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v8 5/5] arm64: dts: ti: k3-am69-sk: Add DP and HDMI
- support
+Subject: Re: [PATCH v8 3/5] arm64: dts: ti: k3-j784s4-main: Add DSS and
+ DP-bridge node
 Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com
 Cc:     s-vadapalli@ti.com, afd@ti.com, kristo@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, a-bhatia1@ti.com, r-ravikumar@ti.com,
         sabiya.d@ti.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230801070019.219660-1-j-choudhary@ti.com>
- <20230801070019.219660-6-j-choudhary@ti.com>
+ <20230801070019.219660-4-j-choudhary@ti.com>
 From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230801070019.219660-6-j-choudhary@ti.com>
+In-Reply-To: <20230801070019.219660-4-j-choudhary@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -66,306 +65,107 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 01/08/2023 10:00, Jayesh Choudhary wrote:
-> From: Dasnavis Sabiya <sabiya.d@ti.com>
+> From: Rahul T R <r-ravikumar@ti.com>
 > 
-> AM69 starter kit features an HDMI port and an eDP port.
+> Add DSS and DP-bridge node for J784S4 SoC. DSS IP in J784S4 is
+> same as DSS IP in J721E, so same compatible is being used.
+> The DP is Cadence MHDP8546.
 > 
-> Add assigned clocks for DSS, DT node for DisplayPort PHY,
-> pinmux for HDMI hotplug and power down, mcu_i2c1 and dss_vout
-> for HDMI.
-> Also enable Serdes4 settings for DP display.
-> 
-> Add the endpoint nodes to describe connection from:
-> DSS => MHDP => DisplayPort connector
-> DSS => TI TFP410 DPI-to-DVI Bridge => HDMI connector
-> 
-> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-> [j-choudhary@ti.com: Fix dvi-bridge, dss, mhdp and serdes-refclk]
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> [j-choudhary@ti.com: move dss & mhdp node together in main, fix dss node]
 > Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 237 ++++++++++++++++++++++++++
->  1 file changed, 237 insertions(+)
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 73 ++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> index d282c2c633c1..d9a0794bcf6e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> @@ -107,6 +107,83 @@ vdd_sd_dv: regulator-tlv71033 {
->  		states = <1800000 0x0>,
->  			 <3300000 0x1>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> index fbf5ab94d785..975661948755 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -1749,4 +1749,77 @@ c71_3: dsp@67800000 {
+>  		resets = <&k3_reset 40 1>;
+>  		firmware-name = "j784s4-c71_3-fw";
 >  	};
 > +
-> +	dp0_pwr_3v3: regulator {
+> +	mhdp: dp-bridge@a000000 {
 
-To be consistent with the rest of the file please
-use regulator-dp0-pwr
+bridge@a000000
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dp0-pwr";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&dp_pwr_en_pins_default>;
-> +		gpio = <&main_gpio0 4 0>;	/* DP0_3V3 _EN */
-> +		enable-active-high;
-> +	};
+> +		compatible = "ti,j721e-mhdp8546";
 > +
-> +	dp0: connector {
 
-connector-dp0
+why the new lines all over the place within nodes?
 
-> +		compatible = "dp-connector";
-> +		label = "DP0";
-> +		type = "full-size";
-> +		dp-pwr-supply = <&dp0_pwr_3v3>;
+> +		reg = <0x0 0xa000000 0x0 0x30a00>,
+> +		      <0x0 0x4f40000 0x0 0x20>;
+> +		reg-names = "mhdptx", "j721e-intg";
 > +
-> +		port {
-> +			dp0_connector_in: endpoint {
-> +				remote-endpoint = <&dp0_out>;
-> +			};
-> +		};
-> +	};
+> +		clocks = <&k3_clks 217 11>;
 > +
-> +	hdmi-connector {
-
-connector-hdmi
-
-> +		compatible = "hdmi-connector";
-> +		label = "hdmi";
-> +		type = "a";
+> +		interrupt-parent = <&gic500>;
+> +		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
 > +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hdmi_hpd_pins_default>;
+> +		power-domains = <&k3_pds 217 TI_SCI_PD_EXCLUSIVE>;
 > +
-> +		ddc-i2c-bus = <&mcu_i2c1>;
+> +		status = "disabled";
 > +
-> +		/* HDMI_HPD */
-> +		hpd-gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&tfp410_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	dvi-bridge {
-
-Although DT binding doc for ti,tfp410 says encoder
-a name starting with bridge maybe more appropriate.
-
-> +		compatible = "ti,tfp410";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hdmi_pdn_pins_default>;
-> +
-> +		/* HDMI_PDn */
-> +		powerdown-gpios = <&wkup_gpio0 14 GPIO_ACTIVE_LOW>;
-> +		ti,deskew = <0>;
-> +
-> +		ports {
+> +		dp0_ports: ports {
 > +			#address-cells = <1>;
 > +			#size-cells = <0>;
+> +		};
+> +	};
 > +
-> +			port@0 {
-> +				reg = <0>;
+> +	dss: dss@4a00000 {
+> +		compatible = "ti,j721e-dss";
+> +		reg = <0x00 0x04a00000 0x00 0x10000>, /* common_m */
+> +		      <0x00 0x04a10000 0x00 0x10000>, /* common_s0*/
+> +		      <0x00 0x04b00000 0x00 0x10000>, /* common_s1*/
+> +		      <0x00 0x04b10000 0x00 0x10000>, /* common_s2*/
+> +		      <0x00 0x04a20000 0x00 0x10000>, /* vidl1 */
+> +		      <0x00 0x04a30000 0x00 0x10000>, /* vidl2 */
+> +		      <0x00 0x04a50000 0x00 0x10000>, /* vid1 */
+> +		      <0x00 0x04a60000 0x00 0x10000>, /* vid2 */
+> +		      <0x00 0x04a70000 0x00 0x10000>, /* ovr1 */
+> +		      <0x00 0x04a90000 0x00 0x10000>, /* ovr2 */
+> +		      <0x00 0x04ab0000 0x00 0x10000>, /* ovr3 */
+> +		      <0x00 0x04ad0000 0x00 0x10000>, /* ovr4 */
+> +		      <0x00 0x04a80000 0x00 0x10000>, /* vp1 */
+> +		      <0x00 0x04aa0000 0x00 0x10000>, /* vp1 */
+> +		      <0x00 0x04ac0000 0x00 0x10000>, /* vp1 */
+> +		      <0x00 0x04ae0000 0x00 0x10000>, /* vp4 */
+> +		      <0x00 0x04af0000 0x00 0x10000>; /* wb */
 > +
-> +				tfp410_in: endpoint {
-> +					remote-endpoint = <&dpi1_out0>;
-> +					pclk-sample = <1>;
-> +				};
-> +			};
+> +		reg-names = "common_m", "common_s0",
+> +			    "common_s1", "common_s2",
+> +			    "vidl1", "vidl2","vid1","vid2",
+> +			    "ovr1", "ovr2", "ovr3", "ovr4",
+> +			    "vp1", "vp2", "vp3", "vp4",
+> +			    "wb";
 > +
-> +			port@1 {
-> +				reg = <1>;
+> +		clocks = <&k3_clks 218 0>,
+> +			 <&k3_clks 218 2>,
+> +			 <&k3_clks 218 5>,
+> +			 <&k3_clks 218 14>,
+> +			 <&k3_clks 218 18>;
+> +		clock-names = "fck", "vp1", "vp2", "vp3", "vp4";
 > +
-> +				tfp410_out: endpoint {
-> +					remote-endpoint = <&hdmi_connector_in>;
-> +				};
-> +			};
+> +		power-domains = <&k3_pds 218 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "common_m",
+> +				  "common_s0",
+> +				  "common_s1",
+> +				  "common_s2";
+> +
+> +		status = "disabled";
+> +
+> +		dss_ports: ports {
 > +		};
 > +	};
 >  };
->  
->  &main_pmx0 {
-> @@ -161,6 +238,57 @@ J784S4_IOPAD(0x008, PIN_INPUT, 7) /* (AJ33) MCAN12_RX.GPIO0_2 */
->  			J784S4_IOPAD(0x004, PIN_INPUT, 7) /* (AG36) MCAN12_TX.GPIO0_1 */
->  		>;
->  	};
-> +
-> +	dp0_pins_default: dp0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x014, PIN_INPUT, 13) /* (AG33) MCAN14_TX.DP0_HPD */
-> +		>;
-> +	};
-> +
-> +	dp_pwr_en_pins_default: dp-pwr-en-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x010, PIN_INPUT, 7) /* (AH33) MCAN13_RX.GPIO0_4 */
-> +		>;
-> +	};
-> +
-> +	dss_vout0_pins_default: dss-vout0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x074, PIN_OUTPUT, 2) /* (AC33) MCAN2_TX.VOUT0_DATA0 */
-> +			J784S4_IOPAD(0x070, PIN_OUTPUT, 2) /* (AH38) MCAN1_RX.VOUT0_DATA1 */
-> +			J784S4_IOPAD(0x07c, PIN_OUTPUT, 2) /* (AJ38) MCASP0_AXR3.VOUT0_DATA2 */
-> +			J784S4_IOPAD(0x068, PIN_OUTPUT, 2) /* (AE38) MCAN0_RX.VOUT0_DATA3 */
-> +			J784S4_IOPAD(0x064, PIN_OUTPUT, 2) /* (AF38) MCAN0_TX.VOUT0_DATA4 */
-> +			J784S4_IOPAD(0x060, PIN_OUTPUT, 2) /* (AE36) MCASP2_AXR1.VOUT0_DATA5 */
-> +			J784S4_IOPAD(0x05c, PIN_OUTPUT, 2) /* (AC36) MCASP2_AXR0.VOUT0_DATA6 */
-> +			J784S4_IOPAD(0x058, PIN_OUTPUT, 2) /* (AE37) MCASP2_AFSX.VOUT0_DATA7 */
-> +			J784S4_IOPAD(0x054, PIN_OUTPUT, 2) /* (AD37) MCASP2_ACLKX.VOUT0_DATA8 */
-> +			J784S4_IOPAD(0x050, PIN_OUTPUT, 2) /* (AC37) MCASP1_AXR2.VOUT0_DATA9 */
-> +			J784S4_IOPAD(0x04c, PIN_OUTPUT, 2) /* (AC32) MCASP1_AXR1.VOUT0_DATA10 */
-> +			J784S4_IOPAD(0x048, PIN_OUTPUT, 2) /* (AK33) MCASP0_AXR2.VOUT0_DATA11 */
-> +			J784S4_IOPAD(0x044, PIN_OUTPUT, 2) /* (AG37) MCASP0_AXR1.VOUT0_DATA12 */
-> +			J784S4_IOPAD(0x040, PIN_OUTPUT, 2) /* (AF37) MCASP0_AXR0.VOUT0_DATA13 */
-> +			J784S4_IOPAD(0x03c, PIN_OUTPUT, 2) /* (AK38) MCASP0_AFSX.VOUT0_DATA14 */
-> +			J784S4_IOPAD(0x038, PIN_OUTPUT, 2) /* (AK35) MCASP0_ACLKX.VOUT0_DATA15 */
-> +			J784S4_IOPAD(0x0c8, PIN_OUTPUT, 2) /* (AJ32) EXT_REFCLK1.VOUT0_DATA16 */
-> +			J784S4_IOPAD(0x030, PIN_OUTPUT, 2) /* (AK37) GPIO0_12.VOUT0_DATA17 */
-> +			J784S4_IOPAD(0x02c, PIN_OUTPUT, 2) /* (AL32) GPIO0_11.VOUT0_DATA18 */
-> +			J784S4_IOPAD(0x028, PIN_OUTPUT, 2) /* (AE33) MCAN16_RX.VOUT0_DATA19 */
-> +			J784S4_IOPAD(0x024, PIN_OUTPUT, 2) /* (AH34) MCAN16_TX.VOUT0_DATA20 */
-> +			J784S4_IOPAD(0x020, PIN_OUTPUT, 2) /* (AJ35) MCAN15_RX.VOUT0_DATA21 */
-> +			J784S4_IOPAD(0x01c, PIN_OUTPUT, 2) /* (AG34) MCAN15_TX.VOUT0_DATA22 */
-> +			J784S4_IOPAD(0x018, PIN_OUTPUT, 2) /* (AK36) MCAN14_RX.VOUT0_DATA23 */
-> +			J784S4_IOPAD(0x084, PIN_OUTPUT, 2) /* (AG38) MCASP0_AXR5.VOUT0_DE */
-> +			J784S4_IOPAD(0x080, PIN_OUTPUT, 2) /* (AK34) MCASP0_AXR4.VOUT0_HSYNC */
-> +			J784S4_IOPAD(0x078, PIN_OUTPUT, 2) /* (AH37) MCAN2_RX.VOUT0_PCLK */
-> +			J784S4_IOPAD(0x088, PIN_OUTPUT, 2) /* (AF36) MCASP0_AXR6.VOUT0_VSYNC */
-> +		>;
-> +	};
-> +
-> +	hdmi_hpd_pins_default: hdmi-hpd-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x000, PIN_INPUT, 7) /* (AN35) EXTINTN.GPIO0_0 */
-> +		>;
-> +	};
->  };
->  
->  &wkup_pmx2 {
-> @@ -231,6 +359,21 @@ J784S4_WKUP_IOPAD(0x064, PIN_INPUT, 7) /* (J36) WKUP_GPIO0_3 */
->  			J784S4_WKUP_IOPAD(0x11c, PIN_INPUT, 7) /* (M34) WKUP_GPIO0_67 */
->  		>;
->  	};
-> +
-> +	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
-> +		pinctrl-single,pins = <
-> +			/* (L35) WKUP_GPIO0_8.MCU_I2C1_SCL */
-> +			J784S4_WKUP_IOPAD(0x078, PIN_INPUT_PULLUP, 0)
-> +			/* (L34) WKUP_GPIO0_9.MCU_I2C1_SDA */
-> +			J784S4_WKUP_IOPAD(0x07c, PIN_INPUT_PULLUP, 0)
-> +		>;
-> +	};
-> +
-> +	hdmi_pdn_pins_default: hdmi-pdn-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 7) /* (H37) WKUP_GPIO0_14 */
-> +		>;
-> +	};
->  };
->  
->  &wkup_pmx3 {
-> @@ -350,3 +493,97 @@ &mcu_cpsw_port1 {
->  	phy-mode = "rgmii-rxid";
->  	phy-handle = <&mcu_phy0>;
->  };
-> +
-> +&wkup_gpio_intr {
-> +	status = "okay";
-> +};
-> +
-> +&mcu_i2c1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_i2c1_pins_default>;
-> +	clock-frequency = <100000>;
-> +};
-> +
-> +&serdes_refclk {
-> +	status = "okay";
-> +	clock-frequency = <100000000>;
-> +};
-> +
-> +&dss {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&dss_vout0_pins_default>;
-> +	assigned-clocks = <&k3_clks 218 2>,
-> +			  <&k3_clks 218 5>,
-> +			  <&k3_clks 218 14>,
-> +			  <&k3_clks 218 18>;
-> +	assigned-clock-parents = <&k3_clks 218 3>,
-> +				 <&k3_clks 218 7>,
-> +				 <&k3_clks 218 16>,
-> +				 <&k3_clks 218 22>;
-> +};
-> +
-> +&serdes_wiz4 {
-> +	status = "okay";
-> +};
-> +
-> +&serdes4 {
-> +	status = "okay";
-> +	serdes4_dp_link: phy@0 {
-> +		reg = <0>;
-> +		cdns,num-lanes = <4>;
-> +		#phy-cells = <0>;
-> +		cdns,phy-type = <PHY_TYPE_DP>;
-> +		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
-> +			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
-> +	};
-> +};
-> +
-> +&mhdp {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&dp0_pins_default>;
-> +	phys = <&serdes4_dp_link>;
-> +	phy-names = "dpphy";
-> +};
-> +
-> +&dss_ports {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	/* DP */
-> +	port@0 {
-> +		reg = <0>;
-> +		dpi0_out: endpoint {
-> +			remote-endpoint = <&dp0_in>;
-> +		};
-> +	};
-> +
-> +	/* HDMI */
-> +	port@1 {
-> +		reg = <1>;
-> +		dpi1_out0: endpoint {
-> +			remote-endpoint = <&tfp410_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&dp0_ports {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	port@0 {
-> +		reg = <0>;
-> +		dp0_in: endpoint {
-> +			remote-endpoint = <&dpi0_out>;
-> +		};
-> +	};
-> +
-> +	port@4 {
-> +		reg = <4>;
-> +		dp0_out: endpoint {
-> +			remote-endpoint = <&dp0_connector_in>;
-> +		};
-> +	};
-> +};
 
 -- 
 cheers,
