@@ -2,87 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2908776BCD0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 20:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F8B76BCD8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 20:45:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231800AbjHASpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 14:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        id S231922AbjHASpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 14:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231749AbjHASph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 14:45:37 -0400
+        with ESMTP id S231906AbjHASpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 14:45:43 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B4532702;
-        Tue,  1 Aug 2023 11:45:25 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AACF2D65;
+        Tue,  1 Aug 2023 11:45:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 13DE561680;
-        Tue,  1 Aug 2023 18:45:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E760C433C7;
-        Tue,  1 Aug 2023 18:45:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 08C9F61693;
+        Tue,  1 Aug 2023 18:45:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11CE5C433C8;
+        Tue,  1 Aug 2023 18:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690915524;
-        bh=6ecqCthtX5y6DW+x8fFvSPeJvMEWUDYrHhQnKo4fw2g=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=MCgeSAtxkn/Cm+2KX+Cy2ya7BIdT7/jl+ViyqC9GLpRguZ1quqlduJY201e9YY+Gl
-         tPuWVXKidBwoQEQOGw9dB+OvKt+xnFrB0j54IxicMem/IXJTfyVWG62tXO8z1Oidqn
-         2NOA3Pu3s2NQonYg8bgH4gYg1I3ajHJTZ18017Ae5m9Oa4tGlZ1fXI3lCOlefo7d8y
-         ThVJ77i4Sa8SZrf7DUrw4H3M9A25o0ZXrQMqesV5j/lH8f2SyyTLSeFXCYClgzdAqC
-         onCUY8LhZGFKLCVVvkTKYf+Ki+4WGuZFHhFEKqNomiwiYDAlugFGuYkdZfhNjJFDS6
-         h8ARfo4bV8Srw==
+        s=k20201202; t=1690915530;
+        bh=Nhz5Wii0uGhKg7orUacxhEHYXiOEvQZsqyKjQ5bqZ+8=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=XJBHPBnIFyluzxfIBYOs/kaWKNTJTo/gG1PT8AXIezN97zH5dqDWvtc/EHXgxsfPr
+         ZS8Ly1OQOpn47gSLVxH16MS3hR0t1BoPK1ZwXKIanicsdGawbEaTorIgHwpSbbaIzR
+         gFYFW1RRoY1qVTt8l05SwWcOP9uSH58gB3Vn3odtvdXPkJ06KVq6zRz+aNJK3Vjq/h
+         tRZbHRgmQVuvAi4WgAKDv6hEWt+Koev7uiRL2uBe1HsM0Vf6XKORFKi/MlaP6h7wdx
+         n1NR93yUmsNgjs1plpwfrp6sG5BI7bCp19H+0i7K+//86hUDAYUC8sCKlL5VHLbSWY
+         EqG63Fn5BmebQ==
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Li Yang <leoyang.li@nxp.com>, Zhang Wei <zw@zh-kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?utf-8?q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Sinan Kaya <okaya@kernel.org>, Andy Gross <agross@ker>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Michal Simek <michal.simek@amd.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
-In-Reply-To: <20230718143138.1066177-1-robh@kernel.org>
-References: <20230718143138.1066177-1-robh@kernel.org>
-Subject: Re: [PATCH v2] dmaengine: Explicitly include correct DT includes
-Message-Id: <169091550886.69468.9371544048617721749.b4-ty@kernel.org>
-Date:   Wed, 02 Aug 2023 00:15:08 +0530
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Varshini Rajendran <varshini.rajendran@microchip.com>
+In-Reply-To: <20230728102451.265869-1-varshini.rajendran@microchip.com>
+References: <20230728102451.265869-1-varshini.rajendran@microchip.com>
+Subject: Re: (subset) [PATCH v3 12/50] dt-bindings: dmaengine: at_xdmac:
+ add compatible with microchip,sam9x7
+Message-Id: <169091552668.69468.5352269983442085159.b4-ty@kernel.org>
+Date:   Wed, 02 Aug 2023 00:15:26 +0530
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -98,22 +60,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 18 Jul 2023 08:31:35 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+On Fri, 28 Jul 2023 15:54:51 +0530, Varshini Rajendran wrote:
+> Add compatible for sam9x7.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[1/1] dmaengine: Explicitly include correct DT includes
-      commit: 897500c7ea91702966adb9b412fa39400b4edee6
+[12/50] dt-bindings: dmaengine: at_xdmac: add compatible with microchip,sam9x7
+        commit: 0f264ab788ed9a39aabb36c0b35e5821b94bcdc8
 
 Best regards,
 -- 
