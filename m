@@ -2,153 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B83A576B2A5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 13:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BAAE76B2DB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 13:15:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234130AbjHALGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 07:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
+        id S234320AbjHALPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 07:15:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230409AbjHALGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 07:06:02 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD007AB4
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 03:59:47 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b9cdbf682eso63424911fa.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 03:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1690887585; x=1691492385;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F76i/7vGNisrChJeRqvuEQPeFIPFgiCjw08O3STlUnc=;
-        b=BPClByZTHs7jw3OZmeyJAD4PsN3zyPlaDbDLMU+3gZiyPb9Y5o8jW2P8Tlh5p6s+9r
-         BlAORineS72jryyv1aMOR7CAQ2QvqCqS/FShXPD9ckwFFobrBr11l6md0DRF8LeRFIz4
-         HCPs+ezWMsz/3i8x1k5giQ/4TLSXcYfFz1qdugHdRSJaAktMjWW27OnYbTbc26pq+uaA
-         TAsAgdfii8Q3g3jqkVlVDBMDeEzhdfHKh2CjtXZISoVLj3TOFhG4UACU0RVa8Uv6rnCE
-         j2R5L0KAqpYyOdyThqIB0o+bIGvj9QVRG1oJPwOhFBE6PomEkl6xWZjSuOSkBoTarhIp
-         0tuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690887585; x=1691492385;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F76i/7vGNisrChJeRqvuEQPeFIPFgiCjw08O3STlUnc=;
-        b=bAM9zmQ1dqiPLNAGjC8i3WS5nE7n+ltD7u+W+C86nPWLWVbRX23peJzOk6q49L7R9h
-         ZR+xGxSH19TVDvsVCuqG8Rq1TOSSBmrYMRAaoVNJvjj/IdoTo4cRrGVv9+kDxImsbgic
-         vYCak7tsFh36Ns9/GMLuAOmizir3X7plNOQ66sXpbJwjvZil3pqIOXc4sDyfBB3ky9Ho
-         7loyimyTJAXlBm0BNqKWUuzy5Pzet0OWaz9e0ZV35e68fJFm6ziTKpAXmdyAuqNiGQLw
-         7jGT1BLxn+6JJQBxuGtyhIhzyVdO/KD7PW2ZNEpjYlNpoUvftXdVyH7JpaJVrzoUXSq5
-         8XXQ==
-X-Gm-Message-State: ABy/qLacebDQi73x3CXGvzIZd8trXQ9wZGsXXIXGJtZ/0pLDNqzsN3S/
-        Z6+rRGH9IN+ZT6vCD79Yn7vaFOeGckMYzi2Y3hdHzQ==
-X-Google-Smtp-Source: APBJJlFNZI1VOiwUF6e/KUPHc2Zx0vZxESwSvI5tKYuKGB7IyFDDEb7la65niBvb/xQFqiAfDcQvct1KidT8ZF2BKmc=
-X-Received: by 2002:a2e:b0c1:0:b0:2b9:e93e:65d9 with SMTP id
- g1-20020a2eb0c1000000b002b9e93e65d9mr2272839ljl.40.1690887585321; Tue, 01 Aug
- 2023 03:59:45 -0700 (PDT)
+        with ESMTP id S232007AbjHALPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 07:15:16 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E777C2135;
+        Tue,  1 Aug 2023 04:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690888347; x=1722424347;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Uc2/TaIjjT+W+Km3r2kbpsUywlkWiagtSXjUBtzYV8Y=;
+  b=Qpe+avq9fZ9/CKXRZrj/DepFmNpfqq/bqD4wlvfLS2nAfXooByOkuV82
+   ycjL4ti8AkmhZn5h0x086XxC2LYkme1KjtukSLhyMn/R9+iRCtNDn2atK
+   iwQY1+b4i3l8ipx6hO28sxxSIZ8O51yMaq5UwENKlQyPUfaaowCZMDl6m
+   S+Qc0GUgdjYTwSrsAEYi+3MO1f+VJUnDSPahyg6lf66ubQmPOMlWxNHx/
+   i+VzJ95s1usmhHMxlYhe7f5SS/IqAL0Eu5NXtEeGR9BwejRoAkpNzijIY
+   //Yy9gNo1y/QIj50bJV+fHuLXf0EjeADO5LvAnLc0sOmyzGM19c+0ye39
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; 
+   d="scan'208";a="227318088"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Aug 2023 04:12:25 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 1 Aug 2023 04:12:23 -0700
+Received: from virtualbox.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Tue, 1 Aug 2023 04:12:20 -0700
+From:   Mihai Sain <mihai.sain@microchip.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <andre.przywara@arm.com>, <andrei.simion@microchip.com>,
+        <jerry.ray@microchip.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <cristian.birsan@microchip.com>,
+        Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH 1/2] dt-bindings: ARM: at91: Document Microchip SAMA5D29 Curiosity
+Date:   Tue, 1 Aug 2023 14:11:50 +0300
+Message-ID: <20230801111151.6546-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-References: <20230720135125.21240-1-eric.lin@sifive.com> <20230720135125.21240-2-eric.lin@sifive.com>
- <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org> <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
- <be748338-987b-d474-d040-82af7cfb5f01@linaro.org> <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
- <f7df407e-1deb-f667-912c-81415fffcbfd@linaro.org>
-In-Reply-To: <f7df407e-1deb-f667-912c-81415fffcbfd@linaro.org>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Tue, 1 Aug 2023 18:59:34 +0800
-Message-ID: <CAPqJEFrYrbH2H5F=V4D4-exLjmnuJybj8L2GKPzqhTrDsqe-gA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 5:39=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 28/07/2023 11:04, Eric Lin wrote:
-> > On Fri, Jul 28, 2023 at 2:58=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 28/07/2023 08:01, Eric Lin wrote:
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Fri, Jul 21, 2023 at 4:35=E2=80=AFPM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>
-> >>>> On 20/07/2023 15:51, Eric Lin wrote:
-> >>>>> This add YAML DT binding documentation for SiFive Private L2
-> >>>>> cache controller
-> >>>>>
-> >>>>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> >>>>> Reviewed-by: Zong Li <zong.li@sifive.com>
-> >>>>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
-> >>>>
-> >>>>
-> >>>> ...
-> >>>>
-> >>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    items:
-> >>>>> +      - const: sifive,pl2cache1
-> >>>>
-> >>>> I still have doubts that it is not used in any SoC. This is what you
-> >>>> said last time: "is not part of any SoC."
-> >>>> If not part of any SoC, then where is it? Why are you adding it to t=
-he
-> >>>> kernel?
-> >>>>
-> >>>
-> >>> Sorry for the late reply. I didn't describe it clearly last time.
-> >>> Currently, we have two hardware versions of pl2cache: pl2cache0 and p=
-l2cache1.
-> >>> The pl2cache0 is used in unmatched board SoC. The pl2cache1 is
-> >>> utilized in our internal FPGA platform for evaluation; it's our core
-> >>> IP.
-> >>
-> >> And why do you add bindings for some internal FPGA IP block which does
-> >> not interface with any SW?
-> >>
-> >
-> > Hi Krzysztof,
-> > The pl2cache has mmio interface for SW. Thanks.
->
-> Then did you mean that FPGA represented some model of your SoC? If so,
-> what are other bindings for that FPGA components?
->
-Hi Krzysztof,
+From: Andrei Simion <andrei.simion@microchip.com>
 
-Sorry for the late reply.
-Yes, here are the devices dt-binding that we use on the internal FPGA
-SoC platform. Thanks.
+Document device tree binding of SAMA5D29 Curiosity, from Microchip.
 
-uart:
-Documentation/devicetree/bindings/serial/sifive-serial.yaml
+Reviewed-by: Mihai Sain <mihai.sain@microchip.com>
+Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+---
+ Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-gpio:
-Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+index dfb8fd089197..89d75fbb1de4 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
++++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+@@ -79,6 +79,13 @@ properties:
+           - const: atmel,sama5d2
+           - const: atmel,sama5
+ 
++      - description: Microchip SAMA5D29 Curiosity
++        items:
++          - const: microchip,sama5d29-curiosity
++          - const: atmel,sama5d29
++          - const: atmel,sama5d2
++          - const: atmel,sama5
++
+       - items:
+           - const: atmel,sama5d27
+           - const: atmel,sama5d2
+-- 
+2.41.0
 
-dma:
-Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-
-spi:
-Documentation/devicetree/bindings/spi/spi-sifive.yaml
-
-Best regards,
-Eric Lin
-
-> Best regards,
-> Krzysztof
->
