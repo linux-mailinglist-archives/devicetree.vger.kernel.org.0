@@ -2,191 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 815F776AD3B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B38776ADE3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 11:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232893AbjHAJ10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 05:27:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52244 "EHLO
+        id S233114AbjHAJeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 05:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232318AbjHAJ1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:27:00 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0328E1738;
-        Tue,  1 Aug 2023 02:25:58 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3719PUpnC019521, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3719PUpnC019521
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 1 Aug 2023 17:25:30 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Tue, 1 Aug 2023 17:25:43 +0800
-Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 1 Aug 2023 17:25:43 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
- 15.1.2375.32 via Frontend Transport; Tue, 1 Aug 2023 17:25:43 +0800
-From:   Stanley Chang <stanley_chang@realtek.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S233060AbjHAJd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 05:33:58 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC0030D0;
+        Tue,  1 Aug 2023 02:31:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=rtEWlJyO83/pdRflVwgnsb07PGLvZQOy27saQA+Hr3Y=; b=Ldkgc0vkfzNJfbj4Ae6A1Lxn45
+        hIKCC9qlfiJcd7HdXnHDWNyEUYK7FXjn9AFTjBXOhA01G0WBSTnrJ2ejRDaS5mvYZswMeYBBOgG9k
+        aivgKHvD11VsSiSZXVcq2doyLqiOELy6bQ4QobsPf4vSjX3WlJtDZKVpYNO/m6pwos0E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qQlj2-002mea-Vy; Tue, 01 Aug 2023 11:31:32 +0200
+Date:   Tue, 1 Aug 2023 11:31:32 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: usb: dwc3: Add Realtek DHC RTD SoC DWC3 USB
-Date:   Tue, 1 Aug 2023 17:25:27 +0800
-Message-ID: <20230801092541.25261-2-stanley_chang@realtek.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230801092541.25261-1-stanley_chang@realtek.com>
-References: <20230801092541.25261-1-stanley_chang@realtek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 06/28] net: wan: Add support for QMC HDLC
+Message-ID: <80341a96-c40f-4a45-9bad-359a890edfc4@lunn.ch>
+References: <20230726150225.483464-1-herve.codina@bootlin.com>
+ <20230726150225.483464-7-herve.codina@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-KSE-ServerInfo: RTEXMBS03.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726150225.483464-7-herve.codina@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the DWC3 USB bindings for Realtek SoCs.
+> +static inline struct qmc_hdlc *netdev_to_qmc_hdlc(struct net_device *netdev)
+> +{
+> +	return (struct qmc_hdlc *)dev_to_hdlc(netdev)->priv;
 
-Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
----
-v1 to v2 change:
-    Revise the subject.
-    Rename the file.
-    Fix dtschema warnings.
-    Remove the property realtek,enable-l4icg.
-    Drop status.
----
- .../bindings/usb/realtek,rtd-dwc3.yaml        | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
+priv is a void *, so you don't need the cast.
 
-diff --git a/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml b/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
-new file mode 100644
-index 000000000000..8b9050724b97
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2023 Realtek Semiconductor Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/realtek,rtd-dwc3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek DWC3 USB SoC Controller Glue
-+
-+maintainers:
-+  - Stanley Chang <stanley_chang@realtek.com>
-+
-+description:
-+  The Realtek DHC SoC embeds a DWC3 USB IP Core configured for USB 2.0
-+  and USB 3.0 in host or dual-role mode.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - realtek,rtd1295-dwc3
-+          - realtek,rtd1315e-dwc3
-+          - realtek,rtd1319-dwc3
-+          - realtek,rtd1319d-dwc3
-+          - realtek,rtd1395-dwc3
-+          - realtek,rtd1619-dwc3
-+          - realtek,rtd1619b-dwc3
-+      - const: realtek,rtd-dwc3
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+  ranges: true
-+
-+  realtek,unlink-usb3-port:
-+    description: Disable link between USB 3.0 PHY and USB mac.
-+      Only for RTD1619 SoC, if the board design support maximum 2.0 speed.
-+    type: boolean
-+
-+  realtek,disable-usb3-phy:
-+    description: Close USB 3.0 PHY if the board design not support USB 3.0.
-+    type: boolean
-+
-+patternProperties:
-+  "^usb@[0-9a-f]+$":
-+    $ref: snps,dwc3.yaml#
-+    description: Required child node
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - ranges
-+
-+allOf:
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - realtek,rtd1619-dwc3
-+    then:
-+      properties:
-+        realtek,unlink-usb3-port: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    usb@98013e00 {
-+        compatible = "realtek,rtd1319d-dwc3", "realtek,rtd-dwc3";
-+        reg = <0x98013e00 0x200>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+        realtek,disable-usb3-phy;
-+
-+        usb@98050000 {
-+            compatible = "snps,dwc3";
-+            reg = <0x98050000 0x9000>;
-+            interrupts = <0 94 4>;
-+            phys = <&usb2phy &usb3phy>;
-+            phy-names = "usb2-phy", "usb3-phy";
-+            dr_mode = "otg";
-+            usb-role-switch;
-+            role-switch-default-mode = "host";
-+            snps,dis_u2_susphy_quirk;
-+            snps,parkmode-disable-ss-quirk;
-+            snps,parkmode-disable-hs-quirk;
-+            maximum-speed = "high-speed";
-+        };
-+    };
--- 
-2.34.1
-
+     Andrew
