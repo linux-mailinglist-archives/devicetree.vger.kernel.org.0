@@ -2,195 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCD076BF6B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4695C76BF99
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 23:55:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231351AbjHAVnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 17:43:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53104 "EHLO
+        id S230502AbjHAVzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 17:55:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbjHAVnX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:43:23 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3082C1FDA;
-        Tue,  1 Aug 2023 14:43:22 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3179ed1dfbbso2757314f8f.1;
-        Tue, 01 Aug 2023 14:43:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690926200; x=1691531000;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ptisAxebow9uOm2s7VOrkfI5czz0rYnxrxEnVycD1E=;
-        b=rpeHpj8jkihFpBrbMKKdgF9fAH2g49kz+Yolz8n9KmLqQ6cGPTtKIhTp5IAcWKp1r4
-         JeP4X/00l8eKFYxvpavij4p58v5sDYdTDjxm6dPELJKJZnDs1sSZ0ODLe1RVa1q3pna3
-         N+RLlNjoc4a2o8+guoKVcDJk11IVa0jEguaHZu8x5T09C7KaTRwZP2vEhUtfNqAxzgnt
-         4oChVv/RHYTYgMfSHJrnF67hB4zxcStld5/QCaLPrERZcDyuUOeu3dWQlktGKK8GTvW+
-         E/DMq0HcwFh/amWUUzGlElUqpaZ0z2HtFoC0k9q82iFNSiiZDxUw49kZgKH+25vBYcgx
-         EqsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690926200; x=1691531000;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5ptisAxebow9uOm2s7VOrkfI5czz0rYnxrxEnVycD1E=;
-        b=N6W+ixv6TIxWZ/yafq9iXiSmRhdBOun6eHAqxO9/CyHmqvATPVMpfz0Ych40bW44bR
-         ldzbRDk5zS5eXK+u9kS+sxwd8/Mo3uC1jF21j0yXHqnVVN10a6Ua1jUIBukIMXrtxctq
-         iYwZcA2s6LJxmtEtS7Rdf66h/jbNLIU0//v2XvKRQW0qbwj/2JqvYI8MIY/U142FdAA6
-         gq7bHBl8B6WTFxOSFxtXbqgKD8IdnzLys6kEcrlbcRvexX4cj0BSlByfpzhAzSWltXHE
-         d6K+pZmLO/bJcejq21G83znjAPZ4PLB+KzipeMbCKm0hiMg8/P0BnoRm4uKKbq7RUEZm
-         Pt8g==
-X-Gm-Message-State: ABy/qLY7j2OvFEw3LdPovUsXh6cydgu5yBAXG0owoo2iamay6xRI12WX
-        tyKd52K+/9wT9BdATrRVej8=
-X-Google-Smtp-Source: APBJJlHmcp2zhL4aOFVsgqn+7zNqgzXWObWeOzXTdlEriW8Ej0ZxCfrSDvo3faa4PpskDMjUtJpLcw==
-X-Received: by 2002:adf:f74e:0:b0:314:46af:e1e7 with SMTP id z14-20020adff74e000000b0031446afe1e7mr3624085wrp.34.1690926200414;
-        Tue, 01 Aug 2023 14:43:20 -0700 (PDT)
-Received: from localhost ([2a01:e0a:32f:1f0:2bb:9098:9156:9ead])
-        by smtp.gmail.com with ESMTPSA id l6-20020adfe586000000b0031416362e23sm17221221wrm.3.2023.08.01.14.43.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Aug 2023 14:43:20 -0700 (PDT)
-From:   Raphael Gallais-Pou <rgallaispou@gmail.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: irqchip: convert st,stih407-irq-syscfg to DT schema
-Date:   Tue,  1 Aug 2023 23:46:51 +0200
-Message-ID: <20230801214651.27418-1-rgallaispou@gmail.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S230345AbjHAVzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 17:55:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF4F103;
+        Tue,  1 Aug 2023 14:55:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1326D6172A;
+        Tue,  1 Aug 2023 21:55:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDB77C433C8;
+        Tue,  1 Aug 2023 21:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690926916;
+        bh=g77t/OfpnenRQkfxAJBR/wes+BJ5Qwsz7PG8xMvT9Ic=;
+        h=From:Subject:Date:To:Cc:From;
+        b=UK+uVCBdDzx05ihe4RoK9kitOsn+IoWzRFdi9mKEJe9US1FUgB+Q2Bs0/8lMGkUo8
+         IlvNqGMTMrAmXDP+eh7W4a1aAGHGLUy+WuDDb1wJOS8SJ+tagtG+PxujDIYeU6WaCE
+         06Tt5a1kCI2ewnWZK30HwdlwRUJiTRzT4Mo/I6SkHnzS3P4pErjtOg7Tfot40GkUCR
+         pFAKXtQ7R7mzkPK6TetJDW+PpEczRUP6CslfED52SGdxQywMGgeF1U6GAxzA0/Zkeq
+         0dbSEYdfGSxwBbvzTOhSkdZSynec7PFHSWYppSYE14vI2jgOoVzDQn5WPmsiptG99q
+         mKSp/pQdHAHTA==
+Received: (nullmailer pid 2469334 invoked by uid 1000);
+        Tue, 01 Aug 2023 21:55:14 -0000
+From:   Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/5] dt: changeset fixes and cleanups
+Date:   Tue, 01 Aug 2023 15:54:43 -0600
+Message-Id: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACN/yWQC/yXLWwqDMBBG4a3IPHcwamlDt1L6kMuvhkIsM0EEc
+ e+N7ePh4+ykkASlR7OTYE2allyjuzQUZpcncIq1qTf9YKzpOBb+g6LwmDYo+/vNWzsihOtAdfR
+ OwV5cDvO5vheZ2ljajK2c/BH8vmrP13F8AfuX0tGDAAAA
+To:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.13-dev
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert deprecated format to DT schema format.
+Geert's locking fix[1] prompted my closer look at 
+__of_changeset_entry_apply() and related functions. The result is a 
+couple of fixes I found and some refactoring that unifies the "old API" 
+and the changeset API.
 
-Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+[1] https://lore.kernel.org/all/c593d8389352c574b5be69d4ca4810da13326a50.1690533838.git.geert+renesas@glider.be/
+
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../st,sti-irq-syscfg.txt                     | 30 ---------
- .../st,stih407-irq-syscfg.yaml                | 67 +++++++++++++++++++
- 2 files changed, 67 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
+Rob Herring (5):
+      of: unittest: Fix EXPECT for parse_phandle_with_args_map() test
+      of: dynamic: Refactor action prints to not use "%pOF" inside devtree_lock
+      of: dynamic: Fix race in getting old property when updating property
+      of: dynamic: Move dead property list check into property add/update functions
+      of: Refactor node and property manipulation function locking
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt b/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
-deleted file mode 100644
-index 977d7ed3670e..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--STMicroelectronics STi System Configuration Controlled IRQs
-------------------------------------------------------------
--
--On STi based systems; External, CTI (Core Sight), PMU (Performance Management),
--and PL310 L2 Cache IRQs are controlled using System Configuration registers.
--This driver is used to unmask them prior to use.
--
--Required properties:
--- compatible	: Should be "st,stih407-irq-syscfg"
--- st,syscfg	: Phandle to Cortex-A9 IRQ system config registers
--- st,irq-device	: Array of IRQs to enable - should be 2 in length
--- st,fiq-device	: Array of FIQs to enable - should be 2 in length
--
--Optional properties:
--- st,invert-ext	: External IRQs can be inverted at will.  This property inverts
--		  these IRQs using bitwise logic.  A number of defines have been
--		  provided for convenience:
--			ST_IRQ_SYSCFG_EXT_1_INV
--			ST_IRQ_SYSCFG_EXT_2_INV
--			ST_IRQ_SYSCFG_EXT_3_INV
--Example:
--
--irq-syscfg {
--	compatible    = "st,stih407-irq-syscfg";
--	st,syscfg     = <&syscfg_cpu>;
--	st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
--			<ST_IRQ_SYSCFG_PMU_1>;
--	st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
--			<ST_IRQ_SYSCFG_DISABLED>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-new file mode 100644
-index 000000000000..fce18d444c56
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/st,stih407-irq-syscfg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STi System Configuration Controlled IRQs
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+description:
-+  On STi based systems; External, CTI (Core Sight), PMU (Performance
-+  Management), and PL310 L2 Cache IRQs are controlled using System
-+  Configuration registers.  This driver is used to unmask them prior to use.
-+
-+properties:
-+  compatible:
-+    const: st,stih407-irq-syscfg
-+
-+  st,syscfg:
-+    description: Phandle to Cortex-A9 IRQ system config registers
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+
-+  st,irq-device:
-+    description: Array of IRQs to enable.
-+    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+    items:
-+      - description: Enable the IRQ of the channel one.
-+      - description: Enable the IRQ of the channel two.
-+
-+  st,fiq-device:
-+    description: Array of FIQs to enable.
-+    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+    items:
-+      - description: Enable the IRQ of the channel one.
-+      - description: Enable the IRQ of the channel two.
-+
-+  st,invert-ext:
-+    description: External IRQs can be inverted at will. This property inverts
-+      these IRQs using bitwise logic.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    enum:
-+      - ST_IRQ_SYSCFG_EXT_1_INV
-+      - ST_IRQ_SYSCFG_EXT_2_INV
-+      - ST_IRQ_SYSCFG_EXT_3_INV
-+
-+required:
-+  - compatible
-+  - st,syscfg
-+  - st,irq-device
-+  - st,fiq-device
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq-st.h>
-+    irq-syscfg {
-+        compatible    = "st,stih407-irq-syscfg";
-+        st,syscfg     = <&syscfg_cpu>;
-+        st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
-+                        <ST_IRQ_SYSCFG_PMU_1>;
-+        st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
-+                        <ST_IRQ_SYSCFG_DISABLED>;
-+    };
-+...
+ drivers/of/base.c     |  86 ++++++++++++++++------------
+ drivers/of/dynamic.c  | 153 +++++++++++---------------------------------------
+ drivers/of/unittest.c |   4 +-
+ 3 files changed, 87 insertions(+), 156 deletions(-)
+---
+base-commit: e251a4e28a27884e8bfb7fccbf53b24736f3ef87
+change-id: 20230801-dt-changeset-fixes-b76b88fecc43
+
+Best regards,
 -- 
-2.41.0
+Rob Herring <robh@kernel.org>
 
