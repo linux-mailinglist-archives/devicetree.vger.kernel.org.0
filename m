@@ -2,73 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55AF776BC33
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 20:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B74B576BC75
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 20:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231555AbjHASVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 14:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37010 "EHLO
+        id S229664AbjHAS2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 14:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231339AbjHASVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 14:21:21 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB6482139;
-        Tue,  1 Aug 2023 11:21:19 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fe0fe622c3so9361240e87.2;
-        Tue, 01 Aug 2023 11:21:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690914078; x=1691518878;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FxRQaYG+ttIXwsONESXz1C6GagjbBIeTKAF4a8p9vyU=;
-        b=NI+xyFVnQkK3Ol5rLCu1V4lnv6ByegOEmX7bC68jRKEJi7j75LB+WVJC2Rc40UYcLG
-         wdfMveyAlZGH2iIMECZa1iirW9yydhPsvP/ezzF+8Of+vmKqaCyyWdiQvG5q3Y0JnylN
-         AtDeBcKZt9VyW7D9Zw2aMZxj1h0RKeNVJdFeTLLeoJJxDDUIu4onBSKstCHSYRa+XNtR
-         3UFgBSrhtzuwLnS4k7lVLcgZGRJ0UFKOgAHZft7Ci0Khih2QqU5VV5TZYGEoKZSYUgNT
-         adEL1jaXQCj+0L7SPChtfbnEGhIUMxbZmt8OJwNIUCYFXRdnQxFsAm/NzETmG5R1rEOc
-         hHSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690914078; x=1691518878;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FxRQaYG+ttIXwsONESXz1C6GagjbBIeTKAF4a8p9vyU=;
-        b=O40B5N+5aZjb+3NmIlz5nyUMBDe9XrFzOBbf2Wx6pV56S8MwyclZsKVTSa48jSd2DD
-         yWMiaRGhXTz9UvI/f9k+ECrUWxaPoCPFlyDnXO7XyQzU34kj2lDFVBzVZIK1FqSqWi/D
-         D/t2e9yQDfLKi3+z0ZCJyccs3u/NxS2qBL5J7HvYclC57j6YmI3bxoF6yWtz8dIUihT/
-         DNcdcXzmjVn9pa3O9TkMZjPy3IoKxs5Z2wq7iJBYMB2e9kuzGSf1edfaHuquXTpzMtaC
-         SupG72unKw9v8nrCZPNLIZUsCC4LpUGaLNHcsRMyEHuzAhp5Xq5W8jnKV6RI/h0XgVH7
-         q3Cw==
-X-Gm-Message-State: ABy/qLZ3NWLkUaUScLHKIKibWSHplHUABAvjvAVAdtRK+0Y6zmI/eEFh
-        G5w4ryy92Y3PqZGzaPY9lDrFF18wb94=
-X-Google-Smtp-Source: APBJJlE/HU0F7WAqVp6IlZI7luivfSxzHeTrROKwl9nmIc782+9H56yyhUwUCkB2JBSfopZQd2rCgg==
-X-Received: by 2002:a05:6512:3e02:b0:4f9:596d:c803 with SMTP id i2-20020a0565123e0200b004f9596dc803mr4080410lfv.53.1690914077423;
-        Tue, 01 Aug 2023 11:21:17 -0700 (PDT)
-Received: from mobilestation ([95.79.172.181])
-        by smtp.gmail.com with ESMTPSA id b2-20020a056512218200b004fbd39b69adsm2632041lft.199.2023.08.01.11.21.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Aug 2023 11:21:16 -0700 (PDT)
-Date:   Tue, 1 Aug 2023 21:21:14 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229642AbjHAS2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 14:28:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8400E2D7D;
+        Tue,  1 Aug 2023 11:28:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 036DC61689;
+        Tue,  1 Aug 2023 18:28:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C48F7C433C7;
+        Tue,  1 Aug 2023 18:28:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690914505;
+        bh=qq2hMF7w/Pu7ZdsWOzCQ/stYxKwx7YuIUPzmiH4iKFE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PKz/e16630V597EjDfkzZ4FqELQFi+WWbwlEAzJIVenElrtf0oF2UV0oeBb3DF45q
+         NubYDLPbeRUMjzPuHt2k9dXiv5/euhOYZw7A0OjvqwyV02K4h43pJn6iCc0+VD/426
+         FwyYUsjxPsuTkQaWDCprvprm5c0LPsRLo18a8Nli36hcawDX4oUQ0edl3kmaQP6cye
+         ugyHflDH9cN7RdDF15nek+YsXS9vHaU77xPtSF3B+KAoebhEspOXkF0cZMjGLjl9TN
+         H4V4QWKyo38S0sABROSo0U3j9izcKZGoqRUMJ/6hG8gvfGenYRZpaDTIm0bR9uIq63
+         vIVI4UMOXjkUw==
+Date:   Tue, 1 Aug 2023 23:58:21 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 08/17] MIPS: loongson32: Convert Ethernet platform device
- to DT
-Message-ID: <4qk22kycanwwbx6e7w4uuf7y5re7y4voi5vdurq3usa27py2zk@zms25h4hg2da>
-References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
- <20230729134318.1694467-9-keguang.zhang@gmail.com>
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>
+Subject: Re: [PATCH v3 2/2] dmaengine: ls2x-apb: new driver for the Loongson
+ LS2X APB DMA controller
+Message-ID: <ZMlOxZ1ML+tlRkna@matsya>
+References: <cover.1689075791.git.zhoubinbin@loongson.cn>
+ <b282ef7c5d1841886a80b2b6502c735f2f0254c9.1689075791.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230729134318.1694467-9-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+In-Reply-To: <b282ef7c5d1841886a80b2b6502c735f2f0254c9.1689075791.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,382 +62,198 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 29, 2023 at 09:43:09PM +0800, Keguang Zhang wrote:
-> Add Ethernet device nodes for Loongson-1 boards,
-> and drop the legacy platform devices and data accordingly.
-
-It seems to me that your conversion breaks the RGMII mode support.
-What you need to do is to make sure that the respective flags are set
-in the MUX space.
-
-Regarding the MUX-space. It looks as a pinctrl-setting space. If so
-adding the new pinctrl driver will be required. Otherwise it can be
-defined as a syscon-node and then utilized in the Loongson-1 GMAC
-low-level driver.
-
--Serge(y)
-
+On 11-07-23, 20:19, Binbin Zhou wrote:
+> The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
 > 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> It is a single-channel, configurable DMA controller IP core based on the
+> AXI bus, whose main function is to integrate DMA functionality on a chip
+> dedicated to carrying data between memory and peripherals in APB bus
+> (e.g. nand).
+> 
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
 > ---
->  arch/mips/boot/dts/loongson/loongson1.dtsi    |  16 ++
->  arch/mips/boot/dts/loongson/loongson1b.dtsi   |  53 +++++++
->  arch/mips/boot/dts/loongson/loongson1c.dtsi   |  17 ++
->  arch/mips/boot/dts/loongson/lsgz_1b_dev.dts   |   8 +
->  arch/mips/boot/dts/loongson/smartloong_1c.dts |   4 +
->  arch/mips/loongson32/common/platform.c        | 146 +-----------------
->  arch/mips/loongson32/ls1b/board.c             |   2 -
->  arch/mips/loongson32/ls1c/board.c             |   1 -
->  8 files changed, 99 insertions(+), 148 deletions(-)
+>  MAINTAINERS                |   1 +
+>  drivers/dma/Kconfig        |  14 +
+>  drivers/dma/Makefile       |   1 +
+>  drivers/dma/ls2x-apb-dma.c | 684 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 700 insertions(+)
+>  create mode 100644 drivers/dma/ls2x-apb-dma.c
 > 
-> diff --git a/arch/mips/boot/dts/loongson/loongson1.dtsi b/arch/mips/boot/dts/loongson/loongson1.dtsi
-> index c77aa2d0f66c..48bb786bbf10 100644
-> --- a/arch/mips/boot/dts/loongson/loongson1.dtsi
-> +++ b/arch/mips/boot/dts/loongson/loongson1.dtsi
-> @@ -71,6 +71,22 @@ intc3: interrupt-controller@1fd01088 {
->  			interrupt-parent = <&cpu_intc>;
->  			interrupts = <5>;
->  		};
-> +
-> +		gmac0: ethernet@1fe10000 {
-> +			compatible = "snps,dwmac-3.70a";
-> +			reg = <0x1fe10000 0x10000>;
-> +
-> +			interrupt-parent = <&intc1>;
-> +			interrupt-names = "macirq";
-> +
-> +			clocks = <&clkc LS1X_CLKID_AHB>;
-> +			clock-names = "stmmaceth";
-> +
-> +			snps,pbl = <1>;
-> +
-> +			status = "disabled";
-> +		};
-> +
->  	};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 60a411936ba7..709c2e9d5f5f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12248,6 +12248,7 @@ M:	Binbin Zhou <zhoubinbin@loongson.cn>
+>  L:	dmaengine@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> +F:	drivers/dma/ls2x-apb-dma.c
 >  
->  	apb: bus@1fe40000 {
-> diff --git a/arch/mips/boot/dts/loongson/loongson1b.dtsi b/arch/mips/boot/dts/loongson/loongson1b.dtsi
-> index 437a77cee163..42b96c557660 100644
-> --- a/arch/mips/boot/dts/loongson/loongson1b.dtsi
-> +++ b/arch/mips/boot/dts/loongson/loongson1b.dtsi
-> @@ -7,6 +7,11 @@
->  #include "loongson1.dtsi"
+>  LOONGSON LS2X I2C DRIVER
+>  M:	Binbin Zhou <zhoubinbin@loongson.cn>
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index 644c188d6a11..9b41b59ba2b4 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -376,6 +376,20 @@ config LPC18XX_DMAMUX
+>  	  Enable support for DMA on NXP LPC18xx/43xx platforms
+>  	  with PL080 and multiplexed DMA request lines.
 >  
->  / {
-> +	aliases {
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +	};
+> +config LS2X_APB_DMA
+> +	tristate "Loongson LS2X APB DMA support"
+> +	depends on LOONGARCH || COMPILE_TEST
+> +	select DMA_ENGINE
+> +	select DMA_VIRTUAL_CHANNELS
+> +	help
+> +	  Support for the Loongson LS2X APB DMA controller driver. The
+> +	  DMA controller is having single DMA channel which can be
+> +	  configured for different peripherals like audio, nand, sdio
+> +	  etc which is in APB bus.
 > +
->  	cpus {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> @@ -74,6 +79,54 @@ clkc: clock-controller@1fe78030 {
->  	};
->  };
->  
-> +&ahb {
-> +	gmac1: ethernet@1fe20000 {
-> +		compatible = "snps,dwmac-3.70a";
-> +		reg = <0x1fe20000 0x10000>;
+> +	  This DMA controller transfers data from memory to peripheral fifo.
+> +	  It does not support memory to memory data transfer.
 > +
-> +		interrupt-parent = <&intc1>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "macirq";
+>  config MCF_EDMA
+>  	tristate "Freescale eDMA engine support, ColdFire mcf5441x SoCs"
+>  	depends on M5441x || COMPILE_TEST
+> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+> index a4fd1ce29510..9b28ddb1ea3b 100644
+> --- a/drivers/dma/Makefile
+> +++ b/drivers/dma/Makefile
+> @@ -46,6 +46,7 @@ obj-$(CONFIG_INTEL_IOATDMA) += ioat/
+>  obj-y += idxd/
+>  obj-$(CONFIG_K3_DMA) += k3dma.o
+>  obj-$(CONFIG_LPC18XX_DMAMUX) += lpc18xx-dmamux.o
+> +obj-$(CONFIG_LS2X_APB_DMA) += ls2x-apb-dma.o
+>  obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
+>  obj-$(CONFIG_MILBEAUT_XDMAC) += milbeaut-xdmac.o
+>  obj-$(CONFIG_MMP_PDMA) += mmp_pdma.o
+> diff --git a/drivers/dma/ls2x-apb-dma.c b/drivers/dma/ls2x-apb-dma.c
+> new file mode 100644
+> index 000000000000..b3efe86e4330
+> --- /dev/null
+> +++ b/drivers/dma/ls2x-apb-dma.c
+> @@ -0,0 +1,684 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Driver for the Loongson LS2X APB DMA Controller
+> + *
+> + * Copyright (C) 2017-2023 Loongson Corporation
+> + */
 > +
-> +		clocks = <&clkc LS1X_CLKID_AHB>;
-> +		clock-names = "stmmaceth";
+> +#include <linux/clk.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/dmapool.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/io-64-nonatomic-lo-hi.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+
+drop this header, of.h should suffice
+
+> +/*
+> + * struct ls2x_dma_hw_desc - DMA HW descriptor
+> + * @ndesc_addr: the next descriptor low address.
+> + * @mem_addr: memory low address.
+> + * @apb_addr: device buffer address.
+> + * @len: length of a piece of carried content, in words.
+> + * @step_len: length between two moved memory data blocks.
+> + * @step_times: number of blocks to be carried in a single DMA operation.
+> + * @cmd: descriptor command or state.
+> + * @stats: DMA status.
+> + * @high_ndesc_addr: the next descriptor high address.
+> + * @high_mem_addr: memory high address.
+> + * @reserved: reserved
+> + */
+> +struct ls2x_dma_hw_desc {
+> +	u32 ndesc_addr;
+> +	u32 mem_addr;
+> +	u32 apb_addr;
+
+why not use dma_addr_t for this?
+
+> +static void ls2x_dma_start_transfer(struct ls2x_dma_chan *lchan)
+> +{
+> +	struct ls2x_dma_priv *priv = to_ldma_priv(lchan->vchan.chan.device);
+> +	struct ls2x_dma_sg *ldma_sg;
+> +	struct virt_dma_desc *vdesc;
+> +	u64 val;
 > +
-> +		phy-handle = <&phy1>;
-> +		phy-mode = "mii";
+> +	/* Get the next descriptor */
+> +	vdesc = vchan_next_desc(&lchan->vchan);
+> +	if (!vdesc) {
+> +		lchan->desc = NULL;
+> +		return;
+> +	}
 > +
-> +		snps,pbl = <1>;
+> +	list_del(&vdesc->node);
+> +	lchan->desc = to_ldma_desc(vdesc);
+> +	ldma_sg = &lchan->desc->sg[0];
 > +
-> +		status = "disabled";
+> +	/* Start DMA */
+> +	lo_hi_writeq(0, priv->regs + LDMA_ORDER_ERG);
+> +	val = (ldma_sg->llp & ~LDMA_CONFIG_MASK) | LDMA_64BIT_EN | LDMA_START;
+> +	lo_hi_writeq(val, priv->regs + LDMA_ORDER_ERG);
+> +}
 > +
-> +		mdio1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			compatible = "snps,dwmac-mdio";
+> +static void ls2x_dma_fill_desc(struct ls2x_dma_chan *lchan, u32 i,
+> +			       struct ls2x_dma_desc *desc)
+
+pls align this one to precceding open brace (hint: checkpatch.pl
+--strict would warn you about this)
+
+> +{
+> +	struct ls2x_dma_sg *ldma_sg = &desc->sg[i];
 > +
-> +			phy1: ethernet-phy@0 {
-> +				reg = <0x0>;
-> +			};
-> +		};
-> +	};
-> +};
+> +	ldma_sg->hw->mem_addr = lower_32_bits(ldma_sg->phys);
+> +	ldma_sg->hw->high_mem_addr = upper_32_bits(ldma_sg->phys);
+> +	/* Word count register takes input in words */
+> +	ldma_sg->hw->len = ldma_sg->len >> 2;
+> +	ldma_sg->hw->step_len = 0;
+> +	ldma_sg->hw->step_times = 1;
 > +
-> +&gmac0 {
-> +	interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
+> +	if (desc->direction == DMA_MEM_TO_DEV) {
+> +		ldma_sg->hw->cmd = LDMA_INT | LDMA_DATA_DIRECTION;
+> +		ldma_sg->hw->apb_addr = lchan->sconfig.dst_addr;
+> +	} else {
+> +		ldma_sg->hw->cmd = LDMA_INT;
+> +		ldma_sg->hw->apb_addr = lchan->sconfig.src_addr;
+
+only addr are used here, what about data width, why is that ignored?
+
+> +	}
 > +
-> +	phy-handle = <&phy0>;
-> +	phy-mode = "mii";
+> +	/* lets make a link list */
+> +	if (i) {
+
+what does i refer to here..?
+
+> +/*
+> + * of_ls2x_dma_xlate - Translation function
+> + * @dma_spec: Pointer to DMA specifier as found in the device tree
+> + * @ofdma: Pointer to DMA controller data
+> + *
+> + * Return: DMA channel pointer on success and NULL on error
+> + */
+> +static struct dma_chan *of_ls2x_dma_xlate(struct of_phandle_args *dma_spec,
+> +					  struct of_dma *ofdma)
+> +{
+> +	struct ls2x_dma_priv *priv = ofdma->of_dma_data;
+> +	struct ls2x_dma_chan *lchan;
 > +
-> +	mdio0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
+> +	/* We are single channel DMA, just get the channel from priv. */
+> +	lchan = &priv->lchan;
+> +	if (!lchan)
+> +		return NULL;
 > +
-> +		phy0: ethernet-phy@0 {
-> +			reg = <0x0>;
-> +		};
-> +	};
-> +};
-> +
->  &uart1 {
->  	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
->  };
-> diff --git a/arch/mips/boot/dts/loongson/loongson1c.dtsi b/arch/mips/boot/dts/loongson/loongson1c.dtsi
-> index 1dd575b7b2f9..5b3e0f9280f6 100644
-> --- a/arch/mips/boot/dts/loongson/loongson1c.dtsi
-> +++ b/arch/mips/boot/dts/loongson/loongson1c.dtsi
-> @@ -41,6 +41,23 @@ intc4: interrupt-controller@1fd010a0 {
->  	};
->  };
->  
-> +&gmac0 {
-> +	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +	phy-handle = <&phy0>;
-> +	phy-mode = "rmii";
-> +
-> +	mdio0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
-> +
-> +		phy0: ethernet-phy@13 {
-> +			reg = <0x13>;
-> +		};
-> +	};
-> +};
-> +
->  &uart1 {
->  	interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
->  };
-> diff --git a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts b/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
-> index 89c3dfa574f7..a43df21f2904 100644
-> --- a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
-> +++ b/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
-> @@ -28,6 +28,14 @@ xtal: xtal {
->  	};
->  };
->  
-> +&gmac0 {
-> +	status = "okay";
-> +};
-> +
-> +&gmac1 {
-> +	status = "okay";
-> +};
-> +
->  &uart0 {
->  	status = "okay";
->  };
-> diff --git a/arch/mips/boot/dts/loongson/smartloong_1c.dts b/arch/mips/boot/dts/loongson/smartloong_1c.dts
-> index 188aab9e3685..2d8f304aa2c4 100644
-> --- a/arch/mips/boot/dts/loongson/smartloong_1c.dts
-> +++ b/arch/mips/boot/dts/loongson/smartloong_1c.dts
-> @@ -28,6 +28,10 @@ xtal: xtal {
->  	};
->  };
->  
-> +&gmac0 {
-> +	status = "okay";
-> +};
-> +
->  &uart0 {
->  	status = "okay";
->  };
-> diff --git a/arch/mips/loongson32/common/platform.c b/arch/mips/loongson32/common/platform.c
-> index 8272b4133e25..817518531b9b 100644
-> --- a/arch/mips/loongson32/common/platform.c
-> +++ b/arch/mips/loongson32/common/platform.c
-> @@ -8,157 +8,13 @@
->  #include <linux/err.h>
->  #include <linux/mtd/partitions.h>
->  #include <linux/sizes.h>
-> -#include <linux/phy.h>
-> -#include <linux/stmmac.h>
->  #include <linux/usb/ehci_pdriver.h>
->  
->  #include <platform.h>
->  #include <loongson1.h>
->  #include <dma.h>
->  #include <nand.h>
-> -
-> -/* Synopsys Ethernet GMAC */
-> -static struct stmmac_mdio_bus_data ls1x_mdio_bus_data = {
-> -	.phy_mask	= 0,
-> -};
-> -
-> -static struct stmmac_dma_cfg ls1x_eth_dma_cfg = {
-> -	.pbl		= 1,
-> -};
-> -
-> -int ls1x_eth_mux_init(struct platform_device *pdev, void *priv)
-> -{
-> -	struct plat_stmmacenet_data *plat_dat = NULL;
-> -	u32 val;
-> -
-> -	val = __raw_readl(LS1X_MUX_CTRL1);
-> -
-> -#if defined(CONFIG_LOONGSON1_LS1B)
-> -	plat_dat = dev_get_platdata(&pdev->dev);
-> -	if (plat_dat->bus_id) {
-> -		__raw_writel(__raw_readl(LS1X_MUX_CTRL0) | GMAC1_USE_UART1 |
-> -			     GMAC1_USE_UART0, LS1X_MUX_CTRL0);
-> -		switch (plat_dat->phy_interface) {
-> -		case PHY_INTERFACE_MODE_RGMII:
-> -			val &= ~(GMAC1_USE_TXCLK | GMAC1_USE_PWM23);
-> -			break;
-> -		case PHY_INTERFACE_MODE_MII:
-> -			val |= (GMAC1_USE_TXCLK | GMAC1_USE_PWM23);
-> -			break;
-> -		default:
-> -			pr_err("unsupported mii mode %d\n",
-> -			       plat_dat->phy_interface);
-> -			return -ENOTSUPP;
-> -		}
-> -		val &= ~GMAC1_SHUT;
-> -	} else {
-> -		switch (plat_dat->phy_interface) {
-> -		case PHY_INTERFACE_MODE_RGMII:
-> -			val &= ~(GMAC0_USE_TXCLK | GMAC0_USE_PWM01);
-> -			break;
-> -		case PHY_INTERFACE_MODE_MII:
-> -			val |= (GMAC0_USE_TXCLK | GMAC0_USE_PWM01);
-> -			break;
-> -		default:
-> -			pr_err("unsupported mii mode %d\n",
-> -			       plat_dat->phy_interface);
-> -			return -ENOTSUPP;
-> -		}
-> -		val &= ~GMAC0_SHUT;
-> -	}
-> -	__raw_writel(val, LS1X_MUX_CTRL1);
-> -#elif defined(CONFIG_LOONGSON1_LS1C)
-> -	plat_dat = dev_get_platdata(&pdev->dev);
-> -
-> -	val &= ~PHY_INTF_SELI;
-> -	if (plat_dat->phy_interface == PHY_INTERFACE_MODE_RMII)
-> -		val |= 0x4 << PHY_INTF_SELI_SHIFT;
-> -	__raw_writel(val, LS1X_MUX_CTRL1);
-> -
-> -	val = __raw_readl(LS1X_MUX_CTRL0);
-> -	__raw_writel(val & (~GMAC_SHUT), LS1X_MUX_CTRL0);
-> -#endif
-> -
-> -	return 0;
-> -}
-> -
-> -static struct plat_stmmacenet_data ls1x_eth0_pdata = {
-> -	.bus_id			= 0,
-> -	.phy_addr		= -1,
-> -#if defined(CONFIG_LOONGSON1_LS1B)
-> -	.phy_interface		= PHY_INTERFACE_MODE_MII,
-> -#elif defined(CONFIG_LOONGSON1_LS1C)
-> -	.phy_interface		= PHY_INTERFACE_MODE_RMII,
-> -#endif
-> -	.mdio_bus_data		= &ls1x_mdio_bus_data,
-> -	.dma_cfg		= &ls1x_eth_dma_cfg,
-> -	.has_gmac		= 1,
-> -	.tx_coe			= 1,
-> -	.rx_queues_to_use	= 1,
-> -	.tx_queues_to_use	= 1,
-> -	.init			= ls1x_eth_mux_init,
-> -};
-> -
-> -static struct resource ls1x_eth0_resources[] = {
-> -	[0] = {
-> -		.start	= LS1X_GMAC0_BASE,
-> -		.end	= LS1X_GMAC0_BASE + SZ_64K - 1,
-> -		.flags	= IORESOURCE_MEM,
-> -	},
-> -	[1] = {
-> -		.name	= "macirq",
-> -		.start	= LS1X_GMAC0_IRQ,
-> -		.flags	= IORESOURCE_IRQ,
-> -	},
-> -};
-> -
-> -struct platform_device ls1x_eth0_pdev = {
-> -	.name		= "stmmaceth",
-> -	.id		= 0,
-> -	.num_resources	= ARRAY_SIZE(ls1x_eth0_resources),
-> -	.resource	= ls1x_eth0_resources,
-> -	.dev		= {
-> -		.platform_data = &ls1x_eth0_pdata,
-> -	},
-> -};
-> -
-> -#ifdef CONFIG_LOONGSON1_LS1B
-> -static struct plat_stmmacenet_data ls1x_eth1_pdata = {
-> -	.bus_id			= 1,
-> -	.phy_addr		= -1,
-> -	.phy_interface		= PHY_INTERFACE_MODE_MII,
-> -	.mdio_bus_data		= &ls1x_mdio_bus_data,
-> -	.dma_cfg		= &ls1x_eth_dma_cfg,
-> -	.has_gmac		= 1,
-> -	.tx_coe			= 1,
-> -	.rx_queues_to_use	= 1,
-> -	.tx_queues_to_use	= 1,
-> -	.init			= ls1x_eth_mux_init,
-> -};
-> -
-> -static struct resource ls1x_eth1_resources[] = {
-> -	[0] = {
-> -		.start	= LS1X_GMAC1_BASE,
-> -		.end	= LS1X_GMAC1_BASE + SZ_64K - 1,
-> -		.flags	= IORESOURCE_MEM,
-> -	},
-> -	[1] = {
-> -		.name	= "macirq",
-> -		.start	= LS1X_GMAC1_IRQ,
-> -		.flags	= IORESOURCE_IRQ,
-> -	},
-> -};
-> -
-> -struct platform_device ls1x_eth1_pdev = {
-> -	.name		= "stmmaceth",
-> -	.id		= 1,
-> -	.num_resources	= ARRAY_SIZE(ls1x_eth1_resources),
-> -	.resource	= ls1x_eth1_resources,
-> -	.dev		= {
-> -		.platform_data = &ls1x_eth1_pdata,
-> -	},
-> -};
-> -#endif	/* CONFIG_LOONGSON1_LS1B */
-> +#include <irq.h>
->  
->  /* GPIO */
->  static struct resource ls1x_gpio0_resources[] = {
-> diff --git a/arch/mips/loongson32/ls1b/board.c b/arch/mips/loongson32/ls1b/board.c
-> index e8290f200096..f23e4e5c96ee 100644
-> --- a/arch/mips/loongson32/ls1b/board.c
-> +++ b/arch/mips/loongson32/ls1b/board.c
-> @@ -34,8 +34,6 @@ static const struct gpio_led_platform_data ls1x_led_pdata __initconst = {
->  };
->  
->  static struct platform_device *ls1b_platform_devices[] __initdata = {
-> -	&ls1x_eth0_pdev,
-> -	&ls1x_eth1_pdev,
->  	&ls1x_ehci_pdev,
->  	&ls1x_gpio0_pdev,
->  	&ls1x_gpio1_pdev,
-> diff --git a/arch/mips/loongson32/ls1c/board.c b/arch/mips/loongson32/ls1c/board.c
-> index a7096964fb30..29bc467fd149 100644
-> --- a/arch/mips/loongson32/ls1c/board.c
-> +++ b/arch/mips/loongson32/ls1c/board.c
-> @@ -6,7 +6,6 @@
->  #include <platform.h>
->  
->  static struct platform_device *ls1c_platform_devices[] __initdata = {
-> -	&ls1x_eth0_pdev,
->  	&ls1x_rtc_pdev,
->  	&ls1x_wdt_pdev,
->  };
-> -- 
-> 2.39.2
-> 
+> +	return dma_get_slave_channel(&lchan->vchan.chan);
+> +}
+
+why not use generic xlate?
+-- 
+~Vinod
