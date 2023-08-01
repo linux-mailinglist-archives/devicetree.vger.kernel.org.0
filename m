@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6849976BD55
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 21:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D0C76BD7B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 21:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231187AbjHATJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 15:09:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43794 "EHLO
+        id S232302AbjHATOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 15:14:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230157AbjHATJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 15:09:17 -0400
+        with ESMTP id S231143AbjHATOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 15:14:52 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 901B71BF5;
-        Tue,  1 Aug 2023 12:09:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9191F1BF0;
+        Tue,  1 Aug 2023 12:14:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DBA8616A5;
-        Tue,  1 Aug 2023 19:09:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCAE9C433C8;
-        Tue,  1 Aug 2023 19:09:12 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2F965616A7;
+        Tue,  1 Aug 2023 19:14:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 824A8C433C7;
+        Tue,  1 Aug 2023 19:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690916955;
-        bh=dAh5inHpSc5Eih6HTIPWodjYBRbBt5z/XQeIIkmS9O4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O/jBSaBK+Oku8L8RDZd8qPXZk+YOAU6ATEk0xGAk73Vd/WmcByrwA02EPClYBujKW
-         qmnjHFRLSpK4Qr8eyBfmawP+WRvSJViZvPj0fgTPNb3yUa3Kcya/tuRGJi/ICpbQ1x
-         mfIQwfmXTkGognKfh+k7KhZP1KBWbuMP9yqW2RCTQkjAf1TVKtmLbMpmA8k6IAzE3R
-         MWfhpSwRjT/SACGW3Fllr2AsVdohtPIJgYih9h3f9Pz/2tdr48Z2HUfzeLiJw3po66
-         4L7GFZmwn1yel8Jvsw4uR+g/JD3VcvPZqIXcEOKz3wdUITcT5/q1SKzZ1RsKgnVFqo
-         c5R+uA/uAVfrA==
-Date:   Tue, 1 Aug 2023 20:09:09 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        kuninori.morimoto.gx@renesas.com, spujar@nvidia.com,
-        tiwai@suse.com, perex@perex.cz, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        daniel.baluta@gmail.com
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: simple-card: Document new DAI
- flags playback-only/capture-only
-Message-ID: <8c3f90ef-5f12-42aa-bae9-dec997e2b82a@sirena.org.uk>
-References: <20230801082433.548206-1-daniel.baluta@oss.nxp.com>
- <20230801082433.548206-3-daniel.baluta@oss.nxp.com>
+        s=k20201202; t=1690917290;
+        bh=RricL0NBD2SlXPu5D6K3MkV2NfI2Fl9g7qhLIB9lKzs=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=ZmhBbI6q1rH8SwBWw7Bxp58j12JA0u4tagm4I1spQ4hymiK8n+VSfZn4bnDxGQ5eZ
+         zRTn75Ez47dqoWaZAC/USrqMPfbutYJpA39CcU3FzTLBDCEPbHVCDfqNZ5fHPNyVxi
+         F8p1YiI9Q3oxsyXvYMH07aFZjDm0ZBXeOqRDiHtNkE4yBNMT12zQQypoQw/I2MS8CT
+         9iVPIC5awUS2tzXak5s1SBNF9fSL0887T4zOFPmsLfd7I13Vvi5Ya20JsFXa6JB2fj
+         XC6b1TtXp+N/aGb6yueKNPuXaAKetcrrl1D/WntkFG00YSO5xydBVrzQ6jyiDJaa1k
+         EpxBXA8mJ1DRg==
+Message-ID: <54b4d761e5b16ffb798a89c1cea99714.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lzabSlSNKrz1vv9q"
-Content-Disposition: inline
-In-Reply-To: <20230801082433.548206-3-daniel.baluta@oss.nxp.com>
-X-Cookie: I thought YOU silenced the guard!
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZLvyn0xq3Msk+lxF@probook>
+References: <20230428190226.1304326-1-j.neuschaefer@gmx.net> <20230428190226.1304326-3-j.neuschaefer@gmx.net> <4e0a5db18ed7d37038e67be0f1ddcb08.sboyd@kernel.org> <ZLvyn0xq3Msk+lxF@probook>
+Subject: Re: [PATCH v8 2/2] clk: wpcm450: Add Nuvoton WPCM450 clock/reset controller driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Joel Stanley <joel@jms.id.au>
+To:     Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Date:   Tue, 01 Aug 2023 12:14:48 -0700
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,42 +73,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---lzabSlSNKrz1vv9q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Aug 01, 2023 at 11:24:33AM +0300, Daniel Baluta wrote:
-> From: Daniel Baluta <daniel.baluta@nxp.com>
+Quoting Jonathan Neusch=C3=A4fer (2023-07-22 08:15:43)
+> On Thu, Jul 20, 2023 at 05:02:15PM -0700, Stephen Boyd wrote:
+> > Quoting Jonathan Neusch=C3=A4fer (2023-04-28 12:02:26)
+> > > diff --git a/drivers/clk/clk-wpcm450.c b/drivers/clk/clk-wpcm450.c
+> [...]
+> > > +static unsigned long wpcm450_clk_pll_recalc_rate(struct clk_hw *hw,
+> > > +                                                unsigned long parent=
+_rate)
+> > > +{
+> > > +       struct wpcm450_clk_pll *pll =3D to_wpcm450_clk_pll(hw);
+[...]
 >=20
-> Document new playback-only and capture-only flags which can be used when
-> dai link can only support just one direction: playback or capture but
-> not both.
+> > > +static const struct wpcm450_pll_data pll_data[] =3D {
+> > > +       { "pll0", { .name =3D "ref" }, REG_PLLCON0, 0 },
+> >=20
+> > This is new code, please don't use .name. Instead use .fw_name or .inde=
+x with preference to
+> > .index first and .hw if the pointer is available in this driver.
 >=20
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> ---
->  Documentation/devicetree/bindings/sound/simple-card.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> As far as I can see, .fw_name and .index depend on a struct device*
+> being passed to clk_hw_register, which won't be available unless I
+> actually convert the driver to a platform driver.
 
-Please add new features to audio-graph-card2 - we're trying to deprecate
-simple-card, audio-graph-card2 is a superset with more flexibility.
-It's not the end of the world to also support things in simple-card but
-it definitely shouldn't have any capabilities that the newer card lacks.
+You can call of_clk_hw_register(), but a conversion to a platform driver
+is preferred.
 
---lzabSlSNKrz1vv9q
-Content-Type: application/pgp-signature; name="signature.asc"
+>=20
+> Not relying on .name would indeed be nice.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTJWFQACgkQJNaLcl1U
-h9ApjQf/cWvoHZfKG9fC0sAkmpQfTqqul0KPx4mcBD/lJdJGzc0BY91BinbZ2/eD
-MaHRMlOnz9feDkcIty7oeB9UEp55hl2MaTgQAdUQop2tRz4g8x9u7A1EgV6H6L1P
-NHsMKzgqtRiIxZGPtwMJYVxOP+nyCov74BjSSY0+JuJQN0vG+7UwDi/4FuAOwZmv
-ZfLzLPN2ZXKVQ8drGPo4VBlkU/9UcefpIs0/f6KeRea1iP60tx1BYOcayd2KZoxA
-iV5Az3WwlAozJQoTiuzdW+WoUk4xz6dSu4efzq80uI8zth4zBrnSJFtCITtw2DU2
-Eb6Jj8cc8JaZ3aOv/0164/xXWHfk+w==
-=KxEv
------END PGP SIGNATURE-----
-
---lzabSlSNKrz1vv9q--
+Cool.
