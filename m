@@ -2,112 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD34876AB75
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 10:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC1F476AB3A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 10:41:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbjHAIzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 04:55:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54332 "EHLO
+        id S231280AbjHAIlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 04:41:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232302AbjHAIy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 04:54:57 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CE1431FFD;
-        Tue,  1 Aug 2023 01:54:42 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8AxEvCXw8hko_4NAA--.32002S3;
-        Tue, 01 Aug 2023 16:34:31 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax3c6Ww8hkZMJDAA--.45466S3;
-        Tue, 01 Aug 2023 16:34:30 +0800 (CST)
-Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S231940AbjHAIlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 04:41:14 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB26D10FE;
+        Tue,  1 Aug 2023 01:41:07 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b9bf52cd08so82445661fa.2;
+        Tue, 01 Aug 2023 01:41:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690879266; x=1691484066;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fEDttWqgK0CFKCWb2NcBurYWAnq5TrPHr/6xcJLjutQ=;
+        b=JmTFmA/YwVf47WGQzgGNC9Gx2CdqnxgNkk6BJi/OVBNaULhsSmi2x3Jvs7ZplJjAwM
+         ypvMQDX5HWHnKwcQ+/XV+dnvaNL+pvtqYjC5KrKANuSkIYgZ9G4Xza0bNQF1hq3+Vcp9
+         wcLoiajHTwANqrXpV7M1yZa/+1/WWdIW7gXuW4YAXxBsanf7mPrll6cidJQ0pJ1eMCkD
+         W1CEIGvZeEHlcbYNVju3/FKKEC9cqwqJz1hIRrgQZeb7LbSWYV8BeAtNMPg0/YkxPPZ6
+         G+ctwUMYFMSx9T6PLHB7HNiY9XTDYB0/4UDlOq42vEhzHc/cUhMXYNsZbwTEY8q/Br5/
+         Ah9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690879266; x=1691484066;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fEDttWqgK0CFKCWb2NcBurYWAnq5TrPHr/6xcJLjutQ=;
+        b=RDQi7l2rOND2f2mSKnMRWZdmRjqbGOu2ZAEXZA0hsdS9feodgZuhfCsPaKFNbiS9Qv
+         NwhYGTPIdL6h1TgOPhspVeCFdYjwirEyJvWb/znqEMWb3b/3+QijU+cW+1tH6seZl+CR
+         vjZrg0KB7Pu+sgSoUAD25tAWF60HiDPo17OIZX/z2h5kJLeAdT/BkCgIUKyj/2I5apc5
+         lZxLXc21Zw22IFRJ1QF7KPjGJZWN97pt+FwjiRYYa1aEZYFI+H2Kb2BnVwOGrtM3aoYM
+         dyht7N7Ua1HxilmJdPHVbhM6WdaZFMzmTHFpvXzW2KHQmJFqpwtUON6Xk1WkMbR01YMf
+         htMg==
+X-Gm-Message-State: ABy/qLbQwn6JRKEXUh+e4zLmFwPVOJs9uSwJnK1UhMqNpYvENMq97luy
+        mWfLu8eD8Y0lWJw1mT47Ofw/m3pWzMm5qK6efko=
+X-Google-Smtp-Source: APBJJlHigaiD/soq+foL/ueHdSCoL9kwM9uOiteOXtMYbntsGWOD4BdKieuCUt+o8fwYXw0uO3/Sy5quE1gVN+fCcDI=
+X-Received: by 2002:a2e:8ec3:0:b0:2b6:e12f:267 with SMTP id
+ e3-20020a2e8ec3000000b002b6e12f0267mr1845557ljl.5.1690879265602; Tue, 01 Aug
+ 2023 01:41:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230727202126.1477515-1-iwona.winiarska@intel.com> <20230727202126.1477515-4-iwona.winiarska@intel.com>
+In-Reply-To: <20230727202126.1477515-4-iwona.winiarska@intel.com>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 1 Aug 2023 11:40:54 +0300
+Message-ID: <CAP6Zq1hh_wr81L4vtYDct69rrqdSrxjap9-uZfvmt0xMvrfRJQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] ARM: dts: nuvoton: Add PECI controller node
+To:     Iwona Winiarska <iwona.winiarska@intel.com>
+Cc:     openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230731091059.17323-1-zhuyinbo@loongson.cn>
- <20230731091059.17323-2-zhuyinbo@loongson.cn>
- <20230731-setback-such-61815ee3ef51@spud>
- <041bf8a6-8d91-c2ce-6752-aa7255f946c7@loongson.cn>
- <20230801-whenever-imitation-b2759b212f6b@spud>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
-Date:   Tue, 1 Aug 2023 16:34:30 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <20230801-whenever-imitation-b2759b212f6b@spud>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Ax3c6Ww8hkZMJDAA--.45466S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Menzel <pmenzel@molgen.mpg.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Iwona,
 
+I have done r-b, Just could you do a small modification
 
-在 2023/8/1 下午3:23, Conor Dooley 写道:
-> On Tue, Aug 01, 2023 at 02:39:49PM +0800, Yinbo Zhu wrote:
->>
->>
->> 在 2023/7/31 下午11:55, Conor Dooley 写道:
->>> On Mon, Jul 31, 2023 at 05:10:58PM +0800, Yinbo Zhu wrote:
->>>> Add parsing GPIO configure, input, output, interrupt register offset
->>>> address and GPIO control mode support.
->>>
->>> This reeks of insufficient use of SoC specific compatibles. Do GPIO
->>> controllers on the same SoC have different register offsets?
->>
->>
->> Yes,
->>
->>> Where are the users for this?
->>
->>
->> For example, ls2k500 contains multiple GPIO chips with different
->> (configure, input, output, interrupt) offset addresses, but all others
->> are the same.
-> 
-> Right. That's admittedly not what I expected to hear! Can you firstly
-> explain this in the commit message,
+On Thu, 27 Jul 2023 at 23:23, Iwona Winiarska <iwona.winiarska@intel.com> wrote:
+>
+> Add PECI controller node with all required information.
+>
+> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> ---
+>  arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+> index c7b5ef15b716..cccc33441050 100644
+> --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+> @@ -220,6 +220,15 @@ kcs3: kcs3@0 {
+>                                 };
+>                         };
+>
+> +                       peci0: peci-controller@f0100000 {
+Please modify the peci0 to peci we have only one PECI controller.
+> +                               compatible = "nuvoton,npcm750-peci";
+> +                               reg = <0xf0100000 0x200>;
+> +                               interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +                               clocks = <&clk NPCM7XX_CLK_APB3>;
+> +                               cmd-timeout-ms = <1000>;
+> +                               status = "disabled";
+> +                       };
+> +
+>                         spi0: spi@200000 {
+>                                 compatible = "nuvoton,npcm750-pspi";
+>                                 reg = <0x200000 0x1000>;
+> --
+> 2.40.1
+>
 
-
-I will add following explain in the commit message. Do you think it's
-suitable?
-
-Loongson GPIO controllers come in multiple variants that are compatible
-except for certain register offset values.  Add support in yaml file for
-device properties allowing to specify them in DT.
-
-
-> and secondly add a soc-specific
-> compatible for the ls2k500 and only allow these properties on that SoC?
-> 
-
-
-Sorry, I may not have described it clearly before, the ls2k500 was only
-as a example, actually, Loongson GPIO controllers (2k500,2k1000,eg)come
-in multiple variants that are compatible except for certain register
-offset values.  So above all offset device property was used to in all
-loongson gpio controller.
+Reviewed-by: Tomer Maimon <tmaimon77@gmail.com>
 
 Thanks,
-Yinbo
 
+Tomer
