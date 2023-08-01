@@ -2,118 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 508A676B04C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 12:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B7176B05E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Aug 2023 12:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231326AbjHAKFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 06:05:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
+        id S233814AbjHAKHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 06:07:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232226AbjHAKFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 06:05:23 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A425C92;
-        Tue,  1 Aug 2023 03:05:18 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1DE551C0012;
-        Tue,  1 Aug 2023 10:05:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1690884315;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CSVB+HORSFsnXDmjVg67aSWP2rANROm59byfAHhHD0Y=;
-        b=H3+g77sXqmhMiUD9cLYfYWHOIVyYaAAYK3S6orraq++QkO4KEPeDisG+ZrlTgTA5FpWvKu
-        69gaGhOPX+b8Lggqcv5DbCT0WtLbny4lOhHNeGu2Ndjj3nIYbC3SzM5ixLuleezrP3/GYL
-        5wvk9vgnF24HM+baeEJ3BmpWjahI4i5fge3JTVMe9EmMLUTtwb/ZAliplzCM5qZU13rsEO
-        7vUl/ArcrY7p6p8npXU92BVujGKBPxxWvqIuZHuk99NXtqsfCLiewRCtG+M4ycbXPoFd5/
-        22qw57nzEewvcaWgfHT2vgGimy6CmMvgiMnA62C50o4su4myL978d2bjQcLMjQ==
-Date:   Tue, 1 Aug 2023 12:05:10 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 08/28] soc: fsl: cpm1: qmc: Introduce available
- timeslots masks
-Message-ID: <20230801120510.1ac862de@bootlin.com>
-In-Reply-To: <dd34fa03-0b34-44a4-9e70-9d9a69f95403@lunn.ch>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
-        <20230726150225.483464-9-herve.codina@bootlin.com>
-        <dd34fa03-0b34-44a4-9e70-9d9a69f95403@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
+        with ESMTP id S233812AbjHAKHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 06:07:30 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92133FF
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 03:07:26 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe0e23a4b1so8627004e87.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 03:07:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1690884445; x=1691489245;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J1/ktHF3masxab3vl++0ZCMEyPiHHu6fAAPxOuhQTwg=;
+        b=xsjiWuIwfUDV/UvQ4A+bNQ6Kll4xU/AWU7vrqDequWsRjYbxqyr6NpQ9L1k2WXfGXX
+         iQmBDBjsVgWbjYlcUjZUXXQVXnrEMnQK46i9/PiL9V3Fo0IXBw8vbMT3dL+W6Dtxt0qn
+         RK0oylHJogJybBe0f2yQMbQpJcvrdmqfCmfaH7tUN4IYtW/rzH418YGFkFhRaGo3aA9L
+         x6Df8m49fyrYPq8sm23wef7IDELHRngYTWhaSyMCM+zGa9s9mAYlE0p06z2arZdeA1Zj
+         odemvH6lvXjzKfn0dI9wHccAxaKLRVHpusXPpanuqDzOLtRQrr+I4M1DOUx2A8qCb3YJ
+         bxaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690884445; x=1691489245;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=J1/ktHF3masxab3vl++0ZCMEyPiHHu6fAAPxOuhQTwg=;
+        b=a0/035BvuRjpK1aLnVIuAHnhw2kHil8K/8LABdKZVahRhy1PtUQ0QOREMKNcTPwa87
+         MMr9WfYk2jWZlkh3mXnQEOmcZirtmhjH8TGAWqbZtPxWKdUbU8zrR9+NYYzUy5rffQJy
+         8u8ElsX+tMHPS5eohl4t9WNMTMxB40EA3833oVPeckFUhQ2s2ZWUVsfzLPcVFnEIqS/3
+         u6kt+mfgkEChJ/3iQ7xgw3fjAYmKsI2gUMiDQYMVB4/IS84ho8bIy+QtkBmKZaHEyEgV
+         atqEI7ASvsNrGKnM9oLC1zshv5+msYQAp0zJZ5gJb2WraxZccKTQjtUNko/6o9vuSXrZ
+         IlxA==
+X-Gm-Message-State: ABy/qLYEOEThxiHEVBCXU/X3F2DqCwIxHKDtJUhCyga5o9AAGL4jk5Mx
+        6fDKUG+DXijp2sRQhJol9DRfjA==
+X-Google-Smtp-Source: APBJJlFLcqzXBAeAzahiYVP4fQYhmRmePiAZ7Yb6nHC/hVOWnsutc6859fMSxTqWPAPLzdg6erg9dA==
+X-Received: by 2002:ac2:5b4e:0:b0:4fe:1f1c:184f with SMTP id i14-20020ac25b4e000000b004fe1f1c184fmr1894304lfp.44.1690884444841;
+        Tue, 01 Aug 2023 03:07:24 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id c7-20020aa7c747000000b0052237839229sm6658440eds.21.2023.08.01.03.07.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Aug 2023 03:07:24 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Date:   Tue, 01 Aug 2023 12:07:24 +0200
+Message-Id: <CUH4IE1600FN.2SYHOEBM2LS1K@otso>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-bluetooth@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/4] Add WCN3988 Bluetooth support for Fairphone 4
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Luca Weiss" <luca.weiss@fairphone.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>
+X-Mailer: aerc 0.15.2
+References: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
+ <CABBYNZJPw=Oxi+J2oA=6aosEZjCBK=u=8HEJywzRJCCrmGnkGA@mail.gmail.com>
+ <CSMMO2ZBOS6Y.3SAQOHDLW68ME@otso>
+In-Reply-To: <CSMMO2ZBOS6Y.3SAQOHDLW68ME@otso>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Aug 2023 11:33:39 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+Hi Luiz,
 
-> On Wed, Jul 26, 2023 at 05:02:04PM +0200, Herve Codina wrote:
-> > Available timeslots masks define timeslots available for the related
-> > channel. These timeslots are defined by the QMC binding.
-> > 
-> > Timeslots used are initialized to available timeslots but can be a
-> > subset of available timeslots.
-> > This prepares the dynamic timeslots management (ie. changing timeslots
-> > at runtime).
-> > 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  drivers/soc/fsl/qe/qmc.c | 8 ++++++--
-> >  1 file changed, 6 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/soc/fsl/qe/qmc.c b/drivers/soc/fsl/qe/qmc.c
-> > index 2d2a9d88ba6c..21ad7e79e7bd 100644
-> > --- a/drivers/soc/fsl/qe/qmc.c
-> > +++ b/drivers/soc/fsl/qe/qmc.c
-> > @@ -177,7 +177,9 @@ struct qmc_chan {
-> >  	struct qmc *qmc;
-> >  	void __iomem *s_param;
-> >  	enum qmc_mode mode;
-> > +	u64	tx_ts_mask_avail;
-> >  	u64	tx_ts_mask;
-> > +	u64	rx_ts_mask_avail;
-> >  	u64	rx_ts_mask;  
-> 
-> Is this for E1? So there is a maximum of 32 slots? A u32 would be
-> sufficient i think?
-> 
+On Mon May 15, 2023 at 8:12 AM CEST, Luca Weiss wrote:
+> On Fri May 12, 2023 at 10:53 PM CEST, Luiz Augusto von Dentz wrote:
+> > Hi Luca,
+> >
+> > On Fri, May 12, 2023 at 6:58=E2=80=AFAM Luca Weiss <luca.weiss@fairphon=
+e.com> wrote:
+> > >
+> > > Add support in the btqca/hci_qca driver for the WCN3988 and add it to
+> > > the sm7225 Fairphone 4 devicetree.
+> > >
+> > > Devicetree patches go via Qualcomm tree, the rest via their respectiv=
+e
+> > > trees.
+> >
+> > Just to be sure, patches 1-2 shall be applied to bluetooth-next the
+> > remaining are going to be handled elsewhere?
+>
+> Sounds good.
 
-The QMC can use up to 64 slots. So masks related to the QMC are on 64bits.
-These masks are not specific to the E1 framer but really related to the QMC
-capabilities.
+Is anything missing for the patches 1 & 2 to be applied? I don't see
+them yet in linux-next. Should I resend them?
 
-Regards,
-Hervé
+Regards
+Luca
+
+>
+> >
+> > > --
+> > > Previously with the RFC version I've had problems before with Bluetoo=
+th
+> > > scanning failing like the following:
+> > >
+> > >   [bluetooth]# scan on
+> > >   Failed to start discovery: org.bluez.Error.InProgress
+> > >
+> > >   [  202.371374] Bluetooth: hci0: Opcode 0x200b failed: -16
+> > >
+> > > This appears to only happen with driver built-in (=3Dy) when the supp=
+orted
+> > > local commands list doesn't get updated in the Bluetooth core and
+> > > use_ext_scan() returning false. I'll try to submit this separately si=
+nce
+> > > this now works well enough with =3Dm. But in both cases (=3Dy, =3Dm) =
+it's
+> > > behaving a bit weirdly before (re-)setting the MAC address with "sudo
+> > > btmgmt public-addr fo:oo:ba:ar"
+> > >
+> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > > ---
+> > > Changes in v2:
+> > > - Add pinctrl & 'tlmm 64' irq to uart node
+> > > - Pick up tags
+> > > - Link to v1: https://lore.kernel.org/r/20230421-fp4-bluetooth-v1-0-0=
+430e3a7e0a2@fairphone.com
+> > >
+> > > ---
+> > > Luca Weiss (4):
+> > >       dt-bindings: net: qualcomm: Add WCN3988
+> > >       Bluetooth: btqca: Add WCN3988 support
+> > >       arm64: dts: qcom: sm6350: add uart1 node
+> > >       arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth
+> > >
+> > >  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |   2 +
+> > >  arch/arm64/boot/dts/qcom/sm6350.dtsi               |  63 +++++++++++=
+++
+> > >  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 103 +++++++++++=
+++++++++++
+> > >  drivers/bluetooth/btqca.c                          |  13 ++-
+> > >  drivers/bluetooth/btqca.h                          |  12 ++-
+> > >  drivers/bluetooth/hci_qca.c                        |  12 +++
+> > >  6 files changed, 201 insertions(+), 4 deletions(-)
+> > > ---
+> > > base-commit: f2fe50eb7ca6b7bc6c63745f5c26f7c6022fcd4a
+> > > change-id: 20230421-fp4-bluetooth-b36a0e87b9c8
+> > >
+> > > Best regards,
+> > > --
+> > > Luca Weiss <luca.weiss@fairphone.com>
+> > >
+
