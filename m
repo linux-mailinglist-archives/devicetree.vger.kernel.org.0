@@ -2,112 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B889F76C9E4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 11:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82FF376C9FA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 11:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232800AbjHBJzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 05:55:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55212 "EHLO
+        id S232732AbjHBJ6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 05:58:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231377AbjHBJzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 05:55:50 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB59196
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 02:55:49 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fe2de785e7so6057941e87.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 02:55:49 -0700 (PDT)
+        with ESMTP id S234211AbjHBJ6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 05:58:04 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 347C8123
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 02:58:03 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-686f6231bdeso1769923b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 02:58:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690970147; x=1691574947;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iphRN0MY2MtgUPU4uH8Er2X1AyiNge9v/N2Rem14Rkk=;
-        b=kDG43E3P3uN1JBiNHnopTh43p3mXSgOkLZK6mwJSdib/57no5KTRao5OzZBLuhptDC
-         ghR39QWLnru3WOP7sAD4T/t3C46Xemqit2GoPULrPAEEyNWwmqaabkZJfNNLd0LUKt+4
-         BmnvkorSd67mZd3TRZnJbjIwPjfrpvlGfXna9rVCogjrG8wZyyHVoq0xuuh/M5zLGmrK
-         ZIMb9hmToJTPPCN/mdFfncrcewaLF3lUmaUc9YWUbAhRzEzKl+7B7QBqfcfuISWgF1P4
-         3Fofq9ZDMmYSPgFhxsd0nvBUBqBwoNZVYyfRmIcn04lfGWCP8hkCioiBiijqXG1P+leE
-         SbfQ==
+        d=quanta-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1690970282; x=1691575082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3KMY3jKjpj9Y4G5MJKHUaAltNKivkRclyRQy4joDVlU=;
+        b=3JIL8T0umSJ2Bv/wgwu1s+94R4dXPMYOoOnAAHjJy3WRl8sNFE9M7L32L6PgBiYQ04
+         M2EQjS53t54huDtJ58cLWSFpX6MzWzfUMEUllck22CS55F7wayiEOrutMCi8d8+ZP1bA
+         +jRyi1FCTc3bA5FUAUpIBD5VFQ5/KGYktUcDm0BsrVqszbHCxuJJ30MM34JF+Drwu+yV
+         taQcsku5FgFurWMYtbRmBybu8evirJGZg8I1cLjl807sf0GR9E4aU7/l+pgDwuht1aHI
+         /62Wo0j8iFq5SvTGlQTbXaDk7Sqf/oj6kKWkBINGPi9l5ZL4Flrxk4//HY8S30wZ8CpZ
+         7gAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690970147; x=1691574947;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iphRN0MY2MtgUPU4uH8Er2X1AyiNge9v/N2Rem14Rkk=;
-        b=DEjK/jkrzv12bvd1BFcQ0c7m+8CncUwW9j+Uclr51OdGum3tAFBKnbBJqHZNEja26Q
-         yOMesTL0KQo4at7gvSGeOtEZQKneOwKJrbbbwhrIMhiRkBRPfYb1VY3cAjtujU5/bMNu
-         Vi3dVLjQKVx3S8pdxvqGkCd74NnMtsxc0ZF3z0MM7PuM44Cvnjd+ebnHEJ1FzqDuls+f
-         kaXb0psBHdQDBtpNs97lrmKbqUIR+HYjsRIOXdQu7g72IUtSyLho1hjUfVyRXJqNQqFI
-         s0S+HcpncTAZdOQe+Zt+o35bzhgMK69nEyEeBSIavJ8dWkGjeZiTSl/wnPAxtIvz98Zv
-         Qhyg==
-X-Gm-Message-State: ABy/qLYhAUWQn2HbpxEHeaK26HJQgu/uzDdxw9GmDONfK+hI600TxxSe
-        oFRFw6nuhW8ePeUmBEewGGcRaA==
-X-Google-Smtp-Source: APBJJlFze9oTSl4rl4neTa9DH2tYbdCR8ijsBfdrqqCX/nt9jY3FI/jy/9N/lk9Os3h4JTx/WBMWHg==
-X-Received: by 2002:a05:6512:78c:b0:4fd:fc3d:cce7 with SMTP id x12-20020a056512078c00b004fdfc3dcce7mr3645729lfr.44.1690970147400;
-        Wed, 02 Aug 2023 02:55:47 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id x17-20020ac24891000000b004fe1960dd7csm2779762lfc.132.2023.08.02.02.55.46
+        d=1e100.net; s=20221208; t=1690970282; x=1691575082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3KMY3jKjpj9Y4G5MJKHUaAltNKivkRclyRQy4joDVlU=;
+        b=V0ouJRxkVXbm11NJkJ6DlOzWiJ5NwIwqWTAuqMF/FhzdvULtNG1//l0ntdejTniEcz
+         yEW8GGRAsBGqE49u77ZwTHbQ2d0jvJYwEGVKmVPNEZJqDNm8mgsnb4vb+PciQA3knlLi
+         Wa5QXsRyZkzauJcTFKtW7dwkil6xIA3vhAS07rgWcYdw+RXTciMJK25abQTk7M4fpuie
+         7xdSNRpyoRc5h1DV6blySvaQoJOMaY+63xR9NOuJLDSltxV0a4FQRUljc4o12VFH1vL0
+         Um6/wu2oYaI+9bRWYqJ9mRJOIvA4B8lpoUaHjLC/TyVmC4UzUPL0/UkCJn8d7IeRf8LT
+         z4Qw==
+X-Gm-Message-State: ABy/qLa0Xj1CESyFQ+VTnST9GCq32498BdvsuoDsKMEbDnfRMG4/2dv3
+        6eKClxuNVKUJfKEAB1ipq01FeQ==
+X-Google-Smtp-Source: APBJJlF2lJsSLrT9hU3elETjOzumY5L/oAT/UkrKUbFImaJyAlNX7DjURF+Eea9dnINN3A4RQr2jbg==
+X-Received: by 2002:aa7:8316:0:b0:676:2a5c:7bc5 with SMTP id bk22-20020aa78316000000b006762a5c7bc5mr12899143pfb.1.1690970282583;
+        Wed, 02 Aug 2023 02:58:02 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id m11-20020aa7900b000000b00686f048bb9dsm10742544pfo.74.2023.08.02.02.58.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 02:55:46 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
+        Wed, 02 Aug 2023 02:58:02 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
         Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Bryan Donoghue <bryan.odonoghue@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Amit Pundir <amit.pundir@linaro.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: display/msm: mdss-common: add memory-region property
-Date:   Wed,  2 Aug 2023 12:55:42 +0300
-Message-Id: <169096995982.4183272.12912811169015846101.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230726132719.2117369-1-amit.pundir@linaro.org>
-References: <20230726132719.2117369-1-amit.pundir@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/3] Add no-esim sku for sc7180-lazor family and new board version
+Date:   Wed,  2 Aug 2023 17:57:50 +0800
+Message-Id: <20230802095753.13644-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+for audio codec ALC5682i-VS.
 
-On Wed, 26 Jul 2023 18:57:18 +0530, Amit Pundir wrote:
-> Add and document the reserved memory region property in the
-> mdss-common schema.
-> 
-> For now (sdm845-db845c), it points to a framebuffer memory
-> region reserved by the bootloader for splash screen.
-> 
-> 
-> [...]
 
-Applied, thanks!
+Sheng-Liang Pan (3):
+  dt-bindings: arm: qcom: add sc7180-lazor board bindings
+  arm64: dts: qcom: Add sku_id for lazor/limozeen
+  arm64: dts: qcom: Add board id for lazor/limozeen
 
-[1/2] dt-bindings: display/msm: mdss-common: add memory-region property
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/b4b405040689
+ .../devicetree/bindings/arm/qcom.yaml         | 43 +++++++++++++--
+ arch/arm64/boot/dts/qcom/Makefile             |  5 ++
+ ...sc7180-trogdor-lazor-limozeen-nots-r10.dts | 39 +++++++++++++
+ .../sc7180-trogdor-lazor-limozeen-nots-r9.dts |  4 +-
+ .../sc7180-trogdor-lazor-limozeen-r10.dts     | 55 +++++++++++++++++++
+ .../qcom/sc7180-trogdor-lazor-limozeen-r9.dts |  4 +-
+ .../dts/qcom/sc7180-trogdor-lazor-r10-kb.dts  | 33 +++++++++++
+ .../dts/qcom/sc7180-trogdor-lazor-r10-lte.dts | 37 +++++++++++++
+ .../dts/qcom/sc7180-trogdor-lazor-r10.dts     | 29 ++++++++++
+ .../dts/qcom/sc7180-trogdor-lazor-r9-kb.dts   |  4 +-
+ .../dts/qcom/sc7180-trogdor-lazor-r9-lte.dts  |  4 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r9.dts |  4 +-
+ 12 files changed, 246 insertions(+), 15 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r10.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
 
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.34.1
+
