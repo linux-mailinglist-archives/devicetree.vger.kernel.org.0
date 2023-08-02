@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B2C376C332
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 04:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D3B76C33D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbjHBC5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 22:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
+        id S231299AbjHBDBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 23:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231304AbjHBC5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 22:57:24 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BFA42733;
-        Tue,  1 Aug 2023 19:57:11 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id A451824E29F;
-        Wed,  2 Aug 2023 10:57:04 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 2 Aug
- 2023 10:57:04 +0800
-Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 2 Aug
- 2023 10:57:03 +0800
-Message-ID: <3206c2c5-cbba-6316-07c5-5fdcff88add8@starfivetech.com>
-Date:   Wed, 2 Aug 2023 10:57:03 +0800
+        with ESMTP id S230252AbjHBDBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:01:07 -0400
+Received: from mgamail.intel.com (unknown [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE892272B;
+        Tue,  1 Aug 2023 20:00:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690945220; x=1722481220;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=E8bnxemkUhzO4A3F7jJiLKuutJCDU25f0xvfvEgLXWU=;
+  b=V8/OVVCzs3FG54tF1qAJbuWoxZ5txsJzYUo6hFx9anQweH7lgDLkF1R4
+   gLEtBlZKQjveYHWNoedT2Lc0NZ968XdXYAAEF4v9rEG5BDz7+tMlHwoVk
+   uNqpv3cHJCEsINC18qCZFNuTE6Qhx7HXVV4EGCCv84OGJIYA6InrctEN2
+   wJc/JmkSkvqBBf8UJRUdAzZ5oKMAAwPytp96s68psOZIZYal6yluHyxx4
+   BQat4aHtUG3iO9932/T5AUzL0P+4mNpfa6V91FWOR+puFxelfINe5Txcp
+   i/g7xZJO4ndMei7274dW3PSOF1dCEOlgfHlSFs0IQxhKjsDDqEVTfRBlV
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="372194283"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
+   d="scan'208";a="372194283"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2023 20:00:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="902819821"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
+   d="scan'208";a="902819821"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga005.jf.intel.com with ESMTP; 01 Aug 2023 20:00:14 -0700
+From:   niravkumar.l.rabara@intel.com
+To:     niravkumar.l.rabara@intel.com
+Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, dinguyen@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        netdev@vger.kernel.org, p.zabel@pengutronix.de,
+        richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+        wen.ping.teh@intel.com, Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 3/5] dt-bindings: clock: add Intel Agilex5 clock manager
+Date:   Wed,  2 Aug 2023 10:58:42 +0800
+Message-Id: <20230802025842.1260345-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230801010234.792557-4-niravkumar.l.rabara@intel.com>
+References: <20230801010234.792557-4-niravkumar.l.rabara@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v7 4/6] media: starfive: camss: Add video driver
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
- <20230619112838.19797-5-jack.zhu@starfivetech.com>
- <20230727152528.GI25174@pendragon.ideasonboard.com>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <20230727152528.GI25174@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,453 +66,174 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Thank you for your comments.
+Add clock ID definitions for Intel Agilex5 SoCFPGA.
+The registers in Agilex5 handling the clock is named as clock manager.
 
-On 2023/7/27 23:25, Laurent Pinchart wrote:
-> Hi Jack,
-> 
-> Thank you for the patch.
-> 
-> On Mon, Jun 19, 2023 at 07:28:36PM +0800, Jack Zhu wrote:
->> Add video driver for StarFive Camera Subsystem.
->> 
->> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
->> ---
->>  .../media/platform/starfive/camss/Makefile    |   4 +-
->>  .../media/platform/starfive/camss/stf_video.c | 724 ++++++++++++++++++
->>  .../media/platform/starfive/camss/stf_video.h |  92 +++
->>  3 files changed, 819 insertions(+), 1 deletion(-)
->>  create mode 100644 drivers/media/platform/starfive/camss/stf_video.c
->>  create mode 100644 drivers/media/platform/starfive/camss/stf_video.h
->> 
->> diff --git a/drivers/media/platform/starfive/camss/Makefile b/drivers/media/platform/starfive/camss/Makefile
->> index d56ddd078a71..eb457917a914 100644
->> --- a/drivers/media/platform/starfive/camss/Makefile
->> +++ b/drivers/media/platform/starfive/camss/Makefile
->> @@ -3,6 +3,8 @@
->>  # Makefile for StarFive Camera Subsystem driver
->>  #
->>  
->> -starfive-camss-objs += stf_camss.o
->> +starfive-camss-objs += \
->> +		stf_camss.o \
->> +		stf_video.o
->>  
->>  obj-$(CONFIG_VIDEO_STARFIVE_CAMSS) += starfive-camss.o
->> diff --git a/drivers/media/platform/starfive/camss/stf_video.c b/drivers/media/platform/starfive/camss/stf_video.c
->> new file mode 100644
->> index 000000000000..2e6472fe51c6
->> --- /dev/null
->> +++ b/drivers/media/platform/starfive/camss/stf_video.c
->> @@ -0,0 +1,724 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * stf_video.c
->> + *
->> + * StarFive Camera Subsystem - V4L2 device node
->> + *
->> + * Copyright (C) 2021-2023 StarFive Technology Co., Ltd.
->> + */
->> +
->> +#include <linux/pm_runtime.h>
->> +#include <media/v4l2-ctrls.h>
->> +#include <media/v4l2-event.h>
->> +#include <media/v4l2-mc.h>
->> +#include <media/videobuf2-dma-contig.h>
->> +
->> +#include "stf_camss.h"
->> +#include "stf_video.h"
->> +
->> +static const struct stfcamss_format_info formats_pix_wr[] = {
->> +	{
->> +		.code = MEDIA_BUS_FMT_SRGGB10_1X10,
->> +		.pixelformat = V4L2_PIX_FMT_SRGGB10,
->> +		.planes = 1,
->> +		.vsub = { 1 },
->> +		.bpp = 10,
->> +	},
->> +	{
->> +		.code = MEDIA_BUS_FMT_SGRBG10_1X10,
->> +		.pixelformat = V4L2_PIX_FMT_SGRBG10,
->> +		.planes = 1,
->> +		.vsub = { 1 },
->> +		.bpp = 10,
->> +	},
->> +	{
->> +		.code = MEDIA_BUS_FMT_SGBRG10_1X10,
->> +		.pixelformat = V4L2_PIX_FMT_SGBRG10,
->> +		.planes = 1,
->> +		.vsub = { 1 },
->> +		.bpp = 10,
->> +	},
->> +	{
->> +		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
->> +		.pixelformat = V4L2_PIX_FMT_SBGGR10,
->> +		.planes = 1,
->> +		.vsub = { 1 },
->> +		.bpp = 10,
->> +	},
->> +};
->> +
->> +static const struct stfcamss_format_info formats_pix_isp[] = {
->> +	{
->> +		.code = MEDIA_BUS_FMT_Y12_1X12,
->> +		.pixelformat = V4L2_PIX_FMT_NV12,
->> +		.planes = 2,
->> +		.vsub = { 1, 2 },
->> +		.bpp = 8,
->> +	},
->> +};
->> +
->> +/* -----------------------------------------------------------------------------
->> + * Helper functions
->> + */
->> +
->> +static int video_find_format(u32 code, u32 pixelformat,
->> +			     struct stfcamss_video *video)
->> +{
->> +	unsigned int i;
->> +
->> +	for (i = 0; i < video->nformats; ++i) {
->> +		if (video->formats[i].code == code &&
->> +		    video->formats[i].pixelformat == pixelformat)
->> +			return i;
->> +	}
->> +
->> +	for (i = 0; i < video->nformats; ++i)
->> +		if (video->formats[i].code == code)
->> +			return i;
->> +
->> +	for (i = 0; i < video->nformats; ++i)
->> +		if (video->formats[i].pixelformat == pixelformat)
->> +			return i;
->> +
-> 
-> This looks weird, I don't think it does what you expect below. I think
-> you can drop the function, and instead use video_get_pfmt_by_mcode() to
-> convert the mbus code to a pixel format, and compare it to the active
-> pixel format in video_check_format().
-> 
->> +	return -EINVAL;
->> +}
->> +
->> +static int __video_try_fmt(struct stfcamss_video *video, struct v4l2_format *f)
->> +{
->> +	struct v4l2_pix_format *pix;
->> +	const struct stfcamss_format_info *fi;
->> +	u32 width, height;
->> +	u32 bpl;
->> +	unsigned int i;
->> +
->> +	pix = &f->fmt.pix;
-> 
-> You can initialize pix when declaring it.
-> 
->> +
->> +	for (i = 0; i < video->nformats; i++)
->> +		if (pix->pixelformat == video->formats[i].pixelformat)
->> +			break;
->> +
-> 
-> 	for (i = 0; i < video->nformats; i++) {
-> 		if (pix->pixelformat == video->formats[i].pixelformat)
-> 			break;
-> 	}
-> 
-> But a helper function that looks up a format by pixelformat, similar to
-> video_get_pfmt_by_mcode(), would be useful. I think I would make all
-> those helpers return a const struct stfcamss_format_info pointer instead
-> of an index.
-> 
->> +	if (i == video->nformats)
->> +		i = 0; /* default format */
->> +
->> +	fi = &video->formats[i];
->> +	width = pix->width;
->> +	height = pix->height;
->> +
->> +	memset(pix, 0, sizeof(*pix));
->> +
->> +	pix->pixelformat = fi->pixelformat;
->> +	pix->width = clamp_t(u32, width, STFCAMSS_FRAME_MIN_WIDTH,
->> +			     STFCAMSS_FRAME_MAX_WIDTH);
->> +	pix->height = clamp_t(u32, height, STFCAMSS_FRAME_MIN_HEIGHT,
->> +			      STFCAMSS_FRAME_MAX_HEIGHT);
->> +	bpl = pix->width * fi->bpp / 8;
->> +	bpl = ALIGN(bpl, video->bpl_alignment);
->> +	pix->bytesperline = bpl;
-> 
-> Does the hardware support configuring the stride ?
-> 
+Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ .../bindings/clock/intel,agilex5-clkmgr.yaml  |  40 +++++++
+ .../dt-bindings/clock/intel,agilex5-clkmgr.h  | 100 ++++++++++++++++++
+ 2 files changed, 140 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml
+ create mode 100644 include/dt-bindings/clock/intel,agilex5-clkmgr.h
 
-The hardware does not support.
+diff --git a/Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml b/Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml
+new file mode 100644
+index 000000000000..d120b0da7f3d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/intel,agilex5-clkmgr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Intel SoCFPGA Agilex5 clock manager
++
++maintainers:
++  - Dinh Nguyen <dinguyen@kernel.org>
++
++description:
++  The Intel Agilex5 Clock Manager is an integrated clock controller, which
++  generates and supplies clock to all the modules.
++
++properties:
++  compatible:
++    const: intel,agilex5-clkmgr
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clkmgr: clock-controller@10d10000 {
++      compatible = "intel,agilex5-clkmgr";
++      reg = <0x10d10000 0x1000>;
++      #clock-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/intel,agilex5-clkmgr.h b/include/dt-bindings/clock/intel,agilex5-clkmgr.h
+new file mode 100644
+index 000000000000..2f3a23b31c5c
+--- /dev/null
++++ b/include/dt-bindings/clock/intel,agilex5-clkmgr.h
+@@ -0,0 +1,100 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (C) 2023, Intel Corporation
++ */
++
++#ifndef __DT_BINDINGS_INTEL_AGILEX5_CLKMGR_H
++#define __DT_BINDINGS_INTEL_AGILEX5_CLKMGR_H
++
++/* fixed rate clocks */
++#define AGILEX5_OSC1			0
++#define AGILEX5_CB_INTOSC_HS_DIV2_CLK	1
++#define AGILEX5_CB_INTOSC_LS_CLK	2
++#define AGILEX5_F2S_FREE_CLK		3
++
++/* PLL clocks */
++#define AGILEX5_MAIN_PLL_CLK		4
++#define AGILEX5_MAIN_PLL_C0_CLK		5
++#define AGILEX5_MAIN_PLL_C1_CLK		6
++#define AGILEX5_MAIN_PLL_C2_CLK		7
++#define AGILEX5_MAIN_PLL_C3_CLK		8
++#define AGILEX5_PERIPH_PLL_CLK		9
++#define AGILEX5_PERIPH_PLL_C0_CLK	10
++#define AGILEX5_PERIPH_PLL_C1_CLK	11
++#define AGILEX5_PERIPH_PLL_C2_CLK	12
++#define AGILEX5_PERIPH_PLL_C3_CLK	13
++#define AGILEX5_CORE0_FREE_CLK		14
++#define AGILEX5_CORE1_FREE_CLK		15
++#define AGILEX5_CORE2_FREE_CLK		16
++#define AGILEX5_CORE3_FREE_CLK		17
++#define AGILEX5_DSU_FREE_CLK		18
++#define AGILEX5_BOOT_CLK		19
++
++/* fixed factor clocks */
++#define AGILEX5_L3_MAIN_FREE_CLK	20
++#define AGILEX5_NOC_FREE_CLK		21
++#define AGILEX5_S2F_USR0_CLK		22
++#define AGILEX5_NOC_CLK			23
++#define AGILEX5_EMAC_A_FREE_CLK		24
++#define AGILEX5_EMAC_B_FREE_CLK		25
++#define AGILEX5_EMAC_PTP_FREE_CLK	26
++#define AGILEX5_GPIO_DB_FREE_CLK	27
++#define AGILEX5_S2F_USER0_FREE_CLK	28
++#define AGILEX5_S2F_USER1_FREE_CLK	29
++#define AGILEX5_PSI_REF_FREE_CLK	30
++#define AGILEX5_USB31_FREE_CLK		31
++
++/* Gate clocks */
++#define AGILEX5_CORE0_CLK		32
++#define AGILEX5_CORE1_CLK		33
++#define AGILEX5_CORE2_CLK		34
++#define AGILEX5_CORE3_CLK		35
++#define AGILEX5_MPU_CLK			36
++#define AGILEX5_MPU_PERIPH_CLK		37
++#define AGILEX5_MPU_CCU_CLK		38
++#define AGILEX5_L4_MAIN_CLK		39
++#define AGILEX5_L4_MP_CLK		40
++#define AGILEX5_L4_SYS_FREE_CLK		41
++#define AGILEX5_L4_SP_CLK		42
++#define AGILEX5_CS_AT_CLK		43
++#define AGILEX5_CS_TRACE_CLK		44
++#define AGILEX5_CS_PDBG_CLK		45
++#define AGILEX5_EMAC1_CLK		47
++#define AGILEX5_EMAC2_CLK		48
++#define AGILEX5_EMAC_PTP_CLK		49
++#define AGILEX5_GPIO_DB_CLK		50
++#define AGILEX5_S2F_USER0_CLK		51
++#define AGILEX5_S2F_USER1_CLK		52
++#define AGILEX5_PSI_REF_CLK		53
++#define AGILEX5_USB31_SUSPEND_CLK	54
++#define AGILEX5_EMAC0_CLK		46
++#define AGILEX5_USB31_BUS_CLK_EARLY	55
++#define AGILEX5_USB2OTG_HCLK		56
++#define AGILEX5_SPIM_0_CLK		57
++#define AGILEX5_SPIM_1_CLK		58
++#define AGILEX5_SPIS_0_CLK		59
++#define AGILEX5_SPIS_1_CLK		60
++#define AGILEX5_DMA_CORE_CLK		61
++#define AGILEX5_DMA_HS_CLK		62
++#define AGILEX5_I3C_0_CORE_CLK		63
++#define AGILEX5_I3C_1_CORE_CLK		64
++#define AGILEX5_I2C_0_PCLK		65
++#define AGILEX5_I2C_1_PCLK		66
++#define AGILEX5_I2C_EMAC0_PCLK		67
++#define AGILEX5_I2C_EMAC1_PCLK		68
++#define AGILEX5_I2C_EMAC2_PCLK		69
++#define AGILEX5_UART_0_PCLK		70
++#define AGILEX5_UART_1_PCLK		71
++#define AGILEX5_SPTIMER_0_PCLK		72
++#define AGILEX5_SPTIMER_1_PCLK		73
++#define AGILEX5_DFI_CLK			74
++#define AGILEX5_NAND_NF_CLK		75
++#define AGILEX5_NAND_BCH_CLK		76
++#define AGILEX5_SDMMC_SDPHY_REG_CLK	77
++#define AGILEX5_SDMCLK			78
++#define AGILEX5_SOFTPHY_REG_PCLK	79
++#define AGILEX5_SOFTPHY_PHY_CLK		80
++#define AGILEX5_SOFTPHY_CTRL_CLK	81
++#define AGILEX5_NUM_CLKS		82
++
++#endif	/* __DT_BINDINGS_INTEL_AGILEX5_CLKMGR_H */
+-- 
+2.25.1
 
->> +
->> +	for (i = 0; i < fi->planes; ++i)
->> +		pix->sizeimage += bpl * pix->height / fi->vsub[i];
->> +
->> +	pix->field = V4L2_FIELD_NONE;
->> +	pix->colorspace = V4L2_COLORSPACE_SRGB;
->> +	pix->flags = 0;
->> +	pix->ycbcr_enc =
->> +		V4L2_MAP_YCBCR_ENC_DEFAULT(pix->colorspace);
->> +	pix->quantization = V4L2_MAP_QUANTIZATION_DEFAULT(true,
->> +							  pix->colorspace,
->> +							  pix->ycbcr_enc);
->> +	pix->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(pix->colorspace);
-> 
-> This doesn't seem right for the processed output.
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static int stf_video_init_format(struct stfcamss_video *video)
->> +{
->> +	int ret;
->> +	struct v4l2_format format = {
->> +		.type = video->type,
->> +		.fmt.pix = {
->> +			.width = 1920,
->> +			.height = 1080,
->> +			.pixelformat = V4L2_PIX_FMT_RGB565,
-> 
-> That format doesn't seem supported, let's pick V4L2_PIX_FMT_NV12.
-> 
->> +		},
->> +	};
->> +
->> +	ret = __video_try_fmt(video, &format);
->> +
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	video->active_fmt = format;
->> +
->> +	return 0;
->> +}
->> +
->> +/* -----------------------------------------------------------------------------
->> + * Video queue operations
->> + */
->> +
->> +static int video_queue_setup(struct vb2_queue *q,
->> +			     unsigned int *num_buffers,
->> +			     unsigned int *num_planes,
->> +			     unsigned int sizes[],
->> +			     struct device *alloc_devs[])
->> +{
->> +	struct stfcamss_video *video = vb2_get_drv_priv(q);
->> +	const struct v4l2_pix_format *format = &video->active_fmt.fmt.pix;
->> +
->> +	if (*num_planes) {
->> +		if (*num_planes != 1)
->> +			return -EINVAL;
->> +
->> +		if (sizes[0] < format->sizeimage)
->> +			return -EINVAL;
->> +	}
->> +
->> +	*num_planes = 1;
->> +	sizes[0] = format->sizeimage;
->> +	if (!sizes[0])
->> +		dev_err(video->stfcamss->dev,
->> +			"%s: error size is zero!!!\n", __func__);
-> 
-> Shouldn't you return an error ? Also, use dev_dbg(), printing an error
-> message based on a condition that can easily be triggered by
-> unpriviledge userspace opens the door to applications flooding the
-> kernel log.
-> 
->> +
->> +	dev_dbg(video->stfcamss->dev, "planes = %d, size = %d\n",
->> +		*num_planes, sizes[0]);
->> +
->> +	return 0;
->> +}
->> +
->> +static int video_buf_init(struct vb2_buffer *vb)
->> +{
->> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->> +	struct stfcamss_video *video = vb2_get_drv_priv(vb->vb2_queue);
->> +	struct stfcamss_buffer *buffer =
->> +		container_of(vbuf, struct stfcamss_buffer, vb);
-> 
-> A static inline to_stfcamss_buffer() function that wraps the
-> container_of() would be nice. You can use it below too.
-> 
->> +	const struct v4l2_pix_format *fmt = &video->active_fmt.fmt.pix;
->> +	dma_addr_t *paddr;
->> +
->> +	paddr = vb2_plane_cookie(vb, 0);
->> +	buffer->addr[0] = *paddr;
->> +
->> +	if (fmt->pixelformat == V4L2_PIX_FMT_NV12 ||
->> +	    fmt->pixelformat == V4L2_PIX_FMT_NV21 ||
->> +	    fmt->pixelformat == V4L2_PIX_FMT_NV16 ||
->> +	    fmt->pixelformat == V4L2_PIX_FMT_NV61)
-> 
-> Only V4L2_PIX_FMT_NV12 is listed in formats_pix_isp. Does the hardware
-> support the other formats ? If so, it would be nice to support them
-> already.
-> 
->> +		buffer->addr[1] =
->> +			buffer->addr[0] + fmt->bytesperline * fmt->height;
-> 
-> As the hardware supports non-contiguous planes, you should use the
-> MPLANE API (V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) and support the NV*M
-> formats in addition to the NV* formats.
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static int video_buf_prepare(struct vb2_buffer *vb)
->> +{
->> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->> +	struct stfcamss_video *video = vb2_get_drv_priv(vb->vb2_queue);
->> +	const struct v4l2_pix_format *fmt = &video->active_fmt.fmt.pix;
->> +
->> +	if (fmt->sizeimage > vb2_plane_size(vb, 0)) {
->> +		dev_err(video->stfcamss->dev,
-> 
-> dev_dbg() here too.
-> 
->> +			"sizeimage = %d, plane size = %d\n",
->> +			fmt->sizeimage, (unsigned int)vb2_plane_size(vb, 0));
-> 
-> Both are unsigned, use %u instead of %d.
-> 
->> +		return -EINVAL;
->> +	}
->> +	vb2_set_plane_payload(vb, 0, fmt->sizeimage);
->> +
->> +	vbuf->field = V4L2_FIELD_NONE;
->> +
->> +	return 0;
->> +}
->> +
->> +static void video_buf_queue(struct vb2_buffer *vb)
->> +{
->> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->> +	struct stfcamss_video *video = vb2_get_drv_priv(vb->vb2_queue);
->> +	struct stfcamss_buffer *buffer =
->> +		container_of(vbuf, struct stfcamss_buffer, vb);
->> +
->> +	video->ops->queue_buffer(video, buffer);
->> +}
->> +
->> +/*
->> + * video_mbus_to_pix - Convert v4l2_mbus_framefmt to v4l2_pix_format
->> + * @mbus: v4l2_mbus_framefmt format (input)
->> + * @pix: v4l2_pix_format_mplane format (output)
->> + * @f: a pointer to formats array element to be used for the conversion
->> + * @alignment: bytesperline alignment value
->> + *
->> + * Fill the output pix structure with information from the input mbus format.
->> + *
->> + * Return 0 on success or a negative error code otherwise
->> + */
->> +static int video_mbus_to_pix(const struct v4l2_mbus_framefmt *mbus,
->> +			     struct v4l2_pix_format *pix,
->> +			     const struct stfcamss_format_info *f,
->> +			     unsigned int alignment)
->> +{
->> +	u32 bytesperline;
->> +	unsigned int i;
->> +
->> +	memset(pix, 0, sizeof(*pix));
->> +	v4l2_fill_pix_format(pix, mbus);
->> +	pix->pixelformat = f->pixelformat;
->> +	bytesperline = pix->width * f->bpp / 8;
->> +	bytesperline = ALIGN(bytesperline, alignment);
->> +	pix->bytesperline = bytesperline;
->> +
->> +	for (i = 0; i < f->planes; ++i)
->> +		pix->sizeimage += bytesperline * pix->height / f->vsub[i];
-> 
-> This function is used for validation of the format only, the
-> bytesperline and sizeimage values are never used. You can simplify the
-> driver by dropping the function and comparing the width, height and
-> field of the subdev and video device from the v4l2_mbus_framefmt and
-> v4l2_pix_format respectively in video_check_format().
-> video_get_subdev_format() will then take a v4l2_mbus_framefmt pointer,
-> not a v4l2_pix_format.
-> 
-> The format match check still needs conversion of the 
-> 
-> To check the format, you need to convert the mbus code from the subdev
-> to a pixel format using the 
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static struct v4l2_subdev *video_remote_subdev(struct stfcamss_video *video,
->> +					       u32 *pad)
->> +{
->> +	struct media_pad *remote;
->> +
->> +	remote = media_pad_remote_pad_first(&video->pad);
->> +
->> +	if (!remote || !is_media_entity_v4l2_subdev(remote->entity))
->> +		return NULL;
->> +
->> +	if (pad)
->> +		*pad = remote->index;
->> +
->> +	return media_entity_to_v4l2_subdev(remote->entity);
-> 
-> As the connected subdev is always the same (the CSI-2 RX for the raw
-> capture video device and the ISP for the processed capture video
-> device), I would store a pointer to the connected subdev in the
-> stfcamss_video structure at registration time. You can pass the pointer
-> to the stf_video_register() function.
-> 
-
-As the hardware also supports the dvp interface, I think the current
-function implementation should be flexible and easy to expand later.
-
->> +}
->> +
->> +static int video_get_subdev_format(struct stfcamss_video *video,
->> +				   struct v4l2_format *format)
->> +{
->> +	struct v4l2_pix_format *pix = &video->active_fmt.fmt.pix;
->> +	struct v4l2_subdev_format fmt;
->> +	struct v4l2_subdev *subdev;
->> +	u32 pixelformat;
->> +	u32 pad;
->> +	int ret;
->> +
->> +	subdev = video_remote_subdev(video, &pad);
->> +	if (!subdev)
->> +		return -EPIPE;
->> +
->> +	fmt.pad = pad;
->> +	fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
->> +
->> +	ret = v4l2_subdev_call(subdev, pad, get_fmt, NULL, &fmt);
-> 
-> Use v4l2_subdev_call_state_active() to support the subdev state API.
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	pixelformat = pix->pixelformat;
->> +	ret = video_find_format(fmt.format.code, pixelformat, video);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	format->type = video->type;
->> +
->> +	return video_mbus_to_pix(&fmt.format, &format->fmt.pix,
->> +				 &video->formats[ret], video->bpl_alignment);
->> +}
->> +
-
-Regards,
-
-Jack Zhu
