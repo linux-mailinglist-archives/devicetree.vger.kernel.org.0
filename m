@@ -2,96 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B2FA76D031
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 16:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79A0076D047
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 16:40:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232617AbjHBOiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 10:38:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
+        id S233880AbjHBOkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 10:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234141AbjHBOiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 10:38:10 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDB826AF
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 07:38:07 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-3a38953c928so5352236b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 07:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690987086; x=1691591886;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8nmftj9H6QNMjKvC/PHkZC+FCS8/x2xMcYkBxSq4Jqc=;
-        b=Nq1cPX/iQ+SjG++rAIUe4TQ0nEJvKktHyDdQygPW6XGYm6QdZ22VYdWX3Sxia4lv/R
-         YJuSNgBmBsiEtFjKvURlOY+apmhMQxa649KhDz3pit05rVnP0pFw6e83dyFOJJjEQzNM
-         0vzLw+06LIheQacaf8f6rgsRruNeKoQQOtflwEXzm7ZJ6Z8vIxrKXinDr/ocV89/pImb
-         /JrlZC6lPd7gqvpQrU2n55PHJKSeqQGNf+2cgjc/TscYTTu/dEGp5KDuSJtkvjVeamYh
-         YQk7ZrAMcc0ajRcpiq2ELwz1ytTmjz3kH0rHjga+I055BHA+jcwpeDD7u+ByaQLXgddf
-         mlTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690987086; x=1691591886;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8nmftj9H6QNMjKvC/PHkZC+FCS8/x2xMcYkBxSq4Jqc=;
-        b=aK10ZcCsaUwBwmXtoWgZJbgDqJHgEHk2Q7xsAKcXkC9aRJ/ZDljwAvWeub5IPuUCJb
-         yA616fdvjrS9BmVFfnZaZEtZScv4uUNHEmfxA8FxG4q2IqIVruKrIWhM6+v+Js2C7x6z
-         Em3ONhS0pqmR0Il3L/cWNE+lFn9c6RRTJG0d/W0pu9Bsp5PMxCfCXVcinvssk0+2sItg
-         pzSXs63oP2UKL89PuAqqxwRsOzN7jp3iSGV6e9w4qw/ZxJt9/2Vyy46vsuUeyRhKNFiG
-         3k7LVDuxWTB2qGvEhnSrSGcXt5fnaozzWRbVGflYV1LCppxmuwO+KnULjGLhEnqSGQIZ
-         R3ag==
-X-Gm-Message-State: ABy/qLbD9kqViBVxhORAtCBeslz4O++Gy08sCO5BAsKHdxjd7Gg+vCor
-        pwIAQrAmTiqcb/yjHmvzdiFzTCoj1jAe1JbmAhDexQ==
-X-Google-Smtp-Source: APBJJlEzTjl6RKml+LdRCmbwAb2hGX3y19EwwY+i1muMiAb8Luqi1vw3YUfBLtHOB1vz1+aCnlEV0Yzu1qxjbKqjsqw=
-X-Received: by 2002:a05:6808:3010:b0:3a3:ed41:5ab with SMTP id
- ay16-20020a056808301000b003a3ed4105abmr18113315oib.9.1690987086380; Wed, 02
- Aug 2023 07:38:06 -0700 (PDT)
+        with ESMTP id S233950AbjHBOkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 10:40:06 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE4810FB;
+        Wed,  2 Aug 2023 07:40:04 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372EdmaR009457;
+        Wed, 2 Aug 2023 09:39:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690987188;
+        bh=fMKK42wAH8Nnsvw63GKfzyP6R9L7nXqVg3xURLy8OK4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=DzngAnTH9zKrAGnE/DM4ePAfcPfTZSGU+16bl3VimKR7DVl5IQ1m3MAOuLjAWkGK6
+         5CJNOSUL6iqqqILXnnISEAy7GK2rqPUhjzy2QcHtqgKOqjUXgNwBVOfHcU7VmYQFOb
+         xdWAzKwO/kFwev2IGF8ayMGnq4ruMGsk4TP/e+Jo=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372EdmVW118309
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Aug 2023 09:39:48 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
+ Aug 2023 09:39:48 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 2 Aug 2023 09:39:48 -0500
+Received: from [172.24.227.6] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372EdiEH024344;
+        Wed, 2 Aug 2023 09:39:44 -0500
+Message-ID: <e3fb55e2-b8e2-1b68-2b33-874d80eac302@ti.com>
+Date:   Wed, 2 Aug 2023 20:09:43 +0530
 MIME-Version: 1.0
-References: <20230731110012.2913742-1-jagan@edgeble.ai> <20230731110012.2913742-6-jagan@edgeble.ai>
- <20230801-residue-tractor-5c63e4447f2c@spud>
-In-Reply-To: <20230801-residue-tractor-5c63e4447f2c@spud>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Wed, 2 Aug 2023 20:07:55 +0530
-Message-ID: <CA+VMnFyh-ctPbf_j=CEXxPNKY+sUymV64Sdqqs-kY7dTojQYUA@mail.gmail.com>
-Subject: Re: [PATCH 05/14] dt-bindings: display: rockchip-vop: Document rv1126 vop
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 4/5] arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, Jai Luthra <j-luthra@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sandy Huang <hjc@rock-chips.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com>
+ <20230731-mcasp_am62a-v1-4-8bd137ffa8f1@ti.com>
+ <aa8d2aa6-a121-51e6-77de-0e1c8bdac043@ti.com>
+ <52pbbqnp46h33gymoydnjtxoo3dsb6wnytvjnmomtjdtwck536@ewhb2rngomr2>
+ <20230802133502.zjvf7sslmcuayg5z@defog>
+From:   Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20230802133502.zjvf7sslmcuayg5z@defog>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Aug 2023 at 02:37, Conor Dooley <conor@kernel.org> wrote:
->
-> On Mon, Jul 31, 2023 at 04:30:03PM +0530, Jagan Teki wrote:
-> > Document the VOP for Rockchip RV1126.
-> >
-> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
->
-> There's no commentary here about compatibility with other, existing,
-> devices nor did you CC me on the rest of the series. How am I supposed
-> to know if appending to enum is the right thing to do?
+Hi Jai, Nishant,
 
-I had past comments not to add all people in the entire series and add
-one relevant developer on respective patches. On that note, I tried to
-CC the developers only involved in the respective areas. But, you are
-CCed to the DT patch that affected this binding.
-"[PATCH 10/14] ARM: dts: rockchip: rv1126: Add VOP_LITE support"
+On 02/08/23 19:05, Nishanth Menon wrote:
+> On 17:10-20230802, Jai Luthra wrote:
+>> Hi Devarsh,
+>>
+>> On Aug 02, 2023 at 16:15:12 +0530, Devarsh Thakkar wrote:
+>>> Hi Jai,
+>>>
+>>> Thanks for the patch.
+>>>
+>>> On 31/07/23 18:14, Jai Luthra wrote:
+>>>> Add nodes for audio codec and sound card, enable the audio serializer
+>>>> (McASP1) under use and update pinmux.
+>>>>
+>>>> Link: https://www.ti.com/lit/zip/sprr459
+>>>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>>>> Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 77 +++++++++++++++++++++++++++++++++
+>>>>  1 file changed, 77 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>> index 752c2f640f63..5f68d2eefe0f 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>> @@ -125,6 +125,41 @@ led-0 {
+>>>>  			default-state = "off";
+>>>>  		};
+>>>>  	};
+>>>> +
+>>>> +	tlv320_mclk: clk-0 {
+>>>> +		#clock-cells = <0>;
+>>>> +		compatible = "fixed-clock";
+>>>> +		clock-frequency = <12288000>;
+>>>> +	};
+>>>> +
+>>>> +	codec_audio: sound {
+>>>> +		compatible = "simple-audio-card";
+>>>> +		simple-audio-card,name = "AM62Ax-SKEVM";
+>>>
+>>> In my opinion better to give the codec name instead of board name here.
+>>
+>> I agree, maybe calling it "sk-am62a-tlv320aic3106" would be the most 
+>> clear option.
+>>
+>> Running a quick ripgrep on next tree:
+>>
+>> $ rg "simple-audio-card,name" arch/*/boot/dts/
+>>
+>> I see a healthy mix of using both board and/or codec name here - with TI 
+>> almost always using the board name. Maybe we can change the convention, 
+>> but it would be a good idea to at least update SK-AM62 as well to use 
+>> the new convention.
+>>
+>> Is it okay with you if it is handled as a separate series?
+> 
 
-Please let me know if I missed anything.
+Yes agreed, the naming can be taken care of as separate series as it also
+applies to other TI board (AM62x), we can brainstorm on the naming separately
+and not block this patch.
 
-Thanks,
-Jagan.
+Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+
+Regards
+Devarsh
+
+> Will this cleanup of existing board break any userspace? If so, NO and
+> follow existing "board" convention - I'd like to maintain consistency,
+> even if that is not exactly clean! If not, cleanup in a later series
+> is fine, but please make sure to follow through this week - with this
+> patch following the convention of choice.
+> 
+
+
