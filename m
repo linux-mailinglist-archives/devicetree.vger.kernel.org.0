@@ -2,224 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 131FA76D339
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 18:03:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B08776D356
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 18:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235303AbjHBQDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 12:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50458 "EHLO
+        id S232144AbjHBQJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 12:09:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233847AbjHBQDp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 12:03:45 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 266681981;
-        Wed,  2 Aug 2023 09:03:44 -0700 (PDT)
-Received: from fabio-Precision-3551.. (unknown [IPv6:2804:14c:485:4b61:2f8f:bd6c:fc72:9ea8])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B40328686A;
-        Wed,  2 Aug 2023 18:03:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1690992222;
-        bh=stsIjxq9S++0PLJnDOzwLCJ+2e49dPweR6ZLwENhcQw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=ti1awV4eem1BWH3AsgUHnXFNYBEMNvc5GwJ+6Zb+5oTj9riwaYyUlohFLY0DGTI9d
-         MxOefi4o50u+MCX+5pBCa+MlGRlvpFtVFbFT6tLBKp3zH057iELNz/OMrKappz8q/Z
-         A+BZ4Cosk2SF7zAc0zPnjFI82VNK8su850J5sJlUBV1lqygIwn+c0C0pggmYT/G65H
-         gTECzLj/95UcaEcG+gDWFObvnk5GEkYDfxziAZYmhFq/CVsbdEQCEFe1B3Y672O2AG
-         le3rjayy5M7zBoidz1MxJMmJcXwi7/ZUkTsadl02pX/wFSmrvCzU0JL7hTw8+myJYw
-         pgBOYFZeCArWQ==
-From:   Fabio Estevam <festevam@denx.de>
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3] dt-bindings: media: Add OV5642
-Date:   Wed,  2 Aug 2023 13:03:26 -0300
-Message-Id: <20230802160326.293420-1-festevam@denx.de>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231315AbjHBQJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 12:09:34 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50C2719A4
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 09:09:32 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51e24210395so15593a12.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 09:09:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1690992571; x=1691597371;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=113LkHbiEvGKznTlJsnRhaby8358mc5nh2oXLk1USVI=;
+        b=LFI4rA25jijMEPPHKR1SNDWldDm9/ygIcRMZrWrVr1goHUdEBej5dsgYlHAgjNaIpt
+         G6i7UXK1qtDX0AXOIqH8oAFj+etZ8ynHGKA1iL5FcdbVW3JmuA8yAdP+8vIm3vtSqlTn
+         Z12jz848KVJgEvqEziKjAeA9r7LZeTvRh+7HUSAwqDvrQE2oT0eRulC/lrXJE02B53Q9
+         VDdPSysD7uX8gGuhLN+DZ+1/FBGu16lB/9Op85GjijDGRcBxDrWWW9NzwWDfhcaYUWK7
+         Er5mVbB+pWBLkIAVj7/JyLtOWmly2Y1VVVwmOHMGrwta4c918Y5NqyMlOtDI5Had2jjY
+         zB7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690992571; x=1691597371;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=113LkHbiEvGKznTlJsnRhaby8358mc5nh2oXLk1USVI=;
+        b=Cqoe0ga1ekzLkfo+C+R49D+IAPrdqPYyOccx6td181Bpr3a+H2Gl0srPFBzSbHF6sx
+         brcvvB+pReDImOS3Jr+qDu8dUIaPnUUmJAtRVThFyLdyeN6C0qqAsxPqQzUU35yn7kjz
+         v+3BW2lHU2yl3hsF1TyadFXOS4YGryD44vdM9VyftZBUjnM2rXJrhi/5m6HlSDVLU2+9
+         /yp16ul8hec9XaUup5um4uXL63YRRg4YoTdGT1pB4LEjoFo7p/8apSf+LIdTkmgSiBYx
+         ZVkNkKcPerQrEiU+L0OCEC3EKTKAkdOtDr4bnCnfuoaV3/+thjBBmYXWSOtjUyAIjNiy
+         51OQ==
+X-Gm-Message-State: ABy/qLYNPsxw8KoEVh1FTI37E3vFOseiaHtuozUJ4v2Q1bauROmu7xGD
+        Tyornqnntwdm5on4derYigpUpwLSei+RwCMvv2X0Lg==
+X-Google-Smtp-Source: APBJJlHNSzA+5I+gfFhTC6voqAyJr4aPx2EGDbMFMgCoqcQFETjIFolABaZwMqpX4c04GauX4srYr78Fa/uKx9yPFTQ=
+X-Received: by 2002:a50:8ac1:0:b0:51a:1ffd:10e with SMTP id
+ k1-20020a508ac1000000b0051a1ffd010emr436939edk.3.1690992570625; Wed, 02 Aug
+ 2023 09:09:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230802071947.1683318-3-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230802071947.1683318-3-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@google.com>
+Date:   Wed, 2 Aug 2023 09:09:18 -0700
+Message-ID: <CAD=FV=Um8875aMt_kWvCvpNjb3EwSk8VjVTEgv_TJ9WDS+LniA@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] HID: i2c-hid: elan: Add ili9882t timing
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        benjamin.tissoires@redhat.com,
+        Benjamin Tissoires <bentiss@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmitry.torokhov@gmail.com, jikos@kernel.org,
+        hsinyi@google.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As explained in the description text from trivial-devices.yaml:
+Benjamin,
 
-"This is a list of trivial I2C and SPI devices that have simple device tree
-bindings, consisting only of a compatible field, an address and possibly an
-interrupt line."
+On Wed, Aug 2, 2023 at 12:20=E2=80=AFAM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> The ili9882t is a TDDI IC (Touch with Display Driver). The
+> datasheet specifies there should be 60ms between touch SDA
+> sleep and panel RESX. Doug's series[1] allows panels and
+> touchscreens to power on/off together, so we can add the 65 ms
+> delay in i2c_hid_core_suspend before panel_unprepare.
+>
+> Because ili9882t touchscrgeen is a panel follower, and
+> needs to use vccio-supply instead of vcc33-supply, so set
+> it NULL to ili9882t_chip_data, then not use vcc33 regulator.
+>
+> [1]: https://lore.kernel.org/all/20230727171750.633410-1-dianders@chromiu=
+m.org
+>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 50 ++++++++++++++++++++-------
+>  1 file changed, 38 insertions(+), 12 deletions(-)
 
-A camera device does not fall into this category as it needs other
-properties such as regulators, reset and powerdown GPIOs, clocks,
-media endpoint.
 
-Remove the OV5642 entry from trivial-devices.yaml and add its own
-ovti,ov5642.yaml.
+>
+> diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/=
+i2c-hid-of-elan.c
+> index 029045d9661c..31abab57ad44 100644
+> --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> @@ -18,9 +18,11 @@
+>  #include "i2c-hid.h"
+>
+>  struct elan_i2c_hid_chip_data {
+> -       unsigned int post_gpio_reset_delay_ms;
+> +       unsigned int post_gpio_reset_on_delay_ms;
+> +       unsigned int post_gpio_reset_off_delay_ms;
+>         unsigned int post_power_delay_ms;
+>         u16 hid_descriptor_address;
+> +       const char *main_supply_name;
+>  };
+>
+>  struct i2c_hid_of_elan {
+> @@ -38,9 +40,11 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *op=
+s)
+>                 container_of(ops, struct i2c_hid_of_elan, ops);
+>         int ret;
+>
+> -       ret =3D regulator_enable(ihid_elan->vcc33);
+> -       if (ret)
+> -               return ret;
+> +       if (ihid_elan->vcc33) {
+> +               ret =3D regulator_enable(ihid_elan->vcc33);
+> +               if (ret)
+> +                       return ret;
+> +       }
+>
+>         ret =3D regulator_enable(ihid_elan->vccio);
+>         if (ret) {
+> @@ -52,8 +56,8 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops=
+)
+>                 msleep(ihid_elan->chip_data->post_power_delay_ms);
+>
+>         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
+> -       if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
+> -               msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
+> +       if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
+> +               msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms)=
+;
+>
+>         return 0;
+>  }
+> @@ -64,8 +68,12 @@ static void elan_i2c_hid_power_down(struct i2chid_ops =
+*ops)
+>                 container_of(ops, struct i2c_hid_of_elan, ops);
+>
+>         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
+> +       if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
+> +               msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms=
+);
+> +
+>         regulator_disable(ihid_elan->vccio);
+> -       regulator_disable(ihid_elan->vcc33);
+> +       if (ihid_elan->vcc33)
+> +               regulator_disable(ihid_elan->vcc33);
+>  }
+>
+>  static int i2c_hid_of_elan_probe(struct i2c_client *client)
+> @@ -89,24 +97,42 @@ static int i2c_hid_of_elan_probe(struct i2c_client *c=
+lient)
+>         if (IS_ERR(ihid_elan->vccio))
+>                 return PTR_ERR(ihid_elan->vccio);
+>
+> -       ihid_elan->vcc33 =3D devm_regulator_get(&client->dev, "vcc33");
+> -       if (IS_ERR(ihid_elan->vcc33))
+> -               return PTR_ERR(ihid_elan->vcc33);
+> -
+>         ihid_elan->chip_data =3D device_get_match_data(&client->dev);
+>
+> +       if (ihid_elan->chip_data->main_supply_name) {
+> +               ihid_elan->vcc33 =3D devm_regulator_get(&client->dev,
+> +                                                     ihid_elan->chip_dat=
+a->main_supply_name);
+> +               if (IS_ERR(ihid_elan->vcc33))
+> +                       return PTR_ERR(ihid_elan->vcc33);
+> +       }
+> +
+>         return i2c_hid_core_probe(client, &ihid_elan->ops,
+>                                   ihid_elan->chip_data->hid_descriptor_ad=
+dress, 0);
+>  }
+>
+>  static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data =3D {
+>         .post_power_delay_ms =3D 1,
+> -       .post_gpio_reset_delay_ms =3D 300,
+> +       .post_gpio_reset_on_delay_ms =3D 300,
+> +       .hid_descriptor_address =3D 0x0001,
+> +       .main_supply_name =3D "vcc33",
+> +};
+> +
+> +static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data =3D=
+ {
+> +       .post_power_delay_ms =3D 1,
+> +       .post_gpio_reset_on_delay_ms =3D 200,
+> +       .post_gpio_reset_off_delay_ms =3D 65,
+>         .hid_descriptor_address =3D 0x0001,
+> +       /*
+> +        * this touchscreen is tightly integrated with the panel and assu=
+mes
+> +        * that the relevant power rails (other than the IO rail) have al=
+ready
+> +        * been turned on by the panel driver because we're a panel follo=
+wer.
+> +        */
+> +       .main_supply_name =3D NULL,
+>  };
+>
+>  static const struct of_device_id elan_i2c_hid_of_match[] =3D {
+>         { .compatible =3D "elan,ekth6915", .data =3D &elan_ekth6915_chip_=
+data },
+> +       { .compatible =3D "ilitek,ili9882t", .data =3D &ilitek_ili9882t_c=
+hip_data },
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes since v2:
-- Made ovti,ov5642.yaml dual-licensed (Conor)
-- Fixed whitespace warning (Conor)
-- Squased both patches (Conor)
-- Added Conor's Reviewed-by tag.
-- Added linux-media on Cc.
+Logically, this patch depends on the panel-follower series that's now
+landed in drm-misc-next. With your Ack, I'm willing to land these two
+patches into drm-misc-next too. Other options:
 
- .../bindings/media/i2c/ovti,ov5642.yaml       | 118 ++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |   2 -
- 2 files changed, 118 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
+a) We could land the two patches in the i2c-hid tree since they don't
+appear to conflict. The touchscreen won't actually function until the
+patches meetup in linux-next but I don't think they'll give any
+compile errors (I haven't double-checked that, but I can). ...though
+it's possible that the dt bindings might generate errors? Again, I can
+investigate if we want to go this way.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-new file mode 100644
-index 000000000000..b48f1bc6aca4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5642.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV5642 Image Sensor
-+
-+maintainers:
-+  - Fabio Estevam <festevam@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5642
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: XCLK Input Clock
-+
-+  clock-names:
-+    const: xclk
-+
-+  AVDD-supply:
-+    description: Analog voltage supply, 2.8V.
-+
-+  DVDD-supply:
-+    description: Digital core voltage supply, 1.5V.
-+
-+  DOVDD-supply:
-+    description: Digital I/O voltage supply, 1.8V.
-+
-+  powerdown-gpios:
-+    maxItems: 1
-+    description: Reference to the GPIO connected to the powerdown pin, if any.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Reference to the GPIO connected to the reset pin, if any.
-+
-+  rotation:
-+    enum:
-+      - 0
-+      - 180
-+
-+  port:
-+    description: Digital Output Port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          clock-lanes:
-+            const: 0
-+
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2]
-+
-+          bus-width:
-+            enum: [8, 10]
-+
-+          data-shift:
-+            enum: [0, 2]
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/gpio/gpio.h>
-+
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@3c {
-+              compatible = "ovti,ov5642";
-+              pinctrl-names = "default";
-+              pinctrl-0 = <&pinctrl_ov5642>;
-+              reg = <0x3c>;
-+              clocks = <&clk_ext_camera>;
-+              clock-names = "xclk";
-+              DOVDD-supply = <&vgen4_reg>;
-+              AVDD-supply = <&vgen3_reg>;
-+              DVDD-supply = <&vgen2_reg>;
-+              powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-+
-+              port {
-+                  /* Parallel bus endpoint */
-+                  ov5642_to_parallel: endpoint {
-+                      remote-endpoint = <&parallel_from_ov5642>;
-+                      bus-width = <8>;
-+                      data-shift = <2>; /* lines 9:2 are used */
-+                      hsync-active = <0>;
-+                      vsync-active = <0>;
-+                      pclk-sample = <1>;
-+                  };
-+              };
-+          };
-+      };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 40bc475ee7e1..ab1423a4aa7f 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -313,8 +313,6 @@ properties:
-           - nuvoton,w83773g
-             # OKI ML86V7667 video decoder
-           - oki,ml86v7667
--            # OV5642: Color CMOS QSXGA (5-megapixel) Image Sensor with OmniBSI and Embedded TrueFocus
--          - ovti,ov5642
-             # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
-           - plx,pex8648
-             # Pulsedlight LIDAR range-finding sensor
--- 
-2.34.1
+b) We can snooze this for a few months and you can pick it to i2c-hid
+when my series reaches mainline.
 
+Let me know how you'd like to proceed.
+
+-Doug
