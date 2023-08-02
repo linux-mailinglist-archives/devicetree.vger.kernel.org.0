@@ -2,112 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 358B776D88E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:22:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCBF76D8AB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:30:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbjHBUWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 16:22:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60286 "EHLO
+        id S230444AbjHBUaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 16:30:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbjHBUWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:22:18 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDDE10C7;
-        Wed,  2 Aug 2023 13:22:16 -0700 (PDT)
-Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 372IWJgr030377;
-        Wed, 2 Aug 2023 20:21:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references; s=pps0720;
- bh=a1qFwhdGLlotWt2azOSRVBZpAoKwOAAUyw4SiQNQcSc=;
- b=I5/0NHZEgbFwYkM0Wlx1VSHKOxwA9+RgmE2CHWoIWFbiYql3aHtYBAA+CNlxn/7ncs3z
- /vX1MWL2EU2wPZP6WNFNIb3/RaYXVvx1IsMgDcpurn29l7qD4SwEFU7UuBzwz7F3HH8g
- pZzHGKpb54e23tXTykDM3hiMIhnKFHWWTeWwbbF2BV8vkT7fMSMccYRtgrCMvXv3CmhH
- dwlr68biP/V+gtiMXGac80/Czee5QatI3J1ouCSmYW8HH+vdvJvAy0jhk8jld+C+zbIa
- yqZzYdJzfxyEpQAJP55FSHQYNats6W8I6z3SNnvHWDkDFk9di13msRkKV7q/RS+f6qow XA== 
-Received: from p1lg14881.it.hpe.com ([16.230.97.202])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3s7rbntyph-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Aug 2023 20:21:59 +0000
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+        with ESMTP id S229520AbjHBUaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:30:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E7826A2;
+        Wed,  2 Aug 2023 13:30:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 4A20B8047AC;
-        Wed,  2 Aug 2023 20:21:58 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.39])
-        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 4F5DF80F07E;
-        Wed,  2 Aug 2023 20:21:57 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
-        andrew@lunn.ch, verdun@hpe.com, nick.hawkins@hpe.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8FBD561AFE;
+        Wed,  2 Aug 2023 20:30:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E347FC433C9;
+        Wed,  2 Aug 2023 20:30:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691008223;
+        bh=EmWbaenOMDMD6nYdMzBFCScTkic4CvjgRoEjkBg+bnE=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=VvEEJn4ZP6H4Q7fIJSQjyMaGQyiLccK7NXIEXRuMbSrVtwDsqvcAejUc2tGH5pae6
+         fMQ7pxeSQBIuhEwYHHI27EyCsNmhk9p7nA8AHCvgfG8Pk4s5A9vAWpy7qjVyLqHQtF
+         R6FoA3B9ngUfgMdE7WBiuKHfMEEq7sv/pZFRiirj/+UK2XWO075tP5HAmzNLoJ58sD
+         F5n6tRD2YRHmhFBwp9qCso2O/92w/PHOhwMmElhigy4x7WBM418XzRFgsas+oP2Gpr
+         O9C6dRL9rgRlmmEbn2vnJW/kWRcdIWyjDNtrbApwfOAoyfxjKDfnM/AS4/65d2Rzil
+         V0Jwvv2I4L/PQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C4843C6445B;
+        Wed,  2 Aug 2023 20:30:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/2] Add WCN3988 Bluetooth support for Fairphone 4
+From:   patchwork-bot+bluetooth@kernel.org
+Message-Id: <169100822279.572.3966556819111433761.git-patchwork-notify@kernel.org>
+Date:   Wed, 02 Aug 2023 20:30:22 +0000
+References: <20230802-fp4-bluetooth-v3-0-7c9e7a6e624b@fairphone.com>
+In-Reply-To: <20230802-fp4-bluetooth-v3-0-7c9e7a6e624b@fairphone.com>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
         pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] MAINTAINERS: HPE: Add GXP UMAC Networking Files
-Date:   Wed,  2 Aug 2023 15:18:24 -0500
-Message-Id: <20230802201824.3683-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230802201824.3683-1-nick.hawkins@hpe.com>
-References: <20230802201824.3683-1-nick.hawkins@hpe.com>
-X-Proofpoint-GUID: moIPOT1-sUx_3HnJ-L7myeCB6O1afj5j
-X-Proofpoint-ORIG-GUID: moIPOT1-sUx_3HnJ-L7myeCB6O1afj5j
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-02_16,2023-08-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 mlxscore=0 malwarescore=0
- spamscore=0 clxscore=1015 mlxlogscore=945 phishscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308020179
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        conor+dt@kernel.org, quic_bgodavar@quicinc.com,
+        quic_rjliao@quicinc.com, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+Hello:
 
-List the files added for supporting the UMAC networking on GXP.
+This series was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+On Wed, 02 Aug 2023 08:56:27 +0200 you wrote:
+> Add support in the btqca/hci_qca driver for the WCN3988 and add it to
+> the sm7225 Fairphone 4 devicetree.
+> 
+> Devicetree patches go via Qualcomm tree, the rest via their respective
+> trees.
+> 
+> --
+> Previously with the RFC version I've had problems before with Bluetooth
+> scanning failing like the following:
+> 
+> [...]
 
----
+Here is the summary with links:
+  - [v3,1/2] dt-bindings: net: qualcomm: Add WCN3988
+    https://git.kernel.org/bluetooth/bluetooth-next/c/d2a31b6f9701
+  - [v3,2/2] Bluetooth: btqca: Add WCN3988 support
+    https://git.kernel.org/bluetooth/bluetooth-next/c/f2e1dd87c9cd
 
-v2:
- *Changed dt-binding net directory files to "hpe,gxp*"
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 27ef11624748..c0bb534bec97 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2243,6 +2243,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
- F:	Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
- F:	Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-+F:	Documentation/devicetree/bindings/net/hpe,gxp*
- F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
- F:	Documentation/hwmon/gxp-fan-ctrl.rst
-@@ -2252,6 +2253,7 @@ F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
-+F:	drivers/net/ethernet/hpe/
- F:	drivers/spi/spi-gxp.c
- F:	drivers/watchdog/gxp-wdt.c
- 
+You are awesome, thank you!
 -- 
-2.17.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
