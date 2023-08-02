@@ -2,57 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB4876D244
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 17:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E814A76D24E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 17:41:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235309AbjHBPjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 11:39:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60854 "EHLO
+        id S234041AbjHBPlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 11:41:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234995AbjHBPjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 11:39:25 -0400
+        with ESMTP id S234078AbjHBPlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 11:41:08 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB9D2D72;
-        Wed,  2 Aug 2023 08:39:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1540CFE;
+        Wed,  2 Aug 2023 08:41:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BF3D61A11;
-        Wed,  2 Aug 2023 15:39:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4489C433C8;
-        Wed,  2 Aug 2023 15:39:09 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A139561A0D;
+        Wed,  2 Aug 2023 15:41:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F37E8C433C7;
+        Wed,  2 Aug 2023 15:41:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690990752;
-        bh=+26frRLbvBpbYBKLmJbCxTJ/vpdqT+JFg+ruN1qp2TI=;
+        s=k20201202; t=1690990867;
+        bh=5iLGEaZl5S/LoWq5PFF3O1C6HRMprL1muQ2ieAfB1hc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=moG/CIIHh4jSEEMJTLNu8/lHpH+QeCZqw1zh6+nhnGf04Yb5nvwOm2gdI0JrMG9Mc
-         OMn+4YpFX7bWq/+9VbFGIeA8KDn32BxQyD5KYpG72dNNC5LsLtAsMdrjG8Lgaf9MIg
-         tR/T9dxm9K8EOQt22jHWnho9Q/JKLknjvMnzVqvcxLjyanCab4zEso9bdFJKtnRWoU
-         1Ho7ItAhXLN2zgEYy0uIndcyRHY0AcIsa+V5NWFBRlO8da6Buovhm5sI4+C0PwP3NW
-         27VEoz2RcLoYB3k6HyCdmmtoVMPXxHvuf1WTheKzGMLc4MtyNmoYpLLzPDfSEsLzvC
-         Ejdr3KndY2O8Q==
-Date:   Wed, 2 Aug 2023 16:39:07 +0100
+        b=KgYBWxFoFzbGZnDUn38jPv9P/jNuT3yMom4M/PEyvPJ9uoPe+Xh12wwyP9nHI2WYw
+         awapgOCsuLJmSxCKKqfFwUk4OWZA4PNNkGuyeqzWXDRlGqdgDHeTocuHdtyEXhBlMi
+         DLBBzznqCyx2zrcgyZlN1JoZeaKkux6mZcBJPXhxNF/DvBhsewIkJToFKabPvO8jyI
+         5QE31GXH9X3jEgDPhhydqe10x6/qF6xXyXdoLgXXevBMgtWwuxjD7y9brf5Yqr9a9i
+         PP4uqyCX10/TQQmBz6Vctwvd51vBEXQpq4O4oIQnhYb9dQLHYiuScky9SlCMObxta7
+         oAMmki3jZn/LA==
+Date:   Wed, 2 Aug 2023 16:41:02 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Mihai.Sain@microchip.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
-        andre.przywara@arm.com, Andrei.Simion@microchip.com,
-        Jerry.Ray@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Cristian.Birsan@microchip.com
-Subject: Re: [PATCH 1/2] dt-bindings: ARM: at91: Document Microchip SAMA5D29
- Curiosity
-Message-ID: <20230802-scoring-pony-0cb3ad094018@spud>
-References: <20230801111151.6546-1-mihai.sain@microchip.com>
- <20230801-unbalance-baguette-cd0d4e7e0107@spud>
- <PH8PR11MB6804073D5A1F26D8699756F8820BA@PH8PR11MB6804.namprd11.prod.outlook.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc:     devicetree@vger.kernel.org, git@amd.com, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        michal.simek@amd.com
+Subject: Re: [PATCH v4] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+Message-ID: <20230802-purveyor-dandruff-fd1c9d58cad8@spud>
+References: <20230802043557.26478-1-shubhrajyoti.datta@amd.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="99q6Lptlzcoa5Bia"
+        protocol="application/pgp-signature"; boundary="w/BPwR6QwUgTJtBW"
 Content-Disposition: inline
-In-Reply-To: <PH8PR11MB6804073D5A1F26D8699756F8820BA@PH8PR11MB6804.namprd11.prod.outlook.com>
+In-Reply-To: <20230802043557.26478-1-shubhrajyoti.datta@amd.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,56 +59,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---99q6Lptlzcoa5Bia
+--w/BPwR6QwUgTJtBW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 02, 2023 at 12:42:52PM +0000, Mihai.Sain@microchip.com wrote:
-> On Tue, Aug 01, 2023 at 02:11:50PM +0300, Mihai Sain wrote:
-
-> > ---
-> >  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml=20
-> > b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> > index dfb8fd089197..89d75fbb1de4 100644
-> > --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> > @@ -79,6 +79,13 @@ properties:
-> >            - const: atmel,sama5d2
-> >            - const: atmel,sama5
-> > =20
-> > +      - description: Microchip SAMA5D29 Curiosity
-> > +        items:
-> > +          - const: microchip,sama5d29-curiosity
-> > +          - const: atmel,sama5d29
-> > +          - const: atmel,sama5d2
-> > +          - const: atmel,sama5
+On Wed, Aug 02, 2023 at 10:05:57AM +0530, Shubhrajyoti Datta wrote:
+> Convert the xlnx,zynqmp-clk.txt to yaml.
+> versal-clk.yaml already exists that's why ZynqMP is converted and
+> merged.
 >=20
-> What is the benefit of adding the two familial compatibles? Is there soft=
-ware that actually uses these?
->=20
-> Thanks,
-> Conor.
->=20
-> Currently there is no software.
-> In this file we've just documented the previous boards from sam9, sama5, =
-sama7 MPUs.
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-Please fix your quoting. If no software cares about this, what is the
-benefit of adding familial compatibles?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---99q6Lptlzcoa5Bia
+Thanks,
+Conor.
+
+--w/BPwR6QwUgTJtBW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMp4mwAKCRB4tDGHoIJi
-0piVAP9G3ga7bbRbo8QSR420Fhqag5yUVcino8bfFrLs7ssDaQEA/X+Kkb3OBTGT
-ET5ozafhFE9pZqdveoRIppIc0UnOtwM=
-=TrOH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMp5DgAKCRB4tDGHoIJi
+0t1SAQDv8aY1IXDpTVS0mUWpvtHMG8HYop3GaviT0EHLUG7KJgD+Nerspan8o0m8
+kz5tYgGJG0jWcXYW3Z1nFT+NYF8zFwc=
+=foBk
 -----END PGP SIGNATURE-----
 
---99q6Lptlzcoa5Bia--
+--w/BPwR6QwUgTJtBW--
