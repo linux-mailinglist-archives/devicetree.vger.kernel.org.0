@@ -2,87 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BCE76D886
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94FE876D890
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbjHBUUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 16:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59384 "EHLO
+        id S232269AbjHBUWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 16:22:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232161AbjHBUUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:20:17 -0400
-X-Greylist: delayed 540 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 02 Aug 2023 13:20:16 PDT
-Received: from 8.mo581.mail-out.ovh.net (8.mo581.mail-out.ovh.net [46.105.77.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2587D10C7
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 13:20:16 -0700 (PDT)
-Received: from director3.ghost.mail-out.ovh.net (unknown [10.108.4.127])
-        by mo581.mail-out.ovh.net (Postfix) with ESMTP id 8CF342412B
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 20:11:14 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-5nhfz (unknown [10.110.103.37])
-        by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id E69C61FDC4;
-        Wed,  2 Aug 2023 20:11:12 +0000 (UTC)
-Received: from etezian.org ([37.59.142.99])
-        by ghost-submission-6684bf9d7b-5nhfz with ESMTPSA
-        id FKtzJGC4ymSUiw0Acuci9A
-        (envelope-from <andi@etezian.org>); Wed, 02 Aug 2023 20:11:12 +0000
-Authentication-Results: garm.ovh; auth=pass (GARM-99G0032f48329d-2e05-4aea-843c-dc19b2326188,
-                    0C641BB37B7CC30D107EA61C426C60CA54BC1A77) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 178.238.172.51
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andi Shyti <andi.shyti@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: nxp,pca9541: convert to DT schema
-Date:   Wed,  2 Aug 2023 22:10:33 +0200
-Message-Id: <169100562788.1919254.3881890120063393214.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230731163833.319258-1-krzysztof.kozlowski@linaro.org>
-References: <20230731163833.319258-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 13286181854062971501
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedviedrkedtgdehtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredtjeenucfhrhhomheptehnughiucfuhhihthhiuceorghnughirdhshhihthhisehkvghrnhgvlhdrohhrgheqnecuggftrfgrthhtvghrnhepveevieffieefgfefuddvteelffeuhfelffejteejuddvveekveehvdejgeefteevnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepuddvjedrtddrtddruddpudejkedrvdefkedrudejvddrhedupdefjedrheelrddugedvrdelleenucevlhhushhtvghrufhiiigvpeegnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoegrnhguihesvghtvgiiihgrnhdrohhrgheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedupdhmohguvgepshhmthhpohhuth
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S232161AbjHBUWT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:22:19 -0400
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3BAF268F;
+        Wed,  2 Aug 2023 13:22:16 -0700 (PDT)
+Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
+        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 372FVvh9010627;
+        Wed, 2 Aug 2023 20:21:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=G0kiRdSmBdyx4TfhxwwXuA3DkCJaC8w3wSHrV5TtevA=;
+ b=losdoeyMauHKGt0wydRV31KeTYN3hmJ9cixTbBQwjdm69XrvUe64/9Rnvvf0CrXjLvsR
+ gsTsHDYLUOvJejw5FHREL8c3pboJ3vWi3sRagLcNdr+swGk0gdRK3RhFoozYUSzAvo5l
+ 3aRK21DjB/zdx5QrWJKKkmp9pkE5iX3Opxi5D1peRcy08MiWJNCZV6RDJEUwlLL4Tl7h
+ p5Ay3BQCQF5dIbJHIcIZHVDJ6gpTuDxMqrAFaQWKGVssngsWRfgN6X4s/43u3MvOhnCi
+ 1X9opa5Xotm/F/NJhdRsiRr4tzEChpK3RMrm/e5hmg4q7gZHi0wlHg/Zz4gg5hb2+qL/ YQ== 
+Received: from p1lg14880.it.hpe.com ([16.230.97.201])
+        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3s7hb76myd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 02 Aug 2023 20:21:55 +0000
+Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id D2B07800187;
+        Wed,  2 Aug 2023 20:21:53 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.39])
+        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 4656580E885;
+        Wed,  2 Aug 2023 20:21:52 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
+        andrew@lunn.ch, verdun@hpe.com, nick.hawkins@hpe.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] ARM: Add GXP UMAC Support
+Date:   Wed,  2 Aug 2023 15:18:19 -0500
+Message-Id: <20230802201824.3683-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-GUID: x9Sy7t70ZgbTuaig2oIaHBpPQUSxddJI
+X-Proofpoint-ORIG-GUID: x9Sy7t70ZgbTuaig2oIaHBpPQUSxddJI
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-02_16,2023-08-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ phishscore=0 priorityscore=1501 spamscore=0 suspectscore=0 mlxlogscore=999
+ adultscore=0 impostorscore=0 mlxscore=0 clxscore=1011 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308020178
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-On Mon, 31 Jul 2023 18:38:32 +0200, Krzysztof Kozlowski wrote:
-> Convert the bindings for NXP PCA9541 I2C bus master selector to DT
-> schema.
-> 
-> 
+The GXP contains two Ethernet MACs that can be
+connected externally to several physical devices. From an external
+interface perspective the BMC provides two SERDES interface connections
+capable of either SGMII or 1000Base-X operation. The BMC also provides
+a RMII interface for sideband connections to external Ethernet controllers.
 
-Applied to i2c/andi-for-next on
+The primary MAC (umac0) can be mapped to either SGMII/1000-BaseX
+SERDES interface.  The secondary MAC (umac1) can be mapped to only
+the second SGMII/1000-Base X Serdes interface or it can be mapped for
+RMII sideband.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git
+The MDIO(mdio0) interface from the primary MAC (umac0) is used for
+external PHY status and configuration. The MDIO(mdio1) interface from
+the secondary MAC (umac1) is routed to the SGMII/100Base-X IP blocks
+on the two SERDES interface connections. In most cases the internal
+phy connects directly to the external phy.
 
-Please note that this patch may still undergo further evaluation
-and the final decision will be made in collaboration with
-Wolfram.
+---
 
-Thank you,
-Andi
+Changes since v1:
+ *Corrected improper descriptions and use of | in yaml files
+ *Used reverse christmas tree format for network drivers
+ *Moved gxp-umac-mdio.c to /mdio/
+ *Fixed dependencies on both Kconfigs
+ *Added COMPILE_TEST to both Kconfigs
+ *Used devm_ functions where possible in both drivers
+ *Moved mac-address to inside of port in yaml files
+ *Exchanged listing individual yaml files for hpe,gxp*
+ *Restricted use of le32
 
-Patches applied
-===============
-[1/2] dt-bindings: i2c: nxp,pca9541: convert to DT schema
-      commit: 696a995b8f8b2611a37a11cffeb67de6d8757b29
-[2/2] dt-bindings: i2c: arb-gpio-challange: convert to DT schema
-      commit: 54b4b9b74530eec66a6dd2cba33abf0e65a17cec
+Nick Hawkins (5):
+  dt-bindings: net: Add HPE GXP UMAC MDIO
+  net: hpe: Add GXP UMAC MDIO
+  dt-bindings: net: Add HPE GXP UMAC
+  net: hpe: Add GXP UMAC Driver
+  MAINTAINERS: HPE: Add GXP UMAC Networking Files
+
+ .../bindings/net/hpe,gxp-umac-mdio.yaml       |  50 +
+ .../devicetree/bindings/net/hpe,gxp-umac.yaml | 112 +++
+ MAINTAINERS                                   |   2 +
+ drivers/net/ethernet/Kconfig                  |   1 +
+ drivers/net/ethernet/Makefile                 |   1 +
+ drivers/net/ethernet/hpe/Kconfig              |  32 +
+ drivers/net/ethernet/hpe/Makefile             |   1 +
+ drivers/net/ethernet/hpe/gxp-umac.c           | 889 ++++++++++++++++++
+ drivers/net/ethernet/hpe/gxp-umac.h           |  89 ++
+ drivers/net/mdio/Kconfig                      |  13 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-gxp-umac.c              | 142 +++
+ 12 files changed, 1333 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/hpe,gxp-umac-mdio.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/hpe,gxp-umac.yaml
+ create mode 100644 drivers/net/ethernet/hpe/Kconfig
+ create mode 100644 drivers/net/ethernet/hpe/Makefile
+ create mode 100644 drivers/net/ethernet/hpe/gxp-umac.c
+ create mode 100644 drivers/net/ethernet/hpe/gxp-umac.h
+ create mode 100644 drivers/net/mdio/mdio-gxp-umac.c
+
+-- 
+2.17.1
+
