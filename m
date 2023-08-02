@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B9876C48C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 07:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF44576C493
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 07:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232204AbjHBFFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 01:05:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36028 "EHLO
+        id S231858AbjHBFGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 01:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232130AbjHBFFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 01:05:14 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EDC2D71;
-        Tue,  1 Aug 2023 22:04:54 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37254mlQ030350;
-        Wed, 2 Aug 2023 00:04:48 -0500
+        with ESMTP id S232089AbjHBFGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 01:06:13 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9FE11BFA;
+        Tue,  1 Aug 2023 22:06:10 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372563pf019669;
+        Wed, 2 Aug 2023 00:06:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690952688;
-        bh=wNYAtgSpz4QsACX9gr546ZwReJXxZ+edcxt6G6J4Z1A=;
+        s=ti-com-17Q1; t=1690952764;
+        bh=6JEuWc4f30IuqUU6XKRgm84QAg2VlhvFZkxR9ff0p/w=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=wiTcJrdJEgcmDF2supVrW21ogs+kKsAZ4dLF3u0aPb8uTA3oWxCUOh3Xs8p0pXHwk
-         BVLowvpRvL1sV4RtdKXTtuvWTd1JTMQ14nsddl30tDfPrPyrMujKH7TTVrs5635BCj
-         d4nuY1yZ6MjLXDjiCE620qvCJZ3SGA6euRKCmL2I=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37254mV9002199
+        b=n54IXrxR1wOT4556mNZjSF12Zyz0J661CpZaEqhfTO7rnRMkOeVetLAscGvklSyOC
+         WdKZRmPwNFBdXL7QePnmYOMWPUiHyI/NIr1mKbiVjaSCngzuvcrPtTEXS5IdoEJJfj
+         35f2iAo6TAw7Jjowqb9t24zXDSa+HK6dE0KvVDiQ=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372563uJ026209
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Aug 2023 00:04:48 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 2 Aug 2023 00:06:03 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Aug 2023 00:04:47 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 00:06:03 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Aug 2023 00:04:47 -0500
+ Frontend Transport; Wed, 2 Aug 2023 00:06:03 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37254lv6014667;
-        Wed, 2 Aug 2023 00:04:47 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372563NF120612;
+        Wed, 2 Aug 2023 00:06:03 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+To:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Bhavya Kapoor <b-kapoor@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <u-kumar1@ti.com>
-Subject: Re: [PATCH v6] arm64: dts: ti: k3-j721s2: Add support for CAN instances 3 and 5 in main domain
-Date:   Wed, 2 Aug 2023 00:04:47 -0500
-Message-ID: <169095267501.2813054.18243898064074580857.b4-ty@ti.com>
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>
+CC:     Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-j784s4: Add UFS support
+Date:   Wed, 2 Aug 2023 00:06:02 -0500
+Message-ID: <169095270125.2813863.16614506862321546595.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230725085939.536766-1-b-kapoor@ti.com>
-References: <20230725085939.536766-1-b-kapoor@ti.com>
+In-Reply-To: <20230725133607.2021379-1-u-kumar1@ti.com>
+References: <20230725133607.2021379-1-u-kumar1@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -67,23 +67,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhavya Kapoor,
+Hi Udit Kumar,
 
-On Tue, 25 Jul 2023 14:29:39 +0530, Bhavya Kapoor wrote:
-> CAN instances 3 and 5 in the main domain are brought on the common
-> processor board through header J27 and J28. The CAN High and Low lines
-> from the SoC are routed through a mux on the SoM. The select lines need
-> to be set for the CAN signals to get connected to the transceivers on
-> the common processor board. Threfore, add respective mux, transceiver
-> dt nodes to add support for these CAN instances.
+On Tue, 25 Jul 2023 19:06:05 +0530, Udit Kumar wrote:
+> This patch series adds UFS support for J784S4 SOC,
+> UFS is kept disabled at SOC level, and enabled in EVM where
+> UFS flash is present.
+> 
+> This patch is tested by enabling below configs on top of defconfig
+> CONFIG_SCSI_UFS_BSG=y
+> CONFIG_SCSI_UFS_CDNS_PLATFORM=y
+> CONFIG_SCSI_UFS_TI_J721E=y
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-j721s2: Add support for CAN instances 3 and 5 in main domain
-      commit: 98f3b667e1de99dc670e12563eae03e15c668d95
+[1/2] arm64: dts: ti: k3-j784s4-main: Add DT node for UFS
+      commit: f33f5e4c801b7f1838f05aae81eaed8189a1eac4
+[2/2] arm64: dts: ti: k3-j784s4-evm: Add Support for UFS peripheral
+      commit: 5d55545cc2da8ad320b73705b26a5c0a837b20da
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
