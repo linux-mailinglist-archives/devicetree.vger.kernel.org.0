@@ -2,140 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D3776D518
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 19:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A2C76D5D3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 19:46:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230202AbjHBRZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 13:25:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47806 "EHLO
+        id S230128AbjHBRqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 13:46:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjHBRZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 13:25:57 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4393ED;
-        Wed,  2 Aug 2023 10:25:56 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-583fe10bb3cso82826357b3.2;
-        Wed, 02 Aug 2023 10:25:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690997156; x=1691601956;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YpPXroXrivp2oqSXrd5mVrkzp3XdQTSk9hrAgVtYUMI=;
-        b=di135iIWW+eTqzw4vL43zpQ02LIFyGoRZR7ZhFsNukaq27imiHGAlcaz3pSlptp5Dp
-         EwYJEpfS5XBfF5e6JZQZijnreYABU5nMNqk6RCYQN8xlX/zNNnt+sjIiPokyWwZJbpqD
-         TP8vfYN9zToVR9ljOLLtq1Frm9VQkuFkXVdHJ1BJ/u0xKQRp3x9v41IACG9ZhfVf3ZOS
-         4UrbUOj1Hgihw7yx+7VZynYoM9+zSsWWOVZkbCu+FxF84jha0q3eO6wRgv+Qe9ihw2P7
-         gWiqKytdPdybEIo2UORvZChskMiIVcvjQM+4JoXMYTRKUlSqb6gcjQsKlYBzV8GYvYDx
-         V94A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690997156; x=1691601956;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YpPXroXrivp2oqSXrd5mVrkzp3XdQTSk9hrAgVtYUMI=;
-        b=E8o/GHSRxn7iRONkUsZQ8ZRDZw0f5IRhlnzUbuDeOfSLe3NE8UT+QDA7Tsag00CE4m
-         HP9KN/OKx8Zy6ncHkjD98QvSI6OIkQa/yA2l4Dz165CqBHEZD9w4M5p1B5D6C0SK+FVI
-         kcqJVQiRRMS28vqOZFjw6vno4XBeT8mdHIHGGlgiBGh1rjvCX/ooCIWBPNj1ufMKwxhA
-         z+rNAsGyfLBDv9CxSEWN2Q4FM6VPxn0nTVLTSx1NzC3jROgMGHLsVn4LnmUfoSgZoqei
-         cNQPCnMxdT4Tb4yjMh0pb98EwdUbwH3qccoSFArgBDY9Jr0pv7MB0S+/V00bnXMPnety
-         ecjg==
-X-Gm-Message-State: ABy/qLYmfiFjjDjE5kNY1FLXQO+DkISIxfhb9Z20v/CNHcrL4q6bWZVA
-        2DzwY3DpASoXLZW6Z+XasG0=
-X-Google-Smtp-Source: APBJJlEt7z7QZtDchjFQrTTiyOdhjoBA522GpyLibMtT4mAHwoGMoo1oTrWqNFzmBJaiw8V99Oc7mQ==
-X-Received: by 2002:a81:c313:0:b0:576:f0d6:3d68 with SMTP id r19-20020a81c313000000b00576f0d63d68mr18840238ywk.32.1690997155892;
-        Wed, 02 Aug 2023 10:25:55 -0700 (PDT)
-Received: from neuromancer. ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id a135-20020a0dd88d000000b0057a67df3308sm4677099ywe.101.2023.08.02.10.25.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 10:25:55 -0700 (PDT)
-Message-ID: <64ca91a3.0d0a0220.8e58d.89b3@mx.google.com>
-X-Google-Original-Message-ID: <ZMqRoAEesL5GAflV@neuromancer.>
-Date:   Wed, 2 Aug 2023 12:25:52 -0500
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231424AbjHBRqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 13:46:01 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DCDD1FD6;
+        Wed,  2 Aug 2023 10:45:31 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372HjOCZ004792;
+        Wed, 2 Aug 2023 12:45:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690998324;
+        bh=o+iizGUxY9Q/0JfHgsgJ1bmw0AtDi/Vr5mVEzv0isUY=;
+        h=From:To:CC:Subject:Date;
+        b=A7ItdDV9h4HSaYMiLvGy8r0bWMpLu2zPO8Omy+AlOSWrT7+SQoKPoQPEE7CnGl1jr
+         XaDYNL4CH1TQoyfAbVfY+rRSLCPxRwBk3Qriylmgrz/I2deFNGxaV4iUu7HfjPtmKy
+         i3Ml6PCIzlxgVRAeRpAo1S5J/TWSkM465bmeUYYI=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372HjOXa004695
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Aug 2023 12:45:24 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
+ Aug 2023 12:45:24 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 2 Aug 2023 12:45:23 -0500
+Received: from fllv0040.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372HjN0d027307;
+        Wed, 2 Aug 2023 12:45:23 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        cros-qcom-dts-watchers@chromium.org, linux-input@vger.kernel.org,
-        hsinyi@google.com, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        yangcong5@huaqin.corp-partner.google.com
-Subject: Re: [PATCH v3 02/10] drm/panel: Check for already prepared/enabled
- in drm_panel
-References: <20230725203545.2260506-1-dianders@chromium.org>
- <20230725133443.v3.2.I59b417d4c29151cc2eff053369ec4822b606f375@changeid>
- <snx3fzvf3icauri2xuigydvpqxtzhp34mptdxvifi7jswm2evy@sx7jr7zwvjw5>
- <CAD=FV=VcsTik+HD11xeDM2Jq9ispcX0-j5QtK8D1qUkrGabRGg@mail.gmail.com>
- <i3cbgrc365lwscwux2itho6uv74ji3hsjuge4zoxfnlnhacyqc@r73mmifyxffj>
- <CADcbR4JB0h8fByM2Z6diByvWaFprW9GDapBNt+YLWr9-vKoe7A@mail.gmail.com>
- <kuctj2p353nsae24lrhcymqqpfajbc7qoqly63zpwvdp6lgu3b@kk4gpzsapxnn>
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH 1/3] arm64: dts: ti: k3-am62a: Remove syscon compatible from epwm_tbclk
+Date:   Wed, 2 Aug 2023 12:45:19 -0500
+Message-ID: <20230802174521.236255-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <kuctj2p353nsae24lrhcymqqpfajbc7qoqly63zpwvdp6lgu3b@kk4gpzsapxnn>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 31, 2023 at 07:03:07PM +0200, Maxime Ripard wrote:
-> Hi,
-> 
-> On Mon, Jul 31, 2023 at 11:33:22AM -0500, Chris Morgan wrote:
-> > In my case a few different panel drivers disable the regulators in the
-> > unprepare/disable routines.
-> 
-> And that's totally fine.
-> 
-> > For at least the Rockchip DSI implementations for some reason the
-> > panel gets unprepared more than once, which triggers an unbalanced
-> > regulator disable.
-> 
-> "For some reason" being that DW-DSI apparently finds it ok to bypass any
-> kind of abstraction and randomly calling panel functions by itself:
-> 
-> https://elixir.bootlin.com/linux/v6.4.7/source/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c#L868
-> 
-> It looks like it's fixed it current drm-misc-next though.
+The other instances have been fixed, but AM62a seems to have been missed,
+fix this here.
 
-Good, when I get a chance I will test it out with the existing panels
-I have at my disposal and submit some patches to clean them up.
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> > Obviously though the correct course of action is to fix the reason why
-> > the panel is disabled more than once, but that's at least the root
-> > cause of this behavior on the few panels I've worked with.
-> 
-> Like I said we already have a commit on the way to fix that, so it
-> shouldn't be an issue anymore.
-> 
-> I stand by what I was saying earlier though, I think it's mostly
-> cargo-cult or drivers being very wrong. If anything, the DW-DSI stuff
-> made me even more convinced that we shouldn't even entertain that idea
-> :)
-> 
-> Maxime
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+index 8397cb80f5596..3198af08fb9fa 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+@@ -56,7 +56,7 @@ phy_gmii_sel: phy@4044 {
+ 		};
+ 
+ 		epwm_tbclk: clock-controller@4130 {
+-			compatible = "ti,am62-epwm-tbclk", "syscon";
++			compatible = "ti,am62-epwm-tbclk";
+ 			reg = <0x4130 0x4>;
+ 			#clock-cells = <1>;
+ 		};
+-- 
+2.39.2
 
-Thank you, and yes if a driver is doing something it shouldn't we
-shouldn't be patching around that, we should be fixing things. Thanks
-for providing me with the additional info.
-
-Chris
