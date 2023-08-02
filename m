@@ -2,125 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BE8376C9C6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 11:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE98576C9D4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 11:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231821AbjHBJrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 05:47:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51596 "EHLO
+        id S230396AbjHBJu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 05:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231171AbjHBJrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 05:47:05 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1000D210D;
-        Wed,  2 Aug 2023 02:46:54 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5039A2AC;
-        Wed,  2 Aug 2023 11:45:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1690969549;
-        bh=mWLrVrwIENQP6yWA740jG3Jkt4JmjdTN4/c8G9DqSSI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=uySHVHN5SHkxBg4EUtkJjR8WiiSPxy+vFXV3TL4W/jLBDWIYLH41f/KbGr8snh/Ev
-         QvSKJBHF5CRIsybGJ2mgpA15oPU/eI359SFrIIDFHW2GuNr5hgB26ds6TC3MWEc90h
-         yiWn8x5hopHZdzBdFenMQR/uPYvmu0H9POvuXw5Q=
-Message-ID: <96a8ca70-9957-bb4f-088c-c0895a9e7347@ideasonboard.com>
-Date:   Wed, 2 Aug 2023 12:46:48 +0300
+        with ESMTP id S230119AbjHBJuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 05:50:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C737CE5C;
+        Wed,  2 Aug 2023 02:50:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 62ECC618D8;
+        Wed,  2 Aug 2023 09:50:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B86ECC433C9;
+        Wed,  2 Aug 2023 09:50:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690969823;
+        bh=YNGg54vc0V6PfCPoIvIB77azQ9/faPnu2+EwvDjYIyQ=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Z6WCjDiViJXAZWOfWK8Njn0ud+2JZvyGgjOY7djg2olEBGftboehjEzhNKo9yeg/1
+         awFUHp/TDhTwY4NrXBS4h/fTp5sEGnBUXE271UUiuB2bVkCxm/6hYJuvaWrj0JB3VY
+         7dc+irxCLejgIWYpp0jQ2qykzEKZKlHOacOqqmq1zQJ0mNZqdaPnX/l1xe3O+1K5Ht
+         SE7eWnZnIi23degUzFvl1338uMV0vq7cmeAcSCMic8svYlVNC8B49aWz3TnMPOnIGh
+         6WgxeFwFfhodLHu2tRRzgaYntF/kk4+iOMuxmiTsxRaj29vsN8sRi3UPG5khwaV0eP
+         nD3RPG4subvnw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9B0FFC6445B;
+        Wed,  2 Aug 2023 09:50:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v8 14/16] media: cadence: csi2rx: Support RAW8 and RAW10
- formats
-Content-Language: en-US
-To:     Jai Luthra <j-luthra@ti.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        niklas.soderlund+renesas@ragnatech.se,
-        Benoit Parrot <bparrot@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, nm@ti.com,
-        devarsht@ti.com
-References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
- <20230731-upstream_csi-v8-14-fb7d3661c2c9@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230731-upstream_csi-v8-14-fb7d3661c2c9@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v13 00/10] Introduce ICSSG based ethernet Driver
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <169096982363.22290.18372322517345750878.git-patchwork-notify@kernel.org>
+Date:   Wed, 02 Aug 2023 09:50:23 +0000
+References: <20230801091428.1359979-1-danishanwar@ti.com>
+In-Reply-To: <20230801091428.1359979-1-danishanwar@ti.com>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     rdunlap@infradead.org, rogerq@kernel.org,
+        simon.horman@corigine.com, vigneshr@ti.com, andrew@lunn.ch,
+        richardcochran@gmail.com, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
+        davem@davemloft.net, nm@ti.com, srk@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 11:29, Jai Luthra wrote:
-> Many CSI-2 sensors (specifically IMX219) send RAW bayer data instead of
-> processed YUV or RGB, so add support for 8-bit and 10-bit bayer formats.
-> 
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
-> New in v8
-> 
->   drivers/media/platform/cadence/cdns-csi2rx.c | 32 ++++++++++++++++++++++++++++
->   1 file changed, 32 insertions(+)
-> 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index aec33d28a66f..bac74474841a 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -122,6 +122,38 @@ static const struct csi2rx_fmt formats[] = {
->   		.code	= MEDIA_BUS_FMT_VYUY8_1X16,
->   		.bpp	= 16,
->   	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SBGGR8_1X8,
-> +		.bpp	= 8,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SGBRG8_1X8,
-> +		.bpp	= 8,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SGRBG8_1X8,
-> +		.bpp	= 8,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SRGGB8_1X8,
-> +		.bpp	= 8,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SBGGR10_1X10,
-> +		.bpp	= 10,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SGBRG10_1X10,
-> +		.bpp	= 10,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SGRBG10_1X10,
-> +		.bpp	= 10,
-> +	},
-> +	{
-> +		.code	= MEDIA_BUS_FMT_SRGGB10_1X10,
-> +		.bpp	= 10,
-> +	},
->   };
->   
->   static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
-> 
+Hello:
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-  Tomi
+On Tue, 1 Aug 2023 14:44:18 +0530 you wrote:
+> The Programmable Real-time Unit and Industrial Communication Subsystem
+> Gigabit (PRU_ICSSG) is a low-latency microcontroller subsystem in the TI
+> SoCs. This subsystem is provided for the use cases like the implementation
+> of custom peripheral interfaces, offloading of tasks from the other
+> processor cores of the SoC, etc.
+> 
+> The subsystem includes many accelerators for data processing like
+> multiplier and multiplier-accumulator. It also has peripherals like
+> UART, MII/RGMII, MDIO, etc. Every ICSSG core includes two 32-bit
+> load/store RISC CPU cores called PRUs.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v13,01/10] net: ti: icssg-prueth: Add Firmware Interface for ICSSG Ethernet driver.
+    https://git.kernel.org/netdev/net-next/c/61f4d2044aeb
+  - [v13,02/10] net: ti: icssg-prueth: Add mii helper apis and macros
+    https://git.kernel.org/netdev/net-next/c/b6ba7752149d
+  - [v13,03/10] net: ti: icssg-prueth: Add Firmware config and classification APIs.
+    https://git.kernel.org/netdev/net-next/c/e9b4ece7d74b
+  - [v13,04/10] net: ti: icssg-prueth: Add icssg queues APIs and macros
+    https://git.kernel.org/netdev/net-next/c/b8d5008f8c51
+  - [v13,05/10] dt-bindings: net: Add ICSSG Ethernet
+    https://git.kernel.org/netdev/net-next/c/172e604a8c62
+  - [v13,06/10] net: ti: icssg-prueth: Add ICSSG ethernet driver
+    https://git.kernel.org/netdev/net-next/c/128d5874c082
+  - [v13,07/10] net: ti: icssg-prueth: Add ICSSG Stats
+    https://git.kernel.org/netdev/net-next/c/c1e10d5dc7a1
+  - [v13,08/10] net: ti: icssg-prueth: Add Standard network staticstics
+    https://git.kernel.org/netdev/net-next/c/c2f67d192351
+  - [v13,09/10] net: ti: icssg-prueth: Add ethtool ops for ICSSG Ethernet driver
+    https://git.kernel.org/netdev/net-next/c/8fb86b0dcaed
+  - [v13,10/10] net: ti: icssg-prueth: Add Power management support
+    https://git.kernel.org/netdev/net-next/c/a46750a13bb0
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
