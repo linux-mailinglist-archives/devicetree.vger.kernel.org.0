@@ -2,244 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E0F76D1E9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 17:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1431B76D20D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 17:34:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235151AbjHBP2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 11:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49082 "EHLO
+        id S234316AbjHBPeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 11:34:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235253AbjHBP2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 11:28:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F31E5B99;
-        Wed,  2 Aug 2023 08:25:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EB4D7619D9;
-        Wed,  2 Aug 2023 15:25:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8A9BC433CA;
-        Wed,  2 Aug 2023 15:25:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690989917;
-        bh=AeQuHnRz78kJXWkIoo7Eh5UjMQZv1MCQAnguSjPCWp0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HG3XTVpU/reo5tH0XqL1tyoVb5nW1nI3xWwqPCRaw3dz/Qd6YFGLTA5qxT6svzXFs
-         uv5S0jUqEBrX3BKGoC9ngSt0c355zMu2Wm3k+1IviuqFMRG2vSLUqvfbUSnH/rpBTD
-         XFHbpkeo4mSfsiD59PdXaDsuuixkzP/mzzBoVVEGRIpcIttyTk1DZ5B6KHTfQyE20h
-         UbhwG/96kNJtsrscg0gPrf+xg3CkUpAJLBk9xW2XF2TITBxeeaH63Ca8lv3G1hR2D6
-         16wXcQvfhXg9vCpWdoRECW4eT/VIaGN5JboCNKGiGScodz72CLjabph6bONphpbxm0
-         UjAVX5Rs+IXMw==
-Date:   Wed, 2 Aug 2023 16:25:13 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: media: Add OV5642
-Message-ID: <20230802-outreach-national-92083a670b58@spud>
-References: <20230801234047.136099-1-festevam@denx.de>
- <20230801234047.136099-2-festevam@denx.de>
+        with ESMTP id S233683AbjHBPd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 11:33:57 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0111BF9;
+        Wed,  2 Aug 2023 08:33:54 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372FXa4W105647;
+        Wed, 2 Aug 2023 10:33:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690990416;
+        bh=nLd3Vn8vlTe/h/zk8+jjq6q1zplV0I7CB3Lip2XFWrc=;
+        h=From:To:CC:Subject:Date;
+        b=iLws4c3sk7+TQefCVQBQxHzGvEz62WMtguqnGXWMzQyAxoRInGQpJe0hpUnj2vkXM
+         eqtPpNsWCSY325hVpKz29y53oYex7uZhtkgNTp0YdBf0drC1SEInmbfqC10GqiplME
+         ohl3N0WUrOMn/WIDGeOKX+OuKolpFZ8UmU6+F3Ns=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372FXa0Y120780
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Aug 2023 10:33:36 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
+ Aug 2023 10:33:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 2 Aug 2023 10:33:35 -0500
+Received: from lelv0327.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372FXYpw072743;
+        Wed, 2 Aug 2023 10:33:35 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH v8 0/9] TI-Nspire cleanups
+Date:   Wed, 2 Aug 2023 10:33:24 -0500
+Message-ID: <20230802153333.55546-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gHHBdX6BD8VDI3dc"
-Content-Disposition: inline
-In-Reply-To: <20230801234047.136099-2-festevam@denx.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello all,
 
---gHHBdX6BD8VDI3dc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series is an extended version of the series started here[0]
+and here[1].
 
-Hey,=20
+We break out what was the first patch into one for DTS change and
+one for code changes as suggested by Krzysztof. Those are now patches
+1 and 8 of this series (I kept the ACKs, hope that is okay).
 
-On Tue, Aug 01, 2023 at 08:40:47PM -0300, Fabio Estevam wrote:
-> Add DT bindings for OmniVision OV5642 Image Sensor.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-
-Thanks for doing this. It looks good to me, although I got a complaint
-=66rom git while applying it locally:
-Applying: dt-bindings: trivial-devices: Remove the OV5642 entry
-Applying: dt-bindings: media: Add OV5642
-/stuff/linux/.git/worktrees/linux-dt/rebase-apply/patch:119: trailing white=
-space.
- =20
-warning: 1 line adds whitespace errors.
-
-I think you can probably squash both patches and add a
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-I have one minor comment below.
-
-I also think it'd be good to CC the media folks though on this.
-
-> ---
-> Changes since v1:
-> - Introduce ov5642.yaml (Conor).
->=20
->  .../bindings/media/i2c/ovti,ov5642.yaml       | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov56=
-42.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml=
- b/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-> new file mode 100644
-> index 000000000000..585b4fcf01b3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-> @@ -0,0 +1,118 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-Bindings are usually dual licensed. Is there a reason not to do so here?
+While I was adding that, I noticed some other dtbs_check issues,
+so while here fixed some of those up too (patches 2-6).
 
 Thanks,
-Conor.
+Andrew
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5642.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV5642 Image Sensor
-> +
-> +maintainers:
-> +  - Fabio Estevam <festevam@gmail.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov5642
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: XCLK Input Clock
-> +
-> +  clock-names:
-> +    const: xclk
-> +
-> +  AVDD-supply:
-> +    description: Analog voltage supply, 2.8V.
-> +
-> +  DVDD-supply:
-> +    description: Digital core voltage supply, 1.5V.
-> +
-> +  DOVDD-supply:
-> +    description: Digital I/O voltage supply, 1.8V.
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: Reference to the GPIO connected to the powerdown pin, i=
-f any.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reference to the GPIO connected to the reset pin, if an=
-y.
-> +
-> +  rotation:
-> +    enum:
-> +      - 0
-> +      - 180
-> +
-> +  port:
-> +    description: Digital Output Port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          clock-lanes:
-> +            const: 0
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 2
-> +            items:
-> +              enum: [1, 2]
-> +
-> +          bus-width:
-> +            enum: [8, 10]
-> +
-> +          data-shift:
-> +            enum: [0, 2]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/gpio/gpio.h>
-> +
-> +      i2c {
-> +          #address-cells =3D <1>;
-> +          #size-cells =3D <0>;
-> +
-> +          camera@3c {
-> +              compatible =3D "ovti,ov5642";
-> +              pinctrl-names =3D "default";
-> +              pinctrl-0 =3D <&pinctrl_ov5642>;
-> +              reg =3D <0x3c>;
-> +              clocks =3D <&clk_ext_camera>;
-> +              clock-names =3D "xclk";
-> +              DOVDD-supply =3D <&vgen4_reg>;
-> +              AVDD-supply =3D <&vgen3_reg>;
-> +              DVDD-supply =3D <&vgen2_reg>;
-> +              powerdown-gpios =3D <&gpio1 19 GPIO_ACTIVE_HIGH>;
-> +              reset-gpios =3D <&gpio1 20 GPIO_ACTIVE_LOW>;
-> + =20
-> +              port {
-> +                  /* Parallel bus endpoint */
-> +                  ov5642_to_parallel: endpoint {
-> +                      remote-endpoint =3D <&parallel_from_ov5642>;
-> +                      bus-width =3D <8>;
-> +                      data-shift =3D <2>; /* lines 9:2 are used */
-> +                      hsync-active =3D <0>;
-> +                      vsync-active =3D <0>;
-> +                      pclk-sample =3D <1>;
-> +                  };
-> +              };
-> +          };
-> +      };
-> --=20
-> 2.34.1
->=20
+[0] https://lore.kernel.org/lkml/20221026161302.5319-1-afd@ti.com/
+[1] https://lore.kernel.org/linux-arm-kernel/20221027181337.8651-1-afd@ti.com/
 
---gHHBdX6BD8VDI3dc
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes from v7:
+ - Rebase on latest with new dts dirs
 
------BEGIN PGP SIGNATURE-----
+Changes from v6:
+ - Old first patch was taken, remove from series
+ - Add new patch 7/9, should be trivial enough
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMp1WQAKCRB4tDGHoIJi
-0l6VAP4zVL8T00BzoCqghCkMowfC+RZCTRVbPjlD+d761ELSjgD/fd6tr6BBM2iX
-V2iocxEWEHbrtVHZ4m6x3sWqKDsvkgc=
-=s1Hy
------END PGP SIGNATURE-----
+Changes from v5:
+ - Rebase on latest master
+ - Fix DT binding comments from Rob and add ACK
 
---gHHBdX6BD8VDI3dc--
+Changes from v4:
+ - Rebase on latest master
+
+Changes from v3:
+ - Add Reviewed-by
+ - Make new binding for patch #1
+
+Changes from v2:
+ - See cover letter message
+
+Changes from v1:
+ - Add ACKs
+ - Rebase on latest
+
+Andrew Davis (9):
+  ARM: dts: nspire: Use syscon-reboot to handle restart
+  ARM: dts: nspire: Fix cpu node to conform with DT binding
+  ARM: dts: nspire: Fix sram node to conform with DT binding
+  ARM: dts: nspire: Fix vbus_reg node to conform with DT binding
+  ARM: dts: nspire: Fix uart node to conform with DT binding
+  ARM: dts: nspire: Use MATRIX_KEY macro for linux,keymap
+  ARM: dts: nspire: Remove file name from the files themselves
+  ARM: nspire: Use syscon-reboot to handle restart
+  ARM: nspire: Remove unused header file mmio.h
+
+ arch/arm/boot/dts/nspire/nspire-classic.dtsi |  2 -
+ arch/arm/boot/dts/nspire/nspire-clp.dts      | 93 ++++++++++++++-----
+ arch/arm/boot/dts/nspire/nspire-cx.dts       | 95 ++++++++++++++------
+ arch/arm/boot/dts/nspire/nspire-tp.dts       | 93 ++++++++++++++-----
+ arch/arm/boot/dts/nspire/nspire.dtsi         | 26 ++++--
+ arch/arm/mach-nspire/Kconfig                 |  2 +
+ arch/arm/mach-nspire/mmio.h                  | 16 ----
+ arch/arm/mach-nspire/nspire.c                | 24 -----
+ 8 files changed, 231 insertions(+), 120 deletions(-)
+ delete mode 100644 arch/arm/mach-nspire/mmio.h
+
+-- 
+2.39.2
+
