@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C72EF76C872
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33E4D76C886
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233120AbjHBIiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 04:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47734 "EHLO
+        id S233873AbjHBInJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Aug 2023 04:43:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232468AbjHBIiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:38:00 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C751A8;
-        Wed,  2 Aug 2023 01:37:57 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8BxY_DkFcpk084OAA--.34853S3;
-        Wed, 02 Aug 2023 16:37:56 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLCPeFcpk1V1FAA--.29839S3;
-        Wed, 02 Aug 2023 16:37:54 +0800 (CST)
-Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S233979AbjHBInH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:43:07 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DAC1194;
+        Wed,  2 Aug 2023 01:43:04 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id E2A9924E199;
+        Wed,  2 Aug 2023 16:43:02 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 2 Aug
+ 2023 16:43:02 +0800
+Received: from localhost.localdomain (183.27.98.54) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 2 Aug
+ 2023 16:43:01 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Maxim Kochetkov" <fido_max@inbox.ru>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230731091059.17323-1-zhuyinbo@loongson.cn>
- <20230731091059.17323-2-zhuyinbo@loongson.cn>
- <20230731-setback-such-61815ee3ef51@spud>
- <041bf8a6-8d91-c2ce-6752-aa7255f946c7@loongson.cn>
- <20230801-whenever-imitation-b2759b212f6b@spud>
- <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
- <20230801-varsity-chemo-09cc5e250ded@spud>
- <26adb487-f8c5-9cf4-5b31-070e9161e761@loongson.cn>
- <20230802-jailer-pavilion-84fb17bb3710@wendy>
- <3534f7b9-0e02-28c1-238a-5a6fdbb95e94@loongson.cn>
- <20230802-bunkbed-siamese-57ee53bdf273@wendy>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <db7012b2-9156-34ed-ad1f-10a3e5dfe390@loongson.cn>
-Date:   Wed, 2 Aug 2023 16:37:50 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     Jose Abreu <joabreu@synopsys.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        "Xingyu Wu" <xingyu.wu@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v1 0/5] Add I2S support for the StarFive JH7110 SoC
+Date:   Wed, 2 Aug 2023 16:42:56 +0800
+Message-ID: <20230802084301.134122-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20230802-bunkbed-siamese-57ee53bdf273@wendy>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxLCPeFcpk1V1FAA--.29839S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Type: text/plain
+X-Originating-IP: [183.27.98.54]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,73 +63,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds I2S support for the StarFive JH7110 RISC-V
+SoC based on Designware I2S controller. There has three I2S channels
+(RX/TX0/TX1) on the JH7110 SoC, one of which is for record(RX) and
+two for playback(TX).
+
+The first patch adds the ops to get data from platform bus in the
+I2S driver.
+The second patch adds support for the StarFive JH7110 SoC in
+the Designware I2S bindings.
+The third patch adds support for the StarFive JH7110 SoC in
+the Designware I2S driver. 
+The fourth patch fixes the name of I2STX1 pinmux.
+The last patch adds device node of I2S RX/TX0/TX1 in JH7110 dts.
+
+This patch series is based on Linux-next which is merge clock,
+syscon and dma nodes for the StarFive JH7110 SoC. And these
+should be applied after the following patchset:
+https://lore.kernel.org/all/20230724055440.100947-1-xingyu.wu@starfivetech.com/
+
+The series has been tested and works normally on the VisionFive 2
+board by plugging an audio expansion board.
+
+Xingyu Wu (5):
+  ASoC: dwc: Use ops to get platform data
+  ASoC: dt-bindings: snps,designware-i2s: Add StarFive JH7110 SoC
+    support
+  ASoC: dwc: i2s: Add StarFive JH7110 SoC support
+  riscv: dts: starfive: pinfunc: Fix the pins name of I2STX1
+  riscv: dts: starfive: Add the nodes and pins of I2Srx/I2Stx0/I2Stx1
+
+ .../bindings/sound/snps,designware-i2s.yaml   | 101 +++++-
+ arch/riscv/boot/dts/starfive/jh7110-pinfunc.h |   4 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  58 ++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  65 ++++
+ include/sound/designware_i2s.h                |   3 +
+ sound/soc/dwc/dwc-i2s.c                       | 318 ++++++++++++++++--
+ sound/soc/dwc/local.h                         |   1 +
+ 7 files changed, 523 insertions(+), 27 deletions(-)
 
 
-在 2023/8/2 下午3:50, Conor Dooley 写道:
-> On Wed, Aug 02, 2023 at 03:44:17PM +0800, Yinbo Zhu wrote:
->> 在 2023/8/2 下午3:22, Conor Dooley 写道:
->>> On Wed, Aug 02, 2023 at 09:38:34AM +0800, Yinbo Zhu wrote:
->>>> 在 2023/8/1 下午11:54, Conor Dooley 写道:
->>>>> On Tue, Aug 01, 2023 at 04:34:30PM +0800, Yinbo Zhu wrote:
-> 
->>>>>> Sorry, I may not have described it clearly before, the ls2k500 was only
->>>>>> as a example, actually, Loongson GPIO controllers (2k500,2k1000,eg)come
->>>>>> in multiple variants that are compatible except for certain register
->>>>>> offset values.  So above all offset device property was used to in all
->>>>>> loongson gpio controller.
->>>>>
->>>>> But it would be good to know why they are different. Do they each
->>>>> support some different features, or was there some other reason for
->>>>> making controllers like this?
->>>>
->>>>
->>>> There are no other reasons, just differences in these offset addresses.
->>>
->>> Huh. Do you have a link to a devicetree for the ls2k500?
->>
->>
->> Yes,  there was a link about ls2k500 dts,  but that ls2k500 dts has not
->> yet added a gpio node.  this gpio node will be added later.
-> 
-> You must have something that you used to test with, no? I don't mind if
-> it is not a patch, but rather is some WIP - I'd just like to see user of
-> the binding :)
-
-
-yes, I have a test, for 2k0500, that gpio dts as follows:
-
-                 gpio0:gpio@0x1fe10430 {
-                         compatible = "loongson,ls2k-gpio";
-                         reg = <0 0x1fe10430 0 0x20>;
-                         gpio-controller;
-                         #gpio-cells = <2>;
-			interrupt-parent = <&liointc1>;
-                         ngpios = <64>;
-                         loongson,gpio-conf-offset = <0>;
-                         loongson,gpio-out-offset = <0x10>;
-                         loongson,gpio-in-offset = <0x8>;
-                         loongson,gpio-inten-offset = <0xb0>;
-			loongson,gpio-ctrl-mode = <0x0>;
-                         ...
-		  }
-
-                 gpio1:gpio@0x1fe10450 {
-                         compatible = "loongson,ls2k-gpio";
-                         reg = <0 0x1fe10450 0 0x20>;
-                         gpio-controller;
-                         #gpio-cells = <2>;
-			interrupt-parent = <&liointc1>;
-                         ngpios = <64>;
-                         loongson,gpio-conf-offset = <0>;
-                         loongson,gpio-out-offset = <0x10>;
-                         loongson,gpio-in-offset = <0x8>;
-                         loongson,gpio-inten-offset = <0x98>;
-			loongson,gpio-ctrl-mode = <0x0>;
-                         ...
-	        }
-
-
-Thanks,
-Yinbo.
-> 
+base-commit: 0fee53365d051781156b75c6f6e6015757e71fd8
+prerequisite-patch-id: 0159f09bb0a1ff711a00ae17ef5b12662c9c7d3d
+-- 
+2.25.1
 
