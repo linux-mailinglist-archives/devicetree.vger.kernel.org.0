@@ -2,190 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CDC776C933
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 11:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D846576C9A2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 11:41:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234141AbjHBJP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 05:15:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35046 "EHLO
+        id S232593AbjHBJl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 05:41:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234027AbjHBJPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 05:15:38 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E61DC3596;
-        Wed,  2 Aug 2023 02:15:23 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3724TmpU016330;
-        Wed, 2 Aug 2023 09:15:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=C7TkSRRTGunDk3eBEHzSLdZSafVsE7qSWbYNiW77fw8=;
- b=GgG4dGjU6N4+oKCQSvmMhv6eYNkD5j3KwX3IHRybkasqtma+Hgypv+02pAxcBcSruRry
- igZK2cJWAgGjHNjpPWmYYVyYCJGVnwrAf8PLn1jrpUdFRvU+LXibzfVqGAcSG5mEui81
- CTFt2uZPQBWXz91cGvFopf9bYvosuDBJnuz/X8N8mv4q3PTVwkYqRWHFpTNmWHJF7DZn
- dMJ/+MXJm3CX6gw+XDLLER33DHMuT3JPJRMrIlnKaOGVr65lrMG2jYdCz01i9rUdYXtd
- FEDW+mNoqWqWCgdI209sGsgEynobZAgPzH2vkqTPEiwpis+mx6TDYBaOLWXI8WTKUJUL sQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s72gqtdps-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Aug 2023 09:15:20 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3729FKEo017191
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 2 Aug 2023 09:15:20 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 2 Aug 2023 02:15:16 -0700
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH v6 6/6] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
-Date:   Wed, 2 Aug 2023 14:44:28 +0530
-Message-ID: <20230802091429.20892-7-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230802091429.20892-1-quic_kbajaj@quicinc.com>
-References: <20230802091429.20892-1-quic_kbajaj@quicinc.com>
+        with ESMTP id S231683AbjHBJlY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 05:41:24 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C56BE5C;
+        Wed,  2 Aug 2023 02:41:18 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 783BA2AC;
+        Wed,  2 Aug 2023 11:40:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690969213;
+        bh=OAZY/19CTlqPP0Po9xr2dlATluluHR+ylQdYRwV7qgM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=oXyB2PEJPgOjhv2stk7iMnBmBKYvMZq+s4k4XcpIc5dGamQrTwE0ptCojoPEAK8vH
+         HX+XgVAZeFsuGsayshThWRHNSyJDSrzGno3HRa5zGtCIK7J77FA98ycQ/3wmH6kKpc
+         HlZ/U23wo3W8yR+5nEcZebzJNWdGv35qwgjWET5I=
+Message-ID: <5264c7f8-5af4-fe5c-7a79-cc56150bca82@ideasonboard.com>
+Date:   Wed, 2 Aug 2023 12:41:13 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1Ixw9_jTmav1B0b9XjSo48a7w0_7hdI_
-X-Proofpoint-ORIG-GUID: 1Ixw9_jTmav1B0b9XjSo48a7w0_7hdI_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-02_04,2023-08-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- phishscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2308020082
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v8 08/16] media: cadence: csi2rx: Configure DPHY using
+ link freq
+Content-Language: en-US
+To:     Jai Luthra <j-luthra@ti.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        niklas.soderlund+renesas@ragnatech.se,
+        Benoit Parrot <bparrot@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, nm@ti.com,
+        devarsht@ti.com
+References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
+ <20230731-upstream_csi-v8-8-fb7d3661c2c9@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230731-upstream_csi-v8-8-fb7d3661c2c9@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
+On 31/07/2023 11:29, Jai Luthra wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
+> 
+> Some platforms like TI's J721E can have the CSI2RX paired with an
+> external DPHY. Use the generic PHY framework to configure the DPHY with
+> the correct link frequency.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Co-authored-by: Jai Luthra <j-luthra@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> v7->v8
+> - Drop original patch in-lieu of already merged
+>    https://lore.kernel.org/linux-media/20230523085626.3295-5-jack.zhu@starfivetech.com/
+> - Add a new patch to configure DPHY using link_freq control from the
+>    source
+> 
+>   drivers/media/platform/cadence/cdns-csi2rx.c | 25 +++++++++++++++++++++++++
+>   1 file changed, 25 insertions(+)
+> 
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 4f9654366485..2a80c66fb547 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -149,8 +149,33 @@ static void csi2rx_reset(struct csi2rx_priv *csi2rx)
+>   static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
+>   {
+>   	union phy_configure_opts opts = { };
+> +	struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
+> +	struct v4l2_subdev_format sd_fmt = {
+> +		.which	= V4L2_SUBDEV_FORMAT_ACTIVE,
+> +		.pad	= CSI2RX_PAD_SINK,
+> +		.stream	= 0,
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- drivers/soc/qcom/llcc-qcom.c | 67 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+I would drop the above line, as this doesn't support streams yet.
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 315f7a1b90aa..8e1b2399700d 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -366,6 +366,36 @@ static const struct llcc_slice_config sm8550_data[] =  {
- 	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
- };
+> +	};
+> +	const struct csi2rx_fmt *fmt;
+> +	s64 link_freq;
+>   	int ret;
+>   
+> +	ret = v4l2_subdev_call_state_active(&csi2rx->subdev, pad, get_fmt,
+> +					    &sd_fmt);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	fmt = csi2rx_get_fmt_by_code(sd_fmt.format.code);
+> +
+> +	link_freq = v4l2_get_link_freq(csi2rx->source_subdev->ctrl_handler,
+> +				       fmt->bpp, 2 * csi2rx->num_lanes);
+> +	if (link_freq < 0)
+> +		return link_freq;
+> +
+> +	ret = phy_mipi_dphy_get_default_config_for_hsclk(link_freq,
+> +							 csi2rx->num_lanes, cfg);
+> +	if (ret)
+> +		return ret;
+> +
+>   	ret = phy_power_on(csi2rx->dphy);
+>   	if (ret)
+>   		return ret;
+> 
 
-+static const struct llcc_slice_config qdu1000_data_2ch[] = {
-+	{ LLCC_MDMHPGRW, 7, 512, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MODHW,    9, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MDMPNG,  21, 256, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_ECC,     26, 512, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_MODPE,   29, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_APTCM,   30, 256, 3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_WRCACHE, 31, 128, 1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config qdu1000_data_4ch[] = {
-+	{ LLCC_MDMHPGRW, 7, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MODHW,    9, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MDMPNG,  21, 512,  0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_ECC,     26, 1024, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_MODPE,   29, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_APTCM,   30, 512,  3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_WRCACHE, 31, 256,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config qdu1000_data_8ch[] = {
-+	{ LLCC_MDMHPGRW, 7, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MODHW,    9, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MDMPNG,  21, 1024, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_ECC,     26, 2048, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_MODPE,   29, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_APTCM,   30, 1024, 3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_WRCACHE, 31, 512,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
- static const struct llcc_edac_reg_offset llcc_v1_edac_reg_offset = {
- 	.trp_ecc_error_status0 = 0x20344,
- 	.trp_ecc_error_status1 = 0x20348,
-@@ -432,6 +462,37 @@ static const u32 llcc_v2_1_reg_offset[] = {
- 	[LLCC_COMMON_STATUS0]	= 0x0003400c,
- };
+I think this is fine, but a few things to think about:
 
-+static const struct qcom_llcc_config qdu1000_cfg[] = {
-+	{
-+		.sct_data       = qdu1000_data_8ch,
-+		.size		= ARRAY_SIZE(qdu1000_data_8ch),
-+		.need_llcc_cfg	= true,
-+		.reg_offset	= llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_4ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_4ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_2ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_2ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+};
-+
- static const struct qcom_llcc_config sc7180_cfg[] = {
- 	{
- 		.sct_data	= sc7180_data,
-@@ -553,6 +614,11 @@ static const struct qcom_llcc_config sm8550_cfg[] = {
- 	},
- };
+Here you lock and unlock the active state for the duration of the 
+get_fmt call (and you call it for this same subdev). If the driver 
+supports active state, and you need to get the fmt of the driver's 
+subdev, I think it usually makes more sense to just use the state and 
+get the format from there.
 
-+static const struct qcom_sct_config qdu1000_cfgs = {
-+	.llcc_config	= qdu1000_cfg,
-+	.num_config	= 4,
-+};
-+
- static const struct qcom_sct_config sc7180_cfgs = {
- 	.llcc_config	= sc7180_cfg,
- 	.num_config	= ARRAY_SIZE(sc7180_cfg),
-@@ -1171,6 +1237,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- }
+And you might want to keep the active state locked for the duration of 
+the s_stream operation, in which case the state would already be locked 
+when csi2rx_configure_ext_dphy() gets called.
 
- static const struct of_device_id qcom_llcc_of_match[] = {
-+	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
- 	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
- 	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
- 	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
---
-2.41.0
+And if you implement enable_streams/disable_streams, then the state has 
+already been locked by the framework. However, I think 
+enable_streams/disable_streams only works if the driver actually 
+supports streams.
+
+But maybe you have already done all these with the out-of-tree streams 
+support?
+
+Anyway, I think this is fine for now:
+
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+  Tomi
 
