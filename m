@@ -2,117 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D391076CB08
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 12:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B1F76CB16
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 12:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234049AbjHBKii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 06:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
+        id S232986AbjHBKjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 06:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232466AbjHBKiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 06:38:12 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D603586;
-        Wed,  2 Aug 2023 03:34:24 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3722enkV012009;
-        Wed, 2 Aug 2023 10:34:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BM3JTqUNkB3VLeEzuItMkXqV/Mnd5xo5sZOy+2pubXM=;
- b=mBDkhqwvTvvY5nCBV4w2bxt+cx+gPTcb9fAshFiiH3uePpx0RYNmyO07eTM7vM1KHirA
- 4Q3IhcBjjQwsGmvsI1VQeZWnuC0QbUKi9QXKDqxwCI6FE5N7sq/BcKpdRGc9pTbDsM/z
- 5OFZD+W883/YAcRuFvzHiWqNg6D/SC5ehj47rn1NYwLDDyvCIQG1IYAWhh5u/UX6bLrw
- 4hKNSQ2JFY3C4Yr3CUz6on79xlxeT7jciHcBsorOtUfspv3hOZLJTBvc0Ln33m8UdSbN
- c5UgTqQsuv2NAynEV9yWz/Pmj90N6UG64abxiH3yFVxUIGY+xAofG/t47WiFFdvr3PAF Tg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s7bw9hb7t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Aug 2023 10:34:11 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 372AYA3Z026237
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 2 Aug 2023 10:34:10 GMT
-Received: from [10.253.73.93] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 2 Aug
- 2023 03:34:06 -0700
-Message-ID: <8556fd68-edb1-5b97-6472-ae854f86190b@quicinc.com>
-Date:   Wed, 2 Aug 2023 18:34:04 +0800
+        with ESMTP id S234168AbjHBKjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 06:39:18 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A19584215
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 03:36:14 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1b8b2b60731so39877875ad.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 03:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690972574; x=1691577374;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6SoYBxM++sQRnEvr88ExVaXxBGkqpVaUtkVISYvTFsI=;
+        b=M8gvfBCvPNLGg8XfKBdUfrQ6KoikV7WwWZDScW47fSTtHFkp/a8FQin/toZt+BS8Su
+         OyYm4UEXabyqY4ck2EERihBFlawirCO0Tmw8hXXxZFD5vle2XPkOKyTWV8ICF/R8U22s
+         55s0CjwzAvNsfg9MkE3wk1HRsPcbQh9gMTgySJTFzrauScf3ygzGYFt6UwsaBCnJ6kbf
+         uOnwphRw6wvRj35hgpSnbDSqaEReS/Zm9OgMb8Mrivp42J/LUnPrxGif1dY32jbnqc71
+         6hhq4D5UrNV+KTFTkQrvKqZMtPXDci3NYw8Jf4v2FChp2jx0i6jwTn8psX1KJ2LsbRWA
+         80eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690972574; x=1691577374;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6SoYBxM++sQRnEvr88ExVaXxBGkqpVaUtkVISYvTFsI=;
+        b=EA22+BpkiUTsFcL489fCXUTguuqP1xjivxOfapLnkfbaZGnTObOeoK63zr5d1kTCR7
+         2QP2ksUYiIWFziZBH0m+YOR1GVaq9UBmtI5NMsV6YTJXQg/HxkuselNJne577PdVYTqM
+         zodk4uEiTMc3cfBln/ZASa0U5X3gj5sYb+naYfwxydzW3PiOR01Y8EEMrVfyrY/T25Kd
+         c68aRyYdIzSwe7/msRvlP3o4ESp5LAn7YyEbUY19mXDFqXdyXCYp4cOteUP8VvK9RikY
+         7ffMxwS/dxzpYsMV1ULXFmICWzzdYejXo/3rd62SdmaxmBVyUfNnh1N8Q4pc9lK1uEhG
+         9BUQ==
+X-Gm-Message-State: ABy/qLa69RQlhrl5gGnnCvsaX21liDMexHOnhvupXxqY0UkeBVon75Rn
+        xf0xpu9u2FRE5KK46dWdrfTp
+X-Google-Smtp-Source: APBJJlHlmtfq2slN0a2zzy0MBXq1feRFQhWqdOKG6s4V/ILLPbhM7BTCLXvolkEKvOoI3v87zK4afw==
+X-Received: by 2002:a17:902:dad2:b0:1b9:e9f1:91e0 with SMTP id q18-20020a170902dad200b001b9e9f191e0mr14830408plx.41.1690972574001;
+        Wed, 02 Aug 2023 03:36:14 -0700 (PDT)
+Received: from thinkpad ([117.193.209.129])
+        by smtp.gmail.com with ESMTPSA id ix13-20020a170902f80d00b001b9d7c8f44dsm12095919plb.182.2023.08.02.03.36.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Aug 2023 03:36:13 -0700 (PDT)
+Date:   Wed, 2 Aug 2023 16:06:05 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 17/20] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
+ support
+Message-ID: <20230802103605.GA57374@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-18-yoshihiro.shimoda.uh@renesas.com>
+ <20230724122820.GM6291@thinkpad>
+ <gmy7uzvuy2fkmc7hsanslkv2f4mxzydxvewrv5i5w3b3voqzfv@nmkpewdj726m>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 3/3] clk: qcom: add clock controller driver for
- qca8386/qca8084
-Content-Language: en-US
-To:     Randy Dunlap <rdunlap@infradead.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <p.zabel@pengutronix.de>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230801085352.22873-1-quic_luoj@quicinc.com>
- <20230801085352.22873-4-quic_luoj@quicinc.com>
- <188bcc4c-7388-ca39-5c3c-629edd78cc9f@infradead.org>
-From:   Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <188bcc4c-7388-ca39-5c3c-629edd78cc9f@infradead.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Gg_GPSMSY9OuPWZJVsF9LIhjtd0JUmU7
-X-Proofpoint-GUID: Gg_GPSMSY9OuPWZJVsF9LIhjtd0JUmU7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-02_06,2023-08-01_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 adultscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
- spamscore=0 mlxscore=0 mlxlogscore=949 phishscore=0 lowpriorityscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308020093
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <gmy7uzvuy2fkmc7hsanslkv2f4mxzydxvewrv5i5w3b3voqzfv@nmkpewdj726m>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 01, 2023 at 04:06:32AM +0300, Serge Semin wrote:
+> On Mon, Jul 24, 2023 at 05:58:20PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Jul 21, 2023 at 04:44:49PM +0900, Yoshihiro Shimoda wrote:
+> > > Add R-Car Gen4 PCIe Host support. This controller is based on
+> > > Synopsys DesignWare PCIe, but this controller has vendor-specific
+> > > registers so that requires initialization code like mode setting
+> > > and retraining and so on.
+> > > 
+> > > To reduce code delta, adds some helper functions which are used by
+> > > both the host driver and the endpoint driver (which is added
+> > > immediately afterwards) into a separate file.
+> > > 
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/Kconfig            |   9 +
+> > >  drivers/pci/controller/dwc/Makefile           |   2 +
+> > >  .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 149 +++++++++++++
+> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 200 ++++++++++++++++++
+> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  44 ++++
+> > >  5 files changed, 404 insertions(+)
+> > >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+> > >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
+> > > 
 
+[...]
 
-On 8/2/2023 3:16 AM, Randy Dunlap wrote:
+> > 
+> > > +		return err;
+> > > +	}
+> > > +
+> > > +	err = rcar_gen4_pcie_prepare(rcar);
+> > > +	if (err < 0)
+> > > +		return err;
+> > > +
 > 
+> > > +	err = rcar_gen4_add_dw_pcie_rp(rcar);
+> > > +	if (err < 0)
+> > > +		goto err_add;
+> > > +
+> > > +	return 0;
+> > > +
+> > > +err_add:
+> > 
+> > err_prepare
 > 
-> On 8/1/23 01:53, Luo Jie wrote:
->> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->> index 263e55d75e3f..a17e8fa5a7e1 100644
->> --- a/drivers/clk/qcom/Kconfig
->> +++ b/drivers/clk/qcom/Kconfig
->> @@ -195,6 +195,14 @@ config IPQ_GCC_9574
->>   	  i2c, USB, SD/eMMC, etc. Select this for the root clock
->>   	  of ipq9574.
->>   
->> +config IPQ_NSSCC_QCA8K
->> +        tristate "QCA8K(QCA8386 or QCA8084) NSS Clock Controller"
->> +        help
+> IMO either "err_unprepare" or "err_add_rp". First option seems better
+> since unlike the second version it would look correct in case of
+> having multiple gotos to the same label.
 > 
-> The 2 lines above should be indented with one tab (only; no spaces).
+> "err_prepare" doesn't indicate neither the target code nor the source
+> of the jump. So the name doesn't sound descriptive if not to say
+> misleading.
 > 
->> +          Support for NSS(Network SubSystem) clock controller on
-> 
-> The line above should be indented with one tab + 2 spaces (like the following
-> 3 lines).
-> 
->> +	  qca8386/qca8084 chip.
->> +	  Say Y if you want to use network function of switch or PHY
->> +	  function. Select this for the root clock of qca8xxx.
-> 
-thanks Randy for the review, i will update the patch for this.
+
+I just blindly went with the function name. Yes, "err_unprepare" would be the
+correct label name.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
