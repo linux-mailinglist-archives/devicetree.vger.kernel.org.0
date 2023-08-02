@@ -2,178 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C3176CC87
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 14:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CE3976CC8E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 14:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231656AbjHBMXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 08:23:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50382 "EHLO
+        id S233053AbjHBMZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 08:25:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233053AbjHBMXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 08:23:35 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2080.outbound.protection.outlook.com [40.107.7.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84DA626AF;
-        Wed,  2 Aug 2023 05:23:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gDh/x1VGy8v7F+e9bCjtO1CC4mhIaZSEb8oc/d+BvTEFgTgy+h/IfZy9G0kxlWYa04VzPyfzAQ7KKGqAv9U/VDpIsyXWyQZHkMKab4o/yefxPZAcUFQ/u4K34cHM4a+dj3bRvdtiDhth4CHCiAbPxrPNEkl382H3xjkkZmk0rm/v82iJJC04/veBx/QjZBd7gdI2aCK7k+l67TSvHXZBUd8nxHX8yfY3LHkfSv3aXbHSQ5/cUtSLY4Vn/HeJrqWwGRQIyqS+Fc/hTPwNrRBM3SUKg9CkBupNqdtr3Ejxtyhnh4Dyno7AmI7aZHiSUw5xOX849IYoSzhuvNBHvF4hzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cSCnzKUcSANrYp+MUTO+dNRJ8euBfLseeNKJrrE9Fxc=;
- b=k34LTnx+vNoyGZUPaxRpX8L710XMGe+Ih44lzvbdZs4SPOu0hZg94IUqFjkTjRhXor0QfY/tPWG2NvjCKU9OiWBA+zNv+iF5868Set0R7nFqKjOpJzj0Ke0HwnSGewURCQJd82QMrVyUuxHNY1lKxufrYzXRj7Qse7oO///anlq6wy9y+QlYTuJrzZvHBBuRk6yN2pRk9pm45S4gUB4DQeXt4iPbjWf1IZWcuIgRYX4RrRpEh770cj65ISKRlXqo/f+crLxtVkvxngtXn62qUNMXWk0N3IfgvwlYL8EbBFJ7fgwlRNLcaMxyxKmT+iIrnvkwraGy0llKignL+JufLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cSCnzKUcSANrYp+MUTO+dNRJ8euBfLseeNKJrrE9Fxc=;
- b=j1N4P7lHszFPgkwoltiEb2Dx3S3/F6W1I1SIIuTvnDS6yUVZAKEBIJWOGv0ScgL4YVahKfkAiYfVWjhEqMjEizjtethLldk7VpFy/gFJ20iOH/F83GfsPi4cE2gWIgJLkQG4LTutWHN/7LkdFTyX9GM21N6fwreEXJICgjzTDhc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from GV2PR08MB9158.eurprd08.prod.outlook.com (2603:10a6:150:d2::10)
- by AS4PR08MB7951.eurprd08.prod.outlook.com (2603:10a6:20b:577::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Wed, 2 Aug
- 2023 12:23:30 +0000
-Received: from GV2PR08MB9158.eurprd08.prod.outlook.com
- ([fe80::f9cc:2e21:d017:7f66]) by GV2PR08MB9158.eurprd08.prod.outlook.com
- ([fe80::f9cc:2e21:d017:7f66%5]) with mapi id 15.20.6631.045; Wed, 2 Aug 2023
- 12:23:29 +0000
-Message-ID: <b8399e52-4b08-a372-29fb-aad2644221cd@wolfvision.net>
-Date:   Wed, 2 Aug 2023 14:23:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 0/2] drm/panel: sitronix-st7789v: add panel orientation
- support
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232119AbjHBMZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 08:25:19 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 437F8269E;
+        Wed,  2 Aug 2023 05:25:17 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,249,1684767600"; 
+   d="scan'208";a="175356815"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 02 Aug 2023 21:25:16 +0900
+Received: from localhost.localdomain (unknown [10.226.92.171])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0BF1D41D15EF;
+        Wed,  2 Aug 2023 21:25:12 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230718-feature-st7789v-v1-0-76d6ca9b31d8@wolfvision.net>
-Content-Language: en-US
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-In-Reply-To: <20230718-feature-st7789v-v1-0-76d6ca9b31d8@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR0P278CA0030.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::17) To GV2PR08MB9158.eurprd08.prod.outlook.com
- (2603:10a6:150:d2::10)
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] Fix Versa3 clock mapping
+Date:   Wed,  2 Aug 2023 13:25:07 +0100
+Message-Id: <20230802122510.275420-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB9158:EE_|AS4PR08MB7951:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a289fb7-7dda-406d-025f-08db93534787
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZoQ0tuVeQufUxp+ISXI33br4itlJ9l6vsAFv1TE4s98JPrD0n5Gl2bbyjEJpe2djIzwrospsrU/4/d0XZty07Y7f51oLxVHpWWnzf6qM3PTmc1uIme6icS9yjzIUIkMwsAV1z8rYmotOjy9Tg5hyQOXspc20uGwgEOLXbxPMUg9S6AC0jYZTKK2reH6UXOYzuMF5XkjGOOGBFq7edNmu6X9TNOqwj7m/yRscoE24YKjMrKGitcGjwgHIPGlhspsOUNoUUCkxTvSUHe3KIJO8qjrbaquBQO4ofaInJm9AUR2S5V9ciKk25sNhJgG1As+3GOrCRPg6/hBjD5vc64s+M/IuODrPoMbIiD+I8UIfs/Si/bs1lZFEKFICTV7qGOubH0YQSUcCGMcwkRcQi/yYBJUpceT3KbFKPygreIEhrPGBvR/VW553Kl8eVYXtu84RJ5jo5miKYXHH5A2BzyPQuFh3ip2URpsJZDmBu/IyzGiyD44peRfblHk8cCCSmebhihTk5nmXy9NNcb2Mm63FgyJbnr8K+YBLMTRwUMa1tBgE4FduVv2Lusq/bjeVXAJNxn8nOJ3XuRi4fMs3GqZYGgOUaQALWRaGMEe2GEfS0xh7S70vJLV7gSXCoa1p2fZlF0KhomTeykX+Jh7s+R3YcnEpefTYLR/H2i96aeHfQAo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB9158.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(39850400004)(346002)(396003)(366004)(451199021)(2616005)(53546011)(6506007)(186003)(83380400001)(316002)(66946007)(2906002)(66556008)(4326008)(6636002)(66476007)(5660300002)(7416002)(44832011)(41300700001)(8676002)(8936002)(6666004)(6486002)(966005)(6512007)(478600001)(110136005)(38100700002)(921005)(31696002)(86362001)(36756003)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WG84eWxhUEp6djE1dHBxWHJPMG12cUw4NG9kS0N3UlN5RHpOQ2VyTitRT2cx?=
- =?utf-8?B?ZWh4cEdQdGlXa2VtL2x5ZWd2THZraXJUaXJYNGpBNDIvK0VwbGh4TFJVRFJJ?=
- =?utf-8?B?bnJsb2lvT1pPRTFhTE9vNnE5OHQ3TXVmWUZFb1FQYkVMcE5sdTFrc2hDamh6?=
- =?utf-8?B?TVNvL2tnSzZvQkJzUVpldmVXYjlQMDROU2tuMGViZ1VHVS9ZLzlnYURCdmtj?=
- =?utf-8?B?NnM3M3ZrT05yZHB2TUVOZTZ2V0FyZGlkVGxpdzNxNUpiTzRSUUVxWVFkMnlX?=
- =?utf-8?B?OEwwYUNmcFYwTGdqSDlTRFFpZTZSTnQ5VEhOU3Y4TzhXb3lHR0xrZ3gvVFhB?=
- =?utf-8?B?VnBWeWVFVDl0RDlRb2tmVGFFSk9PTlJnSlNCdVdpWFFwVkNsMFVyNzExWXp0?=
- =?utf-8?B?b1BVTVhHSlpwU2RnU2IzVFlWNHZJME1CM01HQ3N1cy91ZXdMWVdZY1FQNlRn?=
- =?utf-8?B?SVNqL0FXSzZGcDJ4MCt0empUMWRyOXpZK1VpN1kyV1NzbiswYmdhRzFQeDBi?=
- =?utf-8?B?RzMvRGZJbWxIdEVYYm5HdEJtWFpyUnBmTk4xV1k2TndRclNva0R0UmsrR1Rp?=
- =?utf-8?B?OW1LQlZCakJlT3hlalFPd1J5NWV6bDhQTnJpUVNBSmtjK3NWV2xaaE0wUEpy?=
- =?utf-8?B?bSt4SGJQKzhSOG53N0ZwUVlVQlRjWEF4TEN0UlRFbUl2N3pldDFzcW94b2ZC?=
- =?utf-8?B?VCtzSDZVMUtHRGxEc2FVek85aGh1bDZ6MlBYTzZ5cmJzMjNJVzZWckd6NDQ2?=
- =?utf-8?B?ekpxU2lMaDFZeEE0TFFJVXhrMjBER2hOTEZEdDhtVnZXRVJCMHlKVDluVUJx?=
- =?utf-8?B?U1p5M3ZrZE1PZTZpU1Z3Y09wVUY2ekJXS2FjUWJnMmt2ZkVVYStTc3I1dEFk?=
- =?utf-8?B?WUxsV3dXaHNQczU2Y0lLMEFDaXFZTndjSUZxWk93ZEs2OEUrUnMrZGcvN3Zk?=
- =?utf-8?B?bndDRFl5ZHZ3NzFOSElNc3I1VjRzeTFFVVN1dXQ4ME1vaG9zelMyTVJWR2dz?=
- =?utf-8?B?OEFLVnBVVTJGbnVSYi90djZQaXdaSGNCdmgwVEZxL1pVdkk1Y1lUL3FQWHdy?=
- =?utf-8?B?TVFpWWtETFdiSkVncmp2aGFydVRHTnI2K3VPbkY1TXJLOW4wc2pWc01YRWor?=
- =?utf-8?B?eU9iTjVDNTRtaGpUaUxjVHl1NUxFSXhEbzN3QUNxOFhLYkVPNDN4QTdIY0Vq?=
- =?utf-8?B?elJHRjBybElVK1EwU2RDK3ZsZUtvWHRiWjA0a0xJYjRIMUJmb3FTV0R1aGxl?=
- =?utf-8?B?NURhYkgwSStNOExpQVprRmp6R1hMNitRcjJCRTBYWXlPSTJmU3AxaytLaWIr?=
- =?utf-8?B?UXBoU3FZbkpWMGlFQ01sMTgvZUd6NytUU0c3WjNTa05aamdSbWNYUExCcWZl?=
- =?utf-8?B?RjhQSWk1dmkzekUwNkFCZGNBZzV2bUZmWFI3L2JFaW94cXVnaG5QK1E5WEVv?=
- =?utf-8?B?ZUZOam1PK0dTSk1RWlUzV256a0szeEpJT0k3TGY0c3FOSkN6d0pkNTAvYy85?=
- =?utf-8?B?dDJVOEFvaXZSQTBLRktoQ3VqZTk1MXpLekRpT1dCeWJVLzdRbHpVeTlCS1dq?=
- =?utf-8?B?N011Nm9DT01OVFNlZjdHMThFcGpkVlFZQ1VGenZRMWZOcmF2S3E0WGpCWnJI?=
- =?utf-8?B?N0c0QUwxNlNubXlzVkwvamsxQ3ZpblViTUVvRUxkYWVBa1ljY0hpMG1rVm1m?=
- =?utf-8?B?ODZTR25NdnR5NUJROXliQVVwelZERHhHbTFWU1ZPY013d096YVJCYWpXYkxr?=
- =?utf-8?B?Zmcxbi95RDBpWWhNdjFsQ2s5N2grNzhkcmV2bU5VQkhVcDU2NDFBQlozS1hp?=
- =?utf-8?B?QnVERmlOMUJhVDNNWDFHM2lBOEFaSUhmbE9QWFprOHZMNnVIQUFUbmk2dXVP?=
- =?utf-8?B?dDJPNVBTdmdzQzZDbkZPbHB4NTg4SE84YVhVVFFOLzlTc3JIVXpUZXFEajVW?=
- =?utf-8?B?R2FML1lHMlZCRGVvNldPSlM5MldVMktaOTFaQ2tLR3FmNzRnYVpWYmJQQUVH?=
- =?utf-8?B?OEFtVUtHVHZJcXByNGxFYXh0OU1WNlpBamxOMy9tdis3eWpxOU5LekVjS3oy?=
- =?utf-8?B?dXpoakw1eU53aDAxMDJrcGMyUzA2K2trZEFwcHZsUGI5eXJnYmh3eVBXVG4r?=
- =?utf-8?B?QWdTRkRvOC9IZVVGTENsTHhwQlFJRmgyZmREMVM0S29SZFRncmRDVllNU2Vj?=
- =?utf-8?B?WVVxV25ZK2pBcnIwbW9XanJsTStMMkdkeVNSd2hHQWQ3bEhKRGVkK3Uzc0VE?=
- =?utf-8?B?Y2VzeTM0Q0NEcmE5TTJjUUNSdWtnPT0=?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a289fb7-7dda-406d-025f-08db93534787
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB9158.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 12:23:29.6504
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1mJYKpXK6ZTKlE+JFN78Nu8U/PBqph8L78D/ZpJI4zzjJVaOmIogizAF3wlUyGXhxiuV+h1cVDRDzmZvSb99ZuEf6juGHka7Bv1e+6f7ql8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR08MB7951
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+According to Table 3. ("Output Source") in the 5P35023 datasheet,
+the output clock mapping should be 0=REF, 1=SE1, 2=SE2, 3=SE3,
+4=DIFF1, 5=DIFF2. But the code uses inverse.
 
-On 7/18/23 17:12, Michael Riesch wrote:
-> Hi all,
-> 
-> This series adds support for orientation specification in the device
-> tree to the Sitronix ST7789V panel driver. 
-> 
-> This is can be seen as reduced version of [0] (some things of [0] have
-> been implemented in more general fashion in the scope of [1], other
-> things have been rejected).
-> 
-> Looking forward to your comments!
+This patch series aims to document clock-output-names in bindings and
+fix the mapping in driver.
 
-Gentle ping!
+Biju Das (3):
+  dt-bindings: clock: versaclock3: Document clock-output-names
+  clk: vc3: Fix output clock mapping
+  arm64: dts: renesas: rz-smarc-common: Use versa3 clk for audio mclk
 
-The DT part has already received an Acked-by -- are there any objections
-from the DRM side?
+ .../bindings/clock/renesas,5p35023.yaml       | 14 ++--
+ .../boot/dts/renesas/rz-smarc-common.dtsi     | 14 ++--
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 23 +++++++
+ arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 23 +++++++
+ arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 27 ++++++++
+ drivers/clk/clk-versaclock3.c                 | 68 +++++++++----------
+ 6 files changed, 124 insertions(+), 45 deletions(-)
 
-Thanks and best regards,
-Michael
+-- 
+2.25.1
 
-> 
-> [0] https://lore.kernel.org/lkml/20230314115644.3775169-1-gerald.loacker@wolfvision.net/
-> [1] https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
-> 
-> ---
-> Michael Riesch (2):
->       drm/panel: sitronix-st7789v: add panel orientation support
->       dt-bindings: display: add rotation property to sitronix,st7789v
-> 
->  .../bindings/display/panel/sitronix,st7789v.yaml   |  2 ++
->  drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 28 ++++++++++++++++++----
->  2 files changed, 25 insertions(+), 5 deletions(-)
-> ---
-> base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
-> change-id: 20230718-feature-st7789v-4d0c2c6e2429
-> 
-> Best regards,
