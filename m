@@ -2,312 +2,844 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C64576C430
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 06:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 216E176C431
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 06:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231382AbjHBEgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 00:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
+        id S231176AbjHBEkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 00:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjHBEgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 00:36:10 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C341704;
-        Tue,  1 Aug 2023 21:36:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UJm/UMBj/I9U5rzSUTBtcdhzVdC5yeFnbxir7IoTgqTtFOaaBqVi1icJy14k1KxTJwEt5si/psdJxwqkdpg+hFgqNj82XJkkDHeuggCo/w6KTDtdK5VaJHaaoUFoKtJiLYAaICRj55Ut4zJsNwaxVmKr+9iQMuUOJQ0QIXfkFfmOZJ3aZWwt5dZVmbZFXkGdTlWo5iBCyHH1spaYIvkCL1K1u5iJv2qy5dPO0nB6AG2XNulDB6Sb5CX0JVfRekoDhY76qMwi5lCJz7tBDU2eipQjuaG9t1XAIvJ0i8pZyumEtBIW6w4sPXA3SBtvTKz4ZyUNiLDwdTy6l56X2plsmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=38JwVGCkv1jawJHTxFpJO1HIF+13MuqmwasWvQlsdsU=;
- b=JqP/xzpKoSm2HXFMwrrYtqxPOE48LU5GxzzTg9O8AAWOd7s8q6GmUkyXRHz+tT488DXBS6DwGROcf7OQlADoLzliy9Oo6z0RUHBe1mBtXMvic/CnRD0aDWBgTPNLmuODirpDruhg2sp0JSAi0ry78qJ7P8XmIA1xbRGXspm8Wn/Ith80kzGwHPZxhkBpjvDfnPes1hMe3VG3rWje1qII0DktgpikVvCp+XnrfouwfS6axhJ1X6jw13BflNXE/HZoL8YeBFZLPxyyj98zdSf1u0HU4+4IAp34OAWOYLQ9a3QQkRGAUW6SSrWDxRi5wOOlZFYQKWERP+jy3+/7zLGSrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=38JwVGCkv1jawJHTxFpJO1HIF+13MuqmwasWvQlsdsU=;
- b=Px+W05YPqpMuOJudOBDODuxEASVp6t2NPsQzxmGB3afgXUh91/3CMJHANjy3E7ywcgROtvL+mggt39+IKX7DO34S/SPbjSSfATjoxL4+7DuN5gyf4fUryNmdOhr3G8n3xPwqAFOe1Gj+fGwc+opV+gg1Om3ZPlWS2OLhg/h1APg=
-Received: from CYXPR03CA0041.namprd03.prod.outlook.com (2603:10b6:930:d2::12)
- by BL1PR12MB5304.namprd12.prod.outlook.com (2603:10b6:208:314::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Wed, 2 Aug
- 2023 04:36:02 +0000
-Received: from CY4PEPF0000EDD3.namprd03.prod.outlook.com
- (2603:10b6:930:d2:cafe::23) by CYXPR03CA0041.outlook.office365.com
- (2603:10b6:930:d2::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.19 via Frontend
- Transport; Wed, 2 Aug 2023 04:36:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EDD3.mail.protection.outlook.com (10.167.241.207) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6652.19 via Frontend Transport; Wed, 2 Aug 2023 04:36:02 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 1 Aug
- 2023 23:36:01 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 1 Aug
- 2023 23:36:00 -0500
-Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Tue, 1 Aug 2023 23:35:58 -0500
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-To:     <devicetree@vger.kernel.org>
-CC:     <git@amd.com>, <linux-clk@vger.kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <michal.simek@amd.com>
-Subject: [PATCH v4] dt-bindings: clock: versal: Convert the xlnx,zynqmp-clk.txt to yaml
-Date:   Wed, 2 Aug 2023 10:05:57 +0530
-Message-ID: <20230802043557.26478-1-shubhrajyoti.datta@amd.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S230386AbjHBEkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 00:40:20 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F27A171C
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 21:40:18 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fbc1218262so67425035e9.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Aug 2023 21:40:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1690951216; x=1691556016;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hp1nCOH45VBW3VpMh2BkLWqbWPd6QEucIYHkJwGPwMg=;
+        b=ed4f+pWJunuqvi9p03M0Xyjq4QD8QYPvjfmX2wcsiL8rqTss7ncogRvfsF7VDqQP5e
+         LmPR0MSdFIV/qWZUIqqQ5jMF04JBqTBB07dhu66gpV14FukB4HKYqf7VHurSmlFtPzkh
+         Dh6aUNQbuGH8Gz639RmOqcOVjaFE1g7qiH9aQoXuJGQa0YoukGwN5ZhaVsoxUCRH71OG
+         CCgs7QwuwxyR3E4WmK2BdsU1PilgzBi18ZKgDoSQe5JpiSL43IL/WylmnpqNTvgKpGHS
+         VNApyI9EBdbi/viOwCMNIAy+YilCIIB7U6T1tuQbPF/6RJMrzMTTmOjZqjbtjq9/ifg7
+         qb+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690951216; x=1691556016;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hp1nCOH45VBW3VpMh2BkLWqbWPd6QEucIYHkJwGPwMg=;
+        b=dEQMoQ/JveMxTS8GwTtA3Tp6pKebt1VnT0ey5DWxEWUK/WzN4Ktwn8U1fFSMUnMfMB
+         onWT8cV6UenlOhEhj0fRx5A38K2/f6Nq/u1aU2sxCtwVJsGGo/LLY1FiyyYiGrEpVm4S
+         VAG76Epz1sT6VRpTks1JsafAh1Boy9Syml0DpkaYkWAVhnKDYzDbI59WXioZW2dwitRC
+         gt7dxCEw4MSTP6q9JBScW12xXvmTbjfLDSfkhUpZAWGtiexdE5TtF03dlm3LdePoHClS
+         xQCdwOzXPzPQiCnYwGrTTUZl4R596uT+eI8HnMLwc7QgMuZeyyRGmlRm4biCCmBJB4/q
+         j/Sw==
+X-Gm-Message-State: ABy/qLaytcgshunbyGN3Qhe6mYUD+vAfUcdUSlK6mThcOgFtEjDoq9aN
+        lIbz8BLufvjcI+MlyqqSQEa58naOJK+foO61sQwSbM3e
+X-Google-Smtp-Source: APBJJlFGejsdMmCaeOnqjhGOA36Qw1SBMXm3eVrrAWSSE5mwlXgmYlmAAxjTGKmU9jIi9aum9JAAsg==
+X-Received: by 2002:a05:600c:2143:b0:3fe:20aa:ada0 with SMTP id v3-20020a05600c214300b003fe20aaada0mr4024292wml.15.1690951216567;
+        Tue, 01 Aug 2023 21:40:16 -0700 (PDT)
+Received: from [10.0.2.15] ([82.78.167.79])
+        by smtp.gmail.com with ESMTPSA id l7-20020a7bc347000000b003fe215e4492sm618095wmj.4.2023.08.01.21.40.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Aug 2023 21:40:16 -0700 (PDT)
+Message-ID: <14d628cf-a40c-11e6-7743-e3ba3bd8aa2d@tuxon.dev>
+Date:   Wed, 2 Aug 2023 07:40:14 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD3:EE_|BL1PR12MB5304:EE_
-X-MS-Office365-Filtering-Correlation-Id: a45a7e1c-b0bb-4124-25ee-08db9311fa3e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l+RhobqbObO9xIrHQrxa5j0h1f+dCejsZs3Neq0C742dobpx/3IXcL7aniqGKzvecKPU6opJ6TW9KqBsunzEQKYNfsfEcPMLHH8g6opHQWjTi0zsNpMGljh/ZTwJp0BgbhUhh5EipsHZtwsoayMSCzymW7cguskdufWg5qv3zVtzNQBhnwq81MRHxBz/d3gOtyHW29U7/mRQroBVPHsa9UuVHqWeVznpkFC4jrk1idPgNOrhLGBZT3IOqyl5Rfa+O1yv5QiNqXKUYlCpTw07rT2X4TT2FfTo/PHxv5RYYEIuUC/1wUNf/TFH23qXIFaF/2CNXWjyheEyP43k7MO7dsOWfqy5ulp3vw3UoD5hTGbWbRPi3hDqYc4m+aAt3iQUYlvyPQec1BfccdS0v82L+NH7U5z6ASZ+/B/x+Ti7J5j/wy7VPeceoAVAv1ufsXejxbC/JimCecZ90g2gopXKRt5mw4LTcQPK0WwD8J2s6o5rTZCscqpP64JtKjYdOr5ZaRApjX2Nn2zIbdVPi1VlQ94dm355e5WeqrC69PiplzTYsBKfaB2khGsNpWJrzf6jxSM35fwmSDd0wEGw5nUoo7lLInetMsK0e/OrjV+aC8r7577DafBXE3xdFR79aZC0tmTbqPp+NoSJmpDzi6+FV3vSE/4U3EywHhN+oMUYNjmCaUgYcc4ZDFyvbDRJOm3ghsP2bjrwdO8mzM6T7nKNacEV3QUGM7C71A0x8BoWQGj0dX5vbXFMmIKdQ5cGl9FhUmQr7NSFR879vBKAgaofHQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(376002)(346002)(136003)(82310400008)(451199021)(46966006)(36840700001)(40470700004)(40460700003)(2906002)(70586007)(6916009)(70206006)(4326008)(86362001)(83380400001)(478600001)(36756003)(426003)(336012)(186003)(82740400003)(81166007)(356005)(26005)(1076003)(2616005)(36860700001)(40480700001)(54906003)(47076005)(41300700001)(8936002)(8676002)(5660300002)(44832011)(316002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 04:36:02.2661
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a45a7e1c-b0bb-4124-25ee-08db9311fa3e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD3.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5304
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d29_curiosity: Add device tree
+ for sama5d29_curiosity board
+Content-Language: en-US
+To:     Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, andre.przywara@arm.com,
+        andrei.simion@microchip.com, jerry.ray@microchip.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     cristian.birsan@microchip.com
+References: <20230801111151.6546-1-mihai.sain@microchip.com>
+ <20230801111151.6546-2-mihai.sain@microchip.com>
+From:   claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20230801111151.6546-2-mihai.sain@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the xlnx,zynqmp-clk.txt to yaml.
-versal-clk.yaml already exists that's why ZynqMP is converted and
-merged.
+On 01.08.2023 14:11, Mihai Sain wrote:
+> Add initial device tree file for sama5d29_curiosity board.
+> 
+> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+> ---
+>  arch/arm/boot/dts/microchip/Makefile          |   2 +
+>  .../dts/microchip/at91-sama5d29_curiosity.dts | 706 ++++++++++++++++++
+>  2 files changed, 708 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+> 
+> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
+> index 31e03747cdf4..efde9546c8f4 100644
+> --- a/arch/arm/boot/dts/microchip/Makefile
+> +++ b/arch/arm/boot/dts/microchip/Makefile
+> @@ -4,6 +4,7 @@ DTC_FLAGS_at91-sam9x60_curiosity := -@
+>  DTC_FLAGS_at91-sam9x60ek := -@
+>  DTC_FLAGS_at91-sama5d27_som1_ek := -@
+>  DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
+> +DTC_FLAGS_at91-sama5d29_curiosity := -@
+>  DTC_FLAGS_at91-sama5d2_icp := -@
+>  DTC_FLAGS_at91-sama5d2_ptc_ek := -@
+>  DTC_FLAGS_at91-sama5d2_xplained := -@
+> @@ -64,6 +65,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+>  	at91-nattis-2-natte-2.dtb \
+>  	at91-sama5d27_som1_ek.dtb \
+>  	at91-sama5d27_wlsom1_ek.dtb \
+> +	at91-sama5d29_curiosity.dtb \
+>  	at91-sama5d2_icp.dtb \
+>  	at91-sama5d2_ptc_ek.dtb \
+>  	at91-sama5d2_xplained.dtb \
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+> new file mode 100644
+> index 000000000000..17af10446dac
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+> @@ -0,0 +1,706 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * at91-sama5d29_curiosity.dts - Device Tree file for SAMA5D29 Curiosity board
+> + *
+> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
+> + *
+> + * Author: Mihai Sain <mihai.sain@microchip.com>
+> + *
+> + */
+> +/dts-v1/;
+> +#include "sama5d29.dtsi"
+> +#include "sama5d2-pinfunc.h"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/mfd/atmel-flexcom.h>
+> +
+> +/ {
+> +	model = "Microchip SAMA5D29 Curiosity";
+> +	compatible = "microchip,sama5d29-curiosity", "atmel,sama5d29", "atmel,sama5d2", "atmel,sama5";
+> +
+> +	aliases {
+> +		serial0 = &uart0;	// debug
+> +		serial1 = &uart1;	// RPi
+> +		serial2 = &uart3;	// mikro BUS 2
+> +		serial3 = &uart4;	// mikro BUS 1
+> +		serial4 = &uart6;	// flx1 Bluetooth
+> +		i2c0 = &i2c0;
+> +		i2c1 = &i2c1;
+> +	};
+> +
+> +	chosen {
+> +		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal {
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		main_xtal {
+> +			clock-frequency = <24000000>;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
+> +
+> +		button-1 {
+> +			label = "USER_PB";
+> +			gpios = <&pioA PIN_PA17 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_PROG1>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
+> +		status = "okay";
+> +
+> +		red {
+> +			label = "red";
+> +			gpios = <&pioA PIN_PA7 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		green {
+> +			label = "green";
+> +			gpios = <&pioA PIN_PA8 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		blue {
+> +			label = "blue";
+> +			gpios = <&pioA PIN_PA9 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	memory@20000000 {
+> +		device_type = "memory";
+> +		reg = <0x20000000 0x20000000>;
+> +	};
+> +
+> +	vdd_1v8: regulator-vqmmc {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDD_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		status = "okay";
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
----
+No need for status = "okay", it is the default one.
 
-Changes in v4:
-Do not relax the constraints
-Update the constraints to max as 8
+> +	};
+> +};
+> +
+> +&adc {
+> +	vddana-supply = <&vdd_3v3>;
+> +	vref-supply = <&vdd_3v3>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_adc_default &pinctrl_adtrg_default>;
+> +	status = "okay";
+> +};
+> +
+> +&can0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_can0_default>;
+> +	status = "okay";
+> +};
+> +
+> +&can1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_can1_default>;
+> +	status = "okay";
+> +};
+> +
+> +&flx1 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+> +	status = "okay";
+> +
+> +	uart6: serial@200 {
+> +		pinctrl-0 = <&pinctrl_flx1_default>;
+> +		pinctrl-names = "default";
+> +		atmel,use-dma-rx;
+> +		atmel,use-dma-tx;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx4 { /* RPi spi */
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_SPI>;
+> +	status = "okay";
+> +
+> +	spi6: spi@400 {
+> +		dmas = <0>, <0>;
+> +		cs-gpios = <&pioA PIN_PD15 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rpi_spi &pinctrl_rpi_spi_cs0>;
+> +		status = "okay";
+> +	};
+> +
+> +	spi7: spi@400 {
+> +		dmas = <0>, <0>;
+> +		cs-gpios = <&pioA PIN_PD16 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rpi_spi &pinctrl_rpi_spi_cs1>;
+> +		status = "okay";
+> +	};
 
-Changes in v3:
-Update the common constraints
+Two SPIs on the same flexcom? It looks to me something is wrong here.
 
-Changes in v2:
-add enum in compatible
-fix the description
-add constraints for clocks
-name the clock-controller1 to clock-controller
+> +};
+> +
+> +&i2c0 {
+> +	dmas = <0>, <0>;
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&pinctrl_i2c0_default>;
+> +	pinctrl-1 = <&pinctrl_i2c0_gpio>;
+> +	sda-gpios = <&pioA PIN_PB31 GPIO_ACTIVE_HIGH>;
+> +	scl-gpios = <&pioA PIN_PC0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	i2c-sda-hold-time-ns = <350>;
+> +	status = "okay";
+> +
+> +	mcp16502@5b {
+> +		compatible = "microchip,mcp16502";
+> +		reg = <0x5b>;
+> +		status = "okay";
+> +		lpm-gpios = <&pioBU 0 GPIO_ACTIVE_LOW>;
+> +
+> +		regulators {
+> +			vdd_3v3: VDD_IO {
+> +				regulator-name = "VDD_IO";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-initial-mode = <2>;
+> +				regulator-allowed-modes = <2>, <4>;
+> +				regulator-always-on;
+> +
+> +				regulator-state-standby {
+> +					regulator-on-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +			};
+> +
+> +			vddio_ddr: VDD_DDR {
+> +				regulator-name = "VDD_DDR";
+> +				regulator-min-microvolt = <1200000>;
+> +				regulator-max-microvolt = <1200000>;
+> +				regulator-initial-mode = <2>;
+> +				regulator-allowed-modes = <2>, <4>;
+> +				regulator-always-on;
+> +
+> +				regulator-state-standby {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1200000>;
+> +					regulator-changeable-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1200000>;
+> +					regulator-changeable-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +			};
+> +
+> +			vdd_core: VDD_CORE {
+> +				regulator-name = "VDD_CORE";
+> +				regulator-min-microvolt = <1250000>;
+> +				regulator-max-microvolt = <1250000>;
+> +				regulator-initial-mode = <2>;
+> +				regulator-allowed-modes = <2>, <4>;
+> +				regulator-always-on;
+> +
+> +				regulator-state-standby {
+> +					regulator-on-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +			};
+> +
+> +			vdd_ddr: VDD_OTHER {
+> +				regulator-name = "VDD_OTHER";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-initial-mode = <2>;
+> +				regulator-allowed-modes = <2>, <4>;
+> +				regulator-always-on;
+> +
+> +				regulator-state-standby {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1800000>;
+> +					regulator-changeable-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1800000>;
+> +					regulator-changeable-in-suspend;
+> +					regulator-mode = <4>;
+> +				};
+> +			};
+> +
+> +			LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <2500000>;
+> +				regulator-max-microvolt = <2500000>;
+> +				regulator-always-on;
+> +
+> +				regulator-state-standby {
+> +					regulator-on-in-suspend;
+> +				};
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +
+> +				regulator-state-standby {
+> +					regulator-on-in-suspend;
+> +				};
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	dmas = <0>, <0>;
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&pinctrl_i2c1_default>;
+> +	i2c-analog-filter;
+> +	i2c-digital-filter;
+> +	i2c-digital-filter-width-ns = <35>;
+> +	pinctrl-1 = <&pinctrl_i2c1_gpio>;
 
- .../bindings/clock/xlnx,versal-clk.yaml       | 80 ++++++++++++++++---
- .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ---------------
- 2 files changed, 71 insertions(+), 72 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
+Keep pinctrl-X grouped together.
 
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-index e9cf747bf89b..1ed17dfca241 100644
---- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-+++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-@@ -19,7 +19,9 @@ select: false
- properties:
-   compatible:
-     oneOf:
--      - const: xlnx,versal-clk
-+      - enum:
-+          - xlnx,versal-clk
-+          - xlnx,zynqmp-clk
-       - items:
-           - enum:
-               - xlnx,versal-net-clk
-@@ -31,16 +33,12 @@ properties:
-   clocks:
-     description: List of clock specifiers which are external input
-       clocks to the given clock controller.
--    items:
--      - description: reference clock
--      - description: alternate reference clock
--      - description: alternate reference clock for programmable logic
-+    minItems: 3
-+    maxItems: 8
- 
-   clock-names:
--    items:
--      - const: ref
--      - const: alt_ref
--      - const: pl_alt_ref
-+    minItems: 3
-+    maxItems: 8
- 
- required:
-   - compatible
-@@ -50,6 +48,61 @@ required:
- 
- additionalProperties: false
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,versal-clk
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: reference clock
-+            - description: alternate reference clock
-+            - description: alternate reference clock for programmable logic
-+
-+        clock-names:
-+          items:
-+            - const: ref
-+            - const: alt_ref
-+            - const: pl_alt_ref
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,zynqmp-clk
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+          items:
-+            - description: PS reference clock
-+            - description: reference clock for video system
-+            - description: alternative PS reference clock
-+            - description: auxiliary reference clock
-+            - description: transceiver reference clock
-+            - description: (E)MIO clock source  (Optional clock)
-+            - description: GEM emio clock  (Optional clock)
-+            - description: Watchdog external clock (Optional clock)
-+
-+        clock-names:
-+          minItems: 5
-+          items:
-+            - const: pss_ref_clk
-+            - const: video_clk
-+            - const: pss_alt_ref_clk
-+            - const: aux_ref_clk
-+            - const: gt_crx_ref_clk
-+            - pattern: "^mio_clk[00-77]+.*$"
-+            - pattern: "gem[0-3]+_emio_clk.*$"
-+            - pattern: "swdt[0-1]+_ext_clk.*$"
-+
- examples:
-   - |
-     firmware {
-@@ -64,4 +117,13 @@ examples:
-         };
-       };
-     };
-+
-+    clock-controller {
-+        #clock-cells = <1>;
-+        compatible = "xlnx,zynqmp-clk";
-+        clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>,
-+                 <&aux_ref_clk>, <&gt_crx_ref_clk>;
-+        clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk",
-+                      "aux_ref_clk", "gt_crx_ref_clk";
-+    };
- ...
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-deleted file mode 100644
-index 391ee1a60bed..000000000000
---- a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
----------------------------------------------------------------------------
--Device Tree Clock bindings for the Zynq Ultrascale+ MPSoC controlled using
--Zynq MPSoC firmware interface
----------------------------------------------------------------------------
--The clock controller is a h/w block of Zynq Ultrascale+ MPSoC clock
--tree. It reads required input clock frequencies from the devicetree and acts
--as clock provider for all clock consumers of PS clocks.
--
--See clock_bindings.txt for more information on the generic clock bindings.
--
--Required properties:
-- - #clock-cells:	Must be 1
-- - compatible:		Must contain:	"xlnx,zynqmp-clk"
-- - clocks:		List of clock specifiers which are external input
--			clocks to the given clock controller. Please refer
--			the next section to find the input clocks for a
--			given controller.
-- - clock-names:		List of clock names which are exteral input clocks
--			to the given clock controller. Please refer to the
--			clock bindings for more details.
--
--Input clocks for zynqmp Ultrascale+ clock controller:
--
--The Zynq UltraScale+ MPSoC has one primary and four alternative reference clock
--inputs. These required clock inputs are:
-- - pss_ref_clk (PS reference clock)
-- - video_clk (reference clock for video system )
-- - pss_alt_ref_clk (alternative PS reference clock)
-- - aux_ref_clk
-- - gt_crx_ref_clk (transceiver reference clock)
--
--The following strings are optional parameters to the 'clock-names' property in
--order to provide an optional (E)MIO clock source:
-- - swdt0_ext_clk
-- - swdt1_ext_clk
-- - gem0_emio_clk
-- - gem1_emio_clk
-- - gem2_emio_clk
-- - gem3_emio_clk
-- - mio_clk_XX		# with XX = 00..77
-- - mio_clk_50_or_51	#for the mux clock to gem tsu from 50 or 51
--
--
--Output clocks are registered based on clock information received
--from firmware. Output clocks indexes are mentioned in
--include/dt-bindings/clock/xlnx-zynqmp-clk.h.
--
---------
--Example
---------
--
--firmware {
--	zynqmp_firmware: zynqmp-firmware {
--		compatible = "xlnx,zynqmp-firmware";
--		method = "smc";
--		zynqmp_clk: clock-controller {
--			#clock-cells = <1>;
--			compatible = "xlnx,zynqmp-clk";
--			clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>, <&aux_ref_clk>, <&gt_crx_ref_clk>;
--			clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk","aux_ref_clk", "gt_crx_ref_clk";
--		};
--	};
--};
--- 
-2.17.1
+> +	sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
+> +	scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status = "okay";
+> +};
+> +
+> +&macb0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_macb0_default &pinctrl_macb0_phy_irq>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	phy-mode = "rmii";
+> +	status = "disabled";
 
+Should any phy/mdio container be placed here? Also, any reason this node is
+disabled?
+> +};
+> +
+> +&pioA {
+> +	pinctrl_adc_default: adc_default {
+> +		pinmux = <PIN_PD25__GPIO>,
+> +			 <PIN_PD26__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_adtrg_default: adtrg_default {
+> +		pinmux = <PIN_PD31__ADTRG>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_rpi_spi: rpi_spi {
+> +		pinmux = <PIN_PD12__FLEXCOM4_IO0>,
+> +			 <PIN_PD13__FLEXCOM4_IO1>,
+> +			 <PIN_PD14__FLEXCOM4_IO2>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_rpi_spi_cs0: rpi_spi_cs0 {
+> +		pinmux = <PIN_PD15__FLEXCOM4_IO3>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_rpi_spi_cs1: rpi_spi_cs1 {
+> +		pinmux = <PIN_PD16__FLEXCOM4_IO4>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_spi1_default: spi1_default {
+> +		pinmux = <PIN_PC1__SPI1_SPCK>,
+> +			 <PIN_PC2__SPI1_MOSI>,
+> +			 <PIN_PC3__SPI1_MISO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_spi1_cs: spi1_cs {
+> +		pinmux = <PIN_PC4__SPI1_NPCS0>,
+> +			 <PIN_PC5__SPI1_NPCS1>,
+> +			 <PIN_PC6__SPI1_NPCS2>,
+> +			 <PIN_PC7__SPI1_NPCS3>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_rpi_uart: rpi_uart {
+> +		pinmux = <PIN_PD2__URXD1>,
+> +			 <PIN_PD3__UTXD1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_debug_uart: debug_uart {
+> +		pinmux = <PIN_PB26__URXD0>,
+> +			 <PIN_PB27__UTXD0>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_can0_default: can0_default {
+> +		pinmux = <PIN_PC10__CANTX0>,
+> +			 <PIN_PC11__CANRX0>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_can1_default: can1_default {
+> +		pinmux = <PIN_PC26__CANTX1>,
+> +			 <PIN_PC27__CANRX1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c0_default: i2c0_default {
+> +		pinmux = <PIN_PB31__TWD0>,
+> +			 <PIN_PC0__TWCK0>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c0_gpio: i2c0_gpio {
+> +		pinmux = <PIN_PB31__GPIO>,
+> +			 <PIN_PC0__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c1_default: i2c1_default {
+> +		pinmux = <PIN_PD4__TWD1>,
+> +			 <PIN_PD5__TWCK1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_i2c1_gpio: i2c1_gpio {
+> +		pinmux = <PIN_PD4__GPIO>,
+> +			 <PIN_PD5__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_key_gpio_default: key_gpio_default {
+> +		pinmux = <PIN_PA17__GPIO>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_led_gpio_default: led_gpio_default {
+> +		pinmux = <PIN_PA7__GPIO>,
+> +			 <PIN_PA8__GPIO>,
+> +			 <PIN_PA9__GPIO>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_qspi1_default: qspi1_default {
+> +		pinmux = <PIN_PB5__QSPI1_SCK>,
+> +			 <PIN_PB6__QSPI1_CS>,
+> +			 <PIN_PB7__QSPI1_IO0>,
+> +			 <PIN_PB8__QSPI1_IO1>,
+> +			 <PIN_PB9__QSPI1_IO2>,
+> +			 <PIN_PB10__QSPI1_IO3>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_sdmmc0_default: sdmmc0_default {
+> +		pinmux = <PIN_PA0__SDMMC0_CK>,
+> +			 <PIN_PA1__SDMMC0_CMD>,
+> +			 <PIN_PA2__SDMMC0_DAT0>,
+> +			 <PIN_PA3__SDMMC0_DAT1>,
+> +			 <PIN_PA4__SDMMC0_DAT2>,
+> +			 <PIN_PA5__SDMMC0_DAT3>,
+> +			 <PIN_PA11__SDMMC0_VDDSEL>,
+> +			 <PIN_PA13__SDMMC0_CD>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_sdmmc1_default: sdmmc1_default {
+> +		pinmux = <PIN_PA18__SDMMC1_DAT0>,
+> +			 <PIN_PA19__SDMMC1_DAT1>,
+> +			 <PIN_PA20__SDMMC1_DAT2>,
+> +			 <PIN_PA21__SDMMC1_DAT3>,
+> +			 <PIN_PA22__SDMMC1_CK>,
+> +			 <PIN_PA28__SDMMC1_CMD>,
+> +			 <PIN_PA30__SDMMC1_CD>;
+> +		bias-disable;
+> +	};
+> +
+
+These starting here:
+> +	pinctrl_mikrobus1_an: mikrobus1_an {
+> +		pinmux = <PIN_PD25__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_rst: mikrobus1_rst {
+> +		pinmux = <PIN_PA16__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_spi_cs: mikrobus1_spi_cs {
+> +		pinmux = <PIN_PC4__SPI1_NPCS0>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_spi: mikrobus1_spi {
+> +		pinmux = <PIN_PC1__SPI1_SPCK>,
+> +			 <PIN_PC2__SPI1_MOSI>,
+> +			 <PIN_PC3__SPI1_MISO>;
+> +		bias-disable;
+> +	};
+> +
+
+ending here are not used. Same on mikrobus2
+
+> +	pinctrl_mikrobus1_pwm: mikrobus1_pwm {
+> +		pinmux = <PIN_PA31__PWML0>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_int: mikrobus1_int {
+> +		pinmux = <PIN_PB2__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus1_uart: mikrobus1_uart {
+> +		pinmux = <PIN_PB3__URXD4>,
+> +			 <PIN_PB4__UTXD4>;
+> +		bias-disable;
+> +	};
+
+Not used
+
+> +
+> +	pinctrl_mikrobus2_an: mikrobus2_an {
+> +		pinmux = <PIN_PD26__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_rst: mikrobus2_rst {
+> +		pinmux = <PIN_PA16__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_spi_cs: mikrobus2_spi_cs {
+> +		pinmux = <PIN_PC5__SPI1_NPCS1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_spi: mikrobus2_spi {
+> +		pinmux = <PIN_PC1__SPI1_SPCK>,
+> +			 <PIN_PC2__SPI1_MOSI>,
+> +			 <PIN_PC3__SPI1_MISO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_pwm: mikrobus2_pwm {
+> +		pinmux = <PIN_PB0__PWMH1>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_int: mikrobus2_int {
+> +		pinmux = <PIN_PB1__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_mikrobus2_uart: mikrobus2_uart {
+> +		pinmux = <PIN_PB11__URXD3>,
+> +			 <PIN_PB12__UTXD3>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_usb_default: usb_default {
+> +		pinmux = <PIN_PA6__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_usba_vbus: usba_vbus {
+> +		pinmux = <PIN_PB13__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_macb0_default: macb0_default {
+> +		pinmux = <PIN_PB14__GTXCK>,
+> +			 <PIN_PB15__GTXEN>,
+> +			 <PIN_PB16__GRXDV>,
+> +			 <PIN_PB17__GRXER>,
+> +			 <PIN_PB18__GRX0>,
+> +			 <PIN_PB19__GRX1>,
+> +			 <PIN_PB20__GTX0>,
+> +			 <PIN_PB21__GTX1>,
+> +			 <PIN_PB22__GMDC>,
+> +			 <PIN_PB23__GMDIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_macb0_phy_irq: macb0_phy_irq {
+> +		pinmux = <PIN_PB24__GPIO>;
+> +		bias-disable;
+> +	};
+> +
+> +	pinctrl_flx1_default: flx1_default {
+> +		pinmux = <PIN_PA24__FLEXCOM1_IO0>,
+> +			 <PIN_PA23__FLEXCOM1_IO1>,
+> +			 <PIN_PA25__FLEXCOM1_IO3>,
+> +			 <PIN_PA26__FLEXCOM1_IO4>;
+> +		bias-disable;
+> +	};
+> +};
+> +
+> +&pwm0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_mikrobus1_pwm &pinctrl_mikrobus2_pwm>;
+> +	status = "okay";
+> +};
+> +
+> +&qspi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_qspi1_default>;
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <80000000>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +		m25p,fast-read;
+> +		label = "atmel_qspi1";
+> +		status = "okay";
+> +
+> +		at91bootstrap@0 {
+> +			label = "at91bootstrap";
+> +			reg = <0x0 0x40000>;
+> +		};
+> +
+> +		bootloader@40000 {
+> +			label = "bootloader";
+> +			reg = <0x40000 0xc0000>;
+> +		};
+> +
+> +		bootloaderenvred@100000 {
+> +			label = "bootloader env redundant";
+> +			reg = <0x100000 0x40000>;
+> +		};
+> +
+> +		bootloaderenv@140000 {
+> +			label = "bootloader env";
+> +			reg = <0x140000 0x40000>;
+> +		};
+> +
+> +		dtb@180000 {
+> +			label = "device tree";
+> +			reg = <0x180000 0x80000>;
+> +		};
+> +
+> +		kernel@200000 {
+> +			label = "kernel";
+> +			reg = <0x200000 0x600000>;
+> +		};
+> +	};
+> +};
+> +
+> +&sdmmc0 {
+> +	bus-width = <4>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sdmmc0_default>;
+> +	vmmc-supply = <&vdd_3v3>;
+> +	vqmmc-supply = <&vdd_1v8>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc1 {
+> +	bus-width = <4>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sdmmc1_default>;
+> +	vqmmc-supply = <&vdd_3v3>;
+> +	vmmc-supply = <&vdd_3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&shutdown_controller {
+> +	debounce-delay-us = <976>;
+> +	atmel,wakeup-rtc-timer;
+> +
+> +	input@0 {
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&spi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi1_default &pinctrl_spi1_cs>;
+> +	status = "okay";
+> +};
+> +
+> +&tcb0 {
+> +	timer0: timer@0 {
+> +		compatible = "atmel,tcb-timer";
+> +		reg = <0>;
+> +	};
+> +
+> +	timer1: timer@1 {
+> +		compatible = "atmel,tcb-timer";
+> +		reg = <1>;
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_debug_uart>;
+> +	atmel,use-dma-rx;
+> +	atmel,use-dma-tx;
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rpi_uart>;
+> +	atmel,use-dma-rx;
+> +	atmel,use-dma-tx;
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_mikrobus2_uart>;
+> +	atmel,use-dma-rx;
+> +	atmel,use-dma-tx;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_mikrobus1_uart>;
+> +	atmel,use-dma-rx;
+> +	atmel,use-dma-tx;
+> +	status = "okay";
+> +};
+> +
+> +&usb0 {
+> +	atmel,vbus-gpio = <&pioA PIN_PB13 GPIO_ACTIVE_HIGH>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usba_vbus>;
+> +	status = "okay";
+> +};
+> +
+> +&usb1 {
+> +	num-ports = <3>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usb_default>;
+> +	status = "okay";
+> +};
+> +
+> +&watchdog {
+> +	status = "okay";
+> +};
