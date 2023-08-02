@@ -2,135 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB71676C2F8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 04:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A4376C311
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 04:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjHBCez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 22:34:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38656 "EHLO
+        id S229590AbjHBCuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 22:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjHBCey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 22:34:54 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2080.outbound.protection.outlook.com [40.107.255.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AEB1BF;
-        Tue,  1 Aug 2023 19:34:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OAnh3yugu9q3L2UxeMd1RgaIaJckg2a1fa2OuduvoXPiMvgAVw4aRl7jLvmxi0r/lM+CO9YlngL+I/OIee9tEYhF4NxczKnWlbu64bnpcf9XPgTeEnQ0gF8TfE+ZzkYuGSACinkAVw/fGY9ZagGlXew2p1gXKGgCgaeRA7Oa1c4sFHpRWWMr0wf2yzr1e8rDckOrTAqYF/se21ZpyaYHhl7Dt2Tma5ZvgxziCo7Ywm+9L/TPFApFuVtd6poRwgpGLXDoZXPo8+VGWklKCcjKbtqiA2QymQ3eShD7tgHoNrUG7KV9Hd6U6ilS04f9/9974hIbwf09G6o89hoUqdGbKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lCp1LxpDHsfflqqbpz9t/AJ9BQ+0oe2mV+CVtGR4ojc=;
- b=Q/VVwr0PJ9VmwlbvX6XizYbzkKgw+4eigw11AHzmqtSL/ZIKkan/dENcTfiSAIaVOogAU1mIC/+BdEpxfYgZkqnzzfhxijID6VKZqutTG4ca72diLDnJCrgCEzOVoo+jXK1gV+mEgXxh2gLVEhGNcLeztvQ3NWGXFEDrP75c0XNybz2+ZryEk5eJg/hfkY++cp/sP5p9K/UcaO5jFskR0kOM8HtxtR4w7P5jvmck5jO7d7+xYT+SsfPrlI75K9mJoDKveVY8VX26lpXJt/NZIbHc4zlzDh2DzuEpw+pVKYjASTkh7eYQ7qg5X4Xnf5yM+YGdRBme8h5z19KCVhMceQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wiwynn.com; dmarc=pass action=none header.from=wiwynn.com;
- dkim=pass header.d=wiwynn.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lCp1LxpDHsfflqqbpz9t/AJ9BQ+0oe2mV+CVtGR4ojc=;
- b=PjthAHOrWFHlvVeHuTlD+2BUFiOpCwLZZGUBVzR++Ys0tE9QMRDOxhSCoIacgbSta8wI1u7WI3oRyHMenLA8Lar/BV4bGIGD69hA8m3usZ0ueemmkvYZ4hEdX5zDFSMJmGvK481uEVK7uUrrNhF1LhieFUjQcVeCMhpFLV/plRI/oSsK1DKv2rsZw293okpc3gLHifq7ovfAj5WB9k5UNQuKhdXVYFaMjCVax+xszGn8tCBAlW+uCODlfuq9rxoVZa6y+7BcYbtCCMCkM5UaSTLNUuDXCYVIxeAOGGGo21h5syCRICydeNdK7QWJfhPE1oJooUXoU0Znf5DfucvYNw==
-Received: from PS2PR04MB3592.apcprd04.prod.outlook.com (2603:1096:300:61::21)
- by SEYPR04MB6309.apcprd04.prod.outlook.com (2603:1096:101:b4::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Wed, 2 Aug
- 2023 02:34:48 +0000
-Received: from PS2PR04MB3592.apcprd04.prod.outlook.com
- ([fe80::c49b:a607:6c17:a90f]) by PS2PR04MB3592.apcprd04.prod.outlook.com
- ([fe80::c49b:a607:6c17:a90f%4]) with mapi id 15.20.6631.045; Wed, 2 Aug 2023
- 02:34:48 +0000
-From:   Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite V4
- board
-Thread-Topic: [PATCH 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite V4
- board
-Thread-Index: AQHZwDvz7mf7a/3GTUmfLqehWY+O4a/NLF2AgAkkwmA=
-Date:   Wed, 2 Aug 2023 02:34:47 +0000
-Message-ID: <PS2PR04MB35928B386F03C987061433D2B70BA@PS2PR04MB3592.apcprd04.prod.outlook.com>
-References: <20230727033926.1904529-1-Delphine_CC_Chiu@wiwynn.com>
- <c9062d5c-b536-f89c-b380-8a0c9b858526@linaro.org>
-In-Reply-To: <c9062d5c-b536-f89c-b380-8a0c9b858526@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wiwynn.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PS2PR04MB3592:EE_|SEYPR04MB6309:EE_
-x-ms-office365-filtering-correlation-id: 1cd3c69d-85c6-40f7-af88-08db93010a2c
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MGGKjm6QSWDUHolFsK0EObI0YYg46OiyPGiZm+lPhF5Pxfn7DrZMxZjyVElENKVZXzKdxO7nyCc1rcnoipzynIoUeZwuQIiDsytiDh4iNyLRas8lBpOnOCkElek4DOqpjHAYlBAiNd+Con3HhYbKSglszGY2iN3QxuoiDyHcSHWxcSQSIKPcHM806zdNOycftDjJJoHhwZizmc9hoPyoqu1P4FiUcoovAIctmgQA0+QNQRt89ZUo9njlGriVP/jx5zSM5+zdgvyJwbV9zTJuCvw/gscjwwlSXUUlCtl96DB++acPsNxzpif7l+UyfEuSQrfnfH/K9e1o4RM8Yg++fW9mjjSNvlgR2rwTX9euZ5j9REPmMpR0rffLP2qxe0WZZPHO/aNAXAX5S49xNN3Dlz8LxaT7ovjpS8HGEgXPua/RspiOXpe5iFqXffuUQk5clHu5eb4o45v1Y6CYO0LV9RGE37w4B6mZWq7OiCLjXAEwzsfQbUcjjOKRxL9JvbnHhvQ/riwC52aTSSnmbZP0h8QZDOVWJrtvu3DGnrfUWt8VjW/SVnm/U3i3HNtdAtn/VlcigKZQndLOPHMHdo1gJWhUlHDmaADAodwD2bQY5GGnfchm6bhP2KiwmbFBWuPC
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS2PR04MB3592.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(366004)(136003)(396003)(346002)(47680400002)(451199021)(55016003)(186003)(9686003)(316002)(86362001)(122000001)(478600001)(54906003)(110136005)(38100700002)(76116006)(66946007)(71200400001)(66446008)(66556008)(66476007)(33656002)(64756008)(7696005)(4326008)(53546011)(26005)(6506007)(41300700001)(5660300002)(8676002)(8936002)(83380400001)(7416002)(38070700005)(52536014)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N1N1elF3UG1DZ0JwNUdpZ2I1VTJabnl5K1NDNG5lc3hBcSszM0dNSElPS2NR?=
- =?utf-8?B?NjRlTzFuWmxLOEY2amRaaTN4dDVDTGI5Ky8wSjN0eHpDd2poemtNL2hDNnlZ?=
- =?utf-8?B?T2Zhcisvc2tIN1dlUHZkMjJVajhWYjVTdG1ycFYvdHQ0UC91YTNGUDNUNGly?=
- =?utf-8?B?WnpTM010WGxWcVZOTWpqTk9TZno2cmRteDFsTDNpZzgveTd6VTIyYmRUbm9S?=
- =?utf-8?B?YkJxYWlIZjdLb3RCYVp2REpDUm0zMW9nNWdNZTRIaGp1TkN0K2dqK2tHMzdl?=
- =?utf-8?B?cWxHL28veU14UytkNUF1SFJPcUpxQmJWLzdrekd1ZkNOVjNnR3BiUzhXQTI2?=
- =?utf-8?B?cysxdjNmSU9lMG5HWktMKzNMZHk4dHB3SVA5TWlxVVk1S1MzOVRaNTRkWnY0?=
- =?utf-8?B?Z1hFVU9Pb1NwbTFCb0FSRmZvaFZRczFUZUJhQjRmT3d2RjhWUFIxS0hXck1B?=
- =?utf-8?B?bmcyU0tQQ0o5cUt2aUhCSU53ZWRqdmh0VVdQeU1ReER3V3JjZ2paWFpwaHM4?=
- =?utf-8?B?QmlGb0RES1FjSmxTN0R2TGtKaGwrd1M0RmR2QTJYbnVlckdjU0NQc3p3cU5E?=
- =?utf-8?B?Tld2d1o3QkhzQWFyLzdCMVEzNzVmZ0ZvVi9PMGRSalpGN2J4Nm1oREFtMDMx?=
- =?utf-8?B?dm1WRzk1MnpZVXpJZUFqbEVSdzR4N2xKcXZyZlRabTBUMWhpT0ovdmZYVDJt?=
- =?utf-8?B?MUtxR1BRYXowVmVKS2txcWFOTWl6UnZtOVNKTUpKUzZ2amYxaTg2SVZ6NGtD?=
- =?utf-8?B?MDg3QUFFY3JjV2lzUVZZUzNOWmlibWhHNCs4WFFVbEo5SWl2eG9xVGFRNzkw?=
- =?utf-8?B?SGEyMkRGOE9NU09QdDNiRm1mK1Q5MG5qeWQzSzF3TTdvRjJtd2NLTXNTM3Rp?=
- =?utf-8?B?V05jdWxENTZpSXQ1T3ZpQzRUOXUyZE5YdFpZbmZNNmMvVFFnS1dRUFhGdTlo?=
- =?utf-8?B?TEhZSHNmVEROekhyN2o3WGlHelJ3YnJlUnBRODhsSElwSlczL21YeW1pcTFw?=
- =?utf-8?B?bjdENmRQZmhVTktlN3pHT0VkVGViSjdIdlZEa3gyVHBUVmNkeFd3SXZMaWht?=
- =?utf-8?B?eE55R3d1cFdpUHhPNU1XTWpiWU52R3pTR3c2cFhKdk85UURnNHN4UTcyU3RW?=
- =?utf-8?B?UElGVSsrTE5BNHZqbUdMaUdhUnJ5U2trS0N1UkdvLy9YbXNlamE1VjN1Zmpi?=
- =?utf-8?B?SHYxYkh6Z3hCUGwvWTNlWDBQb3hXdjR2VEpqYVFzR2JjMFQ1NWRTelg4ckox?=
- =?utf-8?B?RXlTUVg3ME5UQ3NsUUxiSzcwMG4zUzZnYitUVEtNdm1XKzNzZVRxdWR3SmIx?=
- =?utf-8?B?RkF5ZGhuYnI0SEJRcEF2YURYQVBBN3VlNG9CUWYybVVhYmJRK2JLeVZiam5i?=
- =?utf-8?B?ZDJWUlJrUzFWc2s0YjJQamhtM254NXZpNGxjaWZ1U3FXUUExZllQMVNON1U3?=
- =?utf-8?B?eC8rUHZlYmM3bWZoYXBCUlJ4eklMSVZiUjZ3K0d0d05xSHNxOEFhRlNKeDVv?=
- =?utf-8?B?Sk5tZGRyMEt1V0RwWk9sSXdxdVRQemxPNUhXYVJVbUM0R2oyRnZCYm9DSlli?=
- =?utf-8?B?S3oxNUVzbVhJY0lkQ2dNc2hJOTg3U1VFSWFZdlo1cGhLQ1RCekdKUDhaL1lw?=
- =?utf-8?B?UDhLaWdNakFrU0VjK0VDaStkWFRwMUtXVDJCeGdpWTErTG92V1QyajRPOUpr?=
- =?utf-8?B?ZE5ZVEVKQXJMdVFpUmF5TmIrdGlmMzAzeEdnU01OSlBzS2RCaGFrRENtZVl4?=
- =?utf-8?B?azZJMWw5d0RmUzBVUHhmNGJMMklIR3ZZV3FpWW5ZRTZDZGpLT3QrYm9KTE1v?=
- =?utf-8?B?T3hZb01RQ1lKOWVlU1UzUVdWSythWHhlczc3Ti9RQTVjWElRTkpVVjFKYjVU?=
- =?utf-8?B?V1RaQi9SRHJHR0Q5ekdoK0lLOTNLZVB1b0Z4RFZRbGZqSXhjZ2h5U0poQ084?=
- =?utf-8?B?UEpKNEZ3amdMd21iaWdIcjRoYUhtRDRqWnN2UkQ3dVNTdmM5WGg2RTVVY255?=
- =?utf-8?B?YVdQTHo2ZzJ0REh6enJsTEJJd3Z4Z2hXYStTT1czZFphSTA1RVVKMi96VzZD?=
- =?utf-8?B?bnB0bG9KWFNuMEROY3NUK0YyQmZEQzhMR0x1cnJOTXZELzh4OUdrTHRMMXF4?=
- =?utf-8?Q?CWthW622AaNZ92FKdWb4m+WUU?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229480AbjHBCuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 22:50:09 -0400
+Received: from mgamail.intel.com (unknown [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A1C01BFD;
+        Tue,  1 Aug 2023 19:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690944608; x=1722480608;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HIvP5FSmZX7RP8RIYNqnbo+QbCazoG1k/FHH/7gLQaM=;
+  b=gOZi2ZAEdyRhzS7tm+OcXJbcDK5LiCGXzKRt3mFipiiHi2doVtsYJfMQ
+   l/D6QZ0wo7MSHqs0CsMYVhS8R5Y59CMIn5ecI6wAY7nkCyJIh+31vWaB/
+   e2opNJCiNMnXxaRR/CqKwKxLktL10NYBIxm7B95H0dEhfxDP3KI7gbJMe
+   Oj+ia1lHgiIVNt9jhrX958D0VkE/ZklBDBYiEhvX8zG0TioxqaOhYfRqV
+   1TfZqqwKQFtdtFeJp83yy+4SNazMZz3gUY0sZVcJP91QkYY22jupjCZE7
+   yCNiR0372v1dkThVqq1tiJ9cbwHCa/xmhzm097Hc0BL4HwEHf3G4WrjDd
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="433303048"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
+   d="scan'208";a="433303048"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2023 19:50:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="728936236"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
+   d="scan'208";a="728936236"
+Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 01 Aug 2023 19:50:04 -0700
+Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qR1w3-0000n1-2d;
+        Wed, 02 Aug 2023 02:50:03 +0000
+Date:   Wed, 2 Aug 2023 10:49:23 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use
+ "%pOF" inside devtree_lock
+Message-ID: <202308021009.r1Hzc7YD-lkp@intel.com>
+References: <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PS2PR04MB3592.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cd3c69d-85c6-40f7-af88-08db93010a2c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2023 02:34:47.7691
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k+FUBLSi4kzN2fKltXP56u0rs/mz92lB/hSBotAAjq05vWfCN/Byy639rnWrGcZKeMYcIj2z655divl2WDD/8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR04MB6309
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -138,26 +72,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
-SnVseSAyNywgMjAyMyAyOjQ5IFBNDQo+IFRvOiBEZWxwaGluZV9DQ19DaGl1L1dZSFEvV2l3eW5u
-IDxEZWxwaGluZV9DQ19DaGl1QHdpd3lubi5jb20+Ow0KPiBwYXRyaWNrQHN0d2N4Lnh5ejsgUm9i
-IEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGty
-enlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZz47IENvbm9yIERvb2xleSA8Y29ub3IrZHRA
-a2VybmVsLm9yZz47DQo+IEpvZWwgU3RhbmxleSA8am9lbEBqbXMuaWQuYXU+OyBBbmRyZXcgSmVm
-ZmVyeSA8YW5kcmV3QGFqLmlkLmF1Pg0KPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7
-IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gbGludXgtYXNwZWVkQGxp
-c3RzLm96bGFicy5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDog
-UmU6IFtQQVRDSCAxLzJdIGR0LWJpbmRpbmdzOiBhcm06IGFzcGVlZDogYWRkIEZhY2Vib29rIFlv
-c2VtaXRlIFY0DQo+IGJvYXJkDQo+IA0KPiAgIFNlY3VyaXR5IFJlbWluZGVyOiBQbGVhc2UgYmUg
-YXdhcmUgdGhhdCB0aGlzIGVtYWlsIGlzIHNlbnQgYnkgYW4gZXh0ZXJuYWwNCj4gc2VuZGVyLg0K
-PiANCj4gT24gMjcvMDcvMjAyMyAwNTozOSwgRGVscGhpbmUgQ0MgQ2hpdSB3cm90ZToNCj4gPiBE
-b2N1bWVudCB0aGUgbmV3IGNvbXBhdGlibGVzIHVzZWQgb24gRmFjZWJvb2sgWW9zZW1pdGUgVjQu
-DQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBEZWxwaGluZSBDQyBDaGl1IDxEZWxwaGluZV9DQ19D
-aGl1QHdpd3lubi5jb20+DQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9hcm0vYXNwZWVkL2FzcGVlZC55YW1sIHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2Vk
-LCAxIGluc2VydGlvbigrKQ0KPiANCj4gSSBnb3QgdGhlIHNhbWUgcGF0Y2ggZm91ciB0aW1lcy4u
-Lg0KSXQgd2FzIG15IG92ZXJzaWdodCB0byBzZW5kIHRoZSBzYW1lIHBhdGNoIG11bHRpcGxlIHRp
-bWVzLg0KV291bGQgeW91IHBsZWFzZSB0byB0ZWxsIHRoYXQgc2hvdWxkIEkgcmVzZW5kIGEgbmV3
-IHZlcnNpb24sIG9yIHRoZXNlIHBhdGNoZXMgaGFzIGJlZW4gYWxyZWFkeSB1bmRlciByZXZpZXdl
-ZC4NClRoYW5rIHlvdS4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo=
+Hi Rob,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on e251a4e28a27884e8bfb7fccbf53b24736f3ef87]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring/of-unittest-Fix-EXPECT-for-parse_phandle_with_args_map-test/20230802-055739
+base:   e251a4e28a27884e8bfb7fccbf53b24736f3ef87
+patch link:    https://lore.kernel.org/r/20230801-dt-changeset-fixes-v1-2-b5203e3fc22f%40kernel.org
+patch subject: [PATCH 2/5] of: dynamic: Refactor action prints to not use "%pOF" inside devtree_lock
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20230802/202308021009.r1Hzc7YD-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230802/202308021009.r1Hzc7YD-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308021009.r1Hzc7YD-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/printk.h:564,
+                    from include/asm-generic/bug.h:22,
+                    from arch/loongarch/include/asm/bug.h:59,
+                    from include/linux/bug.h:5,
+                    from include/linux/thread_info.h:13,
+                    from include/asm-generic/current.h:5,
+                    from ./arch/loongarch/include/generated/asm/current.h:1,
+                    from include/linux/mutex.h:14,
+                    from include/linux/kernfs.h:11,
+                    from include/linux/sysfs.h:16,
+                    from include/linux/kobject.h:20,
+                    from include/linux/of.h:17,
+                    from drivers/of/dynamic.c:12:
+   drivers/of/dynamic.c: In function 'of_reconfig_notify':
+>> include/linux/dynamic_debug.h:219:58: error: expected expression before 'do'
+     219 | #define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {   \
+         |                                                          ^~
+   include/linux/dynamic_debug.h:246:9: note: in expansion of macro '__dynamic_func_call_cls'
+     246 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:248:9: note: in expansion of macro '_dynamic_func_call_cls'
+     248 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:267:9: note: in expansion of macro '_dynamic_func_call'
+     267 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/printk.h:579:9: note: in expansion of macro 'dynamic_pr_debug'
+     579 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~
+   drivers/of/dynamic.c:88:13: note: in expansion of macro 'pr_debug'
+      88 |         if (pr_debug("notify "))
+         |             ^~~~~~~~
+   drivers/of/dynamic.c: In function '__of_changeset_entry_apply':
+>> include/linux/dynamic_debug.h:219:58: error: expected expression before 'do'
+     219 | #define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {   \
+         |                                                          ^~
+   include/linux/dynamic_debug.h:246:9: note: in expansion of macro '__dynamic_func_call_cls'
+     246 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:248:9: note: in expansion of macro '_dynamic_func_call_cls'
+     248 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:267:9: note: in expansion of macro '_dynamic_func_call'
+     267 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/printk.h:579:9: note: in expansion of macro 'dynamic_pr_debug'
+     579 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~
+   drivers/of/dynamic.c:572:13: note: in expansion of macro 'pr_debug'
+     572 |         if (pr_debug("changeset: applying: cset<%p> ", ce))
+         |             ^~~~~~~~
+
+
+vim +/do +219 include/linux/dynamic_debug.h
+
+9049fc745300c5 Jason Baron      2016-08-03  207  
+ca90fca7f7b518 Jim Cromie       2022-09-04  208  /*
+ca90fca7f7b518 Jim Cromie       2022-09-04  209   * Factory macros: ($prefix)dynamic_func_call($suffix)
+ca90fca7f7b518 Jim Cromie       2022-09-04  210   *
+ca90fca7f7b518 Jim Cromie       2022-09-04  211   * Lower layer (with __ prefix) gets the callsite metadata, and wraps
+ca90fca7f7b518 Jim Cromie       2022-09-04  212   * the func inside a debug-branch/static-key construct.  Upper layer
+ca90fca7f7b518 Jim Cromie       2022-09-04  213   * (with _ prefix) does the UNIQUE_ID once, so that lower can ref the
+ca90fca7f7b518 Jim Cromie       2022-09-04  214   * name/label multiple times, and tie the elements together.
+ca90fca7f7b518 Jim Cromie       2022-09-04  215   * Multiple flavors:
+ca90fca7f7b518 Jim Cromie       2022-09-04  216   * (|_cls):	adds in _DPRINT_CLASS_DFLT as needed
+ca90fca7f7b518 Jim Cromie       2022-09-04  217   * (|_no_desc):	former gets callsite descriptor as 1st arg (for prdbgs)
+ca90fca7f7b518 Jim Cromie       2022-09-04  218   */
+ca90fca7f7b518 Jim Cromie       2022-09-04 @219  #define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {	\
+ca90fca7f7b518 Jim Cromie       2022-09-04  220  	DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);	\
+47cdd64be4832f Rasmus Villemoes 2019-03-07  221  	if (DYNAMIC_DEBUG_BRANCH(id))				\
+47cdd64be4832f Rasmus Villemoes 2019-03-07  222  		func(&id, ##__VA_ARGS__);			\
+e9d376f0fa66bd Jason Baron      2009-02-05  223  } while (0)
+ca90fca7f7b518 Jim Cromie       2022-09-04  224  #define __dynamic_func_call(id, fmt, func, ...)				\
+ca90fca7f7b518 Jim Cromie       2022-09-04  225  	__dynamic_func_call_cls(id, _DPRINTK_CLASS_DFLT, fmt,		\
+ca90fca7f7b518 Jim Cromie       2022-09-04  226  				func, ##__VA_ARGS__)
+e9d376f0fa66bd Jason Baron      2009-02-05  227  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
