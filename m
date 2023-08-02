@@ -2,53 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C136076C4B9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 07:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C584576C4BC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 07:17:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232391AbjHBFRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 01:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41630 "EHLO
+        id S232478AbjHBFRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 01:17:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbjHBFR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 01:17:28 -0400
-Received: from qproxy1-pub.mail.unifiedlayer.com (qproxy1-pub.mail.unifiedlayer.com [173.254.64.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411631BFD
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 22:17:28 -0700 (PDT)
+        with ESMTP id S232384AbjHBFRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 01:17:48 -0400
+Received: from qproxy2-pub.mail.unifiedlayer.com (qproxy2-pub.mail.unifiedlayer.com [69.89.16.161])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0106B2D4C
+        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 22:17:34 -0700 (PDT)
 Received: from outbound-ss-761.bluehost.com (outbound-ss-761.bluehost.com [74.220.211.250])
-        by qproxy1.mail.unifiedlayer.com (Postfix) with ESMTP id 5CF2A8028842
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 05:17:26 +0000 (UTC)
+        by qproxy2.mail.unifiedlayer.com (Postfix) with ESMTP id 8797F8027811
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 05:17:33 +0000 (UTC)
 Received: from cmgw15.mail.unifiedlayer.com (unknown [10.0.90.130])
-        by progateway8.mail.pro1.eigbox.com (Postfix) with ESMTP id D731310049591
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 05:17:25 +0000 (UTC)
+        by progateway8.mail.pro1.eigbox.com (Postfix) with ESMTP id EB32210049591
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 05:17:32 +0000 (UTC)
 Received: from just2025.justhost.com ([173.254.28.237])
         by cmsmtp with ESMTP
-        id R4EfqmMeklzgsR4Efqudu4; Wed, 02 Aug 2023 05:17:25 +0000
+        id R4EmqmMgJlzgsR4Emqudvc; Wed, 02 Aug 2023 05:17:32 +0000
 X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.4 cv=eIXWMFl1 c=1 sm=1 tr=0 ts=64c9e6e5
+X-Authority-Analysis: v=2.4 cv=eIXWMFl1 c=1 sm=1 tr=0 ts=64c9e6ec
  a=Jt2RHIFfQig1ELqEZVeWfA==:117 a=Jt2RHIFfQig1ELqEZVeWfA==:17
- a=OWjo9vPv0XrRhIrVQ50Ab3nP57M=:19 a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19
- a=UttIx32zK-AA:10:nop_rcvd_month_year
- a=5SfhNeb3QxAA:10:endurance_base64_authed_username_1 a=VwQbUJbxAAAA:8
- a=QX4gbG5DAAAA:8 a=LN1DEILRDWMThqYPT54A:9 a=AjGcO6oz07-iQ99wixmX:22
- a=AbAUZ8qAyYyZVLSsDulk:22
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=UttIx32zK-AA:10:nop_rcvd_month_year
+ a=5SfhNeb3QxAA:10:endurance_base64_authed_username_1 a=DgXrqYuCAAAA:8
+ a=eSCCvEbRnsAFwu8X_C0A:9 a=NFkmT8Fa3oR8cXbSjPxL:22
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=singleboardsolutions.com; s=default; h=Content-Transfer-Encoding:
-        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=U4DX76mWHOowxF0p7uqV/JAT6U60P2EhAMKmm+yitJg=; b=AWyBuuweNOXZ6PJgptK61CXA/Q
-        sH1s9ybshAIiOcMhYHVSEJa1f/HMmkL3hiNg+eCvUQz9DsgQefYD/qpkLlEThd/yGJPUPX1Pi6/0P
-        FQ6J4lsJJ6K0IMFe21xeAxkpt2O9j9DC7qbU8ROcT2f7LmRUB9y7/Q9SahexrN3xop3PGQ7KHwiAV
-        55k+WUMm2MzCqa0UrcwQ0UeAJi7Ub1m1TM+qD3vnbrBRfLdmygYbQ2JXS/zPN435M5+bZ//7gnM6R
-        wo2UK+oJjClXOMxHxmWcQIQGh++1GUp3z91hwqo0rwOgmHD/qVW2/TV792SMjw+x30IYNjmLQ7VhR
-        FsTYihgQ==;
+        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+        :Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From
+        :Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=6GLBXSnMCa64ncjUK715f/djLaOjkGdOOQ837Kd10UQ=; b=ZK9hCv+DZp+G++t/37AXvdgCN1
+        1GkZ6tzydrAaugzJD5mZvco88ag++Bdbw0C/KEh+i8Z6lI4xFtMNFlS43qGRfcldaEOHBnUuDumfI
+        VBPwalhU8kO8Z7o7o6hdiLHwMWs2hEtU0IA0+LsvuA/erkfoaahhbq490qRqLQHB3rjJWArlXYCD7
+        kw732GGGo23YhAiIXvMTrlSdGnS7NScSPnqzhtVnpgp+GO2EuGdXMHY/UHzsr6j3yL5o4rbcLzO8g
+        fripNeSykmKSK5ecSysfJVI4Pgi883BGKBodQPqqkW9v+rfRpCjgfWi9AClLRgXU9fwp8QGpAu4lW
+        hWMik41g==;
 Received: from 097-084-242-070.res.spectrum.com ([97.84.242.70]:50744 helo=localhost.localdomain)
         by just2025.justhost.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.96)
         (envelope-from <tmckahan@singleboardsolutions.com>)
-        id 1qR4Ef-001wRt-0c;
-        Tue, 01 Aug 2023 23:17:25 -0600
+        id 1qR4Em-001wRt-16;
+        Tue, 01 Aug 2023 23:17:32 -0600
 From:   Thomas McKahan <tmckahan@singleboardsolutions.com>
 To:     "Rob Herring" <robh+dt@kernel.org>,
         "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,10 +56,12 @@ To:     "Rob Herring" <robh+dt@kernel.org>,
 Cc:     Thomas McKahan <tmckahan@singleboardsolutions.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] Add Support for the FriendlyElec NanoPC T6
-Date:   Wed,  2 Aug 2023 01:14:05 -0400
-Message-Id: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
+Subject: [PATCH 1/2] dt-bindings: arm: rockchip: Add NanoPC T6
+Date:   Wed,  2 Aug 2023 01:14:06 -0400
+Message-Id: <20230802051441.3106-2-tmckahan@singleboardsolutions.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
+References: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,13 +72,13 @@ X-AntiAbuse: Sender Address Domain - singleboardsolutions.com
 X-BWhitelist: no
 X-Source-IP: 97.84.242.70
 X-Source-L: No
-X-Exim-ID: 1qR4Ef-001wRt-0c
+X-Exim-ID: 1qR4Em-001wRt-16
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
 X-Source-Sender: 097-084-242-070.res.spectrum.com (localhost.localdomain) [97.84.242.70]:50744
 X-Source-Auth: tmckahan@singleboardsolutions.com
-X-Email-Count: 3
+X-Email-Count: 11
 X-Source-Cap: ZWxlY3RyaTk7ZWxlY3RyaTk7anVzdDIwMjUuanVzdGhvc3QuY29t
 X-Local-Domain: yes
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,24 +91,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Add the NanoPC T6, a single board computer from FriendlyElec
 
-This adds support for the RK3588-based NanoPC T6 single board computer.
-Note this series is dependent on the PCIe 3 support [0] being
-upstreamed. The NanoPC T6 uses PCIe3x4 like the Rock 5B and EVB1.
+Signed-off-by: Thomas McKahan <tmckahan@singleboardsolutions.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-[0] https://lore.kernel.org/all/20230717173512.65169-1-sebastian.reichel@collabora.com/
-
-Thomas McKahan (2):
-  dt-bindings: arm: rockchip: Add NanoPC T6
-  arm64: dts: rockchip: Add NanoPC T6
-
- .../devicetree/bindings/arm/rockchip.yaml     |   5 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 845 ++++++++++++++++++
- 3 files changed, 851 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 115ca986e20f..ca5389862887 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -227,6 +227,11 @@ properties:
+               - friendlyarm,nanopi-r5s
+           - const: rockchip,rk3568
+ 
++      - description: FriendlyElec NanoPC T6
++        items:
++          - const: friendlyarm,nanopc-t6
++          - const: rockchip,rk3588
++
+       - description: GeekBuying GeekBox
+         items:
+           - const: geekbuying,geekbox
 -- 
 2.34.1
 
