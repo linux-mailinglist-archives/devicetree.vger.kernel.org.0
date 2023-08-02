@@ -2,267 +2,480 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A60976C350
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852AB76C359
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231858AbjHBDHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 23:07:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52428 "EHLO
+        id S231618AbjHBDKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 23:10:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbjHBDG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:06:57 -0400
-Received: from mgamail.intel.com (unknown [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DC1EC;
-        Tue,  1 Aug 2023 20:06:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690945616; x=1722481616;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=VdbY9viEmmNEyA62feM2hp05AxOS4gLQsjFActrG/rg=;
-  b=nM4b2iw6lMbMe5DdStOwefBpIpbIlOtnSwPY7TnWGQqTbogfwv1umBld
-   ZsxuVEAMGVhYMCY0LIff4l2v3LZQ9TIshSo1TPKkighy6YQ7lD3qs7h0n
-   M3a3vQLSXKM9i//vyjh2pXvAoevc+eIyUTlhUcCTuV/uCS/Cgmc3LH8AY
-   dW0Fu8C4Nx3Y2idXR1FspyA3sO1fEo27+5X4oFHVA1G34DtRDOidMq3lW
-   dASgIRy8/ApYg8rbTtMFzYQLlUo73Hzu5h2/3KZbKOC9eY3paa3XdrHlI
-   wmWWl56UrkAUH7mrQyZRJhuQDRj7of6nYC5WzKZDnCME6Rn0cZImar8Sy
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="372195256"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
-   d="scan'208";a="372195256"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2023 20:06:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="722709073"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
-   d="scan'208";a="722709073"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by orsmga007.jf.intel.com with ESMTP; 01 Aug 2023 20:06:54 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 1 Aug 2023 20:06:53 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 1 Aug 2023 20:06:53 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 1 Aug 2023 20:06:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XUZUAg8UtP+nDv4gVepOSkp6cB3TEDF8MkrpIxYVNHrSpmXj9TiH7XM/5F0t/CXU1aVL1d5hxZnfwA1yBn4DXXTdDzPG/1rGXnA8SMfz2Z+Ir6W1RT3semXHPsAR32qL5nTtpt84CmZjHedAkIeydMdCS38YXmvF4pgCzees4buJUuy+cm/3oZOpUY1VjSGWxYMR9v/X8iv82DFN5CHbpdpChS5DUAG2dP6BHFlnjLPlYshh54/JkkPplr7+BKUPe0Urv6bCobjJf3zfnhxBYU1nD/N3RhY8RIx//OFjxgJSLI2gtqgyL+CJaTthDqijdSAZ+POdd9Q4CRif0+3bGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SM51G3uZXIaRApqOdWj5fYo+GT9yS17Tjd2IXvsD6Dk=;
- b=DU+Nk8rR1Go3tdYDedCLGoSeEhgaIITEDmabNLBdH92X0oHBYGGBNlLXSFiaJDLiFfXon3XRIpZi7NNNYh9rl29ae9rkXi8XFJKX3dDS50OYe7dVB6hzlQGezOVCqMefH8HE4H28Qjorb9FBLHMrRwHxoxsTVr77Xnb54RVddFbN67tvvvJ7ITp7O2NhVuEyuSxwnI+ymIZYeVTja/ZEOkwESRDBx2hsqen/eUueOccP1Yy1EecuaAJ8t2+F6Wltelg5Se2SLWb9Uxec7UnUPEgbYBRIu30Q26hAQXlzaqzOxZV47PUqIrtFB8Mc2My5myX2hYdiVbf2IKAW8Y9A2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3291.namprd11.prod.outlook.com (2603:10b6:5:d::10) by
- SA0PR11MB7160.namprd11.prod.outlook.com (2603:10b6:806:24b::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6631.45; Wed, 2 Aug 2023 03:06:51 +0000
-Received: from DM6PR11MB3291.namprd11.prod.outlook.com
- ([fe80::cf83:5843:b3c9:10af]) by DM6PR11MB3291.namprd11.prod.outlook.com
- ([fe80::cf83:5843:b3c9:10af%6]) with mapi id 15.20.6631.045; Wed, 2 Aug 2023
- 03:06:51 +0000
-From:   "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>
-To:     Conor Dooley <conor@kernel.org>
-CC:     "Ng, Adrian Ho Yin" <adrian.ho.yin.ng@intel.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dinguyen@kernel.org" <dinguyen@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Turquette, Mike" <mturquette@baylibre.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "richardcochran@gmail.com" <richardcochran@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "wen.ping.teh@intel.com" <wen.ping.teh@intel.com>
-Subject: RE: [PATCH v2 3/5] dt-bindings: clock: add Intel Agilex5 clock
- manager
-Thread-Topic: [PATCH v2 3/5] dt-bindings: clock: add Intel Agilex5 clock
- manager
-Thread-Index: AQHZxBQYoDLOJHXuDEWKBojhTKBqcq/V7XmAgABmtRA=
-Date:   Wed, 2 Aug 2023 03:06:51 +0000
-Message-ID: <DM6PR11MB3291BD9E538528059D199EBCA20BA@DM6PR11MB3291.namprd11.prod.outlook.com>
-References: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-4-niravkumar.l.rabara@intel.com>
- <20230801-handball-glorifier-e55d44a2b638@spud>
-In-Reply-To: <20230801-handball-glorifier-e55d44a2b638@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3291:EE_|SA0PR11MB7160:EE_
-x-ms-office365-filtering-correlation-id: 307e428c-a045-4d0b-3add-08db930584ed
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WqqITs+CWbfwxWtsy5wywdgJx5caXgn5tIwLwp2UJubej0NUaFbaBjLFqawapS/Dg5tWM3NThSKPtqHtba8+iad9OR+4hD6Ac2iPZWhUZpdNf82hl0wHc/cH4NwViA0pwISvOXpT0uuY6NYC9NobdhJUipOhkWqF9CqZnG24ZXj+k6GWvhHZbEZ6EcoexyJI2fB+3DEHrAlfG+sc+t4QaiJ/O/6GiG09hvo2pYIPvkWmqO+pP3IStg2RFN+WgF49fDX86nTykWzE0oBbHZUkAOcb1e5j8hmiBwDxyI8eihS2N06GeORs5X0JpYOVZA218pBdLt4adGhAqu+s3P7I4PW7d1qawYA6Gd5fl1qDcjO/GqGMeBiYiZeNI/JcPfSGgU0PU/Q3KAZACrT6YnslT+HhRHsboqPoWKOHIQPYQoVHhD3X/wH2EBjVhyPGEfVdCIllixYL7FalicKxKeg71amnNiY4QkFWsHa6R1WjEpaTKQKHQR7V/RaUSqQ8LANVA0wI3jjg/MzdI+2bGNi9ucyV7lOod5YJicDUNEob3ZRK14az2N+NejfsYxWiNCyPMw/y9ETFvrIdJzN6BeqJfczEujLQAwfDmgnWdybb3yizRB/d6d/tYbBp+wl2tvJO0goVbfjTWaVHjbUFkeUUQA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3291.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39860400002)(376002)(366004)(136003)(396003)(346002)(451199021)(55016003)(186003)(9686003)(966005)(316002)(86362001)(122000001)(478600001)(54906003)(38100700002)(66946007)(76116006)(66446008)(66556008)(66476007)(33656002)(71200400001)(64756008)(7696005)(4326008)(6916009)(53546011)(26005)(82960400001)(6506007)(41300700001)(107886003)(8936002)(8676002)(38070700005)(7416002)(83380400001)(52536014)(5660300002)(2906002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6z8718pX6M0a3obiSYEoDAvNzz/Nh5jXEA/A4pB+vneXc+Q77uABuprxfHDi?=
- =?us-ascii?Q?N1h9pAC/6/tpvHgMQWVlk4iYJoXuE9RxTLHg7273tlawKqKbfwHfGtyEeQeI?=
- =?us-ascii?Q?RlQZrdF8uMI2j1iz3JohAL1Pnc0oQFL5bmb32r5gzOnmcifh/nRaNNTnrq7j?=
- =?us-ascii?Q?0IJNVsBOU0CYszg44C5EXMB7TlpH8UHjIFcFtTcZ7NdwF7FkDJmOPWbbobRE?=
- =?us-ascii?Q?Y25shWPz/l0P2VM6yK3EsINdCBRzFOvcDogVf9zf5lxIpmGPPjmKa/YiybL1?=
- =?us-ascii?Q?lyzqMa7wNoJJUyUcyrmjV//9gZutG5+qdW4J916arYoGwzSC7jdHFR7002nK?=
- =?us-ascii?Q?kQO3l/JrsyFe34v6qakMqwnONzH/ktHNC/kgls/fH8Ff5vduB97wKegxnaao?=
- =?us-ascii?Q?t22Q+Zl583BMfn67ftSZGl6yJ1mW+xEvrDkX34jPEqhCmp92vIDq4WpZskFn?=
- =?us-ascii?Q?Ku8GO7llC9HhPL2PEWl78b3dYju1rEfTO/c2WoYDTGismuy8IJX69sW1oqcz?=
- =?us-ascii?Q?ZmGVLINbn866bBHf4494AIOTg4ermd9FsH0Kd29+DuMI9+2CvPPJOO++jcTw?=
- =?us-ascii?Q?oBpLjqvWpy7bZPIy268liO/v0YT8n13PFGGbeFNFS61neylLWgrZ5nJt6dRM?=
- =?us-ascii?Q?5fLQsEVlsd1M0P6vxKp8HhfRBHt6+tjr1WftZ8QGUO+BR2eq5s4cT0F8yrAF?=
- =?us-ascii?Q?80C2UjVm28d5na6WQhC0esVggzHx29XrOurbyZcxUvpiWzWAsY84wUzerifj?=
- =?us-ascii?Q?C28Sue5JK9tTmoL7mCBF/0xAcSv1FaF6/SbE63LFC20/l8X89s3DcjSS/JTM?=
- =?us-ascii?Q?2XFYrzDcxZaz+RRjIvc22i6dRBHPqgktpCb7tltzySXNblnlotnplqzRGzZc?=
- =?us-ascii?Q?ShHHVZeprFN0qw10YlbWUsqHpbB4mQkeIBvMh6M0A45xlxxswKWqdaj1B+W/?=
- =?us-ascii?Q?4/Wf+9PmZbw/JmsMlSec/3PVJaWpXEr9VEXSbc9QumPuAyBt5moNpOVooFCk?=
- =?us-ascii?Q?lvfGvV3BCF7uKyb7Z85iguMBxzBE5bwSRYxiNX/Ms84rFO1/j2v6jYYg9Iac?=
- =?us-ascii?Q?hJzumrn55nEN+zRgCHm7IA/qyYFJQ9JG93tF7V2WCtYEMQ73uUo0VfiZ2q1P?=
- =?us-ascii?Q?2nA2qTkIy+YdzD/+lh6WUTOzaZ4YloV0J7Jtra2mqF5gfGGQyy1IZvuLa9MY?=
- =?us-ascii?Q?fW/IUv8iKRKQPLbsAyA6RDYaA0D5KHQk8sNwyFYJxcz6EYcd2U18aVIdYtm/?=
- =?us-ascii?Q?N0NKFk8BhtK3q+y1O/etvoQMw5CpRqXkz6Pmz9tO/4R698G0lo4OTJ0mvsF9?=
- =?us-ascii?Q?qbdTP99rl+RZ1xibbNdqEToKuTMqM8TqSVmTQYQEjsHujMVUI9lUfpVleJVc?=
- =?us-ascii?Q?/xFon03YsBEt2kFHj+Fwk2ZEKu8oZGDQh/WtsTzRqzvvaLatF/LEICNLXz0I?=
- =?us-ascii?Q?s7JSMNGZvrwc4JPaEsBAw96DVChxgeBcjjg2zebXeNVJ56zClIvcJ8Px9hwL?=
- =?us-ascii?Q?sbNnwiyMKHfGww8ypTTbk2wWIDqfMSwgiPVtJ/bGCr9e94NzWqIEyi6pWKvg?=
- =?us-ascii?Q?KFht5kvMTaHMb9MVOLehrIqZ4nuASmgBjLG4U/GLNJO9OXekce+1IRJzTI4A?=
- =?us-ascii?Q?sQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S231534AbjHBDKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:10:30 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE138FB;
+        Tue,  1 Aug 2023 20:10:28 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52256241c66so971379a12.1;
+        Tue, 01 Aug 2023 20:10:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690945827; x=1691550627;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2a3Ssk8cTe+A9W+eVmPkSF4Nb+GwQDLGB6gwc+P+MSA=;
+        b=NUEq9tKFNn7D8UFJKOrMIlf0hqzP8XiDGQOK+8CdfIoARwSPMMj/1T4t6/EP03e/Pt
+         qBRQz1i1rWLpXZShAEq6jmZGTb0cjfo3etnv+Jo5ZGGz0+ekhYj9NLHC2Tn8BhVy29Mh
+         MB8fKFF31Q6eQWhfXU2Ck1FvgpXuG8i4cd2gDoPZOGdwsJxHGJNbrxaqhjOLCbCArweo
+         VUOPn9B4kKs+l4uj31muOMIFlVWPwn/RFDoUcs0viIYPz18yuB+wfmHjJiQ2QdjymXrP
+         BQFya7H3kKw3a8Dd0Ka+JHMcQIWuGmKX1moY6p4AUYsjwQpxfyAtUTaSbNxske52D861
+         KtvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690945827; x=1691550627;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2a3Ssk8cTe+A9W+eVmPkSF4Nb+GwQDLGB6gwc+P+MSA=;
+        b=csFnWJVWIJhPFgatpyf9eqUbkDCTbEme0o6sgoSCzP9pObRK9E7Qj5UBFbLJFpXkUK
+         EjbaTlt5XlPPX3UqxnGqk/cQN7aluMFEEtmXk4Tb6bGRZg1JF2ExrA6Jj4E/uAx/JFMA
+         6k4kLJ2abVJm7UwLgADiMMbAQOJVGbpeSHYEVMZVCp3gacJWM3L8vmmQU1gE/y78weYc
+         8E7c1ASjclocHkm45CXmK534HCsE6DuxszQEbMiI27TJqwmx6Tp0LhsBJVm2cRYI5ekH
+         L23dO7WYgDCfFJOh4YJm/MUUWxikBnmK/+OUsn8+phYyOTtsQsB6m+NfxCjLBZib//3F
+         GlfA==
+X-Gm-Message-State: ABy/qLb9EDjcqj6V+ds3TRBCL4MJ4JQnzbcG7UgmwBeMFHYt8xaYmA35
+        9HDP+Jel+pkbfwUuHcNNjrbxUcnCgDDfGUDo4Kc=
+X-Google-Smtp-Source: APBJJlGjQHb7ld0fX4J6DpVlS+EGR8wcya/AW3vbMutHFfSPRDmkYVBjMMZ2BP97SgcgRGW4yD6xW2yeQJgx081DsYU=
+X-Received: by 2002:a05:6402:2747:b0:522:b723:11bd with SMTP id
+ z7-20020a056402274700b00522b72311bdmr5717109edd.4.1690945827210; Tue, 01 Aug
+ 2023 20:10:27 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3291.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 307e428c-a045-4d0b-3add-08db930584ed
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2023 03:06:51.6944
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vGglsKfIe+82bCnar0+CfpjlJD4hro3qMYcG+etw7X4sMe05hEidv0Tx10ZIYaSLYLwsjEN1AauwMzYNSwUf+S5f+it/eZq43s2VF4Oh1jw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB7160
-X-OriginatorOrg: intel.com
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
+ <20230729134318.1694467-9-keguang.zhang@gmail.com> <4qk22kycanwwbx6e7w4uuf7y5re7y4voi5vdurq3usa27py2zk@zms25h4hg2da>
+In-Reply-To: <4qk22kycanwwbx6e7w4uuf7y5re7y4voi5vdurq3usa27py2zk@zms25h4hg2da>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Wed, 2 Aug 2023 11:10:10 +0800
+Message-ID: <CAJhJPsV9E5=GtsjiP8c3A6=4=Vh7cB1g=TaaJnVOjCf=VFiLUA@mail.gmail.com>
+Subject: Re: [PATCH 08/17] MIPS: loongson32: Convert Ethernet platform device
+ to DT
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Wednesday, 2 August, 2023 4:58 AM
-> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>
-> Cc: Ng, Adrian Ho Yin <adrian.ho.yin.ng@intel.com>; andrew@lunn.ch;
-> conor+dt@kernel.org; devicetree@vger.kernel.org; dinguyen@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; linux-clk@vger.kernel.org; linux-
-> kernel@vger.kernel.org; Turquette, Mike <mturquette@baylibre.com>;
-> netdev@vger.kernel.org; p.zabel@pengutronix.de; richardcochran@gmail.com;
-> robh+dt@kernel.org; sboyd@kernel.org; wen.ping.teh@intel.com
-> Subject: Re: [PATCH v2 3/5] dt-bindings: clock: add Intel Agilex5 clock m=
-anager
->=20
-> On Tue, Aug 01, 2023 at 09:02:32AM +0800, niravkumar.l.rabara@intel.com
+On Wed, Aug 2, 2023 at 2:21=E2=80=AFAM Serge Semin <fancer.lancer@gmail.com=
 > wrote:
-> > From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>
+> On Sat, Jul 29, 2023 at 09:43:09PM +0800, Keguang Zhang wrote:
+> > Add Ethernet device nodes for Loongson-1 boards,
+> > and drop the legacy platform devices and data accordingly.
+>
+> It seems to me that your conversion breaks the RGMII mode support.
+> What you need to do is to make sure that the respective flags are set
+> in the MUX space.
+>
+> Regarding the MUX-space. It looks as a pinctrl-setting space. If so
+> adding the new pinctrl driver will be required. Otherwise it can be
+> defined as a syscon-node and then utilized in the Loongson-1 GMAC
+> low-level driver.
+>
+Thanks for your reminder.
+I planned to add the pinctrl driver later.
+Now I'm working on it.
+
+> -Serge(y)
+>
 > >
-> > Add clock ID definitions for Intel Agilex5 SoCFPGA.
-> > The registers in Agilex5 handling the clock is named as clock manager.
-> >
-> > Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
-> > Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
-> > Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 > > ---
-> >  .../bindings/clock/intel,agilex5-clkmgr.yaml  |  41 +++++++
-> > .../dt-bindings/clock/intel,agilex5-clkmgr.h  | 100 ++++++++++++++++++
-> >  2 files changed, 141 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml
-> >  create mode 100644 include/dt-bindings/clock/intel,agilex5-clkmgr.h
+> >  arch/mips/boot/dts/loongson/loongson1.dtsi    |  16 ++
+> >  arch/mips/boot/dts/loongson/loongson1b.dtsi   |  53 +++++++
+> >  arch/mips/boot/dts/loongson/loongson1c.dtsi   |  17 ++
+> >  arch/mips/boot/dts/loongson/lsgz_1b_dev.dts   |   8 +
+> >  arch/mips/boot/dts/loongson/smartloong_1c.dts |   4 +
+> >  arch/mips/loongson32/common/platform.c        | 146 +-----------------
+> >  arch/mips/loongson32/ls1b/board.c             |   2 -
+> >  arch/mips/loongson32/ls1c/board.c             |   1 -
+> >  8 files changed, 99 insertions(+), 148 deletions(-)
 > >
-> > diff --git
-> > a/Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml
-> > b/Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yaml
-> > new file mode 100644
-> > index 000000000000..60e57a9fb939
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/intel,agilex5-clkmgr.yam
-> > +++ l
-> > @@ -0,0 +1,41 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/intel,agilex5-clkmgr.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > diff --git a/arch/mips/boot/dts/loongson/loongson1.dtsi b/arch/mips/boo=
+t/dts/loongson/loongson1.dtsi
+> > index c77aa2d0f66c..48bb786bbf10 100644
+> > --- a/arch/mips/boot/dts/loongson/loongson1.dtsi
+> > +++ b/arch/mips/boot/dts/loongson/loongson1.dtsi
+> > @@ -71,6 +71,22 @@ intc3: interrupt-controller@1fd01088 {
+> >                       interrupt-parent =3D <&cpu_intc>;
+> >                       interrupts =3D <5>;
+> >               };
 > > +
-> > +title: Intel SoCFPGA Agilex5 clock manager
+> > +             gmac0: ethernet@1fe10000 {
+> > +                     compatible =3D "snps,dwmac-3.70a";
+> > +                     reg =3D <0x1fe10000 0x10000>;
 > > +
-> > +maintainers:
-> > +  - Dinh Nguyen <dinguyen@kernel.org>
+> > +                     interrupt-parent =3D <&intc1>;
+> > +                     interrupt-names =3D "macirq";
 > > +
-> > +description:
-> > +  The Intel Agilex5 Clock Manager is an integrated clock controller,
-> > +which
-> > +  generates and supplies clock to all the modules.
+> > +                     clocks =3D <&clkc LS1X_CLKID_AHB>;
+> > +                     clock-names =3D "stmmaceth";
 > > +
-> > +properties:
-> > +  compatible:
-> > +    const: intel,agilex5-clkmgr
+> > +                     snps,pbl =3D <1>;
 > > +
-> > +  reg:
-> > +    maxItems: 1
+> > +                     status =3D "disabled";
+> > +             };
 > > +
-> > +  '#clock-cells':
-> > +    const: 1
+> >       };
+> >
+> >       apb: bus@1fe40000 {
+> > diff --git a/arch/mips/boot/dts/loongson/loongson1b.dtsi b/arch/mips/bo=
+ot/dts/loongson/loongson1b.dtsi
+> > index 437a77cee163..42b96c557660 100644
+> > --- a/arch/mips/boot/dts/loongson/loongson1b.dtsi
+> > +++ b/arch/mips/boot/dts/loongson/loongson1b.dtsi
+> > @@ -7,6 +7,11 @@
+> >  #include "loongson1.dtsi"
+> >
+> >  / {
+> > +     aliases {
+> > +             ethernet0 =3D &gmac0;
+> > +             ethernet1 =3D &gmac1;
+> > +     };
 > > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#clock-cells'
+> >       cpus {
+> >               #address-cells =3D <1>;
+> >               #size-cells =3D <0>;
+> > @@ -74,6 +79,54 @@ clkc: clock-controller@1fe78030 {
+> >       };
+> >  };
+> >
+> > +&ahb {
+> > +     gmac1: ethernet@1fe20000 {
+> > +             compatible =3D "snps,dwmac-3.70a";
+> > +             reg =3D <0x1fe20000 0x10000>;
 > > +
-> > +additionalProperties: false
+> > +             interrupt-parent =3D <&intc1>;
+> > +             interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
+> > +             interrupt-names =3D "macirq";
 > > +
-> > +examples:
->=20
-> > +  # Clock controller node:
->=20
-> This comment seems utterly pointless.
-> Otherwise this looks okay to me.
->=20
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Thanks,
-> Conor.
->=20
+> > +             clocks =3D <&clkc LS1X_CLKID_AHB>;
+> > +             clock-names =3D "stmmaceth";
+> > +
+> > +             phy-handle =3D <&phy1>;
+> > +             phy-mode =3D "mii";
+> > +
+> > +             snps,pbl =3D <1>;
+> > +
+> > +             status =3D "disabled";
+> > +
+> > +             mdio1 {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +                     compatible =3D "snps,dwmac-mdio";
+> > +
+> > +                     phy1: ethernet-phy@0 {
+> > +                             reg =3D <0x0>;
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&gmac0 {
+> > +     interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +     phy-handle =3D <&phy0>;
+> > +     phy-mode =3D "mii";
+> > +
+> > +     mdio0 {
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +             compatible =3D "snps,dwmac-mdio";
+> > +
+> > +             phy0: ethernet-phy@0 {
+> > +                     reg =3D <0x0>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> >  &uart1 {
+> >       interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
+> >  };
+> > diff --git a/arch/mips/boot/dts/loongson/loongson1c.dtsi b/arch/mips/bo=
+ot/dts/loongson/loongson1c.dtsi
+> > index 1dd575b7b2f9..5b3e0f9280f6 100644
+> > --- a/arch/mips/boot/dts/loongson/loongson1c.dtsi
+> > +++ b/arch/mips/boot/dts/loongson/loongson1c.dtsi
+> > @@ -41,6 +41,23 @@ intc4: interrupt-controller@1fd010a0 {
+> >       };
+> >  };
+> >
+> > +&gmac0 {
+> > +     interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +     phy-handle =3D <&phy0>;
+> > +     phy-mode =3D "rmii";
+> > +
+> > +     mdio0 {
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +             compatible =3D "snps,dwmac-mdio";
+> > +
+> > +             phy0: ethernet-phy@13 {
+> > +                     reg =3D <0x13>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> >  &uart1 {
+> >       interrupts =3D <4 IRQ_TYPE_LEVEL_HIGH>;
+> >  };
+> > diff --git a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts b/arch/mips/bo=
+ot/dts/loongson/lsgz_1b_dev.dts
+> > index 89c3dfa574f7..a43df21f2904 100644
+> > --- a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
+> > +++ b/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
+> > @@ -28,6 +28,14 @@ xtal: xtal {
+> >       };
+> >  };
+> >
+> > +&gmac0 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&gmac1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  &uart0 {
+> >       status =3D "okay";
+> >  };
+> > diff --git a/arch/mips/boot/dts/loongson/smartloong_1c.dts b/arch/mips/=
+boot/dts/loongson/smartloong_1c.dts
+> > index 188aab9e3685..2d8f304aa2c4 100644
+> > --- a/arch/mips/boot/dts/loongson/smartloong_1c.dts
+> > +++ b/arch/mips/boot/dts/loongson/smartloong_1c.dts
+> > @@ -28,6 +28,10 @@ xtal: xtal {
+> >       };
+> >  };
+> >
+> > +&gmac0 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  &uart0 {
+> >       status =3D "okay";
+> >  };
+> > diff --git a/arch/mips/loongson32/common/platform.c b/arch/mips/loongso=
+n32/common/platform.c
+> > index 8272b4133e25..817518531b9b 100644
+> > --- a/arch/mips/loongson32/common/platform.c
+> > +++ b/arch/mips/loongson32/common/platform.c
+> > @@ -8,157 +8,13 @@
+> >  #include <linux/err.h>
+> >  #include <linux/mtd/partitions.h>
+> >  #include <linux/sizes.h>
+> > -#include <linux/phy.h>
+> > -#include <linux/stmmac.h>
+> >  #include <linux/usb/ehci_pdriver.h>
+> >
+> >  #include <platform.h>
+> >  #include <loongson1.h>
+> >  #include <dma.h>
+> >  #include <nand.h>
+> > -
+> > -/* Synopsys Ethernet GMAC */
+> > -static struct stmmac_mdio_bus_data ls1x_mdio_bus_data =3D {
+> > -     .phy_mask       =3D 0,
+> > -};
+> > -
+> > -static struct stmmac_dma_cfg ls1x_eth_dma_cfg =3D {
+> > -     .pbl            =3D 1,
+> > -};
+> > -
+> > -int ls1x_eth_mux_init(struct platform_device *pdev, void *priv)
+> > -{
+> > -     struct plat_stmmacenet_data *plat_dat =3D NULL;
+> > -     u32 val;
+> > -
+> > -     val =3D __raw_readl(LS1X_MUX_CTRL1);
+> > -
+> > -#if defined(CONFIG_LOONGSON1_LS1B)
+> > -     plat_dat =3D dev_get_platdata(&pdev->dev);
+> > -     if (plat_dat->bus_id) {
+> > -             __raw_writel(__raw_readl(LS1X_MUX_CTRL0) | GMAC1_USE_UART=
+1 |
+> > -                          GMAC1_USE_UART0, LS1X_MUX_CTRL0);
+> > -             switch (plat_dat->phy_interface) {
+> > -             case PHY_INTERFACE_MODE_RGMII:
+> > -                     val &=3D ~(GMAC1_USE_TXCLK | GMAC1_USE_PWM23);
+> > -                     break;
+> > -             case PHY_INTERFACE_MODE_MII:
+> > -                     val |=3D (GMAC1_USE_TXCLK | GMAC1_USE_PWM23);
+> > -                     break;
+> > -             default:
+> > -                     pr_err("unsupported mii mode %d\n",
+> > -                            plat_dat->phy_interface);
+> > -                     return -ENOTSUPP;
+> > -             }
+> > -             val &=3D ~GMAC1_SHUT;
+> > -     } else {
+> > -             switch (plat_dat->phy_interface) {
+> > -             case PHY_INTERFACE_MODE_RGMII:
+> > -                     val &=3D ~(GMAC0_USE_TXCLK | GMAC0_USE_PWM01);
+> > -                     break;
+> > -             case PHY_INTERFACE_MODE_MII:
+> > -                     val |=3D (GMAC0_USE_TXCLK | GMAC0_USE_PWM01);
+> > -                     break;
+> > -             default:
+> > -                     pr_err("unsupported mii mode %d\n",
+> > -                            plat_dat->phy_interface);
+> > -                     return -ENOTSUPP;
+> > -             }
+> > -             val &=3D ~GMAC0_SHUT;
+> > -     }
+> > -     __raw_writel(val, LS1X_MUX_CTRL1);
+> > -#elif defined(CONFIG_LOONGSON1_LS1C)
+> > -     plat_dat =3D dev_get_platdata(&pdev->dev);
+> > -
+> > -     val &=3D ~PHY_INTF_SELI;
+> > -     if (plat_dat->phy_interface =3D=3D PHY_INTERFACE_MODE_RMII)
+> > -             val |=3D 0x4 << PHY_INTF_SELI_SHIFT;
+> > -     __raw_writel(val, LS1X_MUX_CTRL1);
+> > -
+> > -     val =3D __raw_readl(LS1X_MUX_CTRL0);
+> > -     __raw_writel(val & (~GMAC_SHUT), LS1X_MUX_CTRL0);
+> > -#endif
+> > -
+> > -     return 0;
+> > -}
+> > -
+> > -static struct plat_stmmacenet_data ls1x_eth0_pdata =3D {
+> > -     .bus_id                 =3D 0,
+> > -     .phy_addr               =3D -1,
+> > -#if defined(CONFIG_LOONGSON1_LS1B)
+> > -     .phy_interface          =3D PHY_INTERFACE_MODE_MII,
+> > -#elif defined(CONFIG_LOONGSON1_LS1C)
+> > -     .phy_interface          =3D PHY_INTERFACE_MODE_RMII,
+> > -#endif
+> > -     .mdio_bus_data          =3D &ls1x_mdio_bus_data,
+> > -     .dma_cfg                =3D &ls1x_eth_dma_cfg,
+> > -     .has_gmac               =3D 1,
+> > -     .tx_coe                 =3D 1,
+> > -     .rx_queues_to_use       =3D 1,
+> > -     .tx_queues_to_use       =3D 1,
+> > -     .init                   =3D ls1x_eth_mux_init,
+> > -};
+> > -
+> > -static struct resource ls1x_eth0_resources[] =3D {
+> > -     [0] =3D {
+> > -             .start  =3D LS1X_GMAC0_BASE,
+> > -             .end    =3D LS1X_GMAC0_BASE + SZ_64K - 1,
+> > -             .flags  =3D IORESOURCE_MEM,
+> > -     },
+> > -     [1] =3D {
+> > -             .name   =3D "macirq",
+> > -             .start  =3D LS1X_GMAC0_IRQ,
+> > -             .flags  =3D IORESOURCE_IRQ,
+> > -     },
+> > -};
+> > -
+> > -struct platform_device ls1x_eth0_pdev =3D {
+> > -     .name           =3D "stmmaceth",
+> > -     .id             =3D 0,
+> > -     .num_resources  =3D ARRAY_SIZE(ls1x_eth0_resources),
+> > -     .resource       =3D ls1x_eth0_resources,
+> > -     .dev            =3D {
+> > -             .platform_data =3D &ls1x_eth0_pdata,
+> > -     },
+> > -};
+> > -
+> > -#ifdef CONFIG_LOONGSON1_LS1B
+> > -static struct plat_stmmacenet_data ls1x_eth1_pdata =3D {
+> > -     .bus_id                 =3D 1,
+> > -     .phy_addr               =3D -1,
+> > -     .phy_interface          =3D PHY_INTERFACE_MODE_MII,
+> > -     .mdio_bus_data          =3D &ls1x_mdio_bus_data,
+> > -     .dma_cfg                =3D &ls1x_eth_dma_cfg,
+> > -     .has_gmac               =3D 1,
+> > -     .tx_coe                 =3D 1,
+> > -     .rx_queues_to_use       =3D 1,
+> > -     .tx_queues_to_use       =3D 1,
+> > -     .init                   =3D ls1x_eth_mux_init,
+> > -};
+> > -
+> > -static struct resource ls1x_eth1_resources[] =3D {
+> > -     [0] =3D {
+> > -             .start  =3D LS1X_GMAC1_BASE,
+> > -             .end    =3D LS1X_GMAC1_BASE + SZ_64K - 1,
+> > -             .flags  =3D IORESOURCE_MEM,
+> > -     },
+> > -     [1] =3D {
+> > -             .name   =3D "macirq",
+> > -             .start  =3D LS1X_GMAC1_IRQ,
+> > -             .flags  =3D IORESOURCE_IRQ,
+> > -     },
+> > -};
+> > -
+> > -struct platform_device ls1x_eth1_pdev =3D {
+> > -     .name           =3D "stmmaceth",
+> > -     .id             =3D 1,
+> > -     .num_resources  =3D ARRAY_SIZE(ls1x_eth1_resources),
+> > -     .resource       =3D ls1x_eth1_resources,
+> > -     .dev            =3D {
+> > -             .platform_data =3D &ls1x_eth1_pdata,
+> > -     },
+> > -};
+> > -#endif       /* CONFIG_LOONGSON1_LS1B */
+> > +#include <irq.h>
+> >
+> >  /* GPIO */
+> >  static struct resource ls1x_gpio0_resources[] =3D {
+> > diff --git a/arch/mips/loongson32/ls1b/board.c b/arch/mips/loongson32/l=
+s1b/board.c
+> > index e8290f200096..f23e4e5c96ee 100644
+> > --- a/arch/mips/loongson32/ls1b/board.c
+> > +++ b/arch/mips/loongson32/ls1b/board.c
+> > @@ -34,8 +34,6 @@ static const struct gpio_led_platform_data ls1x_led_p=
+data __initconst =3D {
+> >  };
+> >
+> >  static struct platform_device *ls1b_platform_devices[] __initdata =3D =
+{
+> > -     &ls1x_eth0_pdev,
+> > -     &ls1x_eth1_pdev,
+> >       &ls1x_ehci_pdev,
+> >       &ls1x_gpio0_pdev,
+> >       &ls1x_gpio1_pdev,
+> > diff --git a/arch/mips/loongson32/ls1c/board.c b/arch/mips/loongson32/l=
+s1c/board.c
+> > index a7096964fb30..29bc467fd149 100644
+> > --- a/arch/mips/loongson32/ls1c/board.c
+> > +++ b/arch/mips/loongson32/ls1c/board.c
+> > @@ -6,7 +6,6 @@
+> >  #include <platform.h>
+> >
+> >  static struct platform_device *ls1c_platform_devices[] __initdata =3D =
+{
+> > -     &ls1x_eth0_pdev,
+> >       &ls1x_rtc_pdev,
+> >       &ls1x_wdt_pdev,
+> >  };
+> > --
+> > 2.39.2
+> >
 
-Removed in [PATCH v3 3/5].=20
 
-Thanks,
-Nirav
 
-> > +  - |
-> > +    clkmgr: clock-controller@10d10000 {
-> > +      compatible =3D "intel,agilex5-clkmgr";
-> > +      reg =3D <0x10d10000 0x1000>;
-> > +      #clock-cells =3D <1>;
-> > +    };
-> > +...
+--=20
+Best regards,
+
+Keguang Zhang
