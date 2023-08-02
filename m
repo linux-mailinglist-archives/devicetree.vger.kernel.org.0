@@ -2,116 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3FB76C39B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:36:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A877276C3A4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbjHBDgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 23:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60314 "EHLO
+        id S231426AbjHBDmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 23:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjHBDfr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:35:47 -0400
-Received: from mgamail.intel.com (unknown [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79EE3E9;
-        Tue,  1 Aug 2023 20:35:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690947312; x=1722483312;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6seOVYkZPhd0/nRx3CimmnLqX740zVArqWZ8lxRy1n4=;
-  b=C8ANfuBIMnhWF7po+sAHP3xNU56maQmIZkdI2VGd6ESaUmttXG1ZgSql
-   A14oRcRVWoP13BzBYNyW3r6k2oaUeTHKv+M8jeSTgxeQSgV+LRpvBiOkA
-   eKZGDLJv06qSv5kZyEigJtc5SMA96mqIqBBgGVUDPu+BjRwov4l7LKcxZ
-   PDjnEmG2uJU+6ksTeyz/GsPONEvC1+X4giH6ycY7fL+6hnENFRkCNYaak
-   k80I0vJoVkIlM1fBUeikl8uJ2KGJDYq0X01+KzrAqcLphtiX/bBXnDe6j
-   tdQLmaUXJ3/rGnLuEf/nCQayT3lG3tRLy93+ZGzEVaiYjLYdk/R0WJRIU
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="400417417"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
-   d="scan'208";a="400417417"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2023 20:35:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="706023612"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
-   d="scan'208";a="706023612"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP; 01 Aug 2023 20:35:09 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qR2df-00FWdW-2K;
-        Wed, 02 Aug 2023 06:35:07 +0300
-Date:   Wed, 2 Aug 2023 06:35:07 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use
- "%pOF" inside devtree_lock
-Message-ID: <ZMnO67avEY25XzB1@smile.fi.intel.com>
-References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
- <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
- <ZMnNcJ2KW1qUZUA5@smile.fi.intel.com>
+        with ESMTP id S232025AbjHBDlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:41:53 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395FF173A;
+        Tue,  1 Aug 2023 20:41:51 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3723fWjP085292;
+        Tue, 1 Aug 2023 22:41:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690947692;
+        bh=9UgweaCuZWYVCgmgViLTwRNEVAIxTMWqGNWmFfAnE/Y=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=EZ6SUjl06iSLYt8s3QtmMp2slVad8c/3LVgPXBluINySlf+nxG6YchM17owH/BKkw
+         oP4Pm51mNe/EEQk5h+SvnBuVAWkkyY2Y82guJDhFcuYbIW0BPy2uu0DPfKirJBvf5P
+         dKMexQkb6u3YH8cKWmxJmazkJPtKR72JV8w1B04s=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3723fWkD127251
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Aug 2023 22:41:32 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
+ Aug 2023 22:41:31 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 1 Aug 2023 22:41:31 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3723fViw095150;
+        Tue, 1 Aug 2023 22:41:31 -0500
+Date:   Tue, 1 Aug 2023 22:41:31 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Francesco Dolcini <francesco@dolcini.it>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Judith Mendez <jm@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/2] arm64: dts: ti: k3-am62: Add MCU MCAN nodes
+Message-ID: <20230802034131.ja53ksr24rhcks3c@justifier>
+References: <20230724133612.37366-1-francesco@dolcini.it>
+ <20230724133612.37366-2-francesco@dolcini.it>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ZMnNcJ2KW1qUZUA5@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230724133612.37366-2-francesco@dolcini.it>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 02, 2023 at 06:28:48AM +0300, Andy Shevchenko wrote:
-> On Tue, Aug 01, 2023 at 03:54:45PM -0600, Rob Herring wrote:
-> > While originally it was fine to format strings using "%pOF" while
-> > holding devtree_lock, this now causes a deadlock.  Lockdep reports:
-> > 
-> >     of_get_parent from of_fwnode_get_parent+0x18/0x24
-> >     ^^^^^^^^^^^^^
-> >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
-> >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
-> >     fwnode_full_name_string from device_node_string+0x1a0/0x404
-> >     device_node_string from pointer+0x3c0/0x534
-> >     pointer from vsnprintf+0x248/0x36c
-> >     vsnprintf from vprintk_store+0x130/0x3b4
-> > 
-> > To fix this, move the printing in __of_changeset_entry_apply() outside the
-> > lock. As there's already similar printing of the same changeset actions,
-> > refactor all of them to use a common action print function. This has the
-> > side benefit of getting rid of some ifdefs.
-
-...
-
-> > v3:
-> >  - Add missing 'static' reported by 0-day
+On 15:36-20230724, Francesco Dolcini wrote:
+> From: Judith Mendez <jm@ti.com>
 > 
-> It reported two issues (at least what I see).
-
-...
-
-> > +	if (pr_debug("notify "))
+> On AM62x there are no hardware interrupts routed to A53 GIC
+> interrupt controller for MCU MCAN IPs, so MCU MCAN nodes were
+> omitted from MCU dtsi.
 > 
-> This is weird. How did you compile it?
+> Timer polling was introduced in commits [1][2] so now add MCU MCAN nodes
+> to the MCU dtsi for the Cortex A53.
+> 
+> [1] b382380c0d2d ("can: m_can: Add hrtimer to generate software interrupt")
+> [2] bb410c03b999 ("dt-bindings: net: can: Remove interrupt properties for MCAN")
 
-Urgh, you need to fix dynamic debug macros to return an error code.
+Check patch complains:
+ +[2] bb410c03b999 ("dt-bindings: net: can: Remove interrupt properties for MCAN")
+ +ERROR: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit bb410c03b999 ("dt-bindings: net: can: Remove interrupt properties for MCAN")'
 
-> > +		of_changeset_action_print(action, pr->dn, pr->prop ? pr->prop->name : NULL);
+Either use commit sha ("title") or just drop the para.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> [fd: fixed labels to match datasheet numbering, revised commit message,
+>      fixed reg/reg-names order]
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> index 19fc38157d94..fed50666d95b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> @@ -147,4 +147,28 @@ mcu_rti0: watchdog@4880000 {
+>  		/* Tightly coupled to M4F */
+>  		status = "reserved";
+>  	};
+> +
+> +	mcu_mcan0: can@4e00000 {
+/bus@f0000/bus@4000000/can@4e00000: simple-bus unit address format error, expected "4e08000"
+
+can@4e08000
+
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x4e08000 0x00 0x200>,
+> +		      <0x00 0x4e00000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
+> +		clock-names = "hclk", "cclk";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +		status = "disabled";
+> +	};
+> +
+> +	mcu_mcan1: can@4e10000 {
+
+same: can@4e18000
+
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x4e18000 0x00 0x200>,
+> +		      <0x00 0x4e10000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 189 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 189 6>, <&k3_clks 189 1>;
+> +		clock-names = "hclk", "cclk";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +		status = "disabled";
+> +	};
+>  };
+> -- 
+> 2.25.1
+> 
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
