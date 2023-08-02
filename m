@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C96B76C7A8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 09:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A3676C7D7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbjHBH5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 03:57:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51828 "EHLO
+        id S231561AbjHBIDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 04:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232925AbjHBH47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 03:56:59 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90311213A;
-        Wed,  2 Aug 2023 00:54:49 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5221f3affe4so8797452a12.0;
-        Wed, 02 Aug 2023 00:54:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690962888; x=1691567688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BHFpvjYyT+C6FQOobZ/lAA4Uv30nY9VZPx6Wltel8aw=;
-        b=A0iAhBZZ0MlcxykiFcmGYSIB1Kg5mGSZ4EaNgrLjv4zn7epsJlIiKZLiNLbc5RIZgk
-         m4XIn1zTxuBL6PKBo12fEHSyLzMm4xZjmUKh8LT+vey0XbuMQGOMKA0b82I73oi4xv8t
-         fUQi5te6+qvpNF8ENoGxzg9aEOHkDmeJyEJkg7s24+sTX5qMR53n5T1hek77Hhhjhwye
-         lJAnP8PYrgEkcEBNTwQyK7HtS9kdBz2tAXwgbwbilB5qauFQVw9SAmPJ2ssAfyLRtVWf
-         8Uc3mgDZuKxc3JhMQxcz4CGd661TKXFU7wAIOIdlTjogIkevBl4T+oAoswRkmRPbcsva
-         xdKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690962888; x=1691567688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BHFpvjYyT+C6FQOobZ/lAA4Uv30nY9VZPx6Wltel8aw=;
-        b=mGKBsxY3HfXpn/3x0IMS3LipWlwbboeR5B8BUgBepiu4eXeDA87XhiuR1VfRvyXWbq
-         HQa+JJgQSvhXuo8nYvJXFgV/mB9AWAtuhJcrAC6+jo9+lna5nqtBSSRfawhPYmAtostn
-         2wODmIOUwfnrKSFa6RP6sbFHtIAtYAKv7xQ6hrqrsZI+DoSTARo5PI1r2Og8mFGKCWgF
-         3qLLB35GsCHKFCHp0t/pLIaH7pWQMj5E5orNBfMS2bF9xkBLrxiyib/domC3AfVEsOob
-         BzgORF6a7mjTj+2xwHD0oRlH7LGr0IDPODNCzeCP7zEgOuzRbA327eYbqYJeaor+Tz3m
-         AUIw==
-X-Gm-Message-State: ABy/qLZ8KRctEYXu//XLWYOuOmzCLydXXfhq7Hp/8fJcpp8OsknruNBp
-        COHxwxJf6l/obYi86RS3SFe2RrAq6IZNC2GzlQ0=
-X-Google-Smtp-Source: APBJJlG0yx6JC4dmyFUtVR6Blc8Xu31KjFmAzNdj46E9aT3WBkkf8L1wuH36ReifMBB6mhPq4O5+DeSzfm+DhQj85lI=
-X-Received: by 2002:a05:6402:60e:b0:522:27c4:3865 with SMTP id
- n14-20020a056402060e00b0052227c43865mr3924074edv.41.1690962887837; Wed, 02
- Aug 2023 00:54:47 -0700 (PDT)
+        with ESMTP id S232013AbjHBICx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:02:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D75621710
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 01:02:50 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qR6ob-00014N-Je; Wed, 02 Aug 2023 10:02:41 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qR6oZ-000Z21-8a; Wed, 02 Aug 2023 10:02:39 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qR6oY-009oiE-C2; Wed, 02 Aug 2023 10:02:38 +0200
+Date:   Wed, 2 Aug 2023 10:02:38 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Raphael Gallais-Pou <rgallaispou@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: st: convert sti-pwm to DT schema
+Message-ID: <20230802080238.d3nam6elnern65rb@pengutronix.de>
+References: <20230801220559.32530-1-rgallaispou@gmail.com>
 MIME-Version: 1.0
-References: <20230801082433.548206-1-daniel.baluta@oss.nxp.com>
- <20230801082433.548206-2-daniel.baluta@oss.nxp.com> <87cz06uypz.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87cz06uypz.wl-kuninori.morimoto.gx@renesas.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 2 Aug 2023 10:54:35 +0300
-Message-ID: <CAEnQRZAn2W3kD-FsUdjKR7TuYvZwkSXOKBUgwLrqDBeGXV3bFw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ASoC: simple-card: Introduce playback-only/capture
- only DAI link flags
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>, broonie@kernel.org,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org, spujar@nvidia.com,
-        tiwai@suse.com, perex@perex.cz, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eqf6j4lfzsakv7hz"
+Content-Disposition: inline
+In-Reply-To: <20230801220559.32530-1-rgallaispou@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 2, 2023 at 2:31=E2=80=AFAM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
->
->
-> Hi Daniel
->
-> Thank you for your patch.
-> This is not a big deal, but...
->
-> > We need this to signal that DAI link supports only 1 direction that
-> > can only be either playback or capture.
-> (snip)
-> > +     if (of_property_read_bool(node, "playback-only"))
-> > +             is_playback_only =3D true;
-> > +
-> > +     if (of_property_read_bool(node, "capture-only"))
-> > +             is_capture_only =3D true;
->
-> More simply
->
->         is_playback_only =3D of_property_read_bool(node, "playback-only")=
-;
->         is_capture_only  =3D of_property_read_bool(node, "capture-only");
 
+--eqf6j4lfzsakv7hz
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Good point. Will fix in v2.
+Hello,
 
->
-> > +     ret =3D asoc_simple_parse_link_direction(dev, node, prefix,
-> > +                                            &is_playback_only,
-> > +                                            &is_capture_only);
-> > +     if (ret < 0)
-> > +             return 0;
-> > +
-> > +     dai_link->playback_only =3D is_playback_only;
-> > +     dai_link->capture_only =3D is_capture_only;
->
-> It doesn't overwrite when error case, so
-> More simply
->
->         ret =3D asoc_simple_parse_link_direction(dev, node, prefix,
->                                                 &dai_link->playback_only,
->                                                 &dai_link->capture_only);
+On Wed, Aug 02, 2023 at 12:05:59AM +0200, Raphael Gallais-Pou wrote:
+> +  st,capture-num-chan:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: Number of available Capture channels.
 
-Can do this because dai_link->playback_only is a bitfield.
+I have the theory that nobody actually uses the capture feature and I'd
+like to get rid of it. People who do use it, should better switch to the
+counter driver.
+
+I wonder if this is the opportunity to drop st,capture-num-chan. There
+is no mainline user.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--eqf6j4lfzsakv7hz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmTKDZ0ACgkQj4D7WH0S
+/k5zTgf/YMXkn4+IaR5EJs87z5iA9g5W0naGT+tEOMy4cjKWUqo0+cox5GIingac
+Llf7sagBGptLz1QaAxmDN15xttJN3UKlMAPjEqd4qoGImtKHD4BJB/h3hTws4oou
+kmczBRqACrMc6dK94h5tBALgr8pSJTbS0uBTh876LUd4SOt7E87RtYW2vAt35egg
+BWRYDboRuoYOgdqooovR5aMNRdF2DO1J4pj81e1QStZkmO7tLhltoIdBiAVgljpM
+Vznh9oB3uAm7u8vXoXolhhxEuFvtNoN8cqRcCTkXD1NJlVAuIu/ExBN8+p0Us7eJ
+9Raywx/nuKQGqlp5Hz7Sx83egthP6w==
+=PiiY
+-----END PGP SIGNATURE-----
+
+--eqf6j4lfzsakv7hz--
