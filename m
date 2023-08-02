@@ -2,145 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC7F76D82A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 21:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06BCE76D886
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbjHBTut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 15:50:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48938 "EHLO
+        id S229924AbjHBUUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 16:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbjHBTus (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 15:50:48 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797AB1BD9;
-        Wed,  2 Aug 2023 12:50:46 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe1fc8768aso2402545e9.1;
-        Wed, 02 Aug 2023 12:50:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691005845; x=1691610645;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GIsEdvHTkRHt69kFNg/UK9NrCtXb0lJcor4CbmeS9Hk=;
-        b=R5wZp/xcsv35BlfRKilsYrHF1dhaqJAiOM88mITtX2ac33Ys3k+SZ6hzpyoP/EncS0
-         PlQlnh1B7WsiB34wEYWeyPFGel3GTMWqUs22JBAS+xCX34/eQc8oHTV20pe079jQhUco
-         AldAYBl/7BQOilco0TIDkaCBEW0kNsLo3iTG/2CPGR1jfreq+IHr2a+e3MGq5JIKK8dg
-         SW7X+kfIrvWwvm0b7kU7zwCGGHiZ97UmhrFkkEnCt2Uyb9Ui9eqGZrbQPt1HyrL+vrBA
-         67CIrGTNbdPKee5Va56I3zOhucFhXGpEIe34NknlPMpPBl9onEfZdJ0qge0LONsurRXX
-         uSXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691005845; x=1691610645;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GIsEdvHTkRHt69kFNg/UK9NrCtXb0lJcor4CbmeS9Hk=;
-        b=A2u/RVhOGRAe2Y76PY1FWmC5Amv7pRAk8WqcHEB2/eSmnKwG00hsHjblqsIzi/rO3A
-         /1xCtLe2ShZoCyz0hKkgto2RAJDYPHzqKqGOFPH+dJru580m2KwEep4sA0M/coQcQOZa
-         rOt67Swj4sxOmsd3+aB7gLEGTPQ3V5ISyPjdxsxgP3Lh0NyQL2+bEqQHKty1CaMcvLlx
-         ubbQe3YHYPoTAmQFyNovN/C8/lZYe0XcF61qEJJTRaLMksWoXXAqe29kTLTZSnANJdrw
-         0Ar4mCmVnQVcR3X51Dk14cV7+PY63dqvabE4pBHAhQedrLntIHp1HegRyL5eZGHDHrhq
-         lmPA==
-X-Gm-Message-State: ABy/qLZFB4WDiPbFQLHaAScETyCmrO7JMtnWC4ksEW5j6ZjVaI0BcVsp
-        TNVRp+ec4c24wb0Y86ftaqs=
-X-Google-Smtp-Source: APBJJlHHgd2WIdq0IccJQZ2AKkE0gkK04uGb9tNRmFHgVwOqmlDWdtUcLWuRXjitS2H+CPmD7MrvSg==
-X-Received: by 2002:a1c:7511:0:b0:3fe:2f31:8bf7 with SMTP id o17-20020a1c7511000000b003fe2f318bf7mr2864638wmc.26.1691005844631;
-        Wed, 02 Aug 2023 12:50:44 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id a23-20020a05600c225700b003fc01495383sm2418619wmm.6.2023.08.02.12.50.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 12:50:44 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-spi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232161AbjHBUUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:20:17 -0400
+X-Greylist: delayed 540 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 02 Aug 2023 13:20:16 PDT
+Received: from 8.mo581.mail-out.ovh.net (8.mo581.mail-out.ovh.net [46.105.77.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2587D10C7
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 13:20:16 -0700 (PDT)
+Received: from director3.ghost.mail-out.ovh.net (unknown [10.108.4.127])
+        by mo581.mail-out.ovh.net (Postfix) with ESMTP id 8CF342412B
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 20:11:14 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-5nhfz (unknown [10.110.103.37])
+        by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id E69C61FDC4;
+        Wed,  2 Aug 2023 20:11:12 +0000 (UTC)
+Received: from etezian.org ([37.59.142.99])
+        by ghost-submission-6684bf9d7b-5nhfz with ESMTPSA
+        id FKtzJGC4ymSUiw0Acuci9A
+        (envelope-from <andi@etezian.org>); Wed, 02 Aug 2023 20:11:12 +0000
+Authentication-Results: garm.ovh; auth=pass (GARM-99G0032f48329d-2e05-4aea-843c-dc19b2326188,
+                    0C641BB37B7CC30D107EA61C426C60CA54BC1A77) smtp.auth=andi@etezian.org
+X-OVh-ClientIp: 178.238.172.51
+From:   Andi Shyti <andi.shyti@kernel.org>
+To:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Mark Brown <broonie@kernel.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] riscv: dts: allwinner: d1: Add QSPI pins node for pinmux
- PC port
-Date:   Wed, 02 Aug 2023 21:50:39 +0200
-Message-ID: <5956489.lOV4Wx5bFT@jernej-laptop>
-In-Reply-To: <CALHCpMgXy0pLiVR8V48Roi82EJ7Zrx-Xyc-6etjgkmN0B7pb8A@mail.gmail.com>
-References: <20230624131632.2972546-1-bigunclemax@gmail.com>
- <10311404.nUPlyArG6x@jernej-laptop>
- <CALHCpMgXy0pLiVR8V48Roi82EJ7Zrx-Xyc-6etjgkmN0B7pb8A@mail.gmail.com>
+        Doug Anderson <dianders@chromium.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andi Shyti <andi.shyti@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: nxp,pca9541: convert to DT schema
+Date:   Wed,  2 Aug 2023 22:10:33 +0200
+Message-Id: <169100562788.1919254.3881890120063393214.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230731163833.319258-1-krzysztof.kozlowski@linaro.org>
+References: <20230731163833.319258-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 13286181854062971501
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedviedrkedtgdehtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredtjeenucfhrhhomheptehnughiucfuhhihthhiuceorghnughirdhshhihthhisehkvghrnhgvlhdrohhrgheqnecuggftrfgrthhtvghrnhepveevieffieefgfefuddvteelffeuhfelffejteejuddvveekveehvdejgeefteevnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepuddvjedrtddrtddruddpudejkedrvdefkedrudejvddrhedupdefjedrheelrddugedvrdelleenucevlhhushhtvghrufhiiigvpeegnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoegrnhguihesvghtvgiiihgrnhdrohhrgheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedupdhmohguvgepshhmthhpohhuth
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 31. julij 2023 ob 17:22:11 CEST je Maxim Kiselev napisal(a):
-> =D0=BF=D0=BD, 31 =D0=B8=D1=8E=D0=BB. 2023=E2=80=AF=D0=B3. =D0=B2 01:30, J=
-ernej =C5=A0krabec <jernej.skrabec@gmail.com>:
-> > Dne sobota, 24. junij 2023 ob 15:16:24 CEST je Maksim Kiselev napisal(a=
-):
-> > > Add pinmux node that describes pins on PC port which required for
-> > > QSPI mode.
-> > >=20
-> > > Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> > > ---
-> > >=20
-> > >  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >=20
-> > > diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> > > b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi index
-> > > 1bb1e5cae602..9f754dd03d85 100644
-> > > --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> > > +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> > > @@ -131,6 +131,13 @@ uart3_pb_pins: uart3-pb-pins {
-> > >=20
-> > >                               pins =3D "PB6", "PB7";
-> > >                               function =3D "uart3";
-> > >                      =20
-> > >                       };
-> > >=20
-> > > +
-> > > +                     /omit-if-no-ref/
-> > > +                     qspi0_pc_pins: qspi0-pc-pins {
-> > > +                             pins =3D "PC2", "PC3", "PC4", "PC5",
-> >=20
-> > "PC6",
-> >=20
-> > > +                                    "PC7";
-> > > +                             function =3D "spi0";
-> > > +                     };
-> >=20
-> > Sorry for late review, but it seems I'm missing something. D1 manual sa=
-ys
-> > those are pins for ordinary SPI, with HOLD and WP signals. Can they be
-> > repurposed for quad SPI?
->=20
-> Yes, they can. Here is a quote from D1 datasheet (9.3.3.8 SPI
-> Quad-Input/Quad-Output Mode):
-> "Using the quad mode allows data to be transferred to or from the
-> device at 4 times the rate of standard single mode, the data can be
-> read
-> at fast speed using four data bits (MOSI, MISO, IO2 (WP#) and IO3
-> (HOLD#)) at the same time."
+Hi
 
-Alright then.
+On Mon, 31 Jul 2023 18:38:32 +0200, Krzysztof Kozlowski wrote:
+> Convert the bindings for NXP PCA9541 I2C bus master selector to DT
+> schema.
+> 
+> 
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Applied to i2c/andi-for-next on
 
-Best regards,
-Jernej
+https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git
 
+Please note that this patch may still undergo further evaluation
+and the final decision will be made in collaboration with
+Wolfram.
 
+Thank you,
+Andi
 
+Patches applied
+===============
+[1/2] dt-bindings: i2c: nxp,pca9541: convert to DT schema
+      commit: 696a995b8f8b2611a37a11cffeb67de6d8757b29
+[2/2] dt-bindings: i2c: arb-gpio-challange: convert to DT schema
+      commit: 54b4b9b74530eec66a6dd2cba33abf0e65a17cec
