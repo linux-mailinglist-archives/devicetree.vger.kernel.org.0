@@ -2,153 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0897876D5EC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 19:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDEB576D620
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 19:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbjHBRsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 13:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39298 "EHLO
+        id S231555AbjHBRwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 13:52:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234034AbjHBRrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 13:47:42 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 277613AAE;
-        Wed,  2 Aug 2023 10:47:21 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372HlEcq005114;
-        Wed, 2 Aug 2023 12:47:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690998434;
-        bh=USGQbpqN+vK0VguJYau7guk5mtMbWHOA2QC9dBDh4yo=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=sJ991u82vFPsO9OD6NpenqP67tdwZjI1h0za1UhafI4Tl1/qR0cAokcx+zptZf26r
-         jq9qf5oeVsQjsK76PJ1+qOFZNqu7gRHWc2aHnmt4oGRv7EvXwDTJnwD/pxnOAdS3bI
-         oiKYE0yTHHdQf89dlskvur5/7urO7cYTbLSrQ30s=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372HlE5v005734
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Aug 2023 12:47:14 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Aug 2023 12:47:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Aug 2023 12:47:13 -0500
-Received: from [10.250.36.161] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372HlDNW063790;
-        Wed, 2 Aug 2023 12:47:13 -0500
-Message-ID: <fe234498-4c41-7135-a02f-8676cd7ec3f8@ti.com>
-Date:   Wed, 2 Aug 2023 12:47:12 -0500
+        with ESMTP id S229863AbjHBRvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 13:51:51 -0400
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68EDC35A1
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 10:50:39 -0700 (PDT)
+Received: by mail-ua1-x92c.google.com with SMTP id a1e0cc1a2514c-79969c14964so45159241.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 10:50:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1690998628; x=1691603428;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xGq1aIBCGxiEXrqQEhQT2LiB068qDotkWqP0YLxkeNY=;
+        b=VE5dAkKjhFGny8iA1SHzqW1gjkpPyzpJFeCvCiaMmYrYz136cFMNC2wBIbAIpyYvG8
+         PcRFVQlMWLR3IyZu1ZbABkwfBOos+L3H4YyKb0sxceiTZN7kffAtSWidSEwB6sm+WOfg
+         RB8VB9ot6MVX10g89RfjV6H83XBT/9+O3hA0t3Urr7/zSuunnEHEK4VDHBAUkNMnpOvo
+         tDqP0rKHdn9wTIcG/u6Q2vqXUA/jjPED33xazSaZOT2mDzVUPtCzgzTtDQfQmZME6LmS
+         oyYOCB/iNzBwv7KLufHbEpC68ObAZITaI5lh2GNzADEaKEbeq+hoi/5/FRdj1/SUMFgb
+         lRyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690998628; x=1691603428;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xGq1aIBCGxiEXrqQEhQT2LiB068qDotkWqP0YLxkeNY=;
+        b=XdEpqseeZltxRbhJr6OMhxNzLcnC2S4T1ZjdbNixSKGirEGKw/rKDP/FX8bJuGMDWc
+         Aku2Sggsbwa6eRcbrbnhdI2X9LYK28NRwzwj4hLTvq4pbc30SuE+HmGA+Hl3eYNZd8w7
+         yrj7XoSZy2fwJude39imXC602/8JIhT1YcG9W9isaZqQ+wCc9bEw0CAKtPdxpRaa8dw6
+         o6IB/xrGsoCkWG6RcZA5UxcNIhDvf9JdJABvWa1tVwPZKwN2s9E0m+jbAUqgj833GIxS
+         jz9XppobtMEy6O7CB5PWBVLxcmJyg3GStL5E6SnZsTJeppnFBj2gyoTy8OCMHYwzSeZh
+         /gbQ==
+X-Gm-Message-State: ABy/qLYP4hmuUPT3A0eSZRzzTTCCjm/3Wn9tmAOVXgX76qb/TPrF/8XZ
+        JqWnnM3ZmovXP5lh3JBlOCT0yelLQt7Ptrlp7IwDZg==
+X-Google-Smtp-Source: APBJJlEKR2Jf7TabvMSTmOGKPPwR3l8uT7K3XVNms8a2Ktc3rqhSqafmYxy++abfkChGUgUk+R2wfEAjkMi811bR0sM=
+X-Received: by 2002:a05:6102:2c5:b0:447:4fbe:17f8 with SMTP id
+ h5-20020a05610202c500b004474fbe17f8mr5295171vsh.23.1690998627720; Wed, 02 Aug
+ 2023 10:50:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am64: Merge the two main_conf
- nodes
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230725203545.2260506-1-dianders@chromium.org>
+ <20230725133443.v3.2.I59b417d4c29151cc2eff053369ec4822b606f375@changeid>
+ <snx3fzvf3icauri2xuigydvpqxtzhp34mptdxvifi7jswm2evy@sx7jr7zwvjw5>
+ <CAD=FV=VcsTik+HD11xeDM2Jq9ispcX0-j5QtK8D1qUkrGabRGg@mail.gmail.com>
+ <i3cbgrc365lwscwux2itho6uv74ji3hsjuge4zoxfnlnhacyqc@r73mmifyxffj>
+ <CADcbR4JB0h8fByM2Z6diByvWaFprW9GDapBNt+YLWr9-vKoe7A@mail.gmail.com>
+ <kuctj2p353nsae24lrhcymqqpfajbc7qoqly63zpwvdp6lgu3b@kk4gpzsapxnn> <64ca91a3.0d0a0220.8e58d.89b3@mx.google.com>
+In-Reply-To: <64ca91a3.0d0a0220.8e58d.89b3@mx.google.com>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Wed, 2 Aug 2023 18:50:11 +0100
+Message-ID: <CAPY8ntBGnrJLROCSTDv+qPAN6-Nc3TKBhFg2WqCv-d7c4WPnBA@mail.gmail.com>
+Subject: Re: [PATCH v3 02/10] drm/panel: Check for already prepared/enabled in drm_panel
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230802174521.236255-1-afd@ti.com>
- <20230802174521.236255-2-afd@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230802174521.236255-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Sam Ravnborg <sam@ravnborg.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-input@vger.kernel.org, hsinyi@google.com,
+        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        Jiri Kosina <jikos@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/2/23 12:45 PM, Andrew Davis wrote:
-> There are two nodes representing the same register space, this looks to
-> have been created by some merge or copy/paste error. Remove the second
-> instance of this node and move its children into the first instance.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
+On Wed, 2 Aug 2023 at 18:26, Chris Morgan <macroalpha82@gmail.com> wrote:
+>
+> * Spam *
+> On Mon, Jul 31, 2023 at 07:03:07PM +0200, Maxime Ripard wrote:
+> > Hi,
+> >
+> > On Mon, Jul 31, 2023 at 11:33:22AM -0500, Chris Morgan wrote:
+> > > In my case a few different panel drivers disable the regulators in the
+> > > unprepare/disable routines.
+> >
+> > And that's totally fine.
+> >
+> > > For at least the Rockchip DSI implementations for some reason the
+> > > panel gets unprepared more than once, which triggers an unbalanced
+> > > regulator disable.
+> >
+> > "For some reason" being that DW-DSI apparently finds it ok to bypass any
+> > kind of abstraction and randomly calling panel functions by itself:
+> >
+> > https://elixir.bootlin.com/linux/v6.4.7/source/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c#L868
+> >
+> > It looks like it's fixed it current drm-misc-next though.
+>
+> Good, when I get a chance I will test it out with the existing panels
+> I have at my disposal and submit some patches to clean them up.
+>
+> >
+> > > Obviously though the correct course of action is to fix the reason why
+> > > the panel is disabled more than once, but that's at least the root
+> > > cause of this behavior on the few panels I've worked with.
+> >
+> > Like I said we already have a commit on the way to fix that, so it
+> > shouldn't be an issue anymore.
+> >
+> > I stand by what I was saying earlier though, I think it's mostly
+> > cargo-cult or drivers being very wrong. If anything, the DW-DSI stuff
+> > made me even more convinced that we shouldn't even entertain that idea
+> > :)
 
+DW-DSI is hacking around the fact that DSI panels may want to send DCS
+commands in unprepare, however the DSI host driver shuts down the
+controller in the DSI bridge post_disable which gets called first.
 
-Nishanth, this is based/dependent on your -next branch.
+That ordering can now be reversed with pre_enable_prev_first flag in
+struct drm_bridge, or prepare_prev_first in drm_panel, hence no need
+for the DSI controller to jump around the bridge chain.
 
-Andrew
+  Dave
 
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 42 ++++++++++--------------
->   1 file changed, 17 insertions(+), 25 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index d3dd8c426dada..e27eb2e585f14 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -44,11 +44,28 @@ main_conf: syscon@43000000 {
->   		#size-cells = <1>;
->   		ranges = <0x0 0x0 0x43000000 0x20000>;
->   
-> +		chipid@14 {
-> +			compatible = "ti,am654-chipid";
-> +			reg = <0x00000014 0x4>;
-> +		};
-> +
->   		serdes_ln_ctrl: mux-controller {
->   			compatible = "mmio-mux";
->   			#mux-control-cells = <1>;
->   			mux-reg-masks = <0x4080 0x3>; /* SERDES0 lane0 select */
->   		};
-> +
-> +		phy_gmii_sel: phy@4044 {
-> +			compatible = "ti,am654-phy-gmii-sel";
-> +			reg = <0x4044 0x8>;
-> +			#phy-cells = <1>;
-> +		};
-> +
-> +		epwm_tbclk: clock@4140 {
-> +			compatible = "ti,am64-epwm-tbclk";
-> +			reg = <0x4130 0x4>;
-> +			#clock-cells = <1>;
-> +		};
->   	};
->   
->   	gic500: interrupt-controller@1800000 {
-> @@ -203,31 +220,6 @@ main_pmx0: pinctrl@f4000 {
->   		pinctrl-single,function-mask = <0xffffffff>;
->   	};
->   
-> -	main_conf: syscon@43000000 {
-> -		compatible = "syscon", "simple-mfd";
-> -		reg = <0x00 0x43000000 0x00 0x20000>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		ranges = <0x00 0x00 0x43000000 0x20000>;
-> -
-> -		chipid@14 {
-> -			compatible = "ti,am654-chipid";
-> -			reg = <0x00000014 0x4>;
-> -		};
-> -
-> -		phy_gmii_sel: phy@4044 {
-> -			compatible = "ti,am654-phy-gmii-sel";
-> -			reg = <0x4044 0x8>;
-> -			#phy-cells = <1>;
-> -		};
-> -
-> -		epwm_tbclk: clock@4140 {
-> -			compatible = "ti,am64-epwm-tbclk";
-> -			reg = <0x4130 0x4>;
-> -			#clock-cells = <1>;
-> -		};
-> -	};
-> -
->   	main_timer0: timer@2400000 {
->   		compatible = "ti,am654-timer";
->   		reg = <0x00 0x2400000 0x00 0x400>;
+> > Maxime
+>
+> Thank you, and yes if a driver is doing something it shouldn't we
+> shouldn't be patching around that, we should be fixing things. Thanks
+> for providing me with the additional info.
+>
+> Chris
+>
