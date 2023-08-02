@@ -2,97 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCBF76D8AB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F4476D8EB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 22:53:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230444AbjHBUaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 16:30:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
+        id S232714AbjHBUxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 16:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjHBUaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:30:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E7826A2;
-        Wed,  2 Aug 2023 13:30:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8FBD561AFE;
-        Wed,  2 Aug 2023 20:30:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E347FC433C9;
-        Wed,  2 Aug 2023 20:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691008223;
-        bh=EmWbaenOMDMD6nYdMzBFCScTkic4CvjgRoEjkBg+bnE=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=VvEEJn4ZP6H4Q7fIJSQjyMaGQyiLccK7NXIEXRuMbSrVtwDsqvcAejUc2tGH5pae6
-         fMQ7pxeSQBIuhEwYHHI27EyCsNmhk9p7nA8AHCvgfG8Pk4s5A9vAWpy7qjVyLqHQtF
-         R6FoA3B9ngUfgMdE7WBiuKHfMEEq7sv/pZFRiirj/+UK2XWO075tP5HAmzNLoJ58sD
-         F5n6tRD2YRHmhFBwp9qCso2O/92w/PHOhwMmElhigy4x7WBM418XzRFgsas+oP2Gpr
-         O9C6dRL9rgRlmmEbn2vnJW/kWRcdIWyjDNtrbApwfOAoyfxjKDfnM/AS4/65d2Rzil
-         V0Jwvv2I4L/PQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C4843C6445B;
-        Wed,  2 Aug 2023 20:30:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231387AbjHBUx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 16:53:27 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E625E26B6;
+        Wed,  2 Aug 2023 13:53:25 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372KrBPn098025;
+        Wed, 2 Aug 2023 15:53:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691009591;
+        bh=aWP7FyqiTNqyK/DgBATFRQFfqGEzxsCr4TUeT4BZkRc=;
+        h=From:To:CC:Subject:Date;
+        b=GQ80+EjkTp8RS+n7MboglT96OZQ1fJ64RSN3tqTlFJyywUQw02FSPonq8Dq5AdtxK
+         XHr3pgpx99DMUUdadGtGcSpI+U6aCym1qOCXQtQldjIvbqU+r6TkJmASwsjbnW8VNM
+         IdnD5ORhPHPieLfYH5K/YZ5DZ85u7N+5OvTA2tPw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372KrBJe018909
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Aug 2023 15:53:11 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
+ Aug 2023 15:53:11 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 2 Aug 2023 15:53:11 -0500
+Received: from lelv0326.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372KrAS7090834;
+        Wed, 2 Aug 2023 15:53:10 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH 00/13] Another round of K3 DTSI disables
+Date:   Wed, 2 Aug 2023 15:52:56 -0500
+Message-ID: <20230802205309.257392-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/2] Add WCN3988 Bluetooth support for Fairphone 4
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <169100822279.572.3966556819111433761.git-patchwork-notify@kernel.org>
-Date:   Wed, 02 Aug 2023 20:30:22 +0000
-References: <20230802-fp4-bluetooth-v3-0-7c9e7a6e624b@fairphone.com>
-In-Reply-To: <20230802-fp4-bluetooth-v3-0-7c9e7a6e624b@fairphone.com>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        conor+dt@kernel.org, quic_bgodavar@quicinc.com,
-        quic_rjliao@quicinc.com, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hello all,
 
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+Similar to a couple previous series on this, we disable by default
+nodes that cannot function standalone.
 
-On Wed, 02 Aug 2023 08:56:27 +0200 you wrote:
-> Add support in the btqca/hci_qca driver for the WCN3988 and add it to
-> the sm7225 Fairphone 4 devicetree.
-> 
-> Devicetree patches go via Qualcomm tree, the rest via their respective
-> trees.
-> 
-> --
-> Previously with the RFC version I've had problems before with Bluetooth
-> scanning failing like the following:
-> 
-> [...]
+This helps prevent folks from forgetting to disable unused nodes
+in their boards. One benefit of that is you can start out with
+an almost empty DTS file for a new board and have it still
+function without warnings or misbehaving hardware. Adding as you
+go, this helps ease bringup and upstreaming of new boards.
 
-Here is the summary with links:
-  - [v3,1/2] dt-bindings: net: qualcomm: Add WCN3988
-    https://git.kernel.org/bluetooth/bluetooth-next/c/d2a31b6f9701
-  - [v3,2/2] Bluetooth: btqca: Add WCN3988 support
-    https://git.kernel.org/bluetooth/bluetooth-next/c/f2e1dd87c9cd
+Thanks,
+Andrew 
 
-You are awesome, thank you!
+Andrew Davis (13):
+  arm64: dts: ti: k3-j721e: Enable SDHCI nodes at the board level
+  arm64: dts: ti: k3-j7200: Enable SDHCI nodes at the board level
+  arm64: dts: ti: k3-j721s2: Enable SDHCI nodes at the board level
+  arm64: dts: ti: k3-am65: Enable OSPI nodes at the board level
+  arm64: dts: ti: k3-j721e: Enable OSPI nodes at the board level
+  arm64: dts: ti: k3-j7200: Enable OSPI nodes at the board level
+  arm64: dts: ti: k3-am64: Enable OSPI nodes at the board level
+  arm64: dts: ti: k3-j721e: Enable GPIO nodes at the board level
+  arm64: dts: ti: k3-j721s2: Enable GPIO nodes at the board level
+  arm64: dts: ti: k3-j7200: Enable GPIO nodes at the board level
+  arm64: dts: ti: k3-j721e: Enable TSCADC nodes at the board level
+  arm64: dts: ti: k3-am65: Enable TSCADC nodes at the board level
+  arm64: dts: ti: k3-am64: Enable TSCADC nodes at the board level
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  2 +
+ .../boot/dts/ti/k3-am64-phycore-som.dtsi      |  1 +
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  1 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  5 +-
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  6 +-
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  4 ++
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |  3 +
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     | 24 +-------
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 20 ++----
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  6 ++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |  3 +
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   |  1 +
+ .../boot/dts/ti/k3-j721e-beagleboneai64.dts   | 61 ++++---------------
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 44 ++++---------
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 11 ++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  6 ++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 58 +++---------------
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   |  1 +
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 20 +++---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  6 ++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  2 +
+ 21 files changed, 98 insertions(+), 187 deletions(-)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.39.2
 
