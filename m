@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9802776D4EC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 19:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4287676D4F2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 19:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbjHBRSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 13:18:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42360 "EHLO
+        id S231705AbjHBRTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 13:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjHBRSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 13:18:09 -0400
+        with ESMTP id S232048AbjHBRTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 13:19:03 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A51A115;
-        Wed,  2 Aug 2023 10:18:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99BEC1735;
+        Wed,  2 Aug 2023 10:18:58 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D6DC761A5A;
-        Wed,  2 Aug 2023 17:18:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7566C433C7;
-        Wed,  2 Aug 2023 17:18:06 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 179B561A41;
+        Wed,  2 Aug 2023 17:18:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39522C433C7;
+        Wed,  2 Aug 2023 17:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690996687;
-        bh=qJVS/MyovGp0njFcdDio0zeaKfQmajYUo0hUpLr3zug=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=lHuOI2fTGIXIuZ1SL3KxRDlSR0E3MuGCM5TgYQuc/gA5xgAXmpM0mylpfdTeQdmBV
-         sYCYAe4leNk/mz9SiwLR/E1euI3UeUBlj4aib8QG9tGd9Tl385azMFcZQ57s+1tSZw
-         S3hXxeN45xKzCmjjwlv2DaXCJ04pbscDor7X0nc2HlCnbjoOG15XqOZq11FL5X3awt
-         rRka4Rqjyi9L4DDfhzXHrIn6eD9PiSwM2UGdxLAgJM9I+BdLoooTBwi9s2xZyy9+1Z
-         3p7HjkSP+MXpka4tlTOUod0aDToksOXPMYo8hKphO0EnRJTypbLciXHB57W7srg7Ha
-         kVZsFwb1VbVEQ==
-Date:   Wed, 2 Aug 2023 12:18:05 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Kevin Xie <kevin.xie@starfivetech.com>
-Cc:     Minda Chen <minda.chen@starfivetech.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
+        s=k20201202; t=1690996737;
+        bh=1bs5fAM+RgwhOoYuMXjxSteSlIzHxQlTrE/hEJz35s8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KFMrGcadzeAB7Am7LXjRf//SwRph7sh+o/I56xAeE2y+O9NqVIVtgU+dK+YotbrQs
+         RhvDgRNMYN/N1Eu+yo0I60FCvY5nXSCojcYeotzFskq4WUgGsr97sFysmdTcMyZePj
+         t70OfGPCUpyP+g5+LnsX1MOjPan0+9MLWGA9ZKwgLWuc6a8YfBtV918w08xSqQSCVS
+         XnyZ6y9ByyWDwQ8cAXQ99aho4IdhpKnqtWMVgrV43BXUydY+uV2EgfFa7qigEG6xUv
+         dMeyOR00ZClxuyx//nBTSpSL/StwxBLtvwS21AAt7VTmfHH3PO5SuHJVfYv3b9TWs+
+         jkU0SeaQ24D2g==
+Date:   Wed, 2 Aug 2023 18:18:51 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Andrew Jones <ajones@ventanamicro.com>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        "Maciej W. Rozycki" <macro@orcam.me.uk>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
-Message-ID: <20230802171805.GA62238@bhelgaas>
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 01/15] RISC-V: Add riscv_get_intc_hartid() function
+Message-ID: <20230802-recharger-chuck-6ace9f1157ac@spud>
+References: <20230802150018.327079-1-apatel@ventanamicro.com>
+ <20230802150018.327079-2-apatel@ventanamicro.com>
+ <20230802-b0c478839e55890385d98f31@orel>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="FOD65xhEHS8tTgmj"
 Content-Disposition: inline
-In-Reply-To: <79e417ee-ef47-3e4b-6b51-bd7f10ac3643@starfivetech.com>
+In-Reply-To: <20230802-b0c478839e55890385d98f31@orel>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -72,47 +70,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 01, 2023 at 03:05:46PM +0800, Kevin Xie wrote:
-> On 2023/8/1 7:12, Bjorn Helgaas wrote:
-> ...
 
-> > The delay required by sec 6.6.1 is a minimum of 100ms following exit
-> > from reset or, for fast links, 100ms after link training completes.
-> > 
-> > The comment at the call of advk_pcie_wait_for_link() [2] says it is
-> > the delay required by sec 6.6.1, but that doesn't seem right to me.
-> > 
-> > For one thing, I don't think 6.6.1 says anything about "link up" being
-> > the end of a delay.  So if we want to do the delay required by 6.6.1,
-> > "wait_for_link()" doesn't seem like quite the right name.
-> > 
-> > For another, all the *_wait_for_link() functions can return success
-> > after 0ms, 90ms, 180ms, etc.  They're unlikely to return after 0ms,
-> > but 90ms is quite possible.  If we avoided the 0ms return and
-> > LINK_WAIT_USLEEP_MIN were 100ms instead of 90ms, that should be enough
-> > for slow links, where we need 100ms following "exit from reset."
-> > 
-> > But it's still not enough for fast links where we need 100ms "after
-> > link training completes" because we don't know when training
-> > completed.  If training completed 89ms into *_wait_for_link(), we only
-> > delay 1ms after that.
-> 
-> That's the point, we will add a extra 100ms after PERST# de-assert
-> in the patch-v3 according to Base Spec r6.0 - 6.6.1:
->         msleep(100);
->         gpiod_set_value_cansleep(pcie->reset_gpio, 0);
-> 
-> +       /* As the requirement in PCIe base spec r6.0, system must wait a
-> +        * minimum of 100 ms following exit from a Conventional Reset
-> +        * before sending a Configuration Request to the device.*/
-> +       msleep(100);
-> +
->         if (starfive_pcie_host_wait_for_link(pcie))
->                 return -EIO;
+--FOD65xhEHS8tTgmj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For fast links (links that support > 5.0 GT/s), the 100ms starts
-*after* link training completes.  The above looks OK if starfive only
-supports slow links, but then I'm not sure why we would need
-starfive_pcie_host_wait_for_link().
+On Wed, Aug 02, 2023 at 08:09:18PM +0300, Andrew Jones wrote:
+> On Wed, Aug 02, 2023 at 08:30:04PM +0530, Anup Patel wrote:
+> > We add a common riscv_get_intc_hartid() which help device drivers to
+> > get hartid of the HART associated with a INTC (i.e. local interrupt
+> > controller) fwnode. This new function is more generic compared to
+> > the existing riscv_of_parent_hartid() function hence we also replace
+> > use of riscv_of_parent_hartid() with riscv_get_intc_hartid().
+> >=20
+> > Also, while we are here let us update riscv_of_parent_hartid() to
+> > always return the hartid irrespective whether the CPU/HART DT node
+> > is disabled or not.
+>=20
+> This change should probably be a separate patch with its own
+> justification in its commit message.
 
-Bjorn
+Yeah, it certainly needs a justification, not just an "oh, btw I did
+this". It also invalidates the comment above the function, so that
+would need to be changed too.
+
+> > diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> > index a2fc952318e9..c3eaa8a55bbe 100644
+> > --- a/arch/riscv/kernel/cpu.c
+> > +++ b/arch/riscv/kernel/cpu.c
+> > @@ -81,21 +81,35 @@ int riscv_early_of_processor_hartid(struct device_n=
+ode *node, unsigned long *har
+> >   * To achieve this, we walk up the DT tree until we find an active
+                                                                 ^^^^^^
+
+> >   * RISC-V core (HART) node and extract the cpuid from it.
+> >   */
+> > -int riscv_of_parent_hartid(struct device_node *node, unsigned long *ha=
+rtid)
+> > +static int riscv_of_parent_hartid(struct device_node *node,
+
+--FOD65xhEHS8tTgmj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMqP+wAKCRB4tDGHoIJi
+0lh3AQC3eFBSnuEsujkdYBVsE92Pc2O1XtCda+1HBQsxZ2KZIwEA1jFJa2D09Z7n
+38T7/YEAvBKqPBgLCeE8Z74ZqqunaAM=
+=uU6c
+-----END PGP SIGNATURE-----
+
+--FOD65xhEHS8tTgmj--
