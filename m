@@ -2,43 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D8D76CFE2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 16:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465CE76CFF8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 16:26:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231915AbjHBOSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 10:18:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
+        id S232680AbjHBO0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 10:26:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232699AbjHBOSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 10:18:45 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BDC782711;
-        Wed,  2 Aug 2023 07:18:37 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7F193113E;
-        Wed,  2 Aug 2023 07:19:20 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.100.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E6C73F5A1;
-        Wed,  2 Aug 2023 07:18:35 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232560AbjHBOZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 10:25:59 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574D62706
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 07:25:57 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bded9d93dso171424666b.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 07:25:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google; t=1690986356; x=1691591156;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FsVcsCDvamjl31gifaKwLNv2n2Xspa6emd5tT3prZvw=;
+        b=eq9qvw/au3DtjNiInHv+/Ks+sX1tL4hda1Ymw/mKWe9H1Dn/0GH3Lkc2XHr2w4hnqh
+         szW59lqw7i9lIfZLBs86jn+JmO2jiioTa1/OThHRi93xkN7nQo8rqnOgCYtBmvg7+wtd
+         WF753BEgN/emMxve58EPL3p3mFOmrc8E1KGkg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690986356; x=1691591156;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FsVcsCDvamjl31gifaKwLNv2n2Xspa6emd5tT3prZvw=;
+        b=JGwYQziUss1HB3fSAf2ME4sv7z5d6HF8kSJyvN2MKF+Y3Y/eWijCoicFJaEqd0qvVO
+         74WWf+DDJ40trKWFRoaA40nene6+WXoMyjnL0XWKYndJhmeC8N+JcOikIYR8hgSvjdaD
+         PiAKYXYFsYTLJn15eu5FogP1j8WCjY160P3GYfM/UH/V5OwWVyCj+rD+EzmQnGHlAJjw
+         nxQpKEtShqkpBrbgms9mLnQLwqWKHFYglDTpyhaARyFz+BIFXfvbHy8fowVgVCGZDWma
+         zVjdFSlWNeo37C0uoEcBsgL6TtDKEsgQRy5ELX0/Q7PjuwYfx3TozJWy8uMhQCBhgaCD
+         H5FQ==
+X-Gm-Message-State: ABy/qLaO2Jp5MoNiBrdkt88xxgJlpHh5kQnmtfJCMbOYWVFUF6hRQgcA
+        30wo/nXcZBNlFHkCvFBBRSISKA==
+X-Google-Smtp-Source: APBJJlEGuIJd0GEks9/vYG2PGf+sSGozgW3aVzw1hHeGDBgQvjzANdpy3n5m6RtZqxVwQKbbxW+z3w==
+X-Received: by 2002:a17:906:73dd:b0:99b:d594:8f89 with SMTP id n29-20020a17090673dd00b0099bd5948f89mr10192169ejl.0.1690986355776;
+        Wed, 02 Aug 2023 07:25:55 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id si15-20020a170906cecf00b00992e265495csm9261942ejb.212.2023.08.02.07.25.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Aug 2023 07:25:55 -0700 (PDT)
+Date:   Wed, 2 Aug 2023 16:25:53 +0200
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Shengyu Qu <wiagn233@outlook.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Martin Botka <martin@biqu3d.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: [PATCH] dt-bindings: mfd: x-powers,axp152: make interrupt optional for more chips
-Date:   Wed,  2 Aug 2023 15:18:29 +0100
-Message-Id: <20230802141829.522595-1-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
+ mode
+Message-ID: <ZMpnceQYSuyOmi+F@phenom.ffwll.local>
+Mail-Followup-To: Michael Riesch <michael.riesch@wolfvision.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
+X-Operating-System: Linux phenom 6.3.0-2-amd64 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,48 +93,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All X-Powers PMICs described by this binding have an IRQ pin, and so
-far (almost) all boards connected this to some NMI pin or GPIO on the SoC
-they are connected to.
-However we start to see boards that omit this connection, and technically
-the IRQ pin is not essential to the basic PMIC operation.
-The existing Linux driver allows skipping an IRQ pin setup for some
-chips already, so update the binding to also make the DT property
-optional for these chips, so that we can actually have DTs describing
-boards with the PMIC interrupt not wired up.
+On Tue, Jul 18, 2023 at 05:31:49PM +0200, Michael Riesch wrote:
+> Hi all,
+> 
+> This series adds support for the partial display mode to the Sitronix
+> ST7789V panel driver. This is useful for panels that are partially
+> occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
+> for this particular panel is added as well.
+> 
+> Note: This series is already based on
+> https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
+> 
+> Looking forward to your comments!
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
-Hi,
+Summary of my take from a fairly long (and kinda still on-going) irc
+discussion:
 
-arguably the IRQ functionality is optional for many more PMICs,
-especially if a board doesn't use GPIOs or a power key.
-So I wonder if the interrupts property should become optional for all?
-After all it's more a board designer's decision to wire up the IRQ pin
-or not, and nothing that's really related to a particular PMIC.
+- Where we do know the exact overscan, the kernel should expose correct
+  modes and adjust the display pipeline to match if needed when
+  programming the hardware. Meaning the approach in this patch series.
 
-Cheers,
-Andre
+- For hdmi overscan there's a lot of automagic overscan happening by
+  default. Drivers can mostly fix this by setting all the right
+  infoframes, but unfortuantely a very big pile of infoframes is needed.
+  Assuming drivers actually use the helpers I think only i915 gets them
+  all, so intel_hdmi_compute_config() at the bottom would be the example
+  to follow, and maybe some more code to extract from and share.
 
- Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+- That /should/ only leave the really old analog TV and similar horrors
+  leftover. For those we simply can't even guess the right amount of
+  overscan (because back then no one cared back then about really seeing
+  everything), and so that's the only case where we should rely on the
+  overscan properties. And that case only works when the compositor stack
+  passes these properties all the way to the user, since only they can
+  check when the settings are good.
 
-diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-index 9ad55746133b5..06f1779835a1e 100644
---- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-+++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-@@ -67,7 +67,10 @@ allOf:
-         properties:
-           compatible:
-             contains:
--              const: x-powers,axp305
-+              enum:
-+                - x-powers,axp15060
-+                - x-powers,axp305
-+                - x-powers,axp313a
- 
-     then:
-       required:
+The overscan properties should _not_ be used to fix issues of the previous
+kind, that really should all work out of the box as much as possible.
+
+Cheers, Sima
+
+
+> 
+> ---
+> Michael Riesch (4):
+>       dt-bindings: vendor-prefixes: add jasonic
+>       dt-bindings: display: st7789v: add jasonic jt240mhqs-hwt-ek-e3 display
+>       drm/panel: sitronix-st7789v: add support for partial mode
+>       drm/panel: sitronix-st7789v: add jasonic jt240mhqs-hwt-ek-e3 support
+> 
+>  .../bindings/display/panel/sitronix,st7789v.yaml   |  1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+>  drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 67 +++++++++++++++++++++-
+>  3 files changed, 68 insertions(+), 2 deletions(-)
+> ---
+> base-commit: b43dae411767f34288aa347f26b5ed2dade39469
+> change-id: 20230718-feature-lcd-panel-26d9f29a7830
+> 
+> Best regards,
+> -- 
+> Michael Riesch <michael.riesch@wolfvision.net>
+> 
+
 -- 
-2.25.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
