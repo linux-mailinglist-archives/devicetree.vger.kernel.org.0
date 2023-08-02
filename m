@@ -2,242 +2,453 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A43EB76C8B8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA8976C8C2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:53:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231869AbjHBIve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 04:51:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
+        id S229589AbjHBIxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 04:53:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjHBIvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:51:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78ED8D9;
-        Wed,  2 Aug 2023 01:51:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E4E4061898;
-        Wed,  2 Aug 2023 08:51:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19D5EC433CD;
-        Wed,  2 Aug 2023 08:51:26 +0000 (UTC)
-Message-ID: <dca6f8c2-7d80-14fb-0090-7b10b1da13c2@xs4all.nl>
-Date:   Wed, 2 Aug 2023 10:51:25 +0200
+        with ESMTP id S234024AbjHBIxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:53:15 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5775D194;
+        Wed,  2 Aug 2023 01:53:13 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3726fb4T028852;
+        Wed, 2 Aug 2023 08:53:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=dAu67Eh36U0//WitpoeFJwx8QZxquScCaIT6fgdv09M=;
+ b=mKYpCBkSe2E5Bfm/hZziXzio/boOjYU0Cj8328HBK2CbrRVswr+VukvH30wQF3qe5wxR
+ HpNHihg10017okQFakJ5re/+010vUtgCvvrBWThYwMrUJFHDEEl7wLgDP7h/NopUm+ZO
+ iuoSEWs1p4iECrKLiDbTTMEygYkto7jg+sznnmS94vKhiliQ7Oi2jMO9Nokf0DxzBpGI
+ +/IXGjA9cfaOqI4FZZOqY/nbrFWlZAzT/2DtZAg6jH5mHu1xmEMF6uVZYiUgCpwnm0Dl
+ 8qSi0z7e78nXMElU1lMIxRMwLYlhmzW5g2NGt7GpsQyaXJceWryRjKbfIDUQ90JrUHwS 3Q== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s6yq4aqjb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 02 Aug 2023 08:53:09 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3728r8Xk000783
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 2 Aug 2023 08:53:08 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 2 Aug
+ 2023 01:53:04 -0700
+Message-ID: <6821691d-675f-e3ce-d5b5-e198fd79fcf2@quicinc.com>
+Date:   Wed, 2 Aug 2023 14:23:01 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3,1/2] media: mediatek: vcodec: Fix possible invalid
- memory access for decoder
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v5 2/6] soc: qcom: llcc: Refactor llcc driver to support
+ multiple configuration
 Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230729034735.17213-1-yunfei.dong@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230729034735.17213-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Mukesh Ojha <quic_mojha@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <srinivas.kandagatla@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230724084155.8682-1-quic_kbajaj@quicinc.com>
+ <20230724084155.8682-3-quic_kbajaj@quicinc.com>
+ <39b4bafd-410f-cae8-13ae-e18d751b51a2@quicinc.com>
+ <431fa748-5b4c-061c-a5b1-331b504e5475@quicinc.com>
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <431fa748-5b4c-061c-a5b1-331b504e5475@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: e2pEn0XfSqGZcWrmEIE8jLMMR6X9AEuo
+X-Proofpoint-GUID: e2pEn0XfSqGZcWrmEIE8jLMMR6X9AEuo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-02_03,2023-08-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 phishscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308020078
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
 
-On 29/07/2023 05:47, Yunfei Dong wrote:
-> The vpu maybe null pointer or unreasonable value when scp crash, need to
-> validate that the vpu pointer and the vpu instance within this context is
-> valid in case of leading to kernel reboot.
-> 
-> Fixes: 590577a4e525 ("[media] vcodec: mediatek: Add Mediatek V4L2 Video Decoder Driver")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Reported-by: Steve Cho <stevecho@google.com>
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> ---
-> - compared with v2:
-> - rewrite the commit message for patch 01 and 02.
-> - add Reported-by and Fixes tag.
-> - fix smatch fail for patch 02/2.
-> ---
->  .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  2 +
->  .../mediatek/vcodec/decoder/vdec_vpu_if.c     | 77 ++++++++++++-------
->  2 files changed, 52 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-> index 6c318de25a55e..7e36b2c69b7d1 100644
-> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-> @@ -161,6 +161,7 @@ struct mtk_vcodec_dec_pdata {
->   * @hw_id: hardware index used to identify different hardware.
->   *
->   * @msg_queue: msg queue used to store lat buffer information.
-> + * @vpu_inst: vpu instance pointer.
->   *
->   * @is_10bit_bitstream: set to true if it's 10bit bitstream
->   */
-> @@ -205,6 +206,7 @@ struct mtk_vcodec_dec_ctx {
->  	int hw_id;
->  
->  	struct vdec_msg_queue msg_queue;
-> +	void *vpu_inst;
->  
->  	bool is_10bit_bitstream;
->  };
-> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> index 82c3dc8c41273..23cfe5c6c90b7 100644
-> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> @@ -72,6 +72,21 @@ static void handle_get_param_msg_ack(const struct vdec_vpu_ipi_get_param_ack *ms
->  	}
->  }
->  
-> +static bool vpu_dec_check_ap_inst(struct mtk_vcodec_dec_dev *dec_dev, struct vdec_vpu_inst *vpu)
-> +{
-> +	struct mtk_vcodec_dec_ctx *ctx;
-> +	int ret = false;
-> +
-> +	list_for_each_entry(ctx, &dec_dev->ctx_list, list) {
-> +		if (!IS_ERR_OR_NULL(ctx) && ctx->vpu_inst == vpu) {
-> +			ret = true;
-> +			break;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  /*
->   * vpu_dec_ipi_handler - Handler for VPU ipi message.
->   *
-> @@ -84,44 +99,51 @@ static void handle_get_param_msg_ack(const struct vdec_vpu_ipi_get_param_ack *ms
->   */
->  static void vpu_dec_ipi_handler(void *data, unsigned int len, void *priv)
->  {
-> +	struct mtk_vcodec_dec_dev *dec_dev;
->  	const struct vdec_vpu_ipi_ack *msg = data;
-> -	struct vdec_vpu_inst *vpu = (struct vdec_vpu_inst *)
-> -					(unsigned long)msg->ap_inst_addr;
-> +	struct vdec_vpu_inst *vpu;
->  
-> -	if (!vpu) {
-> +	dec_dev = (struct mtk_vcodec_dec_dev *)priv;
-> +	vpu = (struct vdec_vpu_inst *)(unsigned long)msg->ap_inst_addr;
-> +	if (!priv || !vpu) {
->  		mtk_v4l2_vdec_err(vpu->ctx, "ap_inst_addr is NULL, did the SCP hang or crash?");
->  		return;
->  	}
 
-This change results in a smatch error:
+On 7/24/2023 9:41 PM, Mukesh Ojha wrote:
+>
+>
+> On 7/24/2023 5:58 PM, Mukesh Ojha wrote:
+>>
+>>
+>> On 7/24/2023 2:11 PM, Komal Bajaj wrote:
+>>> Refactor driver to support multiple configuration for llcc on a target.
+>>>
+>>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>>> ---
+>>>   drivers/soc/qcom/llcc-qcom.c | 264 
+>>> +++++++++++++++++++++++------------
+>>>   1 file changed, 178 insertions(+), 86 deletions(-)
+>>>
+>>> diff --git a/drivers/soc/qcom/llcc-qcom.c 
+>>> b/drivers/soc/qcom/llcc-qcom.c
+>>> index 67c19ed2219a..321f8d2079f7 100644
+>>> --- a/drivers/soc/qcom/llcc-qcom.c
+>>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>>> @@ -127,6 +127,12 @@ struct qcom_llcc_config {
+>>>       bool no_edac;
+>>>   };
+>>> +struct qcom_sct_config
+>>
+>> const ?
+>
+> Please ignore this comment, it looks like, I wrote something and forgot
+> to remove..
+>
+>
+> -Mukesh
+>
+>>   > +    const struct qcom_llcc_config *llcc_config;
+>>> +    int num_cfgs;
+>>> +};
+>>> +
+>>> +
+>>>   enum llcc_reg_offset {
+>>>       LLCC_COMMON_HW_INFO,
+>>>       LLCC_COMMON_STATUS0,
+>>> @@ -423,101 +429,185 @@ static const u32 llcc_v2_1_reg_offset[] = {
+>>>       [LLCC_COMMON_STATUS0]    = 0x0003400c,
+>>>   };
+>>> -static const struct qcom_llcc_config sc7180_cfg = {
+>>> -    .sct_data    = sc7180_data,
+>>> -    .size        = ARRAY_SIZE(sc7180_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_llcc_config sc7180_cfg[] = {
+>>> +    {
+>>> +        .sct_data    = sc7180_data,
+>>> +        .size        = ARRAY_SIZE(sc7180_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sc7280_cfg[] = {
+>>> +    {
+>>> +        .sct_data    = sc7280_data,
+>>> +        .size        = ARRAY_SIZE(sc7280_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sc8180x_cfg[] = {
+>>> +    {
+>>> +        .sct_data    = sc8180x_data,
+>>> +        .size        = ARRAY_SIZE(sc8180x_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sc8280xp_cfg[] = {
+>>> +    {
+>>> +        .sct_data    = sc8280xp_data,
+>>> +        .size        = ARRAY_SIZE(sc8280xp_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sdm845_cfg[] = {
+>>> +    {
+>>> +        .sct_data    = sdm845_data,
+>>> +        .size        = ARRAY_SIZE(sdm845_data),
+>>> +        .need_llcc_cfg    = false,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +        .no_edac    = true,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm6350_cfg[] = {
+>>> +    {
+>>> +        .sct_data    = sm6350_data,
+>>> +        .size        = ARRAY_SIZE(sm6350_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm7150_cfg[] = {
+>>> +    {
+>>> +        .sct_data       = sm7150_data,
+>>> +        .size           = ARRAY_SIZE(sm7150_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm8150_cfg[] = {
+>>> +    {
+>>> +        .sct_data       = sm8150_data,
+>>> +        .size           = ARRAY_SIZE(sm8150_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm8250_cfg[] = {
+>>> +    {
+>>> +        .sct_data       = sm8250_data,
+>>> +        .size           = ARRAY_SIZE(sm8250_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm8350_cfg[] = {
+>>> +    {
+>>> +        .sct_data       = sm8350_data,
+>>> +        .size           = ARRAY_SIZE(sm8350_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm8450_cfg[] = {
+>>> +    {
+>>> +        .sct_data       = sm8450_data,
+>>> +        .size           = ARRAY_SIZE(sm8450_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v2_1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v2_1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_llcc_config sm8550_cfg[] = {
+>>> +    {
+>>> +        .sct_data       = sm8550_data,
+>>> +        .size           = ARRAY_SIZE(sm8550_data),
+>>> +        .need_llcc_cfg    = true,
+>>> +        .reg_offset    = llcc_v2_1_reg_offset,
+>>> +        .edac_reg_offset = &llcc_v2_1_edac_reg_offset,
+>>> +    },
+>>> +};
+>>> +
+>>> +static const struct qcom_sct_config sc7180_cfgs = {
+>>> +    .llcc_config    = sc7180_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sc7280_cfg = {
+>>> -    .sct_data    = sc7280_data,
+>>> -    .size        = ARRAY_SIZE(sc7280_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sc7280_cfgs = {
+>>> +    .llcc_config    = sc7280_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sc8180x_cfg = {
+>>> -    .sct_data    = sc8180x_data,
+>>> -    .size        = ARRAY_SIZE(sc8180x_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sc8180x_cfgs = {
+>>> +    .llcc_config    = sc8180x_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sc8280xp_cfg = {
+>>> -    .sct_data    = sc8280xp_data,
+>>> -    .size        = ARRAY_SIZE(sc8280xp_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sc8280xp_cfgs = {
+>>> +    .llcc_config    = sc8280xp_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sdm845_cfg = {
+>>> -    .sct_data    = sdm845_data,
+>>> -    .size        = ARRAY_SIZE(sdm845_data),
+>>> -    .need_llcc_cfg    = false,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> -    .no_edac    = true,
+>>> +static const struct qcom_sct_config sdm845_cfgs = {
+>>> +    .llcc_config    = sdm845_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm6350_cfg = {
+>>> -    .sct_data    = sm6350_data,
+>>> -    .size        = ARRAY_SIZE(sm6350_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm6350_cfgs = {
+>>> +    .llcc_config    = sm6350_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm7150_cfg = {
+>>> -    .sct_data       = sm7150_data,
+>>> -    .size           = ARRAY_SIZE(sm7150_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm7150_cfgs = {
+>>> +    .llcc_config    = sm7150_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm8150_cfg = {
+>>> -    .sct_data       = sm8150_data,
+>>> -    .size           = ARRAY_SIZE(sm8150_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm8150_cfgs = {
+>>> +    .llcc_config    = sm8150_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm8250_cfg = {
+>>> -    .sct_data       = sm8250_data,
+>>> -    .size           = ARRAY_SIZE(sm8250_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm8250_cfgs = {
+>>> +    .llcc_config    = sm8250_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm8350_cfg = {
+>>> -    .sct_data       = sm8350_data,
+>>> -    .size           = ARRAY_SIZE(sm8350_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm8350_cfgs = {
+>>> +    .llcc_config    = sm8350_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm8450_cfg = {
+>>> -    .sct_data       = sm8450_data,
+>>> -    .size           = ARRAY_SIZE(sm8450_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v2_1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v2_1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm8450_cfgs = {
+>>> +    .llcc_config    = sm8450_cfg,
+>>> +    .num_cfgs    = 1,
+>>>   };
+>>> -static const struct qcom_llcc_config sm8550_cfg = {
+>>> -    .sct_data       = sm8550_data,
+>>> -    .size           = ARRAY_SIZE(sm8550_data),
+>>> -    .need_llcc_cfg    = true,
+>>> -    .reg_offset    = llcc_v2_1_reg_offset,
+>>> -    .edac_reg_offset = &llcc_v2_1_edac_reg_offset,
+>>> +static const struct qcom_sct_config sm8550_cfgs = {
+>>> +    .llcc_config    = sm8550_cfg,
+>>> +    .num_cfgs    = 1,
+>>
+>> num prefix itself take care of singular/plural, num_config would do
+>> good.
+>>
+>>
+>>>   };
+>>>   static struct llcc_drv_data *drv_data = (void *) -EPROBE_DEFER;
+>>> @@ -939,6 +1029,7 @@ static int qcom_llcc_probe(struct 
+>>> platform_device *pdev)
+>>>       struct device *dev = &pdev->dev;
+>>>       int ret, i;
+>>>       struct platform_device *llcc_edac;
+>>> +    const struct qcom_sct_config *cfgs;
+>>>       const struct qcom_llcc_config *cfg;
+>>>       const struct llcc_slice_config *llcc_cfg;
+>>>       u32 sz;
+>>> @@ -958,7 +1049,8 @@ static int qcom_llcc_probe(struct 
+>>> platform_device *pdev)
+>>>           goto err;
+>>>       }
+>>> -    cfg = of_device_get_match_data(&pdev->dev);
+>>> +    cfgs = of_device_get_match_data(&pdev->dev);
+>>> +    cfg = &cfgs->llcc_config[0];
+>>
+>> Hardcoding without check ?
+>>
+>> #define DEFAULT_NUM_CFG    1
+>>
+>> if (cfgs->num_cfgs != DEFAULT_NUM_CFG)
+>>       ret = -EINVAL;
+>>       goto err;
+>>
+>> cfg = &cfgs->llcc_config[DEFAULT_NUM_CFG - 1];
+>>
+>> I would let others comment as well..
 
-drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c:109 vpu_dec_ipi_handler() error: we previously assumed 'vpu' could be null (see line 108)
+Okay, will add a check for default llcc configuration.
 
-The same happens in the next patch for vpu_enc_ipi_handler.
+Thanks
+Komal
 
-Can you post a v4 fixing this?
-
-Thank you!
-
-	Hans
-
->  
-> -	mtk_vdec_debug(vpu->ctx, "+ id=%X", msg->msg_id);
-> +	if (!vpu_dec_check_ap_inst(dec_dev, vpu) || msg->msg_id < VPU_IPIMSG_DEC_INIT_ACK ||
-> +	    msg->msg_id > VPU_IPIMSG_DEC_GET_PARAM_ACK) {
-> +		mtk_v4l2_vdec_err(vpu->ctx, "vdec msg id not correctly => 0x%x", msg->msg_id);
-> +		vpu->failure = -EINVAL;
-> +		goto error;
-> +	}
->  
->  	vpu->failure = msg->status;
-> -	vpu->signaled = 1;
-> +	if (msg->status != 0)
-> +		goto error;
->  
-> -	if (msg->status == 0) {
-> -		switch (msg->msg_id) {
-> -		case VPU_IPIMSG_DEC_INIT_ACK:
-> -			handle_init_ack_msg(data);
-> -			break;
-> +	switch (msg->msg_id) {
-> +	case VPU_IPIMSG_DEC_INIT_ACK:
-> +		handle_init_ack_msg(data);
-> +		break;
->  
-> -		case VPU_IPIMSG_DEC_START_ACK:
-> -		case VPU_IPIMSG_DEC_END_ACK:
-> -		case VPU_IPIMSG_DEC_DEINIT_ACK:
-> -		case VPU_IPIMSG_DEC_RESET_ACK:
-> -		case VPU_IPIMSG_DEC_CORE_ACK:
-> -		case VPU_IPIMSG_DEC_CORE_END_ACK:
-> -			break;
-> +	case VPU_IPIMSG_DEC_START_ACK:
-> +	case VPU_IPIMSG_DEC_END_ACK:
-> +	case VPU_IPIMSG_DEC_DEINIT_ACK:
-> +	case VPU_IPIMSG_DEC_RESET_ACK:
-> +	case VPU_IPIMSG_DEC_CORE_ACK:
-> +	case VPU_IPIMSG_DEC_CORE_END_ACK:
-> +		break;
->  
-> -		case VPU_IPIMSG_DEC_GET_PARAM_ACK:
-> -			handle_get_param_msg_ack(data);
-> -			break;
-> -		default:
-> -			mtk_vdec_err(vpu->ctx, "invalid msg=%X", msg->msg_id);
-> -			break;
-> -		}
-> +	case VPU_IPIMSG_DEC_GET_PARAM_ACK:
-> +		handle_get_param_msg_ack(data);
-> +		break;
-> +	default:
-> +		mtk_vdec_err(vpu->ctx, "invalid msg=%X", msg->msg_id);
-> +		break;
->  	}
->  
-> -	mtk_vdec_debug(vpu->ctx, "- id=%X", msg->msg_id);
-> +error:
-> +	vpu->signaled = 1;
->  }
->  
->  static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void *msg, int len)
-> @@ -182,9 +204,10 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
->  
->  	init_waitqueue_head(&vpu->wq);
->  	vpu->handler = vpu_dec_ipi_handler;
-> +	vpu->ctx->vpu_inst = vpu;
->  
->  	err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler, vpu->id,
-> -					 vpu->handler, "vdec", NULL);
-> +					 vpu->handler, "vdec", vpu->ctx->dev);
->  	if (err) {
->  		mtk_vdec_err(vpu->ctx, "vpu_ipi_register fail status=%d", err);
->  		return err;
-> @@ -193,7 +216,7 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
->  	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
->  		err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
->  						 vpu->core_id, vpu->handler,
-> -						 "vdec", NULL);
-> +						 "vdec", vpu->ctx->dev);
->  		if (err) {
->  			mtk_vdec_err(vpu->ctx, "vpu_ipi_register core fail status=%d", err);
->  			return err;
+>>
+>>
+>> -Mukesh
+>>
+>>>       ret = regmap_read(regmap, 
+>>> cfg->reg_offset[LLCC_COMMON_STATUS0], &num_banks);
+>>>       if (ret)
+>>> @@ -1051,18 +1143,18 @@ static int qcom_llcc_probe(struct 
+>>> platform_device *pdev)
+>>>   }
+>>>   static const struct of_device_id qcom_llcc_of_match[] = {
+>>> -    { .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfg },
+>>> -    { .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfg },
+>>> -    { .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfg },
+>>> -    { .compatible = "qcom,sc8280xp-llcc", .data = &sc8280xp_cfg },
+>>> -    { .compatible = "qcom,sdm845-llcc", .data = &sdm845_cfg },
+>>> -    { .compatible = "qcom,sm6350-llcc", .data = &sm6350_cfg },
+>>> -    { .compatible = "qcom,sm7150-llcc", .data = &sm7150_cfg },
+>>> -    { .compatible = "qcom,sm8150-llcc", .data = &sm8150_cfg },
+>>> -    { .compatible = "qcom,sm8250-llcc", .data = &sm8250_cfg },
+>>> -    { .compatible = "qcom,sm8350-llcc", .data = &sm8350_cfg },
+>>> -    { .compatible = "qcom,sm8450-llcc", .data = &sm8450_cfg },
+>>> -    { .compatible = "qcom,sm8550-llcc", .data = &sm8550_cfg },
+>>> +    { .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
+>>> +    { .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
+>>> +    { .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
+>>> +    { .compatible = "qcom,sc8280xp-llcc", .data = &sc8280xp_cfgs },
+>>> +    { .compatible = "qcom,sdm845-llcc", .data = &sdm845_cfgs },
+>>> +    { .compatible = "qcom,sm6350-llcc", .data = &sm6350_cfgs },
+>>> +    { .compatible = "qcom,sm7150-llcc", .data = &sm7150_cfgs },
+>>> +    { .compatible = "qcom,sm8150-llcc", .data = &sm8150_cfgs },
+>>> +    { .compatible = "qcom,sm8250-llcc", .data = &sm8250_cfgs },
+>>> +    { .compatible = "qcom,sm8350-llcc", .data = &sm8350_cfgs },
+>>> +    { .compatible = "qcom,sm8450-llcc", .data = &sm8450_cfgs },
+>>> +    { .compatible = "qcom,sm8550-llcc", .data = &sm8550_cfgs },
+>>>       { }
+>>>   };
+>>>   MODULE_DEVICE_TABLE(of, qcom_llcc_of_match);
 
