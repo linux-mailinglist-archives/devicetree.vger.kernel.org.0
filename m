@@ -2,69 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 767B776C384
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:28:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FF9976C390
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 05:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbjHBD2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Aug 2023 23:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58820 "EHLO
+        id S232051AbjHBDdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Aug 2023 23:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbjHBD2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:28:54 -0400
-Received: from mgamail.intel.com (unknown [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DEE1705;
-        Tue,  1 Aug 2023 20:28:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690946933; x=1722482933;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GlBMlOPwMn2zttkWwq8RvFv9+vv3ZhBYRTq06yArZY8=;
-  b=UtUD+2POTDustXG+YivvfGFCGQgjLLjiIBR3vCye4wEvt2m865k6wAo2
-   3XxBgh9v2LtrhiVAY4V0BBZGHCCU4KpoYHpuL4hrCaccsEQcUpMgcjWb3
-   Y0zU5hfYkT1o3RAWN4qXXkEBcw2LzuC7tieyyn99ytvQu6RBaPyqzw7zZ
-   epiCpk0YG/o+uT7YShDxIA5VDiI5niV1bxeKmoExKcggR+B/9ainJCGFQ
-   64/uYVytJwgI8UboRzb6uzaVg5NGI25vQ0XzhEQqHOKFQKHMj0LRV7B62
-   KXwalGTlVcunlAI3PyIfMGbZvC9wvEXO6s4L6IU5RML1M5JUjZ/4o9k4V
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="366933309"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
-   d="scan'208";a="366933309"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2023 20:28:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="728950596"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
-   d="scan'208";a="728950596"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP; 01 Aug 2023 20:28:50 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qR2XY-00FJCa-2E;
-        Wed, 02 Aug 2023 06:28:48 +0300
-Date:   Wed, 2 Aug 2023 06:28:48 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use
- "%pOF" inside devtree_lock
-Message-ID: <ZMnNcJ2KW1qUZUA5@smile.fi.intel.com>
-References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
- <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
+        with ESMTP id S232078AbjHBDd1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Aug 2023 23:33:27 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D30127;
+        Tue,  1 Aug 2023 20:32:46 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 2 Aug 2023
+ 11:32:27 +0800
+From:   Huqiang Qin <huqiang.qin@amlogic.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <neil.armstrong@linaro.org>,
+        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>
+CC:     <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH V2 0/4] Add watchdog support for Amlogic-T7 SoCs
+Date:   Wed, 2 Aug 2023 11:32:18 +0800
+Message-ID: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.11.83]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,41 +45,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 01, 2023 at 03:54:45PM -0600, Rob Herring wrote:
-> While originally it was fine to format strings using "%pOF" while
-> holding devtree_lock, this now causes a deadlock.  Lockdep reports:
-> 
->     of_get_parent from of_fwnode_get_parent+0x18/0x24
->     ^^^^^^^^^^^^^
->     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
->     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
->     fwnode_full_name_string from device_node_string+0x1a0/0x404
->     device_node_string from pointer+0x3c0/0x534
->     pointer from vsnprintf+0x248/0x36c
->     vsnprintf from vprintk_store+0x130/0x3b4
-> 
-> To fix this, move the printing in __of_changeset_entry_apply() outside the
-> lock. As there's already similar printing of the same changeset actions,
-> refactor all of them to use a common action print function. This has the
-> side benefit of getting rid of some ifdefs.
+Based on the original Amlogic-GXBB watchdog driver, support
+for Amlogic-T7 watchdog is added.
 
-...
+[PATCH 1/4]: 
+  V1 -> V2: Unchanged.
 
-> v3:
->  - Add missing 'static' reported by 0-day
+[PATCH 2/4]:
+  V1 -> V2: Rename rst_shift to rst and use the BIT() macro
+            to build its initial value.
 
-It reported two issues (at least what I see).
+[PATCH 3/4]:
+  V1 -> V2: Use the BIT() macro to build rst initial value.
 
-...
+[PATCH 4/4]:
+  V1 -> V2: Unchanged.
 
-> +	if (pr_debug("notify "))
+Huqiang Qin (4):
+  dt-bindings: watchdog: Add support for Amlogic-T7 SoCs
+  watchdog: Add a new struct for Amlogic-GXBB driver
+  watchdog: Add support for Amlogic-T7 SoCs
+  arm64: dts: Add watchdog node for Amlogic-T7 SoCs
 
-This is weird. How did you compile it?
+ .../watchdog/amlogic,meson-gxbb-wdt.yaml      |  1 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |  6 ++++++
+ drivers/watchdog/meson_gxbb_wdt.c             | 21 ++++++++++++++++---
+ 3 files changed, 25 insertions(+), 3 deletions(-)
 
-> +		of_changeset_action_print(action, pr->dn, pr->prop ? pr->prop->name : NULL);
 
+base-commit: 6f048cc7a635b8736b4c7ae0e5230a92e3e648eb
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.37.1
 
