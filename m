@@ -2,184 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405D076CD1D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 14:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B632F76CD27
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 14:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234141AbjHBMkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 08:40:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59580 "EHLO
+        id S231641AbjHBMmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 08:42:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234615AbjHBMkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 08:40:02 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAF6C3C30
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 05:39:33 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fbc59de0e2so63636735e9.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 05:39:33 -0700 (PDT)
+        with ESMTP id S234493AbjHBMmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 08:42:13 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C802030FF
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 05:41:43 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe0e201f87so1165033e87.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 05:41:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690979951; x=1691584751;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=tbhphQECHi5RNB4NwguVktSnKXWXwNKeOWGLodXN7ec=;
-        b=VFHZtgQCV0pSPd0KU6ifIcy62cVPhG9i4d7qef4Gqgm6Q36Xsy4/yNNXHRDG0ovYlh
-         tdD+Qf450D3gLRwHMtPcmDFi3Hzo0xt+Dv8wJquOvzOPWPCZiQJLFPZWPGiM6U3Yhr++
-         j++rJz+cZVuIEV5Hlwvu13h2B89q77R/l+rzc+Mb+cfRVl+EWcNbQz3+snWyKnskzKBu
-         UoyMZeBWBKkvb6nS6/VFAjVy5hcuEKnc5c/iclIkt/QUIUW5PX2IclKfAeL7FVBWuJVv
-         sgtkDkBlI6TFn8tnK7q0v8fcNa0EA/CMHTmNKlhVNltB0IVoNROcSElt29j936sGx3hj
-         HNrw==
+        d=linaro.org; s=google; t=1690980032; x=1691584832;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RU7egs2LiLlo94w/Ve+4pxpzbrlg5N9jxVZz8FuH8uk=;
+        b=Rbgd7W2JAFnf7G5kp/X/mgMBWM6VkzdZ3F6c2JrJ420yqYrmlmVO4QwIN0MmXM0t9G
+         UJfq74w8QEO5p1D7WnYFrv2CVwxqIbkx4EHYKkX4nhA6txhoIrBxRLM9l2b7EW26Dfab
+         DZoJmMEvfVwTUTGHBLmu0x0yi4HO076Vtk5u5WybylPs5fjGml8EgyynBdrWA0lhR/ca
+         yr8bRhx8LVIidA9hgmgLl+DhXUBlEoO55oE2u43nM7j3ttTURqPLXfTzNjC6j8FhNrvw
+         X94NLcxEE7yVFhJiALfj15rgHAhtG5jLI564dxr8dPsNE4crLYeqH0JMoQJKeYlj+rp1
+         9WKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690979951; x=1691584751;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tbhphQECHi5RNB4NwguVktSnKXWXwNKeOWGLodXN7ec=;
-        b=kOSHxNQSeW3tk/XqUD1Sin9boTuUpGukhQMx/MEJkhWwl561u9+SBVpVadogI2/RMk
-         TArEHIxA0SVWjZJR3BzRKMitOT27JoFy/tg49MwCC+CLingQ7eVufDe7ypl28gTpfzZK
-         DJ+NMo8HG0HlCD2MVArsj2pLdr/zO+5COzFn8ZQJM/GXk/NINlhGt6HV7qV0b0TyGwgE
-         /+9d3O8C4lo0dNrRbF8kOD3IrBgt4ZhRnOsjewu/SC9LY9F8PNdH/g8YzQ3DmNmENDb/
-         fLYLJk58YBEK+yE5NhbEPrbbDLpFoUCkndEcSZooNjMeUNahiBr25JnQKY7bEt0nW5qU
-         mY/g==
-X-Gm-Message-State: ABy/qLbeyaQksmzkk86635rzO8C99qqRnnqOubozAR0VEtsSyYb4Tncf
-        RQOA18uiKR0ig2NMvYcoRrJDOw==
-X-Google-Smtp-Source: APBJJlFoPoWS6AxIqRpmgQDiQxFwoRDTK3d+p2EupVUpKnirysa1JIs7sorMtcEn0WRNnTsXEXeWQg==
-X-Received: by 2002:a5d:44c5:0:b0:317:5d3d:d387 with SMTP id z5-20020a5d44c5000000b003175d3dd387mr4442154wrr.25.1690979951204;
-        Wed, 02 Aug 2023 05:39:11 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c5bb:5b4:61e3:d196? ([2a01:e0a:982:cbb0:c5bb:5b4:61e3:d196])
-        by smtp.gmail.com with ESMTPSA id j4-20020adfe504000000b003063a92bbf5sm19129742wrm.70.2023.08.02.05.39.10
+        d=1e100.net; s=20221208; t=1690980032; x=1691584832;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RU7egs2LiLlo94w/Ve+4pxpzbrlg5N9jxVZz8FuH8uk=;
+        b=kgVf4jbgU7/Kr3dneo9XbNidgOq6NIOkw2Tv1Oi/qoaJv4+qHRgKTwUSa2HL0USd8m
+         pcgL0ybTa6hubH7QF/8E1HG2FYoNZzh2IKvNKz8vi+zpU8q/d2hUhuLBPepYoT/lVFoD
+         KQM1UPcyBbsc6qB3WIgMmZnbk/NvnmB4q5DLTe1ll+ektCDyj4ImDvXVxih1O5eEky0z
+         YqDYDxaqnEsizlZol0Krl4HqT9KbOIXJZ4ogr8rA7AQQ05JoEohxmdvPJ8KSGUND+8CY
+         QGCfaC195nvjAhkVbegLZ+xQ4C0wGoAc67/4/MuSsUTMoelNbMjXUAAioiDYR28+s9Kq
+         PQRQ==
+X-Gm-Message-State: ABy/qLadBq1CWOM8mqumPKGdZrPBB5OCu/Qg28LRKM6VGn9XyaDxrvF0
+        dEhGe9BFeqrbWWm+1BRo8yaLKg==
+X-Google-Smtp-Source: APBJJlHrGFppFXU8yTl+lMATmGnTZzlyE3gAXM9FXDbbwfGdSJLUeR9imLN5Va8zq/USOk9AbGxx5A==
+X-Received: by 2002:a05:6512:3b8e:b0:4f9:6adf:3981 with SMTP id g14-20020a0565123b8e00b004f96adf3981mr2119812lfv.33.1690980032026;
+        Wed, 02 Aug 2023 05:40:32 -0700 (PDT)
+Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
+        by smtp.gmail.com with ESMTPSA id j15-20020ac2550f000000b004fe432108aesm793107lfk.261.2023.08.02.05.40.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Aug 2023 05:39:10 -0700 (PDT)
-Message-ID: <1e538813-69d4-b3bc-47f9-1ea69d65ef00@linaro.org>
-Date:   Wed, 2 Aug 2023 14:39:09 +0200
+        Wed, 02 Aug 2023 05:40:31 -0700 (PDT)
+Message-ID: <77d437eb-8edd-344d-61be-71aae7866a69@linaro.org>
+Date:   Wed, 2 Aug 2023 14:40:30 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] drm/panel: sitronix-st7789v: add panel orientation
- support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] arm64: dts: qcom: sdx75: Add spmi node
 Content-Language: en-US
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230718-feature-st7789v-v1-0-76d6ca9b31d8@wolfvision.net>
- <20230718-feature-st7789v-v1-1-76d6ca9b31d8@wolfvision.net>
-Organization: Linaro Developer Services
-In-Reply-To: <20230718-feature-st7789v-v1-1-76d6ca9b31d8@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1690970366-30982-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1690970366-30982-2-git-send-email-quic_rohiagar@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <1690970366-30982-2-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 17:12, Michael Riesch wrote:
-> Determine the orientation of the display based on the device tree and
-> propagate it.
+On 2.08.2023 11:59, Rohit Agarwal wrote:
+> Add SPMI node to SDX75 dtsi.
 > 
-> While at it, fix the indentation in the struct drm_panel_funcs.
-> 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
->   drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 28 +++++++++++++++++++++-----
->   1 file changed, 23 insertions(+), 5 deletions(-)
+>  arch/arm64/boot/dts/qcom/sdx75.dtsi | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> index bbc4569cbcdc..6575f07d49e3 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> @@ -116,6 +116,7 @@ struct st7789v {
->   	struct spi_device *spi;
->   	struct gpio_desc *reset;
->   	struct regulator *power;
-> +	enum drm_panel_orientation orientation;
->   };
->   
->   enum st7789v_prefix {
-> @@ -170,6 +171,7 @@ static const struct drm_display_mode default_mode = {
->   static int st7789v_get_modes(struct drm_panel *panel,
->   			     struct drm_connector *connector)
->   {
-> +	struct st7789v *ctx = panel_to_st7789v(panel);
->   	struct drm_display_mode *mode;
->   
->   	mode = drm_mode_duplicate(connector->dev, &default_mode);
-> @@ -188,9 +190,22 @@ static int st7789v_get_modes(struct drm_panel *panel,
->   	connector->display_info.width_mm = 61;
->   	connector->display_info.height_mm = 103;
->   
-> +	/*
-> +	 * TODO: Remove once all drm drivers call
-> +	 * drm_connector_set_orientation_from_panel()
-> +	 */
-> +	drm_connector_set_panel_orientation(connector, ctx->orientation);
-> +
->   	return 1;
->   }
->   
-> +static enum drm_panel_orientation st7789v_get_orientation(struct drm_panel *p)
-> +{
-> +	struct st7789v *ctx = panel_to_st7789v(p);
-> +
-> +	return ctx->orientation;
-> +}
-> +
->   static int st7789v_prepare(struct drm_panel *panel)
->   {
->   	struct st7789v *ctx = panel_to_st7789v(panel);
-> @@ -346,11 +361,12 @@ static int st7789v_unprepare(struct drm_panel *panel)
->   }
->   
->   static const struct drm_panel_funcs st7789v_drm_funcs = {
-> -	.disable	= st7789v_disable,
-> -	.enable		= st7789v_enable,
-> -	.get_modes	= st7789v_get_modes,
-> -	.prepare	= st7789v_prepare,
-> -	.unprepare	= st7789v_unprepare,
-> +	.disable = st7789v_disable,
-> +	.enable	= st7789v_enable,
-> +	.get_modes = st7789v_get_modes,
-> +	.get_orientation = st7789v_get_orientation,
-> +	.prepare = st7789v_prepare,
-> +	.unprepare = st7789v_unprepare,
+> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+> index 21d5d55..5e9602cd 100644
+> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+> @@ -469,6 +469,29 @@
+>  			interrupt-controller;
+>  		};
+>  
+> +		spmi_bus: spmi@c400000 {
+> +			compatible = "qcom,spmi-pmic-arb";
+> +			reg = <0x0 0xc400000 0x0 0x3000>,
+> +			      <0x0 0xc500000 0x0 0x400000>,
+> +			      <0x0 0xc440000 0x0 0x80000>,
+> +			      <0x0 0xc4c0000 0x0 0x10000>,
+> +			      <0x0 0xc42d000 0x0 0x4000>;
+Please pad the address part to 8 hex digits (add leading zeroes)
 
-Changing the indentation of the whole block is a spurious change,
-either change it in a separate patch or use the current indentation style...
-
->   };
->   
->   static int st7789v_probe(struct spi_device *spi)
-> @@ -382,6 +398,8 @@ static int st7789v_probe(struct spi_device *spi)
->   	if (ret)
->   		return ret;
->   
-> +	of_drm_get_panel_orientation(spi->dev.of_node, &ctx->orientation);
-> +
->   	drm_panel_add(&ctx->panel);
->   
->   	return 0;
-> 
-
-With this changed:
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Thanks,
-Neil
-
+Konrad
