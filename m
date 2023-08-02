@@ -2,116 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D8776D1B2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 17:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91DF976D1E7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 17:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234958AbjHBPVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 11:21:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43566 "EHLO
+        id S234336AbjHBP2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 11:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234992AbjHBPVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 11:21:39 -0400
-Received: from mgamail.intel.com (unknown [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 097293AA4;
-        Wed,  2 Aug 2023 08:18:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690989507; x=1722525507;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=c4x99QoiLN8BrAgqpLS2SVCvTXSrSU7F9mL186k74oA=;
-  b=P8DCLwgoaZPAfMzrDWchcl1kRaALgb9aUPdmeL/jCD3C6NYT4WpSXMZM
-   UKe6DLP452VUxpb8b0HfuvvOLiqZJnXV7ST8tKREI8X10tHSuvU3yTfjy
-   M5xYEO0jw5wpdU+YQzbrcHnKsesc+pAW8cNj9UPZyN7pHI4TcmG8tprwt
-   SV2YgrWH7ZL057gzqrWLjU5EgBWUxg24xhevDXZ8qck4KAsoCwFeqLfPz
-   b21C97DiILd7PH2X6LGJy3lssbqwhMvfixVhpRiS155HFC59TrvrcV2pi
-   htEjMoEJCdcO5kjkB4Gs7Ha5r9fYLK+VxHnDqGAvD5iFMVYSA4U9+YqVt
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="433452764"
-X-IronPort-AV: E=Sophos;i="6.01,249,1684825200"; 
-   d="scan'208";a="433452764"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2023 08:14:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="706210933"
-X-IronPort-AV: E=Sophos;i="6.01,249,1684825200"; 
-   d="scan'208";a="706210933"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP; 02 Aug 2023 08:14:53 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qRDYp-0045bG-1l;
-        Wed, 02 Aug 2023 18:14:51 +0300
-Date:   Wed, 2 Aug 2023 18:14:51 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] of: Refactor node and property manipulation function
- locking
-Message-ID: <ZMpy6x+GBKKIv1VP@smile.fi.intel.com>
-References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
- <20230801-dt-changeset-fixes-v1-5-b5203e3fc22f@kernel.org>
+        with ESMTP id S235123AbjHBP1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 11:27:50 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1051759FA;
+        Wed,  2 Aug 2023 08:25:40 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 23F4F1C0A93; Wed,  2 Aug 2023 17:25:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1690989908;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ncnLa8RMFmo7lRLdSindECgykwSP9jOjY7A80oB7gtk=;
+        b=k2vALqOu5IASQ//kXTIkQPaapH7MtQ1VwqBB2eOKvHXAv5sQi/GvpbKSUNXvfM8k8FR92l
+        xTow1gNIcXsnIZt/DFY/17eQ2AYcb9VgE0qRgfwFOokyUA1fTQGqfqfHvfiTh1LlSssg6E
+        l0j6k55NHwPgTZALJi+dXwWPzNMYq1o=
+Date:   Wed, 2 Aug 2023 17:25:07 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: msm8939-longcheer-l9100: Add
+ initial dts
+Message-ID: <ZMp1Ux3EBUwp6R4i@duo.ucw.cz>
+References: <20230724-bq_m5-v1-0-17a0870a73be@apitzsch.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="5DzgMCPiq2tUAg7f"
 Content-Disposition: inline
-In-Reply-To: <20230801-dt-changeset-fixes-v1-5-b5203e3fc22f@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230724-bq_m5-v1-0-17a0870a73be@apitzsch.eu>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 01, 2023 at 03:54:48PM -0600, Rob Herring wrote:
-> All callers of __of_{add,remove,update}_property() and
-> __of_{attach,detach}_node() wrap the call with the devtree_lock
-> spinlock. Let's move the spinlock into the functions. This allows moving
-> the sysfs update functions into those functions as well.
 
-...
+--5DzgMCPiq2tUAg7f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +out:
+Hi!
 
-out_unlock: ?
+> This dts adds support for BQ Aquaris M5 (Longcheer L9100) released in
+> 2015.
 
-> +	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-> +	if (!rc)
-> +		__of_add_property_sysfs(np, prop);
-> +
-> +	return rc;
+Thanks for the patches. Please cc phone-devel@vger.kernel.org with
+phone patches.
 
-Why not
+Best regards,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
-	if (rc)
-		return rc;
+--5DzgMCPiq2tUAg7f
+Content-Type: application/pgp-signature; name="signature.asc"
 
-	__of_add_property_sysfs(np, prop);
-	return 0;
+-----BEGIN PGP SIGNATURE-----
 
-?
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZMp1UwAKCRAw5/Bqldv6
+8p0qAJ9CxdRe3MDuZuyFDWEQ3tzMrvgoNACfQUHvvF+n4piXGKayoWPszlGJQis=
+=p3Fy
+-----END PGP SIGNATURE-----
 
-...
-
-> +out:
-> +	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-> +	if (!rc)
-> +		__of_remove_property_sysfs(np, prop);
-> +	return rc;
-
-As per above.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--5DzgMCPiq2tUAg7f--
