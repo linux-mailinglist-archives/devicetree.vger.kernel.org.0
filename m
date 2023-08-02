@@ -2,203 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4091776CE92
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 15:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F77576CEC9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 15:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234146AbjHBN1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 09:27:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58448 "EHLO
+        id S231795AbjHBNdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 09:33:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234119AbjHBN1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 09:27:07 -0400
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C7C2704
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 06:27:04 -0700 (PDT)
-Received: by mail-vs1-xe34.google.com with SMTP id ada2fe7eead31-4475af775c7so2360071137.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 06:27:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690982823; x=1691587623;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nGo7XjMqAnc/FigJw/B09DaMvgiAsBs40lE/RPajQrY=;
-        b=gxZ5TnagDxPCgnQg+/iOxATNhMRfpviCFHa6YSFsTGbG1z/s27ITjrT0BqEvR7wmXa
-         8dz76e1cuR5fLqXX242THiYEKa1O4gOapSiXfUCRiuQaagg9G+7yCT0MVln+bCZHgIta
-         ck0BPXwNofMHTWuJ9W6UxfiM+EBR4kPDq1zHRwz4NDFTGn+Z38ULQwsCO2xEciFdpcLE
-         OdQad7Oq339rgg+Cgq6y3Yjvl1lWyb2eNp1q9/kITCbnjgqo20F52HYlEzXw5ewIE43d
-         0e9oOmyemdqW9NUeLyZcY93IldtYfDpknRZDjWwDbfParOu9q8/7S0Sp7dJpyDXxyzAC
-         Xn1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690982823; x=1691587623;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nGo7XjMqAnc/FigJw/B09DaMvgiAsBs40lE/RPajQrY=;
-        b=cJxOAg9A2JuognREMxmCg8JD9FDGI7sA1DDh4xcRJ8jf+HPM6qe+lnljXar88eidkD
-         gU41IbrUOjtPX8J1n228vniOYTWZhedbgpEmECF7phDA75/NWK4fWEkEKmNdHZMKNyS2
-         JcL5WT/XCbDACpoGJyZ82wZCVtQrqs9/TrXLMFx1ocIk4pdHGvuyjfC9cPxeiRWmDPty
-         EIeKqtxhUNE5I/23E9WoJyNJ/CnTH5bSt4jO8C4oGodzMkSCla3NF9x7qZpy9+1EDlW2
-         WD/6pHzvaVLM8sC2Bs6+dYXB6aoNu5gbCI6wGmsJ15HYK//suSija40JNfK+ZHxjqsOt
-         NqrA==
-X-Gm-Message-State: ABy/qLaxk4vMzDOvDZAHuNXN8Tg0zR0vaG6FXChf+bfLYwKplKW5Nymj
-        lIRPf7Vkbpa7x2ZLps16P+ao6w==
-X-Google-Smtp-Source: APBJJlH7sH25Ud2skh1LZpJSBKwf+gvqVrqLmjM7fxhP1Df2P5pL28xWBTiaPUqongYoSQIFMM8z4Q==
-X-Received: by 2002:a67:ec11:0:b0:443:672c:2d8 with SMTP id d17-20020a67ec11000000b00443672c02d8mr4958678vso.22.1690982823059;
-        Wed, 02 Aug 2023 06:27:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c5bb:5b4:61e3:d196? ([2a01:e0a:982:cbb0:c5bb:5b4:61e3:d196])
-        by smtp.gmail.com with ESMTPSA id e20-20020a67e194000000b00443551587c3sm2248653vsl.7.2023.08.02.06.27.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Aug 2023 06:27:02 -0700 (PDT)
-Message-ID: <b63c9227-3627-5c7d-4521-c8bcca22a41c@linaro.org>
-Date:   Wed, 2 Aug 2023 15:26:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] drm/panel: sitronix-st7789v: add panel orientation
- support
-Content-Language: en-US
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S234602AbjHBNdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 09:33:01 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62C42698;
+        Wed,  2 Aug 2023 06:32:59 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372DWjkj010348;
+        Wed, 2 Aug 2023 08:32:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690983165;
+        bh=Pb47ihHgkkg82VFKhKRzgf6jhYh9u+kVldNcXUkLblI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=mbta5YWRD5beShU13K60yykpsYwzLo+4NlR0GNoRbNaTN4rO622GKclgQHnyu/5Q1
+         L/pi8JKkZlKSQGumzQyU4IFXgL1UGnEu7I7fo5vYKg8ay55BywC2Yw2afCi30z3L/I
+         sU5QRdjuQwN9dfDqopDCzZgajQhJQw9T4v3/2Nns=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372DWj8p093641
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Aug 2023 08:32:45 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
+ Aug 2023 08:32:44 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 2 Aug 2023 08:32:44 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372DWiNZ093450;
+        Wed, 2 Aug 2023 08:32:44 -0500
+Date:   Wed, 2 Aug 2023 08:32:44 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Francesco Dolcini <francesco@dolcini.it>
+CC:     Jai Luthra <j-luthra@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230718-feature-st7789v-v1-0-76d6ca9b31d8@wolfvision.net>
- <20230718-feature-st7789v-v1-1-76d6ca9b31d8@wolfvision.net>
- <1e538813-69d4-b3bc-47f9-1ea69d65ef00@linaro.org>
- <f7cb2a51-fce1-659d-9c29-3b21b5ba85b9@wolfvision.net>
-Organization: Linaro Developer Services
-In-Reply-To: <f7cb2a51-fce1-659d-9c29-3b21b5ba85b9@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/4] arm64: dts: ti: k3-am62x: Enable AUDIO_REFCLKx
+Message-ID: <20230802133244.b66pg3mztotgqotm@steerable>
+References: <20230731142135.108477-1-francesco@dolcini.it>
+ <20230731142135.108477-2-francesco@dolcini.it>
+ <itvg2zmmapbfmgbwos6c4y5zsc2rb3sffv2znhwz6i2vahe4y6@uu2547kcz5sd>
+ <23C6E13C-3F10-490B-A18E-C67B91CBAF35@dolcini.it>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <23C6E13C-3F10-490B-A18E-C67B91CBAF35@dolcini.it>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2023 15:19, Michael Riesch wrote:
-> Hi Neil,
+On 13:37-20230802, Francesco Dolcini wrote:
 > 
-> On 8/2/23 14:39, Neil Armstrong wrote:
->> On 18/07/2023 17:12, Michael Riesch wrote:
->>> Determine the orientation of the display based on the device tree and
->>> propagate it.
->>>
->>> While at it, fix the indentation in the struct drm_panel_funcs.
->>>
->>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
->>> ---
->>>    drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 28
->>> +++++++++++++++++++++-----
->>>    1 file changed, 23 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
->>> b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
->>> index bbc4569cbcdc..6575f07d49e3 100644
->>> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
->>> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
->>> @@ -116,6 +116,7 @@ struct st7789v {
->>>        struct spi_device *spi;
->>>        struct gpio_desc *reset;
->>>        struct regulator *power;
->>> +    enum drm_panel_orientation orientation;
->>>    };
->>>      enum st7789v_prefix {
->>> @@ -170,6 +171,7 @@ static const struct drm_display_mode default_mode = {
->>>    static int st7789v_get_modes(struct drm_panel *panel,
->>>                     struct drm_connector *connector)
->>>    {
->>> +    struct st7789v *ctx = panel_to_st7789v(panel);
->>>        struct drm_display_mode *mode;
->>>          mode = drm_mode_duplicate(connector->dev, &default_mode);
->>> @@ -188,9 +190,22 @@ static int st7789v_get_modes(struct drm_panel
->>> *panel,
->>>        connector->display_info.width_mm = 61;
->>>        connector->display_info.height_mm = 103;
->>>    +    /*
->>> +     * TODO: Remove once all drm drivers call
->>> +     * drm_connector_set_orientation_from_panel()
->>> +     */
->>> +    drm_connector_set_panel_orientation(connector, ctx->orientation);
->>> +
->>>        return 1;
->>>    }
->>>    +static enum drm_panel_orientation st7789v_get_orientation(struct
->>> drm_panel *p)
->>> +{
->>> +    struct st7789v *ctx = panel_to_st7789v(p);
->>> +
->>> +    return ctx->orientation;
->>> +}
->>> +
->>>    static int st7789v_prepare(struct drm_panel *panel)
->>>    {
->>>        struct st7789v *ctx = panel_to_st7789v(panel);
->>> @@ -346,11 +361,12 @@ static int st7789v_unprepare(struct drm_panel
->>> *panel)
->>>    }
->>>      static const struct drm_panel_funcs st7789v_drm_funcs = {
->>> -    .disable    = st7789v_disable,
->>> -    .enable        = st7789v_enable,
->>> -    .get_modes    = st7789v_get_modes,
->>> -    .prepare    = st7789v_prepare,
->>> -    .unprepare    = st7789v_unprepare,
->>> +    .disable = st7789v_disable,
->>> +    .enable    = st7789v_enable,
->>> +    .get_modes = st7789v_get_modes,
->>> +    .get_orientation = st7789v_get_orientation,
->>> +    .prepare = st7789v_prepare,
->>> +    .unprepare = st7789v_unprepare,
->>
->> Changing the indentation of the whole block is a spurious change,
->> either change it in a separate patch or use the current indentation
->> style...
 > 
-> OK, if we agree that the indentation should be changed I'll be happy to
-> move the change to an extra patch.
+> Il 2 agosto 2023 13:23:50 CEST, Jai Luthra <j-luthra@ti.com> ha scritto:
+> >Hi Francesco,
+> >
+> >Thank you for posting this patch.
+> >
+> >On Jul 31, 2023 at 16:21:32 +0200, Francesco Dolcini wrote:
+> >> From: Jai Luthra <j-luthra@ti.com>
+> >> 
+> >> On AM62-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
+> >> external peripherals when configured through CTRL_MMR, so add the
+> >> clock nodes.
+> >> 
+> >> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> >> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> >> ---
+> >>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 18 ++++++++++++++++++
+> >>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 18 ++++++++++++++++++
+> >
+> >Given currently none of the AM62A boards are using the refclks, can you 
+> >drop those or just mark the nodes as disabled. Whoever is the first user 
+> >can enable them.
+> 
+> I can drop the 2 clocks from AM62A, however, should we really do it? These clocks exist and they are just defined in the DTS, they are not going to be enabled if not used, "ti,am62-epwm-tbclk" is also not disabled for example.
 
-Sure,
+Overall, the SoC clock as such has nothing to do with board specific, so
+leave it default (enabled) in SoC.dts - just want to make sure that the
+clk-parent selection doesn't get in the way of platforms and is a sane
+default.
 
-Neil
+I find audio clock muxing a bit of a pain (only next to DSS clocking,
+but that is another story).. so will depend on you folks for help.
+Looking at https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am62ax/clocks.html#clocks-for-board0-device
+and Clocking spec, setting this:
++			assigned-clocks = <&k3_clks 157 0>;
++			assigned-clock-parents = <&k3_clks 157 8>;
+as default implies:
+pll2_hsdiv8 output - which looks like the default mux value anyways.. I
+am ok for it being explicit, but wondering if that works for boards that
+do not use this default.
 
-> 
->>>    };
->>>      static int st7789v_probe(struct spi_device *spi)
->>> @@ -382,6 +398,8 @@ static int st7789v_probe(struct spi_device *spi)
->>>        if (ret)
->>>            return ret;
->>>    +    of_drm_get_panel_orientation(spi->dev.of_node, &ctx->orientation);
->>> +
->>>        drm_panel_add(&ctx->panel);
->>>          return 0;
->>>
->>
->> With this changed:
->>
->> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Thanks!
-> 
-> Best regards,
-> Michael
-> 
->>
->> Thanks,
->> Neil
->>
+Could you guys confirm?
 
+(sidenote): Fransesco - your new mail client has line wrap issues ;)
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
