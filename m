@@ -2,62 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1808D76CBD4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 13:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA9B776CBE0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 13:38:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233232AbjHBLfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 07:35:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56154 "EHLO
+        id S232185AbjHBLiW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Aug 2023 07:38:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233300AbjHBLfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 07:35:21 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FBD7211E;
-        Wed,  2 Aug 2023 04:35:19 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372BZDIc115644;
-        Wed, 2 Aug 2023 06:35:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690976113;
-        bh=N3aEGUEAKcwcM0z+aACk3Ka+pcKGBojvrgHFZ09VgPw=;
-        h=From:To:CC:Subject:Date;
-        b=chE8mybTllWQFbxRNvPdc0QBRf2OYCPtX/1qAWImgMbuMw1ihn6jaAemLYV0MmJb2
-         tiNXCBhkV7LnD6icHO+NTtkrDI2m4IWob95IjVgqSYOMq2WuHMBuCBq/HsZ1HeQsx2
-         O6bdEkoagqmBsHGtut1dxqnwwwcDqIyxExJ+AjUY=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372BZD6P107984
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Aug 2023 06:35:13 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Aug 2023 06:35:12 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Aug 2023 06:35:12 -0500
-Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372BZ8Mp116138;
-        Wed, 2 Aug 2023 06:35:09 -0500
-From:   Udit Kumar <u-kumar1@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <sinthu.raja@ti.com>, <t-konduru@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Udit Kumar <u-kumar1@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j721s2-som-p0: Correct pinmux offset for ospi0
-Date:   Wed, 2 Aug 2023 17:05:00 +0530
-Message-ID: <20230802113500.162276-1-u-kumar1@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230139AbjHBLiW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 07:38:22 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA572137;
+        Wed,  2 Aug 2023 04:38:20 -0700 (PDT)
+Received: from [127.0.0.1] (unknown [176.201.65.65])
+        by mail11.truemail.it (Postfix) with ESMTPA id 6D8F9213FE;
+        Wed,  2 Aug 2023 13:38:18 +0200 (CEST)
+Date:   Wed, 02 Aug 2023 13:37:47 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Jai Luthra <j-luthra@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/4] arm64: dts: ti: k3-am62x: Enable AUDIO_REFCLKx
+User-Agent: K-9 Mail for Android
+In-Reply-To: <itvg2zmmapbfmgbwos6c4y5zsc2rb3sffv2znhwz6i2vahe4y6@uu2547kcz5sd>
+References: <20230731142135.108477-1-francesco@dolcini.it> <20230731142135.108477-2-francesco@dolcini.it> <itvg2zmmapbfmgbwos6c4y5zsc2rb3sffv2znhwz6i2vahe4y6@uu2547kcz5sd>
+Message-ID: <23C6E13C-3F10-490B-A18E-C67B91CBAF35@dolcini.it>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,72 +46,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to non-addressable regions in J721S2 SOC wkup_pmx was split
-into four regions from wkup_pmx0 to wkup_pmx3.
 
-After split while updating the pin mux references to newly defined
-four wkup_pmx, pin mux for OSPI0 was left.
 
-Pin mux for OSPI0 is spread over two range wkup_pmx0
-and wkup_pmx1, along with correcting pin mux for ospi
-adding correct pin mux setting within ospi node.
+Il 2 agosto 2023 13:23:50 CEST, Jai Luthra <j-luthra@ti.com> ha scritto:
+>Hi Francesco,
+>
+>Thank you for posting this patch.
+>
+>On Jul 31, 2023 at 16:21:32 +0200, Francesco Dolcini wrote:
+>> From: Jai Luthra <j-luthra@ti.com>
+>> 
+>> On AM62-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
+>> external peripherals when configured through CTRL_MMR, so add the
+>> clock nodes.
+>> 
+>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 18 ++++++++++++++++++
+>>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 18 ++++++++++++++++++
+>
+>Given currently none of the AM62A boards are using the refclks, can you 
+>drop those or just mark the nodes as disabled. Whoever is the first user 
+>can enable them.
 
-Fixes: 6bc829ceea41 ("arm64: dts: ti: k3-j721s2: Fix wkup pinmux range")
+I can drop the 2 clocks from AM62A, however, should we really do it? These clocks exist and they are just defined in the DTS, they are not going to be enabled if not used, "ti,am62-epwm-tbclk" is also not disabled for example.
 
-Signed-off-by: Udit Kumar <u-kumar1@ti.com>
----
-Logs with v2
-https://gist.github.com/uditkumarti/701f5f21edd4a10d22abe5f70a752279
-
-Change log:
-
-Changes in v2:
-  Changed name of pin mux to align with
-  https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/ patch
-
-v1: https://lore.kernel.org/all/20230801125626.3287306-1-u-kumar1@ti.com/
-
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-index d57dd43da0ef..fd1d6c884736 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-@@ -45,8 +45,6 @@ mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
- 			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
- 			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
- 			J721S2_WKUP_IOPAD(0x030, PIN_OUTPUT, 0) /* (G17) MCU_OSPI0_CSn1 */
--			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
--			J721S2_WKUP_IOPAD(0x03c, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
- 			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
- 			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
- 			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
-@@ -61,6 +59,15 @@ J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
- 	};
- };
- 
-+&wkup_pmx1 {
-+	mcu_fss0_ospi0_1_pins_default: mcu-fss0-ospi0-1-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-+			J721S2_WKUP_IOPAD(0x004, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
-+		>;
-+	};
-+};
-+
- &wkup_pmx2 {
- 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 		pinctrl-single,pins = <
-@@ -127,7 +134,7 @@ &main_mcan16 {
- &ospi0 {
- 	status = "okay";
- 	pinctrl-names = "default";
--	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-+	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_1_pins_default>;
- 
- 	flash@0 {
- 		compatible = "jedec,spi-nor";
--- 
-2.34.1
+Francesco
 
