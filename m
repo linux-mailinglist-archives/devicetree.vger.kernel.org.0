@@ -2,237 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C765A76C88A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A2976C8A4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 10:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232676AbjHBInO convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Aug 2023 04:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49310 "EHLO
+        id S231845AbjHBItB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 04:49:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233957AbjHBInK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:43:10 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50E710F1;
-        Wed,  2 Aug 2023 01:43:08 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 44FD724E295;
-        Wed,  2 Aug 2023 16:43:07 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 2 Aug
- 2023 16:43:07 +0800
-Received: from localhost.localdomain (183.27.98.54) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 2 Aug
- 2023 16:43:06 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "Maxim Kochetkov" <fido_max@inbox.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     Jose Abreu <joabreu@synopsys.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        "Xingyu Wu" <xingyu.wu@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-riscv@lists.infradead.org>
-Subject: [PATCH v1 5/5] riscv: dts: starfive: Add the nodes and pins of I2Srx/I2Stx0/I2Stx1
-Date:   Wed, 2 Aug 2023 16:43:01 +0800
-Message-ID: <20230802084301.134122-6-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230802084301.134122-1-xingyu.wu@starfivetech.com>
-References: <20230802084301.134122-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S230076AbjHBItA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 04:49:00 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2FDBD9;
+        Wed,  2 Aug 2023 01:48:58 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C5A88DA;
+        Wed,  2 Aug 2023 10:47:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690966073;
+        bh=AHE/esg6v9mEw8Sbx7rGCFI2379V3KnTYnVDFT7MLBw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=C4xeGIi/Ud2dvO6bkox1STXTrpJz5iKaN4dxG+8k1/UTVAZBmBl9bEIokxpD5MjDc
+         fqEGVZE3DZg73Z7orZ4ynKgTs8Ba6e1/kbka06sF9J17jP1dUKNpNo/uwMYI718XCi
+         4ToAf8LTiwfu4o9C4XpkEjqZyZqhE98jLxXkDdiI=
+Message-ID: <bf914485-09af-4f32-0636-d1a7232216d0@ideasonboard.com>
+Date:   Wed, 2 Aug 2023 11:48:52 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.98.54]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v8 07/16] media: cadence: csi2rx: Add get_fmt and set_fmt
+ pad ops
+Content-Language: en-US
+To:     Jai Luthra <j-luthra@ti.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        niklas.soderlund+renesas@ragnatech.se,
+        Benoit Parrot <bparrot@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, nm@ti.com,
+        devarsht@ti.com
+References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
+ <20230731-upstream_csi-v8-7-fb7d3661c2c9@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230731-upstream_csi-v8-7-fb7d3661c2c9@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add I2Srx/I2Stx0/I2Stx1 nodes and pins configuration for the
-StarFive JH7110 SoC.
+On 31/07/2023 11:29, Jai Luthra wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
+> 
+> The format is needed to calculate the link speed for the external DPHY
+> configuration. It is not right to query the format from the source
+> subdev. Add get_fmt and set_fmt pad operations so that the format can be
+> configured and correct bpp be selected.
+> 
+> Initialize and use the v4l2 subdev active state to keep track of the
+> active formats. Also propagate the new format from the sink pad to all
+> the source pads.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Co-authored-by: Jai Luthra <j-luthra@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+> v7->v8:
+> - Use active subdev state to use v4l2_subdev_get_fmt
+> - Propagate formats from sink to source pads
+> - Drop Laurent's R-by because of the above changes
+> 
+>   drivers/media/platform/cadence/cdns-csi2rx.c | 107 ++++++++++++++++++++++++++-
+>   1 file changed, 106 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 83d1fadd592b..4f9654366485 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -61,6 +61,11 @@ enum csi2rx_pads {
+>   	CSI2RX_PAD_MAX,
+>   };
+>   
+> +struct csi2rx_fmt {
+> +	u32				code;
+> +	u8				bpp;
+> +};
+> +
+>   struct csi2rx_priv {
+>   	struct device			*dev;
+>   	unsigned int			count;
+> @@ -95,6 +100,36 @@ struct csi2rx_priv {
+>   	int				source_pad;
+>   };
+>   
+> +static const struct csi2rx_fmt formats[] = {
+> +	{
+> +		.code	= MEDIA_BUS_FMT_YUYV8_1X16,
+> +		.bpp	= 16,
+> +	},
+> +	{
+> +		.code	= MEDIA_BUS_FMT_UYVY8_1X16,
+> +		.bpp	= 16,
+> +	},
+> +	{
+> +		.code	= MEDIA_BUS_FMT_YVYU8_1X16,
+> +		.bpp	= 16,
+> +	},
+> +	{
+> +		.code	= MEDIA_BUS_FMT_VYUY8_1X16,
+> +		.bpp	= 16,
+> +	},
+> +};
 
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 58 +++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 65 +++++++++++++++++++
- 2 files changed, 123 insertions(+)
+I think you could just squash the "media: cadence: csi2rx: Support RAW8 
+and RAW10 formats" into this one. Also, the lines could well be one-liners:
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index f874d31006a6..8f90d1b6fd66 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -185,6 +185,24 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&i2srx {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2srx_pins>;
-+	status = "okay";
-+};
-+
-+&i2stx0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mclk_ext_pins>;
-+	status = "okay";
-+};
-+
-+&i2stx1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2stx1_pins>;
-+	status = "okay";
-+};
-+
- &spi0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi0_pins>;
-@@ -254,6 +272,46 @@ GPOEN_SYS_I2C6_DATA,
- 		};
- 	};
- 
-+	i2srx_pins: i2srx-0 {
-+		clk-sd-pins {
-+			pinmux = <GPIOMUX(38, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_I2SRX_BCLK)>,
-+				 <GPIOMUX(63, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_I2SRX_LRCK)>,
-+				 <GPIOMUX(38, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_I2STX1_BCLK)>,
-+				 <GPIOMUX(63, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_I2STX1_LRCK)>,
-+				 <GPIOMUX(61, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_I2SRX_SDIN0)>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2stx1_pins: i2stx1-0 {
-+		sd-pins {
-+			pinmux = <GPIOMUX(44, GPOUT_SYS_I2STX1_SDO0,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			input-disable;
-+		};
-+	};
-+
-+	mclk_ext_pins: mclk-ext-0 {
-+		mclk-ext-pins {
-+			pinmux = <GPIOMUX(4, GPOUT_LOW,
-+					     GPOEN_DISABLE,
-+					     GPI_SYS_MCLK_EXT)>;
-+			input-enable;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 05f843b8ca03..507312eb6053 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -512,6 +512,30 @@ tdm: tdm@10090000 {
- 			status = "disabled";
- 		};
- 
-+		i2srx: i2srx@100e0000 {
-+			compatible = "starfive,jh7110-i2srx";
-+			reg = <0x0 0x100e0000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_I2SRX_BCLK_MST>,
-+				 <&syscrg JH7110_SYSCLK_I2SRX_APB>,
-+				 <&syscrg JH7110_SYSCLK_MCLK>,
-+				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
-+				 <&mclk_ext>,
-+				 <&syscrg JH7110_SYSCLK_I2SRX_BCLK>,
-+				 <&syscrg JH7110_SYSCLK_I2SRX_LRCK>,
-+				 <&i2srx_bclk_ext>,
-+				 <&i2srx_lrck_ext>;
-+			clock-names = "i2sclk", "apb", "mclk",
-+				      "mclk_inner", "mclk_ext", "bclk",
-+				      "lrck", "bclk_ext", "lrck_ext";
-+			resets = <&syscrg JH7110_SYSRST_I2SRX_APB>,
-+				 <&syscrg JH7110_SYSRST_I2SRX_BCLK>;
-+			dmas = <0>, <&dma 24>;
-+			dma-names = "tx", "rx";
-+			starfive,syscon = <&sys_syscon 0x18 0x2>;
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		usb0: usb@10100000 {
- 			compatible = "starfive,jh7110-usb";
- 			ranges = <0x0 0x0 0x10100000 0x100000>;
-@@ -736,6 +760,47 @@ spi6: spi@120a0000 {
- 			status = "disabled";
- 		};
- 
-+		i2stx0: i2stx0@120b0000 {
-+			compatible = "starfive,jh7110-i2stx0";
-+			reg = <0x0 0x120b0000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_I2STX0_BCLK_MST>,
-+				 <&syscrg JH7110_SYSCLK_I2STX0_APB>,
-+				 <&syscrg JH7110_SYSCLK_MCLK>,
-+				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
-+				 <&mclk_ext>;
-+			clock-names = "i2sclk", "apb", "mclk",
-+				      "mclk_inner","mclk_ext";
-+			resets = <&syscrg JH7110_SYSRST_I2STX0_APB>,
-+				 <&syscrg JH7110_SYSRST_I2STX0_BCLK>;
-+			dmas = <&dma 47>;
-+			dma-names = "tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2stx1: i2stx1@120c0000 {
-+			compatible = "starfive,jh7110-i2stx1";
-+			reg = <0x0 0x120c0000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_I2STX1_BCLK_MST>,
-+				 <&syscrg JH7110_SYSCLK_I2STX1_APB>,
-+				 <&syscrg JH7110_SYSCLK_MCLK>,
-+				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
-+				 <&mclk_ext>,
-+				 <&syscrg JH7110_SYSCLK_I2STX1_BCLK>,
-+				 <&syscrg JH7110_SYSCLK_I2STX1_LRCK>,
-+				 <&i2stx_bclk_ext>,
-+				 <&i2stx_lrck_ext>;
-+			clock-names = "i2sclk", "apb", "mclk",
-+				      "mclk_inner", "mclk_ext", "bclk",
-+				      "lrck", "bclk_ext", "lrck_ext";
-+			resets = <&syscrg JH7110_SYSRST_I2STX1_APB>,
-+				 <&syscrg JH7110_SYSRST_I2STX1_BCLK>;
-+			dmas = <&dma 48>;
-+			dma-names = "tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		sfctemp: temperature-sensor@120e0000 {
- 			compatible = "starfive,jh7110-temp";
- 			reg = <0x0 0x120e0000 0x0 0x10000>;
--- 
-2.25.1
+	{ .code	= MEDIA_BUS_FMT_YUYV8_1X16, .bpp = 16, },
+
+
+> +static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(formats); i++)
+> +		if (formats[i].code == code)
+> +			return &formats[i];
+> +
+> +	return NULL;
+> +}
+> +
+>   static inline
+>   struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
+>   {
+> @@ -303,12 +338,75 @@ static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
+>   	return ret;
+>   }
+>   
+> +static int csi2rx_set_fmt(struct v4l2_subdev *subdev,
+> +			  struct v4l2_subdev_state *state,
+> +			  struct v4l2_subdev_format *format)
+> +{
+> +	struct v4l2_mbus_framefmt *fmt;
+> +	unsigned int i;
+> +
+> +	/* No transcoding, source and sink formats must match. */
+> +	if (format->pad != CSI2RX_PAD_SINK)
+> +		return v4l2_subdev_get_fmt(subdev, state, format);
+> +
+> +	if (!csi2rx_get_fmt_by_code(format->format.code))
+> +		format->format.code = formats[0].code;
+> +
+> +	format->format.field = V4L2_FIELD_NONE;
+> +
+> +	/* Set sink format */
+> +	fmt = v4l2_subdev_get_pad_format(subdev, state, format->pad);
+> +	if (!fmt)
+> +		return -EINVAL;
+> +
+> +	*fmt = format->format;
+> +
+> +	/* Propagate to source formats */
+> +	for (i = CSI2RX_PAD_SOURCE_STREAM0; i < CSI2RX_PAD_MAX; i++) {
+> +		fmt = v4l2_subdev_get_pad_format(subdev, state, i);
+> +		if (!fmt)
+> +			return -EINVAL;
+> +		*fmt = format->format;
+> +	}
+
+Not really part of this patch, but why does csi2rx create more than one 
+source pad? It doesn't support streams, so how are those pads used?
+
+> +	return 0;
+> +}
+> +
+> +static int csi2rx_init_cfg(struct v4l2_subdev *subdev,
+> +			   struct v4l2_subdev_state *state)
+> +{
+> +	struct v4l2_subdev_format format = {
+> +		.which = state ? V4L2_SUBDEV_FORMAT_TRY
+> +			: V4L2_SUBDEV_FORMAT_ACTIVE,
+
+I don't think this is correct. If you enable the active state, you'll 
+always get a state here, and thus this function doesn't really know if 
+it is TRY or ACTIVE state (nor should it care).
+
+> +		.pad = CSI2RX_PAD_SINK,
+> +		.format = {
+> +			.width = 640,
+> +			.height = 480,
+> +			.code = MEDIA_BUS_FMT_UYVY8_1X16,
+> +			.field = V4L2_FIELD_NONE,
+> +			.colorspace = V4L2_COLORSPACE_SRGB,
+> +			.ycbcr_enc = V4L2_YCBCR_ENC_601,
+> +			.quantization = V4L2_QUANTIZATION_LIM_RANGE,
+> +			.xfer_func = V4L2_XFER_FUNC_SRGB,
+> +		},
+> +	};
+> +
+> +	return csi2rx_set_fmt(subdev, state, &format);
+> +}
+> +
+> +static const struct v4l2_subdev_pad_ops csi2rx_pad_ops = {
+> +	.get_fmt	= v4l2_subdev_get_fmt,
+> +	.set_fmt	= csi2rx_set_fmt,
+> +	.init_cfg	= csi2rx_init_cfg,
+> +};
+> +
+>   static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
+>   	.s_stream	= csi2rx_s_stream,
+>   };
+>   
+>   static const struct v4l2_subdev_ops csi2rx_subdev_ops = {
+>   	.video		= &csi2rx_video_ops,
+> +	.pad		= &csi2rx_pad_ops,
+>   };
+>   
+>   static int csi2rx_async_bound(struct v4l2_async_notifier *notifier,
+> @@ -532,9 +630,13 @@ static int csi2rx_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		goto err_cleanup;
+>   
+> +	ret = v4l2_subdev_init_finalize(&csi2rx->subdev);
+> +	if (ret)
+> +		goto err_cleanup;
+> +
+>   	ret = v4l2_async_register_subdev(&csi2rx->subdev);
+>   	if (ret < 0)
+> -		goto err_cleanup;
+> +		goto err_free_state;
+>   
+>   	dev_info(&pdev->dev,
+>   		 "Probed CSI2RX with %u/%u lanes, %u streams, %s D-PHY\n",
+> @@ -544,6 +646,8 @@ static int csi2rx_probe(struct platform_device *pdev)
+>   
+>   	return 0;
+>   
+> +err_free_state:
+> +	v4l2_subdev_cleanup(&csi2rx->subdev);
+>   err_cleanup:
+>   	v4l2_async_nf_unregister(&csi2rx->notifier);
+>   	v4l2_async_nf_cleanup(&csi2rx->notifier);
+> @@ -560,6 +664,7 @@ static void csi2rx_remove(struct platform_device *pdev)
+>   	v4l2_async_nf_unregister(&csi2rx->notifier);
+>   	v4l2_async_nf_cleanup(&csi2rx->notifier);
+>   	v4l2_async_unregister_subdev(&csi2rx->subdev);
+> +	v4l2_subdev_cleanup(&csi2rx->subdev);
+>   	media_entity_cleanup(&csi2rx->subdev.entity);
+>   	kfree(csi2rx);
+>   }
+> 
 
