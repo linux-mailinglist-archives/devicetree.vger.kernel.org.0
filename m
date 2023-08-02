@@ -2,203 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F28676C667
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 09:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F374976C6B1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 09:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbjHBHUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 03:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59224 "EHLO
+        id S232531AbjHBHXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 03:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232682AbjHBHU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 03:20:26 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6441999
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 00:20:23 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-686f090310dso6489058b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 00:20:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1690960823; x=1691565623;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m5ftHAQDjcyj/Z4+kE7V/9JWCccuDvgK9YYpIpkaD7s=;
-        b=uJpsdXjUnG64+/qe2oDpEE5YmeJqxRG3Tegc++iaB/POJ6UVm++74TtzNqbeYV/wzL
-         tNIfj6inHajfNMbAbbGMho7JlYJJXJSRixg9rMIkrJuI8lb5lZfi8p8LC6KDhkOBg87I
-         xZKfQP5WMmaHVYl9QDxOQAeNJrAQNtKbNHYoOHqZivPczHMQzW2mwSTjMVTdhXhaYe/G
-         AaXrk8qlKVxlE1I6OVrGNzPcgoFuJuMBxjFflko61b0Jemef3hP5dg4kgDJJCiMSoyzv
-         zkfczF5Ine5sp09FwiI8Hgf/zcNInaKWlPpOiGR6wW6dzfKjlgWmzp58lNZ7I+UhPAC2
-         shbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690960823; x=1691565623;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m5ftHAQDjcyj/Z4+kE7V/9JWCccuDvgK9YYpIpkaD7s=;
-        b=bC30d3fMiL1u3/ZRnvrT3HKY/HPBX1/CkA1S6Qx5nmza6a0e0fwDH6H8aM93hfQM1U
-         udRWg/qRBvSM5rnjiqOesPw+4UqCewJBNEt+MmulFBhUu0zIw8dJ0FA9LKRJaWehJlV5
-         y31GZ2I7NH3UYGIKl3GQ5l/7c0XpMSJdWZEOdIpLwkXf1qy/UKPEUoMjJF7CkhaCKW4V
-         dRz2U7NVtB9mP+QZautU4TOxLTQjY639GSsTfLUSMhtabr2nX3WgoAV7+CSgLfYFCOq7
-         9V/bKLY/IjJKrMWHWT8hlMc7tJM3sQCuOd3A0ehb9sMaQIfUN5ULsIAVbtpkHEKGHQJh
-         A71w==
-X-Gm-Message-State: ABy/qLYKX7xKCLlxxry7YKgo9ftRZoy7Mw2/ap1RiOcC+1W3MLzjbOmo
-        f8Cx1Pn95PfzjBDcxxxUNUEj0Q==
-X-Google-Smtp-Source: APBJJlH6UAADSMCFbOqshd7InChK686drg58bZe8DPWhwbaR5xmoEtTvsuelbk0sFRfbXhBu0f6kIw==
-X-Received: by 2002:a05:6a21:3397:b0:132:bdba:5518 with SMTP id yy23-20020a056a21339700b00132bdba5518mr19854934pzb.54.1690960823400;
-        Wed, 02 Aug 2023 00:20:23 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.205])
-        by smtp.gmail.com with ESMTPSA id fe12-20020a056a002f0c00b00684ca1b45b9sm10732543pfb.149.2023.08.02.00.20.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 00:20:22 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com,
-        dianders@google.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: [PATCH v6 2/2] HID: i2c-hid: elan: Add ili9882t timing
-Date:   Wed,  2 Aug 2023 15:19:47 +0800
-Message-Id: <20230802071947.1683318-3-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
+        with ESMTP id S231322AbjHBHXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 03:23:03 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 095CCE4C;
+        Wed,  2 Aug 2023 00:23:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690960982; x=1722496982;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7eFksLTYa9RuHQo4s+zL32kwqkynVdyzZ5o/ofGIt/c=;
+  b=Y1ChgCtyYHPpyvA3fbvxiG0i3ox+NDLGMv4GSH1eUbrPhhlxqB6Kjbju
+   45XQnyrKGNwyiZF2KUT065iIaZvD8HjtPHIJPCs7MBpJC7TVSQRkQ0SWL
+   gGRCCaFhqlgHddTvwTvQpp5LyRqD2kf9KnvMf46QytFH/66xHGMLS2RWz
+   31LRnt4KeTIMPmAYH+AXyIuksxA3keMPMTsapNWxStZ+oSvtKI67be1pT
+   sIXpJYDmqka2PCsyRxE91Q6gXdMRhn9FGjhtjxyqcxV21D9uryKqDSjp7
+   /pjJkW6pPE5GbNxVRhXexU0hGwAS9q0+S19V0Fuc087k3OH3MA1ykG93g
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; 
+   d="asc'?scan'208";a="239300202"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Aug 2023 00:22:49 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 2 Aug 2023 00:22:49 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 2 Aug 2023 00:22:46 -0700
+Date:   Wed, 2 Aug 2023 08:22:10 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+CC:     Conor Dooley <conor@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jianmin Lv <lvjianmin@loongson.cn>,
+        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
+        <loongson-kernel@lists.loongnix.cn>
+Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
+ offset
+Message-ID: <20230802-jailer-pavilion-84fb17bb3710@wendy>
+References: <20230731091059.17323-1-zhuyinbo@loongson.cn>
+ <20230731091059.17323-2-zhuyinbo@loongson.cn>
+ <20230731-setback-such-61815ee3ef51@spud>
+ <041bf8a6-8d91-c2ce-6752-aa7255f946c7@loongson.cn>
+ <20230801-whenever-imitation-b2759b212f6b@spud>
+ <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
+ <20230801-varsity-chemo-09cc5e250ded@spud>
+ <26adb487-f8c5-9cf4-5b31-070e9161e761@loongson.cn>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TdgctVrcqP1F3jZi"
+Content-Disposition: inline
+In-Reply-To: <26adb487-f8c5-9cf4-5b31-070e9161e761@loongson.cn>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ili9882t is a TDDI IC (Touch with Display Driver). The
-datasheet specifies there should be 60ms between touch SDA
-sleep and panel RESX. Doug's series[1] allows panels and
-touchscreens to power on/off together, so we can add the 65 ms
-delay in i2c_hid_core_suspend before panel_unprepare.
+--TdgctVrcqP1F3jZi
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Because ili9882t touchscrgeen is a panel follower, and
-needs to use vccio-supply instead of vcc33-supply, so set
-it NULL to ili9882t_chip_data, then not use vcc33 regulator.
+On Wed, Aug 02, 2023 at 09:38:34AM +0800, Yinbo Zhu wrote:
+>=20
+>=20
+> =E5=9C=A8 2023/8/1 =E4=B8=8B=E5=8D=8811:54, Conor Dooley =E5=86=99=E9=81=
+=93:
+> > On Tue, Aug 01, 2023 at 04:34:30PM +0800, Yinbo Zhu wrote:
+> > >=20
+> > >=20
+> > > =E5=9C=A8 2023/8/1 =E4=B8=8B=E5=8D=883:23, Conor Dooley =E5=86=99=E9=
+=81=93:
+> > > > On Tue, Aug 01, 2023 at 02:39:49PM +0800, Yinbo Zhu wrote:
+> > > > >=20
+> > > > >=20
+> > > > > =E5=9C=A8 2023/7/31 =E4=B8=8B=E5=8D=8811:55, Conor Dooley =E5=86=
+=99=E9=81=93:
+> > > > > > On Mon, Jul 31, 2023 at 05:10:58PM +0800, Yinbo Zhu wrote:
+> > > > > > > Add parsing GPIO configure, input, output, interrupt register=
+ offset
+> > > > > > > address and GPIO control mode support.
+> > > > > >=20
+> > > > > > This reeks of insufficient use of SoC specific compatibles. Do =
+GPIO
+> > > > > > controllers on the same SoC have different register offsets?
+> > > > >=20
+> > > > >=20
+> > > > > Yes,
+> > > > >=20
+> > > > > > Where are the users for this?
+> > > > >=20
+> > > > >=20
+> > > > > For example, ls2k500 contains multiple GPIO chips with different
+> > > > > (configure, input, output, interrupt) offset addresses, but all o=
+thers
+> > > > > are the same.
+> > > >=20
+> > > > Right. That's admittedly not what I expected to hear! Can you first=
+ly
+> > > > explain this in the commit message,
+> > >=20
+> > >=20
+> > > I will add following explain in the commit message. Do you think it's
+> > > suitable?
+> > >=20
+> > > Loongson GPIO controllers come in multiple variants that are compatib=
+le
+> > > except for certain register offset values.  Add support in yaml file =
+for
+> > > device properties allowing to specify them in DT.
+> >=20
+> > Sure, that would be helpful.
+> >=20
+> > > > and secondly add a soc-specific
+> > > > compatible for the ls2k500 and only allow these properties on that =
+SoC?
+> >=20
+> > > Sorry, I may not have described it clearly before, the ls2k500 was on=
+ly
+> > > as a example, actually, Loongson GPIO controllers (2k500,2k1000,eg)co=
+me
+> > > in multiple variants that are compatible except for certain register
+> > > offset values.  So above all offset device property was used to in all
+> > > loongson gpio controller.
+> >=20
+> > But it would be good to know why they are different. Do they each
+> > support some different features, or was there some other reason for
+> > making controllers like this?
+>=20
+>=20
+> There are no other reasons, just differences in these offset addresses.
 
-[1]: https://lore.kernel.org/all/20230727171750.633410-1-dianders@chromium.org
+Huh. Do you have a link to a devicetree for the ls2k500?
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- drivers/hid/i2c-hid/i2c-hid-of-elan.c | 50 ++++++++++++++++++++-------
- 1 file changed, 38 insertions(+), 12 deletions(-)
+--TdgctVrcqP1F3jZi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-index 029045d9661c..31abab57ad44 100644
---- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-+++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-@@ -18,9 +18,11 @@
- #include "i2c-hid.h"
- 
- struct elan_i2c_hid_chip_data {
--	unsigned int post_gpio_reset_delay_ms;
-+	unsigned int post_gpio_reset_on_delay_ms;
-+	unsigned int post_gpio_reset_off_delay_ms;
- 	unsigned int post_power_delay_ms;
- 	u16 hid_descriptor_address;
-+	const char *main_supply_name;
- };
- 
- struct i2c_hid_of_elan {
-@@ -38,9 +40,11 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
- 		container_of(ops, struct i2c_hid_of_elan, ops);
- 	int ret;
- 
--	ret = regulator_enable(ihid_elan->vcc33);
--	if (ret)
--		return ret;
-+	if (ihid_elan->vcc33) {
-+		ret = regulator_enable(ihid_elan->vcc33);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = regulator_enable(ihid_elan->vccio);
- 	if (ret) {
-@@ -52,8 +56,8 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
- 		msleep(ihid_elan->chip_data->post_power_delay_ms);
- 
- 	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
--	if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
--		msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
-+	if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms);
- 
- 	return 0;
- }
-@@ -64,8 +68,12 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
- 		container_of(ops, struct i2c_hid_of_elan, ops);
- 
- 	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
-+	if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms);
-+
- 	regulator_disable(ihid_elan->vccio);
--	regulator_disable(ihid_elan->vcc33);
-+	if (ihid_elan->vcc33)
-+		regulator_disable(ihid_elan->vcc33);
- }
- 
- static int i2c_hid_of_elan_probe(struct i2c_client *client)
-@@ -89,24 +97,42 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
- 	if (IS_ERR(ihid_elan->vccio))
- 		return PTR_ERR(ihid_elan->vccio);
- 
--	ihid_elan->vcc33 = devm_regulator_get(&client->dev, "vcc33");
--	if (IS_ERR(ihid_elan->vcc33))
--		return PTR_ERR(ihid_elan->vcc33);
--
- 	ihid_elan->chip_data = device_get_match_data(&client->dev);
- 
-+	if (ihid_elan->chip_data->main_supply_name) {
-+		ihid_elan->vcc33 = devm_regulator_get(&client->dev,
-+						      ihid_elan->chip_data->main_supply_name);
-+		if (IS_ERR(ihid_elan->vcc33))
-+			return PTR_ERR(ihid_elan->vcc33);
-+	}
-+
- 	return i2c_hid_core_probe(client, &ihid_elan->ops,
- 				  ihid_elan->chip_data->hid_descriptor_address, 0);
- }
- 
- static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data = {
- 	.post_power_delay_ms = 1,
--	.post_gpio_reset_delay_ms = 300,
-+	.post_gpio_reset_on_delay_ms = 300,
-+	.hid_descriptor_address = 0x0001,
-+	.main_supply_name = "vcc33",
-+};
-+
-+static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data = {
-+	.post_power_delay_ms = 1,
-+	.post_gpio_reset_on_delay_ms = 200,
-+	.post_gpio_reset_off_delay_ms = 65,
- 	.hid_descriptor_address = 0x0001,
-+	/*
-+	 * this touchscreen is tightly integrated with the panel and assumes
-+	 * that the relevant power rails (other than the IO rail) have already
-+	 * been turned on by the panel driver because we're a panel follower.
-+	 */
-+	.main_supply_name = NULL,
- };
- 
- static const struct of_device_id elan_i2c_hid_of_match[] = {
- 	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
-+	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
--- 
-2.25.1
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMoEIgAKCRB4tDGHoIJi
+0qehAQD/TED1c6/DUFPI/gFo3nDFxCZVNRgFga8JtpLMIN0aCQEA77DxWD0/baeB
+r37YpCJXTvTMBnMSocT4alLPP0WzNQA=
+=O4O8
+-----END PGP SIGNATURE-----
+
+--TdgctVrcqP1F3jZi--
