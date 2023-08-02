@@ -2,194 +2,514 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6732076CBB8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 13:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1A876CBCB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 13:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232731AbjHBLYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 07:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51840 "EHLO
+        id S234041AbjHBLbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 07:31:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232512AbjHBLYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 07:24:08 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA62AE70;
-        Wed,  2 Aug 2023 04:24:06 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 372BNlAv051750;
-        Wed, 2 Aug 2023 06:23:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690975427;
-        bh=uSMGR7Vdm2lM9r/d7beJA61be1vAlM4u+oTFvOZ9cGg=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=vdEWx89aXmNvqCvkZEZOlUZmwkwFfBGf3aiYsyq0lqyWU/xRqMaJhlhKkS0OdCC8i
-         nnNDNK2dtiGt/JZHHc2L4LwxsI20/rpp84bf4Y0UVAcaBIKsqrugbFYN/NwHB5iGL5
-         Vhn7eLIIbzrylFlRQNcctKQDN/qcbCzZxl7Bk8Vc=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 372BNl1M129611
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Aug 2023 06:23:47 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Aug 2023 06:23:47 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Aug 2023 06:23:46 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 372BNkkC102315;
-        Wed, 2 Aug 2023 06:23:46 -0500
-Date:   Wed, 2 Aug 2023 16:53:50 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229958AbjHBLbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 07:31:19 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF72C211E;
+        Wed,  2 Aug 2023 04:31:17 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe10f0f4d1so11199893e87.0;
+        Wed, 02 Aug 2023 04:31:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690975876; x=1691580676;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FjAosaNxAoi2BWTYkDtymKlr5h9XTvGfmHv3GlC/6i0=;
+        b=hfm8YK6JR2hNijQyEEkA99WB9yYHPJgqpVsbI9C/WM14PxBeB4R+QnPaQYPxVYm8nR
+         J3Qw+ZvSeeAsUgs7GGs/24vCciz5Yl74mFV7JAT4e/KWrxTGom1xG7pdUFK+/D563if5
+         aAkwFVpNVs+r+irwLPjPQPGvIDrj/gjZB8Nip9xmOoM983f345i6XtketbIQjW2jS4Jl
+         eacfHcWhKdDTyCZp4DklhalslHVJJVzQEPmGQ1Zf1VVQIgrtbWEnA/A9ZWHw8Cri6NbZ
+         5sa/hGzRccS7fKOxlFvntIIApaQW8ICTWXpsrIa4NK09mnti/avvUtleGKxj/nOj0rHX
+         yzRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690975876; x=1691580676;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FjAosaNxAoi2BWTYkDtymKlr5h9XTvGfmHv3GlC/6i0=;
+        b=WdGYxPbo/vNi5jyXglEAeyN5cZOoH8uu6tUzLfnQe/NtBHjUyxuQI48/8/CS/0U8+m
+         1i0uO3ElIHHeJAFOEdlJj0oa0nLFXGjn5p5L3g4offcVFyxBEM+8f9ELWUGbTWzmpIyI
+         JUUTUGe039PdkeAefThqMDM3qhMdaGOOm89Yn5XjrmQWEsv5E/l6oaUW2S+CZhhmlu6C
+         3HBJ8lJ3mRBQXbybKUK0TsQiLg8o2fxREqkHbwZyqaYWO+71bybzyhuDFWYm1gYhSwqr
+         iQVxk/VEjpdboshAU4ekOBx/BGzDHbsQMgS90vasJXstUuBiA2EYNJFiGmQ/cdlcJVen
+         zzIQ==
+X-Gm-Message-State: ABy/qLbn/+LizbjYlWxIV+oU1s8xIhtB1b3A6edxlTTyPbYAyhpFDTY3
+        Z3LMmxcuvGnXQG2uEy8cY3DPkEtCyP+1N8Mma7g=
+X-Google-Smtp-Source: APBJJlHoe9Tvo8oe+ytXHVsZIr8zXSQ+BLbhyvQG26Poi2319pJ97wo81XynGNh6KJ18wDUKTZXZgCM/zjcXI0xyBqs=
+X-Received: by 2002:ac2:4da1:0:b0:4fe:8c4:44f4 with SMTP id
+ h1-20020ac24da1000000b004fe08c444f4mr4442153lfe.62.1690975875725; Wed, 02 Aug
+ 2023 04:31:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230729134318.1694467-1-keguang.zhang@gmail.com>
+ <20230729134318.1694467-9-keguang.zhang@gmail.com> <4qk22kycanwwbx6e7w4uuf7y5re7y4voi5vdurq3usa27py2zk@zms25h4hg2da>
+ <CAJhJPsV9E5=GtsjiP8c3A6=4=Vh7cB1g=TaaJnVOjCf=VFiLUA@mail.gmail.com> <ZMowbm9n1PuQhPLt@rc20>
+In-Reply-To: <ZMowbm9n1PuQhPLt@rc20>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Wed, 2 Aug 2023 19:30:59 +0800
+Message-ID: <CAJhJPsVL8M0nO0rxQF+Jzf5Nt6q6wED9jEfws07wYs94WLS9bw@mail.gmail.com>
+Subject: Re: [PATCH 08/17] MIPS: loongson32: Convert Ethernet platform device
+ to DT
+To:     Du Huanpeng <dhu@hodcarrier.org>
+Cc:     Serge Semin <fancer.lancer@gmail.com>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 1/4] arm64: dts: ti: k3-am62x: Enable AUDIO_REFCLKx
-Message-ID: <itvg2zmmapbfmgbwos6c4y5zsc2rb3sffv2znhwz6i2vahe4y6@uu2547kcz5sd>
-References: <20230731142135.108477-1-francesco@dolcini.it>
- <20230731142135.108477-2-francesco@dolcini.it>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="v4gamd5lzmdkps2a"
-Content-Disposition: inline
-In-Reply-To: <20230731142135.108477-2-francesco@dolcini.it>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---v4gamd5lzmdkps2a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Aug 2, 2023 at 6:31=E2=80=AFPM Du Huanpeng <dhu@hodcarrier.org> wro=
+te:
+>
+> On Wed, Aug 02, 2023 at 11:10:10AM +0800, Keguang Zhang wrote:
+> > On Wed, Aug 2, 2023 at 2:21=E2=80=AFAM Serge Semin <fancer.lancer@gmail=
+.com> wrote:
+> > >
+> > > On Sat, Jul 29, 2023 at 09:43:09PM +0800, Keguang Zhang wrote:
+> > > > Add Ethernet device nodes for Loongson-1 boards,
+> > > > and drop the legacy platform devices and data accordingly.
+> > >
+> > > It seems to me that your conversion breaks the RGMII mode support.
+> > > What you need to do is to make sure that the respective flags are set
+> > > in the MUX space.
+> > >
+> > > Regarding the MUX-space. It looks as a pinctrl-setting space. If so
+> > > adding the new pinctrl driver will be required. Otherwise it can be
+> > > defined as a syscon-node and then utilized in the Loongson-1 GMAC
+> > > low-level driver.
+> > >
+> > Thanks for your reminder.
+> > I planned to add the pinctrl driver later.
+> > Now I'm working on it.
+> hi, I wrote a tool(work-in-progress) for generating pinctrl driver,
+> do you want to try, and avoid duplicate work.
 
-Hi Francesco,
+A tool for generating pinctrl driver?
+Could you share it?
+Perhaps you could submit your driver when it is done.
+Thanks!
 
-Thank you for posting this patch.
-
-On Jul 31, 2023 at 16:21:32 +0200, Francesco Dolcini wrote:
-> From: Jai Luthra <j-luthra@ti.com>
->=20
-> On AM62-based SoCs the AUDIO_REFCLKx clocks can be used as an input to
-> external peripherals when configured through CTRL_MMR, so add the
-> clock nodes.
->=20
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> and could you merge my ls1c300 devicetree for u-boot, because
+> u-boot wants to keep the devicetree sync with the linux kernel.
+> some nodes needed and working are not exist in your devicetree.
+>
+> [1] https://github.com/hodcarrier/u-boot/blob/upstream/loongson-ls1c300b/=
+v4/arch/mips/dts/loongson32-ls1c300b.dtsi
+>
+I 've noticed your eariier commit for U-Boot.
+We can discuss it in more detail.
 > ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 18 ++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 18 ++++++++++++++++++
+> Du Huanpeng
+> >
+> > > -Serge(y)
+> > >
+> > > >
+> > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > > > ---
+> > > >  arch/mips/boot/dts/loongson/loongson1.dtsi    |  16 ++
+> > > >  arch/mips/boot/dts/loongson/loongson1b.dtsi   |  53 +++++++
+> > > >  arch/mips/boot/dts/loongson/loongson1c.dtsi   |  17 ++
+> > > >  arch/mips/boot/dts/loongson/lsgz_1b_dev.dts   |   8 +
+> > > >  arch/mips/boot/dts/loongson/smartloong_1c.dts |   4 +
+> > > >  arch/mips/loongson32/common/platform.c        | 146 +-------------=
+----
+> > > >  arch/mips/loongson32/ls1b/board.c             |   2 -
+> > > >  arch/mips/loongson32/ls1c/board.c             |   1 -
+> > > >  8 files changed, 99 insertions(+), 148 deletions(-)
+> > > >
+> > > > diff --git a/arch/mips/boot/dts/loongson/loongson1.dtsi b/arch/mips=
+/boot/dts/loongson/loongson1.dtsi
+> > > > index c77aa2d0f66c..48bb786bbf10 100644
+> > > > --- a/arch/mips/boot/dts/loongson/loongson1.dtsi
+> > > > +++ b/arch/mips/boot/dts/loongson/loongson1.dtsi
+> > > > @@ -71,6 +71,22 @@ intc3: interrupt-controller@1fd01088 {
+> > > >                       interrupt-parent =3D <&cpu_intc>;
+> > > >                       interrupts =3D <5>;
+> > > >               };
+> > > > +
+> > > > +             gmac0: ethernet@1fe10000 {
+> > > > +                     compatible =3D "snps,dwmac-3.70a";
+> > > > +                     reg =3D <0x1fe10000 0x10000>;
+> > > > +
+> > > > +                     interrupt-parent =3D <&intc1>;
+> > > > +                     interrupt-names =3D "macirq";
+> > > > +
+> > > > +                     clocks =3D <&clkc LS1X_CLKID_AHB>;
+> > > > +                     clock-names =3D "stmmaceth";
+> > > > +
+> > > > +                     snps,pbl =3D <1>;
+> > > > +
+> > > > +                     status =3D "disabled";
+> > > > +             };
+> > > > +
+> > > >       };
+> > > >
+> > > >       apb: bus@1fe40000 {
+> > > > diff --git a/arch/mips/boot/dts/loongson/loongson1b.dtsi b/arch/mip=
+s/boot/dts/loongson/loongson1b.dtsi
+> > > > index 437a77cee163..42b96c557660 100644
+> > > > --- a/arch/mips/boot/dts/loongson/loongson1b.dtsi
+> > > > +++ b/arch/mips/boot/dts/loongson/loongson1b.dtsi
+> > > > @@ -7,6 +7,11 @@
+> > > >  #include "loongson1.dtsi"
+> > > >
+> > > >  / {
+> > > > +     aliases {
+> > > > +             ethernet0 =3D &gmac0;
+> > > > +             ethernet1 =3D &gmac1;
+> > > > +     };
+> > > > +
+> > > >       cpus {
+> > > >               #address-cells =3D <1>;
+> > > >               #size-cells =3D <0>;
+> > > > @@ -74,6 +79,54 @@ clkc: clock-controller@1fe78030 {
+> > > >       };
+> > > >  };
+> > > >
+> > > > +&ahb {
+> > > > +     gmac1: ethernet@1fe20000 {
+> > > > +             compatible =3D "snps,dwmac-3.70a";
+> > > > +             reg =3D <0x1fe20000 0x10000>;
+> > > > +
+> > > > +             interrupt-parent =3D <&intc1>;
+> > > > +             interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +             interrupt-names =3D "macirq";
+> > > > +
+> > > > +             clocks =3D <&clkc LS1X_CLKID_AHB>;
+> > > > +             clock-names =3D "stmmaceth";
+> > > > +
+> > > > +             phy-handle =3D <&phy1>;
+> > > > +             phy-mode =3D "mii";
+> > > > +
+> > > > +             snps,pbl =3D <1>;
+> > > > +
+> > > > +             status =3D "disabled";
+> > > > +
+> > > > +             mdio1 {
+> > > > +                     #address-cells =3D <1>;
+> > > > +                     #size-cells =3D <0>;
+> > > > +                     compatible =3D "snps,dwmac-mdio";
+> > > > +
+> > > > +                     phy1: ethernet-phy@0 {
+> > > > +                             reg =3D <0x0>;
+> > > > +                     };
+> > > > +             };
+> > > > +     };
+> > > > +};
+> > > > +
+> > > > +&gmac0 {
+> > > > +     interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +
+> > > > +     phy-handle =3D <&phy0>;
+> > > > +     phy-mode =3D "mii";
+> > > > +
+> > > > +     mdio0 {
+> > > > +             #address-cells =3D <1>;
+> > > > +             #size-cells =3D <0>;
+> > > > +             compatible =3D "snps,dwmac-mdio";
+> > > > +
+> > > > +             phy0: ethernet-phy@0 {
+> > > > +                     reg =3D <0x0>;
+> > > > +             };
+> > > > +     };
+> > > > +};
+> > > > +
+> > > >  &uart1 {
+> > > >       interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
+> > > >  };
+> > > > diff --git a/arch/mips/boot/dts/loongson/loongson1c.dtsi b/arch/mip=
+s/boot/dts/loongson/loongson1c.dtsi
+> > > > index 1dd575b7b2f9..5b3e0f9280f6 100644
+> > > > --- a/arch/mips/boot/dts/loongson/loongson1c.dtsi
+> > > > +++ b/arch/mips/boot/dts/loongson/loongson1c.dtsi
+> > > > @@ -41,6 +41,23 @@ intc4: interrupt-controller@1fd010a0 {
+> > > >       };
+> > > >  };
+> > > >
+> > > > +&gmac0 {
+> > > > +     interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +
+> > > > +     phy-handle =3D <&phy0>;
+> > > > +     phy-mode =3D "rmii";
+> > > > +
+> > > > +     mdio0 {
+> > > > +             #address-cells =3D <1>;
+> > > > +             #size-cells =3D <0>;
+> > > > +             compatible =3D "snps,dwmac-mdio";
+> > > > +
+> > > > +             phy0: ethernet-phy@13 {
+> > > > +                     reg =3D <0x13>;
+> > > > +             };
+> > > > +     };
+> > > > +};
+> > > > +
+> > > >  &uart1 {
+> > > >       interrupts =3D <4 IRQ_TYPE_LEVEL_HIGH>;
+> > > >  };
+> > > > diff --git a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts b/arch/mip=
+s/boot/dts/loongson/lsgz_1b_dev.dts
+> > > > index 89c3dfa574f7..a43df21f2904 100644
+> > > > --- a/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
+> > > > +++ b/arch/mips/boot/dts/loongson/lsgz_1b_dev.dts
+> > > > @@ -28,6 +28,14 @@ xtal: xtal {
+> > > >       };
+> > > >  };
+> > > >
+> > > > +&gmac0 {
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > > > +&gmac1 {
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > > >  &uart0 {
+> > > >       status =3D "okay";
+> > > >  };
+> > > > diff --git a/arch/mips/boot/dts/loongson/smartloong_1c.dts b/arch/m=
+ips/boot/dts/loongson/smartloong_1c.dts
+> > > > index 188aab9e3685..2d8f304aa2c4 100644
+> > > > --- a/arch/mips/boot/dts/loongson/smartloong_1c.dts
+> > > > +++ b/arch/mips/boot/dts/loongson/smartloong_1c.dts
+> > > > @@ -28,6 +28,10 @@ xtal: xtal {
+> > > >       };
+> > > >  };
+> > > >
+> > > > +&gmac0 {
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > > >  &uart0 {
+> > > >       status =3D "okay";
+> > > >  };
+> > > > diff --git a/arch/mips/loongson32/common/platform.c b/arch/mips/loo=
+ngson32/common/platform.c
+> > > > index 8272b4133e25..817518531b9b 100644
+> > > > --- a/arch/mips/loongson32/common/platform.c
+> > > > +++ b/arch/mips/loongson32/common/platform.c
+> > > > @@ -8,157 +8,13 @@
+> > > >  #include <linux/err.h>
+> > > >  #include <linux/mtd/partitions.h>
+> > > >  #include <linux/sizes.h>
+> > > > -#include <linux/phy.h>
+> > > > -#include <linux/stmmac.h>
+> > > >  #include <linux/usb/ehci_pdriver.h>
+> > > >
+> > > >  #include <platform.h>
+> > > >  #include <loongson1.h>
+> > > >  #include <dma.h>
+> > > >  #include <nand.h>
+> > > > -
+> > > > -/* Synopsys Ethernet GMAC */
+> > > > -static struct stmmac_mdio_bus_data ls1x_mdio_bus_data =3D {
+> > > > -     .phy_mask       =3D 0,
+> > > > -};
+> > > > -
+> > > > -static struct stmmac_dma_cfg ls1x_eth_dma_cfg =3D {
+> > > > -     .pbl            =3D 1,
+> > > > -};
+> > > > -
+> > > > -int ls1x_eth_mux_init(struct platform_device *pdev, void *priv)
+> > > > -{
+> > > > -     struct plat_stmmacenet_data *plat_dat =3D NULL;
+> > > > -     u32 val;
+> > > > -
+> > > > -     val =3D __raw_readl(LS1X_MUX_CTRL1);
+> > > > -
+> > > > -#if defined(CONFIG_LOONGSON1_LS1B)
+> > > > -     plat_dat =3D dev_get_platdata(&pdev->dev);
+> > > > -     if (plat_dat->bus_id) {
+> > > > -             __raw_writel(__raw_readl(LS1X_MUX_CTRL0) | GMAC1_USE_=
+UART1 |
+> > > > -                          GMAC1_USE_UART0, LS1X_MUX_CTRL0);
+> > > > -             switch (plat_dat->phy_interface) {
+> > > > -             case PHY_INTERFACE_MODE_RGMII:
+> > > > -                     val &=3D ~(GMAC1_USE_TXCLK | GMAC1_USE_PWM23)=
+;
+> > > > -                     break;
+> > > > -             case PHY_INTERFACE_MODE_MII:
+> > > > -                     val |=3D (GMAC1_USE_TXCLK | GMAC1_USE_PWM23);
+> > > > -                     break;
+> > > > -             default:
+> > > > -                     pr_err("unsupported mii mode %d\n",
+> > > > -                            plat_dat->phy_interface);
+> > > > -                     return -ENOTSUPP;
+> > > > -             }
+> > > > -             val &=3D ~GMAC1_SHUT;
+> > > > -     } else {
+> > > > -             switch (plat_dat->phy_interface) {
+> > > > -             case PHY_INTERFACE_MODE_RGMII:
+> > > > -                     val &=3D ~(GMAC0_USE_TXCLK | GMAC0_USE_PWM01)=
+;
+> > > > -                     break;
+> > > > -             case PHY_INTERFACE_MODE_MII:
+> > > > -                     val |=3D (GMAC0_USE_TXCLK | GMAC0_USE_PWM01);
+> > > > -                     break;
+> > > > -             default:
+> > > > -                     pr_err("unsupported mii mode %d\n",
+> > > > -                            plat_dat->phy_interface);
+> > > > -                     return -ENOTSUPP;
+> > > > -             }
+> > > > -             val &=3D ~GMAC0_SHUT;
+> > > > -     }
+> > > > -     __raw_writel(val, LS1X_MUX_CTRL1);
+> > > > -#elif defined(CONFIG_LOONGSON1_LS1C)
+> > > > -     plat_dat =3D dev_get_platdata(&pdev->dev);
+> > > > -
+> > > > -     val &=3D ~PHY_INTF_SELI;
+> > > > -     if (plat_dat->phy_interface =3D=3D PHY_INTERFACE_MODE_RMII)
+> > > > -             val |=3D 0x4 << PHY_INTF_SELI_SHIFT;
+> > > > -     __raw_writel(val, LS1X_MUX_CTRL1);
+> > > > -
+> > > > -     val =3D __raw_readl(LS1X_MUX_CTRL0);
+> > > > -     __raw_writel(val & (~GMAC_SHUT), LS1X_MUX_CTRL0);
+> > > > -#endif
+> > > > -
+> > > > -     return 0;
+> > > > -}
+> > > > -
+> > > > -static struct plat_stmmacenet_data ls1x_eth0_pdata =3D {
+> > > > -     .bus_id                 =3D 0,
+> > > > -     .phy_addr               =3D -1,
+> > > > -#if defined(CONFIG_LOONGSON1_LS1B)
+> > > > -     .phy_interface          =3D PHY_INTERFACE_MODE_MII,
+> > > > -#elif defined(CONFIG_LOONGSON1_LS1C)
+> > > > -     .phy_interface          =3D PHY_INTERFACE_MODE_RMII,
+> > > > -#endif
+> > > > -     .mdio_bus_data          =3D &ls1x_mdio_bus_data,
+> > > > -     .dma_cfg                =3D &ls1x_eth_dma_cfg,
+> > > > -     .has_gmac               =3D 1,
+> > > > -     .tx_coe                 =3D 1,
+> > > > -     .rx_queues_to_use       =3D 1,
+> > > > -     .tx_queues_to_use       =3D 1,
+> > > > -     .init                   =3D ls1x_eth_mux_init,
+> > > > -};
+> > > > -
+> > > > -static struct resource ls1x_eth0_resources[] =3D {
+> > > > -     [0] =3D {
+> > > > -             .start  =3D LS1X_GMAC0_BASE,
+> > > > -             .end    =3D LS1X_GMAC0_BASE + SZ_64K - 1,
+> > > > -             .flags  =3D IORESOURCE_MEM,
+> > > > -     },
+> > > > -     [1] =3D {
+> > > > -             .name   =3D "macirq",
+> > > > -             .start  =3D LS1X_GMAC0_IRQ,
+> > > > -             .flags  =3D IORESOURCE_IRQ,
+> > > > -     },
+> > > > -};
+> > > > -
+> > > > -struct platform_device ls1x_eth0_pdev =3D {
+> > > > -     .name           =3D "stmmaceth",
+> > > > -     .id             =3D 0,
+> > > > -     .num_resources  =3D ARRAY_SIZE(ls1x_eth0_resources),
+> > > > -     .resource       =3D ls1x_eth0_resources,
+> > > > -     .dev            =3D {
+> > > > -             .platform_data =3D &ls1x_eth0_pdata,
+> > > > -     },
+> > > > -};
+> > > > -
+> > > > -#ifdef CONFIG_LOONGSON1_LS1B
+> > > > -static struct plat_stmmacenet_data ls1x_eth1_pdata =3D {
+> > > > -     .bus_id                 =3D 1,
+> > > > -     .phy_addr               =3D -1,
+> > > > -     .phy_interface          =3D PHY_INTERFACE_MODE_MII,
+> > > > -     .mdio_bus_data          =3D &ls1x_mdio_bus_data,
+> > > > -     .dma_cfg                =3D &ls1x_eth_dma_cfg,
+> > > > -     .has_gmac               =3D 1,
+> > > > -     .tx_coe                 =3D 1,
+> > > > -     .rx_queues_to_use       =3D 1,
+> > > > -     .tx_queues_to_use       =3D 1,
+> > > > -     .init                   =3D ls1x_eth_mux_init,
+> > > > -};
+> > > > -
+> > > > -static struct resource ls1x_eth1_resources[] =3D {
+> > > > -     [0] =3D {
+> > > > -             .start  =3D LS1X_GMAC1_BASE,
+> > > > -             .end    =3D LS1X_GMAC1_BASE + SZ_64K - 1,
+> > > > -             .flags  =3D IORESOURCE_MEM,
+> > > > -     },
+> > > > -     [1] =3D {
+> > > > -             .name   =3D "macirq",
+> > > > -             .start  =3D LS1X_GMAC1_IRQ,
+> > > > -             .flags  =3D IORESOURCE_IRQ,
+> > > > -     },
+> > > > -};
+> > > > -
+> > > > -struct platform_device ls1x_eth1_pdev =3D {
+> > > > -     .name           =3D "stmmaceth",
+> > > > -     .id             =3D 1,
+> > > > -     .num_resources  =3D ARRAY_SIZE(ls1x_eth1_resources),
+> > > > -     .resource       =3D ls1x_eth1_resources,
+> > > > -     .dev            =3D {
+> > > > -             .platform_data =3D &ls1x_eth1_pdata,
+> > > > -     },
+> > > > -};
+> > > > -#endif       /* CONFIG_LOONGSON1_LS1B */
+> > > > +#include <irq.h>
+> > > >
+> > > >  /* GPIO */
+> > > >  static struct resource ls1x_gpio0_resources[] =3D {
+> > > > diff --git a/arch/mips/loongson32/ls1b/board.c b/arch/mips/loongson=
+32/ls1b/board.c
+> > > > index e8290f200096..f23e4e5c96ee 100644
+> > > > --- a/arch/mips/loongson32/ls1b/board.c
+> > > > +++ b/arch/mips/loongson32/ls1b/board.c
+> > > > @@ -34,8 +34,6 @@ static const struct gpio_led_platform_data ls1x_l=
+ed_pdata __initconst =3D {
+> > > >  };
+> > > >
+> > > >  static struct platform_device *ls1b_platform_devices[] __initdata =
+=3D {
+> > > > -     &ls1x_eth0_pdev,
+> > > > -     &ls1x_eth1_pdev,
+> > > >       &ls1x_ehci_pdev,
+> > > >       &ls1x_gpio0_pdev,
+> > > >       &ls1x_gpio1_pdev,
+> > > > diff --git a/arch/mips/loongson32/ls1c/board.c b/arch/mips/loongson=
+32/ls1c/board.c
+> > > > index a7096964fb30..29bc467fd149 100644
+> > > > --- a/arch/mips/loongson32/ls1c/board.c
+> > > > +++ b/arch/mips/loongson32/ls1c/board.c
+> > > > @@ -6,7 +6,6 @@
+> > > >  #include <platform.h>
+> > > >
+> > > >  static struct platform_device *ls1c_platform_devices[] __initdata =
+=3D {
+> > > > -     &ls1x_eth0_pdev,
+> > > >       &ls1x_rtc_pdev,
+> > > >       &ls1x_wdt_pdev,
+> > > >  };
+> > > > --
+> > > > 2.39.2
+> > > >
+> >
+> >
+> >
+> > --
+> > Best regards,
+> >
+> > Keguang Zhang
 
-Given currently none of the AM62A boards are using the refclks, can you=20
-drop those or just mark the nodes as disabled. Whoever is the first user=20
-can enable them.
 
-With that change, LGTM.
-Not sure if I can provide an R-by tag, given I'm the author.
-
->  2 files changed, 36 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/d=
-ts/ti/k3-am62-main.dtsi
-> index 33b6aadc9083..3a1b387bbf49 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -60,6 +60,24 @@ epwm_tbclk: clock@4130 {
->  			reg =3D <0x4130 0x4>;
->  			#clock-cells =3D <1>;
->  		};
-> +
-> +		audio_refclk0: clock@82e0 {
-> +			compatible =3D "ti,am62-audio-refclk";
-> +			reg =3D <0x82e0 0x4>;
-> +			clocks =3D <&k3_clks 157 0>;
-> +			assigned-clocks =3D <&k3_clks 157 0>;
-> +			assigned-clock-parents =3D <&k3_clks 157 8>;
-> +			#clock-cells =3D <0>;
-> +		};
-> +
-> +		audio_refclk1: clock@82e4 {
-> +			compatible =3D "ti,am62-audio-refclk";
-> +			reg =3D <0x82e4 0x4>;
-> +			clocks =3D <&k3_clks 157 10>;
-> +			assigned-clocks =3D <&k3_clks 157 10>;
-> +			assigned-clock-parents =3D <&k3_clks 157 18>;
-> +			#clock-cells =3D <0>;
-> +		};
->  	};
-> =20
->  	dmss: bus@48000000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/=
-dts/ti/k3-am62a-main.dtsi
-> index 8397cb80f559..30b163a9b248 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> @@ -60,6 +60,24 @@ epwm_tbclk: clock-controller@4130 {
->  			reg =3D <0x4130 0x4>;
->  			#clock-cells =3D <1>;
->  		};
-> +
-> +		audio_refclk0: clock@82e0 {
-> +			compatible =3D "ti,am62-audio-refclk";
-> +			reg =3D <0x82e0 0x4>;
-> +			clocks =3D <&k3_clks 157 0>;
-> +			assigned-clocks =3D <&k3_clks 157 0>;
-> +			assigned-clock-parents =3D <&k3_clks 157 8>;
-> +			#clock-cells =3D <0>;
-> +		};
-> +
-> +		audio_refclk1: clock@82e4 {
-> +			compatible =3D "ti,am62-audio-refclk";
-> +			reg =3D <0x82e4 0x4>;
-> +			clocks =3D <&k3_clks 157 10>;
-> +			assigned-clocks =3D <&k3_clks 157 10>;
-> +			assigned-clock-parents =3D <&k3_clks 157 18>;
-> +			#clock-cells =3D <0>;
-> +		};
->  	};
-> =20
->  	dmss: bus@48000000 {
-> --=20
-> 2.25.1
->=20
->=20
 
 --=20
-Thanks,
-Jai
+Best regards,
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---v4gamd5lzmdkps2a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmTKPMUACgkQQ96R+SSa
-cUV5PhAAw7AayiEwopqqFyzXTXqvB7Ydaib87VNWpoXzhhzSB9EORMpIlY3i2+EZ
-iyYfAznYEMgj9h29IJ9C7cCrKdKcYb23FNbEAl52X43XDGqenAnCUjOUFmjmNR6Q
-tWf91YOnfGMSa4/Svonwxh87fiuNHTke9TblUsF1rUDYuKWcGZNcSuoOv0i7wfhk
-RxER8Lz6Ko/4e2SqYv8anpxKiuvH81zBfdcLcfJLK2dBBzk5dGPkPUpcfiH3KYy8
-Ct7efa3q+C1ZfqIwTMq4DEw80AcQpadKgJQ1srnqpaOHJlMz/pv3yzNJ0YcevWaU
-BElCbSAq6UmJ4mldDkjyIjqX/zrAhKqXbbdemNJPVaa1mZrTODJMoo+WhVxhNi2X
-Pv33STqrpfxE3t7y8sWsdyn0pIBzsDDD+h9IbrrmvwEINO0lxyj/TXZZUjFGdF3m
-23GVIyP3ic4u2wGiNYvA8kOewoXYW8T09XN6U0zIic18P/L2vUi8tj1cTcTRAggW
-+gMhw4nAuhQtgMlDXxCER5hpgjdvXZOFPet2QxH4ZA3RE4WJbyuAkeyDPLiCpGYj
-HV7hrr6mscCWVMtJ0ONDmU+lFYibJwE4Q+3UOimfPTz2cq+arT3efnIw9acd7/pk
-PzR4tR/9AWlckiG8Wb8pn83BxKK9ftpoby+6E5+jxo7vApLf/Us=
-=VKzc
------END PGP SIGNATURE-----
-
---v4gamd5lzmdkps2a--
+Keguang Zhang
