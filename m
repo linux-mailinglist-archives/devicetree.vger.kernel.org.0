@@ -2,160 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 465CE76CFF8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 16:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2FA76D031
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 16:38:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232680AbjHBO0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 10:26:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60748 "EHLO
+        id S232617AbjHBOiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 10:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232560AbjHBOZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 10:25:59 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574D62706
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 07:25:57 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bded9d93dso171424666b.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 07:25:57 -0700 (PDT)
+        with ESMTP id S234141AbjHBOiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 10:38:10 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDB826AF
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 07:38:07 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-3a38953c928so5352236b6e.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 07:38:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1690986356; x=1691591156;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FsVcsCDvamjl31gifaKwLNv2n2Xspa6emd5tT3prZvw=;
-        b=eq9qvw/au3DtjNiInHv+/Ks+sX1tL4hda1Ymw/mKWe9H1Dn/0GH3Lkc2XHr2w4hnqh
-         szW59lqw7i9lIfZLBs86jn+JmO2jiioTa1/OThHRi93xkN7nQo8rqnOgCYtBmvg7+wtd
-         WF753BEgN/emMxve58EPL3p3mFOmrc8E1KGkg=
+        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1690987086; x=1691591886;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8nmftj9H6QNMjKvC/PHkZC+FCS8/x2xMcYkBxSq4Jqc=;
+        b=Nq1cPX/iQ+SjG++rAIUe4TQ0nEJvKktHyDdQygPW6XGYm6QdZ22VYdWX3Sxia4lv/R
+         YJuSNgBmBsiEtFjKvURlOY+apmhMQxa649KhDz3pit05rVnP0pFw6e83dyFOJJjEQzNM
+         0vzLw+06LIheQacaf8f6rgsRruNeKoQQOtflwEXzm7ZJ6Z8vIxrKXinDr/ocV89/pImb
+         /JrlZC6lPd7gqvpQrU2n55PHJKSeqQGNf+2cgjc/TscYTTu/dEGp5KDuSJtkvjVeamYh
+         YQk7ZrAMcc0ajRcpiq2ELwz1ytTmjz3kH0rHjga+I055BHA+jcwpeDD7u+ByaQLXgddf
+         mlTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690986356; x=1691591156;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FsVcsCDvamjl31gifaKwLNv2n2Xspa6emd5tT3prZvw=;
-        b=JGwYQziUss1HB3fSAf2ME4sv7z5d6HF8kSJyvN2MKF+Y3Y/eWijCoicFJaEqd0qvVO
-         74WWf+DDJ40trKWFRoaA40nene6+WXoMyjnL0XWKYndJhmeC8N+JcOikIYR8hgSvjdaD
-         PiAKYXYFsYTLJn15eu5FogP1j8WCjY160P3GYfM/UH/V5OwWVyCj+rD+EzmQnGHlAJjw
-         nxQpKEtShqkpBrbgms9mLnQLwqWKHFYglDTpyhaARyFz+BIFXfvbHy8fowVgVCGZDWma
-         zVjdFSlWNeo37C0uoEcBsgL6TtDKEsgQRy5ELX0/Q7PjuwYfx3TozJWy8uMhQCBhgaCD
-         H5FQ==
-X-Gm-Message-State: ABy/qLaO2Jp5MoNiBrdkt88xxgJlpHh5kQnmtfJCMbOYWVFUF6hRQgcA
-        30wo/nXcZBNlFHkCvFBBRSISKA==
-X-Google-Smtp-Source: APBJJlEGuIJd0GEks9/vYG2PGf+sSGozgW3aVzw1hHeGDBgQvjzANdpy3n5m6RtZqxVwQKbbxW+z3w==
-X-Received: by 2002:a17:906:73dd:b0:99b:d594:8f89 with SMTP id n29-20020a17090673dd00b0099bd5948f89mr10192169ejl.0.1690986355776;
-        Wed, 02 Aug 2023 07:25:55 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id si15-20020a170906cecf00b00992e265495csm9261942ejb.212.2023.08.02.07.25.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 07:25:55 -0700 (PDT)
-Date:   Wed, 2 Aug 2023 16:25:53 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
- mode
-Message-ID: <ZMpnceQYSuyOmi+F@phenom.ffwll.local>
-Mail-Followup-To: Michael Riesch <michael.riesch@wolfvision.net>,
+        d=1e100.net; s=20221208; t=1690987086; x=1691591886;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8nmftj9H6QNMjKvC/PHkZC+FCS8/x2xMcYkBxSq4Jqc=;
+        b=aK10ZcCsaUwBwmXtoWgZJbgDqJHgEHk2Q7xsAKcXkC9aRJ/ZDljwAvWeub5IPuUCJb
+         yA616fdvjrS9BmVFfnZaZEtZScv4uUNHEmfxA8FxG4q2IqIVruKrIWhM6+v+Js2C7x6z
+         Em3ONhS0pqmR0Il3L/cWNE+lFn9c6RRTJG0d/W0pu9Bsp5PMxCfCXVcinvssk0+2sItg
+         pzSXs63oP2UKL89PuAqqxwRsOzN7jp3iSGV6e9w4qw/ZxJt9/2Vyy46vsuUeyRhKNFiG
+         3k7LVDuxWTB2qGvEhnSrSGcXt5fnaozzWRbVGflYV1LCppxmuwO+KnULjGLhEnqSGQIZ
+         R3ag==
+X-Gm-Message-State: ABy/qLbD9kqViBVxhORAtCBeslz4O++Gy08sCO5BAsKHdxjd7Gg+vCor
+        pwIAQrAmTiqcb/yjHmvzdiFzTCoj1jAe1JbmAhDexQ==
+X-Google-Smtp-Source: APBJJlEzTjl6RKml+LdRCmbwAb2hGX3y19EwwY+i1muMiAb8Luqi1vw3YUfBLtHOB1vz1+aCnlEV0Yzu1qxjbKqjsqw=
+X-Received: by 2002:a05:6808:3010:b0:3a3:ed41:5ab with SMTP id
+ ay16-20020a056808301000b003a3ed4105abmr18113315oib.9.1690987086380; Wed, 02
+ Aug 2023 07:38:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230731110012.2913742-1-jagan@edgeble.ai> <20230731110012.2913742-6-jagan@edgeble.ai>
+ <20230801-residue-tractor-5c63e4447f2c@spud>
+In-Reply-To: <20230801-residue-tractor-5c63e4447f2c@spud>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Wed, 2 Aug 2023 20:07:55 +0530
+Message-ID: <CA+VMnFyh-ctPbf_j=CEXxPNKY+sUymV64Sdqqs-kY7dTojQYUA@mail.gmail.com>
+Subject: Re: [PATCH 05/14] dt-bindings: display: rockchip-vop: Document rv1126 vop
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
-X-Operating-System: Linux phenom 6.3.0-2-amd64 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Sandy Huang <hjc@rock-chips.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 05:31:49PM +0200, Michael Riesch wrote:
-> Hi all,
-> 
-> This series adds support for the partial display mode to the Sitronix
-> ST7789V panel driver. This is useful for panels that are partially
-> occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
-> for this particular panel is added as well.
-> 
-> Note: This series is already based on
-> https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
-> 
-> Looking forward to your comments!
+On Wed, 2 Aug 2023 at 02:37, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Mon, Jul 31, 2023 at 04:30:03PM +0530, Jagan Teki wrote:
+> > Document the VOP for Rockchip RV1126.
+> >
+> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+>
+> There's no commentary here about compatibility with other, existing,
+> devices nor did you CC me on the rest of the series. How am I supposed
+> to know if appending to enum is the right thing to do?
 
-Summary of my take from a fairly long (and kinda still on-going) irc
-discussion:
+I had past comments not to add all people in the entire series and add
+one relevant developer on respective patches. On that note, I tried to
+CC the developers only involved in the respective areas. But, you are
+CCed to the DT patch that affected this binding.
+"[PATCH 10/14] ARM: dts: rockchip: rv1126: Add VOP_LITE support"
 
-- Where we do know the exact overscan, the kernel should expose correct
-  modes and adjust the display pipeline to match if needed when
-  programming the hardware. Meaning the approach in this patch series.
+Please let me know if I missed anything.
 
-- For hdmi overscan there's a lot of automagic overscan happening by
-  default. Drivers can mostly fix this by setting all the right
-  infoframes, but unfortuantely a very big pile of infoframes is needed.
-  Assuming drivers actually use the helpers I think only i915 gets them
-  all, so intel_hdmi_compute_config() at the bottom would be the example
-  to follow, and maybe some more code to extract from and share.
-
-- That /should/ only leave the really old analog TV and similar horrors
-  leftover. For those we simply can't even guess the right amount of
-  overscan (because back then no one cared back then about really seeing
-  everything), and so that's the only case where we should rely on the
-  overscan properties. And that case only works when the compositor stack
-  passes these properties all the way to the user, since only they can
-  check when the settings are good.
-
-The overscan properties should _not_ be used to fix issues of the previous
-kind, that really should all work out of the box as much as possible.
-
-Cheers, Sima
-
-
-> 
-> ---
-> Michael Riesch (4):
->       dt-bindings: vendor-prefixes: add jasonic
->       dt-bindings: display: st7789v: add jasonic jt240mhqs-hwt-ek-e3 display
->       drm/panel: sitronix-st7789v: add support for partial mode
->       drm/panel: sitronix-st7789v: add jasonic jt240mhqs-hwt-ek-e3 support
-> 
->  .../bindings/display/panel/sitronix,st7789v.yaml   |  1 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
->  drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 67 +++++++++++++++++++++-
->  3 files changed, 68 insertions(+), 2 deletions(-)
-> ---
-> base-commit: b43dae411767f34288aa347f26b5ed2dade39469
-> change-id: 20230718-feature-lcd-panel-26d9f29a7830
-> 
-> Best regards,
-> -- 
-> Michael Riesch <michael.riesch@wolfvision.net>
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Thanks,
+Jagan.
