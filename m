@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDCA76C5B9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 08:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292E676C5D1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 08:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232812AbjHBGwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 02:52:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41868 "EHLO
+        id S232549AbjHBGyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 02:54:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232585AbjHBGwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 02:52:22 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897622114
-        for <devicetree@vger.kernel.org>; Tue,  1 Aug 2023 23:51:48 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1qR5hq-0008Kt-SF; Wed, 02 Aug 2023 08:51:38 +0200
-Message-ID: <7f98d5f3-eb5b-d98b-a5ab-a7f54319c99a@pengutronix.de>
-Date:   Wed, 2 Aug 2023 08:51:37 +0200
+        with ESMTP id S232560AbjHBGxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 02:53:49 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 561C83C13;
+        Tue,  1 Aug 2023 23:53:23 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe216edaf7so724373e87.0;
+        Tue, 01 Aug 2023 23:53:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690959200; x=1691564000;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F4Pl5BdSH4byRA35L85xc6zgO1CbzCWnR5yIepndUv4=;
+        b=dG3UvMXulrUfNJ6jRi002t7IMTXDRFa3EkIjXo4YZNoRRElB8ESgvKp655SVVhEW+s
+         WqK3tMXaREEjwHcNlgWUiIW0S755S+bbP8MgPvVzansTiM5Hmk2/h9X1qWkaFBdcJIzp
+         FuEAbmNQ5pA6Z2CG1aIyNb+NXuSXUGp8bXNvPOdFfOqB5mPK2BtWbjXM9+sSmTKtnyUX
+         mqbEkv3XqPyAgUo3WsrCJzZN7FLg2y8DnK04LOupId8sDYi2FB3zwc6vXZUjnCTkeljY
+         l9Sd7WNg/lnIDfHesFVLvn9Lnnov8idFVo0cjv0+YENOWnrDv1H+1JKBYXP0uV28DWf6
+         QFLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690959200; x=1691564000;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F4Pl5BdSH4byRA35L85xc6zgO1CbzCWnR5yIepndUv4=;
+        b=ZPKHHyJbL/1Y6fL9xO98qiXkB9bgK/pjkisXuaacxBcy9G6u4M9+JFgSUa3aQhm2mu
+         +g2YCTyVve52s4J5SjBKj04eXSGFrjF9uhpXE7Dha+oOIp82BXGXsB5BHUlODUIroHt9
+         klHTiTNeyT6E6YJ5oNjZy/ok0XV0mwV3YpwGC2aSFyIj/KmKvIGtdqLAbS0ueVg5kp9A
+         tEo9yETGqHmauOp+rdWxvn2rYuC2PMvnQh1CEecVmltAsBuhffl5zVs7KrcN5qTq/00O
+         WF2TJhc+rBox0Xdjr08PcDNoajkL36bDfMuXfIDHycumtRr20cFiHYd8Y/sO9CEhjsgV
+         3Ofg==
+X-Gm-Message-State: ABy/qLZbtSJ7KzYg6KWZD3SOR2n+Xuofz/g3f4tmxr3X1iua4cLoyrBy
+        kEKd7+Kf9fWCAZbTVf5GWTU=
+X-Google-Smtp-Source: APBJJlE+MsFBV416mdrDP4Oa0sGHVarFSvTi8K1fbAzufL0Uiiw35c+ZN+Sy5dLJWmGJzMM6O7lp8w==
+X-Received: by 2002:ac2:4301:0:b0:4fe:32cd:481f with SMTP id l1-20020ac24301000000b004fe32cd481fmr1833475lfh.1.1690959200258;
+        Tue, 01 Aug 2023 23:53:20 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::5? (dc78bmyyyyyyyyyyyyyct-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::5])
+        by smtp.gmail.com with ESMTPSA id j29-20020ac2551d000000b004fe09920fe5sm2867897lfk.47.2023.08.01.23.53.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Aug 2023 23:53:19 -0700 (PDT)
+Message-ID: <f28f74f9-e88b-55a3-28e5-5997474a8238@gmail.com>
+Date:   Wed, 2 Aug 2023 09:53:19 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 0/9] Add legacy i.MX PCIe EP mode supports
-Content-Language: en-US
-To:     Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
-        shawnguo@kernel.org, lpieralisi@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-References: <1690956412-2439-1-git-send-email-hongxing.zhu@nxp.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <1690956412-2439-1-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] dt-bindings: leds: rohm,bd71828: Drop select:false
+Content-Language: en-US, en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230728171123.110489-1-krzysztof.kozlowski@linaro.org>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20230728171123.110489-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Richard,
+On 7/28/23 20:11, Krzysztof Kozlowski wrote:
+> select:false makes the schema basically ignored (not selected for given
+> compatible), unless some other binding references it.  It's not really
+> useful nor needed for device bindings, even if they are part of other
+> binding (like MFD).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 02.08.23 08:06, Richard Zhu wrote:
-> Add legacy 32bit i.MX PCIe EP mode support
-> 
-> The PCI controller contained in i.MX6/7 legacy SOCs is one dual mode
-> PCIe controller, and can work either as RC or EP.
-> 
-> This series add i.MX6/7 PCIe EP mode supports. And had been verified
-> on i.MX6 sabresd and i.MX7 SDB boards.
-> 
-> In the verification, one board PCIe is used as RC, the other one is used
-> as EP.
-> Use the cross TX/RX differential cable connect the two PCIe ports of
-> these two boards.
-> 
-> +-----------+                +------------+
-> |   PCIe TX |<-------------->|PCIe RX     |
-> |           |                |            |
-> |    Board  |                |    Board   |
-> |           |                |            |
-> |   PCIe RX |<-------------->|PCIe TX     |
-> +-----------+                +------------+
+Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-I am curious what software you are running on both sides to test?
-Do you use CONFIG_PCI_EPF_TEST? What do you run on RC side?
-
-Thanks,
-Ahmad
-
-> 
-> [PATCH 1/9] dt-bindings: PCI: fsl,imx6q: Add i.MX6Q and i.MX6QP PCIe
-> [PATCH 2/9] dt-bindings: PCI: fsl,imx6q: Add i.MX6SX PCIe EP
-> [PATCH 3/9] dt-bindings: PCI: fsl,imx6q: Add i.MX7D PCIe EP
-> [PATCH 4/9] arm: dts: nxp: Add i.MX6QDL and i.MX6QP PCIe EP supports
-> [PATCH 5/9] arm: dts: nxp: Add i.MX6SX PCIe EP support
-> [PATCH 6/9] arm: dts: nxp: Add i.MX7D PCIe EP support
-> [PATCH 7/9] PCI: imx6: Add i.MX6Q and i.MX6QP PCIe EP supports
-> [PATCH 8/9] PCI: imx6: Add i.MX6SX PCIe EP support
-> [PATCH 9/9] PCI: imx6: Add i.MX7D PCIe EP support
-> 
-> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml | 50 +++++++++++++++++++++++++++++++++++++++++----
-> arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi                       | 14 +++++++++++++
-> arch/arm/boot/dts/nxp/imx/imx6qp.dtsi                        |  4 ++++
-> arch/arm/boot/dts/nxp/imx/imx6sx.dtsi                        | 17 +++++++++++++++
-> arch/arm/boot/dts/nxp/imx/imx7d.dtsi                         | 27 ++++++++++++++++++++++++
-> drivers/pci/controller/dwc/pci-imx6.c                        | 93 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
-> 6 files changed, 200 insertions(+), 5 deletions(-)
-> 
-> 
-> 
+Yours,
+	Matti
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
