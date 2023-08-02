@@ -2,160 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F140176CB37
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 12:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0575876CB3D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 12:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231950AbjHBKre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 06:47:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33212 "EHLO
+        id S232594AbjHBKso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 06:48:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230216AbjHBKrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 06:47:32 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB669C;
-        Wed,  2 Aug 2023 03:47:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690973250; x=1722509250;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=P2yAgLZr2I1MmPHW8iOXRsUoSWWPluCwChvFb4TjnKE=;
-  b=EmGRIlBlcLm7wuPWJ1kEtXp0oFrk3IL3qY7SBWTouIcekCNGCQs3rVIr
-   V+id1twOxzwW263dVRdoKYLnoeQHK8Co9khmAREaGYaC2AQTEMhp6i8HY
-   hj86sLM5hCkikSnef985Agl8B5DhfmIWEnAlmhoQbEx6X/W7+RXlxh766
-   QYMg0LrxG2o21RQNpI7kYiuglSyo0X/1TtmabrJS2iAMGXnvpue+kkp2u
-   wkNoTYh8I15EbYm1d/wTr9lNESoJJMCeCJXnr2zgFeS9y/Tmtq7b0L05p
-   CsjhpAoP2YXDkfP/wQLHerr8V8Gz93KWtM5hv/5JdsxkSDGVkTkU+st2H
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,249,1684825200"; 
-   d="scan'208";a="226713028"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Aug 2023 03:47:29 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 2 Aug 2023 03:47:30 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 2 Aug 2023 03:47:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jNCMuj1HaB1r1KTKLRrtlqPlPcGdhJT6R7+bmqV54l1NyAnCPV2w0QgcCmA57BTVqoCVO2HdnBg9RphrosWCx3A19A/R25EVxpZ0OOs3GQjzX5Sbrq+FeiXL/LSH7sf/YcbpqSvuJrv0QJuu/qzxLh5CdXp9GXzLydxYmyZh019921A7mSq/b3Hq1xCeOgd8XBSZMB1F9iCySnL2ySgiLJpgKJF7V3ksZIe3C2dMoGjTH2QoOrO627QbdROIu5saiHLsXsYIED8xfEI1qwp+V8XgIWqsjB1fLk3a5OMKZMBpfttX8gy7qJ9j1/0okmZf0fiGy+jt1HHG4jXlMVwL1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P2yAgLZr2I1MmPHW8iOXRsUoSWWPluCwChvFb4TjnKE=;
- b=k+S9NDOWfiXDKS+zpiLgKARVVKts1j4+Rs6wyfZ4zVScFWrvn7upevksK/llK2sJEwGjefdwJ9rCf87iqozs3/o1H918Zz++OuzzGu5r56NvF4J8n3OSzOZb1llJ1TX/B1qz7AQylj1qa9Jh/MGTk7fTPlokcAJhY85JpOtiqL7dBgX9mo0LQe+rsqZuNrdwDv+jeCQ13yZ0bEUTWOSVymI6O7Xm2OH1EggVwH3Rb6qSmFcw3c+FaAP/6fYhz0VXJAuR8m73x8LE1xmm2JDk/EnLHFEFUZwJI7j2eKHKYTofN7Z7ZsV9+DuTuhxsX5/di0bVBw6qcoL7D1EqKz6zIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P2yAgLZr2I1MmPHW8iOXRsUoSWWPluCwChvFb4TjnKE=;
- b=gJ9bNAYM6jWeFBFfKiXRi/dfzVUFVmJ85OQX2JDeS9kqiVW7kUzaYIth/c5MVAmqFRudmmZsaMRodr7dcmYvI/8unLllW/8+vZ8Pr8Q5u4dyrmQEIW0NvfaVuWkudnoktBtUYYpIrgH2EMR56HMhLxOMQN4MplJiN8aSWBdk7Og=
-Received: from DM6PR11MB4185.namprd11.prod.outlook.com (2603:10b6:5:195::29)
- by SN7PR11MB7974.namprd11.prod.outlook.com (2603:10b6:806:2e7::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.44; Wed, 2 Aug
- 2023 10:47:27 +0000
-Received: from DM6PR11MB4185.namprd11.prod.outlook.com
- ([fe80::591f:32f4:3319:e1f8]) by DM6PR11MB4185.namprd11.prod.outlook.com
- ([fe80::591f:32f4:3319:e1f8%7]) with mapi id 15.20.6631.045; Wed, 2 Aug 2023
- 10:47:27 +0000
-From:   <Hari.PrasathGE@microchip.com>
-To:     <Manikandan.M@microchip.com>, <lee@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <Claudiu.Beznea@microchip.com>,
-        <sam@ravnborg.org>, <bbrezillon@kernel.org>, <airlied@gmail.com>,
-        <daniel@ffwll.ch>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
-CC:     <Balamanikandan.Gunasundar@microchip.com>,
-        <Durai.ManickamKR@microchip.com>, <Nayabbasha.Sayed@microchip.com>,
-        <Dharma.B@microchip.com>, <Varshini.Rajendran@microchip.com>,
-        <Balakrishnan.S@microchip.com>
-Subject: Re: [PATCH v2 7/9] drm: atmel-hlcdc: add DPI mode support for XLCDC
-Thread-Topic: [PATCH v2 7/9] drm: atmel-hlcdc: add DPI mode support for XLCDC
-Thread-Index: AQHZtGqTqCumk6PnLEW703hMRO0Te6/W9KAA
-Date:   Wed, 2 Aug 2023 10:47:26 +0000
-Message-ID: <988bc82a-2bdb-daa7-1ea9-1e8a3c3de0bd@microchip.com>
-References: <20230712024017.218921-1-manikandan.m@microchip.com>
- <20230712024017.218921-8-manikandan.m@microchip.com>
-In-Reply-To: <20230712024017.218921-8-manikandan.m@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB4185:EE_|SN7PR11MB7974:EE_
-x-ms-office365-filtering-correlation-id: 62335b41-3b70-41d6-42fb-08db9345dcc9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9mq0/lTJDxaHkH/5axoTrwqmaa0c4cZ2Z+cLhX0a0PAqsH4mKr45Uhc9dp4QywNXzOdzMxLkOrKTL5HbypW5tW11xQGtjzmqxnCO+ztcTg1AVeYyp1gfy+Rb3qGsqHM+VSFiJV0ys7o+dX9jl5ZNEHVdpkY0AWuDlBa6t0x4npoaZQ9WAfP+2c6iobbWalBQHcYPVCFg0xU+P51mJvLk5htSM1SwkSGvGyiGkmBJJPnbh34nXmPcchLbMfAGamckTn13WrKnWWdPiHgkI9EvzyQ8M5wQ55WUkYVEmZeI9Je7eh+IJ3QYzyZkHmyV5LLNaS7OeIOYSmCv3gG3tlfGhnWuOOSnn84BS5zqlExJaWb0Kkq5p60DRQBP8wuzzSnWfAvXQvY8ceNSnKyHU+4J4PmcRpDtaZ1SuD8H7baTp+SgdVbrjpaeHxpj7Y5ooqjaOJ71Q17dqvdwUAVpK8gugIZpULh5gPwX0mc5WZFFz+fXXp5jcMJ95u5Zwcr9s4CM/TngVDe+OMeYAiS5ueE+TnGnItAH5ZOTIoSAKP1wE7M5PTuQTee7B2WBPCe2/ueJBsmnnFFKiRuztxnwrjNukCq0gswdA/zFE0GQsqA4CK4h9M6aXuA9mM/ObIykoWnxc9yCqMiUF1e7blXiUbvMrg2/+ZwQ1hR9wtiaB4YX54c=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4185.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(39860400002)(136003)(376002)(396003)(366004)(451199021)(8676002)(122000001)(8936002)(31696002)(38100700002)(86362001)(107886003)(921005)(26005)(41300700001)(38070700005)(2616005)(83380400001)(2906002)(36756003)(6506007)(53546011)(186003)(5660300002)(4326008)(66476007)(66556008)(66446008)(64756008)(66946007)(76116006)(7416002)(6512007)(31686004)(71200400001)(91956017)(54906003)(110136005)(478600001)(6486002)(316002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M0t4TDA5TXpHem5TR2ZzdWpEK1hRdUtjLzhDemdHVXowWUhlRTl0dTcvZzh1?=
- =?utf-8?B?cHhOZFkvYWtEN2ZvV1BHTFMzK1VvQXRpRTVYNUxSamdyYi9EelVpVVZzSHhh?=
- =?utf-8?B?aGxYcFpURjFtUDgyaEduZXFjWi9vOW0ra2pBa0MxdFo3KzAzSGM0WVJyMTVm?=
- =?utf-8?B?Y1FrY01xenhxNkwzYWg1cnZRYVNNaGRMbFNLM2licW1ka2l3bnM0OHg1UVlS?=
- =?utf-8?B?UURkTkFsbHM2WEZmd2JEVnc4MFBjTE45eHl6a29SQzZVS2ZJNy9WTFgvc2FM?=
- =?utf-8?B?NnpPc01JMEFLQjhBMmsvUE5icEs3Yko2dERuZFk3cmhRVVpsVHRxeGl0YjFG?=
- =?utf-8?B?V0dxUmhHNFFiWnJRTVBuU1FiL3Y3UFo2K3QwbjVUS2UyRDJ2cDlvOEFrWVQw?=
- =?utf-8?B?WUJ4dGZUM2VTOWtCek5yT2IrY0owRmhwbFV6TFRxOVF4MXVlZklRbDhYSkFI?=
- =?utf-8?B?R2JyRHpWZjZ4bVRXTCtYMm9ML3BlQkdoNE9yT1hpcEJWeitxb0xQTFh6ZDBo?=
- =?utf-8?B?SGptc1RpYy8rSWVzbFhMaUpEbkp5V0F2WVFFWENuZlN2ZzVrUENsOGRtUjlZ?=
- =?utf-8?B?TkVrVHlZTEZpTDRUaDFuU24yd2g5bXlsd3VFQ1JDWmhxYTZzOFFYdmxkV2V2?=
- =?utf-8?B?NlJvYXY4aFl1VEsxRUlZMkk2dGtXdSs0Tk93S2xYZXlFODdNcFVicGpLTC9l?=
- =?utf-8?B?UFBBN0d3dHNsUDBRbE5nZzhVbFNhajc2VjRGRWhDY0IwclJPKzVSelhINFBp?=
- =?utf-8?B?OE4vbkJFQkwxQTM3Rm5pSXFBUWxuK3VyYUpLWGRTcHNRUkFuMU5XeWJ0TXVD?=
- =?utf-8?B?Z2RYWlpHLzNwOXZmbEhVUmI2amRrZk1uZDFaZ3hzbTRHVENicEVMZ0xhalo3?=
- =?utf-8?B?SzYyb2xqalVJb1REdVFIRUdxc2pmYTJVRGI5S0NkaHZHNHZod2xQbGIrdnVH?=
- =?utf-8?B?K05xQUFsc3JZdXRhWkdyQXFEd2RTMFRpaGJoY21RNjQ5aDNjRzJ3RU9nN2Z4?=
- =?utf-8?B?M3p1VzZrL05FMVhVWjdMSEMxTi9wek9EWm1OajlFOVl0WnFldWJxbzZabjd5?=
- =?utf-8?B?SnFoUHBPZEtuRkFUTWo3dUpHREk1OFFhb2JtSEk3c0t0VnhMejFaQTQ3cERU?=
- =?utf-8?B?aFNkMVFXZEFSRlY3Z2tRSVkxWENERXMyL0QyMndhOUpwZHl2Zks0Z1hMdEVS?=
- =?utf-8?B?SFdvdWcvMHo3NnpSbitrb3RKREhodjI5MzdLNStMMVhxb3JaRGlPeitFUmZy?=
- =?utf-8?B?eW05U1pKSy82MU54Mm5kR0U5RXFCL2pRVHNZZ3pmVHYvWFlHNVpzRHJvRVBC?=
- =?utf-8?B?cXZEanVXb3Mza0JHbjNMVExLQVR1R05ZaWJvTzVzQjlCdFZxS3Z4ZmU2b1Fi?=
- =?utf-8?B?N25PdkIraUVWVVhCZDcvTUloVW45WXVaWU5UbERwUG10ZWFWVkVTMmRLT2FZ?=
- =?utf-8?B?SGFMQVNCcmRpVDVOcmlyeXZxY1p5VURRbXp2ZU5NUllkZ0RNeFlJUWpobG9M?=
- =?utf-8?B?c1luYndjNnVPaGV2WjNHbW9GVVpSS2pzVTVMZE9vT3J5N0hyVk8rb2xoQXJB?=
- =?utf-8?B?VkF2b2FGWGx3Sk5xb3hhMXp0RjhvWExwSWZYNTZqTGFIeWIyVXFXbzh0OUNZ?=
- =?utf-8?B?NHZaNTVmMWZMT1NzUFFqcVZmRlNkOTA5UXJzUmUzd21YSndCbVhzZmh3TkNi?=
- =?utf-8?B?T3pxQ0hneE5jbTZ5ZjJ6M2ZYemlpdkI3S3NHbmZHU2lqOVN0VFJmRVh4U2pP?=
- =?utf-8?B?dFQyU2RiMmMzbDN4UGlkZW41K3VhbmZuZ0d1ZjUyMmV2VkhBck9IOVNTZ1l3?=
- =?utf-8?B?TStoUUNzZVcyZ1FIdW5CK3pGbGZCUE9ZaUdjMUFoS2xaWG13RW1ENnlBMmZq?=
- =?utf-8?B?cTU1SHhlcmVUM0J2KzhYa2c3TXJZWVNldUN2VmZ2Smk2UVpUWTZFNCtVRUtN?=
- =?utf-8?B?ZHZUcEd2WWx5UnBRdGpzQnNsaHRRRCt6U2Q3d09UeWpNUEdWVytyZi9aMnRv?=
- =?utf-8?B?a0lsNGExV0RCRU5zbU9xVmFEN0ozRkpQamVTU2I3UVV4dkQyRG5rUjVpY09H?=
- =?utf-8?B?WmJ1TU9WOXdDSzFaQU5VK1hmeU12RjRpY2hLQ0d6OGNzK21PM1N2N2dSWWx1?=
- =?utf-8?B?TUR4cVpPZnV2SDFsVHUxMEdsbXEzcFpGRWR6L3RtQTA2VEIzdlBZZVg1T0w1?=
- =?utf-8?B?S0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <87F0DE1AB5080C41A4791BAAF3AAE1B3@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S233813AbjHBKsi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 06:48:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29300127;
+        Wed,  2 Aug 2023 03:48:36 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2C0608DA;
+        Wed,  2 Aug 2023 12:47:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1690973251;
+        bh=BQQuyIYqigAYelg5Ief38eObVX2dLE8ROydCS9EGEEM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MDbOx5sfyvuE7MogjBFDsqypfGjddGYz8O8dq9ValVjbY1at1P15qHSG8/uF9P0h2
+         p0NhuPlH/mq8knezlapfPfMXeX0ro0arIIJsau3E9K+KJRxPUX8MNt+V6vjsQrVelv
+         Md1pcJ6qAM86P56V864lUr1ZmFBJFeuHyL/Hy0EQ=
+Date:   Wed, 2 Aug 2023 13:48:40 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v7 5/6] media: starfive: camss: Add ISP driver
+Message-ID: <20230802104840.GC5269@pendragon.ideasonboard.com>
+References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
+ <20230619112838.19797-6-jack.zhu@starfivetech.com>
+ <20230727204103.GJ25174@pendragon.ideasonboard.com>
+ <2504080f-86af-161f-5c0d-284e89e33ce1@starfivetech.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4185.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62335b41-3b70-41d6-42fb-08db9345dcc9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2023 10:47:26.9088
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 40g5198/DQvaC9GGOku8I3u1a9wNVHYqWRzi4SXirXYCRVYQv00R000irrxtw0lYWh3wxjzwfxsseN7oUQY8aGsUBgofa7OHEumdVqWzIpc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7974
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2504080f-86af-161f-5c0d-284e89e33ce1@starfivetech.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -164,61 +59,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCk9uIDEyLzA3LzIzIDg6MTAgYW0sIE1hbmlrYW5kYW4gTXVyYWxpZGhhcmFuIHdyb3RlOg0K
-PiBBZGQgc3VwcG9ydCBmb3IgRGlzcGxheSBQaXhlbCBJbnRlcmZhY2UgKERQSSkgQ29tcGF0aWJs
-ZSBNb2RlDQo+IHN1cHBvcnQgaW4gYXRtZWwtaGxjZGMgZHJpdmVyIGZvciBYTENEQyBJUCBhbG9u
-ZyB3aXRoIGxlZ2FjeQ0KPiBwaXhlbCBtYXBwaW5nLkRQSSBtb2RlIEJJVCBpcyBjb25maWd1cmVk
-IGluIExDRENfQ0ZHNSByZWdpc3Rlci4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE1hbmlrYW5kYW4g
-TXVyYWxpZGhhcmFuIDxtYW5pa2FuZGFuLm1AbWljcm9jaGlwLmNvbT4NCj4gW2R1cmFpLm1hbmlj
-a2Fta3JAbWljcm9jaGlwLmNvbTogdXBkYXRlIERQSSBtb2RlIGJpdCB1c2luZyBpc194bGNkYyBm
-bGFnXQ0KPiBTaWduZWQtb2ZmLWJ5OiBEdXJhaSBNYW5pY2thbSBLUiA8ZHVyYWkubWFuaWNrYW1r
-ckBtaWNyb2NoaXAuY29tPg0KPiAtLS0NCj4gICAuLi4vZ3B1L2RybS9hdG1lbC1obGNkYy9hdG1l
-bF9obGNkY19jcnRjLmMgICAgfCAyMiArKysrKysrKysrKysrKysrLS0tDQo+ICAgMSBmaWxlIGNo
-YW5nZWQsIDE5IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2F0bWVsLWhsY2RjL2F0bWVsX2hsY2RjX2NydGMuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9hdG1lbC1obGNkYy9hdG1lbF9obGNkY19jcnRjLmMNCj4gaW5kZXggMjdmODZj
-ZWE4YmZmLi5jMGExZDJkMzFlZDIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hdG1l
-bC1obGNkYy9hdG1lbF9obGNkY19jcnRjLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2F0bWVs
-LWhsY2RjL2F0bWVsX2hsY2RjX2NydGMuYw0KPiBAQCAtMzAsMTAgKzMwLDEyIEBADQo+ICAgICoN
-Cj4gICAgKiBAYmFzZTogYmFzZSBDUlRDIHN0YXRlDQo+ICAgICogQG91dHB1dF9tb2RlOiBSR0JY
-WFggb3V0cHV0IG1vZGUNCj4gKyAqIEBkcGk6IG91dHB1dCBEUEkgbW9kZQ0KPiAgICAqLw0KPiAg
-IHN0cnVjdCBhdG1lbF9obGNkY19jcnRjX3N0YXRlIHsNCj4gICAJc3RydWN0IGRybV9jcnRjX3N0
-YXRlIGJhc2U7DQo+ICAgCXVuc2lnbmVkIGludCBvdXRwdXRfbW9kZTsNCj4gKwlib29sIGRwaTsN
-Cj4gICB9Ow0KPiAgIA0KPiAgIHN0YXRpYyBpbmxpbmUgc3RydWN0IGF0bWVsX2hsY2RjX2NydGNf
-c3RhdGUgKg0KPiBAQCAtMTM4LDYgKzE0MCw4IEBAIHN0YXRpYyB2b2lkIGF0bWVsX2hsY2RjX2Ny
-dGNfbW9kZV9zZXRfbm9mYihzdHJ1Y3QgZHJtX2NydGMgKmMpDQo+ICAgDQo+ICAgCXN0YXRlID0g
-ZHJtX2NydGNfc3RhdGVfdG9fYXRtZWxfaGxjZGNfY3J0Y19zdGF0ZShjLT5zdGF0ZSk7DQo+ICAg
-CWNmZyA9IHN0YXRlLT5vdXRwdXRfbW9kZSA8PCA4Ow0KPiArCWlmIChjcnRjLT5kYy0+ZGVzYy0+
-aXNfeGxjZGMpDQoNCnNhdmUgdGhlIHZhbHVlIGluIGEgbG9jYWwgdmFyaWFibGUgYW5kIHVzZSBp
-dCBhdCBhbGwgcGxhY2VzIGluIHRoZSBmdW5jdGlvbi4NCg0KPiArCQljZmcgfD0gc3RhdGUtPmRw
-aSA8PCAxMTsNCj4gICANCj4gICAJaWYgKCFjcnRjLT5kYy0+ZGVzYy0+aXNfeGxjZGMgJiYgKGFk
-ai0+ZmxhZ3MgJiBEUk1fTU9ERV9GTEFHX05WU1lOQykpDQo+ICAgCQljZmcgfD0gQVRNRUxfSExD
-RENfVlNQT0w7DQo+IEBAIC0xNTAsNyArMTU0LDkgQEAgc3RhdGljIHZvaWQgYXRtZWxfaGxjZGNf
-Y3J0Y19tb2RlX3NldF9ub2ZiKHN0cnVjdCBkcm1fY3J0YyAqYykNCj4gICAJCQkgICBBVE1FTF9I
-TENEQ19WU1BETFlTIHwgQVRNRUxfSExDRENfVlNQRExZRSB8DQo+ICAgCQkJICAgQVRNRUxfSExD
-RENfRElTUFBPTCB8IEFUTUVMX0hMQ0RDX0RJU1BETFkgfA0KPiAgIAkJCSAgIEFUTUVMX0hMQ0RD
-X1ZTUFNVIHwgQVRNRUxfSExDRENfVlNQSE8gfA0KPiAtCQkJICAgQVRNRUxfSExDRENfR1VBUkRU
-SU1FX01BU0sgfCBBVE1FTF9ITENEQ19NT0RFX01BU0ssDQo+ICsJCQkgICBBVE1FTF9ITENEQ19H
-VUFSRFRJTUVfTUFTSyB8DQo+ICsJCQkgICAoY3J0Yy0+ZGMtPmRlc2MtPmlzX3hsY2RjID8gQVRN
-RUxfWExDRENfTU9ERV9NQVNLIHwNCj4gKwkJCSAgIEFUTUVMX1hMQ0RDX0RQSSA6IEFUTUVMX0hM
-Q0RDX01PREVfTUFTSyksDQo+ICAgCQkJICAgY2ZnKTsNCj4gICANCj4gICAJY2xrX2Rpc2FibGVf
-dW5wcmVwYXJlKGNydGMtPmRjLT5obGNkYy0+c3lzX2Nsayk7DQo+IEBAIC0zNDgsNyArMzU0LDE1
-IEBAIHN0YXRpYyBpbnQgYXRtZWxfaGxjZGNfY3J0Y19zZWxlY3Rfb3V0cHV0X21vZGUoc3RydWN0
-IGRybV9jcnRjX3N0YXRlICpzdGF0ZSkNCj4gICANCj4gICAJaHN0YXRlID0gZHJtX2NydGNfc3Rh
-dGVfdG9fYXRtZWxfaGxjZGNfY3J0Y19zdGF0ZShzdGF0ZSk7DQo+ICAgCWhzdGF0ZS0+b3V0cHV0
-X21vZGUgPSBmbHMob3V0cHV0X2ZtdHMpIC0gMTsNCj4gLQ0KPiArCWlmIChjcnRjLT5kYy0+ZGVz
-Yy0+aXNfeGxjZGMpIHsNCj4gKwkJLyogY2hlY2sgaWYgTUlQSSBEUEkgYml0IG5lZWRzIHRvIGJl
-IHNldCAqLw0KPiArCQlpZiAoZmxzKG91dHB1dF9mbXRzKSA+IDMpIHsNCj4gKwkJCWhzdGF0ZS0+
-b3V0cHV0X21vZGUgLT0gNDsNCj4gKwkJCWhzdGF0ZS0+ZHBpID0gdHJ1ZTsNCj4gKwkJfSBlbHNl
-IHsNCj4gKwkJCWhzdGF0ZS0+ZHBpID0gZmFsc2U7DQo+ICsJCX0NCj4gKwl9DQo+ICAgCXJldHVy
-biAwOw0KPiAgIH0NCj4gICANCj4gQEAgLTQ1Miw3ICs0NjYsNyBAQCBzdGF0aWMgc3RydWN0IGRy
-bV9jcnRjX3N0YXRlICoNCj4gICBhdG1lbF9obGNkY19jcnRjX2R1cGxpY2F0ZV9zdGF0ZShzdHJ1
-Y3QgZHJtX2NydGMgKmNydGMpDQo+ICAgew0KPiAgIAlzdHJ1Y3QgYXRtZWxfaGxjZGNfY3J0Y19z
-dGF0ZSAqc3RhdGUsICpjdXI7DQo+IC0NCj4gKwlzdHJ1Y3QgYXRtZWxfaGxjZGNfY3J0YyAqYyA9
-IGRybV9jcnRjX3RvX2F0bWVsX2hsY2RjX2NydGMoY3J0Yyk7DQo+ICAgCWlmIChXQVJOX09OKCFj
-cnRjLT5zdGF0ZSkpDQo+ICAgCQlyZXR1cm4gTlVMTDsNCj4gICANCj4gQEAgLTQ2Myw2ICs0Nzcs
-OCBAQCBhdG1lbF9obGNkY19jcnRjX2R1cGxpY2F0ZV9zdGF0ZShzdHJ1Y3QgZHJtX2NydGMgKmNy
-dGMpDQo+ICAgDQo+ICAgCWN1ciA9IGRybV9jcnRjX3N0YXRlX3RvX2F0bWVsX2hsY2RjX2NydGNf
-c3RhdGUoY3J0Yy0+c3RhdGUpOw0KPiAgIAlzdGF0ZS0+b3V0cHV0X21vZGUgPSBjdXItPm91dHB1
-dF9tb2RlOw0KPiArCWlmIChjLT5kYy0+ZGVzYy0+aXNfeGxjZGMpDQo+ICsJCXN0YXRlLT5kcGkg
-PSBjdXItPmRwaTsNCj4gICANCj4gICAJcmV0dXJuICZzdGF0ZS0+YmFzZTsNCj4gICB9DQo=
+Hi Jack,
+
+On Wed, Aug 02, 2023 at 05:57:57PM +0800, Jack Zhu wrote:
+> On 2023/7/28 4:41, Laurent Pinchart wrote:
+> > On Mon, Jun 19, 2023 at 07:28:37PM +0800, Jack Zhu wrote:
+> >> Add ISP driver for StarFive Camera Subsystem.
+> >> 
+> >> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> >> ---
+> >>  .../media/platform/starfive/camss/Makefile    |   2 +
+> >>  .../media/platform/starfive/camss/stf_camss.c |  76 ++-
+> >>  .../media/platform/starfive/camss/stf_camss.h |   3 +
+> >>  .../media/platform/starfive/camss/stf_isp.c   | 519 ++++++++++++++++++
+> >>  .../media/platform/starfive/camss/stf_isp.h   | 479 ++++++++++++++++
+> >>  .../platform/starfive/camss/stf_isp_hw_ops.c  | 468 ++++++++++++++++
+> >>  6 files changed, 1544 insertions(+), 3 deletions(-)
+> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.c
+> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.h
+> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp_hw_ops.c
+
+[snip]
+
+> >> diff --git a/drivers/media/platform/starfive/camss/stf_isp.c b/drivers/media/platform/starfive/camss/stf_isp.c
+> >> new file mode 100644
+> >> index 000000000000..933a583b398c
+> >> --- /dev/null
+> >> +++ b/drivers/media/platform/starfive/camss/stf_isp.c
+> >> @@ -0,0 +1,519 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * stf_isp.c
+> >> + *
+> >> + * StarFive Camera Subsystem - ISP Module
+> >> + *
+> >> + * Copyright (C) 2021-2023 StarFive Technology Co., Ltd.
+> >> + */
+> >> +#include <linux/firmware.h>
+> > 
+> > This doesn't seem needed.
+> > 
+> >> +#include <media/v4l2-event.h>
+> >> +
+> >> +#include "stf_camss.h"
+> >> +
+> >> +#define SINK_FORMATS_INDEX    0
+> >> +#define UO_FORMATS_INDEX      1
+> > 
+> > What does "UO" stand for ?
+> 
+> "UO" is Usual Out, just represents output. :-)
+
+Maybe "out", "output" or "source" would make the code easier to read
+then ?
+
+> >> +
+> >> +static int isp_set_selection(struct v4l2_subdev *sd,
+> >> +			     struct v4l2_subdev_state *state,
+> >> +			     struct v4l2_subdev_selection *sel);
+> >> +
+> >> +static const struct isp_format isp_formats_sink[] = {
+> >> +	{ MEDIA_BUS_FMT_SRGGB10_1X10, 10 },
+> >> +	{ MEDIA_BUS_FMT_SGRBG10_1X10, 10 },
+> >> +	{ MEDIA_BUS_FMT_SGBRG10_1X10, 10 },
+> >> +	{ MEDIA_BUS_FMT_SBGGR10_1X10, 10 },
+> >> +};
+
+[snip]
+
+> >> diff --git a/drivers/media/platform/starfive/camss/stf_isp.h b/drivers/media/platform/starfive/camss/stf_isp.h
+> >> new file mode 100644
+> >> index 000000000000..1e5c98482350
+> >> --- /dev/null
+> >> +++ b/drivers/media/platform/starfive/camss/stf_isp.h
+> >> @@ -0,0 +1,479 @@
+
+[snip]
+
+> >> +/* The output line of ISP */
+> > 
+> > What is an ISP "line" ?
+> 
+> A pipeline contains ISP.
+
+Patch 6/6 uses STF_ISP_LINE_MAX to iterate over the ISP lines. This
+makes the code somehow generic, but you only support a single line at
+the moment. Does this or other SoCs in your product line integrate the
+same ISP with multiple lines ? If so, would it be possible to share a
+block diagram, to better understand the other hardware architectures
+that this driver will need to support in the future ?
+
+> >> +enum isp_line_id {
+> >> +	STF_ISP_LINE_INVALID = -1,
+> >> +	STF_ISP_LINE_SRC = 1,
+> >> +	STF_ISP_LINE_MAX = STF_ISP_LINE_SRC
+> >> +};
+
+[snip]
+
+> >> +void stf_isp_init_cfg(struct stf_isp_dev *isp_dev)
+> >> +{
+> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_DC_CFG_1, DC_AXI_ID(0x0));
+> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_DEC_CFG,
+> >> +			  DEC_V_KEEP(0x0) |
+> >> +			  DEC_V_PERIOD(0x0) |
+> >> +			  DEC_H_KEEP(0x0) |
+> >> +			  DEC_H_PERIOD(0x0));
+> >> +
+> >> +	stf_isp_config_obc(isp_dev->stfcamss);
+> >> +	stf_isp_config_oecf(isp_dev->stfcamss);
+> >> +	stf_isp_config_lccf(isp_dev->stfcamss);
+> >> +	stf_isp_config_awb(isp_dev->stfcamss);
+> >> +	stf_isp_config_grgb(isp_dev->stfcamss);
+> >> +	stf_isp_config_cfa(isp_dev->stfcamss);
+> >> +	stf_isp_config_ccm(isp_dev->stfcamss);
+> >> +	stf_isp_config_gamma(isp_dev->stfcamss);
+> >> +	stf_isp_config_r2y(isp_dev->stfcamss);
+> >> +	stf_isp_config_y_curve(isp_dev->stfcamss);
+> >> +	stf_isp_config_sharpen(isp_dev->stfcamss);
+> >> +	stf_isp_config_dnyuv(isp_dev->stfcamss);
+> >> +	stf_isp_config_sat(isp_dev->stfcamss);
+> > 
+> > All these parameters are hardcoded, why are they not exposed to
+> > userspace ?
+> 
+> Here is a basic startup configuration for the ISP registers. The
+> function name is confusing, as if it is configuring a specific
+> function. In fact, it is just a basic init configuration.
+
+Did I miss a place in the patch series where all these parameters can be
+configured by userspace, or is that not possible at the moment ? If it
+isn't possible, do you plan to implement that ?
+
+> >> +
+> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_CSI_MODULE_CFG,
+> >> +			  CSI_DUMP_EN | CSI_SC_EN | CSI_AWB_EN |
+> >> +			  CSI_LCCF_EN | CSI_OECF_EN | CSI_OBC_EN | CSI_DEC_EN);
+> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_ISP_CTRL_1,
+> >> +			  CTRL_SAT(1) | CTRL_DBC | CTRL_CTC | CTRL_YHIST |
+> >> +			  CTRL_YCURVE | CTRL_BIYUV | CTRL_SCE | CTRL_EE |
+> >> +			  CTRL_CCE | CTRL_RGE | CTRL_CME | CTRL_AE | CTRL_CE);
+> >> +}
+
+[snip]
+
+-- 
+Regards,
+
+Laurent Pinchart
