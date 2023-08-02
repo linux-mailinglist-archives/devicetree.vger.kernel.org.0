@@ -2,161 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F7476D92B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 23:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5152276D92F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Aug 2023 23:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbjHBVHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 17:07:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52998 "EHLO
+        id S229693AbjHBVId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 17:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbjHBVHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 17:07:03 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B13F26AB;
-        Wed,  2 Aug 2023 14:06:59 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-7672073e7b9so16379485a.0;
-        Wed, 02 Aug 2023 14:06:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691010418; x=1691615218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=crZnLksKhXHygAFAt6KtbbotkkwISuLwd1MjzY9iUSY=;
-        b=Ez/qmwAEpI8zAgjFfoEc2jA+TVE0h8CbBD0jcdPZOcUAxdNhXhj9dfL61QWXF4SdOL
-         awrU41bM3y/pGxIoj5R80VFaHlU3JDeD+/UCYe/MjSXO1kSxTNYpdVyz/d0j8yBXQChD
-         gSc3dX5Z1MN1XESRxjk8tHKHnsDfG6VszQkMav6o/L4fmzroAQYLPcYIq/5Vw50/w/IW
-         jMmlVJJfbBqB2fIC3zS+/DSueXN9czpd3SMUXNf6DiYT+RPUqhG0RTYf00CCl2THyExR
-         rArKBmT8tI9SmxAJCL/Lr2H+BvzS2jNu2QcFg0w73rXZkQrU+eroTc/MBCh1Cfl43DtO
-         kgBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691010418; x=1691615218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=crZnLksKhXHygAFAt6KtbbotkkwISuLwd1MjzY9iUSY=;
-        b=fy3DPNNHhnBZ+YAn45vb813hG6wI/OPhB2mkl4LrHsD1C8OrhPgGytf6YP0B2J3FOt
-         9FQcMkmbGJgeIOUFqsZBriEpZnL+9UDKCey1SSOzGaQ+aNtrt/W8L11mQs7FpRV28Sgv
-         ID2NWy/8DG4O0xhdEclOU/89xXENw8bUSjwXpVd45CCep+9ofBqfqMxD70rlFm7i8DuN
-         Qe7I56A8cAOhGhbv3VY3UmzCVLKHuBzP9ppTfsk9ro+y6XXaBzKCHXrDdqEd5rtNNLnV
-         bHR4JBO0EtzfnBz5NOoH6w1JgZMqZ6MDBI8FDuVjTGsZ+G3FkvKkTmIJ7X0OKY20KLfb
-         kiWQ==
-X-Gm-Message-State: ABy/qLYES7DeLNCBTeaKqJfn5rZU1m3pOEosBg6dnrQSV1YtnXVoOJ81
-        yQiV1Yjh8nBSqVwxZypvtmY=
-X-Google-Smtp-Source: APBJJlHoS5d3Ipe2H7XAm7BBbIZRwGBIiVdazN/gCWbw8Q7xM1OS6zSlh4WLA2gIzX6CTF3heoL2Wg==
-X-Received: by 2002:a05:6214:313:b0:63c:d6f1:7bcb with SMTP id i19-20020a056214031300b0063cd6f17bcbmr9115831qvu.41.1691010418587;
-        Wed, 02 Aug 2023 14:06:58 -0700 (PDT)
-Received: from Dell-Inspiron-15 ([2601:18c:8380:74b0:e8e5:f40c:d741:8f07])
-        by smtp.gmail.com with ESMTPSA id s18-20020a0cdc12000000b0063d3fef54c6sm5558313qvk.77.2023.08.02.14.06.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Aug 2023 14:06:58 -0700 (PDT)
-Date:   Wed, 2 Aug 2023 17:06:55 -0400
-From:   Ben Wolsieffer <benwolsieffer@gmail.com>
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229528AbjHBVIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 17:08:32 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43EA526AB
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 14:08:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=s31663417; t=1691010495; x=1691615295; i=p.jungkamp@gmx.net;
+ bh=LZhk0aX26Z6tj2qfl3wdEK5XqWb5+cl5JAwmfjVDm28=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+ b=c9PL/HstWU7SWB6h0GumsXEYLUvxbPyW545xpRnpu3SLp3MXSLq/ejXMWzCRPkBM0J9XuXP
+ VAb9aCd+cGQ+pJzJCtLrHLcrFGpjvl51dd8kyEHCadq+pD+OlbTe5dhk+XjdvvWu+Jc//R0Lu
+ 1e+Nfm1tbn9QGC0V4kG9Nz2fAANHttcx/zSkkB7/77GRDVtsyvGJcvdPgqMMv/ifwTz3ab+t6
+ xCYuLDoSP2pcv9Xg9qPN0BTLD/bvu+cBJOPUwWH8U9vWMWodlA9ucbOYq8iaTi6uRIvHC77Od
+ dfjKm0rkXPcrlDERHaI0aMeJZ0b8/MLYG4hPgMVSl3AxErhdlKhA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from localhost.localdomain ([95.223.44.203]) by mail.gmx.net
+ (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
+ 1N4QsO-1pjgXA3LJG-011RYp; Wed, 02 Aug 2023 23:08:14 +0200
+From:   Philipp Jungkamp <p.jungkamp@gmx.net>
+To:     =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/9] arm64: dts: amlogic: Used onboard usb hub reset
- on odroid c2
-Message-ID: <ZMrFb7H1ynwwBSCA@Dell-Inspiron-15>
-References: <20230121175639.12818-1-linux.amoon@gmail.com>
- <20230121175639.12818-4-linux.amoon@gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Martin Kepplinger <martink@posteo.de>,
+        Angus Ainslie <angus@akkea.ca>
+Cc:     devicetree@vger.kernel.org, Philipp Jungkamp <p.jungkamp@gmx.net>
+Subject: [PATCH] dts: adjust proximity near level
+Date:   Wed,  2 Aug 2023 23:07:46 +0200
+Message-ID: <20230802210746.1240625-1-p.jungkamp@gmx.net>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230121175639.12818-4-linux.amoon@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:abH5IQSqwt+xl3YfDwWMM+dHDGd2TbLBtItC+8I09faF+mGCasI
+ djZhpR/mgoaol791w0YgtjCX5shbPNBcy8Kv3CNMlMqPUmsLxiRW8Vm7++aQO2Pf0M2VNPd
+ m7VoUDGWRPilL1rzWmSmpmHcYF7rPff8vxFvqKKsf7fo9HHYtl7L6HaWi8SmP5q2usKE7Nq
+ ErLQDqdMMd2dIjsqkg1sQ==
+UI-OutboundReport: notjunk:1;M01:P0:wzCMQ8BSsLc=;Uq/31fvBqI87Rb+wE4m8+zOQjSJ
+ R/vndx1lHLBRPV6OGKjb1v9cQ927RhW04mzSsqj9yIOCSV7/rg7dPZGQWhh+6MQ3qVUovCx87
+ rGSOjqi6Ylq6rNeuW5p0jMK4r+16aE1vyTNTfUgyW75bo5TkLIp4zUu5UJ6oPHV3lPRm9Avot
+ 7LdJ1uNuJcgrwevPftYTxQD69zXcqMCNSbUZJcpCZDo/5LATvDjdYpxEHnrY5x7FRWttIya9h
+ 05qqG85Ody13FUtQNi/duUvgzkJYCburwwgDWwmhpeFmikqmAuz/XLg3qosaUX9NUcLy6C7ct
+ SfyeDAznQBLpWn+kPb0IOlpLRJ5/MRLFQ3/AGnqKSNRl2O6wZET3VsLoF+5fV2PCFl1z6XEiK
+ 34G96CjlKYKwKmMqpAZGehK4tUUgSZ+qk6vzZs7C0y9O18fU9enxvo0wmmI9tB4kY8i7PH2VF
+ lzKCbDumliz+tMVV5LXwZPTULe0QkHGA7C+Bz9vlUIRneN0whbKu7IrrfeGJmCQLWSzO/nWv+
+ qJ2hEVYLwz0Hukod/fGLu9djUJl2SCiokh5j3diijsOVhkOdNMJsNxLzaprLeaqxMOUkkPdag
+ UjkeZoPosDjWz87teDK1+p56XAI4G3+OUNKPUeGWJtboMBAz6vl99a/UuP/1KNweU1i6K+9Hy
+ rqLJdtpcZ5HProZceQ2mKC6viHpc+kWu3X+C3bO6b3qToYJqNbbH+DEpuMKW+sgRar+0kK/Xr
+ WrGAVVDDzJatdd/rfLFYpVW+IJLkc8JWvyJFj/IAbvcj4Ko9LoIice38tnkKq2MkvfQfiRyf3
+ rD0LbxbNk4KmA6aSE81Xpv5m/Z4A1PlpmiEtpZ1gRNexF9XzDSvxI+QTsYpLSwCrKVEIj2e28
+ uSv2ynN97gXkkgpYdnuLF/XFhfqayBS0ODJP52BOdu+47Rp9EITztZ0nsefAtUYOxabGyWrdc
+ EDF0ckFoA+O9M5y3IeXNsnkUs20=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 21, 2023 at 05:56:31PM +0000, Anand Moon wrote:
-> On Odroid c2 previously use gpio-hog to reset the usb hub,
-> switch to used on-board usb hub reset to enable the usb hub
-> and enable power to hub.
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v3 - Add rev by Neil.
->      droped dr_mode
-> v2 - drop the vendor name from compatible string.
->    - move the hub node to USB controller node.
->    - drop the usb_otg_pwr since it only liked to OTG port
->          and link p5v0 to the vdd-supply.
-> ---
->  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 25 ++++++++-----------
->  1 file changed, 10 insertions(+), 15 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 201596247fd9..70b10934a811 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -250,21 +250,6 @@ eth_phy0: ethernet-phy@0 {
->  	};
->  };
->  
-> -&gpio_ao {
-> -	/*
-> -	 * WARNING: The USB Hub on the Odroid-C2 needs a reset signal
-> -	 * to be turned high in order to be detected by the USB Controller
-> -	 * This signal should be handled by a USB specific power sequence
-> -	 * in order to reset the Hub when USB bus is powered down.
-> -	 */
-> -	hog-0 {
-> -		gpio-hog;
-> -		gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
-> -		output-high;
-> -		line-name = "usb-hub-reset";
-> -	};
-> -};
-> -
->  &hdmi_tx {
->  	status = "okay";
->  	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> @@ -414,5 +399,15 @@ &usb0 {
->  };
->  
->  &usb1 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->  	status = "okay";
-> +
-> +	hub@1 {
-> +		/* Genesys Logic GL852G USB 2.0 hub */
-> +		compatible = "usb5e3,610";
-> +		reg = <1>;
-> +		vdd-supply = <&p5v0>;
-> +		reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-> +	};
->  };
-> -- 
-> 2.38.1
-> 
+Adjust the proximity-near-level by one to account for an error in
+calibration using iio-sensor-proxy, which interpreted the
+in_proximity_nearlevel attribute slightly differently than specified in
+the kernel documentation.
 
+Signed-off-by: Philipp Jungkamp <p.jungkamp@gmx.net>
+=2D--
 Hello,
 
-This patch breaks USB support on the ODROID-C2. As soon as the
-onboard_usb_hub module is loaded, all USB devices disconnect.
-Blacklisting onboard_usb_hub makes USB work as expected.
+Most userspace programs seem to use the in_proximity_nearlevel sysfs attri=
+bute
+implicitly through the iio-sensor-proxy dbus daemon. But the proximity sen=
+sor
+near level detection does not adhere to the kernel documentation for the s=
+ysfs
+attribute. This is, next to some techical defficulties in iio-sensor-proxy=
+, the
+reason that I proposed to fix the near level criterion there.
+See: https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/-/merge_reques=
+ts/364
 
-I tried to reproduce the problem by manually toggling the reset line,
-but the problem seems to be specific to this driver. When reset is
-asserted manually, the devices disconnect, but they all enumerate again
-as soon as reset is released.
+It has been pointed out that devices with a DT calibrated against
+iio-sensor-proxy will see a slight change in the interpretation of the nea=
+r
+level criterion.
 
-Also, I have been unable to make USB work again (until the next reboot)
-even after unloading onboard_usb_hub.
+I want this more or less serious patch to be a heads up for the users and
+implementors of the iio proximity sensors on linux.
 
-Ben
+Regards,
+Philipp Jungkamp
+
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts  | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts  | 2 +-
+ arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts b/arch/ar=
+m64/boot/dts/freescale/imx8mq-librem5-r2.dts
+index 2b3d437a642a..31426cf055b4 100644
+=2D-- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts
+@@ -23,5 +23,5 @@ &bq25895 {
+ };
+
+ &proximity {
+-	proximity-near-level =3D <50>;
++	proximity-near-level =3D <51>;
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi b/arch/a=
+rm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
+index 7fd0176e4bd3..12ccc20afc8a 100644
+=2D-- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
+@@ -45,5 +45,5 @@ &magnetometer {
+ };
+
+ &proximity {
+-	proximity-near-level =3D <10>;
++	proximity-near-level =3D <11>;
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts b/arch/ar=
+m64/boot/dts/freescale/imx8mq-librem5-r4.dts
+index 97577c0a7715..fab872ecbf1c 100644
+=2D-- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
+@@ -23,5 +23,5 @@ &lcd_panel {
+ };
+
+ &proximity {
+-	proximity-near-level =3D <5>;
++	proximity-near-level =3D <6>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/a=
+rm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index 97262b8519b3..19173d9efa22 100644
+=2D-- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -156,7 +156,7 @@ magnetometer@12 {
+ 	light-sensor@23 {
+ 		compatible =3D "liteon,ltr559";
+ 		reg =3D <0x23>;
+-		proximity-near-level =3D <75>;
++		proximity-near-level =3D <76>;
+
+ 		interrupt-parent =3D <&tlmm>;
+ 		interrupts =3D <115 IRQ_TYPE_EDGE_FALLING>;
+=2D-
+2.41.0
+
