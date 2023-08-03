@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE84C76E6FB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073A076E718
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234669AbjHCLed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 07:34:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
+        id S233769AbjHCLjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 07:39:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234239AbjHCLec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:34:32 -0400
+        with ESMTP id S234102AbjHCLjh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:39:37 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FAA1272A;
-        Thu,  3 Aug 2023 04:34:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE6726AB;
+        Thu,  3 Aug 2023 04:39:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD38A61D4C;
-        Thu,  3 Aug 2023 11:34:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 744D9C433C7;
-        Thu,  3 Aug 2023 11:34:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4486E61D59;
+        Thu,  3 Aug 2023 11:39:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FEA2C433C8;
+        Thu,  3 Aug 2023 11:39:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691062467;
-        bh=BkBCAVO6hJF4fOYI49LffKk6yX883oqjF0w8sTjILWc=;
+        s=k20201202; t=1691062770;
+        bh=+K+JAySmTUowlnbVqwziUzl1bReyozbO+guU69SBB34=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PCN4VOz3vZBLDraC13sTD64yaF6fph11RxQKvykMl4hCLeo/Mp2kdRAiZpOEW6ZJt
-         J4yjrfMabuFRB3KQoiVcRr16WjNMUeKHSwU4FLnZKXlLW0GaqecUIb5A+4RrorDIj9
-         01z9y4b+Q3EtGsQ40QacmNiqyNppnNNkW6augIuTjLAqvLDDECY17WYR20sdLSKOmq
-         ts7l3E/hFl6cd3KIULc0UrO26H8ilbCBpVJf2ntUJx5BAYfNMDiHvx/+9clYABGBAr
-         K3E6tdhOWqQMkJCElhHOMXMkpTra8qDHfvk7H6ibRO6HsGcq5MUD0Now1l1YP3GbTb
-         c4N8uTN4J8Kyg==
-Date:   Thu, 3 Aug 2023 17:04:22 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dmaengine: apple-sio: Add Apple SIO driver
-Message-ID: <ZMuQvhIg0AHH2e7V@matsya>
-References: <20230712133806.4450-1-povik+lin@cutebit.org>
- <20230712133806.4450-3-povik+lin@cutebit.org>
- <ZMlLjg9UBi3QO/qV@matsya>
- <7D43A9F3-892C-4E74-9618-DB37360B7641@cutebit.org>
- <38B71067-7D67-41B7-BF49-87511BAA06CF@cutebit.org>
+        b=JlYDs6lFk2yG8HjpZ+tB0KD7LsTCBbRdO5X913YeGZAw29/Ll4XDRdKd67yEHeySo
+         2iri4L99AmVgfL9ksUqXWmReepqQcmD3efTrPAVK/iEXrniQkNPfxrt8jmPRyXo+jd
+         ApetWp+/RnZD7U7n//UNQVeg9V2L+z1+rviLwKM2ZtsVf+sxrOvnHm++AhN5T+rcN3
+         uSOBcnV+Z2LNeowhLurCC/yahz0xh+UAYL09oK54M3pL18q5g9REQOoWowm/hBd0gX
+         TedKkdEzQhjtS6pTsxvdrkPlFxSKakZe3XywqEuXi89KCN409oFgliIa/AFqzHozpw
+         NwpP8487pzJMg==
+Date:   Thu, 3 Aug 2023 13:39:25 +0200
+From:   Simon Horman <horms@kernel.org>
+To:     nick.hawkins@hpe.com
+Cc:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
+        andrew@lunn.ch, verdun@hpe.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] net: hpe: Add GXP UMAC MDIO
+Message-ID: <ZMuR7XKm9Jelh0Sq@kernel.org>
+References: <20230802201824.3683-1-nick.hawkins@hpe.com>
+ <20230802201824.3683-3-nick.hawkins@hpe.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <38B71067-7D67-41B7-BF49-87511BAA06CF@cutebit.org>
+In-Reply-To: <20230802201824.3683-3-nick.hawkins@hpe.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -62,52 +59,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03-08-23, 10:32, Martin Povišer wrote:
-
-> >>> +static int sio_alloc_tag(struct sio_data *sio)
-> >>> +{
-> >>> +	struct sio_tagdata *tags = &sio->tags;
-> >>> +	int tag, i;
-> >>> +
-> >>> +	/*
-> >>> +	 * Because tag number 0 is special, the usable tag range
-> >>> +	 * is 1...(SIO_NTAGS - 1). So, to pick the next usable tag,
-> >>> +	 * we do modulo (SIO_NTAGS - 1) *then* plus one.
-> >>> +	 */
-> >>> +
-> >>> +#define SIO_USABLE_TAGS (SIO_NTAGS - 1)
-> >>> +	tag = (READ_ONCE(tags->last_tag) % SIO_USABLE_TAGS) + 1;
-> >>> +
-> >>> +	for (i = 0; i < SIO_USABLE_TAGS; i++) {
-> >>> +		if (!test_and_set_bit(tag, &tags->allocated))
-> >>> +			break;
-> >>> +
-> >>> +		tag = (tag % SIO_USABLE_TAGS) + 1;
-> >>> +	}
-> >>> +
-> >>> +	WRITE_ONCE(tags->last_tag, tag);
-> >>> +
-> >>> +	if (i < SIO_USABLE_TAGS)
-> >>> +		return tag;
-> >>> +	else
-> >>> +		return -EBUSY;
-> >>> +#undef SIO_USABLE_TAGS
-> >>> +}
-> >> 
-> >> can you use kernel mechanisms like ida to alloc and free the tags...
-> > 
-> > I can look into that.
+On Wed, Aug 02, 2023 at 03:18:21PM -0500, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> Documentation says IDA is deprecated in favour of Xarray, both look
-> like they serve to associate a pointer with an ID. I think neither
-> structure beats a simple bitfield and a static array for the per-tag
-> data. Agree?
+> The GXP contains two Universal Ethernet MACs that can be
+> connected externally to several physical devices. From an external
+> interface perspective the BMC provides two SERDES interface connections
+> capable of either SGMII or 1000Base-X operation. The BMC also provides
+> a RMII interface for sideband connections to external Ethernet controllers.
+> 
+> The primary MAC (umac0) can be mapped to either SGMII/1000-BaseX
+> SERDES interface.  The secondary MAC (umac1) can be mapped to only
+> the second SGMII/1000-Base X Serdes interface or it can be mapped for
+> RMII sideband.
+> 
+> The MDIO(mdio0) interface from the primary MAC (umac0) is used for
+> external PHY status and configuration. The MDIO(mdio1) interface from
+> the secondary MAC (umac1) is routed to the SGMII/100Base-X IP blocks
+> on the two SERDES interface connections.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 
-yeah xarray am not too sure. I would still go with ida, we will see when
-it is relly removed.
+...
 
-If you need a bitfield why not use bitmap apis.
-I dont like drivers implementing the basic logic which kernel provides
+> diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
+> index 5a274b99f299..b4921b84be51 100644
+> --- a/drivers/net/ethernet/Kconfig
+> +++ b/drivers/net/ethernet/Kconfig
+> @@ -80,6 +80,7 @@ source "drivers/net/ethernet/fujitsu/Kconfig"
+>  source "drivers/net/ethernet/fungible/Kconfig"
+>  source "drivers/net/ethernet/google/Kconfig"
+>  source "drivers/net/ethernet/hisilicon/Kconfig"
+> +source "drivers/net/ethernet/hpe/Kconfig"
+>  source "drivers/net/ethernet/huawei/Kconfig"
+>  source "drivers/net/ethernet/i825xx/Kconfig"
+>  source "drivers/net/ethernet/ibm/Kconfig"
 
--- 
-~Vinod
+Hi Nick,
+
+I think this hunk belongs in [PATCH v2 4/5] net: hpe: Add GXP UMAC Driver.
+As it is that patch where drivers/net/ethernet/hpe/Kconfig is added.
+And as things stands, the above caused a build failure.
