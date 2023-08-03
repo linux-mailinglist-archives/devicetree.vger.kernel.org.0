@@ -2,204 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57FD476DC93
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 02:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB5376DCB6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 02:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230256AbjHCAZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 20:25:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33862 "EHLO
+        id S231187AbjHCAdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 20:33:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjHCAZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 20:25:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059BE11D;
-        Wed,  2 Aug 2023 17:25:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9597F61B95;
-        Thu,  3 Aug 2023 00:25:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6861C433C8;
-        Thu,  3 Aug 2023 00:25:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691022304;
-        bh=Ak6kWgpita0ccStQUBSLTHQZ7Qxm2852u+BDrFi7RTQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oxoeAZAGjuZLO3hoE98/N44RKxRUPG41IhNvI224eG9LzGYuPJ8KxOHPpB05W3om9
-         5b5TuYFEiAHtFZ2fL7L9JR+ldk+TrfSE0YhaBJJHVmh5mn7nDHfVruAH97TJK9hood
-         gLYnjUG1/u8MMHPdk4BzKhpk3JqQ2dPHz5nvlEqmccwuBMgtJE7TMz5k0WHn5BF7uH
-         +DupCeCicS+5gCblQeAizSgrN0sPOwSEuLBc4GEt/q6nYNtTI3A2/GQ0iBkuL7Glxl
-         RLD0GwnXsX4J71uei464iGVOTgdXaegNN4hvxit/2wWQgS9Y4HiONI/Nkp6+y+fRMA
-         9wDKyN8IyhgtQ==
-Received: (nullmailer pid 1580378 invoked by uid 1000);
-        Thu, 03 Aug 2023 00:25:02 -0000
-Date:   Wed, 2 Aug 2023 18:25:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Anjelique Melendez <quic_amelende@quicinc.com>
-Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, luca.weiss@fairphone.com,
-        konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
-        quic_subbaram@quicinc.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: leds: leds-qcom-lpg: Add support for
- LPG PPG
-Message-ID: <20230803002502.GA1569972-robh@kernel.org>
-References: <20230725193423.25047-1-quic_amelende@quicinc.com>
- <20230725193423.25047-3-quic_amelende@quicinc.com>
+        with ESMTP id S229832AbjHCAdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 20:33:17 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF1C1982;
+        Wed,  2 Aug 2023 17:33:15 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bf3f59905so48875366b.3;
+        Wed, 02 Aug 2023 17:33:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691022794; x=1691627594;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VmDQBngkUfZT7Xd42gcofemITc/48pOXICJi21nKB7Y=;
+        b=OJGaD8RZzpICKo/egDvoKyYF3ObJBah3LwvF3MMdEUkKFTsRp79+vLiECUE8EC5ElA
+         h0wX6cqi32v02EAf16jbWp54W9C/pCGVEwmKhcbiAE9iiy9VAjX2LxDket4+qA3arrvx
+         hkgbFDZnO3/GejE+3BhPVZrnVs6+a1q/ynRFZkDm8L2uHRVvMrd15j9+Y2k+Tf6d975i
+         fKaKrr0pvpDEMtSrMDpK8aEzMEb8IAwzVZoKpOrNuYwquwaZ43UfbBw0DJsprAKb0rbF
+         sSSsY2Q9u25xsvFt/Su9yjAaHzYI+TnIXYxJj6TF8GYkfklHjke6rC0NHp0FetzC5O2Z
+         ecTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691022794; x=1691627594;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VmDQBngkUfZT7Xd42gcofemITc/48pOXICJi21nKB7Y=;
+        b=jZ7u9m48ep7jdiGeaioY9vYOFZyovpMGLgTTKqZt8Sq7dOZYloSoyI8T/KIy4BwSai
+         Z9yxpHgJ6JfQ15Hf+vDR2wlkT69DCUb3XT7TPESxeGqr2Sj/TaYdfoKvUWW89HbYrWRL
+         v8e9LoMNfDJvaxVDXkxp2nver+BCyUznMgmZLKYm0Oz9UjDQNP4WQlgCLl0J1463K8qx
+         7FqQrZvW0zJHuP/A3cY3uvEfeOy1zc+jpy0lamAJBBQK5BEjhZHCd1Y8Y8Vy+5Ns0q3y
+         VAX4jK33vfg1bphDSDDMEfznSD7RYGKH/4Pp31EDlr97ZUlpACx4ceDtkfiW+ne0IIRF
+         IEFQ==
+X-Gm-Message-State: ABy/qLY+Ok3tBNAyABuuw2ZqyiPJyV0tQksNPWxM2Emdpz5LEw6hWQR8
+        4vRN1ProITmEgfPZtdeQdam5Q6ByiZMsat0kNFM=
+X-Google-Smtp-Source: APBJJlFSACtUiKMpTwyQv1yuTsQzmtg6/opAjGJ1VXAdQaGY8pPkN2x/Aqhch7z7a/U8i3sLR38Ik+nmvim2W8U7ObQ=
+X-Received: by 2002:a17:906:18:b0:997:e79c:99dc with SMTP id
+ 24-20020a170906001800b00997e79c99dcmr6226030eja.74.1691022793795; Wed, 02 Aug
+ 2023 17:33:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230725193423.25047-3-quic_amelende@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230613172054.3959700-1-quic_eberman@quicinc.com> <20230613172054.3959700-7-quic_eberman@quicinc.com>
+In-Reply-To: <20230613172054.3959700-7-quic_eberman@quicinc.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 2 Aug 2023 19:33:02 -0500
+Message-ID: <CABb+yY3LGxDTQDiz8Q5yMwzFDm-ejF+WnQsb0zJKizfxPkx3nQ@mail.gmail.com>
+Subject: Re: [PATCH v14 06/25] mailbox: Add Gunyah message queue mailbox
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 12:34:18PM -0700, Anjelique Melendez wrote:
-> Update leds-qcom-lpg bindings to support LPG PPG.
-> 
-> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> ---
->  .../bindings/leds/leds-qcom-lpg.yaml          | 92 ++++++++++++++++++-
->  1 file changed, 91 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> index e6f1999cb22f..6feca859fb74 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> @@ -11,7 +11,7 @@ maintainers:
->  
->  description: >
->    The Qualcomm Light Pulse Generator consists of three different hardware blocks;
-> -  a ramp generator with lookup table, the light pulse generator and a three
-> +  a ramp generator with lookup table (LUT), the light pulse generator and a three
->    channel current sink. These blocks are found in a wide range of Qualcomm PMICs.
->  
->  properties:
-> @@ -63,6 +63,27 @@ properties:
->          - description: dtest line to attach
->          - description: flags for the attachment
->  
-> +  nvmem:
-> +    description: >
-> +      This property is required for PMICs that supports PPG, which is when a
-> +      PMIC stores LPG per-channel data and pattern LUT in SDAM modules instead
-> +      of in a LUT peripheral. For PMICs, such as PM8350C, per-channel data
-> +      and pattern LUT is separated into 2 SDAM modules. In that case, phandles
-> +      to both SDAM modules need to be specified.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  nvmem-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  qcom,pbs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: >
-> +      Phandle of the Qualcomm Programmable Boot Sequencer node (PBS).
-> +      PBS node is used to trigger LPG pattern sequences for PMICs that support
-> +      single SDAM PPG.
-> +
->    multi-led:
->      type: object
->      $ref: leds-class-multicolor.yaml#
-> @@ -106,6 +127,44 @@ required:
->  
->  additionalProperties: false
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,pmi632-lpg
-> +    then:
-> +      properties:
-> +        nvmem:
-> +          maxItems: 1
-> +        nvmem-names:
-> +          items:
-> +            - const: lpg_chan_sdam
-> +        qcom,pbs:
-> +          maxItems: 1
-> +      required:
-> +        - nvmem
-> +        - nvmem-names
-> +        - qcom,pbs
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pm8350c-pwm
-> +              - qcom,pm8550-pwm
-> +    then:
-> +      properties:
-> +        nvmem:
-> +          minItems: 2
-> +        nvmem-names:
-> +          items:
-> +            - const: lpg_chan_sdam
-> +            - const: lut_sdam
+On Tue, Jun 13, 2023 at 12:21=E2=80=AFPM Elliot Berman <quic_eberman@quicin=
+c.com> wrote:
+......
 
-This can go into the main section and then here you just say 
-'minItems: 2'. And similar for the 1st if/then.
+> diff --git a/drivers/mailbox/gunyah-msgq.c b/drivers/mailbox/gunyah-msgq.=
+c
+> new file mode 100644
+> index 0000000000000..7f777339278eb
+> --- /dev/null
+> +++ b/drivers/mailbox/gunyah-msgq.c
+> @@ -0,0 +1,219 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights r=
+eserved.
+> + */
+> +
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/module.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/gunyah.h>
+> +#include <linux/printk.h>
+> +#include <linux/init.h>
+> +#include <linux/slab.h>
+> +#include <linux/wait.h>
+> +
+I believe some includes could be removed without issue.
 
-> +      required:
-> +        - nvmem
-> +        - nvmem-names
+>
+> +#define mbox_chan_to_msgq(chan) (container_of(chan->mbox, struct gh_msgq=
+, mbox))
+> +
+container_of need not be in brackets.
 
-Looks like these are always required.
+> +static irqreturn_t gh_msgq_rx_irq_handler(int irq, void *data)
+> +{
+> +       struct gh_msgq *msgq =3D data;
+> +       struct gh_msgq_rx_data rx_data;
+> +       enum gh_error gh_error;
+> +       bool ready =3D true;
+> +
+Please limit the scope of rx_data and gh_error by moving them inside
+the while() body.
 
+> +       while (ready) {
+> +               gh_error =3D gh_hypercall_msgq_recv(msgq->rx_ghrsc->capid=
+,
+> +                               &rx_data.data, sizeof(rx_data.data),
+> +                               &rx_data.length, &ready);
+> +               if (gh_error !=3D GH_ERROR_OK) {
+> +                       if (gh_error !=3D GH_ERROR_MSGQUEUE_EMPTY)
+> +                               dev_warn(msgq->mbox.dev, "Failed to recei=
+ve data: %d\n", gh_error);
+> +                       break;
+> +               }
+> +               if (likely(gh_msgq_chan(msgq)->cl))
+> +                       mbox_chan_received_data(gh_msgq_chan(msgq), &rx_d=
+ata);
+> +       }
 > +
->  examples:
->    - |
->      #include <dt-bindings/leds/common.h>
-> @@ -191,4 +250,35 @@ examples:
->        compatible = "qcom,pm8916-pwm";
->        #pwm-cells = <2>;
->      };
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
+> +       return IRQ_HANDLED;
+> +}
 > +
-> +    led-controller {
-> +      compatible = "qcom,pmi632-lpg";
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      #pwm-cells = <2>;
-> +      nvmem-names = "lpg_chan_sdam";
-> +      nvmem = <&pmi632_sdam_7>;
-> +      qcom,pbs = <&pmi632_pbs_client3>;
+
+
+> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
+> +{
+> +       struct gh_msgq *msgq =3D mbox_chan_to_msgq(chan);
+> +       struct gh_msgq_tx_data *msgq_data =3D data;
+> +       u64 tx_flags =3D 0;
+> +       enum gh_error gh_error;
+> +       bool ready;
 > +
-> +      led@1 {
-> +        reg = <1>;
-> +        color = <LED_COLOR_ID_RED>;
-> +        label = "red";
-> +      };
+> +       if (!msgq->tx_ghrsc)
+> +               return -EOPNOTSUPP;
 > +
-> +      led@2 {
-> +        reg = <2>;
-> +        color = <LED_COLOR_ID_GREEN>;
-> +        label = "green";
-> +      };
+If we hit this error, the fix will still be in the upper layer.
+So please drop the check and, if needed, add one in the client driver.
+
+
+> +       if (msgq_data->push)
+> +               tx_flags |=3D GH_HYPERCALL_MSGQ_TX_FLAGS_PUSH;
 > +
-> +      led@3 {
-> +        reg = <3>;
-> +        color = <LED_COLOR_ID_BLUE>;
-> +        label = "blue";
-> +      };
-> +    };
+> +       gh_error =3D gh_hypercall_msgq_send(msgq->tx_ghrsc->capid, msgq_d=
+ata->length, msgq_data->data,
+> +                                               tx_flags, &ready);
 > +
->  ...
-> -- 
-> 2.41.0
-> 
+> +       /**
+> +        * unlikely because Linux tracks state of msgq and should not try=
+ to
+> +        * send message when msgq is full.
+> +        */
+> +       if (unlikely(gh_error =3D=3D GH_ERROR_MSGQUEUE_FULL))
+> +               return -EAGAIN;
+> +
+If it is not expected to hit, please remove the check.
+If there can be a 'race' like situation, still remove this and try to
+find an appropriate place to avoid the race.
+
+> +       /**
+> +        * Propagate all other errors to client. If we return error to ma=
+ilbox
+> +        * framework, then no other messages can be sent and nobody will =
+know
+> +        * to retry this message.
+> +        */
+> +       msgq->last_ret =3D gh_error_remap(gh_error);
+> +
+> +       /**
+> +        * This message was successfully sent, but message queue isn't re=
+ady to
+> +        * accept more messages because it's now full. Mailbox framework
+> +        * requires that we only report that message was transmitted when
+> +        * we're ready to transmit another message. We'll get that in the=
+ form
+> +        * of tx IRQ once the other side starts to drain the msgq.
+> +        */
+> +       if (gh_error =3D=3D GH_ERROR_OK) {
+> +               if (!ready)
+> +                       return 0;
+> +       } else {
+> +               dev_err(msgq->mbox.dev, "Failed to send data: %d (%d)\n",=
+ gh_error, msgq->last_ret);
+> +       }
+> +
+> +       /**
+> +        * We can send more messages.
+>
+            ... until we can not (when the platform specific queue is full)=
+.
+
+>             Mailbox framework requires that tx done
+> +        * happens asynchronously to sending the message.
+>
+hence the mailbox api needs to track each transfer's stage.
+
+>             Gunyah message queues
+> +        * tell us right away on the hypercall return whether we can send=
+ more
+> +        * messages. To work around this, defer the txdone to a tasklet.
+> +        */
+>
+If not here, you would still have to put the 'defer' somewhere in the
+upper layer.
+So it is not exactly a "workaround".
+
+> +       tasklet_schedule(&msgq->txdone_tasklet);
+> +
+> +       return 0;
+> +}
+> +
+
+
+> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
+> index 01a6f202d037e..982e27d10d57f 100644
+> --- a/include/linux/gunyah.h
+> +++ b/include/linux/gunyah.h
+> @@ -8,11 +8,68 @@
+>
+>  #include <linux/bitfield.h>
+>  #include <linux/errno.h>
+> +#include <linux/interrupt.h>
+>  #include <linux/limits.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox_client.h>
+>  #include <linux/types.h>
+>
+controller.h and client.h aren't supposed to be in the same header.
+The Client and the Controller driver could include them respectively
+before this header.
+
+Cheers.
