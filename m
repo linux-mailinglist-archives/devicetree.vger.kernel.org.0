@@ -2,151 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA75776EE93
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014A976EEA9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237238AbjHCPrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 11:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37148 "EHLO
+        id S234351AbjHCPve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 11:51:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237237AbjHCPrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:47:11 -0400
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928262726
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 08:47:09 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 1F22EFB04;
-        Thu,  3 Aug 2023 17:47:06 +0200 (CEST)
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id lNvRMJDejCVx; Thu,  3 Aug 2023 17:47:04 +0200 (CEST)
-Date:   Thu, 3 Aug 2023 17:47:02 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     Philipp Jungkamp <p.jungkamp@gmx.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234594AbjHCPvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:51:33 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.65.254])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 287DFE6B
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 08:51:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
+        s=tfld2305; t=1691077861;
+        bh=c6hFVhu8IksY+L1isInXQkxJGCppe2/DOz14aNlE2hI=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From;
+        b=eJL1iz/0hfS5avL+CtLF+mL2NpJWM2IFrXPZIni5EMY0Dgbpy4M8pbJRzKk85+FLP
+         h/eqcrYrlUt0zSHGmy2+q8MwAiQhTUhkMckTW8aWyuSzhx3zbpcA/B1n7TAnIrek9d
+         KCLdWMsKdtA6cMiYvb0mUxkWAmDEVBf0KHMA3wUU=
+X-QQ-mid: bizesmtp76t1691077857tu7elv4u
+Received: from [192.168.2.144] ( [178.41.211.221])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Thu, 03 Aug 2023 23:50:45 +0800 (CST)
+X-QQ-SSF: 01400000000000402000000A0000000
+X-QQ-FEAT: W+onFc5Tw4PG4OgGzcrbSq3SNJNCAX668+fM7+4uFuHR/EV1k9ENzQro0VfHX
+        DeWCrfsc7KHpi/+OcnFfWo9/8Jg6ab3nCPZzuQ7lYU3drXoLLXtOsOSe+Y/I7XABZEUCKBt
+        Ny3p06rK1IPLAfc5sbD5QfdCGLg4oLjMqXa3EKrbertkrTHTCvYAIbeM5XNXZfhSqZV9QWQ
+        p9MC63uVY6FDL5EySiZUqCFro8JfvusWxRoz1aYqCP+nf7tvd73QLduk4ZYXHjGkzKARhyk
+        ZS+7KVAiRsDj/fsUKS4qZRyCQaxB3xYmWtdZs4ing+b+qz281n3GEuz1LQu1GHUA0xanaYm
+        3L66NCJ0cmpIhQfrpFoi68oymQMzQ29VcTfWYT3GAZ2N75bhBWfu9aTyqHtqqwq16sYqVKh
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 2003181577924122140
+Message-ID: <0FF79B770AD31251+44408a50-d082-f3db-a60b-59ed0cb75e42@biqu3d.com>
+Date:   Thu, 3 Aug 2023 17:50:42 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 5/6] arm64: dts: allwinner: h616: Add BigTreeTech CB1
+ SoM & boards support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Martin Kepplinger <martink@posteo.de>,
-        Angus Ainslie <angus@akkea.ca>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dts: adjust proximity near level
-Message-ID: <ZMvL9nlsGvwX2L7h@qwark.sigxcpu.org>
-References: <20230802210746.1240625-1-p.jungkamp@gmx.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <20230802220309.163804-1-martin@biqu3d.com>
+ <85E425AED000D34C+20230802220309.163804-6-martin@biqu3d.com>
+ <9f1210b8-1726-a7a3-622b-8fef778cba3e@linaro.org>
+From:   Martin Botka <martin@biqu3d.com>
+In-Reply-To: <9f1210b8-1726-a7a3-622b-8fef778cba3e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230802210746.1240625-1-p.jungkamp@gmx.net>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_FAIL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:biqu3d.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Wed, Aug 02, 2023 at 11:07:46PM +0200, Philipp Jungkamp wrote:
-> Adjust the proximity-near-level by one to account for an error in
-> calibration using iio-sensor-proxy, which interpreted the
-> in_proximity_nearlevel attribute slightly differently than specified in
-> the kernel documentation.
+
+
+On 8/3/23 4:28â€¯PM, Krzysztof Kozlowski wrote:
+> On 03/08/2023 00:02, Martin Botka wrote:
+>> From: Martin Botka <martin.botka@somainline.org>
+>>
+>> CB1 is Compute Module style board that plugs into Rpi board style adapter or
+>> Manta 3D printer boards (M4P/M8P).
+>>
+>> The SoM features:
+>>    - H616 SoC
+>>    - 1GiB of RAM
+>>    - AXP313A PMIC
+>>    - RTL8189FTV WiFi
 > 
-> Signed-off-by: Philipp Jungkamp <p.jungkamp@gmx.net>
-> ---
-> Hello,
+> ...
 > 
-> Most userspace programs seem to use the in_proximity_nearlevel sysfs
-> attribute
-
-Even all we found.
-
-> implicitly through the iio-sensor-proxy dbus daemon. But the proximity sensor
-> near level detection does not adhere to the kernel documentation for the sysfs
-> attribute. This is, next to some techical defficulties in iio-sensor-proxy, the
-> reason that I proposed to fix the near level criterion there.
-> See: https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/-/merge_requests/364
+>> +&mmc0 {
+>> +	vmmc-supply = <&reg_dldo1>;
+>> +	broken-cd;
+>> +	bus-width = <4>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mmc1 {
+>> +	vmmc-supply = <&reg_vcc33_wifi>;
+>> +	vqmmc-supply = <&reg_vcc_wifi_io>;
+>> +	mmc-pwrseq = <&wifi_pwrseq>;
+>> +	bus-width = <4>;
+>> +	non-removable;
+>> +	mmc-ddr-1_8v;
+>> +	status = "okay";
+>> +
+>> +	rtl8189ftv: sdio_wifi@1 {
 > 
-> It has been pointed out that devices with a DT calibrated against
-> iio-sensor-proxy will see a slight change in the interpretation of the near
-> level criterion.
+> No underxcores in node names. Generic node names, so probably "wifi".
+Got it.
+> 
+>> +		reg = <1>;
+> 
+> Missing compatible?
+No it is an explicitly defined SDIO device so we can add ethernet alias 
+for it so we can for example set the MAC address of it via u-boot and etc :)
 
-I'd make that part of the commit message as well. With that the
-imx8mq-librem5* bits are
-
-  Reviewed-by: Guido Günther <agx@sigxcpu.org>
+The actual driver for it is out of tree and from the current state of it 
+looks like will be for a while.
+Orange Pi Zero Plus based on H5 does this exact thing as well for the 
+same purpose with the same wifi chip :)
 
 Cheers,
- -- Guido
-
+Martin
 > 
-> I want this more or less serious patch to be a heads up for the users and
-> implementors of the iio proximity sensors on linux.
 > 
-> Regards,
-> Philipp Jungkamp
 > 
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts  | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts  | 2 +-
->  arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts
-> index 2b3d437a642a..31426cf055b4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dts
-> @@ -23,5 +23,5 @@ &bq25895 {
->  };
-> 
->  &proximity {
-> -	proximity-near-level = <50>;
-> +	proximity-near-level = <51>;
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
-> index 7fd0176e4bd3..12ccc20afc8a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
-> @@ -45,5 +45,5 @@ &magnetometer {
->  };
-> 
->  &proximity {
-> -	proximity-near-level = <10>;
-> +	proximity-near-level = <11>;
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
-> index 97577c0a7715..fab872ecbf1c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
-> @@ -23,5 +23,5 @@ &lcd_panel {
->  };
-> 
->  &proximity {
-> -	proximity-near-level = <5>;
-> +	proximity-near-level = <6>;
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-> index 97262b8519b3..19173d9efa22 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-> @@ -156,7 +156,7 @@ magnetometer@12 {
->  	light-sensor@23 {
->  		compatible = "liteon,ltr559";
->  		reg = <0x23>;
-> -		proximity-near-level = <75>;
-> +		proximity-near-level = <76>;
-> 
->  		interrupt-parent = <&tlmm>;
->  		interrupts = <115 IRQ_TYPE_EDGE_FALLING>;
-> --
-> 2.41.0
 > 
