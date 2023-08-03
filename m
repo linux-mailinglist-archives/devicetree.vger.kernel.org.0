@@ -2,208 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8191876DFD1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 07:42:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BBE576DFE1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 07:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbjHCFma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 01:42:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56268 "EHLO
+        id S232381AbjHCFtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 01:49:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjHCFm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 01:42:29 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D740E211E;
-        Wed,  2 Aug 2023 22:42:26 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3735gHFo072789;
-        Thu, 3 Aug 2023 00:42:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691041337;
-        bh=JaVDkNh24zeaIa0PzyZdBDMiqrDv32R2mv8TvqwD37k=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=AcstJXErHHqyOY7BBcGwY3t0fKmOX8ioQdG+a0oBcps30HcGhDPYPUurkKRvRCcN+
-         gNYY9C0V9GbH0U39gFu/5gNzXY7iteSAG9crUxatkNUSH1n/Buo31jAt/qiCL3m1SS
-         rxJeyBuvFuiZZ/3t2cNPoWCWsrNXGByMy7/FJtvs=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3735gH2x027381
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Aug 2023 00:42:17 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
- Aug 2023 00:42:17 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 3 Aug 2023 00:42:17 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3735gGVG029112;
-        Thu, 3 Aug 2023 00:42:16 -0500
-Date:   Thu, 3 Aug 2023 11:12:20 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Devarsh Thakkar <devarsht@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S230058AbjHCFtl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 01:49:41 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 521992D4A
+        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 22:49:40 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-57a6df91b1eso5680337b3.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 22:49:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691041779; x=1691646579;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kfTUi7xflA+MwfHSQqcAtzP6pql4voH5e7kvmJj7QUs=;
+        b=FnQp7K+goL5kX5YrNjoKe7RMe9oWsPBKNrqPHgFNhF3SoHfOH9xNzAX6lBHYZVXETK
+         ZLbwfN6PBwwbZgZ/VFljDwBmSqtTjVZchhSdiB+sYRwl1E+8NZ0yrUxkexmdtzCSLjeB
+         eQepK/Co4MpNaNGvZ9NG6Dhp2aJY8f1RJgNhk2x3PbIS4fhEpgPbRvW1hDMtbzh4dG2M
+         1a/DKUBjQo+rtiMCqciXA4IKmNzLvbcB2EOmhVq1S7gFZjtjb4H2lxhouJAoSVeC3uFC
+         F38QQCZjxfeksLovgnDZV7iDEJmi9J6HndbV48/lDnzFYJZZfwOPSRgGZF8YMfWKSau6
+         k3mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691041779; x=1691646579;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kfTUi7xflA+MwfHSQqcAtzP6pql4voH5e7kvmJj7QUs=;
+        b=E6FaoceqJ4ewslh0/WQZs5dHTs21PVeNT4G/r9SxsiQCngIxXV+rYlTQC1BhSsVzQj
+         R6Ih7aLXMoPZ9fzqgX/S2kabzGKP5oCQ9olDsERcanQlRENYVayftfuv7M+Dqqj9z8xr
+         ngm0wF28TyLdApIf3JNANe8hftK1bd+WNSd1vE5iHnO6SLL9WcfMjNkp7zCJBa5OI+lR
+         F5x6D1ItUWWmInyse8MKcrUySsSTSh5iwJXw3+rRBJYuceKp0eKlCDSi16RBTRqKJYIl
+         Bw6US41+n+p1NVVOZWFAMxf0C7Zzqm4TqkYauPFmAGHmJFyHpAmql+5nAsPxz+TyzGWp
+         2MIA==
+X-Gm-Message-State: ABy/qLYWzDfVDeyw3A+/T1TXeScNtYGLH1O/JeToj1c1Egl5gosf50eH
+        L/V4P3Jd14TWnVOsr3iX6VL86g==
+X-Google-Smtp-Source: APBJJlFcSTIQ6AYzinujNeqC/VSvrhCiCIXIw1zsLOZIFkGtr7963td1ne5jUS+/eqdVRHBhyxIGXw==
+X-Received: by 2002:a81:5cc1:0:b0:56f:ff55:2b7d with SMTP id q184-20020a815cc1000000b0056fff552b7dmr20769766ywb.17.1691041779473;
+        Wed, 02 Aug 2023 22:49:39 -0700 (PDT)
+Received: from localhost ([122.172.87.195])
+        by smtp.gmail.com with ESMTPSA id hx11-20020a17090b440b00b00267a487f01bsm1881080pjb.48.2023.08.02.22.49.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Aug 2023 22:49:38 -0700 (PDT)
+Date:   Thu, 3 Aug 2023 11:19:35 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-Subject: Re: [PATCH 4/5] arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
-Message-ID: <g42iwlnxoaocvjglehavfnnfnfxj2z5fhvdbsnefhr2nzl3peb@6b7omnsthzq3>
-References: <20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com>
- <20230731-mcasp_am62a-v1-4-8bd137ffa8f1@ti.com>
- <aa8d2aa6-a121-51e6-77de-0e1c8bdac043@ti.com>
- <52pbbqnp46h33gymoydnjtxoo3dsb6wnytvjnmomtjdtwck536@ewhb2rngomr2>
- <20230802133502.zjvf7sslmcuayg5z@defog>
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v13 01/10] cpufreq: blocklist MSM8998 in
+ cpufreq-dt-platdev
+Message-ID: <20230803054935.y36bjdxed4yvitev@vireshk-i7>
+References: <20230217-topic-cpr3h-v13-0-d01cff1c54cf@linaro.org>
+ <20230217-topic-cpr3h-v13-1-d01cff1c54cf@linaro.org>
+ <CUI2S5IGZEHC.P7MUFZVOHCYR@lion.caleb.rex.connolly.tech>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="znyrgjgdrrbjtpu2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230802133502.zjvf7sslmcuayg5z@defog>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CUI2S5IGZEHC.P7MUFZVOHCYR@lion.caleb.rex.connolly.tech>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---znyrgjgdrrbjtpu2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 02-08-23, 13:58, Caleb Connolly wrote:
+> On Wed Aug 2, 2023 at 1:37 PM BST, Konrad Dybcio wrote:
+> > From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> >
+> > Add the MSM8998 to the blocklist since the CPU scaling on this platform
+> > is handled by a separate driver.
+> >
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> > Tested-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+> 
+> // Caleb (they/them)
+> 
+> > ---
+> >  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+> > index e2b20080de3a..adb3579a1fee 100644
+> > --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> > +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> > @@ -143,6 +143,7 @@ static const struct of_device_id blocklist[] __initconst = {
+> >  
+> >  	{ .compatible = "qcom,apq8096", },
+> >  	{ .compatible = "qcom,msm8996", },
+> > +	{ .compatible = "qcom,msm8998", },
+> >  	{ .compatible = "qcom,qcs404", },
+> >  	{ .compatible = "qcom,sa8155p" },
+> >  	{ .compatible = "qcom,sa8540p" },
 
-Hi Nishanth, Devarsh,
+Applied patch 1/10.
 
-On Aug 02, 2023 at 08:35:02 -0500, Nishanth Menon wrote:
-> On 17:10-20230802, Jai Luthra wrote:
-> > Hi Devarsh,
-> >=20
-> > On Aug 02, 2023 at 16:15:12 +0530, Devarsh Thakkar wrote:
-> > > Hi Jai,
-> > >=20
-> > > Thanks for the patch.
-> > >=20
-> > > On 31/07/23 18:14, Jai Luthra wrote:
-> > > > Add nodes for audio codec and sound card, enable the audio serializ=
-er
-> > > > (McASP1) under use and update pinmux.
-> > > >=20
-> > > > Link: https://www.ti.com/lit/zip/sprr459
-> > > > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > > > Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 77 +++++++++++++++++++++=
-++++++++++++
-> > > >  1 file changed, 77 insertions(+)
-> > > >=20
-> > > > diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/b=
-oot/dts/ti/k3-am62a7-sk.dts
-> > > > index 752c2f640f63..5f68d2eefe0f 100644
-> > > > --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> > > > +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> > > > @@ -125,6 +125,41 @@ led-0 {
-> > > >  			default-state =3D "off";
-> > > >  		};
-> > > >  	};
-> > > > +
-> > > > +	tlv320_mclk: clk-0 {
-> > > > +		#clock-cells =3D <0>;
-> > > > +		compatible =3D "fixed-clock";
-> > > > +		clock-frequency =3D <12288000>;
-> > > > +	};
-> > > > +
-> > > > +	codec_audio: sound {
-> > > > +		compatible =3D "simple-audio-card";
-> > > > +		simple-audio-card,name =3D "AM62Ax-SKEVM";
-> > >=20
-> > > In my opinion better to give the codec name instead of board name her=
-e.
-> >=20
-> > I agree, maybe calling it "sk-am62a-tlv320aic3106" would be the most=20
-> > clear option.
-> >=20
-> > Running a quick ripgrep on next tree:
-> >=20
-> > $ rg "simple-audio-card,name" arch/*/boot/dts/
-> >=20
-> > I see a healthy mix of using both board and/or codec name here - with T=
-I=20
-> > almost always using the board name. Maybe we can change the convention,=
-=20
-> > but it would be a good idea to at least update SK-AM62 as well to use=
-=20
-> > the new convention.
-> >=20
-> > Is it okay with you if it is handled as a separate series?
->=20
-> Will this cleanup of existing board break any userspace? If so, NO and
-> follow existing "board" convention - I'd like to maintain consistency,
-> even if that is not exactly clean!
-
-Upon further inspection, yes changing existing boards can break=20
-userspace applications as some procfs entries are enumerated with the=20
-name of the soundcard. So updating AM62x is out of the question.
-
-I am in favor of maintaining naming consistency with this board.
-
-Devarsh, I notice the current scheme is not entirely opaque, as the pcm=20
-device enumerates both the cpu & codec driver names:
-
-root@am62xx-evm:~# aplay -L
-null
-    Discard all samples (playback) or generate zero samples (capture)
-default:CARD=3DAM62xSKEVM
-    AM62x-SKEVM, davinci-mcasp.0-tlv320aic3x-hifi tlv320aic3x-hifi-0
-    Default Audio Device
-sysdefault:CARD=3DAM62xSKEVM
-    AM62x-SKEVM, davinci-mcasp.0-tlv320aic3x-hifi tlv320aic3x-hifi-0
-    Default Audio Device
-
-> If not, cleanup in a later series is fine, but please make sure to=20
-> follow through this week - with this patch following the convention of=20
-> choice.
->=20
-
-Please feel free to pull the current series, if no further comments.
-
-> --=20
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DD=
-B5 849D 1736 249D
-
---=20
-Thanks,
-Jai
-
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---znyrgjgdrrbjtpu2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmTLPjkACgkQQ96R+SSa
-cUW5VQ//YJnb0BqpzhvBlAwqL9bHfaAS0ztOySXJc0NdLxv3eNtfsFekteMPTJaU
-gawhb23HqSJy7/J6+2/qrmbjgV1Guz5EAJOgwnm65Y3m1MnfC19xI2/KRPapr9Uq
-clMDqr4ztsR8TPpv0+4uyqVotBPaRGMK7rnTsPb6i7oYq+8FRPnl6cEbiFhlu1pu
-//eCPOswKStCjFeWZbVFJbo2TT9ZDbypZxpS9Z3/FoImGtF99cuACSFHHEFfzq/l
-p7sKRMkKoiSJGBQ1TERw1t6m2cPQLzocG2FiiLxtQAdspPIvHtvcSXWeQfae8lJ2
-NAWRuJsIgoleoBTV+10WROVmyiu42mE+Bdh5lAHBA9WBG2E5h1juNcrWtwIsqyI0
-25YYbnJdOTioC1Q+UWBf7jsvK55qt3s7RaOO1IKbIa4jYcJMlWIeXV546PRqfB9m
-uwWFTGFAV0wHaOdcHvlA9RUayCWkGzUzAgIPfA2pTAvB4ObJD3NUkHfZi/nji+0x
-fUPqM2kDBruiW2SDFZrMJC7aYtrb2mQ+rt3sCMJVxqb+QRuZsN7sHOF6B+GY1RJ7
-puESJVQXEyT3aPKAqMp5wWGFSlS5EhIlfZX8ESEwHShI+IJvAjdybXwYjvrLmt+Z
-tO15Pz8u+lONZ/u58Gsk4tfYv49e6IbSJZFYx6R2syLunSl7AL8=
-=LK09
------END PGP SIGNATURE-----
-
---znyrgjgdrrbjtpu2--
+-- 
+viresh
