@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1CF376DF4B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 06:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85BCD76DF5B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 06:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjHCEMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 00:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36482 "EHLO
+        id S229480AbjHCETS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 00:19:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjHCEMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 00:12:19 -0400
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC690128
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 21:12:17 -0700 (PDT)
-Received: by mail-oo1-xc2e.google.com with SMTP id 006d021491bc7-56c884e1d74so336937eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 21:12:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1691035937; x=1691640737;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hd30A/fggcN39gGQkepwL8jeQAs7m97eSs1H31wFckk=;
-        b=gchTmtHHTNGBMK+YVbrxUYjTe+nIANMrji0XlGoUMCaDfcmXNO9MzbzoN1UGAh4hEb
-         B87W6Hi/mm1pyIPeos9QZaD3XBOdr/x16eFJzPVf+O9FgJ0YlsnfS4gAO8lT2xQBLygo
-         JYQz+BqXau3MFZ8CvpgRtcbwoMZYyU/6eukLLowhWgzNU/lZ0j8b3iCGIX+C6BbKsysL
-         9QFSgb5420atLu4wrLOWSR+KA/fDTwRRsoKOq9wTy6/qYW1T+zA38YL3D1casMQYLsrD
-         vZNMZri6t3ZuOKW/wGXIh4sLR5oJERW692l88QcM9vgFpIUhUKYZeuFJjpfrvcFqLHBa
-         jpnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691035937; x=1691640737;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hd30A/fggcN39gGQkepwL8jeQAs7m97eSs1H31wFckk=;
-        b=HeQ9bLjYWR3qNRkjg9Zd/MWQpG+cYC1ipvv0Kp5UYWe0nNm18Q06yqYLr9wmn9UN39
-         5m9aPZA4aHF0LrSeTHkD/2l3JcbOUccL3fFOToUNrmaBgAy/0H27DGQ/Ne0IsvhEkndF
-         Aip/DmllAaxtBrGClLzKHSS6eOiE1U2vDBEsKLtjKmt3K7ojBEa2+lBRzWivYVVESdjY
-         5EbHLjilW7jr7CFiLTqddVV1sxTwYVbLc/Zro+afuuCJBQlN/zkxbnD5kUgd0TOpTRVT
-         rgOJDZ6ffedbU9mwtnTazD/+yRARkz5ji66AkrHKbE2uMGJMKzlSVQYXrqbwhXhCz+4t
-         Mr7A==
-X-Gm-Message-State: ABy/qLYSY7mUHdp2M2sWkmmNAiNtcM27MfDIqDaN1yZNONaxe5CFwRzb
-        3EGP7SzaywvUzlniaWR6RaJj8PtlBbEt13n8QK44EQ==
-X-Google-Smtp-Source: APBJJlGF8FGby+LnkJV4mKB0xGQp5jLExxKgE/f1UFtD3irgOue0rnzA//Q2O+jmw2s1SFCZprxjH4kY4EgyZTm4H/w=
-X-Received: by 2002:a05:6870:ac0d:b0:1b0:2f63:4ff6 with SMTP id
- kw13-20020a056870ac0d00b001b02f634ff6mr22643857oab.1.1691035937115; Wed, 02
- Aug 2023 21:12:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230802150018.327079-1-apatel@ventanamicro.com>
- <20230802150018.327079-2-apatel@ventanamicro.com> <20230802-b0c478839e55890385d98f31@orel>
-In-Reply-To: <20230802-b0c478839e55890385d98f31@orel>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Thu, 3 Aug 2023 09:42:04 +0530
-Message-ID: <CAK9=C2V+RYFLiZTx5ygNrzrTyrrfrEnwqy90en0T+4zyHNAuYg@mail.gmail.com>
-Subject: Re: [PATCH v7 01/15] RISC-V: Add riscv_get_intc_hartid() function
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229463AbjHCETR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 00:19:17 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 141D5106;
+        Wed,  2 Aug 2023 21:19:16 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3733fUsG008805;
+        Thu, 3 Aug 2023 04:18:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=JPtysfcS0AIfNUZpM9ssd0qH1kDBkP2CB3k8ROMb0H4=;
+ b=IbpFA0NSIYV2M4rubBeo3FwYMMGeSIXDtV1C2vYq2v9236a7GOC/SDq4qgHsSj8MRuoK
+ AdZoYK8/3xn7xHGeclinuwpDhgIqez3ZzpVa1rfmEh5/Vd8iFnWkvEy0r8ldoXEzOefG
+ qiOwuyKwUkKx+LgngUnsv9pcU31CwMxZsslbSTaAnFrBVlEEpLI2nzdGPkb+ymI2jjcZ
+ ZCEhRFDP06la07bM29GfSRAmf/NC3DrgT2p2X46dyfH1B25tb3F5CjTeFLRBqjNlILbB
+ PehSVGZv//xqtQLUhOm5OuN3gAvSXtxE1Tx2CMW9RkQU/57pEExEqG6jsvkZKPJy0Ngd kQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s7sgnh8u4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Aug 2023 04:18:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3734Ik2O026084
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 3 Aug 2023 04:18:46 GMT
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 2 Aug 2023 21:18:40 -0700
+Date:   Thu, 3 Aug 2023 09:48:37 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     David Dai <davidai@google.com>
+CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Sunil V L <sunilvl@ventanamicro.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
         Saravana Kannan <saravanak@google.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Quentin Perret <qperret@google.com>,
+        Masami Hiramatsu <mhiramat@google.com>,
+        Will Deacon <will@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Marc Zyngier" <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        "Dietmar Eggemann" <dietmar.eggemann@arm.com>,
+        Pavan Kondeti <quic_pkondeti@quicinc.com>,
+        Gupta Pankaj <pankaj.gupta@amd.com>,
+        Mel Gorman <mgorman@suse.de>, <kernel-team@android.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] cpufreq: add virtual-cpufreq driver
+Message-ID: <80f47262-9354-472f-8122-5ae262c0a46d@quicinc.com>
+References: <20230731174613.4133167-1-davidai@google.com>
+ <20230731174613.4133167-3-davidai@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230731174613.4133167-3-davidai@google.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: g3g7Xtp3J-PsThVbTzWOpXLknSgYYInr
+X-Proofpoint-GUID: g3g7Xtp3J-PsThVbTzWOpXLknSgYYInr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-03_01,2023-08-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ lowpriorityscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ priorityscore=1501 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308030038
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,190 +93,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 2, 2023 at 10:41=E2=80=AFPM Andrew Jones <ajones@ventanamicro.c=
-om> wrote:
->
-> On Wed, Aug 02, 2023 at 08:30:04PM +0530, Anup Patel wrote:
-> > We add a common riscv_get_intc_hartid() which help device drivers to
-> > get hartid of the HART associated with a INTC (i.e. local interrupt
-> > controller) fwnode. This new function is more generic compared to
-> > the existing riscv_of_parent_hartid() function hence we also replace
-> > use of riscv_of_parent_hartid() with riscv_get_intc_hartid().
-> >
-> > Also, while we are here let us update riscv_of_parent_hartid() to
-> > always return the hartid irrespective whether the CPU/HART DT node
-> > is disabled or not.
->
-> This change should probably be a separate patch with its own
-> justification in its commit message.
+On Mon, Jul 31, 2023 at 10:46:09AM -0700, David Dai wrote:
+> Introduce a virtualized cpufreq driver for guest kernels to improve
+> performance and power of workloads within VMs.
+> 
+> This driver does two main things:
+> 
+> 1. Sends the frequency of vCPUs as a hint to the host. The host uses the
+> hint to schedule the vCPU threads and decide physical CPU frequency.
+> 
+> 2. If a VM does not support a virtualized FIE(like AMUs), it queries the
+> host CPU frequency by reading a MMIO region of a virtual cpufreq device
+> to update the guest's frequency scaling factor periodically. This enables
+> accurate Per-Entity Load Tracking for tasks running in the guest.
+> 
+> Co-developed-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: David Dai <davidai@google.com>
 
-Okay, I will move this into a separate patch in the next revision.
+[...]
 
->
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  arch/riscv/include/asm/processor.h |  4 +++-
-> >  arch/riscv/kernel/cpu.c            | 26 ++++++++++++++++++++------
-> >  drivers/irqchip/irq-riscv-intc.c   |  2 +-
-> >  drivers/irqchip/irq-sifive-plic.c  |  3 ++-
-> >  4 files changed, 26 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/as=
-m/processor.h
-> > index c950a8d9edef..662da1e112dd 100644
-> > --- a/arch/riscv/include/asm/processor.h
-> > +++ b/arch/riscv/include/asm/processor.h
-> > @@ -79,7 +79,9 @@ static inline void wait_for_interrupt(void)
-> >  struct device_node;
-> >  int riscv_of_processor_hartid(struct device_node *node, unsigned long =
-*hartid);
-> >  int riscv_early_of_processor_hartid(struct device_node *node, unsigned=
- long *hartid);
-> > -int riscv_of_parent_hartid(struct device_node *node, unsigned long *ha=
-rtid);
-> > +
-> > +struct fwnode_handle;
-> > +int riscv_get_intc_hartid(struct fwnode_handle *node, unsigned long *h=
-artid);
->
-> Do we want a function that is named in a way that appears to be
-> intc-specific in processor.h?
+> +static void virt_scale_freq_tick(void)
+> +{
+> +	struct cpufreq_policy *policy = cpufreq_cpu_get(smp_processor_id());
+> +	struct virt_cpufreq_drv_data *data = policy->driver_data;
+> +	u32 max_freq = (u32)policy->cpuinfo.max_freq;
+> +	u64 cur_freq;
+> +	u64 scale;
+> +
+> +	cpufreq_cpu_put(policy);
+> +
+> +	cur_freq = (u64)data->ops->get_freq(policy);
+> +	cur_freq <<= SCHED_CAPACITY_SHIFT;
+> +	scale = div_u64(cur_freq, max_freq);
+> +
+> +	this_cpu_write(arch_freq_scale, (unsigned long)scale);
+> +}
+> +
 
-Yes, this is intended to be only for intc because only intc fwnode can have
-"hartid" property.
+We expect the host to provide the frequency in kHz, can you please add a
+comment about it. It is not very obvious when you look at the
+REG_CUR_FREQ_OFFSET register name.
 
->
-> >
-> >  extern void riscv_fill_hwcap(void);
-> >  extern int arch_dup_task_struct(struct task_struct *dst, struct task_s=
-truct *src);
-> > diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> > index a2fc952318e9..c3eaa8a55bbe 100644
-> > --- a/arch/riscv/kernel/cpu.c
-> > +++ b/arch/riscv/kernel/cpu.c
-> > @@ -81,21 +81,35 @@ int riscv_early_of_processor_hartid(struct device_n=
-ode *node, unsigned long *har
-> >   * To achieve this, we walk up the DT tree until we find an active
-> >   * RISC-V core (HART) node and extract the cpuid from it.
-> >   */
-> > -int riscv_of_parent_hartid(struct device_node *node, unsigned long *ha=
-rtid)
-> > +static int riscv_of_parent_hartid(struct device_node *node,
-> > +                               unsigned long *hartid)
-> >  {
-> > -     int rc;
-> > -
-> >       for (; node; node =3D node->parent) {
-> >               if (of_device_is_compatible(node, "riscv")) {
-> > -                     rc =3D riscv_of_processor_hartid(node, hartid);
-> > -                     if (!rc)
-> > -                             return 0;
-> > +                     *hartid =3D (unsigned long)of_get_cpu_hwid(node, =
-0);
->
-> Shouldn't we still do something like
->
->    if (*hartid =3D=3D ~0UL) {
->        pr_warn_once("Found CPU without hart ID\n");
->        return -ENODEV;
->    }
+> +static struct scale_freq_data virt_sfd = {
+> +	.source = SCALE_FREQ_SOURCE_VIRT,
+> +	.set_freq_scale = virt_scale_freq_tick,
+> +};
+> +
+> +static unsigned int virt_cpufreq_set_perf(struct cpufreq_policy *policy)
+> +{
+> +	struct virt_cpufreq_drv_data *data = policy->driver_data;
+> +	/*
+> +	 * Use cached frequency to avoid rounding to freq table entries
+> +	 * and undo 25% frequency boost applied by schedutil.
+> +	 */
+> +	u32 freq = mult_frac(policy->cached_target_freq, 80, 100);
+> +
+> +	data->ops->set_freq(policy, freq);
+> +	return 0;
+> +}
 
-Sure, I will add it in the next revision.
+Why do we undo the frequency boost? A governor may apply other boosts
+like RT (uclamp), iowait. It is not clear why we need to worry about
+governor policies here.
 
->
-> > +                     return 0;
-> >               }
-> >       }
-> >
-> >       return -1;
-> >  }
-> >
-> > +/* Find hart ID of the INTC fwnode. */
-> > +int riscv_get_intc_hartid(struct fwnode_handle *node, unsigned long *h=
-artid)
-> > +{
-> > +     int rc;
-> > +     u64 temp;
-> > +
-> > +     if (!is_of_node(node)) {
-> > +             rc =3D fwnode_property_read_u64_array(node, "hartid", &te=
-mp, 1);
->
-> This fwnode property read call seems premature, since we don't have any
-> way to know that "hartid" will be a property of the intc since it's not a
-> property documented in the DT binding. (I know Sunil has a series in
-> progress which will introduce "hartid" for ACPI, but, even then, it seems
-> like we need some documentation to point at that says '"hartid" is the
-> name to use'.
+> +
+> +static unsigned int virt_cpufreq_fast_switch(struct cpufreq_policy *policy,
+> +		unsigned int target_freq)
+> +{
+> +	virt_cpufreq_set_perf(policy);
+> +	return target_freq;
+> +}
+> +
+> +static int virt_cpufreq_target_index(struct cpufreq_policy *policy,
+> +		unsigned int index)
+> +{
+> +	return virt_cpufreq_set_perf(policy);
+> +}
+> +
+> +static int virt_cpufreq_cpu_init(struct cpufreq_policy *policy)
+> +{
+> +	struct virt_cpufreq_drv_data *drv_data = cpufreq_get_driver_data();
+> +	struct cpufreq_frequency_table *table;
+> +	struct device *cpu_dev;
+> +	int ret;
+> +
+> +	cpu_dev = get_cpu_device(policy->cpu);
+> +	if (!cpu_dev)
+> +		return -ENODEV;
+> +
+> +	ret = dev_pm_opp_of_add_table(cpu_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = dev_pm_opp_get_opp_count(cpu_dev);
+> +	if (ret <= 0) {
+> +		dev_err(cpu_dev, "OPP table can't be empty\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = dev_pm_opp_init_cpufreq_table(cpu_dev, &table);
+> +	if (ret) {
+> +		dev_err(cpu_dev, "failed to init cpufreq table: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	policy->freq_table = table;
+> +	policy->dvfs_possible_from_any_cpu = false;
+> +	policy->fast_switch_possible = true;
+> +	policy->driver_data = drv_data;
+> +
+> +	/*
+> +	 * Only takes effect if another FIE source such as AMUs
+> +	 * have not been registered.
+> +	 */
+> +	topology_set_scale_freq_source(&virt_sfd, policy->cpus);
+> +
+> +	return 0;
+> +
+> +}
+> +
 
-Sure, I will return a failure if it is not an OF node and Sunil can include
-a patch to extend this function for ACPI.
+Do we need to register as FIE source even with the below commit? By
+registering as a source, we are not supplying any accurate metric. We
+still fallback on the same source that cpufreq implements it.
 
-The idea here is that we create SW fwnodes for static ACPI tables and
-the irqchip driver only uses fwnode APIs as an abstraction over DT and
-ACPI. This way irqchip drivers work for both DT and ACPI with minimal
-modifications.
+874f63531064 ("cpufreq: report whether cpufreq supports Frequency
+Invariance (FI)")
 
-Almost all properties of SW fwnodes are exactly same as defined by
-the DT bindings except two synthetic properties:
-1) "hartid" in INTC fwnode created only for ACPI
-2) "gsi-base" in the APLIC fwnode created only for ACPI.
-
-I suggest we should document both of these synthetic fwnode properties
-in Documentation/riscv/acpi.rst since these are only for ACPI.
-
->
-> > +             if (!rc)
-> > +                     *hartid =3D temp;
-> > +     } else
-> > +             rc =3D riscv_of_parent_hartid(to_of_node(node), hartid);
-> > +
-> > +     return rc;
-> > +}
-> > +
-> >  DEFINE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
-> >
-> >  unsigned long riscv_cached_mvendorid(unsigned int cpu_id)
-> > diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-ris=
-cv-intc.c
-> > index 4adeee1bc391..65f4a2afb381 100644
-> > --- a/drivers/irqchip/irq-riscv-intc.c
-> > +++ b/drivers/irqchip/irq-riscv-intc.c
-> > @@ -143,7 +143,7 @@ static int __init riscv_intc_init(struct device_nod=
-e *node,
-> >       int rc;
-> >       unsigned long hartid;
-> >
-> > -     rc =3D riscv_of_parent_hartid(node, &hartid);
-> > +     rc =3D riscv_get_intc_hartid(of_fwnode_handle(node), &hartid);
-> >       if (rc < 0) {
-> >               pr_warn("unable to find hart id for %pOF\n", node);
-> >               return 0;
-> > diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-si=
-five-plic.c
-> > index e1484905b7bd..56b0544b1f27 100644
-> > --- a/drivers/irqchip/irq-sifive-plic.c
-> > +++ b/drivers/irqchip/irq-sifive-plic.c
-> > @@ -477,7 +477,8 @@ static int __init __plic_init(struct device_node *n=
-ode,
-> >                       continue;
-> >               }
-> >
-> > -             error =3D riscv_of_parent_hartid(parent.np, &hartid);
-> > +             error =3D riscv_get_intc_hartid(of_fwnode_handle(parent.n=
-p),
-> > +                                           &hartid);
-> >               if (error < 0) {
-> >                       pr_warn("failed to parse hart ID for context %d.\=
-n", i);
-> >                       continue;
-> > --
-> > 2.34.1
-> >
->
-> Thanks,
-> drew
-
-Regards,
-Anup
+Thanks,
+Pavan
