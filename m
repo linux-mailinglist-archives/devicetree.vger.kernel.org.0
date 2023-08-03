@@ -2,415 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7E376F40C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2AE976F3DD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:10:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbjHCUdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 16:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
+        id S231178AbjHCUKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 16:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjHCUc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:32:58 -0400
-Received: from fallback24.i.mail.ru (fallback24.i.mail.ru [79.137.243.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37EDBA;
-        Thu,  3 Aug 2023 13:32:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
-        h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=/Fv6//zYQ8hHhjfzP+mBDrRjyPegam4EZOiBSMo8WDI=;
-        t=1691094776;x=1691184776; 
-        b=cYi/JIRP+QHbPD1RzSCDgxG54sdN4csATJ7gDUS1IIGv8VExKJ2gwW9lBvKUEylzOcyphignFdSkpa7D+45aLlfCj6MdsRx3X9NtCYwpz22QjAXmXA2J4OlDNSt7p9RC3NYibrWOOVPnsOiQMz9AbuWyTlP//NeoDuRXWpq/2nE=;
-Received: from [10.12.4.30] (port=37854 helo=smtp55.i.mail.ru)
-        by fallback24.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
-        id 1qReIZ-00HFEd-PE; Thu, 03 Aug 2023 22:47:51 +0300
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
-        ; s=mailru; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-ID:Date:Subject:Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
-        X-Cloud-Ids:Disposition-Notification-To;
-        bh=/Fv6//zYQ8hHhjfzP+mBDrRjyPegam4EZOiBSMo8WDI=; t=1691092071; x=1691182071; 
-        b=akZd9QNCIQLv0DZu/oOBI8z9NaDOOmhvjpOOS2K8WUbgl1JONcgOPiBCrGOj6Dnw+nwib5JDag0
-        ZdyYenWSKH6vmqpfPjjZnw4DAO011kO+W9sINKVEGVhXL2AmGChLOOVyjsREL6xMLNedL1hivijVH
-        xvczhA3rkEZIUnjrS3g=;
-Received: by smtp55.i.mail.ru with esmtpa (envelope-from <danila@jiaxyga.com>)
-        id 1qReIP-000Y8b-0U; Thu, 03 Aug 2023 22:47:41 +0300
-From:   Danila Tikhonov <danila@jiaxyga.com>
-To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run,
-        marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org,
-        neil.armstrong@linaro.org, rfoss@kernel.org, andersson@kernel.org,
-        quic_khsieh@quicinc.com, quic_vpolimer@quicinc.com,
-        quic_rmccann@quicinc.com, quic_jesszhan@quicinc.com,
-        liushixin2@huawei.com
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, danila@jiaxyga.com,
-        davidwronek@gmail.com
-Subject: [PATCH 2/2] drm/msm/dpu: Add SM7150 support
-Date:   Thu,  3 Aug 2023 22:47:24 +0300
-Message-ID: <20230803194724.154591-3-danila@jiaxyga.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230803194724.154591-1-danila@jiaxyga.com>
-References: <20230803194724.154591-1-danila@jiaxyga.com>
+        with ESMTP id S229446AbjHCUKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:10:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C33420F;
+        Thu,  3 Aug 2023 13:10:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC45D61E59;
+        Thu,  3 Aug 2023 20:10:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 463E1C433C9;
+        Thu,  3 Aug 2023 20:10:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691093445;
+        bh=rRqWLzad4aYTCLv6ApNU6Oinv4secXSUMatIH4Ddfbw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QjVnoLJuhpzo+LVf5FxzVfxf7yERbuR73Vpqbu8gQy3L+cf9TsrVNciOqPwf0hmm7
+         MKSs9DW/8T/MfqHNOP+6a3JfhJEYw3z1KiS12SUFQ84wcNWLaYCfLkl2GgTpitO1L0
+         D7PnYJTtjts85h5Am9c9D9JCABDKeAq+DoD9TZ8w3t0Wm2MkJj7Ic6m54LqfHgBgNg
+         oqsP38kdvLo1OO8Ib+liKFEKp+OuWZwZxndHXr1SdPyUtCoEh7mbf0vPC8XBxFYKLq
+         cQ0NOimg4T+CnfjdGg7XVapzbgXk1olWoR0gGnYZEzQG23uMqDmc5ZK6gEUeP/XrqK
+         icDmarkKOeNPw==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b9a828c920so20848161fa.1;
+        Thu, 03 Aug 2023 13:10:45 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yy0l8ZS3iJbJ2LNTwRsCcUO1xlDTyUv4LOB/UbE04UoUGyD3MqC
+        oD1CuOVnLqse6y6eXd6QmSeRQ/brk8hxZLwA2g==
+X-Google-Smtp-Source: AGHT+IE8fLe5MbJV69kyUFyJY/X3Z5LLAhMuRB6XwAHzqyccpuPqPwBNAC1U7wPXbTbUefmajp7PmI0PgtW94DVwLxA=
+X-Received: by 2002:a2e:7202:0:b0:2ba:18e5:106f with SMTP id
+ n2-20020a2e7202000000b002ba18e5106fmr781135ljc.30.1691093443210; Thu, 03 Aug
+ 2023 13:10:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailru-Src: smtp
-X-7564579A: B8F34718100C35BD
-X-77F55803: 4F1203BC0FB41BD969E04B5EED670DC86EE92E42F0C271DDDF6A6B73F41FC074182A05F53808504023C2F6D301898F6E0A7C06F167306F4C67F4D113E137A824A8502D4A2F1823D8
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7CB1C1CF81BFF4FD8EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637525B22DCF689D4638638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8E998A34250954F66C2F14F2022333820117882F4460429724CE54428C33FAD305F5C1EE8F4F765FCF77088377309FF52A471835C12D1D9774AD6D5ED66289B52BA9C0B312567BB23117882F44604297287769387670735200AC5B80A05675ACDBDFBBEFFF4125B51D2E47CDBA5A96583BA9C0B312567BB2376E601842F6C81A19E625A9149C048EE437C869540D2AB0F269E641683F5DD3FD8FC6C240DEA76429C9F4D5AE37F343AA9539A8B242431040A6AB1C7CE11FEE3E6BDB36F057AC83C302FCEF25BFAB345C4224003CC836476E2F48590F00D11D6E2021AF6380DFAD1A18204E546F3947CB11811A4A51E3B096D1867E19FE1407978DA827A17800CE705056152E029236E2DBA43225CD8A89F1B3F1E879BC1E2F16D8C47C27EEC5E9FB5C8C57E37DE458BEDA766A37F9254B7
-X-C1DE0DAB: 0D63561A33F958A52409681541621A36C6B9CF6467323EFFF2450E2079F45EA6F87CCE6106E1FC07E67D4AC08A07B9B0251EFD5447B32ED69C5DF10A05D560A950611B66E3DA6D700B0A020F03D25A0997E3FB2386030E77
-X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CFF6A43A44C47494477AF85A435732593FA2067516DC6B94AA84CA6FAE112578A98D4FFD5EE53653998553022043D0BC9A4085C7A0F8E3792FFD9F7E1B811E80DCD8EBEDE01CE1B1DA4C41F94D744909CE4BCAC77546666B612CC0CD5AA9A1B9887EE09F5AAA95A50543082AE146A756F3
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojcir52QaMQ804yi0SdwB1iA==
-X-Mailru-Sender: 9EB879F2C80682A09F26F806C7394981B7B6FBA8BC57466699BFA8AA5DFE6DFAFFF4D93F285358E1643683D8C0F3ED1CA3C71A376745D86BBE86167304C7680C3980CE5AAA35C7CD60F22E8815EDE5EAEAB4BC95F72C04283CDA0F3B3F5B9367
-X-Mras: Ok
-X-7564579A: B8F34718100C35BD
-X-77F55803: 6242723A09DB00B4C2CC63398298511D1E4750FD930E01DF28F9632845AEBDC5049FFFDB7839CE9E588CC25E272B312A2D8694833E40EA1B6F9CBB237BCA508A46EA42ECDDC8E1D1
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5xhPKz0ZEsZ5k6NOOPWz5QAiZSCXKGQRq3/7KxbCLSB2ESzQkaOXqCBFZPLWFrEGlV1shfWe2EVcxl5toh0c/aCGOghz/frdRhzMe95NxDFd3RriuhA+6EboYtJCDiDjPg==
-X-Mailru-MI: C000000000000800
-X-Mras: Ok
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230721161840.1393996-1-hugo@hugovil.com> <20230721161840.1393996-7-hugo@hugovil.com>
+ <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
+ <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com> <2023072240-supremacy-shallot-a77f@gregkh>
+ <20230724115428.d191186852c0bd0ee0d78398@hugovil.com> <CAL_JsqL8rjwONd6UAitKik0U44BKSD6m8zbachgfq0R9oHBW8w@mail.gmail.com>
+ <20230731124600.39eb8d5c132f9338c2897543@hugovil.com> <CAL_JsqLaF70hNQndXpJfmH1TMGNbA7myQG0GK9fjyKOs63z-3w@mail.gmail.com>
+ <20230731144115.14733f0e01f586a7efb91370@hugovil.com> <20230803135401.3a11bfb7c2985c1a90a2521b@hugovil.com>
+In-Reply-To: <20230803135401.3a11bfb7c2985c1a90a2521b@hugovil.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 3 Aug 2023 14:10:30 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK-qbz=w2a00EXh_e1XmY1gF1nvxih7AOYXw+VuMXhnmw@mail.gmail.com>
+Message-ID: <CAL_JsqK-qbz=w2a00EXh_e1XmY1gF1nvxih7AOYXw+VuMXhnmw@mail.gmail.com>
+Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
+ GPIO configuration
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lech Perczak <lech.perczak@camlingroup.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add definitions for the display hardware used on the Qualcomm SM7150
-platform.
+On Thu, Aug 3, 2023 at 11:54=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.com> =
+wrote:
+>
+> On Mon, 31 Jul 2023 14:41:15 -0400
+> Hugo Villeneuve <hugo@hugovil.com> wrote:
+>
+> > On Mon, 31 Jul 2023 12:04:45 -0600
+> > Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > > On Mon, Jul 31, 2023 at 10:46=E2=80=AFAM Hugo Villeneuve <hugo@hugovi=
+l.com> wrote:
+> > > >
+> > > > On Mon, 31 Jul 2023 09:31:53 -0600
+> > > > Rob Herring <robh+dt@kernel.org> wrote:
+> > > >
+> > > > > On Mon, Jul 24, 2023 at 9:54=E2=80=AFAM Hugo Villeneuve <hugo@hug=
+ovil.com> wrote:
+> > > > > >
+> > > > > > On Sat, 22 Jul 2023 17:15:26 +0200
+> > > > > > Greg KH <gregkh@linuxfoundation.org> wrote:
+> > > > > >
+> > > > > > > On Sat, Jul 22, 2023 at 10:47:24AM -0400, Hugo Villeneuve wro=
+te:
+> > > > > > > > On Fri, 21 Jul 2023 13:24:19 -0600
+> > > > > > > > Rob Herring <robh+dt@kernel.org> wrote:
+> > > > > > > >
+> > > > > > > > > On Fri, Jul 21, 2023 at 10:19=E2=80=AFAM Hugo Villeneuve =
+<hugo@hugovil.com> wrote:
+> > > > > > > > > >
+> > > > > > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > > > > >
+> > > > > > > > > > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from mo=
+dem control lines")
+> > > > > > > > > > and commit 21144bab4f11 ("sc16is7xx: Handle modem statu=
+s lines")
+> > > > > > > > > > changed the function of the GPIOs pins to act as modem =
+control
+> > > > > > > > > > lines without any possibility of selecting GPIO functio=
+n.
+> > > > > > > > >
+> > > > > > > > > Requiring a new DT property is not fixing a kernel regres=
+sion. You
+> > > > > > > > > should be returning the kernel to original behavior and t=
+hen have a
+> > > > > > > > > new DT property for new behavior.
+> > > > > > > >
+> > > > > > > > Hi Rob,
+> > > > > > > > please read the entire patch history starting from V1
+> > > > > > > >  and you will understand why this course of action was
+> > > > > > > >  not selected.
+> > > > > > >
+> > > > > > > That's not going to happen, sorry, you need to explain it her=
+e, in this
+> > > > > > > patch series, why a specific action is being taken over anoth=
+er one, as
+> > > > > > > no one has time to go dig through past history, sorry.
+> > > > > >
+> > > > > > Hi Rob,
+> > > > > > I initially submitted a patch to revert the kernel to original
+> > > > > > behavior, but it created more problems because the patch was
+> > > > > > unfortunately split in two separate patches, and mixed with oth=
+er non
+> > > > > > closely-related changes. It was also noted to me that reverting=
+ to the
+> > > > > > old behavior would break things for some users.
+> > > > > >
+> > > > > > It was suggested to me by a more experienced kernel developer t=
+o
+> > > > > > "suggest a fix, instead of hurrying a revert":
+> > > > > >
+> > > > > >     https://lkml.org/lkml/2023/5/17/758
+> > > > >
+> > > > > Do I have to go read this to decipher the justification and reaso=
+ning?
+> > > > > When Greg says "in this patch series", he means in the commit mes=
+sages
+> > > > > of the patches. You send v9 already and it doesn't have that. The
+> > > > > patchset needs to stand on its own summarizing any relevant prior
+> > > > > discussions.
+> > > > >
+> > > > > I never suggested doing a revert.
+> > > >
+> > > > Hi Rob,
+> > > > I am sorry, but this is exactly what I "deciphered" from your
+> > > > original email.
+> > > >
+> > > > I am trying very hard to understand exactly what you mean, but it i=
+s
+> > > > not that obvious for me. If something is not clear in my commit mes=
+sage,
+> > > > I will try to improve it. But before, let's try to focus on making =
+sure
+> > > > I understand more clearly what you want exactly.
+> > > >
+> > > > > Obviously, someone still wants the
+> > > > > new feature.
+> > > >
+> > > > I assume that you refer to the "new feature" as what was added in
+> > > > the commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem cont=
+rol
+> > > > lines")?
+> > >
+> > > Shrug. It's one of the 2 commits mentioned, I don't know which one
+> > > exactly. Whichever one changed default behavior from use GPIOs to use
+> > > modem ctrl lines.
+> > >
+> > > Reading it again, I *think* this patch is correct. Default behavior i=
+s
+> > > restored to use GPIOs. The DT property is needed to enable modem ctrl
+> > > lines.
+> >
+> > Hi,
+> > this is correct.
+> >
+> >
+> > > What's not okay is just saying, these platforms may or may not need a=
+n update:
+> > >
+> > >     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
+> > >     mips/boot/dts/ingenic/cu1830-neo.dts
+> > >     mips/boot/dts/ingenic/cu1000-neo.dts
+> >
+> > Yes, my bad. I initially mentioned them and hoped to get some
+> > feedback, which I never got, and I kind of forgot about it.
+> >
+> > > You need to figure that out. Have you checked with maintainers of
+> > > these boards? When were they added and by who? At the same time or by
+> > > the same person would be a good indication the platform uses modem
+> > > ctrl lines. Or were these platforms in use before adding modem ctrl
+> > > support? Then they probably use GPIOs or nothing.
+> > >
+> > > If there are platforms which would regress if the modem ctrl feature
+> > > was just reverted, which ones are those?
+> >
+> > Ok, let me do some checks and get back to you on this.
+>
+> Hi Rob,
+> for this board:
+>     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
+>
+> it uses a SC16IS740, which doesn't have any GPIOs nor modem
+> control lines, so no DT changes required.
+>
+> For these two Ingenic boards:
+>     mips/boot/dts/ingenic/cu1830-neo.dts
+>     mips/boot/dts/ingenic/cu1000-neo.dts
+>
+> They use a SC16IS752, which has shared modem control lines and GPIOs.
+> Unfortunately, the maintainers have not (yet) responded to my
+> inquiries. Also, I tried to search for schematics or block diagrams on
+> the net but couldn't find anything.
+>
+> These platforms were in use before the patch to add the modem control
+> lines was added. Then like you said they probably use these shared
+> lines as GPIOs or nothing, so no DT changes would be required.
 
-Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
----
- .../msm/disp/dpu1/catalog/dpu_5_2_sm7150.h    | 277 ++++++++++++++++++
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   1 +
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
- 4 files changed, 280 insertions(+)
- create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
+Okay, that's useful (please add to the commit msg).
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
-new file mode 100644
-index 000000000000..5823879a705a
---- /dev/null
-+++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
-@@ -0,0 +1,277 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2023, Danila Tikhonov <danila@jiaxyga.com>
-+ */
-+
-+#ifndef _DPU_5_2_SM7150_H
-+#define _DPU_5_2_SM7150_H
-+
-+static const struct dpu_caps sm7150_dpu_caps = {
-+	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
-+	.max_mixer_blendstages = 0xb,
-+	.qseed_type = DPU_SSPP_SCALER_QSEED4,
-+	.has_src_split = true,
-+	.has_dim_layer = true,
-+	.has_idle_pc = true,
-+	.has_3d_merge = true,
-+	.max_linewidth = 4096,
-+	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
-+	.max_hdeci_exp = MAX_HORZ_DECIMATION,
-+	.max_vdeci_exp = MAX_VERT_DECIMATION,
-+};
-+
-+static const struct dpu_mdp_cfg sm7150_mdp[] = {
-+	{
-+	.name = "top_0",
-+	.base = 0x0, .len = 0x45c,
-+	.features = BIT(DPU_MDP_AUDIO_SELECT),
-+	.clk_ctrls[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0 },
-+	.clk_ctrls[DPU_CLK_CTRL_VIG1] = { .reg_off = 0x2b4, .bit_off = 0 },
-+	.clk_ctrls[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8 },
-+	.clk_ctrls[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8 },
-+	.clk_ctrls[DPU_CLK_CTRL_DMA2] = { .reg_off = 0x2bc, .bit_off = 8 },
-+	.clk_ctrls[DPU_CLK_CTRL_WB2] = { .reg_off = 0x3b8, .bit_off = 24 },
-+	},
-+};
-+
-+static const struct dpu_sspp_cfg sm7150_sspp[] = {
-+	{
-+		.name = "sspp_0", .id = SSPP_VIG0,
-+		.base = 0x4000, .len = 0x1f0,
-+		.features = VIG_SDM845_MASK,
-+		.sblk = &sm8250_vig_sblk_0,
-+		.xin_id = 0,
-+		.type = SSPP_TYPE_VIG,
-+		.clk_ctrl = DPU_CLK_CTRL_VIG0,
-+	}, {
-+		.name = "sspp_1", .id = SSPP_VIG1,
-+		.base = 0x6000, .len = 0x1f0,
-+		.features = VIG_SDM845_MASK,
-+		.sblk = &sm8250_vig_sblk_1,
-+		.xin_id = 4,
-+		.type = SSPP_TYPE_VIG,
-+		.clk_ctrl = DPU_CLK_CTRL_VIG1,
-+	}, {
-+		.name = "sspp_2", .id = SSPP_DMA0,
-+		.base = 0x24000, .len = 0x1f0,
-+		.features = DMA_SDM845_MASK,
-+		.sblk = &sdm845_dma_sblk_0,
-+		.xin_id = 1,
-+		.type = SSPP_TYPE_DMA,
-+		.clk_ctrl = DPU_CLK_CTRL_DMA0,
-+	}, {
-+		.name = "sspp_9", .id = SSPP_DMA1,
-+		.base = 0x26000, .len = 0x1f0,
-+		.features = DMA_SDM845_MASK,
-+		.sblk = &sdm845_dma_sblk_1,
-+		.xin_id = 5,
-+		.type = SSPP_TYPE_DMA,
-+		.clk_ctrl = DPU_CLK_CTRL_DMA1,
-+	}, {
-+		.name = "sspp_10", .id = SSPP_DMA2,
-+		.base = 0x28000, .len = 0x1f0,
-+		.features = DMA_CURSOR_SDM845_MASK,
-+		.sblk = &sdm845_dma_sblk_2,
-+		.xin_id = 9,
-+		.type = SSPP_TYPE_DMA,
-+		.clk_ctrl = DPU_CLK_CTRL_DMA2,
-+	},
-+};
-+
-+static const struct dpu_lm_cfg sm7150_lm[] = {
-+	{
-+		.name = "lm_0", .id = LM_0,
-+		.base = 0x44000, .len = 0x320,
-+		.features = MIXER_SDM845_MASK,
-+		.sblk = &sdm845_lm_sblk,
-+		.lm_pair = LM_1,
-+		.pingpong = PINGPONG_0,
-+		.dspp = DSPP_0,
-+	}, {
-+		.name = "lm_1", .id = LM_1,
-+		.base = 0x45000, .len = 0x320,
-+		.features = MIXER_SDM845_MASK,
-+		.sblk = &sdm845_lm_sblk,
-+		.lm_pair = LM_0,
-+		.pingpong = PINGPONG_1,
-+		.dspp = DSPP_1,
-+	}, {
-+		.name = "lm_2", .id = LM_2,
-+		.base = 0x46000, .len = 0x320,
-+		.features = MIXER_SDM845_MASK,
-+		.sblk = &sdm845_lm_sblk,
-+		.lm_pair = LM_3,
-+		.pingpong = PINGPONG_2,
-+	}, {
-+		.name = "lm_3", .id = LM_3,
-+		.base = 0x47000, .len = 0x320,
-+		.features = MIXER_SDM845_MASK,
-+		.sblk = &sdm845_lm_sblk,
-+		.lm_pair = LM_2,
-+		.pingpong = PINGPONG_3,
-+	}, {
-+		.name = "lm_4", .id = LM_4,
-+		.base = 0x0, .len = 0x320,
-+		.features = MIXER_SDM845_MASK,
-+		.sblk = &sdm845_lm_sblk,
-+		.lm_pair = 0,
-+		.pingpong = PINGPONG_4,
-+	}, {
-+		.name = "lm_5", .id = LM_5,
-+		.base = 0x0, .len = 0x320,
-+		.features = MIXER_SDM845_MASK,
-+		.sblk = &sdm845_lm_sblk,
-+		.lm_pair = 0,
-+		.pingpong = PINGPONG_5,
-+	},
-+};
-+
-+static const struct dpu_dspp_cfg sm7150_dspp[] = {
-+	{
-+		.name = "dspp_0", .id = DSPP_0,
-+		.base = 0x54000, .len = 0x1800,
-+		.features = DSPP_SC7180_MASK,
-+		.sblk = &sdm845_dspp_sblk,
-+	}, {
-+		.name = "dspp_1", .id = DSPP_1,
-+		.base = 0x56000, .len = 0x1800,
-+		.features = DSPP_SC7180_MASK,
-+		.sblk = &sdm845_dspp_sblk,
-+	},
-+};
-+
-+static const struct dpu_pingpong_cfg sm7150_pp[] = {
-+	{
-+		.name = "pingpong_0", .id = PINGPONG_0,
-+		.base = 0x70000, .len = 0xd4,
-+		.features = PINGPONG_SM8150_MASK,
-+		.sblk = &sdm845_pp_sblk,
-+		.merge_3d = MERGE_3D_0,
-+		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
-+		.intr_rdptr = -1,
-+	}, {
-+		.name = "pingpong_1", .id = PINGPONG_1,
-+		.base = 0x70800, .len = 0xd4,
-+		.features = PINGPONG_SM8150_MASK,
-+		.sblk = &sdm845_pp_sblk,
-+		.merge_3d = MERGE_3D_0,
-+		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 9),
-+		.intr_rdptr = -1,
-+	}, {
-+		.name = "pingpong_2", .id = PINGPONG_2,
-+		.base = 0x71000, .len = 0xd4,
-+		.features = PINGPONG_SM8150_MASK,
-+		.sblk = &sdm845_pp_sblk,
-+		.merge_3d = MERGE_3D_1,
-+		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 10),
-+		.intr_rdptr = -1,
-+	}, {
-+		.name = "pingpong_3", .id = PINGPONG_3,
-+		.base = 0x71800, .len = 0xd4,
-+		.features = PINGPONG_SM8150_MASK,
-+		.sblk = &sdm845_pp_sblk,
-+		.merge_3d = MERGE_3D_1,
-+		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 11),
-+		.intr_rdptr = -1,
-+	},
-+};
-+
-+static const struct dpu_merge_3d_cfg sm7150_merge_3d[] = {
-+	{
-+		.name = "merge_3d_0", .id = MERGE_3D_0,
-+		.base = 0x83000, .len = 0x8,
-+	}, {
-+		.name = "merge_3d_1", .id = MERGE_3D_1,
-+		.base = 0x83100, .len = 0x8,
-+	},
-+};
-+
-+static const struct dpu_dsc_cfg sm7150_dsc[] = {
-+	{
-+		.name = "dsc_0", .id = DSC_0,
-+		.base = 0x80000, .len = 0x140,
-+		.features = BIT(DPU_DSC_OUTPUT_CTRL),
-+	}, {
-+		.name = "dsc_1", .id = DSC_1,
-+		.base = 0x80400, .len = 0x140,
-+		.features = BIT(DPU_DSC_OUTPUT_CTRL),
-+	},
-+};
-+
-+static const struct dpu_wb_cfg sm7150_wb[] = {
-+	{
-+		.name = "wb_2", .id = WB_2,
-+		.base = 0x65000, .len = 0x2c8,
-+		.features = WB_SM8250_MASK,
-+		.format_list = wb2_formats,
-+		.num_formats = ARRAY_SIZE(wb2_formats),
-+		.clk_ctrl = DPU_CLK_CTRL_WB2,
-+		.xin_id = 6,
-+		.vbif_idx = VBIF_RT,
-+		.maxlinewidth = 4096,
-+		.intr_wb_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 4),
-+	},
-+};
-+
-+static const struct dpu_perf_cfg sm7150_perf_data = {
-+	.max_bw_low = 7100000,
-+	.max_bw_high = 7100000,
-+	.min_core_ib = 2400000,
-+	.min_llcc_ib = 800000,
-+	.min_dram_ib = 800000,
-+	.min_prefill_lines = 24,
-+	.danger_lut_tbl = {0xff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
-+	.qos_lut_tbl = {
-+		{.nentry = ARRAY_SIZE(sm8150_qos_linear),
-+		.entries = sm8150_qos_linear
-+		},
-+		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
-+		.entries = sc7180_qos_macrotile
-+		},
-+		{.nentry = ARRAY_SIZE(sc7180_qos_nrt),
-+		.entries = sc7180_qos_nrt
-+		},
-+	},
-+	.cdp_cfg = {
-+		{.rd_enable = 1, .wr_enable = 1},
-+		{.rd_enable = 1, .wr_enable = 0}
-+	},
-+	.clk_inefficiency_factor = 105,
-+	.bw_inefficiency_factor = 120,
-+};
-+
-+static const struct dpu_mdss_version sm7150_mdss_ver = {
-+	.core_major_ver = 5,
-+	.core_minor_ver = 2,
-+};
-+
-+const struct dpu_mdss_cfg dpu_sm7150_cfg = {
-+	.mdss_ver = &sm7150_mdss_ver,
-+	.caps = &sm7150_dpu_caps,
-+	.mdp = sm7150_mdp,
-+	.ctl_count = ARRAY_SIZE(sm8150_ctl),
-+	.ctl = sm8150_ctl,
-+	.sspp_count = ARRAY_SIZE(sm7150_sspp),
-+	.sspp = sm7150_sspp,
-+	.mixer_count = ARRAY_SIZE(sm7150_lm),
-+	.mixer = sm7150_lm,
-+	.dspp_count = ARRAY_SIZE(sm7150_dspp),
-+	.dspp = sm7150_dspp,
-+	.pingpong_count = ARRAY_SIZE(sm7150_pp),
-+	.pingpong = sm7150_pp,
-+	.merge_3d_count = ARRAY_SIZE(sm7150_merge_3d),
-+	.merge_3d = sm7150_merge_3d,
-+	.dsc_count = ARRAY_SIZE(sm7150_dsc),
-+	.dsc = sm7150_dsc,
-+	.intf_count = ARRAY_SIZE(sm8150_intf),
-+	.intf = sm8150_intf,
-+	.wb_count = ARRAY_SIZE(sm7150_wb),
-+	.wb = sm7150_wb,
-+	.vbif_count = ARRAY_SIZE(sdm845_vbif),
-+	.vbif = sdm845_vbif,
-+	.perf = &sm7150_perf_data,
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-index ce369eeffa7d..fea1253cab0a 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-@@ -658,6 +658,7 @@ static const struct dpu_qos_lut_entry sc7180_qos_nrt[] = {
- 
- #include "catalog/dpu_5_0_sm8150.h"
- #include "catalog/dpu_5_1_sc8180x.h"
-+#include "catalog/dpu_5_2_sm7150.h"
- #include "catalog/dpu_5_4_sm6125.h"
- 
- #include "catalog/dpu_6_0_sm8250.h"
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-index 6c9634209e9f..86b354ef45e6 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-@@ -833,6 +833,7 @@ extern const struct dpu_mdss_cfg dpu_msm8998_cfg;
- extern const struct dpu_mdss_cfg dpu_sdm845_cfg;
- extern const struct dpu_mdss_cfg dpu_sm8150_cfg;
- extern const struct dpu_mdss_cfg dpu_sc8180x_cfg;
-+extern const struct dpu_mdss_cfg dpu_sm7150_cfg;
- extern const struct dpu_mdss_cfg dpu_sm8250_cfg;
- extern const struct dpu_mdss_cfg dpu_sc7180_cfg;
- extern const struct dpu_mdss_cfg dpu_sm6115_cfg;
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index aa6ba2cf4b84..50ec008b7d56 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -1371,6 +1371,7 @@ static const struct of_device_id dpu_dt_match[] = {
- 	{ .compatible = "qcom,sm6125-dpu", .data = &dpu_sm6125_cfg, },
- 	{ .compatible = "qcom,sm6350-dpu", .data = &dpu_sm6350_cfg, },
- 	{ .compatible = "qcom,sm6375-dpu", .data = &dpu_sm6375_cfg, },
-+	{ .compatible = "qcom,sm7150-dpu", .data = &dpu_sm7150_cfg, },
- 	{ .compatible = "qcom,sm8150-dpu", .data = &dpu_sm8150_cfg, },
- 	{ .compatible = "qcom,sm8250-dpu", .data = &dpu_sm8250_cfg, },
- 	{ .compatible = "qcom,sm8350-dpu", .data = &dpu_sm8350_cfg, },
--- 
-2.41.0
+Still, what platform(s) need the modem control feature? Presumably
+that's whatever platform Lech and Tomasz work on. I guess given the
+Reviewed-by they are fine with needing a DT change.
 
+Rob
