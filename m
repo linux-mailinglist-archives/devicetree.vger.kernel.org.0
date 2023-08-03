@@ -2,100 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4C5A76E446
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A20B976E453
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234446AbjHCJY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 05:24:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
+        id S234875AbjHCJ2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 05:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231717AbjHCJYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:24:23 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2E72684;
-        Thu,  3 Aug 2023 02:24:21 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3739O59n122004;
-        Thu, 3 Aug 2023 04:24:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691054646;
-        bh=zqbwm6MC4jGIsnXvhDBCNFfNtjyo4cmP300g52xJ8sI=;
-        h=From:To:CC:Subject:Date;
-        b=eRAVSn1k2cquhYbwU2UAWgjhKx6iu3+zzlbrb7XhVt18tFS5MvmXwl9nRlMmf1CjM
-         618XFwTiwPZadQqdWXhmglLK2dAgONyHsB3cNfafXeywaXuiXQG6DdzP1eQGeNz9qM
-         MFoRPAzQyM3dFvLP4Ke4NpDJ0XMm3mPRmbtHoEi4=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3739O5tt011655
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Aug 2023 04:24:05 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
- Aug 2023 04:24:05 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 3 Aug 2023 04:24:05 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3739O4e8073795;
-        Thu, 3 Aug 2023 04:24:05 -0500
-From:   Dhruva Gole <d-gole@ti.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>
-CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, Dhruva Gole <d-gole@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH] dt-bindings: pinctrl: pinctrl-single: add am62x compatible
-Date:   Thu, 3 Aug 2023 14:53:12 +0530
-Message-ID: <20230803092311.604610-1-d-gole@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229792AbjHCJ2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:28:50 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42DEA10EA
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 02:28:49 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-58653c9bed3so7843977b3.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 02:28:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1691054928; x=1691659728;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bPf/DhBfYOXvHBKonH2IymFP4pV5nyzM2qqAWXWq22A=;
+        b=nvRhlx3RKrMSDt0Zuc+myu9tFV2g0lK7zhUf5+vgZoGn04BXuqG2K4hQzoOyzZVdT9
+         2crnCI2OM7vbmiQbRXPS5TqxCO2VUOfR2SJXWMpJc3kYMB1mhi2iJWxTuWK/8B1EAbhv
+         l3fy+treICAr4vKN0PWbxMCyspG1oeVBlww6JTdpwRZaswn9FVMXc1Lxah9zUYEm0aIc
+         p1/sxFrBm4W7dqN+NnIMGSx+Sr3iTy6DiuagqT4+fqxYxwkrSMJ5Sa4iUMoErrtGUcyW
+         KzdXSTU4VPNWj/2xvu3G+2I4qiDHYYvsbj+SJU5amUBbn3AY7IixJmDZq/Ak2IGSvxwF
+         Gh4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691054928; x=1691659728;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bPf/DhBfYOXvHBKonH2IymFP4pV5nyzM2qqAWXWq22A=;
+        b=bEy4yRE/ayjRbCSwP9RkdqjKN/Txy0kOPCD1yq8BG8j+EpCTC33URt6Uxn7Yg+F2HM
+         RWcuzyKCh1vDdTchrzJY5x/Bdw/SfEHhw2HndW3TkdtuhUJJCbiq2Ne1+33rmGQhBnqg
+         2sllP487xJ7lF2Ees9Uft8WjLvjtcefbX6bcRnBLVHvmyEeDfr4LuhkW+RRjxjJ6y468
+         Ae4g0+Ms84XrKaSSX91Yi78GVIU0tVxYJ+pK8fb5Ej7+4zM/8sBwk8fIafhfvIdETD6f
+         BQ8ra6g+bkrjXDiiYbEzk8tKi1nLhEpUAOu1qdhvHwQyO0fVIm1uCVx/VovwQTXsxrw6
+         8ocQ==
+X-Gm-Message-State: ABy/qLbjSF4MUn/6L8nyeHWbfvCM5LZaw+Mn/lhtdQ+1KyXr5SOBTavX
+        rGKxV4iA1nbUlvYlgYtIgjbok3StphbOEXcygQh4Ww==
+X-Google-Smtp-Source: APBJJlFp3C9muFBq6D0MrZecgIa2l1jTs2IKHm59WpOG88pYICmMaCXa10IkEqz/8+2ECNYlmZL4zUSVMdMAzlJFvhA=
+X-Received: by 2002:a81:9242:0:b0:583:9c78:9a84 with SMTP id
+ j63-20020a819242000000b005839c789a84mr17812965ywg.43.1691054928381; Thu, 03
+ Aug 2023 02:28:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230803085734.340-1-nylon.chen@sifive.com> <20230803085734.340-2-nylon.chen@sifive.com>
+ <20230803-avenge-vaporizer-8258cd3ed423@wendy>
+In-Reply-To: <20230803-avenge-vaporizer-8258cd3ed423@wendy>
+From:   Nylon Chen <nylon.chen@sifive.com>
+Date:   Thu, 3 Aug 2023 17:28:37 +0800
+Message-ID: <CAHh=Yk8Y0VFcSKVGTREcQtHVTyyha93k8N5FsYG970Gg=JeijQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/1] riscv: dts: sifive: unleashed/unmatched: Remove
+ PWM controlled LED's active-low properties
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, geert+renesas@glider.be,
+        pavel@ucw.cz, vincent.chen@sifive.com,
+        emil.renner.berthing@canonical.com, aou@eecs.berkeley.edu,
+        palmer@dabbelt.com, paul.walmsley@sifive.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor@kernel.org, zong.li@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the am62x compatible property to add support for the new
-wakeup enable and status bits positions
+Hi Conor,
 
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Dhruva Gole <d-gole@ti.com>
----
+I apologize for forgetting about this update earlier. Just now,
+I tried to pull rebase master and noticed that other developers seem
+to have made some fixes to the algorithm. Upon closer inspection, I
+found that they addressed the part we previously discussed with Emil
+and Uwe, such as "first pwm_apply_state."
 
-Base: tag: next-20230731 + below "depends on" patch
-Depends on: https://lore.kernel.org/linux-omap/20230731061908.GG5194@atomide.com/T/
+Therefore, my instinct tells me that they have already taken care of
+the issues we discussed before.
 
- Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml | 1 +
- 1 file changed, 1 insertion(+)
+I will review the conflicting parts in the pwm-sifive.c code in my v4
+version once again to ensure there are no omissions. If I find any, I
+will submit v5 accordingly.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-index b6b6bcd7074b..4c98035a1217 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-@@ -23,6 +23,7 @@ properties:
-           - pinconf-single
-       - items:
-           - enum:
-+              - ti,am6-padconf
-               - ti,am437-padconf
-               - ti,dra7-padconf
-               - ti,omap2420-padconf
--- 
-2.34.1
-
+Conor Dooley <conor.dooley@microchip.com> =E6=96=BC 2023=E5=B9=B48=E6=9C=88=
+3=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:19=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> On Thu, Aug 03, 2023 at 04:57:34PM +0800, Nylon Chen wrote:
+> > This removes the active-low properties of the PWM-controlled LEDs in
+> > the HiFive Unmatched device tree.
+> >
+> > The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schem=
+atics-v3.pdf[1].
+> >
+> > Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8=
+453f8698_hifive-unleashed-a00-schematics-1.pdf [0]
+> > Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68c=
+e76f4192_hifive-unmatched-schematics-v3.pdf [1]
+> >
+>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Since there is no PWM driver patch for this to go along with, this ack
+> doesn't mean anything anymore. Please drop it if you resubmit.
+>
