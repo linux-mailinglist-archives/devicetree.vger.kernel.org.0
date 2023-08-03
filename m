@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D04EE76DDBF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 03:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 410F076DE5A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 04:39:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbjHCB6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 21:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35972 "EHLO
+        id S231708AbjHCCjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 22:39:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232145AbjHCB61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 21:58:27 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C225330D1;
-        Wed,  2 Aug 2023 18:56:06 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8Cx2eo1CctkO2YPAA--.30842S3;
-        Thu, 03 Aug 2023 09:56:05 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxWM0yCctkAX9GAA--.52730S3;
-        Thu, 03 Aug 2023 09:56:02 +0800 (CST)
-Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S232506AbjHCCjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 22:39:11 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E67019A0;
+        Wed,  2 Aug 2023 19:39:09 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 4E8277FF9;
+        Thu,  3 Aug 2023 10:23:49 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 10:23:49 +0800
+Received: from [192.168.125.136] (183.27.98.54) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 10:23:47 +0800
+Message-ID: <1c546489-40dd-25c5-3ac2-9e3b3fd5a670@starfivetech.com>
+Date:   Thu, 3 Aug 2023 10:23:47 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Minda Chen <minda.chen@starfivetech.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230731-setback-such-61815ee3ef51@spud>
- <041bf8a6-8d91-c2ce-6752-aa7255f946c7@loongson.cn>
- <20230801-whenever-imitation-b2759b212f6b@spud>
- <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
- <20230801-varsity-chemo-09cc5e250ded@spud>
- <26adb487-f8c5-9cf4-5b31-070e9161e761@loongson.cn>
- <20230802-jailer-pavilion-84fb17bb3710@wendy>
- <3534f7b9-0e02-28c1-238a-5a6fdbb95e94@loongson.cn>
- <20230802-bunkbed-siamese-57ee53bdf273@wendy>
- <db7012b2-9156-34ed-ad1f-10a3e5dfe390@loongson.cn>
- <20230802-empathy-wound-70df4990a976@spud>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <ae74e7b0-26ae-5707-7b85-5dcf733d2bed@loongson.cn>
-Date:   Thu, 3 Aug 2023 09:56:02 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <20230802-empathy-wound-70df4990a976@spud>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxWM0yCctkAX9GAA--.52730S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        "Maciej W. Rozycki" <macro@orcam.me.uk>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+References: <20230802171805.GA62238@bhelgaas>
+From:   Kevin Xie <kevin.xie@starfivetech.com>
+In-Reply-To: <20230802171805.GA62238@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.54]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -70,100 +74,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-在 2023/8/2 下午11:36, Conor Dooley 写道:
-> On Wed, Aug 02, 2023 at 04:37:50PM +0800, Yinbo Zhu wrote:
->>
->>
->> 在 2023/8/2 下午3:50, Conor Dooley 写道:
->>> On Wed, Aug 02, 2023 at 03:44:17PM +0800, Yinbo Zhu wrote:
->>>> 在 2023/8/2 下午3:22, Conor Dooley 写道:
->>>>> On Wed, Aug 02, 2023 at 09:38:34AM +0800, Yinbo Zhu wrote:
->>>>>> 在 2023/8/1 下午11:54, Conor Dooley 写道:
->>>>>>> On Tue, Aug 01, 2023 at 04:34:30PM +0800, Yinbo Zhu wrote:
->>>
->>>>>>>> Sorry, I may not have described it clearly before, the ls2k500 was only
->>>>>>>> as a example, actually, Loongson GPIO controllers (2k500,2k1000,eg)come
->>>>>>>> in multiple variants that are compatible except for certain register
->>>>>>>> offset values.  So above all offset device property was used to in all
->>>>>>>> loongson gpio controller.
->>>>>>>
->>>>>>> But it would be good to know why they are different. Do they each
->>>>>>> support some different features, or was there some other reason for
->>>>>>> making controllers like this?
->>>>>>
->>>>>>
->>>>>> There are no other reasons, just differences in these offset addresses.
->>>>>
->>>>> Huh. Do you have a link to a devicetree for the ls2k500?
->>>>
->>>>
->>>> Yes,  there was a link about ls2k500 dts,  but that ls2k500 dts has not
->>>> yet added a gpio node.  this gpio node will be added later.
->>>
->>> You must have something that you used to test with, no? I don't mind if
->>> it is not a patch, but rather is some WIP - I'd just like to see user of
->>> the binding :)
->>
->>
->> yes, I have a test, for 2k0500, that gpio dts as follows:
->>
->>                  gpio0:gpio@0x1fe10430 {
->>                          compatible = "loongson,ls2k-gpio";
->>                          reg = <0 0x1fe10430 0 0x20>;
->>                          gpio-controller;
->>                          #gpio-cells = <2>;
->> 			interrupt-parent = <&liointc1>;
->>                          ngpios = <64>;
->>                          loongson,gpio-conf-offset = <0>;
->>                          loongson,gpio-out-offset = <0x10>;
->>                          loongson,gpio-in-offset = <0x8>;
->>                          loongson,gpio-inten-offset = <0xb0>;
->> 			loongson,gpio-ctrl-mode = <0x0>;
->>                          ...
->> 		  }
->>
->>                  gpio1:gpio@0x1fe10450 {
->>                          compatible = "loongson,ls2k-gpio";
->>                          reg = <0 0x1fe10450 0 0x20>;
->>                          gpio-controller;
->>                          #gpio-cells = <2>;
->> 			interrupt-parent = <&liointc1>;
->>                          ngpios = <64>;
->>                          loongson,gpio-conf-offset = <0>;
->>                          loongson,gpio-out-offset = <0x10>;
->>                          loongson,gpio-in-offset = <0x8>;
+On 2023/8/3 1:18, Bjorn Helgaas wrote:
+> On Tue, Aug 01, 2023 at 03:05:46PM +0800, Kevin Xie wrote:
+>> On 2023/8/1 7:12, Bjorn Helgaas wrote:
+>> ...
 > 
-> These 3 are the same for both controllers, no?
-> Is only the inten-offset a variable?
+>> > The delay required by sec 6.6.1 is a minimum of 100ms following exit
+>> > from reset or, for fast links, 100ms after link training completes.
+>> > 
+>> > The comment at the call of advk_pcie_wait_for_link() [2] says it is
+>> > the delay required by sec 6.6.1, but that doesn't seem right to me.
+>> > 
+>> > For one thing, I don't think 6.6.1 says anything about "link up" being
+>> > the end of a delay.  So if we want to do the delay required by 6.6.1,
+>> > "wait_for_link()" doesn't seem like quite the right name.
+>> > 
+>> > For another, all the *_wait_for_link() functions can return success
+>> > after 0ms, 90ms, 180ms, etc.  They're unlikely to return after 0ms,
+>> > but 90ms is quite possible.  If we avoided the 0ms return and
+>> > LINK_WAIT_USLEEP_MIN were 100ms instead of 90ms, that should be enough
+>> > for slow links, where we need 100ms following "exit from reset."
+>> > 
+>> > But it's still not enough for fast links where we need 100ms "after
+>> > link training completes" because we don't know when training
+>> > completed.  If training completed 89ms into *_wait_for_link(), we only
+>> > delay 1ms after that.
+>> 
+>> That's the point, we will add a extra 100ms after PERST# de-assert
+>> in the patch-v3 according to Base Spec r6.0 - 6.6.1:
+>>         msleep(100);
+>>         gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+>> 
+>> +       /* As the requirement in PCIe base spec r6.0, system must wait a
+>> +        * minimum of 100 ms following exit from a Conventional Reset
+>> +        * before sending a Configuration Request to the device.*/
+>> +       msleep(100);
+>> +
+>>         if (starfive_pcie_host_wait_for_link(pcie))
+>>                 return -EIO;
 > 
->>                          loongson,gpio-inten-offset = <0x98>;
+> For fast links (links that support > 5.0 GT/s), the 100ms starts
+> *after* link training completes.  The above looks OK if starfive only
+> supports slow links, but then I'm not sure why we would need
+> starfive_pcie_host_wait_for_link().
 > 
-> These offsets exceed the region that you've got in the reg property for
-> this controller, do they not?
-> 
-> Is there some sort of "miscellaneous register area" at 0x1FE104E0, or
-> just those two interrupt registers and nothing else?
+Yes, the maximum speed of JH7110 PCIe is 5.0 GT/s (Gen2x1).
 
+About starfive_pcie_host_wait_for_link():
+JH7110 SoC only has one root port in each PCIe controller (2 in total)
+and they do not support hot-plug yet.
+Thus, We add starfive_pcie_host_wait_for_link() to poll if it is a empty slot.
+If nothing here, we will exit the probe() of this controller, and it will not
+go into pci_host_probe() too.
+This may not be a very standard logic, should we remove it or rewrite in a better way?
 
-2k500 gpio dts is just an example, like 3a5000, or more other platform,
-above offset was different but the gpio controller was compatible.
-
-                 gpio: gpio@1fe00500 {
-                         compatible = "loongson,ls2k-gpio";
-                         reg = <0 0x1fe00500 0xc00>;
-                         gpio-controller;
-                         #gpio-cells = <2>;
-                         ngpios = <16>;
-                         loongson,gpio-conf-offset = <0x0>;
-                         loongson,gpio-out-offset = <0x8>;
-                         loongson,gpio-in-offset = <0xc>;
-			...
-			}
-
-
-Thanks,
-Yinbo
-
-
-> 
-
+> Bjorn
