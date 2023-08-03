@@ -2,101 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 938A376E675
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 556DC76E67F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:14:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbjHCLMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 07:12:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49968 "EHLO
+        id S233753AbjHCLOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 07:14:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235343AbjHCLMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:12:08 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF0F11F
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 04:12:04 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52256241c50so1052379a12.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 04:12:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691061123; x=1691665923;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b0XelJdYR6bFWh5mhR2ZVrgJG5GvsMHFZq9tsYSBv50=;
-        b=RAYVrN3/oSONSI5EIj17kn4cvUfL7T2zcsxJtlY48R+Y5o+63RLn4THxDli5FKyCll
-         ygeNzzIvrImm661r80k9QLnj4MjILAgI0HE587WmYQu7XmuxqYhb5L2e9A0U8Bv2xwpP
-         h8mXXQJqRiD/24TI3k33m/gOM56UALt5l3U1DKpiJhGV9d5V3w44KrqKndfO40ijBhnY
-         1Oc3/VcYW0D76OhTnGguVjFxbHI/ettYfKzLAYDkLxBufjob/s2/7pDH+bYhGKQ1cmhX
-         4QcfI2S+cBEU951S5NNGRl5odvicaIp1JaTdY2vafTSXi5uTvTvRz04otE5inq6lVHBN
-         7XVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691061123; x=1691665923;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b0XelJdYR6bFWh5mhR2ZVrgJG5GvsMHFZq9tsYSBv50=;
-        b=cwvAAU6NEp5+S4iHmHR3xcBrHahLtGPZjlFduzXn/RGGhW/HGVcoMcHvHOYc+jgKPF
-         cdFys4FZXPJExgbtyjX9BtMrLljVBlzJKp43Q/+DMuPihyUhrTj7JGpXYuQ5xZgYnEwy
-         X1f2Pyz9fLCFUoOuTLdJY5vkk7QNNbAj8roEabdLj8N1JMrespd5X+S7yBcKKQ72jTLv
-         yE6Rsdj4d75E2b2hZ4IwTFMepQP27BBkC3MhVpnGFwRr545Q0bai0HRwCWX2CxkiOj2q
-         CVxkXRMPKV90yv2GGf7xnX8YVJCmdYs2v6iTrTvzBCb8mqDCT2ZvyDLvZG6TShT/MPvA
-         EunA==
-X-Gm-Message-State: ABy/qLYzfn0nnZB3Jo200DPkd9I2xbHkYgMb6Gx8re6VyX/czzafLqef
-        LuXdg/GKdYGX/OLUdN/FDOAq7Q==
-X-Google-Smtp-Source: APBJJlGXauZv2QFpBai3rRvQFxkagKCLuV0/Neg15wZhqipdLYpxshqBMsN9vcvFDCmNYPeO+iJEvw==
-X-Received: by 2002:aa7:c0d5:0:b0:522:bff2:dd20 with SMTP id j21-20020aa7c0d5000000b00522bff2dd20mr7473778edp.13.1691061123200;
-        Thu, 03 Aug 2023 04:12:03 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id o12-20020aa7d3cc000000b00522d88e8c55sm4584793edr.91.2023.08.03.04.12.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 04:12:02 -0700 (PDT)
-Message-ID: <8b47da4b-ec68-40f1-c3eb-939dcfa7550e@linaro.org>
-Date:   Thu, 3 Aug 2023 13:12:01 +0200
+        with ESMTP id S234461AbjHCLNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:13:54 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3AF2D72;
+        Thu,  3 Aug 2023 04:13:51 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 373BDgjY018556;
+        Thu, 3 Aug 2023 06:13:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691061222;
+        bh=1qOc1xLGM/logVEWIrvDMln7kkXLv3lAfy+k4hY+efI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=U4Nt9jri8QrvczKYyLXueMaDEBRjV8Gh/D/w3BmWcyMRY85slAzm0gTFotYf6kA9E
+         5R5ILkr/YYoIgdUwOWGboWiZkpV84QFsZ4/sFDkjp7W5y+Agm6unOvyqTcG+V3isQN
+         Jy60LRcBNWvOwIZb+vclK/Yv6wAfa1yk5myhg8xo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 373BDgRZ013736
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Aug 2023 06:13:42 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
+ Aug 2023 06:13:42 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 3 Aug 2023 06:13:42 -0500
+Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 373BDcF2012428;
+        Thu, 3 Aug 2023 06:13:39 -0500
+Message-ID: <44468675-f091-852e-ef83-661ffdd2e469@ti.com>
+Date:   Thu, 3 Aug 2023 16:43:37 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v6 1/2] dt-bindings: input: i2c-hid: Introduce Ilitek
- ili9882t
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmitry.torokhov@gmail.com,
-        dianders@google.com, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, hsinyi@google.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
- <20230802071947.1683318-2-yangcong5@huaqin.corp-partner.google.com>
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 2/6] arm64: dts: ti: k3-j721s2-som-p0: Add TP6594
+ family PMICs
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230802071947.1683318-2-yangcong5@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "Kumar, Udit" <u-kumar1@ti.com>,
+        Esteban Blanc <eblanc@baylibre.com>,
+        "Menon, Nishanth" <nm@ti.com>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jneanne@baylibre.com" <jneanne@baylibre.com>,
+        "aseketeli@baylibre.com" <aseketeli@baylibre.com>,
+        "jpanis@baylibre.com" <jpanis@baylibre.com>
+References: <20230727130908.10656-1-eblanc@baylibre.com>
+ <20230727130908.10656-3-eblanc@baylibre.com>
+ <e9f9ebf13ee640daabd54a730e286193@ti.com>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <e9f9ebf13ee640daabd54a730e286193@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2023 09:19, Cong Yang wrote:
-> The ili9882t touch screen chip same as Elan eKTH6915 controller
-> has a reset gpio. The difference is that ili9882t needs to use
-> vccio-supply instead of vcc33-supply. Doug's series[1] allows panels
-> and touchscreens to power on/off together, let's add a phandle for this.
+
+
+On 03/08/23 16:01, Kumar, Udit wrote:
+> Hi Esteban
 > 
-> [1]: https://lore.kernel.org/r/20230607215224.2067679-1-dianders@chromium.org
+
+Hi Esteban, Udit,
+
+>> [...]
+>> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+>> ---
+>> arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 199 +++++++++++++++++++
+>> 1 file changed, 199 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> index d57dd43da0ef..5348aafe3277 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> @@ -61,6 +61,15 @@ J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20)
+>> MCU_OSPI0_LBCLKO */
+>> 	};
+>> };
+>>
+>> +&wkup_pmx1 {
+>> +	pmic_irq_pins_default: pmic-irq-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			/* (C21) MCU_OSPI1_CSn1.WKUP_GPIO0_39 */
+>> +			J721S2_WKUP_IOPAD(0x28, PIN_INPUT, 7)
+>> +		>;
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../bindings/input/ilitek,ili9882t.yaml       | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/ilitek,ili9882t.yaml
+> I see, this pin is getting shared with OSPI-1 .
+> I think either OSPI or PMIC could be functional at one time ? 
+> 
 
-It's v6 but this still misses the changelog.
+OSPI CS1 is not being used, so the corresponding entry under OSPI1 can be removed.
 
-Best regards,
-Krzysztof
+Thanks and Regards,
+Vaishnav
 
+>> +	};
+>> +};
+>> +
+>>  [...]
+> 
