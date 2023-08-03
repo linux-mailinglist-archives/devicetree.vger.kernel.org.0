@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43AD176DD0F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 03:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04EE76DDBF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 03:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231903AbjHCBSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 21:18:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50348 "EHLO
+        id S232124AbjHCB6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 21:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjHCBSk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 21:18:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84DD91B9;
-        Wed,  2 Aug 2023 18:18:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FC4661B9F;
-        Thu,  3 Aug 2023 01:18:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A81B1C433C8;
-        Thu,  3 Aug 2023 01:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691025518;
-        bh=0P0S2/MgycChVw2ibGG2dMFXAv+3iwZOlw6Fgpq6W7o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hqN6OA/93yzinfVGHXyl12eDcC7r/sS8zKgv+lh30BnIvzSpXVa9ncvbuw4yxNGRx
-         ZgNwf0Z0ztBcLqVTXr/OHzBAU8tdKw4lhP+DFs+h2sYRto9qxuRcXxAePTET9ypbZ7
-         FU0XG2jUfDpBBrKAFH9j/K2ttnJsC21f1UWvy6hYcU0vj8AASxdJPFA7YhWxVWumqs
-         vS4/m+zQqN0CzfUWACLbz10Oj2sNSDZ9hMelnuB16Pzld3Me6u+y70sngwar4tNDnC
-         JX0QtwC1ALxc8J4rheTd94Rw3QWcF9yPQrFAlEvjhtM83tWFDqoBqhQu0aSyrE691C
-         YUSpfqzJk6y1A==
-Received: (nullmailer pid 1644049 invoked by uid 1000);
-        Thu, 03 Aug 2023 01:18:36 -0000
-Date:   Wed, 2 Aug 2023 19:18:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stanley Chang <stanley_chang@realtek.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S232145AbjHCB61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 21:58:27 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C225330D1;
+        Wed,  2 Aug 2023 18:56:06 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8Cx2eo1CctkO2YPAA--.30842S3;
+        Thu, 03 Aug 2023 09:56:05 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxWM0yCctkAX9GAA--.52730S3;
+        Thu, 03 Aug 2023 09:56:02 +0800 (CST)
+Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
+ offset
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] doc: dt: bindings: usb: realtek,dwc3: Add Realtek
- DHC RTD SoC DWC3 USB
-Message-ID: <20230803011836.GA1635549-robh@kernel.org>
-References: <20230728035318.18741-1-stanley_chang@realtek.com>
- <20230728035318.18741-2-stanley_chang@realtek.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230731-setback-such-61815ee3ef51@spud>
+ <041bf8a6-8d91-c2ce-6752-aa7255f946c7@loongson.cn>
+ <20230801-whenever-imitation-b2759b212f6b@spud>
+ <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
+ <20230801-varsity-chemo-09cc5e250ded@spud>
+ <26adb487-f8c5-9cf4-5b31-070e9161e761@loongson.cn>
+ <20230802-jailer-pavilion-84fb17bb3710@wendy>
+ <3534f7b9-0e02-28c1-238a-5a6fdbb95e94@loongson.cn>
+ <20230802-bunkbed-siamese-57ee53bdf273@wendy>
+ <db7012b2-9156-34ed-ad1f-10a3e5dfe390@loongson.cn>
+ <20230802-empathy-wound-70df4990a976@spud>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <ae74e7b0-26ae-5707-7b85-5dcf733d2bed@loongson.cn>
+Date:   Thu, 3 Aug 2023 09:56:02 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230728035318.18741-2-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230802-empathy-wound-70df4990a976@spud>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxWM0yCctkAX9GAA--.52730S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,143 +68,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 11:53:13AM +0800, Stanley Chang wrote:
-> Document the DWC3 USB bindings for Realtek SoCs.
+
+
+在 2023/8/2 下午11:36, Conor Dooley 写道:
+> On Wed, Aug 02, 2023 at 04:37:50PM +0800, Yinbo Zhu wrote:
+>>
+>>
+>> 在 2023/8/2 下午3:50, Conor Dooley 写道:
+>>> On Wed, Aug 02, 2023 at 03:44:17PM +0800, Yinbo Zhu wrote:
+>>>> 在 2023/8/2 下午3:22, Conor Dooley 写道:
+>>>>> On Wed, Aug 02, 2023 at 09:38:34AM +0800, Yinbo Zhu wrote:
+>>>>>> 在 2023/8/1 下午11:54, Conor Dooley 写道:
+>>>>>>> On Tue, Aug 01, 2023 at 04:34:30PM +0800, Yinbo Zhu wrote:
+>>>
+>>>>>>>> Sorry, I may not have described it clearly before, the ls2k500 was only
+>>>>>>>> as a example, actually, Loongson GPIO controllers (2k500,2k1000,eg)come
+>>>>>>>> in multiple variants that are compatible except for certain register
+>>>>>>>> offset values.  So above all offset device property was used to in all
+>>>>>>>> loongson gpio controller.
+>>>>>>>
+>>>>>>> But it would be good to know why they are different. Do they each
+>>>>>>> support some different features, or was there some other reason for
+>>>>>>> making controllers like this?
+>>>>>>
+>>>>>>
+>>>>>> There are no other reasons, just differences in these offset addresses.
+>>>>>
+>>>>> Huh. Do you have a link to a devicetree for the ls2k500?
+>>>>
+>>>>
+>>>> Yes,  there was a link about ls2k500 dts,  but that ls2k500 dts has not
+>>>> yet added a gpio node.  this gpio node will be added later.
+>>>
+>>> You must have something that you used to test with, no? I don't mind if
+>>> it is not a patch, but rather is some WIP - I'd just like to see user of
+>>> the binding :)
+>>
+>>
+>> yes, I have a test, for 2k0500, that gpio dts as follows:
+>>
+>>                  gpio0:gpio@0x1fe10430 {
+>>                          compatible = "loongson,ls2k-gpio";
+>>                          reg = <0 0x1fe10430 0 0x20>;
+>>                          gpio-controller;
+>>                          #gpio-cells = <2>;
+>> 			interrupt-parent = <&liointc1>;
+>>                          ngpios = <64>;
+>>                          loongson,gpio-conf-offset = <0>;
+>>                          loongson,gpio-out-offset = <0x10>;
+>>                          loongson,gpio-in-offset = <0x8>;
+>>                          loongson,gpio-inten-offset = <0xb0>;
+>> 			loongson,gpio-ctrl-mode = <0x0>;
+>>                          ...
+>> 		  }
+>>
+>>                  gpio1:gpio@0x1fe10450 {
+>>                          compatible = "loongson,ls2k-gpio";
+>>                          reg = <0 0x1fe10450 0 0x20>;
+>>                          gpio-controller;
+>>                          #gpio-cells = <2>;
+>> 			interrupt-parent = <&liointc1>;
+>>                          ngpios = <64>;
+>>                          loongson,gpio-conf-offset = <0>;
+>>                          loongson,gpio-out-offset = <0x10>;
+>>                          loongson,gpio-in-offset = <0x8>;
 > 
-> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
-> ---
->  .../devicetree/bindings/usb/realtek,dwc3.yaml | 107 ++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/realtek,dwc3.yaml
+> These 3 are the same for both controllers, no?
+> Is only the inten-offset a variable?
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/realtek,dwc3.yaml b/Documentation/devicetree/bindings/usb/realtek,dwc3.yaml
-> new file mode 100644
-> index 000000000000..74d388809924
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/realtek,dwc3.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Realtek Semiconductor Corporation
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/usb/realtek,dwc3.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Realtek DWC3 USB SoC Controller Glue
-> +
-> +maintainers:
-> +  - Stanley Chang <stanley_chang@realtek.com>
-> +
-> +description:
-> +  The Realtek DHC SoC embeds a DWC3 USB IP Core configured for USB 2.0
-> +  and USB 3.0 in host or dual-role mode.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - realtek,rtd1295-dwc3
-> +          - realtek,rtd1315e-dwc3
-> +          - realtek,rtd1319-dwc3
-> +          - realtek,rtd1319d-dwc3
-> +          - realtek,rtd1395-dwc3
-> +          - realtek,rtd1619-dwc3
-> +          - realtek,rtd1619b-dwc3
-> +      - const: realtek,rtd-dwc3
-> +
-> +  reg:
-> +    maxItems: 1
-
-Some details on what these registers are would be useful. Or describing 
-what's in the 'glue' device?
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +  realtek,unlink-usb3-port:
-> +    description: Disable link between USB 3.0 PHY and USB mac.
-> +      Only for RTD1619 SoC, if the board design support maximum 2.0 speed.
-> +    type: boolean
-
-We have a property for this: maximum-speed
-
-That belongs in the USB controller node though.
-
-> +
-> +  realtek,disable-usb3-phy:
-> +    description: Close USB 3.0 PHY if the board design not support USB 3.0.
-> +    type: boolean
-
-Can't this be determined by not having a USB3 phy listed?
-
-> +
-> +  realtek,enable-l4icg:
-> +    description: Enable the power saving feature l4icg by hardware clock.
-> +      gating.
-> +    type: boolean
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    $ref: snps,dwc3.yaml#
-> +    description: Required child node
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +allOf:
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - realtek,rtd1619-dwc3
-> +    then:
-> +      properties:
-> +        realtek,unlink-usb3-port: false
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    usb@98013e00 {
-> +        compatible = "realtek,rtd1319d-dwc3", "realtek,rtd-dwc3";
-> +        reg = <0x98013e00 0x200>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +        status = "okay";
-
-Drop status from examples.
-
-> +        realtek,disable-usb3-phy;
-> +        realtek,enable-l4icg;
-> +
-> +        usb@98050000 {
-> +            compatible = "snps,dwc3";
-> +            reg = <0x98050000 0x9000>;
-> +            interrupts = <0 94 4>;
-> +            phys = <&usb2phy &usb3phy>;
-> +            phy-names = "usb2-phy", "usb3-phy";
-> +            dr_mode = "otg";
-> +            usb-role-switch;
-> +            role-switch-default-mode = "host";
-> +            snps,dis_u2_susphy_quirk;
-> +            snps,parkmode-disable-ss-quirk;
-> +            snps,parkmode-disable-hs-quirk;
-> +            maximum-speed = "high-speed";
-> +        };
-> +    };
-> -- 
-> 2.34.1
+>>                          loongson,gpio-inten-offset = <0x98>;
 > 
+> These offsets exceed the region that you've got in the reg property for
+> this controller, do they not?
+> 
+> Is there some sort of "miscellaneous register area" at 0x1FE104E0, or
+> just those two interrupt registers and nothing else?
+
+
+2k500 gpio dts is just an example, like 3a5000, or more other platform,
+above offset was different but the gpio controller was compatible.
+
+                 gpio: gpio@1fe00500 {
+                         compatible = "loongson,ls2k-gpio";
+                         reg = <0 0x1fe00500 0xc00>;
+                         gpio-controller;
+                         #gpio-cells = <2>;
+                         ngpios = <16>;
+                         loongson,gpio-conf-offset = <0x0>;
+                         loongson,gpio-out-offset = <0x8>;
+                         loongson,gpio-in-offset = <0xc>;
+			...
+			}
+
+
+Thanks,
+Yinbo
+
+
+> 
+
