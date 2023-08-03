@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B9A76E71D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C16B476E72A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:43:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbjHCLkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 07:40:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
+        id S235020AbjHCLnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 07:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232996AbjHCLkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:40:12 -0400
-Received: from mgamail.intel.com (unknown [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBA0272A;
-        Thu,  3 Aug 2023 04:40:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1691062810; x=1722598810;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Dd/pEIvh1vm5WdGjLrClzQBU3IOusOV95Grmu8xadFg=;
-  b=YpR+dH2OjRfoUz48D3lxNp7qWvxdOK+xQonSIr7PRUFclSQ8fD4uPI7p
-   7vNojSoaNKRU1Fb4xZza94ig+SUOqY9RIng9X2a0yL8KAHKjw3+9gqO/9
-   LtJNVKHaORRdgYjrwp1YlPUM0IUTV87KPd/v2IA2zrsy/ZuwoH0wDi4Bw
-   bzrnXD6+9snfg3IUZJZjPsNvQFx6NqTs8GYo816bFPnjgJTReTg6Q8Yvw
-   mVe7d66XXWtc1/+BSrTjKqFVpbcuDSEGfz4z07bDnzVSEuzL48N9kjkcn
-   kdmtCI4Q64HZkM5spPysSaCBYyfDj6DQ9ixUTG61AffZI9NVazKeKsG9A
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="373479426"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; 
-   d="scan'208";a="373479426"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2023 04:40:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="723190547"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; 
-   d="scan'208";a="723190547"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga007.jf.intel.com with ESMTP; 03 Aug 2023 04:40:06 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qRWgX-00AYix-0s;
-        Thu, 03 Aug 2023 14:40:05 +0300
-Date:   Thu, 3 Aug 2023 14:40:05 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Jisheng Zhang <jszhang@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233875AbjHCLnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:43:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BF13E53;
+        Thu,  3 Aug 2023 04:43:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A905761D5B;
+        Thu,  3 Aug 2023 11:43:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 826AFC433C8;
+        Thu,  3 Aug 2023 11:43:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691062991;
+        bh=9+RtIN6wxigYjMridZ3eGb8V8CqhNPEq56t9Do4SBe8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LgzRWR/pxIxD1kIM2yxRXJvBPiq/JKiSHHDZZE32MO6gDL4jYrlw02euB6ahDFGxY
+         fnEtgWXhsSHUkCwQ2bzyAB6of7MvKroNIaabEf4fg9ybjVu0EfA6tpaG/oXnzxJCH6
+         kBOwcz5zekinskFlDs3Aq46BYLU7zkWw380cCb/G6Fn7ssaoG5z3fTo/9LVpTa3pnU
+         zcs/vSPLvpwQvY5bOeTv81LAYAkeMpdMld6Ha3EdqoOETaWkcnhora5Tht5D/dXjwB
+         lrXlzbqzka/wdi7WLjhu7Gl3hJWk+UCMykpajoa/5Nn6SWrLUwkpAiyFs7kXBDXZ3T
+         8vGyyLxmOCuYQ==
+Date:   Thu, 3 Aug 2023 13:43:08 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Daniel Vetter <daniel@ffwll.ch>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        David Airlie <airlied@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: serial: snps-dw-apb-uart: make
- interrupt optional
-Message-ID: <ZMuSFYQ4YyIKnI0k@smile.fi.intel.com>
-References: <20230802150545.3742-1-jszhang@kernel.org>
- <20230802150545.3742-2-jszhang@kernel.org>
- <20230802-halogen-bungee-63273b2c456c@spud>
- <ZMrRWP5mK+nksn4M@smile.fi.intel.com>
- <20230802-risk-getting-e6005e86be81@spud>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
+ mode
+Message-ID: <d2sgj2iap4ouu425buqkorx76kpdqh77k3z36vaegma67pciyv@n3mbiglfidxx>
+References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
+ <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
+ <ekmwiy3iuvtqtb6hwjbba2ia3aemt3dxmx6dj3zh6ljfmuim4w@4jzhqdenxth4>
+ <ZMtqraOyGN9JvVj9@phenom.ffwll.local>
+ <qmwtcungahbe2bhty7v2rso2kf3vai6k47muwipifbybmi7o6s@oj6lngnhyhtg>
+ <CAKMK7uFbQURKYvB2JWnwZDEeA-qURpx_GFqR1FxgtuvK7jX4TA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qfwl5fgt5fndwmia"
 Content-Disposition: inline
-In-Reply-To: <20230802-risk-getting-e6005e86be81@spud>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <CAKMK7uFbQURKYvB2JWnwZDEeA-qURpx_GFqR1FxgtuvK7jX4TA@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,27 +70,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 02, 2023 at 11:53:59PM +0100, Conor Dooley wrote:
-> On Thu, Aug 03, 2023 at 12:57:44AM +0300, Andy Shevchenko wrote:
-> > On Wed, Aug 02, 2023 at 04:43:48PM +0100, Conor Dooley wrote:
-> > > On Wed, Aug 02, 2023 at 11:05:44PM +0800, Jisheng Zhang wrote:
-> > > > The driver fall back to poll style when there's no irq. "poll" still
-> > > > looks better than no support.
-> > > 
-> > > What is the user for this where the interrupt is not actually wired up
-> > > in the hardware?
-> > 
-> > FYI: kernel console doesn't use interrupts, so for example it might be
-> > the debug port. Note, I have no idea of the Zhang's case, just my assumption.
-> 
-> I'm less interested in what the software is doing, it's what the device 
-> that has not connected the interrupt is that I am curious about.
 
-As I said. The hw may be purely for debugging purposes (and yes, I have heard
-about such a hardware).
+--qfwl5fgt5fndwmia
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-With Best Regards,
-Andy Shevchenko
+On Thu, Aug 03, 2023 at 12:26:03PM +0200, Daniel Vetter wrote:
+> On Thu, 3 Aug 2023 at 11:22, Maxime Ripard <mripard@kernel.org> wrote:
+> >
+> > On Thu, Aug 03, 2023 at 10:51:57AM +0200, Daniel Vetter wrote:
+> > > On Thu, Aug 03, 2023 at 10:48:57AM +0200, Maxime Ripard wrote:
+> > > > On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
+> > > > > Hi,
+> > > > >
+> > > > > On 18/07/2023 17:31, Michael Riesch wrote:
+> > > > > > Hi all,
+> > > > > >
+> > > > > > This series adds support for the partial display mode to the Si=
+tronix
+> > > > > > ST7789V panel driver. This is useful for panels that are partia=
+lly
+> > > > > > occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Su=
+pport
+> > > > > > for this particular panel is added as well.
+> > > > > >
+> > > > > > Note: This series is already based on
+> > > > > > https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kerne=
+l.org/
+> > > > >
+> > > > > I understand Maxime's arguments, but by looking closely at the co=
+de,
+> > > > > this doesn't look like an hack at all and uses capabilities of the
+> > > > > panel controller to expose a smaller area without depending on any
+> > > > > changes or hacks on the display controller side which is coherent.
+> > > > >
+> > > > > Following's Daniel's summary we cannot compare it to TV overscan
+> > > > > because overscan is only on *some* displays, we can still get 100%
+> > > > > of the picture from the signal.
+> > > >
+> > > > Still disagree on the fact that it only affects some display. But i=
+t's
+> > > > not really relevant for that series.
+> > >
+> > > See my 2nd point, from a quick grep aside from i915 hdmi support, no =
+one
+> > > else sets all the required hdmi infoframes correctly. Which means on a
+> > > compliant hdmi tv, you _should_ get overscan. That's how that stuff is
+> > > speced.
+> > >
+> > > Iirc you need to at least set both the VIC and the content type, maybe
+> > > even more stuff.
+> > >
+> > > Unless all that stuff is set I'd say it's a kms driver bug if you get
+> > > overscan on a hdmi TV.
+> >
+> > I have no doubt that i915 works there. The source of my disagreement is
+> > that if all drivers but one don't do that, then userspace will have to
+> > care. You kind of said it yourself, i915 is kind of the exception there.
+> >
+> > The exception can be (and I'm sure it is) right, but still, it deviates
+> > from the norm.
+>=20
+> The right fix for these is sending the right infoframes, _not_ trying
+> to fiddle with overscan margins. Only the kernel can make sure the
+> right infoframes are sent out. If you try to paper over this in
+> userspace, you'll make the situation worse, not better (because
+> fiddling with overscan means you get scaling, and so rescaling
+> artifacts, and for hard contrasts along pixel lines that'll look like
+> crap).
+>=20
+> So yeah this is a case of "most upstream hdmi drivers are broken".
+> Please don't try to fix kernel bugs in userspace.
 
+ACK.
 
+> > > > I think I'll still like to have something clarified before we merge=
+ it:
+> > > > if userspace forces a mode, does it contain the margins or not? I d=
+on't
+> > > > have an opinion there, I just think it should be documented.
+> > >
+> > > The mode comes with the margins, so if userspace does something really
+> > > funny then either it gets garbage (as in, part of it's crtc area isn't
+> > > visible, or maybe black bars on the screen), or the driver rejects it
+> > > (which I think is the case for panels, they only take their mode and
+> > > nothing else).
+> >
+> > Panels can usually be quite flexible when it comes to the timings they
+> > accept, and we could actually use that to our advantage, but even if we
+> > assume that they have a single mode, I don't think we have anything that
+> > enforces that, either at the framework or documentation levels?
+>=20
+> Maybe more bugs? We've been slowly filling out all kinds of atomic kms
+> validation bugs in core/helper code because as a rule of thumb,
+> drivers get it wrong. Developers test until things work, then call it
+> good enough, and very few driver teams make a serious effort in trying
+> to really validate all invalid input. Because doing that is an
+> enormous amount of work.
+>=20
+> I think for clear-cut cases like drm_panel the fix is to just put more
+> stricter validation into shared code (and then if we break something,
+> figure out how we can be sufficiently lenient again).
+
+Panels are kind of weird, since they essentially don't exist at all in
+the framework so it's difficult to make it handle them or their state.
+
+It's typically handled by encoders directly, so each and every driver
+would need to make that check, and from a quick grep, none of them are
+(for the reasons you said).
+
+Just like for HDMI, even though we can commit to changing those facts,
+it won't happen overnight, so to circle back to that series, I'd like a
+comment in the driver when the partial mode is enabled that if userspace
+ever pushes a mode different from the expected one, we'll add the margins.
+
+That way, if and when we come back to it, we'll know what the original
+intent and semantics were.
+
+Maxime
+
+--qfwl5fgt5fndwmia
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMuSzAAKCRDj7w1vZxhR
+xTiFAQCAKpBWUi9Wf0twmjd0EmY3hQCjzZgTSj2tjvO0DPGrNQEA2BGgAZiYrOxU
+oBGMArbzCsWvaYlN5mb8X8Vx97RSggA=
+=8CCn
+-----END PGP SIGNATURE-----
+
+--qfwl5fgt5fndwmia--
