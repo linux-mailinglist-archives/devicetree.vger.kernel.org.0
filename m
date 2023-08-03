@@ -2,199 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1684576F072
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 19:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CFD476F075
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 19:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234174AbjHCROu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 13:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37606 "EHLO
+        id S230202AbjHCRQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 13:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232400AbjHCROs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 13:14:48 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 628171BF0;
-        Thu,  3 Aug 2023 10:14:45 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 373HEXXO106561;
-        Thu, 3 Aug 2023 12:14:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691082873;
-        bh=M+NDSflbEljMlPMn2zaVb2eVzIkgjG0cGkjKNzfiloA=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=SmRgAJQnoSrHJP3JmEzMjsAGqOB1gq5vuBaHbdg3hQ6SS+/fvOUfiRtiWs9mBZCjL
-         2xd6+owGiAa6XctxaxK8TkOh2pTdt4IyGjBDmSJzJX0pr/TrjCmN/5/P4KfCHD56jl
-         71VcvjphPvwck2zbvzXfnO41V12rk/oNknSVm6Fw=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 373HEXiX120868
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Aug 2023 12:14:33 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
- Aug 2023 12:14:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 3 Aug 2023 12:14:32 -0500
-Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 373HESVF015124;
-        Thu, 3 Aug 2023 12:14:29 -0500
-Message-ID: <80daaf47-02b8-a48d-904e-28d0445a6118@ti.com>
-Date:   Thu, 3 Aug 2023 22:44:28 +0530
+        with ESMTP id S229953AbjHCRP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 13:15:59 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2AB31BF0;
+        Thu,  3 Aug 2023 10:15:58 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe12baec61so11981645e9.2;
+        Thu, 03 Aug 2023 10:15:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691082957; x=1691687757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IxWLUNvKnma2N/DrU+9PlRX5fAyS26zOQ3cMeji8DWg=;
+        b=fk8BdpZYwKWlJ7rWQTs/uhygGNhMpHslFVAmGoeDj7A3XZR3bOQayYzFgLnCgeFGQE
+         o5AbtrxAobque7fJdDRb2jcJl0KlmGIloNHFBmaceFzRjrTQ36CsmZut/edaMLHVyX8C
+         rHuHpMUKUlcGt0HgLsmmNBIgpHeCxiZWxDC863zzhXI6Uv2a3bUJwkorJVLjxJ9VMpDI
+         4PaUtJDxUOY9Kpk3+8UapZ+KMzK5AlSoUHVCAlgxMi1pPS+D3TpCn+Bga+KDou0cuNFf
+         m4fPmmJcrIQjnF9udZb6EBUDA/ujefa8Vp3dicItQxo94FP62KwivC006+G5H3z+dvY6
+         0WwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691082957; x=1691687757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IxWLUNvKnma2N/DrU+9PlRX5fAyS26zOQ3cMeji8DWg=;
+        b=hwqFvJEDzdljfYL1BV5uA+N+pFg0DI0Pl1DUSlUBQ7d9iXLwA4GB+LxpIKLeE6bVw+
+         68Nvh3SVX48Wt6JfPlIw678BABnKqiZ1g+puY/ECjknU7ozjZq7tdU6ZLwx4smcIn1K9
+         oQutPI4TwnomGnMhSc7YwmlIcQS7G5DsSDCjZXaqadmPa92YUPE3aiGeN+ex1Lq1gEYj
+         1lVRO7fg91o8di/BmqY5V7dkRo6S1X5Z40bierjjfi1Q5DmKM+f4TUSUvFZFhxAMEM8l
+         EYYedgoAlxCMmKJCDQLisd079h5JbVq2jmBUglowaB5ginACKWKdjki+h0SMTlmck0gH
+         MA6A==
+X-Gm-Message-State: ABy/qLYfzF7yVNH2jr/i0HCbWFp2W66p405mg2hwia0yyltRpZvKtbJt
+        2XDeZWorAJ+afKtSLTsxtQE=
+X-Google-Smtp-Source: APBJJlEkOHSmbp3qXVAzIozmxruwUVMDflFzZK2RXc2qrB42WWSnqUl64kb1/UE7M99kS9pM/VWaZw==
+X-Received: by 2002:a7b:cbd8:0:b0:3fe:228a:e782 with SMTP id n24-20020a7bcbd8000000b003fe228ae782mr7896492wmi.37.1691082957107;
+        Thu, 03 Aug 2023 10:15:57 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e? ([2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e])
+        by smtp.gmail.com with ESMTPSA id z25-20020a7bc7d9000000b003fbaade0735sm4745410wmk.19.2023.08.03.10.15.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Aug 2023 10:15:56 -0700 (PDT)
+Message-ID: <4edab8d2-5b01-c406-332a-49a7305df5c0@gmail.com>
+Date:   Thu, 3 Aug 2023 19:19:38 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721s2: Correct pinmux offset for
- ospi
-Content-Language: en-US
-To:     Udit Kumar <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <sinthu.raja@ti.com>, <t-konduru@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <eblanc@baylibre.com>
-References: <20230803145655.806001-1-u-kumar1@ti.com>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20230803145655.806001-1-u-kumar1@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pwm: st: convert sti-pwm to DT schema
+Content-Language: en-US, fr
+To:     Conor Dooley <conor@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        fabrice.gasnier@foss.st.com
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230801220559.32530-1-rgallaispou@gmail.com>
+ <20230802080238.d3nam6elnern65rb@pengutronix.de>
+ <8e74af01-36c6-3a41-6d31-91b09ea62026@gmail.com>
+ <20230803085645.svrrcritdifbjwdz@pengutronix.de>
+ <20230803-sandbox-prideful-4f23b78ddc67@spud>
+From:   =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
+In-Reply-To: <20230803-sandbox-prideful-4f23b78ddc67@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Udit,
+Hi,
 
-Thank you for fixing this,
+Le 03/08/2023 à 18:09, Conor Dooley a écrit :
+> On Thu, Aug 03, 2023 at 10:56:45AM +0200, Uwe Kleine-König wrote:
+>> On Thu, Aug 03, 2023 at 09:18:14AM +0200, Raphaël Gallais-Pou wrote:
+>>> Hi
+>>>
+>>> Le 02/08/2023 à 10:02, Uwe Kleine-König a écrit :
+>>>> Hello,
+>>>>
+>>>> On Wed, Aug 02, 2023 at 12:05:59AM +0200, Raphael Gallais-Pou wrote:
+>>>>> +  st,capture-num-chan:
+>>>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>>>> +    description: Number of available Capture channels.
+>>>>
+>>>> I have the theory that nobody actually uses the capture feature and I'd
+>>>> like to get rid of it. People who do use it, should better switch to the
+>>>> counter driver.
+>>>
+>>> TBH I only found two drivers using it, including this one.
+>>>
+>>> $ grep -rinI "\.capture" drivers/pwm/ | wc -l
+>>> 2
+>>
+>> Right, there is pwm-stm32 and pwm-sti that support capture.
+>>
+>> There are a few machines that have a st,sti-pwm device:
+>>
+>> 	$ grep -rl st,sti-pwm arch/arm/boot/dts/*.dtb
+>> 	arch/arm/boot/dts/stih407-b2120.dtb
+>> 	arch/arm/boot/dts/stih410-b2120.dtb
+>> 	arch/arm/boot/dts/stih410-b2260.dtb
+>> 	arch/arm/boot/dts/stih418-b2199.dtb
+>> 	arch/arm/boot/dts/stih418-b2264.dtb
+>>
+>> but to actually use capture the device tree must have a property
+>> st,capture-num-chan. "st,capture-num-chan" isn't set by any of the
+>> devices.
 
-On 03/08/23 20:26, Udit Kumar wrote:
-> Due to non-addressable regions in J721S2 SOC wkup_pmx was split
-> into four regions from wkup_pmx0 to wkup_pmx3.
-> 
-> After split while updating the pin mux references to newly defined
-> four wkup_pmx, pin mux for OSPI0 was left.
-> Pin mux for OSPI0 is spread over two range wkup_pmx0
-> and wkup_pmx1, correcting pin mux for ospi and
-> adding correct pin mux setting within ospi node.
-> 
-> Also correcting OSPI1 pinmux which falls under wkup_pmx1
-> along with removing unused MCU_OSPI1_CSn1 pin for OSPI.
-> 
-> Fixes: 6bc829ceea41 ("arm64: dts: ti: k3-j721s2: Fix wkup pinmux range")
-> 
-> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
-> ---
-> 
-> Logs with v3
-> https://gist.github.com/uditkumarti/6c8b1b1a0bc0bcfef5e04de37c3cb411
-> 
-> dtbs_check run after applying https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/
-> 
-> Change log:
-> 
-> Changes in v3:
->   - Corrected wkup_pmx for ospi1
->   - Removed unused pin MCU_OSPI1_CSn1, shared with pmic 
->   - v2: https://lore.kernel.org/all/20230802113500.162276-1-u-kumar1@ti.com/
-> 
-> Changes in v2:
->   - Changed name of pin mux to align with
->   https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/ patch
->   - v1: https://lore.kernel.org/all/20230801125626.3287306-1-u-kumar1@ti.com/
-> 
-> 
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 19 ++++++++++---------
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 13 ++++++++++---
->  2 files changed, 20 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index 02b7a559bdf2..88e80996f56b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -250,18 +250,19 @@ J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (N26) MCU_ADC1_AIN6 */
->  			J721S2_WKUP_IOPAD(0x108, PIN_INPUT, 0) /* (N27) MCU_ADC1_AIN7 */
->  		>;
->  	};
-> +};
->  
-> +&wkup_pmx1 {
->  	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-default-pins {
->  		pinctrl-single,pins = <
-> -			J721S2_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
-> -			J721S2_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
-> -			J721S2_WKUP_IOPAD(0x060, PIN_OUTPUT, 0) /* (C21) MCU_OSPI1_CSn1 */
-> -			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
-> -			J721S2_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
-> -			J721S2_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
-> -			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
-> -			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
-> -			J721S2_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
-> +			J721S2_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
-> +			J721S2_WKUP_IOPAD(0x024, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
-> +			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
-> +			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
-> +			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
-> +			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
-> +			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
-> +			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
->  		>;
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> index d57dd43da0ef..fd1d6c884736 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> @@ -45,8 +45,6 @@ mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
->  			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
->  			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
->  			J721S2_WKUP_IOPAD(0x030, PIN_OUTPUT, 0) /* (G17) MCU_OSPI0_CSn1 */
+This is also what I came across, this is the reason why I'm not 
+reluctant to remove it.
 
-CS1 can be dropped as it is not being used.
+>>
+>> I think for stm32 it's not that trivial to show that it's unused.
+>> While the capture code isn't a big maintenance burden, I still would
+>> prefer to get rid of it if nobody uses it. Still more given that there
+>> are better alternatives available.
 
-> -			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-> -			J721S2_WKUP_IOPAD(0x03c, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
->  			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
->  			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
->  			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
-> @@ -61,6 +59,15 @@ J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
->  	};
->  };
->  
-> +&wkup_pmx1 {
-> +	mcu_fss0_ospi0_1_pins_default: mcu-fss0-ospi0-1-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-> +			J721S2_WKUP_IOPAD(0x004, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
+Regarding stm32, I think the owner of the driver would prefer to handle it.
 
-These are unused, there is only a single device on CS0, it looks like when
-support for OSPI was added for J721S2, all CS pinmux was being configured even
-though it was not needed. Since you are fixing it, it would be best to drop
-unused ones so that there are no future conflicts.
+>>
+>>> If there is no opposition about removing this feature I suggest to do it in
+>>> a second time, in a serie.
+>>
+>> Does that mean you will do that? I guess not, but at least this means
+>> you're not using capture support.
+> 
+> It seems like it should either be done as part of the conversion or as a
+> second patch in the series doing the conversion /shrug
 
-Thanks and Regards,
-Vaishnav
+Splitting the conversion and the capture removal is clearer IMO. Mixing 
+both could lead to confusion. I'll send another serie to do this.
 
 
-> +		>;
-> +	};
-> +};
-> +
->  &wkup_pmx2 {
->  	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
->  		pinctrl-single,pins = <
-> @@ -127,7 +134,7 @@ &main_mcan16 {
->  &ospi0 {
->  	status = "okay";
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_1_pins_default>;
->  
->  	flash@0 {
->  		compatible = "jedec,spi-nor";
+Regards,
+Raphaël
