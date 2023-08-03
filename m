@@ -2,81 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFD476F075
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 19:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3800876F0C4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 19:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230202AbjHCRQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 13:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38382 "EHLO
+        id S232223AbjHCRhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 13:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbjHCRP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 13:15:59 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2AB31BF0;
-        Thu,  3 Aug 2023 10:15:58 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe12baec61so11981645e9.2;
-        Thu, 03 Aug 2023 10:15:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691082957; x=1691687757;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IxWLUNvKnma2N/DrU+9PlRX5fAyS26zOQ3cMeji8DWg=;
-        b=fk8BdpZYwKWlJ7rWQTs/uhygGNhMpHslFVAmGoeDj7A3XZR3bOQayYzFgLnCgeFGQE
-         o5AbtrxAobque7fJdDRb2jcJl0KlmGIloNHFBmaceFzRjrTQ36CsmZut/edaMLHVyX8C
-         rHuHpMUKUlcGt0HgLsmmNBIgpHeCxiZWxDC863zzhXI6Uv2a3bUJwkorJVLjxJ9VMpDI
-         4PaUtJDxUOY9Kpk3+8UapZ+KMzK5AlSoUHVCAlgxMi1pPS+D3TpCn+Bga+KDou0cuNFf
-         m4fPmmJcrIQjnF9udZb6EBUDA/ujefa8Vp3dicItQxo94FP62KwivC006+G5H3z+dvY6
-         0WwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691082957; x=1691687757;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IxWLUNvKnma2N/DrU+9PlRX5fAyS26zOQ3cMeji8DWg=;
-        b=hwqFvJEDzdljfYL1BV5uA+N+pFg0DI0Pl1DUSlUBQ7d9iXLwA4GB+LxpIKLeE6bVw+
-         68Nvh3SVX48Wt6JfPlIw678BABnKqiZ1g+puY/ECjknU7ozjZq7tdU6ZLwx4smcIn1K9
-         oQutPI4TwnomGnMhSc7YwmlIcQS7G5DsSDCjZXaqadmPa92YUPE3aiGeN+ex1Lq1gEYj
-         1lVRO7fg91o8di/BmqY5V7dkRo6S1X5Z40bierjjfi1Q5DmKM+f4TUSUvFZFhxAMEM8l
-         EYYedgoAlxCMmKJCDQLisd079h5JbVq2jmBUglowaB5ginACKWKdjki+h0SMTlmck0gH
-         MA6A==
-X-Gm-Message-State: ABy/qLYfzF7yVNH2jr/i0HCbWFp2W66p405mg2hwia0yyltRpZvKtbJt
-        2XDeZWorAJ+afKtSLTsxtQE=
-X-Google-Smtp-Source: APBJJlEkOHSmbp3qXVAzIozmxruwUVMDflFzZK2RXc2qrB42WWSnqUl64kb1/UE7M99kS9pM/VWaZw==
-X-Received: by 2002:a7b:cbd8:0:b0:3fe:228a:e782 with SMTP id n24-20020a7bcbd8000000b003fe228ae782mr7896492wmi.37.1691082957107;
-        Thu, 03 Aug 2023 10:15:57 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e? ([2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e])
-        by smtp.gmail.com with ESMTPSA id z25-20020a7bc7d9000000b003fbaade0735sm4745410wmk.19.2023.08.03.10.15.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 10:15:56 -0700 (PDT)
-Message-ID: <4edab8d2-5b01-c406-332a-49a7305df5c0@gmail.com>
-Date:   Thu, 3 Aug 2023 19:19:38 +0200
+        with ESMTP id S235082AbjHCRhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 13:37:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CD2A3A99;
+        Thu,  3 Aug 2023 10:37:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 82AE361E57;
+        Thu,  3 Aug 2023 17:37:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9136C433CB;
+        Thu,  3 Aug 2023 17:37:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691084231;
+        bh=m3ULM7NXZMvAEEi/JL49zRWs3KrVZI5BkIyZSvI3+us=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=eWyxudkOPACaoI+SspPPHRJHWpA8gvLf9O4qKKFwNUQEqGgLIAJFTq2V9BJzifzcq
+         Nozzi+6slRkoSduET6dIU9zUTl5H2cOTOP/oW4eNDT4NM0CGhmSLaSp0+WugIvNwGW
+         bhe8OVkWQpfDwkt3KPLXqYoBN9SApHlx1vZrPvKLK3ibWq+v/eLs4WXrGmpNRJ7uKL
+         S2fvfO9EjhSePDJME1Gwp3kTF7UbNj+pANE+1m1xwXafc5w513qqBVtoh4pZi/zi4K
+         U/bdWesXlbxPKc06zXQ/YJygjoeCZzgGPxyrwFlmxX8afgIvDk5LJEcKHLT2dadh98
+         HyTSZyyryUx8Q==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b9cd6a554cso18464361fa.3;
+        Thu, 03 Aug 2023 10:37:11 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZlv6k3wiwKy/LiRBcU+mPZCT6wJKwweLJ7Q1rNEZSiZqtV5WLa
+        zvIHSEGdJd5xu4h8XIKniBfOTgUXiUk3oX8rAw==
+X-Google-Smtp-Source: APBJJlEZKzgMFwN3dNld9CSrOyqe3eT5nhEOJVEUo3gBJedyMQn9LO+tDJQ5v3PCiLDTz6+WFkHnknNHL0T7tZ/sxzE=
+X-Received: by 2002:a2e:8796:0:b0:2b7:3b6c:a5e4 with SMTP id
+ n22-20020a2e8796000000b002b73b6ca5e4mr8666650lji.38.1691084229939; Thu, 03
+ Aug 2023 10:37:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pwm: st: convert sti-pwm to DT schema
-Content-Language: en-US, fr
-To:     Conor Dooley <conor@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        fabrice.gasnier@foss.st.com
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230801220559.32530-1-rgallaispou@gmail.com>
- <20230802080238.d3nam6elnern65rb@pengutronix.de>
- <8e74af01-36c6-3a41-6d31-91b09ea62026@gmail.com>
- <20230803085645.svrrcritdifbjwdz@pengutronix.de>
- <20230803-sandbox-prideful-4f23b78ddc67@spud>
-From:   =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
-In-Reply-To: <20230803-sandbox-prideful-4f23b78ddc67@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
+ <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
+ <ZMnNcJ2KW1qUZUA5@smile.fi.intel.com> <ZMnO67avEY25XzB1@smile.fi.intel.com> <CAL_JsqLxMVp9-XY_EViYN7qBwOt+GBTsnLfkfJmCZz-zAH2HKw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLxMVp9-XY_EViYN7qBwOt+GBTsnLfkfJmCZz-zAH2HKw@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 3 Aug 2023 11:36:57 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLUBPaeZx8k4BoEnojauVLzs1dWJS+K0kR9U3aNF+EbPw@mail.gmail.com>
+Message-ID: <CAL_JsqLUBPaeZx8k4BoEnojauVLzs1dWJS+K0kR9U3aNF+EbPw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use "%pOF"
+ inside devtree_lock
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,69 +71,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Aug 2, 2023 at 3:33=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Aug 1, 2023 at 9:35=E2=80=AFPM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> >
+> > On Wed, Aug 02, 2023 at 06:28:48AM +0300, Andy Shevchenko wrote:
+> > > On Tue, Aug 01, 2023 at 03:54:45PM -0600, Rob Herring wrote:
+> > > > While originally it was fine to format strings using "%pOF" while
+> > > > holding devtree_lock, this now causes a deadlock.  Lockdep reports:
+> > > >
+> > > >     of_get_parent from of_fwnode_get_parent+0x18/0x24
+> > > >     ^^^^^^^^^^^^^
+> > > >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
+> > > >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
+> > > >     fwnode_full_name_string from device_node_string+0x1a0/0x404
+> > > >     device_node_string from pointer+0x3c0/0x534
+> > > >     pointer from vsnprintf+0x248/0x36c
+> > > >     vsnprintf from vprintk_store+0x130/0x3b4
+> > > >
+> > > > To fix this, move the printing in __of_changeset_entry_apply() outs=
+ide the
+> > > > lock. As there's already similar printing of the same changeset act=
+ions,
+> > > > refactor all of them to use a common action print function. This ha=
+s the
+> > > > side benefit of getting rid of some ifdefs.
+> >
+> > ...
+> >
+> > > > v3:
+> > > >  - Add missing 'static' reported by 0-day
+> > >
+> > > It reported two issues (at least what I see).
+>
+> Indeed. I missed the 2nd one.
+>
+> > ...
+> >
+> > > > +   if (pr_debug("notify "))
+> > >
+> > > This is weird. How did you compile it?
+>
+> I agree it's a weird pattern...
+>
+> > Urgh, you need to fix dynamic debug macros to return an error code.
+>
+> Or adding a 'pr_debug_cont' macro would do it. I'm inclined to wrap it
+> in an "#ifdef DEBUG" and be done with it.
 
-Le 03/08/2023 à 18:09, Conor Dooley a écrit :
-> On Thu, Aug 03, 2023 at 10:56:45AM +0200, Uwe Kleine-König wrote:
->> On Thu, Aug 03, 2023 at 09:18:14AM +0200, Raphaël Gallais-Pou wrote:
->>> Hi
->>>
->>> Le 02/08/2023 à 10:02, Uwe Kleine-König a écrit :
->>>> Hello,
->>>>
->>>> On Wed, Aug 02, 2023 at 12:05:59AM +0200, Raphael Gallais-Pou wrote:
->>>>> +  st,capture-num-chan:
->>>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
->>>>> +    description: Number of available Capture channels.
->>>>
->>>> I have the theory that nobody actually uses the capture feature and I'd
->>>> like to get rid of it. People who do use it, should better switch to the
->>>> counter driver.
->>>
->>> TBH I only found two drivers using it, including this one.
->>>
->>> $ grep -rinI "\.capture" drivers/pwm/ | wc -l
->>> 2
->>
->> Right, there is pwm-stm32 and pwm-sti that support capture.
->>
->> There are a few machines that have a st,sti-pwm device:
->>
->> 	$ grep -rl st,sti-pwm arch/arm/boot/dts/*.dtb
->> 	arch/arm/boot/dts/stih407-b2120.dtb
->> 	arch/arm/boot/dts/stih410-b2120.dtb
->> 	arch/arm/boot/dts/stih410-b2260.dtb
->> 	arch/arm/boot/dts/stih418-b2199.dtb
->> 	arch/arm/boot/dts/stih418-b2264.dtb
->>
->> but to actually use capture the device tree must have a property
->> st,capture-num-chan. "st,capture-num-chan" isn't set by any of the
->> devices.
+Here's what I've come up with instead:
 
-This is also what I came across, this is the reason why I'm not 
-reluctant to remove it.
+#define _do_print(func, prefix, action, node, prop, ...) ({ \
+  if (prop) \
+    func(prefix "%-15s %pOF:%s\n", ##__VA_ARGS__,
+action_names[action], node, prop); \
+  else \
+    func(prefix "%-15s %pOF\n", ##__VA_ARGS__, action_names[action], node);=
+\
+})
+#define of_changeset_action_err(...) _do_print(pr_err, __VA_ARGS__)
+#define of_changeset_action_debug(...) _do_print(pr_debug, __VA_ARGS__)
 
->>
->> I think for stm32 it's not that trivial to show that it's unused.
->> While the capture code isn't a big maintenance burden, I still would
->> prefer to get rid of it if nobody uses it. Still more given that there
->> are better alternatives available.
-
-Regarding stm32, I think the owner of the driver would prefer to handle it.
-
->>
->>> If there is no opposition about removing this feature I suggest to do it in
->>> a second time, in a serie.
->>
->> Does that mean you will do that? I guess not, but at least this means
->> you're not using capture support.
-> 
-> It seems like it should either be done as part of the conversion or as a
-> second patch in the series doing the conversion /shrug
-
-Splitting the conversion and the capture removal is clearer IMO. Mixing 
-both could lead to confusion. I'll send another serie to do this.
-
-
-Regards,
-Raphaël
+Rob
