@@ -2,165 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F1E376E3C5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:58:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C3A76E3D3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbjHCI6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 04:58:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
+        id S232491AbjHCJBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 05:01:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234940AbjHCI6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:58:04 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6D330C4
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 01:57:48 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id 5614622812f47-3a751d2e6ecso565885b6e.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 01:57:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1691053067; x=1691657867;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B8jNn+NP9j7pIA4Gvr3RjVfWCo1xNEk9xbLxp+U9DEU=;
-        b=dUCjuE/YmR0/8JPJZVzOLMSntUMrvBHBGDA65WMxmJlES6nUM2VmooTuiNK1OE1tzU
-         OGO7KiY7VKkwRh1umpSTkMAtVnIx+K2N4ppj7+D3/SiDMMZnvXnwMzMq+shLT9uFC+ye
-         5X27QK9DK2d49JR1JJUZFRL4LKEupHJrs3tD9Ea8tvc1cuysV9juAhWG/b5dcz75o7t2
-         +aJ7K/AscsGiLN9vgISi/Ow02ITDPLV/njd6G8MUDlJsoPDl8Yx/ckP07QKMYG11AnHk
-         MtqjIJbDVWa06b4Z4DDW+xgCuHWdjnGzIYq5VyfTGu6UMZcBSJnOqbCPK8XaFElkD21W
-         QVvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691053067; x=1691657867;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B8jNn+NP9j7pIA4Gvr3RjVfWCo1xNEk9xbLxp+U9DEU=;
-        b=By9MBSjz6ayCbGHGQf1/zHiD0dVMs6TmmjudC3/UEqQu+309uodsQQW1ovT0yVl5Un
-         II021BYqYJR3NZcLMm7W2nlarTq94pmQJlR9FsRUQ1xWDVkuK8QbG6nq7LGEWyFxr14b
-         5wIUnEZQvO4wpFfUvjD/RlU69NZ1ZflNaLNBPZkeeFFlZEIPaDlHSzeVlQx+PYKaPdC3
-         38KRQE3yK5N7EhgK8clZwMJyrZBT9gGD9IQeudFyMZAQPLMP3tTBqIOlPbglPtqmlLjW
-         8O82yladIXJEh1jnLTTSH+29z1/WgYnYpSQSqkvxO7AQ7GwLE9AoH0rC2gFr+ZkaMmVB
-         1C4g==
-X-Gm-Message-State: ABy/qLb7RzMo6gEHUpN28TB0+pP4Fzd7vgr5PP+RPBXJ6utdJZFelF8F
-        yFttvtjCykYtg69A3AYLf0kDWw==
-X-Google-Smtp-Source: APBJJlHYkyaQstJnkzI/nrMEdCFBI7JwgG/Clj2L5mYZWErvDAJf7HkkrBz83mlUGVdkJrUB3++vPw==
-X-Received: by 2002:a05:6358:5e0a:b0:133:a8e:6feb with SMTP id q10-20020a0563585e0a00b001330a8e6febmr8982344rwn.12.1691053067366;
-        Thu, 03 Aug 2023 01:57:47 -0700 (PDT)
-Received: from hsinchu15.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id i6-20020a633c46000000b0056334a7b9b2sm12941735pgn.33.2023.08.03.01.57.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 01:57:47 -0700 (PDT)
-From:   Nylon Chen <nylon.chen@sifive.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        geert+renesas@glider.be, pavel@ucw.cz, vincent.chen@sifive.com,
-        nylon.chen@sifive.com, emil.renner.berthing@canonical.com,
-        aou@eecs.berkeley.edu, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor@kernel.org, zong.li@sifive.com,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 1/1] riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's active-low properties
-Date:   Thu,  3 Aug 2023 16:57:34 +0800
-Message-Id: <20230803085734.340-2-nylon.chen@sifive.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230803085734.340-1-nylon.chen@sifive.com>
-References: <20230803085734.340-1-nylon.chen@sifive.com>
+        with ESMTP id S231987AbjHCJBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:01:39 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93746E46;
+        Thu,  3 Aug 2023 02:01:37 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A204A6607194;
+        Thu,  3 Aug 2023 10:01:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1691053296;
+        bh=yJ1thvUjgcsARtQ4vh75a2lFkbz03xQuRAuMRkmA7Vc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IQzNd5N0RZlqCqP4tHgtA5J+6RLc2MYubdY/w/zcQi28Vbh6mu86cqQBVVPurstzt
+         aYb5BExnkjMM2RzeiH83xZUuDRSpdGmJvqzen+p7YhuBekktqrAj/v8JOok7FNzv46
+         u9rlXk/6fCamD3QOA3k65N1Z+e/Nt/0eLqtXfRUPXdqpW8kxX/EeLYt08k0gzPcRso
+         LcyYxCPvmPHegBWkSwfg84LCoQdwGLinvaZwB8f/I4Y91xyJ+hrSp4oGdidV+TCcza
+         7c3V80AcbkO/8LtQkmCcDZ0txJ4wUAK5FdMkF4PqM7pnRGRJzXQnJVo9iY1w4/GBNQ
+         rfSilzmG2oE9w==
+Message-ID: <aa8f232f-701a-5b4c-eda8-89fc0e6fe5a8@collabora.com>
+Date:   Thu, 3 Aug 2023 11:01:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/9] mfd: mt6397: Split MediaTek MT6366 PMIC out of MT6358
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Zhiyong Tao <zhiyong.tao@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230803074249.3065586-1-wenst@chromium.org>
+ <20230803074249.3065586-4-wenst@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230803074249.3065586-4-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This removes the active-low properties of the PWM-controlled LEDs in
-the HiFive Unmatched device tree.
+Il 03/08/23 09:42, Chen-Yu Tsai ha scritto:
+> The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
+> a different set of regulators. Specifically, it lacks the camera related
+> VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
+> 
+> Add a separate compatible for the MT6366 PMIC. The regulator cell for
+> this new entry uses a new compatible string matching MT6366.
+> 
+> Fixes: c47383f84909 ("mfd: Add support for the MediaTek MT6366 PMIC")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
+I agree in that the LDOs are a bit different, but that's handled by the
+mt6358-regulator driver regardless of the actual devicetree compatible,
+as that's selected through a chip_id check.
 
-Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf [0]
-Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf [1]
+Finally, looking at the driver implementation itself, the addition of a
+specific mt6366 compatible here seems redundant, because the actual HW is
+  - Handled by drivers, but
+  - Described by bindings
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
----
- arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 4 ----
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ----
- 2 files changed, 8 deletions(-)
+Any other opinions on this?
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 900a50526d77..7a9f336a391c 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -50,7 +50,6 @@ led-controller {
- 
- 		led-d1 {
- 			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
--			active-low;
- 			color = <LED_COLOR_ID_GREEN>;
- 			max-brightness = <255>;
- 			label = "d1";
-@@ -58,7 +57,6 @@ led-d1 {
- 
- 		led-d2 {
- 			pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
--			active-low;
- 			color = <LED_COLOR_ID_GREEN>;
- 			max-brightness = <255>;
- 			label = "d2";
-@@ -66,7 +64,6 @@ led-d2 {
- 
- 		led-d3 {
- 			pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
--			active-low;
- 			color = <LED_COLOR_ID_GREEN>;
- 			max-brightness = <255>;
- 			label = "d3";
-@@ -74,7 +71,6 @@ led-d3 {
- 
- 		led-d4 {
- 			pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
--			active-low;
- 			color = <LED_COLOR_ID_GREEN>;
- 			max-brightness = <255>;
- 			label = "d4";
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index 07387f9c135c..11f08a545ee6 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -52,7 +52,6 @@ led-controller-1 {
- 
- 		led-d12 {
- 			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
--			active-low;
- 			color = <LED_COLOR_ID_GREEN>;
- 			max-brightness = <255>;
- 			label = "d12";
-@@ -69,19 +68,16 @@ multi-led {
- 
- 			led-red {
- 				pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
--				active-low;
- 				color = <LED_COLOR_ID_RED>;
- 			};
- 
- 			led-green {
- 				pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
--				active-low;
- 				color = <LED_COLOR_ID_GREEN>;
- 			};
- 
- 			led-blue {
- 				pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
--				active-low;
- 				color = <LED_COLOR_ID_BLUE>;
- 			};
- 		};
--- 
-2.40.1
+Regards,
+Angelo
+
+> ---
+>   drivers/mfd/mt6397-core.c | 31 +++++++++++++++++++++++++++++++
+>   1 file changed, 31 insertions(+)
+> 
+> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
+> index f6c1f80f94a4..3f8dfe60a59b 100644
+> --- a/drivers/mfd/mt6397-core.c
+> +++ b/drivers/mfd/mt6397-core.c
+> @@ -206,6 +206,26 @@ static const struct mfd_cell mt6359_devs[] = {
+>   	},
+>   };
+>   
+> +static const struct mfd_cell mt6366_devs[] = {
+> +	{
+> +		.name = "mt6358-regulator",
+> +		.of_compatible = "mediatek,mt6366-regulator"
+> +	}, {
+> +		.name = "mt6358-rtc",
+> +		.num_resources = ARRAY_SIZE(mt6358_rtc_resources),
+> +		.resources = mt6358_rtc_resources,
+> +		.of_compatible = "mediatek,mt6358-rtc",
+> +	}, {
+> +		.name = "mt6358-sound",
+> +		.of_compatible = "mediatek,mt6358-sound"
+> +	}, {
+> +		.name = "mt6358-keys",
+> +		.num_resources = ARRAY_SIZE(mt6358_keys_resources),
+> +		.resources = mt6358_keys_resources,
+> +		.of_compatible = "mediatek,mt6358-keys"
+> +	},
+> +};
+> +
+>   static const struct mfd_cell mt6397_devs[] = {
+>   	{
+>   		.name = "mt6397-rtc",
+> @@ -280,6 +300,14 @@ static const struct chip_data mt6359_core = {
+>   	.irq_init = mt6358_irq_init,
+>   };
+>   
+> +static const struct chip_data mt6366_core = {
+> +	.cid_addr = MT6358_SWCID,
+> +	.cid_shift = 8,
+> +	.cells = mt6366_devs,
+> +	.cell_size = ARRAY_SIZE(mt6366_devs),
+> +	.irq_init = mt6358_irq_init,
+> +};
+> +
+>   static const struct chip_data mt6397_core = {
+>   	.cid_addr = MT6397_CID,
+>   	.cid_shift = 0,
+> @@ -358,6 +386,9 @@ static const struct of_device_id mt6397_of_match[] = {
+>   	}, {
+>   		.compatible = "mediatek,mt6359",
+>   		.data = &mt6359_core,
+> +	}, {
+> +		.compatible = "mediatek,mt6366",
+> +		.data = &mt6366_core,
+>   	}, {
+>   		.compatible = "mediatek,mt6397",
+>   		.data = &mt6397_core,
+
 
