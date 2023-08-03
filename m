@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9377B76E85A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 14:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE0C76E85D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 14:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233127AbjHCMfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 08:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39142 "EHLO
+        id S229548AbjHCMfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 08:35:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235537AbjHCMfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 08:35:16 -0400
+        with ESMTP id S234594AbjHCMfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 08:35:32 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 30C7D3A87;
-        Thu,  3 Aug 2023 05:35:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 22B4F3A9F;
+        Thu,  3 Aug 2023 05:35:22 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6CDB113E;
-        Thu,  3 Aug 2023 05:35:54 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CD109113E;
+        Thu,  3 Aug 2023 05:36:04 -0700 (PDT)
 Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E27C23F6C4;
-        Thu,  3 Aug 2023 05:35:08 -0700 (PDT)
-Date:   Thu, 3 Aug 2023 13:35:06 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA63C3F6C4;
+        Thu,  3 Aug 2023 05:35:18 -0700 (PDT)
+Date:   Thu, 3 Aug 2023 13:35:16 +0100
 From:   Andre Przywara <andre.przywara@arm.com>
 To:     Martin Botka <martin@biqu3d.com>
 Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
@@ -36,8 +36,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
         Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Andrew Lunn <andrew@lunn.ch>,
         Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Icenowy Zheng <uwu@icenowy.me>,
         Heiko Stuebner <heiko@sntech.de>,
         Shawn Guo <shawnguo@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -46,12 +47,11 @@ Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/6] dt-bindings: arm: sunxi: Add BigTreeTech Manta
- board
-Message-ID: <20230803133506.0abafd03@donnerap.manchester.arm.com>
-In-Reply-To: <222684DD3067C1E9+20230802220309.163804-4-martin@biqu3d.com>
+Subject: Re: [PATCH v1 4/6] dt-bindings: arm: sunxi: Add BigTreeTech Pi
+Message-ID: <20230803133516.729b4c7d@donnerap.manchester.arm.com>
+In-Reply-To: <060E0BA986DEDEBE+20230802220309.163804-5-martin@biqu3d.com>
 References: <20230802220309.163804-1-martin@biqu3d.com>
-        <222684DD3067C1E9+20230802220309.163804-4-martin@biqu3d.com>
+        <060E0BA986DEDEBE+20230802220309.163804-5-martin@biqu3d.com>
 Organization: ARM
 X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
@@ -66,43 +66,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  3 Aug 2023 00:02:36 +0200
+On Thu,  3 Aug 2023 00:02:37 +0200
 Martin Botka <martin@biqu3d.com> wrote:
+
+Hi,
 
 > From: Martin Botka <martin.botka@somainline.org>
 > 
-> Add name & compatible for BigTreeTech Manta boards
-> 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> index 5ae1b81af6fc..e9e46434dd1a 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -155,6 +155,12 @@ properties:
->          items:
->            - const: bigtreetech,cb1
->            - const: allwinner,sun50i-h616
-> +          
+> Add name & compatible for BigTreeTech Pi board
 
-whitespace error here above (leading spaces)
-
-And there is no need to split those additions to sunxi.yaml into separate
-patches, so just put them all in one (but drop patch 2/6, as mentioned
-there).
+That looks good in itself, but should be squashed into the previous patch.
 
 Cheers,
 Andre
 
-> +      - description: BigTreeTech Manta M4/8P
-> +        items:
-> +          - const: bigtreetech,cb1-manta
-> +          - const: bigtreetech,cb1
-> +          - const: allwinner,sun50i-h616
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> index e9e46434dd1a..2b527653a303 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -162,6 +162,11 @@ properties:
+>            - const: bigtreetech,cb1
+>            - const: allwinner,sun50i-h616
 >  
+> +      - description: BigTreeTech Pi
+> +        items:
+> +          - const: bigtreetech,pi
+> +          - const: allwinner,sun50i-h616
+> +
 >        - description: Chuwi V7 CW0825
 >          items:
+>            - const: chuwi,v7-cw0825
 
