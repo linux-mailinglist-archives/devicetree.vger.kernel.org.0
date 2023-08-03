@@ -2,227 +2,537 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8CF776EF57
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 18:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB1A76EF73
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 18:29:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235173AbjHCQZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 12:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59456 "EHLO
+        id S235111AbjHCQ3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 12:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233914AbjHCQZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 12:25:47 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2122.outbound.protection.outlook.com [40.107.113.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8ED130D7;
-        Thu,  3 Aug 2023 09:25:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bKf7eDoisMaFG3kxf1nGAxpui4X7KylaGlEupnoyOJLD25qnJLENJtjWNAVtPHSIpqTvLaa/Gcz5EV+pmBAdjvoVIseeCJdflF1BDB+4N66DuPXNgU7gbGcSCOmS/2vJbHVXc1ZCYYZaPTlZGagVWD54o9k92ddJvDqQArSxU2+G/v+w9vTGdz3IcMJ72/d97aujaJOTpUKGqGrws21VHoKHFERckaMf4CGOPsFwuXQfF39mpHGNVipmZRIQ1DWBnX0+YJCpev4LO7FY06uLQdTtf7zibtW931Bbvvg9pIfmcelJ1JNlBr7f9sMhUdaNuXT83VKvLS1dCobKsRXqew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=54BR1w5Xam35f0D2oC2awnuCn+JooCfCicOsmQAJeiM=;
- b=hf1RPla1vfuRaOwNa+7nmPbmn0Oy1WKSeLVr6LPadwLTnz3bXoVXAPLU98ZKPFRmTlf9pErkIEEnPP7+1LGnf0DUubKGoKZg/vTpUqSJOH/0bIIByTorbUSfuqCRoAQhjjcZDzNBX0MJ8EhwmG92qPwDWNstXjZvr/hlaR4qVlFs5XOaX1bFX6SVo03ZlSJtFuEUi0p03t2lUg1gPmRBcYZagtIukgG0EhIfi92neTfJGftjhFyG8N07Uu7iDDevSPomtnMxi76Z95lS1RD7l8VVZh2YU89uVfhVkx0uBIcZTnjsem8oKMiN6Y9ZPVV10IjeAZxgZ+qrpdWZD4o5Ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=54BR1w5Xam35f0D2oC2awnuCn+JooCfCicOsmQAJeiM=;
- b=BgmyftuHw2eX2+tzz4WbH1kw2cbFz4WoG/8/AnTCCzuJsl1F0ErMPT//ygT9LH4vOptGKDTeJGGYH6YWmXPYpyFLflgfUNrUCvUNY7vITO91RWF0TQZ7P8onpHrylultWx+B17K/6wE8Ft+QxkLoLA2F2RP5Y0vBqX0JysUS5UM=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TY3PR01MB11429.jpnprd01.prod.outlook.com (2603:1096:400:375::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.20; Thu, 3 Aug
- 2023 16:25:40 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::865f:1bdf:c364:1184]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::865f:1bdf:c364:1184%6]) with mapi id 15.20.6652.020; Thu, 3 Aug 2023
- 16:25:40 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Conor Dooley <conor@kernel.org>
-CC:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S236506AbjHCQ3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 12:29:41 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D491430D3
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 09:29:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
+        s=tfld2305; t=1691080136;
+        bh=II6alhHralFufv5SBWswv5gqkKFdwRifNZk9ZDt53dY=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From;
+        b=AzQwe2iU47h5qpa9xY7k65qeRXhwyNEZWvgnMeWAWjO3+2akZTCrS49nt3oVRa9d6
+         VjolRDtC7Pu63imRDvEJMiGfaZQHgQF0Vh9ksQq9SzJhztsMRqtcYlCaxyhjdCHFjg
+         Rk2uYLXoYQ5fbwz/7nVEvWIEXW4fM5e0MSVrOIp0=
+X-QQ-mid: bizesmtp76t1691080132teco6qgv
+Received: from [192.168.2.144] ( [178.41.211.221])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Fri, 04 Aug 2023 00:28:41 +0800 (CST)
+X-QQ-SSF: 01400000000000403000000A0000000
+X-QQ-FEAT: WgqKRQTMXFV1W4ooLJFrdkeNSR3ui0teGXKR6++CDB62UUyjFuohRf40LVX3g
+        9D3nNrtsvpfjpUfUabbH6v/2tg0ausAcS5jGQy9rKc3ok+7oP49h8c99OfiFx3qCt+viVXY
+        OtiRBV5oMPkj++Eh5884WBheZ4CmpvDFDK0My4DGGGaHbqJ6Dk5w58TAmdCAPmFcLtkRXRO
+        06JHuLh20jGYqDl6kj0YmmOedrJq4RRsremJp8As9DNgntBBIfc7F2hBQDpozK7r0e7K+Nk
+        Lg8Yb4Ml/lOJgdRQewv8/TZzFQ7fEm7loCsxoZNwnVgUB9ttAbF1RKq68K77oBMN8a8H1ew
+        JW70KJ3oUu2O+YJC0MagIjgdW7jkY5IOWuO/ZdlmLDDNR1DICw=
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 9063117837025285105
+Message-ID: <807A4F62FAC1F9D4+a56b3e48-ab9c-8049-49ba-c781b8a00de4@biqu3d.com>
+Date:   Thu, 3 Aug 2023 18:28:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 5/6] arm64: dts: allwinner: h616: Add BigTreeTech CB1
+ SoM & boards support
+Content-Language: en-US
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH 1/3] dt-bindings: clock: versaclock3: Document
- clock-output-names
-Thread-Topic: [PATCH 1/3] dt-bindings: clock: versaclock3: Document
- clock-output-names
-Thread-Index: AQHZxTxohvL0NbUaxUuWUT64bxrffa/YvVIAgAAAhFA=
-Date:   Thu, 3 Aug 2023 16:25:40 +0000
-Message-ID: <OS0PR01MB5922B71C39F54441D0E8EDB38608A@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20230802122510.275420-1-biju.das.jz@bp.renesas.com>
- <20230802122510.275420-2-biju.das.jz@bp.renesas.com>
- <20230803-imminent-impound-559c483b75b9@spud>
-In-Reply-To: <20230803-imminent-impound-559c483b75b9@spud>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TY3PR01MB11429:EE_
-x-ms-office365-filtering-correlation-id: 76f1d211-1d06-40b9-6f52-08db943e4715
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9Flvt1RzlU9JLAT0/v7EA400vGBLZ6ukdQLmkqDAaU+1SUu9X/a9C9o5LKIhLmiqnfSblRYGs5o18OvPs//Np56svn4NpF6xpMUix4eVBaLCB8yZW/9l1xTTby3MaFGVSq7J3egrxAB0e19xB3lXMSMtBGEKxDX387V9zjuFWO+gMOIsZMFurz9euK616y7qtDlU8m7iOJmmIumyfP74fojFbgNHYkN4tK9WYkDyXIMK6U+7XhSuW9fYJkIBl0IF2CzflYo7lVZqEvwDctxqCNyO2bcX9lxtEBGXFf8b/OK9pEq8rOc/7gZx15ZxlzpGDbc6w9hphabHyL+cXBLL72kJeaJMctNETiJcWyggzqUNHQCCpOg2H7ePNvfKFUMQNEErKcH9SaYgK02BGyjil33GMUf8EH5nphWBwqZHHMFY6Py0Bpp2AMiQGRZB8zPGKu78lRrQJxcVQTQCr/nOt0MqexEkyXFWb7FpqIK79RrRkF0/G8cf9EAdLKpo+eqf93ggF+LfWVOrVlpa5UGSGqWWXCEgU7LshMJ1EBbP7KTVNPDat0j5di11tSO/GgjtRpXWD7nSeCdUuIWpcz/YnQD2gOp+x/8ozPx6/TIMKPA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(346002)(376002)(366004)(39860400002)(396003)(451199021)(64756008)(76116006)(6916009)(66946007)(66446008)(66476007)(66556008)(4326008)(83380400001)(316002)(38070700005)(38100700002)(9686003)(54906003)(7696005)(966005)(122000001)(478600001)(55016003)(71200400001)(41300700001)(5660300002)(86362001)(8936002)(8676002)(52536014)(33656002)(7416002)(6506007)(186003)(26005)(2906002)(107886003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gSv0EY/wajTF6ebpw7d/N5QGPoRlJFviwZAeD8+7cHVdEfIcKtz1130ffiMR?=
- =?us-ascii?Q?IdBwJu1WxmORblyL1lyHgcXm21vDTRoqPBIXnEExRIO8USOohM0Y16n30xuy?=
- =?us-ascii?Q?vGXhJWy9WxsBORZzZXuyoEt/7WNd0ji4kPG+HXeDXZASHJV06yAZoVO4H4df?=
- =?us-ascii?Q?Ve7h5YfoayfveVz8P2HFDdkIIDDqnOXpGeJIGP6gYq9N0dWTfTNtuy8yL9yq?=
- =?us-ascii?Q?+bJhIEIiKSBeG5de1bLcXylrMpENjuyXoGo8nvC7HRj+5kJjdrDuA2CBBa78?=
- =?us-ascii?Q?2yOGBCXapIgZ8LDZTWRskZHAeVH+DqJDMcR7iY3bx/TDj5H8bOvE9u4zM/rC?=
- =?us-ascii?Q?Esiw7UbdSUPuTNJCbbLcwKR/jJoYMxWyQN0epikRq5uaZ/rnti0kmqRXKPSr?=
- =?us-ascii?Q?boL/BAcdZ/bXRf824wefnEQNYgVnSlzRLdLFaGFokasp3VlfFyFZnlPQgzHA?=
- =?us-ascii?Q?cogz+ynNAxEh8o7awZV63WEsOiXFvFgNQBHLnVgMmrZuJOsniNhniyr/Kp6V?=
- =?us-ascii?Q?vUatZP/k0PP+L5LfZGEZBiNIM4da4j1DgFBsh618Ele8lgvDNYTHqaeXHLZs?=
- =?us-ascii?Q?MEvEqU7vOwgBSWpii25HBLu+rNEZqbZPxT7zokYnmSji3UqGYrmJOt9z9HTb?=
- =?us-ascii?Q?N+KT+68guZ/rqvWwtbmPAShzgVe5sBUb81B7t/8uKs8gHHw2NaO1u6DviQAp?=
- =?us-ascii?Q?1bc7cblg+L7s6h6bKZ66HmD7NiiN1KCXx8MW6/cut+jGj0bQO9SF10BDQnYy?=
- =?us-ascii?Q?3OqJJqKX2Nukp+2W4ZpUROSoVxBx4Kn8HgGRJZW/RbnOaJzGrAtynVg2M2hg?=
- =?us-ascii?Q?V2+BRTl1ZH8IOj64DQIsqRIZX+0uEkXg/LN/GzcFngXM8SyPZxgd0FdJYI4u?=
- =?us-ascii?Q?AeY+86WRwsIoH+m0EtfvAsMDV/dFTC2N18gtCS7nDUj25kT3CghVgMaWt1sQ?=
- =?us-ascii?Q?nPJt5zuyRXnpsXwsfLfp87+siUTnd/DWyCznTzIDrzfg3e+8SP1qvPrOLCmM?=
- =?us-ascii?Q?ymqPdTFrPuJ97E9/XjISdyjpEH0m7zkqZXtDlb7I55tQTZpxnSJhC28G1wZ3?=
- =?us-ascii?Q?9WiYWmgFppaBDUBWDr/oH5Sh9XqzoUTFlJXxDG/hs2o3/5sf2HHyizMSMhBn?=
- =?us-ascii?Q?LX5VDQBE6pEogghssm05Pnn3R2hJbs+bpOi77rpBOqnpVyZqJY//c/0c9ukh?=
- =?us-ascii?Q?OdaFb5lg4BXTx+1LPS1GRRd0pO6GRIAPWDuvYzHuI5y+W6vp0tmWOCbdj3xB?=
- =?us-ascii?Q?DXFGfO8fkVoB1IDgrdKDunFWP8PjgQjGNu6S2jn1nckg9ioPr/1AJxWIxQJ/?=
- =?us-ascii?Q?cRAU2jRYzVM8jUm776tcc4m/ekc7H4sax0S7sqXIgivowyCQpi1Dj/9IeyyU?=
- =?us-ascii?Q?crzEnzlKDLLeG/oRkMbGCcRF0D9TRh5BexsC7zMurqyH6l0DlI1uul0bLbw9?=
- =?us-ascii?Q?kKJy9jF6/URMhQjxOoWR4+i3bRyt6LdT6F1ox1fM1adoz6WaNPfX+mQ++zVe?=
- =?us-ascii?Q?3jkrCbDG7TwKISyCbhh2qJLrScCVqwe300hbPa6kG0BK2FdbK7maION/1ub7?=
- =?us-ascii?Q?hhSfkrmHD243Cn+8fB1946SrjekllJ4CrVlw7RbuRGTJnndl71sOJJwUzv9g?=
- =?us-ascii?Q?nw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76f1d211-1d06-40b9-6f52-08db943e4715
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2023 16:25:40.4175
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UlMEHV1V0ckP4r0TMeedVQTS6MuvlHpZ5ZqBHq0GS4ePnQhJDE03DJe6NqGqtPTD97tAyrOETva0VxF3LHopPCpX1slNWJDw6FO5d4UyLV8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11429
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <20230802220309.163804-1-martin@biqu3d.com>
+ <85E425AED000D34C+20230802220309.163804-6-martin@biqu3d.com>
+ <20230803133746.20cd7b04@donnerap.manchester.arm.com>
+ <4272045580294B4A+21851d6a-9a8f-8141-bc31-8398a03663c9@biqu3d.com>
+ <20230803171620.0bb28784@donnerap.manchester.arm.com>
+From:   Martin Botka <martin@biqu3d.com>
+In-Reply-To: <20230803171620.0bb28784@donnerap.manchester.arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:biqu3d.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor Dooley,
 
-Thanks for the feedback.
 
-> Subject: Re: [PATCH 1/3] dt-bindings: clock: versaclock3: Document
-> clock-output-names
->=20
-> Hey Biju,
->=20
-> On Wed, Aug 02, 2023 at 01:25:08PM +0100, Biju Das wrote:
-> > Document clock-output-names property. Update the example according to
-> > Table 3. ("Output Source") in the 5P35023 datasheet.
-> >
-> > While at it, replace clocks phandle in the example from x1_x2->x1 as
-> > X2 is a different 32768 kHz crystal.
-> >
-> > Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Closes:
-> > https://lore.kernel.org/all/CAMuHMdUHD+bEco=3DWYTYWsTAyRt3dTQQt4Xpaejss=
-0
-> > Y2ZpLCMNg@mail.gmail.com/
-> > Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock
-> > generator bindings")
->=20
-> Nothing in this commit message explains why this is a fix for this
-> binding addition :(
-
-Basically, it fixes "assigned-clock-rates" for each clock output in the exa=
-mple. Now it is based on Table 3. ("Output Source") in the 5P35023 datashee=
-t(ie: 0=3D REF, 1=3DSE1, 2=3DSE2, 3=3DSE3, 4=3DDIFF1, 5=3DDIFF2).
-
-The newly added clock-output-names in the example are based on the above ta=
-ble.
-
-I have added fixes tag, because this patch fixes the clock mapping in the e=
-xample as per the HW manual.
-
-Please let me know should I drop fixes tag??
+On 8/3/23 6:16 PM, Andre Przywara wrote:
+> On Thu, 3 Aug 2023 17:35:55 +0200
+> Martin Botka <martin@biqu3d.com> wrote:
+> 
+> Hi Martin,
+> 
+> thanks for the reply and the explanations, very helpful.
+> 
+>> On 8/3/23 2:37 PM, Andre Przywara wrote:
+>>> On Thu,  3 Aug 2023 00:02:38 +0200
+>>> Martin Botka <martin@biqu3d.com> wrote:
+>>>
+>>> Hi Martin,
+>>>
+>>> thanks for sending this!
+>>> There are some whitespace errors in here, some leading tabs in the first
+>>> section. "git show" should print them in red.
+>>>    
+>>>> From: Martin Botka <martin.botka@somainline.org>
+>>>>
+>>>> CB1 is Compute Module style board that plugs into Rpi board style adapter or
+>>>> Manta 3D printer boards (M4P/M8P).
+>>>>
+>>>> The SoM features:
+>>>>     - H616 SoC
+>>>>     - 1GiB of RAM
+>>>>     - AXP313A PMIC
+>>>>     - RTL8189FTV WiFi
+>>>>
+>>>> Boards feature:
+>>>>     - 4x USB via USB2 hub (usb1 on SoM).
+>>>>     - SDcard slot for loading images.
+>>>>     - Ethernet port wired to the internal PHY. (100M)
+>>>>     - 2x HDMI 2.0. (Only 1 usable on CB1)
+>>>>     - Power and Status LEDs. (Only Status LED usable on CB1)
+>>>>     - 40 pin GPIO header
+>>>>
+>>>> Currently working:
+>>>>     - Booting
+>>>>     - USB
+>>>>     - UART
+>>>>     - MMC
+>>>>     - Status LED
+>>>>     - WiFi (RTL8189FS via out of tree driver)
+>>>>
+>>>> I didnt want to duplicate things so the manta DTS can also be used on BTT pi4b adapter.
+>>>> CB1 SoM has its own DTSI file in case other boards shows up that accept this SoM.
+>>>>
+>>>> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+>>>> ---
+>>>>    arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>>>>    .../sun50i-h616-bigtreetech-cb1-manta.dts     |  20 +++
+>>>>    .../sun50i-h616-bigtreetech-cb1.dtsi          | 164 ++++++++++++++++++
+>>>>    3 files changed, 185 insertions(+)
+>>>>    create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+>>>>    create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+>>>> index 6a96494a2e0a..7b386428510b 100644
+>>>> --- a/arch/arm64/boot/dts/allwinner/Makefile
+>>>> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+>>>> @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+>>>>    dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
+>>>>    dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+>>>>    dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
+>>>> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
+>>>>    dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>>>>    dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+>>>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+>>>> new file mode 100644
+>>>> index 000000000000..dff5b592a97a
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+>>>> @@ -0,0 +1,20 @@
+>>>> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+>>>> +/*
+>>>> + * Copyright (C) 2023 Martin Botka <martin.botka@somainline.org>.
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include "sun50i-h616-bigtreetech-cb1.dtsi"
+>>>> +
+>>>> +/ {
+>>>> +	compatible = "bigtreetech,cb1-manta", "bigtreetech,cb1", "allwinner,sun50i-h616";
+>>>> +};
+>>>> +
+>>>> +&ehci1 {
+>>>> +	status = "okay";
+>>>> +};
+>>>> +
+>>>> +&ohci1 {
+>>>> +	status = "okay";
+>>>> +};
+>>>
+>>> So how is the STM32 connected? Via SPI? If yes, you should activate the SPI
+>>> node and specify the pinctrl.
+>>> Even if this requires a patch cable to connect the SPI header coming from
+>>> the CB1 to the SPI pins on the STM (does it?), it might be worth stating
+>>> the pins used. I don't know for sure if we enable interfaces that are
+>>> routed to fixed function header pins, but it might be worth doing so here,
+>>> since this is some very obvious use case (I guess you wouldn't buy the M8P
+>>> if you don't plan to use all of its goodies).
+>> So the STM32 chip is connected directly via USB. There is USB hub on
+>> Manta boards and Pi adapter (Not on BTT Pi. That one doesnt use USB hub)
+>> that uses this USB port and STM32 connects via that. Then on manta
+>> boards there are 2 USB ports and 1 USB port with just pins exposed on
+>> XH2.54 4 pin connector. Bit weird but it is what it is :)
+> 
+> Ah, I missed that, and was already wondering where the fourth HUB output
+> went to. So USB is fine. Do the hub or the STM need a switched regulator?
+> Or is the hub and the STM32 always powered on?
+Always powered on :)
+> 
+>>> And what's the USB-C connector doing? Is that an alternative power supply?
+>>> Ann does it connect the port0 D-/D+ pins, so can be used for OTG? If yes,
+>>> please enable the usb_otg node here.
+>>>    
+>> It is indeed an alternative power supply. Or well primary supply in the
+>> case of Pi adapter board.
+>>
+>> It should be connected yes. Tho i never really had much luck getting it
+>> to work. Tho i will check again and if i get it to work i will enable it
+>> in V2 :)
+> 
+> You could test with FEL. Get
+> https://github.com/linux-sunxi/sunxi-tools/raw/master/bin/fel-sdboot.sunxi,
+> write that to sector 16 of an SD card, and boot from there.
+> That should put the SoC into FEL mode, and you should be able to see the
+> BootROM provided USB device ID on a connected host - if the data pins are
+> connected to USB port 0.
+> I see DP0/DM0 test pads on the SoM, maybe you can chase them down to
+> see if they actually go to the SoM connector? But wasn't it that there is
+> only one pair of USB pins available on a CM4 pinout? Hence the hub on the
+> Mantra boards?
+Yea the SoM connector supplies only 1 USB and that goes to multiplexer 
+that should be switched via a small 4 switch thingy on the board.
+And then one of those 2 outputs goes to USB hub.
+> 
+>>>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+>>>> new file mode 100644
+>>>> index 000000000000..e630114f0ce4
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+>>>> @@ -0,0 +1,164 @@
+>>>> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+>>>> +/*
+>>>> + * Copyright (C) 2023 Martin Botka <martin.botka@somainline.org>.
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include "sun50i-h616.dtsi"
+>>>> +
+>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>> +#include <dt-bindings/leds/common.h>
+>>>> +
+>>>> +/ {
+>>>> +	model = "BigTreeTech CB1";
+>>>> +	compatible = "bigtreetech,cb1", "allwinner,sun50i-h616";
+>>>> +
+>>>> +	aliases {
+>>>> +		serial0 = &uart0;
+>>>> +		ethernet0 = &rtl8189ftv;
+>>>> +	};
+>>>> +
+>>>> +	chosen {
+>>>> +		stdout-path = "serial0:115200n8";
+>>>> +	};
+>>>
+>>> I think stdout-path belongs into the board .dts.
+>>>   
+>>
+>> Got it
+>>
+>>>> +	
+>>>> +	leds {
+>>>> +		compatible = "gpio-leds";
+>>>> +
+>>>> +		led-0 {
+>>>> +			function = LED_FUNCTION_STATUS;
+>>>> +			color = <LED_COLOR_ID_GREEN>;
+>>>> +			gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>; /* PH5 */
+>>>> +		};
+>>>> +	};
+>>>> +
+>>>> +	reg_vcc5v: regulator-vcc5v {
+>>>> +		/* board wide 5V supply directly from the USB-C socket */
+>>>
+>>> I guess this "regulator" is still valid, but please adjust the comment,
+>>> since there is certainly no USB-C socket on the SoM. I guess it's multiple
+>>> pins on the SoM connector that supply the incoming base voltage?
+>> Correct. Its just pins that get the 5V power. My fault for saying
+>> directly from USB-C since it can be from somewhere else :)
+>>>    
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "vcc-5v";
+>>>> +		regulator-min-microvolt = <5000000>;
+>>>> +		regulator-max-microvolt = <5000000>;
+>>>> +		regulator-always-on;
+>>>> +	};
+>>>> +
+>>>> +	reg_usb1_vbus: regulator-usb1-vbus {
+>>>
+>>> So is this regulator really on the SoM? Or is it just PC16 on the SoM
+>>> connector, and the actual regulator chip is on the respective carrier
+>>> boards?
+>>>    
+>>
+>> This is my bad. This is completely wrong. The actual regulator is the 5V
+>> one thats turned on when 5V comes in. Its bit weird but i suppose its
+>> done that way for USB-OTG. This will be removed in next revision of this
+>> DTS :)
+> 
+> Having fixed 5V supply for USB ports, coming directly from the board power
+> supply, is actually quite common, see many Pine64 boards, for instance.
+> In this case you don't need to specify a usb<x>_vbus-supply property in
+> the PHY node below.
+Got it.
+> 
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "usb1-vbus";
+>>>> +		regulator-min-microvolt = <5000000>;
+>>>> +		regulator-max-microvolt = <5000000>;
+>>>> +		vin-supply = <&reg_vcc5v>;
+>>>> +		enable-active-high;
+>>>> +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
+>>>> +	};
+>>>> +	
+>>>> +	reg_vcc33_wifi: vcc33-wifi {
+>>>> +		/* Always on 3.3V regulator for WiFi and BT */
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "vcc33-wifi";
+>>>> +		regulator-min-microvolt = <3300000>;
+>>>> +		regulator-max-microvolt = <3300000>;
+>>>> +		regulator-always-on;
+>>>> +		vin-supply = <&reg_vcc5v>;
+>>>> +	};
+>>>> +	
+>>>> +	reg_vcc_wifi_io: vcc-wifi-io {
+>>>> +		/* Always on 1.8V/300mA regulator for WiFi and BT IO */
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "vcc-wifi-io";
+>>>> +		regulator-min-microvolt = <1800000>;
+>>>> +		regulator-max-microvolt = <1800000>;
+>>>> +		regulator-always-on;
+>>>> +		vin-supply = <&reg_vcc33_wifi>;
+>>>> +	};
+>>>> +
+>>>> +	wifi_pwrseq: wifi-pwrseq {
+>>>> +		compatible = "mmc-pwrseq-simple";
+>>>> +		clocks = <&rtc 1>;
+>>>> +		clock-names = "ext_clock";
+>>>> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>;  /* PG18 */
+>>>> +		post-power-on-delay-ms = <200>;
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&mmc0 {
+>>>> +	vmmc-supply = <&reg_dldo1>;
+>>>> +	broken-cd;
+>>>
+>>> Is there no card detect switch or is it not wired up, or is it really
+>>> "broken"? Might be good to have a comment explaining that.
+>>> And yeah, I also forgot to do this in my Orange Pi Zero3 .dts ;-)
+>>>    
+>> Its just straight up not connected. And since documentation specifies
+>> that this should be set when no card detection is available i set it.
+>>
+>> Will add a comment specifying that this is due to the pin not being
+>> connected.
+> 
+> Yes, that's correct, broken-cd is the right choice then and works fine. I
+> was just asking because it *is* connected on the OrangePi Zero3, but didn't
+> work for me there.
+> 
+>>>> +	bus-width = <4>;
+>>>> +	status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mmc1 {
+>>>> +	vmmc-supply = <&reg_vcc33_wifi>;
+>>>> +	vqmmc-supply = <&reg_vcc_wifi_io>;
+>>>> +	mmc-pwrseq = <&wifi_pwrseq>;
+>>>> +	bus-width = <4>;
+>>>> +	non-removable;
+>>>> +	mmc-ddr-1_8v;
+>>>> +	status = "okay";
+>>>> +
+>>>> +	rtl8189ftv: sdio_wifi@1 {
+>>>> +		reg = <1>;
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&r_i2c {
+>>>> +	status = "okay";
+>>>> +
+>>>> +	axp313a: pmic@36 {
+>>>> +		compatible = "x-powers,axp313a";
+>>>> +		reg = <0x36>;
+>>>> +		interrupt-controller;
+>>>> +		#interrupt-cells = <1>;
+>>>> +
+>>>> +		regulators{
+>>>> +			reg_dcdc1: dcdc1 {
+>>>> +				regulator-name = "vdd-gpu";
+>>>> +				regulator-min-microvolt = <500000>;
+>>>> +				regulator-max-microvolt = <3400000>;
+>>>
+>>> So those are the ranges of the PMIC rail, but if this is really connected
+>>> to VDD_GPU on the H616, you should limit it to between 0.81V and 0.99V, as
+>>> described in the H616 datasheet. Otherwise this risks frying the SoC, I
+>>> guess.
+>>
+>> The range here should be correct. It is also the sys rail. Since AXP313a
+>> lacks many rails this was chosen as the sys rail as well.
+> 
+> Yes, very common indeed. I think in reality most boards will need all
+> rails to be always on.
+> 
+>>>    
+>>>> +				regulator-always-on;
+>>>
+>>> So is this connected to something else as well, like VDD_SYS? Please
+>>> either mention this as a comment, to justify the always-on, or name the
+>>> regulator accordingly, like "vdd-gpu-sys".
+>> Will rename to vdd-gpu-sys.
+>>>      
+>>>> +			};
+>>>> +
+>>>> +			reg_dcdc2: dcdc2 {
+>>>> +				regulator-name = "vdd-cpu";
+>>>> +				regulator-min-microvolt = <500000>;
+>>>> +				regulator-max-microvolt = <1540000>;
+>>>
+>>> Same limit problem here, VDD_CPU must be between 0.81V and 1.1V.
+>> That is indeed right. I will test it on the range you provided with OPP
+>> (WIP) and stress test it :)
+>>>    
+>>>> +				regulator-ramp-delay = <200>;
+>>>> +				regulator-always-on;
+>>>> +			};
+>>>> +
+>>>> +			reg_dcdc3: dcdc3 {
+>>>> +				regulator-name = "vcc-dram";
+>>>> +				regulator-min-microvolt = <500000>;
+>>>> +				regulator-max-microvolt = <1840000>;
+>>>
+>>> Is that DDR3 or DDR3L DRAM here? I don't think there is any runtime
+>>> adjustments here, so just specify the respective voltage required, with the
+>>> same value for both min and max.
+>> it uses Kingston D2516ECMDXGJD so DDR3. I will specify the direct voltage.
+> 
+> But this is DDR3L, so DDR3, just with a slightly lower voltage (1.35V
+> instead of 1.5V). Please note that this is different from LPDDR3, which
+> uses a different protocol, on top of lowering the voltage.
+Well my bad. Was slightly in hurry when checking the very very crude 
+datasheet kingston provides for it. Must have overlooked the mention of 
+DDR3L.
+> 
+>>>    
+>>>> +				regulator-always-on;
+>>>> +			};
+>>>> +
+>>>> +			reg_aldo1: aldo1 {
+>>>> +				regulator-name = "vcc-1v8";
+>>>> +				regulator-min-microvolt = <1800000>;
+>>>> +				regulator-max-microvolt = <1800000>;
+>>>> +				regulator-always-on;
+>>>
+>>> Please mention what this supplies that justifies always-on.
+>> ALDO1 1.8V gets also converted to 1.8V for DRAM. Thus needs to be on always.
+> 
+> Yes, as seen with other boards, where it more prominently also supplies
+> VCC-PLL, which is essential for any clock operation. Might be worth
+> checking, if you have access to the complete schematic.
+I do :)
+yes it also supplies PLL.
+> 
+>>>> +			};
+>>>> +
+>>>> +			reg_dldo1: dldo1 {
+>>>> +				regulator-name = "vcc-3v3";
+>>>> +				regulator-min-microvolt = <3300000>;
+>>>> +				regulator-max-microvolt = <3300000>;
+>>>> +				regulator-always-on;
+>>>
+>>> Please mention what this supplies that justifies always-on.
+>> SDcard that serves as storage for system. Will add comments for both :)
+> 
+> SD card alone does not justify always-on, as you reference this regulator
+> in the mmc0 node, so a kernel could make the connection. But chances are
+> this is also connected to VCC-IO, which is also one of the mandatory supply
+> voltages.
+Correct. VCC-IO is one of the rails supplied from this parent rail.
+> 
+>>>    
+>>>> +			};
+>>>> +		};
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&uart0 {
+>>>> +	pinctrl-names = "default";
+>>>> +	pinctrl-0 = <&uart0_ph_pins>;
+>>>> +	status = "okay";
+>>>> +};
+>>>
+>>> This belongs into the board .dts, since the connector/UART bridge is
+>>> there.
+>> Actually the SoM has exposed pads to connect UART (Which is what i have
+>> done to get UART) but also the boards get the exact pins wired to GPIO.
+> 
+> Those pad on the lower right corner? In this case it might justify having
+> the UART node in the SoM .dtsi, though I don't know if (test)pads qualify
+> for enabling peripherals. Generic GPIO pins (say pinmux'ed I2C on some
+> GPIO headers) certainly don't.
+Its fine. I will just enable it in carrier boards and BTT Pi DTS :)
 
 Cheers,
-Biju
-
-
->=20
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> >  .../devicetree/bindings/clock/renesas,5p35023.yaml | 14
-> > ++++++++++----
-> >  1 file changed, 10 insertions(+), 4 deletions(-)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > index 839648e753d4..db8d01b291dd 100644
-> > --- a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > @@ -49,6 +49,9 @@ properties:
-> >      $ref: /schemas/types.yaml#/definitions/uint8-array
-> >      maxItems: 37
-> >
-> > +  clock-output-names:
-> > +    maxItems: 6
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -68,7 +71,7 @@ examples:
-> >              reg =3D <0x68>;
-> >              #clock-cells =3D <1>;
-> >
-> > -            clocks =3D <&x1_x2>;
-> > +            clocks =3D <&x1>;
-> >
-> >              renesas,settings =3D [
-> >                  80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf @@
-> > -76,11 +79,14 @@ examples:
-> >                  80 b0 45 c4 95
-> >              ];
-> >
-> > +            clock-output-names =3D "ref", "se1", "se2", "se3",
-> > +                                 "diff1", "diff2";
-> > +
-> >              assigned-clocks =3D <&versa3 0>, <&versa3 1>,
-> >                                <&versa3 2>, <&versa3 3>,
-> >                                <&versa3 4>, <&versa3 5>;
-> > -            assigned-clock-rates =3D <12288000>, <25000000>,
-> > -                                   <12000000>, <11289600>,
-> > -                                   <11289600>, <24000000>;
-> > +            assigned-clock-rates =3D <24000000>, <11289600>,
-> > +                                   <11289600>, <12000000>,
-> > +                                   <25000000>, <12288000>;
-> >          };
-> >      };
-> > --
-> > 2.25.1
-> >
+Martin
+> 
+> Cheers,
+> Andre
+> 
+>> But since most users would use the GPIO UART i will specify it in
+>> carrier boards and in BTT Pi boards separately.
+>>
+>> Cheers,
+>> Martin
+>>>
+>>> Cheers,
+>>> Andre
+>>>    
+>>>> +
+>>>> +&usbphy {
+>>>> +	usb1_vbus-supply = <&reg_usb1_vbus>;
+>>>> +	status = "okay";
+>>>> +};
+>>>
+>>>    
+>>
+>>
+> 
+> 
