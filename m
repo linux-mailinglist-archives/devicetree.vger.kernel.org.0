@@ -2,410 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B0576F4F0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 23:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7500B76F576
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 00:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbjHCV6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 17:58:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51236 "EHLO
+        id S229542AbjHCWHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 18:07:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231299AbjHCV6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 17:58:18 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EA913A85
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 14:58:14 -0700 (PDT)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 900123F21D;
-        Thu,  3 Aug 2023 23:58:11 +0200 (CEST)
-Date:   Thu, 3 Aug 2023 23:58:09 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Danila Tikhonov <danila@jiaxyga.com>
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        konrad.dybcio@linaro.org, neil.armstrong@linaro.org,
-        rfoss@kernel.org, andersson@kernel.org, quic_khsieh@quicinc.com,
-        quic_vpolimer@quicinc.com, quic_rmccann@quicinc.com,
-        quic_jesszhan@quicinc.com, liushixin2@huawei.com,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davidwronek@gmail.com
-Subject: Re: [PATCH 2/2] drm/msm/dpu: Add SM7150 support
-Message-ID: <7csm4rg5um22jfrwkm5wbcsnabiunks5xi72rmmilr2afv2cxj@ve3codulbwk6>
-References: <20230803194724.154591-1-danila@jiaxyga.com>
- <20230803194724.154591-3-danila@jiaxyga.com>
+        with ESMTP id S231478AbjHCWHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 18:07:44 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC9B3A9C;
+        Thu,  3 Aug 2023 15:07:41 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6848D7F5;
+        Fri,  4 Aug 2023 00:06:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1691100395;
+        bh=YjB7f0h/8P7aC2Vm93VPe9ailgBLZJRpd2gZj9147IQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lrXiUw8qrqX2XndvY6nC4EtY9QcmoqmJUKi5mg0pZ7I680ItRtPN9z3lJztwEBRnI
+         3Cyfh6NM2R4XWqbLimAvYOLflRl4+ubzIfooDB+RGmn+WE2PklRDeGYvJfKLYAHqT5
+         IkhPNyE5dHQ7aBi5AC1jjORZQXhateh2+j8Dsr/Q=
+Date:   Fri, 4 Aug 2023 01:07:46 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH v7 5/6] media: starfive: camss: Add ISP driver
+Message-ID: <20230803220746.GD9722@pendragon.ideasonboard.com>
+References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
+ <20230619112838.19797-6-jack.zhu@starfivetech.com>
+ <20230727204103.GJ25174@pendragon.ideasonboard.com>
+ <2504080f-86af-161f-5c0d-284e89e33ce1@starfivetech.com>
+ <20230802104840.GC5269@pendragon.ideasonboard.com>
+ <45879269-e72b-b13a-00bc-2d10e9f90c2c@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230803194724.154591-3-danila@jiaxyga.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <45879269-e72b-b13a-00bc-2d10e9f90c2c@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-08-03 22:47:24, Danila Tikhonov wrote:
-> Add definitions for the display hardware used on the Qualcomm SM7150
-> platform.
+Hi Jack,
+
+On Thu, Aug 03, 2023 at 10:41:08AM +0800, Jack Zhu wrote:
+> On 2023/8/2 18:48, Laurent Pinchart wrote:
+> > On Wed, Aug 02, 2023 at 05:57:57PM +0800, Jack Zhu wrote:
+> >> On 2023/7/28 4:41, Laurent Pinchart wrote:
+> >> > On Mon, Jun 19, 2023 at 07:28:37PM +0800, Jack Zhu wrote:
+> >> >> Add ISP driver for StarFive Camera Subsystem.
+> >> >> 
+> >> >> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> >> >> ---
+> >> >>  .../media/platform/starfive/camss/Makefile    |   2 +
+> >> >>  .../media/platform/starfive/camss/stf_camss.c |  76 ++-
+> >> >>  .../media/platform/starfive/camss/stf_camss.h |   3 +
+> >> >>  .../media/platform/starfive/camss/stf_isp.c   | 519 ++++++++++++++++++
+> >> >>  .../media/platform/starfive/camss/stf_isp.h   | 479 ++++++++++++++++
+> >> >>  .../platform/starfive/camss/stf_isp_hw_ops.c  | 468 ++++++++++++++++
+> >> >>  6 files changed, 1544 insertions(+), 3 deletions(-)
+> >> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.c
+> >> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.h
+> >> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp_hw_ops.c
+> > 
+> > [snip]
+> > 
+> >> >> diff --git a/drivers/media/platform/starfive/camss/stf_isp.c b/drivers/media/platform/starfive/camss/stf_isp.c
+> >> >> new file mode 100644
+> >> >> index 000000000000..933a583b398c
+> >> >> --- /dev/null
+> >> >> +++ b/drivers/media/platform/starfive/camss/stf_isp.c
+> >> >> @@ -0,0 +1,519 @@
+> >> >> +// SPDX-License-Identifier: GPL-2.0
+> >> >> +/*
+> >> >> + * stf_isp.c
+> >> >> + *
+> >> >> + * StarFive Camera Subsystem - ISP Module
+> >> >> + *
+> >> >> + * Copyright (C) 2021-2023 StarFive Technology Co., Ltd.
+> >> >> + */
+> >> >> +#include <linux/firmware.h>
+> >> > 
+> >> > This doesn't seem needed.
+> >> > 
+> >> >> +#include <media/v4l2-event.h>
+> >> >> +
+> >> >> +#include "stf_camss.h"
+> >> >> +
+> >> >> +#define SINK_FORMATS_INDEX    0
+> >> >> +#define UO_FORMATS_INDEX      1
+> >> > 
+> >> > What does "UO" stand for ?
+> >> 
+> >> "UO" is Usual Out, just represents output. :-)
+> > 
+> > Maybe "out", "output" or "source" would make the code easier to read
+> > then ?
+> > 
+> >> >> +
+> >> >> +static int isp_set_selection(struct v4l2_subdev *sd,
+> >> >> +			     struct v4l2_subdev_state *state,
+> >> >> +			     struct v4l2_subdev_selection *sel);
+> >> >> +
+> >> >> +static const struct isp_format isp_formats_sink[] = {
+> >> >> +	{ MEDIA_BUS_FMT_SRGGB10_1X10, 10 },
+> >> >> +	{ MEDIA_BUS_FMT_SGRBG10_1X10, 10 },
+> >> >> +	{ MEDIA_BUS_FMT_SGBRG10_1X10, 10 },
+> >> >> +	{ MEDIA_BUS_FMT_SBGGR10_1X10, 10 },
+> >> >> +};
+> > 
+> > [snip]
+> > 
+> >> >> diff --git a/drivers/media/platform/starfive/camss/stf_isp.h b/drivers/media/platform/starfive/camss/stf_isp.h
+> >> >> new file mode 100644
+> >> >> index 000000000000..1e5c98482350
+> >> >> --- /dev/null
+> >> >> +++ b/drivers/media/platform/starfive/camss/stf_isp.h
+> >> >> @@ -0,0 +1,479 @@
+> > 
+> > [snip]
+> > 
+> >> >> +/* The output line of ISP */
+> >> > 
+> >> > What is an ISP "line" ?
+> >> 
+> >> A pipeline contains ISP.
+> > 
+> > Patch 6/6 uses STF_ISP_LINE_MAX to iterate over the ISP lines. This
+> > makes the code somehow generic, but you only support a single line at
+> > the moment. Does this or other SoCs in your product line integrate the
+> > same ISP with multiple lines ? If so, would it be possible to share a
+> > block diagram, to better understand the other hardware architectures
+> > that this driver will need to support in the future ?
 > 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> ---
->  .../msm/disp/dpu1/catalog/dpu_5_2_sm7150.h    | 277 ++++++++++++++++++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   1 +
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
->  4 files changed, 280 insertions(+)
->  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
+> Yes, OK, I will add a block diagram and a more detailed description in
+> the starfive_camss.rst file in the next version.
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
-> new file mode 100644
-> index 000000000000..5823879a705a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
-> @@ -0,0 +1,277 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023, Danila Tikhonov <danila@jiaxyga.com>
-> + */
-> +
-> +#ifndef _DPU_5_2_SM7150_H
-> +#define _DPU_5_2_SM7150_H
-> +
-> +static const struct dpu_caps sm7150_dpu_caps = {
-> +	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
-> +	.max_mixer_blendstages = 0xb,
-> +	.qseed_type = DPU_SSPP_SCALER_QSEED4,
-> +	.has_src_split = true,
-> +	.has_dim_layer = true,
-> +	.has_idle_pc = true,
-> +	.has_3d_merge = true,
-> +	.max_linewidth = 4096,
-> +	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
-> +	.max_hdeci_exp = MAX_HORZ_DECIMATION,
-> +	.max_vdeci_exp = MAX_VERT_DECIMATION,
-> +};
-> +
-> +static const struct dpu_mdp_cfg sm7150_mdp[] = {
-> +	{
-> +	.name = "top_0",
-> +	.base = 0x0, .len = 0x45c,
-> +	.features = BIT(DPU_MDP_AUDIO_SELECT),
-> +	.clk_ctrls[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0 },
-> +	.clk_ctrls[DPU_CLK_CTRL_VIG1] = { .reg_off = 0x2b4, .bit_off = 0 },
-> +	.clk_ctrls[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8 },
-> +	.clk_ctrls[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8 },
-> +	.clk_ctrls[DPU_CLK_CTRL_DMA2] = { .reg_off = 0x2bc, .bit_off = 8 },
-> +	.clk_ctrls[DPU_CLK_CTRL_WB2] = { .reg_off = 0x3b8, .bit_off = 24 },
-
-This array can be written more concisely, as done in the other catalog
-files:
-
-	.clk_ctrls = {
-		[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0 },
-		[DPU_CLK_CTRL_VIG1] = { .reg_off = 0x2b4, .bit_off = 0 },
-		[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8 },
-		[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8 },
-		[DPU_CLK_CTRL_DMA2] = { .reg_off = 0x2bc, .bit_off = 8 },
-		[DPU_CLK_CTRL_WB2] = { .reg_off = 0x3b8, .bit_off = 24 },
-	},
-
-
-> +	},
-> +};
-> +
-> +static const struct dpu_sspp_cfg sm7150_sspp[] = {
-> +	{
-> +		.name = "sspp_0", .id = SSPP_VIG0,
-> +		.base = 0x4000, .len = 0x1f0,
-> +		.features = VIG_SDM845_MASK,
-> +		.sblk = &sm8250_vig_sblk_0,
-> +		.xin_id = 0,
-> +		.type = SSPP_TYPE_VIG,
-> +		.clk_ctrl = DPU_CLK_CTRL_VIG0,
-> +	}, {
-> +		.name = "sspp_1", .id = SSPP_VIG1,
-> +		.base = 0x6000, .len = 0x1f0,
-> +		.features = VIG_SDM845_MASK,
-> +		.sblk = &sm8250_vig_sblk_1,
-> +		.xin_id = 4,
-> +		.type = SSPP_TYPE_VIG,
-> +		.clk_ctrl = DPU_CLK_CTRL_VIG1,
-> +	}, {
-> +		.name = "sspp_2", .id = SSPP_DMA0,
-> +		.base = 0x24000, .len = 0x1f0,
-> +		.features = DMA_SDM845_MASK,
-> +		.sblk = &sdm845_dma_sblk_0,
-> +		.xin_id = 1,
-> +		.type = SSPP_TYPE_DMA,
-> +		.clk_ctrl = DPU_CLK_CTRL_DMA0,
-> +	}, {
-> +		.name = "sspp_9", .id = SSPP_DMA1,
-> +		.base = 0x26000, .len = 0x1f0,
-> +		.features = DMA_SDM845_MASK,
-> +		.sblk = &sdm845_dma_sblk_1,
-> +		.xin_id = 5,
-> +		.type = SSPP_TYPE_DMA,
-> +		.clk_ctrl = DPU_CLK_CTRL_DMA1,
-> +	}, {
-> +		.name = "sspp_10", .id = SSPP_DMA2,
-> +		.base = 0x28000, .len = 0x1f0,
-> +		.features = DMA_CURSOR_SDM845_MASK,
-> +		.sblk = &sdm845_dma_sblk_2,
-> +		.xin_id = 9,
-> +		.type = SSPP_TYPE_DMA,
-> +		.clk_ctrl = DPU_CLK_CTRL_DMA2,
-> +	},
-> +};
-> +
-> +static const struct dpu_lm_cfg sm7150_lm[] = {
-> +	{
-> +		.name = "lm_0", .id = LM_0,
-> +		.base = 0x44000, .len = 0x320,
-> +		.features = MIXER_SDM845_MASK,
-> +		.sblk = &sdm845_lm_sblk,
-> +		.lm_pair = LM_1,
-> +		.pingpong = PINGPONG_0,
-> +		.dspp = DSPP_0,
-> +	}, {
-> +		.name = "lm_1", .id = LM_1,
-> +		.base = 0x45000, .len = 0x320,
-> +		.features = MIXER_SDM845_MASK,
-> +		.sblk = &sdm845_lm_sblk,
-> +		.lm_pair = LM_0,
-> +		.pingpong = PINGPONG_1,
-> +		.dspp = DSPP_1,
-> +	}, {
-> +		.name = "lm_2", .id = LM_2,
-> +		.base = 0x46000, .len = 0x320,
-> +		.features = MIXER_SDM845_MASK,
-> +		.sblk = &sdm845_lm_sblk,
-> +		.lm_pair = LM_3,
-> +		.pingpong = PINGPONG_2,
-> +	}, {
-> +		.name = "lm_3", .id = LM_3,
-> +		.base = 0x47000, .len = 0x320,
-> +		.features = MIXER_SDM845_MASK,
-> +		.sblk = &sdm845_lm_sblk,
-> +		.lm_pair = LM_2,
-> +		.pingpong = PINGPONG_3,
-> +	}, {
-> +		.name = "lm_4", .id = LM_4,
-> +		.base = 0x0, .len = 0x320,
-> +		.features = MIXER_SDM845_MASK,
-> +		.sblk = &sdm845_lm_sblk,
-> +		.lm_pair = 0,
-
-Default values can be omitted, that's how the catalog rework was
-designed.
-
-> +		.pingpong = PINGPONG_4,
-> +	}, {
-> +		.name = "lm_5", .id = LM_5,
-> +		.base = 0x0, .len = 0x320,
-> +		.features = MIXER_SDM845_MASK,
-> +		.sblk = &sdm845_lm_sblk,
-> +		.lm_pair = 0,
-
-Same here.
-
-- Marijn
-
-> +		.pingpong = PINGPONG_5,
-> +	},
-> +};
-> +
-> +static const struct dpu_dspp_cfg sm7150_dspp[] = {
-> +	{
-> +		.name = "dspp_0", .id = DSPP_0,
-> +		.base = 0x54000, .len = 0x1800,
-> +		.features = DSPP_SC7180_MASK,
-> +		.sblk = &sdm845_dspp_sblk,
-> +	}, {
-> +		.name = "dspp_1", .id = DSPP_1,
-> +		.base = 0x56000, .len = 0x1800,
-> +		.features = DSPP_SC7180_MASK,
-> +		.sblk = &sdm845_dspp_sblk,
-> +	},
-> +};
-> +
-> +static const struct dpu_pingpong_cfg sm7150_pp[] = {
-> +	{
-> +		.name = "pingpong_0", .id = PINGPONG_0,
-> +		.base = 0x70000, .len = 0xd4,
-> +		.features = PINGPONG_SM8150_MASK,
-> +		.sblk = &sdm845_pp_sblk,
-> +		.merge_3d = MERGE_3D_0,
-> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
-> +		.intr_rdptr = -1,
-> +	}, {
-> +		.name = "pingpong_1", .id = PINGPONG_1,
-> +		.base = 0x70800, .len = 0xd4,
-> +		.features = PINGPONG_SM8150_MASK,
-> +		.sblk = &sdm845_pp_sblk,
-> +		.merge_3d = MERGE_3D_0,
-> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 9),
-> +		.intr_rdptr = -1,
-> +	}, {
-> +		.name = "pingpong_2", .id = PINGPONG_2,
-> +		.base = 0x71000, .len = 0xd4,
-> +		.features = PINGPONG_SM8150_MASK,
-> +		.sblk = &sdm845_pp_sblk,
-> +		.merge_3d = MERGE_3D_1,
-> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 10),
-> +		.intr_rdptr = -1,
-> +	}, {
-> +		.name = "pingpong_3", .id = PINGPONG_3,
-> +		.base = 0x71800, .len = 0xd4,
-> +		.features = PINGPONG_SM8150_MASK,
-> +		.sblk = &sdm845_pp_sblk,
-> +		.merge_3d = MERGE_3D_1,
-> +		.intr_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 11),
-> +		.intr_rdptr = -1,
-> +	},
-> +};
-> +
-> +static const struct dpu_merge_3d_cfg sm7150_merge_3d[] = {
-> +	{
-> +		.name = "merge_3d_0", .id = MERGE_3D_0,
-> +		.base = 0x83000, .len = 0x8,
-> +	}, {
-> +		.name = "merge_3d_1", .id = MERGE_3D_1,
-> +		.base = 0x83100, .len = 0x8,
-> +	},
-> +};
-> +
-> +static const struct dpu_dsc_cfg sm7150_dsc[] = {
-> +	{
-> +		.name = "dsc_0", .id = DSC_0,
-> +		.base = 0x80000, .len = 0x140,
-> +		.features = BIT(DPU_DSC_OUTPUT_CTRL),
-> +	}, {
-> +		.name = "dsc_1", .id = DSC_1,
-> +		.base = 0x80400, .len = 0x140,
-> +		.features = BIT(DPU_DSC_OUTPUT_CTRL),
-> +	},
-> +};
-> +
-> +static const struct dpu_wb_cfg sm7150_wb[] = {
-> +	{
-> +		.name = "wb_2", .id = WB_2,
-> +		.base = 0x65000, .len = 0x2c8,
-> +		.features = WB_SM8250_MASK,
-> +		.format_list = wb2_formats,
-> +		.num_formats = ARRAY_SIZE(wb2_formats),
-> +		.clk_ctrl = DPU_CLK_CTRL_WB2,
-> +		.xin_id = 6,
-> +		.vbif_idx = VBIF_RT,
-> +		.maxlinewidth = 4096,
-> +		.intr_wb_done = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 4),
-> +	},
-> +};
-> +
-> +static const struct dpu_perf_cfg sm7150_perf_data = {
-> +	.max_bw_low = 7100000,
-> +	.max_bw_high = 7100000,
-> +	.min_core_ib = 2400000,
-> +	.min_llcc_ib = 800000,
-> +	.min_dram_ib = 800000,
-> +	.min_prefill_lines = 24,
-> +	.danger_lut_tbl = {0xff, 0xffff, 0x0},
-> +	.safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
-> +	.qos_lut_tbl = {
-> +		{.nentry = ARRAY_SIZE(sm8150_qos_linear),
-> +		.entries = sm8150_qos_linear
-> +		},
-> +		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
-> +		.entries = sc7180_qos_macrotile
-> +		},
-> +		{.nentry = ARRAY_SIZE(sc7180_qos_nrt),
-> +		.entries = sc7180_qos_nrt
-> +		},
-> +	},
-> +	.cdp_cfg = {
-> +		{.rd_enable = 1, .wr_enable = 1},
-> +		{.rd_enable = 1, .wr_enable = 0}
-> +	},
-> +	.clk_inefficiency_factor = 105,
-> +	.bw_inefficiency_factor = 120,
-> +};
-> +
-> +static const struct dpu_mdss_version sm7150_mdss_ver = {
-> +	.core_major_ver = 5,
-> +	.core_minor_ver = 2,
-> +};
-> +
-> +const struct dpu_mdss_cfg dpu_sm7150_cfg = {
-> +	.mdss_ver = &sm7150_mdss_ver,
-> +	.caps = &sm7150_dpu_caps,
-> +	.mdp = sm7150_mdp,
-> +	.ctl_count = ARRAY_SIZE(sm8150_ctl),
-> +	.ctl = sm8150_ctl,
-> +	.sspp_count = ARRAY_SIZE(sm7150_sspp),
-> +	.sspp = sm7150_sspp,
-> +	.mixer_count = ARRAY_SIZE(sm7150_lm),
-> +	.mixer = sm7150_lm,
-> +	.dspp_count = ARRAY_SIZE(sm7150_dspp),
-> +	.dspp = sm7150_dspp,
-> +	.pingpong_count = ARRAY_SIZE(sm7150_pp),
-> +	.pingpong = sm7150_pp,
-> +	.merge_3d_count = ARRAY_SIZE(sm7150_merge_3d),
-> +	.merge_3d = sm7150_merge_3d,
-> +	.dsc_count = ARRAY_SIZE(sm7150_dsc),
-> +	.dsc = sm7150_dsc,
-> +	.intf_count = ARRAY_SIZE(sm8150_intf),
-> +	.intf = sm8150_intf,
-> +	.wb_count = ARRAY_SIZE(sm7150_wb),
-> +	.wb = sm7150_wb,
-> +	.vbif_count = ARRAY_SIZE(sdm845_vbif),
-> +	.vbif = sdm845_vbif,
-> +	.perf = &sm7150_perf_data,
-> +};
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> index ce369eeffa7d..fea1253cab0a 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> @@ -658,6 +658,7 @@ static const struct dpu_qos_lut_entry sc7180_qos_nrt[] = {
->  
->  #include "catalog/dpu_5_0_sm8150.h"
->  #include "catalog/dpu_5_1_sc8180x.h"
-> +#include "catalog/dpu_5_2_sm7150.h"
->  #include "catalog/dpu_5_4_sm6125.h"
->  
->  #include "catalog/dpu_6_0_sm8250.h"
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index 6c9634209e9f..86b354ef45e6 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -833,6 +833,7 @@ extern const struct dpu_mdss_cfg dpu_msm8998_cfg;
->  extern const struct dpu_mdss_cfg dpu_sdm845_cfg;
->  extern const struct dpu_mdss_cfg dpu_sm8150_cfg;
->  extern const struct dpu_mdss_cfg dpu_sc8180x_cfg;
-> +extern const struct dpu_mdss_cfg dpu_sm7150_cfg;
->  extern const struct dpu_mdss_cfg dpu_sm8250_cfg;
->  extern const struct dpu_mdss_cfg dpu_sc7180_cfg;
->  extern const struct dpu_mdss_cfg dpu_sm6115_cfg;
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index aa6ba2cf4b84..50ec008b7d56 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -1371,6 +1371,7 @@ static const struct of_device_id dpu_dt_match[] = {
->  	{ .compatible = "qcom,sm6125-dpu", .data = &dpu_sm6125_cfg, },
->  	{ .compatible = "qcom,sm6350-dpu", .data = &dpu_sm6350_cfg, },
->  	{ .compatible = "qcom,sm6375-dpu", .data = &dpu_sm6375_cfg, },
-> +	{ .compatible = "qcom,sm7150-dpu", .data = &dpu_sm7150_cfg, },
->  	{ .compatible = "qcom,sm8150-dpu", .data = &dpu_sm8150_cfg, },
->  	{ .compatible = "qcom,sm8250-dpu", .data = &dpu_sm8250_cfg, },
->  	{ .compatible = "qcom,sm8350-dpu", .data = &dpu_sm8350_cfg, },
-> -- 
-> 2.41.0
+> >> >> +enum isp_line_id {
+> >> >> +	STF_ISP_LINE_INVALID = -1,
+> >> >> +	STF_ISP_LINE_SRC = 1,
+> >> >> +	STF_ISP_LINE_MAX = STF_ISP_LINE_SRC
+> >> >> +};
+> > 
+> > [snip]
+> > 
+> >> >> +void stf_isp_init_cfg(struct stf_isp_dev *isp_dev)
+> >> >> +{
+> >> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_DC_CFG_1, DC_AXI_ID(0x0));
+> >> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_DEC_CFG,
+> >> >> +			  DEC_V_KEEP(0x0) |
+> >> >> +			  DEC_V_PERIOD(0x0) |
+> >> >> +			  DEC_H_KEEP(0x0) |
+> >> >> +			  DEC_H_PERIOD(0x0));
+> >> >> +
+> >> >> +	stf_isp_config_obc(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_oecf(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_lccf(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_awb(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_grgb(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_cfa(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_ccm(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_gamma(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_r2y(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_y_curve(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_sharpen(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_dnyuv(isp_dev->stfcamss);
+> >> >> +	stf_isp_config_sat(isp_dev->stfcamss);
+> >> > 
+> >> > All these parameters are hardcoded, why are they not exposed to
+> >> > userspace ?
+> >> 
+> >> Here is a basic startup configuration for the ISP registers. The
+> >> function name is confusing, as if it is configuring a specific
+> >> function. In fact, it is just a basic init configuration.
+> > 
+> > Did I miss a place in the patch series where all these parameters can be
+> > configured by userspace, or is that not possible at the moment ? If it
+> > isn't possible, do you plan to implement that ?
 > 
+> Yes, we are doing related development internally.
+
+That's nice to hear :-) Without the ability to control the ISP from
+userspace, the driver will have very limited usefulness. Still, I
+understand that incremental development will be easier to handle, so I'm
+not against merging this patch series with hardcoded parameters first,
+and adding support for ISP control on top. It may however make sense to
+merge the driver in drivers/staging/media/ first, and move it to
+drivers/media/ once support for ISP control will be available. That
+would give you more room to change the userspace API exposed by the
+driver when implementing support for ISP control without having to keep
+backward compatibility. Sakari, Hans, do you have any opinion on this ?
+
+Do you have an estimated time frame for when ISP control will be ready ?
+
+> >> >> +
+> >> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_CSI_MODULE_CFG,
+> >> >> +			  CSI_DUMP_EN | CSI_SC_EN | CSI_AWB_EN |
+> >> >> +			  CSI_LCCF_EN | CSI_OECF_EN | CSI_OBC_EN | CSI_DEC_EN);
+> >> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_ISP_CTRL_1,
+> >> >> +			  CTRL_SAT(1) | CTRL_DBC | CTRL_CTC | CTRL_YHIST |
+> >> >> +			  CTRL_YCURVE | CTRL_BIYUV | CTRL_SCE | CTRL_EE |
+> >> >> +			  CTRL_CCE | CTRL_RGE | CTRL_CME | CTRL_AE | CTRL_CE);
+> >> >> +}
+> > 
+> > [snip]
+
+-- 
+Regards,
+
+Laurent Pinchart
