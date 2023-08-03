@@ -2,153 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F9F76E09B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 08:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A2BE76E0C3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231909AbjHCG6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 02:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55952 "EHLO
+        id S231953AbjHCHEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 03:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231687AbjHCG6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 02:58:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8B5410EA;
-        Wed,  2 Aug 2023 23:58:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7196B61C1E;
-        Thu,  3 Aug 2023 06:58:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F461C433C9;
-        Thu,  3 Aug 2023 06:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691045918;
-        bh=sqSreMbIGrWV0DPZRg5162ALe8Otsvrn0WlWCkXOoKU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pwpVGu32s8kTis/hGZpdhhczYy+byBo1QyijdUrRpq1agDkzY3ihd9kC3w49MS+MK
-         +sv6t+3TMBnFVclOELLDz99O6cjOTTIP24m5ueEqLfGToNJlECpe4fVCgD4s5VzN+W
-         ZPQdj169c4/sscvY6QFclLuY9Fduv/C8+6pPmbWHkl6J14/jI8ZCt+IpvFpKkK+HkX
-         mbwI1f+WjNHC0hve4CxhG4tJkh5iKmeTN7ZwpVWDonxf7W8G/ICXkg3c2w79rD+svy
-         D2tpDcskFFcTjTwC3kqrzv2zd6plPXwWFKjXfhx9XNRYclsdp2EPfTnCZiAH0ptWFJ
-         thcMc6IGBMsIQ==
-Received: by pali.im (Postfix)
-        id 4A8C167C; Thu,  3 Aug 2023 08:58:35 +0200 (CEST)
-Date:   Thu, 3 Aug 2023 08:58:35 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Kevin Xie <kevin.xie@starfivetech.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Minda Chen <minda.chen@starfivetech.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        with ESMTP id S230149AbjHCHDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:03:53 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC212D65;
+        Thu,  3 Aug 2023 00:03:14 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 55D1C320099A;
+        Thu,  3 Aug 2023 03:03:10 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 03 Aug 2023 03:03:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1691046189; x=1691132589; bh=5S
+        kTpiwI76j0iv1Bz8lF8A+JaMZXfVN77EuT9JyTy+A=; b=jU6TSIhH7ZrRg1PEA0
+        qzNVnEaJWGbrFhZmrmv5OR71Sm79X1rE5hNEfGohLjsolv+gLVAef8nmzMvRKYUd
+        0R1YLra8Mpe4jaYd6QdFO8WC0NDkbNe+vkxtXr11EvrfmM1UQ38zqH0dCBGLqfhX
+        Cbs7ZM+Jxrf61cKvw+kBp1SXL0ujiFUCELGAwxqDU9xlk4Mcru3cgZSgF0LAk2R7
+        WCsPJ0a5Ub3PqGAag3QmngLFwfEZn67K4t5jSylXzeJbuOVeGT6+UsR+Nw92m2B9
+        TEiRW6uH8Talm4MDK6jW8MMFSijvExJKJ/GbuhVRfYphnN3r1IjQoFqdGm21+BY3
+        IBKA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1691046189; x=1691132589; bh=5SkTpiwI76j0i
+        v1Bz8lF8A+JaMZXfVN77EuT9JyTy+A=; b=kjDsUJGzVeWOqS09TcFWWuLXwGgGl
+        llB92w3a7K9vbrG+pLOTqu5eaVkACxGVUcFU5N6N9KiIrkzLQtEdrlt7skPw/FRT
+        0E7MwI+MRmEfkNxU8tv3ETa/9h4eRNWaICvV9dMHILnl4/YsPXDzSLApygmEZloy
+        3Gig6ZUplmHR/O5MMRxL5qZIVSVAZOfTZpp9hBnaKDO+LDfTj8bHMl5lQP6L00S5
+        eyzjXtQHv9y8LE0M/0PVnrtk2cQdnLR1Cg359SP3r+fjZ/z3cXtk9lU0u27RRMTI
+        qCo3DN7Jn6dNAJxH+Ab7uopkknZNs/L8vKsm5T5g2lDC6sZs3vg0cZKYQ==
+X-ME-Sender: <xms:LFHLZJGtQm9EYLlFp8H6fbRp1nNmnG-reMyDxsav0NnrK1E5l6FKnw>
+    <xme:LFHLZOVI9k7Z2gyoR3Qhb_c9x7Tbg7EsyxPeR-DxLFkgiIGjIr_HLbUERJYkYd65e
+    NDiHiyopNeaIl-ZVCM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrkedugdduudefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:LFHLZLIf16Rgi6v0w8j3MNlzrCwjPRNy9NDtczmH5M76-thA7r4zNw>
+    <xmx:LFHLZPHWDU-rbReG3H666yKM391Qbd5NZtNvaINcv99zUhrQ2IETHQ>
+    <xmx:LFHLZPXOcHjAnQScHt4zWRhf5XGL5Eeni2NYOB0CDmXQ5YGM0Fng-w>
+    <xmx:LVHLZItWNEY2hx1vkfcMKjiluOjOFRGuyb4CupRgRs1HOKV3ftTaNQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id B3955B60089; Thu,  3 Aug 2023 03:03:08 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-624-g7714e4406d-fm-20230801.001-g7714e440
+Mime-Version: 1.0
+Message-Id: <4fef9725-7aea-43fb-b8ef-d20a4c6d9a68@app.fastmail.com>
+In-Reply-To: <20230803063703.5659-3-zhuyinbo@loongson.cn>
+References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
+ <20230803063703.5659-3-zhuyinbo@loongson.cn>
+Date:   Thu, 03 Aug 2023 09:02:47 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        "Maciej W. Rozycki" <macro@orcam.me.uk>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
-Message-ID: <20230803065835.twdicvx62mgzzzqi@pali>
-References: <20230802171805.GA62238@bhelgaas>
- <1c546489-40dd-25c5-3ac2-9e3b3fd5a670@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1c546489-40dd-25c5-3ac2-9e3b3fd5a670@starfivetech.com>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        soc@kernel.org, "Ulf Hansson" <ulf.hansson@linaro.org>
+Cc:     "Jianmin Lv" <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        "Liu Peibao" <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
+        "Liu Yun" <liuyun@loongson.cn>
+Subject: Re: [PATCH v6 2/2] soc: loongson2_pm: add power management support
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 03 August 2023 10:23:47 Kevin Xie wrote:
-> On 2023/8/3 1:18, Bjorn Helgaas wrote:
-> > On Tue, Aug 01, 2023 at 03:05:46PM +0800, Kevin Xie wrote:
-> >> On 2023/8/1 7:12, Bjorn Helgaas wrote:
-> >> ...
-> > 
-> >> > The delay required by sec 6.6.1 is a minimum of 100ms following exit
-> >> > from reset or, for fast links, 100ms after link training completes.
-> >> > 
-> >> > The comment at the call of advk_pcie_wait_for_link() [2] says it is
-> >> > the delay required by sec 6.6.1, but that doesn't seem right to me.
-> >> > 
-> >> > For one thing, I don't think 6.6.1 says anything about "link up" being
-> >> > the end of a delay.  So if we want to do the delay required by 6.6.1,
-> >> > "wait_for_link()" doesn't seem like quite the right name.
-> >> > 
-> >> > For another, all the *_wait_for_link() functions can return success
-> >> > after 0ms, 90ms, 180ms, etc.  They're unlikely to return after 0ms,
-> >> > but 90ms is quite possible.  If we avoided the 0ms return and
-> >> > LINK_WAIT_USLEEP_MIN were 100ms instead of 90ms, that should be enough
-> >> > for slow links, where we need 100ms following "exit from reset."
-> >> > 
-> >> > But it's still not enough for fast links where we need 100ms "after
-> >> > link training completes" because we don't know when training
-> >> > completed.  If training completed 89ms into *_wait_for_link(), we only
-> >> > delay 1ms after that.
-> >> 
-> >> That's the point, we will add a extra 100ms after PERST# de-assert
-> >> in the patch-v3 according to Base Spec r6.0 - 6.6.1:
-> >>         msleep(100);
-> >>         gpiod_set_value_cansleep(pcie->reset_gpio, 0);
-> >> 
-> >> +       /* As the requirement in PCIe base spec r6.0, system must wait a
-> >> +        * minimum of 100 ms following exit from a Conventional Reset
-> >> +        * before sending a Configuration Request to the device.*/
-> >> +       msleep(100);
-> >> +
-> >>         if (starfive_pcie_host_wait_for_link(pcie))
-> >>                 return -EIO;
-> > 
-> > For fast links (links that support > 5.0 GT/s), the 100ms starts
-> > *after* link training completes.  The above looks OK if starfive only
-> > supports slow links, but then I'm not sure why we would need
-> > starfive_pcie_host_wait_for_link().
-> > 
-> Yes, the maximum speed of JH7110 PCIe is 5.0 GT/s (Gen2x1).
-> 
-> About starfive_pcie_host_wait_for_link():
-> JH7110 SoC only has one root port in each PCIe controller (2 in total)
-> and they do not support hot-plug yet.
+On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
+> The Loongson-2's power management controller was ACPI, supports ACPI
+> S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
+> Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
+> (USB, GMAC, PWRBTN, etc.). This driver was to add power management
+> controller support that base on dts for Loongson-2 series SoCs.
+>
+> Co-developed-by: Liu Yun <liuyun@loongson.cn>
+> Signed-off-by: Liu Yun <liuyun@loongson.cn>
+> Co-developed-by: Liu Peibao <liupeibao@loongson.cn>
+> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
+> Cc: soc@kernel.org
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
-Beware that even if HW does not support hotplug, endpoint PCIe card
-still may drop the link down and later put it up (for example if FW in
-the card crashes or when card want to do internal reset, etc...; this is
-very common for wifi cards). So drivers for non-hotplug controllers
-still have to handle hotplug events generated by link up/down state.
+I'm still waiting for Ulf to take a look here to see whether
+this should be in drivers/genpd instead, but he might still
+be on vacation.
 
-So it means that, if endpoint PCIe card is not detected during probe
-time, it may be detected later. So this check to completely stop
-registering controller is not a good idea. Note that userspace can
-tell kernel (via sysfs) to rescan all PCIe buses and try to discover new
-PCIea devices.
+A few minor comments from me in the meantime:
 
-> Thus, We add starfive_pcie_host_wait_for_link() to poll if it is a empty slot.
-> If nothing here, we will exit the probe() of this controller, and it will not
-> go into pci_host_probe() too.
-> This may not be a very standard logic, should we remove it or rewrite in a better way?
-> 
-> > Bjorn
+> +#define loongson2_pm_readw(reg)		readw(loongson2_pm.base + reg)
+> +#define loongson2_pm_readl(reg)		readl(loongson2_pm.base + reg)
+> +#define loongson2_pm_writew(val, reg)	writew(val, loongson2_pm.base + 
+> reg)
+> +#define loongson2_pm_writel(val, reg)	writel(val, loongson2_pm.base + 
+> reg)
 
-Rather to remove this starfive_pcie_host_wait_for_link logic.
+I would prefer these to be 'static inline' functions rather than
+macros, or you can just open-code them, as each macro is only
+used once at the moment.
 
-Better option would be to teach PCI core code to wait for the link
-before trying to read vendor/device ids, like I described in my old
-proposal.
+> +static irqreturn_t loongson2_pm_irq_handler(int irq, void *dev_id)
+> +{
+> +	u16 status = loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
+> +
+> +	if (!loongson2_pm.suspended && (status & LOONGSON2_PM1_PWRBTN_STS)) {
+> +		pr_info("Power Button pressed...\n");
+
+The message is probably more appropriate as a pr_debug() than
+pr_info().
+
+> +static int __maybe_unused loongson2_pm_suspend(struct device *dev)
+> +{
+> +	loongson2_pm.suspended = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused loongson2_pm_resume(struct device *dev)
+> +{
+> +	loongson2_pm.suspended = false;
+> +
+> +	return 0;
+> +}
+> +static SIMPLE_DEV_PM_OPS(loongson2_pm_ops, loongson2_pm_suspend, 
+> loongson2_pm_resume);
+
+Please change this to DEFINE_SIMPLE_DEV_PM_OPS() and remove the
+__maybe_unused, this is what all drivers should have these days.
+
+> +
+> +static int loongson2_pm_probe(struct platform_device *pdev)
+> +{
+> +	int irq, retval;
+> +	u64 suspend_addr;
+> +	struct device *dev = &pdev->dev;
+> +
+> +	loongson2_pm.base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(loongson2_pm.base))
+> +		return PTR_ERR(loongson2_pm.base);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	if (!device_property_read_u64(dev, "loongson,suspend-address", 
+> &suspend_addr))
+> +		loongson_sysconf.suspend_addr = (u64)phys_to_virt(suspend_addr);
+> +	else
+
+Having a custom "loongson,suspend-address" property here feels wrong
+to me. Can't this be moved into the "regs" property that holds
+the other mmio registers?
+
+    Arnd
