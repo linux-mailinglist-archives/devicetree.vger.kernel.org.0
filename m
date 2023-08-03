@@ -2,164 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84DE176E067
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 08:41:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D48A76E07A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 08:45:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231753AbjHCGlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 02:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48842 "EHLO
+        id S232949AbjHCGpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 02:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231192AbjHCGlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 02:41:15 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED4ACC
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 23:41:13 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52222562f1eso679290a12.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 23:41:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691044872; x=1691649672;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=R3lDHqasLR71p6RjL20g3V1HU00B9G2u701BbTE8dB0=;
-        b=JSK0Rb2m9+SiykNVmY0zcUcEzJqMFce01qKjOT2jA2sNtBiDW7Q5wP/8PYb0xAubX5
-         OLLWBWb/ZMhfjlQ+ZDPnQtk0+4ELNVckLJ/LmTIwdUra/GbRofxRC/w7/u4vVn3sXhqG
-         CEwfm3CPM/VtIWkVqJRrKvaVGRUopBinM0epkU7hVGTVe/LeaoTWVT2g24U18S2O3Nzd
-         O0SfJ9q+9i9BvMjroFP3Fwj7dGUPyLqJHfk1Vv9NZl7wdeXYyJJB8JdBHTjpwnr8eggb
-         NykE3e755WTkJZuBovR4gaX2U06fXZf/0KnxYcNPE7H4iiqqWhuZejKcJio0NgigCHQV
-         fU/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691044872; x=1691649672;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R3lDHqasLR71p6RjL20g3V1HU00B9G2u701BbTE8dB0=;
-        b=ZsU9X5HERSeIRuj0gzc1GmPE+Yto3ZeUDue0wV/gJiDzt2Hagi3Rjx3x39VPFva42Y
-         hynpJZV7KHsWolkIFVfHiVhJtZ4/UMQP65L3w+YO2vrp2gXdMdcAICKGlGqfVol1NfRi
-         8XDQLgteOMYWvB6sbEncAItuSsRwqVNW1LcVn/hRNlsvq9+T1uD89kNt+YXgJkLdrt0Y
-         Px0l/+ndxa31q0rsd2VYIC1yXOif9Vb0XsgP/BKKfuTdihZJ23/7dYtttlCZhuvZUXvG
-         a2XWnWnoz5lGYngEWYduEekSfC8qMdPkZJk8qku07lFHI/JmZxm/v5lYYJPxpj99+zl6
-         54yQ==
-X-Gm-Message-State: ABy/qLa+WoSLP2H/E/I8Zgad0QIhp6W8uuXRNcI6h6lp0beeeDIOvV9d
-        WEfV6eKpue2U9vYWN/OHM7FZrA==
-X-Google-Smtp-Source: APBJJlGpY86nu/tit00wHwCp6uIvWO0w7bGHc9EPU6c1uYz6cuhy6gZYp6qQQ+A4SgFiqCGgfc81NQ==
-X-Received: by 2002:aa7:d705:0:b0:521:e502:baf8 with SMTP id t5-20020aa7d705000000b00521e502baf8mr6868369edq.11.1691044871858;
-        Wed, 02 Aug 2023 23:41:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id g17-20020aa7d1d1000000b00522854fb049sm9705791edp.2.2023.08.02.23.41.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Aug 2023 23:41:11 -0700 (PDT)
-Message-ID: <ca969933-c7f8-a727-3c7e-5ec3548862a0@linaro.org>
-Date:   Thu, 3 Aug 2023 08:41:09 +0200
+        with ESMTP id S233561AbjHCGpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 02:45:02 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60C41982;
+        Wed,  2 Aug 2023 23:44:54 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 99B7C24E2DD;
+        Thu,  3 Aug 2023 14:44:46 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 14:44:46 +0800
+Received: from [192.168.125.127] (183.27.98.54) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 14:44:45 +0800
+Message-ID: <683e52c7-ae06-06f9-c999-0b6f3d56dbc1@starfivetech.com>
+Date:   Thu, 3 Aug 2023 14:44:44 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v2 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230801-whenever-imitation-b2759b212f6b@spud>
- <a5c27913-2a88-d376-0130-22ca8a3d4516@loongson.cn>
- <20230801-varsity-chemo-09cc5e250ded@spud>
- <26adb487-f8c5-9cf4-5b31-070e9161e761@loongson.cn>
- <20230802-jailer-pavilion-84fb17bb3710@wendy>
- <3534f7b9-0e02-28c1-238a-5a6fdbb95e94@loongson.cn>
- <20230802-bunkbed-siamese-57ee53bdf273@wendy>
- <db7012b2-9156-34ed-ad1f-10a3e5dfe390@loongson.cn>
- <20230802-empathy-wound-70df4990a976@spud>
- <ae74e7b0-26ae-5707-7b85-5dcf733d2bed@loongson.cn>
- <20230803-tartar-tainted-968687047460@wendy>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/4] PCI: plda: Get common codes from Microchip
+ PolarFire host
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230803-tartar-tainted-968687047460@wendy>
-Content-Type: text/plain; charset=UTF-8
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84sk?= =?UTF-8?Q?i?= <kw@linux.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Mason Huo" <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230727103949.26149-1-minda.chen@starfivetech.com>
+ <20230727103949.26149-3-minda.chen@starfivetech.com>
+ <6e85db42-b946-14a5-fe2b-d90f01cb24d2@infradead.org>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <6e85db42-b946-14a5-fe2b-d90f01cb24d2@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+X-Originating-IP: [183.27.98.54]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2023 08:30, Conor Dooley wrote:
->>>>                  gpio0:gpio@0x1fe10430 {
->>>>                          compatible = "loongson,ls2k-gpio";
->>>>                          reg = <0 0x1fe10430 0 0x20>;
->>>>                          gpio-controller;
->>>>                          #gpio-cells = <2>;
->>>> 			interrupt-parent = <&liointc1>;
->>>>                          ngpios = <64>;
->>>>                          loongson,gpio-conf-offset = <0>;
->>>>                          loongson,gpio-out-offset = <0x10>;
->>>>                          loongson,gpio-in-offset = <0x8>;
->>>>                          loongson,gpio-inten-offset = <0xb0>;
->>>> 			loongson,gpio-ctrl-mode = <0x0>;
->>>>                          ...
->>>> 		  }
->>>>
->>>>                  gpio1:gpio@0x1fe10450 {
->>>>                          compatible = "loongson,ls2k-gpio";
->>>>                          reg = <0 0x1fe10450 0 0x20>;
->>>>                          gpio-controller;
->>>>                          #gpio-cells = <2>;
->>>> 			interrupt-parent = <&liointc1>;
->>>>                          ngpios = <64>;
->>>>                          loongson,gpio-conf-offset = <0>;
->>>>                          loongson,gpio-out-offset = <0x10>;
->>>>                          loongson,gpio-in-offset = <0x8>;
->>>
->>> These 3 are the same for both controllers, no?
->>> Is only the inten-offset a variable?
->>>
->>>>                          loongson,gpio-inten-offset = <0x98>;
->>>
->>> These offsets exceed the region that you've got in the reg property for
->>> this controller, do they not?
->>>
->>> Is there some sort of "miscellaneous register area" at 0x1FE104E0, or
->>> just those two interrupt registers and nothing else?
->>
->>
->> 2k500 gpio dts is just an example, like 3a5000, or more other platform,
->> above offset was different but the gpio controller was compatible.
->>
->>                 gpio: gpio@1fe00500 {
->>                         compatible = "loongson,ls2k-gpio";
->>                         reg = <0 0x1fe00500 0xc00>;
->>                         gpio-controller;
->>                         #gpio-cells = <2>;
->>                         ngpios = <16>;
->>                         loongson,gpio-conf-offset = <0x0>;
->>                         loongson,gpio-out-offset = <0x8>;
->>                         loongson,gpio-in-offset = <0xc>;
->> 			...
->> 			}
+
+
+On 2023/7/27 23:21, Randy Dunlap wrote:
+> Hi--
 > 
-> That is a different SoC and needs to have a different compatible string.
-> "loongson,ls2k-foo" compatible strings were a mistake that only got past
-> us because we were not aware it was a family, rather than a specific
-> SoC. They certainly should not be used in isolation on a 3a5000!
+> On 7/27/23 03:39, Minda Chen wrote:
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 8e4f9d5dca55..ec59c6d00bf9 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -16170,6 +16170,14 @@ S:	Maintained
+>>  F:	Documentation/devicetree/bindings/pci/cdns,*
+>>  F:	drivers/pci/controller/cadence/
+>>  
 > 
-> Are there more than one GPIO controllers on the 3a5000? If so, what do
-> those nodes look like.
-
-Eh, even for the same SoC having different offsets suggest that
-programming model is a bit different. Anyway, who designed such
-hardware? Really?
-
-Best regards,
-Krzysztof
-
+> This new entry is not in the correct location.
+> It should be in alphabetical order, so it goes between
+> 
+> PCI DRIVER FOR NXP LAYERSCAPE GEN4 CONTROLLER
+> and
+> PCI DRIVER FOR RENESAS R-CAR
+> 
+> Thanks.
+> 
+Got it. Thanks
+>> +PCI DRIVER FOR PLDA PCIE IP
+>> +M:	Daire McNamara <daire.mcnamara@microchip.com>
+>> +M:	Kevin Xie <kevin.xie@starfivetech.com>
+>> +L:	linux-pci@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/pci/plda,*
+>> +F:	drivers/pci/controller/plda/*plda*
+>> +
+>>  PCI DRIVER FOR FREESCALE LAYERSCAPE
+>>  M:	Minghuan Lian <minghuan.Lian@nxp.com>
+>>  M:	Mingkai Hu <mingkai.hu@nxp.com>
+> 
