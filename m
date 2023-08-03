@@ -2,132 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2092676F473
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 23:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5015376F48E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 23:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjHCVIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 17:08:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34470 "EHLO
+        id S229935AbjHCVQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 17:16:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232277AbjHCVH7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 17:07:59 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDFA2D42;
-        Thu,  3 Aug 2023 14:07:58 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31792ac0fefso1186147f8f.2;
-        Thu, 03 Aug 2023 14:07:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691096877; x=1691701677;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DV2T2OCkDPOD2y9vwdb/sVwgTjjoO8j3LsqgAxgNS4w=;
-        b=rNblyVf9qOGCo4i1pPmmxUMzU51K2jyibaaf+9Y5one6V9+/s7RyVW6rxLXbyK1fk/
-         drqUfyVBWwjGhJBEoFhlWsK7FQiiue5WZ9YJRGMBeRpzkz4ck466mZ8yw8UTmUIlOydn
-         5U2vchkHWclmxFOvyUlOGd+YhHFh5LC8ziwpRNx6yZpm373t2q1CjwWUulnPOcrchbuq
-         fKGRjOIymLkHnxFaNekbwOg6f02wDpfSlkuZqLX+ITu8alJx+FhPcvz1pA7cqGlTiB2G
-         mpp+6QyBmNlbkHToTtUrkaH93c/sBUEjr8KYX5W6TGCoDiCozEQMOl8NvWf61rq5B9sr
-         m7Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691096877; x=1691701677;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DV2T2OCkDPOD2y9vwdb/sVwgTjjoO8j3LsqgAxgNS4w=;
-        b=TAUEAa3yqyjZDKu/g3gVNEIKn44EqVEl//CG87cnaEx00nmzJie744SEb+0JMHyxAv
-         tscXaU2A5318VcQGzlD5WKuVa2rQYFgXSdZHnMOrqa1yq5RcBPILikhIkHeNryf6+DCE
-         WhkGMSMWsFbzpfxjQ+kQ7jb7XCblhZvJpMRJUy/1qURNrD06bNGN/vY4eox1V8RaTaE2
-         2H+n/Of50O0Mjq532K56It8AOoNrNsq7dUvpvWJSF4Zbge149W8G3mDwAOHD/SuilTnn
-         bbbNvhrIIXzmC5oW+VHUEQxgJP6Y2Mv/SVZ748XqvFfvz/sJ7u8TUK5ZiqdPgrVNgImQ
-         EIdQ==
-X-Gm-Message-State: ABy/qLajfA0/sxmVAIvQxTqg8M5R6dVKZBXmmj99ihTC0mPxNckXMDuL
-        SR1s07R13YJHELuK2kB3dYA=
-X-Google-Smtp-Source: APBJJlFbf/p8gPAXX1UNOGK+nb3Jhui7ytdP6KvPWP5G4wM44bHi2ILSW1Op3AGS0935rVyVKY5a1w==
-X-Received: by 2002:a5d:408a:0:b0:314:ac1:d12a with SMTP id o10-20020a5d408a000000b003140ac1d12amr8845698wrp.26.1691096876584;
-        Thu, 03 Aug 2023 14:07:56 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id s11-20020adff80b000000b003179d5aee63sm752635wrp.91.2023.08.03.14.07.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 14:07:56 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230369AbjHCVQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 17:16:24 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4575E212B;
+        Thu,  3 Aug 2023 14:15:50 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 373LFWTb093898;
+        Thu, 3 Aug 2023 16:15:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691097332;
+        bh=EykX/fSWMDfipxutXXuVj15oqbyV5u2JGSo7DRMwIaQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=OOCWpb+PtMJ4i/j1cga2VjQ9IIX7wT1FPy7dkFNhK0VdXf5FALEg4h5HrfUWyaSFz
+         WhVAg7wqpkjSJhb+sP+TN5jw/GFwLDMpTR1us5+E/RnC7CVrrT20eEYbMunvFnRQ8w
+         7ifsUupDmvv2R5IXwCAEMMnOgKmS0kCPtSu/R5wE=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 373LFWx9039379
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Aug 2023 16:15:32 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
+ Aug 2023 16:15:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 3 Aug 2023 16:15:32 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 373LFWXS040988;
+        Thu, 3 Aug 2023 16:15:32 -0500
+Date:   Thu, 3 Aug 2023 16:15:32 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Dhruva Gole <d-gole@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] sunxi: Orange Pi Zero 3 DT support
-Date:   Thu, 03 Aug 2023 23:07:55 +0200
-Message-ID: <3751904.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <20230731011725.7228-1-andre.przywara@arm.com>
-References: <20230731011725.7228-1-andre.przywara@arm.com>
+        Tony Lindgren <tony@atomide.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH V2] dt-bindings: pinctrl: pinctrl-single: add am625
+ compatible
+Message-ID: <20230803211532.ge4yr5r6pwprlyml@bonsai>
+References: <20230803150955.611717-1-d-gole@ti.com>
+ <20230803-antennae-donut-6cae9d43d791@spud>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Disposition: inline
+In-Reply-To: <20230803-antennae-donut-6cae9d43d791@spud>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 31. julij 2023 ob 03:17:22 CEST je Andre Przywara napisal(a):
-> Hi,
+On 16:29-20230803, Conor Dooley wrote:
+> On Thu, Aug 03, 2023 at 08:39:55PM +0530, Dhruva Gole wrote:
+> > Add the am625 compatible property to add support for the new
+> > wakeup enable and status bits positions
+> > 
+> > Cc: Nishanth Menon <nm@ti.com>
+> > Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> > CC: Tony Lindgren <tony@atomide.com>
+> > Signed-off-by: Dhruva Gole <d-gole@ti.com>
 > 
-> Orange Pi recently released the Orange Pi Zero 3 board, which is some
-> updated version of their former Zero 2 development board. Some component
-> changes (Motorcomm PHY instead of Realtek, different PMIC), some board
-> layout changes, and it ships with up to 4GB of DRAM now. The SoC is now
-> labelled H618 instead of H616, which apparently is the same, just with
-> more L2 cache.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Split the existing OPi Zero2 DT, to allow sharing most DT nodes, then
-> add the binding documentation and DT for the new board.
+> Thanks,
+> Conor.
 > 
-> Linux v6.5-rc boots out of the box (the PMIC driver just made it in),
-> and most things work: UART, PSCI, GPIO, SPI flash, SD card, USB.
-> Ethernet is almost working, I get an IP address via DHCP, but no further
-> packets come through. Might be either a problem with the new Motorcomm
-> PHY driver, or some missing delay settings, I have to investigate, any
-> help or advice welcome.
+> > ---
+> > 
+> > Base: tag: next-20230731 + below "depends on" patch
+> > Depends on: https://lore.kernel.org/linux-omap/20230731061908.GG5194@atomide.com/T/
+> > 
+> > v1 -> v2 changes:
+> > rename to use am625 instead of am6
+> > 
+> > link to previous version:
+> > https://lore.kernel.org/all/20230803092311.604610-1-d-gole@ti.com/
+> > 
+> >  Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> > index b6b6bcd7074b..902469986fff 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> > @@ -23,6 +23,7 @@ properties:
+> >            - pinconf-single
+> >        - items:
+> >            - enum:
+> > +              - ti,am625-padconf
+> >                - ti,am437-padconf
 
-When I worked with Motorcomm PHYs, I had to add 
-
-motorcomm,clk-out-frequency-hz = <125000000>;
-
-and usual reset gpio related properties. Have you tried that? In any case, 
-it's not 100% reliable, but I don't know why.
-
-Best regards,
-Jernej
-
-> Also let me know if the DT split is a good idea or not, happy to roll
-> that back if requested.
-> 
-> Cheers,
-> Andre
-> 
-> Andre Przywara (3):
->   arm64: dts: allwinner: h616: Split Orange Pi Zero 2 DT
->   dt-bindings: arm: sunxi: document Orange Pi Zero 3 board name
->   arm64: dts: allwinner: h616: Add OrangePi Zero 3 board support
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../allwinner/sun50i-h616-orangepi-zero2.dts  | 119 +---------------
->  .../allwinner/sun50i-h616-orangepi-zerox.dtsi | 131 ++++++++++++++++++
->  .../allwinner/sun50i-h618-orangepi-zero3.dts  |  86 ++++++++++++
->  5 files changed, 224 insertions(+), 118 deletions(-)
->  create mode 100644
-> arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zerox.dtsi create mode
-> 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+please keep this sorted.
+> >                - ti,dra7-padconf
+> >                - ti,omap2420-padconf
+> > -- 
+> > 2.34.1
+> > 
 
 
 
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
