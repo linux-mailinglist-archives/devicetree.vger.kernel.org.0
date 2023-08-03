@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B926576F45E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3851276F467
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 23:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjHCU7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 16:59:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59794 "EHLO
+        id S231421AbjHCVFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 17:05:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229767AbjHCU7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:59:36 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481701AB;
-        Thu,  3 Aug 2023 13:59:34 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fe24dd8898so14237945e9.2;
-        Thu, 03 Aug 2023 13:59:34 -0700 (PDT)
+        with ESMTP id S229446AbjHCVFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 17:05:07 -0400
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE962D43;
+        Thu,  3 Aug 2023 14:05:06 -0700 (PDT)
+Received: by mail-oo1-xc2f.google.com with SMTP id 006d021491bc7-56d2fe54863so726716eaf.0;
+        Thu, 03 Aug 2023 14:05:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691096373; x=1691701173;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1691096705; x=1691701505;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DP2b+AILmlpdJLSBdLdZp7i7Y6kRAXSbaj0B+upIxrM=;
-        b=KzzRQ4S29CvAU+TMW8J+OxQJT0N2VhnDo449Nyam5kEaT/lCE1i/60oslFCK2Hsg9Y
-         GJ8tR5nS/QQr2daknYxum4FyeNCoXDvPajZSppWA6fXsarteFlTEBTQle6I5+qDh5yVh
-         ngnmh8QazL+AyBdq85o1BjPm/64gbyFgTStzkiooUU9Phj5GbPjSBKK5KeinEBVRMQLR
-         MDoaI9uwvFjXnuP2iW6YwDSKktwQRl82ymGuY3S2+HdlfHslVj6n95vbQklGMBrrmdrM
-         8IYb17FZ/8wMlU/YHeTfKrPsbOBC64FDYeO76bYT6bsFN3xrpmEJ2qCgl3q0dXPynKZV
-         LtBQ==
+        bh=3iykb0ohtHUOxu1qS/h80/ncUZA75kT5+rr0gHB5Pw8=;
+        b=bwIgCDVI7omgikbK2l7nU0xAW3OrLEslLM5tuHHsY/EsPY9eghaMPV3ZGjo9uUhbxN
+         Mg3DDSXTrUvQStc4tDr3unTcJOGYDglijWZrLog5+cBPLIZ+D4QPSHAA6JsVcD9stqyQ
+         lVGV4M5392N/TU9M/IGmkjTkuZE0hBXc12VE0d7Od1TjTPD8Th9rSJGBdDVsol6/kXpm
+         31JWHY2joKtZhI/4ubmYU4+9hHPCdBn15t+Q+wmxMWRwfkLTglNb3htRJfE9QspTsUbK
+         IxEk2RHTx6Gq5RdEmzVV99TSIY5QiqLdTTHRAzU8SwCxq8zjs26ORryAQ7cTnR1gR2c8
+         hgOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691096373; x=1691701173;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1691096705; x=1691701505;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DP2b+AILmlpdJLSBdLdZp7i7Y6kRAXSbaj0B+upIxrM=;
-        b=IqpQEWhkKFJJM34Eq92X+IYDXm4Iusjd7Cyj8xeRzWmLriZNW+C2ln9Q5o0M+S9TZm
-         CooJxplPy9zhtcShiYUuP//hmEclXnYMAdi87I0ZZPGQlIVaYQ+8UZysxru6M3OfUT/S
-         4yajWg6S2U7PZo/QuPStkDOyyD12lkycW7OvgJqdogYn7EjDSuQbGScwFUslaiKyhaRf
-         +16x0zPvWZjSXe1lcLtIHuYPXRVfVuXLU8IJM1RGKJb4pjNBZLX8pGtwFElQ3in3VEyK
-         pCzAJiQRd3dGP0OBPAwcW7O2Zd6SaUXp+u8RBoiVPFg6VIeQgxwvEgXv/fBhkubjyGXI
-         00PA==
-X-Gm-Message-State: ABy/qLYQf+SWwGc6zgF/3Ygj6NSIDOa+Th/iAD+CUK252N/dItxEtwXo
-        YwLShwR0O9zNTFJqZAblzg0=
-X-Google-Smtp-Source: APBJJlHHfuo6kBelJvqwbXH9kUi+80SC8CQMEFEj5k03HeeeLJcquEgoQREJ2cxFra7O+czacV7ZcQ==
-X-Received: by 2002:a5d:69c1:0:b0:314:c9c:bc96 with SMTP id s1-20020a5d69c1000000b003140c9cbc96mr7821541wrw.7.1691096372657;
-        Thu, 03 Aug 2023 13:59:32 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id u7-20020a5d5147000000b0031437ec7ec1sm770658wrt.2.2023.08.03.13.59.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 13:59:32 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     linux-sunxi@lists.linux.dev, John Watts <contact@jookia.org>
-Cc:     John Watts <contact@jookia.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Maksim Kiselev <bigunclemax@gmail.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mkl@pengutronix.de
-Subject: Re: [PATCH] riscv: dts: allwinner: d1: Specify default CAN pins
-Date:   Thu, 03 Aug 2023 22:59:30 +0200
-Message-ID: <3248110.44csPzL39Z@jernej-laptop>
-In-Reply-To: <20230731023701.2581713-1-contact@jookia.org>
-References: <20230731023701.2581713-1-contact@jookia.org>
+        bh=3iykb0ohtHUOxu1qS/h80/ncUZA75kT5+rr0gHB5Pw8=;
+        b=LMi4vhRKJQI60OV9BNQ+lkEDgAKk9d8BiILn6CIqDwt+YZ9CnCkTLQmaO65EV8wz/d
+         hOkcSV1kzONqpTNSY4iSlUceFdHv5pP8UCbelfg4o7gxKSTssY5G2xhbYWeH2QA0MY/u
+         HSA5762qYR8nG4Dsq9GILt1gdStZDqbdHvgZrweoM59TlUUj7bwRyQcOLM49d7p2Xls4
+         Wve82ORUNpxgFvbTs/+pjnwaWR19iOF0lsGTAV9zOggJEUIi/JBgiru+aiAuqmAWqub4
+         2cYcrzKqlcMJauHbtaeoE+UYS/IGAC3PIfhlhRlcaTtfvnthdyuRTVgNq8WRNN2mTSOX
+         ML4g==
+X-Gm-Message-State: ABy/qLb03MQS38FWwGqKwvuSGDco1c2v0zh3XFlvHcgLNxxM2rnk08m0
+        Ncs0SfphnAfbafj2gx2DFUuYcgVkxIF8sPEe/zQ=
+X-Google-Smtp-Source: APBJJlHWF19YdNlEw5neOPDLx2yKP0yQjc7UvVqD4DCZsuyVxs5cSaPp/BS7yKVMpY9D51X1ChhRRTjrKlyCkihMJaw=
+X-Received: by 2002:a4a:928f:0:b0:564:e465:5d5c with SMTP id
+ i15-20020a4a928f000000b00564e4655d5cmr14966931ooh.2.1691096705538; Thu, 03
+ Aug 2023 14:05:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20230725142343.1724130-1-hugo@hugovil.com> <20230725142343.1724130-7-hugo@hugovil.com>
+ <2023073105-elevation-canister-2777@gregkh> <20230803101814.39a61229d81dcd3e96cbe8ee@hugovil.com>
+In-Reply-To: <20230803101814.39a61229d81dcd3e96cbe8ee@hugovil.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 4 Aug 2023 00:04:29 +0300
+Message-ID: <CAHp75VdCqqZfQXRRWUkbDTf_gd3T60Stp+m59Q34iWxddLiG5g@mail.gmail.com>
+Subject: Re: [PATCH v9 06/10] serial: sc16is7xx: fix regression with GPIO configuration
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org, Lech Perczak <lech.perczak@camlingroup.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -82,56 +76,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-/cc Marc
+On Thu, Aug 3, 2023 at 5:18=E2=80=AFPM Hugo Villeneuve <hugo@hugovil.com> w=
+rote:
+> On Mon, 31 Jul 2023 17:58:41 +0200
+> Greg KH <gregkh@linuxfoundation.org> wrote:
+> > On Tue, Jul 25, 2023 at 10:23:38AM -0400, Hugo Villeneuve wrote:
 
-Dne ponedeljek, 31. julij 2023 ob 04:36:59 CEST je John Watts napisal(a):
-> There are only one set of CAN pins available on these chips.
-> Specify these as the default to avoid redundancy in board device trees.
-> 
-> Signed-off-by: John Watts <contact@jookia.org>
-> ---
->  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi index
-> 4086c0cc0f9d..b27c3fc13b0d 100644
-> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> @@ -898,6 +898,8 @@ can0: can@2504000 {
->  			interrupts = <SOC_PERIPHERAL_IRQ(21) 
-IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&ccu CLK_BUS_CAN0>;
->  			resets = <&ccu RST_BUS_CAN0>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&can0_pins>;
->  			status = "disabled";
->  		};
+...
 
-pinctrl-names and pinctrl-0 are usually at the top. However, since there is no 
-hard rule (I've seen it mixed), I'm fine with it.
+> > > Fixes: 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control li=
+nes")
+> > > Fixes: 21144bab4f11 ("sc16is7xx: Handle modem status lines")
+> > > Cc: <stable@vger.kernel.org> # 6.1.x: 95982fad dt-bindings: sc16is7xx=
+: Add property to change GPIO function
+> > > Cc: <stable@vger.kernel.org> # 6.1.x: 1584d572 serial: sc16is7xx: ref=
+actor GPIO controller registration
+> > > Cc: <stable@vger.kernel.org> # 6.1.x: ac2caa5a serial: sc16is7xx: rem=
+ove obsolete out_thread label
+> > > Cc: <stable@vger.kernel.org> # 6.1.x: d90961ad serial: sc16is7xx: mar=
+k IOCONTROL register as volatile
+> > > Cc: <stable@vger.kernel.org> # 6.1.x: 6dae3bad serial: sc16is7xx: fix=
+ broken port 0 uart init
+> >
+> > Where are these git commit ids from?  I don't see them in Linus's tree,
+> > how are they supposed to be picked up by the stable developers if they
+> > are not valid ones?
+> >
+> > confused,
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+...
 
-Since original DT node entry goes through netdev tree, this should be picked 
-there or it can be dropped there and I pick both patches or I can pick patch 
-for later kernel version.
+> I wrongly assumed that, for example, this patch had, as a prerequisite,
+> all the patches before it in this series, and that is why I listed
+> them.
 
-Best regards,
-Jernej
+The problem, as I understand it, is not that you listed them (how else
+will the backporter know that this patch requires something else?) but
+the format (you used wrong SHA-1 sums).
 
-> 
-> @@ -907,6 +909,8 @@ can1: can@2504400 {
->  			interrupts = <SOC_PERIPHERAL_IRQ(22) 
-IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&ccu CLK_BUS_CAN1>;
->  			resets = <&ccu RST_BUS_CAN1>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&can1_pins>;
->  			status = "disabled";
->  		};
->  	};
+...
 
+> So I will remove them all, since this patch doesn't have any other
+> requisites other than the previous patches in this series.
+>
+> Maybe it would be good to add some notes about that in
+> stable-kernel-rules.rst?
 
+This probably is a good idea. Briefly looking at it I see no examples
+like yours there.
 
-
+--=20
+With Best Regards,
+Andy Shevchenko
