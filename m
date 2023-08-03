@@ -2,672 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB44876E6E4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1248176E6F7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 13:34:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234690AbjHCLbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 07:31:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
+        id S232363AbjHCLeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 07:34:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234038AbjHCLbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:31:21 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172091982
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 04:31:17 -0700 (PDT)
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7ABAE42418
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 11:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1691062275;
-        bh=XzMkEEoq07lp7ew9w6kLZOvS3AG7yq5XH0B7lyVIxoQ=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=GcxEzrRgN22n8p2atQGLkuJX2+vhFbjDuyHuhziHijWnVNozV1J9fxU3XX0tAhho3
-         Bw1IohDU9ShsDy0yuDXFLuHclpQ6LYoFo7njQ1bhR+UzgaSu1NolWvbku2xLQ98Pgm
-         AHkhji/GkxzRYiMIx+f2GyPx1VBAqr3btgoskxl5JDn83s9Xf8PSdS7p5VMry4v1/K
-         pV4lDeuR/47ObWMjITN/8eDhGMycEgrylfvv12xbodxEKiPuTQICghQe56nQZsB8vO
-         6NdYddzTSPwE0uZWAXRCdNgdAO7WZEhxWzcBvFK8JUpuRJn/B+CutCSXEvaUuJmxIq
-         spzY1WtTGDS3g==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-403affb3404so14458811cf.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 04:31:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691062274; x=1691667074;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XzMkEEoq07lp7ew9w6kLZOvS3AG7yq5XH0B7lyVIxoQ=;
-        b=ajVuNwcpFiduh55jXktcsHKSqFHc9vz/KsGi7dRAwm8xFz+f7PFegPpVJYmMScky2s
-         Ck+t+gYQc0P1rl4sWqGrROozAw1eV/ljE3ni9ntV5sI1Yx5hNII2dDQod1YWMbk0aVCj
-         QiSK6zDop+Lgm+se6Vldb6ZPhdaPXanN5gDAFpcjUsFGe8oI1duP73TMBj/4UDQ3mTJc
-         er1B3EI5EOQSecKdkuuFm8nJz+suiNmv3HqYZjKwunJXxQka7SXfuIKSZIfpO7lmQrWN
-         QdPK2oRJ1wC8VjztlSbfo1TX7mWBjnKKrOBzJPhUNm9KDgqFjiG/F+9HumgQu8EMyGbv
-         h4Iw==
-X-Gm-Message-State: ABy/qLboio2OyEHwQIN9hA3sjWZrEvbhf7gqNtXdw8HWZ5HDBMfIHviA
-        JG6T3pCwGPOpdPyz4dE7uB6IUXtALAu/bdFEJiCeVQAMaE99FcoXejmLFLE0f7/wm4oUqN055XD
-        dSuGx3wdcL6png5qmCc1j0U6a3XI4GdeZzmjQfq6ndS1rSVd+LNpBTlI=
-X-Received: by 2002:ac8:5f4a:0:b0:403:e745:2622 with SMTP id y10-20020ac85f4a000000b00403e7452622mr18758274qta.19.1691062273896;
-        Thu, 03 Aug 2023 04:31:13 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlHKp8ZAFNAKilX4BKHyiIkkes3W125Npp4kMvHVIomG7nKw9uraURnco6MoPU9SDTiRmL03rWWjOZza0EONfhA=
-X-Received: by 2002:ac8:5f4a:0:b0:403:e745:2622 with SMTP id
- y10-20020ac85f4a000000b00403e7452622mr18758248qta.19.1691062273566; Thu, 03
- Aug 2023 04:31:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230627055313.252519-1-xingyu.wu@starfivetech.com> <20230627055313.252519-3-xingyu.wu@starfivetech.com>
-In-Reply-To: <20230627055313.252519-3-xingyu.wu@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Thu, 3 Aug 2023 13:30:56 +0200
-Message-ID: <CAJM55Z9_-wKWAby-bAH72AbY9mfSbEnNfaN6_NLvBOys3V3QMA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] clocksource: Add JH7110 timer driver
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229832AbjHCLeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 07:34:08 -0400
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C7A1982;
+        Thu,  3 Aug 2023 04:34:07 -0700 (PDT)
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3737nH8R012620;
+        Thu, 3 Aug 2023 07:33:54 -0400
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2101.outbound.protection.outlook.com [104.47.58.101])
+        by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3s84q1t3cu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Aug 2023 07:33:54 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mEEhzKO6eiF261fgQv1oydPszFvoQi2aSScgLbgI0k/ca5A3pFBQdVwnRJ4ptzo5AeBVUiP174hjrLL/4YvinGrTBtgDO+GS1plvCi0E/GlqS8urG3CbukkSEfNWgNnaiFuhngZaaQCKv1KbSQud+ddjbCwSSBsn4kU6G1X3Fyi6wcVLyPuZxY5d02uSa7KSBMG/vDq7BacAIjon287rLjGG0Hz8btDgu0aI7Ea1hE091PyfKzntC4ARqeNeCgqKxHDGWzwjqokoMyAGveNulDE0Esh2eG6ZniaO/anyBBhayh7bXjaweKBm0fjSOuju7Jxv0qSYoCDs5dYNAkbvKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H3hSuKyodCJBzm7sjAjr1yoQnwV5De2mL/2VvMKXOy4=;
+ b=SBRFgN2bAR+ze656bZQLsZW51udiiBAsfeIcPQg0PoIp0M7UivStYV80kjvlUcOOG562FrCPCEyvMOxyRfKn2c8XJbNmGkxL3YLIvdzJS2aEgjxqGhM4+EvuwCakqdzKzvhzeTXMgcABVGNw692kXfND3w5bbMr0F+1yuwx8yNe1HyMWsdhqREXRDBQmWf7kpxvsiC4+Cw8tr+mC+kfZoqvwDGsKV+6JkMbt5UQuX2K14moermM0Jrj0+D2llJIGwY967hD3JszG8aqSHPjmSOLTll1nFQHx898ZrRfrpBX65GsXKe138XwyARLE7TGyITaecslt5jDXSOGcEXgNqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H3hSuKyodCJBzm7sjAjr1yoQnwV5De2mL/2VvMKXOy4=;
+ b=n1b+uU7NOjU2WkHbmxx1pBgz6tc4sEhtOxXf0l86CJDH1dLBLkKOMcxOcbrEpWx1hfAFgcAqT1TGNfIN1Gfng3mF1DD4kxiEuDbc0VsgeGj17Lx3E1G0Ht9RZf3zL+YDvvYHaeUFWrvUB68vl8spdtgnWYWWq8mVmkNaStLABGU=
+Received: from PH7PR03MB7391.namprd03.prod.outlook.com (2603:10b6:510:2e6::5)
+ by SA0PR03MB5578.namprd03.prod.outlook.com (2603:10b6:806:bc::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Thu, 3 Aug
+ 2023 11:33:52 +0000
+Received: from PH7PR03MB7391.namprd03.prod.outlook.com
+ ([fe80::200d:e2:3bae:2a5b]) by PH7PR03MB7391.namprd03.prod.outlook.com
+ ([fe80::200d:e2:3bae:2a5b%4]) with mapi id 15.20.6652.020; Thu, 3 Aug 2023
+ 11:33:51 +0000
+From:   "Sahin, Okan" <Okan.Sahin@analog.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "zzzzTilki, zzzzIbrahim" <Ibrahim.Tilki@analog.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
+        "linux@leemhuis.info" <linux@leemhuis.info>
+Subject: RE: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
+ Regulator Support
+Thread-Topic: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
+ Regulator Support
+Thread-Index: AQHZuGy8mN9TLCcuJkyLQ19F8fkBDa+/r5IAgAyW/YCAARHLsIAAaoOAgAn0bACAAAK6AIAAAIEAgAAAvwCAAKY8YIAAJSuAgAAE01A=
+Date:   Thu, 3 Aug 2023 11:33:51 +0000
+Message-ID: <PH7PR03MB73913EC7C2F254BFCC465557E708A@PH7PR03MB7391.namprd03.prod.outlook.com>
+References: <20230717050736.10075-3-okan.sahin@analog.com>
+ <20230718155502.GA3542993@dev-arch.thelio-3990X>
+ <20230726161033.GA1102409@dev-arch.thelio-3990X>
+ <PH7PR03MB739122A373964651D995EA5AE701A@PH7PR03MB7391.namprd03.prod.outlook.com>
+ <20230727145143.GB2013261@dev-arch.thelio-3990X>
+ <CAKwvOdnPQEdbTGBO0hBn7CC4d0xtRV2zmfrYDfAhH0stfDYeJA@mail.gmail.com>
+ <32af6891-8246-46de-ba1d-ae1999f6eb10@sirena.org.uk>
+ <20230802230426.GA3027248@dev-arch.thelio-3990X>
+ <ae431bb5-d132-4737-b4bb-58a323f877a6@sirena.org.uk>
+ <PH7PR03MB7391287FA2CF2C1982724952E708A@PH7PR03MB7391.namprd03.prod.outlook.com>
+ <4ad70585-fc34-4c65-9de8-09892a6a5c2e@sirena.org.uk>
+In-Reply-To: <4ad70585-fc34-4c65-9de8-09892a6a5c2e@sirena.org.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcb2thbi5zYWhp?=
+ =?us-ascii?Q?blxhcHBkYXRhXHJvYW1pbmdcMDlkODQ5YjYtMzJkMy00YTQwLTg1ZWUtNmI4?=
+ =?us-ascii?Q?NGJhMjllMzViXG1zZ3NcbXNnLTljNTg1ZDkwLTMxZjEtMTFlZS1iZjAxLTU4?=
+ =?us-ascii?Q?NmMyNWQzYzNlNFxhbWUtdGVzdFw5YzU4NWQ5Mi0zMWYxLTExZWUtYmYwMS01?=
+ =?us-ascii?Q?ODZjMjVkM2MzZTRib2R5LnR4dCIgc3o9IjExMDQiIHQ9IjEzMzM1NTM2MDI5?=
+ =?us-ascii?Q?MTI1NDk4NSIgaD0iSDZWb3dMbTVsdFhaSkt4UlVSbVVwQjhSSEN3PSIgaWQ9?=
+ =?us-ascii?Q?IiIgYmw9IjAiIGJvPSIxIiBjaT0iY0FBQUFFUkhVMVJTUlVGTkNnVUFBRW9D?=
+ =?us-ascii?Q?QUFESjhnMWYvc1haQWRCU2FWK0FxbCtiMEZKcFg0Q3FYNXNEQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUhBQUFBRGFBUUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUVBQVFBQkFBQUF2ZGhreGdBQUFBQUFBQUFBQUFBQUFKNEFBQUJoQUdR?=
+ =?us-ascii?Q?QWFRQmZBSE1BWlFCakFIVUFjZ0JsQUY4QWNBQnlBRzhBYWdCbEFHTUFkQUJ6?=
+ =?us-ascii?Q?QUY4QVpnQmhBR3dBY3dCbEFGOEFaZ0J2QUhNQWFRQjBBR2tBZGdCbEFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHRUFaQUJwQUY4QWN3QmxBR01B?=
+ =?us-ascii?Q?ZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0IwQUdrQVpRQnlB?=
+ =?us-ascii?Q?REVBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFD?=
+ =?us-ascii?Q?QUFBQUFBQ2VBQUFBWVFCa0FHa0FYd0J6QUdVQVl3QjFBSElBWlFCZkFIQUFj?=
+ =?us-ascii?Q?Z0J2QUdvQVpRQmpBSFFBY3dCZkFIUUFhUUJsQUhJQU1nQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBSUFBQUFBQUE9PSIvPjwv?=
+ =?us-ascii?Q?bWV0YT4=3D?=
+x-dg-rorf: true
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR03MB7391:EE_|SA0PR03MB5578:EE_
+x-ms-office365-filtering-correlation-id: 9435e3ea-4057-4521-35fc-08db941582fb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wVhH9Wp4MrX5KMLCpeqTwwy8nWpTY8hzfYrQ5E+N/ZPbVf9BP+IA10owhN8cD2dkZc65GGY870kKW3oXdcVNfEZQkgglB/CeyWIWCRlCbAq0tl2+GQSa1WPa2EyCwUN5u18tndScZjVphcx1cCzTUvlOJEAsJcgg6vd7aNlLwxpiAzVSEYOQ3jOhlbzVz8VZxb9B94Pht2B++uz5sUPW5q46aPtsCzN1f8gQQkADvJnEH6QLNRs1ZTRtP3xyfxGbElPlu2aVEjXtvF5tXGxw+62OSibuIRMX6dsFuLaI7CLtO9hfqHwRq591w3MTGDs1F0x18tWSQ9Dq8V+GiIz/ghgxWd/AeHLFSWrX4/ZQFtbHoAFRiQaXVID1IcyOeExVKXHDSWk6F1ZGSuzCibwxUQlNr5QW5VOhl+brVo47fnHs891dvjYVU70eHTmuyd4yJqfXKayNvB1PnYfsAOK86k3Kro7YWSHlelI9kg/IGEyOBTKayU/NpfIrUpVdzoSy0+SQFRSm8Ye0rFKnoVnGg8p41nVQTHl000JwQ1ThZ/3zbMqs9phQbEreuvdHe24am8XfeHM3vXwYr7WuMLc+DeMT2ZEg/2Dcy1P6EY5PLBi47kZZV6ifmBHsHjI7y3CU
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR03MB7391.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(136003)(396003)(346002)(376002)(39860400002)(451199021)(4326008)(6916009)(316002)(64756008)(66946007)(76116006)(66556008)(66476007)(66446008)(122000001)(52536014)(5660300002)(41300700001)(186003)(26005)(6506007)(55016003)(8676002)(8936002)(7416002)(86362001)(54906003)(9686003)(7696005)(478600001)(38100700002)(38070700005)(2906002)(4744005)(71200400001)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZYekM+JjOP4WmPxVKkUz2e6JcBoZhkKR1IGHNdoAfZZMpOweVFkrQCLjqoSc?=
+ =?us-ascii?Q?8puUUQBt91t70XUs0wDXMAf/IeTukPLF8JkaF53UDNynrZrl3ypOb9yCmgOk?=
+ =?us-ascii?Q?DpZenIwfbJPblO2WQL1CJ7GUd3KQu/QAGemPHYyELINVrNz69EOhx/mgTg8K?=
+ =?us-ascii?Q?0U6Q9uOZcM2RnbKLGQwt1UFqXSMMcj6xtn8sggER0wT9FwMvoRM5CaKcCt4x?=
+ =?us-ascii?Q?eqtftuFEpeDQhco1fAHXY/2T77j3YDLmRWwc79wv/fm5kmWm1uZcSxwDhtB6?=
+ =?us-ascii?Q?na8pYI2UfAv2mfYeIlBFd79HcFbV/FOTuM6M1CG9L1KKs5VkyOQQPKp7wlgT?=
+ =?us-ascii?Q?1mpytXuBYs0GKhaiJ/1O30ey/8N5wDPi4GMZf0uQLJBYoU3qqmG+Z9Z3+mvL?=
+ =?us-ascii?Q?vHJRI2XlMXuxWK7ywuF7IJJpAC7snfKs6ll6FyK0rYdBSHphXhLiLCCC8Bnw?=
+ =?us-ascii?Q?g1sIQZmeiz0LIjP/CC0XpY83p+LvsdhLYALX2k9yWXuSZJHzHBZzq7Hl/pTa?=
+ =?us-ascii?Q?BfA94h5U+czFMneQPSlYgxcITqRj5ho2E1QS2XPqP+0adcf8ElbAIOYY3pNc?=
+ =?us-ascii?Q?JXskz0GpXjeocXnmBWBhw0WXE5x1p++UtIMnk91pw5I5i76IUVDx1oGZy+iR?=
+ =?us-ascii?Q?6Y2zb/ykkgvxG8wIZuwsNAGVy5JMf28HUDdlNo9/Y0AgWgft5yEP8EqskmtP?=
+ =?us-ascii?Q?e+tU7h1yy+PuybIfg3hKbJmUu3PfqsjSZSoSw7v/7ItihO4B7o8Jm1zVjZwE?=
+ =?us-ascii?Q?rYWD/3s/aNIozacAYxPQEG6XkwQJ5U2o8d7kLKVL/Bb06PyCOVlk32zXbBkj?=
+ =?us-ascii?Q?Z8Lq/fqgfVNubtr2T4Gd6fIBdEmW5+rqr7V2WJ1lfk22lD53eCb+Z+38+hy3?=
+ =?us-ascii?Q?bEKekB/6XU65Xi9OI3SWbk/4M/7ydKFDPistLP1jK0+u5/mBBUfkhzs6vzTF?=
+ =?us-ascii?Q?AGqMdoSZmEQHzt4jhh5NbH/kQNTPIzGXfXr0ttyzw8Gx+UtI13Raf6yk3ydv?=
+ =?us-ascii?Q?w7mLO/MUeYllmCfzec4uqYLB6vnACTJ+QGIAMPVa8C+lVLMqv1R/5Mgz45oM?=
+ =?us-ascii?Q?24RnrVDO9ed8Og0G7At3Vqm6ecGs6yfHhhspof+pk/tfvOYCRcAxkQKfFVrd?=
+ =?us-ascii?Q?1Shux2yTniRlLRH2pLDYLWnNJ1f626GUvBtCnfaX3Pfirh4Ez5d13Uf77dgz?=
+ =?us-ascii?Q?uh8A2m0eqo6m9M9rDANO+RdI14+O1mFJZgCA1J5zEqDVfCSDu2MEt7w7gbP0?=
+ =?us-ascii?Q?1ogu6EBEzr+MQ+DBDAjq3CkR438erOehJgcib/sonEfYfpHhA7QrfLqPx+9y?=
+ =?us-ascii?Q?AzSYsmOcczBeILTw0tQ84ntSXjXrnyDp5tuUOMjqsTcC949SdvjgLqYYjKUJ?=
+ =?us-ascii?Q?6YNpCqyAECqvAg3iy1y0gEgc9KEILxdEWz1djfjc8rVmP26cRsDB30dUoMU6?=
+ =?us-ascii?Q?uPdh36MqNVvBdJU9NnMi/s99JHTDlx4Uv2WoA34x6xGlMg/LRm6NRwhnuw22?=
+ =?us-ascii?Q?3UfHE/MTi0zA560IUmbuCx5bqjHcrdQXGC+a8t2e6iUK0UOHeaf0Sii9mxM2?=
+ =?us-ascii?Q?DZhs00unUUpls2xDbOOSVnJuh9qId0upwf+B2qBA?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR03MB7391.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9435e3ea-4057-4521-35fc-08db941582fb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2023 11:33:51.5371
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sF86/SxZncMJgpEL2Cz/EmNgxI2weMVbZnmgJFpdSmIBtm6koWGuAr8aYzpmhUK1Tu1P6c9b6ku/bK5xrSzYCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR03MB5578
+X-Proofpoint-ORIG-GUID: fFANkbTY2QNxCm8xIMO1VuVMS1X8h9Qf
+X-Proofpoint-GUID: fFANkbTY2QNxCm8xIMO1VuVMS1X8h9Qf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-03_10,2023-08-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ lowpriorityscore=0 clxscore=1015 bulkscore=0 malwarescore=0
+ impostorscore=0 suspectscore=0 spamscore=0 mlxlogscore=617 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2306200000 definitions=main-2308030103
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jun 2023 at 07:55, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
 >
-> Add timer driver for the StarFive JH7110 SoC.
+>On Thu, Aug 03, 2023 at 09:10:26AM +0000, Sahin, Okan wrote:
+>> 02, 2023 at 04:04:26PM -0700, Nathan Chancellor wrote:
 >
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  MAINTAINERS                        |   7 +
->  drivers/clocksource/Kconfig        |  11 +
->  drivers/clocksource/Makefile       |   1 +
->  drivers/clocksource/timer-jh7110.c | 485 +++++++++++++++++++++++++++++
->  4 files changed, 504 insertions(+)
->  create mode 100644 drivers/clocksource/timer-jh7110.c
+>> >Oh, they didn't actuallly send it to the list :(
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6992b7cc7095..4e8e39ae685c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20125,6 +20125,13 @@ S:     Supported
->  F:     Documentation/devicetree/bindings/mmc/starfive*
->  F:     drivers/mmc/host/dw_mmc-starfive.c
+>> Actually, I have received email about fix before I send new patch. As
+>> far as I understand, it was not sent to correct list, right?
 >
-> +STARFIVE JH7110 TIMER DRIVER
-> +M:     Samin Guo <samin.guo@starfivetech.com>
-> +M:     Xingyu Wu <xingyu.wu@starfivetech.com>
-> +S:     Supported
-> +F:     Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
-> +F:     drivers/clocksource/timer-jh7110.c
-> +
->  STARFIVE JH71X0 CLOCK DRIVERS
->  M:     Emil Renner Berthing <kernel@esmil.dk>
->  M:     Hal Feng <hal.feng@starfivetech.com>
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index 526382dc7482..a1393ec074c0 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -639,6 +639,17 @@ config RISCV_TIMER
->           is accessed via both the SBI and the rdcycle instruction.  This is
->           required for all RISC-V systems.
->
-> +config STARFIVE_JH7110_TIMER
-> +       bool "Timer for the STARFIVE JH7110 SoC"
-> +       depends on ARCH_STARFIVE || COMPILE_TEST
-> +       select TIMER_OF
-> +       select CLKSRC_MMIO
-> +       default ARCH_STARFIVE
-> +       help
-> +         This enables the timer for StarFive JH7110 SoCs. On RISC-V platform,
-> +         the system has started RISCV_TIMER. But you can also use this timer
-> +         which can provides four channels to do a lot more on JH7110 SoC.
-> +
->  config CLINT_TIMER
->         bool "CLINT Timer for the RISC-V platform" if COMPILE_TEST
->         depends on GENERIC_SCHED_CLOCK && RISCV
-> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-> index f12d3987a960..791fb3379f50 100644
-> --- a/drivers/clocksource/Makefile
-> +++ b/drivers/clocksource/Makefile
-> @@ -81,6 +81,7 @@ obj-$(CONFIG_INGENIC_TIMER)           += ingenic-timer.o
->  obj-$(CONFIG_CLKSRC_ST_LPC)            += clksrc_st_lpc.o
->  obj-$(CONFIG_X86_NUMACHIP)             += numachip.o
->  obj-$(CONFIG_RISCV_TIMER)              += timer-riscv.o
-> +obj-$(CONFIG_STARFIVE_JH7110_TIMER)    += timer-jh7110.o
->  obj-$(CONFIG_CLINT_TIMER)              += timer-clint.o
->  obj-$(CONFIG_CSKY_MP_TIMER)            += timer-mp-csky.o
->  obj-$(CONFIG_GX6605S_TIMER)            += timer-gx6605s.o
-> diff --git a/drivers/clocksource/timer-jh7110.c b/drivers/clocksource/timer-jh7110.c
-> new file mode 100644
-> index 000000000000..b88334a916fb
-> --- /dev/null
-> +++ b/drivers/clocksource/timer-jh7110.c
-> @@ -0,0 +1,485 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Starfive JH7110 Timer driver
-> + *
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + *
-> + * Author:
-> + * Xingyu Wu <xingyu.wu@starfivetech.com>
-> + * Samin Guo <samin.guo@starfivetech.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clockchips.h>
-> +#include <linux/clocksource.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/irq.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/sched_clock.h>
-> +
-> +/* Bias: Ch0-0x0, Ch1-0x40, Ch2-0x80, and so on. */
-> +#define JH7110_TIMER_CH_LEN            0x40
-> +#define JH7110_TIMER_CH_BASE(x)                ((x) * JH7110_TIMER_CH_LEN)
-> +
-> +#define JH7110_CLOCK_SOURCE_RATING     200
-> +#define JH7110_VALID_BITS              32
-> +#define JH7110_DELAY_US                        0
-> +#define JH7110_TIMEOUT_US              10000
-> +#define JH7110_CLOCKEVENT_RATING       300
-> +#define JH7110_TIMER_MAX_TICKS         0xffffffff
-> +#define JH7110_TIMER_MIN_TICKS         0xf
-> +#define JH7110_TIMER_NAME_NUM          20
-> +
-> +#define JH7110_TIMER_INT_STATUS                0x00 /* RO[0:4]: Interrupt Status for channel0~4 */
-> +#define JH7110_TIMER_CTL               0x04 /* RW[0]: 0-continuous run, 1-single run */
-> +#define JH7110_TIMER_LOAD              0x08 /* RW: load value to counter */
-> +#define JH7110_TIMER_ENABLE            0x10 /* RW[0]: timer enable register */
-> +#define JH7110_TIMER_RELOAD            0x14 /* RW: write 1 or 0 both reload counter */
-> +#define JH7110_TIMER_VALUE             0x18 /* RO: timer value register */
-> +#define JH7110_TIMER_INT_CLR           0x20 /* RW: timer interrupt clear register */
-> +#define JH7110_TIMER_INT_MASK          0x24 /* RW[0]: timer interrupt mask register */
-> +#define JH7110_TIMER_INT_CLR_AVA_MASK  BIT(1)
-> +
-> +enum JH7110_TIMER_CH {
-> +       JH7110_TIMER_CH_0 = 0,
-> +       JH7110_TIMER_CH_1,
-> +       JH7110_TIMER_CH_2,
-> +       JH7110_TIMER_CH_3,
-> +       JH7110_TIMER_CH_MAX
-> +};
+>It wasn't sent to any list.
 
-Usually enum names are not uppercase in kenel code. Also these names
-for 0, 1, 2, 3 doesn't really add any value.
-
-> +enum JH7110_TIMER_INTMASK {
-> +       JH7110_TIMER_INTMASK_DIS = 0,
-> +       JH7110_TIMER_INTMASK_ENA = 1
-> +};
-> +
-> +enum JH7110_TIMER_MOD {
-> +       JH7110_TIMER_MOD_CONTIN = 0,
-> +       JH7110_TIMER_MOD_SINGLE = 1
-> +};
-> +
-> +enum JH7110_TIMER_CTL_EN {
-> +       JH7110_TIMER_DIS = 0,
-> +       JH7110_TIMER_ENA = 1
-> +};
-> +
-> +struct jh7110_timer_info {
-> +       /* Resgister */
-> +       unsigned int ctrl;
-> +       unsigned int load;
-> +       unsigned int enable;
-> +       unsigned int reload;
-> +       unsigned int value;
-> +       unsigned int intclr;
-> +       unsigned int intmask;
-> +       unsigned int channel_base[JH7110_TIMER_CH_MAX];
-> +};
-> +
-> +struct jh7110_clkevt {
-> +       struct clock_event_device evt;
-> +       struct clocksource cs;
-> +       struct clk *clk;
-> +       char name[JH7110_TIMER_NAME_NUM];
-> +       int irq;
-> +       u32 periodic;
-> +       u32 rate;
-> +       u32 reload_val;
-> +       void __iomem *base;
-> +       void __iomem *ctrl;
-> +       void __iomem *load;
-> +       void __iomem *enable;
-> +       void __iomem *reload;
-> +       void __iomem *value;
-> +       void __iomem *intclr;
-> +       void __iomem *intmask;
-> +};
-> +
-> +struct jh7110_timer_priv {
-> +       struct device *dev;
-> +       void __iomem *base;
-> +       struct jh7110_clkevt clkevt[JH7110_TIMER_CH_MAX];
-> +};
-> +
-> +static const struct jh7110_timer_info jh7110_timer_data = {
-> +       .ctrl           = JH7110_TIMER_CTL,
-> +       .load           = JH7110_TIMER_LOAD,
-> +       .enable         = JH7110_TIMER_ENABLE,
-> +       .reload         = JH7110_TIMER_RELOAD,
-> +       .value          = JH7110_TIMER_VALUE,
-> +       .intclr         = JH7110_TIMER_INT_CLR,
-> +       .intmask        = JH7110_TIMER_INT_MASK,
-> +       .channel_base   = {JH7110_TIMER_CH_BASE(JH7110_TIMER_CH_0),
-> +                          JH7110_TIMER_CH_BASE(JH7110_TIMER_CH_1),
-> +                          JH7110_TIMER_CH_BASE(JH7110_TIMER_CH_2),
-> +                          JH7110_TIMER_CH_BASE(JH7110_TIMER_CH_3)},
-> +};
-
-This driver is specific to the JH7110, so why do you need this level
-of abstraction? Can't you just use the register offsets directly?
-
-> +static inline struct jh7110_clkevt *to_jh7110_clkevt(struct clock_event_device *evt)
-> +{
-> +       return container_of(evt, struct jh7110_clkevt, evt);
-> +}
-> +
-> +/* 0:continuous-run mode, 1:single-run mode */
-> +static inline void jh7110_timer_set_mod(struct jh7110_clkevt *clkevt, int mod)
-> +{
-> +       writel(mod, clkevt->ctrl);
-> +}
-
-You have an enum these two choices. Why not use that instead of the
-non-specific int type?
-
-> +/* Interrupt Mask Register, 0:Unmask, 1:Mask */
-> +static inline void jh7110_timer_int_enable(struct jh7110_clkevt *clkevt)
-> +{
-> +       writel(JH7110_TIMER_INTMASK_DIS, clkevt->intmask);
-> +}
-> +
-> +static inline void jh7110_timer_int_disable(struct jh7110_clkevt *clkevt)
-> +{
-> +       writel(JH7110_TIMER_INTMASK_ENA, clkevt->intmask);
-> +}
-> +
-> +/*
-> + * BIT(0): Read value represent channel intr status.
-> + * Write 1 to this bit to clear interrupt. Write 0 has no effects.
-> + * BIT(1): "1" means that it is clearing interrupt. BIT(0) can not be written.
-> + */
-> +static inline int jh7110_timer_int_clear(struct jh7110_clkevt *clkevt)
-> +{
-> +       u32 value;
-> +       int ret;
-> +
-> +       /* waiting interrupt can be to clearing */
-> +       ret = readl_poll_timeout_atomic(clkevt->intclr, value,
-> +                                       !(value & JH7110_TIMER_INT_CLR_AVA_MASK),
-> +                                       JH7110_DELAY_US, JH7110_TIMEOUT_US);
-> +       if (!ret)
-> +               writel(0x1, clkevt->intclr);
-> +
-> +       return ret;
-> +}
-> +
-> +/*
-> + * The initial value to be loaded into the
-> + * counter and is also used as the reload value.
-> + * val = clock rate --> 1s
-> + */
-> +static inline void jh7110_timer_set_load(struct jh7110_clkevt *clkevt, u32 val)
-> +{
-> +       writel(val, clkevt->load);
-> +}
-> +
-> +static inline u32 jh7110_timer_get_val(struct jh7110_clkevt *clkevt)
-> +{
-> +       return readl(clkevt->value);
-> +}
-
-Do these wrappers really add any value? To me this is just as clear:
-
-writel(clkevt->base + JH7110_TIMER_LOAD, val);
-
-Same goes for the wrappers below.
-
-> +/*
-> + * Write RELOAD register to reload preset value to counter.
-> + * Write 0 and write 1 are both ok.
-> + */
-> +static inline void jh7110_timer_set_reload(struct jh7110_clkevt *clkevt)
-> +{
-> +       writel(0, clkevt->reload);
-> +}
-> +
-> +static inline void jh7110_timer_enable(struct jh7110_clkevt *clkevt)
-> +{
-> +       writel(JH7110_TIMER_ENA, clkevt->enable);
-> +}
-> +
-> +static inline void jh7110_timer_disable(struct jh7110_clkevt *clkevt)
-> +{
-> +       writel(JH7110_TIMER_DIS, clkevt->enable);
-> +}
-> +
-> +static int jh7110_timer_int_init_enable(struct jh7110_clkevt *clkevt)
-> +{
-> +       int ret;
-> +
-> +       jh7110_timer_int_disable(clkevt);
-> +       ret = jh7110_timer_int_clear(clkevt);
-> +       if (ret)
-> +               return ret;
-> +
-> +       jh7110_timer_int_enable(clkevt);
-> +       jh7110_timer_enable(clkevt);
-> +
-> +       return 0;
-> +}
-> +
-> +static int jh7110_timer_shutdown(struct clock_event_device *evt)
-> +{
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       jh7110_timer_disable(clkevt);
-> +       return jh7110_timer_int_clear(clkevt);
-> +}
-> +
-> +static void jh7110_timer_suspend(struct clock_event_device *evt)
-> +{
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       clkevt->reload_val = jh7110_timer_get_val(clkevt);
-> +       jh7110_timer_shutdown(evt);
-> +}
-> +
-> +static void jh7110_timer_resume(struct clock_event_device *evt)
-> +{
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       jh7110_timer_set_load(clkevt, clkevt->reload_val);
-> +       jh7110_timer_set_reload(clkevt);
-> +       jh7110_timer_int_enable(clkevt);
-> +       jh7110_timer_enable(clkevt);
-> +}
-> +
-> +static int jh7110_timer_tick_resume(struct clock_event_device *evt)
-> +{
-> +       jh7110_timer_resume(evt);
-> +
-> +       return 0;
-> +}
-> +
-> +static u64 jh7110_timer_clocksource_read(struct clocksource *cs)
-> +{
-> +       struct jh7110_clkevt *clkevt = container_of(cs, struct jh7110_clkevt, cs);
-> +
-> +       return (u64)jh7110_timer_get_val(clkevt);
-> +}
-> +
-> +static int jh7110_clocksource_init(struct jh7110_clkevt *clkevt)
-> +{
-> +       int ret;
-> +
-> +       jh7110_timer_set_mod(clkevt, JH7110_TIMER_MOD_CONTIN);
-> +       jh7110_timer_set_load(clkevt, JH7110_TIMER_MAX_TICKS);
-> +
-> +       ret = jh7110_timer_int_init_enable(clkevt);
-> +       if (ret)
-> +               return ret;
-> +
-> +       clkevt->cs.name = clkevt->name;
-> +       clkevt->cs.rating = JH7110_CLOCK_SOURCE_RATING;
-> +       clkevt->cs.read = jh7110_timer_clocksource_read;
-> +       clkevt->cs.mask = CLOCKSOURCE_MASK(JH7110_VALID_BITS);
-> +       clkevt->cs.flags = CLOCK_SOURCE_IS_CONTINUOUS;
-> +
-> +       return clocksource_register_hz(&clkevt->cs, clkevt->rate);
-> +}
-> +
-> +/* IRQ handler for the timer */
-> +static irqreturn_t jh7110_timer_interrupt(int irq, void *priv)
-> +{
-> +       struct clock_event_device *evt = (struct clock_event_device *)priv;
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       if (jh7110_timer_int_clear(clkevt))
-> +               return IRQ_NONE;
-> +
-> +       if (evt->event_handler)
-> +               evt->event_handler(evt);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int jh7110_timer_set_periodic(struct clock_event_device *evt)
-> +{
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       clkevt->periodic = DIV_ROUND_CLOSEST(clkevt->rate, HZ);
-> +       jh7110_timer_disable(clkevt);
-> +       jh7110_timer_set_mod(clkevt, JH7110_TIMER_MOD_CONTIN);
-> +       jh7110_timer_set_load(clkevt, clkevt->periodic);
-> +
-> +       return jh7110_timer_int_init_enable(clkevt);
-> +}
-> +
-> +static int jh7110_timer_set_oneshot(struct clock_event_device *evt)
-> +{
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       jh7110_timer_disable(clkevt);
-> +       jh7110_timer_set_mod(clkevt, JH7110_TIMER_MOD_SINGLE);
-> +       jh7110_timer_set_load(clkevt, JH7110_TIMER_MAX_TICKS);
-> +
-> +       return jh7110_timer_int_init_enable(clkevt);
-> +}
-> +
-> +static int jh7110_timer_set_next_event(unsigned long next,
-> +                                      struct clock_event_device *evt)
-> +{
-> +       struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
-> +
-> +       jh7110_timer_disable(clkevt);
-> +       jh7110_timer_set_mod(clkevt, JH7110_TIMER_MOD_SINGLE);
-> +       jh7110_timer_set_load(clkevt, next);
-> +       jh7110_timer_enable(clkevt);
-> +
-> +       return 0;
-> +}
-> +
-> +static void jh7110_set_clockevent(struct clock_event_device *evt)
-> +{
-> +       evt->features = CLOCK_EVT_FEAT_PERIODIC |
-> +                       CLOCK_EVT_FEAT_ONESHOT |
-> +                       CLOCK_EVT_FEAT_DYNIRQ;
-> +       evt->set_state_shutdown = jh7110_timer_shutdown;
-> +       evt->set_state_periodic = jh7110_timer_set_periodic;
-> +       evt->set_state_oneshot = jh7110_timer_set_oneshot;
-> +       evt->set_state_oneshot_stopped = jh7110_timer_shutdown;
-> +       evt->tick_resume = jh7110_timer_tick_resume;
-> +       evt->set_next_event = jh7110_timer_set_next_event;
-> +       evt->suspend = jh7110_timer_suspend;
-> +       evt->resume = jh7110_timer_resume;
-> +       evt->rating = JH7110_CLOCKEVENT_RATING;
-> +}
-> +
-> +static void jh7110_clockevents_register(struct jh7110_clkevt *clkevt)
-> +{
-> +       clkevt->rate = clk_get_rate(clkevt->clk);
-> +
-> +       jh7110_set_clockevent(&clkevt->evt);
-> +       clkevt->evt.name = clkevt->name;
-> +       clkevt->evt.irq = clkevt->irq;
-> +       clkevt->evt.cpumask = cpu_possible_mask;
-> +
-> +       clockevents_config_and_register(&clkevt->evt, clkevt->rate,
-> +                                       JH7110_TIMER_MIN_TICKS, JH7110_TIMER_MAX_TICKS);
-> +}
-> +
-> +static void jh7110_clkevt_base_init(const struct jh7110_timer_info *data,
-> +                                   struct jh7110_clkevt *clkevt,
-> +                                   void __iomem *base, int ch)
-> +{
-> +       void __iomem *channel_base;
-> +
-> +       channel_base = base + data->channel_base[ch];
-> +       clkevt->base = channel_base;
-> +       clkevt->ctrl = channel_base + data->ctrl;
-> +       clkevt->load = channel_base + data->load;
-> +       clkevt->enable = channel_base + data->enable;
-> +       clkevt->reload = channel_base + data->reload;
-> +       clkevt->value = channel_base + data->value;
-> +       clkevt->intclr = channel_base + data->intclr;
-> +       clkevt->intmask = channel_base + data->intmask;
-> +}
-> +
-> +static int jh7110_timer_probe(struct platform_device *pdev)
-> +{
-> +       const struct jh7110_timer_info *data = of_device_get_match_data(&pdev->dev);
-> +       char name[JH7110_TIMER_NAME_NUM];
-> +       struct jh7110_timer_priv *priv;
-> +       struct jh7110_clkevt *clkevt;
-> +       struct clk *pclk;
-> +       struct reset_control *rst;
-> +       int ch;
-> +       int ret;
-> +
-> +       if (!data)
-> +               return -ENOENT;
-> +
-> +       priv = devm_kzalloc(&pdev->dev, struct_size(priv, clkevt, JH7110_TIMER_CH_MAX),
-> +                           GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       priv->base = devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(priv->base))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->base),
-> +                                    "failed to map registers\n");
-> +
-> +       rst = devm_reset_control_get_exclusive(&pdev->dev, "apb");
-> +       if (IS_ERR(rst))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(rst), "failed to get apb reset\n");
-> +
-> +       pclk = devm_clk_get_enabled(&pdev->dev, "apb");
-> +       if (IS_ERR(pclk))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(pclk),
-> +                                    "failed to get & enable apb clock\n");
-> +
-> +       ret = reset_control_deassert(rst);
-> +       if (ret)
-> +               goto err;
-
-You get and enable the clocks with devm_clk_get_enabled(), so they
-will be automatically disabled and put when the driver is unloaded, so
-why do you need the explicit call to clk_disable_unprepare() below?
-
-> +
-> +       priv->dev = &pdev->dev;
-> +       platform_set_drvdata(pdev, priv);
-> +
-> +       for (ch = 0; ch < JH7110_TIMER_CH_MAX; ch++) {
-> +               clkevt = &priv->clkevt[ch];
-> +               snprintf(name, sizeof(name), "ch%d", ch);
-> +
-> +               jh7110_clkevt_base_init(data, clkevt, priv->base, ch);
-> +               /* Ensure timers are disabled */
-> +               jh7110_timer_disable(clkevt);
-> +
-> +               rst = devm_reset_control_get_exclusive(&pdev->dev, name);
-> +               if (IS_ERR(rst)) {
-> +                       ret = PTR_ERR(rst);
-> +                       goto err;
-> +               }
-> +
-> +               clkevt->clk = devm_clk_get_enabled(&pdev->dev, name);
-> +               if (IS_ERR(clkevt->clk)) {
-> +                       ret = PTR_ERR(clkevt->clk);
-> +                       goto err;
-> +               }
-> +
-> +               ret = reset_control_deassert(rst);
-> +               if (ret)
-> +                       goto ch_err;
-> +
-> +               clkevt->irq = platform_get_irq(pdev, ch);
-> +               if (clkevt->irq < 0) {
-> +                       ret = clkevt->irq;
-> +                       goto ch_err;
-> +               }
-> +
-> +               snprintf(clkevt->name, sizeof(clkevt->name), "%s.ch%d", pdev->name, ch);
-> +               jh7110_clockevents_register(clkevt);
-> +
-> +               ret = devm_request_irq(&pdev->dev, clkevt->irq, jh7110_timer_interrupt,
-> +                                      IRQF_TIMER | IRQF_IRQPOLL,
-> +                                      clkevt->name, &clkevt->evt);
-> +               if (ret)
-> +                       goto ch_err;
-> +
-> +               ret = jh7110_clocksource_init(clkevt);
-> +               if (ret)
-> +                       goto ch_err;
-> +       }
-> +
-> +       return 0;
-> +
-> +ch_err:
-> +       for (; ch < 0; ch--)
-> +               clk_disable_unprepare(priv->clkevt[ch].clk);
-> +err:
-> +       clk_disable_unprepare(pclk);
-> +
-> +       return ret;
-> +}
-> +
-> +static const struct of_device_id jh7110_timer_match[] = {
-> +       { .compatible = "starfive,jh7110-timer", .data = &jh7110_timer_data },
-
-This driver only works on the JH7110, so why do you need this match data?
-
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, jh7110_timer_match);
-> +
-> +static struct platform_driver jh7110_timer_driver = {
-> +       .probe = jh7110_timer_probe,
-> +       .driver = {
-> +               .name = "jh7110-timer",
-> +               .of_match_table = jh7110_timer_match,
-> +       },
-> +};
-> +module_platform_driver(jh7110_timer_driver);
-> +
-> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
-> +MODULE_DESCRIPTION("StarFive JH7110 timer driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+I see. Let me clone your regulator repository, and send you a new patch.
