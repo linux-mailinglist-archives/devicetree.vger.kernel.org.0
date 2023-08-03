@@ -2,136 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E4076E3B6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D84A776E3C6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234861AbjHCI5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 04:57:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41682 "EHLO
+        id S234878AbjHCI6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 04:58:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234172AbjHCI47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:56:59 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7366AE43
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 01:56:57 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qRU8W-0000PT-EI; Thu, 03 Aug 2023 10:56:48 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qRU8U-000nhX-7v; Thu, 03 Aug 2023 10:56:46 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qRU8T-00A6Il-JQ; Thu, 03 Aug 2023 10:56:45 +0200
-Date:   Thu, 3 Aug 2023 10:56:45 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     =?utf-8?Q?Rapha=C3=ABl?= Gallais-Pou <rgallaispou@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: st: convert sti-pwm to DT schema
-Message-ID: <20230803085645.svrrcritdifbjwdz@pengutronix.de>
-References: <20230801220559.32530-1-rgallaispou@gmail.com>
- <20230802080238.d3nam6elnern65rb@pengutronix.de>
- <8e74af01-36c6-3a41-6d31-91b09ea62026@gmail.com>
+        with ESMTP id S234876AbjHCI5w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:57:52 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA3F198C
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 01:57:42 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-564a0d2d35eso150217a12.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 01:57:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1691053061; x=1691657861;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yLuMaVJQRwFXzrj2KAyjh6dQRHn4ylta+xeHAhU0hZc=;
+        b=Bu0D3tGjQV9Pc4NF3RI5B5EiGg4B5cv6DLumG8NB9wnCVaSTXNEZzxw48JRUczYBZg
+         zia2PWyNqRQVA1lY1qZBnJ95b8Kr3cIHSKrJ+uLCY5rcKIWSx6IDWM8IryDShuLSGoE5
+         pn9BtS0M7KZ4IzyfSh0JZ0j6l5cXaQojDx7yqnjlwtlmOnpvMJnlEs6kfTLnZCkEqAiU
+         D14t5UbsxeVCvzkkUSbJhYQ8kVoIOwIZDDmcEvkSF3lTBYlUBm0nnfSfKvF+pX3pa0gD
+         Dl1uFzTOlCW3eVyT7CNUSofcEAwnHXRh5EUHt9kC4E0DQEhfSNDOz8JZAG2r6AqJmufg
+         +xHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691053061; x=1691657861;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yLuMaVJQRwFXzrj2KAyjh6dQRHn4ylta+xeHAhU0hZc=;
+        b=OIiilk4NMAxgV7LzL4FUIzEqpm0GYruN2xSy+OxJVTSGr/XoiJPJbzWLzeZDw/Irpq
+         OtvPvRQ0GW9F3eDgncmtVG0xhXSXLJk3SC26CxqHrDI33SetteF0ived8B5mzUJehnfF
+         1hs6o9qyMCbd30RmA/Ujy2wepq1kUQEV7kPKhtFOFsK83mTSBee8I66lwqVR9azTZAIZ
+         0MYdTj9ng/XfEknSa+unayNXtVeQoh3DxUxhytbtfgHtFc4Q3ngDYpY5N8tsioTq6p2X
+         6Kw088vT5IYI4sKR9F03k3UkiQDaJHmF0Du4HY/Po8kBFF3it5Pt4/mGV6cW+5jB9Uy2
+         0Bjw==
+X-Gm-Message-State: ABy/qLZW9W+4tLwXLNwJUIADSl1oNUPlRkC/by7btZRVQidQKIKafgpu
+        K0m6lEH56GeFn8WBcaDOTIQMJ+fBhabshNlEHa8=
+X-Google-Smtp-Source: APBJJlGnnPb//8k65nNPvHDIdInt/WndMpdPrnE5Y80vvoLgTBTdyYd4KLPnCWV1uD6o2WUos8NKPg==
+X-Received: by 2002:a17:90a:a592:b0:268:daa4:3a70 with SMTP id b18-20020a17090aa59200b00268daa43a70mr8066701pjq.32.1691053061337;
+        Thu, 03 Aug 2023 01:57:41 -0700 (PDT)
+Received: from hsinchu15.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id i6-20020a633c46000000b0056334a7b9b2sm12941735pgn.33.2023.08.03.01.57.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 01:57:40 -0700 (PDT)
+From:   Nylon Chen <nylon.chen@sifive.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        geert+renesas@glider.be, pavel@ucw.cz, vincent.chen@sifive.com,
+        nylon.chen@sifive.com, emil.renner.berthing@canonical.com,
+        aou@eecs.berkeley.edu, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor@kernel.org, zong.li@sifive.com
+Subject: [PATCH v4 0/1] Change PWM-controlled LED pin active mode and algorithm
+Date:   Thu,  3 Aug 2023 16:57:33 +0800
+Message-Id: <20230803085734.340-1-nylon.chen@sifive.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qtjumvqtwxq43ajp"
-Content-Disposition: inline
-In-Reply-To: <8e74af01-36c6-3a41-6d31-91b09ea62026@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+According to the circuit diagram of User LEDs - RGB described in themanual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
 
---qtjumvqtwxq43ajp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The behavior of PWM is acitve-high.
 
-On Thu, Aug 03, 2023 at 09:18:14AM +0200, Rapha=EBl Gallais-Pou wrote:
-> Hi
->=20
-> Le 02/08/2023 =E0 10:02, Uwe Kleine-K=F6nig a =E9crit=A0:
-> > Hello,
-> >=20
-> > On Wed, Aug 02, 2023 at 12:05:59AM +0200, Raphael Gallais-Pou wrote:
-> > > +  st,capture-num-chan:
-> > > +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> > > +    description: Number of available Capture channels.
-> >=20
-> > I have the theory that nobody actually uses the capture feature and I'd
-> > like to get rid of it. People who do use it, should better switch to the
-> > counter driver.
->=20
-> TBH I only found two drivers using it, including this one.
->=20
-> $ grep -rinI "\.capture" drivers/pwm/ | wc -l
-> 2
+Removed patches: 1
+New patches: (none)
 
-Right, there is pwm-stm32 and pwm-sti that support capture.
+Links:
+- [0]:  https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
+- [1]:  https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
+- [2]:  https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
 
-There are a few machines that have a st,sti-pwm device:
+Changed in v4:
+ - Remove previous updates to the PWM algorithm.
 
-	$ grep -rl st,sti-pwm arch/arm/boot/dts/*.dtb
-	arch/arm/boot/dts/stih407-b2120.dtb
-	arch/arm/boot/dts/stih410-b2120.dtb
-	arch/arm/boot/dts/stih410-b2260.dtb
-	arch/arm/boot/dts/stih418-b2199.dtb
-	arch/arm/boot/dts/stih418-b2264.dtb
+Changed in v3:
+ - Convert the reference link to standard link.
+ - Move the inverted function before taking the minimum value.
+ - Change polarity check condition(high and low).
+ - Pick the biggest period length possible that is not bigger than the
+   requested period.
 
-but to actually use capture the device tree must have a property
-st,capture-num-chan. "st,capture-num-chan" isn't set by any of the
-devices.
+Changed in v2:
+ - Convert the reference link to standard link.
+ - Fix typo: s/sifive unmatched:/sifive: unmatched:/.
+ - Remove active-low from hifive-unleashed-a00.dts.
+ - Include this reference link in the dts and pwm commit messages.
 
-I think for stm32 it's not that trivial to show that it's unused.
-While the capture code isn't a big maintenance burden, I still would
-prefer to get rid of it if nobody uses it. Still more given that there
-are better alternatives available.
 
-> If there is no opposition about removing this feature I suggest to do it =
-in
-> a second time, in a serie.
+Nylon Chen (1):
+  riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's
+    active-low properties
 
-Does that mean you will do that? I guess not, but at least this means
-you're not using capture support.
+ arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 4 ----
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ----
+ 2 files changed, 8 deletions(-)
 
-Best regards
-Uwe
+-- 
+2.40.1
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---qtjumvqtwxq43ajp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmTLa8wACgkQj4D7WH0S
-/k5kqAf5AUlS1PFYKiPBmxelcFtkKh5q7ONNjSqWzlujDKL9ZKQemH6LC5WnHobm
-I97fyE6PD/asmAvBJ41YzCGUIxQyqK7JnLKrKYwQuVOPojcx/Dbvh599hFwxq3Vf
-ySU3AUjuH0Ynilp2NDui50nPMSHt/Y0OFNuyBsDz5fvxvmf/nJ9pKN7+QRHEWkxv
-+yGub7i28h5kXue2v8OUPz5fO3BV6K4HkYeZwhh4hJNSEdx9uuJMbgwW/PktREWU
-uAY6VQyHi+jOf5kDaWA9fpKBDKyNIYmNg2dU20lzB91M2RRlpfHr7R6PLhzjQJbv
-CjOIRmhHKn+VbdvMg1FQw1E5HM45og==
-=71Vl
------END PGP SIGNATURE-----
-
---qtjumvqtwxq43ajp--
