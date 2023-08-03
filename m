@@ -2,75 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2AE976F3DD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCD276F3E4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbjHCUKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 16:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43532 "EHLO
+        id S231786AbjHCUOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 16:14:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjHCUKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:10:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C33420F;
-        Thu,  3 Aug 2023 13:10:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DC45D61E59;
-        Thu,  3 Aug 2023 20:10:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 463E1C433C9;
-        Thu,  3 Aug 2023 20:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691093445;
-        bh=rRqWLzad4aYTCLv6ApNU6Oinv4secXSUMatIH4Ddfbw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QjVnoLJuhpzo+LVf5FxzVfxf7yERbuR73Vpqbu8gQy3L+cf9TsrVNciOqPwf0hmm7
-         MKSs9DW/8T/MfqHNOP+6a3JfhJEYw3z1KiS12SUFQ84wcNWLaYCfLkl2GgTpitO1L0
-         D7PnYJTtjts85h5Am9c9D9JCABDKeAq+DoD9TZ8w3t0Wm2MkJj7Ic6m54LqfHgBgNg
-         oqsP38kdvLo1OO8Ib+liKFEKp+OuWZwZxndHXr1SdPyUtCoEh7mbf0vPC8XBxFYKLq
-         cQ0NOimg4T+CnfjdGg7XVapzbgXk1olWoR0gGnYZEzQG23uMqDmc5ZK6gEUeP/XrqK
-         icDmarkKOeNPw==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b9a828c920so20848161fa.1;
-        Thu, 03 Aug 2023 13:10:45 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yy0l8ZS3iJbJ2LNTwRsCcUO1xlDTyUv4LOB/UbE04UoUGyD3MqC
-        oD1CuOVnLqse6y6eXd6QmSeRQ/brk8hxZLwA2g==
-X-Google-Smtp-Source: AGHT+IE8fLe5MbJV69kyUFyJY/X3Z5LLAhMuRB6XwAHzqyccpuPqPwBNAC1U7wPXbTbUefmajp7PmI0PgtW94DVwLxA=
-X-Received: by 2002:a2e:7202:0:b0:2ba:18e5:106f with SMTP id
- n2-20020a2e7202000000b002ba18e5106fmr781135ljc.30.1691093443210; Thu, 03 Aug
- 2023 13:10:43 -0700 (PDT)
+        with ESMTP id S229446AbjHCUOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:14:04 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2044.outbound.protection.outlook.com [40.107.8.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF751712;
+        Thu,  3 Aug 2023 13:14:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FhHY99pW7VYrZZyW6U4h9OU3b69zJO5HtclnqTfvU9DKbu+gzQlu6Dl/ARNCRbvPzEotHANbdlNBP/JNxPnyuixOwJRrj9e5bB1qQQMgynpaCoFRQIFv+uLh+0ll/0QpLAbCK5F+GzLdXJHSAjRN08ZYha9rbOPetV6oDIY0IaNS3kfolfd8JRmCNK92jknm7LG62u413UJn5VzZEi/IW830V3tt174uFq/R0XePTlVqJBhRbcL3xzB+p7pCkjHzKErAhP2zCIAMQ6gWaUvDULZqCUicQm+/Y/8NKwIxS2QGIDVMSyU9tW4sctcWN5dF3qBpTcSDUU6wY0jmN80FiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cvPI1iVYMBth950TZCNYwnLFEwJbwbjyRIULNsaab90=;
+ b=YVir59KkfWY63+XyGvJdcd/79LC6Ydkl60Y5XJOPqC8BfmvFTI+hI9uurqDDylA+Dn0umxaSsBiNMmh1DND6xUzyVexhqOwStsER3iGk95JjP8cAxNb0Ko9Y6WkdzkhJJVpF/dib26hYb4FPwG5YOl9KgsLaPNrs9J+Wt6MrSXSiCA6vGJQJNkXc3qGBuFvQpZMqQeHDI8hte4EKnqMXWYvMbyYG4ZzH1ISM9/6u0ndJOU5n2egM5oEgybbUUEGGYFa4b43XcRGTs7bcfwtHuwR6YIgfm+0RUXzjPA+VrrVt3cl4zddABWI9bkYfMc3Z3HP6nh/ABCw/slYc11hyjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cvPI1iVYMBth950TZCNYwnLFEwJbwbjyRIULNsaab90=;
+ b=XcigGzstWzRYhM7ArMZu8Y3DKN216a5DPmctnKLbEvd1m2Sa4td/PzzNtXcVpImuaZ1+GGEEbh0DrK3KIIthNRAMQ2Dqlt8O8paA9Sf3p9OCPj+hb7MEjUoOA6/G8usJ4DfuaH8QNYv/9pbPPRgwzSkXLsDqHmP62ECbT7hYHJY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by DU0PR08MB8277.eurprd08.prod.outlook.com (2603:10a6:10:40f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Thu, 3 Aug
+ 2023 20:14:00 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::9d1a:4539:a8f8:dd60]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::9d1a:4539:a8f8:dd60%7]) with mapi id 15.20.6631.046; Thu, 3 Aug 2023
+ 20:14:00 +0000
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Subject: [PATCH v2 0/3] drm/panel: sitronix-st7789v: add panel orientation
+ support
+Date:   Thu, 03 Aug 2023 22:13:47 +0200
+Message-Id: <20230718-feature-st7789v-v2-0-207cb1baea0f@wolfvision.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHsKzGQC/3WOwQ6DIBAFf8XsudsAGtGe+h+NB4S1khhsAGkbw
+ 7+X2nOPM8nLvB0CeUsBLtUOnpINdnUFxKkCPSt3J7SmMAgmaiZ5hxOpuHnCEKXs+oSNYVrolkQ
+ jeiirUQXC0Sun57Jz27IU+fA02deRuQ2FZxvi6t9HNfGv/R9IHBnK1rRa9WPNTXd9rsv0e3p2F
+ GHIOX8A3PxQTMgAAAA=
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691093639; l=1301;
+ i=michael.riesch@wolfvision.net; s=20230425; h=from:subject:message-id;
+ bh=pWS+L59LeT6fJyyBipZIrBzSA/Dcwys16bLwyZu4IFk=;
+ b=AlqMDVYr17+Vgj7VhkHdvX8dkPOXPfvPHfRToBjmtmXV1eTYo7/CRo6ROGSsUDPUG+GrbcREF
+ iUUShZGW2QEAWx71hZFXhtNJ75JaQt7lAbOYVMxLCybp5/0M2hX01dF
+X-Developer-Key: i=michael.riesch@wolfvision.net; a=ed25519;
+ pk=1QQdXA2QbwdxaQn/VQK0hz04C8IBYhDowbK0hlNU4Ng=
+X-ClientProxiedBy: VI1PR06CA0212.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::33) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 MIME-Version: 1.0
-References: <20230721161840.1393996-1-hugo@hugovil.com> <20230721161840.1393996-7-hugo@hugovil.com>
- <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
- <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com> <2023072240-supremacy-shallot-a77f@gregkh>
- <20230724115428.d191186852c0bd0ee0d78398@hugovil.com> <CAL_JsqL8rjwONd6UAitKik0U44BKSD6m8zbachgfq0R9oHBW8w@mail.gmail.com>
- <20230731124600.39eb8d5c132f9338c2897543@hugovil.com> <CAL_JsqLaF70hNQndXpJfmH1TMGNbA7myQG0GK9fjyKOs63z-3w@mail.gmail.com>
- <20230731144115.14733f0e01f586a7efb91370@hugovil.com> <20230803135401.3a11bfb7c2985c1a90a2521b@hugovil.com>
-In-Reply-To: <20230803135401.3a11bfb7c2985c1a90a2521b@hugovil.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 3 Aug 2023 14:10:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK-qbz=w2a00EXh_e1XmY1gF1nvxih7AOYXw+VuMXhnmw@mail.gmail.com>
-Message-ID: <CAL_JsqK-qbz=w2a00EXh_e1XmY1gF1nvxih7AOYXw+VuMXhnmw@mail.gmail.com>
-Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
- GPIO configuration
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DU0PR08MB8277:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f8fd2fb-ccd4-42af-636c-08db945e2cb4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: psCM1qn3g1sutO+8naop3YyVtLSsIIrlbvSc8QreDEMRgSeF/xGCaTUS08xMVzAXuam6IxnlDuNL5hwLUw9gapOrCWkn0U6aw0QF5fJC7CFYoYfYSYoolfUgJ64nSs/DFRsetuyBSe81CDY1uFuWeOF+Wotwlq9mjVLVYvvflS+fPD5oDy8FwkOPmbAnoA2zHJYWVAyo+Go7QxZp3iNUJF1nALdpAjIFDKFK0d4X5KkPXIgf9Wjh1dqwcxgK2trvPwgCKHAoPK3LVcfyKfHHZQNa+WA624+TDs3vnPSlRvvguyP+LmRjhNqdb4+OIZC7vI9YsKyPGNPde2UsCuTaUHuBklS7JIMbpInV9vd2oC13DdmR8iAkHrAls9jqYUqNpf1GTSroykYqjtjbdaXDYNWHC5pxhUeFw7FNMDQ4uDVKPhbDbCK2oLF1OgycCBt6JCqm7nqVYlB5Y8zJHGLYzfZSJLt5A96VIEPEqGj3shYWdg6fAREzZ/KbSNxC9rrkhyi+Z/9FKupPPUp1dG1NqytgMcEV2OnG39Z4oD9abj8BNLiLOdu3l7UGJamEoBO/E/3JSAgUDHHh2v+tFEDjqXFbzP30hRyxmoCVp+vHAEWZRZxdJDz3d5RDWSvTAB2+
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(366004)(39840400004)(136003)(346002)(451199021)(2616005)(6506007)(186003)(8676002)(83380400001)(26005)(66476007)(2906002)(316002)(66556008)(6636002)(4326008)(66946007)(5660300002)(7416002)(44832011)(8936002)(41300700001)(966005)(6666004)(6486002)(6512007)(54906003)(52116002)(110136005)(478600001)(38350700002)(921005)(38100700002)(36756003)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmgrMWZhc3p2N2plaVlLb01lSjREeHE0UHJWSktEZnBQQS81cGlvUnJYa2Nn?=
+ =?utf-8?B?U2xXTW5jUjlvNkVmWkJ2MnFwRjZwNEdvZ1JvZ2UzcUFxbjRpM3J5ckJwZmpR?=
+ =?utf-8?B?WXNNT2xRQUNNS2pSZXk0bnJ2TWpaOWtiZGFkUEdydy9GY1gvNHgvb21QdGpp?=
+ =?utf-8?B?U2JFRFVRUkpXRmZCa2dYcS80cGhNcGtjekdOTVhpWmdXRmZHVVBaVkQyeXlr?=
+ =?utf-8?B?VnlXd1laNTdod0tRWEpIcVNYcldIT04yUnZxTDZnakVPdzZPc0RZaEVtYlFj?=
+ =?utf-8?B?MkxMNW5XcmRmVUFEMS9QamxQUE1mMldub3lSbVUrQ3dtRHh4a3UvT09DbVdI?=
+ =?utf-8?B?OUZhQkV2UVBSazlNTHpwUUg2ck56aVQrRENuQ051ci9LNnBWejBPUWJ2R2pr?=
+ =?utf-8?B?Uzl1VHhKTG96N2VKbnpOWFFQUnVTNXF0N0pLSmFFKy9hUTdpWlV5NktVZkZt?=
+ =?utf-8?B?ZkYwVkxVUXQwdDhIMWFPeFErU2twdS9FenFNYnlBSW1IeUM0NlRqalhZNk43?=
+ =?utf-8?B?TU0vYUwyWk1pakJYQnllS21qU1NxUTI4MW1oMnVFc3ZxKzRWdkl2c3d4Rytl?=
+ =?utf-8?B?bzUwaGV0VnpKVExOVFVWZ08zOGVJUDhhZUdVcE81QmdQZERRRDVUUWhpUm9k?=
+ =?utf-8?B?cGcyYjJIZGZyRjhqOFhzN1VvVkkvbytvYUQ0T1I5Zzd3ZmFBZ2cwRzB6MjlP?=
+ =?utf-8?B?bWRQQml4ZU9GTkt4cUFyUFpiMjBwTlRvb0s2akE2RnArdVhRbFo4RVY2UDFy?=
+ =?utf-8?B?VVJYRGwwMEp6RzRVWFV6MXQyR0l3TVlMc28weElwTk5zUFI2N2FoK3lLRGlF?=
+ =?utf-8?B?UGp2OFIyWTArUmdIQUpPUTM4UUdvMUVoTnZScG51OXpiVnRZNzBITUVGcmVx?=
+ =?utf-8?B?Y3JlNVBqWlVsOHJSd0MwRERnaHVMWTFvTTdUeHRaWjdxRjZnNU12cEFoM1c0?=
+ =?utf-8?B?Ynl0WFZ2elRYYXYwODVPL0o2OGREU2tFbDg3NkpsZFNnNmd4enR6alZrRHBJ?=
+ =?utf-8?B?SFp5TUhUSDRWVkxrZzBYcnE3ZUZDS3lpNTcwNFJOK0x4bmx2d0NOVmRndU9w?=
+ =?utf-8?B?SWsxU3IyWmVueHhsZUJ0WDNaQUhCSUtaOHlxYkdvVkFMTmJxclQ1VTFEZm5n?=
+ =?utf-8?B?aVYvUmR0QU5uY1c3bkYrUlkrU1pNMEIrUitTVXJlTjRmaDFUaFYwNVhMcE1N?=
+ =?utf-8?B?MGJ2dnlnNEJSbWRoQjZkMzRycHQyZk1NVlN5bllZUTVmVDNCbjRmRERyMmF0?=
+ =?utf-8?B?QXg1amdsbnhyZWg3Z3lRVWpKK0xiMU5BWEFTQ1lxN3JQN0VFM3RMTlNSOHdp?=
+ =?utf-8?B?T3VkR2tNemhsODlkWUViaWkzdGVjMjM5N2NZU1JPTWFyTEYvbW1NQ0xITGtp?=
+ =?utf-8?B?eEJETFVxUVg1VEdvNkZVam1mRENzNllQUkxZNklBL0ltcnFGWGpObU1mN1pM?=
+ =?utf-8?B?WnB3dXZkemErOTZIUTNQR1NvYjdPNks2K3NObEgyQnJodEwzR0FqRG14UmtO?=
+ =?utf-8?B?YVhXaThmSXI2S1VSZXh1cVVUczVpb1pLZU9KbzhuOUtsU2xTWkRTMnpsVjAw?=
+ =?utf-8?B?Wlh0SWJTbTNuUVpZSVZhVko5QUQyYWE3cDNWV0lDd2EweG82bkdrN1o3NDhl?=
+ =?utf-8?B?VWZ6NnZ6SE5TaVUxVHdzYUJXenZrTlphSEF1ZmRrTmVxdkovY29Xak1Cb2dK?=
+ =?utf-8?B?ZTBDa0lpUDlncy9aYTVRbkI2ZjNpaWdXOUtiRXJkWXl2VUNXdTBJY09jZ0Nw?=
+ =?utf-8?B?Vmx3V0QyUHYyRnZXWWIyOVlSYkJSeWRoTjF4VUdISmFKMGpZSWtIVldVVU42?=
+ =?utf-8?B?dmZmdXIycEVqeVNydmRvNURxQ25ueE9VYlVnQnFCMzBkZnJ5RlhCeEtmSTRJ?=
+ =?utf-8?B?TEduWXpibTFYYjBLTkdPSkFCNVViblozc05BeFVWYnF6b3g4RzBKNHFmWGNy?=
+ =?utf-8?B?ZTZPVkU1MUp1YWlXMDY3WDlKS01sMUlRVzdNTjZpdnpkc3h2N09OcTFtZjBL?=
+ =?utf-8?B?WWFZY1daZzgyQ0l3TGFwTVo1bXVGejc5aFhkTkIyVWZYSjRMcEZmdkNIdVFN?=
+ =?utf-8?B?S0MyTXVFS3RlUmUvYlBFc2NlNC9RWmRSMVlnV0pxZlo5QksrREVacjdIQ2tp?=
+ =?utf-8?B?T1JCV1l1RE1PVnR4VklXRkx0aW1qK2U1b1ZhOGl3eFA2T3cxNzZrK25PcW5G?=
+ =?utf-8?B?MVE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f8fd2fb-ccd4-42af-636c-08db945e2cb4
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2023 20:14:00.2221
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BLuTDEiwZfKyqxV4WbrQ8ItnYFHm03GzbpTvnDd0sV2K21GXpDfYtzQDPR1bKKF9N9rNv/0tP8k3d/JZo/KAoI3iu4gbch0mDbWQCe78Tzk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8277
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,166 +145,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 3, 2023 at 11:54=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.com> =
-wrote:
->
-> On Mon, 31 Jul 2023 14:41:15 -0400
-> Hugo Villeneuve <hugo@hugovil.com> wrote:
->
-> > On Mon, 31 Jul 2023 12:04:45 -0600
-> > Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > > On Mon, Jul 31, 2023 at 10:46=E2=80=AFAM Hugo Villeneuve <hugo@hugovi=
-l.com> wrote:
-> > > >
-> > > > On Mon, 31 Jul 2023 09:31:53 -0600
-> > > > Rob Herring <robh+dt@kernel.org> wrote:
-> > > >
-> > > > > On Mon, Jul 24, 2023 at 9:54=E2=80=AFAM Hugo Villeneuve <hugo@hug=
-ovil.com> wrote:
-> > > > > >
-> > > > > > On Sat, 22 Jul 2023 17:15:26 +0200
-> > > > > > Greg KH <gregkh@linuxfoundation.org> wrote:
-> > > > > >
-> > > > > > > On Sat, Jul 22, 2023 at 10:47:24AM -0400, Hugo Villeneuve wro=
-te:
-> > > > > > > > On Fri, 21 Jul 2023 13:24:19 -0600
-> > > > > > > > Rob Herring <robh+dt@kernel.org> wrote:
-> > > > > > > >
-> > > > > > > > > On Fri, Jul 21, 2023 at 10:19=E2=80=AFAM Hugo Villeneuve =
-<hugo@hugovil.com> wrote:
-> > > > > > > > > >
-> > > > > > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > > > > > > >
-> > > > > > > > > > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from mo=
-dem control lines")
-> > > > > > > > > > and commit 21144bab4f11 ("sc16is7xx: Handle modem statu=
-s lines")
-> > > > > > > > > > changed the function of the GPIOs pins to act as modem =
-control
-> > > > > > > > > > lines without any possibility of selecting GPIO functio=
-n.
-> > > > > > > > >
-> > > > > > > > > Requiring a new DT property is not fixing a kernel regres=
-sion. You
-> > > > > > > > > should be returning the kernel to original behavior and t=
-hen have a
-> > > > > > > > > new DT property for new behavior.
-> > > > > > > >
-> > > > > > > > Hi Rob,
-> > > > > > > > please read the entire patch history starting from V1
-> > > > > > > >  and you will understand why this course of action was
-> > > > > > > >  not selected.
-> > > > > > >
-> > > > > > > That's not going to happen, sorry, you need to explain it her=
-e, in this
-> > > > > > > patch series, why a specific action is being taken over anoth=
-er one, as
-> > > > > > > no one has time to go dig through past history, sorry.
-> > > > > >
-> > > > > > Hi Rob,
-> > > > > > I initially submitted a patch to revert the kernel to original
-> > > > > > behavior, but it created more problems because the patch was
-> > > > > > unfortunately split in two separate patches, and mixed with oth=
-er non
-> > > > > > closely-related changes. It was also noted to me that reverting=
- to the
-> > > > > > old behavior would break things for some users.
-> > > > > >
-> > > > > > It was suggested to me by a more experienced kernel developer t=
-o
-> > > > > > "suggest a fix, instead of hurrying a revert":
-> > > > > >
-> > > > > >     https://lkml.org/lkml/2023/5/17/758
-> > > > >
-> > > > > Do I have to go read this to decipher the justification and reaso=
-ning?
-> > > > > When Greg says "in this patch series", he means in the commit mes=
-sages
-> > > > > of the patches. You send v9 already and it doesn't have that. The
-> > > > > patchset needs to stand on its own summarizing any relevant prior
-> > > > > discussions.
-> > > > >
-> > > > > I never suggested doing a revert.
-> > > >
-> > > > Hi Rob,
-> > > > I am sorry, but this is exactly what I "deciphered" from your
-> > > > original email.
-> > > >
-> > > > I am trying very hard to understand exactly what you mean, but it i=
-s
-> > > > not that obvious for me. If something is not clear in my commit mes=
-sage,
-> > > > I will try to improve it. But before, let's try to focus on making =
-sure
-> > > > I understand more clearly what you want exactly.
-> > > >
-> > > > > Obviously, someone still wants the
-> > > > > new feature.
-> > > >
-> > > > I assume that you refer to the "new feature" as what was added in
-> > > > the commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem cont=
-rol
-> > > > lines")?
-> > >
-> > > Shrug. It's one of the 2 commits mentioned, I don't know which one
-> > > exactly. Whichever one changed default behavior from use GPIOs to use
-> > > modem ctrl lines.
-> > >
-> > > Reading it again, I *think* this patch is correct. Default behavior i=
-s
-> > > restored to use GPIOs. The DT property is needed to enable modem ctrl
-> > > lines.
-> >
-> > Hi,
-> > this is correct.
-> >
-> >
-> > > What's not okay is just saying, these platforms may or may not need a=
-n update:
-> > >
-> > >     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-> > >     mips/boot/dts/ingenic/cu1830-neo.dts
-> > >     mips/boot/dts/ingenic/cu1000-neo.dts
-> >
-> > Yes, my bad. I initially mentioned them and hoped to get some
-> > feedback, which I never got, and I kind of forgot about it.
-> >
-> > > You need to figure that out. Have you checked with maintainers of
-> > > these boards? When were they added and by who? At the same time or by
-> > > the same person would be a good indication the platform uses modem
-> > > ctrl lines. Or were these platforms in use before adding modem ctrl
-> > > support? Then they probably use GPIOs or nothing.
-> > >
-> > > If there are platforms which would regress if the modem ctrl feature
-> > > was just reverted, which ones are those?
-> >
-> > Ok, let me do some checks and get back to you on this.
->
-> Hi Rob,
-> for this board:
->     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
->
-> it uses a SC16IS740, which doesn't have any GPIOs nor modem
-> control lines, so no DT changes required.
->
-> For these two Ingenic boards:
->     mips/boot/dts/ingenic/cu1830-neo.dts
->     mips/boot/dts/ingenic/cu1000-neo.dts
->
-> They use a SC16IS752, which has shared modem control lines and GPIOs.
-> Unfortunately, the maintainers have not (yet) responded to my
-> inquiries. Also, I tried to search for schematics or block diagrams on
-> the net but couldn't find anything.
->
-> These platforms were in use before the patch to add the modem control
-> lines was added. Then like you said they probably use these shared
-> lines as GPIOs or nothing, so no DT changes would be required.
+Hi all,
 
-Okay, that's useful (please add to the commit msg).
+This series adds support for orientation specification in the device
+tree to the Sitronix ST7789V panel driver. 
 
-Still, what platform(s) need the modem control feature? Presumably
-that's whatever platform Lech and Tomasz work on. I guess given the
-Reviewed-by they are fine with needing a DT change.
+This is can be seen as reduced version of [0] (some things of [0] have
+been implemented in more general fashion in the scope of [1], other
+things have been rejected).
 
-Rob
+Looking forward to your comments!
+
+[0] https://lore.kernel.org/lkml/20230314115644.3775169-1-gerald.loacker@wolfvision.net/
+[1] https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
+
+---
+Changes in v2:
+- Move indentation fix to separate patch (as suggested by Neil)
+- Link to v1: https://lore.kernel.org/r/20230718-feature-st7789v-v1-0-76d6ca9b31d8@wolfvision.net
+
+---
+Michael Riesch (3):
+      drm/panel: sitronix-st7789v: fix indentation in drm_panel_funcs
+      drm/panel: sitronix-st7789v: add panel orientation support
+      dt-bindings: display: add rotation property to sitronix,st7789v
+
+ .../bindings/display/panel/sitronix,st7789v.yaml   |  2 ++
+ drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 28 ++++++++++++++++++----
+ 2 files changed, 25 insertions(+), 5 deletions(-)
+---
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+change-id: 20230718-feature-st7789v-4d0c2c6e2429
+
+Best regards,
+-- 
+Michael Riesch <michael.riesch@wolfvision.net>
+
