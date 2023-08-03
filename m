@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6651A76F5F2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 01:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BAAB76F5F5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 01:04:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231978AbjHCXEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 19:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44466 "EHLO
+        id S231897AbjHCXEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 19:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbjHCXEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 19:04:07 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6096826B6;
-        Thu,  3 Aug 2023 16:03:34 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1bbd2761f1bso12862535ad.2;
-        Thu, 03 Aug 2023 16:03:34 -0700 (PDT)
+        with ESMTP id S231265AbjHCXEI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 19:04:08 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB6A30FD;
+        Thu,  3 Aug 2023 16:03:35 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1bc34b32785so10840915ad.3;
+        Thu, 03 Aug 2023 16:03:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691103814; x=1691708614;
+        d=gmail.com; s=20221208; t=1691103815; x=1691708615;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FCqXZ3aIK41APZmJUyJtIADVAZfdOyyUdWhlq/zah+A=;
-        b=fDdnhKSG4bsPDkze8O0TyzQZbYZp6PewHRUfNahc+nCM4/zHnU/hC33jgPCn8WxNGI
-         PanrrHiN2ixafjxeVoWpUTdFgrePLV5gljn6hX41bIvgcyVDvYdy9XdEa8pJU6hb8p91
-         825Npwd8BrAs603s0OCIFp3X0lc1NvYzCIULip3Nu7I2+n4zfoFsJVAL0uKGqS8WTL6G
-         F1Pos0eVj3+fxcFo1XvpMnHv8NS/0a2uJwr1ULwQoq3UzFKmu/HOuh/0VoAkS0xmaKZ/
-         aYTcwtExKf8TMofcCaOzFse9RiByWN0X9J+52yaIupkdwp7d/FyXlocqIpbB1pb+iJKi
-         pidg==
+        bh=YxdVo0H4Ogsm6y1B4bh/ICRf8zL9r8pBxK6Ht1YN6QU=;
+        b=B1FXxq3xyAYEetNblcpVr3eqFdEVp27JMD86CR/EggjGafPeF6E0Qu787tQ5KXJGaT
+         v2cPuAg+C1i93EfB4TizxepVrFZH8lbPopNs//XFToHcKPt5EXql5L4sydDrtAEgDsvW
+         f2UVLu+Cpk0mTfsWlJMwdFU4oz6sy4l3L+mV/ekGiYJH1pmF1SfZBDh9hW+9YKLB/FHB
+         QHPhqIEhBEYI0QDXYfS2Fg2SYwf6oa9VXHPJ5cFl9WkyNe5Zhk8E2dYjAKBWGU11l3w1
+         kexodF7CcnK1IgEvhp6oc1Iwrt7FJ/5T8UGjWZXMGMCAd2UhG1T8XjCm6XfX7nwj69t4
+         eDEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691103814; x=1691708614;
+        d=1e100.net; s=20221208; t=1691103815; x=1691708615;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FCqXZ3aIK41APZmJUyJtIADVAZfdOyyUdWhlq/zah+A=;
-        b=REyDZYHhKdN4EmU3pZYQHEQhsH9li7BIYEM38ttgWAoPXlbjTYozgbzm/q4CdycilJ
-         0XJvwo7x21Rhz0kCcdDJdTjy7OEmfibGJOkqIfb+/LeG9dhBp0R8DI9CLnl65/A7FmOL
-         0J7gl49AMXkrTa+H0lLsfK/rQJxoulc7jAlWYQZSEwKODN6LXTEfEooCGSn0CFFv57pZ
-         4sHssr+bDsdz6fbpw4Ffq60CQI2QRkYHawPCauQVj84V/NU+Dr9KJYT1VGqNNW5ZCZNU
-         4c8CkNm9JdgPSb6FZ7KJWLBv8cXNyeTUlpg8okne90m3uzY1uOI6uYyHeqGlx0dSnYXq
-         lIHw==
-X-Gm-Message-State: AOJu0YyhLpcnKVq8hdye1hrd2jjpYRKmSuBNqTBI3OhpivXzqwcilTMh
-        fql9OzQOw/acmteVJ3DNxDLsm95Un+R7aw==
-X-Google-Smtp-Source: AGHT+IFw83JkMH1zRFqh+nnFbGXM33XYKbnbZ7+OTETUvcthEPrk5UoB/wpJrlNmpd81eYTIu+evLw==
-X-Received: by 2002:a17:902:7d91:b0:1bb:9c45:130f with SMTP id a17-20020a1709027d9100b001bb9c45130fmr94201plm.69.1691103813895;
-        Thu, 03 Aug 2023 16:03:33 -0700 (PDT)
+        bh=YxdVo0H4Ogsm6y1B4bh/ICRf8zL9r8pBxK6Ht1YN6QU=;
+        b=MTsrkIo6VRggiZUh0gHi1jahkssDAjDmxYbqdi+oqmYqGJLOyUYmLMgGLUHXhASfGP
+         YVYAWlPqTgXLoZ7x/jhb0SRFKmDk2IQyNcG5LrvSOoFqh9i6S99nwglzHTpsBH8R4tWb
+         RN33fYXy702LNedX5zQH0ZzjZBGrNyXY+uSSgkRGX24rpR1F6iN4WtInDEAm+KGAZonV
+         WPDTYo7in3AQq1e7FGYMRVE4xWxZX+hHb7IgGAPg+qHvQSlI4yblvqWMftLRYRsKQqCp
+         +j0rk/8klPZ5vrz3iVHYCNEGPQoc8Fvx0jzN5z0OJ26HpfO5BnpcXlRFm2GuyyzBK7Ie
+         22LA==
+X-Gm-Message-State: AOJu0Yww5Gks7VAoU7Do6Mchl9vOh+67wlH5k/72VLZoV8ZpZir09Toh
+        kp+BqtF43PwT+bxaYZFY1T0=
+X-Google-Smtp-Source: AGHT+IGTLIqDQyKKtQsXBAKVqKtFN5RUGOE+6K1WmgCYMpo3tJqJIIm02ZnnhklD8xBZED4d9EF6UQ==
+X-Received: by 2002:a17:902:b78c:b0:1bb:809d:ae72 with SMTP id e12-20020a170902b78c00b001bb809dae72mr115625pls.33.1691103815263;
+        Thu, 03 Aug 2023 16:03:35 -0700 (PDT)
 Received: from taoren-fedora-PC23YAB4.thefacebook.com ([2620:10d:c090:500::5:e60a])
-        by smtp.gmail.com with ESMTPSA id y7-20020a17090322c700b001bbb598b8bbsm372349plg.41.2023.08.03.16.03.32
+        by smtp.gmail.com with ESMTPSA id y7-20020a17090322c700b001bbb598b8bbsm372349plg.41.2023.08.03.16.03.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 16:03:33 -0700 (PDT)
+        Thu, 03 Aug 2023 16:03:34 -0700 (PDT)
 From:   rentao.bupt@gmail.com
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -59,9 +59,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
         taoren@meta.com
 Cc:     Tao Ren <rentao.bupt@gmail.com>
-Subject: [PATCH 2/3] ARM: dts: aspeed: wedge400: Enable more ADC channels
-Date:   Thu,  3 Aug 2023 16:03:23 -0700
-Message-Id: <20230803230324.731268-3-rentao.bupt@gmail.com>
+Subject: [PATCH 3/3] ARM: dts: aspeed: wedge400: Set eMMC max frequency
+Date:   Thu,  3 Aug 2023 16:03:24 -0700
+Message-Id: <20230803230324.731268-4-rentao.bupt@gmail.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230803230324.731268-1-rentao.bupt@gmail.com>
 References: <20230803230324.731268-1-rentao.bupt@gmail.com>
@@ -79,28 +79,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Tao Ren <rentao.bupt@gmail.com>
 
-Enable ASPEED-ADC channels 5-8 to support voltage monitoring of all the
-Wedge400 hardware revisions.
+Set eMMC max frequency to 25MHz to prevent intermittent eMMC access
+failures.
 
 Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
 ---
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
-index ed305948386f..5c55afed946f 100644
+index 5c55afed946f..d17b977fee9b 100644
 --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
 +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
-@@ -59,7 +59,8 @@ chosen {
+@@ -367,6 +367,7 @@ &uhci {
+ };
  
- 	ast-adc-hwmon {
- 		compatible = "iio-hwmon";
--		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>;
-+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
-+			      <&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>;
- 	};
- 
+ &sdhci1 {
++	max-frequency = <25000000>;
  	/*
+ 	 * DMA mode needs to be disabled to avoid conflicts with UHCI
+ 	 * Controller in AST2500 SoC.
 -- 
 2.40.1
 
