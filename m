@@ -2,189 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E289276E4AD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6420376E4B0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:41:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234368AbjHCJjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 05:39:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33778 "EHLO
+        id S232386AbjHCJlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 05:41:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233311AbjHCJj1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:39:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2013D4694;
-        Thu,  3 Aug 2023 02:38:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 99AD261D17;
-        Thu,  3 Aug 2023 09:38:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A84C433C7;
-        Thu,  3 Aug 2023 09:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691055511;
-        bh=M7mKv7aFom4lStcfY4aW++sZ1R7wmmAzxjw85MUjNDU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ILvlrqdelXLsQ94SKYibc+TpHrnegKXc1xtybeWaEJOYmGgq1eX4rzESkLuMcVuJ0
-         7nSBnBCt7wbbGd0S+wPwKV8XjX7ch+9opQSP3uKR3fUW1Z47OUtzMDHXNNMwNr/RuH
-         uV8gUP7p327Gi/1faGdYXIPOY7lFPw/F+g5ETgci34A6FZ1IeNMvUHRrJQp0y+OWx5
-         NzdR6938SLhAu54kd4dRNxSvgOjqigi0YXAScsIKaAx224bGdjgLTN+/DACng+bguA
-         hARqk/iCof8jz/I0zv/HXG0XBykPvPNN4ev/Ob1x6jkiPPc9WUrjsrQSIUWliTmOCr
-         4wqgBzNBDDJKA==
-Date:   Thu, 3 Aug 2023 11:38:28 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        David Airlie <airlied@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
- mode
-Message-ID: <teag3fdr7i65wzenovlcytnnpgk2gunzyq6wmci33g7csoasvz@tyyp6h7pqswk>
-References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
- <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
- <ekmwiy3iuvtqtb6hwjbba2ia3aemt3dxmx6dj3zh6ljfmuim4w@4jzhqdenxth4>
- <ZMtqraOyGN9JvVj9@phenom.ffwll.local>
- <qmwtcungahbe2bhty7v2rso2kf3vai6k47muwipifbybmi7o6s@oj6lngnhyhtg>
- <9f0670a7-6ef6-7823-19c2-de10683f303f@linaro.org>
+        with ESMTP id S230335AbjHCJlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:41:08 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D2E7A3
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 02:41:06 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b703a0453fso10934741fa.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 02:41:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691055664; x=1691660464;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sseiNID2mFn2S7P2x+yMHTlRQJAUMSTuNVqWrP1bH80=;
+        b=vu2dzM6DiQJkpP7TSuy5CtCtYhr8cqJsopUQDuINQzY/BtLxodpyAblWUdxocBnNbZ
+         eZ5CAc/Spj5Z1CBm22Gqd2rqPTmimDIN8juND2f9ZHm9rCE0pMLXplFxz0Jwma4FzHd8
+         lo6Ox5pTA35/tyIQkQOptYC+wWLWAdi704h59bPTj3ZBzx55bBzmAN7VKWAzP0mdLq3q
+         6eH2Sdge/oMKd5QS0cUVbUsjVQBH0dZMZtgs/Ybqnujawu9APNIPN+zzEKVsAExSorNz
+         j842kfRtyDPmf2U04FriAdOfhjSbULV0dof6jKs/AY+/ryY4mh8J8Dn8rXsGeHX5E5F4
+         LTGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691055664; x=1691660464;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sseiNID2mFn2S7P2x+yMHTlRQJAUMSTuNVqWrP1bH80=;
+        b=Q0tCmkP9DGy4WX8RzrkFAREzqTJ0TW9w/dZBwFtBenngr61+WTnM15wNqzocFGLFXr
+         llPn5plwG7PRcnwYpfBPu3K08FqLQXeEDpmyS8/KxC2kLhV2XLb7enoXXIXzKs+of2Lt
+         t1O/AA/9Htq7eAFSGD/qwuL1DTy59IlGWXNFsO3db5wuhpgdM7fBk8pLn2zn5od9AXbc
+         bVWjhg1s4kS+xq0866qPcf+3nIdrCL6BeXt3M2b/qexLPyk1Mjy6Kww6uhqpW2hXAg3R
+         25xoC/cZKS103dCjt5wEc833wEGYaZksaTCBPD/z0sYUoqQxv6ZjU6fMqEYub1mY7rHh
+         OjqQ==
+X-Gm-Message-State: ABy/qLaITEG7NAkPBwH7lez9Yl3eY7dPBL33BeKbzGCh0+sAJ84BfLSN
+        HTMO4tVfIEtvgSIawNi87TzRC1eyfIHpyjyK978=
+X-Google-Smtp-Source: APBJJlG694U7MVBWqItt1BfqfwN2V4ZDN+1R8uegeV/NwvF/B5ao6CpEvXJMe6JDeKXdCN1PKbL/EA==
+X-Received: by 2002:a2e:904e:0:b0:2b9:f1ad:9503 with SMTP id n14-20020a2e904e000000b002b9f1ad9503mr7522055ljg.35.1691055664232;
+        Thu, 03 Aug 2023 02:41:04 -0700 (PDT)
+Received: from [127.0.1.1] ([93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id n1-20020a05600c4f8100b003fe15ac0934sm13294994wmq.1.2023.08.03.02.41.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 02:41:03 -0700 (PDT)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v4 0/7] Add IOMMU support to MT8365 SoC
+Date:   Thu, 03 Aug 2023 11:40:52 +0200
+Message-Id: <20230207-iommu-support-v4-0-84798657c410@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="iqykblsj6nj6m3cz"
-Content-Disposition: inline
-In-Reply-To: <9f0670a7-6ef6-7823-19c2-de10683f303f@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACR2y2QC/33NQQ6CMBAF0KuQrq2ZDi2CK+9hXJR2kCZASQskx
+ nB3Jy6Nupr8n/w3T5EpBcriXDxFoi3kECcO+lAI19vpTjJ4zgIBS0A4yRDHcZV5neeYFmmoQmi
+ wIo0keNPaTLJNdnI9r6Z1GLjsQ15ierx/bIrP9Re3KQlSd+Bq1XmDTl1a+xhCm+jo4ihujG34F
+ 0AGKvCmswCkyXwByr9AyUBzItVYr6k2/gPY9/0FRyquITQBAAA=
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2227; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=yZFKpxEAgoFXK21BVC5n/b/uttfBdSKKotZf8NGdugk=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBky3YuX+JjoVLFCsQWxXLGRHRjB61ZGtFVnHw77kgv
+ HsW17yOJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZMt2LgAKCRArRkmdfjHURdCjEA
+ C7y0S7+D71eFlqs75Fj6lKAJx/TOBotk4xhpBaSKuOosKp00Ze31oraeDnmobH5A1W67BMtR4ZuYuJ
+ 2+9NB0UGXXBu0uuQN7+dxlo9XkP4Tn05X1vGd6jhv4I8no8N9WEg6O48UZ5neScVkjzn4Gtm7rh3CR
+ PlIOmL614oC5Dv0K01HNvtpw3qOMOinVKDEYJga6pKlfiM6+Lp2mzyvD/w/wwbO0lGjyYABiPE+yRv
+ tSVBxRjFnrFhwel+Oq4sK+8xS7/BPyJT+wTpJRIqzj73Qrq0ALIPC6N3WNTdbMWhqyzOv7ySM4R6Xu
+ 9E3mDrdKJyEp6D3Gl8B29SXX+vQkhEWEFbxPQwA5aFPmGvmp5QGIUxxDy9zbB44OD04GM67PVpkh00
+ 5DYzJH0HoOFUUqNviZBA/IDN+mUfpiLYiopuz6MVBqpglBRX/EAcpvzQxLLhI5GePT+9N7GVf5taWo
+ mRnInpx+/s/9PfTbZSeQgO7vARSMch6mY40O3z0WtCSZeNMM3Yarlvk0sY1yFtv+V5jAMDG9G48R9o
+ Y7j3yMhKUGGJ+4JFPT62w51ogXBYnZUAK6DXEIWmdg9G2fmgXulvYp3Or+P5HwN+Kab1SaoqT3GlSn
+ JKyMHH3XgVRV+gMB03fANT06F/QPubVsCpXkOe16Z85cfc8SuHawzrybECBQ==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This commits are based on the Fabien Parent <fparent@baylibre.com> work.
 
---iqykblsj6nj6m3cz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The purpose of this series is to add the following HWs / IPs support for
+the MT8365 SoC:
+- System Power Manager
+- MultiMedia Memory Management Unit "M4U" (IOMMU)
+  - Smart Multimedia Interface "SMI"
+    - Local arbiter "LARB"
 
-On Thu, Aug 03, 2023 at 11:30:52AM +0200, Neil Armstrong wrote:
-> On 03/08/2023 11:22, Maxime Ripard wrote:
-> > On Thu, Aug 03, 2023 at 10:51:57AM +0200, Daniel Vetter wrote:
-> > > On Thu, Aug 03, 2023 at 10:48:57AM +0200, Maxime Ripard wrote:
-> > > > On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
-> > > > > Hi,
-> > > > >=20
-> > > > > On 18/07/2023 17:31, Michael Riesch wrote:
-> > > > > > Hi all,
-> > > > > >=20
-> > > > > > This series adds support for the partial display mode to the Si=
-tronix
-> > > > > > ST7789V panel driver. This is useful for panels that are partia=
-lly
-> > > > > > occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Su=
-pport
-> > > > > > for this particular panel is added as well.
-> > > > > >=20
-> > > > > > Note: This series is already based on
-> > > > > > https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kerne=
-l.org/
-> > > > >=20
-> > > > > I understand Maxime's arguments, but by looking closely at the co=
-de,
-> > > > > this doesn't look like an hack at all and uses capabilities of the
-> > > > > panel controller to expose a smaller area without depending on any
-> > > > > changes or hacks on the display controller side which is coherent.
-> > > > >=20
-> > > > > Following's Daniel's summary we cannot compare it to TV overscan
-> > > > > because overscan is only on *some* displays, we can still get 100%
-> > > > > of the picture from the signal.
-> > > >=20
-> > > > Still disagree on the fact that it only affects some display. But i=
-t's
-> > > > not really relevant for that series.
-> > >=20
-> > > See my 2nd point, from a quick grep aside from i915 hdmi support, no =
-one
-> > > else sets all the required hdmi infoframes correctly. Which means on a
-> > > compliant hdmi tv, you _should_ get overscan. That's how that stuff is
-> > > speced.
-> > >=20
-> > > Iirc you need to at least set both the VIC and the content type, maybe
-> > > even more stuff.
-> > >=20
-> > > Unless all that stuff is set I'd say it's a kms driver bug if you get
-> > > overscan on a hdmi TV.
-> >=20
-> > I have no doubt that i915 works there. The source of my disagreement is
-> > that if all drivers but one don't do that, then userspace will have to
-> > care. You kind of said it yourself, i915 is kind of the exception there.
-> >=20
-> > The exception can be (and I'm sure it is) right, but still, it deviates
-> > from the norm.
->=20
-> HDMI spec is hidden behind a paywall, HDMI testing is a mess, HDMI real
-> implementation on TVs and Displays is mostly broken, and HDMI certificati=
-on
-> devices are too expensive... this is mainly why only i915 handles it corr=
-ectly.
+This serie depends to another one which add power support for MT8365
+SoC [1].
 
-Sure, I know all that, it's why I was disagreeing with the fact that
-it's mostly old news and we shouldn't care anymore. And it could largely
-be fixed if i915 was using more helpers in general.
+Regards,
+Alex
 
-But that's a separate discussion entirely. The point I was trying to
-make is that it's still very much the current situation for the vast
-majority of drivers, for whatever reason, so we can't really treat as if
-it isn't anymore.
+[1]: https://lore.kernel.org/linux-arm-kernel/20230713150414.891893-1-msp@baylibre.com/
 
-> > > > I think I'll still like to have something clarified before we merge=
- it:
-> > > > if userspace forces a mode, does it contain the margins or not? I d=
-on't
-> > > > have an opinion there, I just think it should be documented.
-> > >=20
-> > > The mode comes with the margins, so if userspace does something really
-> > > funny then either it gets garbage (as in, part of it's crtc area isn't
-> > > visible, or maybe black bars on the screen), or the driver rejects it
-> > > (which I think is the case for panels, they only take their mode and
-> > > nothing else).
-> >=20
-> > Panels can usually be quite flexible when it comes to the timings they
-> > accept, and we could actually use that to our advantage, but even if we
-> > assume that they have a single mode, I don't think we have anything that
-> > enforces that, either at the framework or documentation levels?
->=20
-> Yep, this is why we would need a better atomic based panel API that would
-> permit us handling dynamic timings for panel and get out of the single-mo=
-de
-> for modern panels.
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Changes in v4:
+- Rebase to v6.5-rc1.
+- Link to v3: https://lore.kernel.org/r/20230207-iommu-support-v3-0-97e19ad4e85d@baylibre.com
 
-Again, I definitely agree on the new API, but that seems a bit out of
-scope :)
+Changes in v3:
+- SMI driver support and bindings patches have been removed from
+  this series and sent it in another one which should be merged before
+  this one.
+  - "dt-bindings: memory-controllers: mediatek,smi-larb: add mt8365"
+  - "dt-bindings: memory-controllers: mediatek,smi-common: add mt8365"
+  - "memory: mtk-smi: mt8365: Add SMI Support"
+- Link to v2: https://lore.kernel.org/r/20230207-iommu-support-v2-0-60d5fa00e4e5@baylibre.com
 
-My point was that we can't expect modes to be the one we provided in
-=2Eget_modes. And that's for all the drivers, even i915 doesn't do it (as
-far as I could see)
+Changes in v2:
+- Split power domain patch (3) in 4 patches to explain in the commit
+  messages the added subsystems.
+- Add an independent "mediatek,mt8365-smi-common" compatible to have
+  its own LARB bus select.
+- Link to v1: https://lore.kernel.org/r/20230207-iommu-support-v1-0-4f0c81fd52c1@baylibre.com
 
-Maxime
+---
+Alexandre Mergnat (7):
+      arm64: dts: mediatek: add mmsys support for mt8365 SoC
+      arm64: dts: mediatek: add camsys support for mt8365 SoC
+      arm64: dts: mediatek: add apu support for mt8365 SoC
+      arm64: dts: mediatek: add power domain support for mt8365 SoC
+      arm64: dts: mediatek: add smi support for mt8365 SoC
+      arm64: dts: mediatek: add larb support for mt8365 SoC
+      arm64: dts: mediatek: add iommu support for mt8365 SoC
 
---iqykblsj6nj6m3cz
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi | 210 +++++++++++++++++++++++++++++++
+ 1 file changed, 210 insertions(+)
+---
+base-commit: 29c81bf767230d53c3ca8c1ef19e4fde1b30c8bc
+change-id: 20230207-iommu-support-5e620926e42e
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMt1lAAKCRDj7w1vZxhR
-xQMaAPwNXMv/pcq5vo5GVXn54SaI8sUtQ/LzmvdqFrXqkE3MNwEAvFr+U9cZYjDw
-s1xrtXXgBzW8oBHSoQuxtTTLKhFzYAs=
-=JLy4
------END PGP SIGNATURE-----
-
---iqykblsj6nj6m3cz--
