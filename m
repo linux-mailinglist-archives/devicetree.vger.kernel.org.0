@@ -2,200 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9856076E5C4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 12:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9640576E5F3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 12:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233628AbjHCKc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 06:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33878 "EHLO
+        id S235317AbjHCK60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 06:58:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbjHCKct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 06:32:49 -0400
-Received: from mgamail.intel.com (unknown [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1366B11B;
-        Thu,  3 Aug 2023 03:32:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1691058768; x=1722594768;
-  h=message-id:date:mime-version:to:cc:references:from:
-   subject:in-reply-to:content-transfer-encoding;
-  bh=6hc1/qNVWMhq9Hi9YrzSfxvx3XvZSP+GUU/ssEMrrlA=;
-  b=mVG0ieGn/imq9YXnxaNYqEM5l0vxrXRZSTBKDl5doZ1FTmdymfExZVMg
-   BvNeUqaNVO8omGZeQtMiRZePPpyzLWV2qafLDtfnsGEjAQWfFOxl4WcIZ
-   2OrYTfyb4JZzNsr/RMIh/cccEw/p+o6zoncJHHrXj6TxmeVqk2uW28u29
-   OsBIA3UtDTIuVlsjYQoAXzZF2QlbV8VcFNRnXV6wdtO4w37a/P6OjxrXt
-   bRoDH8JGd/Bg2YdQ+SoOmmAUeN2vC/2J3ELk1I+6f6VbM5CPcPSF6SxdB
-   joHgPOLB7m6J6pAe+74jIDYZAtLfH1HVm7v4gdRM33jbKxPVmbsIeybgc
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="400775316"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; 
-   d="scan'208";a="400775316"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2023 03:32:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="843544345"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; 
-   d="scan'208";a="843544345"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
-  by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2023 03:32:41 -0700
-Message-ID: <7b31b220-6fd5-0f5d-7e1a-df3f38bd792f@linux.intel.com>
-Date:   Thu, 3 Aug 2023 13:33:56 +0300
+        with ESMTP id S232154AbjHCK6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 06:58:22 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF4201AB;
+        Thu,  3 Aug 2023 03:58:20 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3737707x007072;
+        Thu, 3 Aug 2023 10:58:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=JcecF8mLd6NgooXMFFgDYR6KkurfXYyV6RGucJK0uP4=;
+ b=g9KL8lPI9KK6HuJ9ZOPlXKOifD29ebDitYP+f5MaO9uSMzgbfACa2QXjGARvl6abPBrC
+ uU5wEjge8pa70tZu6DdOzjvk4o3PkmeylFT7D35uaQyaMg60IknhXhitSOkuBn3Hm0Xi
+ PA3Va0rIrPm4t7eNM6Ki/Txes1J1KVpm8r2fi+ha8Lv3elROmL9l0z78V+1eRXqDw7Ma
+ uSxeXPvdVEK36i+S7FUPkGG9y0okZaYBxosqHlpwP7t37ca6QG55AOjA2aS9DfTH9r4G
+ aAg00hqNkx9/RIG0qqF/8e93U5ZgeT+fTWRlPThGPXEr1zFNOig7UEBdVj5QuK/d6M4g nw== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s87jhge0u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Aug 2023 10:58:14 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 373AwD2p009255
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 3 Aug 2023 10:58:13 GMT
+Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 3 Aug 2023 03:58:07 -0700
+From:   Imran Shaik <quic_imrashai@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Ajit Pandey" <quic_ajipan@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Subject: [PATCH V5 0/8] Update GCC clocks for QDU1000 and QRU1000 SoCs
+Date:   Thu, 3 Aug 2023 16:27:33 +0530
+Message-ID: <20230803105741.2292309-1-quic_imrashai@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, mathias.nyman@intel.com,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
-        Thinh.Nguyen@synopsys.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, alsa-devel@alsa-project.org,
-        quic_jackp@quicinc.com, pierre-louis.bossart@linux.intel.com,
-        oneukum@suse.com, albertccwang@google.com, o-takashi@sakamocchi.jp
-References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
- <20230725023416.11205-5-quic_wcheng@quicinc.com>
-From:   Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH v4 04/32] usb: host: xhci-mem: Cleanup pending secondary
- event ring events
-In-Reply-To: <20230725023416.11205-5-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Vph3punzd6ZHJQrnQBMqYGsUhnOmwYUs
+X-Proofpoint-ORIG-GUID: Vph3punzd6ZHJQrnQBMqYGsUhnOmwYUs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-03_09,2023-08-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=990 spamscore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 phishscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308030098
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.7.2023 5.33, Wesley Cheng wrote:
-> As part of xHCI bus suspend, the XHCI is halted.  However, if there are
-> pending events in the secondary event ring, it is observed that the xHCI
-> controller stops responding to further commands upon host or device
-> initiated bus resume.  Iterate through all pending events and updating the
-> dequeue pointer to the last pending event trb.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->   drivers/usb/host/xhci-mem.c | 74 ++++++++++++++++++++++++++++++++++---
->   1 file changed, 69 insertions(+), 5 deletions(-)
+Update GCC clocks and add support for GDSCs for QDU1000 and QRU1000 SoCs.
 
-This sounds more like ring handling code.
-Maybe xhci-ring.c would be a better place
+Changes since v4:
+ - Updated the commit text as per the review comments
+ - Split the gcc_ddrss_ecpri_gsi_clk and gcc_gpll1_out_even clock changes
 
-> 
-> diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
-> index c51150af22f2..6b01d56c176f 100644
-> --- a/drivers/usb/host/xhci-mem.c
-> +++ b/drivers/usb/host/xhci-mem.c
-> @@ -1799,17 +1799,85 @@ int xhci_alloc_erst(struct xhci_hcd *xhci,
->   	return 0;
->   }
->   
-> +static void xhci_handle_sec_intr_events(struct xhci_hcd *xhci,
-> +	struct xhci_ring *ring,	struct xhci_intr_reg __iomem *ir_set,
-> +	struct xhci_erst *erst)
-> +{
+Changes since v3:
+ - Split the gcc rcg ops changes as per the review comments
 
-The function name is a bit misleading as it doesn't handle
-any of the pending events, it just marks them all handled.
+Changes since v2:
+ - Split the gcc clkref clock changes as per the review comments
 
-> +	union xhci_trb *erdp_trb, *current_trb;
-> +	struct xhci_segment	*seg;
-> +	u64 erdp_reg;
-> +	u32 iman_reg;
-> +	dma_addr_t deq;
-> +	unsigned long segment_offset;
-> +
-> +	/* disable irq, ack pending interrupt and ack all pending events */
-> +	iman_reg = readl_relaxed(&ir_set->irq_pending);
-> +	iman_reg &= ~IMAN_IE;
-> +	writel_relaxed(iman_reg, &ir_set->irq_pending);
-> +	iman_reg = readl_relaxed(&ir_set->irq_pending);
-> +	if (iman_reg & IMAN_IP)
-> +		writel_relaxed(iman_reg, &ir_set->irq_pending);
+Changes since v1:
+ - Dropped the v2 variant compatible changes
+ - Update tha maintainers list
+ - Split the GCC driver patch as per the review comments
 
-maybe use xhci_disable_interrupter() helper, it does most of this already.
+Previous series:
+v4 - https://patchwork.kernel.org/project/linux-arm-msm/list/?series=767111
+v3 - https://patchwork.kernel.org/project/linux-arm-msm/list/?series=763044
+v2 - https://patchwork.kernel.org/project/linux-arm-msm/list/?series=760862
+v1 - https://patchwork.kernel.org/project/linux-arm-msm/list/?series=757828
 
-> +
-> +	/* last acked event trb is in erdp reg  */
-> +	erdp_reg = xhci_read_64(xhci, &ir_set->erst_dequeue);
-> +	deq = (dma_addr_t)(erdp_reg & ~ERST_PTR_MASK);
-> +	if (!deq) {
-> +		xhci_dbg(xhci, "event ring handling not required\n");
-> +		return;
-> +	}
-> +
-> +	seg = ring->first_seg;
-> +	segment_offset = deq - seg->dma;
-> +
-> +	/* find out virtual address of the last acked event trb */
-> +	erdp_trb = current_trb = &seg->trbs[0] +
-> +				(segment_offset/sizeof(*current_trb));
-> +
-> +	/* read cycle state of the last acked trb to find out CCS */
-> +	ring->cycle_state = le32_to_cpu(current_trb->event_cmd.flags) & TRB_CYCLE;
-> +
-> +	while (1) {
-> +		/* last trb of the event ring: toggle cycle state */
-> +		if (current_trb == &seg->trbs[TRBS_PER_SEGMENT - 1]) {
-> +			ring->cycle_state ^= 1;
-> +			current_trb = &seg->trbs[0];
-> +		} else {
-> +			current_trb++;
-> +		}
-> +
-> +		/* cycle state transition */
-> +		if ((le32_to_cpu(current_trb->event_cmd.flags) & TRB_CYCLE) !=
-> +		    ring->cycle_state)
-> +			break;
-> +	}
-> +
-> +	if (erdp_trb != current_trb) {
-> +		deq = xhci_trb_virt_to_dma(ring->deq_seg, current_trb);
-> +		if (deq == 0)
-> +			xhci_warn(xhci,
-> +				"WARN invalid SW event ring dequeue ptr.\n");
-> +		/* Update HC event ring dequeue pointer */
-> +		erdp_reg &= ERST_PTR_MASK;
-> +		erdp_reg |= ((u64) deq & (u64) ~ERST_PTR_MASK);
-> +	}
-> +
-> +	/* Clear the event handler busy flag (RW1C); event ring is empty. */
-> +	erdp_reg |= ERST_EHB;
-> +	xhci_write_64(xhci, erdp_reg, &ir_set->erst_dequeue);
+Imran Shaik (8):
+  dt-bindings: clock: Update GCC clocks for QDU1000 and QRU1000 SoCs
+  clk: qcom: gcc-qdu1000: Fix gcc_pcie_0_pipe_clk_src clock handling
+  clk: qcom: gcc-qdu1000: Fix clkref clocks handling
+  clk: qcom: gcc-qdu1000: Register gcc_gpll1_out_even clock
+  clk: qcom: gcc-qdu1000: Add gcc_ddrss_ecpri_gsi_clk support
+  clk: qcom: gcc-qdu1000: Add support for GDSCs
+  clk: qcom: gcc-qdu1000: Update the SDCC clock RCG ops
+  clk: qcom: gcc-qdu1000: Update the RCGs ops
 
-There are some helpers like inc_deq() and  xhci_update_erst_dequeue()
-that could be used here.
+ .../bindings/clock/qcom,qdu1000-gcc.yaml      |   3 +-
+ drivers/clk/qcom/gcc-qdu1000.c                | 159 ++++++++++++------
+ include/dt-bindings/clock/qcom,qdu1000-gcc.h  |   4 +-
+ 3 files changed, 110 insertions(+), 56 deletions(-)
 
-> +}
-> +
->   static void
->   xhci_free_interrupter(struct xhci_hcd *xhci, struct xhci_interrupter *ir)
->   {
->   	struct device *dev = xhci_to_hcd(xhci)->self.sysdev;
->   	size_t erst_size;
-> -	u64 tmp64;
->   	u32 tmp;
->   
->   	if (!ir)
->   		return;
->   
-> +	xhci_handle_sec_intr_events(xhci, ir->event_ring, ir->ir_set, &ir->erst);
-
-Cleaning up the interrupter event ring should be called earlier.
-  
-Probably from xhci_remove_secondary_interrupter(), before it calls xhci_free_interrupter()
-
-Thanks
--Mathias
-
+-- 
+2.25.1
 
