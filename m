@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F391476E43E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4C5A76E446
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231952AbjHCJWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 05:22:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56456 "EHLO
+        id S234446AbjHCJY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 05:24:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231717AbjHCJWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:22:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A78F5;
-        Thu,  3 Aug 2023 02:22:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C513961CE3;
-        Thu,  3 Aug 2023 09:22:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3546C433C7;
-        Thu,  3 Aug 2023 09:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691054563;
-        bh=cDmDQ8IkJZfXXy9N2FqpfneiI87FSMvPq0LWI6XcjdY=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=KxV+ZVVlSs9VQfoNtjLUjd+jQ4ttlo3PnspBD5VRFXFBd4r/ieW5v2lpzqGGecg3D
-         1DLEoyK4bdkQXm/e77LYwxuDbSJVYMTToNhztNBbgJyts0HMu639ceNZW/LJNz1Mr/
-         2lAbOjKYIvejy2jaNYMmS3K4TzskRdm8y7ce5tjOSufH3f8qUc+r7ex+wKHVJZQRTp
-         5aA+0KKl9vmxEzp4OgWP9kuDuXM7PPq1TeAx5z6h2C7YmOw4IgoaImduwZLvPIHCKV
-         ZliBT+k+c51SgZt7IJ121Hvumlzw9aooWtzyDGpN4CxlhvZ2OT5687/+KDPntDCA6E
-         0tyo9Cm0HheOw==
-Date:   Thu, 3 Aug 2023 11:22:40 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        David Airlie <airlied@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S231717AbjHCJYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:24:23 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2E72684;
+        Thu,  3 Aug 2023 02:24:21 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3739O59n122004;
+        Thu, 3 Aug 2023 04:24:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691054646;
+        bh=zqbwm6MC4jGIsnXvhDBCNFfNtjyo4cmP300g52xJ8sI=;
+        h=From:To:CC:Subject:Date;
+        b=eRAVSn1k2cquhYbwU2UAWgjhKx6iu3+zzlbrb7XhVt18tFS5MvmXwl9nRlMmf1CjM
+         618XFwTiwPZadQqdWXhmglLK2dAgONyHsB3cNfafXeywaXuiXQG6DdzP1eQGeNz9qM
+         MFoRPAzQyM3dFvLP4Ke4NpDJ0XMm3mPRmbtHoEi4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3739O5tt011655
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Aug 2023 04:24:05 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
+ Aug 2023 04:24:05 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 3 Aug 2023 04:24:05 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3739O4e8073795;
+        Thu, 3 Aug 2023 04:24:05 -0500
+From:   Dhruva Gole <d-gole@ti.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
- mode
-Message-ID: <qmwtcungahbe2bhty7v2rso2kf3vai6k47muwipifbybmi7o6s@oj6lngnhyhtg>
-References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
- <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
- <ekmwiy3iuvtqtb6hwjbba2ia3aemt3dxmx6dj3zh6ljfmuim4w@4jzhqdenxth4>
- <ZMtqraOyGN9JvVj9@phenom.ffwll.local>
+        Conor Dooley <conor+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, Dhruva Gole <d-gole@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH] dt-bindings: pinctrl: pinctrl-single: add am62x compatible
+Date:   Thu, 3 Aug 2023 14:53:12 +0530
+Message-ID: <20230803092311.604610-1-d-gole@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="747cy4c36hkubsom"
-Content-Disposition: inline
-In-Reply-To: <ZMtqraOyGN9JvVj9@phenom.ffwll.local>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,86 +69,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the am62x compatible property to add support for the new
+wakeup enable and status bits positions
 
---747cy4c36hkubsom
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+CC: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Dhruva Gole <d-gole@ti.com>
+---
 
-On Thu, Aug 03, 2023 at 10:51:57AM +0200, Daniel Vetter wrote:
-> On Thu, Aug 03, 2023 at 10:48:57AM +0200, Maxime Ripard wrote:
-> > On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
-> > > Hi,
-> > >=20
-> > > On 18/07/2023 17:31, Michael Riesch wrote:
-> > > > Hi all,
-> > > >=20
-> > > > This series adds support for the partial display mode to the Sitron=
-ix
-> > > > ST7789V panel driver. This is useful for panels that are partially
-> > > > occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
-> > > > for this particular panel is added as well.
-> > > >=20
-> > > > Note: This series is already based on
-> > > > https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.or=
-g/
-> > >=20
-> > > I understand Maxime's arguments, but by looking closely at the code,
-> > > this doesn't look like an hack at all and uses capabilities of the
-> > > panel controller to expose a smaller area without depending on any
-> > > changes or hacks on the display controller side which is coherent.
-> > >=20
-> > > Following's Daniel's summary we cannot compare it to TV overscan
-> > > because overscan is only on *some* displays, we can still get 100%
-> > > of the picture from the signal.
-> >=20
-> > Still disagree on the fact that it only affects some display. But it's
-> > not really relevant for that series.
->=20
-> See my 2nd point, from a quick grep aside from i915 hdmi support, no one
-> else sets all the required hdmi infoframes correctly. Which means on a
-> compliant hdmi tv, you _should_ get overscan. That's how that stuff is
-> speced.
->=20
-> Iirc you need to at least set both the VIC and the content type, maybe
-> even more stuff.
->=20
-> Unless all that stuff is set I'd say it's a kms driver bug if you get
-> overscan on a hdmi TV.
+Base: tag: next-20230731 + below "depends on" patch
+Depends on: https://lore.kernel.org/linux-omap/20230731061908.GG5194@atomide.com/T/
 
-I have no doubt that i915 works there. The source of my disagreement is
-that if all drivers but one don't do that, then userspace will have to
-care. You kind of said it yourself, i915 is kind of the exception there.
+ Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-The exception can be (and I'm sure it is) right, but still, it deviates
-=66rom the norm.
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+index b6b6bcd7074b..4c98035a1217 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+@@ -23,6 +23,7 @@ properties:
+           - pinconf-single
+       - items:
+           - enum:
++              - ti,am6-padconf
+               - ti,am437-padconf
+               - ti,dra7-padconf
+               - ti,omap2420-padconf
+-- 
+2.34.1
 
-> > I think I'll still like to have something clarified before we merge it:
-> > if userspace forces a mode, does it contain the margins or not? I don't
-> > have an opinion there, I just think it should be documented.
->=20
-> The mode comes with the margins, so if userspace does something really
-> funny then either it gets garbage (as in, part of it's crtc area isn't
-> visible, or maybe black bars on the screen), or the driver rejects it
-> (which I think is the case for panels, they only take their mode and
-> nothing else).
-
-Panels can usually be quite flexible when it comes to the timings they
-accept, and we could actually use that to our advantage, but even if we
-assume that they have a single mode, I don't think we have anything that
-enforces that, either at the framework or documentation levels?
-
-Maxime
-
---747cy4c36hkubsom
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMtx3wAKCRDj7w1vZxhR
-xeToAQCUDopfDyd7vCfNpnPjT1j+PM0tpoS2T52jRiD9h1IgKAEAiAZxUoDl6bpB
-bwelJPn2NL0fxTgPR8My3Na4LT8yCgE=
-=1DIx
------END PGP SIGNATURE-----
-
---747cy4c36hkubsom--
