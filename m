@@ -2,203 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8CEA76E9A5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 15:12:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2311A76EA08
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 15:24:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236169AbjHCNMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 09:12:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59788 "EHLO
+        id S234460AbjHCNYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 09:24:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236079AbjHCNLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 09:11:52 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D387E49D6;
-        Thu,  3 Aug 2023 06:10:14 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 373BsqhK007959;
-        Thu, 3 Aug 2023 13:09:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ucUxDSwxnrBpRrHDljPUeC6KW5nBI61F9ncRRJ1iEf0=;
- b=ir8EakGDy6zLsP0WmnXiZajbv4DVc8cEyrLSFy77a0OCllC+ueGoFGRnxwwJRj08DfTa
- BzyM7oq/JHUJcB2qvIremrsZrEJVwEJAGBrlFlBycq2l8+4EluTD1ABTXgePhgLgyGZy
- w3di7ICEqB5Eem3qUFiecwSMUMgmd/mhm1qkNMW3C1fRnsYrHZ0XiN4YYYKxvaHE+82s
- n0QXtGfycvH0jyydBFWFtZG0w3/vAlxVVZWsAZLgY2/j5w2jKZcLdaD/7neYh/fAbn9r
- l7sc3i3uewzA4SaznYWf+KVLwGBH+BAh93gsWT+c7iUTMPM04C9K/sJ47ZgzO1k+9oUe WA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s7vxsspsp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 03 Aug 2023 13:09:23 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 373D9Mvk010971
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 3 Aug 2023 13:09:22 GMT
-Received: from [10.216.37.36] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 3 Aug
- 2023 06:09:17 -0700
-Message-ID: <c25456de-4d5a-033f-3328-6183c754b08f@quicinc.com>
-Date:   Thu, 3 Aug 2023 18:39:13 +0530
+        with ESMTP id S233650AbjHCNYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 09:24:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AC31FF0;
+        Thu,  3 Aug 2023 06:24:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7118A61D74;
+        Thu,  3 Aug 2023 13:24:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D50C433C8;
+        Thu,  3 Aug 2023 13:24:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691069067;
+        bh=qGrDHIK6/xOdKDdS35eaB+Wxl3ioAdvC30LumONWttM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OAZ5MQgI9ORotPQHTCd55M90Nt8CEoKFC+5M/kTtUlN6k1YM3S7MPweUi/ctHu3ww
+         GSx/l227S/+XtqqfbgdhyXZAU/jqkzc4vjw7sIOwt3HtUirxmAiSujwo+cULPQCl4f
+         b3u/cWgZjUMXPIsebTaghJAqdhU85gD02tKF1ixNDQrO64AxYzucRJFyLQgZi8fOjy
+         9+AFn4wFjx7/C2Q3KHx7HZ45vWLqtqrmmIVdYrucWfhCtmYiaFEdvaO4OfUGH6BxbH
+         DllSnsiSwdsiOml/JawbKYRqq112XLbP6MiREwkg/4H06xkVHeJ5Hmkv6jGXAxrofO
+         2/QHtRS86OFrw==
+Date:   Thu, 3 Aug 2023 18:54:24 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>
+Subject: Re: [PATCH v3 2/2] dmaengine: ls2x-apb: new driver for the Loongson
+ LS2X APB DMA controller
+Message-ID: <ZMuqiHS86/TUaYSF@matsya>
+References: <cover.1689075791.git.zhoubinbin@loongson.cn>
+ <b282ef7c5d1841886a80b2b6502c735f2f0254c9.1689075791.git.zhoubinbin@loongson.cn>
+ <ZMlOxZ1ML+tlRkna@matsya>
+ <CAMpQs4LnZZAtv0Z4LBd-4fg9WkV8jgPxZ8S2a6RA9mTb4Qj8GA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v6 6/6] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC
- support
-Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <srinivas.kandagatla@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230802091429.20892-1-quic_kbajaj@quicinc.com>
- <20230802091429.20892-7-quic_kbajaj@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <20230802091429.20892-7-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ZXQLIAt4PJ-iDGhJQHjoxLCMsysaH--s
-X-Proofpoint-GUID: ZXQLIAt4PJ-iDGhJQHjoxLCMsysaH--s
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-03_12,2023-08-03_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 adultscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 bulkscore=0 mlxlogscore=999 phishscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2306200000 definitions=main-2308030119
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpQs4LnZZAtv0Z4LBd-4fg9WkV8jgPxZ8S2a6RA9mTb4Qj8GA@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03-08-23, 20:14, Binbin Zhou wrote:
+> Hi Vinod:
+> 
+> Thanks for your reply.
+> 
+> On Wed, Aug 2, 2023 at 2:28 AM Vinod Koul <vkoul@kernel.org> wrote:
+> >
+> > On 11-07-23, 20:19, Binbin Zhou wrote:
+> > > The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
+> > >
+> > > It is a single-channel, configurable DMA controller IP core based on the
+> > > AXI bus, whose main function is to integrate DMA functionality on a chip
+> > > dedicated to carrying data between memory and peripherals in APB bus
+> > > (e.g. nand).
+> > >
+> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > > Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
+> > > ---
+> > >  MAINTAINERS                |   1 +
+> > >  drivers/dma/Kconfig        |  14 +
+> > >  drivers/dma/Makefile       |   1 +
+> > >  drivers/dma/ls2x-apb-dma.c | 684 +++++++++++++++++++++++++++++++++++++
+> > >  4 files changed, 700 insertions(+)
+> > >  create mode 100644 drivers/dma/ls2x-apb-dma.c
+> > >
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 60a411936ba7..709c2e9d5f5f 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -12248,6 +12248,7 @@ M:    Binbin Zhou <zhoubinbin@loongson.cn>
+> > >  L:   dmaengine@vger.kernel.org
+> > >  S:   Maintained
+> > >  F:   Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> > > +F:   drivers/dma/ls2x-apb-dma.c
+> > >
+> > >  LOONGSON LS2X I2C DRIVER
+> > >  M:   Binbin Zhou <zhoubinbin@loongson.cn>
+> > > diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> > > index 644c188d6a11..9b41b59ba2b4 100644
+> > > --- a/drivers/dma/Kconfig
+> > > +++ b/drivers/dma/Kconfig
+> > > @@ -376,6 +376,20 @@ config LPC18XX_DMAMUX
+> > >         Enable support for DMA on NXP LPC18xx/43xx platforms
+> > >         with PL080 and multiplexed DMA request lines.
+> > >
+> > > +config LS2X_APB_DMA
+> > > +     tristate "Loongson LS2X APB DMA support"
+> > > +     depends on LOONGARCH || COMPILE_TEST
+> > > +     select DMA_ENGINE
+> > > +     select DMA_VIRTUAL_CHANNELS
+> > > +     help
+> > > +       Support for the Loongson LS2X APB DMA controller driver. The
+> > > +       DMA controller is having single DMA channel which can be
+> > > +       configured for different peripherals like audio, nand, sdio
+> > > +       etc which is in APB bus.
+> > > +
+> > > +       This DMA controller transfers data from memory to peripheral fifo.
+> > > +       It does not support memory to memory data transfer.
+> > > +
+> > >  config MCF_EDMA
+> > >       tristate "Freescale eDMA engine support, ColdFire mcf5441x SoCs"
+> > >       depends on M5441x || COMPILE_TEST
+> > > diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+> > > index a4fd1ce29510..9b28ddb1ea3b 100644
+> > > --- a/drivers/dma/Makefile
+> > > +++ b/drivers/dma/Makefile
+> > > @@ -46,6 +46,7 @@ obj-$(CONFIG_INTEL_IOATDMA) += ioat/
+> > >  obj-y += idxd/
+> > >  obj-$(CONFIG_K3_DMA) += k3dma.o
+> > >  obj-$(CONFIG_LPC18XX_DMAMUX) += lpc18xx-dmamux.o
+> > > +obj-$(CONFIG_LS2X_APB_DMA) += ls2x-apb-dma.o
+> > >  obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
+> > >  obj-$(CONFIG_MILBEAUT_XDMAC) += milbeaut-xdmac.o
+> > >  obj-$(CONFIG_MMP_PDMA) += mmp_pdma.o
+> > > diff --git a/drivers/dma/ls2x-apb-dma.c b/drivers/dma/ls2x-apb-dma.c
+> > > new file mode 100644
+> > > index 000000000000..b3efe86e4330
+> > > --- /dev/null
+> > > +++ b/drivers/dma/ls2x-apb-dma.c
+> > > @@ -0,0 +1,684 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > > +/*
+> > > + * Driver for the Loongson LS2X APB DMA Controller
+> > > + *
+> > > + * Copyright (C) 2017-2023 Loongson Corporation
+> > > + */
+> > > +
+> > > +#include <linux/clk.h>
+> > > +#include <linux/dma-mapping.h>
+> > > +#include <linux/dmapool.h>
+> > > +#include <linux/interrupt.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/io-64-nonatomic-lo-hi.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/slab.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_device.h>
+> >
+> > drop this header, of.h should suffice
+> 
+> OK, I wil fix it.
+> >
+> > > +/*
+> > > + * struct ls2x_dma_hw_desc - DMA HW descriptor
+> > > + * @ndesc_addr: the next descriptor low address.
+> > > + * @mem_addr: memory low address.
+> > > + * @apb_addr: device buffer address.
+> > > + * @len: length of a piece of carried content, in words.
+> > > + * @step_len: length between two moved memory data blocks.
+> > > + * @step_times: number of blocks to be carried in a single DMA operation.
+> > > + * @cmd: descriptor command or state.
+> > > + * @stats: DMA status.
+> > > + * @high_ndesc_addr: the next descriptor high address.
+> > > + * @high_mem_addr: memory high address.
+> > > + * @reserved: reserved
+> > > + */
+> > > +struct ls2x_dma_hw_desc {
+> > > +     u32 ndesc_addr;
+> > > +     u32 mem_addr;
+> > > +     u32 apb_addr;
+> >
+> > why not use dma_addr_t for this?
+> 
+> apb_addr is the address of the register in the APB device that is used
+> for DMA access, it is 32-bit.
+> >
+> > > +static void ls2x_dma_start_transfer(struct ls2x_dma_chan *lchan)
+> > > +{
+> > > +     struct ls2x_dma_priv *priv = to_ldma_priv(lchan->vchan.chan.device);
+> > > +     struct ls2x_dma_sg *ldma_sg;
+> > > +     struct virt_dma_desc *vdesc;
+> > > +     u64 val;
+> > > +
+> > > +     /* Get the next descriptor */
+> > > +     vdesc = vchan_next_desc(&lchan->vchan);
+> > > +     if (!vdesc) {
+> > > +             lchan->desc = NULL;
+> > > +             return;
+> > > +     }
+> > > +
+> > > +     list_del(&vdesc->node);
+> > > +     lchan->desc = to_ldma_desc(vdesc);
+> > > +     ldma_sg = &lchan->desc->sg[0];
+> > > +
+> > > +     /* Start DMA */
+> > > +     lo_hi_writeq(0, priv->regs + LDMA_ORDER_ERG);
+> > > +     val = (ldma_sg->llp & ~LDMA_CONFIG_MASK) | LDMA_64BIT_EN | LDMA_START;
+> > > +     lo_hi_writeq(val, priv->regs + LDMA_ORDER_ERG);
+> > > +}
+> > > +
+> > > +static void ls2x_dma_fill_desc(struct ls2x_dma_chan *lchan, u32 i,
+> > > +                            struct ls2x_dma_desc *desc)
+> >
+> > pls align this one to precceding open brace (hint: checkpatch.pl
+> > --strict would warn you about this)
+> 
+> OK, I'll check again.
+> >
+> > > +{
+> > > +     struct ls2x_dma_sg *ldma_sg = &desc->sg[i];
+> > > +
+> > > +     ldma_sg->hw->mem_addr = lower_32_bits(ldma_sg->phys);
+> > > +     ldma_sg->hw->high_mem_addr = upper_32_bits(ldma_sg->phys);
+> > > +     /* Word count register takes input in words */
+> > > +     ldma_sg->hw->len = ldma_sg->len >> 2;
+> > > +     ldma_sg->hw->step_len = 0;
+> > > +     ldma_sg->hw->step_times = 1;
+> > > +
+> > > +     if (desc->direction == DMA_MEM_TO_DEV) {
+> > > +             ldma_sg->hw->cmd = LDMA_INT | LDMA_DATA_DIRECTION;
+> > > +             ldma_sg->hw->apb_addr = lchan->sconfig.dst_addr;
+> > > +     } else {
+> > > +             ldma_sg->hw->cmd = LDMA_INT;
+> > > +             ldma_sg->hw->apb_addr = lchan->sconfig.src_addr;
+> >
+> > only addr are used here, what about data width, why is that ignored?
+> 
+> LS2X DMAC limits data handling to words (4 Bytes).
+> Therefore, our solution is to assign the data length at the slave side
+> directly to hw->len (converted to word) and give it to the DMA
+> controller for one-time processing.
+> In which, hw->len represents the length of a piece of content being
+> carried in words. It is 32 bits, and the max can be up to 4G words.
 
+SO you should update capabilities and also check in slave config and
+reject anything which you dont support
 
-On 8/2/2023 2:44 PM, Komal Bajaj wrote:
-> Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
+> >
+> > > +     }
+> > > +
+> > > +     /* lets make a link list */
+> > > +     if (i) {
+> >
+> > what does i refer to here..?
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->   drivers/soc/qcom/llcc-qcom.c | 67 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 67 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index 315f7a1b90aa..8e1b2399700d 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -366,6 +366,36 @@ static const struct llcc_slice_config sm8550_data[] =  {
->   	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
->   };
-> 
-> +static const struct llcc_slice_config qdu1000_data_2ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 512, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 256, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 512, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 256, 3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_WRCACHE, 31, 128, 1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +};
-> +
-> +static const struct llcc_slice_config qdu1000_data_4ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 512,  0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 1024, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 512,  3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_WRCACHE, 31, 256,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +};
-> +
-> +static const struct llcc_slice_config qdu1000_data_8ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 1024, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 2048, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 1024, 3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_WRCACHE, 31, 512,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +};
-> +
->   static const struct llcc_edac_reg_offset llcc_v1_edac_reg_offset = {
->   	.trp_ecc_error_status0 = 0x20344,
->   	.trp_ecc_error_status1 = 0x20348,
-> @@ -432,6 +462,37 @@ static const u32 llcc_v2_1_reg_offset[] = {
->   	[LLCC_COMMON_STATUS0]	= 0x0003400c,
->   };
-> 
-> +static const struct qcom_llcc_config qdu1000_cfg[] = {
-> +	{
-> +		.sct_data       = qdu1000_data_8ch,
-> +		.size		= ARRAY_SIZE(qdu1000_data_8ch),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{
-> +		.sct_data       = qdu1000_data_4ch,
-> +		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-> +		.need_llcc_cfg  = true,
-> +		.reg_offset     = llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{
-> +		.sct_data       = qdu1000_data_4ch,
-> +		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-> +		.need_llcc_cfg  = true,
-> +		.reg_offset     = llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{
-> +		.sct_data       = qdu1000_data_2ch,
-> +		.size           = ARRAY_SIZE(qdu1000_data_2ch),
-> +		.need_llcc_cfg  = true,
-> +		.reg_offset     = llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +};
-> +
->   static const struct qcom_llcc_config sc7180_cfg[] = {
->   	{
->   		.sct_data	= sc7180_data,
-> @@ -553,6 +614,11 @@ static const struct qcom_llcc_config sm8550_cfg[] = {
->   	},
->   };
-> 
-> +static const struct qcom_sct_config qdu1000_cfgs = {
-> +	.llcc_config	= qdu1000_cfg,
-> +	.num_config	= 4,
+> The 'i' represents the sg item in the scatterlist.
+> If there is only one item in the scatterlist (i == 0), nothing is
+> done. Otherwise, let's make a linked list.
+> Perhaps I should have used a more meaningful name, e.g., sg_index.
 
-looks like you missed to take konrad suggestion here
-
-https://lore.kernel.org/lkml/2a68b891-b855-1998-3eaf-a21473da0851@linaro.org/
-
--Mukesh
-
-> +};
-> +
->   static const struct qcom_sct_config sc7180_cfgs = {
->   	.llcc_config	= sc7180_cfg,
->   	.num_config	= ARRAY_SIZE(sc7180_cfg),
-> @@ -1171,6 +1237,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->   }
-> 
->   static const struct of_device_id qcom_llcc_of_match[] = {
-> +	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
->   	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
->   	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
->   	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
-> --
-> 2.41.0
-> 
+better
+-- 
+~Vinod
