@@ -2,120 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 912E276EDD7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE94E76EDF3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:21:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236981AbjHCPRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 11:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48306 "EHLO
+        id S237060AbjHCPVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 11:21:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236993AbjHCPRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:17:32 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CE930E9
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 08:17:28 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe4762173bso1888698e87.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 08:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691075847; x=1691680647;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=enm0pFmYuJxzhgy70v9/Jc8aeF+nFOmjn4BgA7ozdyI=;
-        b=emlbF4LPp9bzwNdboKoIBUVISTC5cPRub8R67C/v+HVIBD6elzdAUaaG+fmj1+S9fB
-         R9OY0f4gZPHTAEa5wZ3zlcqpC5l/d8+bD1VYyi71vC040njzOco8goX4t6XFywrvZtrf
-         /CmNDu4iufpJ+HIvBPtt7/SsrrSs8ixWgc/eFVLtdwb5Ms35NTW9D8Y9Wi29HiB8wZhQ
-         XQ1oybEfiT+3YqMGdo3StJz+FOSclx26m57VWCHZnABlgYR8p/PaU0PAcZhPlkkapjcV
-         Ob6I8dEAvTp1491lIx9G73/AhlUDlizH4TiZ67Xatd+WFOuyzASzb/xseZx3SujFAaKW
-         PzSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691075847; x=1691680647;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=enm0pFmYuJxzhgy70v9/Jc8aeF+nFOmjn4BgA7ozdyI=;
-        b=O606YxUr32nV1xrHk6YVmromnsMHhZsjvIXvjLI4kB4zuaYvXy3Cp3J+QWvx/ysdmK
-         Dfq3NLG5/2LTCBUGN/2c1ZtPMoGcbc8rEJTbsYH/NxjLS4Y4JeOkKwD0kIhyyEG0XKsJ
-         DheddaTUNKsRH9/7OHhNmsrPpqMOCD7Bi4IB5ZtTdRv77SFeJiT5Z0iBS5LvaXmvXMbd
-         Nwzmj7x2PZynNR0k11C71PmCzjXCFgL8HTy8Ha6FgMbeyca2ziuj6tkliLqzCmOR2C+a
-         0Vr57LIN75O+TPz2WhvgQ+lSJShiKh8kjEbBKmARKmIUz8E+vmUYvtLUoowmmLDV5qnX
-         PgSw==
-X-Gm-Message-State: ABy/qLbcJdCG4/YyQy7euedMedvDva5StduQOem4ymWiE3kcVS8NdVgK
-        7Qd5243C53W/DcbjbhTm8a+Utw==
-X-Google-Smtp-Source: APBJJlEXMFYac5iOxwd5JOdRqqkNdQMF+5Ih+zFUJ/KOAqRSysM3BujOKR+AuDZqEoWH2n1msgqtlQ==
-X-Received: by 2002:ac2:4a64:0:b0:4fd:f590:1ff7 with SMTP id q4-20020ac24a64000000b004fdf5901ff7mr6669395lfp.40.1691075847312;
-        Thu, 03 Aug 2023 08:17:27 -0700 (PDT)
-Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
-        by smtp.gmail.com with ESMTPSA id z25-20020ac25df9000000b004fe37339f8esm7340lfq.149.2023.08.03.08.17.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 08:17:26 -0700 (PDT)
-Message-ID: <d09d093e-214c-8f48-3ad3-40caeb72a6b4@linaro.org>
-Date:   Thu, 3 Aug 2023 17:17:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 5/8] clk: qcom: gcc-qdu1000: Add
- gcc_ddrss_ecpri_gsi_clk support
-Content-Language: en-US
-To:     Imran Shaik <quic_imrashai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S237053AbjHCPVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:21:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5703010EA;
+        Thu,  3 Aug 2023 08:21:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B72F261DF4;
+        Thu,  3 Aug 2023 15:21:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A98EC433C7;
+        Thu,  3 Aug 2023 15:21:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691076110;
+        bh=gGAiitPQSrlb9gSGzmFfSecNyXcwS+MEUkY4CjOGpBY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O6d4GfSVQIxPehDNOe3a+aR+0QU0zpXlVeXlIAvKo1SRpYZ8dz7YSL0xRWxmpoQJB
+         cFt4/4/3XhbVkf2eK2NYXqtgUF/mg51PLIzclkp6Q90UKULBOrdNHzH3YWOTvc/IC7
+         MXFO2hQgi9MdybP5SoJAG8K4aWXNscluvdFDBfjufLxUa5Z9z+GJIEjgNNqFXg/4II
+         DnRQYivV5p0ErNijc3l2aZYx4sIo3aD6rRdCJNrlEXvbD5DvGC5LJI6sDUBbkF/JjS
+         E77A2TOl/aEI7tt0PeMgefU90GiHQRTitfqFv53c9bNaKQNN0kRY5pask9KDWJGfHa
+         6GII6TGHRtNkw==
+Date:   Thu, 3 Aug 2023 16:21:45 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Andrea Collamati <andrea.collamati@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Taniya Das <quic_tdas@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-References: <20230803105741.2292309-1-quic_imrashai@quicinc.com>
- <20230803105741.2292309-6-quic_imrashai@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230803105741.2292309-6-quic_imrashai@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: dac: add mcp4728.yaml
+Message-ID: <20230803-art-marbles-c57091465420@spud>
+References: <cover.1691066050.git.andrea.collamati@gmail.com>
+ <d93dd116cfa7f958c038c0c62993071ea48451d2.1691066050.git.andrea.collamati@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="EwqwCvl+QJ8f9W7n"
+Content-Disposition: inline
+In-Reply-To: <d93dd116cfa7f958c038c0c62993071ea48451d2.1691066050.git.andrea.collamati@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -123,12 +60,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3.08.2023 12:57, Imran Shaik wrote:
-> Add the gcc_ddrss_ecpri_gsi_clk support as per the latest hardware
-> version of QDU1000 and QRU100 SoCs.
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
+--EwqwCvl+QJ8f9W7n
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Aug 03, 2023 at 02:56:34PM +0200, Andrea Collamati wrote:
+> Add documentation for MCP4728
+>=20
+> Signed-off-by: Andrea Collamati <andrea.collamati@gmail.com>
+
+I gave you a reviewed-by on v3, is there a reason that you dropped it?
+
+Thanks,
+Conor.
+
+> ---
+>  .../bindings/iio/dac/microchip,mcp4728.yaml   | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,m=
+cp4728.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.=
+yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+> new file mode 100644
+> index 000000000000..99831d7f1c16
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4728.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip MCP4728 DAC
+> +
+> +maintainers:
+> +  - Andrea Collamati <andrea.collamati@gmail.com>
+> +
+> +description: |
+> +  MCP4728 is a quad channel, 12-bit voltage output
+> +  Digital-to-Analog Converter with non-volatile
+> +  memory and I2C compatible Serial Interface.
+> +  https://www.microchip.com/en-us/product/mcp4728
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,mcp4728
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: |
+> +      Provides both power and acts as the reference supply on the MCP4728
+> +      when Internal Vref is not selected.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        dac@60 {
+> +            compatible =3D "microchip,mcp4728";
+> +            reg =3D <0x60>;
+> +            vdd-supply =3D <&vdac_vdd>;
+> +        };
+> +    };
+> --=20
+> 2.34.1
+>=20
+
+--EwqwCvl+QJ8f9W7n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMvGCQAKCRB4tDGHoIJi
+0rN4AQCOhnmDfmsVYA1hdD3MGTFjz5hcR37JoZKdT7VwZSS0SgD/R5m9BcZE6vS3
+GXL7uB10LZxC/5z/76qfWLEhdCsoWww=
+=BV8Z
+-----END PGP SIGNATURE-----
+
+--EwqwCvl+QJ8f9W7n--
