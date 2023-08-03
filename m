@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8010F76E21E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FACF76E220
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233610AbjHCHyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 03:54:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58478 "EHLO
+        id S231637AbjHCHyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 03:54:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231184AbjHCHxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:53:45 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4961F5595
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 00:43:25 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id 5614622812f47-3a44cccbd96so492480b6e.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 00:43:25 -0700 (PDT)
+        with ESMTP id S231542AbjHCHxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:53:48 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932B05598
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 00:43:29 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-583b019f1cbso6372147b3.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 00:43:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1691048580; x=1691653380;
+        d=chromium.org; s=google; t=1691048583; x=1691653383;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=O80suLs8Qvsgc7R30L63r0azKWcMa3PZDlYRfpOpp9M=;
-        b=G50odMpAiZPUQ5zKrQkOTXNvwx71UmOrW5jQwfS90yBVF4M1S1MmNa91G9TeT3n6x9
-         kcPygwXC5w7+KoeaijZIPd62cmcxCJBeeJ4uc68B4fPzdMdTG58FRERDnHX3inxJbaWI
-         bKxOMGW/At9tyeEGMXhL/vivf8DwgG9a/sh5M=
+        bh=qnzZ3mVH80rTTFN4mmKfEKmsqs6Mvvf/rKk6UFaJvog=;
+        b=YjgZrYrzrSWDTKHQbzvAl9fyP6k0Y2XLjBp7NBcToctpo8q7X00iDlGKSDLi/19g3D
+         GNG/a/5ar6VjBdKrTVjMXKj9dHQjEE7EsDlL5tUkojNPVj8oCELo/8onbf/YnM3Tn4pu
+         x3j0g9jhvSbVQo/FI4p6Ud4CmHDms6CiCOs64=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691048580; x=1691653380;
+        d=1e100.net; s=20221208; t=1691048583; x=1691653383;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=O80suLs8Qvsgc7R30L63r0azKWcMa3PZDlYRfpOpp9M=;
-        b=h7jTG1ah6/KXoKbh8dqvVZXStQNP6B7eXhwnD9+xlw5qybjANPXEIh41h6yIxMy5no
-         RmVjc89q6YHlyasLT+M67OS3KmRi2tzo4FHEjJl8iR416zZOEXN9BoDQLpB1IC/DAg/K
-         1tJ9uKK/Z+o6Hf7xyC5xaKsZX2CAzRzMdKAyCSycjsU3w7m4LksRJ0WAdHMOWlJTttDi
-         uVRxVQIxm0iqKFZ929SqkSSpofZWAp64QOGyWterid2cSumN+sX01nORXwaJyhG8QYmk
-         jbUBHuZxxl2HaFrSDi6tPkEEaxV7SPEWi3Wl57g8bCasw9tPMs/h41qomAPFoLj+9CtI
-         q/0g==
-X-Gm-Message-State: ABy/qLatB0UoDQr9jYd2Qj4U15aA+GsTWhFDo3+tlYovNvH2maOuivl7
-        gtT3eeqU1+pVF0IdiGNXf1M2Hw==
-X-Google-Smtp-Source: APBJJlGY9mduFao8XJQFVBFE9ih/bv4zzgVrQtxOi7vXuN0THQ/f3tRLfB/zLRer9OPXZDJahrPkbA==
-X-Received: by 2002:a54:4d8b:0:b0:3a6:f876:148d with SMTP id y11-20020a544d8b000000b003a6f876148dmr18312483oix.8.1691048580528;
-        Thu, 03 Aug 2023 00:43:00 -0700 (PDT)
+        bh=qnzZ3mVH80rTTFN4mmKfEKmsqs6Mvvf/rKk6UFaJvog=;
+        b=eW2LCEnO6o+z6E4WBpdF6Xsqe+eER8B54R9Qec2EGoHyqOHWaXVwlDuVnVmwQpYbrn
+         k17Zi9tKBsj4QklMmDM30fvSN/UuaPag5agXHo9y4Byy0Y/h+NWzSE6ZZ5zmHyHl8YUq
+         WEjz3BIIdIMDGc13kTE8/pUZA5NE4jviaPlbsdQE3fZw7H+gWGG+AuToyJVvCm12uEZp
+         2eThEBYuYxkAq0OzPAbOnWk6lXsjDOmiRvE6/KlqaAIPtgqw8XvOVycTPkiDnQ2Gqh/G
+         0en4yVpRutaZ+2u5jC46pNtRAxlowICyrsTz8uJW7TrLDecf3SGy5G8W8YZaANXcEkVD
+         CGMQ==
+X-Gm-Message-State: ABy/qLYaWGtlrofqRrjjNQU03Vmximj6QYamPm5Dy2hFUaB2z9qRWzyh
+        4H1agUel6b2tt8fpFbk3vP3+qTMh/t87+dZsl8Y=
+X-Google-Smtp-Source: APBJJlGxB/1X32tTrdlyPkNI+lx6FksiZGUPbX+vn+B/9U+9kI595eZfjC5HlvPRxIAHElcWNyE5DA==
+X-Received: by 2002:a0d:d490:0:b0:585:fb08:157a with SMTP id w138-20020a0dd490000000b00585fb08157amr13328988ywd.50.1691048583049;
+        Thu, 03 Aug 2023 00:43:03 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:6f3e:66ee:db46:473b])
-        by smtp.gmail.com with ESMTPSA id l11-20020a17090a72cb00b00262d079720bsm2095753pjk.29.2023.08.03.00.42.58
+        by smtp.gmail.com with ESMTPSA id l11-20020a17090a72cb00b00262d079720bsm2095753pjk.29.2023.08.03.00.43.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 00:43:00 -0700 (PDT)
+        Thu, 03 Aug 2023 00:43:02 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -59,9 +59,9 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH 1/9] dt-bindings: mfd: mt6397: Split out compatible for MediaTek MT6366 PMIC
-Date:   Thu,  3 Aug 2023 15:42:39 +0800
-Message-ID: <20230803074249.3065586-2-wenst@chromium.org>
+Subject: [PATCH 2/9] mfd: mt6358: Add registers for MT6366 specific regulators
+Date:   Thu,  3 Aug 2023 15:42:40 +0800
+Message-ID: <20230803074249.3065586-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.41.0.585.gd2178a4bd4-goog
 In-Reply-To: <20230803074249.3065586-1-wenst@chromium.org>
 References: <20230803074249.3065586-1-wenst@chromium.org>
@@ -70,49 +70,59 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
-a different set of regulators. Specifically, it lacks the camera related
-VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
+The MT6366 PMIC, compared to the MT6358, does away with the VCAM*
+regulators. Two regulators VM18 and VMDDR reuse their register space.
+There's also a VSRAM type regulator VSRAM_CORE thats' split between
+the VCAM* register space and other parts.
 
-Add a separate compatible for the MT6366 PMIC.
+Add register address macros for these MT6366 specific regulators.
 
-Fixes: 49be16305587 ("dt-bindings: mfd: Add compatible for the MediaTek MT6366 PMIC")
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- Documentation/devicetree/bindings/mfd/mt6397.txt | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ include/linux/mfd/mt6358/registers.h | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-index 294693a8906c..d4778b0d5f5c 100644
---- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-+++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-@@ -22,8 +22,9 @@ compatible:
- 	"mediatek,mt6323" for PMIC MT6323
- 	"mediatek,mt6331" for PMIC MT6331 and MT6332
- 	"mediatek,mt6357" for PMIC MT6357
--	"mediatek,mt6358" for PMIC MT6358 and MT6366
-+	"mediatek,mt6358" for PMIC MT6358
- 	"mediatek,mt6359" for PMIC MT6359
-+	"mediatek,mt6366" for PMIC MT6366
- 	"mediatek,mt6397" for PMIC MT6397
+diff --git a/include/linux/mfd/mt6358/registers.h b/include/linux/mfd/mt6358/registers.h
+index 5ea2590be710..f4c321574da3 100644
+--- a/include/linux/mfd/mt6358/registers.h
++++ b/include/linux/mfd/mt6358/registers.h
+@@ -219,6 +219,7 @@
+ #define MT6358_LDO_VCAMIO_CON1                0x1cbe
+ #define MT6358_LDO_VCAMIO_CON2                0x1cc0
+ #define MT6358_LDO_VCAMIO_CON3                0x1cc2
++
+ #define MT6358_LDO_VMC_CON0                   0x1cc4
+ #define MT6358_LDO_VMC_CON1                   0x1cd2
+ #define MT6358_LDO_VMC_CON2                   0x1cd4
+@@ -294,4 +295,21 @@
+ #define MT6358_AUD_TOP_INT_CON0               0x2228
+ #define MT6358_AUD_TOP_INT_STATUS0            0x2234
  
- Optional subnodes:
-@@ -41,6 +42,8 @@ Optional subnodes:
- 	see ../regulator/mt6323-regulator.txt
- 		- compatible: "mediatek,mt6358-regulator"
- 	see ../regulator/mt6358-regulator.txt
-+		- compatible: "mediatek,mt6366-regulator"
-+	see ../regulator/mediatek,mt6366-regulator.yaml
- 		- compatible: "mediatek,mt6397-regulator"
- 	see ../regulator/mt6397-regulator.txt
- - codec
++/*
++ * MT6366 has no VCAM*, but has other regulators in its place. The names
++ * keep the MT6358 prefix for ease of use in the regulator driver.
++ */
++#define MT6358_LDO_VSRAM_CON5                 0x1bf8
++#define MT6358_LDO_VM18_CON0                  MT6358_LDO_VCAMA1_CON0
++#define MT6358_LDO_VM18_CON1                  MT6358_LDO_VCAMA1_CON1
++#define MT6358_LDO_VM18_CON2                  MT6358_LDO_VCAMA1_CON2
++#define MT6358_LDO_VMDDR_CON0                 MT6358_LDO_VCAMA2_CON0
++#define MT6358_LDO_VMDDR_CON1                 MT6358_LDO_VCAMA2_CON1
++#define MT6358_LDO_VMDDR_CON2                 MT6358_LDO_VCAMA2_CON2
++#define MT6358_LDO_VSRAM_CORE_CON0            MT6358_LDO_VCAMD_CON0
++#define MT6358_LDO_VSRAM_CORE_DBG0            0x1cb6
++#define MT6358_LDO_VSRAM_CORE_DBG1            0x1cb8
++#define MT6358_VM18_ANA_CON0                  MT6358_VCAMA1_ANA_CON0
++#define MT6358_VMDDR_ANA_CON0                 MT6358_VCAMD_ANA_CON0
++
+ #endif /* __MFD_MT6358_REGISTERS_H__ */
 -- 
 2.41.0.585.gd2178a4bd4-goog
 
