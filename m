@@ -2,198 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7180F76EB25
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 15:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E001976E990
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 15:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235850AbjHCNt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 09:49:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37782 "EHLO
+        id S236093AbjHCNI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 09:08:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236352AbjHCNtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 09:49:11 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36AF21702;
-        Thu,  3 Aug 2023 06:49:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=Ld2noSdra5BNqMzE0bPZuYFJMJpb2EpiNnt7IK1QEFM=; b=X9izG5Cxk+OQmeNZ56PEzFQbiR
-        6asrc0JJAS/e11bzA0YKNYjLlB+8uBv44sWgZ7Xrt6qSPogLugLYOrMQhZb+KuGmEUB1BPNPLx8Ll
-        +bWy0jBEZbL0BZOURkXgk8wkivLpKWrIYW5UwXLrBvwrSceXa2gtC/hzy8oummCTOQf0=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:50276 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qRY0L-00085F-He; Thu, 03 Aug 2023 09:04:39 -0400
-Date:   Thu, 3 Aug 2023 09:04:36 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org,
-        Ilpo =?ISO-8859-1?Q?J?= =?ISO-8859-1?Q?=E4rvinen?= 
-        <ilpo.jarvinen@linux.intel.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230803090436.ca7ebefaa63054f30cf10f89@hugovil.com>
-In-Reply-To: <2023080336-unsalted-dropout-d8f6@gregkh>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
-        <20230725142343.1724130-2-hugo@hugovil.com>
-        <2023073148-marshy-extenuate-2d45@gregkh>
-        <20230801131655.80bd8f97f018dda6155d65f6@hugovil.com>
-        <2023080336-unsalted-dropout-d8f6@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S236284AbjHCNIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 09:08:06 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FE74C27
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 06:06:34 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe216edaf7so2588136e87.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 06:06:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691067934; x=1691672734;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eWYA704UWyrCuVl2IVzrHz3n0S97k5VTTL5u48g6ZTA=;
+        b=e3geX4m1ZZORMkJo5JTDAM+hn3WhVYbMmVHOQ05ESi/RbDn63S6kae8cPpi585t1dh
+         3CAXQhSIZQfLK4Qz4FQJsnjCDTrZqJe+DDBzMB68sMgwEHWXlOHV1di3njBqtX9FHav/
+         fR+Ozvez38uIPy6yw3BQeJ78h6eNbPDnijtHPa6cazgw1D3We0icbBrV1aejrMj7E6if
+         1PSfMUmoLr/y3Y8ptBBlvJDRIj85TjXcjOnUkfTS3KxvMbsaPufy0AFKTv9TtIgnsIHC
+         BWcqB4mvXFYO46zOZk1XGqlRAHhZcCnv7JGlzTwldbnqsevuEUx8Wx/LQugPN7t4D9mN
+         q89A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691067934; x=1691672734;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eWYA704UWyrCuVl2IVzrHz3n0S97k5VTTL5u48g6ZTA=;
+        b=goxKm8NJIp4lZu1UbiMWWeRP3eyGJsM0DvP/8IUojYU3F0lYJ4xyOacp5csaaqaU+E
+         nIJ2cz3wDevInujv8HqPOJmP0PXJOzCXt7ceYwc/xxPbGL324iffqBdOYoqUwMgdnWi2
+         dkbsTv/MUF8LUO6UBIxqOr094WTGUdI7N2xroRD8Ru+dj9s8DBnG5du2jFb8kRrn4aGP
+         zMtyXOwb0PL/2y65QW3oPDW02M3WYXgZgG3VjjfLSP9KJc4bqQbsJ/i/JngyNG7C+rBr
+         zPKTPIIlvoF+8AIGOnvwGFUqgWa3Iuoc47Y2jY8rmL3piureAg/QWXT1jIysD2G0Qi4D
+         nQyg==
+X-Gm-Message-State: ABy/qLbmOiyta01x5v4pxwlgbsiuVevwfSVv+QqbIg330dV/8tNX6J+l
+        b98EKaWkdQVVgGxw8PUwMGnlhg==
+X-Google-Smtp-Source: APBJJlGC3rABxiwyoiDF0oUWEpERVKiEj80Fs1x/UV5kinaiB16EEFg1DxZaPQsrEAhjC/Ej7JCD+g==
+X-Received: by 2002:a05:6512:3ca3:b0:4fe:17a8:bee5 with SMTP id h35-20020a0565123ca300b004fe17a8bee5mr4122947lfv.31.1691067933716;
+        Thu, 03 Aug 2023 06:05:33 -0700 (PDT)
+Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
+        by smtp.gmail.com with ESMTPSA id h11-20020ac25d6b000000b004fa4323ec97sm3346594lft.301.2023.08.03.06.05.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 06:05:33 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Thu, 03 Aug 2023 15:05:26 +0200
+Subject: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Unreserve NC pins
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230803-topic-x13s_pin-v1-1-fae792274e89@linaro.org>
+X-B4-Tracking: v=1; b=H4sIABWmy2QC/x2NywqDQAwAf0VybmAfB2t/pZSyu8YakLhsahHEf
+ 2/wOAPDHKDUmBQe3QGNfqy8ioG/dVDmJB9CHo0huBDd3UX8rpUL7j7qu7LgQBS973M/hQEsykk
+ Jc0tSZstkWxaTtdHE+3V5vs7zD1liBMZ1AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691067932; l=1138;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=Isdz9v//a75u85vSi/PjyYD1dgrHZUgYNZovgx3+yvA=;
+ b=JyjBZpB+Bv5UsUJshxNfdQulQwSprrfTT60zfjNwelAxLfJnexNNxp4PttcYsRTPVNwX9ue2W
+ pznf2z61XRoDb5KTM2QRjQTNgT5yJlLcx9dv8yPc8DV/iS3Ag0TFQVD
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v9 01/10] serial: sc16is7xx: fix broken port 0 uart init
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Aug 2023 09:54:37 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+Pins 83-86 and 158-160 are NC, so there's no point in keeping them
+reserved. Take care of that.
 
-> On Tue, Aug 01, 2023 at 01:16:55PM -0400, Hugo Villeneuve wrote:
-> > On Mon, 31 Jul 2023 17:52:26 +0200
-> > Greg KH <gregkh@linuxfoundation.org> wrote:
-> >=20
-> > > On Tue, Jul 25, 2023 at 10:23:33AM -0400, Hugo Villeneuve wrote:
-> > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > >=20
-> > > > The sc16is7xx_config_rs485() function is called only for the second
-> > > > port (index 1, channel B), causing initialization problems for the
-> > > > first port.
-> > > >=20
-> > > > For the sc16is7xx driver, port->membase and port->mapbase are not s=
-et,
-> > > > and their default values are 0. And we set port->iobase to the devi=
-ce
-> > > > index. This means that when the first device is registered using the
-> > > > uart_add_one_port() function, the following values will be in the p=
-ort
-> > > > structure:
-> > > >     port->membase =3D 0
-> > > >     port->mapbase =3D 0
-> > > >     port->iobase  =3D 0
-> > > >=20
-> > > > Therefore, the function uart_configure_port() in serial_core.c will
-> > > > exit early because of the following check:
-> > > > 	/*
-> > > > 	 * If there isn't a port here, don't do anything further.
-> > > > 	 */
-> > > > 	if (!port->iobase && !port->mapbase && !port->membase)
-> > > > 		return;
-> > > >=20
-> > > > Typically, I2C and SPI drivers do not set port->membase and
-> > > > port->mapbase.
-> > > >=20
-> > > > The max310x driver sets port->membase to ~0 (all ones). By
-> > > > implementing the same change in this driver, uart_configure_port() =
-is
-> > > > now correctly executed for all ports.
-> > > >=20
-> > > > Fixes: dfeae619d781 ("serial: sc16is7xx")
-> > >=20
-> > > That commit is in a very old 3.x release.
-> > >=20
-> > > > Cc: <stable@vger.kernel.org> # 6.1.x
-> > >=20
-> > > But you say this should only go to 6.1.y?  Why?  What is wrong with t=
-he
-> > > older kernels?
-> >=20
-> > Hi Greg,
-> > I have read (and reread a couple of times)
-> > Documentation/process/stable-kernel-rules.rst to try to understand how
-> > to format the tags, but unfortunately it doesn't contain "Everything
-> > you ever wanted to know about Linux -stable releases" as the title
-> > claims :)
-> >=20
-> > In particular, it doesn't explain or advise which older version we
-> > should target, that is why since I was not sure I specified 6.1.y
-> > because I could test it properly, but not v3.x.
->=20
-> If you think this fixes an issue back to 3.x, then just leave it at
-> that, there's no need to have to test all of these.  If when I apply the
-> patch to the stable trees, and it does not go back to all of the
-> active versions specified by Fixes: then you will get an email saying
-> so and can handle it then if you want to.
->=20
-> > Maybe it would be best to simply drop for now all the "Cc:
-> > <stable@vger.kernel.org>" tags for this series, and following Option 2,
-> > I send an email to stable@vger.kernel.org once the patches have been
-> > merged to Linus' tree?
->=20
-> That will just mean more work for both of us, leave it as is, just drop
-> the "# 6.1.x" portion please.
->=20
-> > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
-> > > > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
-> > > > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
-> > > > ---
-> > > >  drivers/tty/serial/sc16is7xx.c | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >=20
-> > > > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc=
-16is7xx.c
-> > > > index 2e7e7c409cf2..8ae2afc76a9b 100644
-> > > > --- a/drivers/tty/serial/sc16is7xx.c
-> > > > +++ b/drivers/tty/serial/sc16is7xx.c
-> > > > @@ -1436,6 +1436,7 @@ static int sc16is7xx_probe(struct device *dev,
-> > > >  		s->p[i].port.fifosize	=3D SC16IS7XX_FIFO_SIZE;
-> > > >  		s->p[i].port.flags	=3D UPF_FIXED_TYPE | UPF_LOW_LATENCY;
-> > > >  		s->p[i].port.iobase	=3D i;
-> > > > +		s->p[i].port.membase	=3D (void __iomem *)~0;
-> > >=20
-> > > That's a magic value, some comment should be added here to explain why
-> > > setting all bits is ok.  Why does this work exactly?  You only say th=
-at
-> > > the max310x driver does this, but not why it does this at all.
-> >=20
-> > I do not understand, because my commit log message is quite long
-> > and, it seems to me, well documenting why this works the way it
-> > does when calling uart_configure_port() in serial_core.c?
-> >=20
-> > I say that the max310x driver also does this, because there is also no
-> > comment in the max310x driver for using the (void __iomem *)~0;
-> > construct. I also located the original commit message for the max310x
-> > driver but no comments were usefull there also.
-> >=20
-> > So, what about adding this comment:
-> >=20
-> > /*
-> >  * Use all ones as membase to make sure uart_configure_port() in
-> >  * serial_core.c does not abort for SPI/I2C devices where the
-> >  * membase address is not applicable.
-> >  */
-> >  s->p[i].port.membase	=3D (void __iomem *)~0;
->=20
-> Yes, that would be good, thank you.
->=20
-> > If wou want, I could also add the same comment to the max310 driver?
->=20
-> Yes please.
+Fixes: 32c231385ed4 ("arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s devicetree")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi Greg,
-I will send a separate patch specifically for this.
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index 6b5a7de6a27d..9a2bbd339e76 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -1244,7 +1244,7 @@ hastings_reg_en: hastings-reg-en-state {
+ };
+ 
+ &tlmm {
+-	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
++	gpio-reserved-ranges = <70 2>, <74 6>, <125 2>, <128 2>, <154 4>;
+ 
+ 	bt_default: bt-default-state {
+ 		hstp-bt-en-pins {
 
-Thank you, Hugo.
+---
+base-commit: fb4327106e5250ee360d0d8b056c1eef7eeb9a98
+change-id: 20230803-topic-x13s_pin-9ee3117b7f29
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
