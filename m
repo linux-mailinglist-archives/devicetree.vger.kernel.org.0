@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6E3B76EDD4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912E276EDD7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235211AbjHCPRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 11:17:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47884 "EHLO
+        id S236981AbjHCPRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 11:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236966AbjHCPRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:17:10 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4806D1734
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 08:17:08 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe48d0ab0fso1855220e87.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 08:17:08 -0700 (PDT)
+        with ESMTP id S236993AbjHCPRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:17:32 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CE930E9
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 08:17:28 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe4762173bso1888698e87.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 08:17:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691075826; x=1691680626;
+        d=linaro.org; s=google; t=1691075847; x=1691680647;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TramLbKI90yPWYAVx7wulDWXQ7m/k8XvtzY338rmDp8=;
-        b=Qyyl59lOl2jB7Y3iHJGFCPEiaavBtVlAPUCEC8E1LwA4bgYeEJkfQyawjz02EtCksR
-         1sbZOb3+3+SP5nCmAZk5ikoqZC9sZczHGjg4H5R4FcQUy+/Zv+m82HptI11M6W9vFOpy
-         QX9ldeEFcZqkdCKc0iIuYqNJBRyFPgqP7SkGXCMGxV46Nax3c5Y7RbMF1EiIb/ReIck/
-         7ib5PRUvJE21TzdbYY/IiAQkKVjfKdhsPpVucUlXzoFraWwX62XFl3pMgOA2v1vHGs36
-         odQQmNC9B3BkudhI6Y1sE+w9R24RVwhkJ618dDdyPcyLF8EGcp1A02H7I6Y8mYJXjx+h
-         jWvg==
+        bh=enm0pFmYuJxzhgy70v9/Jc8aeF+nFOmjn4BgA7ozdyI=;
+        b=emlbF4LPp9bzwNdboKoIBUVISTC5cPRub8R67C/v+HVIBD6elzdAUaaG+fmj1+S9fB
+         R9OY0f4gZPHTAEa5wZ3zlcqpC5l/d8+bD1VYyi71vC040njzOco8goX4t6XFywrvZtrf
+         /CmNDu4iufpJ+HIvBPtt7/SsrrSs8ixWgc/eFVLtdwb5Ms35NTW9D8Y9Wi29HiB8wZhQ
+         XQ1oybEfiT+3YqMGdo3StJz+FOSclx26m57VWCHZnABlgYR8p/PaU0PAcZhPlkkapjcV
+         Ob6I8dEAvTp1491lIx9G73/AhlUDlizH4TiZ67Xatd+WFOuyzASzb/xseZx3SujFAaKW
+         PzSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691075826; x=1691680626;
+        d=1e100.net; s=20221208; t=1691075847; x=1691680647;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TramLbKI90yPWYAVx7wulDWXQ7m/k8XvtzY338rmDp8=;
-        b=kNyhaVtzJE4RHoK9YjGU7Xq58Z6HSh2yXEuBxpvhDucGkZxw0OzSn2nvnuHTXTz//J
-         p2DQIou/iCZekk6YpQefYJzHGExTpVP9MHEOEBUHsEHxo5zHoa8ZsM1tacT2WKecTdUx
-         WYw+8C1S10sgGBoRBs+su4OhZBfe7SN/AI/vy2j3LJmES18YnfxvOpR8ouxMdM1uH1Pb
-         kU2J01GI5c/DoLRLIb8GQX+zNjcOKa6eGhMgvwxtU1YU2LikKEJ9yFa36NqYebKKuU7u
-         uwd+0vERnMY8CYM6X5FHIwDYReJIpeex2IGACEoqLN+Dd7eL9zCQnNZLqw+h6wfqycxR
-         qlCg==
-X-Gm-Message-State: ABy/qLae5cshywEFXbZEO5lcc3Ku/0m3M5TjGy+Sg9oI2HUkGfJexyqS
-        j7LfgGzEHEUDscdycgjdiacSYg==
-X-Google-Smtp-Source: APBJJlEBDu/5LdfPpr8nkqRHfmK4saE2beuXmAn53UeT+6XCtyNtJksY2JY0YlXuTZcAcDBIWKsuug==
-X-Received: by 2002:a05:6512:104e:b0:4fe:79c:7269 with SMTP id c14-20020a056512104e00b004fe079c7269mr8339745lfb.67.1691075826434;
-        Thu, 03 Aug 2023 08:17:06 -0700 (PDT)
+        bh=enm0pFmYuJxzhgy70v9/Jc8aeF+nFOmjn4BgA7ozdyI=;
+        b=O606YxUr32nV1xrHk6YVmromnsMHhZsjvIXvjLI4kB4zuaYvXy3Cp3J+QWvx/ysdmK
+         Dfq3NLG5/2LTCBUGN/2c1ZtPMoGcbc8rEJTbsYH/NxjLS4Y4JeOkKwD0kIhyyEG0XKsJ
+         DheddaTUNKsRH9/7OHhNmsrPpqMOCD7Bi4IB5ZtTdRv77SFeJiT5Z0iBS5LvaXmvXMbd
+         Nwzmj7x2PZynNR0k11C71PmCzjXCFgL8HTy8Ha6FgMbeyca2ziuj6tkliLqzCmOR2C+a
+         0Vr57LIN75O+TPz2WhvgQ+lSJShiKh8kjEbBKmARKmIUz8E+vmUYvtLUoowmmLDV5qnX
+         PgSw==
+X-Gm-Message-State: ABy/qLbcJdCG4/YyQy7euedMedvDva5StduQOem4ymWiE3kcVS8NdVgK
+        7Qd5243C53W/DcbjbhTm8a+Utw==
+X-Google-Smtp-Source: APBJJlEXMFYac5iOxwd5JOdRqqkNdQMF+5Ih+zFUJ/KOAqRSysM3BujOKR+AuDZqEoWH2n1msgqtlQ==
+X-Received: by 2002:ac2:4a64:0:b0:4fd:f590:1ff7 with SMTP id q4-20020ac24a64000000b004fdf5901ff7mr6669395lfp.40.1691075847312;
+        Thu, 03 Aug 2023 08:17:27 -0700 (PDT)
 Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
-        by smtp.gmail.com with ESMTPSA id z25-20020ac25df9000000b004fe37339f8esm7340lfq.149.2023.08.03.08.17.04
+        by smtp.gmail.com with ESMTPSA id z25-20020ac25df9000000b004fe37339f8esm7340lfq.149.2023.08.03.08.17.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 08:17:05 -0700 (PDT)
-Message-ID: <b7f0be32-df13-3993-bcea-75ff99166c0e@linaro.org>
-Date:   Thu, 3 Aug 2023 17:17:04 +0200
+        Thu, 03 Aug 2023 08:17:26 -0700 (PDT)
+Message-ID: <d09d093e-214c-8f48-3ad3-40caeb72a6b4@linaro.org>
+Date:   Thu, 3 Aug 2023 17:17:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 4/8] clk: qcom: gcc-qdu1000: Register
- gcc_gpll1_out_even clock
+Subject: Re: [PATCH V5 5/8] clk: qcom: gcc-qdu1000: Add
+ gcc_ddrss_ecpri_gsi_clk support
 Content-Language: en-US
 To:     Imran Shaik <quic_imrashai@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -73,7 +73,7 @@ Cc:     Taniya Das <quic_tdas@quicinc.com>,
         Ajit Pandey <quic_ajipan@quicinc.com>,
         Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 References: <20230803105741.2292309-1-quic_imrashai@quicinc.com>
- <20230803105741.2292309-5-quic_imrashai@quicinc.com>
+ <20230803105741.2292309-6-quic_imrashai@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -110,12 +110,12 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230803105741.2292309-5-quic_imrashai@quicinc.com>
+In-Reply-To: <20230803105741.2292309-6-quic_imrashai@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -124,10 +124,9 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 3.08.2023 12:57, Imran Shaik wrote:
-> gcc_gpll1_out_even clock is referenced as a parent, but not registered
-> with the clock framework. Hence add support to register the same.
+> Add the gcc_ddrss_ecpri_gsi_clk support as per the latest hardware
+> version of QDU1000 and QRU100 SoCs.
 > 
-> Fixes: 1c9efb0bc040 ("clk: qcom: Add QDU1000 and QRU1000 GCC support")
 > Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
