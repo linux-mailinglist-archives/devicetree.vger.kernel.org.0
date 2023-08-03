@@ -2,141 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9E5C76EC86
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D75AE76ECBD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235349AbjHCOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 10:30:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43306 "EHLO
+        id S236733AbjHCOha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 10:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233595AbjHCOaM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:30:12 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 637DFF0
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 07:30:11 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52307552b03so1380712a12.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 07:30:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691073010; x=1691677810;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TLGQIBcmnPlkP1H90L4arPiKiIXchPemEGcuJPAOma0=;
-        b=V+wQrfpbow5/ttxZyUaV1RdKWQBC7AlUZ+3pcXXgdBtzPOqOmhWAJj48MQ2U9Uu1Uh
-         0hnPC98eznmSl92mH0pwquOMr4wm2BVnKGHKU9b6cP2b9g0NzW5jsIZ9WigeqeG5wMpP
-         WAKPsyO7mcI6WXaLmxpP13y2dwywJxIuOQbO7Voz9sPm7KK4bdzTpEhKCamLxREpsZDK
-         u/s1C64p5ogdHE6+0YMBAlD+f1hiY6xh6x+Xg65Erhk9UkBCxZ+pqKQXXIjXy4r9pHOR
-         XC/z3K4SP2DpXMumtmvd5xcVevAlg0cNvG7rQ2ljBVr6wsL9uq222QCYvEBiUnzG3gyA
-         Xx7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691073010; x=1691677810;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TLGQIBcmnPlkP1H90L4arPiKiIXchPemEGcuJPAOma0=;
-        b=ZHrXBEdtPxpJb5V+fc4n/gmbEEqV6lRkyBmj06pk2JCTqXsZ2hkVGjYj6gEtJpNLng
-         J/MQK/Ps/S61X4vcwMvrEOSRyZneMVtMfORXkzTeZcEhD1GtwAqay0nHpy40QTGOc3ho
-         2BwCTiB7YTeGTbt0Tqk4NSnriX8EBzWEqPJh6vvD4PQc98aRWClTXBf/2J2RkUrv0OfA
-         I6KcsdRfd2JFbbCbuFbBnuq3r69SMPhy00yWgrpIYa3qWAHXWmXV2RH26Hp7z+ucULoq
-         YYLzaa9OI46RjLox1XpCOPOe0zE5kzf9zf0A5lWvtHVTPR37bbdbveQAY4LDi4AkwL8i
-         lZ7A==
-X-Gm-Message-State: ABy/qLav4eE3CgSHlKcDUm/jZAxyK0NDDZZMDTrpPZsApXuhZ8Xhsvz/
-        SbdR6ekz/g3dINKeiWfOAG4PkQ==
-X-Google-Smtp-Source: APBJJlHOlI75QhDtYFAg9HERhBvyV2JLY/tIUjauBt+B1yJGtKwFW58txzygi3y9gEXeh2orqraKGw==
-X-Received: by 2002:aa7:d705:0:b0:521:e502:baf8 with SMTP id t5-20020aa7d705000000b00521e502baf8mr7841254edq.11.1691073009875;
-        Thu, 03 Aug 2023 07:30:09 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id d7-20020a056402078700b005221ce96801sm10344275edy.35.2023.08.03.07.30.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 07:30:09 -0700 (PDT)
-Message-ID: <17dec3fb-1bce-77ff-9917-7f565049954d@linaro.org>
-Date:   Thu, 3 Aug 2023 16:30:06 +0200
+        with ESMTP id S234846AbjHCOhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:37:13 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A61524A;
+        Thu,  3 Aug 2023 07:36:12 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 373EJRix025489;
+        Thu, 3 Aug 2023 14:35:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=fNAvu0glUC7orvVuI8D5tnkb1EFqrPjO1TlyEH3Kf1A=;
+ b=gHguUEmCb31GdB1NXtR7ulhaSn8EzJls3eylMjPoLpxM1lKQtGviovF31hf1oyu7udae
+ LcL4IBsyqa9RLpxLAp/TuySu1cA/yLhIg/X/MiVQQG4HLzmoLNXkx56iPbjhh8VgqQrH
+ /HEsgh5XAPiXFrxdmMO8TAlrdagfNqcWxDB3e74RrnwP3+1TsR2bWi9t4H16HiOo5XcQ
+ tqWjdsBj93YDiwagWY1ewk4789+rGNU/mCDu/p3oG0O+SOyev69UNoQTL90ZM1X9aTa+
+ scps1lhSosjFVTKYyZVwr+DOTc63lpuZ4M1694Z1OjeMB9aiXGhlBtNuXrt26ns36RS4 1w== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s8dv5013m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Aug 2023 14:35:20 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 373EZKbW000923
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 3 Aug 2023 14:35:20 GMT
+Received: from [10.110.54.109] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 3 Aug
+ 2023 07:35:19 -0700
+Message-ID: <774b688f-0324-9097-6504-58d15a3e6afb@quicinc.com>
+Date:   Thu, 3 Aug 2023 07:35:18 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v1 6/6] arm64: dts: allwinner: h616: Add BigTreeTech Pi
- support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH V25 0/3] misc: Add driver support for Data Capture and
+ Compare unit(DCC)
 Content-Language: en-US
-To:     Martin Botka <martin@biqu3d.com>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
-        Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-References: <20230802220309.163804-1-martin@biqu3d.com>
- <DFE9B2F1349F69AE+20230802220309.163804-7-martin@biqu3d.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DFE9B2F1349F69AE+20230802220309.163804-7-martin@biqu3d.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1687945879.git.quic_schowdhu@quicinc.com>
+ <f25f8c43-2996-23ff-e6af-9e39b7fced86@quicinc.com>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <f25f8c43-2996-23ff-e6af-9e39b7fced86@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3bDD16gGqm4EkJMhwU3EEZ52FkhJMWai
+X-Proofpoint-ORIG-GUID: 3bDD16gGqm4EkJMhwU3EEZ52FkhJMWai
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-03_14,2023-08-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ clxscore=1011 malwarescore=0 impostorscore=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308030131
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2023 00:02, Martin Botka wrote:
-> The BigTreeTech Pi is an H616 based board based on CB1.
-> Just in Rpi format board.
+On 8/3/2023 12:06 AM, Souradeep Chowdhury wrote:
 > 
-> It features the same internals as BTT CB1 but adds:
->     - Fan port
->     - IR receiver
->     - 24V DC power supply via terminal plugs
->     - USB to CAN module connector (The actual USB to CAN happens on the external module)
 > 
-> List of currently working things is the same as BTT CB1.
-> 
-> Signed-off-by: Martin Botka <martin@biqu3d.com>
-> ---
->  .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-> new file mode 100644
-> index 000000000000..05f39b3606ba
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616-bigtreetech-cb1.dtsi"
+> On 6/28/2023 3:53 PM, Souradeep Chowdhury wrote:
 
-If this is using CB1 DTSI, does it mean it uses CB1 SoM? If so, I think
-this should be reflected in the compatibles.
+...
 
-It's a bit confusing because in previous patch you call it "CB1 board"
-but then with name "Manta"... So what is CB1?
+>>
+>> https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/tools/-/tree/opensource-tools.lnx.1.0.r176-rel/dcc_parser
+>>
+>> Changes in v25
+>>
+>> * Updated the documentation of the structure dcc_config_entry as per 
+>> the comments in V23
+>> * Updated the documentation of the dcc Kconfig definition as per 
+>> comment in V24
+>> * Used u64 where applicable
+>> * Removed the mutex locks where it is not needed
+>> * Removed the use of unlikely keyword
+>> * Renamed "nr_link_list" to "max_link_list"
+>>
+>> Souradeep Chowdhury (3):
+>>    dt-bindings: misc: qcom,dcc: Add the dtschema
+>>    misc: dcc: Add driver support for Data Capture and Compare unit(DCC)
+>>    MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+>>      support
+>>
+>>   Documentation/ABI/testing/debugfs-driver-dcc  |   10 +-
+>>   .../devicetree/bindings/misc/qcom,dcc.yaml    |   44 +
+>>   MAINTAINERS                                   |    8 +
+>>   drivers/misc/Kconfig                          |    8 +
+>>   drivers/misc/Makefile                         |    1 +
+>>   drivers/misc/qcom-dcc.c                       | 1312 +++++++++++++++++
+>>   6 files changed, 1378 insertions(+), 5 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/misc/qcom,dcc.yaml
+>>   create mode 100644 drivers/misc/qcom-dcc.c
+> 
+> Gentle Ping
 
-Best regards,
-Krzysztof
+Thank you for the reminder Souradeep. Greg and others, please see if we 
+need any changes here or it can be picked up?
+
+-- 
+---Trilok Soni
 
