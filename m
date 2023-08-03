@@ -2,66 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 410F076DE5A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 04:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 353BA76DE60
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 04:41:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbjHCCjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 22:39:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
+        id S230150AbjHCClV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 22:41:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232506AbjHCCjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 22:39:11 -0400
+        with ESMTP id S232124AbjHCClT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 22:41:19 -0400
 Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E67019A0;
-        Wed,  2 Aug 2023 19:39:09 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009DFE0;
+        Wed,  2 Aug 2023 19:41:11 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 4E8277FF9;
-        Thu,  3 Aug 2023 10:23:49 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
- 2023 10:23:49 +0800
-Received: from [192.168.125.136] (183.27.98.54) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
- 2023 10:23:47 +0800
-Message-ID: <1c546489-40dd-25c5-3ac2-9e3b3fd5a670@starfivetech.com>
-Date:   Thu, 3 Aug 2023 10:23:47 +0800
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8ABAF7FDC;
+        Thu,  3 Aug 2023 10:41:09 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 10:41:09 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 10:41:08 +0800
+Message-ID: <45879269-e72b-b13a-00bc-2d10e9f90c2c@starfivetech.com>
+Date:   Thu, 3 Aug 2023 10:41:08 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v7 5/6] media: starfive: camss: Add ISP driver
 Content-Language: en-US
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     Minda Chen <minda.chen@starfivetech.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        "Maciej W. Rozycki" <macro@orcam.me.uk>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
-References: <20230802171805.GA62238@bhelgaas>
-From:   Kevin Xie <kevin.xie@starfivetech.com>
-In-Reply-To: <20230802171805.GA62238@bhelgaas>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
+ <20230619112838.19797-6-jack.zhu@starfivetech.com>
+ <20230727204103.GJ25174@pendragon.ideasonboard.com>
+ <2504080f-86af-161f-5c0d-284e89e33ce1@starfivetech.com>
+ <20230802104840.GC5269@pendragon.ideasonboard.com>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <20230802104840.GC5269@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.54]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX073.cuchost.com
+ (172.16.6.83)
 X-YovoleRuleAgent: yovoleflag
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,60 +67,161 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
-
-On 2023/8/3 1:18, Bjorn Helgaas wrote:
-> On Tue, Aug 01, 2023 at 03:05:46PM +0800, Kevin Xie wrote:
->> On 2023/8/1 7:12, Bjorn Helgaas wrote:
->> ...
+On 2023/8/2 18:48, Laurent Pinchart wrote:
+> Hi Jack,
 > 
->> > The delay required by sec 6.6.1 is a minimum of 100ms following exit
->> > from reset or, for fast links, 100ms after link training completes.
+> On Wed, Aug 02, 2023 at 05:57:57PM +0800, Jack Zhu wrote:
+>> On 2023/7/28 4:41, Laurent Pinchart wrote:
+>> > On Mon, Jun 19, 2023 at 07:28:37PM +0800, Jack Zhu wrote:
+>> >> Add ISP driver for StarFive Camera Subsystem.
+>> >> 
+>> >> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+>> >> ---
+>> >>  .../media/platform/starfive/camss/Makefile    |   2 +
+>> >>  .../media/platform/starfive/camss/stf_camss.c |  76 ++-
+>> >>  .../media/platform/starfive/camss/stf_camss.h |   3 +
+>> >>  .../media/platform/starfive/camss/stf_isp.c   | 519 ++++++++++++++++++
+>> >>  .../media/platform/starfive/camss/stf_isp.h   | 479 ++++++++++++++++
+>> >>  .../platform/starfive/camss/stf_isp_hw_ops.c  | 468 ++++++++++++++++
+>> >>  6 files changed, 1544 insertions(+), 3 deletions(-)
+>> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.c
+>> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.h
+>> >>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp_hw_ops.c
+> 
+> [snip]
+> 
+>> >> diff --git a/drivers/media/platform/starfive/camss/stf_isp.c b/drivers/media/platform/starfive/camss/stf_isp.c
+>> >> new file mode 100644
+>> >> index 000000000000..933a583b398c
+>> >> --- /dev/null
+>> >> +++ b/drivers/media/platform/starfive/camss/stf_isp.c
+>> >> @@ -0,0 +1,519 @@
+>> >> +// SPDX-License-Identifier: GPL-2.0
+>> >> +/*
+>> >> + * stf_isp.c
+>> >> + *
+>> >> + * StarFive Camera Subsystem - ISP Module
+>> >> + *
+>> >> + * Copyright (C) 2021-2023 StarFive Technology Co., Ltd.
+>> >> + */
+>> >> +#include <linux/firmware.h>
 >> > 
->> > The comment at the call of advk_pcie_wait_for_link() [2] says it is
->> > the delay required by sec 6.6.1, but that doesn't seem right to me.
+>> > This doesn't seem needed.
 >> > 
->> > For one thing, I don't think 6.6.1 says anything about "link up" being
->> > the end of a delay.  So if we want to do the delay required by 6.6.1,
->> > "wait_for_link()" doesn't seem like quite the right name.
+>> >> +#include <media/v4l2-event.h>
+>> >> +
+>> >> +#include "stf_camss.h"
+>> >> +
+>> >> +#define SINK_FORMATS_INDEX    0
+>> >> +#define UO_FORMATS_INDEX      1
 >> > 
->> > For another, all the *_wait_for_link() functions can return success
->> > after 0ms, 90ms, 180ms, etc.  They're unlikely to return after 0ms,
->> > but 90ms is quite possible.  If we avoided the 0ms return and
->> > LINK_WAIT_USLEEP_MIN were 100ms instead of 90ms, that should be enough
->> > for slow links, where we need 100ms following "exit from reset."
->> > 
->> > But it's still not enough for fast links where we need 100ms "after
->> > link training completes" because we don't know when training
->> > completed.  If training completed 89ms into *_wait_for_link(), we only
->> > delay 1ms after that.
+>> > What does "UO" stand for ?
 >> 
->> That's the point, we will add a extra 100ms after PERST# de-assert
->> in the patch-v3 according to Base Spec r6.0 - 6.6.1:
->>         msleep(100);
->>         gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+>> "UO" is Usual Out, just represents output. :-)
+> 
+> Maybe "out", "output" or "source" would make the code easier to read
+> then ?
+> 
+>> >> +
+>> >> +static int isp_set_selection(struct v4l2_subdev *sd,
+>> >> +			     struct v4l2_subdev_state *state,
+>> >> +			     struct v4l2_subdev_selection *sel);
+>> >> +
+>> >> +static const struct isp_format isp_formats_sink[] = {
+>> >> +	{ MEDIA_BUS_FMT_SRGGB10_1X10, 10 },
+>> >> +	{ MEDIA_BUS_FMT_SGRBG10_1X10, 10 },
+>> >> +	{ MEDIA_BUS_FMT_SGBRG10_1X10, 10 },
+>> >> +	{ MEDIA_BUS_FMT_SBGGR10_1X10, 10 },
+>> >> +};
+> 
+> [snip]
+> 
+>> >> diff --git a/drivers/media/platform/starfive/camss/stf_isp.h b/drivers/media/platform/starfive/camss/stf_isp.h
+>> >> new file mode 100644
+>> >> index 000000000000..1e5c98482350
+>> >> --- /dev/null
+>> >> +++ b/drivers/media/platform/starfive/camss/stf_isp.h
+>> >> @@ -0,0 +1,479 @@
+> 
+> [snip]
+> 
+>> >> +/* The output line of ISP */
+>> > 
+>> > What is an ISP "line" ?
 >> 
->> +       /* As the requirement in PCIe base spec r6.0, system must wait a
->> +        * minimum of 100 ms following exit from a Conventional Reset
->> +        * before sending a Configuration Request to the device.*/
->> +       msleep(100);
->> +
->>         if (starfive_pcie_host_wait_for_link(pcie))
->>                 return -EIO;
+>> A pipeline contains ISP.
 > 
-> For fast links (links that support > 5.0 GT/s), the 100ms starts
-> *after* link training completes.  The above looks OK if starfive only
-> supports slow links, but then I'm not sure why we would need
-> starfive_pcie_host_wait_for_link().
+> Patch 6/6 uses STF_ISP_LINE_MAX to iterate over the ISP lines. This
+> makes the code somehow generic, but you only support a single line at
+> the moment. Does this or other SoCs in your product line integrate the
+> same ISP with multiple lines ? If so, would it be possible to share a
+> block diagram, to better understand the other hardware architectures
+> that this driver will need to support in the future ?
 > 
-Yes, the maximum speed of JH7110 PCIe is 5.0 GT/s (Gen2x1).
 
-About starfive_pcie_host_wait_for_link():
-JH7110 SoC only has one root port in each PCIe controller (2 in total)
-and they do not support hot-plug yet.
-Thus, We add starfive_pcie_host_wait_for_link() to poll if it is a empty slot.
-If nothing here, we will exit the probe() of this controller, and it will not
-go into pci_host_probe() too.
-This may not be a very standard logic, should we remove it or rewrite in a better way?
+Yes, OK, I will add a block diagram and a more detailed description in
+the starfive_camss.rst file in the next version.
 
-> Bjorn
+>> >> +enum isp_line_id {
+>> >> +	STF_ISP_LINE_INVALID = -1,
+>> >> +	STF_ISP_LINE_SRC = 1,
+>> >> +	STF_ISP_LINE_MAX = STF_ISP_LINE_SRC
+>> >> +};
+> 
+> [snip]
+> 
+>> >> +void stf_isp_init_cfg(struct stf_isp_dev *isp_dev)
+>> >> +{
+>> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_DC_CFG_1, DC_AXI_ID(0x0));
+>> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_DEC_CFG,
+>> >> +			  DEC_V_KEEP(0x0) |
+>> >> +			  DEC_V_PERIOD(0x0) |
+>> >> +			  DEC_H_KEEP(0x0) |
+>> >> +			  DEC_H_PERIOD(0x0));
+>> >> +
+>> >> +	stf_isp_config_obc(isp_dev->stfcamss);
+>> >> +	stf_isp_config_oecf(isp_dev->stfcamss);
+>> >> +	stf_isp_config_lccf(isp_dev->stfcamss);
+>> >> +	stf_isp_config_awb(isp_dev->stfcamss);
+>> >> +	stf_isp_config_grgb(isp_dev->stfcamss);
+>> >> +	stf_isp_config_cfa(isp_dev->stfcamss);
+>> >> +	stf_isp_config_ccm(isp_dev->stfcamss);
+>> >> +	stf_isp_config_gamma(isp_dev->stfcamss);
+>> >> +	stf_isp_config_r2y(isp_dev->stfcamss);
+>> >> +	stf_isp_config_y_curve(isp_dev->stfcamss);
+>> >> +	stf_isp_config_sharpen(isp_dev->stfcamss);
+>> >> +	stf_isp_config_dnyuv(isp_dev->stfcamss);
+>> >> +	stf_isp_config_sat(isp_dev->stfcamss);
+>> > 
+>> > All these parameters are hardcoded, why are they not exposed to
+>> > userspace ?
+>> 
+>> Here is a basic startup configuration for the ISP registers. The
+>> function name is confusing, as if it is configuring a specific
+>> function. In fact, it is just a basic init configuration.
+> 
+> Did I miss a place in the patch series where all these parameters can be
+> configured by userspace, or is that not possible at the moment ? If it
+> isn't possible, do you plan to implement that ?
+> 
+
+Yes, we are doing related development internally.
+
+>> >> +
+>> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_CSI_MODULE_CFG,
+>> >> +			  CSI_DUMP_EN | CSI_SC_EN | CSI_AWB_EN |
+>> >> +			  CSI_LCCF_EN | CSI_OECF_EN | CSI_OBC_EN | CSI_DEC_EN);
+>> >> +	stf_isp_reg_write(isp_dev->stfcamss, ISP_REG_ISP_CTRL_1,
+>> >> +			  CTRL_SAT(1) | CTRL_DBC | CTRL_CTC | CTRL_YHIST |
+>> >> +			  CTRL_YCURVE | CTRL_BIYUV | CTRL_SCE | CTRL_EE |
+>> >> +			  CTRL_CCE | CTRL_RGE | CTRL_CME | CTRL_AE | CTRL_CE);
+>> >> +}
+> 
+> [snip]
+> 
+
+Regards,
+
+Jack Zhu
