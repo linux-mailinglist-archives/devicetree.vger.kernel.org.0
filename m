@@ -2,66 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82CB576E466
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E289276E4AD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 11:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235058AbjHCJbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 05:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60060 "EHLO
+        id S234368AbjHCJjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 05:39:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235056AbjHCJa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:30:58 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7194230EF
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 02:30:56 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-314172bac25so596229f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 02:30:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691055054; x=1691659854;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LkIHcBr4D3AWyeFHkNvp/kzN1jYSpCMGS1AHF/o5c9A=;
-        b=KaTNqcmMU8XrC4AlTAK7GLUb0OVSgvQmMe1GzwuMaGkT1bC6Ar+eB8Bex5fmM2UfAs
-         XYnfFEgWij0eey3gAObflxdGhrH7lMy3wuc3h/7KTqOqKAzYIg0OovTKhZAELasTaMIR
-         4/SAmd53zay0A67BoVIri5qIuqAQ0qXSU7wkUcXoqbCQRehQFnuJkzTdlCuG11FXpsZ4
-         4yyQf19kWgnz5e+OCij04nDpXhqGgSWZ83fYkmgwOyeSIqyyku1X240LwQ9TEkwJeLLO
-         QQVDDmJ5EcpRkf7SiK4ipizrKRj3ubccJLF48c27rEwzHbYS31G4mJsH1eSHKm1Ygt6S
-         z/hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691055054; x=1691659854;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LkIHcBr4D3AWyeFHkNvp/kzN1jYSpCMGS1AHF/o5c9A=;
-        b=MT6QEI63ctDWwx39aKXWkOZJ4t80hn2IE733JNTeUdmlwz9gTQHpaKU+SWUvWoAHne
-         q2+Z1HUKD9xvm8JD5iv3EEaDiszEUxSEuEuUx30AJqeJDz/cHXLrS/KrTWZrmMFvHNeZ
-         IYirYInKoKFlDhePn0NVe6w7ZTo7Ha30DRiOHnxiCbT8K0LchmaQ1M4cu4vF0ZvrUu58
-         FArf+Z5PZNnWI+78SAfRqLLneuv2jK4m/qGsyTHJBsXyRVE5z+WS/be37j5hXiYUkVnq
-         MCIblinAHGrmzq86nGqWH8/sj+YBkbiuwXiYEV8SOek+d+cY32QhnoWW7p8dXZCQKFZA
-         xEXQ==
-X-Gm-Message-State: ABy/qLbKZNbsFC/j9Hd+KzsTW24Y9nOFkt1Ea4jEGxsZTA1V33ddy4BM
-        O5yvmBQfe3dp0eCWXkh2yPWVaA==
-X-Google-Smtp-Source: APBJJlFZEiNSoW7XP3KC4CMX4RvkaDRIpCL6qNHmhmh7S6W+5L/Q6Ko5fmVchCDSe4efmQUf8OGYPg==
-X-Received: by 2002:a5d:6782:0:b0:314:182a:3d96 with SMTP id v2-20020a5d6782000000b00314182a3d96mr6148630wru.28.1691055054566;
-        Thu, 03 Aug 2023 02:30:54 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8656:583:d034:d966? ([2a01:e0a:982:cbb0:8656:583:d034:d966])
-        by smtp.gmail.com with ESMTPSA id p16-20020a5d68d0000000b003140f47224csm21286033wrw.15.2023.08.03.02.30.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 02:30:53 -0700 (PDT)
-Message-ID: <9f0670a7-6ef6-7823-19c2-de10683f303f@linaro.org>
-Date:   Thu, 3 Aug 2023 11:30:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
- mode
-Content-Language: en-US
-To:     Maxime Ripard <mripard@kernel.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
+        with ESMTP id S233311AbjHCJj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 05:39:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2013D4694;
+        Thu,  3 Aug 2023 02:38:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 99AD261D17;
+        Thu,  3 Aug 2023 09:38:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A84C433C7;
+        Thu,  3 Aug 2023 09:38:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691055511;
+        bh=M7mKv7aFom4lStcfY4aW++sZ1R7wmmAzxjw85MUjNDU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ILvlrqdelXLsQ94SKYibc+TpHrnegKXc1xtybeWaEJOYmGgq1eX4rzESkLuMcVuJ0
+         7nSBnBCt7wbbGd0S+wPwKV8XjX7ch+9opQSP3uKR3fUW1Z47OUtzMDHXNNMwNr/RuH
+         uV8gUP7p327Gi/1faGdYXIPOY7lFPw/F+g5ETgci34A6FZ1IeNMvUHRrJQp0y+OWx5
+         NzdR6938SLhAu54kd4dRNxSvgOjqigi0YXAScsIKaAx224bGdjgLTN+/DACng+bguA
+         hARqk/iCof8jz/I0zv/HXG0XBykPvPNN4ev/Ob1x6jkiPPc9WUrjsrQSIUWliTmOCr
+         4wqgBzNBDDJKA==
+Date:   Thu, 3 Aug 2023 11:38:28 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
         Sam Ravnborg <sam@ravnborg.org>,
         Sebastian Reichel <sre@kernel.org>,
         Gerald Loacker <gerald.loacker@wolfvision.net>,
@@ -71,98 +45,146 @@ To:     Maxime Ripard <mripard@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
+ mode
+Message-ID: <teag3fdr7i65wzenovlcytnnpgk2gunzyq6wmci33g7csoasvz@tyyp6h7pqswk>
 References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
  <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
  <ekmwiy3iuvtqtb6hwjbba2ia3aemt3dxmx6dj3zh6ljfmuim4w@4jzhqdenxth4>
  <ZMtqraOyGN9JvVj9@phenom.ffwll.local>
  <qmwtcungahbe2bhty7v2rso2kf3vai6k47muwipifbybmi7o6s@oj6lngnhyhtg>
-Organization: Linaro Developer Services
-In-Reply-To: <qmwtcungahbe2bhty7v2rso2kf3vai6k47muwipifbybmi7o6s@oj6lngnhyhtg>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+ <9f0670a7-6ef6-7823-19c2-de10683f303f@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iqykblsj6nj6m3cz"
+Content-Disposition: inline
+In-Reply-To: <9f0670a7-6ef6-7823-19c2-de10683f303f@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2023 11:22, Maxime Ripard wrote:
-> On Thu, Aug 03, 2023 at 10:51:57AM +0200, Daniel Vetter wrote:
->> On Thu, Aug 03, 2023 at 10:48:57AM +0200, Maxime Ripard wrote:
->>> On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
->>>> Hi,
->>>>
->>>> On 18/07/2023 17:31, Michael Riesch wrote:
->>>>> Hi all,
->>>>>
->>>>> This series adds support for the partial display mode to the Sitronix
->>>>> ST7789V panel driver. This is useful for panels that are partially
->>>>> occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
->>>>> for this particular panel is added as well.
->>>>>
->>>>> Note: This series is already based on
->>>>> https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
->>>>
->>>> I understand Maxime's arguments, but by looking closely at the code,
->>>> this doesn't look like an hack at all and uses capabilities of the
->>>> panel controller to expose a smaller area without depending on any
->>>> changes or hacks on the display controller side which is coherent.
->>>>
->>>> Following's Daniel's summary we cannot compare it to TV overscan
->>>> because overscan is only on *some* displays, we can still get 100%
->>>> of the picture from the signal.
->>>
->>> Still disagree on the fact that it only affects some display. But it's
->>> not really relevant for that series.
->>
->> See my 2nd point, from a quick grep aside from i915 hdmi support, no one
->> else sets all the required hdmi infoframes correctly. Which means on a
->> compliant hdmi tv, you _should_ get overscan. That's how that stuff is
->> speced.
->>
->> Iirc you need to at least set both the VIC and the content type, maybe
->> even more stuff.
->>
->> Unless all that stuff is set I'd say it's a kms driver bug if you get
->> overscan on a hdmi TV.
-> 
-> I have no doubt that i915 works there. The source of my disagreement is
-> that if all drivers but one don't do that, then userspace will have to
-> care. You kind of said it yourself, i915 is kind of the exception there.
-> 
-> The exception can be (and I'm sure it is) right, but still, it deviates
-> from the norm.
 
-HDMI spec is hidden behind a paywall, HDMI testing is a mess, HDMI real
-implementation on TVs and Displays is mostly broken, and HDMI certification
-devices are too expensive... this is mainly why only i915 handles it correctly.
+--iqykblsj6nj6m3cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
->>> I think I'll still like to have something clarified before we merge it:
->>> if userspace forces a mode, does it contain the margins or not? I don't
->>> have an opinion there, I just think it should be documented.
->>
->> The mode comes with the margins, so if userspace does something really
->> funny then either it gets garbage (as in, part of it's crtc area isn't
->> visible, or maybe black bars on the screen), or the driver rejects it
->> (which I think is the case for panels, they only take their mode and
->> nothing else).
-> 
-> Panels can usually be quite flexible when it comes to the timings they
-> accept, and we could actually use that to our advantage, but even if we
-> assume that they have a single mode, I don't think we have anything that
-> enforces that, either at the framework or documentation levels?
+On Thu, Aug 03, 2023 at 11:30:52AM +0200, Neil Armstrong wrote:
+> On 03/08/2023 11:22, Maxime Ripard wrote:
+> > On Thu, Aug 03, 2023 at 10:51:57AM +0200, Daniel Vetter wrote:
+> > > On Thu, Aug 03, 2023 at 10:48:57AM +0200, Maxime Ripard wrote:
+> > > > On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
+> > > > > Hi,
+> > > > >=20
+> > > > > On 18/07/2023 17:31, Michael Riesch wrote:
+> > > > > > Hi all,
+> > > > > >=20
+> > > > > > This series adds support for the partial display mode to the Si=
+tronix
+> > > > > > ST7789V panel driver. This is useful for panels that are partia=
+lly
+> > > > > > occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Su=
+pport
+> > > > > > for this particular panel is added as well.
+> > > > > >=20
+> > > > > > Note: This series is already based on
+> > > > > > https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kerne=
+l.org/
+> > > > >=20
+> > > > > I understand Maxime's arguments, but by looking closely at the co=
+de,
+> > > > > this doesn't look like an hack at all and uses capabilities of the
+> > > > > panel controller to expose a smaller area without depending on any
+> > > > > changes or hacks on the display controller side which is coherent.
+> > > > >=20
+> > > > > Following's Daniel's summary we cannot compare it to TV overscan
+> > > > > because overscan is only on *some* displays, we can still get 100%
+> > > > > of the picture from the signal.
+> > > >=20
+> > > > Still disagree on the fact that it only affects some display. But i=
+t's
+> > > > not really relevant for that series.
+> > >=20
+> > > See my 2nd point, from a quick grep aside from i915 hdmi support, no =
+one
+> > > else sets all the required hdmi infoframes correctly. Which means on a
+> > > compliant hdmi tv, you _should_ get overscan. That's how that stuff is
+> > > speced.
+> > >=20
+> > > Iirc you need to at least set both the VIC and the content type, maybe
+> > > even more stuff.
+> > >=20
+> > > Unless all that stuff is set I'd say it's a kms driver bug if you get
+> > > overscan on a hdmi TV.
+> >=20
+> > I have no doubt that i915 works there. The source of my disagreement is
+> > that if all drivers but one don't do that, then userspace will have to
+> > care. You kind of said it yourself, i915 is kind of the exception there.
+> >=20
+> > The exception can be (and I'm sure it is) right, but still, it deviates
+> > from the norm.
+>=20
+> HDMI spec is hidden behind a paywall, HDMI testing is a mess, HDMI real
+> implementation on TVs and Displays is mostly broken, and HDMI certificati=
+on
+> devices are too expensive... this is mainly why only i915 handles it corr=
+ectly.
 
-Yep, this is why we would need a better atomic based panel API that would
-permit us handling dynamic timings for panel and get out of the single-mode
-for modern panels.
+Sure, I know all that, it's why I was disagreeing with the fact that
+it's mostly old news and we shouldn't care anymore. And it could largely
+be fixed if i915 was using more helpers in general.
 
-Neil
+But that's a separate discussion entirely. The point I was trying to
+make is that it's still very much the current situation for the vast
+majority of drivers, for whatever reason, so we can't really treat as if
+it isn't anymore.
 
-> 
-> Maxime
+> > > > I think I'll still like to have something clarified before we merge=
+ it:
+> > > > if userspace forces a mode, does it contain the margins or not? I d=
+on't
+> > > > have an opinion there, I just think it should be documented.
+> > >=20
+> > > The mode comes with the margins, so if userspace does something really
+> > > funny then either it gets garbage (as in, part of it's crtc area isn't
+> > > visible, or maybe black bars on the screen), or the driver rejects it
+> > > (which I think is the case for panels, they only take their mode and
+> > > nothing else).
+> >=20
+> > Panels can usually be quite flexible when it comes to the timings they
+> > accept, and we could actually use that to our advantage, but even if we
+> > assume that they have a single mode, I don't think we have anything that
+> > enforces that, either at the framework or documentation levels?
+>=20
+> Yep, this is why we would need a better atomic based panel API that would
+> permit us handling dynamic timings for panel and get out of the single-mo=
+de
+> for modern panels.
 
+Again, I definitely agree on the new API, but that seems a bit out of
+scope :)
+
+My point was that we can't expect modes to be the one we provided in
+=2Eget_modes. And that's for all the drivers, even i915 doesn't do it (as
+far as I could see)
+
+Maxime
+
+--iqykblsj6nj6m3cz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMt1lAAKCRDj7w1vZxhR
+xQMaAPwNXMv/pcq5vo5GVXn54SaI8sUtQ/LzmvdqFrXqkE3MNwEAvFr+U9cZYjDw
+s1xrtXXgBzW8oBHSoQuxtTTLKhFzYAs=
+=JLy4
+-----END PGP SIGNATURE-----
+
+--iqykblsj6nj6m3cz--
