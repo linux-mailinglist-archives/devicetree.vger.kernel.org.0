@@ -2,140 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E3376F3E8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17B3F76F407
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231905AbjHCUOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 16:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44640 "EHLO
+        id S230002AbjHCU3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 16:29:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231879AbjHCUOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:14:08 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2044.outbound.protection.outlook.com [40.107.8.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B3D420F;
-        Thu,  3 Aug 2023 13:14:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZiSlexwkeXzA5PYdh4I6xkbFioE8i9JuC+1W6hBpYLMowWAMh5HDf25xBKwoca3DgRUqEnDbRNkJT981hOuXMoNbY8hsmQ7PpkMOUF9czFtStTYDaEnl3/5sk7II9SBp5RDlgLH95XaaTk8xYybtpQIx34PaBirBwHSELHrsjuqMfKdINaTFoBxF8lkOiOkpoNTYZ0N0lxkMW/2kwMpFHaJL3dHKLIIjlyJfIyw6V7zvDXxFpSoNIQoyuSl379mLXeW4kC6kglrRf4YA5H/xacj063Hb7sXZe79rh1qGc5Yx1Vak5NlLxuV6hj/K3KYWzcWPfHxLRIv3YCSzSgTWUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1QCXRIN1I3230LemB+LqSCz7erRZWynE9vlerojKPFo=;
- b=ICnLDVDdvP7+1Hr+ICMvIiezVwOC1bHgqr+I/lGKOHn+oJ6MVxqI3+rL2V5fM+hli4RS10lVEQMRCt8Ys5G0Xadt0YEwjJDu/h9EPyl9W4IQjRnJ0dO+gKsj5arApJwu945CZ9aurq5+3tXo3/VJpXBHFhfVdWdkXIfb2jJJn2CTKBbSsGhViag7Hx32ckmdyOE02AAMnju9LdkFImAVMlQiXdH+eUAkodx7NwrVpfkyOiHcY75naW1tp2Zav/eXR3O77ij14t4OPtQSj3wYslO3JteNn/qBiXOFigC1/H4A6JLoS53XhKFIiQ7ystFbPzyt01amB9n5gJejQitdfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1QCXRIN1I3230LemB+LqSCz7erRZWynE9vlerojKPFo=;
- b=wa5iPsH5tUpFZa2F2tqTwVFSHdAKrQRN3eqqWKyRjCG1kCY7w3K1oO70HHlR1W9U0vzpR9iX1xgfIblDjp00KhJh77L1XQUvKmmcmf5iPOFiYK8H+i5/j0L0qFIWKHtF10+QHvB+xWX3TJhKTCRLEfspqDEF3JjoQx+v3PVG3+g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by DU0PR08MB8277.eurprd08.prod.outlook.com (2603:10a6:10:40f::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Thu, 3 Aug
- 2023 20:14:03 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::9d1a:4539:a8f8:dd60]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::9d1a:4539:a8f8:dd60%7]) with mapi id 15.20.6631.046; Thu, 3 Aug 2023
- 20:14:03 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-Date:   Thu, 03 Aug 2023 22:13:50 +0200
-Subject: [PATCH v2 3/3] dt-bindings: display: add rotation property to
- sitronix,st7789v
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230718-feature-st7789v-v2-3-207cb1baea0f@wolfvision.net>
-References: <20230718-feature-st7789v-v2-0-207cb1baea0f@wolfvision.net>
-In-Reply-To: <20230718-feature-st7789v-v2-0-207cb1baea0f@wolfvision.net>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691093639; l=1145;
- i=michael.riesch@wolfvision.net; s=20230425; h=from:subject:message-id;
- bh=PB0tfTx2W3+0I3R0IVOtpWhMbgFN5MTykJQXb79SCOE=;
- b=dDT9X1fQSrvlT41cV5SJFfjuwy7P/XUE8PHPo+t/oYIxcDLSuin8Hewp97Z+fqkyNq3qp3GO2
- ZrOfNc16ruCDNIPlGRLWEmmlPsHlxDALtwX5o10G5/le6tS66NgMVvr
-X-Developer-Key: i=michael.riesch@wolfvision.net; a=ed25519;
- pk=1QQdXA2QbwdxaQn/VQK0hz04C8IBYhDowbK0hlNU4Ng=
-X-ClientProxiedBy: VI1PR06CA0212.eurprd06.prod.outlook.com
- (2603:10a6:802:2c::33) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+        with ESMTP id S229578AbjHCU3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:29:45 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD15410CA
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 13:29:42 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3177f520802so1596858f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 13:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691094581; x=1691699381;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RSwBHNi97+J9m3FrxpZwkRonzR8gjhpUINnI5IXms0M=;
+        b=V2VUmHZFrSWXTcK13oyJSRyLeu03rF02eeL0GJAWZjDrPgx/R7EQNh5WQ2I/a8HYrE
+         wqwJsBv+F4rrNYjFB+ogK13SpUK9rtFfHS1Fon9ll1Ri7mDNNISJLiKq91R9HcmFqIPm
+         lA4e0AnNBhaNg/IvdKgmDxxbnSUegmrZVL9aZfKjMiGpuhG130fSDYeu3bUUd+hIT4M2
+         FwKOeEncqxCozXAR5rdcEdz3r2IE6dE93rWfKc+Fg+R9h8juOAnTXKhw+hYrqPpD6c59
+         1TI6BAgDwV0yQcki0EESj+3QBYY4x9pe4Y5xyiZJhxOQaKvlaBVYT/1ZBtqnpHN9w5u+
+         xSHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691094581; x=1691699381;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RSwBHNi97+J9m3FrxpZwkRonzR8gjhpUINnI5IXms0M=;
+        b=DMu+Pt+w/tQ9McKmJSoGLYCvIlErGb8V6i9f1rdNHgEJLlvM+8XjMYJPJDcpkVxJGg
+         wffIDJoblvq8oRGicMIxj+02cjfMK9JTg/38TrdELw2nHAqh38JCDngD24QA/uaoGBg3
+         x7h1Htk4BxVzLEeGmsU3pZkRA30QtBKGVqGo55ar83rPK+1yQQEEpM1W9B4bis9jmU/4
+         B3Mbcdz3d96/j//K17qYnivry0mAVIL8+5viNnFPP2CIncmlpZXhvN/9xI6PfmQc3+0P
+         leGVwj0OreiEJ0f7fhp6FP4NDnhLnbq1Z1fHz05RddsOzePq6oy6h0az90l7vuZ+ph7v
+         30iQ==
+X-Gm-Message-State: ABy/qLY0XJKjh8/IBQfVC+vwGH2oVxd73BAaQqadC8bgJUd/45YEGMT+
+        JVzMztYKw0TUkXV4gYXnkiw=
+X-Google-Smtp-Source: APBJJlEiywr0H1pZk3n/fOUtxSUVnRDhU15aAzz2s/sAJ3QAVT6nG3So/GUqRpPrGir4S9yRAz8glg==
+X-Received: by 2002:adf:e90d:0:b0:30a:e70d:8022 with SMTP id f13-20020adfe90d000000b0030ae70d8022mr8169591wrm.26.1691094580804;
+        Thu, 03 Aug 2023 13:29:40 -0700 (PDT)
+Received: from [192.168.0.79] ([178.233.24.1])
+        by smtp.gmail.com with ESMTPSA id s8-20020adfea88000000b0031272fced4dsm698782wrm.52.2023.08.03.13.29.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Aug 2023 13:29:40 -0700 (PDT)
+Message-ID: <92d83c4c-6f4c-5c75-cb5f-67b453da8058@gmail.com>
+Date:   Thu, 3 Aug 2023 23:29:38 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DU0PR08MB8277:EE_
-X-MS-Office365-Filtering-Correlation-Id: d542d29c-0d69-4ebc-ea51-08db945e2e76
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ry3eSZAQf30Mk7oRYRq95JUxS9D3jzSBmCGp0IyBpaUUWOyb54eXgEpDCqWHGN5zTesg8wWTHQ4HCvR+HIMPvKzYkteSZi3auYYleyYW4yLMfau101NVrnRiox21IXVAmxZhkx6d3wof45/8ZHygsQ+aM+I39oy415eOqBwGbacwDaIGyPjBarW2g7R+17gVczw920yuGpZpOS37I/NBsErvafSPMQFSSWGB2DH04Hcq3o0j7ufiD4GRR+H476Imw2OGvDBaZ8fEi5bVuLIIn2hwpukhFpFW+PpNtpZz8Nm24XQrIyxfmg2YmzQgEiBq7uEsPdDacpHCDJlJ1/yU0jCwr0bMoz7NP2E2kHzGfp3+L/n+RYnNuqjVL27duv7/4xRPnCgFQbF0xAyGs5AF955WwqWQD2gXLboQYO2F7ldDiJrgzWo6PQD1VLcnhHf1E7wcfn24t1yz2hgOfZd/sXWw/6JSPsyOpQjHzNOo1PwHKJ9zXJ0Q3qafGBg5d+bjWBMpu1Q65zWxElsqRA+JnXI6aC5UTJYKTs03vCtVarqV2vvQoeFesrjPvG3mg+BnNgh9hF6tDQesyImdP+eM5W0EwmC+gdWsv+1nObXkghOBOAB77ngnotZEhD5RxPXb4qOQc4NTOGqca2/ZIpp7gw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(366004)(39840400004)(136003)(346002)(451199021)(2616005)(107886003)(6506007)(186003)(8676002)(26005)(4744005)(66476007)(2906002)(316002)(66556008)(6636002)(4326008)(66946007)(5660300002)(7416002)(44832011)(8936002)(41300700001)(6666004)(6486002)(6512007)(54906003)(52116002)(110136005)(478600001)(38350700002)(921005)(38100700002)(36756003)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MUtrTHB3Q2hFVyt2cnlLbkUzRHU2eXhzeHJIQmk1VUpua2I5aTZ5bU5QRGRZ?=
- =?utf-8?B?Wm4rV3FCRWUyeXBzUUxSbUQrKzFMWXppb3hnYlIvSUlFaUNLMm5LcndBT0R5?=
- =?utf-8?B?STdtYnV6SVZXN1ZCY2wvbUZ3N3UyZklaWER6RDh6OHlvbHVpUUtVNEpnZ1Bu?=
- =?utf-8?B?V3duZUpBRWlWd2tFT3Jma1JYdTJpS0tPc1hqSFk5QVJkaGh6TFJETVF5YjVN?=
- =?utf-8?B?K0gvZTNPUDF5L01MU2JxeW5VSCt3TTBmTGtORUVVdk83K2Q1a2RQSUlkeUgr?=
- =?utf-8?B?d25DTFVOVGFKY2lmNTQ0WTlsakFidVlpN3Fibk4wa0dvRERKZVFUbjBDcThk?=
- =?utf-8?B?dnRUYnV3dzhYaCthY3F0N3RRWHErUE9qWFZPK0lwMDhYTjZyaU9Yc0JleXMv?=
- =?utf-8?B?T1c0azR5UVZBQXN5MjhnQ2pEOUlZbHhTVVJYa0xoVVJwRmhuT1RCWUFCU0lo?=
- =?utf-8?B?MEg1Wm1OOXRYbDB6Z2JPbngzMkgyVThBMUk0VnFnMGxDcTRCZGZ4YmJJaDVp?=
- =?utf-8?B?NENFUmt5bklzc1BOYjlrY1p2K09NUHdJZTdQYk1RYkwzbzFXbWdJQTFKYStx?=
- =?utf-8?B?Z3ZzdmlyNDNXT0VYNUNIaHRYSW5FdHpCVVBJTjBIUUNxYjA4QWF2TkpyS1ly?=
- =?utf-8?B?Q3ArRlhrZzlYK1dibFFGODRSRGFsTDQwMWhXajdJb0RwVGVjZVBxZ1Z3Wmcw?=
- =?utf-8?B?ZVN2QjRjTHVFU2Y1TGVVUmRFUEc1MExTWU1mbTREUmN0WUNDV3hReDFveWFC?=
- =?utf-8?B?dEttTGo5NTVKYTdQSTVHZnlJbVJ1R3czRlM3Wm9DK3VxSlBBY2VyV290c3ZZ?=
- =?utf-8?B?czhvOSthdmRadlRmUU5nenlZVkkyUTJBVTN1MG4rdkVpSGVqc1hyanh2N2kw?=
- =?utf-8?B?U1JLSW1OVVRNek5rMGV0TDB6eDQvbksrTkZsY3FnLzBXcDlFRlgwRGtCSThN?=
- =?utf-8?B?bThWV01XU2JqL2txczRCaHduaG03bEVvTWFOSXh1MkFNNlc2Y0RXZ0tEMU1r?=
- =?utf-8?B?MUpadHlhWkoxWEoxNFNYeUxoYzR3enVBUXI0cWp6QzR2VFN2NmF1TWRQQlNX?=
- =?utf-8?B?U0VUSS9nUEhzSFl4cE91MzZUOXNWU2pFdWtPakZGeVQxSEloQm9UdklSa1hO?=
- =?utf-8?B?ZWJTUmtTVlhaajZxcnc0bFlOUG1TdnpTM2p4b1dmbHE2WlExTGcyYUZKbFJR?=
- =?utf-8?B?WHliYVZ6YzJDMjRiVVdGUElkeStwNmI3NUtPNno2RGkxOTh6Nnp0UWI5cW90?=
- =?utf-8?B?R00zY3dRR2QvVXBYUkJLUGhUcHJ5L2M0K2xTNFp4S1V4VkxLeGJNMGUrdkRv?=
- =?utf-8?B?djRqS2h6QlNBTjBPYUd0dE5KWjZUeW9UQ0JzOWVmSXUwU3cxVTJwMW1qUHc1?=
- =?utf-8?B?QXFFMTZzck5EZHhjWVc4ZnZuMUVFK21pbjFDZ01rUUlCMkdDQzYybnJUaXln?=
- =?utf-8?B?a0R1eWVKS2FQeVM3OURhRUFjQXJkTmpTaWlhVEZ6dTd6MldmNksrV0lWbGh6?=
- =?utf-8?B?Z2dEVHVqNms3bXNuMjlNTTJyM3lXNGxuZDJwSEpZRUZiblh0TEhma3dycEJm?=
- =?utf-8?B?Y2FaeHlLSlRja1lqek9lVXZ2aWlBMEdKQWRNYkFGMXY4cWxOWnRhN0ZrdGpu?=
- =?utf-8?B?alkyVFBzUExySVVrNE5uTVRkaG1GL3BEOFhrTWhZR3VoeW1DanpzYndXbjFQ?=
- =?utf-8?B?aUZSVkduK2hBYmc0aGFsT3lFZmlMZEhIb1RuL3pmOTlkZGFhakw4SmMrSWNo?=
- =?utf-8?B?TUdJMmU1dUtldnVWUlBXVTdrTEVtYXd5TklscTlsalBUaGs3SytnYzdyT25D?=
- =?utf-8?B?UHFxcFU4TC8vU2R3NCtZQml6ZmNaRDZ1VTFiYktQZEF2Yld0bDMzVkx0Tndi?=
- =?utf-8?B?a3FRS3JMNmttQkRlREQ0dUtCejljbGNGUlJTalZoYjBKNkpNMVJDODNZSkYr?=
- =?utf-8?B?aTRUMWJKWWdubFM0N3NUb3RNQUptOHpUNDFTeHRjVGFib25RUTNTYVc3NHFz?=
- =?utf-8?B?QmUxRjBqQWhwelh2cGtOczBZa2Z2M0NvWVgrbXVXNlVCa1BVWWhyS2lnUU1F?=
- =?utf-8?B?NXF4M3BUSS9MQUgydlJ1SWFyNFFJWmU3MFNIa2hBTm5DWFAwSHEwNkY5R2I4?=
- =?utf-8?B?OEFjcTFTQ3luWkRBMDdNS1V3OGVudHUvSGF1N0dSMlNSOFhab01TeXg0OGtZ?=
- =?utf-8?B?S1E9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: d542d29c-0d69-4ebc-ea51-08db945e2e76
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2023 20:14:03.1381
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ffu5PPHw6p68R1PaoxXEjS5K47lmQ2oIjdzkIkfG84Mq3d/RERnKhZMH9S6DrfTdFOX8N863g35SQynkHBs91H6pfwbFMTCRNTd5qVRlZTo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8277
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] schemas: Add a schema for binman
+Content-Language: en-US, tr, en-GB
+To:     Simon Glass <sjg@chromium.org>
+Cc:     U-Boot Mailing List <u-boot@lists.denx.de>,
+        Tom Rini <trini@konsulko.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Stefan Herbrechtsmeier <stefan.herbrechtsmeier@weidmueller.com>,
+        Philippe Reynes <philippe.reynes@softathome.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org
+References: <20230720195617.2276563-1-sjg@chromium.org>
+ <20230720195617.2276563-2-sjg@chromium.org>
+From:   Alper Nebi Yasak <alpernebiyasak@gmail.com>
+In-Reply-To: <20230720195617.2276563-2-sjg@chromium.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -143,36 +79,216 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sitronix-st7789v driver now considers the rotation property.
-Add the property to the documentation.
+On 2023-07-20 22:56 +03:00, Simon Glass wrote:
+> With this version I have done with a generic name, in this case 'data',
+> as suggested by Alper Nebi Yasak. This may be controversial, but we may
+> as well have the dicussion now. I assume that there are no other
+> ongoing attempts to define the layout of firmware in devicetree.
+> 
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+> 
+> Changes in v2:
+> - Reworked significantly based on Alper's comments
+> 
+>  dtschema/schemas/firmware/binman/entry.yaml | 80 +++++++++++++++++++++
+>  dtschema/schemas/firmware/image.yaml        | 77 ++++++++++++++++++++
+>  2 files changed, 157 insertions(+)
+>  create mode 100644 dtschema/schemas/firmware/binman/entry.yaml
+>  create mode 100644 dtschema/schemas/firmware/image.yaml
+> 
+> diff --git a/dtschema/schemas/firmware/binman/entry.yaml b/dtschema/schemas/firmware/binman/entry.yaml
+> new file mode 100644
+> index 0000000..d50f96d
+> --- /dev/null
+> +++ b/dtschema/schemas/firmware/binman/entry.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Google LLC
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/image/entry.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Image entry
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +description: |
+> +  The entry node specifies a single entry in the firmware image.
+> +
+> +  Entries have a specific type, such as "u-boot" or "atf-bl31". This is provided
+> +  using compatible = "data,<type>".
+> +
+> +  Note: This definition is intended to be hierarchical, so that entries can
+> +  appear in other entries. Schema for that is TBD.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^[-a-z]+(-[0-9]+)?$"
+> +
+> +  compatible:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +  offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Provides the offset of this entry from the start of its parent section.
+> +
+> +      This may be omitted in the description provided by Binman, in which case
+> +      the value is calculated as part of image packing.
+> +
+> +  size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Provides the size of this entry in bytes.
+> +
+> +      This may be omitted in the description provided by Binman, in which case
+> +      the value is calculated as part of image packing.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
- Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+So AFAIU, binman will take none/one/both of "offset" and "size" as
+inputs and will pass them to the output unmodified, instead adding a
+"reg" pair of their calculated final values?
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-index fa6556363cca..694d7f771d0c 100644
---- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-@@ -22,6 +22,7 @@ properties:
-   power-supply: true
-   backlight: true
-   port: true
-+  rotation: true
- 
-   spi-cpha: true
-   spi-cpol: true
-@@ -52,6 +53,7 @@ examples:
-             reset-gpios = <&pio 6 11 GPIO_ACTIVE_LOW>;
-             backlight = <&pwm_bl>;
-             power-supply = <&power>;
-+            rotation = <180>;
-             spi-max-frequency = <100000>;
-             spi-cpol;
-             spi-cpha;
+Is there a schema-computational way to ensure that "reg" has to contain
+the same values as "offset" and "size"? Or is that not a restriction at
+all and "reg" overrides the others?
 
--- 
-2.37.2
+> +
+> +  reg:
+> +    description: |
+> +      Defines the offset and size of this entry, with reference to its parent
+> +      image / section.
+> +
+> +      Note This is typically omitted in the description provided to Binman,
+> +      since the value is calculated as part of image packing. Separate
+> +      properties are provided for the size and offset of an entry, so that it is
+> +      easy to specify none, one or both. The `reg` property is the only one that
+> +      needs to be looked at once the image has been built.
+> +
 
+Do we not need a $ref for "reg"? Is there anything applicable?
+
+BTW, I'm not that familiar with device-tree interpretation, I
+occasionally saw 'reg' being used as an <offset size> pair, and was
+mostly just asking if it's appropriate.
+
+(Also TIL "ranges", and I'm imagining ranges = <0 $size 4G-$size 4G>; as
+an end-at-4gb replacement/generalization :P, but I know, later, later.)
+
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    firmware {
+> +      image {
+> +        compatible = "data,image";
+> +        #address-cells = <1>;
+> +        $size-cells = <1>;
+> +
+> +        u-boot@0 {
+> +          compatible = "data,u-boot";
+> +          reg = <0 0xa0000>;
+> +        };
+> +
+> +        atf-bl31@0x100000 {
+> +          compatible = "data,atf-bl31";
+> +          reg = <0x100000 0x20000>;
+> +        };
+> +      };
+> +    };
+> diff --git a/dtschema/schemas/firmware/image.yaml b/dtschema/schemas/firmware/image.yaml
+> new file mode 100644
+> index 0000000..949b067
+> --- /dev/null
+> +++ b/dtschema/schemas/firmware/image.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Google LLC
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/image.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Binman firmware layout
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +description: |
+> +  The image node provides a layout for firmware, used when packaging firmware
+> +  from multiple projects. For now it just supports a very simple set of
+> +  features, as a starting point for discussion.
+> +
+> +  The Binman tool processes this node to produce a final image which can be
+> +  loaded into suitable storage device. Documentation is at:
+> +
+> +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
+> +
+> +  The current image-description format is here:
+> +
+> +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
+> +
+> +  It is desirable to reference the image from the storage-device node, perhaps
+> +  using an image-desc property:
+> +
+> +    spiflash@0 {
+> +      compatible = "spidev", "jedec,spi-nor";
+> +      image-desc = <&image>;
+
+Bikeshedding, but maybe "layout" or "data,layout" would be nicer.
+
+> +    };
+> +
+> +  Note that the intention is to change Binman to use whatever schema is agreed
+> +  here.
+> +
+> +properties:
+> +  $nodename:
+> +    const: binman
+
+Doesn't match the example, and I guess you mean "^[-a-z]+(-[0-9]+)?$"
+like the entry one.
+
+> +
+> +  compatible:
+> +    const: data,image
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cell"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    firmware {
+> +      image {
+> +        compatible = "data,image";
+> +        #address-cells = <1>;
+> +        $size-cells = <1>;
+> +
+> +        u-boot@0 {
+> +          compatible = "data,u-boot";
+> +          reg = <0 0xa0000>;
+> +        };
+> +
+> +        atf-bl31@0x100000 {
+> +          compatible = "data,atf-bl31";
+> +          reg = <0x100000 0x20000>;
+> +        };
+> +      };
+> +    };
