@@ -2,105 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 867F276E22F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 215FB76E236
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232950AbjHCHzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 03:55:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
+        id S233740AbjHCH5I convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Aug 2023 03:57:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233008AbjHCHyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:54:10 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B1A55B4
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 00:43:44 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-55b1238cab4so322546a12.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 00:43:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1691048600; x=1691653400;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vrPeOXoKc2hUZA03cIawOYELY2pxQM3mW6RdAg6oP4Q=;
-        b=B64w8cCq99lVMCbkJggf/D7Dt6lLV5K5zg7oC1ThIFLNH3t5f1k3gSs8+jSLNo/ka8
-         7PcdgmMrzsxU8npBb4uQYX9e7OPVdfd6aJDYBa6wJ8Z1u0I3jU5/6hkQVS71dHVk4JrU
-         iDZQJbm63agTlZLMmk5l7hGyemkE7pqJogmMY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691048600; x=1691653400;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vrPeOXoKc2hUZA03cIawOYELY2pxQM3mW6RdAg6oP4Q=;
-        b=iBmsSc47vNQ7DbOplqLOfn5Gv0Gd6QValFJ2n57r3amB5zVt5zyMFPKrFinezrTiEQ
-         eZKVEHbnQ92xf8z/0s4KTw8I30Tfka4JMfNRaImaUGLRmpwPquP39u/Uu2wfui6mCl3Q
-         134Eb3aiiVVSa5QBKEQbRtgDfwNrftyRz9RI9HSqdpoKrP7BcB8rutsWlL84o7A66nzu
-         3saFO3zYWgPeFhRY+BWZhc7V1V8bZFvP6ySxJ4EkF/gdW1UYxA/B+jtegcGr1udTHkjA
-         bFYkp4AFSR69iSSOflsXxWsaB0aGvccVIZ9LH0XwOfbRBJzDmg5+D7vCXflxBguZ49y5
-         oOXA==
-X-Gm-Message-State: ABy/qLbghOiDWhiLrZa8+XhOTNYmAkflh7sHxSuYoFuN1edPWvSsHdqy
-        wR6vIpj/33M8SruQlCQQfbhtzw==
-X-Google-Smtp-Source: APBJJlFurYNnQLVV4RTU7su1Ey1Aj+eNI2+WPiuqHQ1LmYf3d/bpTlfIF23QfhrRuirChqwjNcAVsA==
-X-Received: by 2002:a17:90a:d78d:b0:268:1f64:cefc with SMTP id z13-20020a17090ad78d00b002681f64cefcmr13321482pju.49.1691048600567;
-        Thu, 03 Aug 2023 00:43:20 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:6f3e:66ee:db46:473b])
-        by smtp.gmail.com with ESMTPSA id l11-20020a17090a72cb00b00262d079720bsm2095753pjk.29.2023.08.03.00.43.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 00:43:20 -0700 (PDT)
-From:   Chen-Yu Tsai <wenst@chromium.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH 9/9] soc: mediatek: pwrap: add support for MT6366 PMIC
-Date:   Thu,  3 Aug 2023 15:42:47 +0800
-Message-ID: <20230803074249.3065586-10-wenst@chromium.org>
-X-Mailer: git-send-email 2.41.0.585.gd2178a4bd4-goog
-In-Reply-To: <20230803074249.3065586-1-wenst@chromium.org>
-References: <20230803074249.3065586-1-wenst@chromium.org>
+        with ESMTP id S233418AbjHCH4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:56:20 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C18193C2;
+        Thu,  3 Aug 2023 00:44:32 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 45F6E24E267;
+        Thu,  3 Aug 2023 15:43:49 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 15:43:49 +0800
+Received: from [192.168.125.136] (183.27.98.54) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
+ 2023 15:43:48 +0800
+Message-ID: <dae4bd27-4ea6-43b1-d65c-225be7b5640b@starfivetech.com>
+Date:   Thu, 3 Aug 2023 15:43:47 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+CC:     Bjorn Helgaas <helgaas@kernel.org>,
+        Minda Chen <minda.chen@starfivetech.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        "Maciej W. Rozycki" <macro@orcam.me.uk>,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+References: <20230802171805.GA62238@bhelgaas>
+ <1c546489-40dd-25c5-3ac2-9e3b3fd5a670@starfivetech.com>
+ <20230803065835.twdicvx62mgzzzqi@pali>
+From:   Kevin Xie <kevin.xie@starfivetech.com>
+In-Reply-To: <20230803065835.twdicvx62mgzzzqi@pali>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.98.54]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
-a different set of regulators. Specifically, it lacks the camera related
-VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
 
-Add a separate compatible for the MT6366 PMIC.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- drivers/soc/mediatek/mtk-pmic-wrap.c | 2 ++
- 1 file changed, 2 insertions(+)
+On 2023/8/3 14:58, Pali Rohár wrote:
+> On Thursday 03 August 2023 10:23:47 Kevin Xie wrote:
+>> On 2023/8/3 1:18, Bjorn Helgaas wrote:
+>> > On Tue, Aug 01, 2023 at 03:05:46PM +0800, Kevin Xie wrote:
+>> >> On 2023/8/1 7:12, Bjorn Helgaas wrote:
+>> >> ...
+>> > 
+>> >> > The delay required by sec 6.6.1 is a minimum of 100ms following exit
+>> >> > from reset or, for fast links, 100ms after link training completes.
+>> >> > 
+>> >> > The comment at the call of advk_pcie_wait_for_link() [2] says it is
+>> >> > the delay required by sec 6.6.1, but that doesn't seem right to me.
+>> >> > 
+>> >> > For one thing, I don't think 6.6.1 says anything about "link up" being
+>> >> > the end of a delay.  So if we want to do the delay required by 6.6.1,
+>> >> > "wait_for_link()" doesn't seem like quite the right name.
+>> >> > 
+>> >> > For another, all the *_wait_for_link() functions can return success
+>> >> > after 0ms, 90ms, 180ms, etc.  They're unlikely to return after 0ms,
+>> >> > but 90ms is quite possible.  If we avoided the 0ms return and
+>> >> > LINK_WAIT_USLEEP_MIN were 100ms instead of 90ms, that should be enough
+>> >> > for slow links, where we need 100ms following "exit from reset."
+>> >> > 
+>> >> > But it's still not enough for fast links where we need 100ms "after
+>> >> > link training completes" because we don't know when training
+>> >> > completed.  If training completed 89ms into *_wait_for_link(), we only
+>> >> > delay 1ms after that.
+>> >> 
+>> >> That's the point, we will add a extra 100ms after PERST# de-assert
+>> >> in the patch-v3 according to Base Spec r6.0 - 6.6.1:
+>> >>         msleep(100);
+>> >>         gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+>> >> 
+>> >> +       /* As the requirement in PCIe base spec r6.0, system must wait a
+>> >> +        * minimum of 100 ms following exit from a Conventional Reset
+>> >> +        * before sending a Configuration Request to the device.*/
+>> >> +       msleep(100);
+>> >> +
+>> >>         if (starfive_pcie_host_wait_for_link(pcie))
+>> >>                 return -EIO;
+>> > 
+>> > For fast links (links that support > 5.0 GT/s), the 100ms starts
+>> > *after* link training completes.  The above looks OK if starfive only
+>> > supports slow links, but then I'm not sure why we would need
+>> > starfive_pcie_host_wait_for_link().
+>> > 
+>> Yes, the maximum speed of JH7110 PCIe is 5.0 GT/s (Gen2x1).
+>> 
+>> About starfive_pcie_host_wait_for_link():
+>> JH7110 SoC only has one root port in each PCIe controller (2 in total)
+>> and they do not support hot-plug yet.
+> 
+> Beware that even if HW does not support hotplug, endpoint PCIe card
+> still may drop the link down and later put it up (for example if FW in
+> the card crashes or when card want to do internal reset, etc...; this is
+> very common for wifi cards). So drivers for non-hotplug controllers
+> still have to handle hotplug events generated by link up/down state.
+> 
+> So it means that, if endpoint PCIe card is not detected during probe
+> time, it may be detected later. So this check to completely stop
+> registering controller is not a good idea. Note that userspace can
+> tell kernel (via sysfs) to rescan all PCIe buses and try to discover new
+> PCIea devices.
+> 
 
-diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-index 11095b8de71a..e3c0e767033b 100644
---- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-+++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-@@ -2257,6 +2257,8 @@ static const struct of_device_id of_slave_match_tbl[] = {
- 	{ .compatible = "mediatek,mt6357", .data = &pmic_mt6357 },
- 	{ .compatible = "mediatek,mt6358", .data = &pmic_mt6358 },
- 	{ .compatible = "mediatek,mt6359", .data = &pmic_mt6359 },
-+	/* MT6366 is mostly compatible with MT6358, except for slightly different regulators. */
-+	{ .compatible = "mediatek,mt6366", .data = &pmic_mt6358 },
- 
- 	/* The MT6380 PMIC only implements a regulator, so we bind it
- 	 * directly instead of using a MFD.
--- 
-2.41.0.585.gd2178a4bd4-goog
+Yes, we should not ignored this situation.
 
+>> Thus, We add starfive_pcie_host_wait_for_link() to poll if it is a empty slot.
+>> If nothing here, we will exit the probe() of this controller, and it will not
+>> go into pci_host_probe() too.
+>> This may not be a very standard logic, should we remove it or rewrite in a better way?
+>> 
+>> > Bjorn
+> 
+> Rather to remove this starfive_pcie_host_wait_for_link logic.
+> 
+> Better option would be to teach PCI core code to wait for the link
+> before trying to read vendor/device ids, like I described in my old
+> proposal.
+
+Yes, the proposal can prevent us from writing the wrong timing.
+However, as things stand, we have to do the waiting in host controller driver now.
+We will keep the wait for the link, but don't return error when the link is down,
+such as:
+    if (starfive_pcie_host_wait_for_link(pcie))
+	dev_info(dev, "port link down\n");
