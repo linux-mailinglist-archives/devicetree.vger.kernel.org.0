@@ -2,94 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 179EC76EA5C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 15:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A9CD76EC1D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233191AbjHCNaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 09:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
+        id S235569AbjHCOPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 10:15:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234147AbjHCN3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 09:29:47 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1734688;
-        Thu,  3 Aug 2023 06:28:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=HKMd41ztEQhdCZJks87581+xSsxJKDmGF5+5ygoMIxI=; b=XGOgrevrfCnRiUIRPwXG6WNdtu
-        47haAKBh0Dobgfm7Q5SB0LDtOlIGAHZb09HfV2K60izf5hkRwsFFD5C+3agiaNWRP0Err1pmYuZ/3
-        tkiZdBoQpk9CrjIrFgi+NF889G7PIhWpPzoGbZqlzTrM464VC4ySvOhfsczJ3lhpV0aE=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:40832 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qRYNG-0008NY-U6; Thu, 03 Aug 2023 09:28:19 -0400
-Date:   Thu, 3 Aug 2023 09:28:18 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230803092818.15ec39cf05745e22e0aa2999@hugovil.com>
-In-Reply-To: <2023073155-unpaired-dropper-f8fe@gregkh>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
-        <20230725142343.1724130-11-hugo@hugovil.com>
-        <2023073155-unpaired-dropper-f8fe@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        with ESMTP id S235711AbjHCOOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:14:50 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F06421E;
+        Thu,  3 Aug 2023 07:14:16 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id 07876206B8;
+        Thu,  3 Aug 2023 16:14:13 +0200 (CEST)
+Date:   Thu, 3 Aug 2023 16:14:08 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+Subject: Re: [PATCH v3 2/8] arm64: dts: ti: k3-am62-main: Add node for DSS
+Message-ID: <ZMu2MMGCXzBu7wf2@francesco-nb.int.toradex.com>
+References: <20230728173438.12995-1-a-bhatia1@ti.com>
+ <20230728173438.12995-3-a-bhatia1@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230728173438.12995-3-a-bhatia1@ti.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v9 10/10] serial: sc16is7xx: improve comments about
- variants
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jul 2023 17:56:53 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+Hello Aradhya, Nishanth and Vignesh
 
-> On Tue, Jul 25, 2023 at 10:23:42AM -0400, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Replace 740/750/760 with generic terms like 74x/75x/76x to account for
-> > variants like 741, 752 and 762.
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+On Fri, Jul 28, 2023 at 11:04:32PM +0530, Aradhya Bhatia wrote:
+> Add Display SubSystem (DSS) DT node for the AM625 SoC.
 > 
-> You have now mixed a patch series full of commits that are to be
-> backported to stable kernels (i.e. fixes) and general changes that do
-> not need to be.
-> 
-> Please make these two separate patch series, you can have one depend on
-> the other, but I can't apply them both to the "for Linus" branch as
-> obviously they are not all fixes nor need to go to Linus now.
-> 
-> thanks,
-> 
-> greg k-h
+> The DSS supports one each of video pipeline (vid) and video-lite
+> pipeline (vidl1). It outputs OLDI signals on one video port (VP1) and
+> DPI signals on another (VP2). The video ports are connected to the
+> pipelines via 2 identical overlay managers (ovr1 and ovr2).
 
-Hi,
-Ok, will do.
+Not sure on the plan on the whole series, but from my point of view it
+would make sense to have (at least) this patch, if deemed correctly,
+applied for v6.6.
 
-Thank you,
-Hugo.
+This will enable others TI AM625 user to start upstreaming their changes
+and testing it.
+
+Francesco
+
