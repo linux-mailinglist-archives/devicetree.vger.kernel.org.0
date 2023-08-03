@@ -2,178 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A2BE76E0C3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5E376E0ED
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjHCHEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 03:04:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
+        id S231402AbjHCHIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 03:08:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjHCHDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:03:53 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC212D65;
-        Thu,  3 Aug 2023 00:03:14 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 55D1C320099A;
-        Thu,  3 Aug 2023 03:03:10 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 03 Aug 2023 03:03:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1691046189; x=1691132589; bh=5S
-        kTpiwI76j0iv1Bz8lF8A+JaMZXfVN77EuT9JyTy+A=; b=jU6TSIhH7ZrRg1PEA0
-        qzNVnEaJWGbrFhZmrmv5OR71Sm79X1rE5hNEfGohLjsolv+gLVAef8nmzMvRKYUd
-        0R1YLra8Mpe4jaYd6QdFO8WC0NDkbNe+vkxtXr11EvrfmM1UQ38zqH0dCBGLqfhX
-        Cbs7ZM+Jxrf61cKvw+kBp1SXL0ujiFUCELGAwxqDU9xlk4Mcru3cgZSgF0LAk2R7
-        WCsPJ0a5Ub3PqGAag3QmngLFwfEZn67K4t5jSylXzeJbuOVeGT6+UsR+Nw92m2B9
-        TEiRW6uH8Talm4MDK6jW8MMFSijvExJKJ/GbuhVRfYphnN3r1IjQoFqdGm21+BY3
-        IBKA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1691046189; x=1691132589; bh=5SkTpiwI76j0i
-        v1Bz8lF8A+JaMZXfVN77EuT9JyTy+A=; b=kjDsUJGzVeWOqS09TcFWWuLXwGgGl
-        llB92w3a7K9vbrG+pLOTqu5eaVkACxGVUcFU5N6N9KiIrkzLQtEdrlt7skPw/FRT
-        0E7MwI+MRmEfkNxU8tv3ETa/9h4eRNWaICvV9dMHILnl4/YsPXDzSLApygmEZloy
-        3Gig6ZUplmHR/O5MMRxL5qZIVSVAZOfTZpp9hBnaKDO+LDfTj8bHMl5lQP6L00S5
-        eyzjXtQHv9y8LE0M/0PVnrtk2cQdnLR1Cg359SP3r+fjZ/z3cXtk9lU0u27RRMTI
-        qCo3DN7Jn6dNAJxH+Ab7uopkknZNs/L8vKsm5T5g2lDC6sZs3vg0cZKYQ==
-X-ME-Sender: <xms:LFHLZJGtQm9EYLlFp8H6fbRp1nNmnG-reMyDxsav0NnrK1E5l6FKnw>
-    <xme:LFHLZOVI9k7Z2gyoR3Qhb_c9x7Tbg7EsyxPeR-DxLFkgiIGjIr_HLbUERJYkYd65e
-    NDiHiyopNeaIl-ZVCM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrkedugdduudefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:LFHLZLIf16Rgi6v0w8j3MNlzrCwjPRNy9NDtczmH5M76-thA7r4zNw>
-    <xmx:LFHLZPHWDU-rbReG3H666yKM391Qbd5NZtNvaINcv99zUhrQ2IETHQ>
-    <xmx:LFHLZPXOcHjAnQScHt4zWRhf5XGL5Eeni2NYOB0CDmXQ5YGM0Fng-w>
-    <xmx:LVHLZItWNEY2hx1vkfcMKjiluOjOFRGuyb4CupRgRs1HOKV3ftTaNQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id B3955B60089; Thu,  3 Aug 2023 03:03:08 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-624-g7714e4406d-fm-20230801.001-g7714e440
-Mime-Version: 1.0
-Message-Id: <4fef9725-7aea-43fb-b8ef-d20a4c6d9a68@app.fastmail.com>
-In-Reply-To: <20230803063703.5659-3-zhuyinbo@loongson.cn>
-References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
- <20230803063703.5659-3-zhuyinbo@loongson.cn>
-Date:   Thu, 03 Aug 2023 09:02:47 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     "Jianmin Lv" <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        "Liu Peibao" <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
-        "Liu Yun" <liuyun@loongson.cn>
-Subject: Re: [PATCH v6 2/2] soc: loongson2_pm: add power management support
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232585AbjHCHHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:07:45 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5556FDA;
+        Thu,  3 Aug 2023 00:07:44 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3735USIT001003;
+        Thu, 3 Aug 2023 07:07:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=upMF1KAcMMnH2aapX8wVrZDaWD5L0DoJT2B0WUkt9es=;
+ b=DAYLZ4OAu3iySaOKAKXX0bpLyvUeRf7W5QbAYqYPnd2NyTqkfrvZ+jk+CGLt+IaQWChB
+ 8TyGIPbO9ccftjhxL/Oh9AuDfvNHkHJynFveMD2a5Jsam/1Dpzl0BsWekp7///rTJApB
+ iGs1FM6/lEzhvmmGK9p9Y4UwskSndoUt/YQ0G1Uqqh85E2MX0nZUfc7uKTGB5cX1ffY1
+ pRFVDM/G0e4P2UFW/5gH9dyw0JU9NjB38cTC0H8ySh0Nbg5QgrOBSe3faA4WKw8wdTbJ
+ 27SG9Sa7AY7MuOSQzeJhtsNR7OoDR9V7MVsXCyWeAP2Lgza8xonUk8Z7MctqhKW9XKhq aQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s7n93j6hg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Aug 2023 07:07:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37377NHZ016435
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 3 Aug 2023 07:07:23 GMT
+Received: from [10.50.13.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 3 Aug
+ 2023 00:06:44 -0700
+Message-ID: <f25f8c43-2996-23ff-e6af-9e39b7fced86@quicinc.com>
+Date:   Thu, 3 Aug 2023 12:36:29 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH V25 0/3] misc: Add driver support for Data Capture and
+ Compare unit(DCC)
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1687945879.git.quic_schowdhu@quicinc.com>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <cover.1687945879.git.quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: feUT57KV2FObXZpDqTUVJlpGWYjmkxIn
+X-Proofpoint-ORIG-GUID: feUT57KV2FObXZpDqTUVJlpGWYjmkxIn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-03_05,2023-08-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ bulkscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308030063
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
-> The Loongson-2's power management controller was ACPI, supports ACPI
-> S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-> Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
-> (USB, GMAC, PWRBTN, etc.). This driver was to add power management
-> controller support that base on dts for Loongson-2 series SoCs.
->
-> Co-developed-by: Liu Yun <liuyun@loongson.cn>
-> Signed-off-by: Liu Yun <liuyun@loongson.cn>
-> Co-developed-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Cc: soc@kernel.org
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
-I'm still waiting for Ulf to take a look here to see whether
-this should be in drivers/genpd instead, but he might still
-be on vacation.
 
-A few minor comments from me in the meantime:
+On 6/28/2023 3:53 PM, Souradeep Chowdhury wrote:
+> DCC(Data Capture and Compare) is a DMA engine designed for debugging purposes.
+> In case of a system crash or manual software triggers by the user the DCC hardware
+> stores the value at the register addresses which can be used for debugging purposes.
+> The DCC driver provides the user with debugfs interface to configure the register
+> addresses. The options that the DCC hardware provides include reading from registers,
+> writing to registers, first reading and then writing to registers and looping
+> through the values of the same register.
+> 
+> In certain cases a register write needs to be executed for accessing the rest of the
+> registers, also the user might want to record the changing values of a register with
+> time for which he has the option to use the loop feature.
+> 
+> The options mentioned above are exposed to the user by debugfs files once the driver
+> is probed. The details and usage of this debugfs files are documented in
+> Documentation/ABI/testing/debugfs-driver-dcc.
+> 
+> As an example let us consider a couple of debug scenarios where DCC has been proved to be
+> effective for debugging purposes:-
+> 
+> i)TimeStamp Related Issue
+> 
+> On SC7180, there was a coresight timestamp issue where it would occasionally be all 0
+> instead of proper timestamp values.
+> 
+> Proper timestamp:
+> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x13004d8f5b7aa; CC=0x9e
+> 
+> Zero timestamp:
+> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
+> 
+> Now this is a non-fatal issue and doesn't need a system reset, but still needs
+> to be rootcaused and fixed for those who do care about coresight etm traces.
+> Since this is a timestamp issue, we would be looking for any timestamp related
+> clocks and such.
+> 
+> We get all the clk register details from IP documentation and configure it
+> via DCC config_read debugfs node. Before that we set the current linked list.
+> 
+> /* Program the linked list with the addresses */
+> echo R 0x10c004 > /sys/kernel/debug/qcom-dcc/../3/config
+> echo R 0x10c008 > /sys/kernel/debug/qcom-dcc/../3/config
+> echo R 0x10c00c > /sys/kernel/debug/qcom-dcc/../3/config
+> echo R 0x10c010 > /sys/kernel/debug/qcom-dcc/../3/config
+> ..... and so on for other timestamp related clk registers
+> 
+> /* Other way of specifying is in "addr len" pair, in below case it
+> specifies to capture 4 words starting 0x10C004 */
+> 
+> echo R 0x10C004 4 > /sys/kernel/debug/qcom-dcc/../3/config_read
+> 
+> /* Enable DCC */
+> echo 1 > /sys/kernel/debug/qcom-dcc/../3/enable
+> 
+> /* Run the timestamp test for working case */
+> 
+> /* Send SW trigger */
+> echo 1 > /sys/kernel/debug/qcom-dcc/../trigger
+> 
+> /* Read SRAM */
+> cat /dev/dcc_sram > dcc_sram1.bin
+> 
+> /* Run the timestamp test for non-working case */
+> 
+> /* Send SW trigger */
+> echo 1 > /sys/kernel/debug/qcom-dcc/../trigger
+> 
+> /* Read SRAM */
+> cat /dev/dcc_sram > dcc_sram2.bin
+> 
+> Get the parser from [1] and checkout the latest branch.
+> 
+> /* Parse the SRAM bin */
+> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
+> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
+> 
+> Sample parsed output of dcc_sram1.bin:
+> 
+> <hwioDump version="1">
+>           <timestamp>03/14/21</timestamp>
+>               <generator>Linux DCC Parser</generator>
+>                   <chip name="None" version="None">
+>                   <register address="0x0010c004" value="0x80000000" />
+>                   <register address="0x0010c008" value="0x00000008" />
+>                   <register address="0x0010c00c" value="0x80004220" />
+>                   <register address="0x0010c010" value="0x80000000" />
+>               </chip>
+>       <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
+> </hwioDump>
+> 
+> ii)NOC register errors
+> 
+> A particular class of registers called NOC which are functional registers was reporting
+> errors while logging the values.To trace these errors the DCC has been used effectively.
+> The steps followed were similar to the ones mentioned above.
+> In addition to NOC registers a few other dependent registers were configured in DCC to
+> monitor it's values during a crash. A look at the dependent register values revealed that
+> the crash was happening due to a secured access to one of these dependent registers.
+> All these debugging activity and finding the root cause was achieved using DCC.
+> 
+> DCC parser is available at the following open source location
+> 
+> https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/tools/-/tree/opensource-tools.lnx.1.0.r176-rel/dcc_parser
+> 
+> Changes in v25
+> 
+> * Updated the documentation of the structure dcc_config_entry as per the comments in V23
+> * Updated the documentation of the dcc Kconfig definition as per comment in V24
+> * Used u64 where applicable
+> * Removed the mutex locks where it is not needed
+> * Removed the use of unlikely keyword
+> * Renamed "nr_link_list" to "max_link_list"
+> 
+> Souradeep Chowdhury (3):
+>    dt-bindings: misc: qcom,dcc: Add the dtschema
+>    misc: dcc: Add driver support for Data Capture and Compare unit(DCC)
+>    MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+>      support
+> 
+>   Documentation/ABI/testing/debugfs-driver-dcc  |   10 +-
+>   .../devicetree/bindings/misc/qcom,dcc.yaml    |   44 +
+>   MAINTAINERS                                   |    8 +
+>   drivers/misc/Kconfig                          |    8 +
+>   drivers/misc/Makefile                         |    1 +
+>   drivers/misc/qcom-dcc.c                       | 1312 +++++++++++++++++
+>   6 files changed, 1378 insertions(+), 5 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/misc/qcom,dcc.yaml
+>   create mode 100644 drivers/misc/qcom-dcc.c
 
-> +#define loongson2_pm_readw(reg)		readw(loongson2_pm.base + reg)
-> +#define loongson2_pm_readl(reg)		readl(loongson2_pm.base + reg)
-> +#define loongson2_pm_writew(val, reg)	writew(val, loongson2_pm.base + 
-> reg)
-> +#define loongson2_pm_writel(val, reg)	writel(val, loongson2_pm.base + 
-> reg)
-
-I would prefer these to be 'static inline' functions rather than
-macros, or you can just open-code them, as each macro is only
-used once at the moment.
-
-> +static irqreturn_t loongson2_pm_irq_handler(int irq, void *dev_id)
-> +{
-> +	u16 status = loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
-> +
-> +	if (!loongson2_pm.suspended && (status & LOONGSON2_PM1_PWRBTN_STS)) {
-> +		pr_info("Power Button pressed...\n");
-
-The message is probably more appropriate as a pr_debug() than
-pr_info().
-
-> +static int __maybe_unused loongson2_pm_suspend(struct device *dev)
-> +{
-> +	loongson2_pm.suspended = true;
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused loongson2_pm_resume(struct device *dev)
-> +{
-> +	loongson2_pm.suspended = false;
-> +
-> +	return 0;
-> +}
-> +static SIMPLE_DEV_PM_OPS(loongson2_pm_ops, loongson2_pm_suspend, 
-> loongson2_pm_resume);
-
-Please change this to DEFINE_SIMPLE_DEV_PM_OPS() and remove the
-__maybe_unused, this is what all drivers should have these days.
-
-> +
-> +static int loongson2_pm_probe(struct platform_device *pdev)
-> +{
-> +	int irq, retval;
-> +	u64 suspend_addr;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	loongson2_pm.base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(loongson2_pm.base))
-> +		return PTR_ERR(loongson2_pm.base);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return irq;
-> +
-> +	if (!device_property_read_u64(dev, "loongson,suspend-address", 
-> &suspend_addr))
-> +		loongson_sysconf.suspend_addr = (u64)phys_to_virt(suspend_addr);
-> +	else
-
-Having a custom "loongson,suspend-address" property here feels wrong
-to me. Can't this be moved into the "regs" property that holds
-the other mmio registers?
-
-    Arnd
+Gentle Ping
