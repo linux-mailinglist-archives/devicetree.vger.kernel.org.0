@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03CE276F44A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3455B76F453
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:54:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232403AbjHCUxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 16:53:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56628 "EHLO
+        id S231396AbjHCUyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 16:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232391AbjHCUxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:53:16 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F64A2
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 13:53:07 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-ca4a6e11f55so1517067276.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 13:53:07 -0700 (PDT)
+        with ESMTP id S231508AbjHCUyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:54:21 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0671D19AA;
+        Thu,  3 Aug 2023 13:54:12 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-317b31203c7so1299806f8f.2;
+        Thu, 03 Aug 2023 13:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691095987; x=1691700787;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+/rsOB7MMmBCNLpA1DSHrmhyVa9IiA1ZsxUc+a34xks=;
-        b=RH84+1CJ4J7o12qkrpYNs8Bej9TkQF8S4TLX7oEr5N+h+z+fy0dhYSClNZzl/6m0Bv
-         AZwljIAJxGYG45SiW/ZqKIpTufDlmnCsbNXoL2TRnFHhh48TpWoJFjU/FD/rM0pXx6v8
-         +JK7XD1hHEcXMvM2ucGqwDEJ2IENdzJ1N2r9/cXMk0qXupEG25oXxPPMaW++Hz8R8JCq
-         OGHH+CN4c97LNzGblfO0lsrdPe1Bc59CNMQDcMhEVzBoLanBki4WjWtqf+U1ZVZXuRuG
-         vJfe8rdj/CJ3KZ8wk3sqceim/3qbCdR8E26QK2TNgV/01CQIsn8rs/9sPmpNCE5TmqNS
-         TgeQ==
+        d=gmail.com; s=20221208; t=1691096050; x=1691700850;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gf1shgUQGecS6+2Jrf1Rltefiiin3z+1dw5kwESQLOE=;
+        b=I6Svwboa/Lf/XyjqjzLySQ9kXd+YTlRJ8bqidzr0kT/mN0bm9TJmPdDtGmjQcXnC0g
+         zBQcpCDi35SqsW4FPFXJHJj1RZUVxAG9y3+pn5FcNg+hMxFImMO4JlkCc7O3h49ok1V8
+         G/20JB9KiEbch9eu2VgRw53YLAthzMbfB9hN0mvkNqWW9kQrPE/hV2NIulEL5VRoAnXS
+         evmwhdHh7JDKmSF6Y/M4AdK9qWhx3PFjZO4y4hKiuXkoQ6gxswG6Axdus7k3PRoWYMTP
+         4D7au3z7X+c80V1G7thDEkn34K/tsUprsXm94oz75+/9csJ5cy2vfl5U+fW7nNy78IwX
+         KCLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691095987; x=1691700787;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+/rsOB7MMmBCNLpA1DSHrmhyVa9IiA1ZsxUc+a34xks=;
-        b=ZFCNiTy3tJCoebxLdB+ZDIv5l/UTioK2xtA1r5btWrnJwKVLgNkWW3YIrKGo6Juj7N
-         Hg10LG+PjND8Lfj1tcQxgl6tdkNwBregmB+Z1EwxU/n20MgXB/5cwaq1vjWeMYRdgXUK
-         gCMfkmiZOBNTCn/yE8GumNHsTD6NadoyNTGh6n+jxqNnvCl4o8aAWBM1fbcLW1Yu1f1j
-         8pk9clEhuWSEJ65g337H15ViRKgKV4R6ZrN/lzWqu5uqBEPayYcgNQx9JCpTjgW/MVw4
-         JwsagS/WxhUArjozm3JXwPU254L+++FxticbB1rmzDLrFu4nR/FPREg4u5xufazkrQVM
-         6G5A==
-X-Gm-Message-State: ABy/qLaOcyQFtMc/MVSz+4j6DRR5ifZBH9fFKF/kQtC7AXnNpGLW3s/y
-        VFpKCq3lcblG/vs0rn1++iMD6RwxrAZAPhbkFgvOOw==
-X-Google-Smtp-Source: APBJJlFCpGsVSdiQfwS0p+VQYoS4e9Qf1T09P86LKX7oHgpLrEC3CSHbMyEUBQ2rC/l5XoIxk//OPVDBmF7ryG8u4GM=
-X-Received: by 2002:a25:360a:0:b0:c67:77be:9ad9 with SMTP id
- d10-20020a25360a000000b00c6777be9ad9mr16975325yba.30.1691095986858; Thu, 03
- Aug 2023 13:53:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691096050; x=1691700850;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gf1shgUQGecS6+2Jrf1Rltefiiin3z+1dw5kwESQLOE=;
+        b=QAyDwqr+tXCiilyIAWRVUNmIv0+wqItguYNVWJr7elyyodeagEjx61BZmSuQ7lWtQz
+         2rY7zNyGEZQuSIFBNegl2/EizZ6d9ZNx/xXIqAT6VbDZHsHTSb/z3d1uCCUhyhFDB++t
+         B51RCI5iY6ooIq7q47cM1skPxVOGdY8FFBY+CQKLg9l7/Tgi44a4JCJyWp3XyS1ZkUAC
+         hob5Aakt9xDi/ZKV1/rtiAgJ5gIMkQVSSMc98uojBSxIIQ1ZdNYMHRqq9YE32W/+xwy9
+         Ygw6aKZmVRx+rf3Cci1oYmnt+o2TOH8VvqRnkZ7zwljJhYNz5OHbZSWE3uDrLTvG6+kC
+         aDKw==
+X-Gm-Message-State: ABy/qLYUJh6afTbtPJf/Z2K0SGiqJIkqjDTNYBoM3/40eS/t8GBzXl+h
+        KtliQ9RGix1xix+iVuL7vio=
+X-Google-Smtp-Source: APBJJlFSz8tLD3zPBalpC68JbS4T65s5zlyPapVF+FrzONfDahN32ei4XWvdQHLX7eTvk9Ddujpkrg==
+X-Received: by 2002:adf:e105:0:b0:314:11f3:ca94 with SMTP id t5-20020adfe105000000b0031411f3ca94mr8109045wrz.41.1691096050225;
+        Thu, 03 Aug 2023 13:54:10 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id d6-20020adff2c6000000b003172510d19dsm743046wrp.73.2023.08.03.13.54.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 13:54:09 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     linux-sunxi@lists.linux.dev, John Watts <contact@jookia.org>
+Cc:     John Watts <contact@jookia.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Maksim Kiselev <bigunclemax@gmail.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: allwinner: d1: Specify default CAN pins
+Date:   Thu, 03 Aug 2023 22:54:08 +0200
+Message-ID: <2151031.irdbgypaU6@jernej-laptop>
+In-Reply-To: <20230731023701.2581713-1-contact@jookia.org>
+References: <20230731023701.2581713-1-contact@jookia.org>
 MIME-Version: 1.0
-References: <20230803194724.154591-1-danila@jiaxyga.com>
-In-Reply-To: <20230803194724.154591-1-danila@jiaxyga.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 3 Aug 2023 23:52:56 +0300
-Message-ID: <CAA8EJpoy4w6j3yZMqEhh9xJiZieZuqyw2tOBSbhT0uuqoEMU-A@mail.gmail.com>
-Subject: Re: [PATCH 0/2] drm/msm/dpu: Add support for SM7150
-To:     Danila Tikhonov <danila@jiaxyga.com>
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org,
-        neil.armstrong@linaro.org, rfoss@kernel.org, andersson@kernel.org,
-        quic_khsieh@quicinc.com, quic_vpolimer@quicinc.com,
-        quic_rmccann@quicinc.com, quic_jesszhan@quicinc.com,
-        liushixin2@huawei.com, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        davidwronek@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Aug 2023 at 22:47, Danila Tikhonov <danila@jiaxyga.com> wrote:
->
-> This series adds DPU support for Qualcomm SM7150 SoC.
->
-> Danila Tikhonov (2):
->   dt-bindings: display/msm: document DPU on SM7150
->   drm/msm/dpu: Add SM7150 support
->
->  .../bindings/display/msm/qcom,sm7150-dpu.yaml | 116 ++++++++
->  .../msm/disp/dpu1/catalog/dpu_5_2_sm7150.h    | 277 ++++++++++++++++++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   1 +
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
->  5 files changed, 396 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml
->  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_5_2_sm7150.h
+Dne ponedeljek, 31. julij 2023 ob 04:36:59 CEST je John Watts napisal(a):
+> There are only one set of CAN pins available on these chips.
+> Specify these as the default to avoid redundancy in board device trees.
+> 
+> Signed-off-by: John Watts <contact@jookia.org>
+> ---
+>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi index
+> 4086c0cc0f9d..b27c3fc13b0d 100644
+> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> @@ -898,6 +898,8 @@ can0: can@2504000 {
+>  			interrupts = <SOC_PERIPHERAL_IRQ(21) 
+IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_BUS_CAN0>;
+>  			resets = <&ccu RST_BUS_CAN0>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&can0_pins>;
+>  			status = "disabled";
+>  		};
+> 
+> @@ -907,6 +909,8 @@ can1: can@2504400 {
+>  			interrupts = <SOC_PERIPHERAL_IRQ(22) 
+IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_BUS_CAN1>;
+>  			resets = <&ccu RST_BUS_CAN1>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&can1_pins>;
+>  			status = "disabled";
+>  		};
+>  	};
 
-Could you please include MDSS bindings and msm_mdss.c patch into v2?
 
--- 
-With best wishes
-Dmitry
+
+
