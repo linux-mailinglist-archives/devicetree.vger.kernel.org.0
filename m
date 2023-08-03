@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3455B76F453
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B926576F45E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 22:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbjHCUyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 16:54:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
+        id S229960AbjHCU7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 16:59:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbjHCUyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:54:21 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0671D19AA;
-        Thu,  3 Aug 2023 13:54:12 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-317b31203c7so1299806f8f.2;
-        Thu, 03 Aug 2023 13:54:11 -0700 (PDT)
+        with ESMTP id S229767AbjHCU7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 16:59:36 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481701AB;
+        Thu,  3 Aug 2023 13:59:34 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fe24dd8898so14237945e9.2;
+        Thu, 03 Aug 2023 13:59:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691096050; x=1691700850;
+        d=gmail.com; s=20221208; t=1691096373; x=1691701173;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gf1shgUQGecS6+2Jrf1Rltefiiin3z+1dw5kwESQLOE=;
-        b=I6Svwboa/Lf/XyjqjzLySQ9kXd+YTlRJ8bqidzr0kT/mN0bm9TJmPdDtGmjQcXnC0g
-         zBQcpCDi35SqsW4FPFXJHJj1RZUVxAG9y3+pn5FcNg+hMxFImMO4JlkCc7O3h49ok1V8
-         G/20JB9KiEbch9eu2VgRw53YLAthzMbfB9hN0mvkNqWW9kQrPE/hV2NIulEL5VRoAnXS
-         evmwhdHh7JDKmSF6Y/M4AdK9qWhx3PFjZO4y4hKiuXkoQ6gxswG6Axdus7k3PRoWYMTP
-         4D7au3z7X+c80V1G7thDEkn34K/tsUprsXm94oz75+/9csJ5cy2vfl5U+fW7nNy78IwX
-         KCLA==
+        bh=DP2b+AILmlpdJLSBdLdZp7i7Y6kRAXSbaj0B+upIxrM=;
+        b=KzzRQ4S29CvAU+TMW8J+OxQJT0N2VhnDo449Nyam5kEaT/lCE1i/60oslFCK2Hsg9Y
+         GJ8tR5nS/QQr2daknYxum4FyeNCoXDvPajZSppWA6fXsarteFlTEBTQle6I5+qDh5yVh
+         ngnmh8QazL+AyBdq85o1BjPm/64gbyFgTStzkiooUU9Phj5GbPjSBKK5KeinEBVRMQLR
+         MDoaI9uwvFjXnuP2iW6YwDSKktwQRl82ymGuY3S2+HdlfHslVj6n95vbQklGMBrrmdrM
+         8IYb17FZ/8wMlU/YHeTfKrPsbOBC64FDYeO76bYT6bsFN3xrpmEJ2qCgl3q0dXPynKZV
+         LtBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691096050; x=1691700850;
+        d=1e100.net; s=20221208; t=1691096373; x=1691701173;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gf1shgUQGecS6+2Jrf1Rltefiiin3z+1dw5kwESQLOE=;
-        b=QAyDwqr+tXCiilyIAWRVUNmIv0+wqItguYNVWJr7elyyodeagEjx61BZmSuQ7lWtQz
-         2rY7zNyGEZQuSIFBNegl2/EizZ6d9ZNx/xXIqAT6VbDZHsHTSb/z3d1uCCUhyhFDB++t
-         B51RCI5iY6ooIq7q47cM1skPxVOGdY8FFBY+CQKLg9l7/Tgi44a4JCJyWp3XyS1ZkUAC
-         hob5Aakt9xDi/ZKV1/rtiAgJ5gIMkQVSSMc98uojBSxIIQ1ZdNYMHRqq9YE32W/+xwy9
-         Ygw6aKZmVRx+rf3Cci1oYmnt+o2TOH8VvqRnkZ7zwljJhYNz5OHbZSWE3uDrLTvG6+kC
-         aDKw==
-X-Gm-Message-State: ABy/qLYUJh6afTbtPJf/Z2K0SGiqJIkqjDTNYBoM3/40eS/t8GBzXl+h
-        KtliQ9RGix1xix+iVuL7vio=
-X-Google-Smtp-Source: APBJJlFSz8tLD3zPBalpC68JbS4T65s5zlyPapVF+FrzONfDahN32ei4XWvdQHLX7eTvk9Ddujpkrg==
-X-Received: by 2002:adf:e105:0:b0:314:11f3:ca94 with SMTP id t5-20020adfe105000000b0031411f3ca94mr8109045wrz.41.1691096050225;
-        Thu, 03 Aug 2023 13:54:10 -0700 (PDT)
+        bh=DP2b+AILmlpdJLSBdLdZp7i7Y6kRAXSbaj0B+upIxrM=;
+        b=IqpQEWhkKFJJM34Eq92X+IYDXm4Iusjd7Cyj8xeRzWmLriZNW+C2ln9Q5o0M+S9TZm
+         CooJxplPy9zhtcShiYUuP//hmEclXnYMAdi87I0ZZPGQlIVaYQ+8UZysxru6M3OfUT/S
+         4yajWg6S2U7PZo/QuPStkDOyyD12lkycW7OvgJqdogYn7EjDSuQbGScwFUslaiKyhaRf
+         +16x0zPvWZjSXe1lcLtIHuYPXRVfVuXLU8IJM1RGKJb4pjNBZLX8pGtwFElQ3in3VEyK
+         pCzAJiQRd3dGP0OBPAwcW7O2Zd6SaUXp+u8RBoiVPFg6VIeQgxwvEgXv/fBhkubjyGXI
+         00PA==
+X-Gm-Message-State: ABy/qLYQf+SWwGc6zgF/3Ygj6NSIDOa+Th/iAD+CUK252N/dItxEtwXo
+        YwLShwR0O9zNTFJqZAblzg0=
+X-Google-Smtp-Source: APBJJlHHfuo6kBelJvqwbXH9kUi+80SC8CQMEFEj5k03HeeeLJcquEgoQREJ2cxFra7O+czacV7ZcQ==
+X-Received: by 2002:a5d:69c1:0:b0:314:c9c:bc96 with SMTP id s1-20020a5d69c1000000b003140c9cbc96mr7821541wrw.7.1691096372657;
+        Thu, 03 Aug 2023 13:59:32 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id d6-20020adff2c6000000b003172510d19dsm743046wrp.73.2023.08.03.13.54.08
+        by smtp.gmail.com with ESMTPSA id u7-20020a5d5147000000b0031437ec7ec1sm770658wrt.2.2023.08.03.13.59.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 13:54:09 -0700 (PDT)
+        Thu, 03 Aug 2023 13:59:32 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To:     linux-sunxi@lists.linux.dev, John Watts <contact@jookia.org>
 Cc:     John Watts <contact@jookia.org>, Rob Herring <robh+dt@kernel.org>,
@@ -62,10 +62,11 @@ Cc:     John Watts <contact@jookia.org>, Rob Herring <robh+dt@kernel.org>,
         Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
         Maksim Kiselev <bigunclemax@gmail.com>,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mkl@pengutronix.de
 Subject: Re: [PATCH] riscv: dts: allwinner: d1: Specify default CAN pins
-Date:   Thu, 03 Aug 2023 22:54:08 +0200
-Message-ID: <2151031.irdbgypaU6@jernej-laptop>
+Date:   Thu, 03 Aug 2023 22:59:30 +0200
+Message-ID: <3248110.44csPzL39Z@jernej-laptop>
 In-Reply-To: <20230731023701.2581713-1-contact@jookia.org>
 References: <20230731023701.2581713-1-contact@jookia.org>
 MIME-Version: 1.0
@@ -80,6 +81,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
+
+/cc Marc
 
 Dne ponedeljek, 31. julij 2023 ob 04:36:59 CEST je John Watts napisal(a):
 > There are only one set of CAN pins available on these chips.
@@ -104,6 +107,19 @@ IRQ_TYPE_LEVEL_HIGH>;
 > +			pinctrl-0 = <&can0_pins>;
 >  			status = "disabled";
 >  		};
+
+pinctrl-names and pinctrl-0 are usually at the top. However, since there is no 
+hard rule (I've seen it mixed), I'm fine with it.
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Since original DT node entry goes through netdev tree, this should be picked 
+there or it can be dropped there and I pick both patches or I can pick patch 
+for later kernel version.
+
+Best regards,
+Jernej
+
 > 
 > @@ -907,6 +909,8 @@ can1: can@2504400 {
 >  			interrupts = <SOC_PERIPHERAL_IRQ(22) 
