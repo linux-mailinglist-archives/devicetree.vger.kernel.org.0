@@ -2,100 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC4376ECD9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A58376ECF8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236793AbjHCOkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 10:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50544 "EHLO
+        id S236142AbjHCOof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 10:44:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235011AbjHCOkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:40:12 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B1D2D5F;
-        Thu,  3 Aug 2023 07:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=RwiPZlt5h+l4EEd8rB/jTQqRs++DtmWkgJ+ASZBIevQ=; b=oKnK7lRHjeM0i+OIw/kOkx+eER
-        pTAxR4L3yLU7FPGjZ/jLO9ju5GtEGxxcFGlty1ZuuJqaSLE6WwgWLquAK5abU/hO2oivzTXO1Gokb
-        CQyAKUd87AIH28B+pA77cfx1sqdu8hsCQjS2UOEKPEoIWusrDSBXJwGR9VGDpk43GqjI=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:59988 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qRZSx-0000hw-9W; Thu, 03 Aug 2023 10:38:15 -0400
-Date:   Thu, 3 Aug 2023 10:38:14 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230803103814.ec35dbddad880a77565ff681@hugovil.com>
-In-Reply-To: <2023073146-gauntlet-lake-0b77@gregkh>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
-        <20230725142343.1724130-9-hugo@hugovil.com>
-        <2023073146-gauntlet-lake-0b77@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S234420AbjHCOo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:44:26 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B04E4234
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 07:44:07 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bcfe28909so143164266b.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 07:44:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1691073845; x=1691678645;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jJQoP+OlQsep7JicKgaIdwHZRhxScdcgkq1/BfxKseY=;
+        b=QaXj4huY5XwJDj5dgKYPotJmlo6vd/UT1VwxEm6+zSboBzFWXaftbcixNgcNP/0Bhe
+         jcJr4LgYdkNdTdy4P4pXBCUtbiBDxwzDWSLY4wb2rC8rdCTqrNXcvwnrrlpb3QIgCdGK
+         FZlyfOwdf9XbCsqjr17Fqdppk3LAXTphgv3h498VIF5cD2Kt5YRa01zYumasyM9q+2cX
+         eJfcPAOVACXJD7Upx/stiZmeKaLx04qF8vMCSo5Q5NxjvI6JP+TMY3fBSkc8brHQ7hKI
+         WiX9O6K9UXzARZsILMIATPYro5c9VSsXLQ4gjIJf4gX8G9XiJ0knPECRhz5i9uDKEwKG
+         uawQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691073845; x=1691678645;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jJQoP+OlQsep7JicKgaIdwHZRhxScdcgkq1/BfxKseY=;
+        b=HMd8EPVF+u73dDVHpMnl3D4wWdNiBFy0PXerYfqXBrmi77V8wz3c5rhv7s6d6Ss1Zr
+         Y7Pit9uwVuhn5ddTXXZz8pXsCuVwatHCgpL07nHFv25Mg1mlHOF557waZRAf+2F24IUl
+         IdVuwPudHifgRoStjz5xvqW6i8VjHi1KvWsMnZjrww8nE/acRFdDZyrrGMcsuGK7CSaX
+         eKIDq9jLBPxUHHMWNB4JjYu6JQumf4m+5bAo0YRrV9xjmmS1wpNwc3LV00fIpgEkSEDu
+         8AzJwkDscPqECsi8vPaVEq/OMKoEN2OBW8yAQPfpPTzpCr8r+d1uX1ywCWxmKOy8TpeB
+         pwaA==
+X-Gm-Message-State: ABy/qLYQ2+mjk/UNdKUHuoXDxTFEiYaKrQCzHpoBXXiSzpgnX0CN+46V
+        5L1x5nrQi7ouC4DBU4VADZXBgQ==
+X-Google-Smtp-Source: APBJJlHA72M4h9rUEVgI/0cQsSvxZ4JN4xSFaGyCja+X/exWwEliU7yU+RAtXwl+xIWyYpBBAKrQ7Q==
+X-Received: by 2002:a17:906:77d6:b0:992:b3a3:81f4 with SMTP id m22-20020a17090677d600b00992b3a381f4mr8361117ejn.50.1691073845548;
+        Thu, 03 Aug 2023 07:44:05 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id t26-20020a1709064f1a00b0099bd86f9248sm10629859eju.63.2023.08.03.07.44.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 07:44:05 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: hwmon: Add MAX6639
+Date:   Thu,  3 Aug 2023 16:43:59 +0200
+Message-ID: <20230803144401.1151065-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v9 08/10] serial: sc16is7xx: add call to get rs485 DT
- flags and properties
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jul 2023 17:59:14 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+From: Marcello Sylvester Bauer <sylv@sylv.io>
 
-> On Tue, Jul 25, 2023 at 10:23:40AM -0400, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Add call to uart_get_rs485_mode() to probe for RS485 flags and
-> > properties from device tree.
-> 
-> Again, you are saying what you are doing, but not why.  I have no hint
-> as to if this is a bugfix, or a new features, or something else?
-> 
-> thanks,
-> 
-> greg k-h
+Add binding documentation for Maxim MAX6639 fan-speed controller.
 
-Hi Greg,
-I could change the commit message to:
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+Changes in V3:
+- Update title
+- Add pulses-per-revolution, supplies & interrupts
+Changes in V2:
+- Update subject
+- Drop blank lines
+---
+ .../bindings/hwmon/maxim,max6639.yaml         | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
 
----------
-serial: sc16is7xx: add missing support for rs485 devicetree properties
+diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+new file mode 100644
+index 000000000000..b3292061ca58
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX6639 Fan Controller
++
++maintainers:
++  - Naresh Solanki <Naresh.Solanki@9elements.com>
++
++description: |
++  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
++  fan-speed controller.  It monitors its own temperature and one external
++  diode-connected transistor or the temperatures of two external diode-connected
++  transistors, typically available in CPUs, FPGAs, or GPUs.
++
++  Datasheets:
++    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
++
++properties:
++  compatible:
++    enum:
++      - maxim,max6639
++
++  reg:
++    maxItems: 1
++
++  fan-supply:
++    description: Phandle to the regulator that provides power to the fan.
++
++  interrupts:
++    maxItems: 1
++
++  pulses-per-revolution:
++    description:
++      Define the number of pulses per fan revolution for each tachometer
++      input as an integer.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 3, 4]
++    default: 2
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      fan-controller@10 {
++        compatible = "maxim,max6639";
++        reg = <0x10>;
++      };
++    };
++...
 
-Retrieve rs485 devicetree properties on registration of sc16is7xx ports
-in case they are attached to an rs485 transceiver.
----------
+base-commit: cb7022b8976e3c4d12cea2e7bb820a2944e2fd7b
+-- 
+2.41.0
 
-I don't think that it should be considered as a bug fix, but maybe as a
-missing feature.
-
-And does it mean that it should also go to older (stable) kernels then?
-If yes, then do I need to add the "Fixes" tag?
-
-Thank you,
-Hugo.
