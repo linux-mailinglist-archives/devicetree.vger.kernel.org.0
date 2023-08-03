@@ -2,157 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A479776EEB1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE1276EEB7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 17:53:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237268AbjHCPxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 11:53:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39434 "EHLO
+        id S236651AbjHCPxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 11:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237270AbjHCPxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:53:04 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4106C2101
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 08:53:02 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe463420fbso1921298e87.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 08:53:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691077980; x=1691682780;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qX07dZERZtkt2x/Ef7mtKlDJ3pdXlme16vQ71CFcvMg=;
-        b=lNV/1Vm1Sktq6yegwfZDlJ3SHLsUKyqAGLGBzu1JPyDeBhIu08xbuA3BLMGjNQqCYm
-         iKOTVxtsLilYh2IDTRtms4ySeS4gNqlPhGP8bdydEDpB4jmeqW+171mGCPuKN2Z1Jra9
-         0j5V6gm2TDlEG71a3PgUzCu3xsAAWfWhrC1BJK+w8WRlWSEETzlwXnkGd360Lg+2vQc3
-         5U5YL1qYeczsyHzsDnTysthikVxllMooZf5LaKBOrxU1F1VjzK1/k9i2M2Zix9dIUWFo
-         Sc5UbhJqSkXhJERhoas6t+C/Y6XBJf1OeIFZIIAQUN40l+1poXcVRCjQxnSsvCJN8j96
-         Ahiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691077980; x=1691682780;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qX07dZERZtkt2x/Ef7mtKlDJ3pdXlme16vQ71CFcvMg=;
-        b=OAitq5u5E0XMenN/n/uM2tbcyPoKLOOcyjSfQewjU4HFubZuChSb324RIZ8RWm3ypg
-         8aWAHCI5E2hbJI9Fez6+GDwyZgVKKX+Qwkcnw/B+pIkoeqtVh/QMDY66ruFDlgxLMSCG
-         /flRX3l8f83sQyi6DTJBnfzD54DMi3t2+a10AAl647MHaL/zftbgD8c81MZ0f3k+FHsA
-         E66wawUlMdyQant8T3nDzzK5o3cUd1WHNQXw8iT5l2m9hVEimWerj0YnV2GoOWgQh4cU
-         r9qir9lj8OXSWkPR21DZrwvW5mgWWuq5RO4rFhsyrIAHOWZVw/OvEjva0+30h9Y3ga7/
-         JgDw==
-X-Gm-Message-State: ABy/qLYXlWhX+aHWVsc1hd9cK7Jzn8m1C32ZeFeztsykGMB8Ycw3bZJ5
-        ShyBI83WMOkzFfKaTMUdd69uXg==
-X-Google-Smtp-Source: APBJJlECdy3cAAYllCy6LZlZFybimunVbeOEktk+t7kAzFaSsKLGdyMwALTIzJNGxeecwb/LWFdikg==
-X-Received: by 2002:a05:6512:3e2a:b0:4fb:be3c:d8b7 with SMTP id i42-20020a0565123e2a00b004fbbe3cd8b7mr9692368lfv.51.1691077979984;
-        Thu, 03 Aug 2023 08:52:59 -0700 (PDT)
-Received: from [192.168.1.64] ([85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id s15-20020a170906960f00b00988dbbd1f7esm10685913ejx.213.2023.08.03.08.52.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 08:52:59 -0700 (PDT)
-Message-ID: <4ad2998c-69fa-1ffc-ef4b-a45cdffce4ba@baylibre.com>
-Date:   Thu, 3 Aug 2023 17:52:58 +0200
+        with ESMTP id S235670AbjHCPxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 11:53:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC373A85;
+        Thu,  3 Aug 2023 08:53:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A21E61E21;
+        Thu,  3 Aug 2023 15:53:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FDABC433C8;
+        Thu,  3 Aug 2023 15:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691078025;
+        bh=8fn4NsglEHfAZXQyXDuTzdOkvddrJ8Q1RH8EX5Eb4xk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VWRxlwQupQZMZqEzRYfwLLRMQo46W3vX+fCsqjSsQRjJZLzQq+vKEQN2iLdMfQMj9
+         w5NRZ6cNDwSltBwqhaQl1mvsbTZX99hsd11qjdPgJ+QVRByDw9x/TDXziRRtQPK0NH
+         IodqrIuDyByTkutlWM38y+JqGt3HgMEQXBoEk+JGLHhQUiraAOsMmwFZBMqkT35d05
+         qBc9VpvWs5QLxHBlNIF4MS3H+ZmLSslItbNFBvTyH5xk0MQnGNAf4WFaWpc2y3Jcby
+         eHHVsbiNSZ6YLmdAvy3POIDzG6e8AEGl9HDZy+/JIDEncRNfqHiMPkxpmEuyCGkO3Z
+         xcpygLl8g2bmQ==
+Date:   Thu, 3 Aug 2023 16:53:41 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
+Cc:     linux-clk@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: gcc-msm8917: Add definition for
+ GPLL0_SLEEP_CLK_SRC
+Message-ID: <20230803-sake-festivity-f0fb57b108dc@spud>
+References: <20230802170317.205112-1-otto.pflueger@abscue.de>
+ <20230802170317.205112-2-otto.pflueger@abscue.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 3/6] arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family
- PMICs
-Content-Language: en-US
-To:     Esteban Blanc <eblanc@baylibre.com>, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, u-kumar1@ti.com,
-        aseketeli@baylibre.com, jpanis@baylibre.com
-References: <20230727130908.10656-1-eblanc@baylibre.com>
- <20230727130908.10656-4-eblanc@baylibre.com>
-From:   jerome Neanne <jneanne@baylibre.com>
-In-Reply-To: <20230727130908.10656-4-eblanc@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="vthWvwlxNCXH5G2O"
+Content-Disposition: inline
+In-Reply-To: <20230802170317.205112-2-otto.pflueger@abscue.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 15:09, Esteban Blanc wrote:
-> From: Jerome Neanne <jneanne@baylibre.com>
-> 
-[...]
-> +	tps659411: pmic@4c {
-> +		compatible = "ti,tps6594-q1";
-> +		reg = <0x4c>;
-> +		system-power-controller;
-> +		interrupt-parent = <&wkup_gpio0>;
-> +		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		buck1234-supply = <&vsys_3v3>;
-> +		buck5-supply = <&vsys_3v3>;
-> +		ldo1-supply = <&vsys_3v3>;
-> +		ldo2-supply = <&vsys_3v3>;
-> +		ldo3-supply = <&vsys_3v3>;
-> +		ldo4-supply = <&vsys_3v3>;
-> +
-> +		regulators {
-> +			buckb1234: buck1234 {
-> +				regulator-name = "vdd_core_0v8";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buckb5: buck5 {
-> +				regulator-name = "vdd_ram_0v85";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <850000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldob1: ldo1 {
-> +				regulator-name = "vdd_sd_dv";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldob2: ldo2 {
-> +				regulator-name = "vdd_usb_3v3";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-This voltage is static 3.3V: regulator-min-microvolt = <3300000>;
 
-> +			ldob3: ldo3 {
-> +				regulator-name = "vdd_io_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldob4: ldo4 {
-> +				regulator-name = "vda_pll_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
->   };
->   
->   &ospi0 {
+--vthWvwlxNCXH5G2O
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-Jerome.
+On Wed, Aug 02, 2023 at 07:03:16PM +0200, Otto Pfl=FCger wrote:
+> Add the missing #define for GPLL0_SLEEP_CLK_SRC, the parent clock of
+> GPLL0_EARLY.
+>=20
+> Signed-off-by: Otto Pfl=FCger <otto.pflueger@abscue.de>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--vthWvwlxNCXH5G2O
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMvNhQAKCRB4tDGHoIJi
+0jQqAQDxL4V2Yb1k3YUHI/WpmV4l3pLytoEjhc+H+C7nDIDFGwD5AWoO77Ykngvn
+ZcYM4GmwjYmopMfpc+ksrxg3C8Xssgw=
+=tnRJ
+-----END PGP SIGNATURE-----
+
+--vthWvwlxNCXH5G2O--
