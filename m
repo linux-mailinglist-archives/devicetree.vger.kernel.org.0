@@ -2,170 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0EC76E38A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA70576E394
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234101AbjHCIsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 04:48:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37102 "EHLO
+        id S232041AbjHCItJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 04:49:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbjHCIsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:48:08 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA62AE7
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 01:48:06 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fe3b86cec1so1188434e87.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 01:48:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691052485; x=1691657285;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/hdxh3xj6iR4Yykv7Dt+Q7h/174Nys/IxjYgXNUnVA=;
-        b=raY2Go5vuMFc5/QctA0YSLUQfciPAf69VmtKHUgoDQgoDMgllytied97OkQyodbuFH
-         WnuF5FtIu+mEvtDjgQOII/EPcaYPFO+DIpEIoOQf+tPB4ELKZK3KRffieZB7STmoID9J
-         oaAobXQhjz3bhLHfh940OTRpowIEG1A9uUutgFIG60UoB3AYaijRERQ5si6ATqcz6yWY
-         RLfxHfMladH/225xS2vBh/cuwkn00q5AJ5d7Cp64ZG6eZm2Dpdin76rBw22afBUFLqSQ
-         myp8Dhf7pQbaRNjh24Se+Z/Kogxgeh0FFHSeEzuWatwJ1ngDyFlFx7JrD9fNO2dV4q29
-         yfCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691052485; x=1691657285;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2/hdxh3xj6iR4Yykv7Dt+Q7h/174Nys/IxjYgXNUnVA=;
-        b=WSX0x2vLP6iW/rN+T2DdbImFjScDGSD3nu4GRNRFNzr8m3oNqygY70pCdCchxUP506
-         92IqwTfetXu3OwdkKXL/2kJIEGQ9tjfb74puB3bv3XoRh5u2gFETn0X1Z1VBCX64Dpe4
-         yHJR/dl7g41urK53xz5P9x2NMGbcvktFNm/MbWKm7T2rqf0hebSgJ0mXD+JJrqorRnFI
-         QPEfsbfLAUEVIyhPbq+gmppLMyO86VrGPKCfur4GsZolL9TY+2+PAsdjrIKBWkzZ7nKx
-         iQwP1o9rUSGdtFJ2Cwcbpda47cgM4I9foHHan3sECjlefrEHnadf4jiJ38J599whA81x
-         Df3Q==
-X-Gm-Message-State: ABy/qLZ3NduF8I5nSwYHLYrlWHavTvkLwXnNMOFbuhDlMnoDz7161x9R
-        rsMZnYBZFiZ1IqcocAJOMpe/Kg==
-X-Google-Smtp-Source: APBJJlG1TSXmbhUXV6vd3PGIBBYcghGyWllyDz062a86gUJzBx9qMnh2oD2yAfzL++WwiCd4hkhqKw==
-X-Received: by 2002:ac2:518a:0:b0:4fb:9497:b2a5 with SMTP id u10-20020ac2518a000000b004fb9497b2a5mr5653512lfi.21.1691052485036;
-        Thu, 03 Aug 2023 01:48:05 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8656:583:d034:d966? ([2a01:e0a:982:cbb0:8656:583:d034:d966])
-        by smtp.gmail.com with ESMTPSA id i17-20020a5d55d1000000b003143be36d99sm21265332wrw.58.2023.08.03.01.48.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Aug 2023 01:48:04 -0700 (PDT)
-Message-ID: <5aab1846-5d3c-7010-56ca-556db1f74e92@linaro.org>
-Date:   Thu, 3 Aug 2023 10:48:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 00/14] A7xx support
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234812AbjHCItD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:49:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FA6E42;
+        Thu,  3 Aug 2023 01:49:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7985061CDE;
+        Thu,  3 Aug 2023 08:49:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57432C433C8;
+        Thu,  3 Aug 2023 08:48:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691052539;
+        bh=Y0NT9+jhy+SVCkNdodtcTuuD4m428dSBnf4RYExMCVI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hHSTdN7CY3d5RkxhKKUgxwBcIL10XDgXnREDhjjZryufbi7C0wF4l6SlExsQqxxQj
+         xg+t2ORgMKOv0KYPjlEAQgKT5HK0o3evOXpdnBOcYQVtPCGXVXG7j5jRdCRDMZGqXG
+         6HN5DnhVWpql+3EltG4mKh5iAhCM/V774rBWvN169MQmbQ4k2ejwbRxXZTRi4tTjEZ
+         9hIxXmLiLi3P/f1nNSSKg3MgCtxL5g28aVxxBVNBEFuZJKFQiU4Tx7Na2UGaz0nVUB
+         r5xWJyw2X9S0w+CRYDRXsyUK2SGiH1yB+U2lGHEkQPxOmx/heU9fP2RsVI4xSK9S+S
+         uuszv6UIh1+xw==
+Date:   Thu, 3 Aug 2023 10:48:57 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        David Airlie <airlied@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230628-topic-a7xx_drmmsm-v1-0-a7f4496e0c12@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v1-0-a7f4496e0c12@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
+ mode
+Message-ID: <ekmwiy3iuvtqtb6hwjbba2ia3aemt3dxmx6dj3zh6ljfmuim4w@4jzhqdenxth4>
+References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
+ <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2sas7p43tngc2au2"
+Content-Disposition: inline
+In-Reply-To: <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2023 22:35, Konrad Dybcio wrote:
-> This series attempts to introduce Adreno 700 support (with A730 and A740
-> found on SM8450 and SM8550 respectively), reusing much of the existing
-> A6xx code. This submission largely lays the groundwork for expansion and
-> more or less gives us feature parity (on the kernel side, that is) with
-> existing A6xx parts.
-> 
-> On top of introducing a very messy set of three (!) separate and
-> obfuscated deivce identifiers for each 7xx part, this generation
-> introduces very sophisticated hardware multi-threading and (on some SKUs)
-> hardware ray-tracing (not supported yet).
-> 
-> After this series, a long-overdue cleanup of drm/msm/adreno is planned
-> in preparation for adding more features and removing some hardcoding.
-> 
-> The last patch is a hack that may or may not be necessary depending
-> on your board's humour.. eh.. :/
-> 
-> Developed atop (and hence depends on) [1]
-> 
-> The corresponding devicetree patches are initially available at [2] and
-> will be posted after this series gets merged. To test it, you'll also need
-> firmware that you need to obtain from your board (there's none with a
-> redistributable license, sorry..). Most likely it will be in one of
-> these directories on your stock android installation:
-> 
-> * /vendor/firmware
-> * /vendor/firmware_mnt
-> * /system
-> 
-> ..but some vendors make it hard and you have to do some grepping ;)
-> 
-> Requires [3] to work on the userspace side. You'll almost cerainly want
-> to test it alongside Zink with a lot of debug flags (early impl), like:
-> 
-> TU_DEBUG=sysmem,nolrz,flushall,noubwc MESA_LOADER_DRIVER_OVERRIDE=zink kmscube
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20230517-topic-a7xx_prep-v4-0-b16f273a91d4@linaro.org/
-> [2] https://github.com/SoMainline/linux/commits/topic/a7xx_dt
-> [3] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23217
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Konrad Dybcio (14):
->        dt-bindings: display/msm/gmu: Add Adreno 7[34]0 GMU
->        dt-bindings: display/msm/gmu: Allow passing QMP handle
->        dt-bindings: display/msm/gpu: Allow A7xx SKUs
->        drm/msm/a6xx: Add missing regs for A7XX
->        drm/msm/a6xx: Introduce a6xx_llc_read
->        drm/msm/a6xx: Move LLC accessors to the common header
->        drm/msm/a6xx: Bail out early if setting GPU OOB fails
->        drm/msm/a6xx: Add skeleton A7xx support
->        drm/msm/a6xx: Send ACD state to QMP at GMU resume
->        drm/msm/a6xx: Mostly implement A7xx gpu_state
->        drm/msm/a6xx: Add A730 support
->        drm/msm/a6xx: Add A740 support
->        drm/msm/a6xx: Vastly increase HFI timeout
->        [RFC] drm/msm/a6xx: Poll for GBIF unhalt status in hw_init
-> 
->   .../devicetree/bindings/display/msm/gmu.yaml       |  47 +-
->   .../devicetree/bindings/display/msm/gpu.yaml       |   4 +-
->   drivers/gpu/drm/msm/adreno/a6xx.xml.h              |   9 +
->   drivers/gpu/drm/msm/adreno/a6xx_gmu.c              | 188 ++++--
->   drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |   3 +
->   drivers/gpu/drm/msm/adreno/a6xx_gmu.xml.h          |   8 +
->   drivers/gpu/drm/msm/adreno/a6xx_gpu.c              | 658 ++++++++++++++++++---
->   drivers/gpu/drm/msm/adreno/a6xx_gpu.h              |  15 +
->   drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        |  52 +-
->   drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        |  61 +-
->   drivers/gpu/drm/msm/adreno/a6xx_hfi.c              |  90 ++-
->   drivers/gpu/drm/msm/adreno/adreno_device.c         |  26 +
->   drivers/gpu/drm/msm/adreno/adreno_gpu.c            |   7 +-
->   drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  24 +-
->   drivers/gpu/drm/msm/msm_ringbuffer.h               |   2 +
->   15 files changed, 1070 insertions(+), 124 deletions(-)
-> ---
-> base-commit: 6f9b660e9cbb30669fcfec83288d527c0844717d
-> change-id: 20230628-topic-a7xx_drmmsm-123f30d76cf7
-> 
-> Best regards,
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
+--2sas7p43tngc2au2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
+> Hi,
+>=20
+> On 18/07/2023 17:31, Michael Riesch wrote:
+> > Hi all,
+> >=20
+> > This series adds support for the partial display mode to the Sitronix
+> > ST7789V panel driver. This is useful for panels that are partially
+> > occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
+> > for this particular panel is added as well.
+> >=20
+> > Note: This series is already based on
+> > https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
+>=20
+> I understand Maxime's arguments, but by looking closely at the code,
+> this doesn't look like an hack at all and uses capabilities of the
+> panel controller to expose a smaller area without depending on any
+> changes or hacks on the display controller side which is coherent.
+>=20
+> Following's Daniel's summary we cannot compare it to TV overscan
+> because overscan is only on *some* displays, we can still get 100%
+> of the picture from the signal.
+
+Still disagree on the fact that it only affects some display. But it's
+not really relevant for that series.
+
+I think I'll still like to have something clarified before we merge it:
+if userspace forces a mode, does it contain the margins or not? I don't
+have an opinion there, I just think it should be documented.
+
+Maxime
+
+--2sas7p43tngc2au2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZMtp+AAKCRDj7w1vZxhR
+xYu2AP9gN0xpGj30YXB2Oo/JNDobI7gGge8/IziOAnjHaTA73gEAnn8sMJU25ESF
+ljJwLfmQB/zyjUPIdhEsxmn1uQD9sAg=
+=IrPc
+-----END PGP SIGNATURE-----
+
+--2sas7p43tngc2au2--
