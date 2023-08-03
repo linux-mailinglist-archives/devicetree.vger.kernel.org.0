@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8986B76E07E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 08:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D91CC76E093
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 08:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233523AbjHCGpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 02:45:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50932 "EHLO
+        id S233625AbjHCG4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 02:56:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233423AbjHCGpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 02:45:11 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6612A1702
-        for <devicetree@vger.kernel.org>; Wed,  2 Aug 2023 23:45:09 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe2de785e7so1045141e87.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Aug 2023 23:45:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1691045107; x=1691649907;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kPS7PxNSM73cITz5+xQx4Opdzddvfq8C1OqqZ8evqeY=;
-        b=EXtiR71mhwuwdPo4BRDwdGMRk2ayLQ7ZmpNp/U1DN15R8NrYVOozcw7R4s0dCB7tOz
-         X5g8Y7dWWCLjUXoNoAWbCP4uBzCIkCX4acrKgsVn95MJqde+cyqdjERXodH6rrRwrNWG
-         euY1O5Xt814vnE4RudD3Vh71RplhJXGcqBbkw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691045107; x=1691649907;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kPS7PxNSM73cITz5+xQx4Opdzddvfq8C1OqqZ8evqeY=;
-        b=i4G3LNGvwLwjf4F9Sx253vizaOoyeYbmX3+DFhk2t2rkbLnc6kglrDhtAye4c/Jn/h
-         TPB0b/g/IoQ5/Y6193jgTv8zVuZfy23PJQ1EwvvnKGXmwx2GnwqferNh0wc+G4IOw1Vo
-         vs3C04pH9Llvf7Uxb3Tr0ZlWOXJ1arhU+NYsZ09MFVxM6N6iK0MlTanMXcZ2nUPs7XCx
-         Zh9tlDC/YAaAGFv4L0kIwwKpYGT7OVi6VwtUOiixDwdEdaqz9a6CeizL8Ms/IVmkCLd0
-         y01qfS8V9C9odRG/IQ7Wy3SzLD/C8IAKQxXq8yATzmIitm8zB09KVxvxCypToJ2VEcuO
-         NMUA==
-X-Gm-Message-State: ABy/qLbB7uzoqI1MLDfEfXeMhWieDD76c9scn9r/tZdZyJrEZdj3d9N/
-        cQlGvVyoob/9VXPi6iF7gYk+GA==
-X-Google-Smtp-Source: APBJJlGV5jtxqAShsHGEOWeKVwx96kPM2l3qJ0Uxld2juEk/rIqFYlumMqTKAYY/MNm/HJayEnzRlg==
-X-Received: by 2002:a19:6908:0:b0:4f8:4512:c846 with SMTP id e8-20020a196908000000b004f84512c846mr5619988lfc.49.1691045107488;
-        Wed, 02 Aug 2023 23:45:07 -0700 (PDT)
-Received: from [172.16.11.116] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id x4-20020aa7d6c4000000b0051e2cde9e3esm9733504edr.75.2023.08.02.23.45.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Aug 2023 23:45:06 -0700 (PDT)
-Message-ID: <739f81db-4ec2-fe07-a6df-5c1f42588653@rasmusvillemoes.dk>
-Date:   Thu, 3 Aug 2023 08:45:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 0/8] rtc: isl12022: battery backup voltage and clock
- support
-Content-Language: en-US, da
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232321AbjHCG4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 02:56:32 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47B761B2;
+        Wed,  2 Aug 2023 23:56:30 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3736tv4N3029753, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3736tv4N3029753
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Thu, 3 Aug 2023 14:55:57 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Thu, 3 Aug 2023 14:55:59 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 3 Aug 2023 14:55:58 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Thu, 3 Aug 2023 14:55:58 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230615105826.411953-1-linux@rasmusvillemoes.dk>
- <55c19de0-2465-cc4a-6ec7-fd524816fd2b@prevas.dk>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <55c19de0-2465-cc4a-6ec7-fd524816fd2b@prevas.dk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Conor Dooley <conor+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] usb: dwc3: add Realtek DHC RTD SoC dwc3 glue layer driver
+Thread-Topic: [PATCH v2 1/2] usb: dwc3: add Realtek DHC RTD SoC dwc3 glue
+ layer driver
+Thread-Index: AQHZxFokPxd4W07ijUGGBrmKl0qPKq/VrnaAgADyIuCAAIy6gIAA9Mlw
+Date:   Thu, 3 Aug 2023 06:55:58 +0000
+Message-ID: <7d47cbfdbc31436b89d3d92bf980c8fa@realtek.com>
+References: <20230801092541.25261-1-stanley_chang@realtek.com>
+ <20230802011400.v4jim6ajsqc3tvei@synopsys.com>
+ <ff9ca6f15936450696bff502c0047708@realtek.com>
+ <20230803000417.qfuwsx5we5a7lfvd@synopsys.com>
+In-Reply-To: <20230803000417.qfuwsx5we5a7lfvd@synopsys.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 16.31, Rasmus Villemoes wrote:
-> On 15/06/2023 12.58, Rasmus Villemoes wrote:
->> The current handling of the low-battery bits in the status register is
->> wrong. The first six patches fix that and implement proper support for
->> RTC_VL_READ.
->>
->> The last two patches allow describing the isl12022 as a clock
->> provider, for now just as a fixed 32kHz clock. They are also
->> tangentially related to the backup battery, in that when the isl12022
->> is not used as a clock source, one can save some power consumption in
->> battery mode by setting the FOx bits to 0.
-> 
-> Ping. Any chance these could be picked up so they make it for v6.6?
-
-Ping^2.
-
-Rasmus
-
+SGkgVGhpbmgsDQoNCj4gPiA+ID4gK3N0YXRpYyBpbnQgZHdjM19ydGtfc2V0dXBfcm9sZV9zd2l0
+Y2goc3RydWN0IGR3YzNfcnRrICpydGspDQo+ID4gPg0KPiA+ID4gQW55IHJlYXNvbiB3aHkgd2Un
+cmUgZG9pbmcgdGhlIHJvbGUgc3dpdGNoIGhlcmUgYW5kIG5vdCB3aGF0J3MNCj4gPiA+IGltcGxl
+bWVudGVkIGZyb20gdGhlIGNvcmU/DQo+ID4gPg0KPiA+IEJlY2F1c2Ugd2UgaGF2ZSB0byBzZXQg
+dGhlIHVzYiAyLjAgcGh5IG1vZGUgdGhyb3VnaCBzd2l0Y2hfdXNiMl9kcl9tb2RlDQo+IGluIHRo
+ZSBmdW5jdGlvbiBkd2MzX3J0a19zZXRfZHJfbW9kZS4NCj4gPiBJbiBmYWN0LCBzd2l0Y2hfZHdj
+M19kcl9tb2RlIHdpbGwgdXNlIHRoZSByb2xlIHN3aXRjaGluZyBpbXBsZW1lbnRlZCBieQ0KPiBj
+b3JlLg0KPiA+DQo+IA0KPiBJIGRvbid0IHRoaW5rIHRoaXMgaXMgYSBnb29kIHdheSB0byBnbyBh
+Ym91dCBpdC4gRG8geW91ICh0aGUgZ2x1ZQ0KPiBkcml2ZXIpIGNyZWF0ZSBhIHJvbGUgc3dpdGNo
+IHN0cnVjdHVyZSBhbmQgcmVnaXN0ZXIgdG8gdGhlIHNhbWUgcm9sZSBzd2l0Y2gNCj4gZGV2aWNl
+IHRoYXQgdGhlIGR3YzMgY29yZSB3b3VsZCByZWdpc3RlciBsYXRlcj8gSSBkaWQgbm90IGV4cGVj
+dCB0aGF0IHRvIHdvcmsgYXQNCj4gYWxsLg0KPiANCkluIG91ciBhcHBsaWNhdGlvbiwgdGhpcyBy
+b2xlIHN3aXRjaCBpbiB0aGUgZ2x1ZSBkcml2ZXIgd29ya3MgZmluZS4NCg0KPiBIb3cgYWJvdXQg
+d2UgY3JlYXRlIGEgY291cGxlIG9wcyBjYWxsYmFja3MgdG8gZHdjMyBzdHJ1Y3R1cmUuIE9uZSB0
+bw0KPiBpbml0aWFsaXplIGdhZGdldCBhbmQgdGhlIG90aGVyIGZvciBob3N0LiBTaG91bGQgYW55
+IHBsYXRmb3JtIHNwZWNpZmljIGRldmljZQ0KPiBuZWVkIHNvbWUgaW50aWFsaXphdGlvbiBiZWZv
+cmUgaW5pdGlhbGl6aW5nIHRoZSBzcGVjaWZpYyByb2xlLCB3ZSBjYW4gaW52b2tlDQo+IHRoZXNl
+IGNhbGxiYWNrcy4NCj4gDQo+IGUuZy46DQo+IA0KPiBzdHJ1Y3QgZHdjM19nbHVlX29wcyB7DQo+
+ICAgICAgICAgaW50ICgqaW5pdF9nYWRnZXQpKHN0cnVjdCBkd2MzICpkd2MpOw0KPiAgICAgICAg
+IGludCAoKmluaXRfaG9zdCkoc3RydWN0IGR3YzMgKmR3Yyk7IH0NCj4gDQo+IHN0cnVjdCBkd2Mz
+IHsNCj4gICAgICAgICAuLg0KPiAgICAgICAgIGNvbnN0IHN0cnVjdCBkd2MzX2dsdWVfb3BzICAg
+ICAgKm9wczsNCj4gfQ0KPiANCj4gDQo+IHN0YXRpYyBpbnQgZHdjM19nbHVlX2luaXRfZ2FkZ2V0
+KHN0cnVjdCBkd2MzICpkd2MpIHsNCj4gICAgICAgICBpZiAoIWR3Yy0+b3BzLT5pbml0X2dhZGdl
+dCkNCj4gICAgICAgICAgICAgICAgIHJldHVybiAwOw0KPiANCj4gICAgICAgICByZXR1cm4gZHdj
+LT5vcHMtPmluaXRfZ2FkZ2V0KGR3Yyk7IH0NCj4gDQo+IHN0YXRpYyBpbnQgZHdjM19nbHVlX2lu
+aXRfaG9zdChzdHJ1Y3QgZHdjMyAqZHdjKSB7DQo+ICAgICAgICAgaWYgKCFkd2MtPm9wcy0+aW5p
+dF9ob3N0KQ0KPiAgICAgICAgICAgICAgICAgcmV0dXJuIDA7DQo+IA0KPiAgICAgICAgIHJldHVy
+biBkd2MtPm9wcy0+aW5pdF9ob3N0KGR3Yyk7IH0NCj4gDQo+IA0KPiBZb3VyIGdsdWUgZHJpdmVy
+IHdvdWxkIGltcGxlbWVudCB0aGVzZSBjYWxsYmFja3MuIEluIGR3YzNfZ2FkZ2V0X2luaXQoKSBh
+bmQNCj4gZHdjM19ob3N0X2luaXQoKSwgd2UgY2FuIGNhbGwgdGhlc2UgY2FsbGJhY2tzIGF0IHN0
+YXJ0LiBJIGFkbWl0IHRoYXQgdGhpcyBtYXkgbm90DQo+IGJlIHRoZSBncmVhdGVzdCBzb2x1dGlv
+biBzaW5jZSBpdCB3b3VsZCByZXF1aXJlIHRoZSBnbHVlIGRyaXZlciB0byBhbGxvYyBhbmQNCj4g
+cmVnaXN0ZXIgYSBkd2MzIHBsYXRmb3JtIGRldmljZS4gQnV0IEkgdGhpbmsgc2hvdWxkIGJlIG9r
+LiBJZiBhbnlvbmUgZWxzZSBjYW4NCj4gY2hpbWUgaW4gZm9yIG1vcmUgaWRlYSwgaXQnZCBiZSBn
+cmVhdC4NCg0KDQpUaGFua3MgZm9yIHlvdXIgYWR2aWNlLg0KSGVyZSBpcyBhIHNvbHV0aW9uLiBB
+cyB5b3UncmUgY29uY2VybmVkLCBpdCBtdXN0IHJlZ2lzdGVyIGNhbGxiYWNrcyB3aXRoIHRoZSBj
+b3JlIGRyaXZlci4gSXQgbG9va3MgYSBiaXQgY29tcGxpY2F0ZWQuDQpJIG5vdGljZWQgdGhlIHBo
+eV9zZXRfbW9kZSBhcGkuDQpNYXliZSBJIGNhbiB0cnkgdG8gbW92ZSBzd2l0Y2hfdXNiMl9kcl9t
+b2RlIHRvIHBoeSBkcml2ZXIuDQoNCnBoeV9zZXRfbW9kZShkd2MtPnVzYjJfZ2VuZXJpY19waHks
+IFBIWV9NT0RFX1VTQl9IT1NUKTsNCnBoeV9zZXRfbW9kZShkd2MtPnVzYjJfZ2VuZXJpY19waHks
+IFBIWV9NT0RFX1VTQl9ERVZJQ0UpOw0KDQpUaGFua3MsDQpTdGFubGV5DQo=
