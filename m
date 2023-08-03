@@ -2,136 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2587376E34E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4085776E373
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:45:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234733AbjHCIjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 04:39:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58990 "EHLO
+        id S234670AbjHCIpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 04:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234700AbjHCIj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:39:28 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B52F4221;
-        Thu,  3 Aug 2023 01:38:00 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id AC5BE8067;
-        Thu,  3 Aug 2023 16:37:52 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
- 2023 16:37:52 +0800
-Received: from [192.168.125.84] (183.27.98.54) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 3 Aug
- 2023 16:37:51 +0800
-Message-ID: <34c8c9d5-fad0-52ce-d1e6-798546005bfd@starfivetech.com>
-Date:   Thu, 3 Aug 2023 16:37:50 +0800
+        with ESMTP id S234122AbjHCIpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:45:41 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F1A106
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 01:45:38 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3177163aa97so635356f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 01:45:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691052337; x=1691657137;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gPa9htGpiuI88ff5WUiZx6PDVgHTuHk6lBPw5ohsQrE=;
+        b=iQtKPYyIyijAQEZXG8sS3v+UioIsnM10x5V8AfNOi143sbdJ5YaY/fkAuGgnpYujMR
+         TEFMmjE/V1jlg100vQscP3xPDrSpi3Ei/QbnxGUnpsaYXTALydWbg7T9mT7oZIzL+Fgy
+         sZ4m8K1aOJVN6NpqkZGlUkKnqejc2v5Y0gzKCnnsNXi5qtbsy3q8l1aI+LHGQCKGG9uC
+         crpm/Pl+UwuEA6tsAUZrKMGzfSNynfOnSouZtvWjNp1CCt0h+Z79Bihq5kkwZxA5XP++
+         1EoXsa1xQg1U4GS/gNO2rpsDcSHd82r5eQGyw+b4KKbJKrTY/+7jz3a8fY/zvGDLcwWs
+         ISsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691052337; x=1691657137;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gPa9htGpiuI88ff5WUiZx6PDVgHTuHk6lBPw5ohsQrE=;
+        b=MOsUd9a5nznPNJhtpWLwaFOhNGv/R3zpyAT8J9cEGCZpOVFEMPW+nGzV2r4hFrubug
+         GLfPAB3Sm+AHQexWDjXzUJVHevCZ3n+XR/qfeC0+gVFbxalIRt17WBnEOh3txuDpgekh
+         VUBEgWMJ6mK2QGk/hxhCCdUBQY9sOrMsJ5xniSu8KVszxdLZnxBxTzMMGCzPd6OUsbwJ
+         M1xaIR2IbF7BgKdufbLbTx4zpXx6mkU2BXnCu36ksWAoQzQf3oessy/wSVSxM3yWe8Je
+         ZPyejLB34Y5ajWFdR+vW54f4DSrU3Ch7gM1S+zmE7RIuahP/fzeeF3tahQpAH9DbsgNt
+         QDGw==
+X-Gm-Message-State: ABy/qLZiSIKcnLFv+bl29ob4UHXwGBh5m0SFV+ts1sx7Y5S0+uXsqeCl
+        xKAQ27/D7zxW8x5gODXK1TFM4Q==
+X-Google-Smtp-Source: APBJJlES0Xlr2MrJWA51aN+2lsiZe+u4CUHNXP1A/0+zTvskMAO250OGxQ+v/nB4BX/XxbeFxrmgmw==
+X-Received: by 2002:a05:6000:104f:b0:314:38e4:2596 with SMTP id c15-20020a056000104f00b0031438e42596mr7084284wrx.49.1691052337341;
+        Thu, 03 Aug 2023 01:45:37 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id v9-20020adfe4c9000000b00314374145e0sm11895052wrm.67.2023.08.03.01.45.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 01:45:36 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/3] bluetooth: qca: enable WCN7850 support
+Date:   Thu, 03 Aug 2023 10:45:25 +0200
+Message-Id: <20230803-topic-sm8550-upstream-bt-v3-0-6874a1507288@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v2 2/3] ASoC: starfive: Add JH7110 PWM-DAC driver
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACVpy2QC/42NTQ6DIBgFr2JY92v4Veyq92i6QAQlUTCgpo3x7
+ kV33bmcl7yZDSUTnUnoUWwomtUlF3wGdiuQ7pXvDLg2M6KYMlxSDHOYnIY0SiEwLFOao1EjNDO
+ 0VnOGha014SjfG5UMNFF53WeBX4Yhj1M01n3O3uuduXdpDvF75ldyrBdKKwEMvKJSlNxKWdHn4
+ LyK4R5ihw7rSq+aaDbVssGYs5YRxf9M+77/AGQ1//kgAQAA
+To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230731032829.127864-1-hal.feng@starfivetech.com>
- <20230731032829.127864-3-hal.feng@starfivetech.com>
- <9b03c7ed-845c-494b-8c40-10d1fe923b15@sirena.org.uk>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <9b03c7ed-845c-494b-8c40-10d1fe923b15@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.54]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1406;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=QvoRFcZDs6o9TpNJhRcOO+q/4iGgVp6r0X2pKqGwQss=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBky2kuaalQYq+GyOGhBC5dzBopgjJeWqj6s3nph5/j
+ SJdvoJGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZMtpLgAKCRB33NvayMhJ0YVtD/
+ 0S3YIoi65pepoxmM4BNp7wpxX2Vem04ne3cGBDCEdXwlhXM3I+Y7XC/JrFDZoszlc41WS7829pdw9n
+ qCdfAzPHzQCXkRcjOTVxdMurgb6lL+utjUNFE2XZCkePbe0fXQmLkWCxN8FKbN4RhAXNl7x3rssDsl
+ U+N6Y9WQ0tGHhSAIA7UjoDEPhNir7DKT2wIckC9S8iMDtz305/nBMUF9mQuJRRg3rd1dRhDU16JDT2
+ RYCbeSsXxtnf3jGfQo3NurddIKG0A0Ph0QwvI3q743nKgtW62RxoTEj6JmgEghHMoZRvACHOOy+pwc
+ IeBSqe7LIztwIHHCsb3qEJK/mph9vJ3FNmXgS8IyqS2dRRR4r2X3XVzjTE9fHeN4zYMk1HqQ8fLNgr
+ F/sdKPjzfo41cLWpPilvSfjJkV0BMUb7VQ0uYQ2268m33RXvcASfMmn7VGwHNyOk4CE0J6eZqZrVvK
+ rsVo2vy+7e7xmAgbS5FOafvRqgcErnWOBnvp8ETVxhIbwi3iG82KijkA+dcQbd4GAM2bwgjhq+0E5U
+ TBoID9lY7D3Hxinl+/K5EOH+55qwlzaiHC47ZFtsZ7rQ4pinuagYcXQ0/xRpM+mJoPsL8MK05QTVJf
+ 8+TfAjwhbR80bFwg03jrKSiEp8BL5nGz+DpU2Ulc/u89IBObTFJi0mM8w4gQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jul 2023 20:14:38 +0100, Mark Brown wrote:
-> On Mon, Jul 31, 2023 at 11:28:28AM +0800, Hal Feng wrote:
-> 
->> +static const struct jh7110_ct_pwmdac pwmdac_ct_data_shift[] = {
->> +	{ .name = "left 0 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_0 },
->> +	{ .name = "left 1 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_1 },
->> +	{ .name = "left 2 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_2 },
->> +	{ .name = "left 3 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_3 },
->> +	{ .name = "left 4 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_4 },
->> +	{ .name = "left 5 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_5 },
->> +	{ .name = "left 6 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_6 },
->> +	{ .name = "left 7 bit", .vals = PWMDAC_DATA_LEFT_SHIFT_BIT_7 }
->> +};
-> 
-> It's not clear to me why this is user selectable - what does the control
-> do?
+This serie enables WCN7850 on the Qualcomm SM8550 QRD
+reference platform.
 
-It's convenient to change the register values in user space with the
-control. But actually using fixed register configuration is enough.
-I will drop all these control in the next version.
+The WCN7850 is close to the WCN6855 but uses different
+firmware names.
 
-> 
->> +static int jh7110_pwmdac_put(struct snd_kcontrol *kcontrol,
->> +			     struct snd_ctl_elem_value *ucontrol,
->> +			     int pwmdac_ct)
->> +{
->> +	struct snd_soc_component *component = snd_kcontrol_chip(kcontrol);
->> +	struct jh7110_pwmdac_dev *dev = snd_soc_component_get_drvdata(component);
->> +	int sel = ucontrol->value.enumerated.item[0];
->> +	unsigned int items;
-> 
->> +	if (pwmdac_ct == PWMDAC_CT_SHIFT)
->> +		dev->shift = pwmdac_ct_shift[sel].vals;
->> +	else if (pwmdac_ct == PWMDAC_CT_DUTY_CYCLE)
->> +		dev->duty_cycle = pwmdac_ct_duty_cycle[sel].vals;
->> +	else if (pwmdac_ct == PWMDAC_CT_DATA_CHANGE)
->> +		dev->data_change = pwmdac_ct_data_change[sel].vals;
->> +	else if (pwmdac_ct == PWMDAC_CT_DATA_MODE)
->> +		dev->data_mode = pwmdac_ct_data_mode[sel].vals;
->> +	else if (pwmdac_ct == PWMDAC_CT_DATA_SHIFT)
->> +		dev->data_shift = pwmdac_ct_data_shift[sel].vals;
->> +
->> +	return 0;
->> +}
-> 
-> _put() operations should return 1 if the control value changes so event
-> generation works - please test a card using this driver with the
-> mixer-test selftest, it'll identify this and a bunch of other potential
-> issues.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Rebased on next-20230803 (including WCN3988 changes)
+- Dropped DT patches to be sent in a separate serie
+- Link to v2: https://lore.kernel.org/r/20230620-topic-sm8550-upstream-bt-v2-0-98b0043d31a4@linaro.org
 
-Thanks for the correct, but it doesn't matter as I will drop these control
-later.
+Changes in v2:
+- Convert if/else and qca_is_*() macros by switch/case to simplify adding now BT SoCs
+- Add bindings reviewed-by
+- Link to v1: https://lore.kernel.org/r/20230620-topic-sm8550-upstream-bt-v1-0-4728564f8872@linaro.org
 
-> 
->> +static int jh7110_pwmdac_component_probe(struct snd_soc_component *component)
->> +{
->> +	snd_soc_add_component_controls(component, jh7110_pwmdac_snd_controls,
->> +				       ARRAY_SIZE(jh7110_pwmdac_snd_controls));
->> +	return 0;
->> +}
-> 
-> The driver can just point to the controls from the _driver struct and
-> skip having a probe() function.
+---
+Neil Armstrong (3):
+      dt-bindings: net: bluetooth: qualcomm: document WCN7850 chipset
+      bluetooth: qca: use switch case for soc type behavior
+      bluetooth: qca: add support for WCN7850
 
-Thanks for your advice, but I would like to drop these control later.
-
-Thanks again for your review.
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  23 ++
+ drivers/bluetooth/btqca.c                          |  97 +++++---
+ drivers/bluetooth/btqca.h                          |  37 +--
+ drivers/bluetooth/hci_qca.c                        | 264 ++++++++++++++++-----
+ 4 files changed, 300 insertions(+), 121 deletions(-)
+---
+base-commit: fb4327106e5250ee360d0d8b056c1eef7eeb9a98
+change-id: 20230620-topic-sm8550-upstream-bt-dfc4305f9c14
 
 Best regards,
-Hal
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
