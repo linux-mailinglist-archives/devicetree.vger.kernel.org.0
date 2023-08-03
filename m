@@ -2,218 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB73676ED42
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9CD776ED58
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 16:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235211AbjHCOzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 10:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
+        id S236250AbjHCO5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 10:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231874AbjHCOzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:55:47 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91019EA
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 07:55:45 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bd67facffso29114966b.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 07:55:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1691074544; x=1691679344;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0Mlirwl0bkHM2riavE8GsJIkOTqsTSTy4yuuyAhKnAo=;
-        b=dXcMVKZ263XM80AEP96Op45kPHn2B0z7632FrqP2dpNskATpF+7o/TLVLGiZ9ATXYY
-         OSXR6ZsnU8GpH6OYseVc7B4N/q9CQbm1By39X7X5z7a7wXau02SsGlaE3PBl4GFscQK6
-         edH0MGrDaYySh3+zRj/OHNfHuICnMBm+1+Usc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691074544; x=1691679344;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Mlirwl0bkHM2riavE8GsJIkOTqsTSTy4yuuyAhKnAo=;
-        b=UzMlM6CuGp/hi2aKg/xmBMwTbrz+TAJRMJxMHO4dBEXDiiLkc41hcmg2DdtgVr8cdU
-         odSY9nDL5J7ju3lXd5G6Zxh5eW4JXsE0kGdzZqokKFnpILVs/Q01K7dUCSueAL2y7uez
-         5yY3VQLZ3mfPj3u4+ofBCvaD3l+RSpS044IIZzT1fylnCltcbICh8dMdSe0exyGeFT8b
-         rSVeEIeGBkXuiLeAmX4IAmfuhWt509IkQpYGgORrPvGNPcvHylSpRA508l9AxO4ONLVc
-         XOlW5FWgTbX5Ashl0T7POOq4oFtlIB4+1ffkC1FBVG0a/AytrH/rCJO40TNV+EsA++mr
-         uW6A==
-X-Gm-Message-State: ABy/qLZTTrOYxG6RvT2InEhNKHrzO9anR4pWdawmv7p3gImzwumqYqjA
-        EnX/ikq/HySmtP7SH1fAtcTlXA==
-X-Google-Smtp-Source: APBJJlHmkF1RcJMqyHh/L6fwZfWL4t0iAsi7uo+0RzF5aZvjdZDTsxLeQhB63n9BKAKqMFbVtvvGUw==
-X-Received: by 2002:a17:906:10da:b0:987:115d:ba06 with SMTP id v26-20020a17090610da00b00987115dba06mr12074936ejv.4.1691074543899;
-        Thu, 03 Aug 2023 07:55:43 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id f15-20020a1709067f8f00b00985ed2f1584sm10620124ejr.187.2023.08.03.07.55.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 07:55:43 -0700 (PDT)
-Date:   Thu, 3 Aug 2023 16:55:40 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        David Airlie <airlied@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
- mode
-Message-ID: <ZMu/7MwflSHmQUQX@phenom.ffwll.local>
-Mail-Followup-To: Maxime Ripard <mripard@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sam Ravnborg <sam@ravnborg.org>, Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        David Airlie <airlied@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
- <292c3e7d-82ea-2631-bd4b-ef747f56287c@linaro.org>
- <ekmwiy3iuvtqtb6hwjbba2ia3aemt3dxmx6dj3zh6ljfmuim4w@4jzhqdenxth4>
- <ZMtqraOyGN9JvVj9@phenom.ffwll.local>
- <qmwtcungahbe2bhty7v2rso2kf3vai6k47muwipifbybmi7o6s@oj6lngnhyhtg>
- <CAKMK7uFbQURKYvB2JWnwZDEeA-qURpx_GFqR1FxgtuvK7jX4TA@mail.gmail.com>
- <d2sgj2iap4ouu425buqkorx76kpdqh77k3z36vaegma67pciyv@n3mbiglfidxx>
+        with ESMTP id S236248AbjHCO5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 10:57:45 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9C0EA;
+        Thu,  3 Aug 2023 07:57:43 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 373EvUAB060507;
+        Thu, 3 Aug 2023 09:57:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691074650;
+        bh=18XWe/IOxZv21oa10nM4UEiEeQia8CvUYoBsCgxEAb0=;
+        h=From:To:CC:Subject:Date;
+        b=ZCCKfvc/ZUYQsRlDITNi/25D94hk5rq6jJ90vHzJ3536D8wwLW2V/B+0vewe/sw84
+         biuWf/0ZYVEe4PSZ3UzuRBPOU8g7HAF8tViKePoFFxS0J5ZVz6gf1Lgn0+wNHlV/xO
+         bDFqbwj3fF8E3eBcXeOzjlDf9NfvgoZ7AwW/bzQI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 373EvU21021144
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Aug 2023 09:57:30 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
+ Aug 2023 09:57:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 3 Aug 2023 09:57:30 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 373EvQeJ105643;
+        Thu, 3 Aug 2023 09:57:26 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <sinthu.raja@ti.com>, <t-konduru@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vaishnav.a@ti.com>, <eblanc@baylibre.com>
+CC:     Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-j721s2: Correct pinmux offset for ospi
+Date:   Thu, 3 Aug 2023 20:26:56 +0530
+Message-ID: <20230803145655.806001-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d2sgj2iap4ouu425buqkorx76kpdqh77k3z36vaegma67pciyv@n3mbiglfidxx>
-X-Operating-System: Linux phenom 6.3.0-2-amd64 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 03, 2023 at 01:43:08PM +0200, Maxime Ripard wrote:
-> On Thu, Aug 03, 2023 at 12:26:03PM +0200, Daniel Vetter wrote:
-> > On Thu, 3 Aug 2023 at 11:22, Maxime Ripard <mripard@kernel.org> wrote:
-> > >
-> > > On Thu, Aug 03, 2023 at 10:51:57AM +0200, Daniel Vetter wrote:
-> > > > On Thu, Aug 03, 2023 at 10:48:57AM +0200, Maxime Ripard wrote:
-> > > > > On Thu, Aug 03, 2023 at 10:11:22AM +0200, Neil Armstrong wrote:
-> > > > > > Hi,
-> > > > > >
-> > > > > > On 18/07/2023 17:31, Michael Riesch wrote:
-> > > > > > > Hi all,
-> > > > > > >
-> > > > > > > This series adds support for the partial display mode to the Sitronix
-> > > > > > > ST7789V panel driver. This is useful for panels that are partially
-> > > > > > > occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
-> > > > > > > for this particular panel is added as well.
-> > > > > > >
-> > > > > > > Note: This series is already based on
-> > > > > > > https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
-> > > > > >
-> > > > > > I understand Maxime's arguments, but by looking closely at the code,
-> > > > > > this doesn't look like an hack at all and uses capabilities of the
-> > > > > > panel controller to expose a smaller area without depending on any
-> > > > > > changes or hacks on the display controller side which is coherent.
-> > > > > >
-> > > > > > Following's Daniel's summary we cannot compare it to TV overscan
-> > > > > > because overscan is only on *some* displays, we can still get 100%
-> > > > > > of the picture from the signal.
-> > > > >
-> > > > > Still disagree on the fact that it only affects some display. But it's
-> > > > > not really relevant for that series.
-> > > >
-> > > > See my 2nd point, from a quick grep aside from i915 hdmi support, no one
-> > > > else sets all the required hdmi infoframes correctly. Which means on a
-> > > > compliant hdmi tv, you _should_ get overscan. That's how that stuff is
-> > > > speced.
-> > > >
-> > > > Iirc you need to at least set both the VIC and the content type, maybe
-> > > > even more stuff.
-> > > >
-> > > > Unless all that stuff is set I'd say it's a kms driver bug if you get
-> > > > overscan on a hdmi TV.
-> > >
-> > > I have no doubt that i915 works there. The source of my disagreement is
-> > > that if all drivers but one don't do that, then userspace will have to
-> > > care. You kind of said it yourself, i915 is kind of the exception there.
-> > >
-> > > The exception can be (and I'm sure it is) right, but still, it deviates
-> > > from the norm.
-> > 
-> > The right fix for these is sending the right infoframes, _not_ trying
-> > to fiddle with overscan margins. Only the kernel can make sure the
-> > right infoframes are sent out. If you try to paper over this in
-> > userspace, you'll make the situation worse, not better (because
-> > fiddling with overscan means you get scaling, and so rescaling
-> > artifacts, and for hard contrasts along pixel lines that'll look like
-> > crap).
-> > 
-> > So yeah this is a case of "most upstream hdmi drivers are broken".
-> > Please don't try to fix kernel bugs in userspace.
-> 
-> ACK.
-> 
-> > > > > I think I'll still like to have something clarified before we merge it:
-> > > > > if userspace forces a mode, does it contain the margins or not? I don't
-> > > > > have an opinion there, I just think it should be documented.
-> > > >
-> > > > The mode comes with the margins, so if userspace does something really
-> > > > funny then either it gets garbage (as in, part of it's crtc area isn't
-> > > > visible, or maybe black bars on the screen), or the driver rejects it
-> > > > (which I think is the case for panels, they only take their mode and
-> > > > nothing else).
-> > >
-> > > Panels can usually be quite flexible when it comes to the timings they
-> > > accept, and we could actually use that to our advantage, but even if we
-> > > assume that they have a single mode, I don't think we have anything that
-> > > enforces that, either at the framework or documentation levels?
-> > 
-> > Maybe more bugs? We've been slowly filling out all kinds of atomic kms
-> > validation bugs in core/helper code because as a rule of thumb,
-> > drivers get it wrong. Developers test until things work, then call it
-> > good enough, and very few driver teams make a serious effort in trying
-> > to really validate all invalid input. Because doing that is an
-> > enormous amount of work.
-> > 
-> > I think for clear-cut cases like drm_panel the fix is to just put more
-> > stricter validation into shared code (and then if we break something,
-> > figure out how we can be sufficiently lenient again).
-> 
-> Panels are kind of weird, since they essentially don't exist at all in
-> the framework so it's difficult to make it handle them or their state.
-> 
-> It's typically handled by encoders directly, so each and every driver
-> would need to make that check, and from a quick grep, none of them are
-> (for the reasons you said).
+Due to non-addressable regions in J721S2 SOC wkup_pmx was split
+into four regions from wkup_pmx0 to wkup_pmx3.
 
-I think the panel bridge driver infra is the right spot to put this, and
-then push drivers a bit more towards using that.
+After split while updating the pin mux references to newly defined
+four wkup_pmx, pin mux for OSPI0 was left.
+Pin mux for OSPI0 is spread over two range wkup_pmx0
+and wkup_pmx1, correcting pin mux for ospi and
+adding correct pin mux setting within ospi node.
 
-Because yeah if they hand-roll the panel integration, they'll probably
-miss a lot of these details :-/
--Sima
+Also correcting OSPI1 pinmux which falls under wkup_pmx1
+along with removing unused MCU_OSPI1_CSn1 pin for OSPI.
 
-> 
-> Just like for HDMI, even though we can commit to changing those facts,
-> it won't happen overnight, so to circle back to that series, I'd like a
-> comment in the driver when the partial mode is enabled that if userspace
-> ever pushes a mode different from the expected one, we'll add the margins.
-> 
-> That way, if and when we come back to it, we'll know what the original
-> intent and semantics were.
-> 
-> Maxime
+Fixes: 6bc829ceea41 ("arm64: dts: ti: k3-j721s2: Fix wkup pinmux range")
+
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+
+Logs with v3
+https://gist.github.com/uditkumarti/6c8b1b1a0bc0bcfef5e04de37c3cb411
+
+dtbs_check run after applying https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/
+
+Change log:
+
+Changes in v3:
+  - Corrected wkup_pmx for ospi1
+  - Removed unused pin MCU_OSPI1_CSn1, shared with pmic 
+  - v2: https://lore.kernel.org/all/20230802113500.162276-1-u-kumar1@ti.com/
+
+Changes in v2:
+  - Changed name of pin mux to align with
+  https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/ patch
+  - v1: https://lore.kernel.org/all/20230801125626.3287306-1-u-kumar1@ti.com/
 
 
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 19 ++++++++++---------
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 13 ++++++++++---
+ 2 files changed, 20 insertions(+), 12 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+index 02b7a559bdf2..88e80996f56b 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+@@ -250,18 +250,19 @@ J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (N26) MCU_ADC1_AIN6 */
+ 			J721S2_WKUP_IOPAD(0x108, PIN_INPUT, 0) /* (N27) MCU_ADC1_AIN7 */
+ 		>;
+ 	};
++};
+ 
++&wkup_pmx1 {
+ 	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-default-pins {
+ 		pinctrl-single,pins = <
+-			J721S2_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
+-			J721S2_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
+-			J721S2_WKUP_IOPAD(0x060, PIN_OUTPUT, 0) /* (C21) MCU_OSPI1_CSn1 */
+-			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
+-			J721S2_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
+-			J721S2_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
+-			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
+-			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
+-			J721S2_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
++			J721S2_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
++			J721S2_WKUP_IOPAD(0x024, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
++			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
++			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
++			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
++			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
++			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
++			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
+ 		>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+index d57dd43da0ef..fd1d6c884736 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+@@ -45,8 +45,6 @@ mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
+ 			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
+ 			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
+ 			J721S2_WKUP_IOPAD(0x030, PIN_OUTPUT, 0) /* (G17) MCU_OSPI0_CSn1 */
+-			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
+-			J721S2_WKUP_IOPAD(0x03c, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
+ 			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
+ 			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
+ 			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
+@@ -61,6 +59,15 @@ J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
+ 	};
+ };
+ 
++&wkup_pmx1 {
++	mcu_fss0_ospi0_1_pins_default: mcu-fss0-ospi0-1-default-pins {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
++			J721S2_WKUP_IOPAD(0x004, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
++		>;
++	};
++};
++
+ &wkup_pmx2 {
+ 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -127,7 +134,7 @@ &main_mcan16 {
+ &ospi0 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
++	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_1_pins_default>;
+ 
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.34.1
+
