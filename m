@@ -2,507 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2DEF76E10F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65CA176E10C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 09:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233686AbjHCHPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 03:15:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36254 "EHLO
+        id S233564AbjHCHOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 03:14:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233702AbjHCHPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:15:39 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEC02D5F;
-        Thu,  3 Aug 2023 00:15:36 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E5F9FE000B;
-        Thu,  3 Aug 2023 07:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-        t=1691046935;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XILz7BzuqMmhMJMEGv0WsjwCB/JZmnCWnaiGU5L7kRw=;
-        b=ZCpEy/rrFiAQY13OYyUrPEVnjWu+RDzXzyc5ClNUJAUj6r4mg6YsLwNRGCNZ6RJmkfMhEV
-        CCUfQzWqw2i4r+tNkOE6SIRoJdys1Yuxg9qsBXgH5CbxyWOR8x/qm/n+ZLm7lSo5r6gFd/
-        nHFbyTaV0p1f3p0GkSMCTw1LQYIemLFcViQ2iJ8CdkSyWbR2im6UtoQEiNkglUyucqRO58
-        qXpfne7l5hP0UOTNMRng8mJsRS4+yj+o+NPTFFghh76Ar0e2+7fDv/8aTluSNdLd6qy662
-        WyCv/KbYmivuXXRSXqvvbjvGfoloSWrj4rrE+8excLoa93rEvPx5wlhNKq/N5Q==
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233702AbjHCHOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 03:14:37 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2452230F9;
+        Thu,  3 Aug 2023 00:14:34 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe48d0ab0fso1036011e87.1;
+        Thu, 03 Aug 2023 00:14:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691046872; x=1691651672;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fg8N0Ukwg5RT6KNmHsUPwBhkLcVgEuX75u4FVwewJOY=;
+        b=RUjDkXzP0AiKbK9wwFP5j96Yrb2mgdb+EQsYDX8wtD++YQhGa8M9ooVTI78/uaROZX
+         7brRq8R0RBnFMoXh2m5NEHMu1EptDblqEfghgVmOzav6YVqEQuzOK3oKH693ix+ABpQ6
+         smF6Cpt9zwAZ5PrkI9hsSaXzlP6Q2aq+ljjmMI7voYyIp86lxam8BeOUPzhjM+eSIG3M
+         HbRzgDe9371+x3TlS5IdgqgGw48bdGcUxqOaZ/IHBNjFnXApY46eUH+h+/9hqBEnXEul
+         GqKkbcG6wI3HM7KtT2ytiL/q5pPrebeEVoCE2bpGAkURGxSWb7Sb21wc3hYZMOiF+mUs
+         CDOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691046872; x=1691651672;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fg8N0Ukwg5RT6KNmHsUPwBhkLcVgEuX75u4FVwewJOY=;
+        b=e9KuaqsHMem1j+OlLsLnQz9akykMKYOjQ33f+hc9UOLFh3IZfVi4o5jZIc5UpQ78ZC
+         CBe36iryixRU5FcntsEJxZOsQ6ApjmsOgBxFAkbNt4hCLhqYF0DndWJrTCskmseTIgVt
+         uWlDnIMC01kyi33tlmPJZXgoyG0jnqIwC4aT9R4xiIDHgfxgO0rBcHwSYbXx0OSAUVu1
+         ChX+bcLj6ZREVQX6mwN2cd/9EOXJwkLLacsYxmFPLGhj6LIxgC0iPX0wnVEzYjmXW4mJ
+         nzaad2epB3cBd4d6rPfb5hDaiNqrmLmbsFVkz2Glh+VRKaE46o/1H+3lcM1Cx95iFVrq
+         t3MA==
+X-Gm-Message-State: ABy/qLa2IOOjBb5DKIS/K3sevOSpFnGRaPpvg/prsWrM8hbsRof3yQ8O
+        RhQn1X6pYuiLnA2odCmfMqY=
+X-Google-Smtp-Source: APBJJlFBBXv5kkT7TKX008z8jJbkXBV5s3fpAwGd6L9x5vE20vxwAjVqLDdnI8ZWkbU4MfvwZ4YcRA==
+X-Received: by 2002:ac2:5f6a:0:b0:4fb:740a:81ae with SMTP id c10-20020ac25f6a000000b004fb740a81aemr5902054lfc.16.1691046872122;
+        Thu, 03 Aug 2023 00:14:32 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e? ([2a01:e0a:32f:1f0:c25b:89f6:3b46:6d1e])
+        by smtp.gmail.com with ESMTPSA id g18-20020a5d6992000000b0031134bcdacdsm20942059wru.42.2023.08.03.00.14.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Aug 2023 00:14:31 -0700 (PDT)
+Message-ID: <8e74af01-36c6-3a41-6d31-91b09ea62026@gmail.com>
+Date:   Thu, 3 Aug 2023 09:18:14 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pwm: st: convert sti-pwm to DT schema
+Content-Language: en-US, fr
+To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>, erkin.bozoglu@xeront.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] ARM: dts: BCM5301X: Add DT for ASUS RT-AC3100
-Date:   Thu,  3 Aug 2023 10:14:54 +0300
-Message-Id: <20230803071454.5902-2-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230803071454.5902-1-arinc.unal@arinc9.com>
-References: <20230803071454.5902-1-arinc.unal@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230801220559.32530-1-rgallaispou@gmail.com>
+ <20230802080238.d3nam6elnern65rb@pengutronix.de>
+From:   =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
+In-Reply-To: <20230802080238.d3nam6elnern65rb@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ASUS RT-AC3100 is ASUS RT-AC88U without the external switch. Move the
-shared bindings to bcm47094-asus-rt-ac3100.dtsi.
+Hi
 
-Remove the fixed-link node on port@7 as commit ba4aebce23b2 ("ARM: dts:
-BCM5301X: Describe switch ports in the main DTS") states it's not
-necessary.
+Le 02/08/2023 à 10:02, Uwe Kleine-König a écrit :
+> Hello,
+> 
+> On Wed, Aug 02, 2023 at 12:05:59AM +0200, Raphael Gallais-Pou wrote:
+>> +  st,capture-num-chan:
+>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>> +    description: Number of available Capture channels.
+> 
+> I have the theory that nobody actually uses the capture feature and I'd
+> like to get rid of it. People who do use it, should better switch to the
+> counter driver.
 
-Replace the copyright notice with an author notice.
+TBH I only found two drivers using it, including this one.
 
-Rename the model name from Asus to ASUS on bcm47094-asus-rt-ac88u.dts.
+$ grep -rinI "\.capture" drivers/pwm/ | wc -l
+2
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/arm/boot/dts/broadcom/Makefile           |   1 +
- .../dts/broadcom/bcm47094-asus-rt-ac3100.dts  |  23 +++
- .../dts/broadcom/bcm47094-asus-rt-ac3100.dtsi | 163 ++++++++++++++++++
- .../dts/broadcom/bcm47094-asus-rt-ac88u.dts   | 155 +----------------
- 4 files changed, 190 insertions(+), 152 deletions(-)
- create mode 100644 arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dts
- create mode 100644 arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
+While I agree that there is not much drivers using capture feature, I 
+have mixed feelings about removing it.
+> 
+> I wonder if this is the opportunity to drop st,capture-num-chan. There
+> is no mainline user.
 
-diff --git a/arch/arm/boot/dts/broadcom/Makefile b/arch/arm/boot/dts/broadcom/Makefile
-index 95b0ef2a4215..7099d9560033 100644
---- a/arch/arm/boot/dts/broadcom/Makefile
-+++ b/arch/arm/boot/dts/broadcom/Makefile
-@@ -70,6 +70,7 @@ dtb-$(CONFIG_ARCH_BCM_5301X) += \
- 	bcm4709-netgear-r7000.dtb \
- 	bcm4709-netgear-r8000.dtb \
- 	bcm4709-tplink-archer-c9-v1.dtb \
-+	bcm47094-asus-rt-ac3100.dtb \
- 	bcm47094-asus-rt-ac88u.dtb \
- 	bcm47094-dlink-dir-885l.dtb \
- 	bcm47094-dlink-dir-890l.dtb \
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dts
-new file mode 100644
-index 000000000000..5f089307cd8c
---- /dev/null
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Author: Arınç ÜNAL <arinc.unal@arinc9.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm47094-asus-rt-ac3100.dtsi"
-+
-+/ {
-+	compatible = "asus,rt-ac3100", "brcm,bcm47094", "brcm,bcm4708";
-+	model = "ASUS RT-AC3100";
-+
-+	nvram@1c080000 {
-+		et0macaddr: et0macaddr {
-+		};
-+	};
-+};
-+
-+&gmac0 {
-+	nvmem-cells = <&et0macaddr>;
-+	nvmem-cell-names = "mac-address";
-+};
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
-new file mode 100644
-index 000000000000..09cefce27fb1
---- /dev/null
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
-@@ -0,0 +1,163 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Author: Arınç ÜNAL <arinc.unal@arinc9.com>
-+ */
-+
-+#include "bcm47094.dtsi"
-+#include "bcm5301x-nand-cs0-bch8.dtsi"
-+
-+/ {
-+	chosen {
-+		bootargs = "earlycon";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x08000000>,
-+		      <0x88000000 0x18000000>;
-+	};
-+
-+	nvram@1c080000 {
-+		compatible = "brcm,nvram";
-+		reg = <0x1c080000 0x00180000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-power {
-+			label = "white:power";
-+			gpios = <&chipcommon 3 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		led-wan-red {
-+			label = "red:wan";
-+			gpios = <&chipcommon 5 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-lan {
-+			label = "white:lan";
-+			gpios = <&chipcommon 21 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-usb2 {
-+			label = "white:usb2";
-+			gpios = <&chipcommon 16 GPIO_ACTIVE_LOW>;
-+			trigger-sources = <&ehci_port2>;
-+			linux,default-trigger = "usbport";
-+		};
-+
-+		led-usb3 {
-+			label = "white:usb3";
-+			gpios = <&chipcommon 17 GPIO_ACTIVE_LOW>;
-+			trigger-sources = <&ehci_port1>, <&xhci_port1>;
-+			linux,default-trigger = "usbport";
-+		};
-+
-+		led-wps {
-+			label = "white:wps";
-+			gpios = <&chipcommon 19 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-wps {
-+			label = "WPS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&chipcommon 20 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-reset {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&chipcommon 11 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-wifi {
-+			label = "Wi-Fi";
-+			linux,code = <KEY_RFKILL>;
-+			gpios = <&chipcommon 18 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-led {
-+			label = "Backlight";
-+			linux,code = <KEY_BRIGHTNESS_ZERO>;
-+			gpios = <&chipcommon 4 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&srab {
-+	compatible = "brcm,bcm53012-srab", "brcm,bcm5301x-srab";
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			label = "lan4";
-+		};
-+
-+		port@1 {
-+			label = "lan3";
-+		};
-+
-+		port@2 {
-+			label = "lan2";
-+		};
-+
-+		port@3 {
-+			label = "lan1";
-+		};
-+
-+		port@4 {
-+			label = "wan";
-+		};
-+
-+		port@5 {
-+			label = "cpu";
-+		};
-+
-+		port@7 {
-+			label = "cpu";
-+		};
-+
-+		port@8 {
-+			label = "cpu";
-+		};
-+	};
-+};
-+
-+&usb2 {
-+	vcc-gpio = <&chipcommon 9 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&nandcs {
-+	partitions {
-+		compatible = "fixed-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		partition@0 {
-+			label = "boot";
-+			reg = <0x00000000 0x00080000>;
-+			read-only;
-+		};
-+
-+		partition@80000 {
-+			label = "nvram";
-+			reg = <0x00080000 0x00180000>;
-+		};
-+
-+		partition@200000 {
-+			label = "firmware";
-+			reg = <0x00200000 0x07e00000>;
-+			compatible = "brcm,trx";
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts
-index 4d5747aa5dc8..fd344b55087e 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac88u.dts
-@@ -1,102 +1,21 @@
- // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
- /*
-- * Copyright (C) 2021-2022 Arınç ÜNAL <arinc.unal@arinc9.com>
-+ * Author: Arınç ÜNAL <arinc.unal@arinc9.com>
-  */
- 
- /dts-v1/;
- 
--#include "bcm47094.dtsi"
--#include "bcm5301x-nand-cs0-bch8.dtsi"
-+#include "bcm47094-asus-rt-ac3100.dtsi"
- 
- / {
- 	compatible = "asus,rt-ac88u", "brcm,bcm47094", "brcm,bcm4708";
--	model = "Asus RT-AC88U";
--
--	chosen {
--		bootargs = "earlycon";
--	};
--
--	memory@0 {
--		device_type = "memory";
--		reg = <0x00000000 0x08000000>,
--		      <0x88000000 0x18000000>;
--	};
-+	model = "ASUS RT-AC88U";
- 
- 	nvram@1c080000 {
--		compatible = "brcm,nvram";
--		reg = <0x1c080000 0x00180000>;
--
- 		et1macaddr: et1macaddr {
- 		};
- 	};
- 
--	leds {
--		compatible = "gpio-leds";
--
--		led-power {
--			label = "white:power";
--			gpios = <&chipcommon 3 GPIO_ACTIVE_LOW>;
--			linux,default-trigger = "default-on";
--		};
--
--		led-wan-red {
--			label = "red:wan";
--			gpios = <&chipcommon 5 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-lan {
--			label = "white:lan";
--			gpios = <&chipcommon 21 GPIO_ACTIVE_LOW>;
--		};
--
--		led-usb2 {
--			label = "white:usb2";
--			gpios = <&chipcommon 16 GPIO_ACTIVE_LOW>;
--			trigger-sources = <&ehci_port2>;
--			linux,default-trigger = "usbport";
--		};
--
--		led-usb3 {
--			label = "white:usb3";
--			gpios = <&chipcommon 17 GPIO_ACTIVE_LOW>;
--			trigger-sources = <&ehci_port1>, <&xhci_port1>;
--			linux,default-trigger = "usbport";
--		};
--
--		led-wps {
--			label = "white:wps";
--			gpios = <&chipcommon 19 GPIO_ACTIVE_LOW>;
--		};
--	};
--
--	gpio-keys {
--		compatible = "gpio-keys";
--
--		button-wps {
--			label = "WPS";
--			linux,code = <KEY_WPS_BUTTON>;
--			gpios = <&chipcommon 20 GPIO_ACTIVE_LOW>;
--		};
--
--		button-reset {
--			label = "Reset";
--			linux,code = <KEY_RESTART>;
--			gpios = <&chipcommon 11 GPIO_ACTIVE_LOW>;
--		};
--
--		button-wifi {
--			label = "Wi-Fi";
--			linux,code = <KEY_RFKILL>;
--			gpios = <&chipcommon 18 GPIO_ACTIVE_LOW>;
--		};
--
--		button-led {
--			label = "Backlight";
--			linux,code = <KEY_BRIGHTNESS_ZERO>;
--			gpios = <&chipcommon 4 GPIO_ACTIVE_LOW>;
--		};
--	};
--
- 	switch {
- 		compatible = "realtek,rtl8365mb";
- 		/* 7 = MDIO (has input reads), 6 = MDC (clock, output only) */
-@@ -175,31 +94,9 @@ ethphy3: ethernet-phy@3 {
- };
- 
- &srab {
--	compatible = "brcm,bcm53012-srab", "brcm,bcm5301x-srab";
--	status = "okay";
- 	dsa,member = <0 0>;
- 
- 	ports {
--		port@0 {
--			label = "lan4";
--		};
--
--		port@1 {
--			label = "lan3";
--		};
--
--		port@2 {
--			label = "lan2";
--		};
--
--		port@3 {
--			label = "lan1";
--		};
--
--		port@4 {
--			label = "wan";
--		};
--
- 		sw0_p5: port@5 {
- 			/delete-property/ethernet;
- 
-@@ -212,19 +109,6 @@ fixed-link {
- 				pause;
- 			};
- 		};
--
--		port@7 {
--			label = "cpu";
--
--			fixed-link {
--				speed = <1000>;
--				full-duplex;
--			};
--		};
--
--		port@8 {
--			label = "cpu";
--		};
- 	};
- };
- 
-@@ -236,36 +120,3 @@ &gmac1 {
- 	nvmem-cells = <&et1macaddr>;
- 	nvmem-cell-names = "mac-address";
- };
--
--&usb2 {
--	vcc-gpio = <&chipcommon 9 GPIO_ACTIVE_HIGH>;
--};
--
--&usb3_phy {
--	status = "okay";
--};
--
--&nandcs {
--	partitions {
--		compatible = "fixed-partitions";
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		partition@0 {
--			label = "boot";
--			reg = <0x00000000 0x00080000>;
--			read-only;
--		};
--
--		partition@80000 {
--			label = "nvram";
--			reg = <0x00080000 0x00180000>;
--		};
--
--		partition@200000 {
--			label = "firmware";
--			reg = <0x00200000 0x07e00000>;
--			compatible = "brcm,trx";
--		};
--	};
--};
--- 
-2.39.2
+If there is no opposition about removing this feature I suggest to do it 
+in a second time, in a serie.
 
+Regards,
+Raphaël
+> 
+> Best regards
+> Uwe
+> 
