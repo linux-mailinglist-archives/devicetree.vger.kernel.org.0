@@ -2,246 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAC7776E2E7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B5876E308
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 10:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234475AbjHCIYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 04:24:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48004 "EHLO
+        id S233828AbjHCI1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 04:27:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234480AbjHCIYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:24:12 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156137DA4;
-        Thu,  3 Aug 2023 01:18:11 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3738I5GJ121786;
-        Thu, 3 Aug 2023 03:18:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691050685;
-        bh=FLZIfZxajI6mZ3PHxXWZxOPl85RK8oQS8cZPML2k/3Y=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=StDIZ+BhSDhv0JycnS3Wixa6hvfSxr3fajV5Su0OyAb6xNjRSqhsjVV8uWIERPzXk
-         +j/8OXIJNikIqWjFBlbnxnIJKvPWuPdOlSBZ0qipoGETlAa/zZdzhQCtsOf/HNiZX6
-         3qNts/4ASASDHL6k7uXUkh+ItdGKvUI81YID4e1Q=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3738I5wJ027270
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Aug 2023 03:18:05 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
- Aug 2023 03:18:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 3 Aug 2023 03:18:04 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3738I4SC012880;
-        Thu, 3 Aug 2023 03:18:04 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>
-CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-bhatia1@ti.com>, <r-ravikumar@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <j-choudhary@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am68-sk-base-board: Add HDMI support
-Date:   Thu, 3 Aug 2023 13:48:00 +0530
-Message-ID: <20230803081800.368582-3-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230803081800.368582-1-j-choudhary@ti.com>
-References: <20230803081800.368582-1-j-choudhary@ti.com>
+        with ESMTP id S231469AbjHCI1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 04:27:08 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BFF1BF9;
+        Thu,  3 Aug 2023 01:24:36 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3736wXS5024241;
+        Thu, 3 Aug 2023 08:23:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=6L+Hc3W81ZyuNI/v3f6fIFyjOKpvOIgXQ0T8pUgtihs=;
+ b=AyR+nkGJ3+dzU7Dt5I2fsn9WOq8+K6xi0bdsC2Koke1J+ho3+aQ7hQxa7B911bM3QfM1
+ Rc+mlc8z3T7ady1qWkLefPgiKghu+799akKXbGZFNvOWYKGDelIwu7uA1n8JljPqLRJi
+ Ozvsb9EDkBeJZ2b/wvGxrc94BHTsrdZpFp3rVgRrjvTaOf9KVpqUK2XLBOd/lFdIVk3k
+ FI2vXx5OA9Xcrws3qOIWu6idOccYTeLUXmixPpgLawiJSe9enLVmjwjXlmWXXpfis65u
+ OIbTHqGRmo+3TzKGL8ZsdrlqolkSs/jJnABXXw8X6o4c+BvqeDXskd+bGrhy27Ps+s7S Eg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s7n93jb58-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Aug 2023 08:23:24 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3738NNNM024095
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 3 Aug 2023 08:23:23 GMT
+Received: from hu-gurus-sd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 3 Aug 2023 01:23:21 -0700
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Masahiro Yamada <masahiroy@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "Nicolas Schier" <nicolas@fjasle.eu>,
+        Kees Cook <keescook@chromium.org>,
+        "Bjorn Andersson" <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, Will Deacon <will@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <quic_pkondeti@quicinc.com>, <u.kleine-koenig@pengutronix.de>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>
+Subject: [PATCH v2 0/1] Add add-maintainer.py script
+Date:   Thu, 3 Aug 2023 01:23:15 -0700
+Message-ID: <cover.1691049436.git.quic_gurus@quicinc.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4hRBLHCEHBkVt6oDw5CVW5xFK6eKPSee
+X-Proofpoint-ORIG-GUID: 4hRBLHCEHBkVt6oDw5CVW5xFK6eKPSee
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-03_06,2023-08-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ bulkscore=0 mlxlogscore=635 spamscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308030073
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM68-SK has an HDMI port. The bridge used is TI-TFP410.
-Add support to enable the connection:
-DSS => TI TFP410 DPI-to-DVI Bridge => HDMI connector
+When pushing patches to upstream, the `get_maintainer.pl` script is used to
+determine whom to send the patches to. Instead of having to manually process
+the output of the script, add a wrapper script to do that for you.
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 138 ++++++++++++++++++
- 1 file changed, 138 insertions(+)
+The add-maintainer.py script adds maintainers (and mailing lists) to a patch,
+editing it in-place.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 21ad49cfa7ee..56caa4ee6554 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -122,6 +122,52 @@ transceiver4: can-phy3 {
- 		#phy-cells = <0>;
- 		max-bitrate = <5000000>;
- 	};
-+
-+	connector-hdmi {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_hpd_pins_default>;
-+		ddc-i2c-bus = <&mcu_i2c1>;
-+		/* HDMI_HPD */
-+		hpd-gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&tfp410_out>;
-+			};
-+		};
-+	};
-+
-+	bridge-dvi {
-+		compatible = "ti,tfp410";
-+		/* HDMI_PDn */
-+		powerdown-gpios = <&exp2 0 GPIO_ACTIVE_LOW>;
-+		ti,deskew = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				tfp410_in: endpoint {
-+					remote-endpoint = <&dpi_out0>;
-+					pclk-sample = <1>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				tfp410_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -202,6 +248,45 @@ J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
- 			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
- 		>;
- 	};
-+
-+	dss_vout0_pins_default: dss-vout0-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x074, PIN_OUTPUT, 2) /* (R28) MCAN2_TX.VOUT0_DATA0 */
-+			J721S2_IOPAD(0x070, PIN_OUTPUT, 2) /* (R27) MCAN1_RX.VOUT0_DATA1 */
-+			J721S2_IOPAD(0x04c, PIN_OUTPUT, 2) /* (V27) MCASP1_AXR1.VOUT0_DATA10 */
-+			J721S2_IOPAD(0x048, PIN_OUTPUT, 2) /* (AB27) MCASP0_AXR2.VOUT0_DATA11 */
-+			J721S2_IOPAD(0x044, PIN_OUTPUT, 2) /* (Y26) MCASP0_AXR1.VOUT0_DATA12 */
-+			J721S2_IOPAD(0x040, PIN_OUTPUT, 2) /* (AC28) MCASP0_AXR0.VOUT0_DATA13 */
-+			J721S2_IOPAD(0x03c, PIN_OUTPUT, 2) /* (U27) MCASP0_AFSX.VOUT0_DATA14 */
-+			J721S2_IOPAD(0x038, PIN_OUTPUT, 2) /* (AB28) MCASP0_ACLKX.VOUT0_DATA15 */
-+			J721S2_IOPAD(0x0c8, PIN_OUTPUT, 2) /* (AD28) EXT_REFCLK1.VOUT0_DATA16 */
-+			J721S2_IOPAD(0x030, PIN_OUTPUT, 2) /* (T26) GPIO0_12.VOUT0_DATA17 */
-+			J721S2_IOPAD(0x02c, PIN_OUTPUT, 2) /* (V23) GPIO0_11.VOUT0_DATA18 */
-+			J721S2_IOPAD(0x028, PIN_OUTPUT, 2) /* (AB24) MCAN16_RX.VOUT0_DATA19 */
-+			J721S2_IOPAD(0x07c, PIN_OUTPUT, 2) /* (T27) MCASP0_AXR3.VOUT0_DATA2 */
-+			J721S2_IOPAD(0x024, PIN_OUTPUT, 2) /* (Y28) MCAN16_TX.VOUT0_DATA20 */
-+			J721S2_IOPAD(0x020, PIN_OUTPUT, 2) /* (AA23) MCAN15_RX.VOUT0_DATA21 */
-+			J721S2_IOPAD(0x01c, PIN_OUTPUT, 2) /* (Y24) MCAN15_TX.VOUT0_DATA22 */
-+			J721S2_IOPAD(0x018, PIN_OUTPUT, 2) /* (W23) MCAN14_RX.VOUT0_DATA23 */
-+			J721S2_IOPAD(0x068, PIN_OUTPUT, 2) /* (U28) MCAN0_RX.VOUT0_DATA3 */
-+			J721S2_IOPAD(0x064, PIN_OUTPUT, 2) /* (W28) MCAN0_TX.VOUT0_DATA4 */
-+			J721S2_IOPAD(0x060, PIN_OUTPUT, 2) /* (AC27) MCASP2_AXR1.VOUT0_DATA5 */
-+			J721S2_IOPAD(0x05c, PIN_OUTPUT, 2) /* (AA26) MCASP2_AXR0.VOUT0_DATA6 */
-+			J721S2_IOPAD(0x058, PIN_OUTPUT, 2) /* (AA27) MCASP2_AFSX.VOUT0_DATA7 */
-+			J721S2_IOPAD(0x054, PIN_OUTPUT, 2) /* (Y27) MCASP2_ACLKX.VOUT0_DATA8 */
-+			J721S2_IOPAD(0x050, PIN_OUTPUT, 2) /* (W27) MCASP1_AXR2.VOUT0_DATA9 */
-+			J721S2_IOPAD(0x084, PIN_OUTPUT, 2) /* (AA28) MCASP0_AXR5.VOUT0_DE */
-+			J721S2_IOPAD(0x080, PIN_OUTPUT, 2) /* (U26) MCASP0_AXR4.VOUT0_HSYNC */
-+			J721S2_IOPAD(0x078, PIN_OUTPUT, 2) /* (Y25) MCAN2_RX.VOUT0_PCLK */
-+			J721S2_IOPAD(0x088, PIN_OUTPUT, 2) /* (AD27) MCASP0_AXR6.VOUT0_VP0_VSYNC */
-+		>;
-+	};
-+
-+	hdmi_hpd_pins_default: hdmi-hpd-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x000, PIN_INPUT, 7) /* (AG24) EXTINTN.GPIO0_0  */
-+		>;
-+	};
- };
- 
- &wkup_pmx2 {
-@@ -373,6 +458,23 @@ &mcu_i2c0 {
- 	clock-frequency = <400000>;
- };
- 
-+&mcu_i2c1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_i2c1_pins_default>;
-+	/* i2c1 is used for DVI DDC, so we need to use 100kHz */
-+	clock-frequency = <100000>;
-+
-+	exp2: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "HDMI_PDn","HDMI_LS_OE",
-+				  "DP0_3V3_EN","eDP_ENABLE";
-+	};
-+};
-+
- &main_sdhci0 {
- 	/* Unused */
- 	status = "disabled";
-@@ -433,3 +535,39 @@ &main_mcan7 {
- 	pinctrl-0 = <&main_mcan7_pins_default>;
- 	phys = <&transceiver4>;
- };
-+
-+&dss {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dss_vout0_pins_default>;
-+	/*
-+	 * These clock assignments are chosen to enable the following outputs:
-+	 *
-+	 * VP0 - DisplayPort SST
-+	 * VP1 - DPI0
-+	 * VP2 - DSI
-+	 * VP3 - DPI1
-+	 */
-+	assigned-clocks = <&k3_clks 158 2>,
-+			  <&k3_clks 158 5>,
-+			  <&k3_clks 158 14>,
-+			  <&k3_clks 158 18>;
-+	assigned-clock-parents = <&k3_clks 158 3>,
-+				 <&k3_clks 158 7>,
-+				 <&k3_clks 158 16>,
-+				 <&k3_clks 158 22>;
-+};
-+
-+&dss_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* HDMI */
-+	port@1 {
-+		reg = <1>;
-+
-+		dpi_out0: endpoint {
-+			remote-endpoint = <&tfp410_in>;
-+		};
-+	};
-+};
+Thanks to Bjorn for being a sounding board to this idea and for his valuable
+suggestions.
+
+Please try out this script with `--verbosity debug` for verifying that it's
+doing "the right thing". I've tested this with a patch series from various
+subsystems to ensure variety of maintainers and lists output and found it to be
+doing what it is supposed to do.
+
+I referred to the following links during development of this script:
+- https://stackoverflow.com/questions/4427542/how-to-do-sed-like-text-replace-with-python
+- https://stackoverflow.com/questions/4146009/python-get-list-indexes-using-regular-expression
+- https://stackoverflow.com/questions/10507230/insert-line-at-middle-of-file-with-python
+
+v1 -> v2:
+- Added set-union logic based on Pavan's comments [1] and Bjorn's early suggestion
+- Expanded audience and added more mailing lists to get more review comments and feedback
+
+[1] https://lore.kernel.org/lkml/63764b84-3ebd-4081-836f-4863af196228@quicinc.com/
+
+Guru Das Srinagesh (1):
+  scripts: Add add-maintainer.py
+
+ scripts/add-maintainer.py | 113 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 113 insertions(+)
+ create mode 100755 scripts/add-maintainer.py
+
 -- 
-2.25.1
+2.40.0
 
