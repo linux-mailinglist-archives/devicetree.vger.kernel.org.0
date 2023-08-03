@@ -2,56 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D24CB76DCDF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 02:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B376176DD05
+	for <lists+devicetree@lfdr.de>; Thu,  3 Aug 2023 03:10:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbjHCAtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Aug 2023 20:49:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42812 "EHLO
+        id S231972AbjHCBKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Aug 2023 21:10:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbjHCAtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 20:49:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB7D2698;
-        Wed,  2 Aug 2023 17:49:01 -0700 (PDT)
+        with ESMTP id S230185AbjHCBKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Aug 2023 21:10:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D713187;
+        Wed,  2 Aug 2023 18:10:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D6AF161B98;
-        Thu,  3 Aug 2023 00:49:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F68FC433C7;
-        Thu,  3 Aug 2023 00:48:59 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BF78861A17;
+        Thu,  3 Aug 2023 01:10:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F424C433C7;
+        Thu,  3 Aug 2023 01:10:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691023740;
-        bh=Pvq5frbtl47VBHXbziUG/NXXU+2orY1g6R2nNjKYPrM=;
+        s=k20201202; t=1691025018;
+        bh=PvrvK37FaEsaLjjz6nuh7mHpARoFCz1TcAgIQKS6LJA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PzDZ/u+gqybbnptSCRejEsTzwcPZul38Nf47+cwjrWAqWK7CZE/2KBviozk4G7TYr
-         x1RI5xz9G73EHqzDkX3zhFz1UkyomjwolP/oJs7bklLb75+oh8g7kR5sHkXbjUEPwL
-         1TTJd5bvCs3AlXdCpXrR+XB0DKu1fKdKK0z8z2pvXugxF7wd7QAgTWImoZKB4XaVAk
-         9iaqX7VOd14OMWtN8mgz79N0sZPmP/4P2yq3aPtf5ivuF4Mc4lDowmYrUp8gujdLAF
-         Hb9M39GDKEAstsvbXQcL5bpo0emA6Khud8buW4rOSIOR9k5c4v1QoSlzn3bFs1t53o
-         ziSmzH8dQ2ImA==
-Received: (nullmailer pid 1607213 invoked by uid 1000);
-        Thu, 03 Aug 2023 00:48:58 -0000
-Date:   Wed, 2 Aug 2023 18:48:58 -0600
+        b=IGBLr/o7QIYabUi4sk1e1+TsuH86dPdXH/RtViLcrAOqcujXwYM302vg2z549XudC
+         h+V73wN62QM3r3Mrcc+VlxsRpBMwSuAfclW5PLxYtJLzdBl25FzyWp5so7sGjSIN2/
+         YKC3Ne9I4Mfy0IaNVvhpvcwb6Lt98oFku7/QE+1i2OCL+C0vwu+2GLOsjL08R5rDgs
+         Pd+NTEKTT8igb8KNNxLqH5ygzpRLDvJydwMqQjyi/RN3lxL93jRN9jGM2MQySlWxIb
+         3nEdhjQ7IxzzFEJYeYEA3y2UPTyIEaRn21sHQpAwfybr0idSyApk7nspJo02BQkXc0
+         QrjQemHzMzaUw==
+Received: (nullmailer pid 1634744 invoked by uid 1000);
+        Thu, 03 Aug 2023 01:10:16 -0000
+Date:   Wed, 2 Aug 2023 19:10:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Lee Jones <lee@kernel.org>
+Cc:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        linux-tegra@vger.kernel.org, Jon Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v3 5/7] dt-bindings: arm: tegra: pmc: Restructure pad
- configuration node schema
-Message-ID: <169102373798.1607137.12779262559549558207.robh@kernel.org>
-References: <20230726162744.2113008-1-thierry.reding@gmail.com>
- <20230726162744.2113008-5-thierry.reding@gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] treewide: Update Guru Das Srinagesh's email address
+Message-ID: <20230803011016.GA1630536-robh@kernel.org>
+References: <20230728001622.4938-1-quic_gurus@quicinc.com>
+ <20230728075416.GC8175@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230726162744.2113008-5-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230728075416.GC8175@google.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,27 +65,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jul 28, 2023 at 08:54:16AM +0100, Lee Jones wrote:
+> On Thu, 27 Jul 2023, Guru Das Srinagesh wrote:
+> 
+> > Clean up my email address as the codeaurora.org address is not used
+> > anymore.
+> > 
+> > Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+> > ---
+> >  Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
+> >  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
+> 
+> 2 patches isn't exactly 'treewide'.
+> 
+> Anyway, since there are not dependencies between the changes, please
+> separate them out, one per subsystem.
 
-On Wed, 26 Jul 2023 18:27:42 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> The pad configuration node schema in its current form can accidentally
-> match other properties as well. Restructure the schema to better match
-> how the device trees are using these.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v3:
-> - remove quirks that are no longer needed with latest dt-schema
-> 
-> Changes in v2:
-> - highlight quirks working around possible core schema
-> - use phandle: true instead of fully redefining it
-> - drop unneeded status property definition
-> 
->  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 171 +++++++++++-------
->  1 file changed, 109 insertions(+), 62 deletions(-)
-> 
+I'm happy to take these patches via the DT tree. No real advantage to 
+creating more work to split up these trivial changes.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Rob
