@@ -2,197 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E675776FCD7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8C976FCF4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbjHDJGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 05:06:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54376 "EHLO
+        id S230137AbjHDJNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 05:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230058AbjHDJGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:06:09 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018505598
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 02:03:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
-        s=tfld2305; t=1691139771;
-        bh=BXFUbvZvZy3aiIGANo/QIT5geUFli3L/HkMpNAYXsLY=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version;
-        b=KoklZlW/0AlY82GUgNwBhK3hx+gLxaAOQsPq2GZCLfiC2IH5xXwL3VqmhwI8NZP90
-         QzwwWYCoOptZgXAxW8oc9J556jfIvQ3iheyI9WIxTo9hR5Ywwia4V3qko+x3lsELBj
-         /ZqvUGfvKbQblHxrban6gjoy5TZUXZVynAHa2mEg=
-X-QQ-mid: bizesmtp65t1691139767tq4i37au
-Received: from localhost.localdomain ( [178.41.211.221])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Fri, 04 Aug 2023 17:02:32 +0800 (CST)
-X-QQ-SSF: 01400000000000404000000A0000000
-X-QQ-FEAT: ed3fCvOSdPtJDkZ/c3tNaOzkym+MgZuZlMJAJbbrgUA1gld8FFB1m+uXrhgAm
-        rb1MFqSWKqyx8Wmna6eUnIakQcpPquRSLI3ulqB6qr2z12nGJW6Dv3TgirjQBGNxsbnVK+v
-        XeQsOHac68ESqqvgZaf1wOV0nLeQAAVeRam38KKLFIXIAfzDE4UjGcwUjMgcqk9aOx8nZGY
-        V/5e38+vz2yDKSzMsQTy0y2Ck8zXy7G3c07hEwVhu5S2EqZ3B1tDvNb0rTTbRk0DBza4StB
-        Z9sHwe3Px02mjNs6/9ORDkUoI1ddO0Toi0D2FGvp0sRHufuQK89da8mlmogDc71lo87w18H
-        J9+d+mkg2Mtiz/aoWZjnT4KDtvjQ1L5FfJHj+6Vr++VMjmTIyEP8c3Y9FVKlOpmEPPouBwk
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 226659804070956941
-From:   Martin Botka <martin@biqu3d.com>
-To:     martin.botka1@gmail.com
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Martin Botka <martin@biqu3d.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
-        Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi support
-Date:   Fri,  4 Aug 2023 11:00:32 +0200
-Message-ID: <92B0AD8F9717BDE3+20230804090102.273029-5-martin@biqu3d.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230804090102.273029-1-martin@biqu3d.com>
-References: <20230804090102.273029-1-martin@biqu3d.com>
+        with ESMTP id S230271AbjHDJNB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:13:01 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0AE35593;
+        Fri,  4 Aug 2023 02:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1691140207; x=1722676207;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OU7g0r3M/XB9LzgVs7uLjBcYUCr80nlIE17NRVSfSeI=;
+  b=NLiUML3tVpFmH5CrATbvGByH9lM1ZoGUMq1G3uopGd3bqFdnHX+lxkFn
+   YGc/xRazVu6wKD961cqpqnKPaTcjKJMXJsP//py3R188alENAiP9B/Y9a
+   QG+XIEaTJ223tbqpaVbWpMXfVPqEohSkY7JTzFZPhMMzhr5ahJhnO+mdF
+   gdSfQexizj7tgjy42Lk4fjJViVDMoWqGI3qBpTdz6zXKySwmMaJMC7nDv
+   2mYM77er8oR8K25+WOrl+5W0fhZ49CPnNISVbjpddrTd14PF3p3u2fs4q
+   qbMNfv8VWVAxSrSffSYbYxxq7V41OFWI4bCjkMSCElGawFaxoOPtBHajx
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; 
+   d="asc'?scan'208";a="239780977"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Aug 2023 02:10:06 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 4 Aug 2023 02:10:06 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 4 Aug 2023 02:10:03 -0700
+Date:   Fri, 4 Aug 2023 10:09:27 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Nylon Chen <nylon.chen@sifive.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <geert+renesas@glider.be>,
+        <pavel@ucw.cz>, <vincent.chen@sifive.com>,
+        <emil.renner.berthing@canonical.com>, <aou@eecs.berkeley.edu>,
+        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <conor@kernel.org>, <zong.li@sifive.com>
+Subject: Re: [PATCH v4 0/1] Change PWM-controlled LED pin active mode and
+ algorithm
+Message-ID: <20230804-jaundice-outpost-b8fbc9044e0d@wendy>
+References: <20230803085734.340-1-nylon.chen@sifive.com>
+ <20230803-vehicular-leggings-2830239f818a@wendy>
+ <20230803-caretaker-voicing-e982f2334067@wendy>
+ <CAHh=Yk9A3MP4Zgz53+s_ugvMtnv57igY=+Yccbp9Om9jBuxXqg@mail.gmail.com>
+ <CAHh=Yk842gFpR1a3=KiB-Yb7T1Dqbg627MBK+hntjgMtd5z6-w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:biqu3d.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="drXNa9U6BVDiMxxh"
+Content-Disposition: inline
+In-Reply-To: <CAHh=Yk842gFpR1a3=KiB-Yb7T1Dqbg627MBK+hntjgMtd5z6-w@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BigTreeTech Pi is an H616 based board based on CB1.
-Just in Rpi format board.
+--drXNa9U6BVDiMxxh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It features the same internals as BTT CB1 but adds:
-    - Fan port
-    - IR receiver
-    - ADXL345 Accelerometer connector via SPI
-    - 24V DC power supply via terminal plugs
-    - USB to CAN module connector (The actual USB to CAN happens on the external module)
+On Fri, Aug 04, 2023 at 02:54:33PM +0800, Nylon Chen wrote:
+> Hi Conor,
+>=20
+> Thank you for patiently giving me advice. I appreciate your help.
+>=20
+> Not long ago, I said, "This patch needs to be accompanied by
+> modifications to the pwm_sifive_apply() function to make sense."
+>=20
+> I recently reviewed the v3 version, and after discussing it with Emil,
+> there are several areas that require modification. I will provide the
+> necessary changes for each of them:
+>=20
+> 1. polarity check. (Suggestion from Uwe)
+> - if (state->polarity !=3D PWM_POLARITY_INVERSED)
+> + if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> 2. avoid using old periodperiod, not state->period
+> - period =3D max(state->period, ddata->approx_period);
+> - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+> + frac =3D DIV64_U64_ROUND_CLOSEST(num, period);
+> 3. add a conditional check can be added in the code to set
+> ddata->approx_period to state->period when state->period is smaller
+> than ddata->approx_period
+>   if (state->period !=3D ddata->approx_period) {
+>   ...
+> +       if (state->period < ddata->approx_period) {
+> +               ddata->approx_period =3D state->period;
+> +       }
+> -       ddata->approx_period =3D state->period;
+> +       period =3D ddata->approx_period;
+>=20
 
-List of currently working things is same as BTT CB1 but also:
-    - IR receiver
-    - ADXL345 connector
+> I will use 'unmatched' on my end to verify again. If there are any
+> other errors, feel free to point them out. Thank you.
 
-Signed-off-by: Martin Botka <martin@biqu3d.com>
----
-Changes in V2:
-    - Add UART alongside aliases and chosen for it
-    - Add model string
-    - Enable IR receiver
-    - Enable SPI0 for ADXL345 connector
+I'm not sure of the driver details without going and looking into the
+code itself, but this sounds like it makes a lot more sense than just
+flipping the polarity in the dts. Thanks for taking another look!
 
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 68 +++++++++++++++++++
- 2 files changed, 69 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 7b386428510b..0b6232a7f328 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -39,5 +39,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-new file mode 100644
-index 000000000000..cbeedf147ab6
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616-bigtreetech-cb1.dtsi"
-+
-+/ {
-+	model = "BigTreeTech Pi"
-+	compatible = "bigtreetech,pi", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&ir {
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	/* SPI connection for onboard connector for ADXL345 accelerometer */
-+	status = "okay";
-+}
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
--- 
-2.41.0
+--drXNa9U6BVDiMxxh
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMzARwAKCRB4tDGHoIJi
+0qDdAQCi6vcuaP29QFEGbJjRy3gSuS59BLhmOBTY1CNGgezTMQEA56t+2koBs6Of
+s0vx0OPO9U9ugfjxAQT1KVCC/BlxBQw=
+=fu/T
+-----END PGP SIGNATURE-----
+
+--drXNa9U6BVDiMxxh--
