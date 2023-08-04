@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7806D7709A1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2437709AD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjHDUWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 16:22:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42890 "EHLO
+        id S229760AbjHDUaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 16:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbjHDUWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:22:21 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 029544ECD
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 13:22:15 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe4f5290daso4189350e87.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 13:22:14 -0700 (PDT)
+        with ESMTP id S229573AbjHDUaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:30:07 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A994C2F
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 13:30:06 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9bf52cd08so39015961fa.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 13:30:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691180533; x=1691785333;
+        d=linaro.org; s=google; t=1691181004; x=1691785804;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wKr2Hkt55qkSfnLkJbVoLwPS/UDdOuvLrWIlK7PEvtI=;
-        b=WogOu13mS86v8vPpdIUYopFnPlOlx5nA2Cyc9XEM4P/dWjdCeywIzcYuiIr7SPXluG
-         G8omvKO8SzHWM8+pK7gn8fL2Me1Mcp52Uwam9/12aoN3t/JKqcJjVIICPGyvD1T8zjse
-         5wIUkf9GkTPVOF9LhQMGyIeF+wXx51sYIQ8x8/iFoZ6eHaEz+smNPDRhAbAzPVQnWe8e
-         3z/R0hYpr/zecQk+qdFXEzF/SrV0oaLxiKQsL0vkkhjV3M+eL8zZATUbVEstkrl4KDFM
-         Ic6sSMYOqLVDMHVTsGeSl0f291Oc6xrVAwTctjlq87QPVjoJ+5Lfk/IfxJB1wn7om3Sx
-         K4Zg==
+        bh=7IYDGNxhmDBBMRmQ8QjM048KDoR+QC7sNISf7aB5hDE=;
+        b=owDxXoFsSpFQwxlJQnHA84H7CCJuMFdEbNdjqIskxKAxidaMWwQLWB0s0VgsvLBebD
+         J3Avwdc5Bbt5aJ+RD4DzUt42rdSElbXQG+OcS6U4EvNCbWLJS3TjsJUqQ1Fx6U5VWx2T
+         bdqgCYu+V/dye9AveKNXJfaPQAAVwKPScijzzQrcXtQKSwcjo1YaD1mv71RivFLzHDz2
+         LsuFaAzfzRElodo1DX284SmyBoiQO3AutfU04A4Iru8ReZDtYtpjvaAKFjXDH9Q0pv+L
+         2nAb67g0/F9/G7vjseBjOpwRTPu5nQwDq74pURaAKHImNmvUoft7PStx1+Ng23AzP+bj
+         zqZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691180533; x=1691785333;
+        d=1e100.net; s=20221208; t=1691181004; x=1691785804;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wKr2Hkt55qkSfnLkJbVoLwPS/UDdOuvLrWIlK7PEvtI=;
-        b=c64MJzDd1ZfbkA4jnGvU63swC/DMwHvEq5MCpgQghSD9c0NfFJFLjUK4A0E+QdGIpb
-         ne6w6vkyPZLly7EZunE5JlXpGmIi4mYS06/FiAg+RVTn5W2LSNqFByLAu/bIQyxvIkw/
-         ZAnmXgJ6tVuaeu/fWFAnMyMs4xX63BbHEgpuFf1fcIzdJHBrLc0NRjbN3AdpTT0VKBir
-         Ekd1JS+uLlXKkIfEfiVKdfRwvG3h+QJOVy012dfy5sFRKIav8KZWXoe4nLNOVyNd9tON
-         ekyjtlw8PaaHfDEw5ghBOHTlwd1y/XGxOetCCspy420pS7bc9Iqg1+zrd2XritSZehqI
-         ihdw==
-X-Gm-Message-State: AOJu0YwaT8Bgd7SEN6VPlrFv8LFh9wQOQ05TKAsWXbwfIV0Ro/a7Loz8
-        535v+Zz9cNfzwPjQf6P6P8stbA==
-X-Google-Smtp-Source: AGHT+IEt5wjIsM7XDltlaDgQUC29KGzo6KmQ6aqTHOTxoMeNi4W+2jQTeg9Cc30vRqnypJGj+/nGYw==
-X-Received: by 2002:a19:9201:0:b0:4fd:f7b8:555 with SMTP id u1-20020a199201000000b004fdf7b80555mr2207879lfd.19.1691180533060;
-        Fri, 04 Aug 2023 13:22:13 -0700 (PDT)
+        bh=7IYDGNxhmDBBMRmQ8QjM048KDoR+QC7sNISf7aB5hDE=;
+        b=PDnOcBZjVAXZPIDOBlR/bD36cb01B9Arn534xAtq2KUbSResWYMl3VkQ+npwRR3x/5
+         PJJiZmwN/wbnMzDjE5vZwN6NYToBZDulioyNbVWB/ThKTHN9A0JeBvon4bf2hq0GvOKS
+         J6rtchKvjCxDkBNpccmzenbaEs5/r+XcQ4Oiby407DWleqBfCY0DkxcTbN+gBwrAakTU
+         NBAyo0LZeXK4hig9SjlBXV7cdRbbMPuflLFdBKqKPDqqe1s5QJtmm4VieE7mf5pEPh6h
+         ezNqI2hJZgcRduzOJ47mn8SdCK0f4rMaVPNLoXZ6XrcsZ+sFmO/kEG45MYwJRGyA67bb
+         H91w==
+X-Gm-Message-State: AOJu0YxYwX+I4kDbNmIjv9YcicC0ipeTz1cRdFgEROuMLPTJvSlYkR6d
+        05oIt8w8i5G95kULEdMLtKiNWQ==
+X-Google-Smtp-Source: AGHT+IGDJzZYwBQ7gmz/B2ccJjAwhiyeOgsHDKYRZkHBKU57buakJswO0rXmMvaBp5sxmih+UXNtJQ==
+X-Received: by 2002:a05:651c:103c:b0:2b9:f27f:e491 with SMTP id w28-20020a05651c103c00b002b9f27fe491mr2226610ljm.42.1691181004612;
+        Fri, 04 Aug 2023 13:30:04 -0700 (PDT)
 Received: from [192.168.1.101] (abym15.neoplus.adsl.tpnet.pl. [83.9.32.15])
-        by smtp.gmail.com with ESMTPSA id y12-20020ac255ac000000b004fa52552c7csm497785lfg.151.2023.08.04.13.22.11
+        by smtp.gmail.com with ESMTPSA id x19-20020a2e7c13000000b002b962ee0c14sm603241ljc.23.2023.08.04.13.30.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 13:22:12 -0700 (PDT)
-Message-ID: <e68932e1-8365-4f52-90f5-a96f2ec0c1a6@linaro.org>
-Date:   Fri, 4 Aug 2023 22:22:10 +0200
+        Fri, 04 Aug 2023 13:30:03 -0700 (PDT)
+Message-ID: <4b311934-d06b-45ce-a2f2-c1566ea641d9@linaro.org>
+Date:   Fri, 4 Aug 2023 22:30:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
- RAM slice through phandle
+Subject: Re: [PATCH v2 0/3] MM8013 fg driver
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Shawn Guo <shawn.guo@linaro.org>, devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v4-0-bae382dc0f92@linaro.org>
- <20230328-topic-msgram_mpm-v4-1-bae382dc0f92@linaro.org>
- <168968640959.915849.5129879096888517309.robh@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230621-topic-mm8013-v2-0-4be6223587ad@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -106,44 +101,24 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <168968640959.915849.5129879096888517309.robh@kernel.org>
+In-Reply-To: <20230621-topic-mm8013-v2-0-4be6223587ad@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.07.2023 15:20, Rob Herring wrote:
+On 26.06.2023 12:32, Konrad Dybcio wrote:
+> This series brings support for the Mitsumi MM8013 Li-Ion fuel gauge.
 > 
-> On Tue, 18 Jul 2023 14:19:10 +0200, Konrad Dybcio wrote:
->> Due to the wild nature of the Qualcomm RPM Message RAM, we can't really
->> use 'reg' to point to the MPM's slice of Message RAM without cutting into
->> an already-defined RPM MSG RAM node used for GLINK and SMEM.
->>
->> Document passing the register space as a slice of SRAM through the
->> qcom,rpm-msg-ram property. This also makes 'reg' deprecated.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../bindings/interrupt-controller/qcom,mpm.yaml    | 52 +++++++++++++++-------
->>  1 file changed, 35 insertions(+), 17 deletions(-)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dtb: /example-0/remoteproc-rpm: failed to match any schema with compatible: ['qcom,msm8998-rpm-proc', 'qcom,rpm-proc']
-
-The missing schema is merged in -next via the qcom tree.. Could you give
-this a review?
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+Bump
 
 Konrad
