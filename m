@@ -2,93 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7D5376F717
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 03:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6747876F747
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 03:56:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232496AbjHDBqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 21:46:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56628 "EHLO
+        id S231807AbjHDB4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 21:56:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232486AbjHDBqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 21:46:36 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6A24482;
-        Thu,  3 Aug 2023 18:46:33 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id EDA667F8E;
-        Fri,  4 Aug 2023 09:46:31 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 4 Aug
- 2023 09:46:32 +0800
-Received: from [192.168.125.127] (183.27.98.54) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 4 Aug
- 2023 09:46:30 +0800
-Message-ID: <0b93ffcb-a236-99c0-1cf5-ad584b80c0ab@starfivetech.com>
-Date:   Fri, 4 Aug 2023 09:46:30 +0800
+        with ESMTP id S230361AbjHDB4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 21:56:54 -0400
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02ED1FF3;
+        Thu,  3 Aug 2023 18:56:52 -0700 (PDT)
+Received: from kwepemi500011.china.huawei.com (unknown [172.30.72.55])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RH7zy2jlXzJrQJ;
+        Fri,  4 Aug 2023 09:54:06 +0800 (CST)
+Received: from [10.67.103.39] (10.67.103.39) by kwepemi500011.china.huawei.com
+ (7.221.188.124) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 4 Aug
+ 2023 09:56:50 +0800
+Message-ID: <64CC5AE1.4000108@hisilicon.com>
+Date:   Fri, 4 Aug 2023 09:56:49 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 0/4] Refactoring Microchip PCIe driver and add StarFive
- PCIe
-Content-Language: en-US
-To:     =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     David Yang <mmyangfl@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Mason Huo" <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-References: <20230727103949.26149-1-minda.chen@starfivetech.com>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <20230727103949.26149-1-minda.chen@starfivetech.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: hi3798cv200: Fix clocks order of sd0
+References: <20230514122533.382910-1-mmyangfl@gmail.com>
+In-Reply-To: <20230514122533.382910-1-mmyangfl@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.54]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.67.103.39]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ kwepemi500011.china.huawei.com (7.221.188.124)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi David，
 
+On 2023/5/14 20:25, David Yang wrote:
+> "ciu" and "biu" were incorrectly swapped. Fix their order.
+> 
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
+> ---
+>  arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> index a83b9d4f172e..ed1b5a7a6067 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> @@ -302,8 +302,8 @@ sd0: mmc@9820000 {
+>  			compatible = "snps,dw-mshc";
+>  			reg = <0x9820000 0x10000>;
+>  			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&crg HISTB_SDIO0_CIU_CLK>,
+> -				 <&crg HISTB_SDIO0_BIU_CLK>;
+> +			clocks = <&crg HISTB_SDIO0_BIU_CLK>,
+> +				 <&crg HISTB_SDIO0_CIU_CLK>;
+>  			clock-names = "biu", "ciu";
+>  			resets = <&crg 0x9c 4>;
+>  			reset-names = "reset";
+> 
 
-On 2023/7/27 18:39, Minda Chen wrote:
-> This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
-> JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
-> same IP and have commit their codes, which are mixed with PLDA
-> controller codes and Microchip platform codes.
-> 
-> For re-use the PLDA controller codes, I request refactoring microchip
-> codes, move PLDA common codes to PLDA files.
-> Desigware and Cadence is good example for refactoring codes.
-> 
-> So first step is extract the PLDA common codes from microchip, and
-> refactoring the microchip codes.(patch1 - 2)
-> Then, add Starfive codes. (patch3 - 4)
-> 
-> This patchset is base on v6.5-rc1
-> 
-> patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
->        docs from microchip,pcie-host.yaml
-> patch2 is extracting the PLDA common codes from microchip Polarfire PCIe
->        codes. The change list in the commit message.
-> patch3 is add StarFive JH7110 PCIe dt-binding doc.
-> patch4 is add StarFive JH7110 Soc PCIe codes.
-> 
-Hi Rob, Krzysztof(K.K) and Conor
-  Do you have any comments for dts-binding doc patch? (patch 1 and patch3) Thanks.  
+Applied to the HiSilicon arm64 dt tree.
+Thanks!
+
+Best Regards,
+Wei
