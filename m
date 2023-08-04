@@ -2,123 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2437709AD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3E57709B2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbjHDUaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 16:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44994 "EHLO
+        id S229810AbjHDUbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 16:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjHDUaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:30:07 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A994C2F
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 13:30:06 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9bf52cd08so39015961fa.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 13:30:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691181004; x=1691785804;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7IYDGNxhmDBBMRmQ8QjM048KDoR+QC7sNISf7aB5hDE=;
-        b=owDxXoFsSpFQwxlJQnHA84H7CCJuMFdEbNdjqIskxKAxidaMWwQLWB0s0VgsvLBebD
-         J3Avwdc5Bbt5aJ+RD4DzUt42rdSElbXQG+OcS6U4EvNCbWLJS3TjsJUqQ1Fx6U5VWx2T
-         bdqgCYu+V/dye9AveKNXJfaPQAAVwKPScijzzQrcXtQKSwcjo1YaD1mv71RivFLzHDz2
-         LsuFaAzfzRElodo1DX284SmyBoiQO3AutfU04A4Iru8ReZDtYtpjvaAKFjXDH9Q0pv+L
-         2nAb67g0/F9/G7vjseBjOpwRTPu5nQwDq74pURaAKHImNmvUoft7PStx1+Ng23AzP+bj
-         zqZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691181004; x=1691785804;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7IYDGNxhmDBBMRmQ8QjM048KDoR+QC7sNISf7aB5hDE=;
-        b=PDnOcBZjVAXZPIDOBlR/bD36cb01B9Arn534xAtq2KUbSResWYMl3VkQ+npwRR3x/5
-         PJJiZmwN/wbnMzDjE5vZwN6NYToBZDulioyNbVWB/ThKTHN9A0JeBvon4bf2hq0GvOKS
-         J6rtchKvjCxDkBNpccmzenbaEs5/r+XcQ4Oiby407DWleqBfCY0DkxcTbN+gBwrAakTU
-         NBAyo0LZeXK4hig9SjlBXV7cdRbbMPuflLFdBKqKPDqqe1s5QJtmm4VieE7mf5pEPh6h
-         ezNqI2hJZgcRduzOJ47mn8SdCK0f4rMaVPNLoXZ6XrcsZ+sFmO/kEG45MYwJRGyA67bb
-         H91w==
-X-Gm-Message-State: AOJu0YxYwX+I4kDbNmIjv9YcicC0ipeTz1cRdFgEROuMLPTJvSlYkR6d
-        05oIt8w8i5G95kULEdMLtKiNWQ==
-X-Google-Smtp-Source: AGHT+IGDJzZYwBQ7gmz/B2ccJjAwhiyeOgsHDKYRZkHBKU57buakJswO0rXmMvaBp5sxmih+UXNtJQ==
-X-Received: by 2002:a05:651c:103c:b0:2b9:f27f:e491 with SMTP id w28-20020a05651c103c00b002b9f27fe491mr2226610ljm.42.1691181004612;
-        Fri, 04 Aug 2023 13:30:04 -0700 (PDT)
-Received: from [192.168.1.101] (abym15.neoplus.adsl.tpnet.pl. [83.9.32.15])
-        by smtp.gmail.com with ESMTPSA id x19-20020a2e7c13000000b002b962ee0c14sm603241ljc.23.2023.08.04.13.30.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 13:30:03 -0700 (PDT)
-Message-ID: <4b311934-d06b-45ce-a2f2-c1566ea641d9@linaro.org>
-Date:   Fri, 4 Aug 2023 22:30:01 +0200
+        with ESMTP id S229491AbjHDUbk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:31:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D524C2F;
+        Fri,  4 Aug 2023 13:31:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B01C261F2C;
+        Fri,  4 Aug 2023 20:31:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21000C433CB;
+        Fri,  4 Aug 2023 20:31:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691181097;
+        bh=Kx0ukmmajEq9jA//xRgg8P9Hb44BicThE/9GSCwfyv8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MWuY6vdvN3/8McDUIeK/NLYPOf42KN6frl/OWKvSnGA7FSv5PMzfChEAdcboshshX
+         IPanNsNM/1HCi045p4zVpzKqEsS3bm3lP0smn5AzDJUva/eiYlZXX8NT3MJAKAT11B
+         rzDpBkTPSZuWb0VAzD3cJ8G0yxUsC2F0chOAV3tBwhxtycLJFO8ABytzvjkTIY0IgA
+         9DkAkXtJwk8lEf4dGxd8GUl+dW5z3jJ/X6lSZy4wivW91ASXpPSUoAcTB+kZqUNNFr
+         3wOZBkkOE92/+duJMjU9dvxmMUthb0m7rfwt/KdOLddZVH55PjOEzDInVEc3hGDaEu
+         fKDn54egWryzQ==
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2b9c55e0fbeso38686771fa.2;
+        Fri, 04 Aug 2023 13:31:37 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yy8T3eqUAq5bkNMSxAeTZbWfCzKtwGlQ6vAezadRBXcSVTI4eQv
+        kDaQoT5AfgYKcIGVLMbCuxV6J+tOJM6Qzssavg==
+X-Google-Smtp-Source: AGHT+IGqAa3XK8M6oZTyrHv0ezLXcIqNfO0j3+RA2Jc9Dmlqh0zIS3hCEdpdhjRowJn16g1c8Pj8Rwea/hdGZOqs/TA=
+X-Received: by 2002:a2e:864b:0:b0:2b9:e701:ac4d with SMTP id
+ i11-20020a2e864b000000b002b9e701ac4dmr2673200ljj.26.1691181095107; Fri, 04
+ Aug 2023 13:31:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] MM8013 fg driver
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230621-topic-mm8013-v2-0-4be6223587ad@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230621-topic-mm8013-v2-0-4be6223587ad@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
+ <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org> <ZM1Jk9s3gRYLyagW@alley>
+In-Reply-To: <ZM1Jk9s3gRYLyagW@alley>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 4 Aug 2023 14:31:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJzEZOO4OA7ewMNZsF-5Z7CR2+_HMYM12yb0i5E2Gpquw@mail.gmail.com>
+Message-ID: <CAL_JsqJzEZOO4OA7ewMNZsF-5Z7CR2+_HMYM12yb0i5E2Gpquw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use "%pOF"
+ inside devtree_lock
+To:     Petr Mladek <pmladek@suse.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.06.2023 12:32, Konrad Dybcio wrote:
-> This series brings support for the Mitsumi MM8013 Li-Ion fuel gauge.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-Bump
+On Fri, Aug 4, 2023 at 12:55=E2=80=AFPM Petr Mladek <pmladek@suse.com> wrot=
+e:
+>
+> On Tue 2023-08-01 15:54:45, Rob Herring wrote:
+> > While originally it was fine to format strings using "%pOF" while
+> > holding devtree_lock, this now causes a deadlock.  Lockdep reports:
+> >
+> >     of_get_parent from of_fwnode_get_parent+0x18/0x24
+> >     ^^^^^^^^^^^^^
+> >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
+> >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
+> >     fwnode_full_name_string from device_node_string+0x1a0/0x404
+> >     device_node_string from pointer+0x3c0/0x534
+> >     pointer from vsnprintf+0x248/0x36c
+> >     vsnprintf from vprintk_store+0x130/0x3b4
+> >
+> > To fix this, move the printing in __of_changeset_entry_apply() outside =
+the
+> > lock. As there's already similar printing of the same changeset actions=
+,
+> > refactor all of them to use a common action print function. This has th=
+e
+> > side benefit of getting rid of some ifdefs.
+> >
+> > Fixes: a92eb7621b9fb2c2 ("lib/vsprintf: Make use of fwnode API to obtai=
+n node names and separators")
+> > Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> > --- a/drivers/of/dynamic.c
+> > +++ b/drivers/of/dynamic.c
+> > @@ -63,37 +63,31 @@ int of_reconfig_notifier_unregister(struct notifier=
+_block *nb)
+> >  }
+> >  EXPORT_SYMBOL_GPL(of_reconfig_notifier_unregister);
+> >
+> > -#ifdef DEBUG
+> > -const char *action_names[] =3D {
+> > +static const char *action_names[] =3D {
+> >       [OF_RECONFIG_ATTACH_NODE] =3D "ATTACH_NODE",
+> >       [OF_RECONFIG_DETACH_NODE] =3D "DETACH_NODE",
+> >       [OF_RECONFIG_ADD_PROPERTY] =3D "ADD_PROPERTY",
+> >       [OF_RECONFIG_REMOVE_PROPERTY] =3D "REMOVE_PROPERTY",
+> >       [OF_RECONFIG_UPDATE_PROPERTY] =3D "UPDATE_PROPERTY",
+> >  };
+> > -#endif
+> > +
+> > +static void of_changeset_action_print(unsigned long action, struct dev=
+ice_node *np,
+> > +                                   const char *prop_name)
+> > +{
+> > +     if (prop_name)
+> > +             pr_cont("%-15s %pOF:%s\n", action_names[action], np, prop=
+_name);
+>
+> Note that pr_cont() does not guarantee that the message will be appended =
+to the
+> previous part. Any message printed from another CPU or interrupt
+> context might break the two pieces.
+>
+> It is better to avoid pr_cont() when possible.
 
-Konrad
+Yeah, I got rid of it in the snippet I posted.
+
+>
+> > +     else
+> > +             pr_cont("%-15s %pOF\n", action_names[action], np);
+> > +}
+> >
+> >  int of_reconfig_notify(unsigned long action, struct of_reconfig_data *=
+p)
+> >  {
+> >       int rc;
+> > -#ifdef DEBUG
+> >       struct of_reconfig_data *pr =3D p;
+> >
+> > -     switch (action) {
+> > -     case OF_RECONFIG_ATTACH_NODE:
+> > -     case OF_RECONFIG_DETACH_NODE:
+> > -             pr_debug("notify %-15s %pOF\n", action_names[action],
+> > -                     pr->dn);
+> > -             break;
+> > -     case OF_RECONFIG_ADD_PROPERTY:
+> > -     case OF_RECONFIG_REMOVE_PROPERTY:
+> > -     case OF_RECONFIG_UPDATE_PROPERTY:
+> > -             pr_debug("notify %-15s %pOF:%s\n", action_names[action],
+> > -                     pr->dn, pr->prop->name);
+> > -             break;
+> > +     if (pr_debug("notify "))
+> > +             of_changeset_action_print(action, pr->dn, pr->prop ? pr->=
+prop->name : NULL);
+>
+> If you really want to simplify this, then I would do:
+>
+>         pr_debug("notify %-15s %pOF%s%s\n",
+>                   action_names[action], pr->dn,
+>                   pr->prop ? ":" : ",
+>                   pr->prop ? pr->prop->name : "");
+
+That's a good idea.
+
+> > -     }
+> > -#endif
+> >       rc =3D blocking_notifier_call_chain(&of_reconfig_chain, action, p=
+);
+> >       return notifier_to_errno(rc);
+> >  }
+> > @@ -599,7 +569,8 @@ static int __of_changeset_entry_apply(struct of_cha=
+ngeset_entry *ce)
+> >       unsigned long flags;
+> >       int ret =3D 0;
+> >
+> > -     __of_changeset_entry_dump(ce);
+> > +     if (pr_debug("changeset: applying: cset<%p> ", ce))
+> > +             of_changeset_action_print(ce->action, ce->np, ce->prop ? =
+ce->prop->name : NULL);
+>
+> One possibility would be to create a macro for this, something like:
+>
+> #define of_ce_action_print(printk_level, prefix, ce)            \
+>         printk(printk_level "%s cset<%p> %-15s %pOF%s%s\n"      \
+>                 prefix, ce, action_names[action], pr->dn,       \
+>                   pr->prop ? ":" : ",                           \
+>                   pr->prop ? pr->prop->name : "");
+>
+> And use it like:
+>
+>         of_ce_action_print(KERN_DEBUG, "changeset: applying:", ce);
+
+The problem there is the debug print is always enabled.
+
+>
+> But I am not sure if it is worth it. Sometimes it is better to
+> opencode things so that it is clear what is going on.
+
+Maybe so.
+
+Rob
