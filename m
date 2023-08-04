@@ -2,243 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C3E477088F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 21:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3977708F4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 21:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjHDTGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 15:06:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42384 "EHLO
+        id S229694AbjHDTWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 15:22:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbjHDTGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 15:06:01 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66DF94EED;
-        Fri,  4 Aug 2023 12:05:41 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fe2bc2701bso22529135e9.2;
-        Fri, 04 Aug 2023 12:05:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691175940; x=1691780740;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RImfxtxvGtLO2n9zPJtV/vphcAvXDGCdvAZ0GbDbKrk=;
-        b=sQ/fQqqtQOaPptev4nG45CWIPf3ZJmox/dXbVk/wnAnyPSDQgvEB1sGCfzREKDHyxz
-         uMrYsS5yWsVqKOPLEszFO9lH4VE65Cz9c9p05HnHvakq7AtBEsNPBj+M3wcyozDNPTAw
-         9ubz1s2RBijzpI+vuzs1rnn0LgZGWXogRuLqMRHPRb3Cvs2Gsu8E8J4a/sj91PF4kYGG
-         3PWdbW553UZUYx3DOf/uixvEkElav2rbAZfXMs4KPDV0M/L02RuFEv5lZC7ik+N/8M/L
-         SdPl4NuUYkX2WGrRwF/Y656nfT6EiwhJjrpygWVd18YE9kgd9BpeBnW0tCpGG5q7dVNZ
-         UrXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691175940; x=1691780740;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RImfxtxvGtLO2n9zPJtV/vphcAvXDGCdvAZ0GbDbKrk=;
-        b=W+7Hj9qL06sYLfmLbatDukSz8P3Ci36d20IM5CajmUUQHOpQFCM7xzTAr558mML9kr
-         kP5w5/4Tl+J1/GqEjUxBrLz4LUh1uR03shBN+JqBfMb5rkyp0Sgs6ux4fI+FEwIqZnKY
-         FTGJxoXZKL+1ozAW5cO4oFpTg9jQdD+tib01svCfhTdrGhAEIEn1VqlniPQ2U8a2RIcr
-         fRdpVzyjJzjwE9AJ5zqGl3xRjNvfu8Y3q8JjK1JJnqcReGCE6vVP04vTUSJvVjEUG7AF
-         tG1Zci7HEi2Dm/mB4BLJfJIrVe3hKFt6JZDINvMIG0OtuVPOA+1yFd4NwdC/XTmqpHh1
-         h+vQ==
-X-Gm-Message-State: AOJu0YwBeKaH54mV0W347x0Mf7DSehYHWUU2MCLc6UbX8DnrVVBtEMEk
-        TasKJAVQBFtcEqIUjcIdBF4=
-X-Google-Smtp-Source: AGHT+IEn1aXb9mEpqN8jQUJqVtnlCntlV7okng3mYJc7tFxDGgv2efEXqCJ0/u4COACFPhXcJalyeA==
-X-Received: by 2002:a7b:cc87:0:b0:3fe:4e4e:bedb with SMTP id p7-20020a7bcc87000000b003fe4e4ebedbmr172426wma.4.1691175939761;
-        Fri, 04 Aug 2023 12:05:39 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id 22-20020a05600c22d600b003fe2de3f94fsm3063043wmg.12.2023.08.04.12.05.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Aug 2023 12:05:38 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: h616: Add OrangePi Zero 3 board
- support
-Date:   Fri, 04 Aug 2023 21:05:36 +0200
-Message-ID: <4500165.LvFx2qVVIh@jernej-laptop>
-In-Reply-To: <20230804170856.1237202-4-andre.przywara@arm.com>
-References: <20230804170856.1237202-1-andre.przywara@arm.com>
- <20230804170856.1237202-4-andre.przywara@arm.com>
+        with ESMTP id S229796AbjHDTWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 15:22:46 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 165811BE;
+        Fri,  4 Aug 2023 12:22:43 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 374JMWhr117737;
+        Fri, 4 Aug 2023 14:22:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691176952;
+        bh=ZPr5/mVFtaKQIXxLL1Lwkt1hpyKhH9CHkOiSQjC0/gM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=xhtwjb0KaJmSW/3Gpm+MAHmDF1VFHf/J6Du0mAMy+RBZWAY21/SS3szyyof0OwE7p
+         XL/KtEKGIZORXneP8UDqKt1rwqqor+aGKaR8tXCtPhtN8ELrwA4rBshWdnIv41VfT2
+         M9wvLTTRJpVmxU02inm8DCAH+Hlu4dmBALP8LGKI=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 374JMWLm031490
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Aug 2023 14:22:32 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 4
+ Aug 2023 14:22:31 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 4 Aug 2023 14:22:31 -0500
+Received: from [10.249.132.69] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 374JMQX1021939;
+        Fri, 4 Aug 2023 14:22:27 -0500
+Message-ID: <9f19e01e-6211-16eb-c911-998ee2d46161@ti.com>
+Date:   Sat, 5 Aug 2023 00:52:25 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v9 4/5] arm64: dts: ti: k3-j784s4-evm: Enable
+ DisplayPort-0
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <afd@ti.com>, <rogerq@kernel.org>
+CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <r-ravikumar@ti.com>, <sabiya.d@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230803080441.367341-1-j-choudhary@ti.com>
+ <20230803080441.367341-5-j-choudhary@ti.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <20230803080441.367341-5-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 04. avgust 2023 ob 19:08:56 CEST je Andre Przywara napisal(a):
-> The OrangePi Zero 3 is a development board based on the Allwinner H618 SoC,
-> which seems to be just an H616 with more L2 cache. The board itself is a
-> slightly updated version of the Orange Pi Zero 2. It features:
-> - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-> - 1/1.5/2/4 GiB LPDDR4 DRAM SKUs (only up to 1GB on the Zero2)
-> - AXP313a PMIC (more capable AXP305 on the Zero2)
-> - Raspberry-Pi-1 compatible GPIO header
-> - extra 13 pin expansion header, exposing pins for 2x USB 2.0 ports
-> - 1 USB 2.0 host port
-> - 1 USB 2.0 type C port (power supply + OTG)
-> - MicroSD slot
-> - on-board 16MiB bootable SPI NOR flash (only 2MB on the Zero2)
-> - 1Gbps Ethernet port (via Motorcomm YT8531 PHY) (RTL8211 on the Zero2)
-> - micro-HDMI port
-> - (yet) unsupported Allwinner WiFi/BT chip
+Hi Jayesh,
+
+
+On 03-Aug-23 13:34, Jayesh Choudhary wrote:
+> From: Rahul T R <r-ravikumar@ti.com>
 > 
-> Add the devicetree file describing the currently supported features,
-> namely LEDs, SD card, PMIC, SPI flash, USB. Ethernet seems unstable at
-> the moment, though the basic functionality works.
+> Enable display for J784S4 EVM.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux for
+> DP HPD. Add the clock frequency for serdes_refclk.
+> 
+> Add the endpoint nodes to describe connection from:
+> DSS => MHDP => DisplayPort connector.
+> 
+> Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
+> required for controlling DP power. Set status for all required nodes
+> for DP-0 as "okay".
+> 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> [j-choudhary@ti.com: move all the changes together to enable DP-0 in EVM]
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
->  .../allwinner/sun50i-h618-orangepi-zero3.dts  | 94 +++++++++++++++++++
->  2 files changed, 95 insertions(+)
->  create mode 100644
-> arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 119 +++++++++++++++++++++++
+>  1 file changed, 119 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile
-> b/arch/arm64/boot/dts/allwinner/Makefile index 6a96494a2e0a3..3b0ad54062381
-> 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -40,3 +40,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts new file
-> mode 100644
-> index 0000000000000..96a6851728111
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> @@ -0,0 +1,94 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2023 Arm Ltd.
-> + */
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index 7ad152a1b90f..005357d70122 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -249,6 +249,28 @@ vdd_sd_dv: regulator-TLV71033 {
+>  		states = <1800000 0x0>,
+>  			 <3300000 0x1>;
+>  	};
 > +
-> +/dts-v1/;
+> +	dp0_pwr_3v3: regulator-dp0-prw {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dp0-pwr";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
 > +
-> +#include "sun50i-h616-orangepi-zero.dtsi"
+> +	dp0: connector-dp0 {
+> +		compatible = "dp-connector";
+> +		label = "DP0";
+> +		type = "full-size";
+> +		dp-pwr-supply = <&dp0_pwr_3v3>;
 > +
-> +/ {
-> +	model = "OrangePi Zero3";
-> +	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
-> +};
+> +		port {
+> +			dp0_connector_in: endpoint {
+> +				remote-endpoint = <&dp0_out>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -286,6 +308,19 @@ vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
+>  			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+>  		>;
+>  	};
 > +
-> +&emac0 {
-> +	phy-supply = <&reg_dldo1>;
-> +};
+> +	dp0_pins_default: dp0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x0cc, PIN_INPUT, 12) /* (AM37) SPI0_CS0.DP0_HPD */
+> +		>;
+> +	};
 > +
-> +&ext_rgmii_phy {
-> +	motorcomm,clk-out-frequency-hz = <125000000>;
-> +};
+> +	main_i2c4_pins_default: main-i2c4-default-pins {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AG33) MCAN14_TX.I2C4_SCL */
+> +			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
+> +		>;
+> +	};
+>  };
+>  
+>  &wkup_pmx2 {
+> @@ -827,3 +862,87 @@ adc {
+>  		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>  	};
+>  };
 > +
-> +&mmc0 {
-> +	/*
-> +	 * The schematic shows the card detect pin wired up to PF6, via an
-> +	 * inverter, but it just doesn't work.
-> +	 */
-> +	broken-cd;
-> +	vmmc-supply = <&reg_dldo1>;
-> +};
-> +
-> +&r_i2c {
+> +&serdes_refclk {
 > +	status = "okay";
+> +	clock-frequency = <100000000>;
+> +};
 > +
-> +	axp313: pmic@36 {
-> +		compatible = "x-powers,axp313a";
-> +		reg = <0x36>;
-> +		#interrupt-cells = <1>;
-> +		interrupt-controller;
-> +		interrupt-parent = <&pio>;
-> +		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
+> +&dss {
+> +	status = "okay";
+> +	assigned-clocks = <&k3_clks 218 2>,
+> +			  <&k3_clks 218 5>,
+> +			  <&k3_clks 218 14>,
+> +			  <&k3_clks 218 18>;
+> +	assigned-clock-parents = <&k3_clks 218 3>,
+> +				 <&k3_clks 218 7>,
+> +				 <&k3_clks 218 16>,
+> +				 <&k3_clks 218 22>;
+> +};
 > +
-> +		vin1-supply = <&reg_vcc5v>;
-> +		vin2-supply = <&reg_vcc5v>;
-> +		vin3-supply = <&reg_vcc5v>;
+> +&serdes_wiz4 {
+> +	status = "okay";
+> +};
 > +
-> +		regulators {
-> +			/* Supplies VCC-PLL, so needs to be always 
-on. */
-> +			reg_aldo1: aldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<1800000>;
-> +				regulator-max-microvolt = 
-<1800000>;
-> +				regulator-name = "vcc1v8";
-> +			};
+> +&serdes4 {
+> +	status = "okay";
+> +	serdes4_dp_link: phy@0 {
+> +		reg = <0>;
+> +		cdns,num-lanes = <4>;
+> +		#phy-cells = <0>;
+> +		cdns,phy-type = <PHY_TYPE_DP>;
+> +		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
+> +			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
+> +	};
+> +};
 > +
-> +			/* Supplies VCC-IO, so needs to be always on. 
-*/
-> +			reg_dldo1: dldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<3300000>;
-> +				regulator-max-microvolt = 
-<3300000>;
-> +				regulator-name = "vcc3v3";
-> +			};
+> +&mhdp {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&dp0_pins_default>;
+> +	phys = <&serdes4_dp_link>;
+> +	phy-names = "dpphy";
+> +};
 > +
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<810000>;
-> +				regulator-max-microvolt = 
-<990000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
+> +&dss_ports {
+> +	port {
 
-Is it safe to change sys voltage when system is running?
+Port index has not been added here. Since this port outputs to MHDP
+bridge, this should be "port@0", and a "reg = <0>;" property should be
+added below (along with the address and size cells properties).
 
-Best regards,
-Jernej
+I suppose this works functionally in this case, because the port gets
+defaulted to "0" by the driver. But in future, when we add support for
+other dss output(s) on j784s4-evm, the driver will need indices to
+distinguish among them.
 
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<810000>;
-> +				regulator-max-microvolt = 
-<1100000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = 
-<1100000>;
-> +				regulator-max-microvolt = 
-<1100000>;
-> +				regulator-name = "vdd-dram";
-> +			};
+> +		dpi0_out: endpoint {
+> +			remote-endpoint = <&dp0_in>;
 > +		};
 > +	};
 > +};
 > +
-> +&pio {
-> +	vcc-pc-supply = <&reg_dldo1>;
-> +	vcc-pf-supply = <&reg_dldo1>;
-> +	vcc-pg-supply = <&reg_aldo1>;
-> +	vcc-ph-supply = <&reg_dldo1>;
-> +	vcc-pi-supply = <&reg_dldo1>;
+> +&main_i2c4 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c4_pins_default>;
+> +	clock-frequency = <400000>;
+> +
+> +	exp4: gpio@20 {
+> +		compatible = "ti,tca6408";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
 > +};
+> +
+> +&dp0_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
 
+These properties are being repeated from the MHDP node in the main.dtsi
+file, in the previous patch. You can drop them from one of the places.
 
+I would suggest keeping them in the main.dtsi file and removing them
+here, so that repetition is avoided across different platform.dts files,
+but I will leave the call up to you. In any case, they need to be
+removed from one of the two places.
 
+Btw, same will be applicable for dss_ports as well (once you add port
+index). Separate address and size cells properties won't be required in
+the j784s4-evm.dts and am69-sk.dts platform files, once they are already
+there in j784s4-main.dtsi.
+
+With the changes suggested above,
+
+Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+
+> +
+> +	port@0 {
+> +		reg = <0>;
+> +
+> +		dp0_in: endpoint {
+> +			remote-endpoint = <&dpi0_out>;
+> +		};
+> +	};
+> +
+> +	port@4 {
+> +		reg = <4>;
+> +
+> +		dp0_out: endpoint {
+> +			remote-endpoint = <&dp0_connector_in>;
+> +		};
+> +	};
+> +};
 
