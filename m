@@ -2,154 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7507703BA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 16:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ADF07703C2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:01:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230425AbjHDO6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 10:58:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41318 "EHLO
+        id S229736AbjHDPBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 11:01:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbjHDO6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 10:58:45 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CAFDAC;
-        Fri,  4 Aug 2023 07:58:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1691161124; x=1722697124;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k4cqc2uFUvykatWv/bI5oB09e9fHPN3dIPVE6GY6Krc=;
-  b=htGAfylN1JsCVBMkgoNjJTl8uu/iaqnewVsc+ZL9kVhc6HE41uydUsSr
-   ygrG0DXti9SoUPLwRq9yZF/wUggfmJB0k3FSAvg0iA0tv6ObQqiJryq3/
-   c0+mC4yXSTuKxi/qGD2XuYpxuflloBO08i+EvNNjkRfbppZ3jky0aSm9D
-   6zlA1ncipY+XWdkZQq9mVdmZZjS5r35BWxRtlgSN+S1kEcSM2Yyd4qXLA
-   1r5M2ptgOQkXbXycG5iyzRjuezjCqBJ84BOTS0/B8SSVi+FPRumTOpe2d
-   o45RROSYjeu1RENaHGV+mvsRK5mE2rTaVnfRD9zQMAJevRLZcLdjtU+Mp
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="369069845"
-X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; 
-   d="scan'208";a="369069845"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2023 07:58:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="765144192"
-X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; 
-   d="scan'208";a="765144192"
-Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 04 Aug 2023 07:58:37 -0700
-Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qRwGC-0002uX-2f;
-        Fri, 04 Aug 2023 14:58:36 +0000
-Date:   Fri, 4 Aug 2023 22:57:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Frank Li <Frank.Li@nxp.com>, helgaas@kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Frank.li@nxp.com, bhelgaas@google.com, devicetree@vger.kernel.org,
-        gustavo.pimentel@synopsys.com, imx@lists.linux.dev, kw@linux.com,
-        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        lpieralisi@kernel.org, mani@kernel.org,
-        manivannan.sadhasivam@linaro.org, minghuan.lian@nxp.com,
-        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v8 2/3] PCI: dwc: Implement general suspend/resume
- functionality for L2/L3 transitions
-Message-ID: <202308042251.yGAFqeDw-lkp@intel.com>
-References: <20230803150409.271155-3-Frank.Li@nxp.com>
+        with ESMTP id S229560AbjHDPBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:01:48 -0400
+Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04636AC;
+        Fri,  4 Aug 2023 08:01:45 -0700 (PDT)
+Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+        by mx.skole.hr (mx.skole.hr) with ESMTP id BDAB483DA2;
+        Fri,  4 Aug 2023 17:01:43 +0200 (CEST)
+From:   =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Date:   Fri, 04 Aug 2023 17:00:40 +0200
+Subject: [PATCH] arm: marvell: Fix maxium->maxim typo for brownstone dts
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230803150409.271155-3-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230804-brownstone-typo-fix-v1-1-4832d84c0509@skole.hr>
+X-B4-Tracking: v=1; b=H4sIAJcSzWQC/x2MywqAIBAAfyX23IKWmfQr0aFyq72oaPQg+vek4
+ wzMPJAoMiXoigciHZzYuwyyLGDeRrcSss0MlahqYYTCKfrTpd07wv0OHhe+cGkmqWfVWqMbyGW
+ IlPV/7Yf3/QBAwLDpZQAAAA==
+To:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=920;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=BzBGNFzIsGV0WTqakdf4OEopghd/zw0ZcjsFp1vPeY0=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBkzRKmPoPQxgn2Ah22tj4dcKdsa+y4W5vfKtiw2
+ 4gPAglBKTKJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZM0SpgAKCRCaEZ6wQi2W
+ 4R19D/9cQJx6W4yZ76Yv4pAWMZdjZhnIkCSvHLLqQywWLOFoljmbM67XxmWCbdsPGjab9PkRxGC
+ JELau3UO6UFw+FTClYJ8HsoIQME5q/h6hPHqhrrbpPXa9x5DRcjuaoAqXFYnaaX6mI71nKnUcOL
+ PcBUCNXmNLexBzF6N4QvHBFmFqzxbSvNVgJOThf+WETD/1outLmlgY85GNLYE7v7Be/k4sOUjHi
+ /Y42LHjXhV4h+VDcf4LCBh4LvXpvcnXDKS3ybTP9GW8gAaCoXDDx8IzMNA1LIJEQTadKcIsmVKY
+ QIxiXR54Jxy3mOhwhk41CcZlfnvZAJ3PxttkO27d41EXk4sHNLdDLxZhGeBdRN1ooRffMmzXrZh
+ ++pKnHWzCpx0WF1Ihjd1DPJsSanOUc0ZJd9IbPvO+4maokxDkBwJbIkMqBRm82/VEn9pUzg2aR+
+ VqtGC2KEsgwRHIzG3LXy3DSCZKhJvQC7Oc8zl8G5+Tvzh8EIc/9BySFWxyBu6yaaldaaHZqWLda
+ aTxo/ohqp5rRkrQg40fMt5GmGCD0gL3+UWlljggf06QDs94Dt7YJjCVeCISb6+zP2Dl77O77p5G
+ bArng0AIKoicfMgvAIye5seGHSYuXL4m6HY8+SFV7sxpS1aPf8dOPMx82kEproeddxButqY3sYe
+ Yp1mzt4fGc5RyXQ==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+Fix an obvious spelling error in the PMIC compatible in the MMP2
+Brownstone DTS file.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+ arch/arm/boot/dts/marvell/mmp2-brownstone.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[auto build test ERROR on pci/for-linus]
-[also build test ERROR on linus/master v6.5-rc4 next-20230804]
-[cannot apply to pci/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+diff --git a/arch/arm/boot/dts/marvell/mmp2-brownstone.dts b/arch/arm/boot/dts/marvell/mmp2-brownstone.dts
+index 04f1ae1382e7..bc64348b8218 100644
+--- a/arch/arm/boot/dts/marvell/mmp2-brownstone.dts
++++ b/arch/arm/boot/dts/marvell/mmp2-brownstone.dts
+@@ -28,7 +28,7 @@ &uart3 {
+ &twsi1 {
+ 	status = "okay";
+ 	pmic: max8925@3c {
+-		compatible = "maxium,max8925";
++		compatible = "maxim,max8925";
+ 		reg = <0x3c>;
+ 		interrupts = <1>;
+ 		interrupt-parent = <&intcmux4>;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/PCI-Add-macro-PCIE_PME_TO_L2_TIMEOUT_US/20230803-230808
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git for-linus
-patch link:    https://lore.kernel.org/r/20230803150409.271155-3-Frank.Li%40nxp.com
-patch subject: [PATCH v8 2/3] PCI: dwc: Implement general suspend/resume functionality for L2/L3 transitions
-config: x86_64-randconfig-x005-20230731 (https://download.01.org/0day-ci/archive/20230804/202308042251.yGAFqeDw-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce: (https://download.01.org/0day-ci/archive/20230804/202308042251.yGAFqeDw-lkp@intel.com/reproduce)
+---
+base-commit: 5d0c230f1de8c7515b6567d9afba1f196fb4e2f4
+change-id: 20230804-brownstone-typo-fix-f5b16c47d865
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308042251.yGAFqeDw-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/pci/controller/dwc/pcie-designware-host.c:835:5: error: use of undeclared identifier 'PCIE_PME_TO_L2_TIMEOUT_US'
-                                   PCIE_PME_TO_L2_TIMEOUT_US, false, pci);
-                                   ^
-   drivers/pci/controller/dwc/pcie-designware-host.c:834:5: error: use of undeclared identifier 'PCIE_PME_TO_L2_TIMEOUT_US'
-                                   PCIE_PME_TO_L2_TIMEOUT_US/10,
-                                   ^
-   2 errors generated.
-
-
-vim +/PCIE_PME_TO_L2_TIMEOUT_US +835 drivers/pci/controller/dwc/pcie-designware-host.c
-
-   811	
-   812	int dw_pcie_suspend_noirq(struct dw_pcie *pci)
-   813	{
-   814		u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-   815		u32 val;
-   816		int ret;
-   817	
-   818		/*
-   819		 * If L1SS is supported, then do not put the link into L2 as some
-   820		 * devices such as NVMe expect low resume latency.
-   821		 */
-   822		if (dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKCTL) & PCI_EXP_LNKCTL_ASPM_L1)
-   823			return 0;
-   824	
-   825		if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
-   826			return 0;
-   827	
-   828		if (!pci->pp.ops->pme_turn_off)
-   829			return 0;
-   830	
-   831		pci->pp.ops->pme_turn_off(&pci->pp);
-   832	
-   833		ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
-   834					PCIE_PME_TO_L2_TIMEOUT_US/10,
- > 835					PCIE_PME_TO_L2_TIMEOUT_US, false, pci);
-   836		if (ret) {
-   837			dev_err(pci->dev, "Timeout waiting for L2 entry! LTSSM: 0x%x\n", val);
-   838			return ret;
-   839		}
-   840	
-   841		if (pci->pp.ops->host_deinit)
-   842			pci->pp.ops->host_deinit(&pci->pp);
-   843	
-   844		pci->suspended = true;
-   845	
-   846		return ret;
-   847	}
-   848	EXPORT_SYMBOL_GPL(dw_pcie_suspend_noirq);
-   849	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Duje Mihanović <duje.mihanovic@skole.hr>
+
+
