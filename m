@@ -2,190 +2,730 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82EAF76FE1D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D1CC76FE2E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231266AbjHDKHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 06:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57676 "EHLO
+        id S230137AbjHDKLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 06:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231299AbjHDKGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:06:47 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2072.outbound.protection.outlook.com [40.107.215.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8121C4EDD;
-        Fri,  4 Aug 2023 03:06:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hXmwP0otyt/Wkj7C9vbsBq9QmS59SM8T+ebx8dD1W+oFj7IWpfE8J1O37BaRV7eP6he7951C71Oe3tQy06OgLnVsk68vTx0RjY18sLvN2sT33oV6o/ELl5bkQ0FfqXwguNfYNGeU+xDZzot2hUEPktoG2OH/PcLhn5wrjqk+Z4m9W03xeVVGBRb+CkjEdpKBOuS5HdNLLrStZYSWQ6G9uqY5CxVE9rOZJg75rYZZQXkIERHM5DjoeCq580NNhCprxGv9B8ND5E4XLvB6k6T50sEM5WTb8tA11/40bEq2d3rplBmaLCGJ5iwgnx9iD4RvjChmuMNWlGSsVgzX3UpsoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1QE91eFotxsDMpY1gIbcn2ZhTaUz2EreQA7dMoY1yEw=;
- b=WyxO6vbBBSuUDEpLY0eQy3XpkDYbL91N031N7DZUEwM/Gn8P+UKLqVM0rFQsUXc2kHspaL4SiRKlo3Sm/0A/6MiP2VGOViMv/jY4cCWdhFg8XC2lUbZvXMMmLFoanLm8Xdnd5kFkKoUxClZvTH2KIrQVYUkKsj+fCRH0rjiSF3TO1sbn47Oo2fbEk/lnZVrTjdApyVNa8dOUOp9VgTHv9Bs9u2kBM67sCa/i+FlLFyctkdTexTTqo4L6rpsOBubSMcdIzbnz2cAfu/qhmjADwfek3bcrS5V0sp7H1M5ab6RVdtSWWvQo712o9ON2m1kq+buN7FkXpvJ9C4+fu5mr5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wiwynn.com; dmarc=pass action=none header.from=wiwynn.com;
- dkim=pass header.d=wiwynn.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1QE91eFotxsDMpY1gIbcn2ZhTaUz2EreQA7dMoY1yEw=;
- b=OufVkg2TfhKibFTavfgs1cotH/zZKU60evRU+SR1zYCB5giM0I2gwXicmzOrOiBKoAfCDW/f/V4sjkHu6VJQzeujIWkN7if28ZIZ22SaaLq6INnbWTB8W3kKq0Ex3MF2Rn230u8PbD7JCrfpqExT6Qv/u2xhNxpEjaSf4wuO4SfE0v5VHXKZXTUaC87rsDAlrtCPP5GVshAEHLc3bn3Po3Qud+iaF7B7MSDKkld0BulNrP4k9ZgaPG/0ElYHj9qIEtFzk/Cbjv9fEHcaP4S/mVyyeed9S1pgcHmodApu7J5svceYvQtdNz53WZbC/2Qos2QqHaaiFksTWwO91zO+xA==
-Received: from PS2PR04MB3592.apcprd04.prod.outlook.com (2603:1096:300:61::21)
- by TYUPR04MB6672.apcprd04.prod.outlook.com (2603:1096:400:35d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Fri, 4 Aug
- 2023 10:06:33 +0000
-Received: from PS2PR04MB3592.apcprd04.prod.outlook.com
- ([fe80::60cf:9db2:83b5:dae]) by PS2PR04MB3592.apcprd04.prod.outlook.com
- ([fe80::60cf:9db2:83b5:dae%6]) with mapi id 15.20.6652.020; Fri, 4 Aug 2023
- 10:06:33 +0000
-From:   Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S230507AbjHDKLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:11:15 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E0546BB;
+        Fri,  4 Aug 2023 03:11:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1691143872; x=1722679872;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Il5+O5w7ZVnUlOlit35lT9pNLo6bystlsYyZGUPJso4=;
+  b=SnVskrAq5gfn8IUSmZATybz5Xb7hK16+E7hB9HCy8lM55DO+ZU3rA93a
+   TQ/PghXwJ2rDQYSMKbayPMTZ9KV4I9/jGxQNJgvk031caiRyBz7VvCfy7
+   T2/bCwwAtZXMLiKWC5fKH1nt08AXrJCzcs+njdg9bT0aBWk3mJLlz1Fun
+   KsUwCiR48rPWtDn/0zU2+mmyJ9+jezG6slGrWoXdOu1iJIlI/uyLImntL
+   Yt0y/e63Tr8kqbOygdeKwd2Upt9qNzTz7v09GuJ0Uh2+NsF9N2c+WY/Mb
+   3aiMS1gQSEzNfJyO2U7kx81TmCTr/Zqjbrf9m9bWFZDGVWOUjUm8F8v5N
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; 
+   d="scan'208";a="227149404"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Aug 2023 03:11:11 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 4 Aug 2023 03:11:06 -0700
+Received: from virtualbox.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Fri, 4 Aug 2023 03:11:01 -0700
+From:   Mihai Sain <mihai.sain@microchip.com>
+To:     <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <cristian.birsan@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <andre.przywara@arm.com>,
+        <jerry.ray@microchip.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite V4
- board
-Thread-Topic: [PATCH 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite V4
- board
-Thread-Index: AQHZwDvz7mf7a/3GTUmfLqehWY+O4a/NLF2AgAkkwmCAAiWmgIABe0Dw
-Date:   Fri, 4 Aug 2023 10:06:33 +0000
-Message-ID: <PS2PR04MB3592CBAB0B248418D80C67ECB709A@PS2PR04MB3592.apcprd04.prod.outlook.com>
-References: <20230727033926.1904529-1-Delphine_CC_Chiu@wiwynn.com>
- <c9062d5c-b536-f89c-b380-8a0c9b858526@linaro.org>
- <PS2PR04MB35928B386F03C987061433D2B70BA@PS2PR04MB3592.apcprd04.prod.outlook.com>
- <9654ac64-11c6-9fae-0e8d-feb6440dd45c@linaro.org>
-In-Reply-To: <9654ac64-11c6-9fae-0e8d-feb6440dd45c@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wiwynn.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PS2PR04MB3592:EE_|TYUPR04MB6672:EE_
-x-ms-office365-filtering-correlation-id: f228bcc8-79bf-4feb-b4ad-08db94d27b29
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +iCFDAtUCWEXxgJ3JBLpO6vAH/puda+NJ8r/472DJOkZv5wwzBs3z4fURAAxqgrUtMwYpp+qMH0LhSpIyj+AfOSwb4CGKlzhzSvjVitWC6elZs+NRA0Ec59PHcFMQqgt2/Sv2DXAKAuWTHHHep/ewYSouM5KXqhyGlBQv0MxkicAylnEbZaqG2gwRm272xZysnKAopvDYB9iQ6Nl53cboQKUD0M2NMyD/3elTRNDTFa0870NaGg7Szgi8dgEBUyglOhvBkJeJH+nsToJQGBHWJbpyprVc8BgxsljD2nI1n4CXvIHRaMeDPRX8mgNt6vNxGq5T+soJSLUyOvEcsG4dplj0jEBQgdqgo28tV0sYD0mQzKtiFzjlVwwY3qwDFOsyiehZFf6ol5CMuuG3/t4syoT1Ibp2YKEmNP/0zhmJb6Bpk4FYu2my0+GErrvjyQtg5melyfozhDF+wsJSZpGHwxJye0aqlt+OkqPoorpBKsdc8iCm2umPJYWxdIXPV8EIzOAdDDYYeYXQt0ur5nEv0VSYU67dRs530bSYZHvyDfwOuTNdP3HiRYt8fYIY8+e9vWY1ql7rSy3vggJlb+goKJrrIoMM1xMiDNCEdkbWrgvah/BBggT+fuClMiP1b2F
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS2PR04MB3592.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(366004)(136003)(39860400002)(47680400002)(451199021)(1800799003)(186006)(66446008)(66556008)(41300700001)(316002)(2906002)(76116006)(66946007)(64756008)(4326008)(66476007)(52536014)(8936002)(8676002)(5660300002)(122000001)(33656002)(26005)(38070700005)(6506007)(53546011)(83380400001)(86362001)(38100700002)(7696005)(478600001)(9686003)(54906003)(71200400001)(110136005)(55016003)(7416002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b1drVWpXSmVJcVlvZk9TdTZwdFZhVGEzclVod015Q09FL3QxYjhLTnVIM0sv?=
- =?utf-8?B?YWtUcGFxeW1OMDA0UHBNaE5saGJqeVlVdTM5OXFwZFQ0WGppQUptK3l3dTVj?=
- =?utf-8?B?dkFkODNZa2tKSm9ndHRGeXFmZEtja0FRT2dENjk1VHZZRDFzeU9mb1NDdUJT?=
- =?utf-8?B?R1J4REtRcWNBZFUrZ0J4YlByL2QrVGMraDF1dm14akxxckNyNHhNSmFHOGJX?=
- =?utf-8?B?NEpoTFROcnozUGsva0RJeXhvU2U4QkVXaTlwWlF4TEhRVm5sK0tEczBHZk5l?=
- =?utf-8?B?aUhDVDlyWGxzSzNGc3BHUzhwUVJnWThwTmhZR29MSWdnMzY1bGFpd25VMElY?=
- =?utf-8?B?N3A5OVAxN1lLb0tuTm15Yy8wMjRpc216Ny80dC81RXY1SUs1WmFtdFV4VUlo?=
- =?utf-8?B?aFlhcjdqMDA2blh4Rk9KbUJhWVB6c0FUUFlvQ2JjYms4WUd1MUJHUDhiWTRC?=
- =?utf-8?B?emhkcnorZTNPaHRrMDZYdnBjYmFjOC9Ca3UyYjcwYkZrUkJhUytVSFZJSHFU?=
- =?utf-8?B?T1N6WjdYVjlkeE9iV00wMlJGa0ZGLzVtWUEyajZHTWRHTXVCaEhBYTZ2NTBt?=
- =?utf-8?B?SUEzSVlieGNSVEV3alBMelhWOEV5TkVxaXZIOFhTUlppVnF0WkMxTjVLRldK?=
- =?utf-8?B?UktjU1VGL3ZvcXp6eFdRdGFXcFFDQWpna2wySzFYWk9hREdESXU2ZCtXUFBH?=
- =?utf-8?B?T3AvOVVaUGhWa0ZOd3M0b25oZkFnNVpoVmdmNnBDemViNDNUL1FzVytiN1Bw?=
- =?utf-8?B?dzRsVGZGRDNyYTVrQXJ5UmlRWW1hcEtnaXROMUE3OTZObDVHMFdCSVUxV1Uv?=
- =?utf-8?B?STFYUjdHaEg3alBEUkI4aVNaZVlKYU1ZV3A0ckRjL1BmSnphazBNVWVCR0dL?=
- =?utf-8?B?clJldVpmNk0xT1dPS1VJV1hhVWw1dVpkRmVtUVVIRzIvT25saUtVZUxzSlZV?=
- =?utf-8?B?cE91bHEyRXFoK3p4K3daVGxwTUk4Y2N5TVNrTlBzM3NHbzBUWk5EdXAxUG1q?=
- =?utf-8?B?QWRNTE1JUTE2MmxjT3VqUGQrbmZYdUZLaElMdEc0cW9lVnlIVEZYWlp6TjB6?=
- =?utf-8?B?QTJUNkZpMkp6bm5ReE0xUDZzTlFyRlJqVmVIclNCZ2JxYlhybk9KU042Wkla?=
- =?utf-8?B?WTlhZjQvTmNCK1hQYnFIeU16SHcwdkxUQ3paNUI1OCtKTEkydDZYZE5zcjBa?=
- =?utf-8?B?anMzMEZzQThtVEtpQlkrSEdOZVVLRFQ5dUhIQ3NrRlRyUzB6REpsbjlkZ01k?=
- =?utf-8?B?NkpLZERSdTl6a3ppSUI0TGZnbUxCY0xSUDBkSTB5QU4zSHlDa01xMmpjNDBT?=
- =?utf-8?B?NkxpalpMNjJjV3VveXIxK1ZYd2JRMXIrL1NuQjRCQko5VXFxNHAxRVZpRnYz?=
- =?utf-8?B?OFBQZ295ZlR3dUFSbXc0OE5xNkgrc002ak56eThORlVnRjdyVjNVUUxsanFQ?=
- =?utf-8?B?U0JjN2kwcmhGSkVyZisrMkwraGlLeGdudTJHbUhvUU1nMHJ6TnlEOUY5Y2tz?=
- =?utf-8?B?VVNOZ2RkUVFLSTNjaWdKRURzMUhlYStCbGI1dlh2U3VzUDBTaU40MExab0ZX?=
- =?utf-8?B?aGQ3eDZKTWpPaUo0WTNXLzFySzgvTGNTNEE1L3RwMFVGaXBwZmFTU0dTYStB?=
- =?utf-8?B?ZytaS2t6QU1pZ0ZWZ0txeVpaWFVENWlyWmJXL1RQVUNEVHlyNXp4R2dMVGpU?=
- =?utf-8?B?YlhjY0tmL1JPQWRIVUVvRXRuTE1OTkRpcFBKUE5SK1pwUlh3c3R0dW44WnZs?=
- =?utf-8?B?Kytqa0hMeXcyY29VVzJoTFV3cFRVbXU2Nk1jaHR3dG9LTEhFOElmanNtMUFs?=
- =?utf-8?B?MnBQNVdLVUZDeUJKbVZna0VvY0lzZ3RpMkdpNlB4NzhkUzdDaFVUMnVtT1Bh?=
- =?utf-8?B?NExYeitoeTVUZ09EdDRyeFFrV2tHQW5IWDUxOHBaZ2J3TkJ3ZFovbFE2STls?=
- =?utf-8?B?WDJCa2txc2xrM3g3NnhzTHArVVNYSW1CbzJjMW41NmN2Qk1aL0ZPOFVlNU9h?=
- =?utf-8?B?ZHZKOVBVUDJwTFhudFlDdE8zZzNuMzR2Z3ovTWpaOHV3QzNHQXBmY1dWbENv?=
- =?utf-8?B?SDhLUG5leUd5V0hKWFVHYThkNkdWZ2N4OGIyVUVZZmdlakl4cTJMNHVxSDFu?=
- =?utf-8?Q?24EXEdvIStVBOg549+QNyy7ub?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        <linux-kernel@vger.kernel.org>
+CC:     <andrei.simion@microchip.com>,
+        Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sama5d29_curiosity: Add device tree for sama5d29_curiosity board
+Date:   Fri, 4 Aug 2023 13:10:43 +0300
+Message-ID: <20230804101043.4063-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PS2PR04MB3592.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f228bcc8-79bf-4feb-b4ad-08db94d27b29
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Aug 2023 10:06:33.3090
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DHgGatt+aqs1G1HFUfgqcYD9tULUZVKi6XBK6SuPBPuu5jMWx5ZM6bC2qGx3aAH16AZmnGg5frCVNeyvfkLInw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR04MB6672
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
-QXVndXN0IDMsIDIwMjMgNzoxNCBQTQ0KPiBUbzogRGVscGhpbmVfQ0NfQ2hpdS9XWUhRL1dpd3lu
-biA8RGVscGhpbmVfQ0NfQ2hpdUB3aXd5bm4uY29tPjsNCj4gcGF0cmlja0BzdHdjeC54eXo7IFJv
-YiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YgS296bG93c2tpDQo+IDxr
-cnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+OyBDb25vciBEb29sZXkgPGNvbm9yK2R0
-QGtlcm5lbC5vcmc+Ow0KPiBKb2VsIFN0YW5sZXkgPGpvZWxAam1zLmlkLmF1PjsgQW5kcmV3IEpl
-ZmZlcnkgPGFuZHJld0Bhai5pZC5hdT4NCj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
-OyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+IGxpbnV4LWFzcGVlZEBs
-aXN0cy5vemxhYnMub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6
-IFJlOiBbUEFUQ0ggMS8yXSBkdC1iaW5kaW5nczogYXJtOiBhc3BlZWQ6IGFkZCBGYWNlYm9vayBZ
-b3NlbWl0ZQ0KPiBWNCBib2FyZA0KPiANCj4gICBTZWN1cml0eSBSZW1pbmRlcjogUGxlYXNlIGJl
-IGF3YXJlIHRoYXQgdGhpcyBlbWFpbCBpcyBzZW50IGJ5IGFuIGV4dGVybmFsDQo+IHNlbmRlci4N
-Cj4gDQo+IE9uIDAyLzA4LzIwMjMgMDQ6MzQsIERlbHBoaW5lX0NDX0NoaXUvV1lIUS9XaXd5bm4g
-d3JvdGU6DQo+ID4NCj4gPg0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+PiBG
-cm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+
-DQo+ID4+IFNlbnQ6IFRodXJzZGF5LCBKdWx5IDI3LCAyMDIzIDI6NDkgUE0NCj4gPj4gVG86IERl
-bHBoaW5lX0NDX0NoaXUvV1lIUS9XaXd5bm4NCj4gPERlbHBoaW5lX0NDX0NoaXVAd2l3eW5uLmNv
-bT47DQo+ID4+IHBhdHJpY2tAc3R3Y3gueHl6OyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwu
-b3JnPjsgS3J6eXN6dG9mDQo+ID4+IEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraStkdEBs
-aW5hcm8ub3JnPjsgQ29ub3IgRG9vbGV5DQo+ID4+IDxjb25vcitkdEBrZXJuZWwub3JnPjsgSm9l
-bCBTdGFubGV5IDxqb2VsQGptcy5pZC5hdT47IEFuZHJldyBKZWZmZXJ5DQo+ID4+IDxhbmRyZXdA
-YWouaWQuYXU+DQo+ID4+IENjOiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtYXJt
-LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOw0KPiA+PiBsaW51eC1hc3BlZWRAbGlzdHMub3ps
-YWJzLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiA+PiBTdWJqZWN0OiBSZTog
-W1BBVENIIDEvMl0gZHQtYmluZGluZ3M6IGFybTogYXNwZWVkOiBhZGQgRmFjZWJvb2sNCj4gPj4g
-WW9zZW1pdGUgVjQgYm9hcmQNCj4gPj4NCj4gPj4gICBTZWN1cml0eSBSZW1pbmRlcjogUGxlYXNl
-IGJlIGF3YXJlIHRoYXQgdGhpcyBlbWFpbCBpcyBzZW50IGJ5IGFuDQo+ID4+IGV4dGVybmFsIHNl
-bmRlci4NCj4gPj4NCj4gPj4gT24gMjcvMDcvMjAyMyAwNTozOSwgRGVscGhpbmUgQ0MgQ2hpdSB3
-cm90ZToNCj4gPj4+IERvY3VtZW50IHRoZSBuZXcgY29tcGF0aWJsZXMgdXNlZCBvbiBGYWNlYm9v
-ayBZb3NlbWl0ZSBWNC4NCj4gPj4+DQo+ID4+PiBTaWduZWQtb2ZmLWJ5OiBEZWxwaGluZSBDQyBD
-aGl1IDxEZWxwaGluZV9DQ19DaGl1QHdpd3lubi5jb20+DQo+ID4+PiAtLS0NCj4gPj4+ICBEb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FzcGVlZC9hc3BlZWQueWFtbCB8IDEg
-Kw0KPiA+Pj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+Pg0KPiA+PiBJIGdv
-dCB0aGUgc2FtZSBwYXRjaCBmb3VyIHRpbWVzLi4uDQo+ID4gSXQgd2FzIG15IG92ZXJzaWdodCB0
-byBzZW5kIHRoZSBzYW1lIHBhdGNoIG11bHRpcGxlIHRpbWVzLg0KPiA+IFdvdWxkIHlvdSBwbGVh
-c2UgdG8gdGVsbCB0aGF0IHNob3VsZCBJIHJlc2VuZCBhIG5ldyB2ZXJzaW9uLCBvciB0aGVzZQ0K
-PiBwYXRjaGVzIGhhcyBiZWVuIGFscmVhZHkgdW5kZXIgcmV2aWV3ZWQuDQo+ID4gVGhhbmsgeW91
-Lg0KPiANCj4gSSBkb24ndCBzZWUgdmVyc2lvbmluZywgbm8gY2hhbmdlbG9nLiBUaHVzIGlmIHlv
-dSBzZW5kIHRoZSBzYW1lIHBhdGNoZXMgYWxsDQo+IHRoZSB0aW1lLCB0aGVuIGFuc3dlciBpcyAt
-IHBsZWFzZSB2ZXJzaW9uIHlvdXIgcGF0Y2hlcywgaW1wbGVtZW50IHRoZQ0KPiBmZWVkYmFjayBh
-bmQgZXhwbGFpbiBpbiBjaGFuZ2Vsb2cgd2hhdCBjaGFuZ2VkLg0KSXQgc2VlbXMgdGhhdCB2ZXJz
-aW9uaW5nIGRpZG4ndCBhZGRlZCBzdWNjZXNzZnVsbHkgaW4gZHVwbGljYXRlZCBwYXRjaGVzLg0K
-DQpJIHdpbGwgdXBkYXRlIHY1IHBhdGNoZXMgZm9yIHZlcnNpb25pbmcsIGNoYW5nZWxvZ3MgYW5k
-IGFsbCBmZWVkYmFjaydzIGltcGxlbWVudGF0aW9uLCB3aXRob3V0IGR1cGxpY2F0aW5nIHNlbmRp
-bmcuDQpQbGVhc2UgaGVscCB0byB0ZWxsIGlmIHRoZXJlJ3MgYW55IGZlZWRiYWNrIEkgbG9zdCwg
-dGhhbmsgeW91Lg0KPiANCj4gT3RoZXJ3aXNlIGl0IHdpbGwgbm90IGdldCByZXZpZXdlZCwgc28g
-SSBhc3N1bWUgdGhpcyB3YXMgbm90IHJldmlld2VkIGFuZCBpdA0KPiBpcyB3YWl0aW5nIGZvciBw
-cm9wZXIgc3VibWlzc2lvbi4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
+Add initial device tree file for sama5d29_curiosity board.
+
+Changes in v2:
+* drop dt-bindings patch
+* remove vdd_1v8 regulator
+* fix flx4 node to use 1 spi node and pinctrl
+* add i2s0 node and pinctrl
+* remove macb0 node and pinctrl
+* remove unused pinctrl
+* sort in alphabetical order all nodes and pinctrl
+* replace "_" with "-" in node names
+
+Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+---
+ arch/arm/boot/dts/microchip/Makefile          |   2 +
+ .../dts/microchip/at91-sama5d29_curiosity.dts | 615 ++++++++++++++++++
+ 2 files changed, 617 insertions(+)
+ create mode 100644 arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+
+diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
+index 31e03747cdf4..efde9546c8f4 100644
+--- a/arch/arm/boot/dts/microchip/Makefile
++++ b/arch/arm/boot/dts/microchip/Makefile
+@@ -4,6 +4,7 @@ DTC_FLAGS_at91-sam9x60_curiosity := -@
+ DTC_FLAGS_at91-sam9x60ek := -@
+ DTC_FLAGS_at91-sama5d27_som1_ek := -@
+ DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
++DTC_FLAGS_at91-sama5d29_curiosity := -@
+ DTC_FLAGS_at91-sama5d2_icp := -@
+ DTC_FLAGS_at91-sama5d2_ptc_ek := -@
+ DTC_FLAGS_at91-sama5d2_xplained := -@
+@@ -64,6 +65,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+ 	at91-nattis-2-natte-2.dtb \
+ 	at91-sama5d27_som1_ek.dtb \
+ 	at91-sama5d27_wlsom1_ek.dtb \
++	at91-sama5d29_curiosity.dtb \
+ 	at91-sama5d2_icp.dtb \
+ 	at91-sama5d2_ptc_ek.dtb \
+ 	at91-sama5d2_xplained.dtb \
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+new file mode 100644
+index 000000000000..06818962e1f9
+--- /dev/null
++++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+@@ -0,0 +1,615 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * at91-sama5d29_curiosity.dts - Device Tree file for SAMA5D29 Curiosity board
++ *
++ * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
++ *
++ * Author: Mihai Sain <mihai.sain@microchip.com>
++ *
++ */
++/dts-v1/;
++#include "sama5d29.dtsi"
++#include "sama5d2-pinfunc.h"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/mfd/atmel-flexcom.h>
++
++/ {
++	model = "Microchip SAMA5D29 Curiosity";
++	compatible = "microchip,sama5d29-curiosity", "atmel,sama5d29", "atmel,sama5d2", "atmel,sama5";
++
++	aliases {
++		serial0 = &uart0;	// debug
++		serial1 = &uart1;	// RPi
++		serial2 = &uart3;	// mikro BUS 2
++		serial3 = &uart4;	// mikro BUS 1
++		serial4 = &uart6;	// flx1 Bluetooth
++		i2c0 = &i2c0;
++		i2c1 = &i2c1;
++	};
++
++	chosen {
++		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
++		stdout-path = "serial0:115200n8";
++	};
++
++	clocks {
++		slow_xtal {
++			clock-frequency = <32768>;
++		};
++
++		main_xtal {
++			clock-frequency = <24000000>;
++		};
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_key_gpio_default>;
++
++		button-1 {
++			label = "USER BUTTON";
++			gpios = <&pioA PIN_PA17 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_PROG1>;
++			wakeup-source;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_led_gpio_default>;
++		status = "okay";
++
++		red {
++			label = "red";
++			gpios = <&pioA PIN_PA7 GPIO_ACTIVE_HIGH>;
++		};
++
++		green {
++			label = "green";
++			gpios = <&pioA PIN_PA8 GPIO_ACTIVE_HIGH>;
++		};
++
++		blue {
++			label = "blue";
++			gpios = <&pioA PIN_PA9 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "heartbeat";
++		};
++	};
++
++	memory@20000000 {
++		device_type = "memory";
++		reg = <0x20000000 0x20000000>;
++	};
++};
++
++&adc {
++	vddana-supply = <&vdd_3v3>;
++	vref-supply = <&vdd_3v3>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc_default &pinctrl_adtrg_default>;
++	status = "okay";
++};
++
++&can0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_can0_default>;
++	status = "okay";
++};
++
++&can1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_can1_default>;
++	status = "okay";
++};
++
++&flx1 {
++	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
++	status = "okay";
++
++	uart6: serial@200 {
++		pinctrl-0 = <&pinctrl_flx1_default>;
++		pinctrl-names = "default";
++		atmel,use-dma-rx;
++		atmel,use-dma-tx;
++		status = "okay";
++	};
++};
++
++&flx4 {
++	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_SPI>;
++	status = "okay";
++
++	spi6: spi@400 {
++		dmas = <0>, <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_rpi_spi>;
++		status = "okay";
++	};
++};
++
++&i2c0 {
++	dmas = <0>, <0>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c0_default>;
++	pinctrl-1 = <&pinctrl_i2c0_gpio>;
++	sda-gpios = <&pioA PIN_PB31 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&pioA PIN_PC0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	i2c-sda-hold-time-ns = <350>;
++	status = "okay";
++
++	mcp16502@5b {
++		compatible = "microchip,mcp16502";
++		reg = <0x5b>;
++		status = "okay";
++		lpm-gpios = <&pioBU 0 GPIO_ACTIVE_LOW>;
++
++		regulators {
++			vdd_3v3: VDD_IO {
++				regulator-name = "VDD_IO";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-initial-mode = <2>;
++				regulator-allowed-modes = <2>, <4>;
++				regulator-always-on;
++
++				regulator-state-standby {
++					regulator-on-in-suspend;
++					regulator-mode = <4>;
++				};
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-mode = <4>;
++				};
++			};
++
++			vddio_ddr: VDD_DDR {
++				regulator-name = "VDD_DDR";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-initial-mode = <2>;
++				regulator-allowed-modes = <2>, <4>;
++				regulator-always-on;
++
++				regulator-state-standby {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1200000>;
++					regulator-changeable-in-suspend;
++					regulator-mode = <4>;
++				};
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1200000>;
++					regulator-changeable-in-suspend;
++					regulator-mode = <4>;
++				};
++			};
++
++			vdd_core: VDD_CORE {
++				regulator-name = "VDD_CORE";
++				regulator-min-microvolt = <1250000>;
++				regulator-max-microvolt = <1250000>;
++				regulator-initial-mode = <2>;
++				regulator-allowed-modes = <2>, <4>;
++				regulator-always-on;
++
++				regulator-state-standby {
++					regulator-on-in-suspend;
++					regulator-mode = <4>;
++				};
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-mode = <4>;
++				};
++			};
++
++			vdd_ddr: VDD_OTHER {
++				regulator-name = "VDD_OTHER";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-initial-mode = <2>;
++				regulator-allowed-modes = <2>, <4>;
++				regulator-always-on;
++
++				regulator-state-standby {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++					regulator-changeable-in-suspend;
++					regulator-mode = <4>;
++				};
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++					regulator-changeable-in-suspend;
++					regulator-mode = <4>;
++				};
++			};
++
++			LDO1 {
++				regulator-name = "LDO1";
++				regulator-min-microvolt = <2500000>;
++				regulator-max-microvolt = <2500000>;
++				regulator-always-on;
++
++				regulator-state-standby {
++					regulator-on-in-suspend;
++				};
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			LDO2 {
++				regulator-name = "LDO2";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++
++				regulator-state-standby {
++					regulator-on-in-suspend;
++				};
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++		};
++	};
++};
++
++&i2c1 {
++	dmas = <0>, <0>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c1_default>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	i2c-analog-filter;
++	i2c-digital-filter;
++	i2c-digital-filter-width-ns = <35>;
++	sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++};
++
++&i2s0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2s0_default>;
++	status = "okay";
++};
++
++&pioA {
++	pinctrl_adc_default: adc-default {
++		pinmux = <PIN_PD25__GPIO>,
++			 <PIN_PD26__GPIO>;
++		bias-disable;
++	};
++
++	pinctrl_adtrg_default: adtrg-default {
++		pinmux = <PIN_PD31__ADTRG>;
++		bias-pull-up;
++	};
++
++	pinctrl_can0_default: can0-default {
++		pinmux = <PIN_PC10__CANTX0>,
++			 <PIN_PC11__CANRX0>;
++		bias-disable;
++	};
++
++	pinctrl_can1_default: can1-default {
++		pinmux = <PIN_PC26__CANTX1>,
++			 <PIN_PC27__CANRX1>;
++		bias-disable;
++	};
++
++	pinctrl_debug_uart: debug-uart {
++		pinmux = <PIN_PB26__URXD0>,
++			 <PIN_PB27__UTXD0>;
++		bias-disable;
++	};
++
++	pinctrl_flx1_default: flx1-default {
++		pinmux = <PIN_PA24__FLEXCOM1_IO0>,
++			 <PIN_PA23__FLEXCOM1_IO1>,
++			 <PIN_PA25__FLEXCOM1_IO3>,
++			 <PIN_PA26__FLEXCOM1_IO4>;
++		bias-disable;
++	};
++
++	pinctrl_i2c0_default: i2c0-default {
++		pinmux = <PIN_PB31__TWD0>,
++			 <PIN_PC0__TWCK0>;
++		bias-disable;
++	};
++
++	pinctrl_i2c0_gpio: i2c0-gpio {
++		pinmux = <PIN_PB31__GPIO>,
++			 <PIN_PC0__GPIO>;
++		bias-disable;
++	};
++
++	pinctrl_i2c1_default: i2c1-default {
++		pinmux = <PIN_PD4__TWD1>,
++			 <PIN_PD5__TWCK1>;
++		bias-disable;
++	};
++
++	pinctrl_i2c1_gpio: i2c1-gpio {
++		pinmux = <PIN_PD4__GPIO>,
++			 <PIN_PD5__GPIO>;
++		bias-disable;
++	};
++
++	pinctrl_i2s0_default: i2s0-default {
++		pinmux = <PIN_PD19__I2SC0_CK>,
++			 <PIN_PD20__I2SC0_MCK>,
++			 <PIN_PD21__I2SC0_WS>,
++			 <PIN_PD22__I2SC0_DI0>,
++			 <PIN_PD23__I2SC0_DO0>;
++		bias-disable;
++	};
++
++	pinctrl_key_gpio_default: key-gpio-default {
++		pinmux = <PIN_PA17__GPIO>;
++		bias-pull-up;
++	};
++
++	pinctrl_led_gpio_default: led-gpio-default {
++		pinmux = <PIN_PA7__GPIO>,
++			 <PIN_PA8__GPIO>,
++			 <PIN_PA9__GPIO>;
++		bias-pull-up;
++	};
++
++	pinctrl_mikrobus1_pwm: mikrobus1-pwm {
++		pinmux = <PIN_PA31__PWML0>;
++		bias-disable;
++	};
++
++	pinctrl_mikrobus2_pwm: mikrobus2-pwm {
++		pinmux = <PIN_PB0__PWMH1>;
++		bias-disable;
++	};
++
++	pinctrl_mikrobus1_uart: mikrobus1-uart {
++		pinmux = <PIN_PB3__URXD4>,
++			 <PIN_PB4__UTXD4>;
++		bias-disable;
++	};
++
++	pinctrl_mikrobus2_uart: mikrobus2-uart {
++		pinmux = <PIN_PB11__URXD3>,
++			 <PIN_PB12__UTXD3>;
++		bias-disable;
++	};
++
++	pinctrl_qspi1_default: qspi1-default {
++		pinmux = <PIN_PB5__QSPI1_SCK>,
++			 <PIN_PB6__QSPI1_CS>,
++			 <PIN_PB7__QSPI1_IO0>,
++			 <PIN_PB8__QSPI1_IO1>,
++			 <PIN_PB9__QSPI1_IO2>,
++			 <PIN_PB10__QSPI1_IO3>;
++		bias-disable;
++	};
++
++	pinctrl_rpi_spi: rpi-spi {
++		pinmux = <PIN_PD12__FLEXCOM4_IO0>,
++			 <PIN_PD13__FLEXCOM4_IO1>,
++			 <PIN_PD14__FLEXCOM4_IO2>,
++			 <PIN_PD15__FLEXCOM4_IO3>,
++			 <PIN_PD16__FLEXCOM4_IO4>;
++		bias-disable;
++	};
++
++	pinctrl_rpi_uart: rpi-uart {
++		pinmux = <PIN_PD2__URXD1>,
++			 <PIN_PD3__UTXD1>;
++		bias-disable;
++	};
++
++	pinctrl_sdmmc0_default: sdmmc0-default {
++		pinmux = <PIN_PA0__SDMMC0_CK>,
++			 <PIN_PA1__SDMMC0_CMD>,
++			 <PIN_PA2__SDMMC0_DAT0>,
++			 <PIN_PA3__SDMMC0_DAT1>,
++			 <PIN_PA4__SDMMC0_DAT2>,
++			 <PIN_PA5__SDMMC0_DAT3>,
++			 <PIN_PA11__SDMMC0_VDDSEL>,
++			 <PIN_PA13__SDMMC0_CD>;
++		bias-disable;
++	};
++
++	pinctrl_sdmmc1_default: sdmmc1-default {
++		pinmux = <PIN_PA18__SDMMC1_DAT0>,
++			 <PIN_PA19__SDMMC1_DAT1>,
++			 <PIN_PA20__SDMMC1_DAT2>,
++			 <PIN_PA21__SDMMC1_DAT3>,
++			 <PIN_PA22__SDMMC1_CK>,
++			 <PIN_PA28__SDMMC1_CMD>,
++			 <PIN_PA30__SDMMC1_CD>;
++		bias-disable;
++	};
++
++	pinctrl_spi1_default: spi1-default {
++		pinmux = <PIN_PC1__SPI1_SPCK>,
++			 <PIN_PC2__SPI1_MOSI>,
++			 <PIN_PC3__SPI1_MISO>,
++			 <PIN_PC4__SPI1_NPCS0>,
++			 <PIN_PC5__SPI1_NPCS1>,
++			 <PIN_PC6__SPI1_NPCS2>,
++			 <PIN_PC7__SPI1_NPCS3>;
++		bias-disable;
++	};
++
++	pinctrl_usb_default: usb-default {
++		pinmux = <PIN_PA6__GPIO>;
++		bias-disable;
++	};
++
++	pinctrl_usba_vbus: usba-vbus {
++		pinmux = <PIN_PB13__GPIO>;
++		bias-disable;
++	};
++};
++
++&pwm0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_mikrobus1_pwm &pinctrl_mikrobus2_pwm>;
++	status = "okay";
++};
++
++&qspi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_qspi1_default>;
++	status = "okay";
++
++	flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <80000000>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
++		m25p,fast-read;
++		label = "atmel_qspi1";
++		status = "okay";
++
++		at91bootstrap@0 {
++			label = "at91bootstrap";
++			reg = <0x0 0x40000>;
++		};
++
++		bootloader@40000 {
++			label = "bootloader";
++			reg = <0x40000 0xc0000>;
++		};
++
++		bootloaderenvred@100000 {
++			label = "bootloader env redundant";
++			reg = <0x100000 0x40000>;
++		};
++
++		bootloaderenv@140000 {
++			label = "bootloader env";
++			reg = <0x140000 0x40000>;
++		};
++
++		dtb@180000 {
++			label = "device tree";
++			reg = <0x180000 0x80000>;
++		};
++
++		kernel@200000 {
++			label = "kernel";
++			reg = <0x200000 0x600000>;
++		};
++	};
++};
++
++&sdmmc0 {
++	bus-width = <4>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sdmmc0_default>;
++	disable-wp;
++	status = "okay";
++};
++
++&sdmmc1 {
++	bus-width = <4>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sdmmc1_default>;
++	disable-wp;
++	status = "okay";
++};
++
++&shutdown_controller {
++	debounce-delay-us = <976>;
++	atmel,wakeup-rtc-timer;
++
++	input@0 {
++		reg = <0>;
++	};
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	status = "okay";
++};
++
++&tcb0 {
++	timer0: timer@0 {
++		compatible = "atmel,tcb-timer";
++		reg = <0>;
++	};
++
++	timer1: timer@1 {
++		compatible = "atmel,tcb-timer";
++		reg = <1>;
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_debug_uart>;
++	atmel,use-dma-rx;
++	atmel,use-dma-tx;
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rpi_uart>;
++	atmel,use-dma-rx;
++	atmel,use-dma-tx;
++	status = "okay";
++};
++
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_mikrobus2_uart>;
++	atmel,use-dma-rx;
++	atmel,use-dma-tx;
++	status = "okay";
++};
++
++&uart4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_mikrobus1_uart>;
++	atmel,use-dma-rx;
++	atmel,use-dma-tx;
++	status = "okay";
++};
++
++&usb0 {
++	atmel,vbus-gpio = <&pioA PIN_PB13 GPIO_ACTIVE_HIGH>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usba_vbus>;
++	status = "okay";
++};
++
++&usb1 {
++	num-ports = <3>;
++	atmel,vbus-gpio = <0
++			   &pioA PIN_PA6 GPIO_ACTIVE_HIGH
++			   0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usb_default>;
++	status = "okay";
++};
++
++&usb2 {
++	status = "okay";
++};
++
++&watchdog {
++	status = "okay";
++};
+-- 
+2.41.0
+
