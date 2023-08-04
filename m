@@ -2,135 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D321770ABD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 23:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83282770B97
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 00:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjHDVXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 17:23:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43406 "EHLO
+        id S229937AbjHDWBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 18:01:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230208AbjHDVXQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 17:23:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC6FE46;
-        Fri,  4 Aug 2023 14:23:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D122A62080;
-        Fri,  4 Aug 2023 21:23:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55ECCC433C8;
-        Fri,  4 Aug 2023 21:23:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691184194;
-        bh=wSJaIZhISXirDF3jgfh6c4FcH0NgVKh0TCqvHAGh65w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=URoiX2yLiohhGg12ok9xl78D8VS2pzkNBU1EEqlq/Ic3ryb6t1MWOIUqba3NCnhYt
-         OH5PKq3KKKnRVIBxJXiJ/2omxYEFOdOignvj1G7ET1h0h6no15MoOpjzXTvsBRva9x
-         G3VouXbTLLUnB7vNVx2mjOccE17wWjtLcJWd7sweMEarnaVI0PEfkk8io74l/mm40N
-         n/YraTBugIhzYzmdh7U2z0oxY3Pj5MXSwD4ZoIUShMAlCArM4AiNmyHXRenXazNBMG
-         2Mnfwnb7LSXxXdssCh4CoFwBtgNqdSM/9SyjCglOgMbtfbtkcU+85WbggsPCJVGqLR
-         79g23ErXr1rfQ==
-Date:   Fri, 4 Aug 2023 22:23:09 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Ivan Mikhaylov <fr0st61te@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229826AbjHDWBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 18:01:50 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8B5E4D;
+        Fri,  4 Aug 2023 15:01:48 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 374M1cR7083782;
+        Fri, 4 Aug 2023 17:01:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691186498;
+        bh=xh4QWflwFh1VrWsPfERiHsrWdrU5pmhbYrYKpe1LEqw=;
+        h=From:To:CC:Subject:Date;
+        b=g4KAwgDyCbkFsFvbJexA1wQFOV6+lyTvM5mUr3s0iz4sFRi08a1lNfKPbyKbX+IJA
+         mUjPB6TBmQ5fH0Tn5IA14vAeZIiYyNGjgCU5vdjuL6Ir2wTV8dkaYLze5D595dsBCZ
+         WHb9kCO3Mi5bXb+VWK7jy6ZzLo+4s00tmQ0Vy3Dk=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 374M1ciK121296
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Aug 2023 17:01:38 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 4
+ Aug 2023 17:01:37 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 4 Aug 2023 17:01:37 -0500
+Received: from uda0498204.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 374M1bM8014195;
+        Fri, 4 Aug 2023 17:01:37 -0500
+From:   Judith Mendez <jm@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Po-Yu Chuang <ratbert@faraday-tech.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: net: ftgmac100: convert to yaml version
- from txt
-Message-ID: <20230804-doorman-overdress-b1ea7393740e@spud>
-References: <20230731074426.4653-1-fr0st61te@gmail.com>
- <20230804132034.4561f9d7@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2]  arm64: dts: ti: k3-am62a7: Add MCU MCAN nodes
+Date:   Fri, 4 Aug 2023 17:01:37 -0500
+Message-ID: <20230804220137.425442-1-jm@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="0xRaSzT8JWffNfAv"
-Content-Disposition: inline
-In-Reply-To: <20230804132034.4561f9d7@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On AM62ax there are no hardware interrupts routed to A53 GIC
+interrupt controller for MCU MCAN IPs, so MCU MCAN nodes were
+omitted from MCU dtsi.
 
---0xRaSzT8JWffNfAv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Timer polling was introduced in commits [1][2] enabling 3x MCAN
+on AM62ax, so now add MCU MCAN nodes to the mcu dtsi for the Cortex A53.
 
-On Fri, Aug 04, 2023 at 01:20:34PM -0700, Jakub Kicinski wrote:
-> CC: Conor=20
->=20
-> in case the missing CC is the reason for higher than usual=20
-> review latency :)
+[1] commit b382380c0d2d ("can: m_can: Add hrtimer to generate software interrupt")
+[2] commit bb410c03b999 ("dt-bindings: net: can: Remove interrupt properties for MCAN")
 
-You even CCed the +dt address so the mail ended up in the right place!
-I doubt not having me on CC is the reason for the delay, seems to be a
-pattern that the conversion patches end up being Rob's to look at. I at
-least find them more difficult to review than new bindings.
+Signed-off-by: Judith Mendez <jm@ti.com>
+---
+Changes since v1:
+- fixed CAN node name can@4e0000 to can@4e08000
+---
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-It looks like Rob's comments on v(N-1) were resolved, but something here
-looks odd to me.
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+index 04599762c2b7..a6d16a94088c 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+@@ -143,4 +143,28 @@ mcu_rti0: watchdog@4880000 {
+ 		/* Tightly coupled to M4F */
+ 		status = "reserved";
+ 	};
++
++	mcu_mcan0: can@4e08000 {
++		compatible = "bosch,m_can";
++		reg = <0x00 0x4e08000 0x00 0x200>,
++		      <0x00 0x4e00000 0x00 0x8000>;
++		reg-names = "m_can", "message_ram";
++		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
++		clock-names = "hclk", "cclk";
++		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
++		status = "disabled";
++	};
++
++	mcu_mcan1: can@4e18000 {
++		compatible = "bosch,m_can";
++		reg = <0x00 0x4e18000 0x00 0x200>,
++		      <0x00 0x4e10000 0x00 0x8000>;
++		reg-names = "m_can", "message_ram";
++		power-domains = <&k3_pds 189 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 189 6>, <&k3_clks 189 1>;
++		clock-names = "hclk", "cclk";
++		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
++		status = "disabled";
++	};
+ };
+-- 
+2.34.1
 
-> > +  clocks:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: MAC IP clock
-> > +      - description: RMII RCLK gate for AST2500/2600
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    contains:
-> > +      enum:
-> > +        - MACCLK
-> > +        - RCLK
-
-I don't really understand the pattern being used here.
-
-> > -- clocks: In accordance with the generic clock bindings. Must describe=
- the MAC
-> > -  IP clock, and optionally an RMII RCLK gate for the AST2500/AST2600. =
-The
-> > -  required MAC clock must be the first cell.
-
-The order in the original binding was strict & the MAC clock had to come
-first. What's in the new yaml one is more permissive & I think it should
-be
-
-  clock-names:
-    minItems: 1
-    items:
-      - const: MACCLK
-      - const: RCLK
-
-unless of course I am missing something that is...
-
-> > -- clock-names:
-> > -
-> > -      - "MACCLK": The MAC IP clock
-> > -      - "RCLK": Clock gate for the RMII RCLK
-
---0xRaSzT8JWffNfAv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM1sPAAKCRB4tDGHoIJi
-0rENAQD1vKcQgnhP6Ln+CWJv1wWzBmj3uPwvjHn2kG1gX4N5ngD+NbxpzHQUm8o2
-ckkj4vJWvILJx7q/JO4+08b2JRrsUQo=
-=DyLQ
------END PGP SIGNATURE-----
-
---0xRaSzT8JWffNfAv--
