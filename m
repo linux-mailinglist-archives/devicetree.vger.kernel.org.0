@@ -2,132 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4878677031E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 16:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C85770355
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 16:40:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229956AbjHDOa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 10:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54010 "EHLO
+        id S229868AbjHDOkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 10:40:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231439AbjHDOaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 10:30:55 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DAA46B1
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 07:30:52 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 869101BF20D;
-        Fri,  4 Aug 2023 14:30:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1691159451;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=t++1Z5akKqagHeEalypyouonyVszmZK48XoJiFUEp4E=;
-        b=GkkcPC1XBNB9Us8c65heaMzMpgsfu5/kOjjNQggqZ2uFmqsha7o/BwdOOK+BVfavk9ai8T
-        e0vAC2pYhOLunEn2JmcZ8+9iUYOHx8U/UHycSzID1NUB8IYqu7q101/vZM/81ATabP7AEg
-        AD7aa2cNXAmNjCUdNcm4fMoMsaet9Poa/zkzZ6uuPmIr5pKS6X/xcSLwfACOsQ2bFIMvge
-        7rwoiiK+fWabflyg6AhFqyPaM4sqaGEArobydEN+oij7GHKjeIHTdvbSI8C+fmM98JPxHa
-        v2JthmqwzNVE3XSeOEitX5WPN0ITlG4ySvmaucqZ9dmZPW4nzpnU7vY2y8d+nQ==
-Date:   Fri, 4 Aug 2023 16:30:47 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Marek Vasut <marex@denx.de>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S229674AbjHDOkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 10:40:13 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200504EC1;
+        Fri,  4 Aug 2023 07:39:49 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fe45481edfso10922045e9.1;
+        Fri, 04 Aug 2023 07:39:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691159983; x=1691764783;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/keJTTgc2oKYX00bfWRy8iHTbGm3dqXm1dsaxhchcPc=;
+        b=KvfYSC7CEGPj1YKXYXG8g17C2CnIly55fHMe4Bh/zvSSV8wQcCvIDANJDAg7EFYs4k
+         Rgxq2Sa7zYSYpyWedo5/COPTTpFMxQYLDBQI7zXnifk11g5RpHYI/SSkODB7BPR1kNpu
+         RH7IzSbez5tb7/fYj4Hgo4DtniyoeeUIIFaHyRMwuZrj7tw3vyB9o/43BIuP0FLOgz58
+         9JAc9SwqVHqix78jPoFsov0VCFE2WP8aO4cJsRZj8iN8yy74PjUZeWOM2cdpy/zy6HP9
+         dK7t/LUbhrN2i4Rd2ji/MrW/GO4Vl88dDHD+/PEvM3S7rmZO5ja3j96DAqugQMhrowPi
+         hbaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691159983; x=1691764783;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/keJTTgc2oKYX00bfWRy8iHTbGm3dqXm1dsaxhchcPc=;
+        b=gURXDY6vijfg9UfYGm2CXHeM96KWfZj8ohUUB/yG2abALX6LwJTAYd4Hcvl1fGwO5y
+         CIGBvb+m/XWrkTUC7ZxWK8LXugDget9IUaezQYFM872+Ja6bTQNCd6tC3bYkEIlhFShl
+         TOBHy+3d368njVyT/t+LF8DG6die7AiNU6nxKYzjMANvLKfoAfckgqM7P8lU8as5tIqd
+         TzhB/XD0Yi0gwctZ0BRuYFi2Ea4XlbqUBDKS0Gh8n+jytRrGddT7XeTIKrx0EeoeGx/b
+         Kak4xEWaAQ2BCTYw2Mncifdh+3pK6ZD5yyOhMVuY96ruGowDJW3aD1Uo9wesRbbClUuu
+         uBGw==
+X-Gm-Message-State: AOJu0YxMunS+/siTiu9TH2kBhpGYvg7035hR5ZSkr/HESaNfudbecjaA
+        sdvfwOfd0XEqCk04w95F6uk=
+X-Google-Smtp-Source: AGHT+IF3frUwbfH0b36TWheEdo2zyf2bWjXefALR0x/pFUcE5xwHRR11pBKFVe1FSUbK1lZJev7c/w==
+X-Received: by 2002:a7b:cc95:0:b0:3fc:3f31:4233 with SMTP id p21-20020a7bcc95000000b003fc3f314233mr1884635wma.38.1691159983036;
+        Fri, 04 Aug 2023 07:39:43 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id f22-20020a1cc916000000b003fbc9d178a8sm6834019wmb.4.2023.08.04.07.39.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Aug 2023 07:39:42 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     John Watts <contact@jookia.org>
+Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH 2/2] drm/panel-simple: Add Innolux G156HCE-L01 panel
- entry
-Message-ID: <20230804163047.60881a2b@booty>
-In-Reply-To: <20230804101912.696a02aa@booty>
-References: <20230731210258.256152-1-marex@denx.de>
-        <20230731210258.256152-2-marex@denx.de>
-        <20230803162314.122fab64@booty>
-        <9b236561-36af-da7a-2caf-892be68e2b76@denx.de>
-        <20230803170659.2e44e204@booty>
-        <01496199-5be9-7084-735d-55a11e30217f@denx.de>
-        <20230804101912.696a02aa@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Maksim Kiselev <bigunclemax@gmail.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mkl@pengutronix.de
+Subject: Re: [PATCH] riscv: dts: allwinner: d1: Specify default CAN pins
+Date:   Fri, 04 Aug 2023 16:39:41 +0200
+Message-ID: <5696365.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <ZMyZ5kZSiiJHtdeS@titan>
+References: <20230731023701.2581713-1-contact@jookia.org>
+ <3248110.44csPzL39Z@jernej-laptop> <ZMyZ5kZSiiJHtdeS@titan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek, Neil,
+Dne petek, 04. avgust 2023 ob 08:25:42 CEST je John Watts napisal(a):
+> On Thu, Aug 03, 2023 at 10:59:30PM +0200, Jernej =C5=A0krabec wrote:
+> > pinctrl-names and pinctrl-0 are usually at the top. However, since there
+> > is no hard rule (I've seen it mixed), I'm fine with it.
+>=20
+> Happy to change if needed.
 
-On Fri, 4 Aug 2023 10:19:12 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+If you don't mind, please do.
 
-> Hi Marek,
-> 
-> On Thu, 3 Aug 2023 19:10:35 +0200
-> Marek Vasut <marex@denx.de> wrote:
-> 
-> > On 8/3/23 17:06, Luca Ceresoli wrote:  
-> > > Hi Marek,
-> > > 
-> > > On Thu, 3 Aug 2023 16:25:37 +0200
-> > > Marek Vasut <marex@denx.de> wrote:
-> > >     
-> > >> On 8/3/23 16:23, Luca Ceresoli wrote:    
-> > >>> Hi Marek,    
-> > >>
-> > >> Hi,
-> > >>    
-> > >>> On Mon, 31 Jul 2023 23:02:58 +0200
-> > >>> Marek Vasut <marex@denx.de> wrote:
-> > >>>        
-> > >>>> Add support for Innolux G156HCE-L01 15.6" 1920x1080 24bpp
-> > >>>> dual-link LVDS TFT panel. Documentation is available at [1].    
-> > >>>
-> > >>> Interesting, I'm bringing up this exact panel right now and found your
-> > >>> patch.
-> > >>>        
-> > >>>> The middle frequency is tuned slightly upward from 70.93 MHz
-> > >>>> to 72 MHz, otherwise the panel shows slight flicker.    
-> > >>>
-> > >>> Using 70.93 MHz here does not show any flickering. I even tried going
-> > >>> in the opposite direction and set 70 MHz, and to use different
-> > >>> backlight settings, all without any flickering.
-> > >>>
-> > >>> Do you think you might be using a defective device? Would you have a
-> > >>> chance of testing another sample?    
-> > >>
-> > >> I have literally one such display.
-> > >>
-> > >> Which SoC do you use (and if applicable, which bridge) ?    
-> > > 
-> > > The panel is driven by the DSI-2 output of a i.MX8MP through a TI
-> > > SN65DSI84 bridge.    
-> > 
-> > I use the LT9211 , so I wonder whether this might be another Lontium 
-> > specific oddity.  
-> 
-> Or maybe not. After checking the LVDS clock with an oscilloscope I
-> discovered I was actually sending 77 MHz. After fixing it I found that
-> my panel (of which I only have one sample as well) does not display any
-> output with pixel clocks <= 75 MHz. It works with clocks >= 76 MHz.
+>=20
+> > Since original DT node entry goes through netdev tree, this should be
+> > picked there or it can be dropped there and I pick both patches or I can
+> > pick patch for later kernel version.
+>=20
+> Do I have to do something based on this, like resend my patch?
 
-After checking lots of other details in my video setup and doing
-cleanups, I finally managed to have this panel working with the
-intended 70.93 MHz clock (and also lower clocks such as 70.00 MHz).
+Nothing on your side.
 
-Is it too late to change this patch? Or should I send a patch on top?
+Marc, since you took original patch through netdev tree, what is your decis=
+ion=20
+here?
 
-Luca
+Best regards,
+Jernej
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>=20
+> > Best regards,
+> > Jernej
+>=20
+> John
+
+
+
+
