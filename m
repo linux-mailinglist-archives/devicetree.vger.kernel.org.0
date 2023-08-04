@@ -2,163 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7361576FDA1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9DE76FDAF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231127AbjHDJna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 05:43:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48598 "EHLO
+        id S231195AbjHDJpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 05:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbjHDJn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:43:28 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B3B30EA
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 02:43:27 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-997c4107d62so265375466b.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 02:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691142205; x=1691747005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1eXbT/KalONwMKPKZfZFiDNuA7l+qr3D7lfU+28kCBQ=;
-        b=tMxDCZWY4gGhkYmTyR60h5DpxZNyiNEUht4LfLAAdA11c0Kqdw3ikJKKMIyM896WAt
-         gDMhvRVATOEUC5X/iVQRbktG4S9VmMu3Bi9mN08wC9qnclDiiwdJWl+Wi+qPPlCH8xgl
-         HEm4PDd9L4OfgCxWsotTw2FhEcWsz/i4dO4C3Rh/z6mZuNW0G4pCALsb19iNHwvuZCnk
-         KfDIUzh5b7jXddXqr7bTXpzCg3MMTe27rZvrEBqZrIEyK5c9VHWxa8yguOIbQg4bFtIG
-         lFY2dZXiwIoP45xY5V2dnJb7/0MofSxb838NMEldTDg9Aa0fNmak4J/mbo+VRtocfJoW
-         PBdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691142205; x=1691747005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1eXbT/KalONwMKPKZfZFiDNuA7l+qr3D7lfU+28kCBQ=;
-        b=UvI6yQ0MuG00XC3daxUR6XyxdCe6DDA3KtW9RmCzi1Hw8izo7KJV06k+QfFhFLr82g
-         D0LTTuB8N82TfHd19YLLyqEB+0wgKUM81rTg5PZ+kNISBRtAJpuc2TnFxCDtW4nCG5Mi
-         hmqOmgmMIhj0+YaxQpmhP+7PVYJ6ijxHZm8LNIJB7pY14DQUL5ASXwHqn343xepgNZDl
-         xOTEpEzgobLPGQBKB7JkBgRmdDTWs/HSoWmZ/iyeHDPbLF/jwpePKUnxmRX0zk0uK3Pq
-         liAMiiDMxj1CSN0AqUbE8wntvs3VZJxnPPKa3tNZ4l8068ipDEBBe0qi99jUyftrzQns
-         FQqA==
-X-Gm-Message-State: AOJu0YzX+WO/eu/6CAH4iiYVdwoWEarHa7iRbEHHL1995fW03TFBI+fD
-        o/OBeLObFcLgBhpAAry6rN1qaA==
-X-Google-Smtp-Source: AGHT+IGC9mA7LPO2N64IIl+Xk6+A/e9ohIrzJGE8pgrJFcZhD7dVNL2lN7+hweJBbOWw01HxcF6Slg==
-X-Received: by 2002:a17:906:28a:b0:99b:d178:f051 with SMTP id 10-20020a170906028a00b0099bd178f051mr893587ejf.64.1691142205545;
-        Fri, 04 Aug 2023 02:43:25 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id gs10-20020a170906f18a00b0097404f4a124sm1059389ejb.2.2023.08.04.02.43.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 02:43:25 -0700 (PDT)
-Message-ID: <b16b0fa5-d2ce-dca0-9074-f2e04fe533dc@linaro.org>
-Date:   Fri, 4 Aug 2023 11:43:23 +0200
-MIME-Version: 1.0
+        with ESMTP id S231173AbjHDJph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:45:37 -0400
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2042.outbound.protection.outlook.com [40.107.14.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9981449E8;
+        Fri,  4 Aug 2023 02:45:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hZ0bSgM+LrQ6DlhaFagqfOhVfKVwXZggys2E5EHwKc5pe1c34SUkPuT9aEKKZUDTJriKMpMp0lg8HP4Sr2rBnvyUYGrHItjWSCVzTO4WzLkeX5a8Cu45QmOBkB5qs2zzO/mEYE6HV3//7pOgW9Mh0nx2K+PgH4fMQ2AKbNGNn8kq9nTRI5+IoK2WLNRxhjsa8bDGnbyiW1PSp/cNw5CgTDkQYJ20tO5bpXL7lOd8SdlTrlWXAJcyxYe0NzVfxiNpsiCNf9eW1MtEeP4S2brOt0JOE54GCzTNJ+grkIsJhwpU1ej/+D9lSwu0GpSJFqZqqFjREnH3pONzDMaOfGZHpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XJjv77+bi1LJusegC2ieGIPyNbRXKlpw7Ubt4k02OJ0=;
+ b=XpX1amht9lJygHlN1GRgpHjwH9jCMkavtXFumi7wdeIFUYuLLoumyn2d0sQ36h8dSFVBWs9qXxKiHhyWUQfN5bpkre0VT7gVWaJQJ8NvCyW+6Hc74+y/4H45QeMZOVDSHtQByc5Hwdz1sV2J8b5Ozh/ai2LP+b+RuUB2gTzkH3nYs9qC3d4ET9gKAscCR5ko4MOzsPXef9QkgUFqkD2e8eJVjlqGZOjMjSI9VSVgn4FV/SsEzpxA0qqIWWWOdEc7OZ0OjK3On91JMEJyvSi7BErU1zhX3C+DMKpXpN1zPF15BMnMLleEQxKVJBNExdu/18bCl17C8HWBWIm+nRbArw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XJjv77+bi1LJusegC2ieGIPyNbRXKlpw7Ubt4k02OJ0=;
+ b=ggLk2z5CGYgz50TzVid3KxRnFP8SAYbuEcM7jRLA0nb0s/sWeJAOONXSAEByDEzxkwDdJAcTU18vmhPw31iZq6wkEwhOrWur2Cj9x6aWnbCd6oUWOL1fkL73Z6egWiUauDZPHUURaoMDy7fmg1T9JCrEOsVJkwkAEC0vImdF0uE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by AM7PR08MB5335.eurprd08.prod.outlook.com (2603:10a6:20b:101::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Fri, 4 Aug
+ 2023 09:45:29 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::9d1a:4539:a8f8:dd60]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::9d1a:4539:a8f8:dd60%7]) with mapi id 15.20.6631.046; Fri, 4 Aug 2023
+ 09:45:29 +0000
+Message-ID: <d173e4fd-29e2-281e-9c43-6f6b81cc62e3@wolfvision.net>
+Date:   Fri, 4 Aug 2023 11:45:26 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V1] arm64: dts: qcom: sa8775p-ride: Remove min and max
- voltages for L8A
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/4] drm/panel: sitronix-st7789v: add support for partial
+ mode
+To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
+ <20230718-feature-lcd-panel-v1-3-e9a85d5374fd@wolfvision.net>
+ <422faa68-a741-0cf0-6a90-a9b46424e201@linaro.org>
 Content-Language: en-US
-To:     "Naveen Kumar Goud Arepalli (QUIC)" <quic_narepall@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>
-Cc:     "Nitin Rawat (QUIC)" <quic_nitirawa@quicinc.com>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230725100007.14775-1-quic_narepall@quicinc.com>
- <a3l7356miuuapf5dakgfchdjmxjp62ynvle4ta3hejd3tjvzd4@e2t2zm6jh7hb>
- <516a54da44724001895f7e50634ad884@quicinc.com>
- <33232e22-1014-2670-47f6-712b0acc929d@linaro.org>
- <78e6233799f54428b6601896b8bd7b5c@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <78e6233799f54428b6601896b8bd7b5c@quicinc.com>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <422faa68-a741-0cf0-6a90-a9b46424e201@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BE0P281CA0001.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:a::11) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AM7PR08MB5335:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7b3e35b-f6da-42b0-039d-08db94cf89b2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 838Pf60U2poLx2A5ynLU/ONN9wO069hiRB3VbeZiAcJftYPiP8aw3V8RWtSE47c7rruAJjHkm00caEHa/HbKDahJODISxEoodRCYFjlSKf33ZZ0mTwMjq+0Zf0KKFEMUGBfnEVps3O3eHG2jgf4QXwsCVCXK/piCTsDJc+QbtnceG/+ai3FJhDiCwsIlG/cDHiTFBiwBIQfdgE2ruRN7aHGd7UOJcUKqTwaXJ5QXVLm9NDUTNppkCxLeeFF/EY9uSWNxuO4wdK+TnUnOeNfjNfOd+Lque8e6nHiECRvNdz4m+4BMTuNstYZGz/NsVSf+X7UXPdDTPtK9prSICx+1FIQcf+pIn7rSBzuD2W5EYx/F9ZRAVP4/vt+nxtAj/ti0sBAhWNosdCaKyZ/vd+1ZtyLnn5+JwXkpfezfMhaHiaslqvWmq9ro/1LuMDnYKMs/J0r1X5o+pmygsyLvLV0Cwnms9wai2Khh3/q0IYmj89eWVaq0Ti6tOzekdQXhws1Yqn0EndyCAQMAZfvIoeEPg6LBk6bR1SCSb01OgUBIE9m+7gEDRbCdaEzYN17QTs/g3Dz1o9RkvxTKuZWqmDqiT4J9i6SP/P/WzdUiuY/LDA/5cUqxpIQ+2DaPDc5p1TnqNWaP2AOFKl+bF5x3LAcf+/3GONnt4gEx3zgOWib0Pxs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(136003)(376002)(39840400004)(366004)(451199021)(1800799003)(186006)(2616005)(83380400001)(53546011)(6506007)(8676002)(316002)(66556008)(6636002)(2906002)(5660300002)(66946007)(66476007)(4326008)(44832011)(7416002)(41300700001)(8936002)(6486002)(6512007)(6666004)(478600001)(110136005)(921005)(38100700002)(31696002)(86362001)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VDB1a0thT2lNaXNRczhZQlA5T1lveldqMi9lS1dXa1VRcTdIcXVVQUwrVGp1?=
+ =?utf-8?B?M3JCc08ycVpML29ITnFnOFpraEVQZTJNRGVaSDVYdC9lTGZwMm01aTI0MUpj?=
+ =?utf-8?B?d2I5Q2xxY05uN2JDTlVMUXV2MXFnaWVpSDc2Ylc5S2Jvb3E4Z20ybngrckVB?=
+ =?utf-8?B?Sy9uY0ovR256ZGV4VTA1ZVhyRGVjemgrNWdqUWltV2ltMVMralcwa3F6L3E0?=
+ =?utf-8?B?eGZUd2N0M2o1c2tNVGo4S28wa05VbUt3ZERjS2owL2NEeE9jMWI1ZnUxVVd6?=
+ =?utf-8?B?NTFoSFlTMk5nZ2RPeHJTNmU4ZyttWGpOeGdLQ1o2bFA3b01ENDZqdWZLQVpq?=
+ =?utf-8?B?ZUQzcUZBZUxDRldYRWY3cVBPV1hDYzYxZGFhUURRQ1pMT2Npakt5bDZPaXYx?=
+ =?utf-8?B?K2NCSFlXYkM0N0E5TVFscnlQM2N1V1N4OGNLeURha0tjdENBYnliakpmOE9P?=
+ =?utf-8?B?SGVRRlhBN1FFY012VzdWUWo1UWxOR3FMd28zZTdnUlJqZnVnZ0prbk9wbExB?=
+ =?utf-8?B?ZklyU0Q4RDZubjVYbHJocEgzZS9BdEhFVFc0cHBsTlkrdWFDNkZvRjlIZE5T?=
+ =?utf-8?B?RjNYK1JWTTBvUlBvV1loaWtmcS9hcStXMDNEL2VldlpQUVdITHdpU3hsS2xm?=
+ =?utf-8?B?VVVvT2F5dm5YTjFXZ0UzbllOakpaUmdvcGJaMnlUd3ZMWG9jTy9wY212NzZB?=
+ =?utf-8?B?bERCUWFXUExCUHoxaUc4UUZQcXdVOTdlbksxWkR1SEp6NHpPejBxWVR0UEZp?=
+ =?utf-8?B?UTgrSHpkTlRJNXcyNGdmci9MWHpZaWZjZFZtbTZLaExLSlNCQUhxUXZlK2xj?=
+ =?utf-8?B?RlpJM2tjL3FLdk5GOGtLQkc1WnR3SjVUbnFLelV2RFhpeFZnRks2bjQzODhq?=
+ =?utf-8?B?SUpObEpYWmlJQm5LVGRGRktGMmdkYXAxZWgxMU0zamZ0dXd2NjZDTEtIaWw5?=
+ =?utf-8?B?VjRBRXdwT3BiNXpGUEo1TFU5b2JBNW1oL2o1bkxUc0RVUWIrbW9mZmZsWXZu?=
+ =?utf-8?B?YWZ4NGlKdUtUSG8wTnhVUk45OE5MZnBvTEpQN2Rqc01ZaldUMHVHbnVGTkw3?=
+ =?utf-8?B?V3VxSlFkZlZkMVVzVnllL0lLQmlVNW01Zm5UdytGcWZOZE5qT3UyNWxhOGs4?=
+ =?utf-8?B?Y1FGdlZVQVdVdmo2dkYrdHk0RWNGaEM2bTd1SFR1RjBrdkdQenpvWTN0TjhL?=
+ =?utf-8?B?WGRXNkpZWjRUcGFUeUhWdm9nMW9LeUhsbnhCZ2hZVzJFdnRxR3dBeWhKWDNx?=
+ =?utf-8?B?TkRXVnpKVTBTVHI0NGZLbWYvTkFLK3RkZ21ZNjBaMzhBdk5lUUVOM3pzQmNh?=
+ =?utf-8?B?blhheE1NN2FHdjZQSVVhdUVyckZyTklrWjdFcTdGMnpISHZzaWt2VGRNRzFG?=
+ =?utf-8?B?WWNMWWRmeDNUb2FhYUpMQ1RaRnI0bHp0TFNrMnBpaW9seUs4bGtpa0FNR3pq?=
+ =?utf-8?B?ak8wMUJ4alM4Wk81OE8rM1pTdktwRVZrRDVQTENJVVgyRFlqeGlKdWp0NERo?=
+ =?utf-8?B?Uzd5eCtDTmZ4NjVpdWVTcThBRm9aZVNsWUxadnlSVXpwNFZYKzJkWTErMDNX?=
+ =?utf-8?B?ZllzU1BGTjlQT1llYUw1T202cmFKM3dvYUdZK2E1USt0VE9jZUNTczJzUTJC?=
+ =?utf-8?B?NFVaenFTNGpxTkF1L0FFU0dieGZBdC9qcFNaN1ZRRzZMMlpuTmx2cTAxem0r?=
+ =?utf-8?B?QndUc2RkTFp4eWhCTXY0WmlYMEQ3SnpiN0dOa0FoeWx0eXBPZWJJdHVuNFRa?=
+ =?utf-8?B?TGcyNUhMTGhEK1lqZy9LWkd6RS92VEhRaE5CRmROSU0yL01ZQ1FxTU41ZmVM?=
+ =?utf-8?B?Z3NWWElEck5WcUJBenozWmVnMFQxcXo1S1YyRnJpYzFwd3NuV2pSTEdBR0Rs?=
+ =?utf-8?B?ZitBVDFBbk9rM0NkbGNFWFBhemkraVZHWGtpeklNVmlWcTYwaXBybFJROVUz?=
+ =?utf-8?B?Y3V0Sk5ydlAxMVE4eHdEUzNCdXFqUWRORWp6Y1hSTTB0WUZSdm9sOHdnV1ll?=
+ =?utf-8?B?ZFZMclFlbDB3cVBSd21Oc2xZRnB1NmVUaE4ydTZTM2hKWW9uUUlCREwwVDl1?=
+ =?utf-8?B?TjRDSVVDaTEraElmNkNhc0RqeXNXSjRtQTVpZkpXMjJQcmNXejlKRmxTOU1j?=
+ =?utf-8?B?cHlhOXliS1ZYS3YydWhlTCtzcGRnbVl5WXFzYzRHVlFlOStvVy9aTS9SRk03?=
+ =?utf-8?B?Tm9wa29ybk1aUitNdW9jZlVZOS9pN050WW5GQUN4Mnh2cE1JZGw4UVJ4b212?=
+ =?utf-8?B?V1BaZTFnajRMSkNhQVZmZDd4TlF3PT0=?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7b3e35b-f6da-42b0-039d-08db94cf89b2
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2023 09:45:29.3765
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QmT76U0O87KqkxMoM4fWJaYGKS/ZdHX8vV1OveBWhZitEMYJLgqDaGKZ5MujKshnSSBDseRbELDouWFdjdW2Ou+gNnH+G/GlDgY6YL1C14Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR08MB5335
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2023 10:04, Naveen Kumar Goud Arepalli (QUIC) wrote:
->>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> index ed76680410b4..6f3891a09e59 100644
->>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> @@ -98,8 +98,6 @@
->>>  
->>>  		vreg_l8a: ldo8 {
->>>  			regulator-name = "vreg_l8a";
->>> -			regulator-min-microvolt = <2504000>;
->>> -			regulator-max-microvolt = <3300000>;
->>>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->>>  			regulator-allow-set-load;
->>>  			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->>> --
->>> 2.17.1
->>>
->>
->> Reviewing with very little expertise in the area....
->> A few questions below that would help me understand this a bit better.
->>
->> Does it make sense to *not* set the range of the regulator at all?:
->>>>> Yes, we are removing the range of the regulator.
->>
->>     1. A board dts knows its UFS device
->>     2. Is UFS backwards compatible with respect to UFS2/UFS3?
->>        I don't know how the version is determined, but if it's a
->>        "start at UFS2, go to UFS3" should it be scaled as that goes?
->>        >>>> For a UFS device 3.x, we cannot start as UFS 2.0. vcc has to be as per UFS 3.x recommendations.
->>
->> Relying on the bootloader to set up the device before the kernel 
->> starts seems like a direction that should be actively avoided instead 
->> of depended on in my opinion.
+Hi Neil,
+
+On 8/4/23 10:41, Neil Armstrong wrote:
+> Hi Michael,
 > 
-> I have trouble finding which part is your reply and which is quote of Andrew. Please reconfigure your mail client.
-
-Who said this? Me or you? I am pretty sure I *said this*.
-
-Not only you pasted it as your reply, but you also re-wrapped lines.
-
-That's not how email communication works outside of corporate structure.
-Please, don't bring Outlook style to our lives...
-
+> On 18/07/2023 17:31, Michael Riesch wrote:
+>> The ST7789V controller features support for the partial mode. Here,
+>> the area to be displayed can be restricted in one direction (by default,
+>> in vertical direction). This is useful for panels that are partial >
+>> occluded by design. Add support for the partial mode.
 > 
->>>>>> As per upstream UFS driver,  voltage voting is not there and we vote only for enable/disable . 
->> Since UFS is the only client in Linux for this rail (L8A ), we don't 
->> need min and max range to support UFS 2.x and 3.x cards.
-> 
-> I would assume some reasonable range is always desired. Why it cannot be the wider range from both? 2.4 - 3.6?
+> Could you send a v2 with a comment in the code as Maxime suggests ?
 
-Again - who said that? I am 100% sure that me, not you.
+Sure thing! I must admit that I do not understand his concerns exactly,
+though.
 
-> 
-> Wider range cannot be mentioned in DT, For UFS 2.x range is 2.7 V to 3.6 V and for UFS 3.x range is 2.4V to 2.7V.
-> Giving the wider range will not set the correct voltage.
-
-So is this your reply?
-
-I don't see a problem in wider range...
-
-> 
-> For example: 
-> If the range is mentioned as 2.4V to 3.6V in DT and we have connected UFS 2.x device,  Since UFS driver is voting only for
-> regulator_enable(voltage is not being set) the voltage will be 2.4V(min voltage) from pmic driver which is wrong voltage for
-> UFS 2.x devices, which is violation of spec.
-
-So what is your solution? Remove constraints? Then who configures them?
-You rely on bootloader which is not what we want.
+@Maxime: I can prepare a suggestion but feel free to tell me the exact
+wording at the preferred position.
 
 Best regards,
-Krzysztof
+Michael
 
+> 
+> Thanks,
+> Neil
+> 
+>>
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>> ---
+>>   drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 38
+>> ++++++++++++++++++++++++--
+>>   1 file changed, 36 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+>> b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+>> index d16d17f21d92..729d8d7dbf7f 100644
+>> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+>> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+>> @@ -118,6 +118,9 @@ struct st7789_panel_info {
+>>       u32 bus_format;
+>>       u32 bus_flags;
+>>       bool invert_mode;
+>> +    bool partial_mode;
+>> +    u16 partial_start;
+>> +    u16 partial_end;
+>>   };
+>>     struct st7789v {
+>> @@ -330,9 +333,14 @@ static int st7789v_get_modes(struct drm_panel
+>> *panel,
+>>   static int st7789v_prepare(struct drm_panel *panel)
+>>   {
+>>       struct st7789v *ctx = panel_to_st7789v(panel);
+>> -    u8 pixel_fmt, polarity;
+>> +    u8 mode, pixel_fmt, polarity;
+>>       int ret;
+>>   +    if (!ctx->info->partial_mode)
+>> +        mode = ST7789V_RGBCTRL_WO;
+>> +    else
+>> +        mode = 0;
+>> +
+>>       switch (ctx->info->bus_format) {
+>>       case MEDIA_BUS_FMT_RGB666_1X18:
+>>           pixel_fmt = MIPI_DCS_PIXEL_FMT_18BIT;
+>> @@ -472,6 +480,32 @@ static int st7789v_prepare(struct drm_panel *panel)
+>>                           MIPI_DCS_EXIT_INVERT_MODE));
+>>       }
+>>   +    if (ctx->info->partial_mode) {
+>> +        u8 area_data[4] = {
+>> +            (ctx->info->partial_start >> 8) & 0xff,
+>> +            (ctx->info->partial_start >> 0) & 0xff,
+>> +            ((ctx->info->partial_end - 1) >> 8) & 0xff,
+>> +            ((ctx->info->partial_end - 1) >> 0) & 0xff,
+>> +        };
+>> +
+>> +        ST7789V_TEST(ret, st7789v_write_command(
+>> +                      ctx, MIPI_DCS_ENTER_PARTIAL_MODE));
+>> +
+>> +        ST7789V_TEST(ret, st7789v_write_command(
+>> +                      ctx, MIPI_DCS_SET_PAGE_ADDRESS));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[0]));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[1]));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[2]));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[3]));
+>> +
+>> +        ST7789V_TEST(ret, st7789v_write_command(
+>> +                      ctx, MIPI_DCS_SET_PARTIAL_ROWS));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[0]));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[1]));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[2]));
+>> +        ST7789V_TEST(ret, st7789v_write_data(ctx, area_data[3]));
+>> +    }
+>> +
+>>       ST7789V_TEST(ret, st7789v_write_command(ctx, ST7789V_RAMCTRL_CMD));
+>>       ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RAMCTRL_DM_RGB |
+>>                            ST7789V_RAMCTRL_RM_RGB));
+>> @@ -479,7 +513,7 @@ static int st7789v_prepare(struct drm_panel *panel)
+>>                            ST7789V_RAMCTRL_MAGIC));
+>>         ST7789V_TEST(ret, st7789v_write_command(ctx,
+>> ST7789V_RGBCTRL_CMD));
+>> -    ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RGBCTRL_WO |
+>> +    ST7789V_TEST(ret, st7789v_write_data(ctx, mode |
+>>                            ST7789V_RGBCTRL_RCM(2) |
+>>                            polarity));
+>>       ST7789V_TEST(ret, st7789v_write_data(ctx, ST7789V_RGBCTRL_VBP(8)));
+>>
+> 
