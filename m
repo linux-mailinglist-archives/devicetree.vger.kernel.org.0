@@ -2,231 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD12477083A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 20:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41314770866
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 21:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229479AbjHDSzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 14:55:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37006 "EHLO
+        id S229671AbjHDTB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 15:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbjHDSzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 14:55:21 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513CBA9;
-        Fri,  4 Aug 2023 11:55:19 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id D2CD521867;
-        Fri,  4 Aug 2023 18:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1691175317; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=FgAE7IQjxwVpfA4jlJ9XZGVZDnKgpMUh8daSva5w7kE=;
-        b=YxdJS32Eg0ImYWEMH1ZHvwEnnUz5x8G7wXa7cq59/GZSToTCAXo6r6mUYSayInK+jPgWil
-        snwEYCsecwTFsNvA1Tu95TUyCb+YHPLNqzco2pwzLxpptXKvGoaS1gR3kquonCYLf32O9C
-        VKGmirsODf1QEKTN0M1mOSqMWkYmgO4=
-Received: from suse.cz (pmladek.tcp.ovpn2.prg.suse.de [10.100.208.146])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 658202C142;
-        Fri,  4 Aug 2023 18:55:17 +0000 (UTC)
-Date:   Fri, 4 Aug 2023 20:55:15 +0200
-From:   Petr Mladek <pmladek@suse.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use
- "%pOF" inside devtree_lock
-Message-ID: <ZM1Jk9s3gRYLyagW@alley>
-References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
- <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
+        with ESMTP id S229478AbjHDTBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 15:01:24 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2017.outbound.protection.outlook.com [40.92.99.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D71746B2;
+        Fri,  4 Aug 2023 12:01:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ISD01az3TIb5KyFbFUooMdhNkI5me74X270+gYFtCQCYa6DeDkfGjq/bEQV7GvRhltrYI+3eLjUIlmjXSz+YNmqvzWWU+gBeQggXOYykPeJfQBdRQARlJvXeYPWcRP4+pbvk5rbX8uXrVszzTbyEU9Kp+rcIprht8pHEMPpDU80j7NymTgpkUJt/KLQqk14VB0Eo+3v8wl9Q3Ph2QzJs7Z3Ib/bI2rylp3XaGE3D41MKmyAD3OhFndPTGFJIYYuW4NS2Bu+KwcAwUSLC8DZhpzQJ9S7GzT1oH377oljJ2j+Yl92V/NmYQI5STGrRR/zUuVBWi29xdruQVHmCAl9ovA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+w0bvnlDib0Eg1kvm2xvqqrnZr/teLu8vIlcQe1zbus=;
+ b=LY82dNVej6oMUzvlyh6AhtJaTvIANYA33JoLSbIwam5cJ66J0chDcUc5IcwgQesNKzddStYsu2/zW0tBxwxJCF7sxDlViRXGUW/XTpO2wjfF4pPQrZQHcQxi0gY+Q3xnMzPJQ1FMMi2e1N8lbtUz6K+urtLrED7tYMDFNhhmfb6IzxvRVnmXrfADvRwgGHqZ7gZr58UC9tskyjN7KRVvUkuMMp2029sfHc+jx5of6KZg9vUaq/31MQAAgWzlEAmtWZGICJCv+0MvqalXpEFh2jPhZzpqkJQcIiEGrBN54TlSkkly74jq2IR5289NHVcI97nXXA/E90rgJK/8b+VhXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+w0bvnlDib0Eg1kvm2xvqqrnZr/teLu8vIlcQe1zbus=;
+ b=AppVCMFje+cLTGGPeTCsZIwaoZ+YO+jX3ke1zBEXdJplTbqZ1a5nQQDMAfvicEmN5tslltIBrNYAJw2oaxQYm1W2FPEDMAiJuSwF0qgiTKLBYubOtC+k2fXvLHJGiNOqAIE+oXoSutIdbZr2LM/BLF5YIqZBxDZc8c7RIZq9HtNsWjwkdUdQ02/7919wC/FJmJaX+WImINkTXBLgcAWBvzIzSiadQw+AuyKCO3+54BUBEugilJnsXTE4Zb4TfTCCqTSnpjyJ8fwRJi9xyV7j81tofB/LAbEUNkqKy1x9MDuUCPq5YhjvvsgyxSpVxokdgUdVPBaRgILf1J4FDlNFaA==
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:23e::10)
+ by TY3P286MB3567.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:3b6::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.20; Fri, 4 Aug
+ 2023 19:01:19 +0000
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::e67d:f61a:b248:f597]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::e67d:f61a:b248:f597%3]) with mapi id 15.20.6652.022; Fri, 4 Aug 2023
+ 19:01:19 +0000
+From:   Shengyu Qu <wiagn233@outlook.com>
+To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shengyu Qu <wiagn233@outlook.com>
+Subject: [PATCH v1 0/2] Some dts fixes for Beaglebone Black
+Date:   Sat,  5 Aug 2023 03:00:41 +0800
+Message-ID: <TY3P286MB2611090BA1740FF8A5C117C59809A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.41.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN:  [682Aohl9z6DH2Z/p8fsf7y4/BqO9iKFI]
+X-ClientProxiedBy: TYCP286CA0110.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:29c::17) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:23e::10)
+X-Microsoft-Original-Message-ID: <20230804190042.2529-2-wiagn233@outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TY3P286MB3567:EE_
+X-MS-Office365-Filtering-Correlation-Id: 729f05db-de2b-43f5-5417-08db951d2fd4
+X-MS-Exchange-SLBlob-MailProps: dx7TrgQSB6eSv4UmQnMV9WjmjHDmufSNAqkOYZaIzW5F1Hyr9YRdwAX+0wtRKL8S5PYQW8ezccInn15SMWudpEdb65Y5P8MfNnYnLNL0VqQfeKTRya0rvGGQx2EnN7AA9sIIWc5OSkZFVW7S2rSKrYCZYLkQGQGiONCrJituXa3wsRHzkDenSOJW9FIGd8/EhxpfpZxSPccjbMnn0vE9yvmIzr0cvTzZxUBHPtm4FSVeaytqoB6EWjJXMz3OKcrsk22KJpcMN42TP7oMjS7Dq8Ac4CsgT10yVa3jla8GOl2kXBqCPSVvHn8vB2Hl0wM31q0MC8ESl2y78WUm28MujamMxE4EPZfNtl7UsxZKJfa+2/UaVeq0hjR00JFSO++ovnRn+D25Pataq07lIhK9Vj9Lg9hWwIVaRZQJbMP9xR+PBZwDEh6Awhh4ALbPq4wx61xCSh7bbfOLJfBD6yOX/FcV2tKrUoBKO+3142s07InvgxVNUitknExHBM9mzwh5MZKzDLkP4yfJ6BHjGE3KjKDdMPpHWv0Hosj5wBT+mzAPhyS5UwrrSvwir3cZv3Yea5/6l7jRpupGf8BwQlVxYdFqf6zpL34+BUENmYm546ZQYPqLXKzJKrdtR34Jn1HI/dgdXZ70lKlquJXsFjQ+ZJ/5R5rnsi1gUAcUc4ftWj9ftsf06FM2zim39TACnd8903TXW47RSbsi0SejisDb8HNEOgo8XvPRQgxIMFwwGGViwO19TecI6uceZrx4J4uRn73TLCQoTnc=
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: K9SV1M1MvHj951uHOU85RJwU4wy1QDDR1V44tV307RQblLAMTtA7k+BRHfvnJ77hOSZ5gEj4/NuA1aHkFlsKRPJByBUndz5V5vyG0nRuhlubKy0EZCKqN0/eK/X+X9PGhEZIkZ+33NKeLoH9gwZKAntxpuyMwQ8NFMagbBNQplLCJNMWtphcIfvt9ZsU8z/IIke38qtgGqO21renZBZIiFaWmGflAYfi6XM54tK9DQEcNfKK5aNx2rbbLoWl4C6AAyBNszW2bxXOifHvcWgq4QOOQuTeoaUXxsyguuDRO4/wdFLmGWnhKAr7nIzuOK59ZrGy8c98ZcBmaNisOG1/eY0cTP2Slj9H6NdanHJ2fbWOLowUBlomWBq6R3YEK3G6Nbz98EOT5fhVq4QkCUqFPBQ7ZZCUDmg1w+vuB5WvcmkRz92qDv7rbetpYznm1ILHozsYIlwwkt69vetJ4O4gP309dJdSfMP6FH+R/LMZoDg3tUF1Z/nTXXhHY5ZQAqlg31C7KD8KGMZ3P81pI7PZVLiKIYIDmRln9zODQadE18U/hHLEAkyn3MJefJ1RSQ07QiIobNXQbAb5A05IN7DFwYnNq2MWr/XvbzY4GiCAn3ruGtHKwRFenC/lXzzfPgh0
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?moZqGO6iNOMySe1iwS35STDeDsukQFYh9Q6tbBy5Rz+eG7L15I0GSuqZOk38?=
+ =?us-ascii?Q?KNVu+UKVHOX6jmP87PWadCzP4ndyRYh0dyO4Pib7Ipz8afZzqZgfpgtiunsA?=
+ =?us-ascii?Q?rkf7e6/uZCSjCp9vE4kVsg/+DweAiZwgNb5Usf5NHyA9kV4NTCR2SKmbTUEo?=
+ =?us-ascii?Q?R/8Dj/fk+IKi/IJu8gHY8ZtjXq5IY30gVzuGryKJG9lVYx7dv/sHaxqNW+FE?=
+ =?us-ascii?Q?B/zvRSpwfT2UktIOkkwpD+riWNVT5hXtI246EDN8f1hzUDIc8EL4HmpG9vHm?=
+ =?us-ascii?Q?6p/HGjRbIEIP9sTgjUK74mLxebczmjd+PFw/EbSkq4bcPcBclgnLhaH5XAxH?=
+ =?us-ascii?Q?ww4jBuvdJklaDEVSkChChxVAU0L9Sc1OgjnhYh9NA0vwEPqfZPY0Z/6QWvA5?=
+ =?us-ascii?Q?ag6OcUM7g6p7KIh02KgPJwBpd4be35wgev/XAD69lR/IaVOfEu7uDKawLbSG?=
+ =?us-ascii?Q?9pwPT700t7HiPZoHNCBbIc51SBA/wawIQP2KoBDfpdrjJqafTAuAtEW50SSL?=
+ =?us-ascii?Q?NHkjkYRmha9oNw2Qa8YXP/wNXN537g9bOhv53QfrpvRMNpd9NKy3Bn+Gbie2?=
+ =?us-ascii?Q?hY9OVoSqqDlWfAa2bAjxQP0bnuyVT/zUKhNTQToXbOPP7s8ooF9+GVBbDc83?=
+ =?us-ascii?Q?GP6aTd5C4yf9xKApOdMCo1XmANeW4dT1szOZy1GX+cIwot0fmz3a1hfOfEOh?=
+ =?us-ascii?Q?bokWH3u7QhtmTUICXL4cM/4jZjH3fcA4WPzKgX2HxvYjEMNt4A73OohLUhfA?=
+ =?us-ascii?Q?3kOMFbXJD69ZguYTUHeGkl1HUhIX9g+HbPGSHbtWpjHHcqEHSaxuV+dcYHWj?=
+ =?us-ascii?Q?XjMvmc7IzxvHqgoqO0lidbaXu3qHe+yQOsHNFahsY+TOy5CZ3SXpWOLQwHhy?=
+ =?us-ascii?Q?L+72UDOhapzo98WHhwMA3/Hm7rxgsJePtsOpz+yR4wdpU5zIdB+wDlKCsM5i?=
+ =?us-ascii?Q?hBvT9X4RKX4kZtMuSirLO4poSSNro9Zrm+nQYSqlLcIO9qFcdEv3+V8mFMik?=
+ =?us-ascii?Q?pTSIpDEYXjcfER8AfZ9hA/RomEH/RGleG510YFzHDeEYCn9Q/aDNdpfxZyWH?=
+ =?us-ascii?Q?XRuFdTzucd1XLAxdFE/eX7sr3VG9UdfNTaS6yG5dg7Bh6idWdO6w5oRrb/kf?=
+ =?us-ascii?Q?MuWo/cX7bF/t9QqAa35f9jkDTwlCpS4w8FYsoQJct6xwMOyuf7W4pjMDtdFO?=
+ =?us-ascii?Q?QpxgHDrveuOQPk5vaG3YEx/lIOT0Zj+QfBxf7A=3D=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 729f05db-de2b-43f5-5417-08db951d2fd4
+X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2023 19:01:19.7440
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB3567
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 2023-08-01 15:54:45, Rob Herring wrote:
-> While originally it was fine to format strings using "%pOF" while
-> holding devtree_lock, this now causes a deadlock.  Lockdep reports:
-> 
->     of_get_parent from of_fwnode_get_parent+0x18/0x24
->     ^^^^^^^^^^^^^
->     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
->     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
->     fwnode_full_name_string from device_node_string+0x1a0/0x404
->     device_node_string from pointer+0x3c0/0x534
->     pointer from vsnprintf+0x248/0x36c
->     vsnprintf from vprintk_store+0x130/0x3b4
-> 
-> To fix this, move the printing in __of_changeset_entry_apply() outside the
-> lock. As there's already similar printing of the same changeset actions,
-> refactor all of them to use a common action print function. This has the
-> side benefit of getting rid of some ifdefs.
-> 
-> Fixes: a92eb7621b9fb2c2 ("lib/vsprintf: Make use of fwnode API to obtain node names and separators")
-> Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This series has some dts fixes for Beaglebone Black. Patch 1 adds power
+supply for on-board eeprom to reduce warnings in dmesg. Patch 2 enables
+ethernet PHY reset pin of revision C3 boards to fix PHY random startup
+failure.
 
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -63,37 +63,31 @@ int of_reconfig_notifier_unregister(struct notifier_block *nb)
->  }
->  EXPORT_SYMBOL_GPL(of_reconfig_notifier_unregister);
->  
-> -#ifdef DEBUG
-> -const char *action_names[] = {
-> +static const char *action_names[] = {
->  	[OF_RECONFIG_ATTACH_NODE] = "ATTACH_NODE",
->  	[OF_RECONFIG_DETACH_NODE] = "DETACH_NODE",
->  	[OF_RECONFIG_ADD_PROPERTY] = "ADD_PROPERTY",
->  	[OF_RECONFIG_REMOVE_PROPERTY] = "REMOVE_PROPERTY",
->  	[OF_RECONFIG_UPDATE_PROPERTY] = "UPDATE_PROPERTY",
->  };
-> -#endif
-> +
-> +static void of_changeset_action_print(unsigned long action, struct device_node *np,
-> +				      const char *prop_name)
-> +{
-> +	if (prop_name)
-> +		pr_cont("%-15s %pOF:%s\n", action_names[action], np, prop_name);
+Shengyu Qu (2):
+  ARM: dts: am335x-bone-common: Add vcc-supply for on-board eeprom
+  ARM: dts: am335x-bone-common: Add GPIO PHY reset on revision C3 board
 
-Note that pr_cont() does not guarantee that the message will be appended to the
-previous part. Any message printed from another CPU or interrupt
-context might break the two pieces.
+ arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-It is better to avoid pr_cont() when possible.
+-- 
+2.41.0
 
-> +	else
-> +		pr_cont("%-15s %pOF\n", action_names[action], np);
-> +}
->  
->  int of_reconfig_notify(unsigned long action, struct of_reconfig_data *p)
->  {
->  	int rc;
-> -#ifdef DEBUG
->  	struct of_reconfig_data *pr = p;
->  
-> -	switch (action) {
-> -	case OF_RECONFIG_ATTACH_NODE:
-> -	case OF_RECONFIG_DETACH_NODE:
-> -		pr_debug("notify %-15s %pOF\n", action_names[action],
-> -			pr->dn);
-> -		break;
-> -	case OF_RECONFIG_ADD_PROPERTY:
-> -	case OF_RECONFIG_REMOVE_PROPERTY:
-> -	case OF_RECONFIG_UPDATE_PROPERTY:
-> -		pr_debug("notify %-15s %pOF:%s\n", action_names[action],
-> -			pr->dn, pr->prop->name);
-> -		break;
-> +	if (pr_debug("notify "))
-> +		of_changeset_action_print(action, pr->dn, pr->prop ? pr->prop->name : NULL);
-
-If you really want to simplify this, then I would do:
-
-	pr_debug("notify %-15s %pOF%s%s\n",
-		  action_names[action], pr->dn,
-		  pr->prop ? ":" : ",
-		  pr->prop ? pr->prop->name : "");
-
-
-
-> -	}
-> -#endif
->  	rc = blocking_notifier_call_chain(&of_reconfig_chain, action, p);
->  	return notifier_to_errno(rc);
->  }
-> @@ -599,7 +569,8 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  	unsigned long flags;
->  	int ret = 0;
->  
-> -	__of_changeset_entry_dump(ce);
-> +	if (pr_debug("changeset: applying: cset<%p> ", ce))
-> +		of_changeset_action_print(ce->action, ce->np, ce->prop ? ce->prop->name : NULL);
-
-One possibility would be to create a macro for this, something like:
-
-#define of_ce_action_print(printk_level, prefix, ce)		\
-	printk(printk_level "%s cset<%p> %-15s %pOF%s%s\n"	\
-		prefix, ce, action_names[action], pr->dn,	\
-		  pr->prop ? ":" : ",				\
-		  pr->prop ? pr->prop->name : "");
-
-And use it like:
-
-	of_ce_action_print(KERN_DEBUG, "changeset: applying:", ce);
-
-But I am not sure if it is worth it. Sometimes it is better to
-opencode things so that it is clear what is going on.
-
-
->  
->  	raw_spin_lock_irqsave(&devtree_lock, flags);
->  	switch (ce->action) {
-> @@ -620,21 +591,9 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  		}
->  
->  		ret = __of_add_property(ce->np, ce->prop);
-> -		if (ret) {
-> -			pr_err("changeset: add_property failed @%pOF/%s\n",
-> -				ce->np,
-> -				ce->prop->name);
-> -			break;
-> -		}
->  		break;
->  	case OF_RECONFIG_REMOVE_PROPERTY:
->  		ret = __of_remove_property(ce->np, ce->prop);
-> -		if (ret) {
-> -			pr_err("changeset: remove_property failed @%pOF/%s\n",
-> -				ce->np,
-> -				ce->prop->name);
-> -			break;
-> -		}
->  		break;
->  
->  	case OF_RECONFIG_UPDATE_PROPERTY:
-> @@ -648,20 +607,17 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  		}
->  
->  		ret = __of_update_property(ce->np, ce->prop, &old_prop);
-> -		if (ret) {
-> -			pr_err("changeset: update_property failed @%pOF/%s\n",
-> -				ce->np,
-> -				ce->prop->name);
-> -			break;
-> -		}
->  		break;
->  	default:
->  		ret = -EINVAL;
->  	}
->  	raw_spin_unlock_irqrestore(&devtree_lock, flags);
->  
-> -	if (ret)
-> +	if (ret) {
-> +		pr_err("changeset: apply failed: cset<%p> ", ce);
-> +		of_changeset_action_print(ce->action, ce->np, ce->prop ? ce->prop->name : NULL);
->  		return ret;
-> +	}
->  
->  	switch (ce->action) {
->  	case OF_RECONFIG_ATTACH_NODE:
-
-I would suggest to split the changes into two so that the fix is in a
-separate patch. And the fix should be first so that it might be
-easier for backporting.
-
-Best Regards,
-Petr
