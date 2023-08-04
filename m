@@ -2,108 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85FB976FFD1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 13:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B5F770012
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 14:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbjHDL6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 07:58:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52960 "EHLO
+        id S229936AbjHDMTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 08:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjHDL6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 07:58:33 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA257128
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 04:58:31 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-317c1845a07so1585484f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 04:58:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691150310; x=1691755110;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=roPCqYVq5FoKhSTLB3DxuQDru8Tg95QBFx3xWNHBOBc=;
-        b=vdFbzy+iPivOypCOS2MY/xP86T/mvKswug/NCUWqWWrxiMgBRbE7h3uPn5iTHbYAFK
-         ciaS8/uhuK/UUCFMvQblvz2c6hwFA0GJSYLeQjmJK0kDMcADFsLArjJeLaiUH+H4jlHY
-         DIrtpf1+USs77uLSO9QpWe6psg/bWLa1RMOlI7MRbPyQqKej/FxV7Ctnv4EmQlWFPwBA
-         1zwiHA+GzVG+OKOxseTLKQPkYuUpJr//SDAdN7g3hb4uF0CNFZUhQr3L9YpFErWmUqkD
-         oj35587kSsXhXKSkBuW5kfuECxr/zZvjlKW0N28ETKGB8cUc7mHt2iNQ6Lg1gdZ7byRt
-         JKHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691150310; x=1691755110;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=roPCqYVq5FoKhSTLB3DxuQDru8Tg95QBFx3xWNHBOBc=;
-        b=kVN6ogAItYTobbYhKC1piefVyreZpBeo0uH8RhjH05/hKu7KYd3dQ1KYmmk48/KoFT
-         AqfVd/ecV2pTphKy/elxLTWWRfsbrhY3LvfohARE3W577rxF7eMUxWF2jEgQoSEDxPNC
-         CPX/O4FJMQd4a8W7av4liCnsD1MHM+mvP6jeSPfD/4Jr3RMxZRf02eqVnxzKjularhk1
-         nBe4GgfLK0jjVyGIYP9qEKh3QEdoMGS7jfFLu4UW5CVoUKtdWA7VMgBx/PH0MHeAP/d8
-         G43OvCzVsBLgssgXhUSsB1H1Furi6GuwwdYa71R4m1+haE+hewW+7klY26LO46ciuqKy
-         6aAQ==
-X-Gm-Message-State: AOJu0YyZ+btiFiLOUK/EvvzlunUma3tU23978ek0/wiIyTPCnd+G/Frh
-        LrVdDJCgdbDPDKw3tHZ4nZ7n+Q==
-X-Google-Smtp-Source: AGHT+IHdmAs57eM0Rz7KVhiySNQUuzLMCFVU6AXXyP/fH2yGgk5lSYGIfz3aoQtQCBNs8nXrYFi6OQ==
-X-Received: by 2002:adf:f8cb:0:b0:30e:5bd0:21a2 with SMTP id f11-20020adff8cb000000b0030e5bd021a2mr1278153wrq.52.1691150310046;
-        Fri, 04 Aug 2023 04:58:30 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b0031134bcdacdsm2358350wrw.42.2023.08.04.04.58.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Aug 2023 04:58:29 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20230718-feature-st7789v-v3-0-157d68fb63e2@wolfvision.net>
-References: <20230718-feature-st7789v-v3-0-157d68fb63e2@wolfvision.net>
-Subject: Re: [PATCH v3 0/3] drm/panel: sitronix-st7789v: add panel
- orientation support
-Message-Id: <169115030877.3531293.12258712491460228869.b4-ty@linaro.org>
-Date:   Fri, 04 Aug 2023 13:58:28 +0200
+        with ESMTP id S229713AbjHDMTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 08:19:33 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2056.outbound.protection.outlook.com [40.107.92.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA9A46A8;
+        Fri,  4 Aug 2023 05:19:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HFV9tDIFIayv6C6MbZqFRrGLCADv4jdZNQUKwtxX6SLUztn/Qu6c4RKnEKg0BQ3YXKaU6jYQOi2kC4b5kw0paSAgoA8UDyRgxP0AE84UjpCZbMlsm2j+a64M09IvETrvrT8vU+XPiAnXNwY+gkpZ6NqbiWDbilCOKL+R89UDMxZcLRPxElbZ3fgB0wFgUvuMT8aVQWjgOP96uN6x+FTJ7irYCudfUH1VhCybLQUI4mrIHmRNACsTPbylnXSt6TAhVEFfn8o1zTBDefjwUWsydMVnYYP6TZuhGN4p3z6vZ9na88vbsPjQf2YuNDN3G+XJbxMk3Xsnh7nA/Gybz2l3PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5Vc7qx7LNcepYfj1bWYp2jvDau1kYOF1meySNCF/qEU=;
+ b=g/RIt2WnB/i+h8Ni59ElTs5T+CPiUMrFk6YPK7ZMCAlPrfBANfF4AjqMw8Hv2aXr4DHdEI/+c+/hVXsYt6jMwg1iI5wDEf5X4EjPHVj85NyuoyfLNr7CWLsFqOftrSa7ykMVUiKoFM+XknIJ3V3UUAwOyJAwFfCzMqa1QrKGBjkUAARSMFc9WdN6VTSMOkLgTba+Bw1IoFOhBLbi43ahxIrgxb9Huxyd+cFjFOBviXzFSICnFGoN6exq2YYbGnze2Ij0EyHwG4mtyw3TWMpGZT1Riwo/7gWh9brSYmtADUK6tCjNs5dmCESe1XO0x/UiWi4YhAstetk65axHwwuYcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Vc7qx7LNcepYfj1bWYp2jvDau1kYOF1meySNCF/qEU=;
+ b=AowR9V414xxONw1GjQgpyuzLgk6oLrlImCEiw60nXoN38VE2bplmGNEG12fJtBYx3U/pUpFXrjCJvhhtjA0ZIepiggoHKomxo3R3cQS7O86k7to2Mr3yz9xXxa9PGL89OHf3m5oPSeiDAwCHH16rWwYe5IGuUyvccRBnI+PIYNM=
+Received: from PH8PR07CA0021.namprd07.prod.outlook.com (2603:10b6:510:2cd::10)
+ by LV2PR12MB5750.namprd12.prod.outlook.com (2603:10b6:408:17e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.21; Fri, 4 Aug
+ 2023 12:19:30 +0000
+Received: from SA2PEPF000015CD.namprd03.prod.outlook.com
+ (2603:10b6:510:2cd:cafe::e5) by PH8PR07CA0021.outlook.office365.com
+ (2603:10b6:510:2cd::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.21 via Frontend
+ Transport; Fri, 4 Aug 2023 12:19:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF000015CD.mail.protection.outlook.com (10.167.241.203) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6652.20 via Frontend Transport; Fri, 4 Aug 2023 12:19:29 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 4 Aug
+ 2023 07:19:29 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 4 Aug
+ 2023 07:19:28 -0500
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Fri, 4 Aug 2023 07:19:25 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <linux-edac@vger.kernel.org>
+CC:     <git@amd.com>, <devicetree@vger.kernel.org>,
+        <sai.krishna.potthuri@amd.com>, <krzysztof.kozlowski@linaro.org>,
+        <robh+dt@kernel.org>, <conor+dt@kernel.org>, <bp@alien8.de>,
+        <tony.luck@intel.com>, <james.morse@arm.com>, <mchehab@kernel.org>,
+        <rric@kernel.org>, <michal.simek@amd.com>
+Subject: [PATCH v8 0/2] edac: xilinx: Added EDAC support for Xilinx DDR controller
+Date:   Fri, 4 Aug 2023 17:49:22 +0530
+Message-ID: <20230804121924.18615-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015CD:EE_|LV2PR12MB5750:EE_
+X-MS-Office365-Filtering-Correlation-Id: 793dd596-10e2-44a2-ddd6-08db94e50d68
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pUNSeNVH88eMryiyakI4d5FsWMEhBNJho1YHoH49S7a9jim9o+Hm8bSozjP0Bo3mMp8ULohNRigSNvVhO2AalnXhVOEdchb8k2AcSNfxowAraF7OXlPydts2dc62mKSn0o9rebMB8CRN6Zglhe6xdgU1fO4kVo8iBB4IDWT9ltEmjbjBAiITbpdGBHlp7LI8rH0flttJApywNGex8hRGHsXJp2b+2EK78cCuqlO6WWVRtcuVSn3Y0zpn02LBDz05nAENcuPXxHNNYUrNNqmD/pRKI510W8UolUIvrVv1l2fXZU8p0it1xxt3QRmpCvzPdF//5SHXLEo1DpJ4RnRf5noBfEgqdzhM0VAT5DnHYFvEs7yk22qgRSqYv2LXQYUNzvLYp5EQkVZf+D3HMGgHsnJcwvTAh+eKaY5B2mEqfmVdOYBt5Cy9rgd7MtmYtWZ+B1ep19h3NLTSOr9r7H6oobekaYK/Z4XdhvNqiqr0wtAiG17gsYAv2gumCvZ3Ee1wMggMLLL5MFzJVKXpIVt7xmvsl9Lus28yxImBKnZaO7ohoL7DlwPUWJbWt1rX1kr5T/+G+C/tIWPyKelLzDAUXIMCx1ULPimyTUjh9cvGlr3YnEsTVGW6+hGmZkld5gZosUg/65J3RnwTBynPIyY8AZh4ebnBUta/0j2L2qxUiPmRPP/dx9qxWm1Fvxrkfnzgr52z3IcZHhOxbHR+bnabSA1onLk0YAIBfzaVbYu1n1gI/PL8nmLb5a84FRuh+3T7jcmSZAOSml9Hh7kNzO6l4w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(346002)(376002)(136003)(82310400008)(451199021)(1800799003)(186006)(36840700001)(40470700004)(46966006)(2906002)(1076003)(336012)(26005)(81166007)(356005)(82740400003)(2616005)(36860700001)(47076005)(40480700001)(426003)(83380400001)(44832011)(5660300002)(7416002)(8676002)(8936002)(70206006)(70586007)(4326008)(6916009)(316002)(41300700001)(36756003)(40460700003)(6666004)(86362001)(54906003)(478600001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2023 12:19:29.5830
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 793dd596-10e2-44a2-ddd6-08db94e50d68
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CD.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5750
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Fri, 04 Aug 2023 13:23:07 +0200, Michael Riesch wrote:
-> This series adds support for orientation specification in the device
-> tree to the Sitronix ST7789V panel driver.
-> 
-> This is can be seen as reduced version of [0] (some things of [0] have
-> been implemented in more general fashion in the scope of [1], other
-> things have been rejected).
-> 
-> [...]
+The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and
+LPDDR4/4X memory interfaces. It has four programmable NoC interface
+ports and is designed to handle multiple streams of traffic.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Optional external interface reliability include ECC error
+detection/correction and command address parity.
 
-[1/3] drm/panel: sitronix-st7789v: fix indentation in drm_panel_funcs
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a238b5ee39e3d3581ec826cdb7b604adca37b5ea
-[2/3] drm/panel: sitronix-st7789v: add panel orientation support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=b27c0f6d208d6ba269f184ed6f92c6a9908866e6
-[3/3] dt-bindings: display: add rotation property to sitronix,st7789v
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e83172ec548d420f2e0b01e80a9a8cbae39bbe29
+Adding edac support for DDR Memory controller.
+
+
+Changes in v8:
+remove disabling all interrupts
+
+Changes in v7:
+Update the subject to add memory-controllers instead of edac
+Update the message
+Clear status after handling the error
+At probe disable all the unrequested interrupts.
+Alphabetically sorted diff
+Rename unCorrectable to uncorrectable
+Use mask0 for  GENMASK(0,5)
+Add a processbit function
+
+Changes in v6:
+Fix the warn.
+
+Changes in v5:
+Update subject
+
+Changes in v4:
+Update the reviewed by tag
+Update the subject
+rename the driver file.
+fix the debugfs file.
+fix unneeded capitalisation.
+refactor code
+
+Changes in v3:
+Rebased and resent.
+
+Changes in v2:
+remove edac from compatible
+Update the description
+update the ddrmc_base and ddrmc_noc_base names
+Update a missed out file
+remove edac from compatible name
+rename ddrmc_noc_base and ddrmc_base
+
+Shubhrajyoti Datta (2):
+  dt-bindings: memory-controllers: Add support for Xilinx Versal EDAC
+    for DDRMC
+  EDAC/versal: Add a Xilinx Versal memory controller driver
+
+ .../xlnx,versal-ddrmc-edac.yaml               |   57 +
+ MAINTAINERS                                   |    7 +
+ drivers/edac/Kconfig                          |   11 +
+ drivers/edac/Makefile                         |    1 +
+ drivers/edac/versal_edac.c                    | 1065 +++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |   12 +
+ 6 files changed, 1153 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
+ create mode 100644 drivers/edac/versal_edac.c
 
 -- 
-Neil
+2.17.1
 
