@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0A27770684
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 19:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B577770688
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 19:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbjHDRAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 13:00:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
+        id S231484AbjHDRAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 13:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbjHDRAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 13:00:20 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50DA198B
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 10:00:18 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9db1de50cso36008691fa.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 10:00:18 -0700 (PDT)
+        with ESMTP id S231464AbjHDRAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 13:00:36 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A889422B
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 10:00:35 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b703a0453fso36898381fa.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 10:00:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691168417; x=1691773217;
+        d=linaro.org; s=google; t=1691168433; x=1691773233;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BhTmqNPQqeLfL6+d90LxZ1wsfgJVGjsMSBEalmtth/g=;
-        b=JZKGadzfzxvw8Gnyq5ajwXIExY1qgnSHFBV/ZmG6n4j+vM9bq/PK0BbT9n+nPGKonO
-         0oiT7ewJWUZEKJbwEswp2wTF+HN4zy/2V4i+QN0M5Y29trr8++3gmctMh86OpQF+3OVg
-         Dhib1LsY/8LpK5QWAYYi1iZ0emFQrfS7Io/PMUoFRhqvQj/+xxqHPhowFZaHfWq6vukC
-         I7G9TaDrs7Jm6J7f5WXV8ksNcYGPYczwwPcXnFzrxca4+6Oa/Ol1ELcuAojCVmsjqmY1
-         eH5lgv0VEnjzjqqo8q7HNFn1qdLK720ZBA38WUt5YGjppLeatWPiznId9t/QZeHiRJPQ
-         ML5A==
+        bh=WpfreOO4D1dODiUWpoC0N9hpvYab6f3x7H/L3cxYVJc=;
+        b=lpLw6c7Uv5r4cLxrSBi6r6dqltLZ/DtkbRFV3HKScFfNWqt0Yp/7PY+VGvc6ofZrnt
+         yFPABSgCowNhkf9N0rzCSDpODju/WYYLkBM8gEiYcQXHSXAEcszUy2o3ePwb1ePavDU/
+         OOREOisVoWIlmIIo8XP6TkXtnIZOzv29WWHF652MnCR+gRX9q+Rt8tFK9LktzK2fZ6Yg
+         CN7EkngZre88Tj/lWEAEw3hbzC27N+8dB6q6L2vT3C4iYY8HNzDhEOC49q4GUQOC6QyA
+         3vO7Yy/54EddmsuhrMLgkreFPOd9LXcUJsiVLMnX/xg8bFttrRPzIZNK7Dvs7rcuMlKy
+         zHag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691168417; x=1691773217;
+        d=1e100.net; s=20221208; t=1691168433; x=1691773233;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BhTmqNPQqeLfL6+d90LxZ1wsfgJVGjsMSBEalmtth/g=;
-        b=NfPjyu9C1iIaF9MYfcPe9ynE5HmAJX3+bqS3CyXXn2o6NuqloDIRQ1/6UitYuIVTe3
-         i2vpi3LzPiH9qfckSqhre1/5OI+WKVXtmYpjBYnkxh+IKk/6gwI8z/QAS2aVU5g2W0uu
-         8in8bqcoAgDQJR44Cz3dRfdVOamfJzZsKP3q3SUyFrKSQrTjNw5tOQxBpycRIAFRKdEf
-         lPwjGvhLdqDcWER1FylLvhKw9BDIiYDioWuWAJ2pP4d6XLKHi0MNEO8bvyy1BQ+HbDQ8
-         sEHXKOej2RWWrCLuoNkCbzayLhrxEy0kitZASzPJcIvvH6fqmiGoMLTAh66Yecf5PdRK
-         IkUg==
-X-Gm-Message-State: AOJu0YwQWCyLfaLAMsWWx5eFpg28R+JsVQ9vwEP4hgJtY1rAzUIfsdLO
-        +szcVYXPNHv0RgfC9SjLLKEJqw==
-X-Google-Smtp-Source: AGHT+IG+YJF3w2ZPePdNXXTEv9ahvflHA3qfzWHMvexhR+NeXXtPClQyL64A+ZNHhR+0/H5bnvaLKw==
-X-Received: by 2002:a2e:9a8a:0:b0:2b9:20fe:4bcc with SMTP id p10-20020a2e9a8a000000b002b920fe4bccmr1962413lji.21.1691168417005;
-        Fri, 04 Aug 2023 10:00:17 -0700 (PDT)
+        bh=WpfreOO4D1dODiUWpoC0N9hpvYab6f3x7H/L3cxYVJc=;
+        b=B2JiyAwLWAc+9q9dBe8Gp13yJLG/f38V+ZZk1GADyOLijmJtizOC9lonkz/ROpYwSu
+         GD95o/jfsUT1OU/BqhAjCYIMVde6Wrcm9CZtw0AKlBTXlrToODPsFlgP/ucED2mIJtur
+         Scn4Ym1LsLNzbi8jQ3f7lSTqs/qv+e9F5nZhy9WLKvxop5h4B+ZMRhPtLRLXK6fbQ8sY
+         62Q7bnUYo/FxS9zUAAyZeRiNImRc1SD67nDKVBZfofpkGWE4KWVLgd0auI8F4JUw3fnD
+         Xw3K/QTCCetWr6rErvMY8Om1OfpxWVAE0S/Etwx0zSDS77ihgQhDfw4Zh8NiTXGdHXdn
+         8zOg==
+X-Gm-Message-State: AOJu0Yy+fFY/QmVpOcWOP+kKhVnmC3E/J7G8jNIGq/tr9Y+72URjsXe5
+        4Xag3aaF43L5382nhqvCmPPqNA==
+X-Google-Smtp-Source: AGHT+IGx9LTDc9g3KFq6cR0Gi87ErWr47AoN7aLKc43VFl2rDyFoq26cI7uATWkCLhDQts1pUK6EnQ==
+X-Received: by 2002:a2e:2c0e:0:b0:2b4:7f2e:a433 with SMTP id s14-20020a2e2c0e000000b002b47f2ea433mr1892372ljs.36.1691168433469;
+        Fri, 04 Aug 2023 10:00:33 -0700 (PDT)
 Received: from [192.168.1.101] (abyk53.neoplus.adsl.tpnet.pl. [83.9.30.53])
-        by smtp.gmail.com with ESMTPSA id i6-20020a05651c120600b002b6b7a98c4bsm539102lja.77.2023.08.04.10.00.15
+        by smtp.gmail.com with ESMTPSA id i6-20020a05651c120600b002b6b7a98c4bsm539102lja.77.2023.08.04.10.00.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 10:00:16 -0700 (PDT)
-Message-ID: <ff6324c7-c52c-4875-9849-c1b9850d66bb@linaro.org>
-Date:   Fri, 4 Aug 2023 19:00:15 +0200
+        Fri, 04 Aug 2023 10:00:32 -0700 (PDT)
+Message-ID: <d46d149c-7f1f-4b8b-b389-ed037b0f0095@linaro.org>
+Date:   Fri, 4 Aug 2023 19:00:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qrb2210-rb1: add wifi variant
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qrb4210-rb2: add wifi variant
  property
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -64,6 +64,7 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Kalle Valo <kvalo@kernel.org>
 References: <20230801232448.4175662-1-dmitry.baryshkov@linaro.org>
+ <20230801232448.4175662-2-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,13 +101,13 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230801232448.4175662-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230801232448.4175662-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -114,21 +115,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 2.08.2023 01:24, Dmitry Baryshkov wrote:
-> The RB1 platform doesn't have board-specific board-id programmed, it uses
+> The RB2 platform doesn't have board-specific board-id programmed, it uses
 > generic 0xff. Thus add the property with the 'variant' of the
 > calibration data.
 > 
 > Note: the driver will check for the calibration data for the following
 > IDs, so existing board-2.bin files will continue to work.
 > 
-> - 'bus=snoc,qmi-board-id=ff,qmi-chip-id=120,variant=Thundercomm_RB1'
-> - 'bus=snoc,qmi-board-id=ff,qmi-chip-id=120'
+> - 'bus=snoc,qmi-board-id=ff,qmi-chip-id=150,variant=Thundercomm_RB2'
+> - 'bus=snoc,qmi-board-id=ff,qmi-chip-id=150'
 > - 'bus=snoc,qmi-board-id=ff'
 > 
 > For the reference, the board is identified by the driver in the
 > following way:
 > 
-> ath10k_snoc c800000.wifi: qmi chip_id 0x120 chip_family 0x4007 board_id 0xff soc_id 0x40670000
+> ath10k_snoc c800000.wifi: qmi chip_id 0x150 chip_family 0x4002 board_id 0xff soc_id 0x40670000
 > ath10k_snoc c800000.wifi: qmi fw_version 0x337302d3 fw_build_timestamp 2023-01-06 01:50 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.3.7.c2-00723-QCAHLSWMTPLZ-1
 > ath10k_snoc c800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
 > ath10k_snoc c800000.wifi: kconfig debug 0 debugfs 0 tracing 0 dfs 0 testmode 0
@@ -137,9 +138,6 @@ On 2.08.2023 01:24, Dmitry Baryshkov wrote:
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-Thundercomm.. Qualcomm.. QTI.. I'm not even sure who makes these
-boards anymore.. But I guess Thundercomm sells them.
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
