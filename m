@@ -2,430 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A5B976FDF6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF1A76FE00
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbjHDJ7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 05:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53208 "EHLO
+        id S230031AbjHDKBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 06:01:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231234AbjHDJ7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:59:02 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD6F49E1
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 02:58:54 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6874a386ec7so333018b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 02:58:54 -0700 (PDT)
+        with ESMTP id S229526AbjHDKBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:01:09 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC4146B1;
+        Fri,  4 Aug 2023 03:01:08 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe07f0636bso3237563e87.1;
+        Fri, 04 Aug 2023 03:01:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1691143134; x=1691747934;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pmw4MJaNpCbrB1+hKOu+EXDpll+aiGyzO96Ozc/I49M=;
-        b=1ysjA76ZpbU3cP4o5qRyfncYLN8PUXlkMFioIMNgK7xXeJDroxoS6pRfLwUEMYTvtc
-         0O8NwabDrQRyebqwGvhI40461dOiiIeuu9KaOXKuhP0R8UL2MZbMj4+a6GvUZYzSYOlc
-         Ykg3You2Uw1K2b4qxwBdZXnjUkvwLJtK+2p9iq+il3GUcy6vOUe3nyiQgqKnoSwk22PO
-         VE1irI3kVmhh/sxK33zGDcUlz8H6zxalc8/GbG9qT+aARSL2dOuSJy1oj8D1QfFM35vk
-         67fFkbVwOndOU0ad2FVvGk+sVeZ5rTdfTcstRc79f9ND5nJbUdOGm7WiUW7bK7AB2wxM
-         v5hQ==
+        d=gmail.com; s=20221208; t=1691143266; x=1691748066;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qSPZltSRUQIUHufTq3pkT56bksgDNIXjXhEtAeHqofM=;
+        b=KAvHG75c00dAlD5NF61Ddw2oQRbNEgITCv7gV7B0qZZSzJe00NiLG4648JFnKvru8C
+         qGyCybBCY5+NccUCp4HZZaiuENspsr/zPCtYJSIvG9x1BTX7hmK3NiJpnu+26xjY+l5y
+         RsWsplYikSH7OJBzmL3QILsNk/OHtx3zV5kTD1O3rfdWM/gewYyrPuJjBYboN2X9FtBD
+         lsOduls1E/4YySez4FF6JnNE2b6Zm1Nk9ojHBtgB6VeLrXM3WByL5kQa93gb28X7l2+C
+         ZgTrOujmmnKDNynWJtWOA+1ht88iNkxg5TKVqDjtQD2XmUZzScnnsB2anOwrnQfX8aCj
+         uaSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691143134; x=1691747934;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pmw4MJaNpCbrB1+hKOu+EXDpll+aiGyzO96Ozc/I49M=;
-        b=MMK2fCFE+Y+VhdCCBJFrbbRN0Y2/Z/aqUsZ9qCzBh+zn9R684mdkX1wzO3VJp9DsDG
-         OHpce3l6q4+m4BreQHvNdhtApYxO6bb9cTbwe6LM21kvywdYu7LnM0H/K/wrrI+COuVh
-         YiCTdkUwa/56b+5Ny8EEqp+s0s5tUeJ3JgFOtEzDStIvGJqpy8sZQkve+aGWg4TobkdA
-         oTD/7qzjoThtsLxhA70IKImKmE7n2BKSUNmGNQcylD+c1g4TSz4AKZBzkjm67PWlg9no
-         XVPSfXOrCoKj6BkcgTJO7isI7IGP35mgKpFS7oYWMWk0XJgmtyF2L/z51f5FOHiIPnX2
-         Th6A==
-X-Gm-Message-State: ABy/qLYnqgI2qp4tm09xyCvVUNyceYBMrb9fDrgpYHIUYOIP3h9nv8xr
-        41OfNgRBlv22Sev9dRuwL7U2ww==
-X-Google-Smtp-Source: APBJJlFJBEEK2SBsGoaeA7HpfyWVfMA9etQoCA6pqcKw++8r+6jKuLNH6s4t/cBu6s4FabbAKd8DMw==
-X-Received: by 2002:a05:6a00:414e:b0:681:9fe0:b543 with SMTP id bv14-20020a056a00414e00b006819fe0b543mr19674839pfb.2.1691143133748;
-        Fri, 04 Aug 2023 02:58:53 -0700 (PDT)
-Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id i2-20020aa787c2000000b0067b643b814csm1259949pfo.6.2023.08.04.02.58.51
+        d=1e100.net; s=20221208; t=1691143266; x=1691748066;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qSPZltSRUQIUHufTq3pkT56bksgDNIXjXhEtAeHqofM=;
+        b=PJwo2HTpi2315FvryQ8X93bd/Il8p2lBs+9Tj3IWzHNoQqseqG1FoQLdHnVVJmCC2n
+         2Nhe8gq7hjC4oHTohUMRz4OKHQw/OULuF90zoS9l/7mAx1gMN2LV1SualYFg3yMwNVcn
+         aeKT6Le56hK0SjyPVM7F4kA6VNO0yTltIhGsMDb7Yrh9aay6XTnDS6/isv9kMXI7ecgm
+         QSIF2Qu7i1tZNKCX1k4jq6vUbguvP7TbHaO534RmZZJzNIddMt2sqWqhwez78OMzU9ZX
+         /T3BLo2DeQNlrTpfzsHEMtuW7RKYZARQG8IINg94pGQkiQvHLO7DEGxXY57kp2/yyUXl
+         MalA==
+X-Gm-Message-State: AOJu0Yy/LTvO22NaFh1KctH9f2reg94or8GBCCTJCSW3Jlq6e/qlbZbj
+        ju/OEc1IMmjuefAJNlgULNU=
+X-Google-Smtp-Source: AGHT+IHQGNObYw4Cwb4U5IuF9/OdNlz5RzvHRAUP8jgwwQjntNWkaXxKjvTM7J0YW4i10ASxyAIqdg==
+X-Received: by 2002:a05:6512:20c1:b0:4f8:58af:ebd7 with SMTP id u1-20020a05651220c100b004f858afebd7mr790625lfr.39.1691143266188;
+        Fri, 04 Aug 2023 03:01:06 -0700 (PDT)
+Received: from localhost.localdomain (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id o10-20020ac2494a000000b004f87893ce21sm311859lfi.3.2023.08.04.03.01.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Aug 2023 02:58:53 -0700 (PDT)
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org,
-        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fri, 04 Aug 2023 03:01:03 -0700 (PDT)
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sc7180: Add board id for lazor/limozeen
-Date:   Fri,  4 Aug 2023 17:58:36 +0800
-Message-Id: <20230804175734.v2.3.Ie77732a87ab53d21bac47db309b75a796fa19337@changeid>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
-References: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: iio: adc: mcp3911: add support for the whole MCP39xx family
+Date:   Fri,  4 Aug 2023 12:02:47 +0200
+Message-Id: <20230804100248.3773861-1-marcus.folkesson@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add BRD_ID(0, Z, 0) = 10 for new board with ALC5682i-VS
+Microchip does have many similar chips, add those to the compatible
+string as the driver support is extended.
 
-Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+The new supported chips are:
+  - microchip,mcp3910
+  - microchip,mcp3912
+  - microchip,mcp3913
+  - microchip,mcp3914
+  - microchip,mcp3918
+  - microchip,mcp3919
+
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 
-Changes in v2:
-- correct newly create dts files
+Notes:
+    v2:
+        - No changes
 
- arch/arm64/boot/dts/qcom/Makefile             |  5 ++
- ...sc7180-trogdor-lazor-limozeen-nots-r10.dts | 40 +++++++++++++
- .../sc7180-trogdor-lazor-limozeen-nots-r9.dts |  4 +-
- .../sc7180-trogdor-lazor-limozeen-r10.dts     | 56 +++++++++++++++++++
- .../qcom/sc7180-trogdor-lazor-limozeen-r9.dts |  4 +-
- .../dts/qcom/sc7180-trogdor-lazor-r10-kb.dts  | 34 +++++++++++
- .../dts/qcom/sc7180-trogdor-lazor-r10-lte.dts | 38 +++++++++++++
- .../dts/qcom/sc7180-trogdor-lazor-r10.dts     | 30 ++++++++++
- .../dts/qcom/sc7180-trogdor-lazor-r9-kb.dts   |  4 +-
- .../dts/qcom/sc7180-trogdor-lazor-r9-lte.dts  |  4 +-
- .../boot/dts/qcom/sc7180-trogdor-lazor-r9.dts |  4 +-
- 11 files changed, 213 insertions(+), 10 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r10.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
+ .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml      | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 337abc4ceb17..73e745fb1ff0 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -109,11 +109,16 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r9.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r9-kb.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r9-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r10.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r10-kb.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r10-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-r4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-r9.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-r10.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r9.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r10.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pazquel-lte-parade.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pazquel-lte-ti.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pazquel-parade.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dts
-new file mode 100644
-index 000000000000..fe634e2caf3b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Lazor Limozeen board device tree source
-+ *
-+ * Copyright 2023 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-lazor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google Lazor Limozeen without Touchscreen (rev10+)";
-+	compatible = "google,lazor-sku6", "google,lazor-sku18", "qcom,sc7180";
-+};
-+
-+/delete-node/&ap_ts;
-+
-+&panel {
-+	compatible = "edp-panel";
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	/delete-property/ VBAT-supply;
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-index cef57c15b70b..e3f1f30a7fc3 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-@@ -13,8 +13,8 @@
- #include "sc7180-trogdor-lte-sku.dtsi"
+diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+index f7b3fde4115a..06951ec5f5da 100644
+--- a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+@@ -18,7 +18,13 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - microchip,mcp3910
+       - microchip,mcp3911
++      - microchip,mcp3912
++      - microchip,mcp3913
++      - microchip,mcp3914
++      - microchip,mcp3918
++      - microchip,mcp3919
  
- / {
--	model = "Google Lazor Limozeen without Touchscreen (rev9+)";
--	compatible = "google,lazor-sku6", "google,lazor-sku18", "qcom,sc7180";
-+	model = "Google Lazor Limozeen without Touchscreen (rev9)";
-+	compatible = "google,lazor-rev9-sku6", "google,lazor-rev9-sku18", "qcom,sc7180";
- };
- 
- /delete-node/&ap_ts;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r10.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r10.dts
-new file mode 100644
-index 000000000000..7b97963cce6e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r10.dts
-@@ -0,0 +1,56 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Lazor Limozeen board device tree source
-+ *
-+ * Copyright 2023 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-lazor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google Lazor Limozeen (rev10+)";
-+	compatible = "google,lazor-sku4", "google,lazor-sku15", "qcom,sc7180";
-+};
-+
-+/delete-node/&ap_ts;
-+
-+&ap_ts_pen_1v8 {
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&panel {
-+	compatible = "auo,b116xa01";
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	/delete-property/ VBAT-supply;
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dts
-index 2038a82bc0e7..3b6053f3e62b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dts
-@@ -13,8 +13,8 @@
- #include "sc7180-trogdor-lte-sku.dtsi"
- 
- / {
--	model = "Google Lazor Limozeen (rev9+)";
--	compatible = "google,lazor-sku4", "google,lazor-sku15", "qcom,sc7180";
-+	model = "Google Lazor Limozeen (rev9)";
-+	compatible = "google,lazor-rev9-sku4", "google,lazor-rev9-sku15", "qcom,sc7180";
- };
- 
- /delete-node/&ap_ts;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
-new file mode 100644
-index 000000000000..6f98f61ac567
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Lazor board device tree source
-+ *
-+ * Copyright 2023 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-lazor.dtsi"
-+#include "sc7180-lite.dtsi"
-+
-+/ {
-+	model = "Google Lazor (rev10+) with KB Backlight";
-+	compatible = "google,lazor-sku2", "qcom,sc7180";
-+};
-+
-+&keyboard_backlight {
-+	status = "okay";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	/delete-property/ VBAT-supply;
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
-new file mode 100644
-index 000000000000..03d0d0af367c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Lazor board device tree source
-+ *
-+ * Copyright 2023 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-lazor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google Lazor (rev10+) with LTE";
-+	compatible = "google,lazor-sku0", "google,lazor-sku10", "qcom,sc7180";
-+};
-+
-+&ap_sar_sensor_i2c {
-+	status = "okay";
-+};
-+
-+&keyboard_backlight {
-+	status = "okay";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	/delete-property/ VBAT-supply;
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
-new file mode 100644
-index 000000000000..5a58e94c228e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Lazor board device tree source
-+ *
-+ * Copyright 2023 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-lazor.dtsi"
-+#include "sc7180-lite.dtsi"
-+
-+/ {
-+	model = "Google Lazor (rev10+)";
-+	compatible = "google,lazor", "qcom,sc7180";
-+};
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	/delete-property/ VBAT-supply;
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-index 960f7b7ce094..f74a1985cac6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-@@ -13,8 +13,8 @@
- #include "sc7180-lite.dtsi"
- 
- / {
--	model = "Google Lazor (rev9+) with KB Backlight";
--	compatible = "google,lazor-sku2", "qcom,sc7180";
-+	model = "Google Lazor (rev9) with KB Backlight";
-+	compatible = "google,lazor-rev9-sku2", "qcom,sc7180";
- };
- 
- &keyboard_backlight {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-index 438ab9cd3389..15dcf95da311 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-@@ -13,8 +13,8 @@
- #include "sc7180-trogdor-lte-sku.dtsi"
- 
- / {
--	model = "Google Lazor (rev9+) with LTE";
--	compatible = "google,lazor-sku0", "google,lazor-sku10", "qcom,sc7180";
-+	model = "Google Lazor (rev9) with LTE";
-+	compatible = "google,lazor-rev9-sku0", "google,lazor-rev9-sku10", "qcom,sc7180";
- };
- 
- &ap_sar_sensor_i2c {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
-index 56dd222650d3..44f61bc56f81 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
-@@ -13,6 +13,6 @@
- #include "sc7180-lite.dtsi"
- 
- / {
--	model = "Google Lazor (rev9+)";
--	compatible = "google,lazor", "qcom,sc7180";
-+	model = "Google Lazor (rev9)";
-+	compatible = "google,lazor-rev9", "qcom,sc7180";
- };
+   reg:
+     maxItems: 1
 -- 
-2.34.1
+2.40.1
 
