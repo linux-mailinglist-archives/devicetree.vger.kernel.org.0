@@ -2,155 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A1E76F80B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 04:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8047476F77E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 04:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233951AbjHDCoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 22:44:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56806 "EHLO
+        id S230236AbjHDCKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 22:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233884AbjHDCoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 22:44:13 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B19D173C;
-        Thu,  3 Aug 2023 19:44:11 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B7977201F22;
-        Fri,  4 Aug 2023 04:44:09 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 51E5B201F1D;
-        Fri,  4 Aug 2023 04:44:09 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id ACFB31802200;
-        Fri,  4 Aug 2023 10:44:07 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     frank.li@nxp.com, l.stach@pengutronix.de, shawnguo@kernel.org,
-        lpieralisi@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     hongxing.zhu@nxp.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: [PATCH v2 9/9] PCI: imx6: Add i.MX7D PCIe EP support
-Date:   Fri,  4 Aug 2023 10:09:35 +0800
-Message-Id: <1691114975-4750-10-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1691114975-4750-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1691114975-4750-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229613AbjHDCJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 22:09:59 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C27448B
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 19:09:58 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6bc57401cb9so314308a34.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 19:09:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691114997; x=1691719797;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=faTlowj/hkbZyLWnlsqJy6jErJUbKNF0vNTWMz/QkMw=;
+        b=nkcE9lwkxHQvlNXNvp1TE5+Kyg6SHOe9Pbxe+M1eKdxKSErX89yUVhoLl9/UGV4MiN
+         BXZWemxXDnG/YYxgZt/a20pGs7G5XpjF4GilY50C7ilYEM1wNtxi0m0zVnOxlLBL50QC
+         dP31VPYghdULuAmRFrIHHF5mLelOiwalMamWfL/Wy+KF6KGG/kibeoHRIXbopO9tTcaO
+         QlzpNGwNFW/GFATJl4j4l3d4LrQtg/hl3oN5hT8b7gKWpjIYqOFYxI4ChvhPuizjLt38
+         JyDNwC103vtPkVSvNhOlE2trltnN2zmIuDIn+Z+qB1g/H/oqN6FPwhTd2ymXpJvj0/JR
+         EGMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691114997; x=1691719797;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=faTlowj/hkbZyLWnlsqJy6jErJUbKNF0vNTWMz/QkMw=;
+        b=QBqL9O6kMwGdHWJtx6OIi5Of8Mlv7SE0AabXVgVWdKDvswuZRCiACZHC0iVqmvx6zv
+         Rs0ZYQrWbKORtSe/kybrbvhlgAcHNQy7x7mXhFrdAlcldsTGf5jMEuaao0/mz6qFhtGf
+         jMgqUBftyma+TI2rk/ia2Z0Kuf3dNpJKBUedk9xQ0Ng49a5FXuHsOreb8REpmAHNdzkm
+         hLRnbZcTYOGc04Tpdjv4Mf9iGu4/YdwkLJD9akeBmSOS64qXA9mLgTnSrMH/2xlOZLh2
+         c1zfEtMhQlI+k8xXCcFwhf2V/X1Sx4aez9feFipKEBK9pUqmDAuoFujmDwv7T248iRX1
+         6kyQ==
+X-Gm-Message-State: ABy/qLZ09HJOdW+Oyw2whatGZ1TSVrpecxl3MPOU+6bBogFgKixN8EwJ
+        7YcoWkcLFNtCvP/jkUGWFMc=
+X-Google-Smtp-Source: APBJJlGQYn8wT6qZveI5TzssOgBEmaNaiLIliw99A/c+9GGwYW1ef5Gt5ad7wCafDT+isbySbAm/sA==
+X-Received: by 2002:a05:6870:f70e:b0:1b4:4941:3096 with SMTP id ej14-20020a056870f70e00b001b449413096mr15701859oab.5.1691114997342;
+        Thu, 03 Aug 2023 19:09:57 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:48ea:73bf:1876:eaf3])
+        by smtp.gmail.com with ESMTPSA id v17-20020a056870955100b001bee99e97a9sm618400oal.43.2023.08.03.19.09.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Aug 2023 19:09:56 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] arm64: dts: imx: Pass a single BD71847 clock entry
+Date:   Thu,  3 Aug 2023 23:09:46 -0300
+Message-Id: <20230804020947.189713-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the i.MX7D PCIe EP mode support.
+From: Fabio Estevam <festevam@denx.de>
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+Pass a single BD71847 clock entry to fix the following schema
+warning:
+
+imx8mm-var-som-symphony.dtb: pmic@4b: clocks: [[22], [0]] is too long
+	from schema $id: http://devicetree.org/schemas/mfd/rohm,bd71847-pmic.yaml#
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- drivers/pci/controller/dwc/pci-imx6.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi        | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi           | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi        | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts           | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts      | 2 +-
+ 10 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 43c5251f5160..af7659712537 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -52,6 +52,7 @@ enum imx6_pcie_variants {
- 	IMX6QP,
- 	IMX6QP_EP,
- 	IMX7D,
-+	IMX7D_EP,
- 	IMX8MQ,
- 	IMX8MM,
- 	IMX8MP,
-@@ -359,6 +360,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
- 					   0);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL, 0);
- 		break;
-@@ -590,6 +592,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 				   IMX6Q_GPR1_PCIE_REF_CLK_EN, 1 << 16);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		break;
- 	case IMX8MM:
- 	case IMX8MM_EP:
-@@ -638,6 +641,7 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
- 				IMX6Q_GPR1_PCIE_TEST_PD);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL,
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
-@@ -711,6 +715,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- {
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX7D:
-+	case IMX7D_EP:
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 		reset_control_assert(imx6_pcie->pciephy_reset);
-@@ -763,6 +768,7 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index 201325f566cb..f264102bdb27 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -112,7 +112,7 @@ pmic@4b {
+ 		rohm,reset-snvs-powered;
  
- 		/* Workaround for ERR010728, failure of PCI-e PLL VCO to
-@@ -854,6 +860,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 				   IMX6Q_GPR12_PCIE_CTL_2);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MM:
-@@ -880,6 +887,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
- 				   IMX6Q_GPR12_PCIE_CTL_2, 0);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MM:
-@@ -1385,6 +1393,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 					     "pcie_aux clock source missing or invalid\n");
- 		fallthrough;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
- 			imx6_pcie->controller_id = 1;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
  
-@@ -1572,6 +1581,12 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
- 		.gpr = "fsl,imx7d-iomuxc-gpr",
- 	},
-+	[IMX7D_EP] = {
-+		.variant = IMX7D_EP,
-+		.mode = DW_PCIE_EP_TYPE,
-+		.gpr = "fsl,imx7d-iomuxc-gpr",
-+		.epc_features = &imx6q_pcie_epc_features,
-+	},
- 	[IMX8MQ] = {
- 		.variant = IMX8MQ,
- 		.gpr = "fsl,imx8mq-iomuxc-gpr",
-@@ -1611,6 +1626,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx6qp-pcie", .data = &drvdata[IMX6QP], },
- 	{ .compatible = "fsl,imx6qp-pcie-ep", .data = &drvdata[IMX6QP_EP], },
- 	{ .compatible = "fsl,imx7d-pcie",  .data = &drvdata[IMX7D],  },
-+	{ .compatible = "fsl,imx7d-pcie-ep", .data = &drvdata[IMX7D_EP], },
- 	{ .compatible = "fsl,imx8mq-pcie", .data = &drvdata[IMX8MQ], },
- 	{ .compatible = "fsl,imx8mm-pcie", .data = &drvdata[IMX8MM], },
- 	{ .compatible = "fsl,imx8mp-pcie", .data = &drvdata[IMX8MP], },
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+index 2b83a5258ec6..d7830df5b6f9 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+@@ -142,7 +142,7 @@ pmic@4b {
+ 		rohm,reset-snvs-powered;
+ 
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index 21d7b16d6f84..9c998c695bce 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -512,7 +512,7 @@ pmic@4b {
+ 		interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+index 964cc4fc2ddf..506512b6abf5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+@@ -431,7 +431,7 @@ pmic@4b {
+ 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
+index 07b07dc954fd..0e102a12bca4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
+@@ -416,7 +416,7 @@ pmic@4b {
+ 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
+index 6ca52a14a5ab..6afbabc89c02 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
+@@ -460,7 +460,7 @@ pmic@4b {
+ 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
+index 8a4369d38903..90073b16536f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
+@@ -121,7 +121,7 @@ pmic@4b {
+ 		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+index 8e100e71b8d2..22a754d438f1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+@@ -92,7 +92,7 @@ bd71847: pmic@4b {
+ 		rohm,reset-snvs-powered;
+ 
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+index 5110d59b719f..cc2ff59ac53b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+@@ -60,7 +60,7 @@ pmic@4b {
+ 		rohm,reset-snvs-powered;
+ 
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+index 3ac011bbc025..caf0ddfddd01 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+@@ -429,7 +429,7 @@ pmic@4b {
+ 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 		#clock-cells = <0>;
+-		clocks = <&osc_32k 0>;
++		clocks = <&osc_32k>;
+ 		clock-output-names = "clk-32k-out";
+ 
+ 		regulators {
 -- 
 2.34.1
 
