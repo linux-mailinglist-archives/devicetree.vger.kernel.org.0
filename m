@@ -2,77 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8CDE7704E9
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 883407704EE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbjHDPht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 11:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39978 "EHLO
+        id S230488AbjHDPiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 11:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjHDPhs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:37:48 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98AAF1735;
-        Fri,  4 Aug 2023 08:37:46 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 374DxTYt016361;
-        Fri, 4 Aug 2023 17:37:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-        message-id:date:mime-version:subject:to:references:from
-        :in-reply-to:content-type:content-transfer-encoding; s=
-        selector1; bh=2MnJLd/cw+qk9zY3eSbS/WUEJw7QWsi5u4vo7z3Bjqk=; b=zC
-        WsRTeAzXfTb9ZxdDjdGg2ZIBEvkHBeTXB4GbqUxHnZZ8IPh+V5izWoW7/WxO/WUH
-        vPlNMzbEP7SWUxzVsmSC6WPdoYIt2WUh9DZ/8fJ7z+Fwxv84eGd5NFkVw3T6CnAa
-        JdQnsKCAEP/DuTmxQySA/2K0NS1FvJxfJc4qYufkvzowMQbWBYFgncF4UWEc4g+X
-        mE71KMfGu+dZX9DMw9892Jml8D9g3wIi57m9ghLocsHvRnqRLzF9OxduCFkQIMlt
-        bgtjeDKxOhKI0fwuQuy8LoJi7Ff/M6MShvn5MC1SMdFd0GH/aNoHvP2BJaQtlAzR
-        HhdKTf+2ffN2xd9DwNyg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s8xy89v4t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 04 Aug 2023 17:37:34 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 128AC10004F;
-        Fri,  4 Aug 2023 17:37:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0B47B2248AC;
-        Fri,  4 Aug 2023 17:37:34 +0200 (CEST)
-Received: from [10.201.20.38] (10.201.20.38) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 4 Aug
- 2023 17:37:33 +0200
-Message-ID: <a02b8501-d47f-77df-444a-a867a9438443@foss.st.com>
-Date:   Fri, 4 Aug 2023 17:37:32 +0200
+        with ESMTP id S231201AbjHDPiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:38:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D357649CB;
+        Fri,  4 Aug 2023 08:38:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A92F6202B;
+        Fri,  4 Aug 2023 15:38:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B15AC433C8;
+        Fri,  4 Aug 2023 15:38:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691163495;
+        bh=t4F+m0azHkadYsutPkh75iCV6olf/pJ7y0Pbspodwio=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=s3LWYBXP0DQCJ8gWTRlGS+DLuDNG91JnVUqj6fIwyYQ+K/ZrE+Mf+5akzN9HDNSsM
+         AlrELznaKCwhcSAZJBIdBxmoyVZYYz+BqXgKziIikEOcaTShqV9YhIuU/Qw+4xwOhV
+         dP3KswXwcY3JV6Xpd9idcxJLE/sHQJye5zPAIqwIVMW1uMYllspZXdh6XBYwjVzvQa
+         v3W9wiRmou7leVNioc8L1c1r+yrjoFid7gIEH7u+TptlFC4hBp+SU+dn4e4bBn5YX0
+         P4y/DADmXFXhRTNNa5dDHRmSzILx1OsbjX62EzkrsdGyGqtNb3dHbc0A7OMRJGHpzH
+         j6D+8RkWlFHtA==
+Date:   Fri, 4 Aug 2023 16:38:10 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        kever.yang@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org, huangtao@rock-chips.com
+Subject: Re: [RESEND PATCH v3 3/4] dt-bindings: clock: rk3588: export
+ PCLK_VO1GRF clk id
+Message-ID: <20230804-colonial-balsamic-c97491ebec12@spud>
+References: <20230804025101.28438-1-zhangqing@rock-chips.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 4/4] AMR: dts: st: stih407: drop max-duty-cycle
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230726070353.103989-1-krzysztof.kozlowski@linaro.org>
- <20230726070353.103989-4-krzysztof.kozlowski@linaro.org>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20230726070353.103989-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.38]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-04_15,2023-08-03_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lK93WBiQtkbGzRv8"
+Content-Disposition: inline
+In-Reply-To: <20230804025101.28438-1-zhangqing@rock-chips.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,31 +61,56 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--lK93WBiQtkbGzRv8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 7/26/23 09:03, Krzysztof Kozlowski wrote:
-> "max-duty-cycle" property was removed in the commit f747a1fe7848
-> ("regulator: pwm-regulator: Remove obsoleted property"):
-> 
->   stih418-b2199.dtb: pwm-regulator: Unevaluated properties are not allowed ('max-duty-cycle' was unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, Aug 04, 2023 at 10:51:01AM +0800, Elaine Zhang wrote:
+> add PCLK_VO1GRF clk id.
+>=20
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 > ---
->  arch/arm/boot/dts/st/stih407-family.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
-> index 3f58383a7b59..29302e74aa1d 100644
-> --- a/arch/arm/boot/dts/st/stih407-family.dtsi
-> +++ b/arch/arm/boot/dts/st/stih407-family.dtsi
-> @@ -111,7 +111,6 @@ pwm_regulator: pwm-regulator {
->  		regulator-min-microvolt = <784000>;
->  		regulator-max-microvolt = <1299000>;
->  		regulator-always-on;
-> -		max-duty-cycle = <255>;
->  		status = "okay";
->  	};
->  
-Acked-by: Patrice Chotard <patrice.chotard@foss.st.com>
+>  include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt=
+-bindings/clock/rockchip,rk3588-cru.h
+> index b5616bca7b44..864a321ab362 100644
+> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
+> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+> @@ -733,8 +733,9 @@
+>  #define ACLK_AV1_PRE			718
+>  #define PCLK_AV1_PRE			719
+>  #define HCLK_SDIO_PRE			720
+> +#define PCLK_VO1GRF			721
+> =20
+> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
+> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
 
-Thanks
-Patrice
+I only got this patch & not the rest of the series, so no idea what's
+going in those patches, but since CLK_NR_CLKS was put in a dt-binding
+header, is that value not now part of the ABI?
+
+Thanks,
+Conor.
+
+> =20
+>  /* scmi-clocks indices */
+> =20
+> --=20
+> 2.17.1
+>=20
+
+--lK93WBiQtkbGzRv8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM0bYgAKCRB4tDGHoIJi
+0ivZAQCx292j0WpUPtQm1NKlAx/CxxoK2bk0EqWwWc0QshsvGwD/aj8I8l6Qv8Xn
+VBq+pNEmZJBYuho1YQFAV5jlcDIbmAM=
+=eTnE
+-----END PGP SIGNATURE-----
+
+--lK93WBiQtkbGzRv8--
