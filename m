@@ -2,131 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8C976FCF4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F82676FD15
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 11:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjHDJNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 05:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59424 "EHLO
+        id S230142AbjHDJSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 05:18:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230271AbjHDJNB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:13:01 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0AE35593;
-        Fri,  4 Aug 2023 02:10:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1691140207; x=1722676207;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OU7g0r3M/XB9LzgVs7uLjBcYUCr80nlIE17NRVSfSeI=;
-  b=NLiUML3tVpFmH5CrATbvGByH9lM1ZoGUMq1G3uopGd3bqFdnHX+lxkFn
-   YGc/xRazVu6wKD961cqpqnKPaTcjKJMXJsP//py3R188alENAiP9B/Y9a
-   QG+XIEaTJ223tbqpaVbWpMXfVPqEohSkY7JTzFZPhMMzhr5ahJhnO+mdF
-   gdSfQexizj7tgjy42Lk4fjJViVDMoWqGI3qBpTdz6zXKySwmMaJMC7nDv
-   2mYM77er8oR8K25+WOrl+5W0fhZ49CPnNISVbjpddrTd14PF3p3u2fs4q
-   qbMNfv8VWVAxSrSffSYbYxxq7V41OFWI4bCjkMSCElGawFaxoOPtBHajx
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; 
-   d="asc'?scan'208";a="239780977"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Aug 2023 02:10:06 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 4 Aug 2023 02:10:06 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 4 Aug 2023 02:10:03 -0700
-Date:   Fri, 4 Aug 2023 10:09:27 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Nylon Chen <nylon.chen@sifive.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <geert+renesas@glider.be>,
-        <pavel@ucw.cz>, <vincent.chen@sifive.com>,
-        <emil.renner.berthing@canonical.com>, <aou@eecs.berkeley.edu>,
-        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <conor@kernel.org>, <zong.li@sifive.com>
-Subject: Re: [PATCH v4 0/1] Change PWM-controlled LED pin active mode and
- algorithm
-Message-ID: <20230804-jaundice-outpost-b8fbc9044e0d@wendy>
-References: <20230803085734.340-1-nylon.chen@sifive.com>
- <20230803-vehicular-leggings-2830239f818a@wendy>
- <20230803-caretaker-voicing-e982f2334067@wendy>
- <CAHh=Yk9A3MP4Zgz53+s_ugvMtnv57igY=+Yccbp9Om9jBuxXqg@mail.gmail.com>
- <CAHh=Yk842gFpR1a3=KiB-Yb7T1Dqbg627MBK+hntjgMtd5z6-w@mail.gmail.com>
+        with ESMTP id S230251AbjHDJRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 05:17:51 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A43659A
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 02:15:06 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fe32016bc8so17099765e9.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 02:15:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691140504; x=1691745304;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=71Y7fvFf23DlcHVQnn1+VCuGejkZ90AHi9Sx80BiLrU=;
+        b=YCd0E+msh2iovWRHo6etrB96IEVPx9bTD6paLhaxTy410eEXt6Ao221ZgMRwlzMTg4
+         TcLe0eyw/IncHgE4yhCcBKNE0U9v5ymweVIy7sO0fx56PieWmXvqa0QJdUb+P3tTFGF0
+         MZYSPSTegQ9j4N3kCWnL3YdxPFpJQCXs3b3KyoQi7fzVH7OcsfVxBDOk67aah8VlAC8f
+         FYBBNi92tWBGc2zmH5hPnB2ZIzShRwfxH/zrA/PxsegqvkEfyr3YVgdJ4/cv1rpVqq2U
+         7P1Qy943XdbjQCSm8DR5A57Tj64iy2RSTxOrJSuEdD3cJUqwgcSByW2J8+ZTfQyQNsRG
+         0Uew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691140504; x=1691745304;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=71Y7fvFf23DlcHVQnn1+VCuGejkZ90AHi9Sx80BiLrU=;
+        b=iLrGnKM8IK6ohwXWG/9PYk4A1sGbl/zjY8JcYGOTHHGsUGfzLYOPoBKAVipElxd0GO
+         eMAPou8iqxrflkNqBxHszZjJa73yeAw3jPzua7qKcVEyhfJ/5paJvHfnmylkZuzfHrNL
+         N3qN7VLEpD2Z5AMzEQQ5GDcLfkFT/Z2o/UQG1E8o47rCB2BD/Bep9rsJtTTBaMt7ORAN
+         VFzu7oF6FjYuSfe/lLi02TWoRFwLv7prgc5uLdtYvlxuPef2RsOJKUgk5nU1MsRNv6YW
+         7ijfHoifccPVcClj6sj09ywhlzRGxBaDb2MaeCqMfNLwBI9I/0chKQjmRUL4QqYUHT52
+         92sA==
+X-Gm-Message-State: AOJu0YyYJdYO0Ws5LXoRvscS8Kbo/Tw1v6/gLFK+mPDFsd6pqfUmGusm
+        Fn/W2VIZoPW5Rtgf9q/CGuTKrA==
+X-Google-Smtp-Source: AGHT+IEdwy67IM7wQzFY9zbOqk6aVpwyIEai6eqbnk6UqIWFL8cDm0ellxQL8yh/OIYFEy/H85s8JA==
+X-Received: by 2002:a05:600c:452:b0:3fe:1660:7e71 with SMTP id s18-20020a05600c045200b003fe16607e71mr960232wmb.41.1691140503706;
+        Fri, 04 Aug 2023 02:15:03 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003fc04d13242sm6224919wmc.0.2023.08.04.02.15.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Aug 2023 02:15:03 -0700 (PDT)
+Message-ID: <a5a12190-f872-1fae-ad7a-7cf9ca7e9502@baylibre.com>
+Date:   Fri, 4 Aug 2023 11:15:01 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="drXNa9U6BVDiMxxh"
-Content-Disposition: inline
-In-Reply-To: <CAHh=Yk842gFpR1a3=KiB-Yb7T1Dqbg627MBK+hntjgMtd5z6-w@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/6] ASoC: mediatek: mt7986: add common header
+To:     Maso Huang <maso.huang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230728090819.18038-1-maso.huang@mediatek.com>
+ <20230728090819.18038-2-maso.huang@mediatek.com>
+Content-Language: en-US
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230728090819.18038-2-maso.huang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---drXNa9U6BVDiMxxh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Aug 04, 2023 at 02:54:33PM +0800, Nylon Chen wrote:
-> Hi Conor,
->=20
-> Thank you for patiently giving me advice. I appreciate your help.
->=20
-> Not long ago, I said, "This patch needs to be accompanied by
-> modifications to the pwm_sifive_apply() function to make sense."
->=20
-> I recently reviewed the v3 version, and after discussing it with Emil,
-> there are several areas that require modification. I will provide the
-> necessary changes for each of them:
->=20
-> 1. polarity check. (Suggestion from Uwe)
-> - if (state->polarity !=3D PWM_POLARITY_INVERSED)
-> + if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> 2. avoid using old periodperiod, not state->period
-> - period =3D max(state->period, ddata->approx_period);
-> - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> + frac =3D DIV64_U64_ROUND_CLOSEST(num, period);
-> 3. add a conditional check can be added in the code to set
-> ddata->approx_period to state->period when state->period is smaller
-> than ddata->approx_period
->   if (state->period !=3D ddata->approx_period) {
->   ...
-> +       if (state->period < ddata->approx_period) {
-> +               ddata->approx_period =3D state->period;
-> +       }
-> -       ddata->approx_period =3D state->period;
-> +       period =3D ddata->approx_period;
->=20
-
-> I will use 'unmatched' on my end to verify again. If there are any
-> other errors, feel free to point them out. Thank you.
-
-I'm not sure of the driver details without going and looking into the
-code itself, but this sounds like it makes a lot more sense than just
-flipping the polarity in the dts. Thanks for taking another look!
 
 
---drXNa9U6BVDiMxxh
-Content-Type: application/pgp-signature; name="signature.asc"
+On 28/07/2023 11:08, Maso Huang wrote:
+> Add header files for register definition and structure.
+> 
+> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   sound/soc/mediatek/mt7986/mt7986-afe-common.h |  49 +++++
+>   sound/soc/mediatek/mt7986/mt7986-reg.h        | 206 ++++++++++++++++++
+>   2 files changed, 255 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-common.h
+>   create mode 100644 sound/soc/mediatek/mt7986/mt7986-reg.h
+> 
+> diff --git a/sound/soc/mediatek/mt7986/mt7986-afe-common.h b/sound/soc/mediatek/mt7986/mt7986-afe-common.h
+> new file mode 100644
+> index 000000000000..1c59549d91b4
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt7986/mt7986-afe-common.h
+> @@ -0,0 +1,49 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * mt7986-afe-common.h  --  MediaTek 7986 audio driver definitions
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
 
------BEGIN PGP SIGNATURE-----
+2023
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMzARwAKCRB4tDGHoIJi
-0qDdAQCi6vcuaP29QFEGbJjRy3gSuS59BLhmOBTY1CNGgezTMQEA56t+2koBs6Of
-s0vx0OPO9U9ugfjxAQT1KVCC/BlxBQw=
-=fu/T
------END PGP SIGNATURE-----
+> + * Author: Vic Wu <vic.wu@mediatek.com>
 
---drXNa9U6BVDiMxxh--
+Authors
+
+> + *         Maso Huang <maso.huang@mediatek.com>
+> + */
+> +
+> +#ifndef _MT_7986_AFE_COMMON_H_
+> +#define _MT_7986_AFE_COMMON_H_
+> +
+> +#include <sound/soc.h>
+> +#include <linux/clk.h>
+> +#include <linux/list.h>
+> +#include <linux/regmap.h>
+> +#include "../common/mtk-base-afe.h"
+> +
+> +enum {
+> +	MT7986_MEMIF_DL1,
+> +	MT7986_MEMIF_VUL12,
+> +	MT7986_MEMIF_NUM,
+> +	MT7986_DAI_ETDM = MT7986_MEMIF_NUM,
+> +	MT7986_DAI_NUM,
+> +};
+> +
+> +enum {
+> +	MT7986_IRQ_0,
+> +	MT7986_IRQ_1,
+> +	MT7986_IRQ_2,
+> +	MT7986_IRQ_NUM,
+> +};
+> +
+> +struct mt7986_afe_private {
+> +	struct clk_bulk_data *clks;
+> +	int num_clks;
+> +
+> +	int pm_runtime_bypass_reg_ctl;
+> +
+> +	/* dai */
+> +	void *dai_priv[MT7986_DAI_NUM];
+> +};
+> +
+> +unsigned int mt7986_afe_rate_transform(struct device *dev,
+> +				       unsigned int rate);
+> +
+> +/* dai register */
+> +int mt7986_dai_etdm_register(struct mtk_base_afe *afe);
+> +#endif
+> diff --git a/sound/soc/mediatek/mt7986/mt7986-reg.h b/sound/soc/mediatek/mt7986/mt7986-reg.h
+> new file mode 100644
+> index 000000000000..88861f81890f
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt7986/mt7986-reg.h
+> @@ -0,0 +1,206 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * mt7986-reg.h  --  MediaTek 7986 audio driver reg definition
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
+
+Ditto
+
+> + * Author: Vic Wu <vic.wu@mediatek.com>
+
+Ditto
+
+> + *         Maso Huang <maso.huang@mediatek.com>
+> + */
+> +
+> +#ifndef _MT7986_REG_H_
+> +#define _MT7986_REG_H_
+> +
+> +#define AUDIO_TOP_CON2                  0x0008
+> +#define AUDIO_TOP_CON4                  0x0010
+> +#define AUDIO_ENGEN_CON0                0x0014
+> +#define AFE_IRQ_MCU_EN                  0x0100
+> +#define AFE_IRQ_MCU_STATUS              0x0120
+> +#define AFE_IRQ_MCU_CLR                 0x0128
+> +#define AFE_IRQ0_MCU_CFG0               0x0140
+> +#define AFE_IRQ0_MCU_CFG1               0x0144
+> +#define AFE_IRQ1_MCU_CFG0               0x0148
+> +#define AFE_IRQ1_MCU_CFG1               0x014c
+> +#define AFE_IRQ2_MCU_CFG0               0x0150
+> +#define AFE_IRQ2_MCU_CFG1               0x0154
+> +#define ETDM_IN5_CON0                   0x13f0
+> +#define ETDM_IN5_CON1                   0x13f4
+> +#define ETDM_IN5_CON2                   0x13f8
+> +#define ETDM_IN5_CON3                   0x13fc
+> +#define ETDM_IN5_CON4                   0x1400
+> +#define ETDM_OUT5_CON0                  0x1570
+> +#define ETDM_OUT5_CON4                  0x1580
+> +#define ETDM_OUT5_CON5                  0x1584
+> +#define ETDM_4_7_COWORK_CON0            0x15e0
+> +#define ETDM_4_7_COWORK_CON1            0x15e4
+> +#define AFE_CONN018_1                   0x1b44
+> +#define AFE_CONN018_4                   0x1b50
+> +#define AFE_CONN019_1                   0x1b64
+> +#define AFE_CONN019_4                   0x1b70
+> +#define AFE_CONN124_1                   0x2884
+> +#define AFE_CONN124_4                   0x2890
+> +#define AFE_CONN125_1                   0x28a4
+> +#define AFE_CONN125_4                   0x28b0
+> +#define AFE_CONN_RS_0                   0x3920
+> +#define AFE_CONN_RS_3                   0x392c
+> +#define AFE_CONN_16BIT_0                0x3960
+> +#define AFE_CONN_16BIT_3                0x396c
+> +#define AFE_CONN_24BIT_0                0x3980
+> +#define AFE_CONN_24BIT_3                0x398c
+> +#define AFE_MEMIF_CON0                  0x3d98
+> +#define AFE_MEMIF_RD_MON                0x3da0
+> +#define AFE_MEMIF_WR_MON                0x3da4
+> +#define AFE_DL0_BASE_MSB                0x3e40
+> +#define AFE_DL0_BASE                    0x3e44
+> +#define AFE_DL0_CUR_MSB                 0x3e48
+> +#define AFE_DL0_CUR                     0x3e4c
+> +#define AFE_DL0_END_MSB                 0x3e50
+> +#define AFE_DL0_END                     0x3e54
+> +#define AFE_DL0_RCH_MON                 0x3e58
+> +#define AFE_DL0_LCH_MON                 0x3e5c
+> +#define AFE_DL0_CON0                    0x3e60
+> +#define AFE_VUL0_BASE_MSB               0x4220
+> +#define AFE_VUL0_BASE                   0x4224
+> +#define AFE_VUL0_CUR_MSB                0x4228
+> +#define AFE_VUL0_CUR                    0x422c
+> +#define AFE_VUL0_END_MSB                0x4230
+> +#define AFE_VUL0_END                    0x4234
+> +#define AFE_VUL0_CON0                   0x4238
+> +
+> +#define AFE_MAX_REGISTER AFE_VUL0_CON0
+> +#define AFE_IRQ_STATUS_BITS             0x7
+> +#define AFE_IRQ_CNT_SHIFT               0
+> +#define AFE_IRQ_CNT_MASK	        0xffffff
+> +
+> +/* AUDIO_TOP_CON2 */
+> +#define CLK_OUT5_PDN                    BIT(14)
+> +#define CLK_OUT5_PDN_MASK               BIT(14)
+> +#define CLK_IN5_PDN                     BIT(7)
+> +#define CLK_IN5_PDN_MASK                BIT(7)
+> +
+> +/* AUDIO_TOP_CON4 */
+> +#define PDN_APLL_TUNER2                 BIT(12)
+> +#define PDN_APLL_TUNER2_MASK            BIT(12)
+> +
+> +/* AUDIO_ENGEN_CON0 */
+> +#define AUD_APLL2_EN                    BIT(3)
+> +#define AUD_APLL2_EN_MASK               BIT(3)
+> +#define AUD_26M_EN                      BIT(0)
+> +#define AUD_26M_EN_MASK                 BIT(0)
+> +
+> +/* AFE_DL0_CON0 */
+> +#define DL0_ON_SFT                      28
+> +#define DL0_ON_MASK                     0x1
+> +#define DL0_ON_MASK_SFT                 BIT(28)
+> +#define DL0_MINLEN_SFT                  20
+> +#define DL0_MINLEN_MASK                 0xf
+> +#define DL0_MINLEN_MASK_SFT             (0xf << 20)
+> +#define DL0_MODE_SFT                    8
+> +#define DL0_MODE_MASK                   0x1f
+> +#define DL0_MODE_MASK_SFT               (0x1f << 8)
+> +#define DL0_PBUF_SIZE_SFT               5
+> +#define DL0_PBUF_SIZE_MASK              0x3
+> +#define DL0_PBUF_SIZE_MASK_SFT          (0x3 << 5)
+> +#define DL0_MONO_SFT                    4
+> +#define DL0_MONO_MASK                   0x1
+> +#define DL0_MONO_MASK_SFT               BIT(4)
+> +#define DL0_HALIGN_SFT                  2
+> +#define DL0_HALIGN_MASK                 0x1
+> +#define DL0_HALIGN_MASK_SFT             BIT(2)
+> +#define DL0_HD_MODE_SFT                 0
+> +#define DL0_HD_MODE_MASK                0x3
+> +#define DL0_HD_MODE_MASK_SFT            (0x3 << 0)
+> +
+> +/* AFE_VUL0_CON0 */
+> +#define VUL0_ON_SFT                     28
+> +#define VUL0_ON_MASK                    0x1
+> +#define VUL0_ON_MASK_SFT                BIT(28)
+> +#define VUL0_MODE_SFT                   8
+> +#define VUL0_MODE_MASK                  0x1f
+> +#define VUL0_MODE_MASK_SFT              (0x1f << 8)
+> +#define VUL0_MONO_SFT                   4
+> +#define VUL0_MONO_MASK                  0x1
+> +#define VUL0_MONO_MASK_SFT              BIT(4)
+> +#define VUL0_HALIGN_SFT                 2
+> +#define VUL0_HALIGN_MASK                0x1
+> +#define VUL0_HALIGN_MASK_SFT            BIT(2)
+> +#define VUL0_HD_MODE_SFT                0
+> +#define VUL0_HD_MODE_MASK               0x3
+> +#define VUL0_HD_MODE_MASK_SFT           (0x3 << 0)
+> +
+> +/* AFE_IRQ_MCU_CON */
+> +#define IRQ_MCU_MODE_SFT                4
+> +#define IRQ_MCU_MODE_MASK               0x1f
+> +#define IRQ_MCU_MODE_MASK_SFT           (0x1f << 4)
+> +#define IRQ_MCU_ON_SFT                  0
+> +#define IRQ_MCU_ON_MASK                 0x1
+> +#define IRQ_MCU_ON_MASK_SFT             BIT(0)
+> +#define IRQ0_MCU_CLR_SFT                0
+> +#define IRQ0_MCU_CLR_MASK               0x1
+> +#define IRQ0_MCU_CLR_MASK_SFT           BIT(0)
+> +#define IRQ1_MCU_CLR_SFT                1
+> +#define IRQ1_MCU_CLR_MASK               0x1
+> +#define IRQ1_MCU_CLR_MASK_SFT           BIT(1)
+> +#define IRQ2_MCU_CLR_SFT                2
+> +#define IRQ2_MCU_CLR_MASK               0x1
+> +#define IRQ2_MCU_CLR_MASK_SFT           BIT(2)
+> +
+> +/* ETDM_IN5_CON2 */
+> +#define IN_CLK_SRC(x)                   ((x) << 10)
+> +#define IN_CLK_SRC_SFT                  10
+> +#define IN_CLK_SRC_MASK                 GENMASK(12, 10)
+> +
+> +/* ETDM_IN5_CON3 */
+> +#define IN_SEL_FS(x)                    ((x) << 26)
+> +#define IN_SEL_FS_SFT                   26
+> +#define IN_SEL_FS_MASK                  GENMASK(30, 26)
+> +
+> +/* ETDM_IN5_CON4 */
+> +#define IN_RELATCH(x)                   ((x) << 20)
+> +#define IN_RELATCH_SFT                  20
+> +#define IN_RELATCH_MASK                 GENMASK(24, 20)
+> +#define IN_CLK_INV                      BIT(18)
+> +#define IN_CLK_INV_MASK                 BIT(18)
+> +
+> +/* ETDM_IN5_CON0 & ETDM_OUT5_CON0 */
+> +#define RELATCH_SRC(x)                  ((x) << 28)
+> +#define RELATCH_SRC_SFT                 28
+> +#define RELATCH_SRC_MASK                GENMASK(30, 28)
+> +#define ETDM_CH_NUM(x)                  (((x) - 1) << 23)
+> +#define ETDM_CH_NUM_SFT                 23
+> +#define ETDM_CH_NUM_MASK                GENMASK(27, 23)
+> +#define ETDM_WRD_LEN(x)                 (((x) - 1) << 16)
+> +#define ETDM_WRD_LEN_SFT                16
+> +#define ETDM_WRD_LEN_MASK               GENMASK(20, 16)
+> +#define ETDM_BIT_LEN(x)                 (((x) - 1) << 11)
+> +#define ETDM_BIT_LEN_SFT                11
+> +#define ETDM_BIT_LEN_MASK               GENMASK(15, 11)
+> +#define ETDM_FMT(x)                     ((x) << 6)
+> +#define ETDM_FMT_SFT                    6
+> +#define ETDM_FMT_MASK                   GENMASK(8, 6)
+> +#define ETDM_SYNC                       BIT(1)
+> +#define ETDM_SYNC_MASK                  BIT(1)
+> +#define ETDM_EN                         BIT(0)
+> +#define ETDM_EN_MASK                    BIT(0)
+> +
+> +/* ETDM_OUT5_CON4 */
+> +#define OUT_RELATCH(x)                  ((x) << 24)
+> +#define OUT_RELATCH_SFT                 24
+> +#define OUT_RELATCH_MASK                GENMASK(28, 24)
+> +#define OUT_CLK_SRC(x)                  ((x) << 6)
+> +#define OUT_CLK_SRC_SFT                 6
+> +#define OUT_CLK_SRC_MASK                GENMASK(8, 6)
+> +#define OUT_SEL_FS(x)                   (x)
+> +#define OUT_SEL_FS_SFT                  0
+> +#define OUT_SEL_FS_MASK                 GENMASK(4, 0)
+> +
+> +/* ETDM_OUT5_CON5 */
+> +#define ETDM_CLK_DIV                    BIT(12)
+> +#define ETDM_CLK_DIV_MASK               BIT(12)
+> +#define OUT_CLK_INV                     BIT(9)
+> +#define OUT_CLK_INV_MASK                BIT(9)
+> +
+> +/* ETDM_4_7_COWORK_CON0 */
+> +#define OUT_SEL(x)                      ((x) << 12)
+> +#define OUT_SEL_SFT                     12
+> +#define OUT_SEL_MASK                    GENMASK(15, 12)
+> +#endif
+
+-- 
+Regards,
+Alexandre
