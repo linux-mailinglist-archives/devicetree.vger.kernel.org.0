@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8047476F77E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 04:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C078C76F77F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 04:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbjHDCKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 22:10:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36290 "EHLO
+        id S229792AbjHDCKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 22:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjHDCJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 22:09:59 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C27448B
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 19:09:58 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6bc57401cb9so314308a34.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 19:09:58 -0700 (PDT)
+        with ESMTP id S229613AbjHDCKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 22:10:02 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF03A3
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 19:10:00 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6bc57401cb9so314315a34.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 19:10:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691114997; x=1691719797;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=faTlowj/hkbZyLWnlsqJy6jErJUbKNF0vNTWMz/QkMw=;
-        b=nkcE9lwkxHQvlNXNvp1TE5+Kyg6SHOe9Pbxe+M1eKdxKSErX89yUVhoLl9/UGV4MiN
-         BXZWemxXDnG/YYxgZt/a20pGs7G5XpjF4GilY50C7ilYEM1wNtxi0m0zVnOxlLBL50QC
-         dP31VPYghdULuAmRFrIHHF5mLelOiwalMamWfL/Wy+KF6KGG/kibeoHRIXbopO9tTcaO
-         QlzpNGwNFW/GFATJl4j4l3d4LrQtg/hl3oN5hT8b7gKWpjIYqOFYxI4ChvhPuizjLt38
-         JyDNwC103vtPkVSvNhOlE2trltnN2zmIuDIn+Z+qB1g/H/oqN6FPwhTd2ymXpJvj0/JR
-         EGMg==
+        d=gmail.com; s=20221208; t=1691115000; x=1691719800;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M2XwjxWmiDcy83j1TNsyMw78XYgGBM9T4OVx16aRYU4=;
+        b=FNvaubkOvMUhf3Lza0VfzMsURb9rfTAT5ZtPfXp2ciNyJ1W1pvck7TZQ4/NLGlf9zC
+         SS0ZFIg60KBe25dSn0v66ZFbKIu+M77p/OTcOF5zn73EXm0aOTbCuPwZsunBZNQUIZNq
+         z1JrX5d0HWr4IKnNe2hTECxrVxrWXWxI1QgLp6TqW6hDVAjbNwId0wpNo4WQt8A5a4Rz
+         e489/2gBl+HVKxzwYfH2SZneiUhL9EoB2F7VhVX9yBkyUtG0Hu3H4wzmbhSkdMVnxSAU
+         1GAX3ImFsI/HZSk82oubqbEyBQ7gJmFrnQAnsoVv3UWFACtv2aTB5CJLXs3ydOzCTai/
+         8sVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691114997; x=1691719797;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=faTlowj/hkbZyLWnlsqJy6jErJUbKNF0vNTWMz/QkMw=;
-        b=QBqL9O6kMwGdHWJtx6OIi5Of8Mlv7SE0AabXVgVWdKDvswuZRCiACZHC0iVqmvx6zv
-         Rs0ZYQrWbKORtSe/kybrbvhlgAcHNQy7x7mXhFrdAlcldsTGf5jMEuaao0/mz6qFhtGf
-         jMgqUBftyma+TI2rk/ia2Z0Kuf3dNpJKBUedk9xQ0Ng49a5FXuHsOreb8REpmAHNdzkm
-         hLRnbZcTYOGc04Tpdjv4Mf9iGu4/YdwkLJD9akeBmSOS64qXA9mLgTnSrMH/2xlOZLh2
-         c1zfEtMhQlI+k8xXCcFwhf2V/X1Sx4aez9feFipKEBK9pUqmDAuoFujmDwv7T248iRX1
-         6kyQ==
-X-Gm-Message-State: ABy/qLZ09HJOdW+Oyw2whatGZ1TSVrpecxl3MPOU+6bBogFgKixN8EwJ
-        7YcoWkcLFNtCvP/jkUGWFMc=
-X-Google-Smtp-Source: APBJJlGQYn8wT6qZveI5TzssOgBEmaNaiLIliw99A/c+9GGwYW1ef5Gt5ad7wCafDT+isbySbAm/sA==
-X-Received: by 2002:a05:6870:f70e:b0:1b4:4941:3096 with SMTP id ej14-20020a056870f70e00b001b449413096mr15701859oab.5.1691114997342;
-        Thu, 03 Aug 2023 19:09:57 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691115000; x=1691719800;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M2XwjxWmiDcy83j1TNsyMw78XYgGBM9T4OVx16aRYU4=;
+        b=MskH3YAU18XszVUOWCaYqbVHoqprfpW7HElGZ3qHd6x7xZrFZbSVCaA7y4KgJZFWxj
+         2X2lEyKfjfxgi7Yx3NlK5VCIEuppIuiJH7pXgRGOmStMJlOKnLqah8HHCjT8EhtoyoUU
+         hKg9rMOuc6SE9b0vOX6SZGzRn9QafWromGzWm0HGRLsuAFxjpbCQyZF/AJ9dGru8rWCJ
+         4VMZVWqaJCl/pINVJuEcAA7Wt3cZEX6GQQc0bQmsP3sUE+aHxZr6KriW6gNU+UqiEtCk
+         HEReBLien1IZpY6YAAJu2hSznS3RpwtikRhODmL5J95UUkqJcNO2RGsBjbZrsm9xSIWZ
+         +p3A==
+X-Gm-Message-State: ABy/qLZFKkzAHR+BtO52bLDLv5SPt/8fV9zsbfBGvT7FDFunRBEVt2e1
+        wtE2mR7cWONAiczqf8JFhwY=
+X-Google-Smtp-Source: APBJJlGWKaV9aeNxJw5gBKZw6qAZi56h2HpyOpKbKZl6fn5y587btr2DZYWjyklcNaUvYz3GzPIUYQ==
+X-Received: by 2002:a05:6870:c69b:b0:1bb:fa9c:8ba6 with SMTP id cv27-20020a056870c69b00b001bbfa9c8ba6mr17447941oab.2.1691114999864;
+        Thu, 03 Aug 2023 19:09:59 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:48ea:73bf:1876:eaf3])
-        by smtp.gmail.com with ESMTPSA id v17-20020a056870955100b001bee99e97a9sm618400oal.43.2023.08.03.19.09.55
+        by smtp.gmail.com with ESMTPSA id v17-20020a056870955100b001bee99e97a9sm618400oal.43.2023.08.03.19.09.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Aug 2023 19:09:56 -0700 (PDT)
+        Thu, 03 Aug 2023 19:09:59 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 1/2] arm64: dts: imx: Pass a single BD71847 clock entry
-Date:   Thu,  3 Aug 2023 23:09:46 -0300
-Message-Id: <20230804020947.189713-1-festevam@gmail.com>
+Subject: [PATCH 2/2] arm64: dts: imx8mm-emcon: Fix the regulator names
+Date:   Thu,  3 Aug 2023 23:09:47 -0300
+Message-Id: <20230804020947.189713-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230804020947.189713-1-festevam@gmail.com>
+References: <20230804020947.189713-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,156 +74,119 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@denx.de>
 
-Pass a single BD71847 clock entry to fix the following schema
-warning:
+Fix the regulator names as per rohm,bd71847-pmic.yaml to fix the
+following schema warnings:
 
-imx8mm-var-som-symphony.dtb: pmic@4b: clocks: [[22], [0]] is too long
-	from schema $id: http://devicetree.org/schemas/mfd/rohm,bd71847-pmic.yaml#
+imx8mm-emcon-avari.dtb: pmic@4b: regulators:LDO1:regulator-name:0: 'LDO1' does not match '^ldo[1-6]$'
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi        | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi           | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts      | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts      | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts      | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts      | 2 +-
- arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi        | 2 +-
- arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts           | 2 +-
- arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts      | 2 +-
- 10 files changed, 10 insertions(+), 10 deletions(-)
+ .../boot/dts/freescale/imx8mm-emcon.dtsi      | 22 +++++++++----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-index 201325f566cb..f264102bdb27 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-@@ -112,7 +112,7 @@ pmic@4b {
- 		rohm,reset-snvs-powered;
- 
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
+index 4e9e58acd262..e6a09b955b75 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
+@@ -411,7 +411,7 @@ bd71847: pmic@4b {
  
  		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-index 2b83a5258ec6..d7830df5b6f9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-@@ -142,7 +142,7 @@ pmic@4b {
- 		rohm,reset-snvs-powered;
+ 			buck1_reg: BUCK1 {
+-				regulator-name = "BUCK1";
++				regulator-name = "buck1";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+ 				regulator-boot-on;
+@@ -420,7 +420,7 @@ buck1_reg: BUCK1 {
+ 			};
  
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			buck2_reg: BUCK2 {
+-				regulator-name = "BUCK2";
++				regulator-name = "buck2";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+ 				regulator-boot-on;
+@@ -432,7 +432,7 @@ buck2_reg: BUCK2 {
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-index 21d7b16d6f84..9c998c695bce 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-@@ -512,7 +512,7 @@ pmic@4b {
- 		interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			buck3_reg: BUCK3 {
+ 				// BUCK5 in datasheet
+-				regulator-name = "BUCK3";
++				regulator-name = "buck3";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1350000>;
+ 				regulator-boot-on;
+@@ -441,7 +441,7 @@ buck3_reg: BUCK3 {
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 964cc4fc2ddf..506512b6abf5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -431,7 +431,7 @@ pmic@4b {
- 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			buck4_reg: BUCK4 {
+ 				// BUCK6 in datasheet
+-				regulator-name = "BUCK4";
++				regulator-name = "buck4";
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+@@ -450,7 +450,7 @@ buck4_reg: BUCK4 {
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
-index 07b07dc954fd..0e102a12bca4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
-@@ -416,7 +416,7 @@ pmic@4b {
- 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			buck5_reg: BUCK5 {
+ 				// BUCK7 in datasheet
+-				regulator-name = "BUCK5";
++				regulator-name = "buck5";
+ 				regulator-min-microvolt = <1605000>;
+ 				regulator-max-microvolt = <1995000>;
+ 				regulator-boot-on;
+@@ -459,7 +459,7 @@ buck5_reg: BUCK5 {
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-index 6ca52a14a5ab..6afbabc89c02 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-@@ -460,7 +460,7 @@ pmic@4b {
- 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			buck6_reg: BUCK6 {
+ 				// BUCK8 in datasheet
+-				regulator-name = "BUCK6";
++				regulator-name = "buck6";
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <1400000>;
+ 				regulator-boot-on;
+@@ -467,7 +467,7 @@ buck6_reg: BUCK6 {
+ 			};
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
-index 8a4369d38903..90073b16536f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
-@@ -121,7 +121,7 @@ pmic@4b {
- 		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			ldo1_reg: LDO1 {
+-				regulator-name = "LDO1";
++				regulator-name = "ldo1";
+ 				regulator-min-microvolt = <1600000>;
+ 				regulator-max-microvolt = <1900000>;
+ 				regulator-boot-on;
+@@ -475,7 +475,7 @@ ldo1_reg: LDO1 {
+ 			};
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-index 8e100e71b8d2..22a754d438f1 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-@@ -92,7 +92,7 @@ bd71847: pmic@4b {
- 		rohm,reset-snvs-powered;
+ 			ldo2_reg: LDO2 {
+-				regulator-name = "LDO2";
++				regulator-name = "ldo2";
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <900000>;
+ 				regulator-boot-on;
+@@ -483,7 +483,7 @@ ldo2_reg: LDO2 {
+ 			};
  
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
+ 			ldo3_reg: LDO3 {
+-				regulator-name = "LDO3";
++				regulator-name = "ldo3";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+@@ -491,7 +491,7 @@ ldo3_reg: LDO3 {
+ 			};
  
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-index 5110d59b719f..cc2ff59ac53b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -60,7 +60,7 @@ pmic@4b {
- 		rohm,reset-snvs-powered;
+ 			ldo4_reg: LDO4 {
+-				regulator-name = "LDO4";
++				regulator-name = "ldo4";
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
+@@ -499,7 +499,7 @@ ldo4_reg: LDO4 {
+ 			};
  
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
- 
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-index 3ac011bbc025..caf0ddfddd01 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-@@ -429,7 +429,7 @@ pmic@4b {
- 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 		#clock-cells = <0>;
--		clocks = <&osc_32k 0>;
-+		clocks = <&osc_32k>;
- 		clock-output-names = "clk-32k-out";
- 
- 		regulators {
+ 			ldo6_reg: LDO6 {
+-				regulator-name = "LDO6";
++				regulator-name = "ldo6";
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
 -- 
 2.34.1
 
