@@ -2,81 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD58376FE08
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE21676FE0C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229882AbjHDKEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 06:04:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55660 "EHLO
+        id S230086AbjHDKE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 06:04:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbjHDKEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:04:06 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14C32118
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 03:04:04 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-31768ce2e81so1713965f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 03:04:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691143443; x=1691748243;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=wRmmMJ0HPgLCCnErClqViv0JGVjCSwWzjpmp9XzOBvQ=;
-        b=IEpr2nCRcjfsHIjC0h14j9bNjpY/hRdpQWYa0wF+DpLvhSmBJE8J9SHNKA9hLanAzT
-         XrZUGyDjmYSVEPKz9+knyknq78bLuEE9Ha7f2/VuGs25I3YJpyiRKKThMrcGslgtTYQP
-         Dcb7wzJkdJB4YBBQYYOrJWTZ7lb/winmygvMmTC9C13bDNhromkfZOxxNJmQr3w7R1lA
-         KEetBoEffX+8/5wgkOPyb4/WIPp+H8Gq7phV5HIzTvPGQ65Z7Cd8/kMYpH/d3/U4rmNJ
-         iewqIMyp9eHKHr28OGydZTWptKA1bYhxkMU9umInOYcGB7BAqFi6JYtfe8cgq26q0RiP
-         5pMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691143443; x=1691748243;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wRmmMJ0HPgLCCnErClqViv0JGVjCSwWzjpmp9XzOBvQ=;
-        b=Ami4e6ggadrWCuV7n6Up+5K+25eS9ATmBsh/yXrc78T4jxtRVKLXZ8buPjnUQDG2cJ
-         yp+iyT3Q2GO2PVtXjAhlB3ansHU97YpqjVCFYWtM7vPYoiy7xk82n0VUBx24LpQOJXNY
-         J72Pa9qPQTaJO4ZUmnk7ohWXgrom8OHoGQkbLMuf8rDuoaYL3uUQkBDM45PCBKQiklA7
-         P3vHhZ2QEku0/6JnZp/9cPcgLsSwjhzqX0jaCyDqls7nLlbhbVaqEtZm3GszVl2ZdJsq
-         yvFskeaS/bRWJQQ/iAzFfJWWtSLiLIYjF68yv00wrB9GcAmY2QCTwhVFppX1gw2ErmeL
-         tCyg==
-X-Gm-Message-State: AOJu0YzC7wVuBK4d6nOraqzGBfHA65f2Zq3roE/d8Xb2OfAsZ6C2jNpC
-        HJBE8OGDQz3b1jTtpPxdZtA6JqcOkgWu3S+VrFA=
-X-Google-Smtp-Source: AGHT+IEp+pnWLGdyMaoZ+C0S9nVfAxiYGTYwTISALv/MBtsZDW2daFfcXuYYxuyUmnrQXKvEaYJ4Dw==
-X-Received: by 2002:a5d:4447:0:b0:317:3d36:b2cd with SMTP id x7-20020a5d4447000000b003173d36b2cdmr810107wrr.71.1691143443322;
-        Fri, 04 Aug 2023 03:04:03 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:aeaf:609a:5eef:39a8])
-        by smtp.gmail.com with ESMTPSA id z13-20020a5d640d000000b003176053506fsm2104960wru.99.2023.08.04.03.04.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Aug 2023 03:04:02 -0700 (PDT)
-References: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-0-762219fc5b28@linaro.org>
- <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-2-762219fc5b28@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230396AbjHDKEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:04:50 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2067.outbound.protection.outlook.com [40.107.117.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89FEA2118;
+        Fri,  4 Aug 2023 03:04:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QM9rP/ZWcRZP9cyDJaApAfSoQy6RMBXA+7N0bLYH7lA5pIRfCXv2T+wUXwLziMG6c9Tp60gRN8DNJqZG0/+WjeAvO+YztqZb1KTf8V5Wl6ZX5on9vqGvKTVVc/gqNGfaxt0F/9Ul+3i77QnkzBZu8AfWeshYxPFHUmlMLJ4AxATLOAeUIs54OEzbInkLsUQJ2P98oiHtmDirHLlpWPvBr1rrUi3p6kWlwxKvFZcs9awuIsoF9uhmDc3LM3U0fQFBNHeAiSm2T0t3IcrhlOrVXQJoN6nua19Zi9TyUxPyvqL7klM1if3QL4rw8CajxF/Wp4Rk2laJrbjpgEiMnm2thw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I6Kmdm14PBGea0+yG19zea4h/bzJswq6HLOz29oQBg4=;
+ b=MW3BiC/1nZQNFTxClgnGx8QXeNr6xzrDIKDZ1xdBx0A9c8Kv4KLaYOlh+Ek+YEtUl6kXccSpq1JAo4GuGzwgPCfaK6pGJm4QX7B5UBrTWK6B+fE5LAxaMiBQ/hlJNgoqwUaJb8Y9HHdSZvyNHXbeLVOK2ZfcSUqx8r3qyFMubLa1h+9D4NqdbyFHOGZIkL9A02ahoKLXS8qTq9zzuDQO+Vzx8hKWH1682Eq3oU/lXxKARuaMEnBiyKlGzPIwjkzsQbw4+mRYMZBXb90dY/djH2EHWq5EGRtzfzi7XzVsryIzke5uLLto6hsgQ/7Yi18HHOvqD9Z48spBFQBrERT7WA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I6Kmdm14PBGea0+yG19zea4h/bzJswq6HLOz29oQBg4=;
+ b=MS85Urrk0a1RXHcl58ygT51xPN0ZRPejimsPxNndMMqllkN1e9AmJoAwp2lutL5vp57/bYNETDaO1f/3huP50W0V0tJA+IhT5OinWS343U6qdkwtOOD0QdKsXyz6fZ55pRzsxa9bkO2Rgyq00GlgTkMzdQWpUenpKyrFJB6fwrDXRclTiaWx3TamigpZXXq3dsoSTWMaKwT0mVdStdBdijcCaA84TM3Kev3u8jFdLmwuqG3hXOK8QloUwCSvY2Ni0VFTGlYhm8C7RT06cGEiScFge7uLPlI0MlxWPBNtwaj6Duw8ILeh4B/0F/O0Gb1PkDQ2rp3kYsKyX2Pxr1t8Ew==
+Received: from PS2PR01CA0040.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:58::28) by TYZPR04MB4432.apcprd04.prod.outlook.com
+ (2603:1096:400:28::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Fri, 4 Aug
+ 2023 10:04:43 +0000
+Received: from HK3PEPF0000021F.apcprd03.prod.outlook.com
+ (2603:1096:300:58:cafe::25) by PS2PR01CA0040.outlook.office365.com
+ (2603:1096:300:58::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.20 via Frontend
+ Transport; Fri, 4 Aug 2023 10:04:43 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF0000021F.mail.protection.outlook.com (10.167.8.41) with Microsoft SMTP
+ Server id 15.20.6652.19 via Frontend Transport; Fri, 4 Aug 2023 10:04:42
+ +0000
+From:   Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To:     patrick@stwcx.xyz
+Cc:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Nicolas Belin <nbelin@baylibre.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 2/9] clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL
- clocks
-Date:   Fri, 04 Aug 2023 11:59:21 +0200
-In-reply-to: <20230803-amlogic-v6-4-upstream-dsi-ccf-vim3-v7-2-762219fc5b28@linaro.org>
-Message-ID: <1j1qgjp1im.fsf@starbuckisacylon.baylibre.com>
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/2] ARM: dts: Facebook Yosemite V4 platform
+Date:   Fri,  4 Aug 2023 18:04:34 +0800
+Message-Id: <20230804100438.1983745-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021F:EE_|TYZPR04MB4432:EE_
 Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-Office365-Filtering-Correlation-Id: 6f1549ff-bbe7-45c8-842e-08db94d23909
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1ve3VDrzPe0TQEgitcnfLoIIKpnVEdvw+xyY5HO3ReMTS9a7THpCyomBIRtTdbJNhjFFpAe9Zl3p41bb0dw338vy986ng+QslgSipBZ/fytwayOM3A+uVf1WiPJkq462f0AZBEgcPh6Uw5LiUJenwV25YpgxiKnQoLOPpAEQ1eJR7QiTkFoKY/rlGZN4DdA/vJUpoyNO4KLLLScsQ9Z3Y2TW27DanD3vRDyJcQM1vEgUm8lIrRj/ROlewI05EuHJYn9+1L4snh9eBw9UtAVnskIcacJj5KnKRs4zNDHlYbIW5+UOvKLQmLufJWxZyPm7ttE5S5B6UPj2CiwTxu7M7B52f+qXW0gClmMyjveN+agcolhdl/T6GdV7iHQS9zRBdCJ22sNIdbqFATIq/m5XPct2S9zWF9VyHCFXHrJuXh5DAqAU/SUc+B+4oaXNZ0bYSwG4SuUTeEaOxuhPUkRsAGLsafAOkxkBAzqT92pFvo+8epqiJ9ug7MiRQFfIkPQ/RWgqVFIo2sUJStIZx3/oZaOndSRiKjqfIzSQJJbiuJaJuD9tqBjUPAb8HUXfQYcompHY73z30UqLw5WTLxSZEVjN1yRwv7RqSLqyVUi443OSPA87A3jO++VPBujQBDVqqSyyfjOArp8qHH/7GeNACJBMc76GHgAcNmDa3PS8NYSIdwfyA6bfnhv5REYAzSe9xoXNxqgmD5JlIQnWj5sR3w==
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230028)(6069001)(4636009)(376002)(346002)(396003)(39850400004)(136003)(47680400002)(1800799003)(451199021)(186006)(82310400008)(46966006)(36840700001)(81166007)(2616005)(956004)(1076003)(8676002)(26005)(6506007)(336012)(47076005)(4326008)(2906002)(36860700001)(316002)(4744005)(70586007)(5660300002)(6916009)(36736006)(70206006)(7416002)(8936002)(41300700001)(6666004)(6486002)(6512007)(478600001)(40480700001)(54906003)(356005)(9316004)(36756003)(86362001)(82740400003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2023 10:04:42.1525
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f1549ff-bbe7-45c8-842e-08db94d23909
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021F.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB4432
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,130 +97,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add linux device tree entry related to
+Yosemite V4 specific devices connected to BMC SoC.
 
-On Thu 03 Aug 2023 at 14:03, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Changelog:
+v5 - Revise rtc setting
+   - Remove duplicated multi-master setting
+v4 - Resend with cover letter
+v3 - Revise the bootargs to stdout-path
+   - Revise i2c devices
+v2 - Revise the DTS node name
+v1 - Add binding document
 
-> Add new CTS_ENCL & CTS_ENCL_SEL clocks for the G12A compatible
-> SoCs, they are used to feed the VPU LCD Pixel encoder used for
-> DSI display purposes.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/clk/meson/g12a.c | 40 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
->
-> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> index ceabd5f4b2ac..5d62134335c1 100644
-> --- a/drivers/clk/meson/g12a.c
-> +++ b/drivers/clk/meson/g12a.c
-> @@ -3549,6 +3549,22 @@ static struct clk_regmap g12a_cts_encp_sel = {
->  	},
->  };
->  
-> +static struct clk_regmap g12a_cts_encl_sel = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = HHI_VIID_CLK_DIV,
-> +		.mask = 0xf,
-> +		.shift = 12,
-> +		.table = mux_table_cts_sel,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "cts_encl_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_hws = g12a_cts_parent_hws,
-> +		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
+Delphine CC Chiu (2):
+  dt-bindings: arm: aspeed: add Facebook Yosemite V4 board
+  ARM: dts: aspeed: yosemitev4: add Facebook Yosemite V4 BMC
 
-Why nocache ?
-This is usually used when the consumer driver is poking around behind
-CCF back.
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../aspeed/aspeed-bmc-facebook-yosemitev4.dts | 633 ++++++++++++++++++
+ 3 files changed, 635 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemitev4.dts
 
-Any chance this can use assigned-parent or CCF directly ?
-
-> +	},
-> +};
-> +
->  static struct clk_regmap g12a_cts_vdac_sel = {
->  	.data = &(struct clk_regmap_mux_data){
->  		.offset = HHI_VIID_CLK_DIV,
-> @@ -3628,6 +3644,22 @@ static struct clk_regmap g12a_cts_encp = {
->  	},
->  };
->  
-> +static struct clk_regmap g12a_cts_encl = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = HHI_VID_CLK_CNTL2,
-> +		.bit_idx = 3,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "cts_encl",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&g12a_cts_encl_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-
-What is the reason for IGNORE_UNUSED ?
-If you need to keep the clock on while the driver comes up, please
-document it here.
-
-> +	},
-> +};
-> +
->  static struct clk_regmap g12a_cts_vdac = {
->  	.data = &(struct clk_regmap_gate_data){
->  		.offset = HHI_VID_CLK_CNTL2,
-> @@ -4407,10 +4439,12 @@ static struct clk_hw *g12a_hw_clks[] = {
->  	[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
->  	[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
->  	[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
-> +	[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
->  	[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
->  	[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
->  	[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
->  	[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
-> +	[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
->  	[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
->  	[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
->  	[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
-> @@ -4632,10 +4666,12 @@ static struct clk_hw *g12b_hw_clks[] = {
->  	[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
->  	[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
->  	[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
-> +	[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
->  	[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
->  	[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
->  	[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
->  	[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
-> +	[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
->  	[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
->  	[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
->  	[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
-> @@ -4892,10 +4928,12 @@ static struct clk_hw *sm1_hw_clks[] = {
->  	[CLKID_VCLK2_DIV12]		= &g12a_vclk2_div12.hw,
->  	[CLKID_CTS_ENCI_SEL]		= &g12a_cts_enci_sel.hw,
->  	[CLKID_CTS_ENCP_SEL]		= &g12a_cts_encp_sel.hw,
-> +	[CLKID_CTS_ENCL_SEL]		= &g12a_cts_encl_sel.hw,
->  	[CLKID_CTS_VDAC_SEL]		= &g12a_cts_vdac_sel.hw,
->  	[CLKID_HDMI_TX_SEL]		= &g12a_hdmi_tx_sel.hw,
->  	[CLKID_CTS_ENCI]		= &g12a_cts_enci.hw,
->  	[CLKID_CTS_ENCP]		= &g12a_cts_encp.hw,
-> +	[CLKID_CTS_ENCL]		= &g12a_cts_encl.hw,
->  	[CLKID_CTS_VDAC]		= &g12a_cts_vdac.hw,
->  	[CLKID_HDMI_TX]			= &g12a_hdmi_tx.hw,
->  	[CLKID_HDMI_SEL]		= &g12a_hdmi_sel.hw,
-> @@ -5123,10 +5161,12 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
->  	&g12a_vclk2_div12_en,
->  	&g12a_cts_enci_sel,
->  	&g12a_cts_encp_sel,
-> +	&g12a_cts_encl_sel,
->  	&g12a_cts_vdac_sel,
->  	&g12a_hdmi_tx_sel,
->  	&g12a_cts_enci,
->  	&g12a_cts_encp,
-> +	&g12a_cts_encl,
->  	&g12a_cts_vdac,
->  	&g12a_hdmi_tx,
->  	&g12a_hdmi_sel,
+-- 
+2.25.1
 
