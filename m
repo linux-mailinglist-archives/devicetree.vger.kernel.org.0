@@ -2,121 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FBA676FBD0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 10:19:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAAF876FC21
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 10:40:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231657AbjHDITS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 04:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
+        id S229486AbjHDIkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 04:40:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232559AbjHDITR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 04:19:17 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60ECCAC
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 01:19:16 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E795360005;
-        Fri,  4 Aug 2023 08:19:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1691137155;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XnHUETHA//S6zU6TjCZDIWn6kGObZLazw+SFJLVqfKw=;
-        b=UaCx4BIndDrV5tluMsb/4ytu1W2UQEZoS74rLiIi0X+JB7+gCA4KaB5IfmSDwUY5zdiWqz
-        dXyeLSd1jW69REGrjGUxMWTMYhQI3tmFVL3L4oPeE+E1HI4gevEE0vo9k0Tmei4pe/pP8k
-        1EJyn0C66tRUeDNQV7U76LitUKl572vZQqI1rsHv6vn2P15z462hXpHm+sOHPEv0agR8TA
-        1pOPcaEJKeo/mH6UtplUq6HI5PqoqIk4I3hNSLWSzMM5qSgny4XZ3gtk1mPhCqDYQUQLai
-        Y0O1pVZmpr1yaJUDQqXDFgiel2KCjsu98Yvvq8RsAr20/QEgP8p6p51WJRUlfw==
-Date:   Fri, 4 Aug 2023 10:19:12 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH 2/2] drm/panel-simple: Add Innolux G156HCE-L01 panel
- entry
-Message-ID: <20230804101912.696a02aa@booty>
-In-Reply-To: <01496199-5be9-7084-735d-55a11e30217f@denx.de>
-References: <20230731210258.256152-1-marex@denx.de>
-        <20230731210258.256152-2-marex@denx.de>
-        <20230803162314.122fab64@booty>
-        <9b236561-36af-da7a-2caf-892be68e2b76@denx.de>
-        <20230803170659.2e44e204@booty>
-        <01496199-5be9-7084-735d-55a11e30217f@denx.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229499AbjHDIkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 04:40:09 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1421930EB
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 01:40:06 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-316feb137a7so1589772f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 01:40:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691138404; x=1691743204;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wdx3f+50DISgPPdeHaF0Mb88wToJy9z92MXQTy2q84c=;
+        b=hB9V8I0glM0cDRfG7+8UN4Ubaid2OSD46rTP9V16nGgVB4fsisVPZ7KCVDB/EZLW+V
+         yKJ4rv++74jOrxUO0L7w3SYVbQ609CWQe28Dcut/Jv7yChXGuFlX7TQs+3hjeJQN69Xm
+         D55fS1N4pa8iYPY0KZur9KoPD2yIdHlFrvvnegD1QiI+clS3aUcwLuO9wFsn5QNrbewp
+         OxXUflTWArgs7DRGM8HYBUqY4xyBBkT+l5yH44jNChIY+CbuhFQX4j8iOiuI1xVh4kSY
+         UrhJWBYK1KW277SOUKRcnJbk07f70ohDxoGQdkd8EOTpQbyCajLjZZTshgxEeZwZ5KKQ
+         DkFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691138404; x=1691743204;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wdx3f+50DISgPPdeHaF0Mb88wToJy9z92MXQTy2q84c=;
+        b=JwWXKf10XilgtQTHNKDsIR6TfOJvTt3N33xO8Oje+1la+euSKuCUs8M2Q7tFGEPctW
+         CZC5lHGL/RUqSBTXIIoidf6mgdDTeeKXQxpThIaXqu5iVRXenFdjyBJSm//DFOI5HI2g
+         5TSyFh60G5RKH+vA5WOECRIHlEzs87JraqTtGb3lO2FFmBGVmfMoL61zqUWm8aaHEwDA
+         j1IGhQY9hEE+SmCIduZWc7YMKGjRWOsqpd4Jt8zDePOAdly1J3CcIlPKJu1SF+aWtVmo
+         XpbXIUltvFuXnuFAEObaXAfgnU7+1kuUR8AnpKeSmuLOlHeQqWTtz5c+hrHPNG5qq8tR
+         lypQ==
+X-Gm-Message-State: AOJu0YwLtbdQe6bXygw3Ijkga3t1Tpk4eSKGgidHFZLz+6iWk8PdP7+E
+        b95eULdR2l/QwQE9eL9myIuMOw==
+X-Google-Smtp-Source: AGHT+IHZJjfZzR14MYOvYq7wNubxQq7a16qY4NsGBsLLUeTuQhj3Q57WLx2xslUl8/d9+Zez0BZtPA==
+X-Received: by 2002:adf:dfcf:0:b0:313:f429:f6e9 with SMTP id q15-20020adfdfcf000000b00313f429f6e9mr824781wrn.60.1691138404492;
+        Fri, 04 Aug 2023 01:40:04 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b526:9083:f5a6:4af1? ([2a01:e0a:982:cbb0:b526:9083:f5a6:4af1])
+        by smtp.gmail.com with ESMTPSA id w17-20020adff9d1000000b00301a351a8d6sm1930082wrr.84.2023.08.04.01.40.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Aug 2023 01:40:04 -0700 (PDT)
+Message-ID: <b2407b1d-23fb-3284-c4bb-b3a952d361dd@linaro.org>
+Date:   Fri, 4 Aug 2023 10:40:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/3] drm/panel: sitronix-st7789v: add panel orientation
+ support
+Content-Language: en-US
+To:     Michael Riesch <michael.riesch@wolfvision.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230718-feature-st7789v-v2-0-207cb1baea0f@wolfvision.net>
+ <20230718-feature-st7789v-v2-2-207cb1baea0f@wolfvision.net>
+Organization: Linaro Developer Services
+In-Reply-To: <20230718-feature-st7789v-v2-2-207cb1baea0f@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi,
 
-On Thu, 3 Aug 2023 19:10:35 +0200
-Marek Vasut <marex@denx.de> wrote:
-
-> On 8/3/23 17:06, Luca Ceresoli wrote:
-> > Hi Marek,
-> > 
-> > On Thu, 3 Aug 2023 16:25:37 +0200
-> > Marek Vasut <marex@denx.de> wrote:
-> >   
-> >> On 8/3/23 16:23, Luca Ceresoli wrote:  
-> >>> Hi Marek,  
-> >>
-> >> Hi,
-> >>  
-> >>> On Mon, 31 Jul 2023 23:02:58 +0200
-> >>> Marek Vasut <marex@denx.de> wrote:
-> >>>      
-> >>>> Add support for Innolux G156HCE-L01 15.6" 1920x1080 24bpp
-> >>>> dual-link LVDS TFT panel. Documentation is available at [1].  
-> >>>
-> >>> Interesting, I'm bringing up this exact panel right now and found your
-> >>> patch.
-> >>>      
-> >>>> The middle frequency is tuned slightly upward from 70.93 MHz
-> >>>> to 72 MHz, otherwise the panel shows slight flicker.  
-> >>>
-> >>> Using 70.93 MHz here does not show any flickering. I even tried going
-> >>> in the opposite direction and set 70 MHz, and to use different
-> >>> backlight settings, all without any flickering.
-> >>>
-> >>> Do you think you might be using a defective device? Would you have a
-> >>> chance of testing another sample?  
-> >>
-> >> I have literally one such display.
-> >>
-> >> Which SoC do you use (and if applicable, which bridge) ?  
-> > 
-> > The panel is driven by the DSI-2 output of a i.MX8MP through a TI
-> > SN65DSI84 bridge.  
+On 03/08/2023 22:13, Michael Riesch wrote:
+> Determine the orientation of the display based on the device tree and
+> propagate it.
 > 
-> I use the LT9211 , so I wonder whether this might be another Lontium 
-> specific oddity.
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>   drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 18 ++++++++++++++++++
+>   1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> index c7cbfe6ca82c..6575f07d49e3 100644
+> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> @@ -116,6 +116,7 @@ struct st7789v {
+>   	struct spi_device *spi;
+>   	struct gpio_desc *reset;
+>   	struct regulator *power;
+> +	enum drm_panel_orientation orientation;
+>   };
+>   
+>   enum st7789v_prefix {
+> @@ -170,6 +171,7 @@ static const struct drm_display_mode default_mode = {
+>   static int st7789v_get_modes(struct drm_panel *panel,
+>   			     struct drm_connector *connector)
+>   {
+> +	struct st7789v *ctx = panel_to_st7789v(panel);
+>   	struct drm_display_mode *mode;
+>   
+>   	mode = drm_mode_duplicate(connector->dev, &default_mode);
+> @@ -188,9 +190,22 @@ static int st7789v_get_modes(struct drm_panel *panel,
+>   	connector->display_info.width_mm = 61;
+>   	connector->display_info.height_mm = 103;
+>   
+> +	/*
+> +	 * TODO: Remove once all drm drivers call
+> +	 * drm_connector_set_orientation_from_panel()
+> +	 */
+> +	drm_connector_set_panel_orientation(connector, ctx->orientation);
+> +
+>   	return 1;
+>   }
+>   
+> +static enum drm_panel_orientation st7789v_get_orientation(struct drm_panel *p)
+> +{
+> +	struct st7789v *ctx = panel_to_st7789v(p);
+> +
+> +	return ctx->orientation;
+> +}
+> +
+>   static int st7789v_prepare(struct drm_panel *panel)
+>   {
+>   	struct st7789v *ctx = panel_to_st7789v(panel);
+> @@ -349,6 +364,7 @@ static const struct drm_panel_funcs st7789v_drm_funcs = {
+>   	.disable = st7789v_disable,
+>   	.enable	= st7789v_enable,
+>   	.get_modes = st7789v_get_modes,
+> +	.get_orientation = st7789v_get_orientation,
+>   	.prepare = st7789v_prepare,
+>   	.unprepare = st7789v_unprepare,
+>   };
+> @@ -382,6 +398,8 @@ static int st7789v_probe(struct spi_device *spi)
+>   	if (ret)
+>   		return ret;
+>   
+> +	of_drm_get_panel_orientation(spi->dev.of_node, &ctx->orientation);
+> +
+>   	drm_panel_add(&ctx->panel);
+>   
+>   	return 0;
+> 
 
-Or maybe not. After checking the LVDS clock with an oscilloscope I
-discovered I was actually sending 77 MHz. After fixing it I found that
-my panel (of which I only have one sample as well) does not display any
-output with pixel clocks <= 75 MHz. It works with clocks >= 76 MHz.
+This patch doesn't apply clean on drm-misc-next, could you rebase and resend ?
 
-I'm trying to get more info about this.
-
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks,
+Neil
