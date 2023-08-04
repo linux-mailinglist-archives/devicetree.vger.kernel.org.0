@@ -2,167 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 308347705A7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 18:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 083847705F1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 18:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229617AbjHDQKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 12:10:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32992 "EHLO
+        id S230000AbjHDQ1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 12:27:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbjHDQKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 12:10:42 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E69EB2;
-        Fri,  4 Aug 2023 09:10:39 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-2682b4ca7b7so1279819a91.3;
-        Fri, 04 Aug 2023 09:10:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691165439; x=1691770239;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kUioFZ7tXMJEvu9BOB44xCzuGpOwtxseq1YU/H9f2GY=;
-        b=Bu8zWvC/pNAwG2ZDB65BogeFW6RHuCyK9yLNSZovbdS0DTP1e1VCDsQLqJSP6JUHWx
-         rNwntmzjIRpxLV8HSBsD+lW9PaC98+9JJFSlT7q0ktD9FO8fYVJqmSuFp0uPifsDIgz6
-         8wSkJtd1R5dtD19PKK4ibKld/tT71nfOKrguWrys3yG+2A9eApu5WFd1fdtH6R7tFJFV
-         phK8+NiQ0g1mxxfnz4qzSctExwM8DjX7zDkT84afrFPRvWO7EAxxYVuGIgzXoXJStvLC
-         RsedEKJb/wt1VNw5UcO/SLn3b3iATl0u0StR3b90KC9TLJplyiy8kUQu6LjViMXBgfAb
-         N9kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691165439; x=1691770239;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kUioFZ7tXMJEvu9BOB44xCzuGpOwtxseq1YU/H9f2GY=;
-        b=dWycs8Bh2Ht+VDYHseJoR6l6s6y3F0M2BhwC1SGhYL5SARRpovBAxRPJBpQZLE5WFB
-         UxEN6vbKgLugmXcoZz6bHWDMx7r8mjuhXdfyXKbq07EiKJdJJLqevz5LywZmxy3aj//o
-         lmvVIDKTd4JnMouTnyMgNvwGm12Hzy4hxKaSJwZWINNc95qwp4CWpLxdUxwgRFeAZ4Bj
-         BRbo9lmqW875n6uG2WOMmWYoO4pBCTctCSt6FcsQs9NRCU/ePnQ2L1iwRZXmKmtiWaSs
-         VnQyTa27j3CJsVdafhK1Wbp3bGKxVNZHBUuuQnIDWg1ILFqdCdzWS2YvB2SN6fXtUeec
-         lgIQ==
-X-Gm-Message-State: AOJu0YwHyZYsnrWWWTMrTN4s9OiYC+pNcUbUtlvkxE6EtQtZrGez/PMb
-        6JbKx8JEj7J1MF8GM/LnzTw=
-X-Google-Smtp-Source: AGHT+IEstIfZLC3v30nXj54vSiBMNfdSyHE8UD/YLEqRYAvJE1jjq0xd2rI5iSfBKY+yqSRALloHNg==
-X-Received: by 2002:a17:90a:3004:b0:263:72c5:9ac6 with SMTP id g4-20020a17090a300400b0026372c59ac6mr1768740pjb.11.1691165438701;
-        Fri, 04 Aug 2023 09:10:38 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id m1-20020a170902db0100b001bb3beb2bc6sm71067plx.65.2023.08.04.09.10.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 09:10:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <3f947ad6-eed6-59ff-e4e6-8b21d90eb803@roeck-us.net>
-Date:   Fri, 4 Aug 2023 09:10:37 -0700
+        with ESMTP id S229977AbjHDQ1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 12:27:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D18049EF;
+        Fri,  4 Aug 2023 09:27:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E8D262098;
+        Fri,  4 Aug 2023 16:27:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C50C6C433C7;
+        Fri,  4 Aug 2023 16:27:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691166427;
+        bh=TiaSPP9i5pQA759MOZyCgvaxTxREdBvntCsz0dMqook=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OH5Z7Z3U1Fdr9Gfe0xFYvp9zuG9o7jXzwU1wYnefYvqf7HQEGJWHyaHdPaR5beXSW
+         vqPdZEHTeO/9lYCsJrmzhXRowk+b3Hd3Q5cqxKvuQoRXrwrTAhGy982birYotOePI/
+         yMNqL/9A8RRlxa/EBerF1t7+XygQYlVUojP/jm4F63t8rnlQUfpqY3Qjw4MjJ4KYpa
+         nu0Y5Nc02C/1kxEXVocBqf5XPM1Ml20kOhv6GpsgTmRWjDx9phDIEEjVZiCVfN9YoA
+         fwmhq5d0Aa/gTWhhc7mHJChoPGIobB2EXZcqeQzHMvZTOtd8uXkqESztS0VsRi2wBF
+         023VdUsxljBxQ==
+Date:   Fri, 4 Aug 2023 17:27:02 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     like@awinic.com
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        liweilei@awinic.com, liangdong@awinic.com, wangweidong.a@awinic.com
+Subject: Re: [PATCH v2 2/2] regulator: dt-bindings: Correct yamllint
+ warnings/errors
+Message-ID: <20230804-gossip-clever-a21866c7c829@spud>
+References: <20230804102703.931418-1-like@awinic.com>
+ <20230804102703.931418-3-like@awinic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>,
-        Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230803144401.1151065-1-Naresh.Solanki@9elements.com>
- <20230804-tamper-numbness-0117bb53a921@spud>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add MAX6639
-In-Reply-To: <20230804-tamper-numbness-0117bb53a921@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2dPm4VUO9CDoyJXA"
+Content-Disposition: inline
+In-Reply-To: <20230804102703.931418-3-like@awinic.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/4/23 08:48, Conor Dooley wrote:
-> On Thu, Aug 03, 2023 at 04:43:59PM +0200, Naresh Solanki wrote:
->> From: Marcello Sylvester Bauer <sylv@sylv.io>
->>
->> Add binding documentation for Maxim MAX6639 fan-speed controller.
->>
->> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->> ---
->> Changes in V3:
->> - Update title
->> - Add pulses-per-revolution, supplies & interrupts
->> Changes in V2:
->> - Update subject
->> - Drop blank lines
->> ---
->>   .../bindings/hwmon/maxim,max6639.yaml         | 60 +++++++++++++++++++
->>   1 file changed, 60 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->> new file mode 100644
->> index 000000000000..b3292061ca58
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->> @@ -0,0 +1,60 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Maxim MAX6639 Fan Controller
->> +
->> +maintainers:
->> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
->> +
->> +description: |
->> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
->> +  fan-speed controller.  It monitors its own temperature and one external
->> +  diode-connected transistor or the temperatures of two external diode-connected
->> +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> 
->> +  fan-supply:
->> +    description: Phandle to the regulator that provides power to the fan.
-> 
->> +  pulses-per-revolution:
->> +    description:
->> +      Define the number of pulses per fan revolution for each tachometer
->> +      input as an integer.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [1, 2, 3, 4]
->> +    default: 2
-> 
-> Apologies if I am digging up old wounds here, since there was quite a
-> bit of back and forth on the last version, but these two newly added
-> properties look to be common with the "pwm-fan" and with
-> "adi,axi-fan-control". At what point should these live in a common
-> schema instead?
-> 
-> Otherwise, this looks okay to me, although I'll leave things to
-> Krzysztof since he had a lot to say about the previous version.
-> 
 
-Rob has said that he won't accept any fan controller bindings without a generic
-schema. At the same time he has said that he expects properties such as the
-number of pulses per revolution to be attached to a 'fan' description, and he
-wants pwm related properties of fan controllers to be modeled as pwm controllers.
-And now we have a notion of a regulator providing power to the fan (which again
-would be the fan controller, at least in cases where the fan controller
-provides direct voltage to the fan). On top of that, this fan-supply property
-should presumably, again, be part of a fan description and not be part of the
-controller description. I don't think anyone knows how to make this all work
-(I for sure don't), so it is very unlikely we'll see a generic fan controller
-schema anytime soon.
+--2dPm4VUO9CDoyJXA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Given that neither fan-supply nor pulses-per-revolution is implemented in the
-driver, and given that I am not aware of any fans which would have a value for
-pulses-per-revolution other than 2, my personal suggestion would be to add the
-chip to trivial devices and be done with it for the time being.
+On Fri, Aug 04, 2023 at 10:27:03AM +0000, like@awinic.com wrote:
+> From: Alec Li <like@awinic.com>
+>=20
+> These yamllint warnings/errors have been corrected.
 
-Guenter
+This commit message makes no sense. Was this meant to be the changelog
+between version 1 & version 2?
 
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Alec Li <like@awinic.com>
+> ---
+>  .../bindings/regulator/awinic,aw37503.yaml    | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw=
+37503.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw37503.y=
+aml b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> index 000000000000..bb551f6cbccd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/awinic,aw37503.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic AW37503 Voltage Regulator
+> +
+> +maintainers:
+> +  - Alec Li <like@awinic.com>
+> +
+> +description:
+> +  The AW37503 are dual voltage regulator, designed to support positive/n=
+egative
+> +  supply for driving TFT-LCD panels. It support software-configurable ou=
+tput
+> +  switching and monitoring. The output voltages can be programmed via an=
+ I2C
+> +  compatible interface.
+> +
+> +properties:
+> +  compatible:
+> +    const: awinic,aw37503
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^out[pn]$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - outp
+> +  - outn
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        regulator@3e {
+> +            compatible =3D "awinic,aw37503";
+> +            reg =3D <0x3e>;
+> +
+> +            outp {
+> +                regulator-name =3D "outp";
+> +                regulator-boot-on;
+> +                regulator-always-on;
+> +                enable-gpios =3D <&gpio 17 0>;
+> +            };
+> +
+> +            outn {
+> +                regulator-name =3D "outn";
+> +                regulator-boot-on;
+> +                regulator-always-on;
+> +                enable-gpios =3D <&gpio 27 0>;
+> +            };
+> +        };
+> +    };
+> +...
+> --=20
+> 2.41.0
+>=20
+
+--2dPm4VUO9CDoyJXA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM0m1gAKCRB4tDGHoIJi
+0riKAP0d15qpZK4GW+wu+tXAwn0dW/F8ql0FajBo0qxJ21Fi+AEA5T8BDQPAD63b
+9JeqKXpOB4lhqWODRJDU1PtgZ8zIMgU=
+=J7nL
+-----END PGP SIGNATURE-----
+
+--2dPm4VUO9CDoyJXA--
