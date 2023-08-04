@@ -2,84 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6747876F747
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 03:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC57976F774
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 04:03:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231807AbjHDB4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 21:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58760 "EHLO
+        id S232790AbjHDCDE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Aug 2023 22:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230361AbjHDB4y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 21:56:54 -0400
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02ED1FF3;
-        Thu,  3 Aug 2023 18:56:52 -0700 (PDT)
-Received: from kwepemi500011.china.huawei.com (unknown [172.30.72.55])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RH7zy2jlXzJrQJ;
-        Fri,  4 Aug 2023 09:54:06 +0800 (CST)
-Received: from [10.67.103.39] (10.67.103.39) by kwepemi500011.china.huawei.com
- (7.221.188.124) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 4 Aug
- 2023 09:56:50 +0800
-Message-ID: <64CC5AE1.4000108@hisilicon.com>
-Date:   Fri, 4 Aug 2023 09:56:49 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
-To:     David Yang <mmyangfl@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231465AbjHDCDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 22:03:03 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F1A4488;
+        Thu,  3 Aug 2023 19:02:57 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 112398067;
+        Fri,  4 Aug 2023 10:02:56 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 4 Aug
+ 2023 10:02:56 +0800
+Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
+ by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Fri, 4 Aug 2023 10:02:55 +0800
+From:   William Qiu <william.qiu@starfivetech.com>
+To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: hi3798cv200: Fix clocks order of sd0
-References: <20230514122533.382910-1-mmyangfl@gmail.com>
-In-Reply-To: <20230514122533.382910-1-mmyangfl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.67.103.39]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- kwepemi500011.china.huawei.com (7.221.188.124)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>
+Subject: [PATCH v6 0/3] Add initialization of clock for StarFive JH7110 SoC
+Date:   Fri, 4 Aug 2023 10:02:51 +0800
+Message-ID: <20230804020254.291239-1-william.qiu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David，
+Hi,
 
-On 2023/5/14 20:25, David Yang wrote:
-> "ciu" and "biu" were incorrectly swapped. Fix their order.
-> 
-> Signed-off-by: David Yang <mmyangfl@gmail.com>
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-> index a83b9d4f172e..ed1b5a7a6067 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-> @@ -302,8 +302,8 @@ sd0: mmc@9820000 {
->  			compatible = "snps,dw-mshc";
->  			reg = <0x9820000 0x10000>;
->  			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&crg HISTB_SDIO0_CIU_CLK>,
-> -				 <&crg HISTB_SDIO0_BIU_CLK>;
-> +			clocks = <&crg HISTB_SDIO0_BIU_CLK>,
-> +				 <&crg HISTB_SDIO0_CIU_CLK>;
->  			clock-names = "biu", "ciu";
->  			resets = <&crg 0x9c 4>;
->  			reset-names = "reset";
-> 
+This patchset adds initial rudimentary support for the StarFive
+Quad SPI controller driver. And this driver will be used in
+StarFive's VisionFive 2 board. In 6.4, the QSPI_AHB and QSPI_APB
+clocks changed from the default ON state to the default OFF state,
+so these clocks need to be enabled in the driver.At the same time,
+dts patch is added to this series.
 
-Applied to the HiSilicon arm64 dt tree.
-Thanks!
+Changes v5->v4:
+- Rebased to v6.4rc4.
+- Dropped the Reported-by tags.
 
-Best Regards,
-Wei
+Changes v4->v5:
+- Rebased to v6.5rc2.
+- Changed the way to initialization the clocks.
+- Changed the layout for the SPI flash.
+
+Changes v3->v4:
+- Added minItems for clocks.
+- Added clock names property.
+- Fixed formatting issues.
+
+Changes v2->v3:
+- Rebased to v6.4rc6.
+- Renamed the clock names.
+- Changed the variable definition type.
+
+Changes v1->v2:
+- Renamed the clock names.
+- Specified a different array of clocks.
+- Used clk_bulk_ APIs.
+
+The patch series is based on v6.5rc4.
+
+William Qiu (3):
+  dt-bindings: qspi: cdns,qspi-nor: Add clocks for StarFive JH7110 SoC
+  spi: cadence-quadspi: Add clock configuration for StarFive JH7110 QSPI
+  riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC
+
+ .../bindings/spi/cdns,qspi-nor.yaml           | 12 +++-
+ .../jh7110-starfive-visionfive-2.dtsi         | 36 ++++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 19 ++++++
+ drivers/spi/spi-cadence-quadspi.c             | 67 +++++++++++++++++++
+ 4 files changed, 133 insertions(+), 1 deletion(-)
+
+--
+2.34.1
+
