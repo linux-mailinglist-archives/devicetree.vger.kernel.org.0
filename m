@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D73770A61
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 23:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C46770A7A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 23:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjHDVFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 17:05:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
+        id S230400AbjHDVHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 17:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230328AbjHDVFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 17:05:38 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BAA05595
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 14:05:12 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbea14706eso23627425e9.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 14:05:12 -0700 (PDT)
+        with ESMTP id S230422AbjHDVHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 17:07:36 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6D4525F
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 14:06:55 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fe1e1142caso24377045e9.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 14:06:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691183111; x=1691787911;
+        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1691183212; x=1691788012;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3tY2x5jOA5MdZIZQOU+BSDgMhCiPCQJMMt53eXPrT6A=;
-        b=ToYJOdJ5fj7DrMiQyzjHrRm8CPjZtUeDWLgCVQMEWcK2D7SHvzCTpvT+G3YXVFJzL0
-         PQqRKhfW+CTxP2e9x7tnro/ca9kFlHutp3C0KJ81cvc9Io2DQva9Nmtv0bjQwPvVWUeG
-         mRpa8udRCVui1Ng0juDV7Wp5ePMmaK5r0KYHEEteDixsLvf/IAclFd1C98D+SDgY+NtU
-         +b1bW3iwo1osF8yTZrK8t0CkVyJj5QcMCT85lTGhoB0f6unJ0MeqzTH65Q1uh2RU2NWt
-         4NIWyrx+cctBsmuiw2vutTcdq0faJu5MKLHYTHqgv6kIbjzUo9uLZDDvfPfUSipnJt2R
-         3Sxw==
+        bh=6mW+IUGJZLGAyo+vrP4rtHzBvssxHTXINctEBco4YkA=;
+        b=wdhID+tT+S3ToorhCUUuSYwuY40lnKF8wME5h7Xf8JwPlJRSjMkvoW8TTWPq5tim97
+         jQcJyg6dK5F97DOZsrnc5IWVdTqi0WLDjNyhtsPl2u4F5327vsltf/2R41zSkk+qyfsa
+         zFIR+h29GNk38aLeLJM5Ak7KZsVFeYNqWhlpG4KawpXkG8fcZwGWxjdq0BnChvMOZBCO
+         PcrUEkLUXH+zw25rjmL/Fyy2iFmpFo4nf3YlXMqza/C7ISUog348BLXG7xNarNGybSYO
+         s2ul8N+JkJpJgyo9J5+ZVfQ6PwUwS/Lv5a0+oX26TIai2pPZ/fpycaJN3OPFSyEuhwy6
+         xWyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691183111; x=1691787911;
+        d=1e100.net; s=20221208; t=1691183212; x=1691788012;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3tY2x5jOA5MdZIZQOU+BSDgMhCiPCQJMMt53eXPrT6A=;
-        b=ZbEIZm/37vkCDOVowLNNVZlZFIyaYK7ROWTd0xI0bKyOjO7HE0L8gRXONp2XxC+SIF
-         jYmYnvJxcYfXGUZfVeRt1RX9cZp63CThBPoIfq5Rzbhbk3Vqaqt05ckELIWIZ7iu9TBO
-         0KSMtHPxIg9o/nFkXXy2rS2zZ14ob4P5TrrTs49voDM2qEjj1sjWb1L9IP41uoDehIHB
-         1XpovP08pIWBVp4dUFm6EUSEoPyOOTuDFeyQkFs2ev/W/pzXOmniXXqGZXBV00ZwgPX9
-         sQwYKQA9+KtHx7H1cqWLj5ZKZE5i4YzIIbOf3fQZj4vIM7LY1E7GkZ4TljqT/hmXj6q2
-         PQog==
-X-Gm-Message-State: AOJu0YwH0tZh7U2uXzGfuiJeDRJ4M5lPYlNriPwOoyY1UlHzEr3SiHqL
-        etYN83bGlAlnbcXIru2bd46cmQ==
-X-Google-Smtp-Source: AGHT+IGhQzTlOvnyUH7z13hhyfjdj82sVmoev7p0mQju8BbwDFXwFx+c7okVHM5ncHB2MgwoXMueow==
-X-Received: by 2002:a5d:4e03:0:b0:314:3ad6:2327 with SMTP id p3-20020a5d4e03000000b003143ad62327mr2025995wrt.12.1691183110969;
-        Fri, 04 Aug 2023 14:05:10 -0700 (PDT)
+        bh=6mW+IUGJZLGAyo+vrP4rtHzBvssxHTXINctEBco4YkA=;
+        b=hwusevzB27aIrBDlp8FrVqA467W+jfHM5xlpKJN87J5m1Rx3l5m2jIdYH9gSai6enX
+         bwGOcWWinH+sGTAltnoENxM94kYXCHaiZ3CijlMc8W6FBJz6mIVXO/ZwWqzRD3U+0LWa
+         9HZUr9y7rDR383OwBjeQOkZDQ8KtJ9bPcgD6nk3tzQ5vVx0+1+YCpC9wq6m/Pcj9Bn96
+         k+XFSg64WT9GIGLLuw6TsosCFwECnjlDtHl4GV4if0lerXQ8ExL+XIwXC0GYm2pupNmD
+         1jkZlmkeaeJYQgPKkh9wGy75vdK8etTeBda2HbFXEi3ORQoddd7QjyJmuGZ85ymtm5A0
+         x1IA==
+X-Gm-Message-State: AOJu0Yyr/Va9C7lcaHIJoJEvuEtRW7HncvRqBgKiDdQ07PGdgA559Zll
+        0cD+LzowoHL4s6OYBIMcFFXY1Q==
+X-Google-Smtp-Source: AGHT+IE66er6x0W5J2S88GVvx6ltqiUKNwqw/V6MpF6v9N58vORvOgudZCfaTcZCD/6AzkP+Kkp4ew==
+X-Received: by 2002:a5d:4d49:0:b0:317:6681:e42a with SMTP id a9-20020a5d4d49000000b003176681e42amr2079576wru.9.1691183210900;
+        Fri, 04 Aug 2023 14:06:50 -0700 (PDT)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l12-20020adff48c000000b0030ada01ca78sm3372266wro.10.2023.08.04.14.05.09
+        by smtp.gmail.com with ESMTPSA id q10-20020a7bce8a000000b003fe2120ad0bsm7591936wmj.41.2023.08.04.14.06.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 14:05:10 -0700 (PDT)
-Message-ID: <9dc7d386-2922-0fb5-171f-1dd19505c092@linaro.org>
-Date:   Fri, 4 Aug 2023 22:05:09 +0100
+        Fri, 04 Aug 2023 14:06:50 -0700 (PDT)
+Message-ID: <9abd328b-e702-b6f7-7740-8cbaf3a0b866@nexus-software.ie>
+Date:   Fri, 4 Aug 2023 22:06:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/6] media: venus: core: Remove trailing commas from of
- match entries
+Subject: Re: [PATCH 4/6] media: platform: venus: Add optional LLCC path
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
         Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -72,57 +71,25 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
- <20230731-topic-8280_venus-v1-2-8c8bbe1983a5@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230731-topic-8280_venus-v1-2-8c8bbe1983a5@linaro.org>
+ <20230731-topic-8280_venus-v1-4-8c8bbe1983a5@linaro.org>
+ <78d2fd56-804d-827b-d074-b139cf62a498@linaro.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <78d2fd56-804d-827b-d074-b139cf62a498@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2023 21:09, Konrad Dybcio wrote:
-> Even though it has zero effect on functionality, remove them for coherency
-> with other drivers.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/media/platform/qcom/venus/core.c | 16 ++++++++--------
->   1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 3cc38881d4f6..0af45faec247 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -884,14 +884,14 @@ static const struct venus_resources sc7280_res = {
->   };
->   
->   static const struct of_device_id venus_dt_match[] = {
-> -	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
-> -	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-> -	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
-> -	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
-> -	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
-> -	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
-> -	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
-> -	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
-> +	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res },
-> +	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res },
-> +	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res },
-> +	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res },
-> +	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2 },
-> +	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res },
-> +	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res },
-> +	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, venus_dt_match);
+On 04/08/2023 22:04, Bryan O'Donoghue wrote:
+> you can get for llc_path == NULL
 
+[sic] You can test.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+bod
