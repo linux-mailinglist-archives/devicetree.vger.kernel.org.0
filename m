@@ -2,135 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E78876FFA8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 13:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85FB976FFD1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 13:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230477AbjHDLsP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Aug 2023 07:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
+        id S229584AbjHDL6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 07:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbjHDLsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 07:48:13 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0622C126;
-        Fri,  4 Aug 2023 04:48:11 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 62E041007;
-        Fri,  4 Aug 2023 04:48:53 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1E5C23F5A1;
-        Fri,  4 Aug 2023 04:48:09 -0700 (PDT)
-Date:   Fri, 4 Aug 2023 12:48:06 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229607AbjHDL6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 07:58:33 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA257128
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 04:58:31 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-317c1845a07so1585484f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 04:58:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691150310; x=1691755110;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=roPCqYVq5FoKhSTLB3DxuQDru8Tg95QBFx3xWNHBOBc=;
+        b=vdFbzy+iPivOypCOS2MY/xP86T/mvKswug/NCUWqWWrxiMgBRbE7h3uPn5iTHbYAFK
+         ciaS8/uhuK/UUCFMvQblvz2c6hwFA0GJSYLeQjmJK0kDMcADFsLArjJeLaiUH+H4jlHY
+         DIrtpf1+USs77uLSO9QpWe6psg/bWLa1RMOlI7MRbPyQqKej/FxV7Ctnv4EmQlWFPwBA
+         1zwiHA+GzVG+OKOxseTLKQPkYuUpJr//SDAdN7g3hb4uF0CNFZUhQr3L9YpFErWmUqkD
+         oj35587kSsXhXKSkBuW5kfuECxr/zZvjlKW0N28ETKGB8cUc7mHt2iNQ6Lg1gdZ7byRt
+         JKHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691150310; x=1691755110;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=roPCqYVq5FoKhSTLB3DxuQDru8Tg95QBFx3xWNHBOBc=;
+        b=kVN6ogAItYTobbYhKC1piefVyreZpBeo0uH8RhjH05/hKu7KYd3dQ1KYmmk48/KoFT
+         AqfVd/ecV2pTphKy/elxLTWWRfsbrhY3LvfohARE3W577rxF7eMUxWF2jEgQoSEDxPNC
+         CPX/O4FJMQd4a8W7av4liCnsD1MHM+mvP6jeSPfD/4Jr3RMxZRf02eqVnxzKjularhk1
+         nBe4GgfLK0jjVyGIYP9qEKh3QEdoMGS7jfFLu4UW5CVoUKtdWA7VMgBx/PH0MHeAP/d8
+         G43OvCzVsBLgssgXhUSsB1H1Furi6GuwwdYa71R4m1+haE+hewW+7klY26LO46ciuqKy
+         6aAQ==
+X-Gm-Message-State: AOJu0YyZ+btiFiLOUK/EvvzlunUma3tU23978ek0/wiIyTPCnd+G/Frh
+        LrVdDJCgdbDPDKw3tHZ4nZ7n+Q==
+X-Google-Smtp-Source: AGHT+IHdmAs57eM0Rz7KVhiySNQUuzLMCFVU6AXXyP/fH2yGgk5lSYGIfz3aoQtQCBNs8nXrYFi6OQ==
+X-Received: by 2002:adf:f8cb:0:b0:30e:5bd0:21a2 with SMTP id f11-20020adff8cb000000b0030e5bd021a2mr1278153wrq.52.1691150310046;
+        Fri, 04 Aug 2023 04:58:30 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b0031134bcdacdsm2358350wrw.42.2023.08.04.04.58.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Aug 2023 04:58:29 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Subject: Re: [PATCH 0/3] sunxi: Orange Pi Zero 3 DT support
-Message-ID: <20230804124806.2a9b2c40@donnerap.manchester.arm.com>
-In-Reply-To: <3751904.kQq0lBPeGt@jernej-laptop>
-References: <20230731011725.7228-1-andre.przywara@arm.com>
-        <3751904.kQq0lBPeGt@jernej-laptop>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20230718-feature-st7789v-v3-0-157d68fb63e2@wolfvision.net>
+References: <20230718-feature-st7789v-v3-0-157d68fb63e2@wolfvision.net>
+Subject: Re: [PATCH v3 0/3] drm/panel: sitronix-st7789v: add panel
+ orientation support
+Message-Id: <169115030877.3531293.12258712491460228869.b4-ty@linaro.org>
+Date:   Fri, 04 Aug 2023 13:58:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Aug 2023 23:07:55 +0200
-Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
+Hi,
 
-Hi Jernej,
+On Fri, 04 Aug 2023 13:23:07 +0200, Michael Riesch wrote:
+> This series adds support for orientation specification in the device
+> tree to the Sitronix ST7789V panel driver.
+> 
+> This is can be seen as reduced version of [0] (some things of [0] have
+> been implemented in more general fashion in the scope of [1], other
+> things have been rejected).
+> 
+> [...]
 
-> Dne ponedeljek, 31. julij 2023 ob 03:17:22 CEST je Andre Przywara napisal(a):
-> > Hi,
-> > 
-> > Orange Pi recently released the Orange Pi Zero 3 board, which is some
-> > updated version of their former Zero 2 development board. Some component
-> > changes (Motorcomm PHY instead of Realtek, different PMIC), some board
-> > layout changes, and it ships with up to 4GB of DRAM now. The SoC is now
-> > labelled H618 instead of H616, which apparently is the same, just with
-> > more L2 cache.
-> > 
-> > Split the existing OPi Zero2 DT, to allow sharing most DT nodes, then
-> > add the binding documentation and DT for the new board.
-> > 
-> > Linux v6.5-rc boots out of the box (the PMIC driver just made it in),
-> > and most things work: UART, PSCI, GPIO, SPI flash, SD card, USB.
-> > Ethernet is almost working, I get an IP address via DHCP, but no further
-> > packets come through. Might be either a problem with the new Motorcomm
-> > PHY driver, or some missing delay settings, I have to investigate, any
-> > help or advice welcome.  
-> 
-> When I worked with Motorcomm PHYs, I had to add 
-> 
-> motorcomm,clk-out-frequency-hz = <125000000>;
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-Ah, good point. Looking at the Linux driver code, that seems almost
-mandatory, otherwise the PHY clock is not activated(?).
-So that helped, I managed to SSH into my laptop, but it still hangs then.
+[1/3] drm/panel: sitronix-st7789v: fix indentation in drm_panel_funcs
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a238b5ee39e3d3581ec826cdb7b604adca37b5ea
+[2/3] drm/panel: sitronix-st7789v: add panel orientation support
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=b27c0f6d208d6ba269f184ed6f92c6a9908866e6
+[3/3] dt-bindings: display: add rotation property to sitronix,st7789v
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e83172ec548d420f2e0b01e80a9a8cbae39bbe29
 
-Just for the sake of completeness, I also tried the other properties that
-other boards use: As expected, motorcomm,keep-pll-enabled didn't help, as
-the clock line just goes to the MAC pin, and is not used otherwise.
-And also motorcomm,auto-sleep-disabled didn't improve stability. At least
-not with the current settings, maybe it's needed later on.
-
-> and usual reset gpio related properties. Have you tried that? In any case, 
-> it's not 100% reliable, but I don't know why.
-
-The reset pin is hardwired via a simple RC circuit, so there is no GPIO,
-and thus the delay parameters don't do anything, I suppose.
-
-But as it's better now with the clk-out property, so I will definitely add
-that.
-Reports from others (Piotr) seem to suggest that Ethernet is working for
-them, so I need to compare notes.
-
-Thanks,
-Andre
-
-> 
-> Best regards,
-> Jernej
-> 
-> > Also let me know if the DT split is a good idea or not, happy to roll
-> > that back if requested.
-> > 
-> > Cheers,
-> > Andre
-> > 
-> > Andre Przywara (3):
-> >   arm64: dts: allwinner: h616: Split Orange Pi Zero 2 DT
-> >   dt-bindings: arm: sunxi: document Orange Pi Zero 3 board name
-> >   arm64: dts: allwinner: h616: Add OrangePi Zero 3 board support
-> > 
-> >  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
-> >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> >  .../allwinner/sun50i-h616-orangepi-zero2.dts  | 119 +---------------
-> >  .../allwinner/sun50i-h616-orangepi-zerox.dtsi | 131 ++++++++++++++++++
-> >  .../allwinner/sun50i-h618-orangepi-zero3.dts  |  86 ++++++++++++
-> >  5 files changed, 224 insertions(+), 118 deletions(-)
-> >  create mode 100644
-> > arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zerox.dtsi create mode
-> > 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts  
-> 
-> 
-> 
-> 
-> 
+-- 
+Neil
 
