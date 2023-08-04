@@ -2,730 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1CC76FE2E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4716576FE3C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 12:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjHDKLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 06:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S231437AbjHDKOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 06:14:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230507AbjHDKLP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:11:15 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E0546BB;
-        Fri,  4 Aug 2023 03:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1691143872; x=1722679872;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Il5+O5w7ZVnUlOlit35lT9pNLo6bystlsYyZGUPJso4=;
-  b=SnVskrAq5gfn8IUSmZATybz5Xb7hK16+E7hB9HCy8lM55DO+ZU3rA93a
-   TQ/PghXwJ2rDQYSMKbayPMTZ9KV4I9/jGxQNJgvk031caiRyBz7VvCfy7
-   T2/bCwwAtZXMLiKWC5fKH1nt08AXrJCzcs+njdg9bT0aBWk3mJLlz1Fun
-   KsUwCiR48rPWtDn/0zU2+mmyJ9+jezG6slGrWoXdOu1iJIlI/uyLImntL
-   Yt0y/e63Tr8kqbOygdeKwd2Upt9qNzTz7v09GuJ0Uh2+NsF9N2c+WY/Mb
-   3aiMS1gQSEzNfJyO2U7kx81TmCTr/Zqjbrf9m9bWFZDGVWOUjUm8F8v5N
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; 
-   d="scan'208";a="227149404"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Aug 2023 03:11:11 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 4 Aug 2023 03:11:06 -0700
-Received: from virtualbox.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Fri, 4 Aug 2023 03:11:01 -0700
-From:   Mihai Sain <mihai.sain@microchip.com>
-To:     <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>, <cristian.birsan@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <andre.przywara@arm.com>,
-        <jerry.ray@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <andrei.simion@microchip.com>,
-        Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH] ARM: dts: at91: sama5d29_curiosity: Add device tree for sama5d29_curiosity board
-Date:   Fri, 4 Aug 2023 13:10:43 +0300
-Message-ID: <20230804101043.4063-1-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S230200AbjHDKOC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 06:14:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E836746B5;
+        Fri,  4 Aug 2023 03:13:57 -0700 (PDT)
+Received: from [172.20.10.2] (unknown [109.166.130.38])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: ehristev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1F81466071B8;
+        Fri,  4 Aug 2023 11:13:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1691144036;
+        bh=hS7YWcnN92FYtXKyQ1RLO7jd9siNhDVNuDoRtYpZ74E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=RN/exLXaE1Jni0wv6/3rss5LlCLM1O4KjWR49EZ92Y3moIFbc18EOeMjuTZnAZIFI
+         NTBteC3IfJfzOsF3rkTgAaEMZrg5vuiI+1wFxqkMafv2IbJPe5HkTtNlDuZwW+Z75q
+         vbvJwif8j+VMyisMYnkb38C8v7t97MU5umsXrYO6mtWDw63fbGNrFgb+292aOVH6Xc
+         ygDFbjZWMu9QxIJvmN5BbtzO43iL8xKDZBWzRDtpZxVqeAo0RjD9TH8etfI6JOqRBd
+         hWLpc465ALMfYjt4R72V7PAItv0aUd4SELcHrCI9JGHP8u3MJi83+eTMdnLK/6SW3F
+         cJL3HZVlVn5gw==
+Message-ID: <05133411-8486-a514-1e61-ab6aadd0f932@collabora.com>
+Date:   Fri, 4 Aug 2023 13:13:45 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 5/9] regulator: mt6358: fix and drop type prefix in MT6366
+ regulator node names
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Zhiyong Tao <zhiyong.tao@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230803074249.3065586-1-wenst@chromium.org>
+ <20230803074249.3065586-6-wenst@chromium.org>
+ <06473794-8c9f-5c55-b14a-db326d4ab5e9@collabora.com>
+From:   Eugen Hristev <eugen.hristev@collabora.com>
+In-Reply-To: <06473794-8c9f-5c55-b14a-db326d4ab5e9@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial device tree file for sama5d29_curiosity board.
+Hi Chen-Yu,
 
-Changes in v2:
-* drop dt-bindings patch
-* remove vdd_1v8 regulator
-* fix flx4 node to use 1 spi node and pinctrl
-* add i2s0 node and pinctrl
-* remove macb0 node and pinctrl
-* remove unused pinctrl
-* sort in alphabetical order all nodes and pinctrl
-* replace "_" with "-" in node names
+On 8/3/23 12:01, AngeloGioacchino Del Regno wrote:
+> Il 03/08/23 09:42, Chen-Yu Tsai ha scritto:
+>> The new MT6366 binding does away with the type prefix ("buck_", "ldo_")
+>> in the regulator node names. This better matches the PMIC pin names.
+>> Remaining underscores in names are also replaced with hyphens.
+>>
+>> Drop the type prefixes and replace remaining underscores to match the
+>> MT6366 binding.
+>>
+>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> 
+> There is *no upstream devicetree* using any of those names, as the first 
+> devices
+> that will use the MT6366 will be MT8186 Corsola, which are not 
+> upstreamed yet.
+> 
+> This means that this commit does not break ABI, so, I agree - which 
+> implies....
+> 
+> Reviewed-by: AngeloGioacchino Del Regno 
+> <angelogioacchino.delregno@collabora.com>
+> 
+> Cheers,
+> Angelo
+> 
+>> ---
+>>   drivers/regulator/mt6358-regulator.c | 70 ++++++++++++++--------------
+>>   1 file changed, 35 insertions(+), 35 deletions(-)
+>>
+>> diff --git a/drivers/regulator/mt6358-regulator.c 
+>> b/drivers/regulator/mt6358-regulator.c
+>> index 3cb2e6768e25..5a43a84c7a3e 100644
+>> --- a/drivers/regulator/mt6358-regulator.c
+>> +++ b/drivers/regulator/mt6358-regulator.c
+>> @@ -536,68 +536,68 @@ static const struct mt6358_regulator_info 
+>> mt6358_regulators[] = {
+>>   /* The array is indexed by id(MT6366_ID_XXX) */
+>>   static const struct mt6358_regulator_info mt6366_regulators[] = {
+>> -    MT6366_BUCK("buck_vdram1", VDRAM1, 500000, 2087500, 12500,
+>> +    MT6366_BUCK("vdram1", VDRAM1, 500000, 2087500, 12500,
+>>               0x7f, MT6358_BUCK_VDRAM1_DBG0, 0x7f, 
+>> MT6358_VDRAM1_ANA_CON0, 8),
+>> -    MT6366_BUCK("buck_vcore", VCORE, 500000, 1293750, 6250,
+>> +    MT6366_BUCK("vcore", VCORE, 500000, 1293750, 6250,
+>>               0x7f, MT6358_BUCK_VCORE_DBG0, 0x7f, 
+>> MT6358_VCORE_VGPU_ANA_CON0, 1),
+>> -    MT6366_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
+>> +    MT6366_BUCK("vpa", VPA, 500000, 3650000, 50000,
+>>               0x3f, MT6358_BUCK_VPA_DBG0, 0x3f, MT6358_VPA_ANA_CON0, 3),
+>> -    MT6366_BUCK("buck_vproc11", VPROC11, 500000, 1293750, 6250,
+>> +    MT6366_BUCK("vproc11", VPROC11, 500000, 1293750, 6250,
+>>               0x7f, MT6358_BUCK_VPROC11_DBG0, 0x7f, 
+>> MT6358_VPROC_ANA_CON0, 1),
+>> -    MT6366_BUCK("buck_vproc12", VPROC12, 500000, 1293750, 6250,
+>> +    MT6366_BUCK("vproc12", VPROC12, 500000, 1293750, 6250,
+>>               0x7f, MT6358_BUCK_VPROC12_DBG0, 0x7f, 
+>> MT6358_VPROC_ANA_CON0, 2),
+>> -    MT6366_BUCK("buck_vgpu", VGPU, 500000, 1293750, 6250,
+>> +    MT6366_BUCK("vgpu", VGPU, 500000, 1293750, 6250,
+>>               0x7f, MT6358_BUCK_VGPU_ELR0, 0x7f, 
+>> MT6358_VCORE_VGPU_ANA_CON0, 2),
+>> -    MT6366_BUCK("buck_vs2", VS2, 500000, 2087500, 12500,
+>> +    MT6366_BUCK("vs2", VS2, 500000, 2087500, 12500,
+>>               0x7f, MT6358_BUCK_VS2_DBG0, 0x7f, MT6358_VS2_ANA_CON0, 8),
+>> -    MT6366_BUCK("buck_vmodem", VMODEM, 500000, 1293750, 6250,
+>> +    MT6366_BUCK("vmodem", VMODEM, 500000, 1293750, 6250,
+>>               0x7f, MT6358_BUCK_VMODEM_DBG0, 0x7f, 
+>> MT6358_VMODEM_ANA_CON0, 8),
+>> -    MT6366_BUCK("buck_vs1", VS1, 1000000, 2587500, 12500,
+>> +    MT6366_BUCK("vs1", VS1, 1000000, 2587500, 12500,
+>>               0x7f, MT6358_BUCK_VS1_DBG0, 0x7f, MT6358_VS1_ANA_CON0, 8),
+>> -    MT6366_REG_FIXED("ldo_vrf12", VRF12,
+>> +    MT6366_REG_FIXED("vrf12", VRF12,
+>>                MT6358_LDO_VRF12_CON0, 0, 1200000),
+>> -    MT6366_REG_FIXED("ldo_vio18", VIO18,
+>> +    MT6366_REG_FIXED("vio18", VIO18,
+>>                MT6358_LDO_VIO18_CON0, 0, 1800000),
+>> -    MT6366_REG_FIXED("ldo_vcn18", VCN18, MT6358_LDO_VCN18_CON0, 0, 
+>> 1800000),
+>> -    MT6366_REG_FIXED("ldo_vfe28", VFE28, MT6358_LDO_VFE28_CON0, 0, 
+>> 2800000),
+>> -    MT6366_REG_FIXED("ldo_vcn28", VCN28, MT6358_LDO_VCN28_CON0, 0, 
+>> 2800000),
+>> -    MT6366_REG_FIXED("ldo_vxo22", VXO22, MT6358_LDO_VXO22_CON0, 0, 
+>> 2200000),
+>> -    MT6366_REG_FIXED("ldo_vaux18", VAUX18,
+>> +    MT6366_REG_FIXED("vcn18", VCN18, MT6358_LDO_VCN18_CON0, 0, 1800000),
+>> +    MT6366_REG_FIXED("vfe28", VFE28, MT6358_LDO_VFE28_CON0, 0, 2800000),
+>> +    MT6366_REG_FIXED("vcn28", VCN28, MT6358_LDO_VCN28_CON0, 0, 2800000),
+>> +    MT6366_REG_FIXED("vxo22", VXO22, MT6358_LDO_VXO22_CON0, 0, 2200000),
+>> +    MT6366_REG_FIXED("vaux18", VAUX18,
+>>                MT6358_LDO_VAUX18_CON0, 0, 1800000),
 
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- arch/arm/boot/dts/microchip/Makefile          |   2 +
- .../dts/microchip/at91-sama5d29_curiosity.dts | 615 ++++++++++++++++++
- 2 files changed, 617 insertions(+)
- create mode 100644 arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+The line being shorter, can't you compact them on a single line now ?
+Here, and on other occasions in the changes you made.
 
-diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-index 31e03747cdf4..efde9546c8f4 100644
---- a/arch/arm/boot/dts/microchip/Makefile
-+++ b/arch/arm/boot/dts/microchip/Makefile
-@@ -4,6 +4,7 @@ DTC_FLAGS_at91-sam9x60_curiosity := -@
- DTC_FLAGS_at91-sam9x60ek := -@
- DTC_FLAGS_at91-sama5d27_som1_ek := -@
- DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
-+DTC_FLAGS_at91-sama5d29_curiosity := -@
- DTC_FLAGS_at91-sama5d2_icp := -@
- DTC_FLAGS_at91-sama5d2_ptc_ek := -@
- DTC_FLAGS_at91-sama5d2_xplained := -@
-@@ -64,6 +65,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
- 	at91-nattis-2-natte-2.dtb \
- 	at91-sama5d27_som1_ek.dtb \
- 	at91-sama5d27_wlsom1_ek.dtb \
-+	at91-sama5d29_curiosity.dtb \
- 	at91-sama5d2_icp.dtb \
- 	at91-sama5d2_ptc_ek.dtb \
- 	at91-sama5d2_xplained.dtb \
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-new file mode 100644
-index 000000000000..06818962e1f9
---- /dev/null
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-@@ -0,0 +1,615 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * at91-sama5d29_curiosity.dts - Device Tree file for SAMA5D29 Curiosity board
-+ *
-+ * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Mihai Sain <mihai.sain@microchip.com>
-+ *
-+ */
-+/dts-v1/;
-+#include "sama5d29.dtsi"
-+#include "sama5d2-pinfunc.h"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/atmel-flexcom.h>
-+
-+/ {
-+	model = "Microchip SAMA5D29 Curiosity";
-+	compatible = "microchip,sama5d29-curiosity", "atmel,sama5d29", "atmel,sama5d2", "atmel,sama5";
-+
-+	aliases {
-+		serial0 = &uart0;	// debug
-+		serial1 = &uart1;	// RPi
-+		serial2 = &uart3;	// mikro BUS 2
-+		serial3 = &uart4;	// mikro BUS 1
-+		serial4 = &uart6;	// flx1 Bluetooth
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	clocks {
-+		slow_xtal {
-+			clock-frequency = <32768>;
-+		};
-+
-+		main_xtal {
-+			clock-frequency = <24000000>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
-+
-+		button-1 {
-+			label = "USER BUTTON";
-+			gpios = <&pioA PIN_PA17 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_PROG1>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_led_gpio_default>;
-+		status = "okay";
-+
-+		red {
-+			label = "red";
-+			gpios = <&pioA PIN_PA7 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		green {
-+			label = "green";
-+			gpios = <&pioA PIN_PA8 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		blue {
-+			label = "blue";
-+			gpios = <&pioA PIN_PA9 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory@20000000 {
-+		device_type = "memory";
-+		reg = <0x20000000 0x20000000>;
-+	};
-+};
-+
-+&adc {
-+	vddana-supply = <&vdd_3v3>;
-+	vref-supply = <&vdd_3v3>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc_default &pinctrl_adtrg_default>;
-+	status = "okay";
-+};
-+
-+&can0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can0_default>;
-+	status = "okay";
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1_default>;
-+	status = "okay";
-+};
-+
-+&flx1 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-+	status = "okay";
-+
-+	uart6: serial@200 {
-+		pinctrl-0 = <&pinctrl_flx1_default>;
-+		pinctrl-names = "default";
-+		atmel,use-dma-rx;
-+		atmel,use-dma-tx;
-+		status = "okay";
-+	};
-+};
-+
-+&flx4 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_SPI>;
-+	status = "okay";
-+
-+	spi6: spi@400 {
-+		dmas = <0>, <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rpi_spi>;
-+		status = "okay";
-+	};
-+};
-+
-+&i2c0 {
-+	dmas = <0>, <0>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c0_default>;
-+	pinctrl-1 = <&pinctrl_i2c0_gpio>;
-+	sda-gpios = <&pioA PIN_PB31 GPIO_ACTIVE_HIGH>;
-+	scl-gpios = <&pioA PIN_PC0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	i2c-sda-hold-time-ns = <350>;
-+	status = "okay";
-+
-+	mcp16502@5b {
-+		compatible = "microchip,mcp16502";
-+		reg = <0x5b>;
-+		status = "okay";
-+		lpm-gpios = <&pioBU 0 GPIO_ACTIVE_LOW>;
-+
-+		regulators {
-+			vdd_3v3: VDD_IO {
-+				regulator-name = "VDD_IO";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vddio_ddr: VDD_DDR {
-+				regulator-name = "VDD_DDR";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1200000>;
-+					regulator-changeable-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1200000>;
-+					regulator-changeable-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vdd_core: VDD_CORE {
-+				regulator-name = "VDD_CORE";
-+				regulator-min-microvolt = <1250000>;
-+				regulator-max-microvolt = <1250000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vdd_ddr: VDD_OTHER {
-+				regulator-name = "VDD_OTHER";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+					regulator-changeable-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+					regulator-changeable-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			LDO2 {
-+				regulator-name = "LDO2";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	dmas = <0>, <0>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c1_default>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
-+	scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+&i2s0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2s0_default>;
-+	status = "okay";
-+};
-+
-+&pioA {
-+	pinctrl_adc_default: adc-default {
-+		pinmux = <PIN_PD25__GPIO>,
-+			 <PIN_PD26__GPIO>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_adtrg_default: adtrg-default {
-+		pinmux = <PIN_PD31__ADTRG>;
-+		bias-pull-up;
-+	};
-+
-+	pinctrl_can0_default: can0-default {
-+		pinmux = <PIN_PC10__CANTX0>,
-+			 <PIN_PC11__CANRX0>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_can1_default: can1-default {
-+		pinmux = <PIN_PC26__CANTX1>,
-+			 <PIN_PC27__CANRX1>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_debug_uart: debug-uart {
-+		pinmux = <PIN_PB26__URXD0>,
-+			 <PIN_PB27__UTXD0>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_flx1_default: flx1-default {
-+		pinmux = <PIN_PA24__FLEXCOM1_IO0>,
-+			 <PIN_PA23__FLEXCOM1_IO1>,
-+			 <PIN_PA25__FLEXCOM1_IO3>,
-+			 <PIN_PA26__FLEXCOM1_IO4>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_i2c0_default: i2c0-default {
-+		pinmux = <PIN_PB31__TWD0>,
-+			 <PIN_PC0__TWCK0>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_i2c0_gpio: i2c0-gpio {
-+		pinmux = <PIN_PB31__GPIO>,
-+			 <PIN_PC0__GPIO>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_i2c1_default: i2c1-default {
-+		pinmux = <PIN_PD4__TWD1>,
-+			 <PIN_PD5__TWCK1>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_i2c1_gpio: i2c1-gpio {
-+		pinmux = <PIN_PD4__GPIO>,
-+			 <PIN_PD5__GPIO>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_i2s0_default: i2s0-default {
-+		pinmux = <PIN_PD19__I2SC0_CK>,
-+			 <PIN_PD20__I2SC0_MCK>,
-+			 <PIN_PD21__I2SC0_WS>,
-+			 <PIN_PD22__I2SC0_DI0>,
-+			 <PIN_PD23__I2SC0_DO0>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_key_gpio_default: key-gpio-default {
-+		pinmux = <PIN_PA17__GPIO>;
-+		bias-pull-up;
-+	};
-+
-+	pinctrl_led_gpio_default: led-gpio-default {
-+		pinmux = <PIN_PA7__GPIO>,
-+			 <PIN_PA8__GPIO>,
-+			 <PIN_PA9__GPIO>;
-+		bias-pull-up;
-+	};
-+
-+	pinctrl_mikrobus1_pwm: mikrobus1-pwm {
-+		pinmux = <PIN_PA31__PWML0>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_mikrobus2_pwm: mikrobus2-pwm {
-+		pinmux = <PIN_PB0__PWMH1>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_mikrobus1_uart: mikrobus1-uart {
-+		pinmux = <PIN_PB3__URXD4>,
-+			 <PIN_PB4__UTXD4>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_mikrobus2_uart: mikrobus2-uart {
-+		pinmux = <PIN_PB11__URXD3>,
-+			 <PIN_PB12__UTXD3>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_qspi1_default: qspi1-default {
-+		pinmux = <PIN_PB5__QSPI1_SCK>,
-+			 <PIN_PB6__QSPI1_CS>,
-+			 <PIN_PB7__QSPI1_IO0>,
-+			 <PIN_PB8__QSPI1_IO1>,
-+			 <PIN_PB9__QSPI1_IO2>,
-+			 <PIN_PB10__QSPI1_IO3>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_rpi_spi: rpi-spi {
-+		pinmux = <PIN_PD12__FLEXCOM4_IO0>,
-+			 <PIN_PD13__FLEXCOM4_IO1>,
-+			 <PIN_PD14__FLEXCOM4_IO2>,
-+			 <PIN_PD15__FLEXCOM4_IO3>,
-+			 <PIN_PD16__FLEXCOM4_IO4>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_rpi_uart: rpi-uart {
-+		pinmux = <PIN_PD2__URXD1>,
-+			 <PIN_PD3__UTXD1>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_sdmmc0_default: sdmmc0-default {
-+		pinmux = <PIN_PA0__SDMMC0_CK>,
-+			 <PIN_PA1__SDMMC0_CMD>,
-+			 <PIN_PA2__SDMMC0_DAT0>,
-+			 <PIN_PA3__SDMMC0_DAT1>,
-+			 <PIN_PA4__SDMMC0_DAT2>,
-+			 <PIN_PA5__SDMMC0_DAT3>,
-+			 <PIN_PA11__SDMMC0_VDDSEL>,
-+			 <PIN_PA13__SDMMC0_CD>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_sdmmc1_default: sdmmc1-default {
-+		pinmux = <PIN_PA18__SDMMC1_DAT0>,
-+			 <PIN_PA19__SDMMC1_DAT1>,
-+			 <PIN_PA20__SDMMC1_DAT2>,
-+			 <PIN_PA21__SDMMC1_DAT3>,
-+			 <PIN_PA22__SDMMC1_CK>,
-+			 <PIN_PA28__SDMMC1_CMD>,
-+			 <PIN_PA30__SDMMC1_CD>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_spi1_default: spi1-default {
-+		pinmux = <PIN_PC1__SPI1_SPCK>,
-+			 <PIN_PC2__SPI1_MOSI>,
-+			 <PIN_PC3__SPI1_MISO>,
-+			 <PIN_PC4__SPI1_NPCS0>,
-+			 <PIN_PC5__SPI1_NPCS1>,
-+			 <PIN_PC6__SPI1_NPCS2>,
-+			 <PIN_PC7__SPI1_NPCS3>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_usb_default: usb-default {
-+		pinmux = <PIN_PA6__GPIO>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_usba_vbus: usba-vbus {
-+		pinmux = <PIN_PB13__GPIO>;
-+		bias-disable;
-+	};
-+};
-+
-+&pwm0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_mikrobus1_pwm &pinctrl_mikrobus2_pwm>;
-+	status = "okay";
-+};
-+
-+&qspi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_qspi1_default>;
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <80000000>;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+		m25p,fast-read;
-+		label = "atmel_qspi1";
-+		status = "okay";
-+
-+		at91bootstrap@0 {
-+			label = "at91bootstrap";
-+			reg = <0x0 0x40000>;
-+		};
-+
-+		bootloader@40000 {
-+			label = "bootloader";
-+			reg = <0x40000 0xc0000>;
-+		};
-+
-+		bootloaderenvred@100000 {
-+			label = "bootloader env redundant";
-+			reg = <0x100000 0x40000>;
-+		};
-+
-+		bootloaderenv@140000 {
-+			label = "bootloader env";
-+			reg = <0x140000 0x40000>;
-+		};
-+
-+		dtb@180000 {
-+			label = "device tree";
-+			reg = <0x180000 0x80000>;
-+		};
-+
-+		kernel@200000 {
-+			label = "kernel";
-+			reg = <0x200000 0x600000>;
-+		};
-+	};
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc1_default>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&shutdown_controller {
-+	debounce-delay-us = <976>;
-+	atmel,wakeup-rtc-timer;
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&spi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	status = "okay";
-+};
-+
-+&tcb0 {
-+	timer0: timer@0 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <0>;
-+	};
-+
-+	timer1: timer@1 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <1>;
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_debug_uart>;
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rpi_uart>;
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_mikrobus2_uart>;
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_mikrobus1_uart>;
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	atmel,vbus-gpio = <&pioA PIN_PB13 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usba_vbus>;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	num-ports = <3>;
-+	atmel,vbus-gpio = <0
-+			   &pioA PIN_PA6 GPIO_ACTIVE_HIGH
-+			   0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb_default>;
-+	status = "okay";
-+};
-+
-+&usb2 {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
--- 
-2.41.0
+Regards,
+
+>> -    MT6366_REG_FIXED("ldo_vbif28", VBIF28,
+>> +    MT6366_REG_FIXED("vbif28", VBIF28,
+>>                MT6358_LDO_VBIF28_CON0, 0, 2800000),
+>> -    MT6366_REG_FIXED("ldo_vio28", VIO28, MT6358_LDO_VIO28_CON0, 0, 
+>> 2800000),
+>> -    MT6366_REG_FIXED("ldo_va12", VA12, MT6358_LDO_VA12_CON0, 0, 
+>> 1200000),
+>> -    MT6366_REG_FIXED("ldo_vrf18", VRF18, MT6358_LDO_VRF18_CON0, 0, 
+>> 1800000),
+>> -    MT6366_REG_FIXED("ldo_vaud28", VAUD28,
+>> +    MT6366_REG_FIXED("vio28", VIO28, MT6358_LDO_VIO28_CON0, 0, 2800000),
+>> +    MT6366_REG_FIXED("va12", VA12, MT6358_LDO_VA12_CON0, 0, 1200000),
+>> +    MT6366_REG_FIXED("vrf18", VRF18, MT6358_LDO_VRF18_CON0, 0, 1800000),
+>> +    MT6366_REG_FIXED("vaud28", VAUD28,
+>>                MT6358_LDO_VAUD28_CON0, 0, 2800000),
+>> -    MT6366_LDO("ldo_vdram2", VDRAM2, vdram2,
+>> +    MT6366_LDO("vdram2", VDRAM2, vdram2,
+>>              MT6358_LDO_VDRAM2_CON0, 0, MT6358_LDO_VDRAM2_ELR0, 0x10),
+>> -    MT6366_LDO("ldo_vsim1", VSIM1, vsim,
+>> +    MT6366_LDO("vsim1", VSIM1, vsim,
+>>              MT6358_LDO_VSIM1_CON0, 0, MT6358_VSIM1_ANA_CON0, 0xf00),
+>> -    MT6366_LDO("ldo_vibr", VIBR, vibr,
+>> +    MT6366_LDO("vibr", VIBR, vibr,
+>>              MT6358_LDO_VIBR_CON0, 0, MT6358_VIBR_ANA_CON0, 0xf00),
+>> -    MT6366_LDO("ldo_vusb", VUSB, vusb,
+>> +    MT6366_LDO("vusb", VUSB, vusb,
+>>              MT6358_LDO_VUSB_CON0_0, 0, MT6358_VUSB_ANA_CON0, 0x700),
+>> -    MT6366_LDO("ldo_vefuse", VEFUSE, vefuse,
+>> +    MT6366_LDO("vefuse", VEFUSE, vefuse,
+>>              MT6358_LDO_VEFUSE_CON0, 0, MT6358_VEFUSE_ANA_CON0, 0xf00),
+>> -    MT6366_LDO("ldo_vmch", VMCH, vmch_vemc,
+>> +    MT6366_LDO("vmch", VMCH, vmch_vemc,
+>>              MT6358_LDO_VMCH_CON0, 0, MT6358_VMCH_ANA_CON0, 0x700),
+>> -    MT6366_LDO("ldo_vemc", VEMC, vmch_vemc,
+>> +    MT6366_LDO("vemc", VEMC, vmch_vemc,
+>>              MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
+>> -    MT6366_LDO("ldo_vcn33", VCN33, vcn33,
+>> +    MT6366_LDO("vcn33", VCN33, vcn33,
+>>              MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x300),
+>> -    MT6366_LDO("ldo_vmc", VMC, vmc,
+>> +    MT6366_LDO("vmc", VMC, vmc,
+>>              MT6358_LDO_VMC_CON0, 0, MT6358_VMC_ANA_CON0, 0xf00),
+>> -    MT6366_LDO("ldo_vsim2", VSIM2, vsim,
+>> +    MT6366_LDO("vsim2", VSIM2, vsim,
+>>              MT6358_LDO_VSIM2_CON0, 0, MT6358_VSIM2_ANA_CON0, 0xf00),
+>> -    MT6366_LDO1("ldo_vsram_proc11", VSRAM_PROC11, 500000, 1293750, 6250,
+>> +    MT6366_LDO1("vsram-proc11", VSRAM_PROC11, 500000, 1293750, 6250,
+>>               MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00, 
+>> MT6358_LDO_VSRAM_CON0, 0x7f),
+>> -    MT6366_LDO1("ldo_vsram_others", VSRAM_OTHERS, 500000, 1293750, 6250,
+>> +    MT6366_LDO1("vsram-others", VSRAM_OTHERS, 500000, 1293750, 6250,
+>>               MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00, 
+>> MT6358_LDO_VSRAM_CON2, 0x7f),
+>> -    MT6366_LDO1("ldo_vsram_gpu", VSRAM_GPU, 500000, 1293750, 6250,
+>> +    MT6366_LDO1("vsram-gpu", VSRAM_GPU, 500000, 1293750, 6250,
+>>               MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00, 
+>> MT6358_LDO_VSRAM_CON3, 0x7f),
+>> -    MT6366_LDO1("ldo_vsram_proc12", VSRAM_PROC12, 500000, 1293750, 6250,
+>> +    MT6366_LDO1("vsram-proc12", VSRAM_PROC12, 500000, 1293750, 6250,
+>>               MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00, 
+>> MT6358_LDO_VSRAM_CON1, 0x7f),
+>>   };
+> 
+> 
+> 
 
