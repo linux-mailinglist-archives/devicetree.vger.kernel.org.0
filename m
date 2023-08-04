@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA5B770979
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF03477097B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230294AbjHDUJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 16:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37386 "EHLO
+        id S230319AbjHDUJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 16:09:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbjHDUJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:09:29 -0400
+        with ESMTP id S229963AbjHDUJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:09:30 -0400
 Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F131712
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 13:09:23 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b9d3dacb33so40535951fa.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 13:09:23 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06ADE2D7E
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 13:09:24 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b9cf2b1309so31077461fa.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 13:09:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691179762; x=1691784562;
+        d=linaro.org; s=google; t=1691179763; x=1691784563;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YoaP8ctdIEX70sI3ohM7m73HpotCvwK/aq0fzzmyIik=;
-        b=d5zF/bvVlGGmMwcthpeE7mor7SyOGr2U3pkFEUXcSfXa0/5EgVNWGOKSyEgi49LM7H
-         ljuyaIqgGonLX24qBIQiVuXzNC3GH9rbTr4XaOrlptZW+San4+LiVBviBoO9EYxeEC3O
-         e7DP7F82CoighfoXRpQ6ABgNjidkZsa0/EWOI4ZsAjUVY/t3XWCv935+G8uLyIpxsQZF
-         ZkR7BxtI8gjbY3ow/tIpDQ8TVoiXQxGbqXrKRqEzFsnvJyNflBxrvJ3cr85BGuINEXco
-         4Hww6SgVV8vu8De89C+mRfWeFCJVg1nPOLFAjulSg8Hk4JWvphvydIBVKnYEKF1xhQVv
-         L5qg==
+        bh=BBO4Vdvml2SYBdu5NUZqbYfg4CTImrGpccpVKF2w13k=;
+        b=V4iAp70pVK1GSSuJGqjPoX5t5a8sfEZUzvv4C5LhZAE3lnSAEvm0R9B7CW+/wjn79P
+         VHtTsJqwUtdGcRZsmf2uMt3D+FmAwjMRQFxrxQGZQIooNyq0DCDKwUszEr+w1Mlily8B
+         9LmYDkegkCDEfQtLLX6qqvX+BBFvPN7hQ128FvZ9jg1PkCWSWnLTDl9/yJFXaW02221b
+         nlK1GyUoS/TSSQa82DBXCfx7uLVdtLvbvj8W4Waj6e6AWwCaUh18/30luXux1hofiMkz
+         jjG0NKu0/B7BzDWyjxsHoLt9lNmic3FlvD1RLG1mKnvW3npKH6U1RFCBmVcFD+A5/p9l
+         uEDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691179762; x=1691784562;
+        d=1e100.net; s=20221208; t=1691179763; x=1691784563;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YoaP8ctdIEX70sI3ohM7m73HpotCvwK/aq0fzzmyIik=;
-        b=X6oz5Stl5h3a08lAf81O0uctvh1Wfc6BVdsba/2a+SgHG1ewlO9tQT78n+JAiJQj5e
-         060I+FBgBNTPJErUlTYtkR3coH3EG5hmJIJL50L5PbGZZoHEzLoft5GyyYM6CQQ7EfEE
-         euTuZWnB8UvlFTVRMAxmSHinC+OQDrA/e2nnEnFRcHFsubflHaWfLrPdfsJfREHKGGZV
-         bl14L64SbRg6KTFspwW8D5Btk4sFjD3d15FGwCSFoPDFtn2vmih9+mWrfFYGuGbJ5TYs
-         +QmW1ts0WIHIyXPbdFz2nnSPxD8YJ86pYZVlSnonjnW4SQW4y1Mm80GRZ+iv5qA+GaZW
-         62Hw==
-X-Gm-Message-State: AOJu0YyfLnSOXbG75+ZGosEYKfFbvd6oGPfeavQsb+gqFb5WNUiMfi7z
-        G+g3hPI70CX6+4zCGwQY+xX39w==
-X-Google-Smtp-Source: AGHT+IE0KrxGHOmqEoCtC9gqBu1DaZicvRrHe9zW69RiWXnyLjntw6HfkFmTmNBzL4mmgNfhD6EYrw==
-X-Received: by 2002:a2e:3819:0:b0:2b6:9ebc:daf8 with SMTP id f25-20020a2e3819000000b002b69ebcdaf8mr2252244lja.31.1691179761750;
-        Fri, 04 Aug 2023 13:09:21 -0700 (PDT)
+        bh=BBO4Vdvml2SYBdu5NUZqbYfg4CTImrGpccpVKF2w13k=;
+        b=VdK9Oqx5x+Ob0c3bIHK72NtcuNMdy7wFtgv9uu4T96eaKNKnFtjcKvnKQooG30+p/x
+         BwrWncgg3vmr7ZGN5VW4xmBX8juxGXlFN7Iyne8mLaa6fczLppSDnjqTNeuRcU2uDd/5
+         195aGcAx3apZS4z3TUSEiF3cF3P7ODLTHXDHA3JLNuwtuOclGm2TlWsLZ9rd2HAsU7I1
+         ojIJ0JiuwJ5rQsbk/W0RjYNbUfvj21oNTvOaJRct8Xb5k6zxNbvpb6LPV9eEuDXKldu4
+         ga2oGy/qNXYOqoujbenXstrTP/5XBLECvyv4Ay0RPAAvjW/fyXHV7VCw7dJjyMh8mxZT
+         ghbQ==
+X-Gm-Message-State: AOJu0YzAu6BtaavhOJrZ2UQlcJAOAxq6d5x8ltJgodlBHI6XiiumQPKM
+        K07+y5GA28SKY6ss/7akhQkQRA==
+X-Google-Smtp-Source: AGHT+IF1LO/hbzvuESlETKCXdfFSJUHe89V8P1OfbYwQw47k8P77yEV7r273idGHjzzYnXtKFj32Hw==
+X-Received: by 2002:a05:651c:200a:b0:2ba:1286:d99e with SMTP id s10-20020a05651c200a00b002ba1286d99emr207090ljo.1.1691179763173;
+        Fri, 04 Aug 2023 13:09:23 -0700 (PDT)
 Received: from [192.168.1.101] (abym15.neoplus.adsl.tpnet.pl. [83.9.32.15])
-        by smtp.gmail.com with ESMTPSA id m8-20020a2e97c8000000b002b6fed37b18sm580048ljj.101.2023.08.04.13.09.20
+        by smtp.gmail.com with ESMTPSA id m8-20020a2e97c8000000b002b6fed37b18sm580048ljj.101.2023.08.04.13.09.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Aug 2023 13:09:21 -0700 (PDT)
+        Fri, 04 Aug 2023 13:09:22 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 04 Aug 2023 22:09:12 +0200
-Subject: [PATCH 5/6] media: venus: core: Add SM8350 resource struct
+Date:   Fri, 04 Aug 2023 22:09:13 +0200
+Subject: [PATCH 6/6] media: venus: core: Add SC8280XP resource struct
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230731-topic-8280_venus-v1-5-8c8bbe1983a5@linaro.org>
+Message-Id: <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
 References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
 In-Reply-To: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
 To:     Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
@@ -73,45 +73,50 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691179750; l=2298;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691179750; l=2590;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=uSN1hqyZi5mM/oG9PLelJiPOErsFSc85HmMMAOkfHiU=;
- b=iadVeXQWa2VrEkkJDYKGZ55mlmse+58yxydgNwyj1Pnf31+aE91ChHAXrPGiCxbFRShBB7DCm
- quceFCCROz+A/O1N7IVDEaWTQpshFdKjVqAY1XiOBaTHktlI2EQjldE
+ bh=ha53B+QQKlS6cZf/sln/5h8cUTUGAcICl3MpcEH5dmg=;
+ b=K0lLgvFpQKiaTwNfLvVCPicVclZYdtr9Z1AYSsOZjtnhAZ8bWA0srGRdn3PHL4aiex9Wgf8NH
+ yBYG0oPN5KuBUbFehP3gGMXykbemozZD3aTwqLkLRQYJT1lLyPV2E8w
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SM8350 configuration data and related compatible.
+Add SC8280XP configuration data and related compatible.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/media/platform/qcom/venus/core.c | 39 ++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ drivers/media/platform/qcom/venus/core.c | 45 ++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
 diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index db363061748f..5f285ae75e9d 100644
+index 5f285ae75e9d..32591b624a36 100644
 --- a/drivers/media/platform/qcom/venus/core.c
 +++ b/drivers/media/platform/qcom/venus/core.c
-@@ -844,6 +844,44 @@ static const struct venus_resources sm8250_res = {
- 	.fwname = "qcom/vpu-1.0/venus.mdt",
+@@ -940,6 +940,50 @@ static const struct venus_resources sc7280_res = {
+ 	.fwname = "qcom/vpu-2.0/venus.mbn",
  };
  
-+static const struct reg_val sm8350_reg_preset[] = {
-+	{ 0xb0088, 0, 0x11 },
++static const struct freq_tbl sc8280xp_freq_table[] = {
++	{ 0, 239999999 },
++	{ 0, 338000000 },
++	{ 0, 366000000 },
++	{ 0, 444000000 },
++	{ 0, 533000000 },
++	{ 0, 560000000 },
 +};
 +
-+static const struct venus_resources sm8350_res = {
-+	.freq_tbl = sm8250_freq_table,
-+	.freq_tbl_size = ARRAY_SIZE(sm8250_freq_table),
++static const struct venus_resources sc8280xp_res = {
++	.freq_tbl = sc8280xp_freq_table,
++	.freq_tbl_size = ARRAY_SIZE(sc8280xp_freq_table),
 +	.reg_tbl = sm8350_reg_preset,
 +	.reg_tbl_size = ARRAY_SIZE(sm8350_reg_preset),
 +	.bw_tbl_enc = sm8250_bw_table_enc,
@@ -143,17 +148,18 @@ index db363061748f..5f285ae75e9d 100644
 +	.fwname = "qcom/vpu-2.0/venus.mbn",
 +};
 +
- static const struct freq_tbl sc7280_freq_table[] = {
- 	{ 0, 460000000 },
- 	{ 0, 424000000 },
-@@ -911,6 +949,7 @@ static const struct of_device_id venus_dt_match[] = {
++
+ static const struct of_device_id venus_dt_match[] = {
+ 	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res },
+ 	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res },
+@@ -948,6 +992,7 @@ static const struct of_device_id venus_dt_match[] = {
+ 	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2 },
  	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res },
  	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res },
++	{ .compatible = "qcom,sc8280xp-venus", .data = &sc8280xp_res },
  	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res },
-+	{ .compatible = "qcom,sm8350-venus", .data = &sm8350_res },
+ 	{ .compatible = "qcom,sm8350-venus", .data = &sm8350_res },
  	{ }
- };
- MODULE_DEVICE_TABLE(of, venus_dt_match);
 
 -- 
 2.41.0
