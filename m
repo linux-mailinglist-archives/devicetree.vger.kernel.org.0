@@ -2,186 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60F8D76FA43
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 08:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7041376FA86
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 08:54:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231537AbjHDGkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 02:40:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38856 "EHLO
+        id S229618AbjHDGyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 02:54:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233169AbjHDGjs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 02:39:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D28525A;
-        Thu,  3 Aug 2023 23:39:24 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 731F666071B4;
-        Fri,  4 Aug 2023 07:39:22 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1691131163;
-        bh=IpOr9pdyxS7HsU+ktjaQ4KJw4Ht++OfuZ4la3Xj62Co=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GpkoezfJwAo9ULIN3eIyaMLcNz+NZU763pz33LeEcEZ0jpK8bt+Uer8CrjEZI7UfJ
-         6+HlbHyaXqjGoNhJNtf98lIHNuH/CjAaoiG4k7x2yiXXPWFqKIO58JRXWPvK90r8Zi
-         1ccoITx1ZOhlrN0bReJT15Hjc1JtTIamfoIWtbYsVv5gJx8j49WwIgsKsyA29iyEmD
-         w7xSCnsKl5Ju3v7MomI3vey/d+Keo6q9aq4UpxM5dP/JuWbuS13NFab4SJXbS6xyGh
-         +fi3z6UZjkl61Trr8NSTqWB46G8thAqw1T53McfocUbGZqVYrbTCWabmEkFuXe5vY3
-         SzsBFdDgY22Mw==
-Message-ID: <4762b4cc-f7bf-d4cb-a53b-ba2cfb5700fc@collabora.com>
-Date:   Fri, 4 Aug 2023 08:39:19 +0200
+        with ESMTP id S231235AbjHDGyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 02:54:47 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C81D1B9
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 23:54:46 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-583ae4818c8so19229317b3.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 23:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1691132085; x=1691736885;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tl864Gq8vHCZkWE8SgIk2gfcLPUIoY0UDu4IrEIG2Dk=;
+        b=kjlK7a/wOrqXSEtLt4ROFH8j/d7kFXj68rwUI1UyMGBSuaVEKDbBeIMNDng/2NVOO4
+         rC2y2cjxmF/Y2XyFx0l4V3Gc1HEUaFmcWGId+CJaqQYHLjRbOnWzms28cQaLyT/MuA85
+         R+9YdJS2LE0TbvasQ5ryYuxfhxOwDE/y3sAz0sPuVmekTqArfmCLcTHQuTbsIr9fhVjZ
+         3x5iBmpuSWSs5eQfqS2covmwyOpb4stwxGu1wOKkfcozr8BY5nn46FUPCvqcZrFc05vd
+         sXdjMVjxHo/LAutV3T+EZlSrcA+qQrRw46UqzhXE17e3cYny74H1ohx2xTwRdmiOjx0C
+         DRWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691132085; x=1691736885;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tl864Gq8vHCZkWE8SgIk2gfcLPUIoY0UDu4IrEIG2Dk=;
+        b=UrLVhZOi37WItz4+aDUe1o5Zi00TNbxV8K4l1Axpo/5fov9VhwAigbodLpd4A4yMCJ
+         ZLWTGhVa7PEu2DAmKlSWI+SNQ8c0P3+IwGhR3LLaE4Ay7ssj78SPwjhyFthB9p3IuSoD
+         7feVu0IIVoLTMEJ+kKLfsKlTPJZbsaj7BWdmBuIyDKpyqjMU6Xc2AdCZDiwvkEvuxE3J
+         4PswgvUwwSEpAOEDxkGt8SrK9MO41k78ZWGEg+gWYHhgiZ0OQ2pNa3/734IqjHyciXoC
+         i7+O2pEuA7V5+y/CSOowovdSQ+MUE/N1N/X5PHxvzMN/HSdhjeTm09ewmhzIM5QBz9qO
+         fHeQ==
+X-Gm-Message-State: AOJu0Yw5aTXN59syDnYB6xVaDiTexeONI2p6vgrPXQ6gHsZ7GvHaG4jX
+        VNpZ1MrM5WjrzOkpJcMuja/DU+japbtGL8G7h8WUeg==
+X-Google-Smtp-Source: AGHT+IEhQ+6ThvcSE8KTMZvx52SiuW4/p5gljqKGvysnVYcucKxlQcJrOxdrnH5kpTMGlkvNeQAaFzJ4yWelK3R15Kk=
+X-Received: by 2002:a81:69c2:0:b0:586:24d1:338e with SMTP id
+ e185-20020a8169c2000000b0058624d1338emr938772ywc.30.1691132085474; Thu, 03
+ Aug 2023 23:54:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/9] mfd: mt6397: Split MediaTek MT6366 PMIC out of MT6358
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230803074249.3065586-1-wenst@chromium.org>
- <20230803074249.3065586-4-wenst@chromium.org>
- <aa8f232f-701a-5b4c-eda8-89fc0e6fe5a8@collabora.com>
- <CAGXv+5EAR9Q5gGzkw=5UEEMOHbp56oKD5m_FyiHfZ3em8QwVAQ@mail.gmail.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5EAR9Q5gGzkw=5UEEMOHbp56oKD5m_FyiHfZ3em8QwVAQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230803085734.340-1-nylon.chen@sifive.com> <20230803-vehicular-leggings-2830239f818a@wendy>
+ <20230803-caretaker-voicing-e982f2334067@wendy> <CAHh=Yk9A3MP4Zgz53+s_ugvMtnv57igY=+Yccbp9Om9jBuxXqg@mail.gmail.com>
+In-Reply-To: <CAHh=Yk9A3MP4Zgz53+s_ugvMtnv57igY=+Yccbp9Om9jBuxXqg@mail.gmail.com>
+From:   Nylon Chen <nylon.chen@sifive.com>
+Date:   Fri, 4 Aug 2023 14:54:33 +0800
+Message-ID: <CAHh=Yk842gFpR1a3=KiB-Yb7T1Dqbg627MBK+hntjgMtd5z6-w@mail.gmail.com>
+Subject: Re: [PATCH v4 0/1] Change PWM-controlled LED pin active mode and algorithm
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, geert+renesas@glider.be,
+        pavel@ucw.cz, vincent.chen@sifive.com,
+        emil.renner.berthing@canonical.com, aou@eecs.berkeley.edu,
+        palmer@dabbelt.com, paul.walmsley@sifive.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor@kernel.org, zong.li@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/08/23 05:47, Chen-Yu Tsai ha scritto:
-> On Thu, Aug 3, 2023 at 5:01 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 03/08/23 09:42, Chen-Yu Tsai ha scritto:
->>> The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
->>> a different set of regulators. Specifically, it lacks the camera related
->>> VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
->>>
->>> Add a separate compatible for the MT6366 PMIC. The regulator cell for
->>> this new entry uses a new compatible string matching MT6366.
->>>
->>> Fixes: c47383f84909 ("mfd: Add support for the MediaTek MT6366 PMIC")
->>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
->>
->> I agree in that the LDOs are a bit different, but that's handled by the
->> mt6358-regulator driver regardless of the actual devicetree compatible,
->> as that's selected through a chip_id check.
->>
->> Finally, looking at the driver implementation itself, the addition of a
->> specific mt6366 compatible here seems redundant, because the actual HW is
->>    - Handled by drivers, but
->>    - Described by bindings
->>
->> Any other opinions on this?
-> 
-> Well, on the bindings side, we can't have MT6366 fall back to MT6358,
-> neither for the whole PMIC nor just for the regulators. For the latter
-> it's because neither is a subset of the other, which a) makes them not
-> fallback compatible as required by the spirit of fallback compatibles,
-> and b) cannot be described with a fallback compatible, as the fallback
-> one will have properties/nodes that are not valid for the other, and
-> vice versa.
-> 
-> Without a fallback compatible to lean in for the regulator driver, we
-> will need to split out the compatible at the mfd level as well. AFAIU
-> the mfd core matches mfd-cells based on the compatible strings it is
-> given in the driver.
-> 
+Hi Conor,
 
-Hmm... you might actually be right on this.
-But! I just want to be sure that we're doing things the right way.. and
-I'd like to get an opinion from a bindings person, as I think that's the
-most appropriate thing that can be done.
+Thank you for patiently giving me advice. I appreciate your help.
 
-Krzysztof, please, can you check this one?
+Not long ago, I said, "This patch needs to be accompanied by
+modifications to the pwm_sifive_apply() function to make sense."
 
-Thanks!
-Angelo
+I recently reviewed the v3 version, and after discussing it with Emil,
+there are several areas that require modification. I will provide the
+necessary changes for each of them:
 
-> ChenYu
-> 
->> Regards,
->> Angelo
->>
->>> ---
->>>    drivers/mfd/mt6397-core.c | 31 +++++++++++++++++++++++++++++++
->>>    1 file changed, 31 insertions(+)
->>>
->>> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
->>> index f6c1f80f94a4..3f8dfe60a59b 100644
->>> --- a/drivers/mfd/mt6397-core.c
->>> +++ b/drivers/mfd/mt6397-core.c
->>> @@ -206,6 +206,26 @@ static const struct mfd_cell mt6359_devs[] = {
->>>        },
->>>    };
->>>
->>> +static const struct mfd_cell mt6366_devs[] = {
->>> +     {
->>> +             .name = "mt6358-regulator",
->>> +             .of_compatible = "mediatek,mt6366-regulator"
->>> +     }, {
->>> +             .name = "mt6358-rtc",
->>> +             .num_resources = ARRAY_SIZE(mt6358_rtc_resources),
->>> +             .resources = mt6358_rtc_resources,
->>> +             .of_compatible = "mediatek,mt6358-rtc",
->>> +     }, {
->>> +             .name = "mt6358-sound",
->>> +             .of_compatible = "mediatek,mt6358-sound"
->>> +     }, {
->>> +             .name = "mt6358-keys",
->>> +             .num_resources = ARRAY_SIZE(mt6358_keys_resources),
->>> +             .resources = mt6358_keys_resources,
->>> +             .of_compatible = "mediatek,mt6358-keys"
->>> +     },
->>> +};
->>> +
->>>    static const struct mfd_cell mt6397_devs[] = {
->>>        {
->>>                .name = "mt6397-rtc",
->>> @@ -280,6 +300,14 @@ static const struct chip_data mt6359_core = {
->>>        .irq_init = mt6358_irq_init,
->>>    };
->>>
->>> +static const struct chip_data mt6366_core = {
->>> +     .cid_addr = MT6358_SWCID,
->>> +     .cid_shift = 8,
->>> +     .cells = mt6366_devs,
->>> +     .cell_size = ARRAY_SIZE(mt6366_devs),
->>> +     .irq_init = mt6358_irq_init,
->>> +};
->>> +
->>>    static const struct chip_data mt6397_core = {
->>>        .cid_addr = MT6397_CID,
->>>        .cid_shift = 0,
->>> @@ -358,6 +386,9 @@ static const struct of_device_id mt6397_of_match[] = {
->>>        }, {
->>>                .compatible = "mediatek,mt6359",
->>>                .data = &mt6359_core,
->>> +     }, {
->>> +             .compatible = "mediatek,mt6366",
->>> +             .data = &mt6366_core,
->>>        }, {
->>>                .compatible = "mediatek,mt6397",
->>>                .data = &mt6397_core,
->>
->>
+1. polarity check. (Suggestion from Uwe)
+- if (state->polarity !=3D PWM_POLARITY_INVERSED)
++ if (state->polarity !=3D PWM_POLARITY_NORMAL)
+2. avoid using old periodperiod, not state->period
+- period =3D max(state->period, ddata->approx_period);
+- frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
++ frac =3D DIV64_U64_ROUND_CLOSEST(num, period);
+3. add a conditional check can be added in the code to set
+ddata->approx_period to state->period when state->period is smaller
+than ddata->approx_period
+  if (state->period !=3D ddata->approx_period) {
+  ...
++       if (state->period < ddata->approx_period) {
++               ddata->approx_period =3D state->period;
++       }
+-       ddata->approx_period =3D state->period;
++       period =3D ddata->approx_period;
 
+I will use 'unmatched' on my end to verify again. If there are any
+other errors, feel free to point them out. Thank you.
+
+Nylon Chen <nylon.chen@sifive.com> =E6=96=BC 2023=E5=B9=B48=E6=9C=884=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=889:42=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hi Conor,
+>
+> Conor Dooley <conor.dooley@microchip.com> =E6=96=BC 2023=E5=B9=B48=E6=9C=
+=883=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:44=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+> >
+> > Hey Nylon,
+> >
+> > (I yoinked the reply to 1/1 to here, as it makes more sense in this
+> > context)
+> >
+> > > On Thu, Aug 03, 2023 at 10:15:10AM +0100, Conor Dooley wrote:
+> > > > On Thu, Aug 03, 2023 at 04:57:33PM +0800, Nylon Chen wrote:
+> > > > > According to the circuit diagram of User LEDs - RGB described in =
+themanual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pd=
+f[1].
+> > > > >
+> > > > > The behavior of PWM is acitve-high.
+> > > > >
+> > > > > Removed patches: 1
+> > > > > New patches: (none)
+> > > > >
+> > > > > Links:
+> > > > > - [0]:  https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-9=
+5c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
+> > > > > - [1]:  https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8=
+e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
+> > > > > - [2]:  https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b=
+2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+> > > > >
+> > > > > Changed in v4:
+> > > > >  - Remove previous updates to the PWM algorithm.
+> > > >
+> > > > Why? I don't recall the conclusion on the previous version being th=
+at
+> > > > that patch was not needed.
+> > >
+> > > I apologize for forgetting about this update earlier. Just now,
+> > > I tried to pull rebase master and noticed that other developers seem
+> > > to have made some fixes to the algorithm. Upon closer inspection, I
+> > > found that they addressed the part we previously discussed with Emil
+> > > and Uwe, such as "first pwm_apply_state."
+> > >
+> > > Therefore, my instinct tells me that they have already taken care of
+> > > the issues we discussed before.
+> >
+> > I didn't see anything in linux-next that would solve this problem of
+> > inversion. The last meaningful change is:
+> >         commit 334c7b13d38321e47d1a51dba0bef9f4c403ec75
+> >         Author:     Emil Renner Berthing <emil.renner.berthing@canonica=
+l.com>
+> >         AuthorDate: Wed Nov 9 12:37:24 2022 +0100
+> >         Commit:     Thierry Reding <thierry.reding@gmail.com>
+> >         CommitDate: Mon Jan 30 16:42:45 2023 +0100
+> >
+> >             pwm: sifive: Always let the first pwm_apply_state succeed
+> >
+> > which predates your v3 by quite a bit.
+> >
+> > > I will review the conflicting parts in the pwm-sifive.c code in my v4
+> > > version once again to ensure there are no omissions. If I find any, I
+> > > will submit v5 accordingly.
+> >
+> > And if this patch is okay in isolation, please reply here explaining
+> > which commit fixed the algorithm, so that I can pick it up.
+> This patch needs to be accompanied by modifications to the
+> pwm_sifive_apply() function to make sense.
+>
+> I will double-check and review the previous discussions to ensure
+> that. Thank you for your response.
+> >
+> > Thanks,
+> > Conor.
