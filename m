@@ -2,191 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 474167703FD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7C3A77040F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232009AbjHDPGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 11:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46028 "EHLO
+        id S229928AbjHDPJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 11:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231947AbjHDPGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:06:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C2249FD;
-        Fri,  4 Aug 2023 08:06:16 -0700 (PDT)
+        with ESMTP id S229983AbjHDPJj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:09:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D9F49F8;
+        Fri,  4 Aug 2023 08:09:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A80C76206C;
-        Fri,  4 Aug 2023 15:06:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DB64C43397;
-        Fri,  4 Aug 2023 15:06:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691161575;
-        bh=mXPGxySXlPcOky6tfQhNOiPYHQydjvuSV/GV9+Qzuik=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C53962051;
+        Fri,  4 Aug 2023 15:09:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E93CFC433C7;
+        Fri,  4 Aug 2023 15:09:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1691161756;
+        bh=8O0Wjzo18Eeo3bT1GIVVN1lfiYXzL8s5iSHfE8UYuNo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ff/VCFJZ+CkRWah5LUhBHL37ShaFpg9fouBEv1q7/ZDWVynISmV6ux7imbw1KDKvf
-         IOrtU1ge3Gx1+UFW/t2rZ7l68omwHaeHXs6YrJCBDf8CJLNxUIaGRGg63KUGQWJ6V1
-         cQ7SvMq8j0GkW4rnw8QDjKudi3i7MwcSKS0X1KCi4UfMNaLxHvf3KP1I5y4EUv5cRN
-         abciOGPZ3jfvVQsT0TvPuZMtpUnxkI6VXBSOKxQoz1OZc1fWje5UGBmYXIsisZjw1u
-         NDe+6uOoKB/MsInufmcSsS/HbId6lFZiTTlgp1m5sl6L8hdxZkco8gcdIXWioRKg2Q
-         kSaIJJP4GbLzQ==
-Received: (nullmailer pid 1386743 invoked by uid 1000);
-        Fri, 04 Aug 2023 15:06:13 -0000
-Date:   Fri, 4 Aug 2023 09:06:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Raphael Gallais-Pou <rgallaispou@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: irqchip: convert st,stih407-irq-syscfg to
- DT schema
-Message-ID: <20230804150613.GA1365416-robh@kernel.org>
-References: <20230801214651.27418-1-rgallaispou@gmail.com>
+        b=QyU85AmKeiVXq66XUP+H0XDDgcPvxIpbACZeWDKtLLR3QFGZ7durVVMkZxppxkUXc
+         +u0Na11dmOF+KYDuVjDD6pBxtZXeFwxhQlJFwbyTBJu1t62t4eVd/Qpq+ZOJlauo/W
+         ZK281c9fsSGh2WurVCYSsX2H802Obf/Cmf9vGt7k=
+Date:   Fri, 4 Aug 2023 17:09:13 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org, Lech Perczak <lech.perczak@camlingroup.com>
+Subject: Re: [PATCH v9 04/10] serial: sc16is7xx: refactor GPIO controller
+ registration
+Message-ID: <2023080433-depravity-debate-57d3@gregkh>
+References: <20230725142343.1724130-1-hugo@hugovil.com>
+ <20230725142343.1724130-5-hugo@hugovil.com>
+ <2023073118-mousiness-sandlot-6258@gregkh>
+ <20230803121449.bcf74899e062ca39dfb073a3@hugovil.com>
+ <2023080415-kinetic-repurpose-030a@gregkh>
+ <20230804101554.c63202df93481bd5728bd3f1@hugovil.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230801214651.27418-1-rgallaispou@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230804101554.c63202df93481bd5728bd3f1@hugovil.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 01, 2023 at 11:46:51PM +0200, Raphael Gallais-Pou wrote:
-> Convert deprecated format to DT schema format.
+On Fri, Aug 04, 2023 at 10:15:54AM -0400, Hugo Villeneuve wrote:
+> On Fri, 4 Aug 2023 15:14:18 +0200
+> Greg KH <gregkh@linuxfoundation.org> wrote:
 > 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
-> ---
->  .../st,sti-irq-syscfg.txt                     | 30 ---------
->  .../st,stih407-irq-syscfg.yaml                | 67 +++++++++++++++++++
->  2 files changed, 67 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
+> > On Thu, Aug 03, 2023 at 12:14:49PM -0400, Hugo Villeneuve wrote:
+> > > On Mon, 31 Jul 2023 17:55:42 +0200
+> > > Greg KH <gregkh@linuxfoundation.org> wrote:
+> > > 
+> > > > On Tue, Jul 25, 2023 at 10:23:36AM -0400, Hugo Villeneuve wrote:
+> > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > 
+> > > > > In preparation for upcoming patch "fix regression with GPIO
+> > > > > configuration". To facilitate review and make code more modular.
+> > > > 
+> > > > I would much rather the issue be fixed _before_ the code is refactored,
+> > > > unless it is impossible to fix it without the refactor?
+> > > 
+> > > Hi Greg,
+> > > normally I would agree, but the refactor in this case helps a lot to
+> > > address some issues raised by you and Andy in V7 of this series.
+> > > 
+> > > Maybe I could merge it with the actual patch "fix regression with GPIO
+> > > configuration"?
+> > 
+> > Sure.
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt b/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
-> deleted file mode 100644
-> index 977d7ed3670e..000000000000
-> --- a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -STMicroelectronics STi System Configuration Controlled IRQs
-> ------------------------------------------------------------
-> -
-> -On STi based systems; External, CTI (Core Sight), PMU (Performance Management),
-> -and PL310 L2 Cache IRQs are controlled using System Configuration registers.
-> -This driver is used to unmask them prior to use.
-> -
-> -Required properties:
-> -- compatible	: Should be "st,stih407-irq-syscfg"
-> -- st,syscfg	: Phandle to Cortex-A9 IRQ system config registers
-> -- st,irq-device	: Array of IRQs to enable - should be 2 in length
-> -- st,fiq-device	: Array of FIQs to enable - should be 2 in length
-> -
-> -Optional properties:
-> -- st,invert-ext	: External IRQs can be inverted at will.  This property inverts
-> -		  these IRQs using bitwise logic.  A number of defines have been
-> -		  provided for convenience:
-> -			ST_IRQ_SYSCFG_EXT_1_INV
-> -			ST_IRQ_SYSCFG_EXT_2_INV
-> -			ST_IRQ_SYSCFG_EXT_3_INV
-> -Example:
-> -
-> -irq-syscfg {
-> -	compatible    = "st,stih407-irq-syscfg";
-> -	st,syscfg     = <&syscfg_cpu>;
-> -	st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
-> -			<ST_IRQ_SYSCFG_PMU_1>;
-> -	st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
-> -			<ST_IRQ_SYSCFG_DISABLED>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-> new file mode 100644
-> index 000000000000..fce18d444c56
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/st,stih407-irq-syscfg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STi System Configuration Controlled IRQs
-> +
-> +maintainers:
-> +  - Patrice Chotard <patrice.chotard@foss.st.com>
-> +
-> +description:
-> +  On STi based systems; External, CTI (Core Sight), PMU (Performance
-> +  Management), and PL310 L2 Cache IRQs are controlled using System
-> +  Configuration registers.  This driver is used to unmask them prior to use.
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stih407-irq-syscfg
-> +
-> +  st,syscfg:
-> +    description: Phandle to Cortex-A9 IRQ system config registers
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-
-Drop quotes. Here and other $refs.
-
-> +
-> +  st,irq-device:
-> +    description: Array of IRQs to enable.
-> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> +    items:
-> +      - description: Enable the IRQ of the channel one.
-> +      - description: Enable the IRQ of the channel two.
-> +
-> +  st,fiq-device:
-> +    description: Array of FIQs to enable.
-> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> +    items:
-> +      - description: Enable the IRQ of the channel one.
-> +      - description: Enable the IRQ of the channel two.
-> +
-> +  st,invert-ext:
-> +    description: External IRQs can be inverted at will. This property inverts
-> +      these IRQs using bitwise logic.
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    enum:
-> +      - ST_IRQ_SYSCFG_EXT_1_INV
-> +      - ST_IRQ_SYSCFG_EXT_2_INV
-> +      - ST_IRQ_SYSCFG_EXT_3_INV
-
-Defines don't work here. Add the property to the example and you'll see.
-
-> +
-> +required:
-> +  - compatible
-> +  - st,syscfg
-> +  - st,irq-device
-> +  - st,fiq-device
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq-st.h>
-> +    irq-syscfg {
-> +        compatible    = "st,stih407-irq-syscfg";
-> +        st,syscfg     = <&syscfg_cpu>;
-> +        st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
-> +                        <ST_IRQ_SYSCFG_PMU_1>;
-> +        st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
-> +                        <ST_IRQ_SYSCFG_DISABLED>;
-> +    };
-> +...
-> -- 
-> 2.41.0
+> Hi Greg,
+> will do.
 > 
+>  
+> > > > > Cc: <stable@vger.kernel.org> # 6.1.x
+> > > > 
+> > > > What commit id does this fix?
+> > > 
+> > > It doesn't fix anything, but I tought that I needed this tag since
+> > > this patch is a prerequisite for the next patch in the series, which
+> > > would be applied to stable kernels. I will remove this tag (assuming
+> > > the patch stays as it is, depending on your answer to the above
+> > > question).
+> > > 
+> > >  
+> > > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > > > > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > > > > ---
+> > > > >  drivers/tty/serial/sc16is7xx.c | 40 ++++++++++++++++++++--------------
+> > > > >  1 file changed, 24 insertions(+), 16 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> > > > > index 32d43d00a583..5b0aeef9d534 100644
+> > > > > --- a/drivers/tty/serial/sc16is7xx.c
+> > > > > +++ b/drivers/tty/serial/sc16is7xx.c
+> > > > > @@ -332,6 +332,7 @@ struct sc16is7xx_one {
+> > > > >  
+> > > > >  struct sc16is7xx_port {
+> > > > >  	const struct sc16is7xx_devtype	*devtype;
+> > > > > +	struct device			*dev;
+> > > > 
+> > > > Why is this pointer needed?
+> > > > 
+> > > > Why is it grabbed and yet the reference count is never incremented?  Who
+> > > > owns the reference count and when will it go away?
+> > > > 
+> > > > And what device is this?  The parent?  Current device?  What type of
+> > > > device is it?  And why is it needed?
+> > > > 
+> > > > Using "raw" devices is almost never something a driver should do, they
+> > > > are only passed into functions by the driver core, but then the driver
+> > > > should instantly turn them into the "real" structure.
+> > > 
+> > > We already discussed that a lot in previous versions (v7)... I am
+> > > trying my best to modify the code to address your concerns, but I am
+> > > not fully understanding what you mean about raw devices, and you didn't
+> > > answer some of my previous questions/interrogations in v7 about that.
+> > 
+> > I don't have time to answer all questions, sorry.
+> > 
+> > Please help review submitted patches to reduce my load and allow me to
+> > answer other stuff :)
+> 
+> Ok.
+> 
+> 
+> > > So, in the new function that I
+> > > need to implement, sc16is7xx_setup_gpio_chip(), I absolutely need to use
+> > > a raw device to read a device tree property and to set
+> > > s->gpio.parent:
+> > > 
+> > >     count = device_property_count_u32(dev, ...
+> > >     ...
+> > >     s->gpio.parent = dev;
+> > > 
+> > > Do we agree on that?
+> > 
+> > Yes, but what type of parent is that?
+> 
+> I am confused by your question. I do not understand why the type of
+> parent matters... And what do you call the parent: s, s->gpio or
+> s->gpio.parent?
+> 
+> For me, the way I understand it, the only question that matters is how I
+> can extract the raw device structure pointer from maybe "struct
+> sc16is7xx_port" or some other structure, and then use it in my
+> new function...
+> 
+> I should not have put "s->gpio.parent = dev" in the example, I think it
+> just complexifies things. Lets start over with a more simple example and
+> only:
+> 
+>     count = device_property_count_u32(dev, ...
+> 
+> 
+> > > Then, how do I pass this raw device to the 
+> > > device_property_count_u32() function and to the s->gpio.parent
+> > > assignment?
+> > > 
+> > > Should I modify sc16is7xx_setup_gpio_chip() like so:
+> > > 
+> > >     static int sc16is7xx_setup_gpio_chip(struct sc16is7xx_port *s)
+> > >     {
+> > > 	struct device *dev = &s->p[0].port.dev;
+> > > 
+> > >         count = device_property_count_u32(dev, ...
+> > >         ...
+> > >         s->gpio.parent = dev;
+> > 
+> > Again, what is the real type of that parent?  It's a port, right, so
+> > pass in the port to this function and then do the "take the struct
+> > device of the port" at that point in time.
+> 
+> With the simplified example, is the following ok:
+> 
+> static int sc16is7xx_setup_gpio_chip(struct sc16is7xx_port *s)
+> {
+>     struct device *dev = &s->p[0].port.dev;
+> 
+>     count = device_property_count_u32(dev, ...
+>     ...
+> }
+> 
+> If not, please indicate how you would do it with an actual example...
+
+At this point, after reviewing 500+ patches today, I really have no
+idea, my brain is fried.  Do what you think is right here and submit a
+new series and I'll be glad to review it.
+
+thanks,
+
+greg k-h
