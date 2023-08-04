@@ -2,55 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C13C7704B1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7944C7704BE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231271AbjHDP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 11:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34822 "EHLO
+        id S230006AbjHDPbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 11:31:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbjHDP3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:29:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F31CC55A8;
-        Fri,  4 Aug 2023 08:28:33 -0700 (PDT)
+        with ESMTP id S230125AbjHDPb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:31:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C89C49FA;
+        Fri,  4 Aug 2023 08:31:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EA7B56207B;
-        Fri,  4 Aug 2023 15:28:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E616C433CC;
-        Fri,  4 Aug 2023 15:28:30 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8AB7362055;
+        Fri,  4 Aug 2023 15:31:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF8DC433C8;
+        Fri,  4 Aug 2023 15:31:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691162912;
-        bh=56zoPeM/CV8ihxlnw5WYA8d04D9FlMkTeWO4Tsa8NqU=;
+        s=k20201202; t=1691163068;
+        bh=hxuljz+as8AT+zpeXq/iy/DqqC73aBdecpgf/sdIuMM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hrgCRcnaZajvRqDBsuL2DRhZQ4Qb/xMJjIgluxRWXeW4Zf7Yixf2tRDJXBRNweKZ1
-         QlOAvCLPMlpuATurkOyOdTpUxsK5KrrJFdLji93N6B+H8OJugV7Kjqv52z8/oFvOkJ
-         MUJAW5HysFgFOyfHqtjGXNptDxWpQa/01+lSmQSeZlTqbYkDRQi4SlZLsC3K1ly8Ja
-         mb7wr1pI3XtZR/98pCVPrJroOG92sCnKsHLnP51N3IXriHe1LpRbVk9W+u7sEk+qFG
-         Nh4wM2qnd4WackmUgbvVVbTknyDqDBo7NTsQqkvvpXyN1qCot2SFoA7CYNp8mFlk+8
-         dcxw7IAMGx5Bw==
-Date:   Fri, 4 Aug 2023 16:28:28 +0100
+        b=klEPnspdL15FMXZhCDx9iQmDWkYwf4YOiftzjqB8LoOt3N4xjvt/LAz8gFZehM7NZ
+         Jn8JHgs2gckOC3Gc3G84j3/CTLpecGfKOm8WWg2StOrQQJUhtm4CTGv5eu6CATD5u3
+         YJhnzoKI4fxtmlYyLS+M89XUQCyhHCi79fZUsV/0XKcNrtT6AR9G9Rq2ob0zhJk/3o
+         Viz1YMWyAdzB4vqoW2jDOxQyqgFeGP2hubLzCeghgr0uow5VgQjYx7c+jN/6KfPvvN
+         7EmEAhIFplW+ozamyBQQtfHPrxLUJEPRolbJt6LJGGMJ8+BiArM9bJe65Aap7aca9x
+         9LDfhR+siUd5Q==
+Date:   Fri, 4 Aug 2023 16:31:03 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     marius.cristea@microchip.com
-Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] Adding support for Microchip MCP3564 ADC family
-Message-ID: <20230804-doze-confining-edf4f50d736d@spud>
-References: <20230804142820.89593-1-marius.cristea@microchip.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Mark Brown <broonie@kernel.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: mt6397: Split out compatible for
+ MediaTek MT6366 PMIC
+Message-ID: <20230804-rift-unvented-1194b51744f4@spud>
+References: <20230803074249.3065586-1-wenst@chromium.org>
+ <20230803074249.3065586-2-wenst@chromium.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="69mBrM4Ph1nZWzIB"
+        protocol="application/pgp-signature"; boundary="7uwcHrcVztFuPIhA"
 Content-Disposition: inline
-In-Reply-To: <20230804142820.89593-1-marius.cristea@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230803074249.3065586-2-wenst@chromium.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -58,63 +66,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---69mBrM4Ph1nZWzIB
+--7uwcHrcVztFuPIhA
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 04, 2023 at 05:28:18PM +0300, marius.cristea@microchip.com wrot=
-e:
-> From: Marius Cristea <marius.cristea@microchip.com>
+On Thu, Aug 03, 2023 at 03:42:39PM +0800, Chen-Yu Tsai wrote:
+> The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
+> a different set of regulators. Specifically, it lacks the camera related
+> VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
 >=20
-> Adding support for Microchip family of 153.6 ksps, Low-Noise 16/24-Bit
-> Delta-Sigma ADCs with an SPI interface. This driver covers the following =
-part
-> numbers:
->  - MCP3561, MCP3562, MCP3564, MCP3561R, MCP3562R, MCP3564R,
->  - MCP3461, MCP3462, MCP3464, MCP3461R, MCP3462R and MCP3464R.
+> Add a separate compatible for the MT6366 PMIC.
 >=20
-> Differences related to previous patch:
-> v3:
-> - fix review comments:
->   - fix and update the device tree bindings
->   - enable "auto_zeroing_ref_enable" attribute only
->     when internal reference is used
->   - remove unused headers
->   - fix comments (kernel-docs)
->   - remove scan_type
->   - replace "extend_name" with read_label
->   - print label for each channel (label could be added into the dt)
->   - add comment to explain the maximum channels numbers
->   - add protection around critical region
+> Fixes: 49be16305587 ("dt-bindings: mfd: Add compatible for the MediaTek M=
+T6366 PMIC")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
->   - fallback compatible in device tree to deal with some newer part number
-
-The compatibles are all still in an enum in the binding with no
-fallbacks. Did you forget to commit this?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
->  =20
-> - Open questions:
->   - whether or not to add a spi-mux type of thing to deal with the part n=
-umber
->     address in case there are multiple devices connected to the same chip
->     select.
->   - discussion related to the "custom property". Last time around a conse=
-nsus
->     wasn't reached.=20
-
---69mBrM4Ph1nZWzIB
+--7uwcHrcVztFuPIhA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM0ZHAAKCRB4tDGHoIJi
-0mUTAP46a8eRFu3rukoDmNmwgNsOmobBPRGPtSnMPkJ2r8SheAD/W9l5IqLR9bCU
-8r04SbrY9ic7HyKnNjjRj6HQTQXQfwc=
-=sF9v
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM0ZtgAKCRB4tDGHoIJi
+0qDyAPsHuwCui775ZKeH0xfMeYOmy3RU0RV5Fv5KqB7imiFqfwEA19FJcLsJ+INy
+AR2LebWepVlpr+2xxBBkGWmxwLNzPwY=
+=47nj
 -----END PGP SIGNATURE-----
 
---69mBrM4Ph1nZWzIB--
+--7uwcHrcVztFuPIhA--
