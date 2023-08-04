@@ -2,45 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EEDE7706C7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 19:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FAC77075C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 19:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232239AbjHDRJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 13:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43914 "EHLO
+        id S229829AbjHDR44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 13:56:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231954AbjHDRJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 13:09:24 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CEB924ECD;
-        Fri,  4 Aug 2023 10:09:12 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0A37814BF;
-        Fri,  4 Aug 2023 10:09:55 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.100.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC27E3F5A1;
-        Fri,  4 Aug 2023 10:09:10 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: allwinner: h616: Add OrangePi Zero 3 board support
-Date:   Fri,  4 Aug 2023 18:08:56 +0100
-Message-Id: <20230804170856.1237202-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230804170856.1237202-1-andre.przywara@arm.com>
-References: <20230804170856.1237202-1-andre.przywara@arm.com>
+        with ESMTP id S229717AbjHDR4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 13:56:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705184C04
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 10:56:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0092F620DF
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 17:56:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65D83C433D9
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 17:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691171813;
+        bh=GKuYHb+Bw9ERBeGoytIUGt9ZgJZFMEWqi4zEEosvufo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WFvBPqPKRBGLuR/OEsLkTMoftJc23oukOMuLFCcNYMERhBOfwI87v2GIr2xMUspGj
+         W2l947w+c+bTWwVg0oJgXk++I6whNCT5zs+SncV9l53HlPsrrSrBlGXEt4dFLYkT8v
+         YQ3w7VIn5zwIc4NrTqnhXjME/6ru41GlPkh1wUCjOzjcOF3Tg6Y53O3OxjZUzTOJi4
+         usBx625bI7TgwkeVSM5XhzhuGeyGHdnwArnXUd6DzDf78R6b9SKJYFhgHVfywF0B9J
+         USsKCr7c1n5zCFVFECoCRjub8sRqSu7/h2iv/ryrFrURHi3lvNleNADmyGfu7PUokI
+         1wGBSAj30Xw/A==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4fe45da0a89so4261169e87.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 10:56:53 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxtTp0N17l5s6GaNUUnW60QjJm7Mcr+YvcpcVMo429YXTPYHXWD
+        tMceebmfEYPyIP8VnBX5fKcL/WRE488n26u4Fw==
+X-Google-Smtp-Source: AGHT+IH7fMb9Z6cQ3aYYpjloEdM4PzkFPO+YGk3G+U637LHZIPsqMU7IUBz9IA+tIyA3w6sNG/0Ti8YWQGTVGeisS8s=
+X-Received: by 2002:a05:6512:4020:b0:4f8:7041:e46a with SMTP id
+ br32-20020a056512402000b004f87041e46amr94034lfb.18.1691171811335; Fri, 04 Aug
+ 2023 10:56:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+References: <87mt04o96f.wl-kuninori.morimoto.gx@renesas.com>
+ <87351wo921.wl-kuninori.morimoto.gx@renesas.com> <20230710151956.GA1992791-robh@kernel.org>
+ <87lefn8gh9.wl-kuninori.morimoto.gx@renesas.com> <20230714144245.GA3492124-robh@kernel.org>
+ <87zg3rxymj.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87zg3rxymj.wl-kuninori.morimoto.gx@renesas.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 4 Aug 2023 11:56:39 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+mTbi-Xmaw_ScMs6zzBCGnZM2cn70HCP-On9TjevE1xg@mail.gmail.com>
+Message-ID: <CAL_Jsq+mTbi-Xmaw_ScMs6zzBCGnZM2cn70HCP-On9TjevE1xg@mail.gmail.com>
+Subject: Re: [PATCH v2 14/15] ASoC: dt-bindings: renesas,rsnd.yaml: add common port-def
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Cezary Rojewski <cezary.rojewski@intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        =?UTF-8?B?QW1hZGV1c3ogU8WCYXdpxYRza2k=?= 
+        <amadeuszx.slawinski@linux.intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,142 +72,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OrangePi Zero 3 is a development board based on the Allwinner H618 SoC,
-which seems to be just an H616 with more L2 cache. The board itself is a
-slightly updated version of the Orange Pi Zero 2. It features:
-- Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-- 1/1.5/2/4 GiB LPDDR4 DRAM SKUs (only up to 1GB on the Zero2)
-- AXP313a PMIC (more capable AXP305 on the Zero2)
-- Raspberry-Pi-1 compatible GPIO header
-- extra 13 pin expansion header, exposing pins for 2x USB 2.0 ports
-- 1 USB 2.0 host port
-- 1 USB 2.0 type C port (power supply + OTG)
-- MicroSD slot
-- on-board 16MiB bootable SPI NOR flash (only 2MB on the Zero2)
-- 1Gbps Ethernet port (via Motorcomm YT8531 PHY) (RTL8211 on the Zero2)
-- micro-HDMI port
-- (yet) unsupported Allwinner WiFi/BT chip
+On Wed, Jul 19, 2023 at 5:36=E2=80=AFPM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+>
+>
+> Hi Rob, Mark
+>
+> > > > > diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd=
+.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> > > > > index 8a821dec9526..d9808b130e8d 100644
+> > > > > --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> > > > > @@ -9,6 +9,20 @@ title: Renesas R-Car Sound Driver
+> > > > >  maintainers:
+> > > > >    - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > > > >
+> > > > > +definitions:
+> > > >
+> > > > $defs
+> > >
+> > > Hmm... many drivers are using "definitions" ?
+> >
+> > Patches welcome to change them. I don't think it's many (not counting
+> > types.yaml). Use of "definitions" or "$defs" is an exception.
+>
+> I will get error if I used "$defs" instead of "definitions", like below.
 
-Add the devicetree file describing the currently supported features,
-namely LEDs, SD card, PMIC, SPI flash, USB. Ethernet seems unstable at
-the moment, though the basic functionality works.
+Are you sure you used $defs?
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../allwinner/sun50i-h618-orangepi-zero3.dts  | 94 +++++++++++++++++++
- 2 files changed, 95 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> There is no error in "definitions" case.
+>
+> Mark
+> Thus, I have no update for remainings (=3D [11/15] - [15/15]).
+>
+>
+>         > pip3 list | grep jsonschema
+>         jsonschema                     4.17.0
+>         > pip3 list | grep dtschema
+>         dtschema                       2023.6.1
+>
+>         > make dtbs_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bind=
+ings/sound/renesas,rsnd.yaml
+>           LINT    Documentation/devicetree/bindings
+>           CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>         /opt/disk_cd/morimoto/linux/Documentation/devicetree/bindings/sou=
+nd/renesas,rsnd.yaml:
+>         Unresolvable JSON pointer: 'definitions/port-def'
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 6a96494a2e0a3..3b0ad54062381 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -40,3 +40,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-new file mode 100644
-index 0000000000000..96a6851728111
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2023 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616-orangepi-zero.dtsi"
-+
-+/ {
-+	model = "OrangePi Zero3";
-+	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
-+};
-+
-+&emac0 {
-+	phy-supply = <&reg_dldo1>;
-+};
-+
-+&ext_rgmii_phy {
-+	motorcomm,clk-out-frequency-hz = <125000000>;
-+};
-+
-+&mmc0 {
-+	/*
-+	 * The schematic shows the card detect pin wired up to PF6, via an
-+	 * inverter, but it just doesn't work.
-+	 */
-+	broken-cd;
-+	vmmc-supply = <&reg_dldo1>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+		interrupt-parent = <&pio>;
-+		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
-+
-+		vin1-supply = <&reg_vcc5v>;
-+		vin2-supply = <&reg_vcc5v>;
-+		vin3-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			/* Supplies VCC-PLL, so needs to be always on. */
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Supplies VCC-IO, so needs to be always on. */
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-dram";
-+			};
-+		};
-+	};
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_dldo1>;
-+	vcc-pf-supply = <&reg_dldo1>;
-+	vcc-pg-supply = <&reg_aldo1>;
-+	vcc-ph-supply = <&reg_dldo1>;
-+	vcc-pi-supply = <&reg_dldo1>;
-+};
--- 
-2.25.1
+Doesn't look like it. You have a ref to 'definitions/port-def'.
 
+Rob
