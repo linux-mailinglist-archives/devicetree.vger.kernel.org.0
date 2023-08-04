@@ -2,237 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AAC8770C2F
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 00:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40097770C40
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 01:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229713AbjHDW7d convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Aug 2023 18:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
+        id S229714AbjHDXMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 19:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjHDW7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 18:59:32 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 71B771BE;
-        Fri,  4 Aug 2023 15:59:30 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C60C11007;
-        Fri,  4 Aug 2023 16:00:12 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6216B3F59C;
-        Fri,  4 Aug 2023 15:59:28 -0700 (PDT)
-Date:   Fri, 4 Aug 2023 23:58:27 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: h616: Add OrangePi Zero 3
- board support
-Message-ID: <20230804235827.3f32fa8f@slackpad.lan>
-In-Reply-To: <4500165.LvFx2qVVIh@jernej-laptop>
-References: <20230804170856.1237202-1-andre.przywara@arm.com>
-        <20230804170856.1237202-4-andre.przywara@arm.com>
-        <4500165.LvFx2qVVIh@jernej-laptop>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229720AbjHDXMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 19:12:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D361646B3;
+        Fri,  4 Aug 2023 16:12:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CCBC6215E;
+        Fri,  4 Aug 2023 23:12:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F794C433C8;
+        Fri,  4 Aug 2023 23:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691190751;
+        bh=0huTYlOJ7ehSTpvXygP50IFdkKHSLFUaNDSomV/oL2s=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=COsw38xLrXJZtdKt2cIk6TcwwogHZlQxG7I3f07LaPeBZO1zTPZoE6l/oBymxpAZU
+         5qe/YFXj5kh/yAjR+PjMTo9PI8F48UvEEoUOnR6LOJFiccBPR2QRgP/YKj2m5WfjvK
+         ueXUEREPXhK8FxpVnpDpPgQMnQM+K79OCwaTLo2/acBLUsqQyRQQAtClVs5RFMCshi
+         UU5S6ADPnpmbLMhiHj2bqQjznnSbRfRrPMvSWHI6kvdSkLDZK61nTiN5GuWEeNBu2k
+         3mNsFjeUhAHeKKsUslMM0DGeLjyqibKe0lH7R+re759TslgJDcjC3Ir9AE4lBDxL/1
+         T9xZrJbVh9Rdg==
+Received: (nullmailer pid 62476 invoked by uid 1000);
+        Fri, 04 Aug 2023 23:12:28 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Danila Tikhonov <danila@jiaxyga.com>
+Cc:     airlied@gmail.com, conor+dt@kernel.org, liushixin2@huawei.com,
+        konrad.dybcio@linaro.org, quic_abhinavk@quicinc.com,
+        quic_rmccann@quicinc.com, daniel@ffwll.ch,
+        linux-kernel@vger.kernel.org, quic_jesszhan@quicinc.com,
+        andersson@kernel.org, robdclark@gmail.com, rfoss@kernel.org,
+        marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, davidwronek@gmail.com,
+        sean@poorly.run, dmitry.baryshkov@linaro.org,
+        quic_vpolimer@quicinc.com, krzysztof.kozlowski+dt@linaro.org,
+        neil.armstrong@linaro.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, quic_khsieh@quicinc.com,
+        robh+dt@kernel.org
+In-Reply-To: <20230803194724.154591-2-danila@jiaxyga.com>
+References: <20230803194724.154591-1-danila@jiaxyga.com>
+ <20230803194724.154591-2-danila@jiaxyga.com>
+Message-Id: <169119074853.62442.8646318839779071410.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm: document DPU on SM7150
+Date:   Fri, 04 Aug 2023 17:12:28 -0600
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Aug 2023 21:05:36 +0200
-Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
 
-Hi Jernej,
-
-> Dne petek, 04. avgust 2023 ob 19:08:56 CEST je Andre Przywara napisal(a):
-> > The OrangePi Zero 3 is a development board based on the Allwinner H618 SoC,
-> > which seems to be just an H616 with more L2 cache. The board itself is a
-> > slightly updated version of the Orange Pi Zero 2. It features:
-> > - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-> > - 1/1.5/2/4 GiB LPDDR4 DRAM SKUs (only up to 1GB on the Zero2)
-> > - AXP313a PMIC (more capable AXP305 on the Zero2)
-> > - Raspberry-Pi-1 compatible GPIO header
-> > - extra 13 pin expansion header, exposing pins for 2x USB 2.0 ports
-> > - 1 USB 2.0 host port
-> > - 1 USB 2.0 type C port (power supply + OTG)
-> > - MicroSD slot
-> > - on-board 16MiB bootable SPI NOR flash (only 2MB on the Zero2)
-> > - 1Gbps Ethernet port (via Motorcomm YT8531 PHY) (RTL8211 on the Zero2)
-> > - micro-HDMI port
-> > - (yet) unsupported Allwinner WiFi/BT chip
-> > 
-> > Add the devicetree file describing the currently supported features,
-> > namely LEDs, SD card, PMIC, SPI flash, USB. Ethernet seems unstable at
-> > the moment, though the basic functionality works.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
-> >  .../allwinner/sun50i-h618-orangepi-zero3.dts  | 94 +++++++++++++++++++
-> >  2 files changed, 95 insertions(+)
-> >  create mode 100644
-> > arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile
-> > b/arch/arm64/boot/dts/allwinner/Makefile index 6a96494a2e0a3..3b0ad54062381
-> > 100644
-> > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > @@ -40,3 +40,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> > b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts new file
-> > mode 100644
-> > index 0000000000000..96a6851728111
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-> > @@ -0,0 +1,94 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > +/*
-> > + * Copyright (C) 2023 Arm Ltd.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun50i-h616-orangepi-zero.dtsi"
-> > +
-> > +/ {
-> > +	model = "OrangePi Zero3";
-> > +	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
-> > +};
-> > +
-> > +&emac0 {
-> > +	phy-supply = <&reg_dldo1>;
-> > +};
-> > +
-> > +&ext_rgmii_phy {
-> > +	motorcomm,clk-out-frequency-hz = <125000000>;
-> > +};
-> > +
-> > +&mmc0 {
-> > +	/*
-> > +	 * The schematic shows the card detect pin wired up to PF6, via an
-> > +	 * inverter, but it just doesn't work.
-> > +	 */
-> > +	broken-cd;
-> > +	vmmc-supply = <&reg_dldo1>;
-> > +};
-> > +
-> > +&r_i2c {
-> > +	status = "okay";
-> > +
-> > +	axp313: pmic@36 {
-> > +		compatible = "x-powers,axp313a";
-> > +		reg = <0x36>;
-> > +		#interrupt-cells = <1>;
-> > +		interrupt-controller;
-> > +		interrupt-parent = <&pio>;
-> > +		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
-> > +
-> > +		vin1-supply = <&reg_vcc5v>;
-> > +		vin2-supply = <&reg_vcc5v>;
-> > +		vin3-supply = <&reg_vcc5v>;
-> > +
-> > +		regulators {
-> > +			/* Supplies VCC-PLL, so needs to be always   
-> on. */
-> > +			reg_aldo1: aldo1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =   
-> <1800000>;
-> > +				regulator-max-microvolt =   
-> <1800000>;
-> > +				regulator-name = "vcc1v8";
-> > +			};
-> > +
-> > +			/* Supplies VCC-IO, so needs to be always on.   
-> */
-> > +			reg_dldo1: dldo1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =   
-> <3300000>;
-> > +				regulator-max-microvolt =   
-> <3300000>;
-> > +				regulator-name = "vcc3v3";
-> > +			};
-> > +
-> > +			reg_dcdc1: dcdc1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =   
-> <810000>;
-> > +				regulator-max-microvolt =   
-> <990000>;
-> > +				regulator-name = "vdd-gpu-sys";
-> > +			};  
+On Thu, 03 Aug 2023 22:47:23 +0300, Danila Tikhonov wrote:
+> Document the DPU hardware found on the Qualcomm SM7150 platform.
 > 
-> Is it safe to change sys voltage when system is running?
-
-I don't know. All I know is that the H616 datasheet lists VDD_SYS as
-having the exact same range as VDD_GPU, and that is does not give a
-"typical" voltage value. As this DT stands at the moment, this doesn't
-really matter, since nothing will change DCDC1.
-
-I see that the Orange Pi Zero 2 (with a "proper" PMIC) also ties SYS and
-GPU together, so it's not just because of the few rails of the AXP313.
-
-I'd say we will figure that out once we start experimenting with GPU
-DVFS, but meanwhile nothing references DCDC1, so it will just stay put
-at the AXP313's 0.9V reset value.
-
-Does that make sense?
-
-Cheers,
-Andre
-
-> > +
-> > +			reg_dcdc2: dcdc2 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =   
-> <810000>;
-> > +				regulator-max-microvolt =   
-> <1100000>;
-> > +				regulator-name = "vdd-cpu";
-> > +			};
-> > +
-> > +			reg_dcdc3: dcdc3 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =   
-> <1100000>;
-> > +				regulator-max-microvolt =   
-> <1100000>;
-> > +				regulator-name = "vdd-dram";
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&pio {
-> > +	vcc-pc-supply = <&reg_dldo1>;
-> > +	vcc-pf-supply = <&reg_dldo1>;
-> > +	vcc-pg-supply = <&reg_aldo1>;
-> > +	vcc-ph-supply = <&reg_dldo1>;
-> > +	vcc-pi-supply = <&reg_dldo1>;
-> > +};  
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>  .../bindings/display/msm/qcom,sm7150-dpu.yaml | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml
 > 
-> 
-> 
-> 
-> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.example.dts:24:18: fatal error: dt-bindings/clock/qcom,sm7150-dispcc.h: No such file or directory
+   24 |         #include <dt-bindings/clock/qcom,sm7150-dispcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230803194724.154591-2-danila@jiaxyga.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
