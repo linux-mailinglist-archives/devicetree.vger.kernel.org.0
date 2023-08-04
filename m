@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE93E76F87A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 05:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE60F76F87D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 05:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjHDDsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 23:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
+        id S232413AbjHDDt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 23:49:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229841AbjHDDsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 23:48:04 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B37FD3AAF
-        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 20:48:02 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id ada2fe7eead31-4475fc33c8dso759866137.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 20:48:02 -0700 (PDT)
+        with ESMTP id S232222AbjHDDtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 23:49:55 -0400
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C323AA4
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 20:49:54 -0700 (PDT)
+Received: by mail-vk1-xa2e.google.com with SMTP id 71dfb90a1353d-48642554ef1so619165e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 20:49:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1691120882; x=1691725682;
+        d=chromium.org; s=google; t=1691120993; x=1691725793;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V+t/HonaVoWzmjCN2vKrohh+X2mnS21wD/73jjSfFPw=;
-        b=gPMS9kXOSEC57SZyWO9OqYOW2W0WoScwyiKZG6BkS5Og7VultoRaKpQkIjocn9ViIK
-         opTgk1IvCoNb+JLQAqWDkcQqLR6au611KWn1V63n6ZegVBL26YsDAyFIal6atsQ7FIc/
-         u5eEDUR0Rg+Vg7VBYIVnLrqrcFcpcz1Y2N/gw=
+        bh=LVSXp7pt1ynfIFYVxUfKRmE0SvUQ9GE4LWveQ3EWr04=;
+        b=kuZVbEqhHTsnlhU4yOn7K+V0x//RYjK4AwrNZf3Pi5jTwku1adyhSoQ6KkKQ+LLqDh
+         Qa+Vf7E/P3XbgbKMEG3wnNn0cu1Nh1j+fzr7YFAmPi4NyCBd2T41h2s5+r822Dk25Dbd
+         sLCHjo4nM1pZUy5NDn8ET+YoCmMJsWoQNUWWk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691120882; x=1691725682;
+        d=1e100.net; s=20221208; t=1691120993; x=1691725793;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V+t/HonaVoWzmjCN2vKrohh+X2mnS21wD/73jjSfFPw=;
-        b=K4tMYDWrEzaEAsCWQseT718oQL1dzRYntuniVbqRBPiw94GFq8atGoTJ7V5Gkb2Xli
-         VaxhPWdFIhtaCPNPEGp+PVFqdoJAT9XaizvjrzdLWCvRHhCj650ld/Bc0LVQL0g7QqWo
-         gBQty/r9RzFDDqKZqBH7GgLh1GygCVgsyEOulUsIrz6zYU7Fh1/0leE+jA2JLCxUlcGQ
-         fBqAMIkZd+XIOhXFnYmZJfua03Xj/YlrwUSTOCoiWNAy1mdEaP5qanjnlWyMQgXG3d7H
-         8HVF7zugUH7aX8hsBB/ATWpbnVuVXsuFHk7zYw4qkppgbuM0mV9MiMp7C7atWQg8cKzA
-         0Gqw==
-X-Gm-Message-State: AOJu0Yyy4Q2vRDriU9QI6buMYFd9lv33K7CYSmPdrDQ6XOhIQ1Qte9C4
-        ijKsZXxFE1vEqDyx0ItnRAQowu5TxpC2AxY7PSGYW+lhqfB7nSUI
-X-Google-Smtp-Source: AGHT+IE0JrneMuDwCDfIF7LG9FYsde1kPnC7QcFEApmoZ63I9xCwDh3ekdDL3ZnP/i4RkyjMLJAwzYsJDtB0/2+uWEY=
-X-Received: by 2002:a1f:c14b:0:b0:481:4b85:4298 with SMTP id
- r72-20020a1fc14b000000b004814b854298mr353450vkf.1.1691120881803; Thu, 03 Aug
- 2023 20:48:01 -0700 (PDT)
+        bh=LVSXp7pt1ynfIFYVxUfKRmE0SvUQ9GE4LWveQ3EWr04=;
+        b=XhKvcn7WqGEk68ZRaCt86qjJh9Wo1Z5LK8LWlSQSmuv3wfy2I/YC8L6KIsUixJWNXh
+         AcMAydKjgd3ZWu1iXn5OrPmEsOFaQyS7IL2X9K+Xecbeb5zaNjLorLCQbSd9sWHG31O8
+         +gaywLZSh0S7OxMj7fOI3N1ho1b3UQpIXAlYy2JResRuzKnuyxEr2ih8eUM9DC27an6n
+         OfVLHjRXiacH2XqIkcIzWgyspGDyI/4rKWmZkc8q7b8k+ArYLw9AbTQgxCXBop87TeGV
+         l4WecCXZbkBnOMkxFjTl+YuI/YT0VRtJXBvdq6uNJl/3fVf14M76HMnpUVQjwRbC4qJF
+         JaWA==
+X-Gm-Message-State: AOJu0Yw5i2dEZ7F2Cn0eUS1cCK8npNWE3DukAkaaNOZeXmasRii5RZ8z
+        WUGs+Lsqaqk+qJyxBQ2sBaOPCAJPI0kGwdQoVpjd4g==
+X-Google-Smtp-Source: AGHT+IHYBwhOGTrCuCN8IOCqvpmaj2FCreDh6icca0SFM57jjcqreajpJTjlRkJ6xgR7wTok6XJeu9AaAfRKP49caHs=
+X-Received: by 2002:a1f:e081:0:b0:486:556c:a0bb with SMTP id
+ x123-20020a1fe081000000b00486556ca0bbmr269439vkg.9.1691120993526; Thu, 03 Aug
+ 2023 20:49:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230803074249.3065586-1-wenst@chromium.org> <20230803074249.3065586-4-wenst@chromium.org>
- <aa8f232f-701a-5b4c-eda8-89fc0e6fe5a8@collabora.com>
-In-Reply-To: <aa8f232f-701a-5b4c-eda8-89fc0e6fe5a8@collabora.com>
+References: <20230803074249.3065586-1-wenst@chromium.org> <20230803074249.3065586-10-wenst@chromium.org>
+ <e9c38029-f27d-7800-2ba8-d9ee19d999e4@collabora.com>
+In-Reply-To: <e9c38029-f27d-7800-2ba8-d9ee19d999e4@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 4 Aug 2023 11:47:50 +0800
-Message-ID: <CAGXv+5EAR9Q5gGzkw=5UEEMOHbp56oKD5m_FyiHfZ3em8QwVAQ@mail.gmail.com>
-Subject: Re: [PATCH 3/9] mfd: mt6397: Split MediaTek MT6366 PMIC out of MT6358
+Date:   Fri, 4 Aug 2023 11:49:42 +0800
+Message-ID: <CAGXv+5G+kLNaj3F1NG+Y2zQuc7Xv_wczHeFUEUNGo8ZdVWYM1w@mail.gmail.com>
+Subject: Re: [PATCH 9/9] soc: mediatek: pwrap: add support for MT6366 PMIC
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -67,7 +67,7 @@ Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,101 +84,54 @@ s
 d
 > > VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
 > >
-> > Add a separate compatible for the MT6366 PMIC. The regulator cell for
-> > this new entry uses a new compatible string matching MT6366.
+> > Add a separate compatible for the MT6366 PMIC.
 > >
-> > Fixes: c47383f84909 ("mfd: Add support for the MediaTek MT6366 PMIC")
 > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 >
-> I agree in that the LDOs are a bit different, but that's handled by the
-> mt6358-regulator driver regardless of the actual devicetree compatible,
-> as that's selected through a chip_id check.
+> We can express the same partial-compatibility state with bindings, adding=
+ a
+> new compatible here with the same platform data doesn't really add any va=
+lue...
 >
-> Finally, looking at the driver implementation itself, the addition of a
-> specific mt6366 compatible here seems redundant, because the actual HW is
->   - Handled by drivers, but
->   - Described by bindings
+> ...also because in DT we'll have something like
+>         compatible =3D "mediatek,mt6366", "mediatek,mt6358";
 >
-> Any other opinions on this?
+> so if any variation of platform data in mtk-pmic-wrap will ever be needed=
+, we
+> would still be able to do that in the future without any headache.
+>
+> In my opinion, this commit can be dropped.
 
-Well, on the bindings side, we can't have MT6366 fall back to MT6358,
-neither for the whole PMIC nor just for the regulators. For the latter
-it's because neither is a subset of the other, which a) makes them not
-fallback compatible as required by the spirit of fallback compatibles,
-and b) cannot be described with a fallback compatible, as the fallback
-one will have properties/nodes that are not valid for the other, and
-vice versa.
-
-Without a fallback compatible to lean in for the regulator driver, we
-will need to split out the compatible at the mfd level as well. AFAIU
-the mfd core matches mfd-cells based on the compatible strings it is
-given in the driver.
+As mentioned in my reply to the mfd patch, this might not be doable. There
+are limitations on both the DT bindings and mfd driver sides.
 
 ChenYu
 
-> Regards,
+> P.S.: We could add a comment in the mt6366.dtsi pmic devicetree for that,=
+ too?
+>
+> Cheers,
 > Angelo
 >
 > > ---
-> >   drivers/mfd/mt6397-core.c | 31 +++++++++++++++++++++++++++++++
-> >   1 file changed, 31 insertions(+)
+> >   drivers/soc/mediatek/mtk-pmic-wrap.c | 2 ++
+> >   1 file changed, 2 insertions(+)
 > >
-> > diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-> > index f6c1f80f94a4..3f8dfe60a59b 100644
-> > --- a/drivers/mfd/mt6397-core.c
-> > +++ b/drivers/mfd/mt6397-core.c
-> > @@ -206,6 +206,26 @@ static const struct mfd_cell mt6359_devs[] =3D {
-> >       },
-> >   };
+> > diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediate=
+k/mtk-pmic-wrap.c
+> > index 11095b8de71a..e3c0e767033b 100644
+> > --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> > +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> > @@ -2257,6 +2257,8 @@ static const struct of_device_id of_slave_match_t=
+bl[] =3D {
+> >       { .compatible =3D "mediatek,mt6357", .data =3D &pmic_mt6357 },
+> >       { .compatible =3D "mediatek,mt6358", .data =3D &pmic_mt6358 },
+> >       { .compatible =3D "mediatek,mt6359", .data =3D &pmic_mt6359 },
+> > +     /* MT6366 is mostly compatible with MT6358, except for slightly d=
+ifferent regulators. */
+> > +     { .compatible =3D "mediatek,mt6366", .data =3D &pmic_mt6358 },
 > >
-> > +static const struct mfd_cell mt6366_devs[] =3D {
-> > +     {
-> > +             .name =3D "mt6358-regulator",
-> > +             .of_compatible =3D "mediatek,mt6366-regulator"
-> > +     }, {
-> > +             .name =3D "mt6358-rtc",
-> > +             .num_resources =3D ARRAY_SIZE(mt6358_rtc_resources),
-> > +             .resources =3D mt6358_rtc_resources,
-> > +             .of_compatible =3D "mediatek,mt6358-rtc",
-> > +     }, {
-> > +             .name =3D "mt6358-sound",
-> > +             .of_compatible =3D "mediatek,mt6358-sound"
-> > +     }, {
-> > +             .name =3D "mt6358-keys",
-> > +             .num_resources =3D ARRAY_SIZE(mt6358_keys_resources),
-> > +             .resources =3D mt6358_keys_resources,
-> > +             .of_compatible =3D "mediatek,mt6358-keys"
-> > +     },
-> > +};
-> > +
-> >   static const struct mfd_cell mt6397_devs[] =3D {
-> >       {
-> >               .name =3D "mt6397-rtc",
-> > @@ -280,6 +300,14 @@ static const struct chip_data mt6359_core =3D {
-> >       .irq_init =3D mt6358_irq_init,
-> >   };
-> >
-> > +static const struct chip_data mt6366_core =3D {
-> > +     .cid_addr =3D MT6358_SWCID,
-> > +     .cid_shift =3D 8,
-> > +     .cells =3D mt6366_devs,
-> > +     .cell_size =3D ARRAY_SIZE(mt6366_devs),
-> > +     .irq_init =3D mt6358_irq_init,
-> > +};
-> > +
-> >   static const struct chip_data mt6397_core =3D {
-> >       .cid_addr =3D MT6397_CID,
-> >       .cid_shift =3D 0,
-> > @@ -358,6 +386,9 @@ static const struct of_device_id mt6397_of_match[] =
-=3D {
-> >       }, {
-> >               .compatible =3D "mediatek,mt6359",
-> >               .data =3D &mt6359_core,
-> > +     }, {
-> > +             .compatible =3D "mediatek,mt6366",
-> > +             .data =3D &mt6366_core,
-> >       }, {
-> >               .compatible =3D "mediatek,mt6397",
-> >               .data =3D &mt6397_core,
+> >       /* The MT6380 PMIC only implements a regulator, so we bind it
+> >        * directly instead of using a MFD.
 >
 >
