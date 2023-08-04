@@ -2,145 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335A976F830
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 05:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE93E76F87A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 05:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjHDDEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Aug 2023 23:04:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
+        id S230290AbjHDDsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Aug 2023 23:48:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbjHDDEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 23:04:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A3C4236;
-        Thu,  3 Aug 2023 20:04:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E160261F1C;
-        Fri,  4 Aug 2023 03:04:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EABD1C433C9;
-        Fri,  4 Aug 2023 03:04:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691118259;
-        bh=E5AW+8FOiatGFHegkfNTd5xukRWfVLb/sZxc4H0rl7o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AVIIzXBdhWzsRhwMhioiliS0MBfh9cwBNNhxxYv/BsDbMQGrbORvwnGZoQkJkuUC6
-         jQE5d2Tn8sweTkUmjFWAlty/QZZo7Pc/bUOZNFXszINiZ347GyHomYCqX8FnF0oYaU
-         2YdwABPGTSovU8P5l1uKTi3dWWGbeCTWRXnJPUxxenu/6H6hV49uGd7qhoSvAKymvu
-         7zDSTm1LMiTfxagQ1vZEpY1xLoliDZ3G7777HXYEEUMH/DeB6qDRqa/Y4jz+o6Tf3u
-         VZs8huE0A/pcX+CpaFGG9QMQZcn4OvFXYmsiVQ8o936T3ZFGA3saPjEnrvtAlo9Vqs
-         cJZLDiVGHThkA==
-Received: by mercury (Postfix, from userid 1000)
-        id 085591061B64; Fri,  4 Aug 2023 05:04:15 +0200 (CEST)
-Date:   Fri, 4 Aug 2023 05:04:15 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229841AbjHDDsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Aug 2023 23:48:04 -0400
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B37FD3AAF
+        for <devicetree@vger.kernel.org>; Thu,  3 Aug 2023 20:48:02 -0700 (PDT)
+Received: by mail-vs1-xe2d.google.com with SMTP id ada2fe7eead31-4475fc33c8dso759866137.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Aug 2023 20:48:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1691120882; x=1691725682;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V+t/HonaVoWzmjCN2vKrohh+X2mnS21wD/73jjSfFPw=;
+        b=gPMS9kXOSEC57SZyWO9OqYOW2W0WoScwyiKZG6BkS5Og7VultoRaKpQkIjocn9ViIK
+         opTgk1IvCoNb+JLQAqWDkcQqLR6au611KWn1V63n6ZegVBL26YsDAyFIal6atsQ7FIc/
+         u5eEDUR0Rg+Vg7VBYIVnLrqrcFcpcz1Y2N/gw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691120882; x=1691725682;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=V+t/HonaVoWzmjCN2vKrohh+X2mnS21wD/73jjSfFPw=;
+        b=K4tMYDWrEzaEAsCWQseT718oQL1dzRYntuniVbqRBPiw94GFq8atGoTJ7V5Gkb2Xli
+         VaxhPWdFIhtaCPNPEGp+PVFqdoJAT9XaizvjrzdLWCvRHhCj650ld/Bc0LVQL0g7QqWo
+         gBQty/r9RzFDDqKZqBH7GgLh1GygCVgsyEOulUsIrz6zYU7Fh1/0leE+jA2JLCxUlcGQ
+         fBqAMIkZd+XIOhXFnYmZJfua03Xj/YlrwUSTOCoiWNAy1mdEaP5qanjnlWyMQgXG3d7H
+         8HVF7zugUH7aX8hsBB/ATWpbnVuVXsuFHk7zYw4qkppgbuM0mV9MiMp7C7atWQg8cKzA
+         0Gqw==
+X-Gm-Message-State: AOJu0Yyy4Q2vRDriU9QI6buMYFd9lv33K7CYSmPdrDQ6XOhIQ1Qte9C4
+        ijKsZXxFE1vEqDyx0ItnRAQowu5TxpC2AxY7PSGYW+lhqfB7nSUI
+X-Google-Smtp-Source: AGHT+IE0JrneMuDwCDfIF7LG9FYsde1kPnC7QcFEApmoZ63I9xCwDh3ekdDL3ZnP/i4RkyjMLJAwzYsJDtB0/2+uWEY=
+X-Received: by 2002:a1f:c14b:0:b0:481:4b85:4298 with SMTP id
+ r72-20020a1fc14b000000b004814b854298mr353450vkf.1.1691120881803; Thu, 03 Aug
+ 2023 20:48:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230803074249.3065586-1-wenst@chromium.org> <20230803074249.3065586-4-wenst@chromium.org>
+ <aa8f232f-701a-5b4c-eda8-89fc0e6fe5a8@collabora.com>
+In-Reply-To: <aa8f232f-701a-5b4c-eda8-89fc0e6fe5a8@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 4 Aug 2023 11:47:50 +0800
+Message-ID: <CAGXv+5EAR9Q5gGzkw=5UEEMOHbp56oKD5m_FyiHfZ3em8QwVAQ@mail.gmail.com>
+Subject: Re: [PATCH 3/9] mfd: mt6397: Split MediaTek MT6366 PMIC out of MT6358
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: display: add rotation property to
- sitronix,st7789v
-Message-ID: <20230804030415.yrvbq3kc6r2lj3jc@mercury.elektranox.org>
-References: <20230718-feature-st7789v-v2-0-207cb1baea0f@wolfvision.net>
- <20230718-feature-st7789v-v2-3-207cb1baea0f@wolfvision.net>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jrx2f36fuc4chij4"
-Content-Disposition: inline
-In-Reply-To: <20230718-feature-st7789v-v2-3-207cb1baea0f@wolfvision.net>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Aug 3, 2023 at 5:01=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 03/08/23 09:42, Chen-Yu Tsai ha scritto:
+> > The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It ha=
+s
+> > a different set of regulators. Specifically, it lacks the camera relate=
+d
+> > VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
+> >
+> > Add a separate compatible for the MT6366 PMIC. The regulator cell for
+> > this new entry uses a new compatible string matching MT6366.
+> >
+> > Fixes: c47383f84909 ("mfd: Add support for the MediaTek MT6366 PMIC")
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>
+> I agree in that the LDOs are a bit different, but that's handled by the
+> mt6358-regulator driver regardless of the actual devicetree compatible,
+> as that's selected through a chip_id check.
+>
+> Finally, looking at the driver implementation itself, the addition of a
+> specific mt6366 compatible here seems redundant, because the actual HW is
+>   - Handled by drivers, but
+>   - Described by bindings
+>
+> Any other opinions on this?
 
---jrx2f36fuc4chij4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Well, on the bindings side, we can't have MT6366 fall back to MT6358,
+neither for the whole PMIC nor just for the regulators. For the latter
+it's because neither is a subset of the other, which a) makes them not
+fallback compatible as required by the spirit of fallback compatibles,
+and b) cannot be described with a fallback compatible, as the fallback
+one will have properties/nodes that are not valid for the other, and
+vice versa.
 
-Hi,
+Without a fallback compatible to lean in for the regulator driver, we
+will need to split out the compatible at the mfd level as well. AFAIU
+the mfd core matches mfd-cells based on the compatible strings it is
+given in the driver.
 
-On Thu, Aug 03, 2023 at 10:13:50PM +0200, Michael Riesch wrote:
-> The sitronix-st7789v driver now considers the rotation property.
-> Add the property to the documentation.
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
+ChenYu
 
-Reviewed-by: Sebastian Reichel <sre@kernel.org>
-
--- Sebastian
-
->  Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml | =
-2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7=
-789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789=
-v.yaml
-> index fa6556363cca..694d7f771d0c 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
-ml
-> @@ -22,6 +22,7 @@ properties:
->    power-supply: true
->    backlight: true
->    port: true
-> +  rotation: true
-> =20
->    spi-cpha: true
->    spi-cpol: true
-> @@ -52,6 +53,7 @@ examples:
->              reset-gpios =3D <&pio 6 11 GPIO_ACTIVE_LOW>;
->              backlight =3D <&pwm_bl>;
->              power-supply =3D <&power>;
-> +            rotation =3D <180>;
->              spi-max-frequency =3D <100000>;
->              spi-cpol;
->              spi-cpha;
->=20
-> --=20
-> 2.37.2
->=20
-
---jrx2f36fuc4chij4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmTMaq4ACgkQ2O7X88g7
-+prVHBAAnranxr8+661icCSUonDadVce0QrTh8fLIimhGKFW3nLjk29h77sHwGHO
-JuZwJzIOj6uvfLDRFgavN6NT/R+IW1W+cJ4UfgwaXBTvByIK7RtXDq8FtcHJvdxn
-0ub3F2PIEu1FXsme6r7kCcDD6vpef7VRCtHcmscv+FghdN8xT+Qj5lDIdNTQ4a/v
-z+HKkmxBTf425t7yZDr6drLqf9q6jdSJDib94svyvzANnHX1CzobRFSRChMpODrR
-RT52i4WV6hoPTTdHL/l710QG0okd+kiA7PgiKXCEXeDi90nHlriHNFci4XowT+8h
-gDoHXYmc5Mj/+bJdL+2SqO/bNeXLOuVlN0IW1I8M3b0tks4HgduPLalYHhyXxL4p
-ATKJbCsdO7cLrll4llAaF/1UVDhzdKZnSeTpbMAgm4ix6LZYO3Habgv1AsZZ9/EM
-C07imC5o9bxyIfo7KhiP/aOEywZhLYFBiCvCRIWm1x+IeJsiat4Xp9ONjlZVoQQc
-X5zf1vYmB5UPFq0F09gjMoFZxk0vC8LTBBrSxJq+FuhPwWtg4HQ4sfydvnC2XTgG
-9/ava273kLsmnOwE+vTmapZOmrRhDIYxfRA8w8/akBqVWlRtBsanleKlBxS6hDbb
-PBT3R9iuh9BeX1tpXJUIyz/J5d+aEipYg7nsRx0349vOn+/oD5Y=
-=qDfw
------END PGP SIGNATURE-----
-
---jrx2f36fuc4chij4--
+> Regards,
+> Angelo
+>
+> > ---
+> >   drivers/mfd/mt6397-core.c | 31 +++++++++++++++++++++++++++++++
+> >   1 file changed, 31 insertions(+)
+> >
+> > diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
+> > index f6c1f80f94a4..3f8dfe60a59b 100644
+> > --- a/drivers/mfd/mt6397-core.c
+> > +++ b/drivers/mfd/mt6397-core.c
+> > @@ -206,6 +206,26 @@ static const struct mfd_cell mt6359_devs[] =3D {
+> >       },
+> >   };
+> >
+> > +static const struct mfd_cell mt6366_devs[] =3D {
+> > +     {
+> > +             .name =3D "mt6358-regulator",
+> > +             .of_compatible =3D "mediatek,mt6366-regulator"
+> > +     }, {
+> > +             .name =3D "mt6358-rtc",
+> > +             .num_resources =3D ARRAY_SIZE(mt6358_rtc_resources),
+> > +             .resources =3D mt6358_rtc_resources,
+> > +             .of_compatible =3D "mediatek,mt6358-rtc",
+> > +     }, {
+> > +             .name =3D "mt6358-sound",
+> > +             .of_compatible =3D "mediatek,mt6358-sound"
+> > +     }, {
+> > +             .name =3D "mt6358-keys",
+> > +             .num_resources =3D ARRAY_SIZE(mt6358_keys_resources),
+> > +             .resources =3D mt6358_keys_resources,
+> > +             .of_compatible =3D "mediatek,mt6358-keys"
+> > +     },
+> > +};
+> > +
+> >   static const struct mfd_cell mt6397_devs[] =3D {
+> >       {
+> >               .name =3D "mt6397-rtc",
+> > @@ -280,6 +300,14 @@ static const struct chip_data mt6359_core =3D {
+> >       .irq_init =3D mt6358_irq_init,
+> >   };
+> >
+> > +static const struct chip_data mt6366_core =3D {
+> > +     .cid_addr =3D MT6358_SWCID,
+> > +     .cid_shift =3D 8,
+> > +     .cells =3D mt6366_devs,
+> > +     .cell_size =3D ARRAY_SIZE(mt6366_devs),
+> > +     .irq_init =3D mt6358_irq_init,
+> > +};
+> > +
+> >   static const struct chip_data mt6397_core =3D {
+> >       .cid_addr =3D MT6397_CID,
+> >       .cid_shift =3D 0,
+> > @@ -358,6 +386,9 @@ static const struct of_device_id mt6397_of_match[] =
+=3D {
+> >       }, {
+> >               .compatible =3D "mediatek,mt6359",
+> >               .data =3D &mt6359_core,
+> > +     }, {
+> > +             .compatible =3D "mediatek,mt6366",
+> > +             .data =3D &mt6366_core,
+> >       }, {
+> >               .compatible =3D "mediatek,mt6397",
+> >               .data =3D &mt6397_core,
+>
+>
