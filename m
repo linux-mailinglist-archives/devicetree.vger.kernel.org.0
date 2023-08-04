@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7944C7704BE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF48B7704DD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 17:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjHDPbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 11:31:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34770 "EHLO
+        id S229634AbjHDPeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 11:34:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230125AbjHDPb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:31:27 -0400
+        with ESMTP id S229602AbjHDPeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 11:34:36 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C89C49FA;
-        Fri,  4 Aug 2023 08:31:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54B7FAC;
+        Fri,  4 Aug 2023 08:34:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8AB7362055;
-        Fri,  4 Aug 2023 15:31:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF8DC433C8;
-        Fri,  4 Aug 2023 15:31:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DCFDF62056;
+        Fri,  4 Aug 2023 15:34:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B2B8C433C7;
+        Fri,  4 Aug 2023 15:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691163068;
-        bh=hxuljz+as8AT+zpeXq/iy/DqqC73aBdecpgf/sdIuMM=;
+        s=k20201202; t=1691163274;
+        bh=7b8Z9uqg0kRIDRb0jE9ESWTCuWtY6TQ0oN6HFgWzH4A=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=klEPnspdL15FMXZhCDx9iQmDWkYwf4YOiftzjqB8LoOt3N4xjvt/LAz8gFZehM7NZ
-         Jn8JHgs2gckOC3Gc3G84j3/CTLpecGfKOm8WWg2StOrQQJUhtm4CTGv5eu6CATD5u3
-         YJhnzoKI4fxtmlYyLS+M89XUQCyhHCi79fZUsV/0XKcNrtT6AR9G9Rq2ob0zhJk/3o
-         Viz1YMWyAdzB4vqoW2jDOxQyqgFeGP2hubLzCeghgr0uow5VgQjYx7c+jN/6KfPvvN
-         7EmEAhIFplW+ozamyBQQtfHPrxLUJEPRolbJt6LJGGMJ8+BiArM9bJe65Aap7aca9x
-         9LDfhR+siUd5Q==
-Date:   Fri, 4 Aug 2023 16:31:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        b=CmdFy5PGKExcdingq7ge13dtW+D4E8Ec2QaMB5KAnIpPJvK5P3I9YrUixMjjjUTEg
+         YjsSk/6AVKHHhH3y97xtI9FtOP7AgHi097QWabcSv3IJ3lyWS5m5rCyqUTuiQ9F765
+         zZvVSAbb/0nyMXO8j9FdsKNr9sTZF0yxMtpfuWiGAPka7YfoDDLnAck+aG8BRMj8gy
+         829K340hwjY2LDhJ9r4kYIg8L14h8e6Rsmirb7TR568ISpQvE28klCweP0Ej1GFXNW
+         TwoEFJb3Pkrz4vuNQCS5NtZ9Uqs+UWxWApOLQYTSgMBesuuVP81Eg7YydE19Z+ZDBT
+         wFdeX793kchmw==
+Received: (nullmailer pid 1428409 invoked by uid 1000);
+        Fri, 04 Aug 2023 15:34:32 -0000
+Date:   Fri, 4 Aug 2023 09:34:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Mark Brown <broonie@kernel.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/9] dt-bindings: mfd: mt6397: Split out compatible for
- MediaTek MT6366 PMIC
-Message-ID: <20230804-rift-unvented-1194b51744f4@spud>
-References: <20230803074249.3065586-1-wenst@chromium.org>
- <20230803074249.3065586-2-wenst@chromium.org>
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
+        Shengyu Qu <wiagn233@outlook.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Martin Botka <martin@biqu3d.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mfd: x-powers,axp152: make interrupt
+ optional for more chips
+Message-ID: <20230804153432.GA1388331-robh@kernel.org>
+References: <20230802141829.522595-1-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7uwcHrcVztFuPIhA"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230803074249.3065586-2-wenst@chromium.org>
+In-Reply-To: <20230802141829.522595-1-andre.przywara@arm.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -65,37 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 02, 2023 at 03:18:29PM +0100, Andre Przywara wrote:
+> All X-Powers PMICs described by this binding have an IRQ pin, and so
+> far (almost) all boards connected this to some NMI pin or GPIO on the SoC
+> they are connected to.
+> However we start to see boards that omit this connection, and technically
+> the IRQ pin is not essential to the basic PMIC operation.
+> The existing Linux driver allows skipping an IRQ pin setup for some
+> chips already, so update the binding to also make the DT property
+> optional for these chips, so that we can actually have DTs describing
+> boards with the PMIC interrupt not wired up.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+> Hi,
+> 
+> arguably the IRQ functionality is optional for many more PMICs,
+> especially if a board doesn't use GPIOs or a power key.
+> So I wonder if the interrupts property should become optional for all?
+> After all it's more a board designer's decision to wire up the IRQ pin
+> or not, and nothing that's really related to a particular PMIC.
 
---7uwcHrcVztFuPIhA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I would say yes. Particularly if it gets rid of a conditional schema.
 
-On Thu, Aug 03, 2023 at 03:42:39PM +0800, Chen-Yu Tsai wrote:
-> The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
-> a different set of regulators. Specifically, it lacks the camera related
-> VCAM* LDOs, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
->=20
-> Add a separate compatible for the MT6366 PMIC.
->=20
-> Fixes: 49be16305587 ("dt-bindings: mfd: Add compatible for the MediaTek M=
-T6366 PMIC")
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---7uwcHrcVztFuPIhA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM0ZtgAKCRB4tDGHoIJi
-0qDyAPsHuwCui775ZKeH0xfMeYOmy3RU0RV5Fv5KqB7imiFqfwEA19FJcLsJ+INy
-AR2LebWepVlpr+2xxBBkGWmxwLNzPwY=
-=47nj
------END PGP SIGNATURE-----
-
---7uwcHrcVztFuPIhA--
+Rob
