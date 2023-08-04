@@ -2,157 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A2E770604
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 18:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57306770633
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 18:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbjHDQau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 12:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45072 "EHLO
+        id S229456AbjHDQpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 12:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjHDQas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 12:30:48 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFCFD170F
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 09:30:46 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-991c786369cso305345566b.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 09:30:46 -0700 (PDT)
+        with ESMTP id S229812AbjHDQpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 12:45:14 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2D51BDD
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 09:45:13 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-583b019f1cbso25233647b3.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 09:45:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1691166644; x=1691771444;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WI+FjztjAhlDqQ6jCUap2ilPY23v0NvrgrfzfYO4RIA=;
-        b=BkIRNxnkRZfRkGvsp41p2m8kMmu1XVyZifIvifsUblLjkCuvnM5jK+eN8dNqbIBC/H
-         e7lzPjOP/bhmxXnTxMSgv5FfsyEu9Zu5pXXEY56P9njo3sFJOPrpMPsJ629d21F0vhZI
-         cQiKB1eZ9qUFxzwap1VRBaOQUVTnqKmgrTL1o=
+        d=gmail.com; s=20221208; t=1691167512; x=1691772312;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gce3GksSyfK6ArVao849Q4zbn4ZS8EDW8/xWLe2xoow=;
+        b=dJ+pWZlXWiqD83EvTF5Wldumlru/zTKTEJGN9K0GeVOyF0p+g3V0HmCm6JVBhR0tDk
+         nF9JrwRXj8ObyiEA5YbzB4mpRPt9rdfbTCJJ2KMs7H7I/k5/yUmyor/g/SGOvbR3H3C9
+         JkUFCd6aiFv3N+fXo8CP5PaKmTCEa9YLWZGgv6B74m6kJrz+dnicBdHaNYHW6bIRThcz
+         Z08In0ItVQfA9eWx4Qw16n0HPG4l2+knznjpsMN/qmZotAaUWSJb61nlkIkMIhNmIaDr
+         M72UpCBUQ71NFdXqSP0ejtZ//yZ1rPurGZhxt06jnSVhikfpInzir7O0lWk76117gTZ/
+         sInQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691166644; x=1691771444;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WI+FjztjAhlDqQ6jCUap2ilPY23v0NvrgrfzfYO4RIA=;
-        b=H00RXSnIdpoafVCcSuFlUNtQvVmn/JomVWtPhcUqJ/6PW7ihuBv0v6csXNF/qmlgf2
-         HCzQni88NKUOgmBQLmnLyXwtNDy+vhENI/gQAPWrBjuBMLEYpqD9zgmlwA2xNyGy5CaK
-         qoKtzbUEzet9RHFh8q4KBuX5PT++mhVjW7dImMui12IChitD+s12XJ1JVlFuqQxZ2K5t
-         fDLGp2N7DySzK7tEZeGc5btjNOwfV+fu0FUtMntvFn/R8lqH9ZRMepreK+7Rf0b9LOm3
-         FFV3jti0tNDWcFKCh4iU2kJach1MgOzeRezJYtID3JtoPjWq4+OWDdbqVX+Ik2KXgDRW
-         EaHA==
-X-Gm-Message-State: AOJu0Ywz9IOxSEUWlMZxO1a6TeOgMei9OSGvB/1vhgqGC9zbY0VpPGUg
-        +0E2LoLoUYFMFxDmfc+RkmG+jxsPjRdA6PnJ9WA5Ilv3
-X-Google-Smtp-Source: AGHT+IHH9rp+zEJr6jdGCMMleey+Nlhu28MeabQJRtFwnZzRgYVvGZC/qhM6/Bdt8a5nz0mZ1jTaew==
-X-Received: by 2002:a17:907:78cf:b0:993:d920:87d3 with SMTP id kv15-20020a17090778cf00b00993d92087d3mr1830114ejc.25.1691166644601;
-        Fri, 04 Aug 2023 09:30:44 -0700 (PDT)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
-        by smtp.gmail.com with ESMTPSA id z14-20020a1709060f0e00b009937dbabbd5sm1505782eji.220.2023.08.04.09.30.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 09:30:44 -0700 (PDT)
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-51e24210395so66a12.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 09:30:44 -0700 (PDT)
-X-Received: by 2002:a50:c212:0:b0:523:ee1:8d27 with SMTP id
- n18-20020a50c212000000b005230ee18d27mr54911edf.1.1691166643789; Fri, 04 Aug
- 2023 09:30:43 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691167512; x=1691772312;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gce3GksSyfK6ArVao849Q4zbn4ZS8EDW8/xWLe2xoow=;
+        b=EkeE8X8u0rl+p3VbVyEulimdl4zChJgndaXLeDLKeWfIBaOqnJwFeAJW9aIsajcIaU
+         cV0p3dJVkfcHDuPXDLToCqUXFvtzRe70PaPxhnjQ988mlM8SR9kVbU5hMi/Nz5kwKHN5
+         ydnpkP+R6+2OUVZ5T4fIys47RFDN+cu8O7jjcEhS2aDYRWdyIFSM5KWnammtxykT0xpJ
+         PTC361Cv4C12SdsvNW7FX/qhsBzZRf4ML1oz+YFSWc5OMqhyvKTugYqysxAWDyJFCcg6
+         8BlQa9472yt/CNyGL/3KZu3A/caNhttMzTLGCBaO+uXispu55/q9NCsVHVubK0UIhikG
+         qGAw==
+X-Gm-Message-State: AOJu0Yyx/gvkBUb/yhN2nB8/Z7/a1EVPrW6lZik+JQn+x+mHR+pGa7y6
+        visWQODZDKHriS/wzp8jRqo=
+X-Google-Smtp-Source: AGHT+IHELRicqMAiJC/xalDHV8MXFzkF2eGisVKk74KdSF4VX7ITLZiOTRPyH85xOmo1e+LXH34pqg==
+X-Received: by 2002:a81:a186:0:b0:583:e92c:d9cf with SMTP id y128-20020a81a186000000b00583e92cd9cfmr2493659ywg.23.1691167512185;
+        Fri, 04 Aug 2023 09:45:12 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id j63-20020a816e42000000b00582fae92aa7sm825248ywc.93.2023.08.04.09.45.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Aug 2023 09:45:11 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+        neil.armstrong@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/2] Support Anbernic RG351V Panel
+Date:   Fri,  4 Aug 2023 11:45:01 -0500
+Message-Id: <20230804164503.135169-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20230804175734.v2.1.I7a950de49ec24b957e90d7fe7abd5f2f5f2e24c3@changeid>
-In-Reply-To: <20230804175734.v2.1.I7a950de49ec24b957e90d7fe7abd5f2f5f2e24c3@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 4 Aug 2023 09:30:31 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WKPu2R_j3yh5OJcc95SmxgJsc3+HxSi9_Ks6TvUOYJ1w@mail.gmail.com>
-Message-ID: <CAD=FV=WKPu2R_j3yh5OJcc95SmxgJsc3+HxSi9_Ks6TvUOYJ1w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: add sc7180-lazor board bindings
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On Fri, Aug 4, 2023 at 2:58=E2=80=AFAM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> Introduce more sc7180-lazor sku and board version configuration,
-> add no-eSIM SKU 10 for Lazor, no-eSIM SKU 15 and 18 for Limozeen,
-> add new board version 10 for audio codec ALC5682i-VS.
->
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.googl=
-e.com>
-> ---
->
-> Changes in v2:
-> - add new entry rev9 with Parade bridge chip
->
->  .../devicetree/bindings/arm/qcom.yaml         | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentat=
-ion/devicetree/bindings/arm/qcom.yaml
-> index 450f616774e0..dce7b771a280 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -470,6 +470,11 @@ properties:
->            - const: google,lazor-rev8
->            - const: qcom,sc7180
->
-> +      - description: Acer Chromebook Spin 513 Parade bridge chip (rev9)
+Add support for the Anbernic RG351V panel. This panel is mostly
+identical to the one used in the 353 series, except it has a different
+panel ID when queried (0x4000 for the 351V, 0x3052 for the 353 panel)
+and will not work without the inclusion of the
+MIPI_DSI_CLOCK_NON_CONTINUOUS flag.
 
-You probably didn't need to include "Parade bridge chip" in the
-description since that's implied by "rev9"
+Chris Morgan (2):
+  dt-bindings: display: newvision,nv3051d: Add Anbernic 351V Support
+  drm/panel: nv3051d: Add Support for Anbernic 351V
 
+ .../display/panel/newvision,nv3051d.yaml       | 18 +++++++++++-------
+ .../gpu/drm/panel/panel-newvision-nv3051d.c    | 18 ++++++++++++++++--
+ 2 files changed, 27 insertions(+), 9 deletions(-)
 
-> @@ -512,11 +522,26 @@ properties:
->            - const: google,lazor-rev8-sku0
->            - const: qcom,sc7180
->
-> +      - description: Acer Chromebook Spin 513 Parade bridge chip with LT=
-E (rev9)
-> +        items:
-> +          - const: google,lazor-rev9-sku0
-> +          - const: qcom,sc7180
-> +
->        - description: Acer Chromebook Spin 513 with LTE (newest rev)
->          items:
->            - const: google,lazor-sku0
->            - const: qcom,sc7180
->
-> +      - description: Acer Chromebook Spin 513 Parade bridge chip with LT=
-E no-esim (rev9)
-> +        items:
-> +          - const: google,lazor-rev9-sku10
-> +          - const: qcom,sc7180
+-- 
+2.34.1
 
-The no-eSIM and normal LTE should be combined into one, just like they
-are in your device tree. If you look at patch #3, you can see
-"sc7180-trogdor-lazor-r9-lte.dts" contains:
-
-compatible =3D "google,lazor-rev9-sku0", "google,lazor-rev9-sku10", "qcom,s=
-c7180";
-
-You need to have a single entry here that matches that. That means one
-entry that has both rev9-sku0 and rev9-sku10.
-
-You should be running "make dtbs_check" at the end of your series. As
-Krzysztof would say, (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sourc=
-es-with-the-devicetree-schema/
-for instructions)
-
-
--Doug
