@@ -2,120 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6797770246
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 15:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6357770262
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 15:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231494AbjHDNui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 09:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
+        id S230167AbjHDN6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 09:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbjHDNu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 09:50:26 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8720E19A4
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 06:50:23 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fe2fb9b4d7so20226705e9.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 06:50:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691157022; x=1691761822;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ukcL+6odfb1FFYIkWIv0OQk72o2fTIvHxVA78LrZQtE=;
-        b=vGda7p81GqHiR+qtqDS8bCRcL7vF/bVymUQAHZpG+53cfIrfPbH7ONrw8Bw5hZSb5J
-         n6GDOaAlbnuX9/1Au4Wq1TpJUQs58Y38/MbtZyYgWvPNYN9t6LbnM9QJORPWwpyEc8yi
-         UoessiuldhM1j2+6zn2k0ACoqIQlGJcxnY9LJc5nfZ66aVwEhafRyDcReofeLbihNMgO
-         4Z9xwi+zFuNltTx5lh7kZiPrbjpRR+WMiK8m/eKinMy1+6mYtkcxmxbkEUGF5hOTrA7f
-         dK3hj8+EgyysU2AD3M8kFGr5msyCOWbtzunQAIdl5PsyE613OHxqtfoN5ArWTTNdj1yP
-         U8SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691157022; x=1691761822;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ukcL+6odfb1FFYIkWIv0OQk72o2fTIvHxVA78LrZQtE=;
-        b=l1qEKXCLy2VypfR6N2T/3CzzxXtwWPN+0hiuhR2Jgev/1sPrWeYJwOIvZCD9XDihJO
-         +GiRAnslKmtQosuBcnmuVuzZEyZg3neT82klyZjDTx7n+Uc7biiAhJommH6E3S+Ki2ZV
-         en+2aHQ38Ilxd7HrY4EW/33MWee/+omD+BYIDDmUkKeFOg6pisGBQ+sYQgjH3cFi1ZsQ
-         VwPvxm/plbTi5vj6ykminq7tgDybmwq5a65n1P77E53EzXEohGUo9RSTqGLqLYNR/NQd
-         69wbeEAqfQDEYgzhQOqYEEPPMWt8XHiJXWTB+GHXNW7RpXzaW24znWsMLGg6DSDSYJQI
-         t63w==
-X-Gm-Message-State: AOJu0YyqhuEGJAQ8hTdSFhQ0BIPk+x8y1usyLGPz6X568Hig6H3hJs8z
-        a1UmZfZ7ClOCWGpkfHCqsLxuyw==
-X-Google-Smtp-Source: AGHT+IHqV+Yo5HvNtyM7QPTWXzBAXAWYv24S6GAlI+HjEhfCLaYShG+3Rjjv5X3ZB/nwbzzEzY3Dwg==
-X-Received: by 2002:a05:600c:2255:b0:3fb:b008:1ff6 with SMTP id a21-20020a05600c225500b003fbb0081ff6mr1611819wmm.0.1691157022052;
-        Fri, 04 Aug 2023 06:50:22 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id u25-20020a7bcb19000000b003fe1cac37d8sm6894793wmj.11.2023.08.04.06.50.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Aug 2023 06:50:21 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 04 Aug 2023 15:50:10 +0200
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8550-qrd: add orientation gpio
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230804-topic-sm8550-upstream-type-c-orientation-v1-4-36dd3edec7bf@linaro.org>
-References: <20230804-topic-sm8550-upstream-type-c-orientation-v1-0-36dd3edec7bf@linaro.org>
-In-Reply-To: <20230804-topic-sm8550-upstream-type-c-orientation-v1-0-36dd3edec7bf@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229679AbjHDN6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 09:58:45 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DBA139
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 06:58:43 -0700 (PDT)
+Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 0D4383F63B;
+        Fri,  4 Aug 2023 15:58:38 +0200 (CEST)
+Date:   Fri, 4 Aug 2023 15:58:37 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Martin Botka <martin@biqu3d.com>
+Cc:     martin.botka1@gmail.com,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Andre Przywara <andre.przywara@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=699;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=PgRVPE+sttPCsO3i6Si4QDJqPDiuAM0EzLTcJZd3VKY=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkzQIYYmczdV+OIzmHi1D8WSPn1fn/O3VPLkAQcZtm
- FYFCwe2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZM0CGAAKCRB33NvayMhJ0R03EA
- CDre8ntJmi2BpNmhQ+svCFicfZVV/zzlmR3t1hUBND1kN6Ht3bmIZvq4LGTR/bq7JXLVP2ef9Pc3Rb
- ISqqu0DvqKs5Zxj/U9NcMRt1ZWh2YsKvhzx/FtgaU3ysRvkGL1wykhN9mVxCCEm/7nY327TLfWDY8y
- oym2IPMNoz/6RWAwbfm0UV1WH4UpViXGk9+NoDDiFI4zaHxXRqzFEy74i2wZSlBafP1kt7/bHC8BVD
- 7JfLW2XIC1XCmAhTR3dMvxcdh8s1LxOdpDRGqGAnv7ofNu1xYrFnWky60GYhqS1BsTPuM5jEt1y3Ui
- kjkDqbZzQTz/DD+Dcbph0XCc0nyBAf218unohsXmzkKA0sJauo6+d+z70MvO1pxYUC+Uonac8uxTjZ
- gnSSyzaCEE9uSfyDAh2++2wkQu/ozYpB1B8V6wYA6ehAHNLXR7xrYD/cHUwpWSGcAODvOguRlKSQwy
- /kMSeAtXPNwFo0iIVIPyv0bNB2gwCc2KWXA5guFDDhE8x7QyM/rYfkIJd1n/oWn+hUU1ZqklRLUoIe
- Ms56mvZ2l8q3V0Cdw1j/Hb5WtM4OtUpcblAfBuFigNCOHnnWaF1K2XBEGPG4fvg/WB6//NOF8PlTJC
- PCcOL1f2zxN4ASWP8gk8kA7B0ZjDPBm/yVIr0BMHrpG63HH3cI05Ak7MhSgQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] Add BigTreeTech CB1 SoM & Boards
+Message-ID: <eglhj4ax6la44mkot55ttg3kduy3h3qfvapyyuoegfvpkyttdb@mcjrgl5eumfn>
+References: <DC7CD91802A925BE+20230804090102.273029-1-martin@biqu3d.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DC7CD91802A925BE+20230804090102.273029-1-martin@biqu3d.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specify orientation GPIO to the PMIC GLINK node.
+On 2023-08-04 11:00:28, Martin Botka wrote:
+> Hello,
+> This series adds a vendor prefix for BigTreeTech and adds BigTreeTech CB1,
+> Manta board and BigTreeTech Pi.
+> 
+> CB1 is just an SoM thats based on AllWinner H616.
+> BigTreeTech Manta boards are expander boards for CB1 and BigTreeTech Pi
+> is an CB1 in Rpi style with few additional things like IR receiver and fan port
+> on GPIO.
+> 
+> This work started before I was hired by BigTreeTech and thus majority of the
+> patches are from SoMainline email and few are from my work email.
+> 
+> This series depends on commit https://lkml.org/lkml/2023/8/2/801
+> "dt-bindings: mfd: x-powers,axp152: make interrupt optional for more chips".
+> 
+> Cheers,
+> Martin
+> 
+> Martin Botka (4):
+>   dt-bindings: vendor-prefixes: Add BigTreeTech
+>   dt-bindings: arm: sunxi: Add BigTreeTech boards
+>   arm64: dts: allwinner: h616: Add BigTreeTech CB1 SoM & boards support
+>   arm64: dts: allwinner: h616: Add BigTreeTech Pi support
+> 
+>  .../devicetree/bindings/arm/sunxi.yaml        |  11 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm64/boot/dts/allwinner/Makefile        |   2 +
+>  .../sun50i-h616-bigtreetech-cb1-manta.dts     |  35 +++++
+>  .../sun50i-h616-bigtreetech-cb1.dtsi          | 142 ++++++++++++++++++
+>  .../allwinner/sun50i-h616-bigtreetech-pi.dts  |  68 +++++++++
+>  6 files changed, 260 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> 
+> -- 
+> 2.41.0
+> 
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 1 +
- 1 file changed, 1 insertion(+)
+The In-Reply-To header in this v2 series is also not pointing to the
+cover letter, making all patches detached in my (and presumably others')
+mailbox.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 2c09ce8aeafd..950dfbf73410 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -75,6 +75,7 @@ pmic-glink {
- 		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
- 
- 		connector@0 {
- 			compatible = "usb-c-connector";
+Here's what seems to be going on.  Something prepends an extra
+identifier (before the +) to the Message-ID of the cover letter (and all
+your other mails):
 
--- 
-2.34.1
+Message-ID: <DC7CD91802A925BE+20230804090102.273029-1-martin@biqu3d.com>
+
+This is however not reflected in the patches of this series, which still
+"reply to" the unmodified Message-ID:
+
+In-Reply-To: <20230804090102.273029-1-martin@biqu3d.com>
+
+As such, they don't seem to reply to an existing mail in my inbox, and
+are hence not parented.
+
+I doubt this is a "feature" that modern mail clients are supposed to
+understand, or at least neomutt doesn't (and IIRC ThunderBird didn't
+either).  Can you figure out, possibly with your SMTP server (provider),
+how to prevent this before sending another series?  It wasn't a problem
+when mails originated from SoMainline.org.
+
+- Marijn
 
