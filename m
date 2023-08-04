@@ -2,208 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3E57709B2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BECFA770A10
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 22:51:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbjHDUbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 16:31:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45568 "EHLO
+        id S229936AbjHDUvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 16:51:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjHDUbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:31:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D524C2F;
-        Fri,  4 Aug 2023 13:31:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B01C261F2C;
-        Fri,  4 Aug 2023 20:31:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21000C433CB;
-        Fri,  4 Aug 2023 20:31:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691181097;
-        bh=Kx0ukmmajEq9jA//xRgg8P9Hb44BicThE/9GSCwfyv8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MWuY6vdvN3/8McDUIeK/NLYPOf42KN6frl/OWKvSnGA7FSv5PMzfChEAdcboshshX
-         IPanNsNM/1HCi045p4zVpzKqEsS3bm3lP0smn5AzDJUva/eiYlZXX8NT3MJAKAT11B
-         rzDpBkTPSZuWb0VAzD3cJ8G0yxUsC2F0chOAV3tBwhxtycLJFO8ABytzvjkTIY0IgA
-         9DkAkXtJwk8lEf4dGxd8GUl+dW5z3jJ/X6lSZy4wivW91ASXpPSUoAcTB+kZqUNNFr
-         3wOZBkkOE92/+duJMjU9dvxmMUthb0m7rfwt/KdOLddZVH55PjOEzDInVEc3hGDaEu
-         fKDn54egWryzQ==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2b9c55e0fbeso38686771fa.2;
-        Fri, 04 Aug 2023 13:31:37 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yy8T3eqUAq5bkNMSxAeTZbWfCzKtwGlQ6vAezadRBXcSVTI4eQv
-        kDaQoT5AfgYKcIGVLMbCuxV6J+tOJM6Qzssavg==
-X-Google-Smtp-Source: AGHT+IGqAa3XK8M6oZTyrHv0ezLXcIqNfO0j3+RA2Jc9Dmlqh0zIS3hCEdpdhjRowJn16g1c8Pj8Rwea/hdGZOqs/TA=
-X-Received: by 2002:a2e:864b:0:b0:2b9:e701:ac4d with SMTP id
- i11-20020a2e864b000000b002b9e701ac4dmr2673200ljj.26.1691181095107; Fri, 04
- Aug 2023 13:31:35 -0700 (PDT)
+        with ESMTP id S229681AbjHDUvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 16:51:01 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8A74C31
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 13:50:58 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fe1e1142caso24276075e9.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 13:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1691182257; x=1691787057;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oRdtvajcr0+92CY77W3iHbJU9XUO/PBM1l9BDnbFdFc=;
+        b=xs8zzZqm1qGHId3LlKUmwK5FOhtA0omVwvGrdA1ntw5jFrQfqgQoGr3y/s+EEF0uHO
+         Bdt4pWHgGB11RE9UkjVl8kf8u/EFSl/7pa+X9c2x6ZF3tSOpFJ7tAe03nuR+7ddrRCuy
+         Po61hPXefC4YtgUWH3mLtGMwLObmQ7NDS4+EUm8LEEC754QIJWmu/Xkrj5t8Qjfkuzbk
+         xJDAcRAZpRQaS0mFivlN5Ti3XEAcocC/3uotIq6NjLfFFfsK6GcUuh9JoLTcu9nnAJ1R
+         SoiXG/a2ShqUuoNpYzJpb/ze/AKDS3H/LIKLK3RgTLc7P+69T6hBe0S8/bLb546Lfm/B
+         l+iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691182257; x=1691787057;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oRdtvajcr0+92CY77W3iHbJU9XUO/PBM1l9BDnbFdFc=;
+        b=f11lqe72kPycReEoVUYJKmUpEplq9xle4wYJDVE+uuEUOq4IVhuwlYGlzK1LM8pGxS
+         78OQ+chISP6Ixtq0Tr8u1UDOT0UhPPNNVV/OPqTEE0yMjvu1wOo/rl6JODfJCFSxBPU3
+         gx+CnFvC/Qv+rb6WEoy6w1K/ZmWBBXh+NDWqW+PyJcVm/Z6pJk7RYyHKrsen23bnJgKp
+         O4qwNZQ6IoIBpEDUfqrm/XritkRVAj0O1W0uY4aypggWgQ6rJykaEbam3cqCqY67Qtzj
+         MUmOCzAEoSVPDfgMNNkLvKbFO4zL36zYtW0kX+kbEAoa1MIN7G32PRHPmGETS0NOC+QD
+         53hg==
+X-Gm-Message-State: AOJu0YwAFVi+E+0yAHeOIoYAuYxaIFI9D0YIK4ia/xnqPwqqVfGxLxdX
+        34Hl7fTAs3VXG4dMp4olO8ziB+b6tZ+enFiwaVo=
+X-Google-Smtp-Source: AGHT+IG9nktERXD1XuryHQ2ywTah8rg+BCMhCDCxvrQusPr01OSsEg0ZZxE1+OpK3eP+FA9bGulG8Q==
+X-Received: by 2002:a7b:ce0e:0:b0:3fb:b56b:470f with SMTP id m14-20020a7bce0e000000b003fbb56b470fmr2187419wmc.14.1691182256933;
+        Fri, 04 Aug 2023 13:50:56 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id u7-20020a5d5147000000b0031437ec7ec1sm3355379wrt.2.2023.08.04.13.50.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Aug 2023 13:50:56 -0700 (PDT)
+Message-ID: <ef61906d-98f2-2806-9ad7-2a99f7928bb1@nexus-software.ie>
+Date:   Fri, 4 Aug 2023 21:50:55 +0100
 MIME-Version: 1.0
-References: <20230801-dt-changeset-fixes-v1-0-b5203e3fc22f@kernel.org>
- <20230801-dt-changeset-fixes-v1-2-b5203e3fc22f@kernel.org> <ZM1Jk9s3gRYLyagW@alley>
-In-Reply-To: <ZM1Jk9s3gRYLyagW@alley>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 4 Aug 2023 14:31:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJzEZOO4OA7ewMNZsF-5Z7CR2+_HMYM12yb0i5E2Gpquw@mail.gmail.com>
-Message-ID: <CAL_JsqJzEZOO4OA7ewMNZsF-5Z7CR2+_HMYM12yb0i5E2Gpquw@mail.gmail.com>
-Subject: Re: [PATCH 2/5] of: dynamic: Refactor action prints to not use "%pOF"
- inside devtree_lock
-To:     Petr Mladek <pmladek@suse.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 3/6] media: venus: hfi_venus: Support only updating
+ certain bits with presets
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
+ <20230731-topic-8280_venus-v1-3-8c8bbe1983a5@linaro.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <20230731-topic-8280_venus-v1-3-8c8bbe1983a5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 4, 2023 at 12:55=E2=80=AFPM Petr Mladek <pmladek@suse.com> wrot=
-e:
->
-> On Tue 2023-08-01 15:54:45, Rob Herring wrote:
-> > While originally it was fine to format strings using "%pOF" while
-> > holding devtree_lock, this now causes a deadlock.  Lockdep reports:
-> >
-> >     of_get_parent from of_fwnode_get_parent+0x18/0x24
-> >     ^^^^^^^^^^^^^
-> >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
-> >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
-> >     fwnode_full_name_string from device_node_string+0x1a0/0x404
-> >     device_node_string from pointer+0x3c0/0x534
-> >     pointer from vsnprintf+0x248/0x36c
-> >     vsnprintf from vprintk_store+0x130/0x3b4
-> >
-> > To fix this, move the printing in __of_changeset_entry_apply() outside =
-the
-> > lock. As there's already similar printing of the same changeset actions=
-,
-> > refactor all of them to use a common action print function. This has th=
-e
-> > side benefit of getting rid of some ifdefs.
-> >
-> > Fixes: a92eb7621b9fb2c2 ("lib/vsprintf: Make use of fwnode API to obtai=
-n node names and separators")
-> > Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> > --- a/drivers/of/dynamic.c
-> > +++ b/drivers/of/dynamic.c
-> > @@ -63,37 +63,31 @@ int of_reconfig_notifier_unregister(struct notifier=
-_block *nb)
-> >  }
-> >  EXPORT_SYMBOL_GPL(of_reconfig_notifier_unregister);
-> >
-> > -#ifdef DEBUG
-> > -const char *action_names[] =3D {
-> > +static const char *action_names[] =3D {
-> >       [OF_RECONFIG_ATTACH_NODE] =3D "ATTACH_NODE",
-> >       [OF_RECONFIG_DETACH_NODE] =3D "DETACH_NODE",
-> >       [OF_RECONFIG_ADD_PROPERTY] =3D "ADD_PROPERTY",
-> >       [OF_RECONFIG_REMOVE_PROPERTY] =3D "REMOVE_PROPERTY",
-> >       [OF_RECONFIG_UPDATE_PROPERTY] =3D "UPDATE_PROPERTY",
-> >  };
-> > -#endif
-> > +
-> > +static void of_changeset_action_print(unsigned long action, struct dev=
-ice_node *np,
-> > +                                   const char *prop_name)
-> > +{
-> > +     if (prop_name)
-> > +             pr_cont("%-15s %pOF:%s\n", action_names[action], np, prop=
-_name);
->
-> Note that pr_cont() does not guarantee that the message will be appended =
-to the
-> previous part. Any message printed from another CPU or interrupt
-> context might break the two pieces.
->
-> It is better to avoid pr_cont() when possible.
+On 04/08/2023 21:09, Konrad Dybcio wrote:
+> On some platforms (like SM8350) we're expected to only touch certain bits
+> (such as 0 and 4 corresponding to mask 0x11). Add support for doing so.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/media/platform/qcom/venus/core.h      |  1 +
+>   drivers/media/platform/qcom/venus/hfi_venus.c | 15 ++++++++++++---
+>   2 files changed, 13 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+> index d996abd339e1..2999c24392f5 100644
+> --- a/drivers/media/platform/qcom/venus/core.h
+> +++ b/drivers/media/platform/qcom/venus/core.h
+> @@ -38,6 +38,7 @@ struct freq_tbl {
+>   struct reg_val {
+>   	u32 reg;
+>   	u32 value;
+> +	u32 mask;
+>   };
+>   
+>   struct bw_tbl {
+> diff --git a/drivers/media/platform/qcom/venus/hfi_venus.c b/drivers/media/platform/qcom/venus/hfi_venus.c
+> index 19fc6575a489..d4bad66f7293 100644
+> --- a/drivers/media/platform/qcom/venus/hfi_venus.c
+> +++ b/drivers/media/platform/qcom/venus/hfi_venus.c
+> @@ -349,10 +349,19 @@ static void venus_set_registers(struct venus_hfi_device *hdev)
+>   	const struct venus_resources *res = hdev->core->res;
+>   	const struct reg_val *tbl = res->reg_tbl;
+>   	unsigned int count = res->reg_tbl_size;
+> -	unsigned int i;
+> +	unsigned int i, val;
 
-Yeah, I got rid of it in the snippet I posted.
+u32 val;
 
->
-> > +     else
-> > +             pr_cont("%-15s %pOF\n", action_names[action], np);
-> > +}
-> >
-> >  int of_reconfig_notify(unsigned long action, struct of_reconfig_data *=
-p)
-> >  {
-> >       int rc;
-> > -#ifdef DEBUG
-> >       struct of_reconfig_data *pr =3D p;
-> >
-> > -     switch (action) {
-> > -     case OF_RECONFIG_ATTACH_NODE:
-> > -     case OF_RECONFIG_DETACH_NODE:
-> > -             pr_debug("notify %-15s %pOF\n", action_names[action],
-> > -                     pr->dn);
-> > -             break;
-> > -     case OF_RECONFIG_ADD_PROPERTY:
-> > -     case OF_RECONFIG_REMOVE_PROPERTY:
-> > -     case OF_RECONFIG_UPDATE_PROPERTY:
-> > -             pr_debug("notify %-15s %pOF:%s\n", action_names[action],
-> > -                     pr->dn, pr->prop->name);
-> > -             break;
-> > +     if (pr_debug("notify "))
-> > +             of_changeset_action_print(action, pr->dn, pr->prop ? pr->=
-prop->name : NULL);
->
-> If you really want to simplify this, then I would do:
->
->         pr_debug("notify %-15s %pOF%s%s\n",
->                   action_names[action], pr->dn,
->                   pr->prop ? ":" : ",
->                   pr->prop ? pr->prop->name : "");
+> +
+> +	for (i = 0; i < count; i++) {
+> +		val = tbl[i].value;
 
-That's a good idea.
+struct reg_val looks like this
 
-> > -     }
-> > -#endif
-> >       rc =3D blocking_notifier_call_chain(&of_reconfig_chain, action, p=
-);
-> >       return notifier_to_errno(rc);
-> >  }
-> > @@ -599,7 +569,8 @@ static int __of_changeset_entry_apply(struct of_cha=
-ngeset_entry *ce)
-> >       unsigned long flags;
-> >       int ret =3D 0;
-> >
-> > -     __of_changeset_entry_dump(ce);
-> > +     if (pr_debug("changeset: applying: cset<%p> ", ce))
-> > +             of_changeset_action_print(ce->action, ce->np, ce->prop ? =
-ce->prop->name : NULL);
->
-> One possibility would be to create a macro for this, something like:
->
-> #define of_ce_action_print(printk_level, prefix, ce)            \
->         printk(printk_level "%s cset<%p> %-15s %pOF%s%s\n"      \
->                 prefix, ce, action_names[action], pr->dn,       \
->                   pr->prop ? ":" : ",                           \
->                   pr->prop ? pr->prop->name : "");
->
-> And use it like:
->
->         of_ce_action_print(KERN_DEBUG, "changeset: applying:", ce);
+struct reg_val {
+         u32 reg;
+         u32 value;
+};
 
-The problem there is the debug print is always enabled.
+val should be declared a u32
 
->
-> But I am not sure if it is worth it. Sometimes it is better to
-> opencode things so that it is clear what is going on.
+> -	for (i = 0; i < count; i++)
+> -		writel(tbl[i].value, hdev->core->base + tbl[i].reg);
+> +		/* In some cases, we only want to update certain bits */
 
-Maybe so.
+I'll trust this is a legitimate and true statement.
 
-Rob
+> +		if (tbl[i].mask) {
+> +			val = readl(hdev->core->base + tbl[i].reg);
+> +			val = (val & ~tbl[i].mask) | (tbl[i].value & tbl[i].mask);
+
+feels like something regmap_update_bits() already does though, I prefer 
+this because there's less code in it.
+
+> +		}
+> +
+> +		writel(val, hdev->core->base + tbl[i].reg);
+> +	}
+
+With the val declaration fix
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
