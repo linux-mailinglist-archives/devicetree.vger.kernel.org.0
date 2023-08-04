@@ -2,381 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA5DB770C0E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 00:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AAC8770C2F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 00:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbjHDWm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 18:42:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44386 "EHLO
+        id S229713AbjHDW7d convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Aug 2023 18:59:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbjHDWmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 18:42:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F21284EE7;
-        Fri,  4 Aug 2023 15:42:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F058562158;
-        Fri,  4 Aug 2023 22:42:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94B8BC433C8;
-        Fri,  4 Aug 2023 22:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691188938;
-        bh=XV5U4RAiGWQ2P3Dd0SD54QZTwqv55+/YNgiA55fi47g=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-        b=XC1NGwgD+z/NQJIqzJUtEqL7Zi3OudVrKz6SXwQFsiCaNejoa1Yfbceu3Lhk+Q2Go
-         +1Mvk8Nh/+stAt3bPKN5RbO6quXWO0KNJywyU40q+EoxMdCoE77re7UbNSC0NAS3ng
-         Fwa85cKOq4khyo3u1Hcpao8BkOSMv8sBdnKf7eqNZkUcUR78qD55mvdcoyx9bfdTRf
-         RL0e2AmtTrMO1SLco8+qs9B5NXsjLaU95E8PV3LIh4oCuwprTnIr06XcQhv+Nc0nig
-         VgX6ramvoA+N55xfBhYX49vYMtp0ARQirG0ntYR0ijhD+sLkK/eqGHS/9vP/5vIO3c
-         lzFtvEAq2hgsQ==
-Received: (nullmailer pid 2346985 invoked by uid 1000);
-        Fri, 04 Aug 2023 22:42:09 -0000
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 04 Aug 2023 16:41:56 -0600
-Subject: [PATCH v2 6/6] of: Refactor node and property manipulation
- function locking
+        with ESMTP id S229614AbjHDW7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 18:59:32 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 71B771BE;
+        Fri,  4 Aug 2023 15:59:30 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C60C11007;
+        Fri,  4 Aug 2023 16:00:12 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6216B3F59C;
+        Fri,  4 Aug 2023 15:59:28 -0700 (PDT)
+Date:   Fri, 4 Aug 2023 23:58:27 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: h616: Add OrangePi Zero 3
+ board support
+Message-ID: <20230804235827.3f32fa8f@slackpad.lan>
+In-Reply-To: <4500165.LvFx2qVVIh@jernej-laptop>
+References: <20230804170856.1237202-1-andre.przywara@arm.com>
+        <20230804170856.1237202-4-andre.przywara@arm.com>
+        <4500165.LvFx2qVVIh@jernej-laptop>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230801-dt-changeset-fixes-v2-6-c2b701579dee@kernel.org>
-References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
-In-Reply-To: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.13-dev
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All callers of __of_{add,remove,update}_property() and
-__of_{attach,detach}_node() wrap the call with the devtree_lock
-spinlock. Let's move the spinlock into the functions. This allows moving
-the sysfs update functions into those functions as well.
+On Fri, 04 Aug 2023 21:05:36 +0200
+Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Re-arrange exit handling
----
- drivers/of/base.c    | 68 +++++++++++++++++++++++++++-------------------------
- drivers/of/dynamic.c | 51 +++++++++++++--------------------------
- 2 files changed, 51 insertions(+), 68 deletions(-)
+Hi Jernej,
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index c63a4cde281e..3ec134429f11 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1552,21 +1552,32 @@ static void __of_remove_dead_property(struct device_node *np, struct property *p
-  */
- int __of_add_property(struct device_node *np, struct property *prop)
- {
-+	int rc = 0;
-+	unsigned long flags;
- 	struct property **next;
- 
-+	raw_spin_lock_irqsave(&devtree_lock, flags);
-+
- 	__of_remove_dead_property(np, prop);
- 
- 	prop->next = NULL;
- 	next = &np->properties;
- 	while (*next) {
--		if (strcmp(prop->name, (*next)->name) == 0)
-+		if (strcmp(prop->name, (*next)->name) == 0) {
- 			/* duplicate ! don't insert it */
--			return -EEXIST;
--
-+			rc = -EEXIST;
-+			goto out_unlock;
-+		}
- 		next = &(*next)->next;
- 	}
- 	*next = prop;
- 
-+out_unlock:
-+	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-+	if (rc)
-+		return rc;
-+
-+	__of_add_property_sysfs(np, prop);
- 	return 0;
- }
- 
-@@ -1577,23 +1588,12 @@ int __of_add_property(struct device_node *np, struct property *prop)
-  */
- int of_add_property(struct device_node *np, struct property *prop)
- {
--	unsigned long flags;
- 	int rc;
- 
- 	mutex_lock(&of_mutex);
--
--	raw_spin_lock_irqsave(&devtree_lock, flags);
- 	rc = __of_add_property(np, prop);
--	raw_spin_unlock_irqrestore(&devtree_lock, flags);
--
--	if (!rc)
--		__of_add_property_sysfs(np, prop);
--
- 	mutex_unlock(&of_mutex);
- 
--	if (!rc)
--		of_property_notify(OF_RECONFIG_ADD_PROPERTY, np, prop, NULL);
--
- 	return rc;
- }
- EXPORT_SYMBOL_GPL(of_add_property);
-@@ -1601,19 +1601,30 @@ EXPORT_SYMBOL_GPL(of_add_property);
- int __of_remove_property(struct device_node *np, struct property *prop)
- {
- 	struct property **next;
-+	unsigned long flags;
-+	int rc = 0;
-+
-+	raw_spin_lock_irqsave(&devtree_lock, flags);
- 
- 	for (next = &np->properties; *next; next = &(*next)->next) {
- 		if (*next == prop)
- 			break;
- 	}
--	if (*next == NULL)
--		return -ENODEV;
--
-+	if (*next == NULL) {
-+		rc = -ENODEV;
-+		goto out_unlock;
-+	}
- 	/* found the node */
- 	*next = prop->next;
- 	prop->next = np->deadprops;
- 	np->deadprops = prop;
- 
-+out_unlock:
-+	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-+	if (rc)
-+		return rc;
-+
-+	__of_remove_property_sysfs(np, prop);
- 	return 0;
- }
- 
-@@ -1629,21 +1640,13 @@ int __of_remove_property(struct device_node *np, struct property *prop)
-  */
- int of_remove_property(struct device_node *np, struct property *prop)
- {
--	unsigned long flags;
- 	int rc;
- 
- 	if (!prop)
- 		return -ENODEV;
- 
- 	mutex_lock(&of_mutex);
--
--	raw_spin_lock_irqsave(&devtree_lock, flags);
- 	rc = __of_remove_property(np, prop);
--	raw_spin_unlock_irqrestore(&devtree_lock, flags);
--
--	if (!rc)
--		__of_remove_property_sysfs(np, prop);
--
- 	mutex_unlock(&of_mutex);
- 
- 	if (!rc)
-@@ -1657,6 +1660,9 @@ int __of_update_property(struct device_node *np, struct property *newprop,
- 		struct property **oldpropp)
- {
- 	struct property **next, *oldprop;
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&devtree_lock, flags);
- 
- 	__of_remove_dead_property(np, newprop);
- 
-@@ -1678,6 +1684,10 @@ int __of_update_property(struct device_node *np, struct property *newprop,
- 		*next = newprop;
- 	}
- 
-+	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-+
-+	__of_update_property_sysfs(np, newprop, oldprop);
-+
- 	return 0;
- }
- 
-@@ -1693,21 +1703,13 @@ int __of_update_property(struct device_node *np, struct property *newprop,
- int of_update_property(struct device_node *np, struct property *newprop)
- {
- 	struct property *oldprop;
--	unsigned long flags;
- 	int rc;
- 
- 	if (!newprop->name)
- 		return -EINVAL;
- 
- 	mutex_lock(&of_mutex);
--
--	raw_spin_lock_irqsave(&devtree_lock, flags);
- 	rc = __of_update_property(np, newprop, &oldprop);
--	raw_spin_unlock_irqrestore(&devtree_lock, flags);
--
--	if (!rc)
--		__of_update_property_sysfs(np, newprop, oldprop);
--
- 	mutex_unlock(&of_mutex);
- 
- 	if (!rc)
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 769869e8b847..715365fbb8ea 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -197,6 +197,9 @@ static void __of_attach_node(struct device_node *np)
- {
- 	const __be32 *phandle;
- 	int sz;
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&devtree_lock, flags);
- 
- 	if (!of_node_check_flag(np, OF_OVERLAY)) {
- 		np->name = __of_get_property(np, "name", NULL);
-@@ -219,6 +222,10 @@ static void __of_attach_node(struct device_node *np)
- 	np->parent->child = np;
- 	of_node_clear_flag(np, OF_DETACHED);
- 	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
-+
-+	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-+
-+	__of_attach_node_sysfs(np);
- }
- 
- /**
-@@ -228,17 +235,12 @@ static void __of_attach_node(struct device_node *np)
- int of_attach_node(struct device_node *np)
- {
- 	struct of_reconfig_data rd;
--	unsigned long flags;
- 
- 	memset(&rd, 0, sizeof(rd));
- 	rd.dn = np;
- 
- 	mutex_lock(&of_mutex);
--	raw_spin_lock_irqsave(&devtree_lock, flags);
- 	__of_attach_node(np);
--	raw_spin_unlock_irqrestore(&devtree_lock, flags);
--
--	__of_attach_node_sysfs(np);
- 	mutex_unlock(&of_mutex);
- 
- 	of_reconfig_notify(OF_RECONFIG_ATTACH_NODE, &rd);
-@@ -249,13 +251,15 @@ int of_attach_node(struct device_node *np)
- void __of_detach_node(struct device_node *np)
- {
- 	struct device_node *parent;
-+	unsigned long flags;
- 
--	if (WARN_ON(of_node_check_flag(np, OF_DETACHED)))
--		return;
-+	raw_spin_lock_irqsave(&devtree_lock, flags);
- 
- 	parent = np->parent;
--	if (WARN_ON(!parent))
-+	if (WARN_ON(of_node_check_flag(np, OF_DETACHED) || !parent)) {
-+		raw_spin_unlock_irqrestore(&devtree_lock, flags);
- 		return;
-+	}
- 
- 	if (parent->child == np)
- 		parent->child = np->sibling;
-@@ -272,6 +276,10 @@ void __of_detach_node(struct device_node *np)
- 
- 	/* race with of_find_node_by_phandle() prevented by devtree_lock */
- 	__of_phandle_cache_inv_entry(np->phandle);
-+
-+	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-+
-+	__of_detach_node_sysfs(np);
- }
- 
- /**
-@@ -281,17 +289,12 @@ void __of_detach_node(struct device_node *np)
- int of_detach_node(struct device_node *np)
- {
- 	struct of_reconfig_data rd;
--	unsigned long flags;
- 
- 	memset(&rd, 0, sizeof(rd));
- 	rd.dn = np;
- 
- 	mutex_lock(&of_mutex);
--	raw_spin_lock_irqsave(&devtree_lock, flags);
- 	__of_detach_node(np);
--	raw_spin_unlock_irqrestore(&devtree_lock, flags);
--
--	__of_detach_node_sysfs(np);
- 	mutex_unlock(&of_mutex);
- 
- 	of_reconfig_notify(OF_RECONFIG_DETACH_NODE, &rd);
-@@ -563,12 +566,10 @@ static int __of_changeset_entry_notify(struct of_changeset_entry *ce,
- 
- static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
- {
--	unsigned long flags;
- 	int ret = 0;
- 
- 	of_changeset_action_debug("applying: cset<%p> ", ce->action, ce->np, ce->prop, ce);
- 
--	raw_spin_lock_irqsave(&devtree_lock, flags);
- 	switch (ce->action) {
- 	case OF_RECONFIG_ATTACH_NODE:
- 		__of_attach_node(ce->np);
-@@ -589,32 +590,12 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
- 	default:
- 		ret = -EINVAL;
- 	}
--	raw_spin_unlock_irqrestore(&devtree_lock, flags);
- 
- 	if (ret) {
- 		of_changeset_action_err("apply failed: cset<%p> ", ce->action, ce->np, ce->prop, ce);
- 		return ret;
- 	}
- 
--	switch (ce->action) {
--	case OF_RECONFIG_ATTACH_NODE:
--		__of_attach_node_sysfs(ce->np);
--		break;
--	case OF_RECONFIG_DETACH_NODE:
--		__of_detach_node_sysfs(ce->np);
--		break;
--	case OF_RECONFIG_ADD_PROPERTY:
--		/* ignore duplicate names */
--		__of_add_property_sysfs(ce->np, ce->prop);
--		break;
--	case OF_RECONFIG_REMOVE_PROPERTY:
--		__of_remove_property_sysfs(ce->np, ce->prop);
--		break;
--	case OF_RECONFIG_UPDATE_PROPERTY:
--		__of_update_property_sysfs(ce->np, ce->prop, ce->old_prop);
--		break;
--	}
--
- 	return 0;
- }
- 
+> Dne petek, 04. avgust 2023 ob 19:08:56 CEST je Andre Przywara napisal(a):
+> > The OrangePi Zero 3 is a development board based on the Allwinner H618 SoC,
+> > which seems to be just an H616 with more L2 cache. The board itself is a
+> > slightly updated version of the Orange Pi Zero 2. It features:
+> > - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
+> > - 1/1.5/2/4 GiB LPDDR4 DRAM SKUs (only up to 1GB on the Zero2)
+> > - AXP313a PMIC (more capable AXP305 on the Zero2)
+> > - Raspberry-Pi-1 compatible GPIO header
+> > - extra 13 pin expansion header, exposing pins for 2x USB 2.0 ports
+> > - 1 USB 2.0 host port
+> > - 1 USB 2.0 type C port (power supply + OTG)
+> > - MicroSD slot
+> > - on-board 16MiB bootable SPI NOR flash (only 2MB on the Zero2)
+> > - 1Gbps Ethernet port (via Motorcomm YT8531 PHY) (RTL8211 on the Zero2)
+> > - micro-HDMI port
+> > - (yet) unsupported Allwinner WiFi/BT chip
+> > 
+> > Add the devicetree file describing the currently supported features,
+> > namely LEDs, SD card, PMIC, SPI flash, USB. Ethernet seems unstable at
+> > the moment, though the basic functionality works.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+> >  .../allwinner/sun50i-h618-orangepi-zero3.dts  | 94 +++++++++++++++++++
+> >  2 files changed, 95 insertions(+)
+> >  create mode 100644
+> > arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+> > b/arch/arm64/boot/dts/allwinner/Makefile index 6a96494a2e0a3..3b0ad54062381
+> > 100644
+> > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > @@ -40,3 +40,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+> > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts new file
+> > mode 100644
+> > index 0000000000000..96a6851728111
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+> > @@ -0,0 +1,94 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > +/*
+> > + * Copyright (C) 2023 Arm Ltd.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sun50i-h616-orangepi-zero.dtsi"
+> > +
+> > +/ {
+> > +	model = "OrangePi Zero3";
+> > +	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
+> > +};
+> > +
+> > +&emac0 {
+> > +	phy-supply = <&reg_dldo1>;
+> > +};
+> > +
+> > +&ext_rgmii_phy {
+> > +	motorcomm,clk-out-frequency-hz = <125000000>;
+> > +};
+> > +
+> > +&mmc0 {
+> > +	/*
+> > +	 * The schematic shows the card detect pin wired up to PF6, via an
+> > +	 * inverter, but it just doesn't work.
+> > +	 */
+> > +	broken-cd;
+> > +	vmmc-supply = <&reg_dldo1>;
+> > +};
+> > +
+> > +&r_i2c {
+> > +	status = "okay";
+> > +
+> > +	axp313: pmic@36 {
+> > +		compatible = "x-powers,axp313a";
+> > +		reg = <0x36>;
+> > +		#interrupt-cells = <1>;
+> > +		interrupt-controller;
+> > +		interrupt-parent = <&pio>;
+> > +		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
+> > +
+> > +		vin1-supply = <&reg_vcc5v>;
+> > +		vin2-supply = <&reg_vcc5v>;
+> > +		vin3-supply = <&reg_vcc5v>;
+> > +
+> > +		regulators {
+> > +			/* Supplies VCC-PLL, so needs to be always   
+> on. */
+> > +			reg_aldo1: aldo1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =   
+> <1800000>;
+> > +				regulator-max-microvolt =   
+> <1800000>;
+> > +				regulator-name = "vcc1v8";
+> > +			};
+> > +
+> > +			/* Supplies VCC-IO, so needs to be always on.   
+> */
+> > +			reg_dldo1: dldo1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =   
+> <3300000>;
+> > +				regulator-max-microvolt =   
+> <3300000>;
+> > +				regulator-name = "vcc3v3";
+> > +			};
+> > +
+> > +			reg_dcdc1: dcdc1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =   
+> <810000>;
+> > +				regulator-max-microvolt =   
+> <990000>;
+> > +				regulator-name = "vdd-gpu-sys";
+> > +			};  
+> 
+> Is it safe to change sys voltage when system is running?
 
--- 
-2.40.1
+I don't know. All I know is that the H616 datasheet lists VDD_SYS as
+having the exact same range as VDD_GPU, and that is does not give a
+"typical" voltage value. As this DT stands at the moment, this doesn't
+really matter, since nothing will change DCDC1.
+
+I see that the Orange Pi Zero 2 (with a "proper" PMIC) also ties SYS and
+GPU together, so it's not just because of the few rails of the AXP313.
+
+I'd say we will figure that out once we start experimenting with GPU
+DVFS, but meanwhile nothing references DCDC1, so it will just stay put
+at the AXP313's 0.9V reset value.
+
+Does that make sense?
+
+Cheers,
+Andre
+
+> > +
+> > +			reg_dcdc2: dcdc2 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =   
+> <810000>;
+> > +				regulator-max-microvolt =   
+> <1100000>;
+> > +				regulator-name = "vdd-cpu";
+> > +			};
+> > +
+> > +			reg_dcdc3: dcdc3 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =   
+> <1100000>;
+> > +				regulator-max-microvolt =   
+> <1100000>;
+> > +				regulator-name = "vdd-dram";
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&pio {
+> > +	vcc-pc-supply = <&reg_dldo1>;
+> > +	vcc-pf-supply = <&reg_dldo1>;
+> > +	vcc-pg-supply = <&reg_aldo1>;
+> > +	vcc-ph-supply = <&reg_dldo1>;
+> > +	vcc-pi-supply = <&reg_dldo1>;
+> > +};  
+> 
+> 
+> 
+> 
+> 
 
