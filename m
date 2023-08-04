@@ -2,98 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA07770AA2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 23:13:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88BAB770AA8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Aug 2023 23:14:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbjHDVNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 17:13:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
+        id S229915AbjHDVOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 17:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231151AbjHDVMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 17:12:45 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CFA2526E
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 14:12:16 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3128fcd58f3so2271978f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 14:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691183529; x=1691788329;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vYMteuRyBlyseBeImekn0yM6ziTIYQIc6Rgu88TP30s=;
-        b=vdPfGkFzPno+YpaVH1qXXNgEzbeSOPEr9KIlOf4JSpXrZ6rJm3GWVuzGeadalze3VE
-         H8sURg6e3fLoQgEN80ZqHJCsFI/n7chozswaNo6RZpb6WARtmF4c8EmLe7foMNyftL05
-         TMdt1lp9ZSNObsftFbTFqo7JU7lx/RzVSZf2Nl2DGmYHEwfOaezU2fnzb81D2tk9OodJ
-         p70AJBeEznfkBFClhYWPWRPQi28nZ/U5AngMp+e9jRL4sKNAv0GrITfV0XguJK1dev3R
-         MmVF36yJxVX5qytk4OtHhd1fAPbcaYNbQuaXdHV0WjK1FhQjeQ8WZkP5ueKzk9bOXaH+
-         OY3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691183529; x=1691788329;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vYMteuRyBlyseBeImekn0yM6ziTIYQIc6Rgu88TP30s=;
-        b=AzJxxWyuo6/iNYEzmEDFVLCJR/k+yc4R2CV0Yo7ZDmoMMzhk8SIP7gSqG+9Q5SvOLt
-         UpBB5A1S/nkFfjkxil4Xm2NeUNpGcNsG1aoDIckGgkMnpkdUxXWIFoKBsJjj8a4jxs9+
-         jB/RcV8DWJ3L19bmu3jW2FHiJHcD26l/0apiTEjf+tXe2JFVybLk1QsdODl8FG9Bi/Eb
-         BFi37pgugEOBJYRLc5ngj7NIFHFNoSlfCJn5N20d7xkIP4mskB5Wmkx1XVZtIh5fNan4
-         UfJgjsANzWlSiXoeU86Ra8iUmDK14eCFoldcdNWzUAKLkczhNny7OG18P/sySdeB/7Bv
-         M8GA==
-X-Gm-Message-State: AOJu0Yy4kFqrsIKFSBYcU5b62IkkhomTm9uTgFxAU7gQ9CSDbqUXYbs7
-        YAvrHvbHlqrGXPCbI4VXJdy0fw==
-X-Google-Smtp-Source: AGHT+IF4KIqabtyY5sm23L3w/iJZnRODrn+e6Z+crWHsZ17hYM/q8Nm0IvgWh86L4WjwCZTsHCGlFQ==
-X-Received: by 2002:adf:e44b:0:b0:314:12c:4322 with SMTP id t11-20020adfe44b000000b00314012c4322mr2372535wrm.4.1691183529736;
-        Fri, 04 Aug 2023 14:12:09 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k18-20020a5d66d2000000b0031417fd473csm3366341wrw.78.2023.08.04.14.12.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Aug 2023 14:12:08 -0700 (PDT)
-Message-ID: <c2bdc6a5-2f97-9c7b-d620-ff3e361f1f07@linaro.org>
-Date:   Fri, 4 Aug 2023 22:12:07 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 6/6] media: venus: core: Add SC8280XP resource struct
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229825AbjHDVOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 17:14:47 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BD0E42;
+        Fri,  4 Aug 2023 14:14:46 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 374LEX47009423;
+        Fri, 4 Aug 2023 16:14:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691183673;
+        bh=CVQopparmwCRm9fSVAZ6QgCGhWsg/8J16Kio28NM6Fg=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=vhmZXAcEUN+wXyUjaeD2fXGOaxrOr0vSGdubZUYuDjfsjATUETLb/2aLf0ChGazd7
+         k2jO3I98imp1xPagDXnCGQISRT+0AO7+j37r8BjnuRndIQ369Cg72LKFm97COsmiVR
+         Ymz7gaO5UNszVZf7IR5hmfPSg1PAfkh19NMtaHqc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 374LEX29083638
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Aug 2023 16:14:33 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 4
+ Aug 2023 16:14:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 4 Aug 2023 16:14:32 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 374LEWF6119985;
+        Fri, 4 Aug 2023 16:14:32 -0500
+Date:   Fri, 4 Aug 2023 16:14:32 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Dhruva Gole <d-gole@ti.com>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
- <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
- <989aea4c-50e7-8141-dd60-3f41058192f8@linaro.org>
- <c0d4845d-d290-4082-b5c5-996637bcac2c@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <c0d4845d-d290-4082-b5c5-996637bcac2c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH V3] dt-bindings: pinctrl: pinctrl-single: add am625
+ compatible
+Message-ID: <20230804211432.xxyf74h6a2e5x4qi@reenter>
+References: <20230804050737.635186-1-d-gole@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230804050737.635186-1-d-gole@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2023 22:10, Konrad Dybcio wrote:
->> Would it not be more legitimate and logical to have 8350 use 8280xp's frequency table, instead of 8250 ?
-> top freq is higher on 8280
+On 10:37-20230804, Dhruva Gole wrote:
+> Add the am625 compatible property to add support for the new
+> wakeup enable and status bits positions
+> 
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> CC: Tony Lindgren <tony@atomide.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Dhruva Gole <d-gole@ti.com>
+> ---
 
-Still though its a bit suspicious 8350 doesn't have its own table.
+How about the driver changes to actually support this compatible?
 
-Are we missing the downstream reference ?
-
----
-bod
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
