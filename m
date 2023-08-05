@@ -2,85 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56743770EFA
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 11:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5235E770F02
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 11:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229815AbjHEJLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 05:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35524 "EHLO
+        id S229717AbjHEJQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 05:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjHEJLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 05:11:17 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C037469C
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 02:11:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
-        s=tfld2305; t=1691226635;
-        bh=tCVGwYmH50PWl+o20qdQhoi5gPRP2yF0Bm+CSmqYkuk=;
-        h=Message-ID:Date:MIME-Version:Subject:To:From;
-        b=gS+fQbnXudfMtuVXvSiu4L+UD2R05g5smTZDTtVTggmqP2HAhGWARKMKb1s7+ZmnP
-         0O2tXM0rMybLYk9UD3hB6zQ9X551GqashUgC6UfDLLbRkkEW6N400CpBk7j768lG+b
-         R7+hN2Bbu1eaNey6Dz7zSpSPK8ewUO0/ISmBDtEI=
-X-QQ-mid: bizesmtp91t1691226631teaq6ssf
-Received: from [192.168.2.144] ( [178.41.211.221])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Sat, 05 Aug 2023 17:10:22 +0800 (CST)
-X-QQ-SSF: 01400000000000505000000A0000000
-X-QQ-FEAT: WfQrrMZtGtFovJwejNLv8JZXlZ7C07o8Fu3mKjDmX6ousr2sTmky8+nbFxL/B
-        sWl53XJvVYdP4PIFwo0dBszuNJpuY0ckthLst1uzH3TQ58fXHhPNkQhJRIRnTtsCeUBm9ZH
-        yw6CqAABNt5j3La90Xj1AlOLT5h/R4JXa6SIMz/r00S+BqNDAfnQ2XuzFMtVg2awQRTaSrK
-        rPhGVXbA8WRcJ18eImFtYY+G3GQzo8qKjkwQcsM5tX5cRQSwCPXKFg274n68Kn+mm2biOQs
-        chp7Yx3e809ArUBzzVQtwRVMNhyDIRd/5dDA7hU98OsIyyXcppyE+s95rQURopC/DDkUr0C
-        oUQem5M/nZrZ8yq4AHLkek3TRDdiU8D7hjdtRNHrzXaLu69RfhXVIPyzMhLRpPSKEqYE1PX
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 3745282866020157789
-Message-ID: <F5302321A81D0C37+344e333c-241a-8132-b1eb-748e35b58082@biqu3d.com>
-Date:   Sat, 5 Aug 2023 11:10:21 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 0/4] Add BigTreeTech CB1 SoM & Boards
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-Cc:     martin.botka1@gmail.com,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229473AbjHEJQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 05:16:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CC71720;
+        Sat,  5 Aug 2023 02:16:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 490DE60C37;
+        Sat,  5 Aug 2023 09:16:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C920C433C7;
+        Sat,  5 Aug 2023 09:16:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691226989;
+        bh=t0DJnSfJtgbU31SV0UNLXtedUGd37BfS/ndW7mTKU/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lJfj+UD1dkOvwhQWzQXBWpN2wS/7wEQFj0c1Yzr9MLE4WexmT9k0615Itsq19DGe0
+         lWoyuYJVIAh/BbYj656bIlgyo0hvMa5Hb3t2tu2MdtLy8TtbbNAnanYs2iMm0qL6Mu
+         v8F3sElLQYi6SBVwZaf70nt8kDr1sSnNLqqn1nvJ/WTfoeJb9Ra4wGadX4VTrfr/Tm
+         bFz0VkrubnMvlJydroSCy+tKP3EUmmmfky/WR0dD7IvkLmV/0ZR4m+NHOt/PTcyhTd
+         Ps69CJmx8dtkpsHI2AHP1s72VTNKxNnqxCkD5o8kjyQL/LhvJPCYRxqpRDj8NFaWJ6
+         54yL0Ld/fJVbg==
+Date:   Sat, 5 Aug 2023 10:16:25 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
-        Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-References: <5EB3DB1D7F80A40F+20230805083636.788048-1-martin@biqu3d.com>
- <20230805-whenever-likely-f16d8b2424ac@spud>
-From:   Martin Botka <martin@biqu3d.com>
-In-Reply-To: <20230805-whenever-likely-f16d8b2424ac@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:biqu3d.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt: dt-check-compatible: Find struct of_device_id
+ instances with compiler annotations
+Message-ID: <20230805-murmuring-primate-42e9d91957f3@spud>
+References: <20230804190130.1936566-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="eZIVIoSIJPOLxpFH"
+Content-Disposition: inline
+In-Reply-To: <20230804190130.1936566-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,43 +58,64 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--eZIVIoSIJPOLxpFH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 8/5/23 11:01 AM, Conor Dooley wrote:
-> On Sat, Aug 05, 2023 at 10:36:03AM +0200, Martin Botka wrote:
->> Hello,
->> This series adds a vendor prefix for BigTreeTech and adds BigTreeTech CB1,
->> Manta board and BigTreeTech Pi.
->>
->> CB1 is just an SoM thats based on AllWinner H616.
->> BigTreeTech Manta boards are expander boards for CB1 and BigTreeTech Pi
->> is an CB1 in Rpi style with few additional things like IR receiver and fan port
->> on GPIO.
->>
->> This work started before I was hired by BigTreeTech and thus majority of the
->> patches are from SoMainline email and few are from my work email.
->>
->> This series depends on commit https://lkml.org/lkml/2023/8/2/801
->> "dt-bindings: mfd: x-powers,axp152: make interrupt optional for more chips".
-> 
-> I dunno what you are doing, but FYI the threading on your emails is not
-> quite right, with the cover letter disconnected from the rest of the
-> series. git send-email can send the covers alongside the patches and
-> correctly set the threading. Your 1/4 has a in-reply-to header with a
-> message-id that doesn't exist.
+On Fri, Aug 04, 2023 at 01:01:29PM -0600, Rob Herring wrote:
+> The regex search for declarations of struct of_device_id was missing
+> cases that had a compiler annotation such as "__maybe_unused". Improve
+> the regex to allow for these. Use '\S' instead of specific characters to
+> shorten the regex. That also finds some more compatibles using '.'
+> characters.
+>=20
+> Unfortunately, these changes add ~400 more compatibles without a
+> schema.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Heya. Yea we are currently trying to figure it out.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Before sending everything looks OK and when testing with somainline.org 
-mail it does send it all properly so we are kinda betting on the SMTP
-provider doing some funky stuff. Sadly not much i can do with that.
+Thanks,
+Conor.
 
-We will try to see if we cant force it via client to send it properly.
-> 
->     1 ND  Aug 05 Martin Botka    (8.2K) ┌─>[PATCH v3 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi support
->     2 ND  Aug 05 Martin Botka    ( 12K) ├─>[PATCH v3 3/4] arm64: dts: allwinner: h616: Add BigTreeTech CB1 SoM & boards support
->     3  D  Aug 05 Martin Botka    (  41) ├─>[PATCH v3 2/4] dt-bindings: arm: sunxi: Add BigTreeTech boards
->     4  D  Aug 05 Martin Botka    (  34) ┴─>[PATCH v3 1/4] dt-bindings: vendor-prefixes: Add BigTreeTech
->     5     Aug 05 Martin Botka    (  38) [PATCH v3 0/4] Add BigTreeTech CB1 SoM & Boards
-> 
-> 
+> ---
+>  scripts/dtc/dt-extract-compatibles | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-=
+compatibles
+> index a1119762ed08..9df9f1face83 100755
+> --- a/scripts/dtc/dt-extract-compatibles
+> +++ b/scripts/dtc/dt-extract-compatibles
+> @@ -25,8 +25,8 @@ def parse_of_declare_macros(data):
+>  def parse_of_device_id(data):
+>  	""" Find all compatible strings in of_device_id structs """
+>  	compat_list =3D []
+> -	for m in re.finditer(r'of_device_id\s+[a-zA-Z0-9_]+\[\]\s*=3D\s*({.*?);=
+', data):
+> -		compat_list +=3D re.findall(r'\.compatible\s+=3D\s+"([a-zA-Z0-9_\-,]+)=
+"', m[1])
+> +	for m in re.finditer(r'of_device_id(\s+\S+)?\s+\S+\[\](\s+\S+)?\s*=3D\s=
+*({.*?);', data):
+> +		compat_list +=3D re.findall(r'\.compatible\s+=3D\s+"(\S+)"', m[3])
+> =20
+>  	return compat_list
+> =20
+> --=20
+> 2.40.1
+>=20
 
+--eZIVIoSIJPOLxpFH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZM4TaQAKCRB4tDGHoIJi
+0naKAP0a6lnnf9EluakyiD8DIZ5eTg3C+0e12abEd2BdzXXQrgD/fA2yL0eE2HGW
+X6OyUrb1vwNWn39u9Mt3HUhZ8Q4lbwk=
+=zKzk
+-----END PGP SIGNATURE-----
+
+--eZIVIoSIJPOLxpFH--
