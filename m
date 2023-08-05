@@ -2,83 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06A1D770D31
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 03:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01A1A770D6E
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 05:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjHEBqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Aug 2023 21:46:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55012 "EHLO
+        id S229460AbjHEDPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Aug 2023 23:15:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjHEBqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 21:46:03 -0400
-X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 04 Aug 2023 18:46:01 PDT
-Received: from 6.mo576.mail-out.ovh.net (6.mo576.mail-out.ovh.net [46.105.50.107])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ACD8E72
-        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 18:46:01 -0700 (PDT)
-Received: from director9.ghost.mail-out.ovh.net (unknown [10.108.4.73])
-        by mo576.mail-out.ovh.net (Postfix) with ESMTP id 95BB524970
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 01:29:57 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-ckdcs (unknown [10.109.156.99])
-        by director9.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 993DF1FD47;
-        Sat,  5 Aug 2023 01:29:55 +0000 (UTC)
-Received: from etezian.org ([37.59.142.95])
-        by ghost-submission-6684bf9d7b-ckdcs with ESMTPSA
-        id ai7tIROmzWTHWAMAIGJpLQ
-        (envelope-from <andi@etezian.org>); Sat, 05 Aug 2023 01:29:55 +0000
-Authentication-Results: garm.ovh; auth=pass (GARM-95G001d9e3624c-ac52-4978-b522-021b72bbbf33,
-                    05ACED94171614EC843435E2D99940E8A2AB1814) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 178.238.172.51
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Michal Simek <michal.simek@amd.com>
-Cc:     Andi Shyti <andi.shyti@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: cadence: Describe power-domains property
-Date:   Sat,  5 Aug 2023 03:29:11 +0200
-Message-Id: <169119887100.1781235.4441400054342220300.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <8774dba53cae5508f9f7aa173fbaf814d97898b1.1691047405.git.michal.simek@amd.com>
-References: <8774dba53cae5508f9f7aa173fbaf814d97898b1.1691047405.git.michal.simek@amd.com>
+        with ESMTP id S229461AbjHEDPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Aug 2023 23:15:16 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6718C4EE4
+        for <devicetree@vger.kernel.org>; Fri,  4 Aug 2023 20:15:14 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id 5614622812f47-3a3e1152c23so2086855b6e.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Aug 2023 20:15:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691205313; x=1691810113;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wY6Qt1tAikNugWjQbI8lPvA/5LjhxOjzsVL1TcMtfGQ=;
+        b=VUDPufE0qnsNjRNmMFNmGkO/KZ1iM8USBm7tTVJUN+t2lBBLWjhTpcSIc4zRrrmhK2
+         +g+0dMsvRVZWdSIspTynGRO84gAMGxdVTb3wac+Iv+ahtByPo6CtpdYmw7zo7cxW1fLC
+         bIkRLEK0u+kyfQbcLdou3zsN9VbBP74f9Z+c9yIE3/wR2Lh4qdNyyA3u1zHWLSPeMeqE
+         WqPNBCoXhP0VsdvdGhMKQKANf52T2tQMZNeZDJPAs7Ni0CJ9oZDXQzOMslpn0bHn6mlw
+         RA/w78OksTGfh0EO5YG6HhP7xsLQWEPOjKhrJmd8v8D4FMRnN+A6/0gg8lnCZdUA9d5l
+         Yu+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691205313; x=1691810113;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wY6Qt1tAikNugWjQbI8lPvA/5LjhxOjzsVL1TcMtfGQ=;
+        b=Y32RP4lUDiG3ECenCKZmjfmjsRSUpLfZqzn4a1+K0e8FQsi5wLB3AVfygcUb7viCVC
+         UDT7Fx6iStL1qSHVjbccZnTzJzOSiXgd451rmHhb0uMdzb8HL7pJT4wGXB1BhRU/WT5Z
+         e+ubr/+BPwu+72+uUx7nu4inMlpavlGE/qg20OQyGGsu+orRt1yb3V3PqZBNIWeaux5d
+         4fvRVCUSrje8ChN2uGelC9e6VTj8y2RAfM+/OmZ7W0WtP8bM5GcXw/xFpRmsa3ZBSfZc
+         kfXuaLwGu3VnjYGaPPsKnn/21FWwLp5yXhXeJmKubHTPATbCfuvgLUGWGcDGnpviC9Od
+         JeuA==
+X-Gm-Message-State: AOJu0Yz9SUJbQ2o3hTBqZuEUvCVal6fEkrewmNqVSBZQ4DzYsDV5nsd2
+        pV6qwODGp2SpMnuHk+ph/dKCSw==
+X-Google-Smtp-Source: AGHT+IHL8VoBkjiy6ix6rUaziMQ7E0AbDt4CLGJy+4lZeUtAQqUNnPPxmUVzSmsimNjPpF87HkxP8w==
+X-Received: by 2002:a05:6358:70e:b0:135:99fa:a118 with SMTP id e14-20020a056358070e00b0013599faa118mr3869509rwj.4.1691205313617;
+        Fri, 04 Aug 2023 20:15:13 -0700 (PDT)
+Received: from [127.0.1.1] ([2601:1c2:1800:f680:e1a0:2f9c:e6f9:e66c])
+        by smtp.gmail.com with ESMTPSA id h17-20020a170902f55100b001b864add154sm2412145plf.154.2023.08.04.20.15.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Aug 2023 20:15:13 -0700 (PDT)
+From:   Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH RFC v2 0/4] RISC-V: Add basic eMMC support for BeagleV
+ Ahead
+Date:   Fri, 04 Aug 2023 20:14:44 -0700
+Message-Id: <20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 11967471585594182288
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedviedrkeehgdegfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredtjeenucfhrhhomheptehnughiucfuhhihthhiuceorghnughirdhshhihthhisehkvghrnhgvlhdrohhrgheqnecuggftrfgrthhtvghrnhepveevieffieefgfefuddvteelffeuhfelffejteejuddvveekveehvdejgeefteevnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepuddvjedrtddrtddruddpudejkedrvdefkedrudejvddrhedupdefjedrheelrddugedvrdelheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoegrnhguihesvghtvgiiihgrnhdrohhrgheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehjeeipdhmohguvgepshhmthhpohhuth
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKS+zWQC/22Oyw6CMBBFf4XM2iGltYCuTEz8ALeGRR+jbWLBt
+ IRICP9uYe3yvnLuAomipwTnYoFIk09+6LPghwKMU/2L0NusgTMuWMOPOLpKcoYUgsFGGEuntmX
+ S1pAXWiVCHVVv3LYJKo0UsS4lRiO2wifS03933APutyt02XQ+jUOc9wtTtUd/aVOFDI1RleZSC
+ Kv4Rav57XWk0gwBunVdfzwVCL/PAAAA
+To:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <dfustini@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691205312; l=3402;
+ i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
+ bh=MDLsxhc5w3dyfm/SSn/2wE/4REaaADp4oj0jvET2NTw=;
+ b=438X54c0dRVAnrP9QJgUt1TUf9yWkmyAhDMglNZx0q12/H3btZjjYx6J4ca3FyvqtD4jty8/G
+ qOq286cmPc9Ct35GAf2WWHC4bLrczRXFAAUC0G8dwY5Rljr2Qrw19yN
+X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
+ pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+This series adds initial support for the eMMC on the BeagleV Ahead
+board. This allows the kernel to boot with the root fs on eMMC.
 
-On Thu, 03 Aug 2023 09:23:31 +0200, Michal Simek wrote:
-> ZynqMP Cadence I2c IP core has own power domain that's why describe it as
-> optional property.
-> 
-> 
+I tested [1] on top of v6.5-rc3 with this config [2] along with the
+prerequisite series [3] that adds the BeagleV Ahead dts file.
 
-Applied to i2c/andi-for-next on
+I am submitting this as an RFC for other people that want to test
+booting from the eMMC with mainline. There are several issues that need
+to be resolved before this code can progress beyond an RFC:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git
+  - Only the MMC controller connected to the eMMC is enabled. I did
+    not yet attempt to configure or use the microSD card slot.
 
-Please note that this patch may still undergo further evaluation
-and the final decision will be made in collaboration with
-Wolfram.
+  - The thead,th1520-dwcmshc compatible sets quirks which disable DMA
+    and forces the use of inefficient PIO mode. I need to determine the
+    correct configuration for the SDMA and ADMA modes.
 
-Thank you,
-Andi
+  - th1520-specific code is needed in dwcmshc_set_uhs_signaling() for
+    MMC_TIMING_MMC_HS400. I have not figured out add proper way to make
+    that code conditional so that it only runs on th1520. One method
+    could be to add a th1520 flag to dwcmshc_priv but that seems like a
+    hack. Alternatively, set_uhs_signaling in sdhci_dwcmshc_th1520_ops
+    could point to a th1520-specific function, but that new function
+    would have to duplicate all the code in the current
+    dwcmshc_set_uhs_signaling().
 
-Patches applied
-===============
-[1/1] dt-bindings: i2c: cadence: Describe power-domains property
-      commit: 26a106e540b100a887209a3012b6ac2ec9a577f8
+NOTE: I combined schema, dts and driver patches into this one series to
+simplify review and testing of this RFC.
+
+References:
+[1] https://gist.github.com/pdp7/09995be1e30df0a04b9b9cd31420f9d5
+[2] https://gist.github.com/pdp7/e4585311eb2cd27df7b50c87babc15fd
+[3] https://lore.kernel.org/linux-riscv/20230722-upstream-beaglev-ahead-dts-v2-0-a470ab8fe806@baylibre.com/
+
+Changes in v2:
+- Expand dwcmshc_priv based on driver in the T-Head 5.10 kernel:
+  delay_line, non_removable, pull_up_en, io_fixed_1v8
+- New boolean property "thead,pull-up" indicates phy pull-up config
+- New boolean property "thead,io-fixed-1v8" indicates that io voltage
+  should be set to 1.8V during reset
+- Add th1520_phy_1_8v_init() as voltage_switch op
+- Add th1520_execute_tuning() as the platform_execute_tuning op
+- Added th1520_sdhci_reset() as the .reset op. This function will set
+  io voltage to 1.8V after calling the standard sdhci_reset() function.
+- Modified dwcmshc_set_uhs_signaling() to enable SDHCI_CTRL_VDD_180 when
+  io_fixed_1v8 is true
+- Add many defines for register offsets and settings based on the mmc
+  support in the T-Head downstream v5.10 kernel
+
+v1 series:
+https://lore.kernel.org/r/20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com
+
+Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+---
+Drew Fustini (4):
+      dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head TH1520 support
+      riscv: dts: thead: Add TH1520 mmc controller and sdhci clock
+      riscv: dts: thead: Enable BeagleV Ahead eMMC controller
+      mmc: sdhci-of-dwcmshc: Add support for T-Head TH1520
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml           |   9 +
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  17 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi              |  17 ++
+ drivers/mmc/host/sdhci-of-dwcmshc.c                | 336 +++++++++++++++++++++
+ 4 files changed, 379 insertions(+)
+---
+base-commit: cb8c874afdc063290797ae1776a5d410fecb06cb
+change-id: 20230724-th1520-emmc-73cde98805d6
+
+Best regards,
+-- 
+Drew Fustini <dfustini@baylibre.com>
+
