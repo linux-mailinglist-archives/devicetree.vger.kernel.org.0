@@ -2,121 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6481F7712F3
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 00:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7116771304
+	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 01:38:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbjHEWvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 18:51:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33350 "EHLO
+        id S229576AbjHEXiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 19:38:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjHEWvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 18:51:31 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B600F1732;
-        Sat,  5 Aug 2023 15:51:29 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 396A11FB;
-        Sat,  5 Aug 2023 15:52:12 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8296A3F6C4;
-        Sat,  5 Aug 2023 15:51:27 -0700 (PDT)
-Date:   Sat, 5 Aug 2023 23:50:30 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Shengyu Qu <wiagn233@outlook.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
-        Martin Botka <martin.botka@somainline.org>,
-        Martin Botka <martin@biqu3d.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mfd: x-powers,axp152: make interrupt
- optional for more chips
-Message-ID: <20230805235030.35bed33c@slackpad.lan>
-In-Reply-To: <TY3P286MB26117478116BEF63AE1548FF980EA@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-References: <20230802141829.522595-1-andre.przywara@arm.com>
-        <TY3P286MB26117478116BEF63AE1548FF980EA@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229449AbjHEXiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 19:38:04 -0400
+Received: from mail.croughan.sh (mail.croughan.sh [135.181.193.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98A3D106;
+        Sat,  5 Aug 2023 16:37:59 -0700 (PDT)
+From:   Matthew Croughan <matthew.croughan@nix.how>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nix.how; s=mail;
+        t=1691278675; bh=ozH0GhiwKpf+3WO7HJRyIfSC4fni4M0Jmnu12HwytJg=;
+        h=From:To:Cc:Subject:Date;
+        b=jZroIgsjXw8+ZLSdV8FdySv3mfJs1zZ6c4ZCR1xHayM0Tbayobv1VesodrEy3glqB
+         H2ad1S+0+fHDVPdJupaEAaBOaayjgvV8Q4hv/95vA3oDl3KJx0HmpqqaQWNtw9IOen
+         vqQRNicInVQeeyLT2YUA+XkB2tWNolwxNKQw6CSc=
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     Matthew Croughan <matthew.croughan@nix.how>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/2] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
+Date:   Sun,  6 Aug 2023 00:34:54 +0100
+Message-ID: <20230805233715.1216456-1-matthew.croughan@nix.how>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 5 Aug 2023 23:43:35 +0800
-Shengyu Qu <wiagn233@outlook.com> wrote:
+V1: Submission
+V2: Alphabetical ordering, added "widora,mangopi-mq-quad" compatible
+V3: Added Signed-off-by, add to device-tree compatible/bindings documentation
+V4:
+- Add separate patch for bindings documentation
+- Regularised comment style
+- Add vcc supplies for gpio according to board schematic
+- Removed unnecessary x-powers,self-working-mode;
+- Added comment regarding ALDO1
+- Removed unnecessary reg_dldo1 regulator, it seems to be connected to nothing
+  in the schematic, no adverse effects observed
+V5:
+- Switch ordering of patches
+- Fix comment style
+- Add Reviewed-by tag
+V6:
+- Corrected Reviewed-by tags on commits
+- pass #interrupt-cells = <1> to axp313a
+- pass interrupt-controller to axp313a
 
-Hi Shengyu,
+Matthew Croughan (2):
+  dt-bindings: arm: sunxi: add Mango Pi MQ-Quad binding
+  arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
 
-> No, you can't only add the binding stuff. The PEK driver would crash when
-> there's no IRQ config in dts.
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 187 ++++++++++++++++++
+ 3 files changed, 193 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
 
-Well, that's strictly speaking a problem of the existing Linux driver
-then, which cannot cope with this new updated binding yet. But the
-binding needs to be updated first in any case, so this patch needs
-to come first.
-
-But yeah, indeed this is missing the extension of the "IRQ > 0"  check
-from the 15060 MFD code, I will send a patch shortly to extend this to
-the AXP305 and AXP313a.
-
-Thanks for the heads up!
-
-Cheers,
-Andre
-
-> Best regards,
-> 
-> Shengyu
-> 
-> > All X-Powers PMICs described by this binding have an IRQ pin, and so
-> > far (almost) all boards connected this to some NMI pin or GPIO on the SoC
-> > they are connected to.
-> > However we start to see boards that omit this connection, and technically
-> > the IRQ pin is not essential to the basic PMIC operation.
-> > The existing Linux driver allows skipping an IRQ pin setup for some
-> > chips already, so update the binding to also make the DT property
-> > optional for these chips, so that we can actually have DTs describing
-> > boards with the PMIC interrupt not wired up.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> > Hi,
-> >
-> > arguably the IRQ functionality is optional for many more PMICs,
-> > especially if a board doesn't use GPIOs or a power key.
-> > So I wonder if the interrupts property should become optional for all?
-> > After all it's more a board designer's decision to wire up the IRQ pin
-> > or not, and nothing that's really related to a particular PMIC.
-> >
-> > Cheers,
-> > Andre
-> >
-> >   Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 5 ++++-
-> >   1 file changed, 4 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > index 9ad55746133b5..06f1779835a1e 100644
-> > --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > @@ -67,7 +67,10 @@ allOf:
-> >           properties:
-> >             compatible:
-> >               contains:
-> > -              const: x-powers,axp305
-> > +              enum:
-> > +                - x-powers,axp15060
-> > +                - x-powers,axp305
-> > +                - x-powers,axp313a
-> >   
-> >       then:
-> >         required:  
+-- 
+2.41.0
 
