@@ -2,124 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A487711A5
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F2337711AB
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:08:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbjHETBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 15:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51756 "EHLO
+        id S230265AbjHETIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 15:08:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjHETBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:01:12 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D0A103;
-        Sat,  5 Aug 2023 12:01:09 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 375J0kor033696;
-        Sat, 5 Aug 2023 14:00:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691262046;
-        bh=TbaBvO8PIay4FSb+IgECQU3xRdQY6gka+3zrxWFTJzU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=SdpNL2pD4FOg+idEyry4yIp+szucMTOQlmpyPeG2+P7lJIoNO3X/AJ66+UkQPvKo5
-         WvJ3oAL2gEAzxnOq8yIUc9rRR02Gy0OKn+6EOtqMbz9BhGFdHm8sxaH6twPeFvjOld
-         GFJGh2S9YsGTpVzIsEGGEtu22Wga+l8AUtYn3eyk=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 375J0kcu021785
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 5 Aug 2023 14:00:46 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 5
- Aug 2023 14:00:45 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 5 Aug 2023 14:00:45 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 375J0jwC011734;
-        Sat, 5 Aug 2023 14:00:45 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>
-CC:     Nishanth Menon <nm@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Judith Mendez <jm@ti.com>
-Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-am62: Add MCU MCAN
-Date:   Sat, 5 Aug 2023 14:00:45 -0500
-Message-ID: <169126186772.69126.7798113611877655523.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230802073635.11290-1-francesco@dolcini.it>
-References: <20230802073635.11290-1-francesco@dolcini.it>
+        with ESMTP id S230266AbjHETIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:08:42 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490FC126
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 12:08:39 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fe2bc2701bso28303565e9.2
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 12:08:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691262518; x=1691867318;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ci5g0L3lDWd1ad2I5/zlL521QTxiIlvqfwBSNYlhmm4=;
+        b=isPu0U9HvnEnti01C5gZ605dboA1zdGghYeSHbU+qURewel+VxA8vdz+KyFpIwV5R4
+         EDcdvy7us+eu6CxPGBEeM2K8Zll06tSQ2J4bn+fvsX3MtW3aDZUekGcfmZWTOamzGlLJ
+         bhv6EyBF2NzKgC6QeLCydlZJLjYcWHU5LRQoRUCyBXcNEz6JjdPqUats00fr4EFxcG/Q
+         lcO+dZEy1GA28aXrKudcK/Wz+Q8Aqd24+Ix6/crJoy0a+j8Fw6CuzxMYgl7FHi6yc2jd
+         EvCvTIOI0Pq7bQVqZ1MYg0zdUvWahAJkcZD356ei92WJU0Y/9E8G5WQcfcac3BsODUIZ
+         nv9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691262518; x=1691867318;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ci5g0L3lDWd1ad2I5/zlL521QTxiIlvqfwBSNYlhmm4=;
+        b=I8HlQCiB9SAAOKbsOyc6W089tynWJVUD/7SA5YJxiK6t1441x7ZpZOW3libjl2g+Bn
+         9u7aIol4MyK1kjAyqdpQ1vojDPoNKywaNX/h+21pkRVjWoIW1i2gXRNLu8zTbb2GEfhF
+         J+oL4CGnaLxxDIuvh5sOK/yxpOS/nOrpx7Ymsc7qC97FIHogsZPK+VXkCJRmzjLGs0dg
+         W+FXa4u7/uLjYXsep0ycM+/q+uk4nZpsLuBjJ7FesbrWE8QeP9XE58AHtVNgLC2eHOYT
+         5qoWGWPRNMx0azxsTWrdWJckR8Sw9YqbE346pXSjCcJLfgYI1Gg9hRRPJzjGgxgCOW1i
+         8MNg==
+X-Gm-Message-State: AOJu0Yxj1ReESGJeeZj6gtVEJ1oeP4AelSuFyXI57zCI/0XZrlj1kZTc
+        Gt4uXntxrLh3B/HP3sacErRXOg==
+X-Google-Smtp-Source: AGHT+IGxR6lIQII7VnRB6Dnh3BPr2qdoP2ijfkvBwAnBE1qeXZ9OkTLEgGNFZbvuH4nuQC2KiUZv0A==
+X-Received: by 2002:a05:600c:450:b0:3fc:62c:8275 with SMTP id s16-20020a05600c045000b003fc062c8275mr3405325wmb.35.1691262517660;
+        Sat, 05 Aug 2023 12:08:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.245])
+        by smtp.gmail.com with ESMTPSA id e13-20020a05600c218d00b003fe2bea77ccsm5705999wme.5.2023.08.05.12.08.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Aug 2023 12:08:37 -0700 (PDT)
+Message-ID: <e2e7c830-07f4-a34e-6bf8-c9e8dc33bf57@linaro.org>
+Date:   Sat, 5 Aug 2023 21:08:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: Add HPE GXP UDCG Controller
+Content-Language: en-US
+To:     "Yu, Richard" <richard.yu@hpe.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230706215910.78772-1-richard.yu@hpe.com>
+ <20230706215910.78772-2-richard.yu@hpe.com>
+ <9f1bd0f1-d93e-243a-4622-721319fd1235@linaro.org>
+ <SJ0PR84MB20854B4A444283E31025FA398D0AA@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SJ0PR84MB20854B4A444283E31025FA398D0AA@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francesco Dolcini,
-
-On Wed, 02 Aug 2023 09:36:33 +0200, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 01/08/2023 20:07, Yu, Richard wrote:
 > 
-> On AM62x there are no hardware interrupts routed to A53 GIC
-> interrupt controller for MCU MCAN IPs, so MCU MCAN nodes were
-> omitted from MCU dtsi.
+>>> +title: HPE GXP USB Virtual EHCI controller
 > 
-> Timer polling was introduced in commits [1][2] so now add MCU MCAN nodes
-> to the MCU dtsi for Cortex A53.
-
-I understand the dependency, it does create a dtbs_check warnings on
-rc1, but I am picking this up since the yaml fixup is in next already
-and not a new compatible addition. if the fixups does'nt end up in
-linus-master for 6.6-rc1, we might need to look at what we need to do.
-Please let me know if there is any concerns and I can drop this series
-from my tree.
-
+>> The word "virtual" in bindings pretty often raises questions, because we
+>> describe usually real hardware, not virtual. Some explanation in
+>> description would be useful.
 > 
-> [...]
+> Here we are working with virtual devices that are created and have no
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Unfortunately I do not know what are virtual devices which do not exist
+physically. I have serious doubts that they fit Devicetree purpose...
 
-[1/2] arm64: dts: ti: k3-am62: Add MCU MCAN nodes
-      commit: 108f61e03963a3a019486fd80cc84d5db5c204d0
-[2/2] arm64: dts: ti: k3-am625-verdin: enable CAN_2
-      commit: 7480cea33b4c36aeffe592eb6f151bc9974fee70
+> physical presence. We have modeled our code off of ASPEED's VHUB
+> implementation to comply with the implementation in OpenBMC.
+> 
+>>> + The HPE GXP USB Virtual EHCI Controller implements 1 set of USB EHCI
+>>> + register and several sets of device and endpoint registers to support
+>>> + the virtual EHCI's downstream USB devices.
+>>> +
+> 
+> 
+>> If this is EHCI controller, then I would expect here reference to usb-hcd.
+> 
+> We will remove references to EHCI in code and documentation. It has been
+> modeled to following ASPEEDs approach as mentioned above.
+> 
+>>> + hpe,vehci-downstream-ports:
+>>> + description: Number of downstream ports supported by the GXP
+> 
+> 
+>> Why do you need this property in DT and what exactly does it represent?
+>> You have one device - EHCI controller - and on some boards it is further
+>> customized? Even though it is the same device?
+> 
+> That is correct. We can configure this VHUB Controller to have one to
+> 8 virtual ports. This is similar to the aspeed virtual USB HUB
+> "aspeed,vhub-downstream-ports" moving forward in the next patch
+> we are going to use "hpe,vhub-downstream-ports"
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Moving forward you need to address this lack of physical presence...
+Aren't these different devices and you just forgot to customize the
+compatible?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+Krzysztof
 
