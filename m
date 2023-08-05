@@ -2,204 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4296771132
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 20:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D7B771142
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 20:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230011AbjHESAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 14:00:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35356 "EHLO
+        id S229722AbjHESFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 14:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjHESAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 14:00:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E439183;
-        Sat,  5 Aug 2023 11:00:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B9EF60B99;
-        Sat,  5 Aug 2023 18:00:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C80C0C433C8;
-        Sat,  5 Aug 2023 18:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691258436;
-        bh=4OB0LIsIuMwZCxSV0QuHTkdvl8z1YvtMFoPcoJgVuiE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZxNoetshNaW9M7ViwOc/cCpVU9y5ak8RsVNGta57besr7s4NoxxH/dndsemD5RjLe
-         o/k0TYBfQ6fnyzMM5RDhVIv7MV98iPK+MdcfHYjh/OdBi1cEi5oCDG/fA1vOh4t6Cd
-         n0Y6Fz6cF3apXUP9pcTeLc78XlWP1cO9kkH+pJo62dX1PDvzlngzJ2OPaN5840g2f4
-         V4gSJY0qz4oo+/eMKmrm0e79OAj5W4MR/YHRinV/8a3OOCBQqOz4mfjKGn+xQ0Zzm2
-         ItJQnGtDCkCK3EoMD/CfB8y8iAibHjZ1jsNhxxVVLYZNZq7kcTKQaQHGHYlkC6SeXM
-         S+4WvKmyvN3yA==
-Date:   Sat, 5 Aug 2023 11:03:33 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229708AbjHESFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 14:05:41 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01588187;
+        Sat,  5 Aug 2023 11:05:39 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-317798b359aso2530602f8f.1;
+        Sat, 05 Aug 2023 11:05:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691258738; x=1691863538;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sdRAieAfV+HXU2d8HHj56ySjii4cMQwtBoYAE7N8g5s=;
+        b=n0fK/y30pRu67o6OdFtdPg9SBOZqPhrCfGUIUocdWZjGdUAnThcdzYcbzdDR5Cy7ZF
+         Tb4BjhaShFAziu49DZm5WGefcbR8geefa8kJjdc8BO6EgWlYcMlFibBJiaEvgj9WlP6v
+         qSkkm02uz2+hqpZi66JrB69ZA+yjSKuauQ3jGgYf1Nxlp2aFzSycIoAcf4bklWfTILZA
+         v/fVLZmzWwh6YwsMLwsmDw2UMQXXP0k0iol0blojjuQXXalegi1jH91cCOwFeLvT8J2i
+         qlEXnndY6XpbggsMj9nzzDdKUDtQpzljDFtYbAqLz+ivTVk0PtRzBfmWnCXbzLTpMeWY
+         5N7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691258738; x=1691863538;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sdRAieAfV+HXU2d8HHj56ySjii4cMQwtBoYAE7N8g5s=;
+        b=RaPD9QltI2WRmAMmIJUmShQT6TkqwlKu4XFc4mt2Vp77o+LkXWLiElyCUVQ+pTXgMK
+         MZDr5iThl9I80uaNVWf8fA23w/8OPngKjneaDdwk7J4QWWpMD1/4pg+X3wQ8/ZieBrY1
+         ybE+JIVspY2LYffGNLxO54ClWs8eQScyhxtDQEynp/hMxnf2COzdKOpj86GVqUoE0FQC
+         Sk51q3d1vqjWzN8MgS/h7MWMZM1+dEhhfM6tuCO7JecbPvu7y218Q8diQTOXX2tLWP83
+         DOAUkDifjycSI+qNn0JCgvwIjzTd1DsZWhIxxIlxNEnIh26qU3u22h4YWmj/rmCzWb//
+         UjvA==
+X-Gm-Message-State: AOJu0YxiNRR99mZWI6jvSg/7OrFY9w4zGCzyYtEBC6Xa7zUegLtKDwLf
+        aKebeZiR/V8J0VWF2OgAN2WUvSQxuQn0Cw==
+X-Google-Smtp-Source: AGHT+IE+5m/SQ3eshBedJihbRDlO9MZ+wChC74UcCgeJKgphC3WBm37dlSMr1RZdbjAWZFPdnVj2lA==
+X-Received: by 2002:a05:6000:10c6:b0:317:6fff:c32b with SMTP id b6-20020a05600010c600b003176fffc32bmr2915238wrx.53.1691258737930;
+        Sat, 05 Aug 2023 11:05:37 -0700 (PDT)
+Received: from user-PC.. ([178.134.198.138])
+        by smtp.gmail.com with ESMTPSA id v4-20020a5d6104000000b003176aa612b1sm5710402wrt.38.2023.08.05.11.05.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Aug 2023 11:05:37 -0700 (PDT)
+From:   Maksim Kiselev <bigunclemax@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v14 13/25] samples: Add sample userspace Gunyah VM Manager
-Message-ID: <3krirzh2fojye44a7trzit54opfssnzzsujbo4kzv2mqzhpsmo@qrm53c5naaqw>
-References: <20230613172054.3959700-1-quic_eberman@quicinc.com>
- <20230613172054.3959700-14-quic_eberman@quicinc.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v1 0/5] ASoC: sunxi: Add support for D1/T113s internal audio codec
+Date:   Sat,  5 Aug 2023 21:05:00 +0300
+Message-Id: <20230805180506.718364-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230613172054.3959700-14-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 13, 2023 at 10:20:41AM -0700, Elliot Berman wrote:
-> diff --git a/samples/gunyah/gunyah_vmm.c b/samples/gunyah/gunyah_vmm.c
-> new file mode 100644
-> index 0000000000000..6f636ac227c69
-> --- /dev/null
-> +++ b/samples/gunyah/gunyah_vmm.c
-> @@ -0,0 +1,266 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <stdlib.h>
-> +#include <stdio.h>
-> +#include <unistd.h>
-> +#include <sys/types.h>
-> +#include <sys/stat.h>
-> +#include <fcntl.h>
-> +#include <sys/ioctl.h>
-> +#include <getopt.h>
-> +#include <limits.h>
-> +#include <stdint.h>
-> +#include <fcntl.h>
-> +#include <string.h>
-> +#include <sys/sysmacros.h>
-> +#define __USE_GNU
-> +#include <sys/mman.h>
-> +
-> +#include <linux/gunyah.h>
-> +
-> +#define DEFAULT_GUEST_BASE	0x80000000
-> +#define DEFAULT_GUEST_SIZE	0x6400000 /* 100 MiB */
-> +#define DEFAULT_DTB_OFFSET	0x45f0000 /* 70MiB - 64 KiB */
-> +#define DEFAULT_RAMDISK_OFFSET	0x4600000 /* 70MiB */
+Hi,
 
-Would be nice if the default ramdisk offset was close to accounting for
-the kernel modules produced in an upstream defconfig build... Perhaps
-just bumping the default guest size to facilitate this?
+This is the series adding support for internal audio codec on
+Allwinner D1/T113s SoCs family.
 
-[..]
-> diff --git a/samples/gunyah/sample_vm.dts b/samples/gunyah/sample_vm.dts
-> new file mode 100644
-> index 0000000000000..293bbc0469c8f
-> --- /dev/null
-> +++ b/samples/gunyah/sample_vm.dts
-> @@ -0,0 +1,68 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	interrupt-parent = <&intc>;
-> +
-> +	chosen {
-> +		bootargs = "nokaslr";
+My work based on Icenowy Zheng's patches from sipeed repo that adds
+support for the R329 audio codec. But, unfortunately, these patches
+were not sent to upstream. So, I adapted them to fit the T113s.
+In the future, support for R329 could easily be added on top of
+this series. Because D1/T113s and R329 SoCs have almost the same audio
+codec IP, with slight differences in the analog part, plus the R329
+has two additional ADCs.
 
-Is this required?
+The series includes modifications for the existing sun4i-codec driver
+that brings support for the digital part of the D1 codec. And adds the
+new sun20i-d1-codec-analog driver for the analog part.
 
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <0x2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0 0>;
-> +		};
-> +	};
-> +
-> +	intc: interrupt-controller@3FFF0000 {
-> +		compatible = "arm,gic-v3";
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		interrupt-controller;
-> +		reg = <0 0x3FFF0000 0 0x10000>,
-> +		      <0 0x3FFD0000 0 0x20000>;
+I would be glad if someone have a look :)
 
-Lowercase hex digits please.
+Cheers,
+Maksim
 
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		always-on;
-> +		interrupts = <1 13 0x108>,
-> +			     <1 14 0x108>,
-> +			     <1 11 0x108>,
-> +			     <1 10 0x108>;
-> +		clock-frequency = <19200000>;
-> +	};
-> +
-> +	gunyah-vm-config {
+Maksim Kiselev (5):
+  ASoC: dt-bindings: sun4i-a10-codec: Add binding for Allwinner D1 SoC
+  ASoC: dt-bindings: Add schema for "allwinner,sun20i-d1-codec-analog"
+  ASoC: sunxi: sun4i-codec: add basic support for D1 audio codec
+  ASoC: sunxi: Add new driver for Allwinner D1/T113s codec's analog path
+    controls
+  riscv: dts: allwinner: d1: Add device nodes for internal audio codec
 
-Is this node documented somewhere?
+ .../allwinner,sun20i-d1-codec-analog.yaml     |  33 ++
+ .../sound/allwinner,sun4i-a10-codec.yaml      |  64 ++-
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  22 ++
+ sound/soc/sunxi/Kconfig                       |  11 +
+ sound/soc/sunxi/Makefile                      |   1 +
+ sound/soc/sunxi/sun20i-d1-codec-analog.c      | 220 +++++++++++
+ sound/soc/sunxi/sun4i-codec.c                 | 364 +++++++++++++++---
+ 7 files changed, 643 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun20i-d1-codec-analog.yaml
+ create mode 100644 sound/soc/sunxi/sun20i-d1-codec-analog.c
 
-Regards,
-Bjorn
+-- 
+2.39.2
 
-> +		image-name = "linux_vm_0";
-> +
-> +		memory {
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +
-> +			base-address = <0 0x80000000>;
-> +		};
-> +
-> +		interrupts {
-> +			config = <&intc>;
-> +		};
-> +
-> +		vcpus {
-> +			affinity-map = < 0 >;
-> +			sched-priority = < (-1) >;
-> +			sched-timeslice = < 2000 >;
-> +		};
-> +	};
-> +};
-> -- 
-> 2.40.0
-> 
