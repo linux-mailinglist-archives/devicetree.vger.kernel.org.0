@@ -2,74 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C87CA7710AA
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 18:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48D4D7710B2
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 19:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjHEQzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 12:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44678 "EHLO
+        id S229741AbjHERDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 13:03:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbjHEQzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 12:55:38 -0400
-Received: from out-73.mta0.migadu.com (out-73.mta0.migadu.com [IPv6:2001:41d0:1004:224b::49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89294206
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 09:55:35 -0700 (PDT)
-Date:   Sun, 6 Aug 2023 02:51:53 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1691254534;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=vYiFCAoB7u7dk9JF+5uYfQo9xx6aksS21sN43dAesb0=;
-        b=JrgfMyBOF+ZiXCAmC60LBYPR24oFRCx33u0KZKY303F1zTsxaeJJ7iEE6sA7OWwJCUtxVw
-        A4UvLxWn95TKqI4CkmGVAhWOqcAk4CvjbA6aGNLXTBYeY5prTGoIAKBqUNZfh8PsTWAhSx
-        mkMIlM80OTxepI54dfk4DvO/fhfio2g2w6Zzi5o65Zgb64BkrnRxk/0vcwiQ5WIdKQu7ws
-        UkUlMgbKObQ9hReGcP3QkIQBOowRV6faBzQyCP3EDy5F73PN6SkeTDX0F52E6eStUZpU+6
-        lQWwk6FI39d1N9Wuz7kOXLbqbOsByN6rNvid4pDiwRHmDYcOJf+RggI/enu0Ew==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   John Watts <contact@jookia.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     aou@eecs.berkeley.edu, conor+dt@kernel.org, davem@davemloft.net,
-        devicetree@vger.kernel.org, edumazet@google.com,
-        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        mkl@pengutronix.de, netdev@vger.kernel.org, pabeni@redhat.com,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        samuel@sholland.org, wens@csie.org, wg@grandegger.com
-Subject: Re: [PATCH v2 2/4] riscv: dts: allwinner: d1: Add CAN controller
- nodes
-Message-ID: <ZM5-Ke-59o0R5AtY@titan>
-References: <20230721221552.1973203-4-contact@jookia.org>
- <20230805164052.669184-1-bigunclemax@gmail.com>
+        with ESMTP id S229441AbjHERDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 13:03:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3061AE51;
+        Sat,  5 Aug 2023 10:03:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B96C660C57;
+        Sat,  5 Aug 2023 17:03:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0EB17C433C7;
+        Sat,  5 Aug 2023 17:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691254995;
+        bh=h5eU9XX1o4OOf6S1Raai5CwCugmHSOAJ95Q+DWakPuw=;
+        h=From:Subject:Date:To:Cc:Reply-To:From;
+        b=Q4u2B3z0rmOLUsxCfRWXVEEU28ISgmLSi7UeFwI9EMwmURyLspZLH96RSzotRdnjU
+         c932vJVe7CKCunh1MADBKanP/2Ub6hotjYZOEx9moVY8C/fDGunBPjiGAHGy+sfXLI
+         aQbNuPCaG1+CR6c9X1h7O4f32zrageZzaZSwbvXU46rZLkOomsb/eH+yYTu1mfj+uh
+         KYr8+MZOvrBI/5kpXsgLXXcse9vhFpvDFfao3cG/Tj/86CsWJtgzILNbw6m0Sz5HXo
+         NySgAgNGcFMNDaVLyr7dihx4pvMO+FAMsk13GswEaofos885wMysgSUd5bRM3NSHtW
+         xlj//Gs0Bu0xA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.lore.kernel.org (Postfix) with ESMTP id EB55DC0015E;
+        Sat,  5 Aug 2023 17:03:14 +0000 (UTC)
+From:   Xilin Wu via B4 Relay <devnull+wuxilin123.gmail.com@kernel.org>
+Subject: [PATCH 0/3] Add initial support for Xiaomi Mi 11 Ultra
+Date:   Sun, 06 Aug 2023 01:03:09 +0800
+Message-Id: <20230806-xiaomi-star-v1-0-0c384e8b5737@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230805164052.669184-1-bigunclemax@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM2AzmQC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDCwMz3YrMxPzcTN3iksQi3VRT4xQLs0TjJFPLVCWgjoKi1LTMCrBp0bG
+ 1tQDLOwb7XQAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
+        Xilin Wu <wuxilin123@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691254992; l=698;
+ i=wuxilin123@gmail.com; s=20230805; h=from:subject:message-id;
+ bh=h5eU9XX1o4OOf6S1Raai5CwCugmHSOAJ95Q+DWakPuw=;
+ b=OQntiV/U7W7Rd3Y6oKVtP7h9tiC8jZyOIZJXVbI7q66nLcgekYC8dPLbkpz3+elHdgC+e5Emt
+ e05ygSe7qp7B1fzegauog7IlNEUxEgdJd564vM4/+wSoYzNbAfBcMbO
+X-Developer-Key: i=wuxilin123@gmail.com; a=ed25519;
+ pk=OZIrHT2qWm7yEdp5fsVR7GsFx1wxciIii20H06Ud088=
+X-Endpoint-Received: by B4 Relay for wuxilin123@gmail.com/20230805 with auth_id=73
+X-Original-From: Xilin Wu <wuxilin123@gmail.com>
+Reply-To: <wuxilin123@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 05, 2023 at 07:40:52PM +0300, Maksim Kiselev wrote:
-> Hi John, Jernej
-> Should we also keep a pinctrl nodes itself in alphabetical order?
-> I mean placing a CAN nodes before `clk_pg11_pin` node?
-> Looks like the other nodes sorted in this way...
+Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+---
+Xilin Wu (3):
+      soc: qcom: pmic_glink: enable UCSI for SM8350
+      dt-bindings: arm: qcom: Add Xiaomi Mi 11 Ultra
+      arm64: dts: qcom: Add device tree for Xiaomi Mi 11 Ultra
 
-Good catch. Now that you mention it, the device tree nodes are sorted
-by memory order too! These should be after i2c3.
+ Documentation/devicetree/bindings/arm/qcom.yaml |    1 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/sm8350-xiaomi-star.dts | 1251 +++++++++++++++++++++++
+ drivers/soc/qcom/pmic_glink.c                   |    1 +
+ 4 files changed, 1254 insertions(+)
+---
+base-commit: d2aae0f5a3d5af50b13b13cb452745cd0428ce5e
+change-id: 20230806-xiaomi-star-e53d86a3b59e
 
-It looks like I might need to do a patch to re-order those too.
+Best regards,
+-- 
+Xilin Wu <wuxilin123@gmail.com>
 
-> Cheers,
-> Maksim
-
-John.
