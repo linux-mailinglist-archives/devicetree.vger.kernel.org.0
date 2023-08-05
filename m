@@ -2,270 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24165770FFD
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 15:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F5477101A
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 16:19:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbjHENxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 09:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44354 "EHLO
+        id S229528AbjHEOTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 10:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjHENxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 09:53:30 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00DC5199;
-        Sat,  5 Aug 2023 06:53:28 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b72161c6e9so50303801fa.0;
-        Sat, 05 Aug 2023 06:53:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691243607; x=1691848407;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EL4irT6Xqgsi30IiRyba/mxba3n+qOkv3KZi5C+dTFA=;
-        b=Z54dEAgGg1/ePblnO5SIkudufQDZvAw4Jfe++swbd744aIrn6h5ZWAcK4+ejasdlxh
-         FMfUFFiW5sJPMusFbhotbiS/056Vh0UBhEpQOQJi/4cglsxEeqtXtEQTlCVEuANi13HN
-         vmnOVstvCy1oQpFhYI0+FzJJqmNVlEPcqYR8N8+ZMEoW7fw7vJxz5nzSkgpaMPcNKIp2
-         FMOU/18MsrjIcjwcGVGVQzugKoyql9ZT+rj4+sKWtL1XngaZ4uNzCsl25VlC3VhVQCmc
-         cd/HLLr9NEpT6E+8DyTHzVNIRBTcPhnZjRRENSY8Vci7jrADftfF4pwfXfeR2QHQmy/G
-         F49Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691243607; x=1691848407;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EL4irT6Xqgsi30IiRyba/mxba3n+qOkv3KZi5C+dTFA=;
-        b=E+Wy5PoK9So3YMm51COMbNkSSaNvFD3h1rC1+QAQI3wizS09QGY3iQ2RulyaH9qsvL
-         5gR0Khh2usXozsEtGTzunG22ED79uosp8cMvsQt4HV9sfa7+6Lw2mASO7HunbqfJdeMw
-         Xt+S6on/UHJGAo4cUXOKgEQziZ2iCMbZ/NjUr2gjQmpK9Dq5EpF4FaTTYBiuqGuogB21
-         D/emj1dwecCzt0sYEp65lMJSmmuaiHFJ6FVDeypL9hBz7VqMi5pmJJCJBx0EhHHE+nbP
-         v4ms/S5n6IIqxeUmw/1FxG2u6hNzGKlv4BfATfpq3mgk6oQeYyR2Wwt5Qc3FXzZ/Q8KY
-         uqpA==
-X-Gm-Message-State: AOJu0Yyu1iMYjLH2TJPNkbF8GwLqLtj50m1gK91CCs2/34CikuNrYQ9K
-        f0ipYqC7bFg3SCzgYb40xX8=
-X-Google-Smtp-Source: AGHT+IEpbkT7AmigjkKcx1rCZ2YLVNr03+lzCRMl97dOakJxIalSkm8IT3s8x9hCj1TKaa7lYmzSpw==
-X-Received: by 2002:a05:651c:483:b0:2b9:cb73:9a90 with SMTP id s3-20020a05651c048300b002b9cb739a90mr789696ljc.11.1691243606913;
-        Sat, 05 Aug 2023 06:53:26 -0700 (PDT)
-Received: from localhost.localdomain (95-24-145-241.broadband.corbina.ru. [95.24.145.241])
-        by smtp.googlemail.com with ESMTPSA id w20-20020a2e9bd4000000b002b6f8d07d30sm900124ljj.134.2023.08.05.06.53.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Aug 2023 06:53:26 -0700 (PDT)
-From:   Ivan Mikhaylov <fr0st61te@gmail.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229379AbjHEOTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 10:19:36 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 65CC03C16;
+        Sat,  5 Aug 2023 07:19:34 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B67C51FB;
+        Sat,  5 Aug 2023 07:20:16 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F4963F59C;
+        Sat,  5 Aug 2023 07:19:30 -0700 (PDT)
+Date:   Sat, 5 Aug 2023 15:18:33 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Martin Botka <martin@biqu3d.com>
+Cc:     martin.botka1@gmail.com,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Po-Yu Chuang <ratbert@faraday-tech.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Ivan Mikhaylov <fr0st61te@gmail.com>
-Subject: [PATCH v4] dt-bindings: net: ftgmac100: convert to yaml version from txt
-Date:   Sat,  5 Aug 2023 16:53:18 +0300
-Message-ID: <20230805135318.6102-1-fr0st61te@gmail.com>
-X-Mailer: git-send-email 2.41.0
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] arm64: dts: allwinner: h616: Add BigTreeTech CB1
+ SoM & boards support
+Message-ID: <20230805151833.4adcb6b5@slackpad.lan>
+In-Reply-To: <F7AE26E278753D75+20230805083636.788048-4-martin@biqu3d.com>
+References: <20230805083636.788048-1-martin@biqu3d.com>
+        <F7AE26E278753D75+20230805083636.788048-4-martin@biqu3d.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Conversion from ftgmac100.txt to yaml format version.
+On Sat,  5 Aug 2023 10:36:06 +0200
+Martin Botka <martin@biqu3d.com> wrote:
 
-Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
----
- .../bindings/net/faraday,ftgmac100.yaml       | 102 ++++++++++++++++++
- .../devicetree/bindings/net/ftgmac100.txt     |  67 ------------
- 2 files changed, 102 insertions(+), 67 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/ftgmac100.txt
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
-new file mode 100644
-index 000000000000..9bcbacb6640d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Faraday Technology FTGMAC100 gigabit ethernet controller
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+
-+maintainers:
-+  - Po-Yu Chuang <ratbert@faraday-tech.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: faraday,ftgmac100
-+      - items:
-+          - enum:
-+              - aspeed,ast2400-mac
-+              - aspeed,ast2500-mac
-+              - aspeed,ast2600-mac
-+          - const: faraday,ftgmac100
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: MAC IP clock
-+      - description: RMII RCLK gate for AST2500/2600
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: MACCLK
-+      - const: RCLK
-+
-+  phy-mode:
-+    enum:
-+      - rgmii
-+      - rmii
-+
-+  phy-handle: true
-+
-+  use-ncsi:
-+    description:
-+      Use the NC-SI stack instead of an MDIO PHY. Currently assumes
-+      rmii (100bT) but kept as a separate property in case NC-SI grows support
-+      for a gigabit link.
-+    type: boolean
-+
-+  no-hw-checksum:
-+    description:
-+      Used to disable HW checksum support. Here for backward
-+      compatibility as the driver now should have correct defaults based on
-+      the SoC.
-+    type: boolean
-+    deprecated: true
-+
-+  mdio:
-+    $ref: /schemas/net/mdio.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    ethernet@1e660000 {
-+        compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
-+        reg = <0x1e660000 0x180>;
-+        interrupts = <2>;
-+        use-ncsi;
-+    };
-+
-+    ethernet@1e680000 {
-+        compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
-+        reg = <0x1e680000 0x180>;
-+        interrupts = <2>;
-+
-+        phy-handle = <&phy>;
-+        phy-mode = "rgmii";
-+
-+        mdio {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            phy: ethernet-phy@1 {
-+                compatible = "ethernet-phy-ieee802.3-c22";
-+                reg = <1>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/ftgmac100.txt b/Documentation/devicetree/bindings/net/ftgmac100.txt
-deleted file mode 100644
-index 29234021f601..000000000000
---- a/Documentation/devicetree/bindings/net/ftgmac100.txt
-+++ /dev/null
-@@ -1,67 +0,0 @@
--* Faraday Technology FTGMAC100 gigabit ethernet controller
--
--Required properties:
--- compatible: "faraday,ftgmac100"
--
--  Must also contain one of these if used as part of an Aspeed AST2400
--  or 2500 family SoC as they have some subtle tweaks to the
--  implementation:
--
--     - "aspeed,ast2400-mac"
--     - "aspeed,ast2500-mac"
--     - "aspeed,ast2600-mac"
--
--- reg: Address and length of the register set for the device
--- interrupts: Should contain ethernet controller interrupt
--
--Optional properties:
--- phy-handle: See ethernet.txt file in the same directory.
--- phy-mode: See ethernet.txt file in the same directory. If the property is
--  absent, "rgmii" is assumed. Supported values are "rgmii*" and "rmii" for
--  aspeed parts. Other (unknown) parts will accept any value.
--- use-ncsi: Use the NC-SI stack instead of an MDIO PHY. Currently assumes
--  rmii (100bT) but kept as a separate property in case NC-SI grows support
--  for a gigabit link.
--- no-hw-checksum: Used to disable HW checksum support. Here for backward
--  compatibility as the driver now should have correct defaults based on
--  the SoC.
--- clocks: In accordance with the generic clock bindings. Must describe the MAC
--  IP clock, and optionally an RMII RCLK gate for the AST2500/AST2600. The
--  required MAC clock must be the first cell.
--- clock-names:
--
--      - "MACCLK": The MAC IP clock
--      - "RCLK": Clock gate for the RMII RCLK
--
--Optional subnodes:
--- mdio: See mdio.txt file in the same directory.
--
--Example:
--
--	mac0: ethernet@1e660000 {
--		compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
--		reg = <0x1e660000 0x180>;
--		interrupts = <2>;
--		use-ncsi;
--	};
--
--Example with phy-handle:
--
--	mac1: ethernet@1e680000 {
--		compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
--		reg = <0x1e680000 0x180>;
--		interrupts = <2>;
--
--		phy-handle = <&phy>;
--		phy-mode = "rgmii";
--
--		mdio {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			phy: ethernet-phy@1 {
--				compatible = "ethernet-phy-ieee802.3-c22";
--				reg = <1>;
--			};
--		};
--	};
--- 
-2.41.0
+> From: Martin Botka <martin.botka@somainline.org>
+> 
+> CB1 is Compute Module style board that plugs into Rpi board style adapter or
+> Manta 3D printer boards (M4P/M8P).
+> 
+> The SoM features:
+>   - H616 SoC
+>   - 1GiB of RAM
+>   - AXP313A PMIC
+>   - RTL8189FTV WiFi
+> 
+> Boards feature:
+>   - 4x USB via USB2 hub (usb1 on SoM).
+>   - SDcard slot for loading images.
+>   - Ethernet port wired to the internal PHY. (100M)
+>   - 2x HDMI 2.0. (Only 1 usable on CB1)
+>   - Power and Status LEDs. (Only Status LED usable on CB1)
+>   - 40 pin GPIO header
+> 
+> Currently working:
+>   - Booting
+>   - USB
+>   - UART
+>   - MMC
+>   - Status LED
+>   - WiFi (RTL8189FS via out of tree driver)
+> 
+> I didnt want to duplicate things so the manta DTS can also be used on BTT pi4b adapter.
+> CB1 SoM has its own DTSI file in case other boards shows up that accept this SoM.
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+
+Thanks, looks good now, git am, dtc, checkpatch and dt-validate all
+pass (given the "interrupt optional" binding patch):
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+> Changes in V2:
+>     - Fixed whitespace errors
+>     - Move UART into carrier boards and BTT Pi
+>     - Remove usb1-vbus regulator
+>     - Fix ranges and naming of AXP313A rails
+>     - Add comment specifying why broken-cd in mmc0 is needed
+>     - Rename sdio_wifi to wifi
+>     - Specify in commit description that USB-OTG doesnt work
+> Changes in V3:
+>     - Add missed semicolons
+>     - Move model string from dtsi to board dts
+>     - Add cb1 compatible
+>     - Remove extra empty line
+> 
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../sun50i-h616-bigtreetech-cb1-manta.dts     |  35 +++++
+>  .../sun50i-h616-bigtreetech-cb1.dtsi          | 140 ++++++++++++++++++
+>  3 files changed, 176 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 6a96494a2e0a..7b386428510b 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+> new file mode 100644
+> index 000000000000..dbce61b355d6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> +/*
+> + * Copyright (C) 2023 Martin Botka <martin.botka@somainline.org>.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-h616-bigtreetech-cb1.dtsi"
+> +
+> +/ {
+> +	model = "BigTreeTech CB1";
+> +	compatible = "bigtreetech,cb1-manta", "bigtreetech,cb1", "allwinner,sun50i-h616";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_ph_pins>;
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+> new file mode 100644
+> index 000000000000..5f606fcce97c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
+> @@ -0,0 +1,140 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> +/*
+> + * Copyright (C) 2023 Martin Botka <martin.botka@somainline.org>.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-h616.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	aliases {
+> +		ethernet0 = &rtl8189ftv;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>; /* PH5 */
+> +		};
+> +	};
+> +
+> +	reg_vcc5v: regulator-vcc5v {
+> +		/* board wide 5V supply from carrier boards */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-5v";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_vcc33_wifi: vcc33-wifi {
+> +		/* Always on 3.3V regulator for WiFi */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc33-wifi";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		vin-supply = <&reg_vcc5v>;
+> +	};
+> +
+> +	reg_vcc_wifi_io: vcc-wifi-io {
+> +		/* Always on 1.8V/300mA regulator for WiFi */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-wifi-io";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +		vin-supply = <&reg_vcc33_wifi>;
+> +	};
+> +
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		clocks = <&rtc 1>;
+> +		clock-names = "ext_clock";
+> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
+> +		post-power-on-delay-ms = <200>;
+> +	};
+> +};
+> +
+> +&mmc0 {
+> +	vmmc-supply = <&reg_dldo1>;
+> +	/* Card detection pin is not connected */
+> +	broken-cd;
+> +	bus-width = <4>;
+> +	status = "okay";
+> +};
+> +
+> +&mmc1 {
+> +	vmmc-supply = <&reg_vcc33_wifi>;
+> +	vqmmc-supply = <&reg_vcc_wifi_io>;
+> +	mmc-pwrseq = <&wifi_pwrseq>;
+> +	bus-width = <4>;
+> +	non-removable;
+> +	mmc-ddr-1_8v;
+> +	status = "okay";
+> +
+> +	rtl8189ftv: wifi@1 {
+> +		reg = <1>;
+> +	};
+> +};
+> +
+> +&r_i2c {
+> +	status = "okay";
+> +
+> +	axp313a: pmic@36 {
+> +		compatible = "x-powers,axp313a";
+> +		reg = <0x36>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <1>;
+> +
+> +		regulators{
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-name = "vdd-gpu-sys";
+> +				regulator-min-microvolt = <810000>;
+> +				regulator-max-microvolt = <990000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-name = "vdd-cpu";
+> +				regulator-min-microvolt = <810000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-ramp-delay = <200>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-name = "vcc-dram";
+> +				regulator-min-microvolt = <1350000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_aldo1: aldo1 {
+> +				regulator-name = "vcc-1v8-pll";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dldo1: dldo1 {
+> +				regulator-name = "vcc-3v3-io";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&usbphy {
+> +	status = "okay";
+> +};
 
