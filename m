@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58090770E4A
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 09:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EBAE770E4C
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 09:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbjHEHLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 03:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
+        id S229712AbjHEHM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 03:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjHEHLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 03:11:16 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24768468C
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 00:11:15 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99cbfee358eso19930266b.3
-        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 00:11:15 -0700 (PDT)
+        with ESMTP id S229530AbjHEHM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 03:12:58 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C185E4EC1
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 00:12:57 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso387779466b.1
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 00:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691219473; x=1691824273;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1691219576; x=1691824376;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yz1Cbq5253Upy7To/ILdOnCE5Vu7+PhjZfR51Q+MT6s=;
-        b=kVBsnBXAst8PXr7P6TuBNNqhhTgsvdWI0aBKpLqxny1sUKGtgZ72tFDcjzGVfSlT99
-         SvN5uc2riHYu1aZSQKLY8zf8nlVRg3r5xdWcH7jZLhlrNNHyJBHrDLrONdKkU+krKZ2U
-         vrPqjPVXBLWW18Rv1UwLeeyAgsN/2gc77yxdnTSN19pqYQIddr7Qa4StGlTCP7PCo3WR
-         rp858ABlDKH5e6V1blTFlnJ4cS6CrQXfaE1Dzq1EJVXhsBsc0D3onzOSCXJQJyZpNGsQ
-         bwtsMBhN5BpkPNFSrmKpm02DNtR1dEQHWhhwIRlY5kf76c4N7cyx+8m9VoJ5zYFu/Fww
-         F4mg==
+        bh=6EYKHh9zvdAN2J1bA5/eS1HMxCXCRGCzihmZHexGE78=;
+        b=k1k3AGZmulqQC8ludWvwxbPiYrcVqk+o7I68hdA9euUYhnNu7buw3mc9Lm7HHiDDkz
+         u/r86NEkT9ycpKdcFLo+o6FGvlxHbT7bzJ52FVp2/gpPUe7hy3+EHe+n50gfFt5qbu/t
+         7/Z2B91DENrTVCGt28Dsr/Tt8z7eyC5/oE7IBXjocUG46pnhI63N5RwCCEpdCMkExvk+
+         s8roCyu4Xfj8MHQbRKo71dx1BM5qaKq2bPh49C7L3kPlLg403q2ySgeHlM8bK7zhlx9e
+         jXNDlrxhICvlw2xIvO/js9FwG4CRqjlK6rDjmnz3XoXTWW+mB0/p1u4/7FX03bFZ0Ypw
+         0Xiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691219473; x=1691824273;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1691219576; x=1691824376;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yz1Cbq5253Upy7To/ILdOnCE5Vu7+PhjZfR51Q+MT6s=;
-        b=T/5pLFkKdNTlySJMg6iNzLxLK4Z8jpdFAuGzsZU2fhju0cZ37PZZ5rQFHr0XewoHai
-         Qp9Z/jR/bEivyUm82cl+07hLPZi8W/r3uP+HLmVrl1ENOLECQiJOGVPR7YsEXVOOLJSj
-         RjJH+ffaPj0MKvYJRsBDRvR7XrdNKJ4ZCTtC1bY42titEW8jsx4RHpJ+wr18cOAhWy2i
-         E+tLpMBCqUVJn5onT+SejAwCEJZZ9q4rkDNBzKU19aM8XirADMfZ5my9fylyVEYsoLCf
-         T9w0SzOJMl2ZueL59j2WPGCosbvJj1nF0FZ0NSy/Z/E/cx/0u6Nc4ZAmE0sADRRcRVym
-         TgBQ==
-X-Gm-Message-State: AOJu0YxsjFuZxoHi8QdZcx6I+DgfEIfrssv7Hto+pYk+dKSJKI/xm+Pp
-        9uWbee3MHNElxXRYedSeyG/cyQ==
-X-Google-Smtp-Source: AGHT+IHVXwWTCOCrS0wRiAaydBBmSEhSu6wADWazO1sTWMWKdjR9jO4VIRDIqoWcxpmUtm6UGNtZtw==
-X-Received: by 2002:a17:907:b16:b0:99c:6fb6:ae7c with SMTP id h22-20020a1709070b1600b0099c6fb6ae7cmr3152947ejl.22.1691219473592;
-        Sat, 05 Aug 2023 00:11:13 -0700 (PDT)
+        bh=6EYKHh9zvdAN2J1bA5/eS1HMxCXCRGCzihmZHexGE78=;
+        b=DM/PcIfu0rhaz10PASOK/KL/+HWeKIZHCBY7Jv5+PSlemTKI2k0ailP9dJlJOHpiUK
+         FoTTo0sQIZwXjB2Hms7zEW35LhMKvXbNk5rcMMBjtMrizJoptx+HnOWresRWXvmlM9XP
+         PDH1htPpo+sDnMt6QXLLUXV0k059MBj7zEfBAxF+gGSpZB++/my031qVU9FXYBKnPUDl
+         MI70mVMpIKju7SOpjVGGhowtK9WrEv4R2FEyLOopjRWtgELH2tpH27QHSC/U3XbhltOY
+         PtPnccKNYkLFdZKNaznMeo54Jbvvl7YUnAEbz2CrNzrC58VhH4PwcPqGO4j06eHnMSte
+         a9AQ==
+X-Gm-Message-State: AOJu0Yw1LhEUeha20K1Rb9hSwHCtpHxN3zzng7v78j3Mh23pW1IyaY+G
+        MkwcwqzeP9OJna0lysiil7DGBg==
+X-Google-Smtp-Source: AGHT+IEBKGPV9a+L0ZJ9F30Yqa3AMwT7ZmB0w3Kd7xbiSD1oCem6izMufS7UEUKCnXqOxqNDfjIOIg==
+X-Received: by 2002:a17:906:2081:b0:99b:c689:3f3d with SMTP id 1-20020a170906208100b0099bc6893f3dmr3165876ejq.25.1691219576097;
+        Sat, 05 Aug 2023 00:12:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id y8-20020a1709063a8800b0099316c56db9sm2283516ejd.127.2023.08.05.00.11.11
+        by smtp.gmail.com with ESMTPSA id bw4-20020a170906c1c400b009829d2e892csm2366994ejb.15.2023.08.05.00.12.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Aug 2023 00:11:13 -0700 (PDT)
-Message-ID: <d14663e2-2306-3eda-3760-ef2b4d4150e1@linaro.org>
-Date:   Sat, 5 Aug 2023 09:11:10 +0200
+        Sat, 05 Aug 2023 00:12:55 -0700 (PDT)
+Message-ID: <c113197b-038f-c2a1-bc83-4e009b4ac187@linaro.org>
+Date:   Sat, 5 Aug 2023 09:12:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: sunxi: add Mango Pi MQ-Quad
- binding
+Subject: Re: [PATCH v5 2/2] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad
+ DTS
+Content-Language: en-US
 To:     Matthew Croughan <matthew.croughan@nix.how>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>
+        Samuel Holland <samuel@sholland.org>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
 References: <20230805044558.279473-2-matthew.croughan@nix.how>
- <20230805044558.279473-3-matthew.croughan@nix.how>
-Content-Language: en-US
+ <20230805044558.279473-4-matthew.croughan@nix.how>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230805044558.279473-3-matthew.croughan@nix.how>
+In-Reply-To: <20230805044558.279473-4-matthew.croughan@nix.how>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,13 +83,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/08/2023 06:42, Matthew Croughan wrote:
-> Document board compatible names for Mango Pi MQ-Quad
+> Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
+> and its peripherals
 > 
 > Signed-off-by: Matthew Croughan <matthew.croughan@nix.how>
 > 
 > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-No blank lines between tags.
+This is FAKE, no. Please do not invent fake tags.
 
 Best regards,
 Krzysztof
