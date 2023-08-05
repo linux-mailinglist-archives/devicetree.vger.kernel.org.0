@@ -2,130 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6067710FB
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 19:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ECC6771125
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 19:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbjHERjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 13:39:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55906 "EHLO
+        id S229602AbjHERuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 13:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjHERjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 13:39:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D313103;
-        Sat,  5 Aug 2023 10:39:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9586C60D57;
-        Sat,  5 Aug 2023 17:39:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F29C433C8;
-        Sat,  5 Aug 2023 17:39:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691257155;
-        bh=MDSXAe8XWbnhwTQRcCe7HpqPED1RoWnoD6b8xheiylc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fGZSBsxcIX5nXyzKjSka28CLNSLhnJbtCwRKcXqetJOipPR7Q+v42goOK3NqXtkZ8
-         c9vqay6aP/z8nP8Qow3TFzMonKkTjr3Y80GZL4+q/QjB5yO2dBYqYL781pXoVmn3A/
-         3vqlsQj850uz9+SF7C1APCRYb3l/FjFUoRmSnXJv/1r2+92iCPEcX5ox5HPm6gv9RL
-         Mf7vm0reM27++NPqrgZBq1tbnaHfTmrm/KU3nl95So9GBKXTczY3SZmpm+7DZg9Xbq
-         faIrkjieDd8YzCV6WE9idXOcxtRkpGz6G+ZjmmL62UMi2zaGfDkfk90yWjo6Ap5aqx
-         digNnzD+ZMOGg==
-Date:   Sat, 5 Aug 2023 18:39:06 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     <marius.cristea@microchip.com>
-Cc:     <lars@metafoo.de>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: adding MCP3564 ADC
-Message-ID: <20230805183906.521c90b0@jic23-huawei>
-In-Reply-To: <20230804142820.89593-2-marius.cristea@microchip.com>
-References: <20230804142820.89593-1-marius.cristea@microchip.com>
-        <20230804142820.89593-2-marius.cristea@microchip.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S229500AbjHERuO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 13:50:14 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15B835AA;
+        Sat,  5 Aug 2023 10:49:55 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bcd6c0282so450153666b.1;
+        Sat, 05 Aug 2023 10:49:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691257793; x=1691862593;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KYJH/1P//NwsKipiDkgfl/z4aZz2q+xkqCsqTOu5Bf0=;
+        b=j/mPVWvYXvbo/U83l1AGEhWBbnbL5ajrpLlTTSCXbdaJLSvpWA8XqfqCvpKRezoFL4
+         GDCsmSuw4dObYIn1NQHIrtO7ZljDdV247wdhWW9+Cpfz688iwYU7cQKJu8T7/HeszQsu
+         +gOMBaXAsF7foZDrq8HVld7TYkXDQW+G3tzwyD91WjNo33t6Kge2uh7vGnl85cJX+P2T
+         V62JC9p/sXMehHtY70AFIe2oLRP5xx/e6aaK28Uh53j+ytu8bBbd8/iOo+q7pwuDOAcS
+         7egsQyG0sDLHfjw1HKaoZ1wV0CIE8QTdpfWHlZNK7w4Krg8Mxi8EMbY2Url/mmGqVuOu
+         4Rwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691257793; x=1691862593;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KYJH/1P//NwsKipiDkgfl/z4aZz2q+xkqCsqTOu5Bf0=;
+        b=ihBy1agR/z4cQ81YN6x9YESZwq8IgeMBQXPs1DJD5yyojORrNcj7AaVsukaP5rQXBC
+         qnwIG7fWHJF2coGSVZN4a6w9LDvGgdfliDXccCGUsx79SJD8JbiXHf9fMSOP2DzQsqDy
+         H/i1++ZjRTajfGLRqNrwuft4IROruWPnr5gvB2lk8vjKsScTKsk+Bsm3poEFBX6jyNcF
+         HgLooSauRfNK92t5ivxEAsoLF1CgPxx7kbvK53a1SJiahdkkEEI1Q5lp650KrU1/Bs3K
+         G2kPmGQsO8THH3Lu5KnqTaG/h9kPovZCcDGSb3Mmhqbt8v+3yQ7QfwqkjQVhrVW3C7OH
+         o62g==
+X-Gm-Message-State: AOJu0Ywn3B6SMCrmLxbnQaOl2H1ApNF224cCVwz3PDZdfqzbdsN69lsc
+        FiuSVPuhIJK4Kq8JtYuPKtc=
+X-Google-Smtp-Source: AGHT+IEj+JsLAYsRvKq5tljy3+gyroq6CmwWB5RDT+QP3IP4h/PpnBkxNteaPS5GTU473Jm9OxjtOg==
+X-Received: by 2002:a17:906:14:b0:98e:1156:1a35 with SMTP id 20-20020a170906001400b0098e11561a35mr3934964eja.74.1691257793309;
+        Sat, 05 Aug 2023 10:49:53 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id f8-20020a170906138800b00992ae4cf3c1sm2938044ejc.186.2023.08.05.10.49.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Aug 2023 10:49:52 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Maksim Kiselev <bigunclemax@gmail.com>,
+        John Watts <contact@jookia.org>
+Cc:     aou@eecs.berkeley.edu, conor+dt@kernel.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, edumazet@google.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, mkl@pengutronix.de,
+        netdev@vger.kernel.org, pabeni@redhat.com, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, wg@grandegger.com
+Subject: Re: [PATCH v2 2/4] riscv: dts: allwinner: d1: Add CAN controller nodes
+Date:   Sat, 05 Aug 2023 19:49:51 +0200
+Message-ID: <2690764.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <ZM5-Ke-59o0R5AtY@titan>
+References: <20230721221552.1973203-4-contact@jookia.org>
+ <20230805164052.669184-1-bigunclemax@gmail.com> <ZM5-Ke-59o0R5AtY@titan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Aug 2023 17:28:19 +0300
-<marius.cristea@microchip.com> wrote:
-
-> From: Marius Cristea <marius.cristea@microchip.com>
+Dne sobota, 05. avgust 2023 ob 18:51:53 CEST je John Watts napisal(a):
+> On Sat, Aug 05, 2023 at 07:40:52PM +0300, Maksim Kiselev wrote:
+> > Hi John, Jernej
+> > Should we also keep a pinctrl nodes itself in alphabetical order?
+> > I mean placing a CAN nodes before `clk_pg11_pin` node?
+> > Looks like the other nodes sorted in this way...
 > 
-> This is the device tree schema for iio driver for
-> Microchip family of 153.6 ksps, Low-Noise 16/24-Bit
-> Delta-Sigma ADCs with an SPI interface (Microchip's
-> MCP3461, MCP3462, MCP3464, MCP3461R, MCP3462R,
-> MCP3464R, MCP3561, MCP3562, MCP3564, MCP3561R,
-> MCP3562R and MCP3564R analog to digital converters).
+> Good catch. Now that you mention it, the device tree nodes are sorted
+> by memory order too! These should be after i2c3.
 > 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+> It looks like I might need to do a patch to re-order those too.
 
-Given driver handles the channel label binding, nice to have
-that in the example here.
+It would be better if DT patches are dropped from netdev tree and then post 
+new versions.
+
+Best regards,
+Jernej
+
+> 
+> > Cheers,
+> > Maksim
+> 
+> John.
 
 
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +            compatible = "microchip,mcp3564r";
-> +            reg = <0>;
-> +            vref-supply = <&vref_reg>;
-> +            spi-cpha;
-> +            spi-cpol;
-> +            spi-max-frequency = <10000000>;
-> +            microchip,hw-device-address = <1>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            channel@0 {
-> +                /* CH0 to AGND */
-> +                reg = <0>;
-> +            };
-> +
-> +            channel@1 {
-> +                /* CH1 to AGND */
-> +                reg = <1>;
-> +            };
-> +
-> +            /* diff-channels */
-> +            channel@11 {
-> +                reg = <11>;
-> +
-> +                /* CN0, CN1 */
-> +                diff-channels = <0 1>;
-> +            };
-> +
-> +            channel@22 {
-> +                reg = <0x22>;
-> +
-> +                /* CN1, CN2 */
-> +                diff-channels = <1 2>;
-> +            };
-> +
-> +            channel@23 {
-> +                reg = <0x23>;
-> +
-> +                /* CN1, CN3 */
-> +                diff-channels = <1 3>;
-> +            };
-> +        };
-> +    };
-> +...
+
 
