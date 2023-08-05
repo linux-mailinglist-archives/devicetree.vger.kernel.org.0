@@ -2,137 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8A87711C5
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AEF67711CF
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbjHETeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 15:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57142 "EHLO
+        id S230303AbjHETil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 15:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjHETeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:34:14 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5702D199;
-        Sat,  5 Aug 2023 12:34:12 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 375JXuWE053982;
-        Sat, 5 Aug 2023 14:33:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691264036;
-        bh=ywGf2VNoOdqAsNkHO77gnWJr1RqaF8o7AFI63z26nj8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=YtrE2N3QmtSL2poYFvurWUJonYkeIETqbk6dYSzfB9zr4kOAA8UqV+sD4mrgn40ko
-         ZRvUJRwGb7+nwTu1+NOBFSbMU8CVxe5WAkZG1BCqeaCselDJNAfRb+b9V3Pnrlgm67
-         vtuU4HVsoHIyEYP0s2NBBkljrE/oN0LtSRpvZrJk=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 375JXuYU012469
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 5 Aug 2023 14:33:56 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 5
- Aug 2023 14:33:55 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 5 Aug 2023 14:33:55 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 375JXtUa003708;
-        Sat, 5 Aug 2023 14:33:55 -0500
-Date:   Sat, 5 Aug 2023 14:33:55 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Devarsh Thakkar <devarsht@ti.com>, <afd@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <a-bhatia1@ti.com>, <j-luthra@ti.com>, <praneeth@ti.com>,
-        <j-choudhary@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB of
- global CMA
-Message-ID: <20230805193355.o657pwbq2w3tciui@vehicular>
-References: <20230803111455.811339-1-devarsht@ti.com>
+        with ESMTP id S229436AbjHETik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:38:40 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5A81BE4
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 12:38:38 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc63c2e84so32646355e9.3
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 12:38:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691264317; x=1691869117;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=udk/H8ZgKjfvJwnE+xho4EfEOftvGT0VCYsBYpwRNHo=;
+        b=yD2hT0N3zrlPlop4QxmCW16DXc/kWC/8YNFcGOeKehecVojM3ba0Zd39mtHn989C3X
+         R7oqj1lpmK9PjbFsklJF8XvKM9o8RwvldDEqrpxtJrh3IquXPVxUqYEGuiDzMB7BhQHr
+         up6Glj+7T9fB3Pt3eOshXohaxyb02FtrVfrHOLLU5gIXEGoEjg4cC53wOPQaez0p8EDf
+         2L/1awLEnbUYyc2mft6VCHoN7EkruHhgoiWAUX9d0eVHEKjE77AIX/0pbvPjiK1JFvEj
+         365QLUclpMw2AZrOh5OHpPnyul9NRliEfYwFpGcgw/OK9XH7zq9pzgZrGfIEg0bsiRG1
+         Wjqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691264317; x=1691869117;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=udk/H8ZgKjfvJwnE+xho4EfEOftvGT0VCYsBYpwRNHo=;
+        b=ZFKbu78h4eg94PB4KC9B84brTPMqCsEihaVfhJEJk7ju6KFKgnBtxMb9YNuB7g62zJ
+         DAqRnipc6teWatZyifygDCmhu3mH9wxSsJatPl1m778qAohgFa2esTkqZaJ/5X+73Ra4
+         AOZHOpgPR80RH331dmjKQIL7anNKMHWUvq3ozX0XtojtDfD1IkSasoBJ0ptWuw1vMFgK
+         qY7d54f1iqenEbJ8pW0yuOVCDQ+ms/puCqWJoKPMrOacRKpEgMqe64zx/j8CfGG9Jr4m
+         vv3M6oyP1qTJ6bDiuKQ4cX3S/0yL3wFhDBOXp07+Lyec7EgbqH+69EpsEQqpKcUZilxb
+         QM0w==
+X-Gm-Message-State: AOJu0YyxulL3X/MxJGzQZ9HzYQAIg7RgdkPWqaI8dSaieF5WXiSr2SK4
+        2uO8aN2cfipTcO8Avn7hGfBLIA==
+X-Google-Smtp-Source: AGHT+IGvrlUd0YfuF3G0qhIxdGb5wiPGOR1jc4ZfaV/DTwfKyUOEYr8f52aMWDJdfJaCv83Yo1cWYQ==
+X-Received: by 2002:a1c:4b0e:0:b0:3fb:b530:a4e4 with SMTP id y14-20020a1c4b0e000000b003fbb530a4e4mr4361705wma.8.1691264317315;
+        Sat, 05 Aug 2023 12:38:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.245])
+        by smtp.gmail.com with ESMTPSA id z12-20020a05600c220c00b003fe1ca92151sm5752252wml.26.2023.08.05.12.38.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Aug 2023 12:38:36 -0700 (PDT)
+Message-ID: <ceddbbfb-a178-2b7e-ea17-0a37f33224ab@linaro.org>
+Date:   Sat, 5 Aug 2023 21:38:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230803111455.811339-1-devarsht@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: cpufreq: add bindings for virtual
+ cpufreq
+Content-Language: en-US
+To:     David Dai <davidai@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     Quentin Perret <qperret@google.com>,
+        Masami Hiramatsu <mhiramat@google.com>,
+        Will Deacon <will@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Pavan Kondeti <quic_pkondeti@quicinc.com>,
+        Gupta Pankaj <pankaj.gupta@amd.com>,
+        Mel Gorman <mgorman@suse.de>, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230731174613.4133167-1-davidai@google.com>
+ <20230731174613.4133167-2-davidai@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230731174613.4133167-2-davidai@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:44-20230803, Devarsh Thakkar wrote:
-> Reserve 128MiB of global CMA which is also marked as re-usable
-> so that OS can also use the same if peripheral drivers are not using the
-> same.
+On 31/07/2023 19:46, David Dai wrote:
+> Adding bindings to represent a virtual cpufreq device.
 > 
-> AM62x supports multimedia components such as GPU, dual Display and Camera.
-> Assuming the worst-case scenario where all 3 are run in parallel below
-> is the calculation :
+> Virtual machines may expose MMIO regions for a virtual cpufreq device for
+> guests to read frequency information or to request frequency selection. The
+> virtual cpufreq device has an individual controller for each CPU.
+
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+
 > 
-> 1) OV5640 camera sensor supports 1920x1080 resolution
-> -> 1920 width x 1080 height x 2 bytesperpixel x 8 buffers
->    (default in yavta) : 32MiB
-> 
-> 2) 1920x1200 Microtips LVDS panel supported
-> -> 1920 width x 1080 height x 4 bytesperpixel x 2 buffers :
->    16 MiB
-> 
-> 3) 1920x1080 HDMI display supported
-> -> 1920 width x 1080 height x 4 bytesperpixel x 2 buffers :
->    15.82 MiB which is ~16 MiB
-> 
-> 4) IMG GPU shares with display allocated buffers while rendering
->    but in case some dedicated operation viz color conversion,
->    keeping same window of ~16 MiB for GPU too.
-> 
-> Total is 80 MiB and adding 32 MiB for other peripherals and extra
-> 16 MiB to keep as buffer for fragmentation thus rounding total to 128
-> MiB.
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> Acked-by: Darren Etheridge <detheridge@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Co-developed-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: David Dai <davidai@google.com>
 > ---
-
-I don't think this is right approach. There are other techniques
-than having to do this (Andrew: please comment) and require drivers to
-behave properly. I am esp concerned since there are platforms based on
-am62x and just 256MB DDR.
-
->  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../bindings/cpufreq/cpufreq-virtual.yaml     | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> index 34c8ffc553ec..9dd6e23ca9ca 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> @@ -47,6 +47,14 @@ ramoops@9ca00000 {
->  			pmsg-size = <0x8000>;
->  		};
->  
-> +		/* global cma region */
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +			size = <0x00 0x8000000>;
-> +			linux,cma-default;
-> +		};
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
+> new file mode 100644
+> index 000000000000..f377cfc972ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-virtual.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yamll#
 > +
->  		secure_tfa_ddr: tfa@9e780000 {
->  			reg = <0x00 0x9e780000 0x00 0x80000>;
->  			alignment = <0x1000>;
-> -- 
-> 2.34.1
-> 
+> +title: Virtual CPUFreq
+> +
+> +maintainers:
+> +  - David Dai <davidai@google.com>
+> +  - Saravana Kannan <saravanak@google.com>
+> +
+> +description:
+> +  Virtual CPUFreq is a virtualized driver in guest kernels that sends frequency
+> +  selection of its vCPUs as a hint to the host through MMIO regions. The host
+> +  uses the hint to schedule vCPU threads and select physical CPU frequency. It
+> +  enables accurate Per-Entity Load Tracking for tasks running in the guest by
+> +  querying host CPU frequency unless a virtualized FIE (ex. AMU) exists.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Why do you need DT for this? You control hypervisor, thus control the
+interface to the guest. I think Rob made it pretty clear that
+discoverable usecases (which is yours) are not for DT.
+
+Incomplete style-review follows:
+
+> +
+> +properties:
+> +  compatible:
+> +    const: virtual,cpufreq
+
+Missing blank line.
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    cpus {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      cpu@0 {
+> +        compatible = "arm,arm-v8";
+> +        device_type = "cpu";
+> +        reg = <0x0>;
+> +        operating-points-v2 = <&opp_table0>;
+> +      };
+> +
+> +      cpu@1 {
+> +        compatible = "arm,arm-v8";
+> +        device_type = "cpu";
+> +        reg = <0x0>;
+> +        operating-points-v2 = <&opp_table1>;
+> +      };
+> +    };
+> +
+> +    opp_table0: opp-table-0 {
+> +      compatible = "operating-points-v2";
+> +
+> +      opp1098000000 {
+> +        opp-hz = /bits/ 64 <1098000000>;
+> +        opp-level = <1>;
+> +      };
+> +
+> +      opp1197000000 {
+> +        opp-hz = /bits/ 64 <1197000000>;
+> +        opp-level = <2>;
+> +      };
+> +    };
+> +
+> +    opp_table1: opp-table-1 {
+> +      compatible = "operating-points-v2";
+> +
+> +      opp1106000000 {
+> +        opp-hz = /bits/ 64 <1106000000>;
+> +        opp-level = <1>;
+> +      };
+> +
+> +      opp1277000000 {
+> +        opp-hz = /bits/ 64 <1277000000>;
+> +        opp-level = <2>;
+> +      };
+> +    };
+> +
+> +    soc {
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      cpufreq {
+
+Missing unit address
+
+> +        reg = <0x1040000 0x10>;
+> +        compatible = "virtual,cpufreq";
+
+compatible is always the first property.
+
+Also, you did not test it...
+
+
+Best regards,
+Krzysztof
+
