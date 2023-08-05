@@ -2,104 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C547711B0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 557747711B7
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbjHETMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 15:12:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54032 "EHLO
+        id S229905AbjHETR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 15:17:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjHETMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:12:55 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3688180;
-        Sat,  5 Aug 2023 12:12:53 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 375JClJj036626;
-        Sat, 5 Aug 2023 14:12:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691262767;
-        bh=IbpmiDLwJTKa6g/ldUhZ6YOLpCYwbqCgTUwQ+yOWeBM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ygScs2LMLB16XMoYXtd/9x4mXtlbQsp1shYVEkIGI9Rmgt2OWv+n21K738OK0EubW
-         3M0zMy2mh1gqc3uJHqg5WPdsMo71VBUraJgZ9QjH8cO0IEzvXiqvaGMkucMJlkDQx4
-         VPQgWOqJdyVdo5x5Zo+dBwVj9DXtKxm90LD/5uG0=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 375JCldX031856
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 5 Aug 2023 14:12:47 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 5
- Aug 2023 14:12:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 5 Aug 2023 14:12:47 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 375JClrm121182;
-        Sat, 5 Aug 2023 14:12:47 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <rogerq@kernel.org>, Ravi Gunasekaran <r-gunasekaran@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <srk@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Enable dual role support for Type-C port
-Date:   Sat, 5 Aug 2023 14:12:46 -0500
-Message-ID: <169126275389.77646.2436247827772880387.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230725103651.1612-1-r-gunasekaran@ti.com>
-References: <20230725103651.1612-1-r-gunasekaran@ti.com>
+        with ESMTP id S230105AbjHETR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:17:57 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC9D3127
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 12:17:54 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe3c7f16bbso5290565e87.0
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 12:17:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691263073; x=1691867873;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pLetrPMUxW70aX6gSCrtBgQAGRigxfAIMPJ2cuSXx58=;
+        b=jEqhntM5C2UDE4r3yEIdxu+EAMV0lsKAZH2Vikk8WAQYSMcf1RH3hOxV0+bNnkcqHx
+         iVeSEEaa0g1RkL1UNSa/tU1RbTf9TEHiT/5TUynNgUkDEZRcH3Q5ROty8UjCU87aDe+G
+         yARpxSDZNJ1YcuREslFDQ5CjznPhNk7G15ZbQfKVYUiu257XHbSNkCA36PPs5Q196C2V
+         HlfiynFuMucSK/ftPjFYkW/edcihJLq70YKJNbiwGBQGDzZvEAHhBaG2L2FHdrxTHJ0c
+         B3IBVSaxWF1jdwOsPKTtIhKIKqQKtvqHUNBGBHczJC0p9NY3jf3+H8kZD1gqjdaho5Ip
+         f96Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691263073; x=1691867873;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pLetrPMUxW70aX6gSCrtBgQAGRigxfAIMPJ2cuSXx58=;
+        b=D78f0Iw1Kkw8WeNdezaiS+Im0xGc47ypa2BmSpbMwN103UfdLeV58JX9ljMZzPijxp
+         3U54nRt2S9Hxms+6lfzf1K8YKk+16KUdFfKYF3bIbza+7I88FTuJ5iJw2/qDDcCTztEW
+         Hd3PSHL+NkzwkYWavUgoxYBgxvlENCgXk2n0LPwzuTqpHV5ZQ51kbO590FdzjfHxhXJc
+         pJu4hhUf37HHp2RywZyA9PF38vjnMDAgsPiSUTwCmoy0ZYh/xiyJQST07T4tbINRMvzs
+         apCiw806Nrdc5AqrVBIJMBSJwwH/K9ea1jF21ak74yWFdxaGkvDu8WKwWR6hzjuDWGu3
+         piBA==
+X-Gm-Message-State: AOJu0Yz4hPN/RNLaZYBI+udh3g8oZX155BScKtYtGoiXqBPqtaN515A9
+        E5Esj4FWP43Rx8Dnjvy0pFmnTA==
+X-Google-Smtp-Source: AGHT+IFEPchYkikYDXWX/bM6V8/ADNATXh9hAwIplQ92lgzBUJx3huttmacwaGPL9AloL5E6pW0wTQ==
+X-Received: by 2002:a05:6512:3a82:b0:4fb:8bab:48b6 with SMTP id q2-20020a0565123a8200b004fb8bab48b6mr3659917lfu.52.1691263073104;
+        Sat, 05 Aug 2023 12:17:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.245])
+        by smtp.gmail.com with ESMTPSA id n9-20020aa7db49000000b0051e2cde9e3esm2997260edt.75.2023.08.05.12.17.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Aug 2023 12:17:52 -0700 (PDT)
+Message-ID: <249e806a-f094-9514-9c83-e74e7b1f00ba@linaro.org>
+Date:   Sat, 5 Aug 2023 21:17:50 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
+Content-Language: en-US
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-3-clamor95@gmail.com>
+ <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
+ <ZMbcb0yuTz6l6BYh@qmqm.qmqm.pl>
+ <b9183dfc-8e8a-9602-f31c-5de9e27acb88@linaro.org>
+ <ZMd1qI7RjQhpI8zO@qmqm.qmqm.pl>
+ <fdc513a3-c0e0-c57d-5c9a-8da6fa2f54e2@linaro.org>
+ <ZMg6m+Dru6rxCRqU@qmqm.qmqm.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZMg6m+Dru6rxCRqU@qmqm.qmqm.pl>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ravi Gunasekaran,
-
-On Tue, 25 Jul 2023 16:06:51 +0530, Ravi Gunasekaran wrote:
-> USB0 is interfaced with a Type-C DRP connector and is managed via a
-> USB PD controller. Add support for the Type-C port with dual data
-> and power sink role.
+On 01/08/2023 00:50, Michał Mirosław wrote:
+> On Mon, Jul 31, 2023 at 02:59:41PM +0200, Krzysztof Kozlowski wrote:
+>> On 31/07/2023 10:49, Michał Mirosław wrote:
+>>> On Mon, Jul 31, 2023 at 08:58:14AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 30/07/2023 23:55, Michał Mirosław wrote:
+>>>>> On Sun, Jul 30, 2023 at 10:30:56PM +0200, Krzysztof Kozlowski wrote:
+>>>>>> On 29/07/2023 18:08, Svyatoslav Ryhel wrote:
+>>>>>>> From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+>>>>>>>
+>>>>>>> Implement driver for hot-plugged I2C busses, where some devices on
+>>>>>>> a bus are hot-pluggable and their presence is indicated by GPIO line.
+>>>>> [...] 
+>>>>>>> +	priv->irq = platform_get_irq(pdev, 0);
+>>>>>>> +	if (priv->irq < 0)
+>>>>>>> +		return dev_err_probe(&pdev->dev, priv->irq,
+>>>>>>> +				     "failed to get IRQ %d\n", priv->irq);
+>>>>>>> +
+>>>>>>> +	ret = devm_request_threaded_irq(&pdev->dev, priv->irq, NULL,
+>>>>>>> +					i2c_hotplug_interrupt,
+>>>>>>> +					IRQF_ONESHOT | IRQF_SHARED,
+>>>>>>
+>>>>>> Shared IRQ with devm is a recipe for disaster. Are you sure this is a
+>>>>>> shared one? You have a remove() function which also points that it is
+>>>>>> not safe. You can:
+>>>>>> 1. investigate to be sure it is 100% safe (please document why do you
+>>>>>> think it is safe)
+>>>>>
+>>>>> Could you elaborate on what is unsafe in using devm with shared
+>>>>> interrupts (as compared to non-shared or not devm-managed)?
+>>>>>
+>>>>> The remove function is indeed reversing the order of cleanup. The
+>>>>> shutdown path can be fixed by removing `remove()` and adding
+>>>>> `devm_add_action_or_reset(...deactivate)` before the IRQ is registered.
+>>>> Shared interrupt might be triggered easily by other device between
+>>>> remove() and irq release function (devm_free_irq() or whatever it is
+>>>> called).
+>>>
+>>> This is no different tham a non-shared interrupt that can be triggered
+>>> by the device being removed. Since devres will release the IRQ first,
+>>> before freeing the driver data, the interrupt hander will see consistent
+>>> driver-internal state. (The difference between remove() and devres
+>>> release phase is that for the latter sysfs files are already removed.)
+>>
+>> True, therefore non-devm interrupts are recommended also in such case.
+>> Maybe one of my solutions is actually not recommended.
+>>
+>> However if done right, driver with non-shared interrupts, is expected to
+>> disable interrupts in remove(), thus there is no risk. We have big
+>> discussions in the past about it, so feel free to dig through LKML to
+>> read more about. Anyway shared and devm is a clear no go.
 > 
+> Can you share pointers to some of those discussions? Quick search
+> about devm_request_irq() and friends found only a thread from 2013
+
+Just look at CONFIG_DEBUG_SHIRQ. Some things lore points:
+https://lore.kernel.org/all/1592130544-19759-2-git-send-email-krzk@kernel.org/
+https://lore.kernel.org/all/20200616103956.GL4447@sirena.org.uk/
+
+I think pretty clear:
+https://lore.kernel.org/all/87mu52ca4b.fsf@nanos.tec.linutronix.de/
+https://lore.kernel.org/all/CA+h21hrxQ1fRahyQGFS42Xuop_Q2petE=No1dft4nVb-ijUu2g@mail.gmail.com/
+
+Also:
+https://lore.kernel.org/all/651c9a33-71e6-c042-58e2-6ad501e984cd@pengutronix.de/
+https://lore.kernel.org/all/36AC4067-78C6-4986-8B97-591F93E266D8@gmail.com/
+
+> about conversions of RTC drivers to use devres. [1] IIRC the issue was
+> then that the drivers requested IRQs before fully initializing the state
+> (as many still do). Back to the original question: what is the risk
+> in using devres with shared interrupts? (Let's assume the probe() is already
+> fixed and remove() removed.)
+
+
+
 > 
+> BTW, We have devres doc [2] in the kernel tree that, among other things,
+> lists IRQs as a managed resource and mentions no warnings nor restictions
+> for driver authors. I'd expect that if devm_request_threaded_irq() for
+> shared iterrupts was indeed deprecated, it should be documented in a way
+> easy to refer to.
+> 
+> [1] https://groups.google.com/g/linux.kernel/c/yi2ueo-sNJs
+> [2] Documentation/udriver-api/driver-model/devres.rst
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+That's not really an argument. For some reason we have
+CONFIG_DEBUG_SHIRQ, right? If you think documentation is missing,
+everyone is encouraged to fix it, but lack of documentation is not a
+proof of some correct code pattern.
 
-[1/1] arm64: dts: ti: k3-am62a7-sk: Enable dual role support for Type-C port
-      commit: 5a5cf3bdda04fe72440aa837c9451410d62ffa2f
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+Krzysztof
 
