@@ -2,138 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7290E77124D
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 23:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F3B771251
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 23:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229479AbjHEVOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 17:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49726 "EHLO
+        id S229449AbjHEVVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 17:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjHEVOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 17:14:30 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97631272E
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 14:14:29 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fb4146e8ceso28683835e9.0
-        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 14:14:29 -0700 (PDT)
+        with ESMTP id S229514AbjHEVVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 17:21:30 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8FD272A
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 14:21:26 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-317c3ac7339so2302335f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 14:21:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691270068; x=1691874868;
+        d=linaro.org; s=google; t=1691270484; x=1691875284;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vEH00hCKUcqe41GOXK5gDWTt8GrNd+VfwwCKTG3OKj4=;
-        b=Ro9mMbiEFAOfg/b9FvDz3nXufzFiJxSI64IOYhdqmGOpaUCZVlaUzn5HFqdEL6q19i
-         GGGWXuJWh1TtI/A4KA9vP6HBjGTUqcx8tr+45JSqa2mTGsKPcs3tto7CPCuzqJdSTEpZ
-         s4NzgMP5HbRtXuGef0f9uixaQs+RhlzsUaWE2I+RK9cH7t2DBN0NH+Kwq8Y6bLhGmCAN
-         ctxSQbR+OdHBrjAUHjKv6nb4kHD7iNreU5PLwR4xHlCzCKtB9gB0vld36RrD9B6pb7RB
-         XnDX/oxAEPj27kCRne7uaqGxNqEDs34aiHEP/stChgp05MYrE9OmSzEXKSOuRcnm9VNk
-         8r7A==
+        bh=n5OV4A0TE5pSUE8JdsBkgIy9vd1kBceO43pYJb+lKBY=;
+        b=FosvnB/7ZkxfYGRk/vYdq7jFTkOkfQOYzREjAtfRniifOq/ULeByTcWPcNwkN0Mbmw
+         jVp9jYq0PaU3u8gG/mfEuSGaoFH8uLgiXUCDqmBVjjRt+Vi9hM1QE5kZ074Bqup2FZZk
+         OrOnFkSNoQThHepiL8sOLryNFQ7qF1yYgrkHeRXF0yXKesfAyL83AfzWc4n+TNcWY33C
+         WeOVXsAgMlwwXz3y9fstzlcJNfIyZlm71NCqBSQT1h0F/xQhriN77/qRtKRKI2J2XeNR
+         hFHj3mA9y4EUE+fShijdg8Ntxi5K4wWrjK2zex5O9xVvMlS5nI2QnhxU4U+2eOCuMmLA
+         DrGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691270068; x=1691874868;
+        d=1e100.net; s=20221208; t=1691270484; x=1691875284;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vEH00hCKUcqe41GOXK5gDWTt8GrNd+VfwwCKTG3OKj4=;
-        b=c3lDHHZ46lMB85HzkNuqLUXR9x7MWT08FaQ//8yk6gNsxzYXeoCUVP2ANKYMU6gPvB
-         UXfIGTMaApz/rScyIGv2Gfkk4hnAxt0iBpdMuC/s+hAEOxovWwMTyJXpLymZ2jk9HzMR
-         GgMRi1m9Bkx0mXh4U0n7kNHhk/WJCmk4sVf9MxPDc8ixaQVYi/bGYpFpEO5yWziE+ouf
-         j3UCrFBvLSHyv0sMaCkZE/ClsXwuzw2lzdq7nZtObIDuXkjTiUHmSMykj8dJassHqSCk
-         x15ALNXwuLBL7zGzFNSF6hfwc5Fex7o/OXCCPnUpj7DB96MPEku69MllrOc4HsRTDrtW
-         GyAA==
-X-Gm-Message-State: AOJu0YzND+WEl2nJXO5MdxdDc0LNfvGNGit1rZICC+H2rPUviRC6Ds4G
-        otqbSuzfyJQlSS9RkPAMh0ORNPchhWmJSjJ4HKc=
-X-Google-Smtp-Source: AGHT+IFi0hGmELDPhVdOQZJZBDOH7zYks9t9rD+ydMeEYB8OMwNjclv2QEwwKjQ47EFCiXMySIOyhA==
-X-Received: by 2002:a1c:720c:0:b0:3fc:e00:5282 with SMTP id n12-20020a1c720c000000b003fc0e005282mr3612139wmc.0.1691270068105;
-        Sat, 05 Aug 2023 14:14:28 -0700 (PDT)
+        bh=n5OV4A0TE5pSUE8JdsBkgIy9vd1kBceO43pYJb+lKBY=;
+        b=IwxUqzbP5yvF207Y+jm9OIairC9XBwutzZ0FeZW238m+wWWnVFZE1I+SoFBvbgoJKJ
+         Y3WZPiDqSpR6n7SR95GsvHgiMZWV0vo3qCg3/lja5lh6qxdAwlAxAbOJdC+3rlzIigCa
+         BVhgV+e3H8IKSid/pdliQIErbvyWSp/WU5EMn62E9T2RJup3os0BaWwTwk+DT1o+SCJQ
+         c4wEQDrjoumeV+wozZLtUA5GIS/EB9rsPVByT8qMYJIXZwJleCzG0c+iyxTjmMn5KTDU
+         MIvE+u+tQWPC9+MiDeInVvbMIjX6rZ8T4c5coMgxmT0Jej1Pt3fAm1nIYs9zPwCDRUm8
+         9vpw==
+X-Gm-Message-State: AOJu0Ywc4mN4F5wnQ7VDQDYzmPIUg1Mp36Uze/haktIhUFl0KL8u7H+q
+        1pDfnDYZKWG89A6qc1S/th/839zwClvphiSuK0E=
+X-Google-Smtp-Source: AGHT+IGEX+lWU7YpFJLDiDTlbjFw7Vuah6n3IfZzSqIWBu3WRt6vlyJaUmhCzE06T2xfFRERL9QCiQ==
+X-Received: by 2002:adf:ff87:0:b0:30f:cf93:4bb8 with SMTP id j7-20020adfff87000000b0030fcf934bb8mr3039582wrr.57.1691270484066;
+        Sat, 05 Aug 2023 14:21:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id f20-20020a1c6a14000000b003fe24da493dsm5925415wmc.41.2023.08.05.14.14.26
+        by smtp.gmail.com with ESMTPSA id k18-20020a5d66d2000000b0031417fd473csm6009607wrw.78.2023.08.05.14.21.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Aug 2023 14:14:27 -0700 (PDT)
-Message-ID: <11171a47-cb9f-8369-e590-587aa8ca457e@linaro.org>
-Date:   Sat, 5 Aug 2023 23:14:26 +0200
+        Sat, 05 Aug 2023 14:21:23 -0700 (PDT)
+Message-ID: <f393324f-c9ec-1572-fb15-1856cef9d846@linaro.org>
+Date:   Sat, 5 Aug 2023 23:21:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: newvision,nv3051d: Add Anbernic
- 351V Support
+Subject: Re: [PATCH 02/53] dt-bindings: interconnect: qcom,bcm-voter: Add
+ qcom,bcm-voter-idx
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        neil.armstrong@linaro.org, Chris Morgan <macromorgan@hotmail.com>
-References: <20230804164503.135169-1-macroalpha82@gmail.com>
- <20230804164503.135169-2-macroalpha82@gmail.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
+ <20230708-topic-rpmh_icc_rsc-v1-2-b223bd2ac8dd@linaro.org>
+ <68fb8e22-dd23-d4bf-eda0-444039fd8e26@linaro.org>
+ <9201cb8d-845a-b5dc-02a5-9633572b5877@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230804164503.135169-2-macroalpha82@gmail.com>
+In-Reply-To: <9201cb8d-845a-b5dc-02a5-9633572b5877@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2023 18:45, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 15/07/2023 17:09, Konrad Dybcio wrote:
+> On 12.07.2023 22:43, Krzysztof Kozlowski wrote:
+>> On 11/07/2023 14:18, Konrad Dybcio wrote:
+>>> In order to (at least partially) untangle the global BCM voter lookup
+>>> (as again, they are shared throughout the entire system and not bound to
+>>> individual buses/providers), introduce a new required property to assign
+>>> a unique identifier to each BCM voter.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>  .../devicetree/bindings/interconnect/qcom,bcm-voter.yaml       | 10 ++++++++++
+>>>  1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
+>>> index eec987640b37..09321c1918bf 100644
+>>> --- a/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
+>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
+>>> @@ -38,8 +38,14 @@ properties:
+>>>  
+>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>  
+>>> +  qcom,bcm-voter-idx:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +    description:
+>>> +      A globally unique predefined discrimnator, identifying each BCM voter.
+>>
+>> s/each/this/ ?
+> Right, this makes more sense
 > 
-> Document the Anbernic RG351V panel, which appears to be identical to
-> the panel used in their 353 series except for in inclusion of an
-> additional DSI format flag.
+>> If I understand correctly, there might be more than one instance. The
+>> problem is that I cannot find such case in upstream sources.
+> I don't think there can be more than one per RSC.
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../display/panel/newvision,nv3051d.yaml       | 18 +++++++++++-------
->  1 file changed, 11 insertions(+), 7 deletions(-)
+> SM8550 splits some RSCs into "channels" and these channels have their
+> individual voters, however they would still be attached to these
+> channel subnodes/subdevices and no, we don't support that yet.
+
+Then shouldn't this be one number, not an array?
+
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> index 116c1b6030a2..1226db3613e6 100644
-> --- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> @@ -8,8 +8,8 @@ title: NewVision NV3051D based LCD panel
->  
->  description: |
->    The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
-> -  this driver only supports the 640x480 panels found in the Anbernic RG353
-> -  based devices.
-> +  this driver only supports the 640x480 panels found in the Anbernic RG351
-> +  and 353 based devices.
+>>
+>>
+>>> +
+>>>  required:
+>>>    - compatible
+>>> +  - qcom,bcm-voter-idx
+>>
+>> This should not be really required, because it affects the ABI.
+> Hm.. can I deprecate lack of it somehow?
 
-I would prefer to drop the reference to driver entirely. It's not
-related to the bindings. If driver changes (e.g. supports 1024x768),
-then binding changes as well?
-
->  
->  maintainers:
->    - Chris Morgan <macromorgan@hotmail.com>
-> @@ -19,11 +19,15 @@ allOf:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - anbernic,rg353p-panel
-> -          - anbernic,rg353v-panel
-> -      - const: newvision,nv3051d
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - anbernic,rg353p-panel
-> +              - anbernic,rg353v-panel
-> +          - const: newvision,nv3051d
-> +
-> +      - items:
-> +          - const: anbernic,rg351v-panel
-
-
-This part is good, so with adjusting description:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In general: no. Anyway, it depends how much you need it. Breaking ABI
+might be justified, but I just did not get such need from the commit
+msg. Your commit msg looks to me closer to a cleanup.
 
 Best regards,
 Krzysztof
