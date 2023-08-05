@@ -2,270 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15D5777116C
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 20:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A65BA771191
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 20:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjHES3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 14:29:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42274 "EHLO
+        id S230234AbjHESrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 14:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjHES3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 14:29:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3F2B7;
-        Sat,  5 Aug 2023 11:29:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D9F560DEB;
-        Sat,  5 Aug 2023 18:29:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F56C433C7;
-        Sat,  5 Aug 2023 18:29:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691260146;
-        bh=JBI9wEFgEqZ+ZNjqqddLnr0kDMNZ61yJ9TwZMzWMoSY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tRGExrGhmdgQruMQApR4bXKOOKv9SxZn7yny0wyDVDpeJsyWdpU0XXlGboYuTZXSN
-         s9iHd+G+xC+p4VbLM6ei89LPm4h/muFzwjBQsbrkZuTqo/gvAGwZNLXGJnPkRKW9WI
-         nB2VpY3yLRqonuxJU2et4lWpSv1CyBvhJv85qe/E7eyPHjA7vHtnTkvMSGzJ7EPwbD
-         73qL843pm508NDkquOzkBOWCPLAUsw489g2c/ebGIiTU3cyn/6C9fDht2Id7AQ2rQ1
-         0SQSZuBr2igPwhrXmvV0zMITeg57g6Ys5PM0b9KNEtF+MN6Ba76et/rRU7Ods8f08I
-         YOtgnXgmFZW/Q==
-Date:   Sat, 5 Aug 2023 19:28:59 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andrea Collamati <andrea.collamati@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S230050AbjHESrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 14:47:05 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B2F2737
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 11:47:03 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fe28e4671dso5349040e87.0
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 11:47:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691261222; x=1691866022;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tRWew4AjSMA2PJPO85LRIgQO2JC6RNeaCiEFmYqIM4c=;
+        b=BnyFd8xifQ6rtK9QYBMCwx/OwAaowyisDDQOCl0z5EtkZGeGxJbM/iCFTas6urkCTH
+         ZG4a+gI18MUAH1fQTzx115Wz3DSJmEDFXrODjeSYnVUThsqohW/iGg6S8LIhrkJEYJWD
+         F5uIOYIL8cHfrMINy4VMCCj9q+d8GUDQN7mLxvdPf0Q62pS5U+vBhBZJFdKkSN1t0KEO
+         J9sY+muUjKc1z6EEMzQs7Jinm8ZlFRRFgBK3iW5sijygM+EJ3chPh7I2mIjhwKTwZXcj
+         wh/6jj8Xttr+MnC5A1QKhXXzV2t2ZATpkEQIHb0H+YictGjGY0E5/lYJGV1ZNvEAu+Qz
+         vt1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691261222; x=1691866022;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tRWew4AjSMA2PJPO85LRIgQO2JC6RNeaCiEFmYqIM4c=;
+        b=DJxnM51Xh/EJ9YisWL1wCGxYqQvaTTJyg68m/nurj8zuQx5cLlsgHpRVXrL/yX4D8l
+         237tsdT0QtirLKK470EN2okniBGPOxIuDV1MAJpUZfAhd29AeMivuTN1HIsU4ZawhYy7
+         EW/00PeBXhp2s3ASo12onJr9MWWznBe4MWBGw3jcjxyZe8JgZUl9P2vPR0sYkCmheJOu
+         xrdOK2uNocTsF2ro2yWAuMbvpmuw1IrtuvKhF+ANJty/sF+pjy2jh1gyi8pE3jS+uupg
+         F2JDeYPtiHOYFoySb+GoSJhVXkMNZ0XUb49IET9hvLgJ/ZQUsgpnGWZtjo+WJqLquTIP
+         UDmg==
+X-Gm-Message-State: AOJu0YxIAtLfBIC9LAaLlc1iHvCJB5V2bmBoAt7BnACGt1on96JZfJMp
+        v1abueP1ImslFqDpPaCqx3JLBw==
+X-Google-Smtp-Source: AGHT+IErbzYeVqDMHMWw7UPa/LkZv8Yb6Q/761H7498JUq+FubflZvr1RIQlK3ZltjtyBepW7Nz9iw==
+X-Received: by 2002:a05:6512:6d2:b0:4fd:f7a8:a9f3 with SMTP id u18-20020a05651206d200b004fdf7a8a9f3mr4282478lff.38.1691261221815;
+        Sat, 05 Aug 2023 11:47:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.245])
+        by smtp.gmail.com with ESMTPSA id f23-20020a056402069700b0052333d7e320sm81194edy.27.2023.08.05.11.46.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Aug 2023 11:46:43 -0700 (PDT)
+Message-ID: <38fbb9d1-f263-2ec1-a3d8-4b09a26eaf2d@linaro.org>
+Date:   Sat, 5 Aug 2023 20:46:41 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 00/11] mailbox/arm64/ qcom: rework compatibles for
+ fallback
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] iio: add MCP4728 I2C DAC driver
-Message-ID: <20230805192859.116421bc@jic23-huawei>
-In-Reply-To: <a0933003ed3c855f9d80d6ce0a40add2b6f0ba36.1691066050.git.andrea.collamati@gmail.com>
-References: <cover.1691066050.git.andrea.collamati@gmail.com>
-        <a0933003ed3c855f9d80d6ce0a40add2b6f0ba36.1691066050.git.andrea.collamati@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230322174148.810938-1-krzysztof.kozlowski@linaro.org>
+ <6c0a7f12-10d2-4a07-a07f-67ec0d39b279@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6c0a7f12-10d2-4a07-a07f-67ec0d39b279@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  3 Aug 2023 14:56:35 +0200
-Andrea Collamati <andrea.collamati@gmail.com> wrote:
+On 05/08/2023 14:21, Konrad Dybcio wrote:
+> On 22.03.2023 18:41, Krzysztof Kozlowski wrote:
+>> Hi,
+>>
+>> Changes since v2
+>> ================
+>> 1. Split fixes to separate patchset which is now dependency:
+>>    https://lore.kernel.org/linux-arm-msm/20230322173559.809805-1-krzysztof.kozlowski@linaro.org/T/#t
+>> 2. Add Ack
+>> 3. No other changes, as discussion with Dmitry did not reach conclusion on incompatibility.
+>>
+>> Changes since v1
+>> ================
+>> 1. Rebase
+>> 2. Make msm8994 fallback for several variants, not msm8953, because the latter
+>>    actually might take some clocks.
+>> 3. Two new patches for SDX55.
+>> 4. Minor corrections in bindings style.
+>> v1: https://lore.kernel.org/all/20230202161856.385825-1-krzysztof.kozlowski@linaro.org/
+>>
+>> Description
+>> ===========
+>>
+>> If entire approach is accepted (and correct), there are no dependencies and
+>> patches can be picked independently.  Although the best in the same cycle, so
+>> there will be no new `dtbs_check` warnings.
+>>
+>> Best regards,
+>> Krzysztof
+> Looks like this was only partially merged, resulting in schema warnings
 
-> MCP4728 is a 12-bit quad channel DAC with I2C interface.
-> 
-> support for:
->  * per-channel gain
->  * per-channel power state
->  * per-channel power down mode control
->  * per-channel vref selection internal/vdd
->  * store current state to on-chip EEPROM
-> 
-> Signed-off-by: Andrea Collamati <andrea.collamati@gmail.com>
-Hi Andrea,
+There was discussion/disagreement about the bindings. DTS was applied,
+thus it's partially limbo state...
 
-On this final read through I noticed a few minor things. Rather than
-get you to do a v5 I've made the changes whilst applying. Please
-take a sanity check at
-https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=testing
-to make sure I didn't break anything and let me know if I did!
-
-Applied with the below mentioned changes to the togreg branch of iio.git
-which is initially pushed out as testing to let 0-day poke at it and see
-if it can find any problems.
-
-Thanks,
-
-Jonathan
-
-> diff --git a/drivers/iio/dac/mcp4728.c b/drivers/iio/dac/mcp4728.c
-> new file mode 100644
-> index 000000000000..ba3eab349b0a
-> --- /dev/null
-> +++ b/drivers/iio/dac/mcp4728.c
-> @@ -0,0 +1,626 @@
-...
-
-
-
-> +
-> +static int mcp4728_set_scale(int channel, struct mcp4728_data *data, int val,
-> +			     int val2)
-> +{
-> +	int scale = mcp4728_find_matching_scale(data, val, val2);
-> +
-> +	if (scale < 0)
-> +		return scale;
-> +
-> +	switch (scale) {
-> +	case MCP4728_SCALE_VDD:
-> +		data->chdata[channel].ref_mode = MCP4728_VREF_EXTERNAL_VDD;
-> +		break;
-> +	case MCP4728_SCALE_VINT_NO_GAIN:
-> +		data->chdata[channel].ref_mode = MCP4728_VREF_INTERNAL_2048mV;
-> +		data->chdata[channel].g_mode   = MCP4728_GAIN_X1;
-> +		break;
-> +	case MCP4728_SCALE_VINT_GAIN_X2:
-> +		data->chdata[channel].ref_mode = MCP4728_VREF_INTERNAL_2048mV;
-> +		data->chdata[channel].g_mode   = MCP4728_GAIN_X2;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	return 0;
-
-return instead of breaking above as nothing to be done after the switch.
-Side effect of that is this return 0 not needed.
-
-> +}
-
-...
-
-> +static int mcp4728_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan, int val,
-> +			     int val2, long mask)
-> +{
-> +	struct mcp4728_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		if (val < 0 || val > GENMASK(MCP4728_RESOLUTION - 1, 0))
-> +			return -EINVAL;
-> +		data->chdata[chan->channel].dac_value = val;
-> +		ret = mcp4728_program_channel_cfg(chan->channel, indio_dev);
-> +		break;
-
-Direct returns preferred if no cleanup to do.
-
-> +	case IIO_CHAN_INFO_SCALE:
-> +		ret = mcp4728_set_scale(chan->channel, data, val, val2);
-> +		if (ret)
-> +			break;
-> +
-> +		ret = mcp4728_program_channel_cfg(chan->channel, indio_dev);
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-
-
-
-> +static int mcp4728_init_channels_data(struct mcp4728_data *data)
-> +{
-> +	u8 inbuf[MCP4728_READ_RESPONSE_LEN];
-> +	int ret;
-> +	unsigned int i;
-> +
-> +	ret = i2c_master_recv(data->client, inbuf, MCP4728_READ_RESPONSE_LEN);
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev,
-> +			"failed to read mcp4728 conf. Err=%d\n", ret);
-> +		return ret;
-
-As this is only called from probe, we should still use dev_err_probe() in here
-as mentioned below.
-
-
-> +	} else if (ret != MCP4728_READ_RESPONSE_LEN) {
-> +		dev_err(&data->client->dev,
-> +			"failed to read mcp4728 conf. Wrong Response Len ret=%d\n",
-> +			ret);
-> +		return -EIO;
-> +	}
-> +
-> +	for (i = 0; i < MCP4728_N_CHANNELS; i++) {
-> +		struct mcp4728_channel_data *ch = &data->chdata[i];
-> +		u8 r2				= inbuf[i * 6 + 1];
-> +		u8 r3				= inbuf[i * 6 + 2];
-> +
-> +		ch->dac_value = FIELD_GET(MCP4728_DAC_H_MASK, r2) << 8 |
-> +				FIELD_GET(MCP4728_DAC_L_MASK, r3);
-> +		ch->ref_mode = FIELD_GET(MCP4728_VREF_MASK, r2);
-> +		ch->pd_mode  = FIELD_GET(MCP4728_PDMODE_MASK, r2);
-> +		ch->g_mode   = FIELD_GET(MCP4728_GAIN_MASK, r2);
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int mcp4728_probe(struct i2c_client *client)
-> +{
-> +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-> +	struct mcp4728_data *data;
-> +	struct iio_dev *indio_dev;
-> +	int err;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client = client;
-> +
-> +	data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
-> +	if (IS_ERR(data->vdd_reg))
-> +		return PTR_ERR(data->vdd_reg);
-> +
-> +	err = regulator_enable(data->vdd_reg);
-> +	if (err)
-> +		return err;
-> +
-> +	err = devm_add_action_or_reset(&client->dev, mcp4728_reg_disable,
-> +				       data->vdd_reg);
-> +	if (err)
-> +		return err;
-> +
-> +	/* MCP4728 has internal EEPROM that save each channel boot configuration.
-
-Trivial but comment syntax in IIO (there are some differences in a few other subsystems)
-is
-	/*
-	 * MCP...
-
-> +	 * It means that device configuration is unknown to the driver at kernel boot.
-> +	 * mcp4728_init_channels_data reads back DAC settings and stores them in data
-> +	 * structure.
-> +	 */
-> +	err = mcp4728_init_channels_data(data);
-> +	if (err) {
-
-I'd missed this previously but dev_err_probe() has several advantages in that
-it handles deferring neatly and also ends up with less code.
-
-> +		dev_err(&client->dev,
-> +			"failed to read mcp4728 current configuration\n");
-> +		return err;
-> +	}
-> +
-> +	err = mcp4728_init_scales_avail(data);
-> +	if (err) {
-> +		dev_err(&client->dev, "failed to init scales\n");
-> +		return err;
-> +	}
-> +
-> +	indio_dev->name		= id->name;
-> +	indio_dev->info		= &mcp4728_info;
-> +	indio_dev->channels	= mcp4728_channels;
-> +	indio_dev->num_channels = MCP4728_N_CHANNELS;
-> +	indio_dev->modes	= INDIO_DIRECT_MODE;
-> +
-> +	return devm_iio_device_register(&client->dev, indio_dev);
-> +}
+Best regards,
+Krzysztof
 
