@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A209770ED6
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 10:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3490770ED7
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 10:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjHEIiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 04:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56942 "EHLO
+        id S229614AbjHEIiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 04:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjHEIiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 04:38:08 -0400
+        with ESMTP id S229506AbjHEIiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 04:38:20 -0400
 Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C0611B
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 01:38:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F4421BD
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 01:38:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
-        s=tfld2305; t=1691224653;
-        bh=YO7xaf8Rw9sIuANokm3AXhy2ulC5+4s81L69XDEqscg=;
+        s=tfld2305; t=1691224671;
+        bh=FgjqXuH69Dl1m7UxLC+Td4fABd9U51qmILllzA/jBBo=;
         h=From:To:Subject:Date:Message-ID:MIME-Version;
-        b=jmAKWKlObmMhkptrF4edxyymURprIwHdxEAJEHSSIb4xjjx7jgJ88JdDp1LQjax9c
-         gJ28DM7zgBkwt6A13fMcAMERCw8jqBf6XTU6i9+Vwoj7qSmKE7uaWvS/Whhahv93en
-         CG7FTR1lt+bBb54fd66mKLDNpbbKIXOycPn/i+jQ=
-X-QQ-mid: bizesmtp83t1691224649tmlj0e6s
+        b=V5+h/mC3D5+q3ywLl77d/7YqAcfBB5g7tX02AfRGe5Rt1aJ1z8PzPbc848iNgqQkC
+         N+0t80pfP+7gPpRKtC3njCJ9DOizLdyFPHCXcQVjbChOi11uuo77b0GPLf945j368b
+         v1JtWH2A10m/GsLzDMEKSksHmLipRM1D3clRwHy0=
+X-QQ-mid: bizesmtp83t1691224667tcoiqse1
 Received: from localhost.localdomain ( [178.41.211.221])
         by bizesmtp.qq.com (ESMTP) with 
-        id ; Sat, 05 Aug 2023 16:37:15 +0800 (CST)
+        id ; Sat, 05 Aug 2023 16:37:33 +0800 (CST)
 X-QQ-SSF: 01400000000000505000000A0000000
-X-QQ-FEAT: QityeSR92A0eFaU+9AmEeJIKBufKLOpgIZ2BiszHxyMcN02vfQ7BG1GRDRb/5
-        +7mFtP+YVz8iU6bQVF29KqlAyXgAn6PUNuMBivkEl4SKyobtNPFn9Bpk7QAm5N+ND6ENbN4
-        wz5igm00ibYJFofyqvunnmLmRZ72Hnq+HCrH4hqPUp1n2xBIz1OZNpZNO+AwoO+eWLBA0Zl
-        3dXMmtzER6rlbellNh1h2U+Hp3j5LldQ921UeYOuf8XpwnnJoYyqW56c5MqLMNACcFn8eeq
-        sNxeJl14JWjQLkcmGrBFJsDmhnUju7AFKbxFxnhaYeq7PE/21nJXvKGNRYJvn5BH9K2uoau
-        s4x3Lp15u4xZGduGClflaZy8i9L7BFTH23A+FKxqT9wiAmbAECcGxT6NDiSVrKsSWhBtnea
+X-QQ-FEAT: QityeSR92A2buxPbqLS21ggHMOq2gDQqn/OrBSPbUeC9mW940X4gmjKY28PtU
+        dkAdx/MZuZaB9ZYF5GsjkS9mFVbKf3WBqlyf4tqLp74MXUakczWrqz+BZ6WkF94feQPoMDk
+        YsKs9kJCUC5hp5CFNs1vCQlI/apXaUkp1tEHCqFPdjkQ8SF2me1uPrvJSTZ9KTyd3EX2ZNU
+        C5tbjlEZzqMIO4c5ygKX/PCCio4wjCg8nlf5GAEa3GxDhsu2pr3VgGlGmK0KAjJzVaPBSXk
+        Tma75OQa9fKxVrKFYpR4b+vxR/i3vcBe44oLXPs3jeuBzawz++f5lXs7SjZpP+O3oim85/F
+        +r08RKaWypwGZzgI6vVgc/t6kni0UM4dOASOITpltOhghBA317thO4lzm3sC/cVDbt0h1IY
 X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 17380161915380750607
+X-BIZMAIL-ID: 4559950550026644883
 From:   Martin Botka <martin@biqu3d.com>
 To:     martin.botka1@gmail.com
 Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
@@ -51,9 +51,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
         Samuel Holland <samuel@sholland.org>,
-        Icenowy Zheng <uwu@icenowy.me>,
         Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
+        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Heiko Stuebner <heiko@sntech.de>,
         Shawn Guo <shawnguo@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Chris Morgan <macromorgan@hotmail.com>,
@@ -61,9 +61,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add BigTreeTech
-Date:   Sat,  5 Aug 2023 10:36:04 +0200
-Message-ID: <3E7672223AA6FBAF+20230805083636.788048-2-martin@biqu3d.com>
+Subject: [PATCH v3 2/4] dt-bindings: arm: sunxi: Add BigTreeTech boards
+Date:   Sat,  5 Aug 2023 10:36:05 +0200
+Message-ID: <85B937A9BFFA4720+20230805083636.788048-3-martin@biqu3d.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230805083636.788048-1-martin@biqu3d.com>
 References: <20230805083636.788048-1-martin@biqu3d.com>
@@ -83,35 +83,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Martin Botka <martin.botka@somainline.org>
 
-BigTreeTech is a company based in Shenzhen that makes
-3D printers and accessories.
-
-Add prefix for it.
+Add name & compatible for BigTreeTech Manta boards and
+BigTreeTech Pi
 
 Signed-off-by: Martin Botka <martin.botka@somainline.org>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 Changes in V2:
-    - Fix alphabetical order
+    - Remove CB1 SoM as its own entry
+    - Squash BTT Pi and manta patches into 1
 Changes in V3: none
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index af60bf1a6664..a1f3bb7be860 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -192,6 +192,8 @@ patternProperties:
-     description: BeagleBoard.org Foundation
-   "^bhf,.*":
-     description: Beckhoff Automation GmbH & Co. KG
-+  "^bigtreetech,.*":
-+    description: Shenzhen BigTree Tech Co., LTD
-   "^bitmain,.*":
-     description: Bitmain Technologies
-   "^blutek,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index ee8fdd2da869..b90d2a7dbe2d 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -151,6 +151,17 @@ properties:
+           - const: roofull,beelink-x2
+           - const: allwinner,sun8i-h3
+ 
++      - description: BigTreeTech Manta M4/8P
++        items:
++          - const: bigtreetech,cb1-manta
++          - const: bigtreetech,cb1
++          - const: allwinner,sun50i-h616
++
++      - description: BigTreeTech Pi
++        items:
++          - const: bigtreetech,pi
++          - const: allwinner,sun50i-h616
++
+       - description: Chuwi V7 CW0825
+         items:
+           - const: chuwi,v7-cw0825
 -- 
 2.41.0
 
