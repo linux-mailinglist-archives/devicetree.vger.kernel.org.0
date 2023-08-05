@@ -2,84 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C6F3770F57
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 12:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58CE770F88
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 14:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbjHEKpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 06:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
+        id S229786AbjHEMLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 08:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjHEKpn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 06:45:43 -0400
-Received: from out-123.mta1.migadu.com (out-123.mta1.migadu.com [95.215.58.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BCC4689
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 03:45:40 -0700 (PDT)
-Date:   Sat, 5 Aug 2023 20:42:59 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1691232338;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FpB0D3mxI9kO/4n6kQP6vW7np01C4MPqEWX1agkDUuM=;
-        b=gHfgjkGCHQ9obOeEfPj+rXReZOqs6s5Y3WfqT1BD5VbUn7wfUCTkIR1nmCvI4aTXO4b9Q3
-        x+yNXqQkoCwG0YtlsPF7gPzZWnB93RJw0EnB+NnPGg6ABVyL8ZZXLwV29Dj/y6xwiVttd7
-        ybaOzUh12C2oICB8d1EHO0Aof1e+7NaFFGwEJCWbGP3MVS01sQWOVFB/2zZI7TKQ4Bfwt6
-        xk86AXc6c/yH/a6l5Cp5yhrQOqQpOqooqL6QHJB6DjVsgyzZN5SqVOv0ePnOFZrptXlCsu
-        iB4nR3ob1y3DOFsDGM2FBZJGhI8GDfeLAD67J9k6P8RccZgR1A8N/z2bwUMAAQ==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   John Watts <contact@jookia.org>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Maksim Kiselev <bigunclemax@gmail.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mkl@pengutronix.de
-Subject: Re: [PATCH] riscv: dts: allwinner: d1: Specify default CAN pins
-Message-ID: <ZM4nswDuc5YBfEyV@titan>
-References: <20230731023701.2581713-1-contact@jookia.org>
- <3248110.44csPzL39Z@jernej-laptop>
- <ZMyZ5kZSiiJHtdeS@titan>
- <5696365.DvuYhMxLoT@jernej-laptop>
+        with ESMTP id S229456AbjHEMLi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 08:11:38 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66EF744BD
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 05:11:35 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fbc63c2e84so29801125e9.3
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 05:11:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691237494; x=1691842294;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZxBP0feVH6uC2ORtGS9BSJOQoNg5tL9xY28BGMfIX6s=;
+        b=f5WrVWP+ourzePHp24/NJ0Jh86Q6FuElfYOQPPTG3aqE3hOQCQY2+xQuTH/arVDFs9
+         POkpPo/6GwaHc7aiZYcM5e8dY3mE9hDPSwaKjbNwInh4zHnxzJhFLhAsmTTfY1O6oNGW
+         KDpYmYgW1rR70uGB3rIkl7WgGHw6jmO6+VnTAaDSUhGUzodCUWCUlUMfhtd1wFLCjsE7
+         O1hD+sJPFABmVkMus+AB7wohF9+l5/Y3HbPkapskKKrFQtvpypqH4aG3ji7+Hgj1FaEb
+         cyf+qxq1PDYGX2tyDYp8SYha+vTuFvEmshUT537VwlXu1thwkov3WGHpfhdX1YXd6JT4
+         OcXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691237494; x=1691842294;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZxBP0feVH6uC2ORtGS9BSJOQoNg5tL9xY28BGMfIX6s=;
+        b=GiRdY5UaHgjgPNGx2/ySezWjHNcyjeZmqcjmwC1HqQTGVm6sB9299L3fkov/sjGc37
+         dZiMreT6k9Ur+PPJotURWx6QjxEhJAufqmA+ez4vQwW7Asd+zkN0nyRsbfGQ9JemxVY4
+         o0+A9uQKqUlD2FLtxBy6Zw0jtubcJUsiYlr0HH5EfY/gAdLKBMW3WbXlkXnFmsWuCj2d
+         8RqGL60n0gVugU1jx1IX0mw61vbl5i9HmhvzCqGtyWqJFebV6N0ACDDkWPZzWFFKAi7n
+         d361QU6MczV7x0qK88YD6q38qr8PTQuQqHXcECGviilbeYljrnp2hYZLzf8G9k5Lkkge
+         3k/g==
+X-Gm-Message-State: AOJu0YxIxQHuWt4A5ijgcDbD3veCCj1aunf3RIwFtf+HCN22apX3Te+w
+        0Gf4Kv53qHY1NzYJuiBqr1mi3w==
+X-Google-Smtp-Source: AGHT+IFInS8TEVpw8at3nnFmeIOA264PuHBbiEjhb4uEc3ufRCS8Se9DI9mdwo2KzkeTrYqD5yxYkA==
+X-Received: by 2002:a7b:cd96:0:b0:3fe:1cac:37d5 with SMTP id y22-20020a7bcd96000000b003fe1cac37d5mr3563058wmj.4.1691237493833;
+        Sat, 05 Aug 2023 05:11:33 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id x8-20020a05600c2a4800b003fbc30825fbsm4829034wme.39.2023.08.05.05.11.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Aug 2023 05:11:33 -0700 (PDT)
+Message-ID: <1eec01ce-5d14-e6f0-c399-ad14e6d176a9@linaro.org>
+Date:   Sat, 5 Aug 2023 13:11:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5696365.DvuYhMxLoT@jernej-laptop>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 6/6] media: venus: core: Add SC8280XP resource struct
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
+ <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
+ <989aea4c-50e7-8141-dd60-3f41058192f8@linaro.org>
+ <c0d4845d-d290-4082-b5c5-996637bcac2c@linaro.org>
+ <c2bdc6a5-2f97-9c7b-d620-ff3e361f1f07@linaro.org>
+ <172bce60-6581-4832-b489-7497989fc91e@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <172bce60-6581-4832-b489-7497989fc91e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 04, 2023 at 04:39:41PM +0200, Jernej Škrabec wrote:
-> If you don't mind, please do.
+On 04/08/2023 22:17, Konrad Dybcio wrote:
+> On 4.08.2023 23:12, Bryan O'Donoghue wrote:
+>> On 04/08/2023 22:10, Konrad Dybcio wrote:
+>>>> Would it not be more legitimate and logical to have 8350 use 8280xp's frequency table, instead of 8250 ?
+>>> top freq is higher on 8280
+>>
+>> Still though its a bit suspicious 8350 doesn't have its own table.
+>>
+>> Are we missing the downstream reference ?
+> 8250:
+> qcom,allowed-clock-rates = <239999999 338000000 366000000 444000000>;
+> 
+> 8350:
+> qcom,allowed-clock-rates = <239999999 338000000 366000000 444000000>;
+> 
+> (identical)
+> 
+> Konrad
 
-Just to clarify, something like this:
+Fair enough
 
-                can0: can@2504000 {
-                        pinctrl-names = "default";
-                        pinctrl-0 = <&can0_pins>;
-                        compatible = "allwinner,sun20i-d1-can";
-                        reg = <0x02504000 0x400>;
-                        interrupts = <SOC_PERIPHERAL_IRQ(21) IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&ccu CLK_BUS_CAN0>;
-                        resets = <&ccu RST_BUS_CAN0>;
-                        status = "disabled";
-                };
-
-I couldn't find any dtsi files that put pinctrl stuff at the top.
-
-John.
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
