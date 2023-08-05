@@ -2,252 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E94770FDF
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 15:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24165770FFD
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 15:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbjHENOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 09:14:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
+        id S229509AbjHENxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 09:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbjHENOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 09:14:43 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E3A8E7
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 06:14:40 -0700 (PDT)
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id F1523417B7
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 13:14:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1691241278;
-        bh=UIZCorPNYUH2jkiVRuR7FSmjsopaTm8kFTAnEKf8VTE=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=bHZvhihxtmDr5Ow0JCOUpb91//mNIAdHegjOHODQUatzVrA0lNNFvzbYPCZfnDvX4
-         f3YOmOzJaPR/rQhljJFoalICXpCWME4/UpZVmb9p0HDZJEzwxhEwqC67DD8dJzjAzz
-         p2VRUkPW597Yp82env3puuVEcAad10zB5ezZMhsAXdEByO8y0fxUVI6MvWaBKkVktl
-         xGxVi1tFwNrYi44dXe9uEJWrlDhWvv3r526CagxOvlxEBK2nUWYNDqi09pd20ccrc5
-         XL6Q1qc5TB2djG3Z5MWzXL6Jr4phdouddU3L4lYLknEcOYkzQ5Gj/btfsdvfVGNqgS
-         TBRf3ftbpbpVQ==
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-767564705f5so333250385a.1
-        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 06:14:38 -0700 (PDT)
+        with ESMTP id S229379AbjHENxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 09:53:30 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00DC5199;
+        Sat,  5 Aug 2023 06:53:28 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b72161c6e9so50303801fa.0;
+        Sat, 05 Aug 2023 06:53:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691243607; x=1691848407;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EL4irT6Xqgsi30IiRyba/mxba3n+qOkv3KZi5C+dTFA=;
+        b=Z54dEAgGg1/ePblnO5SIkudufQDZvAw4Jfe++swbd744aIrn6h5ZWAcK4+ejasdlxh
+         FMfUFFiW5sJPMusFbhotbiS/056Vh0UBhEpQOQJi/4cglsxEeqtXtEQTlCVEuANi13HN
+         vmnOVstvCy1oQpFhYI0+FzJJqmNVlEPcqYR8N8+ZMEoW7fw7vJxz5nzSkgpaMPcNKIp2
+         FMOU/18MsrjIcjwcGVGVQzugKoyql9ZT+rj4+sKWtL1XngaZ4uNzCsl25VlC3VhVQCmc
+         cd/HLLr9NEpT6E+8DyTHzVNIRBTcPhnZjRRENSY8Vci7jrADftfF4pwfXfeR2QHQmy/G
+         F49Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691241277; x=1691846077;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1691243607; x=1691848407;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UIZCorPNYUH2jkiVRuR7FSmjsopaTm8kFTAnEKf8VTE=;
-        b=IhEtRneDDKyHK1GqhUvtTHXftr8xs36qapSvpORFRGLD8yb2nqkAS9YbYyan2FlASV
-         IP4x7bWhRttE5Mh/G5xTH38zb8a6oQ0zBQV85uBUv0FrFsad2vd42T6X1CYwAlQluaCV
-         XheNIoA25rveAw0PQ2BhB4xwqX5OUa2Y1V0fKlEUWEHI0lhy9S6zfjWmNykUQx12EWY6
-         2eKFp9HaUQpWJtvmq7VLlmKtNklXifSg6FMkmQc/dXq2+i4kjGWeKBjJ+Rxr+HFYRQVV
-         wWLTMns+QGgQW1ZeB3j6tH4Th08n/MdcftZpxk4sdtjHUw46qDDTAAZ+ipwYNmi6bjiO
-         B8pg==
-X-Gm-Message-State: AOJu0YzOig5UnxI693JRcYdWk9oed1nxJCZ9SPbuKHf2HEM7V2oN7KMo
-        KxZJ2/dp7wxnxtEximw1NsxI2WGl1QT69RgbKsN4hYFZu38HYlbKxkmE7mPRMpBMDVYUbwyyacb
-        sEHbkbbt9id7HmZc+XOWL31QF3vUv66TRwBFmn101P919mkwoHkkvBqE=
-X-Received: by 2002:a05:620a:b19:b0:76c:4833:f851 with SMTP id t25-20020a05620a0b1900b0076c4833f851mr4889929qkg.47.1691241277322;
-        Sat, 05 Aug 2023 06:14:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+eIfLgnZw5L9ycwyhdLrN0uqyoE4q3saqIVPvg88zQ5KEtjZikqCgXF3BhVK1Upko+kK9baLSnF/xrJ3ejpg=
-X-Received: by 2002:a05:620a:b19:b0:76c:4833:f851 with SMTP id
- t25-20020a05620a0b1900b0076c4833f851mr4889905qkg.47.1691241277035; Sat, 05
- Aug 2023 06:14:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-4-william.qiu@starfivetech.com> <CAJM55Z8gVEZS4Ws2Gi7_JbdkS-4y3_8mQvR4ZxLCWZ4A1y9X1g@mail.gmail.com>
- <CAJM55Z-h+CUmWtkn31Ek+qvxrOr5_Jz3QRRLqWYLz2A0E+h+rA@mail.gmail.com> <d967d628-6961-568e-d72e-ce0e17153818@starfivetech.com>
-In-Reply-To: <d967d628-6961-568e-d72e-ce0e17153818@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Sat, 5 Aug 2023 15:14:20 +0200
-Message-ID: <CAJM55Z_sXt8G4+SFuN74g95zjE73f=9gbtVE+dxZ0UDEcH1hMQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] riscv: dts: starfive: Add mmc node
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        bh=EL4irT6Xqgsi30IiRyba/mxba3n+qOkv3KZi5C+dTFA=;
+        b=E+Wy5PoK9So3YMm51COMbNkSSaNvFD3h1rC1+QAQI3wizS09QGY3iQ2RulyaH9qsvL
+         5gR0Khh2usXozsEtGTzunG22ED79uosp8cMvsQt4HV9sfa7+6Lw2mASO7HunbqfJdeMw
+         Xt+S6on/UHJGAo4cUXOKgEQziZ2iCMbZ/NjUr2gjQmpK9Dq5EpF4FaTTYBiuqGuogB21
+         D/emj1dwecCzt0sYEp65lMJSmmuaiHFJ6FVDeypL9hBz7VqMi5pmJJCJBx0EhHHE+nbP
+         v4ms/S5n6IIqxeUmw/1FxG2u6hNzGKlv4BfATfpq3mgk6oQeYyR2Wwt5Qc3FXzZ/Q8KY
+         uqpA==
+X-Gm-Message-State: AOJu0Yyu1iMYjLH2TJPNkbF8GwLqLtj50m1gK91CCs2/34CikuNrYQ9K
+        f0ipYqC7bFg3SCzgYb40xX8=
+X-Google-Smtp-Source: AGHT+IEpbkT7AmigjkKcx1rCZ2YLVNr03+lzCRMl97dOakJxIalSkm8IT3s8x9hCj1TKaa7lYmzSpw==
+X-Received: by 2002:a05:651c:483:b0:2b9:cb73:9a90 with SMTP id s3-20020a05651c048300b002b9cb739a90mr789696ljc.11.1691243606913;
+        Sat, 05 Aug 2023 06:53:26 -0700 (PDT)
+Received: from localhost.localdomain (95-24-145-241.broadband.corbina.ru. [95.24.145.241])
+        by smtp.googlemail.com with ESMTPSA id w20-20020a2e9bd4000000b002b6f8d07d30sm900124ljj.134.2023.08.05.06.53.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Aug 2023 06:53:26 -0700 (PDT)
+From:   Ivan Mikhaylov <fr0st61te@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Po-Yu Chuang <ratbert@faraday-tech.com>,
+        Conor Dooley <conor@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Ivan Mikhaylov <fr0st61te@gmail.com>
+Subject: [PATCH v4] dt-bindings: net: ftgmac100: convert to yaml version from txt
+Date:   Sat,  5 Aug 2023 16:53:18 +0300
+Message-ID: <20230805135318.6102-1-fr0st61te@gmail.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Feb 2023 at 13:26, William Qiu <william.qiu@starfivetech.com> wrote:
-> On 2023/2/15 20:22, Emil Renner Berthing wrote:
-> > On Wed, 15 Feb 2023 at 13:12, Emil Renner Berthing
-> > <emil.renner.berthing@canonical.com> wrote:
-> >>
-> >> On Wed, 15 Feb 2023 at 12:35, William Qiu <william.qiu@starfivetech.com> wrote:
-> >> >
-> >> > Add the mmc node for the StarFive JH7110 SoC.
-> >> > Set mmco node to emmc and set mmc1 node to sd.
-> >> >
-> >> > Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> >> > ---
-> >> >  .../jh7110-starfive-visionfive-2.dtsi         | 23 +++++++++
-> >> >  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 47 +++++++++++++++++++
-> >> >  2 files changed, 70 insertions(+)
-> >> >
-> >> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> >> > index c60280b89c73..e1a0248e907f 100644
-> >> > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> >> > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> >> > @@ -42,6 +42,29 @@ &rtc_osc {
-> >> >         clock-frequency = <32768>;
-> >> >  };
-> >> >
-> >> > +&mmc0 {
-> >> > +       max-frequency = <100000000>;
-> >> > +       bus-width = <8>;
-> >> > +       cap-mmc-highspeed;
-> >> > +       mmc-ddr-1_8v;
-> >> > +       mmc-hs200-1_8v;
-> >> > +       non-removable;
-> >> > +       cap-mmc-hw-reset;
-> >> > +       post-power-on-delay-ms = <200>;
-> >> > +       status = "okay";
-> >> > +};
-> >> > +
-> >> > +&mmc1 {
-> >> > +       max-frequency = <100000000>;
-> >> > +       bus-width = <4>;
-> >> > +       no-sdio;
-> >> > +       no-mmc;
-> >> > +       broken-cd;
-> >> > +       cap-sd-highspeed;
-> >> > +       post-power-on-delay-ms = <200>;
-> >> > +       status = "okay";
-> >> > +};
-> >
-> > These nodes are also still oddly placed in the middle of the external
-> > clocks. Again please keep the external clocks at the top and then
-> > order the nodes alphabetically to have some sort of system.
-> >
->
->
-> Hi Emil,
->
-> I'll update it in next version.
+Conversion from ftgmac100.txt to yaml format version.
 
-Hi William,
+Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
+---
+ .../bindings/net/faraday,ftgmac100.yaml       | 102 ++++++++++++++++++
+ .../devicetree/bindings/net/ftgmac100.txt     |  67 ------------
+ 2 files changed, 102 insertions(+), 67 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/ftgmac100.txt
 
-It seems the mmc nodes are still missing from the upstream device
-tree. The sysreg nodes have been added in Conors riscv-dt-for-next[1]
-branch, so I don't see any missing dependencies. Could you please
-update and send a new version of this?
+diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+new file mode 100644
+index 000000000000..9bcbacb6640d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Faraday Technology FTGMAC100 gigabit ethernet controller
++
++allOf:
++  - $ref: ethernet-controller.yaml#
++
++maintainers:
++  - Po-Yu Chuang <ratbert@faraday-tech.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: faraday,ftgmac100
++      - items:
++          - enum:
++              - aspeed,ast2400-mac
++              - aspeed,ast2500-mac
++              - aspeed,ast2600-mac
++          - const: faraday,ftgmac100
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    items:
++      - description: MAC IP clock
++      - description: RMII RCLK gate for AST2500/2600
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: MACCLK
++      - const: RCLK
++
++  phy-mode:
++    enum:
++      - rgmii
++      - rmii
++
++  phy-handle: true
++
++  use-ncsi:
++    description:
++      Use the NC-SI stack instead of an MDIO PHY. Currently assumes
++      rmii (100bT) but kept as a separate property in case NC-SI grows support
++      for a gigabit link.
++    type: boolean
++
++  no-hw-checksum:
++    description:
++      Used to disable HW checksum support. Here for backward
++      compatibility as the driver now should have correct defaults based on
++      the SoC.
++    type: boolean
++    deprecated: true
++
++  mdio:
++    $ref: /schemas/net/mdio.yaml#
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    ethernet@1e660000 {
++        compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
++        reg = <0x1e660000 0x180>;
++        interrupts = <2>;
++        use-ncsi;
++    };
++
++    ethernet@1e680000 {
++        compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
++        reg = <0x1e680000 0x180>;
++        interrupts = <2>;
++
++        phy-handle = <&phy>;
++        phy-mode = "rgmii";
++
++        mdio {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            phy: ethernet-phy@1 {
++                compatible = "ethernet-phy-ieee802.3-c22";
++                reg = <1>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/ftgmac100.txt b/Documentation/devicetree/bindings/net/ftgmac100.txt
+deleted file mode 100644
+index 29234021f601..000000000000
+--- a/Documentation/devicetree/bindings/net/ftgmac100.txt
++++ /dev/null
+@@ -1,67 +0,0 @@
+-* Faraday Technology FTGMAC100 gigabit ethernet controller
+-
+-Required properties:
+-- compatible: "faraday,ftgmac100"
+-
+-  Must also contain one of these if used as part of an Aspeed AST2400
+-  or 2500 family SoC as they have some subtle tweaks to the
+-  implementation:
+-
+-     - "aspeed,ast2400-mac"
+-     - "aspeed,ast2500-mac"
+-     - "aspeed,ast2600-mac"
+-
+-- reg: Address and length of the register set for the device
+-- interrupts: Should contain ethernet controller interrupt
+-
+-Optional properties:
+-- phy-handle: See ethernet.txt file in the same directory.
+-- phy-mode: See ethernet.txt file in the same directory. If the property is
+-  absent, "rgmii" is assumed. Supported values are "rgmii*" and "rmii" for
+-  aspeed parts. Other (unknown) parts will accept any value.
+-- use-ncsi: Use the NC-SI stack instead of an MDIO PHY. Currently assumes
+-  rmii (100bT) but kept as a separate property in case NC-SI grows support
+-  for a gigabit link.
+-- no-hw-checksum: Used to disable HW checksum support. Here for backward
+-  compatibility as the driver now should have correct defaults based on
+-  the SoC.
+-- clocks: In accordance with the generic clock bindings. Must describe the MAC
+-  IP clock, and optionally an RMII RCLK gate for the AST2500/AST2600. The
+-  required MAC clock must be the first cell.
+-- clock-names:
+-
+-      - "MACCLK": The MAC IP clock
+-      - "RCLK": Clock gate for the RMII RCLK
+-
+-Optional subnodes:
+-- mdio: See mdio.txt file in the same directory.
+-
+-Example:
+-
+-	mac0: ethernet@1e660000 {
+-		compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
+-		reg = <0x1e660000 0x180>;
+-		interrupts = <2>;
+-		use-ncsi;
+-	};
+-
+-Example with phy-handle:
+-
+-	mac1: ethernet@1e680000 {
+-		compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
+-		reg = <0x1e680000 0x180>;
+-		interrupts = <2>;
+-
+-		phy-handle = <&phy>;
+-		phy-mode = "rgmii";
+-
+-		mdio {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			phy: ethernet-phy@1 {
+-				compatible = "ethernet-phy-ieee802.3-c22";
+-				reg = <1>;
+-			};
+-		};
+-	};
+-- 
+2.41.0
 
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=riscv-dt-for-next
-
-/Emil
-
-> Best Regards
-> William
->
-> >> >  &gmac0_rmii_refin {
-> >> >         clock-frequency = <50000000>;
-> >> >  };
-> >> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >> > index 64d260ea1f29..17f7b3ee6ca3 100644
-> >> > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >> > @@ -314,6 +314,11 @@ uart2: serial@10020000 {
-> >> >                         status = "disabled";
-> >> >                 };
-> >> >
-> >> > +               stg_syscon: syscon@10240000 {
-> >> > +                       compatible = "starfive,jh7110-stg-syscon", "syscon";
-> >> > +                       reg = <0x0 0x10240000 0x0 0x1000>;
-> >> > +               };
-> >> > +
-> >> >                 uart3: serial@12000000 {
-> >> >                         compatible = "snps,dw-apb-uart";
-> >> >                         reg = <0x0 0x12000000 0x0 0x10000>;
-> >> > @@ -370,6 +375,11 @@ syscrg: clock-controller@13020000 {
-> >> >                         #reset-cells = <1>;
-> >> >                 };
-> >> >
-> >> > +               sys_syscon: syscon@13030000 {
-> >> > +                       compatible = "starfive,jh7110-sys-syscon", "syscon";
-> >> > +                       reg = <0x0 0x13030000 0x0 0x1000>;
-> >> > +               };
-> >> > +
-> >> >                 gpio: gpio@13040000 {
-> >> >                         compatible = "starfive,jh7110-sys-pinctrl";
-> >> >                         reg = <0x0 0x13040000 0x0 0x10000>;
-> >> > @@ -397,6 +407,11 @@ aoncrg: clock-controller@17000000 {
-> >> >                         #reset-cells = <1>;
-> >> >                 };
-> >> >
-> >> > +               aon_syscon: syscon@17010000 {
-> >> > +                       compatible = "starfive,jh7110-aon-syscon", "syscon";
-> >> > +                       reg = <0x0 0x17010000 0x0 0x1000>;
-> >> > +               };
-> >> > +
-> >> >                 gpioa: gpio@17020000 {
-> >> >                         compatible = "starfive,jh7110-aon-pinctrl";
-> >> >                         reg = <0x0 0x17020000 0x0 0x10000>;
-> >> > @@ -407,5 +422,37 @@ gpioa: gpio@17020000 {
-> >> >                         gpio-controller;
-> >> >                         #gpio-cells = <2>;
-> >> >                 };
-> >> > +
-> >> > +               mmc0: mmc@16010000 {
-> >> > +                       compatible = "starfive,jh7110-mmc";
-> >> > +                       reg = <0x0 0x16010000 0x0 0x10000>;
-> >> > +                       clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
-> >> > +                                <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
-> >> > +                       clock-names = "biu","ciu";
-> >> > +                       resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
-> >> > +                       reset-names = "reset";
-> >> > +                       interrupts = <74>;
-> >> > +                       fifo-depth = <32>;
-> >> > +                       fifo-watermark-aligned;
-> >> > +                       data-addr = <0>;
-> >> > +                       starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
-> >> > +                       status = "disabled";
-> >> > +               };
-> >> > +
-> >> > +               mmc1: mmc@16020000 {
-> >> > +                       compatible = "starfive,jh7110-mmc";
-> >> > +                       reg = <0x0 0x16020000 0x0 0x10000>;
-> >> > +                       clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
-> >> > +                                <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
-> >> > +                       clock-names = "biu","ciu";
-> >> > +                       resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
-> >> > +                       reset-names = "reset";
-> >> > +                       interrupts = <75>;
-> >> > +                       fifo-depth = <32>;
-> >> > +                       fifo-watermark-aligned;
-> >> > +                       data-addr = <0>;
-> >> > +                       starfive,sysreg = <&sys_syscon 0x9c 0x1 0x3e>;
-> >> > +                       status = "disabled";
-> >> > +               };
-> >>
-> >> Hi William,
-> >>
-> >> These nodes still don't seem to be sorted by address, eg. by the
-> >> number after the @
-> >> Also please move the dt-binding patch before this one, so dtb_check
-> >> won't fail no matter where git bisect happens to land.
-> >>
-> >> /Emil
-> >>
-> >> >         };
-> >> >  };
-> >> > --
-> >> > 2.34.1
-> >> >
-> >> >
-> >> > _______________________________________________
-> >> > linux-riscv mailing list
-> >> > linux-riscv@lists.infradead.org
-> >> > http://lists.infradead.org/mailman/listinfo/linux-riscv
