@@ -2,229 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AEF67711CF
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 389497711E8
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 21:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbjHETil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 15:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58400 "EHLO
+        id S229587AbjHETqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 15:46:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjHETik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:38:40 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5A81BE4
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 12:38:38 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc63c2e84so32646355e9.3
-        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 12:38:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691264317; x=1691869117;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=udk/H8ZgKjfvJwnE+xho4EfEOftvGT0VCYsBYpwRNHo=;
-        b=yD2hT0N3zrlPlop4QxmCW16DXc/kWC/8YNFcGOeKehecVojM3ba0Zd39mtHn989C3X
-         R7oqj1lpmK9PjbFsklJF8XvKM9o8RwvldDEqrpxtJrh3IquXPVxUqYEGuiDzMB7BhQHr
-         up6Glj+7T9fB3Pt3eOshXohaxyb02FtrVfrHOLLU5gIXEGoEjg4cC53wOPQaez0p8EDf
-         2L/1awLEnbUYyc2mft6VCHoN7EkruHhgoiWAUX9d0eVHEKjE77AIX/0pbvPjiK1JFvEj
-         365QLUclpMw2AZrOh5OHpPnyul9NRliEfYwFpGcgw/OK9XH7zq9pzgZrGfIEg0bsiRG1
-         Wjqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691264317; x=1691869117;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=udk/H8ZgKjfvJwnE+xho4EfEOftvGT0VCYsBYpwRNHo=;
-        b=ZFKbu78h4eg94PB4KC9B84brTPMqCsEihaVfhJEJk7ju6KFKgnBtxMb9YNuB7g62zJ
-         DAqRnipc6teWatZyifygDCmhu3mH9wxSsJatPl1m778qAohgFa2esTkqZaJ/5X+73Ra4
-         AOZHOpgPR80RH331dmjKQIL7anNKMHWUvq3ozX0XtojtDfD1IkSasoBJ0ptWuw1vMFgK
-         qY7d54f1iqenEbJ8pW0yuOVCDQ+ms/puCqWJoKPMrOacRKpEgMqe64zx/j8CfGG9Jr4m
-         vv3M6oyP1qTJ6bDiuKQ4cX3S/0yL3wFhDBOXp07+Lyec7EgbqH+69EpsEQqpKcUZilxb
-         QM0w==
-X-Gm-Message-State: AOJu0YyxulL3X/MxJGzQZ9HzYQAIg7RgdkPWqaI8dSaieF5WXiSr2SK4
-        2uO8aN2cfipTcO8Avn7hGfBLIA==
-X-Google-Smtp-Source: AGHT+IGvrlUd0YfuF3G0qhIxdGb5wiPGOR1jc4ZfaV/DTwfKyUOEYr8f52aMWDJdfJaCv83Yo1cWYQ==
-X-Received: by 2002:a1c:4b0e:0:b0:3fb:b530:a4e4 with SMTP id y14-20020a1c4b0e000000b003fbb530a4e4mr4361705wma.8.1691264317315;
-        Sat, 05 Aug 2023 12:38:37 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id z12-20020a05600c220c00b003fe1ca92151sm5752252wml.26.2023.08.05.12.38.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Aug 2023 12:38:36 -0700 (PDT)
-Message-ID: <ceddbbfb-a178-2b7e-ea17-0a37f33224ab@linaro.org>
-Date:   Sat, 5 Aug 2023 21:38:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: cpufreq: add bindings for virtual
- cpufreq
-Content-Language: en-US
-To:     David Dai <davidai@google.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        with ESMTP id S229445AbjHETqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 15:46:16 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE071735;
+        Sat,  5 Aug 2023 12:46:14 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 375Jjw4S119004;
+        Sat, 5 Aug 2023 14:45:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691264758;
+        bh=CdhQuWo9ujaCpg9RHjcoZQ/AvoBB7wleNs6Mpq6ktyg=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=KU0VmzWRSoVMVYBEjZlI84Xg60/BTRvd5Nzj0x9YVEMKl3jsuI9p12gnNSVfItPsr
+         k70MWaN+vgKyfVD8rXAci0qP+LZOzGVpZ4wDI23686d0dXzP82o/RCjBxNvu833KSZ
+         qfjO1X57YtGuXvSsmco76mxf1nkt7X6RH6BgkEp0=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 375JjwSD026423
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 5 Aug 2023 14:45:58 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 5
+ Aug 2023 14:45:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 5 Aug 2023 14:45:58 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 375Jjvx4025732;
+        Sat, 5 Aug 2023 14:45:58 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Quentin Perret <qperret@google.com>,
-        Masami Hiramatsu <mhiramat@google.com>,
-        Will Deacon <will@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Gupta Pankaj <pankaj.gupta@amd.com>,
-        Mel Gorman <mgorman@suse.de>, kernel-team@android.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230731174613.4133167-1-davidai@google.com>
- <20230731174613.4133167-2-davidai@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230731174613.4133167-2-davidai@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>, Andrew Davis <afd@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62a: Remove syscon compatible from epwm_tbclk
+Date:   Sat, 5 Aug 2023 14:45:57 -0500
+Message-ID: <169126415606.84898.18424472511177398578.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230802174521.236255-1-afd@ti.com>
+References: <20230802174521.236255-1-afd@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 19:46, David Dai wrote:
-> Adding bindings to represent a virtual cpufreq device.
+Hi Andrew Davis,
+
+On Wed, 02 Aug 2023 12:45:19 -0500, Andrew Davis wrote:
+> The other instances have been fixed, but AM62a seems to have been missed,
+> fix this here.
 > 
-> Virtual machines may expose MMIO regions for a virtual cpufreq device for
-> guests to read frequency information or to request frequency selection. The
-> virtual cpufreq device has an individual controller for each CPU.
 
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
+The merging of two conf nodes:
 
-> 
-> Co-developed-by: Saravana Kannan <saravanak@google.com>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Signed-off-by: David Dai <davidai@google.com>
-> ---
->  .../bindings/cpufreq/cpufreq-virtual.yaml     | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
-> new file mode 100644
-> index 000000000000..f377cfc972ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-virtual.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yamll#
-> +
-> +title: Virtual CPUFreq
-> +
-> +maintainers:
-> +  - David Dai <davidai@google.com>
-> +  - Saravana Kannan <saravanak@google.com>
-> +
-> +description:
-> +  Virtual CPUFreq is a virtualized driver in guest kernels that sends frequency
-> +  selection of its vCPUs as a hint to the host through MMIO regions. The host
-> +  uses the hint to schedule vCPU threads and select physical CPU frequency. It
-> +  enables accurate Per-Entity Load Tracking for tasks running in the guest by
-> +  querying host CPU frequency unless a virtualized FIE (ex. AMU) exists.
+I understand the linux-next dependency, it does create a dtbs_check
+warnings on rc1, but I am picking this up since the yaml fixup is in
+next already and not a new compatible addition. if the fixups does'nt
+end up in linus-master for 6.6-rc1, we might need to look at what we
+need to do. Please let me know if there is any concerns and I can drop
+this series from my tree.
 
-Why do you need DT for this? You control hypervisor, thus control the
-interface to the guest. I think Rob made it pretty clear that
-discoverable usecases (which is yours) are not for DT.
+For the tbclk node name fix up:
 
-Incomplete style-review follows:
+I also noticed there were two other places we needed the fix as well,
+since they were trivial, I rolled up [2] as part of the patch #3. if
+you think the fixup should be done differently, let me know and I can
+drop the series from my tree and we can pick a new series up.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: virtual,cpufreq
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Missing blank line.
+[1/3] arm64: dts: ti: k3-am62a: Remove syscon compatible from epwm_tbclk
+      commit: b9d801dbb2d5cb796dce32ffcee63fba83f72841
+[2/3] arm64: dts: ti: k3-am64: Merge the two main_conf nodes
+      commit: a57ba56bca42fa484bec916f7a88a3dc03d6cbdf
+[3/3] arm64: dts: ti: k3: Fix epwm_tbclk node name to generic name
+      commit: 085baaa7084e39a63d72db86821c6fb65bdbff72
 
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      cpu@0 {
-> +        compatible = "arm,arm-v8";
-> +        device_type = "cpu";
-> +        reg = <0x0>;
-> +        operating-points-v2 = <&opp_table0>;
-> +      };
-> +
-> +      cpu@1 {
-> +        compatible = "arm,arm-v8";
-> +        device_type = "cpu";
-> +        reg = <0x0>;
-> +        operating-points-v2 = <&opp_table1>;
-> +      };
-> +    };
-> +
-> +    opp_table0: opp-table-0 {
-> +      compatible = "operating-points-v2";
-> +
-> +      opp1098000000 {
-> +        opp-hz = /bits/ 64 <1098000000>;
-> +        opp-level = <1>;
-> +      };
-> +
-> +      opp1197000000 {
-> +        opp-hz = /bits/ 64 <1197000000>;
-> +        opp-level = <2>;
-> +      };
-> +    };
-> +
-> +    opp_table1: opp-table-1 {
-> +      compatible = "operating-points-v2";
-> +
-> +      opp1106000000 {
-> +        opp-hz = /bits/ 64 <1106000000>;
-> +        opp-level = <1>;
-> +      };
-> +
-> +      opp1277000000 {
-> +        opp-hz = /bits/ 64 <1277000000>;
-> +        opp-level = <2>;
-> +      };
-> +    };
-> +
-> +    soc {
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      cpufreq {
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Missing unit address
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +        reg = <0x1040000 0x10>;
-> +        compatible = "virtual,cpufreq";
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-compatible is always the first property.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Also, you did not test it...
-
-
-Best regards,
-Krzysztof
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+[2]
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 33b6aadc9083..ef90b2bc81eb 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -55,7 +55,7 @@ phy_gmii_sel: phy@4044 {
+ 			#phy-cells = <1>;
+ 		};
+ 
+-		epwm_tbclk: clock@4130 {
++		epwm_tbclk: clock-controller@4130 {
+ 			compatible = "ti,am62-epwm-tbclk";
+ 			reg = <0x4130 0x4>;
+ 			#clock-cells = <1>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 350beddc3d3c..d08f086d7d01 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -502,7 +502,7 @@ dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0 {
+ 			reg = <0x000041e0 0x14>;
+ 		};
+ 
+-		ehrpwm_tbclk: clock@4140 {
++		ehrpwm_tbclk: clock-controller@4140 {
+ 			compatible = "ti,am654-ehrpwm-tbclk";
+ 			reg = <0x4140 0x18>;
+ 			#clock-cells = <1>;
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
