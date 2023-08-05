@@ -2,125 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13716771075
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 18:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC5F377109B
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 18:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbjHEQQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 12:16:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35950 "EHLO
+        id S229441AbjHEQk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 12:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjHEQQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 12:16:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B203D10F8;
-        Sat,  5 Aug 2023 09:16:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DDFF60BC4;
-        Sat,  5 Aug 2023 16:16:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEA1CC433C7;
-        Sat,  5 Aug 2023 16:16:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691252161;
-        bh=Gq1y9CXthOOMrt9MSm++2oX2fZsENlJKQGevmFHMZDM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=lYhu/8Lm6jnIM02sx+KdN2ZEpIN0vThwxn+MbJKGxpDjZVG6kId3Z2XVunzDL8ksM
-         rw1kYZrnNxxzpGsZF3rv9V0Jy2q47evCb9se/QZhd3uikoxaRhVJrKxtR9AKJx69xZ
-         konICzDY/oCV3Yp1jNPA8JrEicFL7I/5oxMgQiLY4Te09vPBdwM+HhCK+NSnXzGrv6
-         jVD2k4yBY2ev5wEWy2zEpGupQQ4xFuk5D2DreHs32T/I6xCPwsDCaXlnBav87qqMIO
-         N5v7Ek8hOICmAOKpl3MQX1RZSc+MVUnHqiBHcmqpfP1SDk3cnc6sZ72eu7/r33kQaY
-         KMldp7QEwGi+w==
-Received: (nullmailer pid 1739721 invoked by uid 1000);
-        Sat, 05 Aug 2023 16:15:59 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229527AbjHEQk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 12:40:59 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A4D10F8;
+        Sat,  5 Aug 2023 09:40:58 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b9bb097c1bso48272821fa.0;
+        Sat, 05 Aug 2023 09:40:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691253656; x=1691858456;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gbgbFpQ5CS8b/Xg24dFI86ayyuiWeSuGucCXchMse2g=;
+        b=c+FKwgy+65CRVJA5AJKwke6ZlNOixLM+hZxnft7Tzni9BU8by5Ye/LJcjR2gGI6vVK
+         AHGnHGrb5hekJ/uzdt0KNvCkW/nIvxG5CKbhjdSLRSnJfPPZcg7Yo7wyY2feKGSRzDcF
+         4vHsPI8W3cK+xasc0WDwMnBcjIdQWfaKbJ+P7/tlZl3XxnNKDbo+hXD/v4ydPa0ICFX1
+         0FMnzqNmLlT79FGtHkN+D4l6mViOFIgdZ+4QKFHsmxsQF3tkVS6grXUNICMJ0GjnW5VS
+         S9YsACtc/SdqXBxoQAZuGqoO+iF88NgFGMZgX3YP4lLXqyoT1vurhqKpHsEYSEBlrp8C
+         IAFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691253656; x=1691858456;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gbgbFpQ5CS8b/Xg24dFI86ayyuiWeSuGucCXchMse2g=;
+        b=KmJOFlf79AlzzPW4X9dOY9skq7FM+Trq3KXmPmkfAdts2m4OYyAuvoSnF6lz3C0MG7
+         EW4C7ZBZZuzH6ZfaQYRuwPxx90cB+UMuwDv1o/h33S+0nv1rxSjrEbBmvhmkjC8qPytJ
+         AVD6HK9aJHWQhdZ3tK9JomskT3/9uFLBedEpFT8kaoJoSdBtAIIPcQai3RZ/IOjR1iJP
+         PSDo5cXAEkJGYRSU1wrjB5/ZObKL1af8E7VInog0ItmP6f8wws+GKLqCiPyEDFNfRNuG
+         Za8rOaMBc44RaRW4BLCkJoZt6m+R5NA705pzhP/owfMrBwZWfTqEu2Cg8OEXCppd3aBs
+         BGTg==
+X-Gm-Message-State: AOJu0Yw6ZKSv0NtbT5Lr9JwQYoCSPmRmF3Oezjf05MIxikS4Ncv1BVQb
+        MOHf1s78qv5mYiS4LnqXCP4=
+X-Google-Smtp-Source: AGHT+IGAyWnZC1HC2zk0RuQ75eTsYcDjPBSvhuYz3lE2Z9xqqgVdLPS76IkbuMZuD9syyfUlKS6iew==
+X-Received: by 2002:a2e:9c9a:0:b0:2b9:ecab:d921 with SMTP id x26-20020a2e9c9a000000b002b9ecabd921mr3847745lji.18.1691253656345;
+        Sat, 05 Aug 2023 09:40:56 -0700 (PDT)
+Received: from user-PC.. ([178.134.198.138])
+        by smtp.gmail.com with ESMTPSA id v3-20020a05600c214300b003fe407ca05bsm6762335wml.37.2023.08.05.09.40.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Aug 2023 09:40:55 -0700 (PDT)
+From:   Maksim Kiselev <bigunclemax@gmail.com>
+To:     contact@jookia.org
+Cc:     aou@eecs.berkeley.edu, conor+dt@kernel.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, edumazet@google.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        mkl@pengutronix.de, netdev@vger.kernel.org, pabeni@redhat.com,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        samuel@sholland.org, wens@csie.org, wg@grandegger.com
+Subject: Re: [PATCH v2 2/4] riscv: dts: allwinner: d1: Add CAN controller nodes
+Date:   Sat,  5 Aug 2023 19:40:52 +0300
+Message-Id: <20230805164052.669184-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230721221552.1973203-4-contact@jookia.org>
+References: <20230721221552.1973203-4-contact@jookia.org>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Raphael Gallais-Pou <rgallaispou@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230805144646.33819-1-rgallaispou@gmail.com>
-References: <20230805144646.33819-1-rgallaispou@gmail.com>
-Message-Id: <169125215968.1739705.18422511571205878865.robh@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: irqchip: convert st,stih407-irq-syscfg
- to DT schema
-Date:   Sat, 05 Aug 2023 10:15:59 -0600
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi John, Jernej
 
-On Sat, 05 Aug 2023 16:46:46 +0200, Raphael Gallais-Pou wrote:
-> Convert deprecated format to DT schema format.
-> 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes in v2:
-> 	- Added Conor's r-by
-> 	- Removed quotes surrounding $refs
-> 	- Hardcoded 'st,invert-ext' possible values
-> 
->  .../st,sti-irq-syscfg.txt                     | 30 ---------
->  .../st,stih407-irq-syscfg.yaml                | 67 +++++++++++++++++++
->  2 files changed, 67 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-> 
+On Sat, Jul 22, 2023 at 08:15:51AM +1000, John Watts wrote:
+> ...
+> @@ -131,6 +131,18 @@ uart3_pb_pins: uart3-pb-pins {
+> 				pins = "PB6", "PB7";
+> 				function = "uart3";
+> 			};
+> +
+> +			/omit-if-no-ref/
+> +			can0_pins: can0-pins {
+> +				pins = "PB2", "PB3";
+> +				function = "can0";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			can1_pins: can1-pins {
+> +				pins = "PB4", "PB5";
+> +				function = "can1";
+> +			};
+> ...
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Should we also keep a pinctrl nodes itself in alphabetical order?
+I mean placing a CAN nodes before `clk_pg11_pin` node?
+Looks like the other nodes sorted in this way...
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml: properties:st,invert-ext:enum: 'oneOf' conditional failed, one must be fixed:
-	{'const': 1} is not of type 'integer'
-	{'const': 1} is not of type 'string'
-	{'const': 2} is not of type 'integer'
-	{'const': 2} is not of type 'string'
-	{'const': 4} is not of type 'integer'
-	{'const': 4} is not of type 'string'
-	hint: "enum" must be an array of either integers or strings
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml: properties:st,invert-ext:enum:0: {'const': 1} is not of type 'integer'
-	hint: An integer type must have integer constraints
-	from schema $id: http://devicetree.org/meta-schemas/types.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml: properties:st,invert-ext:enum:1: {'const': 2} is not of type 'integer'
-	hint: An integer type must have integer constraints
-	from schema $id: http://devicetree.org/meta-schemas/types.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml: properties:st,invert-ext:enum:2: {'const': 4} is not of type 'integer'
-	hint: An integer type must have integer constraints
-	from schema $id: http://devicetree.org/meta-schemas/types.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230805144646.33819-1-rgallaispou@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Cheers,
+Maksim
