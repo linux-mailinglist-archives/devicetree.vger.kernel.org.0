@@ -2,81 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0DB9771245
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 23:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5981C77124A
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 23:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbjHEVGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 17:06:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
+        id S229483AbjHEVKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 17:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbjHEVGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 17:06:49 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0E0EF3
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 14:06:48 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fe167d4a18so31280975e9.0
-        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 14:06:48 -0700 (PDT)
+        with ESMTP id S229460AbjHEVKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 17:10:47 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F8EE7
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 14:10:46 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99c0cb7285fso425232266b.0
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 14:10:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691269607; x=1691874407;
+        d=linaro.org; s=google; t=1691269844; x=1691874644;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7bQWyorKrsAyTYwSEr05KzsqtWIhFwBSuW+LToiflyQ=;
-        b=urnNl0V9kas1yV3Bnm4XUiLjXd3e7p1tpR/zWTWZApJFL7Rf1VbI3hWvWoY1bjXpSz
-         2+LAVdn6ukkicg0yY2qPw7b+e8whqR0SIMeSIiL5WTxuLwq3rNZ8WNEr4wLtcgMWYaR2
-         ZADglGlIoVHQsSWa5fpz30yv+rVjNZ0rt2i2DHkGgPgS9vWZOtzd6+qDvYTW/gI2bdRy
-         kCpwewow2HPjCpF7noCc2fcg6uX1BGweP7CbTJqUmNxrUsw64AyQcgFOwMZxC2QAaAMz
-         r0MJ93EEQ7vDKdpteQK1DLAppiK94NwhqAHUi66px8WxNDLBKOoUnluPSuXWSj7mgi70
-         e+eQ==
+        bh=Te/iuHusfR0sKZcOV1o10/BbIF4/9EQr1cV9bQ+zMAA=;
+        b=A4jiRySvUj9KFHw3mJ8Ljc0XzHgBEIg6Qsdnu2ivSFoLgjJqEPvhmbCXBO82qbCjuh
+         XgqvhPQEWiub8ol4Te+2bhuLt+gawSFmo3aU07dbt5/XfJxBECNX9N8XUcn/QWRQI3tv
+         dSYI0+2fooby+xpsjNdh0AaV2WxbwLotenEIcFTLQtwYqZ7J+fX3uD3tZiHpBV+Tdq06
+         8nI2JMXrlY18yxJQmZXoFtTDr6BzvBQTKKGiZaNnl/5cq0nJ/I73jtrBagvW40R2090U
+         oLw67U/yiqaWCt7wTzk9izFQ3O1SCiG6rkQaTHiM6KQCq00y47wkYLwbruiwDpVCz39+
+         QIEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691269607; x=1691874407;
+        d=1e100.net; s=20221208; t=1691269844; x=1691874644;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7bQWyorKrsAyTYwSEr05KzsqtWIhFwBSuW+LToiflyQ=;
-        b=geR+hGXPsAYj/ayO5ee096ty8JoK27t7GMG+ieHSooCWiqFNiSl7Wdq9DWmmK6dfw8
-         LYjnb0Jtvj1YFvMfMEWqQAPCmhlLARciyx9FKCoGUtAOwNMaZZqurfAMEqH2UVj1gn9V
-         C6iYDQThuKaZ7sbr6Mg3dx2Bn8bdnKfdMuntQTVXJrE8QqYasrfB3i/IE+NYNzwBggEc
-         GP7uYiJLs/kM7axm1cFs+VFb1be5TlvI1gTS5C2Gy84d50gw7sC2qUl3brMWHgdMNmCM
-         hNdkNNqe5UGugE7F4Yk0I8Kr6b6o2WiYBzeanIG3XvywqpoCxss8PuOYDYcBC/yGSWuZ
-         L4AQ==
-X-Gm-Message-State: AOJu0Yyb8DoTJ3yjvUEVZfmPOSnZQAe850tpp1LsIrxIlOGXwInmEAau
-        He3aRGVs4JN37xjO18DHWwEPmg==
-X-Google-Smtp-Source: AGHT+IGBFr8NySeTwyPsNV646xsK3/GAjBh+mi0q0UZ3HrUugcDHoZRLvIbht/mcU3b6eaKo7B9hrg==
-X-Received: by 2002:a7b:cbc7:0:b0:3fb:bc6d:41f1 with SMTP id n7-20020a7bcbc7000000b003fbbc6d41f1mr4242361wmi.17.1691269606259;
-        Sat, 05 Aug 2023 14:06:46 -0700 (PDT)
+        bh=Te/iuHusfR0sKZcOV1o10/BbIF4/9EQr1cV9bQ+zMAA=;
+        b=A4qjk3XrUR7fWal355qqliT3DKe+JufpIlPEf2qoaWeeSQZaK3UwEjyaCr69ksYAH6
+         owsg+G3LzyzYsRVjXONVh4zoTWhqzSIfQgYLiBqI0zwWfJlgjOj/NNrw6oVkqXt6397C
+         FX8YhUtb3HASm9noex6V1nvEhVxta+FY1JuVXTs8ke5PlHYev6sS1iFTL0EYne8SDEED
+         sZ7WaWN+RiGc150fmItE/1uvZUO2bMYn+YB0QIgFtBgrDJ5VSd29GqC3YfV23caOzHyy
+         EjBML7kCFCeAPqx4tCZLJNrvyKzRtwrMR4Crk/lbQbVidrisLU+lC0uWnBHrpDg8JBfj
+         WC0w==
+X-Gm-Message-State: AOJu0Yxc7MoqY+JqMAqlOph7QYr6TkOO7r57diqSuX/F7hzdHN4lofa5
+        d2ZvFMNpTW3MehPXJEFpx6oyeEQxBQOVpam8lbo=
+X-Google-Smtp-Source: AGHT+IFqJSazSoqvAvxX9mRgx7+oZ2LN3CzLXMX1HNes/QFXBiiDV7pmQ8/iMUTNvjP0bgMKXb7DlQ==
+X-Received: by 2002:a17:906:3001:b0:992:33ba:2eb4 with SMTP id 1-20020a170906300100b0099233ba2eb4mr4383582ejz.71.1691269844379;
+        Sat, 05 Aug 2023 14:10:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.245])
-        by smtp.gmail.com with ESMTPSA id n22-20020a7bc5d6000000b003fe195cecb3sm10258351wmk.38.2023.08.05.14.06.44
+        by smtp.gmail.com with ESMTPSA id a8-20020a170906244800b00992b2c55c67sm3147806ejb.156.2023.08.05.14.10.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Aug 2023 14:06:45 -0700 (PDT)
-Message-ID: <000f45c5-d7dd-237e-1e1b-72056acd4af1@linaro.org>
-Date:   Sat, 5 Aug 2023 23:06:43 +0200
+        Sat, 05 Aug 2023 14:10:43 -0700 (PDT)
+Message-ID: <a9fb188c-8e88-8e80-2795-7f7504c35fcd@linaro.org>
+Date:   Sat, 5 Aug 2023 23:10:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v8 04/16] media: cadence: Add support for TI SoCs
+Subject: Re: [PATCH v2 2/2] dt-bindings: media: Add OV5642
 Content-Language: en-US
-To:     Jai Luthra <j-luthra@ti.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        niklas.soderlund+renesas@ragnatech.se,
-        Benoit Parrot <bparrot@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, nm@ti.com,
-        devarsht@ti.com
-References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
- <20230731-upstream_csi-v8-4-fb7d3661c2c9@ti.com>
+To:     Conor Dooley <conor@kernel.org>, Fabio Estevam <festevam@denx.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230801234047.136099-1-festevam@denx.de>
+ <20230801234047.136099-2-festevam@denx.de>
+ <20230802-outreach-national-92083a670b58@spud>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230731-upstream_csi-v8-4-fb7d3661c2c9@ti.com>
+In-Reply-To: <20230802-outreach-national-92083a670b58@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,35 +77,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 10:29, Jai Luthra wrote:
-> Multiple TI SoCs (J721E, AM62) use this CSI2RX receiver, integrated with
-> an external DPHY and a pixel-grabber IP that unwraps the pixel data and
-> send it to memory via DMA.
+On 02/08/2023 17:25, Conor Dooley wrote:
+> Hey, 
 > 
-> Add a separate compatible for the TI-specific version of this IP.
+> On Tue, Aug 01, 2023 at 08:40:47PM -0300, Fabio Estevam wrote:
+>> Add DT bindings for OmniVision OV5642 Image Sensor.
+>>
+>> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
-> New in v8
+> Thanks for doing this. It looks good to me, although I got a complaint
+> from git while applying it locally:
+> Applying: dt-bindings: trivial-devices: Remove the OV5642 entry
+> Applying: dt-bindings: media: Add OV5642
+> /stuff/linux/.git/worktrees/linux-dt/rebase-apply/patch:119: trailing whitespace.
+>   
+> warning: 1 line adds whitespace errors.
 > 
->  drivers/media/platform/cadence/cdns-csi2rx.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index 0d879d71d818..b087583d636f 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -559,6 +559,7 @@ static void csi2rx_remove(struct platform_device *pdev)
->  
->  static const struct of_device_id csi2rx_of_table[] = {
->  	{ .compatible = "starfive,jh7110-csi2rx" },
-> +	{ .compatible = "ti,j721e-csi2rx" },
+> I think you can probably squash both patches and add a
 
-Why do you need it? It's redundant - already compatible with cdns. No
-need to add empty match entries.
+Yes, they should be squashed, otherwise it is not really bisectable.
+Compatible disappears after first patch... and the first patch does not
+have any sense on its own. Even if this is not trivial device, removing
+it without documentation is not the way.
 
->  	{ .compatible = "cdns,csi2rx" },
->  	{ },
 
 
 Best regards,
