@@ -2,180 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 213B8770EFF
-	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 11:15:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E668C770F13
+	for <lists+devicetree@lfdr.de>; Sat,  5 Aug 2023 11:32:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjHEJPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 05:15:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
+        id S229815AbjHEJcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 05:32:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbjHEJP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 05:15:26 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083A4469F;
-        Sat,  5 Aug 2023 02:15:25 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9a828c920so43953181fa.1;
-        Sat, 05 Aug 2023 02:15:24 -0700 (PDT)
+        with ESMTP id S229473AbjHEJcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 05:32:09 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEB710FC
+        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 02:32:08 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so8425690a12.0
+        for <devicetree@vger.kernel.org>; Sat, 05 Aug 2023 02:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691226923; x=1691831723;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VEMrhJgRpsbu7zR7TA2bQHTZOtBmsvLnhXD4/GvVmYU=;
-        b=ByzRNtMFnLrd9GxiHSVQHLxowzr65hqXuPf/NZB0wensOhVPYzu5ToLqe4kIy7MHEj
-         Y1SliYE8cxWcMcmLgnNHDu6Yy+T20WE/uWB5Fkmn0YXwvjDB+w/iIvnGJtJZou9TcAAj
-         L5q4aaT9uV8t3leAu+J81DmXNXeABjKe02P9n2WUPMpl7ScsLLc+J1qiewecbQweZLKq
-         GQ5KFOo1W/HwX9fZQy84McBdVE8sPc9QOC8cHkMPdeoVjLssJf9yd/R7Hk84cp0hSSTc
-         am8plE9JiTbJlpVbFsrf84cS69QHVVN5DToRRRQl33S8Ydyt21XHjUlKpblBxiDkkRRg
-         Z/gA==
+        d=amarulasolutions.com; s=google; t=1691227927; x=1691832727;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aF25RsasGUB1aNRKgB20J0I6Xsy/3huYOi47Fd6Xv1k=;
+        b=b8vVOFsiKhLLr1bFXxu3b0b4fzG5ByTOZMyc8LOUxhXh7tXwd4xB40vB1C+1TnXEXf
+         ulEByMBlb4W9BASrYgRDnUEFi4o1+akeDnLB4kg2yR3DRwOV3YFsxsKMV3P6Kl9HtsiY
+         N4bU6ex122m5UfarEv6oO4HOkC78ZanmY7n5k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691226923; x=1691831723;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VEMrhJgRpsbu7zR7TA2bQHTZOtBmsvLnhXD4/GvVmYU=;
-        b=gS+jcrXlpm6+kBGvHlXHWPEbreXFZFyVlT8zsnbd0C0+e6W2BAooeRWtNs8V944s6L
-         LU0KvieHCoK1LpuF7phIRJc+6C6ix1zo0jqaEAhaUTT/mpyVTT0nt/yVHf/7oGB7NWEh
-         mBAUjb5DulKfWtxwdGtu8uNJ47rC6f7YEjFDslg1Ld1S9O7AO7c5paP1ltX0g37D7Udr
-         0vz5Kttm+YP741RDdoULXNQ3UL5kTOL0duJ7nIkmcLj439dbtciL9myFiJwBM/uXGUo8
-         WL6ONWVokxMQRX2MsEufbSC7tEm6vS0dggUrZLVasrq6WR4HGalAe5Zoxa/TrShCrNVJ
-         zY+w==
-X-Gm-Message-State: AOJu0Yx0HYNFd2X3Pr9gBuNskepGPX+l4jJC3+7XW1l9ScflBQZI+qGM
-        ZLlbwgxiZx0LeGgNbG889fpWKTvJ/I7wBjl4
-X-Google-Smtp-Source: AGHT+IHUkxlpoPzF31OElddPnzgqTc5AMFFKr2pzjnaghDPp3Ip1gxFvrpXc1JPPQXDzlWQaLABPLQ==
-X-Received: by 2002:a2e:98cf:0:b0:2b9:e053:79d8 with SMTP id s15-20020a2e98cf000000b002b9e05379d8mr3322896ljj.18.1691226922927;
-        Sat, 05 Aug 2023 02:15:22 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id v9-20020a2e7a09000000b002b836d8c839sm815724ljc.40.2023.08.05.02.15.21
+        d=1e100.net; s=20221208; t=1691227927; x=1691832727;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aF25RsasGUB1aNRKgB20J0I6Xsy/3huYOi47Fd6Xv1k=;
+        b=If84aBdL781z8zCkz3gZ4h0z55isKwi9UjkI5sCXIepMzYfL41CItUHOHnP0geLhsN
+         gr7gb8NUyR155FV84iPCguRRId510Hd9p6XUhDm+RXfCxuXW8ZogQ+XxwWNY3014jFtP
+         7stSS+ba6SPBBGWgcogEAgVcHJJ0b93c8yy1q73ukcau4e6UzxD5x/ptg3Ot32aJcELf
+         kBfXKJ8BYY/pBCNGXZwS1wHzC/N2mibZ+YXNFQ9iGJFeyksen3PLafQDFK/rLRqY9DKx
+         cUNyb/AA7Z/AgF4lBFEbCw166Vns85cwnSNHcWjVpB/yE6IIqXWn130zEQkTCwx7D4v2
+         uhHw==
+X-Gm-Message-State: AOJu0Yw38cdSizfe/viePFhXb1uW0Xr30MG9XEYKSbpgorVlcSZ0LmaY
+        8a0sfqeMtVNveMvQd3ITerJbbA==
+X-Google-Smtp-Source: AGHT+IGtXjH9AHI/YJtPiVY+kUPyUT2gJnGXQxKu46u8YS85WU5PjON9DsKxMaGHjRoi/CRF1KyyjA==
+X-Received: by 2002:a17:907:760a:b0:99b:4bab:2841 with SMTP id jx10-20020a170907760a00b0099b4bab2841mr2313337ejc.26.1691227927131;
+        Sat, 05 Aug 2023 02:32:07 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-52-12-96.retail.telecomitalia.it. [82.52.12.96])
+        by smtp.gmail.com with ESMTPSA id j15-20020a170906430f00b0099b76c3041csm2491083ejm.7.2023.08.05.02.32.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Aug 2023 02:15:22 -0700 (PDT)
-Date:   Sat, 5 Aug 2023 11:17:21 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sat, 05 Aug 2023 02:32:06 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        michael@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: mcp3911: add support for the whole
- MCP39xx family
-Message-ID: <ZM4ToQ4EiuEwlbEi@gmail.com>
-References: <20230804100248.3773861-1-marcus.folkesson@gmail.com>
- <20230804100248.3773861-2-marcus.folkesson@gmail.com>
- <ZM1Td+v3tcoaID9v@smile.fi.intel.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [RESEND PATCH v7 0/3] Add display support on the stm32f746-disco board
+Date:   Sat,  5 Aug 2023 11:31:59 +0200
+Message-Id: <20230805093203.3988194-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="OZc4EUY9h3zGPqzZ"
-Content-Disposition: inline
-In-Reply-To: <ZM1Td+v3tcoaID9v@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The series adds support for the display on the stm32f746-disco board.
 
---OZc4EUY9h3zGPqzZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v7:
+- Add 'Reviewed-by' tags I forgot in v6.
+  https://lore.kernel.org/linux-arm-kernel/20230629083726.84910-1-dario.binacchi@amarulasolutions.com/T/
 
+Changes in v6:
+- Remove dma nodes from stm32f746-disco.dts, they are not used by LTDC,
+  so there is no need to enable them.
 
-Hi Andy,
+Changes in v5:
+I am confident that framebuffer sizing is a real requirement for STM32 boards,
+but I need some time to understand if and how to introduce this functionality.
+Therefore, I drop the following patches to allow the series to be fully merged:
+ - [4/6] dt-bindings: display: stm32-ltdc: add optional st,fb-bpp property
+ - [5/6] ARM: dts: stm32: set framebuffer bit depth on stm32f746-disco
+ - [6/6] drm/stm: set framebuffer bit depth through DTS property
 
-Thanks for your revew!
+Changes in v4:
+- Use DTS property instead of module parameter to set the framebuffer bit depth.
 
-[...]
->=20
-> > +static int mcp3910_get_offset(struct mcp3911 *adc, int channel, int *v=
-al)
-> > +{
-> > +	return mcp3911_read(adc, MCP3910_OFFCAL(channel), val, 3);
->=20
-> Just to be sure, the proper endianess conversion is done in mcp3911_read()
-> and mcp3911_write() calls?
->=20
-> This question applies to all calls to that APIs.
+Changes in v3:
+- rename ltdc-pins-a-0 to ltdc-0.
+- drop [4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
+  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next):
+  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
+- drop [5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
+  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
 
-Yes it does.
+Dario Binacchi (3):
+  ARM: dts: stm32: add ltdc support on stm32f746 MCU
+  ARM: dts: stm32: add pin map for LTDC on stm32f7
+  ARM: dts: stm32: support display on stm32f746-disco board
 
-[...]
+ arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi | 35 ++++++++++++++++++
+ arch/arm/boot/dts/st/stm32f746-disco.dts  | 43 +++++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32f746.dtsi       | 10 ++++++
+ 3 files changed, 88 insertions(+)
 
->=20
-> > +static int mcp3910_get_osr(struct mcp3911 *adc, int *val)
-> > +{
-> > +	int ret =3D mcp3911_read(adc, MCP3910_REG_CONFIG0, val, 3);
->=20
-> Have you run checkpatch? Here should be a blank line. Same in other sever=
-al
-> places.
+-- 
+2.34.1
 
-Yes, checkpatch does not report any warning for this.
-
-[...]
-
-> > +	adc->chip =3D (struct mcp3911_chip_info *)spi_get_device_id(spi)->dri=
-ver_data;
->=20
-> Can't you use spi_get_device_match_data()?
->=20
-> ...
-
-Will go for spi_get_device_match_data().
-
-[...]
-
->=20
-> > +		device_property_read_u32(&adc->spi->dev, "device-addr", &adc->dev_ad=
-dr);
->=20
-> With
->=20
-> 	struct device *dev =3D &adc->spi->dev;
->=20
-> lines like this will be neater.
-
-Indeed, but I think I will short it down to just spi->dev.
-
->=20
->=20
->=20
-
-Best regards,
-Marcus Folkesson
-
---OZc4EUY9h3zGPqzZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmTOE5wACgkQiIBOb1ld
-UjKezw/9Ft3n9wG4UJox6bgPA6LdrFllY0Joyk8WcdHUzckCXh8R0kFowgIOhOOd
-8LekC5lNQrx8r2aCpPwOyw7tuCVPjxrqUVxnF4ibU+HNFz4bqBodrXb6teUNAAHJ
-8SBcgwfUsKz3zcg2WHKzcbZJYJnKHcdD5yzaecypRyNPFo+NfHhIoiav0tDWFMlk
-6Ldd1Xa5w4xV4kCVt/BFl5YGOy/okrlntVEdWjL2+Jxu+rb7iD5FRQlS0d0OMPZk
-WldHXAOpguEzJRMdRxPmWtEdhyfVyQEymSoKrS22iPJt/EJsxd+p3pvmq/PKdogD
-4Q4dx4slUdYWD7CHRfTJ/cEMe3d9PUI5Cjqb381UavKJ4N/RsfgwoLO/LlbDZaBu
-z6J9fTWKSFa0jPpXamxxaLeoTBTU8ZM0KHipK8xalaBO40NM7MsrIoWHSpBUYV6W
-c4wDqpe5fz1YDOMZ+bea00Uyl+XlzNaVY/rWO2cflnRZ8I3550WaAKTPVJwlTy2F
-58gwoEPD3X82RmTSAtwoVxTgXzbWileIM3/x0Hs08pksOuYUEkuFjCO1/i9sn2SB
-JnCl6d3oRYW4D1+nksu5rFqPZIk72kIH4OgXdpG2x+gdRVt+iIBKWBKYUUhRJi3e
-BF16knGzDggpv/+YYvGO3ZbjqfWSvf6tGyusiXOAGXw4Loz4Xgw=
-=Rgh5
------END PGP SIGNATURE-----
-
---OZc4EUY9h3zGPqzZ--
