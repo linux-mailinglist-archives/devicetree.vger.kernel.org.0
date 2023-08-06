@@ -2,145 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 027657714B7
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 14:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2E177714F8
+	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 14:21:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbjHFMFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Aug 2023 08:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57642 "EHLO
+        id S229530AbjHFMVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Aug 2023 08:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjHFMFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 08:05:37 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5889318F
-        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 05:05:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
-        s=tfld2305; t=1691323485;
-        bh=QQlkrQlRMOL64jl7dj3sFnA05/M+vwVYe0FHD7Y9Ceg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:From;
-        b=SFmBHrKoP6OEQP1Eze4SiCcjzmBBvOvYeKNmEs1JP74WSRx4cNeXAEbN9CeoYSZFf
-         9MMuzAmxE4C/w2OIsPQBarFMJx/Yd4EcP2r0nnO1z3nraTmZUNpDZDm7AVsoDhF7Wo
-         z1YN/C2QbzitIxqxactRt+f+kn3yqK7QCxmxZt1g=
-X-QQ-mid: bizesmtp84t1691323481t1apgc4x
-Received: from [192.168.2.144] ( [178.41.211.221])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Sun, 06 Aug 2023 20:04:06 +0800 (CST)
-X-QQ-SSF: 01400000000000704000000A0000000
-X-QQ-FEAT: I8hG9CuxGDLqrFNU3xoRzpwZvtXb1JXP/B5t77gXroA70Q3Fe/tCzZQszBzGU
-        A8hO6mKFnoN6GoWJXMyuxuYjWoEzZ8fbDy3KMA1CvgZ5Uglwjcw7cr/FjRI4QhEchHr26Tv
-        owu3ImbCEa2phAOVhtBm4eTdRcrc5plqsnnIBc19Oa7AflB+fQHrhwwqmSMg2D8Ueu1u8Qq
-        DDnsk3YKFMyjtmvwp665WKO/5FDgIJbVD2TIaKh3jSoEW8iAKp5OYIA6gZEOh4rYQ0WTDSx
-        X9v2BGv9tuJu7/I0thiOOtzbKqf33NmvXGrkoyAFha8Lw4w03mzgi2Zlc3FbkNBllnzQm1G
-        za3IahcnvL7DqPts/GS692qiucktk263P+P1NNg
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 9840284520535786506
-Message-ID: <49CEE97731867667+423c5685-7bb7-d402-5496-af6aec276230@biqu3d.com>
-Date:   Sun, 6 Aug 2023 14:04:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 0/4] Add BigTreeTech CB1 SoM & Boards
-Content-Language: en-US
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        martin.botka1@gmail.com
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229509AbjHFMV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 08:21:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F1983
+        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 05:21:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 393516108C
+        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 12:21:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35A25C433C7;
+        Sun,  6 Aug 2023 12:21:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691324487;
+        bh=fbjcFykUkJBnpeEkR8d9BnlfSB94hALWfbSB0c4SurY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e8GDl/kn1M2vWlHLX2mnWDb5gMsVAAoaFbxwvK1XDwYQrvtKcYLu/JMguyP7RSGK4
+         pt3pgMsJXhZhnii7VxmUUUgNDz3qMf04xb4ayP9jMrg7SEA9HGIO/na/B2foYXiZ7v
+         nCPTZwnoQeZc4J3ck6Ws1Gbax0ztybl3kd5SrtzorU6Sp12UumS1kQ+nsLUrUF0dii
+         +7JUnnVP6Xyjwf5p6/vHNs+RSqWTZz8gtXCihWG2squ/lRoy4CvfoYgMoKEYv80kR4
+         JdkxhkVft3ZhgJCLM/9c+4kBis2BakraeGenIQPlvSVhEyYH27VVvLAMFJ/74fRZb5
+         pcsnCzXZzYivQ==
+Date:   Sun, 6 Aug 2023 20:21:17 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
-        Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-References: <5EB3DB1D7F80A40F+20230805083636.788048-1-martin@biqu3d.com>
- <3242042.aeNJFYEL58@jernej-laptop>
-From:   Martin Botka <martin@biqu3d.com>
-In-Reply-To: <3242042.aeNJFYEL58@jernej-laptop>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:biqu3d.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Li Yang <leoyang.li@nxp.com>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 0/3] TQMLS1021A support
+Message-ID: <20230806122117.GE151430@dragon>
+References: <20230731092331.358427-1-alexander.stein@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230731092331.358427-1-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/6/23 1:54 PM, Jernej Škrabec wrote:
-> Dne sobota, 05. avgust 2023 ob 10:36:03 CEST je Martin Botka napisal(a):
->> Hello,
->> This series adds a vendor prefix for BigTreeTech and adds BigTreeTech CB1,
->> Manta board and BigTreeTech Pi.
->>
->> CB1 is just an SoM thats based on AllWinner H616.
->> BigTreeTech Manta boards are expander boards for CB1 and BigTreeTech Pi
->> is an CB1 in Rpi style with few additional things like IR receiver and fan
->> port on GPIO.
->>
->> This work started before I was hired by BigTreeTech and thus majority of the
->> patches are from SoMainline email and few are from my work email.
->>
->> This series depends on commit https://lkml.org/lkml/2023/8/2/801
->> "dt-bindings: mfd: x-powers,axp152: make interrupt optional for more chips".
+On Mon, Jul 31, 2023 at 11:23:28AM +0200, Alexander Stein wrote:
+> Hi,
 > 
-> What's the status of above patch?
-Hello,
-
-AXP313a and AXP305 are missing an IRQ check and thus V2 with the chips 
-added to the check will be needed and should be sent out by Andre soon :)
-
-Cheers,
-Martin
+> thanks everyone for the feedback. This is the fifth round of this series to
+> add support for the TQMLS1021A using the MBLS1021A mainboard.
+> Removing the 'dma-coherent' property was a workaround carried on from older
+> downstream kernels and is not necessary anymore.
+> The same goes for adjusting the size for 'scfg' node. Removing this also
+> fixes the node label ordering.
 > 
-> I won't merge this series until it's accepted and merged.
+> Changes in v5:
+> * Add newline for include header grouping
+> * Put status property at the end of properties (lpuart0)
+> * Do not remove 'dma-coherent' for sata
+> * Do not adjust 'reg' property for 'scfg'
+> 
+> Changes in v4:
+> * Dropped display overlay for now as DCU patch is still pending
+> * Rebase to next-20230721
+> * Move status property to last position
+> * Rename stmpe811 node name
+> * Remove superfluous #address-cells and #size-cells for stmpe811
+> * Add missing interrupt-controller properties for stmpe811
+> * Remove superfluous ESDHCI compatible overwrite in SoM .dtsi
 > 
 > Best regards,
-> Jernej
+> Alexander
 > 
->>
->> Cheers,
->> Martin
->>
->> Martin Botka (4):
->>    dt-bindings: vendor-prefixes: Add BigTreeTech
->>    dt-bindings: arm: sunxi: Add BigTreeTech boards
->>    arm64: dts: allwinner: h616: Add BigTreeTech CB1 SoM & boards support
->>    arm64: dts: allwinner: h616: Add BigTreeTech Pi support
->>
->>   .../devicetree/bindings/arm/sunxi.yaml        |  11 ++
->>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->>   arch/arm64/boot/dts/allwinner/Makefile        |   2 +
->>   .../sun50i-h616-bigtreetech-cb1-manta.dts     |  35 +++++
->>   .../sun50i-h616-bigtreetech-cb1.dtsi          | 140 ++++++++++++++++++
->>   .../allwinner/sun50i-h616-bigtreetech-pi.dts  |  70 +++++++++
->>   6 files changed, 260 insertions(+)
->>   create mode 100644
->> arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1-manta.dts create
->> mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-cb1.dtsi
->> create mode 100644
->> arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> Alexander Stein (2):
+>   ARM: dts: ls1021a: add TQ-Systems MBLS102xA device tree
+>   ARM: dts: ls1021a: add TQMLS1021A flash partition layout
 > 
-> 
-> 
-> 
-> 
+> Matthias Schiffer (1):
+>   dt-bindings: arm: fsl: add TQ-Systems LS1021A board
+
+Applied all, thanks!
