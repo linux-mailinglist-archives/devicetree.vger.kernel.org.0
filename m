@@ -2,126 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD6D177140F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 10:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E0D77142C
+	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 11:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjHFIvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Aug 2023 04:51:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
+        id S229688AbjHFJcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Aug 2023 05:32:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbjHFIvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 04:51:23 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE83B1FE0;
-        Sun,  6 Aug 2023 01:51:21 -0700 (PDT)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id EB27F207C1;
-        Sun,  6 Aug 2023 10:51:19 +0200 (CEST)
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229639AbjHFJci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 05:32:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE389F3;
+        Sun,  6 Aug 2023 02:32:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BFED60FFC;
+        Sun,  6 Aug 2023 09:32:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83E21C433C8;
+        Sun,  6 Aug 2023 09:32:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691314356;
+        bh=e3eVn3I3csuxUTSWKKbazD8xuiApRe8LHcpfQHQofGk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=leVX9+/a4UYzb787JuPbefONy8LrIEK0Y4HHBTpRJ+k6FGVF+P9dJxWdUtupLM+5y
+         1K14x98xs+yaAQSfm0kjiqW8979VfUz1wSlhrK2eXmF9MvHIfM24+w/xEcuOwQKFxf
+         xywwFT1YvyvDz6vsfPjF7Q9aZIcMlt4v08+qJqaGdqbyiK5/hLpsfZcWIG64RqcU7F
+         iPHuoMWLpGJjbwPH0RcpnXgQhOrEzAyflu3kV+gyqcjz6ZPpGUg/436UzOXKXi9qgH
+         MZv1GWepaSmPN7rrDddTXkP9NnUzuT9fCWfMWTr9MtGyUFGAj2esYMQjRwspXrgM4C
+         pBOkUpN8vMeog==
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: ti: verdin-am62: dahlia: add sound card
-Date:   Sun,  6 Aug 2023 10:51:13 +0200
-Message-Id: <20230806085113.15373-5-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230806085113.15373-1-francesco@dolcini.it>
-References: <20230806085113.15373-1-francesco@dolcini.it>
+Subject: [PATCH v2 0/2] serial: 8250_dw: fall back to poll if there's no interrupt
+Date:   Sun,  6 Aug 2023 17:20:54 +0800
+Message-Id: <20230806092056.2467-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+When there's no irq(this can be due to various reasons, for example,
+no irq from HW support, or we just want to use poll solution, and so
+on), falling back to poll is still better than no support at all.
 
-Add WM8904 based analog sound card to Dahlia carrier board.
+patch1 makes the interrupt property in dt-binding optional
+patch2 falls back to poll if there's no interrupt
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
+since v1:
+ - adopt Andy's suggestion to simplified the code
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-index 33c8f6ffaa30..013357d17d48 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-@@ -8,6 +8,43 @@
-  * https://www.toradex.com/products/carrier-board/dahlia-carrier-board-kit
-  */
- 
-+/ {
-+	reg_1v8_sw: regulator-1v8-sw {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "On-carrier +V1.8_SW";
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,bitclock-master = <&codec_dai>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&codec_dai>;
-+		simple-audio-card,name = "verdin-wm8904";
-+		simple-audio-card,routing =
-+			"Headphone Jack", "HPOUTL",
-+			"Headphone Jack", "HPOUTR",
-+			"IN2L", "Line In Jack",
-+			"IN2R", "Line In Jack",
-+			"Headphone Jack", "MICBIAS",
-+			"IN1L", "Headphone Jack";
-+		simple-audio-card,widgets =
-+			"Microphone", "Headphone Jack",
-+			"Headphone", "Headphone Jack",
-+			"Line", "Line In Jack";
-+
-+		codec_dai: simple-audio-card,codec {
-+			clocks = <&audio_refclk1>;
-+			sound-dai = <&wm8904_1a>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcasp0>;
-+		};
-+	};
-+};
-+
- /* Verdin ETHs */
- &cpsw3g {
- 	status = "okay";
-@@ -46,6 +83,22 @@ &main_gpio0 {
- &main_i2c1 {
- 	status = "okay";
- 
-+	/* Audio Codec */
-+	wm8904_1a: audio-codec@1a {
-+		compatible = "wlf,wm8904";
-+		reg = <0x1a>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i2s1_mclk>;
-+		#sound-dai-cells = <0>;
-+		clocks = <&audio_refclk1>;
-+		clock-names = "mclk";
-+		AVDD-supply = <&reg_1v8_sw>;
-+		CPVDD-supply = <&reg_1v8_sw>;
-+		DBVDD-supply = <&reg_1v8_sw>;
-+		DCVDD-supply = <&reg_1v8_sw>;
-+		MICVDD-supply = <&reg_1v8_sw>;
-+	};
-+
- 	/* Current measurement into module VCC */
- 	hwmon@40 {
- 		compatible = "ti,ina219";
+Jisheng Zhang (2):
+  dt-bindings: serial: snps-dw-apb-uart: make interrupt optional
+  serial: 8250_dw: fall back to poll if there's no interrupt
+
+ .../devicetree/bindings/serial/snps-dw-apb-uart.yaml         | 1 -
+ drivers/tty/serial/8250/8250_dw.c                            | 5 ++++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
 -- 
-2.25.1
+2.40.1
 
