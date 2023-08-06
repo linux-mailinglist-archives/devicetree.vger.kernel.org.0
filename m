@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6847F77149C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 13:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AFC77149F
+	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 13:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjHFL4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Aug 2023 07:56:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56402 "EHLO
+        id S229470AbjHFL5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Aug 2023 07:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjHFL4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 07:56:04 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35E713E;
-        Sun,  6 Aug 2023 04:56:03 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-98377c5d53eso498710166b.0;
-        Sun, 06 Aug 2023 04:56:03 -0700 (PDT)
+        with ESMTP id S229449AbjHFL5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 07:57:32 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE0F5183
+        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 04:57:31 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99c1c66876aso498945666b.2
+        for <devicetree@vger.kernel.org>; Sun, 06 Aug 2023 04:57:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691322962; x=1691927762;
+        d=gmail.com; s=20221208; t=1691323050; x=1691927850;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+1iM8GHQL1XdOnpAjTy8EaoWLHbrJvqfgKPOE2jav7g=;
-        b=r04NJdtL5Qz3EAmuH+PnzTOYxkO9VEshjMICuuV65Z4WFVXtSXcTUe81qGwrVr0Wpg
-         QJIV/BzxgeeNeKiXRPYumO1mw/Cs5M76giYbWtOBx+RtqhBwnZ5dZ2tIOXVuzaybju4G
-         lMdQmlk/LV5Afmzeqt7V6LHGRfJCTNEGxdV/TdMLgrXc/fS0vxlViwEaozgMf/O7rTWQ
-         irRy8ULSc/YkzPR6b8mECqrPm6dyzoV9PajSXfj50HwtWZNM/3WI3rXYLqqWkOEiKyxL
-         7SAN0MVx2RSg2lMPdgo7AnAPNwaCH+fWmCs+5MPciC0IvxCLUkDbLQkDvKFSYsRgNVqe
-         GOTA==
+        bh=GqoxJy61U5ChrDZNF8qDxNxWhT9NIH9OWQGAhIzhydw=;
+        b=bAeErR5z+KL6iDu4vHfBWAeoBNY0HhNpgLr6W9016/m1/Q7u4m0mEVyOUj6cAFuy8N
+         BXJVNiU5X6T7KpJW+KPH5zGOClem8PBlkYYpR4I0w1vPtHD4ep6n65iet4384FJntcl0
+         MaOlgZ/4U2PjNwE3GMFNZR7vvRqafap+H9LK02G3g1VyAD0kVM29JZXdiNbxt8DRz6cd
+         mLUEsBysA0Nl+pbOx9PIHtY8XzOIwNeFqxKarF7qs1xgMhz712SeJm3SF4XPgxz91wAf
+         8BsSoJLDnvIM/dxhpbwG+yQzNFYk82JAjW8UscirG4qq7s1erGcj0/3RqPT4WFWPlj7I
+         sAww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691322962; x=1691927762;
+        d=1e100.net; s=20221208; t=1691323050; x=1691927850;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+1iM8GHQL1XdOnpAjTy8EaoWLHbrJvqfgKPOE2jav7g=;
-        b=HosYnw7iCVAPHrGg1n5nPRHqAJiDobJR/rvg0gduO6D3138p72fQe0bPdsq/Nf2nmZ
-         EnB2+JU7RcJaZ0lAgXCZxcabZyqKAeqjz4mf+6DrOq3sUZSm+uKZtT7RsAOkmZIlLqg0
-         8k36Sb3W3wEbY2ubiTPv9g4ISE6MzlB4HanPDPoFeZzDzkg7OstwhpDtvuarPSQRqpyB
-         LZFZjtNWper2rdK5C6c4HmkXbIqeqB94Sp/y5TWL5gKHRltFJG/ZMgnwh2HF7Rmx74WV
-         kWJLx6JV9qDc4OIUoouufBc3XXkMYHiv9eGpOLt+kufuGvs9hivSN+d9cDGr6h+Deo1M
-         HESQ==
-X-Gm-Message-State: AOJu0YzmBEHPZSKjC1hW++puX5Lr8haxuRNnZo635KJaOpDkNu5qzzdH
-        iWEzjhd19DUtZpZtbr6tkhe9uwtysaE+YA==
-X-Google-Smtp-Source: AGHT+IH1W0zyeSdKweK3PY1lF8bG//t+dHTurQt0Pw2c4xKMHDBvAXvI1eiz/JcL1V6oFVRQkKKSlg==
-X-Received: by 2002:a17:906:20dc:b0:99b:431b:a5e9 with SMTP id c28-20020a17090620dc00b0099b431ba5e9mr6201836ejc.45.1691322962073;
-        Sun, 06 Aug 2023 04:56:02 -0700 (PDT)
+        bh=GqoxJy61U5ChrDZNF8qDxNxWhT9NIH9OWQGAhIzhydw=;
+        b=LOZTwc21uU6ozpmzEEKaFUhimzPbdCBbfngK6s4MdylBn1p8cSj0Y7xOzQigMkyroX
+         Mtus5aWoZNUQE2s3Ed5qVMf3jeXKQP9TKey7MdcnE9FdAWYrtdWIsh/jJpYrHv9me9/4
+         e/mm//hLrOGysF44pn922DiLmi7Qj96g/3USSRw2eMCuDhSuEJkhTSI+Dyn0aMow1MZ3
+         1BNPuKL9APdIvR/ImyfVrBH9Cb3S+0XhTfwBlkFZb1e2KnvI/sNANq7OARlh3LAvOZV1
+         dvEi8f9CGmG7A20qEfPLMAcMuMmHgYNuxud4aG4aR7bIIruNxNw30ErqvFUyOGu5PzuX
+         lxsQ==
+X-Gm-Message-State: AOJu0YxZNA6DZZqvyXDgnSzK6cNIW6LmzZmGnq7LDzt2bpZUkfgS6Q1O
+        fTI+EUJ322/nPQ2xqlfiB54=
+X-Google-Smtp-Source: AGHT+IFfWOtMWlI51gsCD4KJlOf/jtK+BT5g9LX8JW2dluKBVWt32FyiV+Y7h9uROFpJfzveZv3u1g==
+X-Received: by 2002:a17:906:10b:b0:99b:4bab:2839 with SMTP id 11-20020a170906010b00b0099b4bab2839mr7104599eje.55.1691323050318;
+        Sun, 06 Aug 2023 04:57:30 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id a12-20020a1709063a4c00b0098e2eaec395sm3836658ejf.130.2023.08.06.04.56.01
+        by smtp.gmail.com with ESMTPSA id r7-20020a056402034700b0052241b8fd0bsm3789431edw.29.2023.08.06.04.57.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Aug 2023 04:56:01 -0700 (PDT)
+        Sun, 06 Aug 2023 04:57:29 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felix Moessbauer <felix.moessbauer@siemens.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] sunxi: Orange Pi Zero 3 DT support
-Date:   Sun, 06 Aug 2023 13:56:00 +0200
-Message-ID: <8252315.T7Z3S40VBb@jernej-laptop>
-In-Reply-To: <20230804170856.1237202-1-andre.przywara@arm.com>
-References: <20230804170856.1237202-1-andre.przywara@arm.com>
+        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
+        Quirin Gylstorff <quirin.gylstorff@siemens.com>,
+        manuel.matzinger@siemens.com, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev,
+        Felix Moessbauer <felix.moessbauer@siemens.com>
+Subject: Re: [PATCH 1/1] arm: dts: Enable device-tree overlay support for sun8i-h3 pi
+ devices
+Date:   Sun, 06 Aug 2023 13:57:28 +0200
+Message-ID: <2233256.iZASKD2KPV@jernej-laptop>
+In-Reply-To: <20230627133703.355893-1-felix.moessbauer@siemens.com>
+References: <20230627133703.355893-1-felix.moessbauer@siemens.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -78,60 +79,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 04. avgust 2023 ob 19:08:53 CEST je Andre Przywara napisal(a):
-> Hi,
+Dne torek, 27. junij 2023 ob 15:37:03 CEST je Felix Moessbauer napisal(a):
+> Add the '-@' DTC option for the sun8i-h3 pi-class devices. This option
+> populates the '__symbols__' node that contains all the necessary symbols
+> for supporting device-tree overlays (for instance from the firmware or
+> the bootloader) on these devices.
 > 
-> quick update of the series, mostly cosmetic fixes, except for the
-> regulator range. For a changelog, see below.
+> These devices allow various modules to be connected and this enables
+> users to create out-of-tree device-tree overlays for these modules.
 > 
-> ==================
-> Orange Pi recently released the Orange Pi Zero 3 board, which is some
-> updated version of their former Zero 2 development board. Some component
-> changes (Motorcomm PHY instead of Realtek, different PMIC), some board
-> layout changes, and it ships with up to 4GB of DRAM now. The SoC is now
-> labelled H618 instead of H616, which apparently is the same, just with
-> more L2 cache.
+> Please note that this change does increase the size of the resulting DTB
+> by ~30%. For example, with v6.4 increase in size is as follows:
 > 
-> Split the existing OPi Zero2 DT, to allow sharing most DT nodes, then
-> add the binding documentation and DT for the new board.
+> 22909 -> 29564 sun8i-h3-orangepi-lite.dtb
+> 24214 -> 30935 sun8i-h3-bananapi-m2-plus.dtb
+> 23915 -> 30664 sun8i-h3-nanopi-m1-plus.dtb
+> 22969 -> 29537 sun8i-h3-nanopi-m1.dtb
+> 24157 -> 30836 sun8i-h3-nanopi-duo2.dtb
+> 24110 -> 30845 sun8i-h3-orangepi-plus2e.dtb
+> 23472 -> 30037 sun8i-h3-orangepi-one.dtb
+> 24600 -> 31410 sun8i-h3-orangepi-plus.dtb
+> 23618 -> 30230 sun8i-h3-orangepi-2.dtb
+> 22170 -> 28548 sun8i-h3-orangepi-zero-plus2.dtb
+> 23258 -> 29795 sun8i-h3-nanopi-neo-air.dtb
+> 23113 -> 29699 sun8i-h3-zeropi.dtb
+> 22803 -> 29270 sun8i-h3-nanopi-neo.dtb
+> 24674 -> 31318 sun8i-h3-nanopi-r1.dtb
+> 23477 -> 30038 sun8i-h3-orangepi-pc.dtb
+> 24622 -> 31380 sun8i-h3-bananapi-m2-plus-v1.2.dtb
+> 23750 -> 30366 sun8i-h3-orangepi-pc-plus.dtb
 > 
-> Linux v6.5-rc boots out of the box (the PMIC driver just made it in),
-> and most things work: UART, PSCI, GPIO, SPI flash, SD card, USB.
-> Ethernet is somewhat working: I get an IP address via DHCP, and can
-> for instance start SSH, but it hangs at some point. I suspect some
-> PHY setup problem, though others have it working. Help or advice welcome.
+> Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
 
 Applied, thanks!
 
 Best regards,
 Jernej
-
-> 
-> Cheers,
-> Andre
-> 
-> Changelog v1 .. v2:
-> - rename common .dtsi file to sun50i-h616-orangepi-zero.dtsi
-> - add required Motorcomm PHY DT property to enable clock
-> - fix regulator ranges: VDD_CPU and VDD_GPU were swapped
-> - add comment about broken SD card detect
-> - reorder PMIC properties to match recommended order
-> 
-> Andre Przywara (3):
->   arm64: dts: allwinner: h616: Split Orange Pi Zero 2 DT
->   dt-bindings: arm: sunxi: document Orange Pi Zero 3 board name
->   arm64: dts: allwinner: h616: Add OrangePi Zero 3 board support
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../allwinner/sun50i-h616-orangepi-zero.dtsi  | 134 ++++++++++++++++++
->  .../allwinner/sun50i-h616-orangepi-zero2.dts  | 119 +---------------
->  .../allwinner/sun50i-h618-orangepi-zero3.dts  |  94 ++++++++++++
->  5 files changed, 235 insertions(+), 118 deletions(-)
->  create mode 100644
-> arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi create mode
-> 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-
-
 
 
