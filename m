@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E26A77168D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 21:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7D1771726
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 00:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbjHFTfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Aug 2023 15:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56234 "EHLO
+        id S229848AbjHFWDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Aug 2023 18:03:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbjHFTfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 15:35:10 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459401719
-        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 12:35:08 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52222562f1eso5356096a12.3
-        for <devicetree@vger.kernel.org>; Sun, 06 Aug 2023 12:35:08 -0700 (PDT)
+        with ESMTP id S229445AbjHFWDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 18:03:31 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C83171E;
+        Sun,  6 Aug 2023 15:03:30 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6873f64a290so1136137b3a.0;
+        Sun, 06 Aug 2023 15:03:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691350507; x=1691955307;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3bqbe2tDZsZm0END83UpLyo6EdqTZMUT086jdCCRrYw=;
-        b=g0jyzXc60snOi9Q61ciF87VgVXpMoKnvYizbfZgb2HjPkUaMyTBZig89TnI7J6YQ1s
-         K/EowG8j8K+l6ZuxtPoNMk568mXiq3LsDY1LWJevmEh+kA17IkB/ExBG5CbCNwYveV85
-         KiP8DOjX6xCwsW0l0W4CGt2RceYmAOFGEPC4d25smdzCgQUd+Bu5LPSJH7pdcQoQ/7Y0
-         uny9KeKT67FTZ4fflMOOI4Q8B29TKmVZzoAsx6Jb3p0GRyaY+V8q6dznj70w8fGRtRuM
-         aa4eJ24jFHCxakE+2duVWIx9By8XJKslLsOb4zYfHySZmq8AnxARrRSGbZUbKyV+c4+Q
-         bMTg==
+        d=gmail.com; s=20221208; t=1691359410; x=1691964210;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cOidpmVp/xxSwpWie7WoIKgwL7vUHi8JHFlasqVV/3k=;
+        b=qB1ZzoWxyRO/EWeLEM6mlkLLQxOPMdyJDyDTIyv2NnJU050hHOqIckTPbpsqKBLtgY
+         Am59hbg3B4qfJ4RQf9sRuy/QX/nuXb2CA6aX1Zl8CXgJHii+Lk1jTFoo+lT50h4ojcrg
+         CsvXDD5uGK9mC9I27eSZVL5O4wLql1ioYgM75kvtKzMHjLbEg3NpZuMeKAyelPA3PkhA
+         Ok/8C0vXWQAIidTYLsqSXwMuuzdpB6qmga4D/xZhOKWABSEG0MfHSE/VRoN0WaK9BeOa
+         hS7G2wLZd1qqRhLnHEVRpNQwXEBtHGfyr7XxEMkAUWPCg0Qem0AQZMv78afnHYVcLWoa
+         yPYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691350507; x=1691955307;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3bqbe2tDZsZm0END83UpLyo6EdqTZMUT086jdCCRrYw=;
-        b=Xc4SBNLqQhfp9fHRddaRJL1/hGUPGztdoKbcr5ZmwM0qVhSr3PRRvOMC8rt8y4XWjP
-         6oCfF+m8jOajlxufflWmcBksvX2EC/SwHawWFvo7KasEc/8CXrbbRs2NlVTjLMegPoKU
-         QJ4pC03BpXeiXK2GIywScYBW/HdH+mgJGcF2GtkJRePtW/nrGWT7BiS6IRhCfzKVzXfT
-         +9+OH15hOrTH5ePvS9OjtsrgVvV9bueRIs9n2idpu/jmWQ2eRSr39T7awl42HK3o3Sxi
-         Rnw6vBZREXZtyDbReBsD7oTeIiO9dFqYNUBlaumMBX1YKtTJih+9jAvo32ohSuOv2yEf
-         IL5g==
-X-Gm-Message-State: AOJu0YyCoWDGVFgaWQ30xBENtKfGsNg3mLKJkR+rYKJkUI7CV5puVcFh
-        LONm1IHwKiMSwNkI0veFe9MPMA==
-X-Google-Smtp-Source: AGHT+IG/79s2xg9v9Za0JIriROoPvnlkRv0Jug22nma7i4hEv1WIE4RafrrohEpmmoAaMt55gaOUXA==
-X-Received: by 2002:aa7:d148:0:b0:523:2873:8323 with SMTP id r8-20020aa7d148000000b0052328738323mr4168789edo.35.1691350506747;
-        Sun, 06 Aug 2023 12:35:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id o4-20020aa7c504000000b00522828d438csm4212648edq.7.2023.08.06.12.35.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Aug 2023 12:35:06 -0700 (PDT)
-Message-ID: <6fcd8e51-7e97-1261-7cd5-5e18840aaf8e@linaro.org>
-Date:   Sun, 6 Aug 2023 21:35:03 +0200
+        d=1e100.net; s=20221208; t=1691359410; x=1691964210;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cOidpmVp/xxSwpWie7WoIKgwL7vUHi8JHFlasqVV/3k=;
+        b=krVqyuXTI1rdv8+YbUNkCVI8Ecj+1gvYleeoIyzZwnDFIKwj40NIQXMhtthIzRjqvY
+         TNsyyow4uV0UpjF4XYv4ywhHuOt0+gwA5q7t0ueEDETmpCdHzWYJZSockKHLuLEmQ3aw
+         4UypHOwZPRia4nESlKhaKOcZQTSO7RN2Lj7T026Ad3YvHy0bi9/Z9F5D8WJds9SXISIH
+         zo0H4dZlPUacvdOu69q/5cH5Dgl/xoMJZp75DHXuu07En9l+l9FgJ2vlHoS0oDl6IkE9
+         /hBHWIGxn1gpTyO7rrbmQfFTTdRtELKSuwRzy2vPV9+eK/b9l7+d5Z1SwOIAHemaqkVm
+         BS3Q==
+X-Gm-Message-State: ABy/qLaYW2s+5niqftKUURv12pNJUtIoToL7u52lJSb3sGBFs/FZQKsP
+        iIeTYEvwWLN/XQKJoMoQgfIHIneto6chlgIDd5k=
+X-Google-Smtp-Source: APBJJlGlqzQusrwUjZ7NEaibag3Y54D/uIkAvi6T260pbFuuxukhMEGvFyYAYY81WV9mzk/eh0/rKwg9Tr+XrRAssGU=
+X-Received: by 2002:a17:90a:7282:b0:263:f36e:d610 with SMTP id
+ e2-20020a17090a728200b00263f36ed610mr22428701pjg.0.1691359410236; Sun, 06 Aug
+ 2023 15:03:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 3/5] dt-bindings: clock: add Intel Agilex5 clock
- manager
-Content-Language: en-US
-To:     niravkumar.l.rabara@intel.com
-Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, dinguyen@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        netdev@vger.kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-        wen.ping.teh@intel.com
-References: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-4-niravkumar.l.rabara@intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230801010234.792557-4-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+References: <20230806190622.505887-1-aford173@gmail.com>
+In-Reply-To: <20230806190622.505887-1-aford173@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 6 Aug 2023 19:03:19 -0300
+Message-ID: <CAOMZO5DfZufEDfjGDj2toMN-AT84O8u5qh5z_MVC4-6iyjy0CA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-beacon: Configure 100MHz PCIe Ref Clk
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        cstevens@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,21 +78,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/08/2023 03:02, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> 
-> Add clock ID definitions for Intel Agilex5 SoCFPGA.
-> The registers in Agilex5 handling the clock is named as clock manager.
-> 
-> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
-> Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
+Hi Adam,
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
+On Sun, Aug 6, 2023 at 4:06=E2=80=AFPM Adam Ford <aford173@gmail.com> wrote=
+:
 
-Best regards,
-Krzysztof
+>  &pcie_phy {
+> +       fsl,clkreq-unsupported;
+>         fsl,refclk-pad-mode =3D <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> -       clocks =3D <&pcie0_refclk>;
 
+Should the pcie0_refclk node be also removed? It seems to be unused
+after this patch.
+
+> +       clocks =3D <&pcieclk 1>;
+
+Isn't clocks =3D <&pcieclk>; (without the extra 1) enough?
