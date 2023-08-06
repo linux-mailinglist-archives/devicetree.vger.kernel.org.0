@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CC6F77143D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 11:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B670B771448
+	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 12:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbjHFJwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Aug 2023 05:52:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
+        id S229999AbjHFKD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Aug 2023 06:03:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjHFJwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 05:52:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB8A19A2;
-        Sun,  6 Aug 2023 02:52:09 -0700 (PDT)
+        with ESMTP id S229656AbjHFKD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Aug 2023 06:03:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A496A11D;
+        Sun,  6 Aug 2023 03:03:57 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC89860FF5;
-        Sun,  6 Aug 2023 09:52:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1999C433C7;
-        Sun,  6 Aug 2023 09:52:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2D62360FFF;
+        Sun,  6 Aug 2023 10:03:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FDD0C433C7;
+        Sun,  6 Aug 2023 10:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691315528;
-        bh=iLg14PgiXyDCt6R+keTK1cRDsoDH3Jk4ky5vKqUz6IM=;
+        s=k20201202; t=1691316236;
+        bh=qQdlDvWcY55UI4xJZRVgfN/DeT4JnF2lo47IlKtWxBk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qAuLlUlydksVby4Nqk2chMwgIQ65H9ADuyGu4FUDkjLgUzbKR8sSeWBWSiU68No4w
-         y5F5Mx6wxYHvm1oWTHdEUv1a/OUr8pvHzUU6qAcKTcvpIl4Qb9LJ9qSCqzCVCG2GbJ
-         hGCfjvMbX4JvTZWvc1OAivfd4cZC6a4lns21Y+pHFgJussdpTQJ+KAqKxipTS2uOuE
-         FvLFNt0k3v5vUkKUT14eQ7Pr4pNYgRm3ypDpgJNCrMtOKzcb4xYXuZhnq/05H7bi1m
-         qJS5iysYagDVYYRc1XcSlCRPE59ajnBQLcu4k8y4+PEnH8P08xWq1a3blm7DqUQe24
-         zRpJ3jqDmU6iA==
-Date:   Sun, 6 Aug 2023 17:40:27 +0800
+        b=Fhstg5yZNrU6Mr63+O2DUHYI61MkDUhbHygY9MOVisRC5TpCh0P33b6bZnVOAka0v
+         KDLZ7CCsw/USQ6c6aJvH9vBbsidxD75f5QGsnI4X/GvbbxGimOsv1WlWwX8uw8whIW
+         OHrUHPeOX10w87kA4tuRWX9KWv3GMsbfecxCuZe6w0Ae2+FzzvJ0Pg5YLaMf/UNh4u
+         fx3LM8byNZsr3uzv79s/3Q0Ep76blL4BmT/2XzVRFuotXYkwL5S/JoLmDcJCiKojUx
+         s01l9brhiR3ulcENLKHstfHnBcShjIX+Cg35Cn52HisMlIyXdlM3lV5cRMzVDqVyAn
+         sgpGuGGu9SLLg==
+Date:   Sun, 6 Aug 2023 17:52:16 +0800
 From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: serial: snps-dw-apb-uart: make
- interrupt optional
-Message-ID: <ZM9qi6VYo1qaBhoI@xhacker>
-References: <20230802150545.3742-1-jszhang@kernel.org>
- <20230802150545.3742-2-jszhang@kernel.org>
- <20230802-halogen-bungee-63273b2c456c@spud>
- <ZMrRWP5mK+nksn4M@smile.fi.intel.com>
- <20230802-risk-getting-e6005e86be81@spud>
- <ZMuSFYQ4YyIKnI0k@smile.fi.intel.com>
+Subject: Re: [PATCH] riscv: dts: change TH1520 files to dual license
+Message-ID: <ZM9tUFddbRUglwfG@xhacker>
+References: <20230724182129.843687-1-dfustini@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZMuSFYQ4YyIKnI0k@smile.fi.intel.com>
+In-Reply-To: <20230724182129.843687-1-dfustini@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -67,37 +61,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 03, 2023 at 02:40:05PM +0300, Andy Shevchenko wrote:
-> On Wed, Aug 02, 2023 at 11:53:59PM +0100, Conor Dooley wrote:
-> > On Thu, Aug 03, 2023 at 12:57:44AM +0300, Andy Shevchenko wrote:
-> > > On Wed, Aug 02, 2023 at 04:43:48PM +0100, Conor Dooley wrote:
-> > > > On Wed, Aug 02, 2023 at 11:05:44PM +0800, Jisheng Zhang wrote:
-> > > > > The driver fall back to poll style when there's no irq. "poll" still
-> > > > > looks better than no support.
-> > > > 
-> > > > What is the user for this where the interrupt is not actually wired up
-> > > > in the hardware?
-> > > 
-> > > FYI: kernel console doesn't use interrupts, so for example it might be
-> > > the debug port. Note, I have no idea of the Zhang's case, just my assumption.
+On Mon, Jul 24, 2023 at 11:21:29AM -0700, Drew Fustini wrote:
+> Modify the SPDX-License-Identifier for dual license of GPL-2.0 OR MIT.
+> 
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi | 2 +-
+>  arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts      | 2 +-
+>  arch/riscv/boot/dts/thead/th1520.dtsi                  | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> Jisheng Zhang and Guo Ren - I thought I would post this patch based on
+> the discussion in the thread about the BeagleV Ahead patches.
 
-Hi Conor, Andy,
-
-Andy's assumption about the uart dedicated for debug purpose is true, since
-it's for log only, so no interrupt need at all. We can also see such no
-irq support in litex uart driver(liteuart.c) and even a 8250
-variant(8250_ioc3.c).
+I need Guo's ack to this patch. Hi Guo Ren, are you OK with this patch?
 
 Thanks
-> > 
-> > I'm less interested in what the software is doing, it's what the device 
-> > that has not connected the interrupt is that I am curious about.
+
 > 
-> As I said. The hw may be purely for debugging purposes (and yes, I have heard
-> about such a hardware).
+> Message-ID:
+> 20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com
 > 
+> Thanks,
+> Drew
+> 
+> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> index 4b0249ac710f..a802ab110429 100644
+> --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> @@ -1,4 +1,4 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>  /*
+>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+>   */
+> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> index a1248b2ee3a3..9a3884a73e13 100644
+> --- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> @@ -1,4 +1,4 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>  /*
+>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+>   */
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index 56a73134b49e..ce708183b6f6 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -1,4 +1,4 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>  /*
+>   * Copyright (C) 2021 Alibaba Group Holding Limited.
+>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
 > -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
+> 2.34.1
 > 
