@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B6FA771380
-	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 05:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B177771381
+	for <lists+devicetree@lfdr.de>; Sun,  6 Aug 2023 05:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbjHFDuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Aug 2023 23:50:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
+        id S229509AbjHFDym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Aug 2023 23:54:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjHFDup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 23:50:45 -0400
+        with ESMTP id S229468AbjHFDyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Aug 2023 23:54:41 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10161FDB
-        for <devicetree@vger.kernel.org>; Sat,  5 Aug 2023 20:50:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8ABB1FD9;
+        Sat,  5 Aug 2023 20:54:40 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BDAE160B7A
-        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 03:50:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BFBAC433C8;
-        Sun,  6 Aug 2023 03:50:38 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A05760F2F;
+        Sun,  6 Aug 2023 03:54:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE33C433C8;
+        Sun,  6 Aug 2023 03:54:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691293843;
-        bh=ftVxzKHsD+PtxsCwRhqHcJOLrA3UcBk5xxO9A24zm4Q=;
+        s=k20201202; t=1691294079;
+        bh=umI5fqtycSsTyWc4yh3zJRP5W+kUF6xzbhYpY3Oijyc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t70ap41NrJ2uajv6xjJua4+zIfO+KaMNR/Rzsk/LGbEKZ3iPAiyoNaVGI8I/ipAz3
-         LJjqUlCex04eFosKvTwzPF+qtvpzHwBQFfsrNDmJP7fPH9Jk4a/lphmydQu5nB9jCI
-         Xu+XY/7+Uaq2KVGwlj/KlBKX6RK4LAM/nuizZXGoHwlW4YuX4EnuWt2ihoC+0jcvhT
-         yOd+UsoOmsvNlmAaIiHJWC79tjfC7HWh110TqCIxv3hRUvDjBYe00gfYhfFua8AN54
-         MW9/Zf1sMXiSb78muMvykbJs+hVOwu92Ef5JygNIIb/+Zeh3hP9cA+ACM0ONWgETUl
-         DL6lsths4aupA==
-Date:   Sun, 6 Aug 2023 11:50:31 +0800
+        b=bXSTLvhC3xOfdHU0H4xjMpHpG5RSvVVeaSxbjYR6za+ReqcNzSce+N86ZtilTJ8xw
+         300Tw9CoiKBkykqG9BJ4T5UUoKEPbOjh3Dyh7AwgG2QJEIzVDZdZ8GiH4Oxhow5Nss
+         EZt1IKsCvfctlD9l6RjbuvYl7Dmex3pzhFpzE8TJqG8ikJGjGPPQ03I/j7nLnWWCcc
+         jsgK0qeiHfCeGeR7a0uOouA4OHYpoovB4kbNSEReP7osnW7jSp54COsz54IfJNAe3s
+         d84G1L5Zym+1MN2V92/HgRN6r8MKjeUndFWM3wyDDyXFvZZtwRf7dsZZaTZEQjXrvV
+         c1ZpXle4RRE6w==
+Date:   Sun, 6 Aug 2023 11:54:28 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: imx93: Fix anatop node size
-Message-ID: <20230806035031.GZ151430@dragon>
-References: <20230728083435.118491-1-alexander.stein@ew.tq-group.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: nxp: mxs: split interrupts per cells
+Message-ID: <20230806035428.GB151430@dragon>
+References: <20230730111539.98210-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230728083435.118491-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230730111539.98210-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,16 +60,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 10:34:35AM +0200, Alexander Stein wrote:
-> Although the memory map of i.MX93 reference manual rev. 2 claims that
-> analog top has start address of 0x44480000 and end address of 0x4448ffff,
-> this overlaps with TMU memory area starting at 0x44482000, as stated in
-> section 73.6.1.
-> As PLL configuration registers start at addresses up to 0x44481400, as used
-> by clk-imx93, reduce the anatop size to 0x2000, so exclude the TMU area
-> but keep all PLL registers inside.
+On Sun, Jul 30, 2023 at 01:15:39PM +0200, Krzysztof Kozlowski wrote:
+> Each interrupt should be in its own cell.  This is much more readable.
 > 
-> Fixes: ec8b5b5058ea ("arm64: dts: freescale: Add i.MX93 dtsi support")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Applied, thanks!
