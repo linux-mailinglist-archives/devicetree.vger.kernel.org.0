@@ -2,64 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 631A0772BD8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4C3D772C77
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 19:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbjHGQ6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 12:58:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
+        id S229636AbjHGRPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 13:15:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231630AbjHGQ6t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:58:49 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CC7213E;
-        Mon,  7 Aug 2023 09:58:28 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377GwIFN070045;
-        Mon, 7 Aug 2023 11:58:18 -0500
+        with ESMTP id S229970AbjHGRPF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 13:15:05 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 283571FC0;
+        Mon,  7 Aug 2023 10:14:48 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377HDvnr009045;
+        Mon, 7 Aug 2023 12:13:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691427498;
-        bh=Xb2R23ZgYywFx3hJHSHVW02hvong79sUJg5PKXsDoW4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CHuzc3RwKBQ7bEhuzXKpLEzfUfRZuN7dbq1nUapdyeKRM5z6eWoUutD4oFD5cSzWk
-         nb83q9Fh2lyypJU9JkpbSPARlWj4SPCpOU7IMakjP1o4i/SKapj6Jrm1x9IzxXZZgX
-         Wl3m1V7BUwM4qYCIgZF/PO+d3hIZrwhPK05CjnQc=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377GwIlk015180
+        s=ti-com-17Q1; t=1691428437;
+        bh=ppChU5GGh+9pajuOgru8V0/YEUN3szFluORsPcZfL+0=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=ZlcV7ZGFc2iHOuZrU+XIO0ECAP64myprpC+9mYkPjDzZS3N6TMqq9qf0Q6IpPmQU6
+         sINcBXipgaAy6rKs31hnNJgQVHajZ+gye80t0ks9ZZvrYwbWt7TvjwgBYnLWyw/RNg
+         Q72C7/74HASa8n/o0rCc8IbpsAjn3djcQ+ndRisc=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377HDvAw052999
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 11:58:18 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 7 Aug 2023 12:13:57 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 11:58:17 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 12:13:57 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 11:58:17 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377GwHcR108326;
-        Mon, 7 Aug 2023 11:58:17 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <sinthu.raja@ti.com>, <t-konduru@ti.com>,
+ Frontend Transport; Mon, 7 Aug 2023 12:13:57 -0500
+Received: from [10.24.69.34] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377HDrAV044001;
+        Mon, 7 Aug 2023 12:13:54 -0500
+Message-ID: <ef834d0b-b13a-5c3d-6c1d-088006fdfa32@ti.com>
+Date:   Mon, 7 Aug 2023 22:43:53 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add
+ bootph-pre-ram property for SPL nodes
+Content-Language: en-US
+To:     "Kumar, Udit" <u-kumar1@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vaishnav.a@ti.com>, <eblanc@baylibre.com>,
-        Udit Kumar <u-kumar1@ti.com>
-CC:     Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH v4] arm64: dts: ti: k3-j721s2: correct pinmux offset for ospi
-Date:   Mon, 7 Aug 2023 11:58:17 -0500
-Message-ID: <169142744580.1014580.3459939134016276729.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230804075341.3858488-1-u-kumar1@ti.com>
-References: <20230804075341.3858488-1-u-kumar1@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        Hari Nagalla <hnagalla@ti.com>
+References: <20230806164838.18088-1-a-nandan@ti.com>
+ <20230806164838.18088-3-a-nandan@ti.com>
+ <3a2d1880-10aa-ac19-24e1-b2f697bc1a73@ti.com>
+From:   Apurva Nandan <a-nandan@ti.com>
+In-Reply-To: <3a2d1880-10aa-ac19-24e1-b2f697bc1a73@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,48 +74,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Udit Kumar,
 
-On Fri, 04 Aug 2023 13:23:41 +0530, Udit Kumar wrote:
-> Due to non-addressable regions in J721S2 SOC wkup_pmx was split
-> into four regions from wkup_pmx0 to wkup_pmx3.
-> 
-> Correcting OSPI1 pin mux, which now falls under wkup_pmx1.
-> Along with that removing unused pin mux for OSPI-0.
-> 
-> Fixes: 6bc829ceea41 ("arm64: dts: ti: k3-j721s2: Fix wkup pinmux range")
-> 
-> [...]
-
-Also please make sure that am68-sk is sane as well. In the future, I'd prefer
-all the fixes to be put in a single series to avoid this kind of cherry-pick
-fixing.
-
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/1] arm64: dts: ti: k3-j721s2: correct pinmux offset for ospi
-      commit: 06c4e7aa4af0682910ea52d7c23d85f59ea7dcc6
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+On 07/08/23 10:01, Kumar, Udit wrote:
+> Hi Apurva
+>
+> On 8/6/2023 10:18 PM, Apurva Nandan wrote:
+>> Add bootph-pre-ram property for all the nodes used in SPL stage,
+>> for syncing it later to u-boot j784s4 dts.
+>>
+>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 9 +++++++++
+>>   1 file changed, 9 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+>> index 740ee794d7b9..57bf0261c343 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+>> @@ -6,7 +6,9 @@
+>>    */
+>>     &cbass_mcu_wakeup {
+>> +    bootph-pre-ram;
+>>       sms: system-controller@44083000 {
+>> +        bootph-pre-ram;
+>>           compatible = "ti,k2g-sci";
+>>           ti,host-id = <12>;
+>>   @@ -19,22 +21,26 @@ sms: system-controller@44083000 {
+>>           reg = <0x00 0x44083000 0x00 0x1000>;
+>>             k3_pds: power-controller {
+>> +            bootph-pre-ram;
+>>               compatible = "ti,sci-pm-domain";
+>>               #power-domain-cells = <2>;
+>>           };
+>>             k3_clks: clock-controller {
+>> +            bootph-pre-ram;
+>>               compatible = "ti,k2g-sci-clk";
+>>               #clock-cells = <2>;
+>>           };
+>>             k3_reset: reset-controller {
+>> +            bootph-pre-ram;
+>>               compatible = "ti,sci-reset";
+>>               #reset-cells = <2>;
+>>           };
+>>       };
+>>         chipid@43000014 {
+>> +        bootph-pre-ram;
+>>           compatible = "ti,am654-chipid";
+>>           reg = <0x00 0x43000014 0x00 0x4>;
+>>       };
+>> @@ -442,6 +448,7 @@ mcu_spi2: spi@40320000 {
+>>       };
+>
+>
+> mcu_timer0: timer@40400000 should be part of your list.
+Maybe you are referring to mcu_timer1. mcu_timer1 will be a part of 
+u-boot.dtsi as we need to edit
+the node for removing k3_clks and power-domains properties from it. So 
+we should add bootph-pre-ram
+there itself in uboot.dtsi as the node will be already there.
+>
+>>         mcu_navss: bus@28380000 {
+>> +        bootph-pre-ram;
+>>           compatible = "simple-bus";
+>>           #address-cells = <2>;
+>>           #size-cells = <2>;
+>> @@ -451,6 +458,7 @@ mcu_navss: bus@28380000 {
+>>           dma-ranges;
+>>             mcu_ringacc: ringacc@2b800000 {
+>> +            bootph-pre-ram;
+>>               compatible = "ti,am654-navss-ringacc";
+>>               reg = <0x00 0x2b800000 0x00 0x400000>,
+>>                     <0x00 0x2b000000 0x00 0x400000>,
+>> @@ -465,6 +473,7 @@ mcu_ringacc: ringacc@2b800000 {
+>>           };
+>>             mcu_udmap: dma-controller@285c0000 {
+>> +            bootph-pre-ram;
+>>               compatible = "ti,j721e-navss-mcu-udmap";
+>>               reg = <0x00 0x285c0000 0x00 0x100>,
+>>                     <0x00 0x2a800000 0x00 0x40000>,
