@@ -2,339 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA1A772406
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF3E9772412
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:31:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233563AbjHGM3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 08:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59986 "EHLO
+        id S232072AbjHGMbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 08:31:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233567AbjHGM3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:29:47 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BB0C1980;
-        Mon,  7 Aug 2023 05:29:27 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 377BshQ5005115;
-        Mon, 7 Aug 2023 12:29:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=BqvX8/51PTMn3qNUof4nZRTqfxtDmgC7peZ436DV1fs=;
- b=eeuHJDnEHiRQusAGJTMSytwJKY3r+FMofk+KO3kaRuewhnlZfriCJxNdwt/ocBsUgTDm
- yC0MuSLmBZ6lWq6I+mrr1pVZMTE49xFv7ZBY4MDtj14q33DnfN37jREYo3+uWYuRboI5
- izzrz03XmQ3MtwcoSBIo2f0jRXJhVPXJmRjmtr1NYKPBgAekLgpjCc/7vG3+riTfE+Wo
- coqZT1O/9CQOIGBGTRp6RciNJFhNNy7aaQh8iM6xxB7mjbXDnPkAnD4Cr74/r/PmknQ6
- zKxFVYho8hxAQxuXA/OZ0L8beFmxjJXgE7+NZzG0PBHd9Z2a3915yZa9xMCuA4AtkoTX Bg== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s9fkuka03-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 07 Aug 2023 12:29:19 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 377CSvQ2032723;
-        Mon, 7 Aug 2023 12:28:58 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3s9fgkntwv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Mon, 07 Aug 2023 12:28:58 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 377CSvUu032677;
-        Mon, 7 Aug 2023 12:28:57 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 377CSu3j032617;
-        Mon, 07 Aug 2023 12:28:57 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 072791B64; Mon,  7 Aug 2023 17:58:57 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        abel.vesa@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        quic_pkondeti@quicinc.com,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v2 9/9] arm64: dts: qcom: sdx75-idp: Add regulator nodes
-Date:   Mon,  7 Aug 2023 17:58:53 +0530
-Message-Id: <1691411333-1556-10-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1691411333-1556-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1691411333-1556-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PhiwTYUmf8_P_taBx_7IIXJQezjKv6hW
-X-Proofpoint-GUID: PhiwTYUmf8_P_taBx_7IIXJQezjKv6hW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-07_12,2023-08-03_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 priorityscore=1501 phishscore=0 mlxlogscore=814 clxscore=1015
- impostorscore=0 adultscore=0 malwarescore=0 bulkscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308070116
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231750AbjHGMbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:31:51 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B55C19B4
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 05:31:41 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 636561C0007;
+        Mon,  7 Aug 2023 12:31:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1691411500;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=MKIuRjr4bEAutv03qcpUVfrFXls0vMQc6pheaXe0VJ8=;
+        b=P5A+19ugb7LcRoNXWDzlTwqP4ntnXw8CZaMesgNCaZHGxDDIgzZfznNNPb2kBch6+bzDuw
+        /64FNfsl8oLcYdoya+hH6y3CN3POQg0p222iyCHMGc5STzxn5TWRLDw6nAC9C1f3F1iOcm
+        9U7eYCVq/DdRx72KriablXRoJRnsW+k4iGw4WRMLh1BbqMb9cezxFWSDD8/zrSqTvj2iaO
+        xhdNiX/FoQroMGnZEUoS72v76LZJCwE+qZFybYO3dV57G4Y/bOANtX9MM4Af5s1jNp/XkF
+        wtO+kvihEsWQG7XhUIDj1T3+uHl8V+azlqD0/IWTbpJK37DldIUPrwvI9TfaxA==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/2] dt-bindings: display: simple: Add Mitsubishi AA084XE01 panel
+Date:   Mon,  7 Aug 2023 14:31:37 +0200
+Message-Id: <20230807123138.67443-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all the regulators along with labels found on SDX75 IDP.
+Add Mitsubishi AA084XE01 8.4" XGA TFT LCD panel compatible string.
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+Link: https://www.mouser.fr/datasheet/2/274/aa084xe01_e-364171.pdf
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdx75-idp.dts | 227 +++++++++++++++++++++++++++++++++
- 1 file changed, 227 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-index 0da8c98..10d1587 100644
---- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sdx75.dtsi"
- #include "pm7550ba.dtsi"
- #include "pmk8550.dtsi"
-@@ -17,6 +18,232 @@
- 	aliases {
- 		serial0 = &uart1;
- 	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+	vph_ext: vph-ext-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_ext";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+	vreg_bob_3p3: pmx75-bob {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_bob_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		vin-supply = <&vph_ext>;
-+	};
-+};
-+
-+&apps_rsc {
-+	pmx75-rpmh-regulators {
-+		compatible = "qcom,pmx75-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-l1-supply = <&vreg_s2b_1p224>;
-+		vdd-l2-l18-supply = <&vreg_s2b_1p224>;
-+		vdd-l3-supply = <&vreg_s7b_0p936>;
-+		vdd-l4-l16-supply = <&vreg_s7b_0p936>;
-+		vdd-l5-l6-supply = <&vreg_s4b_1p824>;
-+		vdd-l7-supply = <&vreg_s7b_0p936>;
-+		vdd-l8-l9-supply = <&vreg_s8b_0p824>;
-+		vdd-l10-supply = <&vreg_bob_3p3>;
-+		vdd-l11-l13-supply = <&vreg_bob_3p3>;
-+		vdd-l12-supply = <&vreg_s2b_1p224>;
-+		vdd-l14-supply = <&vreg_s3b_0p752>;
-+		vdd-l15-supply = <&vreg_s2b_1p224>;
-+		vdd-l17-supply = <&vreg_s8b_0p824>;
-+		vdd-l19-supply = <&vreg_s7b_0p936>;
-+		vdd-l20-l21-supply = <&vreg_s7b_0p936>;
-+
-+		vreg_s2b_1p224: smps2 {
-+			regulator-name = "vreg_s2b_1p224";
-+			regulator-min-microvolt = <1224000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		vreg_s3b_0p752: smps3 {
-+			regulator-name = "vreg_s3b_0p752";
-+			regulator-min-microvolt = <684000>;
-+			regulator-max-microvolt = <904000>;
-+		};
-+
-+		vreg_s4b_1p824: smps4 {
-+			regulator-name = "vreg_s4b_1p824";
-+			regulator-min-microvolt = <1824000>;
-+			regulator-max-microvolt = <1904000>;
-+		};
-+
-+		vreg_s7b_0p936: smps7 {
-+			regulator-name = "vreg_s7b_0p936";
-+			regulator-min-microvolt = <352000>;
-+			regulator-max-microvolt = <1060000>;
-+		};
-+
-+		vreg_s8b_0p824: smps8 {
-+			regulator-name = "vreg_s8b_0p824";
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1100000>;
-+		};
-+
-+		vreg_l1b_1p2: ldo1 {
-+			regulator-name = "vreg_l1b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2b_1p128: ldo2 {
-+			regulator-name = "vreg_l2b_1p128";
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1160000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3b_0p896: ldo3 {
-+			regulator-name = "vreg_l3b_0p896";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <1040000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4b_0p88: ldo4 {
-+			regulator-name = "vreg_l4b_0p88";
-+			regulator-min-microvolt = <864000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5b_1p776: ldo5 {
-+			regulator-name = "vreg_l5b_1p776";
-+			regulator-min-microvolt = <1770000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6b_1p8: ldo6 {
-+			regulator-name = "vreg_l6b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7b_0p904: ldo7 {
-+			regulator-name = "vreg_l7b_0p904";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8b_0p8: ldo8 {
-+			regulator-name = "vreg_l8b_0p8";
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9b_0p752: ldo9 {
-+			regulator-name = "vreg_l9b_0p752";
-+			regulator-min-microvolt = <752000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10b_3p08: ldo10 {
-+			regulator-name = "vreg_l10b_3p08";
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3088000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11b_1p8: ldo11 {
-+			regulator-name = "vreg_l11b_1p8";
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <2928000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12b_1p2: ldo12 {
-+			regulator-name = "vreg_l12b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13b_1p8: ldo13 {
-+			regulator-name = "vreg_l13b_1p8";
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <2928000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14b_0p624: ldo14 {
-+			regulator-name = "vreg_l14b_0p624";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15b_1p2: ldo15 {
-+			regulator-name = "vreg_l15b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l16b_0p912: ldo16 {
-+			regulator-name = "vreg_l16b_0p912";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <920000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l17b_0p752: ldo17 {
-+			regulator-name = "vreg_l17b_0p752";
-+			regulator-min-microvolt = <684000>;
-+			regulator-max-microvolt = <957600>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l19b_0p952: ldo19 {
-+			regulator-name = "vreg_l19b_0p952";
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20b_0p912: ldo20 {
-+			regulator-name = "vreg_l20b_0p912";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <952000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21b_0p856: ldo21 {
-+			regulator-name = "vreg_l21b_0p856";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <1000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
- };
- 
- &chosen {
+Changes in v4:
+* Add datasheet link.
+* Supplement Cc: list.
+
+Changes in v3:
+* None.
+
+Changes in v2:
+* Collected tag.
+
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 1d4936fc5182..2c6be20bafc9 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -240,6 +240,8 @@ properties:
+       - logictechno,lttd800480070-l6wh-rt
+         # Mitsubishi "AA070MC01 7.0" WVGA TFT LCD panel
+       - mitsubishi,aa070mc01-ca1
++        # Mitsubishi AA084XE01 8.4" XGA TFT LCD panel
++      - mitsubishi,aa084xe01
+         # Multi-Inno Technology Co.,Ltd MI0700S4T-6 7" 800x480 TFT Resistive Touch Module
+       - multi-inno,mi0700s4t-6
+         # Multi-Inno Technology Co.,Ltd MI0800FT-9 8" 800x600 TFT Resistive Touch Module
 -- 
-2.7.4
+2.34.1
 
