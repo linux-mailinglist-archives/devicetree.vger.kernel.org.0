@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75DC2771A6C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 08:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADEEC771A6E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 08:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229851AbjHGGbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 02:31:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37602 "EHLO
+        id S229930AbjHGGcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 02:32:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231241AbjHGGbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 02:31:15 -0400
-Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CBB1732
-        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 23:30:58 -0700 (PDT)
-Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-4872c3dff53so483585e0c.1
-        for <devicetree@vger.kernel.org>; Sun, 06 Aug 2023 23:30:58 -0700 (PDT)
+        with ESMTP id S229509AbjHGGcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 02:32:14 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42AD1700
+        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 23:32:12 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fe5c0e587eso6018295e9.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Aug 2023 23:32:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1691389857; x=1691994657;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dz6eKo8ao64sqXLdxYJHv9qUv5zxZGq6Qjyo6fttDw4=;
-        b=mqWQ6iX60FNxqn1uZdDpETS1WqNG6kf0qgn5d2qNxveiPsG7uVPGE44hkvxr0svXsf
-         MCelDOTnhurHG9EEQ0GIHC5Rh5W4NedMhlr1gzMIX81oXiOOaflVbHPh+wkrUsCeaww2
-         Mk3vAx+AqD5UCOQfkpMjJLnfF1GJah1GEUPcg=
+        d=linaro.org; s=google; t=1691389931; x=1691994731;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oomhBhepoHb+LZTOC+J99yf3KAYX+GX+1Abo9ZCPz1o=;
+        b=W7qj3uHZTLBXRX3It5fbtH7ths8eUwVoZoSWE4Vsr8wlY7IxiHplDPfetKko8azlk4
+         eMqw5knbYxgVxzkAuFK8lRfmwNC30zl+S4llTCTrAMa846RfzkikE3GCUMHK9mbF3Kbs
+         W4V9pql5g+rCwf15ggmx9UUHAH9XxiWI+WtmiJpkV4BjyW7edG7miW10High2Xs5dTBj
+         d9BRsqdLxNu5LFWzYt/4YyZjeHRUM90XWiccSjrXP8La7TLS91znMIXfFn6uV8uQ7YFY
+         0UsYn9HcHfKB222WSnqcig5vGfuo+UicUbdte4oxHhhcgS4lDX3vTocyK4ONzfRU5Mhi
+         Xb1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691389857; x=1691994657;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dz6eKo8ao64sqXLdxYJHv9qUv5zxZGq6Qjyo6fttDw4=;
-        b=Jz6N4VMRxp0HX3jswGxM4YE6PeQ5XiY992JWFL0YY0A6CfL8frbFzxZLh4pq3rZeGC
-         LaCr4mEoIGscsUs0H2LuU00Q/1YMvhefOtHThVbz/zx+LPlVEpatXmMIogCEAH+ShTR0
-         KmxbhRFxVjQ55zlUxLNySDrkxTQ4zXg5bZ/aQhNRDxVIiSX9f5q1cFliKWwryPfrUsmy
-         PgwPA9+sEsr8twKV5nYc9LWHMx5S5Zwjm+MdkuwNkRx6jtp76LrhqOqfZzv+9UFB4Vzv
-         Dke482jRTHJf9l4/9tcZIgzPFUrN3xb3Rv9k4+PaZrf+fhgKcASyzQYky/V0yMttSAJZ
-         2lmg==
-X-Gm-Message-State: AOJu0Yyms53gZMBJ6iARg2OV6yjd/b4cBka5iU7eq3plUsarM1jT/UQf
-        hUCAgXee7S2yvFx0edgM4laslgRkw8MxWFQDxqpDVw==
-X-Google-Smtp-Source: AGHT+IHAIsK2vrz4BJhQdqKK6BvozPPoH0WWweyvQz4XE8NxINWS7h3Y07jWSgKFBY6rRarBKCKnMXk8PH9IDMazhhs=
-X-Received: by 2002:a1f:4511:0:b0:486:4a16:63c6 with SMTP id
- s17-20020a1f4511000000b004864a1663c6mr2586648vka.15.1691389857325; Sun, 06
- Aug 2023 23:30:57 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691389931; x=1691994731;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oomhBhepoHb+LZTOC+J99yf3KAYX+GX+1Abo9ZCPz1o=;
+        b=dN9dqVxlAG7Dvr1meVm+k2HZMHfZ2nBciKyEKOQgoqICtUR9yOF5v8TjaayA3sE6SD
+         UcNqoQPk9es+68iPDr8BdzHa0tye3rwZAej2+URQvUv92mMFnCvSAEUEkGvu2YDFy5t7
+         4hjHNepyni/t8GLGpo1XnMbGefU/BfkbD+moOYMsXSdNjpkQaWIRlv79Xj9r10ayPDbr
+         JWoBJNCQYMYR21NzUm9oghh3E/39F9iuHUX6QlnXe+MbAZYbu2L+CfNOwNGRdBm7Rv47
+         Nee7+coJQA+ecRC5qN9bhKG6Tk4/ZU3MMiHQ1yUNVwaP1G8amrsj+F/GvfzzQ5M7l1Oi
+         S0wQ==
+X-Gm-Message-State: AOJu0Yx037u/IQkYl6MnIZKcAzN+TylEyF2EZj8zrJvR1b51p+gNXsHJ
+        6IF4I0CpDaLQ3UZmjH4eQcawRw==
+X-Google-Smtp-Source: AGHT+IH7DcldVCQggD34wEJoSwWjyBJnM+SXOdljJCRzRvbllJfi7VmNDhCQDm2i8faedqBT4iLBLA==
+X-Received: by 2002:a05:600c:22da:b0:3fb:e254:b81e with SMTP id 26-20020a05600c22da00b003fbe254b81emr6593888wmg.12.1691389931142;
+        Sun, 06 Aug 2023 23:32:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id 13-20020a05600c024d00b003fc015ae1e1sm9634360wmj.3.2023.08.06.23.32.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Aug 2023 23:32:10 -0700 (PDT)
+Message-ID: <3ed8a34b-5f7d-6547-7e34-35e4d0994bba@linaro.org>
+Date:   Mon, 7 Aug 2023 08:32:09 +0200
 MIME-Version: 1.0
-References: <20230803074249.3065586-1-wenst@chromium.org> <20230803074249.3065586-5-wenst@chromium.org>
- <6bf91ced-076f-ecc1-f626-f531f7d991bd@linaro.org>
-In-Reply-To: <6bf91ced-076f-ecc1-f626-f531f7d991bd@linaro.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 7 Aug 2023 14:30:46 +0800
-Message-ID: <CAGXv+5HkKQ79k8T7LbowpHLCLHDvyxKrOZn=PePyrPREdpT1sg@mail.gmail.com>
-Subject: Re: [PATCH 4/9] regulator: dt-bindings: mediatek: Add MT6366 PMIC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: add sc7180-lazor board
+ bindings
+Content-Language: en-US
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Mark Brown <broonie@kernel.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20230804175734.v2.1.I7a950de49ec24b957e90d7fe7abd5f2f5f2e24c3@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230804175734.v2.1.I7a950de49ec24b957e90d7fe7abd5f2f5f2e24c3@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,92 +82,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 7, 2023 at 2:23=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/08/2023 09:42, Chen-Yu Tsai wrote:
-> > From: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> >
-> > The MediaTek MT6366 PMIC is similar to the MT6358 PMIC. It is designed
-> > to be paired with the MediaTek MT8186 SoC. It has 9 buck regulators and
-> > 29 LDO regulators, not counting ones that feed internally and basically
-> > have no controls. The regulators are named after their intended usage
-> > for the SoC and system design, thus not named generically as ldoX or
-> > dcdcX, but as vcn33 or vgpu.
-> >
-> > Add a binding document describing all the regulators and their supplies=
-.
-> >
-> > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > [wens@chromium.org: major rework and added commit message]
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> > Changes since Zhiyong's last version (v4) [1]:
-> > - simplified regulator names
-> > - added descriptions to regulators
-> > - removed bogus regulators (*_sshub)
-> > - merged vcn33-wifi and vcn33-bt as vcn33
-> > - added missing regulators (vm18, vmddr, vsram-core)
-> > - cut down examples to a handful of cases and made them complete
-> > - expanded commit message a lot
-> >
-> > [1] https://lore.kernel.org/linux-arm-kernel/20220823123745.14061-1-zhi=
-yong.tao@mediatek.com/
-> >
-> >  .../regulator/mediatek,mt6366-regulator.yaml  | 154 ++++++++++++++++++
-> >  1 file changed, 154 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/mediate=
-k,mt6366-regulator.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt636=
-6-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6=
-366-regulator.yaml
-> > new file mode 100644
-> > index 000000000000..715c6ffcb3ab
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regul=
-ator.yaml
-> > @@ -0,0 +1,154 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/mediatek,mt6366-regulator=
-.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MT6366 Regulator from MediaTek Integrated
-> > +
-> > +maintainers:
-> > +  - Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > +
-> > +description: |
-> > +  Regulator part of the MT6366 PMIC. This node should be under the PMI=
-C's
-> > +  device node.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt6366-regulator
-> > +
-> > +  vsys_ldo1-supply:
->
-> Don't use underscores in property names. Only hyphens, if needed.
+On 04/08/2023 11:58, Sheng-Liang Pan wrote:
+> Introduce more sc7180-lazor sku and board version configuration,
+> add no-eSIM SKU 10 for Lazor, no-eSIM SKU 15 and 18 for Limozeen,
+> add new board version 10 for audio codec ALC5682i-VS.
+> 
+> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+> ---
+> 
+> Changes in v2:
+> - add new entry rev9 with Parade bridge chip
+> 
+>  .../devicetree/bindings/arm/qcom.yaml         | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 450f616774e0..dce7b771a280 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -470,6 +470,11 @@ properties:
+>            - const: google,lazor-rev8
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook Spin 513 Parade bridge chip (rev9)
+> +        items:
+> +          - const: google,lazor-rev9
+> +          - const: qcom,sc7180
+> +
+>        - description: Acer Chromebook Spin 513 (newest rev)
+>          items:
+>            - const: google,lazor
+> @@ -491,6 +496,11 @@ properties:
+>            - const: google,lazor-rev8-sku2
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook Spin 513 Parade bridge chip with KB Backlight (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku2
+> +          - const: qcom,sc7180
+> +
+>        - description: Acer Chromebook Spin 513 with KB Backlight (newest rev)
+>          items:
+>            - const: google,lazor-sku2
+> @@ -512,11 +522,26 @@ properties:
+>            - const: google,lazor-rev8-sku0
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook Spin 513 Parade bridge chip with LTE (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku0
+> +          - const: qcom,sc7180
+> +
+>        - description: Acer Chromebook Spin 513 with LTE (newest rev)
+>          items:
+>            - const: google,lazor-sku0
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook Spin 513 Parade bridge chip with LTE no-esim (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku10
+> +          - const: qcom,sc7180
+> +
+> +      - description: Acer Chromebook Spin 513 with LTE no-esim (newest rev)
+> +        items:
+> +          - const: google,lazor-sku10
+> +          - const: qcom,sc7180
+> +
+>        - description: Acer Chromebook 511 (rev4 - rev8)
+>          items:
+>            - const: google,lazor-rev4-sku4
+> @@ -526,6 +551,11 @@ properties:
+>            - const: google,lazor-rev8-sku4
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook 511 Parade bridge chip (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku4
+> +          - const: qcom,sc7180
+> +
+>        - description: Acer Chromebook 511 (newest rev)
+>          items:
+>            - const: google,lazor-sku4
+> @@ -545,11 +575,36 @@ properties:
+>            - const: google,lazor-rev8-sku6
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook 511 Parade bridge chip without Touchscreen (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku6
+> +          - const: qcom,sc7180
+> +
+>        - description: Acer Chromebook 511 without Touchscreen (newest rev)
+>          items:
+>            - const: google,lazor-sku6
+>            - const: qcom,sc7180
+>  
+> +      - description: Acer Chromebook 511 Parade bridge chip no-esim (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku15
+> +          - const: qcom,sc7180
+> +
+> +      - description: Acer Chromebook 511 no-esim (newest rev)
+> +        items:
+> +          - const: google,lazor-sku15
+> +          - const: qcom,sc7180
+> +
+> +      - description: Acer Chromebook 511 Parade bridge chip without Touchscreen no-esim (rev9)
+> +        items:
+> +          - const: google,lazor-rev9-sku18
+> +          - const: qcom,sc7180
+> +
+> +      - description: Acer Chromebook 511 without Touchscreen no-esim (newest rev)
+> +        items:
+> +          - const: google,lazor-sku18
 
-I assume that applies even if the actual name in the datasheet has
-underscores?
+All of these entries (existing and new) should be just one entry with:
+ - enum:
+     - ....
+     - ....
+ - const: qcom,sc7180
 
-Will change, but will wait on discussion on patch 3 before sending a new
-revision.
+Best regards,
+Krzysztof
 
-ChenYu
-
-
-> > +    description: Supply for LDOs vfe28, vxo22, vcn28, vaux18, vaud28, =
-vsim1, vusb, vbif28
-> > +  vsys_ldo2-supply:
->
->
->
-> Best regards,
-> Krzysztof
->
