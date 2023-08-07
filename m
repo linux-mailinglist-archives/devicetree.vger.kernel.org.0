@@ -2,73 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9316C772605
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F6E1772628
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:41:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234129AbjHGNjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 09:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54222 "EHLO
+        id S234322AbjHGNl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 09:41:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234255AbjHGNjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:39:12 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E2B1993
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 06:39:10 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-d1fb9107036so4968599276.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 06:39:10 -0700 (PDT)
+        with ESMTP id S234258AbjHGNlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:41:19 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E33C1BF5
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 06:40:53 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe1c285690so6975816e87.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 06:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691415550; x=1692020350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MRDT9DXBzQlTjPrZAhEg59Olbt5sHylTIeFizzconrE=;
-        b=WWj1VMRsFjhJYS9j5EcWQz80Rwb9c4CFPW+X/veRPzcjP6bQYlI8+IBKtLrZRyXcKn
-         2VOWgfeqxdR2sYk2hA5qDR0AiQezwK0Vg7Ati5GcgJsNYyqlBfBcXQbJ8cHAXfvt0Mti
-         +YwEdYUjsc7cIaIZIiYqsS/Jge/eQi/RRiolkpH2NQHjg7dON76ErQNRE0CR3wqgRqYT
-         Eui8biZAxl4u7cVjdgZX/qsRojDmDkLUqW1cr7oZWi3Fy8eyaSrgrW5IXIGTZsv8ZywA
-         L1HsLMNAXaiKhb5puVZgh3fAWXKY0swJuJeerQB8ZF+S9UsYVA0hqeu27OLKsOLBS//3
-         N+DA==
+        d=linaro.org; s=google; t=1691415645; x=1692020445;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t3UNFvtKC7RN76cPDsqhUIsYHrJ1+9EhxJNKWK82R/E=;
+        b=c/np6yrV5hVw5f7IRsvhitSQaINb8cG+Y+nuEzIeZBcS87VD5zhTaTqBpP/t5QbPSd
+         NEvkE2HtZ36L1eBc0VbOJgmPsoK1++NBmGFAy4lwL0cTlWZhaoucKca+++G1Nzp+D329
+         4zlBPgkZ8r5kWtX+rTKisdCygX0N511Rgf3Th8HX9lH+plF9qtop7QdQ8VWu7ROwadvr
+         hiDWJFvaP6BJnteecePTz/x+0a9CRCbZyg4OrHfj9snQSiifpdobD2v6hez7JTJkRSZW
+         vtwF5CJViXmVPPEl3zVO+CTgJNG6VatZggkY2j81W7FdVLH9VAQ3ghV9zXSkVh1dF4qw
+         sAuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691415550; x=1692020350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MRDT9DXBzQlTjPrZAhEg59Olbt5sHylTIeFizzconrE=;
-        b=e7ddz/FW7cjOuKDf/nBeLxA2VETFteKyJZ9ZMAa9dUkZn7Wk5djtu7G98PlKfhjhau
-         FI8DIPbCabs0vAuq82uZYYpnKtRBRbU55XNUDpj6T61R0GHn1IHOyATEFPkz3Y1HFbi7
-         8PJo4zmdwWxXXMorNW8rXbCKxF6XGzQnKPgDDVmUJehE42c1a/jiwqK4vZ4AKiej/XBi
-         0qWU8/oUMfnqBx4jWJQElXCTg4Z9Nd7U9FKIH6e4J7QPwb3zVrY5hqOnwLpwCLd6Fypm
-         t1wS8RUi/K8UU+Nb83S0a4aq5RRwRPZPiJIom9POgNcRNqHJxJOn7ws2U6X7lI1RbUDQ
-         5Qsw==
-X-Gm-Message-State: AOJu0YylK3P/wMC/d9vHzsDx8nLQRlJ+8uHiwi+Q0LNTl63UWgDGTrmb
-        VgBh67XClzEIZRrqAqTb/pNHOZlspjkYAEyPU3EbCg==
-X-Google-Smtp-Source: AGHT+IEgUqiyfEGaIlKKBGfAfYasMwxTYrCOJerBNORMgootu9kvLZhnNC9y1WNIMYu+b/QBI2QTxv5w159iXcMsfwM=
-X-Received: by 2002:a05:6902:1024:b0:d4d:3551:15d0 with SMTP id
- x4-20020a056902102400b00d4d355115d0mr5414866ybt.61.1691415549840; Mon, 07 Aug
- 2023 06:39:09 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691415645; x=1692020445;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t3UNFvtKC7RN76cPDsqhUIsYHrJ1+9EhxJNKWK82R/E=;
+        b=eP0hulSO3VqK8s8FjHvTmMJfLgAJX4ZPNzT9aZojb812Xwb4W2sEkKGEODiLY84HsU
+         4i0I0MFK5nDQU2I8xGqOA3oJtvEnJUR85EcuB8mIDRu8UihFSVEfIsyvVZeTzFyrf5xf
+         AgKbXHKxsBAT4RNMuVMngP1toe519hDBnhzfP+RJo09RKXnKJvw86T9w/6DGYmjVH1Mg
+         3fUpTaXz4+zQT5AXIu2YIborKhF31zOmngHe5Gw6i57IdyBwrDtUakqL18K0sPXaRxiL
+         +/FlcoB7NKtbj3nAg9+ZH3WQX0DJDIho7sFExYoSOYEd6l6kM5iFP1E9PANKkPdC1tU8
+         Motg==
+X-Gm-Message-State: AOJu0YwgWODRCnEJBle2mSfTQUxEUtEWGkTwjw3C3uafsJ3h0LnrcdIa
+        mC5kcknf3nuWZv2TcQ+YDTwi6w==
+X-Google-Smtp-Source: AGHT+IGSI9uB1OV6oT3czXOjROPFtjHjbj49zQ8Q53W+97B9b9+HmSuiUYGLwdMJYRmfBph1jPyyNQ==
+X-Received: by 2002:a05:6512:6d1:b0:4f9:5396:ed1b with SMTP id u17-20020a05651206d100b004f95396ed1bmr6545445lff.28.1691415644855;
+        Mon, 07 Aug 2023 06:40:44 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id r6-20020a19ac46000000b004fe3a2e3952sm1511134lfc.100.2023.08.07.06.40.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 06:40:44 -0700 (PDT)
+Message-ID: <0d9ad62c-5164-4813-ba3e-da6253ca92e5@linaro.org>
+Date:   Mon, 7 Aug 2023 15:40:43 +0200
 MIME-Version: 1.0
-References: <20230721073214.1876417-1-huqiang.qin@amlogic.com>
- <20230721073214.1876417-4-huqiang.qin@amlogic.com> <7hcz0ei9r4.fsf@baylibre.com>
- <9da24c47-341b-1581-0043-a6c1cdce462d@amlogic.com> <7hh6pnhn45.fsf@baylibre.com>
- <35713689-2b28-192c-5004-8a0ba6b9308b@amlogic.com>
-In-Reply-To: <35713689-2b28-192c-5004-8a0ba6b9308b@amlogic.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 7 Aug 2023 15:38:58 +0200
-Message-ID: <CACRpkdaY-RNjiibVX0sZpxG39mqZGP-+nUg1sCBhF_N=4D8aNQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: Replace the IRQ number with the IRQID
- macro definition
-To:     Huqiang Qin <huqiang.qin@amlogic.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 2/9] arm64: dts: qcom: sdx75: Add spmi node
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, abel.vesa@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <1691415534-31820-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1691415534-31820-3-git-send-email-quic_rohiagar@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <1691415534-31820-3-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,14 +112,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 1, 2023 at 3:25=E2=80=AFPM Huqiang Qin <huqiang.qin@amlogic.com=
-> wrote:
+On 7.08.2023 15:38, Rohit Agarwal wrote:
+> Add SPMI node to SDX75 dtsi.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> Thanks for the suggestion, I'll add it to the cover letter for the patch =
-v3.
-> (patch v2 was sent before your reply)
-
-No need to send a v3, I just applied v2 to the pinctrl tree.
-
-Yours,
-Linus Walleij
+Konrad
