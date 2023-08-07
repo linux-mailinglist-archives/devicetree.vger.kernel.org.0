@@ -2,108 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F1A772FF0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 21:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCA477300D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 22:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbjHGTyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 15:54:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45484 "EHLO
+        id S229571AbjHGUDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 16:03:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230097AbjHGTy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:54:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FEB10DB;
-        Mon,  7 Aug 2023 12:54:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7390262186;
-        Mon,  7 Aug 2023 19:54:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70B35C433CA;
-        Mon,  7 Aug 2023 19:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691438064;
-        bh=goD4ByHBwqYYj95qYjcyojZaR3O2ZOeLLA0qA84L1/g=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=gKDmeHJLYLRWhrUN+ij6zHFu8nms8fGCHuVCCQfBknWtTUEZilPDyTd2R4FCFC6tb
-         hdY4A9xchWr7URRVpyq1Ro2ScGT4uV2QLvhzGIL3kcSvpBKJrX/LxjyaRMz0GjIAOp
-         Gsd3MK7clyj1+mr1BDXfLI3k/V1ZLanIs/qakqSciL2is7KMBrenBzkHYrGAWXRFZX
-         m1HtKBcclCTKKBZp5hK2M0VLTlBcWAWNuZd90HXNVdTU4wxQCUaKsEHcTIiMKNsArN
-         tFrFXBE1YLIiQeOqVmuWlxJCBB6naofyFzZA7fZpOcMud7Imv1LnkLowi6j7fNpMJ2
-         /0kmGMgK9tkNQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
-        shumingf@realtek.com, herve.codina@bootlin.com,
-        13916275206@139.com, ryans.lee@analog.com,
-        ckeepax@opensource.cirrus.com, sebastian.reichel@collabora.com,
-        ajye_huang@compal.corp-partner.google.com, povik+lin@cutebit.org,
-        yijiangtao@awinic.com, trix@redhat.com, colin.i.king@gmail.com,
-        liweilei@awinic.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wangweidong.a@awinic.com
-Cc:     zhangjianming@awinic.com
-In-Reply-To: <20230804114749.215460-1-wangweidong.a@awinic.com>
-References: <20230804114749.215460-1-wangweidong.a@awinic.com>
-Subject: Re: [PATCH V4 0/3] ASoC: codecs: Add awinic AW88261 audio
- amplifier driver
-Message-Id: <169143806017.302632.37564599708375249.b4-ty@kernel.org>
-Date:   Mon, 07 Aug 2023 20:54:20 +0100
+        with ESMTP id S229504AbjHGUDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 16:03:06 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42192B1;
+        Mon,  7 Aug 2023 13:03:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=wFuRcpPA6Dr272QXy0vNv1CuM8nKwgLSfUQGS099Afw=; b=4gCHpEF4M5Z6cpd6p6Go2bm3nR
+        ovr+oN5RwdbhrFh6CsumTwg94XScINmW8j2eFNTGxi6HMT5fXU8CYFvf3Rj3YIDl/mZxqtnDM8P2O
+        bG4UUviDbjZBjuIz8IeQ70ZMIAlQ1m8Gq9xh7O3c1XN8VW6e1/bm55CW4OuFecSUnQLE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qT6RQ-003O4i-7a; Mon, 07 Aug 2023 22:03:00 +0200
+Date:   Mon, 7 Aug 2023 22:03:00 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 9/9] arm64: dts: qcom: sa8775p-ride: enable EMAC1
+Message-ID: <2d88a48e-e8c1-463e-8d41-dc24e8579dfe@lunn.ch>
+References: <20230807193507.6488-1-brgl@bgdev.pl>
+ <20230807193507.6488-10-brgl@bgdev.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-034f2
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230807193507.6488-10-brgl@bgdev.pl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Aug 2023 19:47:46 +0800, wangweidong.a@awinic.com wrote:
-> The awinic AW88261 is an I2S/TDM input, high efficiency
-> digital Smart K audio amplifier
+On Mon, Aug 07, 2023 at 09:35:07PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> v3 -> v4: Modify the dev_err_probe usage
->           Changed the use of sizeof in kzalloc
->           Changed the function name
->           Merge aw88261_device.c into aw88261.c
+> Enable the second MAC on sa8775p-ride.
 > 
-> [...]
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 74 +++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> index af50aa2d9b10..0862bfb4c580 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> @@ -356,6 +356,80 @@ queue3 {
+>  	};
+>  };
+>  
+> +&ethernet1 {
+> +	phy-mode = "sgmii";
+> +	phy-handle = <&sgmii_phy1>;
 
-Applied to
+This should be all you need.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> +	snps,shared-mdio = <&mdio0>;
 
-Thanks!
+This is not needed, since it is implicit in the phy-handle.
 
-[1/3] ASoC: dt-bindings: Add schema for "awinic,aw88261"
-      commit: 517d52ae5cf75d55970345ece4f6743abdf4620f
-[2/3] ASoC: codecs: Add code for bin parsing compatible with aw88261
-      commit: 7f4ec77802aa17518990ed954bf536fd3bcf25cb
-[3/3] ASoC: codecs: Add aw88261 amplifier driver
-      commit: 028a2ae256916eeae1040049d2d0129535ace60e
+You need to debug why the existing -EPROBE_DEFER is not working.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+    Andrew
