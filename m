@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2E77724BB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9905A7724C6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232624AbjHGMwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 08:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
+        id S231292AbjHGMzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 08:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjHGMwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:52:49 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6ECB10F4
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 05:52:47 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-d3d729a08e4so5092107276.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 05:52:47 -0700 (PDT)
+        with ESMTP id S232693AbjHGMzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:55:45 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964B310FD
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 05:55:40 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-d299ed34bacso7886848276.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 05:55:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691412767; x=1692017567;
+        d=linaro.org; s=google; t=1691412940; x=1692017740;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3AFGlTum5UMlZjZ7E842n3ZFd1VK6+2/5dFVFox+pj4=;
-        b=AXHvoKakGa2q9pjyem5iZZRspGtnjrRe7MIdhug6Xp/jnQ4dukyhknWzqSH4VUWORy
-         k/FwANCCYRRYmDUMP53zJAG2wLUXWV15q3fVc50tXQMUl+CRMdgB4QAuKj073Ltyo642
-         X4nMmMBYYwyCSAVHYguDbfGUPy2VAztwP1Gjpcard8B0qv4IXFWKGEq+lik7IoowRcam
-         WKbuu7SK2j1WMVb89Joc49UH0tMhbEgBvQG1t9MVrpUB151PvmilMbEj3pK1hNJXNp3y
-         j2uQmwNpy/SaqaXTQLG9Slt5bfM711fsdO2WrZfuNCyXzySXOEEcJJ2ohq1KqLFzEE4z
-         plgQ==
+        bh=5BfX6arEp17J1ApuZYgVDOdLXWCnkGmD0eG9nrcMvUg=;
+        b=ChEFz+t5kaMKFpe2jJ5x53CigMiXd9t5Je2Z+hV5pL5nF1xYgl44Y46vsURMayKRTs
+         sCyh6CM5EhZ08D9Cxq8tflRhGCkfqL1ZdfkCGS7CWLvIGMwTsEuwe9Wwp0/+SWSDA/YP
+         BAH2qXENMJJW13xvhHMsaZMapXNOPAC8Zvk4HdChEmGO2TXHCCC9/kLnr5z7QInuaOoq
+         DEaKwDsrtpodFVI4IL2qasaWBSXrUfdjM5PQR3Wg49qjta68P4kWcvja5Np1waUz0HnP
+         QeMPndPopdTaT/S//11k7wQ8AHRbgKL35UhAExVtoZUUI2HQCoNura2q1owu2Ck+8Na8
+         YvIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691412767; x=1692017567;
+        d=1e100.net; s=20221208; t=1691412940; x=1692017740;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3AFGlTum5UMlZjZ7E842n3ZFd1VK6+2/5dFVFox+pj4=;
-        b=ZyIWBh6h4F8qMJKYC9kv5bJy/oAD7XoVnr53xnsK3Eka6h71FeDMg7bHCUEs39rB4h
-         FK6g6E4IUwI+po3YdQqBBIj0ILToKuXElcm7iMo7A7UFxKfZmFlw0gRQmtHqmgqx5i9c
-         rRzlchS1HVrfuatto6rFgd1QpSlKS7YA0pCa7Pd8PfYMkqsb8xjP+GnbBvClC/Y04PLp
-         sve00Z9KsIEkXdQjsN17rYOvGWpTGv/S4hebdpBYubhak0qr1vXv0cS7o/PeUszqU59m
-         yWOHZXY6bZpuWBJcrdDYJQdup0J1kYo+4TKLLV8asVhEHZnspP0Ra+FxT7XHtpCE8vzk
-         33hw==
-X-Gm-Message-State: AOJu0Yw5OTeThV8SF7mGoHNDxO684aoiFYlPEvswYquLgGaOQGAagXRk
-        bkMdhiz3C+lJsBSv4Mu3Ohdko6RmbT1bRWCNzcZSEg==
-X-Google-Smtp-Source: AGHT+IGPfyIbynWx7QZJWdwwx4hWSata6jpbVSZxrGJNsjuKKKNxfaZwdNRL5QP8SuC29/wka5f0RxzJjgsIj8NJ7Ls=
-X-Received: by 2002:a25:720b:0:b0:d09:f934:f2fe with SMTP id
- n11-20020a25720b000000b00d09f934f2femr9563444ybc.18.1691412767068; Mon, 07
- Aug 2023 05:52:47 -0700 (PDT)
+        bh=5BfX6arEp17J1ApuZYgVDOdLXWCnkGmD0eG9nrcMvUg=;
+        b=h10IjXX2MyE1fFzSmRWh+9hSoOSM4Ip9xt4SCSJYPr3dYCyNfBfzEz7+UX+QU4eo0L
+         7/A7iRVUtaY9q1yui3aoVF1l2c35yALXEebd2ikw13vUcQTDXFyzbsmmcSTczaljwduo
+         HxRa7VqNZ3tdNnSdQX9jVb7y30vjivNPaxvSFov2DS4mX9SsajxGl7ElgH5Jr050pOmv
+         FCqiO6TdHP3ACqMSdWIJNepeHCMd5XW+C1hN2UvdtQPFJwZ1ZC/rD574nQlNB4CaZgvZ
+         duhF7NxkNNUqjrCbPc196kmr7C0sBF0p35gLLOyk87IsA8tPGlPApLQuryc5avSWXqwf
+         3yxA==
+X-Gm-Message-State: AOJu0YyWy71VP3bF9jA96t+PeI/6Xg7sz211wHAYJlvJt8If+JvkeNMK
+        oUDDjWrZEftOVYuEsgHqJDeBtxthpIMlbHRrDKHNmw==
+X-Google-Smtp-Source: AGHT+IEBEw7X+sUekghvFs/pg7p7r8rTjn5GmiFSMqpTqd2GgLQW8CZaYlcMzQteiBhViqFLcWuQesWbPI6GF/4kX0g=
+X-Received: by 2002:a25:2943:0:b0:cef:b734:57fc with SMTP id
+ p64-20020a252943000000b00cefb73457fcmr7974595ybp.25.1691412939852; Mon, 07
+ Aug 2023 05:55:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230726090409.16606-1-tychang@realtek.com> <20230726090409.16606-6-tychang@realtek.com>
-In-Reply-To: <20230726090409.16606-6-tychang@realtek.com>
+References: <20230726090409.16606-1-tychang@realtek.com>
+In-Reply-To: <20230726090409.16606-1-tychang@realtek.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 7 Aug 2023 14:52:36 +0200
-Message-ID: <CACRpkdYzLiXSLpU63Nn84b+p3Nz5Ls-o94HsoAq514LvGkSiVg@mail.gmail.com>
-Subject: Re: [PATCH 5/7] dt-bindings: pinctrl: realtek: add RTD1315E pinctrl binding
+Date:   Mon, 7 Aug 2023 14:55:28 +0200
+Message-ID: <CACRpkdYpFMwAMGnFuC-9agY4sV6HJo8hYBL35oacnGFvJxLJ-Q@mail.gmail.com>
+Subject: Re: [PATCH 0/7] Add pinctrl driver support for Realtek DHC SoCs
 To:     TY Chang <tychang@realtek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -61,8 +61,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,87 +72,21 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi TY Chang,
 
-thanks for your patch!
+thanks for the patches!
 
 On Wed, Jul 26, 2023 at 11:06=E2=80=AFAM TY Chang <tychang@realtek.com> wro=
 te:
 
-> Add device tree bindings for RTD1315E.
->
-> Signed-off-by: TY Chang <tychang@realtek.com>
+> These patches add the bindings and the pinctrl drivers for Realtek
+> DHC(Digital Home Center) RTD SoCs(RTD1619B, RTD1319D and RTD1315E).
 
-Maybe you could write a short paragraph about the RTD1315E so we
-know what this is? I guess it is some SoC with some intended use case?
+I really like the architecture with a central driver an modules for each So=
+C
+that makes this nicely maintainable in the future.
 
-(...)
-> +description: |
-> +  Binding for Realtek DHC RTD1315E SoC pin control.
-
-Same text should go here in that case.
-
-> +        realtek,pdrive:
-> +          description: |
-> +            An integer describing the level to adjust PMOS output drivin=
-g capability.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          minimum: 0
-> +          maximum: 7
-> +
-> +        realtek,ndrive:
-> +          description: |
-> +            An integer describing the level to adjust NMOS output drivin=
-g capability.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          minimum: 0
-> +          maximum: 7
-
-I would rename these realtek,drive-strength-p and realtek,drive-strength-n.
-
-You need to explain what is meant with PMOS and NMOS here. If it is what
-I think it is, I think some ASCII art would be handy!
-
-You can reuse my ASCII art from Documentation/driver-api/gpio/driver.rst:
-
-                     VDD
-                      |
-            OD    ||--+
-         +--/ ---o||     P-MOS-FET
-         |        ||--+
-    IN --+            +----- out
-         |        ||--+
-         +--/ ----||     N-MOS-FET
-            OS    ||--+
-                      |
-                     GND
-
-Maybe you wanna delete the OD switch if these drivers don't support that.
-
-What does the values 0..7 actually correspond to? Is it the number of
-transistors/driver stages simply? Then write that.
-
-We need to think whether this is so generically useful that it should simpl=
-y
-be drive-strength-pmos and drive-strength-nmos, simply put, as other
-SoCs may implement the same. What do people think?
-
-> +        realtek,dcycle:
-> +          description: |
-> +            An integer describing the level to adjust output duty cycle.
-> +            Valid arguments are described as below:
-> +            0: 0ns
-> +            2: + 0.25ns
-> +            3: + 0.5ns
-> +            4: -0.25ns
-> +            5: -0.5ns
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          enum: [ 0, 2, 3, 4, 5 ]
-
-This does not explain the duty cycle of *what*?
-
-It looks really useful so please explain thoroughly what it does.
-
-I guess this is not PWM because then you could use
-PIN_CONFIG_MODE_PWM.
+There are some questions around the NMOS/PMOS totempole config
+(I guess that is what it is) so we need to hash that out into the
+documentation, then I think the rest falls into place pretty naturally.
 
 Yours,
 Linus Walleij
