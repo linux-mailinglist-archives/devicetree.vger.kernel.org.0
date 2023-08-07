@@ -2,238 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0601771D4E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 11:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C74A771D6C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 11:50:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231630AbjHGJmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 05:42:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
+        id S231685AbjHGJuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 05:50:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231643AbjHGJmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 05:42:21 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6C4F810C1;
-        Mon,  7 Aug 2023 02:42:20 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0D7DA1FB;
-        Mon,  7 Aug 2023 02:43:03 -0700 (PDT)
-Received: from [10.57.90.63] (unknown [10.57.90.63])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E5353F59C;
-        Mon,  7 Aug 2023 02:42:17 -0700 (PDT)
-Message-ID: <73a5313d-9ab2-f5f9-42af-c3d9939198c6@arm.com>
-Date:   Mon, 7 Aug 2023 10:42:15 +0100
+        with ESMTP id S230452AbjHGJuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 05:50:00 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C57E1993
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 02:49:50 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fe2048c910so36068685e9.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 02:49:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691401785; x=1692006585;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7WlaoSNS0YQPW0Ym1+gME4oJekwgVfQCX8PcT91w2v4=;
+        b=Sa8PD0Y+SHMOpyVVYoPVv0bjF/lbLKgj8brbLKMHB8UR/YlDmps4DaYcK/PwagxM5F
+         6kj6WB7tBpA9MZ9ZWuihJwiZQsnl6xQ4k8WAXX/8+kWxY1wrE0r0ox/EvvAt7xpGVOGE
+         x/kB838MjxHRBYpAz641hN7ivYvnA8uW2WhfnGIyOUDiydJEc2Yq3fPLPejKhK5qcYxR
+         hKQcmgGik+3OcEJEli0L4ToKdkPsFxencPLkDz77AoI4x7382U1jeilqSekJNYO7GhLA
+         4724WjNHZSsxaBeZRFpTa33rn7eP0ByHaVUMfeO0PO979YDxlKsYWXAUO8u3Jrfoh/OJ
+         Osgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691401785; x=1692006585;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7WlaoSNS0YQPW0Ym1+gME4oJekwgVfQCX8PcT91w2v4=;
+        b=h9t8YuqTPFTwobEin0EcqXIC67bl85b+A0fMtXKMDEswGFNGRmIs6RFcsC/6a8RLpG
+         B1Ofilu14GUE9ew83wu1zM6pCBwJDsQLMh9LWPS5w3RZbVw2rIdw8ZsRSUfY2tPInGRK
+         7tyIlqSRQt62/s217V+hG04LrT3gcAmxbieEynakmaTI8eBDP3bxlWm+Ngj2aSyqvEFE
+         qpW7nDmNk+wEnjGV+IHw5x4XKWwLBykPlVU3CWN42sBpwJuIFFvUXCobJUQgPhDrpPST
+         rgPuszr9ooRB5l4GOjaoa+71RKZn1xSSbTgrWzjxLA83YF5ejHma1b06BQILWOq0VnRM
+         sCbw==
+X-Gm-Message-State: AOJu0Yw0KjB7BDSSU+x7Bi9xpX2JzinuOaQSrQkorEFYGUcaDn7EP4s5
+        gDkNIu8OZmL8VY3nTFGxfs998g==
+X-Google-Smtp-Source: AGHT+IEQJRkkN0Aet2aRuHdQXnzNkF4CizFKB1Dy7s2jxhLny1IPKP1IQDAj6d1UgfXDOBClCgMuQA==
+X-Received: by 2002:a1c:7913:0:b0:3fb:b248:67c with SMTP id l19-20020a1c7913000000b003fbb248067cmr5522062wme.22.1691401784845;
+        Mon, 07 Aug 2023 02:49:44 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:55f:21e0:9e19:4376:dea6:dbfa])
+        by smtp.gmail.com with ESMTPSA id i11-20020a05600c2d8b00b003fe5228b78dsm2752429wmg.1.2023.08.07.02.49.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Aug 2023 02:49:44 -0700 (PDT)
+From:   Julien Stephan <jstephan@baylibre.com>
+Cc:     Julien Stephan <jstephan@baylibre.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        devicetree@vger.kernel.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        Phi-bang Nguyen <pnguyen@baylibre.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v3 0/4] Add Mediatek ISP3.0
+Date:   Mon,  7 Aug 2023 11:48:09 +0200
+Message-ID: <20230807094940.329165-1-jstephan@baylibre.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.13.0
-Subject: Re: [PATCH v7 07/13] coresight-tpdm: Add nodes to set trigger
- timestamp and type
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1690269353-10829-1-git-send-email-quic_taozha@quicinc.com>
- <1690269353-10829-8-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1690269353-10829-8-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 08:15, Tao Zhang wrote:
-> The nodes are needed to set or show the trigger timestamp and
-> trigger type. This change is to add these nodes to achieve these
-> function.
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> ---
->   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 24 ++++++
->   drivers/hwtracing/coresight/coresight-tpdm.c       | 94 ++++++++++++++++++++++
->   2 files changed, 118 insertions(+)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index dbc2fbd0..0b7b4ad 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -21,3 +21,27 @@ Description:
->   
->   		Accepts only one value -  1.
->   		1 : Reset the dataset of the tpdm
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_trig_type
-> +Date:		March 2023
-> +KernelVersion	6.5
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the trigger type of DSB tpdm. Read the trigger
-> +		type of DSB tpdm.
+This series adds the support of the Mediatek ISP3.0 found on some
+Mediatek SoCs such as the mt8365. The driver is divided into 2 parts:
 
-Please use: (RW) instead of (Write).
+* SENINF: the sensor interface
+* CAMSV: this driver provides a path to bypass the SoC ISP so that image
+  data coming from the SENINF can go directly into memory without any
+  image processing. This allows the use of an external ISP or camera
+  sensor directly.
 
-		(RW) Set/Get the trigger type of the DSB for TPDM.
-Similarly for the items below.
+The SENINF driver is based on previous work done by Louis Kuo available
+as an RFC here: https://lore.kernel.org/all/20200708104023.3225-1-louis.kuo@mediatek.com/
 
-> +
-> +		Accepts only one of the 2 values -  0 or 1.
-> +		0 : Set the DSB trigger type to false
-> +		1 : Set the DSB trigger type to true
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_trig_ts
-> +Date:		March 2023
-> +KernelVersion	6.5
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the trigger timestamp of DSB tpdm. Read the
-> +		trigger timestamp of DSB tpdm.
-> +
-> +		Accepts only one of the 2 values -  0 or 1.
-> +		0 : Set the DSB trigger type to false
-> +		1 : Set the DSB trigger type to true
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index acc3eea..62efc18 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -20,6 +20,18 @@
->   
->   DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
->   
-> +static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
-> +					   struct attribute *attr, int n)
+This series depends on the following series: [1] for the phy,  [2] for
+power management support
 
-Please keep the alignment.
+Changes in v3:
+- fix a lot of formatting issues/coding style issues found in camsv/seninf reported by Angelo on v2
+- fix camsv/seninf binding file error reported by Rob
 
-> +{
-> +	struct device *dev = kobj_to_dev(kobj);
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	if (drvdata && (drvdata->datasets & TPDM_PIDR0_DS_DSB))
+Changes in v2:
+- renamed clock `cam_seninf` to `camsys`
+- renamed clock `top_mux_seninf` to `top_mux`
+- moved phy properties from port nodes to top level
+- remove patternProperties
+- specify power management dependency in the cover letter description to fix
+  missing include in dt-binding example
+- change '$ref' properties on some endpoint nodes from
+  '$ref: video-interfaces.yaml#' to '$ref: /schemas/graph.yaml#/$defs/endpoint-base'
+ where applicable
 
-As suggested earlier, add a wrapper for the above check.
+Best
+Julien Stephan
 
-> +		return attr->mode;
-> +
-> +	return 0;
-> +}
-> +
->   static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
->   {
->   	if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
-> @@ -229,8 +241,90 @@ static struct attribute_group tpdm_attr_grp = {
->   	.attrs = tpdm_attrs,
->   };
->   
-> +static ssize_t dsb_trig_type_show(struct device *dev,
-> +				     struct device_attribute *attr, char *buf)
+[1] : https://lore.kernel.org/all/20230620121928.1231745-1-jstephan@baylibre.com/
+[2] : https://lore.kernel.org/lkml/20230627131040.3418538-1-msp@baylibre.com/
 
-Please follow the above alignment for all functions throughout the 
-series. There are unaligned parameter lists scattered around the series.
 
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%u\n",
-> +			 (unsigned int)drvdata->dsb->trig_type);
-> +}
-> +
-> +/*
-> + * Trigger type (boolean):
-> + * false - Disable trigger type.
-> + * true  - Enable trigger type.
-> + */
-> +static ssize_t dsb_trig_type_store(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      const char *buf,
-> +				      size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned long val;
-> +
-> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	if (val)
-> +		drvdata->dsb->trig_type = true;
-> +	else
-> +		drvdata->dsb->trig_type = false;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_trig_type);
-> +
-> +static ssize_t dsb_trig_ts_show(struct device *dev,
-> +				     struct device_attribute *attr, char *buf)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%u\n",
-> +			 (unsigned int)drvdata->dsb->trig_ts);
-> +}
-> +
-> +/*
-> + * Trigger timestamp (boolean):
-> + * false - Disable trigger timestamp.
-> + * true  - Enable trigger timestamp.
-> + */
-> +static ssize_t dsb_trig_ts_store(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      const char *buf,
-> +				      size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned long val;
-> +
-> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	if (val)
-> +		drvdata->dsb->trig_ts = true;
-> +	else
-> +		drvdata->dsb->trig_ts = false;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_trig_ts);
-> +
-> +static struct attribute *tpdm_dsb_attrs[] = {
-> +	&dev_attr_dsb_trig_ts.attr,
-> +	&dev_attr_dsb_trig_type.attr,
-> +	NULL,
-> +};
-> +
-> +static struct attribute_group tpdm_dsb_attr_grp = {
-> +	.attrs = tpdm_dsb_attrs,
-> +	.is_visible = tpdm_dsb_is_visible,
-> +};
-> +
->   static const struct attribute_group *tpdm_attr_grps[] = {
->   	&tpdm_attr_grp,
-> +	&tpdm_dsb_attr_grp,
->   	NULL,
->   };
->   
+Louis Kuo (2):
+  dt-bindings: media: add mediatek ISP3.0 sensor interface
+  media: platform: mediatek: isp_30: add mediatek ISP3.0 sensor
+    interface
 
-Rest looks fine.
+Phi-bang Nguyen (2):
+  dt-bindings: media: add mediatek ISP3.0 camsv
+  media: platform: mediatek: isp_30: add mediatek ISP3.0 camsv
 
-Suzuk
+ .../bindings/media/mediatek,mt8365-camsv.yaml |  109 ++
+ .../media/mediatek,mt8365-seninf.yaml         |  259 +++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/mediatek/Kconfig       |    1 +
+ drivers/media/platform/mediatek/Makefile      |    1 +
+ drivers/media/platform/mediatek/isp/Kconfig   |    2 +
+ drivers/media/platform/mediatek/isp/Makefile  |    3 +
+ .../platform/mediatek/isp/isp_30/Kconfig      |   35 +
+ .../platform/mediatek/isp/isp_30/Makefile     |    4 +
+ .../mediatek/isp/isp_30/camsv/Makefile        |    7 +
+ .../mediatek/isp/isp_30/camsv/mtk_camsv.c     |  328 ++++
+ .../mediatek/isp/isp_30/camsv/mtk_camsv.h     |  196 +++
+ .../isp/isp_30/camsv/mtk_camsv30_hw.c         |  432 +++++
+ .../isp/isp_30/camsv/mtk_camsv30_regs.h       |   60 +
+ .../isp/isp_30/camsv/mtk_camsv_video.c        |  781 +++++++++
+ .../mediatek/isp/isp_30/seninf/Makefile       |    5 +
+ .../mediatek/isp/isp_30/seninf/mtk_seninf.c   | 1491 +++++++++++++++++
+ .../isp/isp_30/seninf/mtk_seninf_reg.h        |  112 ++
+ 18 files changed, 3836 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+ create mode 100644 drivers/media/platform/mediatek/isp/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf_reg.h
+
+-- 
+2.41.0
 
