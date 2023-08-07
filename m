@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD297727AE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 16:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B517727DA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 16:35:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233635AbjHGO1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 10:27:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41076 "EHLO
+        id S231654AbjHGOfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 10:35:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbjHGO1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 10:27:35 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E764AE79;
-        Mon,  7 Aug 2023 07:27:29 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A286EFF808;
-        Mon,  7 Aug 2023 14:27:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1691418448;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nSKlAqEgzEsFnBW7d8u/9h1ZprRRwuRKRLFQ+P/wUY8=;
-        b=LywQYvYZoJqcYSSsOLGqNNJCC9NtdSGpEXpSP7h89QnexEqHiRwsI7y1Fopm8khwM4Jado
-        UYh+3ucNoG1TlHOxwycpd6wl86Ww1bH1aU60cma+N9WOR0OpLat30VEL6CeBvM4lykiuLw
-        YTsewxWRSsSjNtpcSTDCC/w5lLkMGaNv7Xw1yRiyjXwkVqDQrnGE9qAK5QvgIhhrsRkXmb
-        mp7wMTZO2Ss/rYbZR46XbfqZndue72KIO/PVTyaSLyZCXcr1LoUkH4LYGHzC6pgv3/FZsS
-        y1yxUPZoU8Fr9gDi5km21Xjd+hZnD+9mY+D/84flAYhqMYAgZ0XHWK6gTENonw==
-Date:   Mon, 7 Aug 2023 16:27:21 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S229948AbjHGOfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 10:35:37 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023EC10DD;
+        Mon,  7 Aug 2023 07:35:33 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-986d8332f50so628613566b.0;
+        Mon, 07 Aug 2023 07:35:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691418931; x=1692023731;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vGYSWbN7PMS0f5vrz8dhv/rjh9hiks1eC9dOt9xyQUM=;
+        b=bp1TLXRvHNSid4EjH1/QveY/HipnZUWNjWTL5jsgeD/1GT95iQ1tNH9UoS77Cgxxwf
+         PA09gwHTQ9j0TUlMLBvpWzgAWeabnUjzi2fXJknfKo7Zt4/TtOoYVniwGpAvlDreHeOF
+         YmwYf8QKyb1Y743cM1NE40xIouKeM5kzNTi6+H6yKeqEcrB7LMsSKTB4TrYqKWBgtnE5
+         9n8w+b8eE3ibBIGzon+rySTEDJWOeWPtzmsWG1PtRInWngIrQYv2rWq/rrPF4qHPEuM3
+         biiRq5gWk8fbaOWN+6lUFmcXZMQmdXEIsTtPyhLUoMcxBN9uYSCb30bFP5BFNAsxNhOl
+         ZSBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691418931; x=1692023731;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vGYSWbN7PMS0f5vrz8dhv/rjh9hiks1eC9dOt9xyQUM=;
+        b=AWvxnu/YsA+LIEI3LcL2L9VFSCczyJVBR7+fLTEeI1+CYazrebjXnUACnARUzzlQiS
+         3gqsT5hHo92xxdzy7NZYvwgCdrDy75KGOxLAaOV6xcTVNEHkxqeGO/mX5BQROB8I/45J
+         svWirIXmRxp2g2xU8xBXnXFF3pITp5UOnV8J/SNc+y1kXSjKGq3fLVuC71WhfINunSzr
+         Gzu3mSVcUORbXqHSuCA5Ni7P4BqXsaV9JF+xrlkWhA9BDyT0SG1/3+Elzf/p3YVBe87Z
+         gh8y/xS8vvYd32cVYW6sfit87zE2B1eyOw3/eVWAxgyM8QmwIzAdCNR0nvk4Ywv5juko
+         LH3g==
+X-Gm-Message-State: AOJu0YyM6HPNZ3Ea6KtsGlCwy2Urn5Cer1hylMmz8YOEOajp9IwVaIbF
+        bv6Tf+V9rg2Lt+ASF+S2j/U=
+X-Google-Smtp-Source: AGHT+IFjTFWA/gj0Ka2hniiSJFmIIgLMsQotBuRcjNn9ShgdWt8Pp/COmTMd1mmaUYbit0xS6Zorjw==
+X-Received: by 2002:a17:907:a068:b0:99c:20f0:dec0 with SMTP id ia8-20020a170907a06800b0099c20f0dec0mr7106521ejc.43.1691418931285;
+        Mon, 07 Aug 2023 07:35:31 -0700 (PDT)
+Received: from xeon.. ([188.163.112.48])
+        by smtp.gmail.com with ESMTPSA id e3-20020a170906504300b0099329b3ab67sm5323292ejk.71.2023.08.07.07.35.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Aug 2023 07:35:31 -0700 (PDT)
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 24/28] pinctrl: Add support for the Lantic PEF2256
- pinmux
-Message-ID: <20230807162721.56318743@bootlin.com>
-In-Reply-To: <CACRpkdYXCQRd3ZXNGHwMaQYiJc7tGtAJnBaSh5O-8ruDAJVdiA@mail.gmail.com>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
-        <20230726150225.483464-25-herve.codina@bootlin.com>
-        <CACRpkdYXCQRd3ZXNGHwMaQYiJc7tGtAJnBaSh5O-8ruDAJVdiA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] Support bridge/connector by Tegra HDMI
+Date:   Mon,  7 Aug 2023 17:35:10 +0300
+Message-Id: <20230807143515.7882-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,83 +77,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+This patch adds support for the bridge/connector attached to the
+HDMI output, allowing to model the hardware properly. It keeps
+backwards compatibility with existing bindings and is required
+by devices which have a simple or MHL bridge connected to HDMI
+output like ASUS P1801-T or LG P880/P895 or HTC One X.
 
-On Mon, 7 Aug 2023 15:05:15 +0200
-Linus Walleij <linus.walleij@linaro.org> wrote:
+Tested on ASUS Transformers which have no dedicated bridge but
+have type d HDMI connector directly available. Tests went smoothly.
 
-> Hi Herve,
-> 
-> thanks for your patch!
-> 
-> First: is this patch something we could merge separately? I don't see
-> any dependency on the other patches.
+---
+Changes from v2:
+- added missing descriptions to tegra dc and hdmi yamls
+- fixed "Warning (unit_address_vs_reg): /host1x@50000000/
+  dc@54200000/rgb/port@0: node has a unit name, but no reg or
+  ranges property"
+- dropped reg from port to avoid same warning with hdmi ports
 
-It depends on pef2256:
-in drivers/pinctrl/Kconfig:
---- 8< ---
-+config PINCTRL_PEF2256
-+	tristate "Lantiq PEF2256 (FALC56) pin controller driver"
-+	depends on OF && FRAMER_PEF2256
---- 8< ---
-in drivers/pinctrl/pinctrl-pef2256.c
---- 8< ---
-+#include <linux/framer/pef2256.h>
---- 8< ---
+Changes from v1:
+- no changes, re-sending
+---
 
-All the pef2256 it depends on is provided by
- path 23/28 "net: wan: framer: Add support for the Lantiq PEF2256 framer"
+Maxim Schwalm (4):
+  ARM: dts: tegra: Drop unit-address from parallel RGB output port
+  dt-bindings: display: tegra: nvidia,tegra20-dc: Add parallel RGB
+    output port node
+  dt-bindings: display: tegra: nvidia,tegra20-hdmi: Add HDMI output port
+    node
+  drm/tegra: output: hdmi: Support bridge/connector
 
-> 
-> On Wed, Jul 26, 2023 at 5:04 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> 
-> > The Lantiq PEF2256 is a framer and line interface component designed to
-> > fulfill all required interfacing between an analog E1/T1/J1 line and the
-> > digital PCM system highway/H.100 bus.
-> >
-> > This pinmux support handles the pin muxing part (pins RP(A..D) and pins
-> > XP(A..D)) of the PEF2256.
-> >
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
-> 
-> So it is a bridge chip? Please use that terminology since Linux
-> DRM often talks about bridges.
-> 
-> > +++ b/drivers/pinctrl/pinctrl-pef2256-regs.h  
-> (...)
-> > +#include "linux/bitfield.h"  
-> 
-> Really? I don't think there is such a file there.
-> 
-> Do you mean <linux/bitfield.h> and does this even compile?
+Svyatoslav Ryhel (1):
+  ARM: tegra: transformers: add connector node
 
-Yes and it compiles (even with quoted included file).
-I will be changed to <linux/bitfield.h> in the next interation.
+ .../display/tegra/nvidia,tegra20-dc.yaml      | 31 +++++++++++++
+ .../display/tegra/nvidia,tegra20-hdmi.yaml    | 32 +++++++++++++-
+ .../dts/nvidia/tegra20-acer-a500-picasso.dts  |  2 +-
+ .../boot/dts/nvidia/tegra20-asus-tf101.dts    | 24 ++++++++--
+ .../dts/nvidia/tegra30-asus-lvds-display.dtsi |  2 +-
+ .../boot/dts/nvidia/tegra30-asus-tf700t.dts   |  2 +-
+ .../tegra30-asus-transformer-common.dtsi      | 21 ++++++++-
+ drivers/gpu/drm/tegra/hdmi.c                  | 44 ++++++++++++++-----
+ 8 files changed, 136 insertions(+), 22 deletions(-)
 
-> 
-> > diff --git a/drivers/pinctrl/pinctrl-pef2256.c b/drivers/pinctrl/pinctrl-pef2256.c  
-> (...)
-> > +struct pef2256_pinctrl {
-> > +       struct device *dev;
-> > +       struct regmap *regmap;
-> > +       enum pef2256_version version;
-> > +       struct {
-> > +               struct pinctrl_desc pctrl_desc;
-> > +               const struct pef2256_function_desc *functions;
-> > +               unsigned int nfunctions;
-> > +       } pinctrl;  
-> 
-> Uh anonymous struct... can't you just define the struct separately
-> with a name? Or fold it into struct pef2256_pinctrl without the
-> additional struct? Thanks.
+-- 
+2.39.2
 
-I will fold it into struct pef2256_pinctrl in the next iteration.
-
-Thanks
-Hervé
-
-> 
-> Otherwise it looks neat!
-> 
-> Yours,
-> Linus Walleij
