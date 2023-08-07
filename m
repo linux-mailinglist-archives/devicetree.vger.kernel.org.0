@@ -2,90 +2,414 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D58D8771A82
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 08:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E269771A9E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 08:44:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230440AbjHGGhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 02:37:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
+        id S229875AbjHGGoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 02:44:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbjHGGha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 02:37:30 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF0F41711
-        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 23:37:28 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so11011240a12.0
-        for <devicetree@vger.kernel.org>; Sun, 06 Aug 2023 23:37:28 -0700 (PDT)
+        with ESMTP id S229666AbjHGGoq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 02:44:46 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12601A4
+        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 23:44:43 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5232d593646so2138401a12.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Aug 2023 23:44:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691390247; x=1691995047;
+        d=linaro.org; s=google; t=1691390682; x=1691995482;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MJUsdl71xTfW5cw9jShWN7bQN13L2c8KVaQNeqdmBx8=;
-        b=i9eW+WP4Zh8JYB3xwfirDvSBJK3fe3VP6fSkVESj6Bt3uGqATOcjr1hHNNWFMxUxK5
-         uBPtAk2ziKVJQy8ntt1GhuYygmmV0WeN9aP8teiamo7jLhH2IL61baHOyRl1PTO4m6Gk
-         VBHMuclvnp/6fM5CMuLExt36NwTiYjDva0YqBvJnPlBNmzowVjLOYHr87KiMFq/qLGf7
-         9VH5mqxcDIzdT73dFcUt+aaZxmdlqyteB86HQN9sRQXZB7LXPXe0PT9GnsDcV5em7X0j
-         hFuhQf6EgOu99xFY9f3NaS8Yi69fK6NA5L8GEx7N4drOFJ3WFkgfCZ+4YrG8allQKIvl
-         AhXg==
+        bh=CsE+UpOUHmKaqjHziY3NmrSsTfnHSTxPovJy7K4Mpf8=;
+        b=n1VGgexqgM1lNfrL/Rwt1Aq8pKg3veLzUNo24j7pwV0nD/atomIB6hm6l8/0OBUsxV
+         Et40VQApfdB+rdG1zbxCoZwye74pD0XVION/953MHTc34tqfj2Zf0aSGxBZhydf36Z/x
+         mjHoZUAURW9Lgk9KcC0eW500+IVwZtSTKXpG37abw50fZYUGfOWgQMSzcD7Z5prMCTB1
+         VCxMnQRa47bfCsjxGrD8Qf04KkTKBcVdLGY79x4Mp0lPv0ObxYkPwX2ZUbqrJKemNOYq
+         iF+kTrcDg157ncCl6MSItDUo6hanRL0LYYb+YD0LItNg/s79RmprFJlz8cs1679mfhnt
+         jIig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691390247; x=1691995047;
+        d=1e100.net; s=20221208; t=1691390682; x=1691995482;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MJUsdl71xTfW5cw9jShWN7bQN13L2c8KVaQNeqdmBx8=;
-        b=bR6g3f1ET+I6sDA7W7XLa+W9l8Xqop+XNQpsP9GF8HdNfIQns8ZZwRW2B7PThI3WdH
-         mO4R6q6Ho+oqVkLrTIxva/aDAJ971GYEN8TGiF0mPZlXNksxpd0kY1LJvKmwPGypt1TO
-         1hns+adPIeE2Iat8XeDqo68WYKTL16AHoedSEAP9PxHbAiYloCV6bDwqomYMtoxCX+GB
-         KRFMcYnPaiE4bFImKfnJhc8RCX3iUDGmD+2blFLz2KyvK6NQ8MVADBD3EUzzYD2vUpPm
-         AzvEoH20l08CDXRL8DqzsSWa/840tbprKoHcN9Ty7hpQ87MeTnZlM2DMWRUAQllOzMY0
-         Xkvg==
-X-Gm-Message-State: AOJu0YyIiYqmPdMWpYsXt2o5iw3FRUDe+mOXQZjFyOvixeg91vNfVW7G
-        h2PaZ16A8Vz2hSBMS3HTaWWIKQ==
-X-Google-Smtp-Source: AGHT+IH48I2n+o3nJXIDM47/JPWmQGzO7ZatYG2/6OHX3B77CEGddulYk2xbALN4FJJ70iFF2ayNqw==
-X-Received: by 2002:a17:906:9bf2:b0:988:b61e:4219 with SMTP id de50-20020a1709069bf200b00988b61e4219mr6910073ejc.29.1691390247416;
-        Sun, 06 Aug 2023 23:37:27 -0700 (PDT)
+        bh=CsE+UpOUHmKaqjHziY3NmrSsTfnHSTxPovJy7K4Mpf8=;
+        b=ljSeyiDeExQapqSe9GxrpNCkhVdci/TKtTaCo8nmAtVGzXYvD6o7ON8+qhN7B7g17K
+         bd4BNQvIrAauJ3cUm6YtDOZwUBpzHcWJy/6fax+OTicC7wM0Css/98PnyGVT5pTy/jri
+         kydZncyTEDvBzHDij/LSO1e2szq6xgoStr+fJS8uHQYJn6RjB2LeogvWKTIA4MKMPYvd
+         OK9xy3l9YE4m4PSBOL/gkdIg32OVSQn5zhd3OY4L0mmVi8Ld88Ge9xMAHxD8VX++2H3G
+         fspkUoZJTbEwbvLEzwZuyKpUrN5yQc0nGJYUWUKCn9zA9Do0py6GKx6AFE420iZENVru
+         iHWg==
+X-Gm-Message-State: AOJu0YxPdtR2h38vbcDLBXkxdI1IOktSi2RRj2Ef0n+m1KhKwdV8QVy0
+        wgnjmPiqLA7nxkHF8q1tP2jp/Q==
+X-Google-Smtp-Source: AGHT+IFP3puQAi4LfOT+Zy8k2V4n2XLpOsBht2NQ8oMJDltREW9hsqeRCFAL5zGOz+xSo9MV3SOmWA==
+X-Received: by 2002:a17:906:1011:b0:99b:f820:5d0e with SMTP id 17-20020a170906101100b0099bf8205d0emr8287990ejm.25.1691390682402;
+        Sun, 06 Aug 2023 23:44:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id z25-20020a170906271900b0099b4d86fbccsm4820054ejc.141.2023.08.06.23.37.26
+        by smtp.gmail.com with ESMTPSA id lh7-20020a170906f8c700b00977ca5de275sm4863560ejb.13.2023.08.06.23.44.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Aug 2023 23:37:27 -0700 (PDT)
-Message-ID: <2b41d0a8-5222-de07-2796-329066a45079@linaro.org>
-Date:   Mon, 7 Aug 2023 08:37:25 +0200
+        Sun, 06 Aug 2023 23:44:41 -0700 (PDT)
+Message-ID: <f49a803f-9ff4-794e-265b-a98e3711cca8@linaro.org>
+Date:   Mon, 7 Aug 2023 08:44:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v7 1/2] regulator: dt-bindings: rtq2208: Add Richtek
- RTQ2208 SubPMIC
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add NanoPC T6
 Content-Language: en-US
-To:     Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1691389687-31211-1-git-send-email-alina_yu@richtek.com>
- <1691389687-31211-2-git-send-email-alina_yu@richtek.com>
+To:     Thomas McKahan <tmckahan@singleboardsolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
+ <20230802051441.3106-3-tmckahan@singleboardsolutions.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1691389687-31211-2-git-send-email-alina_yu@richtek.com>
+In-Reply-To: <20230802051441.3106-3-tmckahan@singleboardsolutions.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/08/2023 08:28, Alina Yu wrote:
-> Add bindings for Richtek RTQ2208 IC controlled SubPMIC
+On 02/08/2023 07:14, Thomas McKahan wrote:
+> Add the NanoPC T6, a single board computer from FriendlyElec based on
+> the RK3588.
 > 
-> Signed-off-by: Alina Yu <alina_yu@richtek.com>
+> Initial device tree supports debug UART, SD, eMMC, PCIe 3, PMIC,
+> and 40 pin GPIO assignments.
+> 
+> Signed-off-by: Thomas McKahan <tmckahan@singleboardsolutions.com>
 > ---
-> v6
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 845 ++++++++++++++++++
+>  2 files changed, 846 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 1ebbb3e9c2f9..e7728007fd1b 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -100,6 +100,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-indiedroid-nova.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-khadas-edge2.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+> new file mode 100644
+> index 000000000000..2362da2c53d9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+> @@ -0,0 +1,845 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2023 Thomas McKahan
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/usb/pd.h>
+> +#include "rk3588.dtsi"
+> +
+> +/ {
+> +	model = "FriendlyElec NanoPC-T6";
+> +	compatible = "friendlyarm,nanopc-t6", "rockchip,rk3588";
+> +
+> +	aliases {
+> +		mmc0 = &sdhci;
+> +		mmc1 = &sdmmc;
+> +		serial2 = &uart2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	sound {
+> +		status = "okay";
+
+Was it disabled anywhere? Anyway, compatible is always the first property.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +		compatible = "simple-audio-card";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hp_det>;
+> +
+> +		simple-audio-card,name = "realtek,rt5616-codec";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,mclk-fs = <256>;
+> +
+> +		simple-audio-card,hp-det-gpio = <&gpio1 RK_PC4 GPIO_ACTIVE_LOW>;
+> +		simple-audio-card,hp-pin-name = "Headphones";
+> +
+> +		simple-audio-card,widgets =
+> +			"Headphone", "Headphones",
+> +			"Microphone", "Microphone Jack";
+> +		simple-audio-card,routing =
+> +			"Headphones", "HPOL",
+> +			"Headphones", "HPOR",
+> +			"MIC1", "Microphone Jack",
+> +			"Microphone Jack", "micbias1";
+> +
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&i2s0_8ch>;
+> +		};
+> +		simple-audio-card,codec {
+> +			sound-dai = <&rt5616>;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		sys_led: led-0 {
+> +			gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+> +			label = "system-led";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&sys_led_pin>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +
+> +		usr_led: led-1 {
+> +			gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+> +			label = "user-led";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&usr_led_pin>;
+> +		};
+> +	};
+> +
+> +	vcc12v_dcin: vcc12v-dcin-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc12v_dcin";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +	};
+> +
+> +	/* vcc5v0_sys powers peripherals */
+> +	vcc5v0_sys: vcc5v0-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc12v_dcin>;
+> +	};
+> +
+> +	/* vcc4v0_sys powers the RK806, RK860's */
+> +	vcc4v0_sys: vcc4v0-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc4v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <4000000>;
+> +		regulator-max-microvolt = <4000000>;
+> +		vin-supply = <&vcc12v_dcin>;
+> +	};
+> +
+> +	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-1v1-nldo-s3";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1100000>;
+> +		regulator-max-microvolt = <1100000>;
+> +		vin-supply = <&vcc4v0_sys>;
+> +	};
+> +
+> +	vbus5v0_typec: vbus5v0-typec {
+
+What happened with -regulator suffix?
+
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&typec5v_pwren>;
+> +		regulator-name = "vbus5v0_typec";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc3v3_pcie30: vcc3v3-pcie30 {
+
+What happened with -regulator suffix?
+
+
+...
+
+> +		};
+> +
+
+Drop stray blank line.
+
+> +	};
+> +
+> +	hym8563: hym8563@51 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "haoyu,hym8563";
+> +		reg = <0x51>;
+> +		#clock-cells = <0>;
+> +		clock-output-names = "hym8563";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hym8563_int>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+> +		wakeup-source;
+> +	};
+> +
+> +};
+> +
+> +&i2c7 {
+> +	clock-frequency = <200000>;
+> +	status = "okay";
+> +
+> +	rt5616: codec@1b {
+> +		compatible = "realtek,rt5616";
+> +		reg = <0x1b>;
+> +		clocks = <&cru I2S0_8CH_MCLKOUT>;
+> +		clock-names = "mclk";
+> +		#sound-dai-cells = <0>;
+> +		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
+> +		assigned-clock-rates = <12288000>;
+> +
+> +		port {
+> +			rt5616_p0_0: endpoint {
+> +				remote-endpoint = <&i2s0_8ch_p0_0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	/* connected with MIPI-CSI1 */
+> +};
+> +
+> +&i2c8 {
+> +	pinctrl-0 = <&i2c8m2_xfer>;
+> +};
+> +
+> +&i2s0_8ch {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2s0_lrck
+> +				 &i2s0_mclk
+> +				 &i2s0_sclk
+> +				 &i2s0_sdi0
+> +				 &i2s0_sdo0>;
+
+Odd alignment.
+
+> +	status = "okay";
+> +
+> +	i2s0_8ch_p0: port {
+> +		i2s0_8ch_p0_0: endpoint {
+> +			dai-format = "i2s";
+> +			mclk-fs = <256>;
+> +			remote-endpoint = <&rt5616_p0_0>;
+> +		};
+> +	};
+> +};
+> +
+> +&pcie30phy {
+> +	status = "okay";
+> +};
+> +
+
+...
+
+> +&spi2 {
+> +	status = "okay";
+> +	assigned-clocks = <&cru CLK_SPI2>;
+> +	assigned-clock-rates = <200000000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
+> +	num-cs = <1>;
+> +
+> +	pmic@0 {
+> +		compatible = "rockchip,rk806";
+> +		spi-max-frequency = <1000000>;
+> +		reg = <0x0>;
+> +
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+> +			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
+> +
+> +		vcc1-supply = <&vcc4v0_sys>;
+> +		vcc2-supply = <&vcc4v0_sys>;
+> +		vcc3-supply = <&vcc4v0_sys>;
+> +		vcc4-supply = <&vcc4v0_sys>;
+> +		vcc5-supply = <&vcc4v0_sys>;
+> +		vcc6-supply = <&vcc4v0_sys>;
+> +		vcc7-supply = <&vcc4v0_sys>;
+> +		vcc8-supply = <&vcc4v0_sys>;
+> +		vcc9-supply = <&vcc4v0_sys>;
+> +		vcc10-supply = <&vcc4v0_sys>;
+> +		vcc11-supply = <&vcc_2v0_pldo_s3>;
+> +		vcc12-supply = <&vcc4v0_sys>;
+> +		vcc13-supply = <&vcc_1v1_nldo_s3>;
+> +		vcc14-supply = <&vcc_1v1_nldo_s3>;
+> +		vcca-supply = <&vcc4v0_sys>;
+> +
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		rk806_dvs1_null: dvs1-null-pins {
+> +			pins = "gpio_pwrctrl2";
+> +			function = "pin_fun0";
+> +		};
+> +
+> +		rk806_dvs2_null: dvs2-null-pins {
+> +			pins = "gpio_pwrctrl2";
+> +			function = "pin_fun0";
+> +		};
+> +
+> +		rk806_dvs3_null: dvs3-null-pins {
+> +			pins = "gpio_pwrctrl3";
+> +			function = "pin_fun0";
+> +		};
+> +
+> +		regulators {
+> +			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
+> +				regulator-boot-on;
+
+Boolean properties are not first, but last. regulator-name is the first
+one. This odd style...
+
+> +				regulator-min-microvolt = <550000>;
+> +				regulator-max-microvolt = <950000>;
+> +				regulator-ramp-delay = <12500>;
+> +				regulator-name = "vdd_gpu_s0";
+> +				regulator-enable-ramp-delay = <400>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+
+
 
 Best regards,
 Krzysztof
