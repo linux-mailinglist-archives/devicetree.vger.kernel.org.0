@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D92AB77264E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9023C772653
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:45:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233633AbjHGNof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 09:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57538 "EHLO
+        id S231838AbjHGNpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 09:45:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234277AbjHGNoL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:44:11 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF61B1710
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 06:43:33 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe1c285690so6980788e87.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 06:43:33 -0700 (PDT)
+        with ESMTP id S234409AbjHGNop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:44:45 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1120F1991
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 06:44:06 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe0eb0ca75so7083403e87.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 06:44:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691415809; x=1692020609;
+        d=linaro.org; s=google; t=1691415843; x=1692020643;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Q98lyuvE1I3w5lq0DAIUXX2CZJx1fl6gZyp/DMqbeQ=;
-        b=CyoDk109aZXA8aBA8hfWMowusRvXZzY/ImX3+qHHTOMbzAzE49mZgZDSfG50l03skb
-         dLXYpOxAKHb9pQ1iZAfyTwPtiB7uTRotiJs23gw+q64tQQy9xLsyvhSy7CfmVlsKHSNr
-         OUUeu4zBqYvu2wwTgKkmAR490Ev1aL5j0JOhp7zlLMRxU0idr9+LrPXMFWTqqSHhe2Zw
-         HdIe5KeRqY9QoAnHQextvX7J7YvDtudYGaxMxGTc4+gs5hD5FDfmkUOJQRjqDzACGRV/
-         AGr97vmbBVhPZojatsaWNOJPcrLKN9nTix5mddOAUUmURVQ2NAeM4b9RalmKO5nDv5nd
-         9zSA==
+        bh=xJgkbDr/FFbsyvavq8tPPpOUZnTU1lAlO34H/EOo+xY=;
+        b=bW0yz6olO+YNQGugfuan087rO6lIK8VWzcUF/RZDuuy6WVyTzg1NJMg5csvdQ3Tdau
+         iFJIgpWuCb1JmUBiH9K8lfH7POTSrQf5sInNGfi0qDZALZFcmd8pVMrPvGwLJcfpuQnR
+         CchZ2xr8mSc98mfH2IusIDw0w9I1h6X+zp7S7XsqIqmaH9KTn2AcoqI4/FWUpPZ5qirE
+         d5GcoauBhmLARkFBt4a+3pgSkn+ipQcDfg9pON0kzA880GpSKBdy2WWw4ivjDYSJ4bx1
+         FqT6Zn/dEerPaRGC4v/jU1/yipIukieDkDI+vXkezSVjMqy5XFJuu/dC5hZmsOHlFnir
+         8JRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691415809; x=1692020609;
+        d=1e100.net; s=20221208; t=1691415843; x=1692020643;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Q98lyuvE1I3w5lq0DAIUXX2CZJx1fl6gZyp/DMqbeQ=;
-        b=LXfVsXs2zqX0T+MrwENYpdJaALYn8LWtWs8miZwOCI0XmczbCf77khMssKSLOhPudV
-         mGOLjohx9armZ7gYRKWjeT8rbvTCeyiyu1AHixJBlwqbtBGZBD7y37oDAnd1hajPEy0s
-         qtd2WBKG1KAjHU7E4qah9DQAuwEYInCny5g3uJt+18axFuDmOt0PwXd/GJQCkCRArVze
-         kVHLc1xCDyLSnNl0Pm7vU4rgu0oCcNWCAJnzQXC6aqb551yxJ5qHGycd6WzzBiYDEYmk
-         Vx8/Ea4FvN+ytzVMuw+1Xff5vt2ijVmVD8VYrgQTZMfqgcRu1SXE8wx0gpAXiAwDR71u
-         zqPw==
-X-Gm-Message-State: AOJu0YxzO+Q3HxiXASlprCZlnkOpYKhlBgol9sjMnPSbo6QtWdFUImJH
-        pbG0JS1iBvVvS+ZpMFM1M8B91g==
-X-Google-Smtp-Source: AGHT+IE/7f5hb2IxLkMQD7JsUfoacy5RSJu8uKCkUYCCSZNBbP/zTp5xQiIdCsY1/2XzwTF2aovqSw==
-X-Received: by 2002:a05:6512:313b:b0:4fe:28f6:d542 with SMTP id p27-20020a056512313b00b004fe28f6d542mr5453873lfd.13.1691415809419;
-        Mon, 07 Aug 2023 06:43:29 -0700 (PDT)
+        bh=xJgkbDr/FFbsyvavq8tPPpOUZnTU1lAlO34H/EOo+xY=;
+        b=YX+/3rlsokAnSn7AO7wskSyFjNb2lavUYcf2obc4VCu5Th5E15V98IgZ2BXD/AGjgV
+         MN3xpMfryNy9LbpDKnpNE+XoL6b1kl9aYPpGS2YbPpoDkXDZUIiz+pgEVQisDdeke6pm
+         CQz4CmG5SMTxsU7Pp77ignVkbL2xbK+cJoTuph6wqCHfDiDUsl2MtzlMx7rygOd5hBdn
+         p/vMpcktOFxZFsDXVYshxSgRX08XhRZTjsnbmDVFV84c1ItewnW6tdcyQ5GxqwMqPC3q
+         R98GUOe+TFIXyWkeK8XiGlW+e8GQVe74QMVNjhBnWZ56cZcTLmylBo5D6XIg2FVWfMjm
+         4IMw==
+X-Gm-Message-State: AOJu0YwLJlm2FtEAl3llh8JbHhE1n7ey4SpAhheAwCUUmKrpQXzVFik1
+        8DkiYXi+AQSo+j75QYbFbzzuAg==
+X-Google-Smtp-Source: AGHT+IFJAecrw6Y41B22tuMQ43DNko5rwd1RrXRcqO7aEcw+a2HGSChTz7CXL25Q7cDvvIybygB3gA==
+X-Received: by 2002:a19:d619:0:b0:4fe:347d:7c4b with SMTP id n25-20020a19d619000000b004fe347d7c4bmr5290817lfg.7.1691415843253;
+        Mon, 07 Aug 2023 06:44:03 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id r6-20020a19ac46000000b004fe3a2e3952sm1511134lfc.100.2023.08.07.06.43.28
+        by smtp.gmail.com with ESMTPSA id r6-20020a19ac46000000b004fe3a2e3952sm1511134lfc.100.2023.08.07.06.44.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 06:43:28 -0700 (PDT)
-Message-ID: <d3f5651b-ecbc-4836-9f53-6d71e6b16072@linaro.org>
-Date:   Mon, 7 Aug 2023 15:43:28 +0200
+        Mon, 07 Aug 2023 06:44:02 -0700 (PDT)
+Message-ID: <335de972-22de-47ed-9445-97db4efce9d2@linaro.org>
+Date:   Mon, 7 Aug 2023 15:44:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 8/9] arm64: dts: qcom: sdx75: Add rpmhpd node
+Subject: Re: [PATCH RESEND v2 9/9] arm64: dts: qcom: sdx75-idp: Add regulator
+ nodes
 Content-Language: en-US
 To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
@@ -62,7 +63,7 @@ To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
 References: <1691415534-31820-1-git-send-email-quic_rohiagar@quicinc.com>
- <1691415534-31820-9-git-send-email-quic_rohiagar@quicinc.com>
+ <1691415534-31820-10-git-send-email-quic_rohiagar@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -99,7 +100,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <1691415534-31820-9-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1691415534-31820-10-git-send-email-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -113,7 +114,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 7.08.2023 15:38, Rohit Agarwal wrote:
-> Add rpmhpd node and opps for this node to the SDX75 dts.
+> Add all the regulators along with labels found on SDX75 IDP.
 > 
 > Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
