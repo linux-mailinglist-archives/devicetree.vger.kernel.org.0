@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1EBB772ED5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 21:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC4B772EDB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 21:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230527AbjHGTfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 15:35:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56036 "EHLO
+        id S231363AbjHGTfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 15:35:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231315AbjHGTfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:35:32 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA66199B
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 12:35:28 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fe2fb9b4d7so41498785e9.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 12:35:28 -0700 (PDT)
+        with ESMTP id S231370AbjHGTfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:35:37 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728C319AF
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 12:35:29 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fe4b45a336so25721105e9.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 12:35:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691436926; x=1692041726;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691436927; x=1692041727;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dXijTi+fw045QoNdeTPxW/V/zvFWSaYckmdhiKlT43Y=;
-        b=nQ0YhXdb0Gawik4S9oNhaFX3oFYmErvHsSkJFLP4KU4VfeCfxmYtbYzk46J+VCJ9rs
-         phVvTd5F56QVrMItRcUY4cSYy3uY7lbYLlvGnlDxWggRnlUf6G59ZmpuwaTv8dkIRlGi
-         EH+F1UO4x/KPac4o4iRSt7KzkU2ajTL87j5lJoLmlfN4ye0edqP1+0EznYlqeUhzFz2r
-         KdEQ1Ouvm6FAUMFNCpyrPex/7iUW4K6H9twoKUrmpEZbVtaAWE5CzcIKbTx3PUN6fIcu
-         DsfeWJ7dI2U2YzA2HseiDQZ8jX1VrcbhH8z3zke5vBxBlNDQgzlwTUnxE+RMIMm/rWes
-         RzTw==
+        bh=Oo95VHacSOouEChX8JO8J2HsGNhYMKSzCOBU0ZPBnt4=;
+        b=4qMn/9J/Lk2cBYAMpaJ+2vRHdGu6OkayegJxPaIgrZtyjc3dQzvSYRspTRgjtn+b2p
+         dpsMTm+l9Z6ZSVwztLf2OQbec8/mRniGaTrUoTu6YwJ5u5Y80DNo7hbNQ26bdmzIYUkS
+         D/27tCJnW1yHH9WI1FFIXmpUkl1a0vdHMEbpRQ0upjMLgQmqrwFH3Gh5tfgPXosi1R/o
+         yyt41rY/No/0jfcae/hPZ/IhM2NJdKhzwHm3YHCrHkygzuudvV4Y3M72VujNLEsqzNNp
+         LJkwvhGtrLuO4EBykjyVlWsAhh5YKsTpNB9CTWndSBZsHtcduDGPXwDIbKgnQ3V4QjNa
+         HVBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691436926; x=1692041726;
+        d=1e100.net; s=20221208; t=1691436927; x=1692041727;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dXijTi+fw045QoNdeTPxW/V/zvFWSaYckmdhiKlT43Y=;
-        b=ObHzn9fJcQSIIb0IzWVd3fym3OPSyIraomibEWY4HATO7UYg2KWAQh6Wi17OZTfvBf
-         PmLXlWvEvnBmNvgsGRWI3uhIA613IU5LOrgFzdS4LJ4PYJBZtOQqK3EWzv5jzD8RFf9O
-         whkL+9gYxA651EVAdSFpUghw0JbdLTlGEPXEMf3qtMuWc3ve6H5EKyo6RdnAdFf1xaIJ
-         IwUiTpBgQVUfzgz+4h2Mt8+FTVJvva4K/je/ifPZleeLsHKAZsQEYYtKL0blFZLIk1b2
-         qB0p8YJlu+5ADYKP4DDYoLeU96Xe/pKPEGatPnzBzEoZrVMjl9k31SbNxOYdmieYwNhj
-         I+Zw==
-X-Gm-Message-State: AOJu0YwanOOhaVUXrxyC22+uGkR0X0/YdhC0KCDIoyHIKcirVYWoDS2T
-        6svOtnKKt5m47GZ/BBxEhdHjrA==
-X-Google-Smtp-Source: AGHT+IHOIrVMzqjzWgyRU91RS5tj42hdUhLwDTcRhbiSO0SO8qH18LzXTR/OlH1mLyIbwlbCIWzcNQ==
-X-Received: by 2002:a05:600c:ad8:b0:3fe:1d4c:d5e5 with SMTP id c24-20020a05600c0ad800b003fe1d4cd5e5mr6693813wmr.18.1691436926827;
-        Mon, 07 Aug 2023 12:35:26 -0700 (PDT)
+        bh=Oo95VHacSOouEChX8JO8J2HsGNhYMKSzCOBU0ZPBnt4=;
+        b=JvXB7J5eUg0r4OW7LMYJ+TYmxKFDAja3mYrmG9iE9RvCc2uNZOCwsGINDEW928wY2R
+         zeDrDdXzVnc5cye1WQGyjaeHCWb0/xJ1Iv9zVnRxHr94CmGYS3+I1dNSM3ZaXkFjxTYC
+         Kw2kuTLGs3G5vbSWWI6tly1uPyhOAmMmZko9n1SUaq6wq09iuzIy+yud2fyswfqsnQkF
+         G36DvBqnwCkhCTY42VYBnUy6OKgx39TDuWHIpz0i3RBwdHmRzZwBV8hGCeGbQTCFS80A
+         LhjTUFd1xwULjFjxVFRvujLwHIyKzlME9qdN4/pYFPU5zhmUqI+MQwLJly6G3ZkuWT0l
+         Ld+Q==
+X-Gm-Message-State: AOJu0YxwglSdAowHbyTZKOtjOAD/jZG82MQuPjkRrGYF4cahuEgTlBH4
+        xjm1kCfTg7F1s9zCP9l+aaeufQ==
+X-Google-Smtp-Source: AGHT+IG8+ARG74TxYu0rJtXTmYwK0yAnAFoMjeeXJYE8/TO+exRWTkRiyDEGFAmQcXp5cftSvKFKeg==
+X-Received: by 2002:a1c:f70f:0:b0:3fb:ffef:d058 with SMTP id v15-20020a1cf70f000000b003fbffefd058mr6645779wmh.0.1691436927715;
+        Mon, 07 Aug 2023 12:35:27 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b3d6:9e6:79d9:37cd])
         by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003fc04d13242sm16061488wmc.0.2023.08.07.12.35.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Aug 2023 12:35:26 -0700 (PDT)
+        Mon, 07 Aug 2023 12:35:27 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,9 +62,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 8/9] arm64: dts: qcom: sa8775p-ride: label the mdio node
-Date:   Mon,  7 Aug 2023 21:35:06 +0200
-Message-Id: <20230807193507.6488-9-brgl@bgdev.pl>
+Subject: [PATCH 9/9] arm64: dts: qcom: sa8775p-ride: enable EMAC1
+Date:   Mon,  7 Aug 2023 21:35:07 +0200
+Message-Id: <20230807193507.6488-10-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230807193507.6488-1-brgl@bgdev.pl>
 References: <20230807193507.6488-1-brgl@bgdev.pl>
@@ -81,27 +81,98 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add a label to the MDIO node on ethernet0 so that we can reference it
-from the ethernet1's node.
+Enable the second MAC on sa8775p-ride.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 74 +++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 5b48066f312a..af50aa2d9b10 100644
+index af50aa2d9b10..0862bfb4c580 100644
 --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
 +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -274,7 +274,7 @@ &ethernet0 {
+@@ -356,6 +356,80 @@ queue3 {
+ 	};
+ };
  
- 	status = "okay";
- 
--	mdio {
-+	mdio0: mdio {
- 		compatible = "snps,dwmac-mdio";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
++&ethernet1 {
++	phy-mode = "sgmii";
++	phy-handle = <&sgmii_phy1>;
++
++	pinctrl-0 = <&ethernet1_default>;
++	pinctrl-names = "default";
++
++	snps,mtl-rx-config = <&mtl_rx_setup1>;
++	snps,mtl-tx-config = <&mtl_tx_setup1>;
++	snps,ps-speed = <1000>;
++	snps,shared-mdio = <&mdio0>;
++
++	status = "okay";
++
++	mtl_rx_setup1: rx-queues-config {
++		snps,rx-queues-to-use = <4>;
++		snps,rx-sched-sp;
++
++		queue0 {
++			snps,dcb-algorithm;
++			snps,map-to-dma-channel = <0x0>;
++			snps,route-up;
++			snps,priority = <0x1>;
++		};
++
++		queue1 {
++			snps,dcb-algorithm;
++			snps,map-to-dma-channel = <0x1>;
++			snps,route-ptp;
++		};
++
++		queue2 {
++			snps,avb-algorithm;
++			snps,map-to-dma-channel = <0x2>;
++			snps,route-avcp;
++		};
++
++		queue3 {
++			snps,avb-algorithm;
++			snps,map-to-dma-channel = <0x3>;
++			snps,priority = <0xc>;
++		};
++	};
++
++	mtl_tx_setup1: tx-queues-config {
++		snps,tx-queues-to-use = <4>;
++		snps,tx-sched-sp;
++
++		queue0 {
++			snps,dcb-algorithm;
++		};
++
++		queue1 {
++			snps,dcb-algorithm;
++		};
++
++		queue2 {
++			snps,avb-algorithm;
++			snps,send_slope = <0x1000>;
++			snps,idle_slope = <0x1000>;
++			snps,high_credit = <0x3e800>;
++			snps,low_credit = <0xffc18000>;
++		};
++
++		queue3 {
++			snps,avb-algorithm;
++			snps,send_slope = <0x1000>;
++			snps,idle_slope = <0x1000>;
++			snps,high_credit = <0x3e800>;
++			snps,low_credit = <0xffc18000>;
++		};
++	};
++};
++
+ &i2c11 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-0 = <&qup_i2c11_default>;
 -- 
 2.39.2
 
