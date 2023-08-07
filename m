@@ -2,69 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BE7F77196B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 07:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D82F77195B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 07:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbjHGFW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 01:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45804 "EHLO
+        id S229498AbjHGFWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 01:22:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbjHGFW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 01:22:57 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA34113;
-        Sun,  6 Aug 2023 22:22:56 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3775MofM104866;
-        Mon, 7 Aug 2023 00:22:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691385770;
-        bh=o43BVAIwu1eTDn8xtuDb7nxNe4jYXLcrI+Wj3Fyn1T4=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=RnZL1LOVWeuU6nw8s+bF1t6gnxE8lK9tdxVr34/9BxVvwwk+apwRRaS3VpVw+UXHt
-         2IPZcX0S7DbEcXMm9dY0jUkO1qgHFjkabcksM49Cas3Dn6GuM17dfe+TkvQ+PyYzmr
-         pclJ7Go56bERbDrjgAO7qoRrvIvMV2VZttW2QdjI=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3775Mo3L006638
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 00:22:50 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 00:22:50 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 00:22:49 -0500
-Received: from [172.24.227.68] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3775MkI2028422;
-        Mon, 7 Aug 2023 00:22:47 -0500
-Message-ID: <bbcf23b6-cadc-17ff-25a6-bd8efc058279@ti.com>
-Date:   Mon, 7 Aug 2023 10:52:46 +0530
+        with ESMTP id S229590AbjHGFWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 01:22:00 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2081.outbound.protection.outlook.com [40.107.20.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF15173C
+        for <devicetree@vger.kernel.org>; Sun,  6 Aug 2023 22:21:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ADg+ckB3mQc6gOxcmx4zAFwo3jd7cTgOK9qlnWJV+HUKysPgF2VhvfdtN7A+gm5uvk/6rIeHjYRgyu6XcrG9/M4a5p6YWhKDZvQ7g3B2AkZqIgJ7mG1W5c6fzve0Nyt+YPNc1i3npGI71T1VXGi+hy3uKhL/iHm3yo3T6cx2qK5YTMRfzYxzE6kXiA6taNCnVgclhxTkx3RNyQsWBxrd8Nh0IG0NxMzD3Bzh9x67KK8RPa+SK58XZJp/IJTYUgIMep4WqlE74LQpid+tTVpjSaRWNyCecUZY6oCnp/5PKfXIQr6zI+k0rONUzJLd4oKLOkDDPp2ZQtGSw8bsAGHThA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cPWD0gJ54n4Q0L/+NQ3lHFLKq5bbpu8o16/baztsCf8=;
+ b=J95hMTz1ra/jtbxiD/ae01k0Y/GXho2rYeUltUR0Z0BtexUsPyr3QGZO5Aro9yAPr7Sn4mV0NY3xFTRjrLuXrml+R3tCW/ObMAQNQDhFIkYiOWDKtsxqLyQ2iuE/5qhP2iLMRsUKRdtsF4/WORh8Sx9F3+LBdessq0kENN0k9N0YkDHp3eU0fTeEMgrXq6sPG2YnrBs7IlA2v1fd6o9JXxtmM/RB+bkJO4VQAxmbZx3FRjGLudSQmzIPdLTiISTDA8Cn9/N2Asd+71etvFkiCsbbrSflaicAHkblrXJzu3XysRFCGsqv7L+9MDHgxKpdp28cQM78WxspS1OzW6f9ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cPWD0gJ54n4Q0L/+NQ3lHFLKq5bbpu8o16/baztsCf8=;
+ b=LL2lyY+lr9Eh7H7vWO0V0BGcYluOh59uNubCT/vPxwBHytneDwoxX/pJkLSl3vFvxnRcrF3uPiFa5kmBt5wxb+WlHAnxL1YZiG+A8gUshN2VuJ2uT8wKLO+X1hwk8L+VsPbltTlU3Y8VPFL68ItN3Ha1a8iCT56rH3/ldCUxtWo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DB9PR04MB9701.eurprd04.prod.outlook.com (2603:10a6:10:300::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.26; Mon, 7 Aug
+ 2023 05:21:45 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::9018:e395:332c:e24b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::9018:e395:332c:e24b%4]) with mapi id 15.20.6652.026; Mon, 7 Aug 2023
+ 05:21:45 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        alexander.stein@ew.tq-group.com, sam@ravnborg.org,
+        jagan@amarulasolutions.com, yannick.fertre@foss.st.com,
+        raphael.gallais-pou@foss.st.com, philippe.cornu@foss.st.com,
+        hjc@rock-chips.com, heiko@sntech.de, zyw@rock-chips.com
+Subject: [PATCH v3 0/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Date:   Mon,  7 Aug 2023 13:25:59 +0800
+Message-Id: <20230807052608.3038698-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0006.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::14) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 01/13] arm64: dts: ti: k3-j721e: Enable SDHCI nodes at the
- board level
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230802205309.257392-1-afd@ti.com>
- <20230802205309.257392-2-afd@ti.com>
-From:   Dhruva Gole <d-gole@ti.com>
-In-Reply-To: <20230802205309.257392-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DB9PR04MB9701:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28f06593-244a-4266-608e-08db9706311a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Yiz0e8iRPzUDwn1bxMjuXN8cA+0BdLxPwuAMRfWfB1w2K1xNx1UtgJZk/wC/hDAh9h7gQc7IlGND7zG/fq/9Qn9T+1jNQXSxt3Kh6mpbPBnZmmAqPc3jymm2fDh6WHTJLIt6em8VngJTfHQn36vEjE+HGeGbnIlRgleRJERWVqMdXkH70aMkj4WA2iY69/bXdygfO2N+3HiH2HXptY12FPy5kz2VrSfdeH5oOR0g1OVTPx/7k2NOZ28adpStXFic+az7XsDOnfcM1y8XUqpQjaxfYyWcwBmLlgJ6wTbqiOnlJP4W2CoApx+BaiQLjhxGpzW/S7nC1kSeIx4HuSXJVS91M5I5zw4j2RMcTisPkGRDfpCXLeFewBxmQHkVjW13SBWNcUpaTkCgkzr3YpH2P7SAeBWP6+aFkGvhfEpTGs807gH/IIwXwkDngA/vpQQeFDv8mt+NrmH3uWeysheXe1urhtq2J/Ry2+URpzCfwwC6IYjxrPY7LXVMQmpSQiWooLXeOhak6hHqt5YVaGZHG70lh1Z3EzK0IOV3uc7mT1rGYjOmrubYzs8DILKNnJihnQw6W7ttBWZMo4GJnJMHLj/QKKkKvb//KpRBtGDxQwnIdrdLuTVOjam62pJ2G5qw
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(39860400002)(346002)(376002)(136003)(396003)(451199021)(1800799003)(186006)(2906002)(36756003)(83380400001)(5660300002)(2616005)(6666004)(52116002)(38100700002)(38350700002)(6486002)(66476007)(66556008)(66946007)(6512007)(4326008)(316002)(41300700001)(86362001)(8936002)(8676002)(26005)(7416002)(1076003)(6506007)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/0YJESaeVnlL0w6hF/WG8TSf71SzT2LrX6704NmFI2kzM/18kxdHpeX3mDpQ?=
+ =?us-ascii?Q?cQKECBgDGiaqx58UW7luq8U1blykOdUFONu4alfQZjdkU0ddKPySktFLzKVq?=
+ =?us-ascii?Q?pwF3FJ8SClhJLp9knYreorrVY1YLHl0bshPJcC53cxgCvWA7yGzHRrVvt4xS?=
+ =?us-ascii?Q?Y8lgTOcsmH/wFuBVWqlnnH8GOIh2F4qCY6znJY1ZevdY+Jm0RltEv0OBoQCP?=
+ =?us-ascii?Q?KHir6XtuZpRRUd2BpPtZ140O1QFNVwxROu9B2PzGIBPhV4KpV4HyknHLXhP3?=
+ =?us-ascii?Q?OUe0MLPky3DDtsj9OzhFdqEtChql+pP2HSYPpcsLK+3zJ/McJwZIO6MQs2sJ?=
+ =?us-ascii?Q?KFlNNqh6wb7GG4vfs2XTOA0Cdxa2yoWu7W0smEBDNjqIURAdfkGk7qQ60aEi?=
+ =?us-ascii?Q?VNslFXoaXfsdAx10ZtMpQkMNmMmmKvuOTUyCPwwdCqNyN9+4GW+JWO2Pofb1?=
+ =?us-ascii?Q?bf3bLASOPnkZkMjRk0/famytdU7JXI/XntGk4rULPO9XsZiKmgzM98fU6bI4?=
+ =?us-ascii?Q?83CJJ5w6W77vCinWv1dT8pM3s/UYUo2o8/itBrQYgEE2kKoQg/Lc56AFQ87O?=
+ =?us-ascii?Q?Ybw/+MziuEZQVAz8rPmBRKGIF720rQ6OrGOCeX+OqvQ7R4M3DIWLfvKRy4Vu?=
+ =?us-ascii?Q?IaS+GS7Q8p9/s1Nv6VYBjniB1pg+9/oF5d3StM1Iiu2XH+4Tvi2HL6ZtkPM6?=
+ =?us-ascii?Q?p3shajHjdWEIwGgTJ/F3vQB8aMXWDcW/SvyO3DsDby1mU/rsrXNx5I3L/e9v?=
+ =?us-ascii?Q?maBq+1GvP0pRTnNRMHnEWTwo+EYtBZyGPI3I2AxBr7A3OOvlnCMezGS5qkJS?=
+ =?us-ascii?Q?Xsc9DzoisPGJjG61yEHwNRQW/USqUGliZJp+Fht4RubFhM0TUNqjG8Hrp3ek?=
+ =?us-ascii?Q?wAcHpW0jKff9NDgKcoy8oVjP3cNvMcKR+ejbtN5cmgb6D4ZrHwSVPJdAmqdM?=
+ =?us-ascii?Q?JMILk+WMhkxzCpDEH2hTgmPfoUEhAkgJgJNC9EP0IjXGOYzu0aIrGCXF16km?=
+ =?us-ascii?Q?UIwRuFYcY+v0evei2YxpA3c7mvr+/SWpJwkYUrOGgPIBZe9NC7+HbDE5IECB?=
+ =?us-ascii?Q?ZkYzAxxGhzzNNYE9j7GskwKeLvuyJPXKVOshSadDiiE33oYS4hZMX8U6AcQ2?=
+ =?us-ascii?Q?mppMus6B73p6D7cEYhl5/stJw9DvQu6wzEcwRHsAfiLIbGjp+NKqvLaTTCqu?=
+ =?us-ascii?Q?a/0QLCMPveXR8r/w1HP2t2AQfXRUC/fAdlDBnFWcQlef9SMcZwn7M5rRiPpw?=
+ =?us-ascii?Q?Jf2zN27ACa4XXpDmjrBNxW7UaFwZDPDP9M2JsF704PjKdJzFycQrDOenPSdJ?=
+ =?us-ascii?Q?Sb0EWsPgje09wnyfoPsihaRkq0wHn01+8F8LiIHpTqSxe6UY312FLkmFPG/Z?=
+ =?us-ascii?Q?HYa/3j08/aj0jWm5NGm+fj1354lRnqXqPGssTXwl4mThujzTNFrrdwANpMUo?=
+ =?us-ascii?Q?kkHB2fj0IMJWJUH2UXGIAKhtgrHFGF/7/nIHFiXy5sWIQ+3GOI7IqIiJp6xw?=
+ =?us-ascii?Q?BVgAvbiIjOqIOtq6UWj/m+WunbnFwEpGfzOx2l9oyz+f4lgBXxtovdpsV7xu?=
+ =?us-ascii?Q?J5USgTwtmNDNxlW99ZAFulyRu0x7dj5eO0RBpPyB?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28f06593-244a-4266-608e-08db9706311a
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 05:21:45.4852
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f4+nkTLj/5hezfgGddvNk69N7mP4ROTUJjDoAt/CKRTr84nrGDlnQ7rkW9517+ls50cuHDxxViXXk8MWyy8hbQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9701
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,30 +120,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This series aims to add MIPI DSI support for Freescale i.MX93 SoC.
 
-On 03/08/23 02:22, Andrew Davis wrote:
-> SDHCI nodes defined in the top-level J721e SoC dtsi files are incomplete
-> and will not be functional unless they are extended.
-> 
-> As the attached SD/eMMC is only known about at the board integration level,
-> these nodes should only be enabled when provided with this information.
-> 
-> Disable the SDHCI nodes in the dtsi files and only enable the ones that
-> are actually pinned out on a given board.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts    |  7 ++-----
->   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts |  7 ++-----
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi             |  3 +++
->   arch/arm64/boot/dts/ti/k3-j721e-sk.dts                | 11 +----------
->   4 files changed, 8 insertions(+), 20 deletions(-)
-> 
-[snip]
+There is a Synopsys DesignWare MIPI DSI host controller and a Synopsys
+Designware MIPI DPHY embedded in i.MX93.  Some configurations and
+extensions to them are controlled by i.MX93 media blk-ctrl.
 
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
+bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
+
+Note that since this series touches the dw-mipi-dsi driver, tests are
+needed to be done for meson, rockchip and stm.
+
+Patch 1 ~ 7 do preparation work for adding i.MX93 MIPI DSI DRM bridge driver.
+
+Patch 8 adds DT-binding documentation for i.MX93 MIPI DSI.
+
+Patch 9 adds i.MX93 MIPI DSI DRM bridge.
+
+v2->v3:
+* Add Neil's R-b tags from v1 on patch 5/6/7.
+* Select GENERIC_PHY to fix Kconfig warning for GENERIC_PHY_MIPI_DPHY
+  dependency in patch 9.
+* Cc stm and rockchip folks.
+
+v1->v2:
+* Add Rob's R-b tag on patch 8.
+* Use dev_err_probe() to replace DRM_DEV_ERROR() in patch 9.  (Sam and Alexander)
+* Use dev_*() to replace DRM_*() in patch 9.  (Sam)
+* Fix build for arm architecture in patch 9.
+  (Reported-by: kernel test robot <lkp@intel.com>)
+* Improve error messages for imx93_dsi_phy_init() in patch 9.
+
+Liu Ying (9):
+  drm/bridge: synopsys: dw-mipi-dsi: Add dw_mipi_dsi_get_bridge() helper
+  drm/bridge: synopsys: dw-mipi-dsi: Add input bus format negotiation
+    support
+  drm/bridge: synopsys: dw-mipi-dsi: Force input bus flags
+  drm/bridge: synopsys: dw-mipi-dsi: Add mode fixup support
+  drm/bridge: synopsys: dw-mipi-dsi: Use pixel clock rate to calculate
+    lbcc
+  drm/bridge: synopsys: dw-mipi-dsi: Set minimum lane byte clock cycles
+    for HSA and HBP
+  drm/bridge: synopsys: dw-mipi-dsi: Disable HSTX and LPRX timeout check
+  dt-bindings: display: bridge: Document Freescale i.MX93 MIPI DSI
+  drm/bridge: imx: Add i.MX93 MIPI DSI support
+
+ .../display/bridge/fsl,imx93-mipi-dsi.yaml    | 115 +++
+ drivers/gpu/drm/bridge/imx/Kconfig            |  11 +
+ drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+ drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c   | 917 ++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c |  91 +-
+ include/drm/bridge/dw_mipi_dsi.h              |  16 +
+ 6 files changed, 1147 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
 
 -- 
-Thanks and Regards,
-Dhruva Gole
+2.37.1
+
