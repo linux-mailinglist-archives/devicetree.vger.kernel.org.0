@@ -2,162 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2801D7728F9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 17:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C0FF772933
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 17:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbjHGPVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 11:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47512 "EHLO
+        id S230131AbjHGP3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 11:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbjHGPVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 11:21:35 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C2141710
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 08:21:34 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-313e742a787so2712666f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 08:21:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691421693; x=1692026493;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+nsJrZUa4VkqTGqcaTSNi/vYZDLgC/AzsBWnapgNPsA=;
-        b=Nsw7w4sr6+BEI6GiS03rJCR+qP7FKXFucjKae0xybflt8CRyBmkvE/AK7Ih9GAwJ1d
-         YwVj6sDRHm2S6kbyYSzEeYmxO7MOe2L+afG9Amhf0Bcx08O/S5m4N03QkI7Ku2guggME
-         ZcuSP6qJxDsN3NPTD1qlO+coXiLPrJeFwqtKIbQUhLkTfPHjJqKQk7JlRqT9NMXJWO4y
-         VwiESOBTJXc/rGae2+69lFgZHNIv3TTXb6j2G2LzRyUtV3Ae9URl/FS6GDmVyl6Ev+/F
-         4C/bCPUA1NyaAU2WtHIeKkuLW/1tTrQyoA0wdOvCv6ZZHrIZe/lzjCJYmI6++mQ8UaXE
-         pCOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691421693; x=1692026493;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+nsJrZUa4VkqTGqcaTSNi/vYZDLgC/AzsBWnapgNPsA=;
-        b=cTgbDtXHA7oneJ9MfnqmqkwPE7U2GyfI8P9CTL7Qvj4JdaJh5LysQ7cuxHl57X5Nf5
-         UGOOCM4+nZHBoyBT+dxG4CLjIVwpJq7sf9qlG/8D5MBNQoPP0vwiybpca5C612bvqGfL
-         cQtFHol16ODqS6/rKCuDBwLlBPvVdPJ2OQnTWvD4v9Hzv0h6V/B3Wg3WFHE3hnYMv+Io
-         fqFz/sgfAe+QVcYShp/2/qUbLoyYhEI9fErakhUW8iNHMrNSf5W6LVeSy7+B1WiJdrJS
-         j8FWu1J+iwzWIYFXKglNt5eVDZQTCe2m3w7rlJFwMJ5c0CSrWcos3pYHR3ljggask0jB
-         F6Yg==
-X-Gm-Message-State: AOJu0YxIhGv8034n4Aho2ykcFFJoBodHOJmAh85ry237VhpmKHvPoHmk
-        PzOWpVcu5Da7KlUPAQaaRDPrYg==
-X-Google-Smtp-Source: AGHT+IGQCfrlQO64alS7N0QfuUt8zy4HfzB7owueYTq7zYyg0AdGu2V3y/eAffkk7npb6rrpoIcScA==
-X-Received: by 2002:a5d:6ac5:0:b0:317:6570:afec with SMTP id u5-20020a5d6ac5000000b003176570afecmr5904245wrw.3.1691421692754;
-        Mon, 07 Aug 2023 08:21:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id t6-20020a5d6a46000000b003142e438e8csm10789411wrw.26.2023.08.07.08.21.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 08:21:32 -0700 (PDT)
-Message-ID: <7cf31e92-ea7d-80f6-9fab-a9c2886c96d1@linaro.org>
-Date:   Mon, 7 Aug 2023 17:21:30 +0200
+        with ESMTP id S229554AbjHGP3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 11:29:04 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC9B9D;
+        Mon,  7 Aug 2023 08:29:02 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377FSu8D049976;
+        Mon, 7 Aug 2023 10:28:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691422136;
+        bh=cDkjyFTapz98Il0vkG1+oyxSF8oLcD+se6NR5t7MO/4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=ICIzdmkE1Q/sPjuY7xkF3qfZQZGkLWb8APvw6MIF1C7aT9YOoWmfW7XxYF0k8oRyJ
+         XFw89h6RLgMpA0af+Rq+bveTxpuRFNoHV6fAUycgb8Dlrefz5wKuxVewSFLWmC/Lib
+         lSYcqRTAm+7lUjNc4EeEl4/LOFfY0MOEmXBs7zto=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377FSu6O027288
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Aug 2023 10:28:56 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Aug 2023 10:28:54 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Aug 2023 10:28:54 -0500
+Received: from [10.250.36.243] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377FSsPV079433;
+        Mon, 7 Aug 2023 10:28:54 -0500
+Message-ID: <1b3366b0-e3a4-3609-9e25-7b880d2fe656@ti.com>
+Date:   Mon, 7 Aug 2023 10:28:54 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/6] media: dt-bindings: Document SC8280XP/SM8350 Venus
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 10/13] arm64: dts: ti: k3-j7200: Enable GPIO nodes at the
+ board level
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Dhruva Gole <d-gole@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
- <20230731-topic-8280_venus-v1-1-8c8bbe1983a5@linaro.org>
- <84ab9380-2fb2-76f9-2eb9-71d9202718cc@linaro.org>
- <659e30a7-80f7-4fd8-af58-45505213a2ef@linaro.org>
- <ba40de82-b308-67b1-5751-bb2d95f2b8a5@linaro.org>
- <fa5dc696-6c67-49d0-b158-f1e3398813e2@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fa5dc696-6c67-49d0-b158-f1e3398813e2@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230802205309.257392-1-afd@ti.com>
+ <20230802205309.257392-11-afd@ti.com>
+ <ea932535-b69c-ec57-0dfe-31a891b6df5c@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <ea932535-b69c-ec57-0dfe-31a891b6df5c@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/08/2023 17:02, Konrad Dybcio wrote:
-> On 7.08.2023 16:04, Krzysztof Kozlowski wrote:
->> On 07/08/2023 14:41, Konrad Dybcio wrote:
->>> On 5.08.2023 21:29, Krzysztof Kozlowski wrote:
->>>> On 04/08/2023 22:09, Konrad Dybcio wrote:
->>>>> Both of these SoCs implement an IRIS2 block, with SC8280XP being able
->>>>> to clock it a bit higher.
->>>>>
->>>>
->>>> ...
->>>>
->>>>> +
->>>>> +  iommus:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  video-decoder:
->>>>> +    type: object
->>>>> +
->>>>> +    properties:
->>>>> +      compatible:
->>>>> +        const: venus-decoder
->>>>
->>>> That's not how compatibles are constructed... missing vendor prefix, SoC
->>>> or IP block name.
->>>>
->>>>> +
->>>>> +    required:
->>>>> +      - compatible
->>>>> +
->>>>> +    additionalProperties: false
->>>>
->>>> Why do you need this child node? Child nodes without properties are
->>>> usually useless.
->>> For both comments: I aligned with what was there..
->>>
->>> The driver abuses these compats to probe enc/dec submodules, even though
->>> every Venus implementation (to my knowledge) is implicitly enc/dec capable..
->>
->> Holy crap, I see...
->>
->>>
->>> Perhaps a bigger clean-up is due. I guess I could just create the venc/vdec
->>> devices from the venus core probe and get rid of this fake stuff?
->>
->> Few devices (qcom,msm8996-venus.yaml, sdm660, sdm845) have clocks there,
->> so we actually could stay with these subnodes, just correct the
->> compatibles to a list with correct prefixes:
->>
->> qcom,sc8280xp-venus-decoder + qcom,venus-decoder
-> Hm.. looks like pre-845-v2 (with the v2 being "v2 binding" and not
-> "v2 chip" or "v2 hardware") these were used to look up clocks but
-> then they were moved to the root node.
+On 8/7/23 12:38 AM, Dhruva Gole wrote:
+> Andrew,
 > 
-> I am not quite sure if it makes sense to distinguish e.g.
-> sc8280xp-venus-decoder within sc8280xp-venus..>
-> Perhaps deprecating the "8916 way" (clocks under subnodes), adding
-> some boilerplate to look up clocks/pds in both places and converting
-> everybody to the "7180 way" way of doing things (clocks under venus),
-> and then getting rid of venus encoder/decoder completely (by calling
-> device creation from venus probe) would be better. WDYT?
+> On 03/08/23 02:23, Andrew Davis wrote:
+>> GPIO nodes defined in the top-level J7200 SoC dtsi files are incomplete
+>> and may not be functional unless they are extended with pinmux and
+>> device information.
+>>
+>> Disable the GPIO nodes in the dtsi files and only enable the ones that
+>> are actually pinned out on a given board.
+>>
+>> Signed-off-by: Andrew Davis <afd@ti.com>
+>> ---
+>>   .../boot/dts/ti/k3-j7200-common-proc-board.dts | 18 ++++--------------
+>>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi      |  4 ++++
+>>   .../arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi |  2 ++
+>>   3 files changed, 10 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>> index dee9056f56051..4a5c4f36baeec 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>> @@ -240,27 +240,17 @@ &main_uart3 {
+>>       pinctrl-0 = <&main_uart3_pins_default>;
+>>   };
+>> -&main_gpio2 {
+>> -    status = "disabled";
+>> -};
+>> -
+>> -&main_gpio4 {
+>> -    status = "disabled";
+>> -};
+>> -
+>> -&main_gpio6 {
+>> -    status = "disabled";
+>> +&main_gpio0 {
+>> +    status = "okay";
+>> +    /* default pins */
+> 
+> Small question, where is the pmx for main_gpio0? What does "default pins"
+> refer to here? Where are they pinmuxed?
+> 
 
-Yes, this makes more sense. I think this is controlled by
-"legacy_binding" variable (see
-drivers/media/platform/qcom/venus/pm_helpers.c).
+Good question, where is the pmx for main_gpio0? I don't know, it was
+never defined before either, we only are noticing this now as we are
+disabling by default instead of leaving an unfinished node enabled
+by default. (another benefit of this disabled by default scheme).
 
-Once all bindings are converted to new one (clocks in main/parent node),
-then we can drop the children and instantiate devices as MFD.
+What is really happening is GPIO nodes we tend to pinmux differently
+than normal device nodes. Their pinmux selections tends to be spread
+out in all the nodes that make use of these GPIO pins, not all together
+here in this node.
 
-Best regards,
-Krzysztof
+For instance in this device we use one of the main_gpio0 pins as a
+GPIO toggled regulator, and we define the pinmux for it in that node
+(see vdd-sd-dv-default-pins).
 
+We can either define the rest of the pins not used elsewhere
+here, or we can consider GPIO an exception to the rule, I'd say
+the latter is fine for now.
+
+Andrew
+
+>>   };
+>>   &wkup_gpio0 {
+>> +    status = "okay";
+>>       pinctrl-names = "default";
+>>       pinctrl-0 = <&wkup_gpio_pins_default>;
+>>   };
+>> -&wkup_gpio1 {
+>> -    status = "disabled";
+>> -};
+>> -
+>>   &mcu_cpsw {
+>>       pinctrl-names = "default";
+>>       pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> index 5d7542ba41b93..6a776f3bbcb19 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> @@ -832,6 +832,7 @@ main_gpio0: gpio@600000 {
+>>           power-domains = <&k3_pds 105 TI_SCI_PD_EXCLUSIVE>;
+>>           clocks = <&k3_clks 105 0>;
+>>           clock-names = "gpio";
+>> +        status = "disabled";
+>>       };
+>>       main_gpio2: gpio@610000 {
+>> @@ -849,6 +850,7 @@ main_gpio2: gpio@610000 {
+>>           power-domains = <&k3_pds 107 TI_SCI_PD_EXCLUSIVE>;
+>>           clocks = <&k3_clks 107 0>;
+>>           clock-names = "gpio";
+>> +        status = "disabled";
+>>       };
+>>       main_gpio4: gpio@620000 {
+>> @@ -866,6 +868,7 @@ main_gpio4: gpio@620000 {
+>>           power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
+>>           clocks = <&k3_clks 109 0>;
+>>           clock-names = "gpio";
+>> +        status = "disabled";
+>>       };
+>>       main_gpio6: gpio@630000 {
+>> @@ -883,6 +886,7 @@ main_gpio6: gpio@630000 {
+>>           power-domains = <&k3_pds 111 TI_SCI_PD_EXCLUSIVE>;
+>>           clocks = <&k3_clks 111 0>;
+>>           clock-names = "gpio";
+>> +        status = "disabled";
+>>       };
+>>       main_spi0: spi@2100000 {
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> index 571eb0e2eac92..5ae7320efad7b 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> @@ -297,6 +297,7 @@ wkup_gpio0: gpio@42110000 {
+>>           power-domains = <&k3_pds 113 TI_SCI_PD_EXCLUSIVE>;
+>>           clocks = <&k3_clks 113 0>;
+>>           clock-names = "gpio";
+>> +        status = "disabled";
+>>       };
+>>       wkup_gpio1: gpio@42100000 {
+>> @@ -313,6 +314,7 @@ wkup_gpio1: gpio@42100000 {
+>>           power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
+>>           clocks = <&k3_clks 114 0>;
+>>           clock-names = "gpio";
+>> +        status = "disabled";
+>>       };
+>>       mcu_navss: bus@28380000 {
+> 
