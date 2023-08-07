@@ -2,93 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FFF3772542
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 574B6772559
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjHGNRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 09:17:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
+        id S231604AbjHGNTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 09:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231332AbjHGNRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:17:48 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D431B3;
-        Mon,  7 Aug 2023 06:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=FX+zdCyQC4fqrwzCs9Z9NLrYt/aKv0Rj29Ql81i5Bfg=; b=AH
-        ViUK/ANA+r75YY8/oJVy5vwqLaEm/CyAxID8ZcWNHMyFnu8LOYfr5CkQTdB0k85TnOTXTMLne1w4M
-        T9oaWzt87Rtwm1CAiBG9/2w5u9/7hpGa1sIzLjaUvvEFw23YxbG7FW9htEQ4pYmfh88sLA0GCcJIU
-        ETGs1tdyjkNQhnA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qT06h-003JzP-3p; Mon, 07 Aug 2023 15:17:11 +0200
-Date:   Mon, 7 Aug 2023 15:17:11 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 24/28] pinctrl: Add support for the Lantic PEF2256
- pinmux
-Message-ID: <eb99e739-6578-4aee-a0f4-7a0c5e5e81ef@lunn.ch>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
- <20230726150225.483464-25-herve.codina@bootlin.com>
- <CACRpkdYXCQRd3ZXNGHwMaQYiJc7tGtAJnBaSh5O-8ruDAJVdiA@mail.gmail.com>
- <CACRpkdZebvrdGXooLXmgXhUcgdgxBczJBpdEoEyJDR39abaAqQ@mail.gmail.com>
+        with ESMTP id S230429AbjHGNTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:19:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FCEE5B;
+        Mon,  7 Aug 2023 06:19:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8821B61ABD;
+        Mon,  7 Aug 2023 13:19:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C94ECC433C7;
+        Mon,  7 Aug 2023 13:19:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691414375;
+        bh=whOUAc25oLPzlTpk5wjf+E0XCgf/YkQr5OBFvqrLFMk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fKEK6BMxrpiWRwp2S9CbhIz3SmULNKcn9new/RwN2ZAQoeJZfSRPpNx2cGwvRdomH
+         6IJeLSZaURsKDJtHh36gLqDMabWypSEYUiZo8zqdDqcFopUugllVS+VFs7dFW/E/YP
+         En8M5i7xYD3SOyra8439XomdCWqvQR3InUxIl6eXBF/1jMky8FBtKEH/5h6KuP5nOS
+         LLjws0OaHXxJfWfdJh5Sw8iMCQHrpENG8id9r23/oUj7+5DJ5nw1Fzs0ve7ZTMhfXT
+         E5fZYZ/VkHmtWhyHX8ov0j+8tiwFQYPMgGL4K4s4KZI5nbm1gUXPDZFFvXuSqOR6MC
+         7R3jZmMtCR8WQ==
+Date:   Mon, 7 Aug 2023 18:49:18 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     helgaas@kernel.org, bhelgaas@google.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        imx@lists.linux.dev, kw@linux.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, lpieralisi@kernel.org,
+        manivannan.sadhasivam@linaro.org, minghuan.lian@nxp.com,
+        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
+        shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v9 1/3] PCI: Add macro PCIE_PME_TO_L2_TIMEOUT_US
+Message-ID: <20230807131918.GC18257@thinkpad>
+References: <20230804180637.462573-1-Frank.Li@nxp.com>
+ <20230804180637.462573-2-Frank.Li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdZebvrdGXooLXmgXhUcgdgxBczJBpdEoEyJDR39abaAqQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230804180637.462573-2-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 07, 2023 at 03:06:42PM +0200, Linus Walleij wrote:
-> On Mon, Aug 7, 2023 at 3:05 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> 
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> >
-> > So it is a bridge chip? Please use that terminology since Linux
-> > DRM often talks about bridges.
-> 
-> Replying to self: no it's not a bridge, it's a WAN thingy.
-> 
-> So perhaps write that this is a WAN interface adapter chip.
+On Fri, Aug 04, 2023 at 02:06:35PM -0400, Frank Li wrote:
+> Introduces the PCIE_PME_TO_L2_TIMEOUT_US macro to facilitate checking the
 
-Hi Linus
+s/Introduces/Introduce
 
-In the E1/T1/J1 world, framer is a well understood concept. Maybe the
-text needs a bit more background information to explain what this is
-to somebody who does not have an old school telecoms background.
+> PME (Power Management Event) timeout in the PCI subsystem.
+> 
 
-   Andrew
+L2 ready timeout
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+With above changes,
+
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+
+- Mani
+
+> ---
+>  drivers/pci/pci.h | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index a4c3974340576..da8156663c825 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -13,6 +13,12 @@
+>  
+>  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
+>  
+> +/*
+> + * PCIe r6.0, sec 5.3.3.2.1 <PME Synchronization>
+> + * Recommends 1ms to 10ms timeout to check L2 ready.
+> + */
+> +#define PCIE_PME_TO_L2_TIMEOUT_US	10000
+> +
+>  extern const unsigned char pcie_link_speed[];
+>  extern bool pci_early_dump;
+>  
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
