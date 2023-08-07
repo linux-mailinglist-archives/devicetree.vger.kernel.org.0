@@ -2,176 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD857724B2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:49:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C2E77724BB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232778AbjHGMtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 08:49:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
+        id S232624AbjHGMwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 08:52:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbjHGMto (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:49:44 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2408710FE;
-        Mon,  7 Aug 2023 05:49:43 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 76FA41FB;
-        Mon,  7 Aug 2023 05:50:25 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B8523F64C;
-        Mon,  7 Aug 2023 05:49:40 -0700 (PDT)
-Message-ID: <3c387223-eb0e-a8af-b9de-20235d7337fa@arm.com>
-Date:   Mon, 7 Aug 2023 13:49:35 +0100
+        with ESMTP id S229608AbjHGMwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:52:49 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6ECB10F4
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 05:52:47 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-d3d729a08e4so5092107276.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 05:52:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691412767; x=1692017567;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3AFGlTum5UMlZjZ7E842n3ZFd1VK6+2/5dFVFox+pj4=;
+        b=AXHvoKakGa2q9pjyem5iZZRspGtnjrRe7MIdhug6Xp/jnQ4dukyhknWzqSH4VUWORy
+         k/FwANCCYRRYmDUMP53zJAG2wLUXWV15q3fVc50tXQMUl+CRMdgB4QAuKj073Ltyo642
+         X4nMmMBYYwyCSAVHYguDbfGUPy2VAztwP1Gjpcard8B0qv4IXFWKGEq+lik7IoowRcam
+         WKbuu7SK2j1WMVb89Joc49UH0tMhbEgBvQG1t9MVrpUB151PvmilMbEj3pK1hNJXNp3y
+         j2uQmwNpy/SaqaXTQLG9Slt5bfM711fsdO2WrZfuNCyXzySXOEEcJJ2ohq1KqLFzEE4z
+         plgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691412767; x=1692017567;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3AFGlTum5UMlZjZ7E842n3ZFd1VK6+2/5dFVFox+pj4=;
+        b=ZyIWBh6h4F8qMJKYC9kv5bJy/oAD7XoVnr53xnsK3Eka6h71FeDMg7bHCUEs39rB4h
+         FK6g6E4IUwI+po3YdQqBBIj0ILToKuXElcm7iMo7A7UFxKfZmFlw0gRQmtHqmgqx5i9c
+         rRzlchS1HVrfuatto6rFgd1QpSlKS7YA0pCa7Pd8PfYMkqsb8xjP+GnbBvClC/Y04PLp
+         sve00Z9KsIEkXdQjsN17rYOvGWpTGv/S4hebdpBYubhak0qr1vXv0cS7o/PeUszqU59m
+         yWOHZXY6bZpuWBJcrdDYJQdup0J1kYo+4TKLLV8asVhEHZnspP0Ra+FxT7XHtpCE8vzk
+         33hw==
+X-Gm-Message-State: AOJu0Yw5OTeThV8SF7mGoHNDxO684aoiFYlPEvswYquLgGaOQGAagXRk
+        bkMdhiz3C+lJsBSv4Mu3Ohdko6RmbT1bRWCNzcZSEg==
+X-Google-Smtp-Source: AGHT+IGPfyIbynWx7QZJWdwwx4hWSata6jpbVSZxrGJNsjuKKKNxfaZwdNRL5QP8SuC29/wka5f0RxzJjgsIj8NJ7Ls=
+X-Received: by 2002:a25:720b:0:b0:d09:f934:f2fe with SMTP id
+ n11-20020a25720b000000b00d09f934f2femr9563444ybc.18.1691412767068; Mon, 07
+ Aug 2023 05:52:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] iommu: Explicitly include correct DT includes
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
-        virtualization@lists.linux-foundation.org
-References: <20230714174640.4058404-1-robh@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230714174640.4058404-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230726090409.16606-1-tychang@realtek.com> <20230726090409.16606-6-tychang@realtek.com>
+In-Reply-To: <20230726090409.16606-6-tychang@realtek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 7 Aug 2023 14:52:36 +0200
+Message-ID: <CACRpkdYzLiXSLpU63Nn84b+p3Nz5Ls-o94HsoAq514LvGkSiVg@mail.gmail.com>
+Subject: Re: [PATCH 5/7] dt-bindings: pinctrl: realtek: add RTD1315E pinctrl binding
+To:     TY Chang <tychang@realtek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2023 6:46 pm, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+Hi TY Chang,
 
-Thanks Rob; FWIW,
+thanks for your patch!
 
-Acked-by: Robin Murphy <robin.murphy@arm.com>
+On Wed, Jul 26, 2023 at 11:06=E2=80=AFAM TY Chang <tychang@realtek.com> wro=
+te:
 
-I guess you're hoping for Joerg to pick this up? However I wouldn't 
-foresee any major conflicts if you do need to take it through the OF tree.
+> Add device tree bindings for RTD1315E.
+>
+> Signed-off-by: TY Chang <tychang@realtek.com>
 
-Cheers,
-Robin.
+Maybe you could write a short paragraph about the RTD1315E so we
+know what this is? I guess it is some SoC with some intended use case?
 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c | 2 +-
->   drivers/iommu/arm/arm-smmu/arm-smmu.c            | 1 -
->   drivers/iommu/arm/arm-smmu/qcom_iommu.c          | 3 +--
->   drivers/iommu/ipmmu-vmsa.c                       | 1 -
->   drivers/iommu/sprd-iommu.c                       | 1 +
->   drivers/iommu/tegra-smmu.c                       | 2 +-
->   drivers/iommu/virtio-iommu.c                     | 2 +-
->   7 files changed, 5 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
-> index b5b14108e086..bb89d49adf8d 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c
-> @@ -3,7 +3,7 @@
->    * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
->    */
->   
-> -#include <linux/of_device.h>
-> +#include <linux/device.h>
->   #include <linux/firmware/qcom/qcom_scm.h>
->   #include <linux/ratelimit.h>
->   
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> index a86acd76c1df..d6d1a2a55cc0 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> @@ -29,7 +29,6 @@
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/of_address.h>
-> -#include <linux/of_device.h>
->   #include <linux/pci.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_runtime.h>
-> diff --git a/drivers/iommu/arm/arm-smmu/qcom_iommu.c b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-> index a503ed758ec3..cc3f68a3516c 100644
-> --- a/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-> +++ b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-> @@ -22,8 +22,7 @@
->   #include <linux/init.h>
->   #include <linux/mutex.h>
->   #include <linux/of.h>
-> -#include <linux/of_address.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm.h>
->   #include <linux/pm_runtime.h>
-> diff --git a/drivers/iommu/ipmmu-vmsa.c b/drivers/iommu/ipmmu-vmsa.c
-> index 9f64c5c9f5b9..0aeedd3e1494 100644
-> --- a/drivers/iommu/ipmmu-vmsa.c
-> +++ b/drivers/iommu/ipmmu-vmsa.c
-> @@ -17,7 +17,6 @@
->   #include <linux/io-pgtable.h>
->   #include <linux/iommu.h>
->   #include <linux/of.h>
-> -#include <linux/of_device.h>
->   #include <linux/of_platform.h>
->   #include <linux/platform_device.h>
->   #include <linux/sizes.h>
-> diff --git a/drivers/iommu/sprd-iommu.c b/drivers/iommu/sprd-iommu.c
-> index 39e34fdeccda..51144c232474 100644
-> --- a/drivers/iommu/sprd-iommu.c
-> +++ b/drivers/iommu/sprd-iommu.c
-> @@ -14,6 +14,7 @@
->   #include <linux/mfd/syscon.h>
->   #include <linux/module.h>
->   #include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
->   #include <linux/regmap.h>
->   #include <linux/slab.h>
->   
-> diff --git a/drivers/iommu/tegra-smmu.c b/drivers/iommu/tegra-smmu.c
-> index 1cbf063ccf14..e445f80d0226 100644
-> --- a/drivers/iommu/tegra-smmu.c
-> +++ b/drivers/iommu/tegra-smmu.c
-> @@ -9,7 +9,7 @@
->   #include <linux/iommu.h>
->   #include <linux/kernel.h>
->   #include <linux/of.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
->   #include <linux/pci.h>
->   #include <linux/platform_device.h>
->   #include <linux/slab.h>
-> diff --git a/drivers/iommu/virtio-iommu.c b/drivers/iommu/virtio-iommu.c
-> index 3551ed057774..17dcd826f5c2 100644
-> --- a/drivers/iommu/virtio-iommu.c
-> +++ b/drivers/iommu/virtio-iommu.c
-> @@ -13,7 +13,7 @@
->   #include <linux/interval_tree.h>
->   #include <linux/iommu.h>
->   #include <linux/module.h>
-> -#include <linux/of_platform.h>
-> +#include <linux/of.h>
->   #include <linux/pci.h>
->   #include <linux/virtio.h>
->   #include <linux/virtio_config.h>
+(...)
+> +description: |
+> +  Binding for Realtek DHC RTD1315E SoC pin control.
+
+Same text should go here in that case.
+
+> +        realtek,pdrive:
+> +          description: |
+> +            An integer describing the level to adjust PMOS output drivin=
+g capability.
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          minimum: 0
+> +          maximum: 7
+> +
+> +        realtek,ndrive:
+> +          description: |
+> +            An integer describing the level to adjust NMOS output drivin=
+g capability.
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          minimum: 0
+> +          maximum: 7
+
+I would rename these realtek,drive-strength-p and realtek,drive-strength-n.
+
+You need to explain what is meant with PMOS and NMOS here. If it is what
+I think it is, I think some ASCII art would be handy!
+
+You can reuse my ASCII art from Documentation/driver-api/gpio/driver.rst:
+
+                     VDD
+                      |
+            OD    ||--+
+         +--/ ---o||     P-MOS-FET
+         |        ||--+
+    IN --+            +----- out
+         |        ||--+
+         +--/ ----||     N-MOS-FET
+            OS    ||--+
+                      |
+                     GND
+
+Maybe you wanna delete the OD switch if these drivers don't support that.
+
+What does the values 0..7 actually correspond to? Is it the number of
+transistors/driver stages simply? Then write that.
+
+We need to think whether this is so generically useful that it should simpl=
+y
+be drive-strength-pmos and drive-strength-nmos, simply put, as other
+SoCs may implement the same. What do people think?
+
+> +        realtek,dcycle:
+> +          description: |
+> +            An integer describing the level to adjust output duty cycle.
+> +            Valid arguments are described as below:
+> +            0: 0ns
+> +            2: + 0.25ns
+> +            3: + 0.5ns
+> +            4: -0.25ns
+> +            5: -0.5ns
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          enum: [ 0, 2, 3, 4, 5 ]
+
+This does not explain the duty cycle of *what*?
+
+It looks really useful so please explain thoroughly what it does.
+
+I guess this is not PWM because then you could use
+PIN_CONFIG_MODE_PWM.
+
+Yours,
+Linus Walleij
