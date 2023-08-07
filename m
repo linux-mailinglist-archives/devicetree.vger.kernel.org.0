@@ -2,179 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE50A772A16
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5912772A4F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229739AbjHGQFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 12:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47366 "EHLO
+        id S231271AbjHGQQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 12:16:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230312AbjHGQFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:05:50 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27C910C6
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 09:05:44 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so75814931fa.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 09:05:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691424343; x=1692029143;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f3NRCQqXbUSCCrnt/9oEbb5aA3KgrkhtMfzTxdax6mo=;
-        b=DcuLzHXQ3nc+8APwug6vkpTZHBbXaTio3nT5EOkFocbPjbgKovZOdK9cnlRPvNRL6/
-         pUD/jwsoM155THkC0Z5H5klF1i8aPH3HZZ1hboqV4MAR7Z7lQ2esFRPgXwX9CU9CZyCJ
-         0mgicKVZzzwhuDZrI2tIzAOwI7h/Pagd0DuZuolmmW3lAXL7LjdVuLBNKcI8fbV6x++T
-         VInGiEaLBCv1Pmu523XUgSsqWkKowfP8Mr6KYzP565U0SRxwPoQ3aTE72ZWz2DbY0oI1
-         yhE5cUoUiElPJYvF7Svb7VvCZg2nD+rYXgxeD38jrChX0wlGVUQV/cU0YqSW5uirNglA
-         nSPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691424343; x=1692029143;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f3NRCQqXbUSCCrnt/9oEbb5aA3KgrkhtMfzTxdax6mo=;
-        b=LWsDPzW5KAdp1VbId5FShnqZvfeTh+MNFh8oDS+WDiNFho2Bc1UG366KGhJ1avjemi
-         4Q+HShA0WOiLOnh4mtrHnkR41btgVGWkvpyMIeCEXQjDmF+THS68u/kNy6JupeYouVZT
-         QJ+roH4NhNQsNy2AeZ7LxVm0C6BHP+SvmhCE7rh+qiGew158yhr9Zr4AIZzn8k5PDaC5
-         m7FVW5MTzYZlDN8J5lXCUPZrfFHyEh6A9fRnRM+cJVtNkFJt1mncdYTWdUOBNSQtsgbR
-         SMPEPKAV5iJETLSlR8EcdffNz6rDq9DZEGXU2to9aDMVk6YQb//SzrOqZ9PtTwtogBEV
-         6Fjg==
-X-Gm-Message-State: AOJu0Yw6oLA0EmIZxOAzXF3BtBKLJAbzjwskn7epXkg1pgP/gtzCA2M2
-        SmwzuwlcyCMXOD0oWHrxdUV6Cg==
-X-Google-Smtp-Source: AGHT+IFrZnmkbOq1VoMJWoNd8Q5ead/2nUoLqt46vZNA2VGEa4H5MCmc0wtEyHk6dF0qHjlSjUymWA==
-X-Received: by 2002:a2e:a0cc:0:b0:2b9:ee3e:240c with SMTP id f12-20020a2ea0cc000000b002b9ee3e240cmr6846867ljm.24.1691424342886;
-        Mon, 07 Aug 2023 09:05:42 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id e8-20020a2e8188000000b002b724063010sm1884883ljg.47.2023.08.07.09.05.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 09:05:42 -0700 (PDT)
-Message-ID: <27bd3a9e-192f-43e9-b417-784c6d9c3ecd@linaro.org>
-Date:   Mon, 7 Aug 2023 18:05:40 +0200
+        with ESMTP id S229456AbjHGQQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:16:36 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB3110CE;
+        Mon,  7 Aug 2023 09:16:35 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377GGQGU126323;
+        Mon, 7 Aug 2023 11:16:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691424986;
+        bh=cXxX9UN9/ul+16Vg/ekotOnm0YUjkRmVdJx9FnUIEY8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=GyNJ2ZORIvh1eIEysbELMlZdReqbvs5nh6yUfg3rtMZ8w5EBfHeiIdTXMc7BEhcDA
+         X2mND+H04+aW7dmJvEBTHMxDkWBbYfd7qXi7n7dBEecEAx2lkj0zHtSVhRq51rLJtp
+         yu9JSTKyHqeD+SreVfcQDUCy6lLDrVrIs+py7C5c=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377GGQtC129125
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Aug 2023 11:16:26 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Aug 2023 11:16:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Aug 2023 11:16:26 -0500
+Received: from [10.250.36.243] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377GGPWt105151;
+        Mon, 7 Aug 2023 11:16:25 -0500
+Message-ID: <191d171b-aa8d-3727-f5ad-9c25bfff96fe@ti.com>
+Date:   Mon, 7 Aug 2023 11:16:25 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add device tree for Xiaomi Mi 11
- Ultra
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 10/13] arm64: dts: ti: k3-j7200: Enable GPIO nodes at the
+ board level
 Content-Language: en-US
-To:     wuxilin123@gmail.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>
+CC:     Dhruva Gole <d-gole@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20230806-xiaomi-star-v1-0-0c384e8b5737@gmail.com>
- <20230806-xiaomi-star-v1-3-0c384e8b5737@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230806-xiaomi-star-v1-3-0c384e8b5737@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230802205309.257392-1-afd@ti.com>
+ <20230802205309.257392-11-afd@ti.com>
+ <ea932535-b69c-ec57-0dfe-31a891b6df5c@ti.com>
+ <1b3366b0-e3a4-3609-9e25-7b880d2fe656@ti.com>
+ <20230807154207.7eho6er55revipjo@shuffling>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230807154207.7eho6er55revipjo@shuffling>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5.08.2023 19:03, Xilin Wu via B4 Relay wrote:
-> From: Xilin Wu <wuxilin123@gmail.com>
+On 8/7/23 10:42 AM, Nishanth Menon wrote:
+> On 10:28-20230807, Andrew Davis wrote:
+>> On 8/7/23 12:38 AM, Dhruva Gole wrote:
+>>> Andrew,
+>>>
+>>> On 03/08/23 02:23, Andrew Davis wrote:
+>>>> GPIO nodes defined in the top-level J7200 SoC dtsi files are incomplete
+>>>> and may not be functional unless they are extended with pinmux and
+>>>> device information.
+>>>>
+>>>> Disable the GPIO nodes in the dtsi files and only enable the ones that
+>>>> are actually pinned out on a given board.
+>>>>
+>>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>>> ---
+>>>>    .../boot/dts/ti/k3-j7200-common-proc-board.dts | 18 ++++--------------
+>>>>    arch/arm64/boot/dts/ti/k3-j7200-main.dtsi      |  4 ++++
+>>>>    .../arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi |  2 ++
+>>>>    3 files changed, 10 insertions(+), 14 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>>>> index dee9056f56051..4a5c4f36baeec 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>>>> @@ -240,27 +240,17 @@ &main_uart3 {
+>>>>        pinctrl-0 = <&main_uart3_pins_default>;
+>>>>    };
+>>>> -&main_gpio2 {
+>>>> -    status = "disabled";
+>>>> -};
+>>>> -
+>>>> -&main_gpio4 {
+>>>> -    status = "disabled";
+>>>> -};
+>>>> -
+>>>> -&main_gpio6 {
+>>>> -    status = "disabled";
+>>>> +&main_gpio0 {
+>>>> +    status = "okay";
+>>>> +    /* default pins */
+>>>
+>>> Small question, where is the pmx for main_gpio0? What does "default pins"
+>>> refer to here? Where are they pinmuxed?
+>>>
+>>
+>> Good question, where is the pmx for main_gpio0? I don't know, it was
+>> never defined before either, we only are noticing this now as we are
+>> disabling by default instead of leaving an unfinished node enabled
+>> by default. (another benefit of this disabled by default scheme).
+>>
+>> What is really happening is GPIO nodes we tend to pinmux differently
+>> than normal device nodes. Their pinmux selections tends to be spread
+>> out in all the nodes that make use of these GPIO pins, not all together
+>> here in this node.
+>>
+>> For instance in this device we use one of the main_gpio0 pins as a
+>> GPIO toggled regulator, and we define the pinmux for it in that node
+>> (see vdd-sd-dv-default-pins).
+>>
+>> We can either define the rest of the pins not used elsewhere
+>> here, or we can consider GPIO an exception to the rule, I'd say
+>> the latter is fine for now.
 > 
-> Add support for Xiaomi Mi 11 Ultra. This commit brings support for:
-> * Front and rear display panels (initialized by bootloader)
-> * USB
-> * UFS
-> * PCIe0
-> * Thermistor sensors
-> * ADSP/CDSP/Modem/SLPI
-> * IR Transmitter
-> * RTC provided by PMK8350
-> * Buttons
 > 
-> To create a working boot image, you need to run:
-> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/sm8350-xiaomi-\
-> star.dtb > .Image.gz-dtb
+> GPIO pinmux are typically defined where they need - the only place where
+> they are explicitly called out in gpio is when they are meant to be used by
+> libgpio - typically in the case of dev boards.
 > 
-> mkbootimg \
-> --kernel .Image.gz-dtb \
-> --ramdisk some_initrd.img \
-> --pagesize 4096 \
-> --base 0x0 \
-> --kernel_offset 0x8000 \
-> --ramdisk_offset 0x1000000 \
-> --tags_offset 0x100 \
-> --cmdline "SOME_CMDLINE" \
-> --dtb_offset 0x1f00000 \
-> --header_version 1 \
-> --os_version 14.0.0 \
-> --os_patch_level 2099-12 \
-> -o boot.img-xiaomi-star
+> Just drop the comments of /* default pins */ - that is just mis-leading.
 > 
-> Then, you can flash it to slot b on the device:
-> 
-> // You have to either pull vbmeta{"","_system"} from
-> // /dev/block/bootdevice/by-name/ or build one as a part of AOSP build process
-> fastboot --disable-verity --disable-verification flash vbmeta_b vbmeta.img
-> fastboot --disable-verity --disable-verification flash vbmeta_system_b \
-> vbmeta_system.img
-> 
-> fastboot flash boot_b boot.img-xiaomi-star
-> fastboot erase dtbo_b
-> fastboot set_active b
-> fastboot reboot
-> 
-> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
-> ---
-[...]
 
+True, will drop the comment for v2.
 
-> +&adsp {
-> +	status = "okay";
-> +	firmware-name = "qcom/sm8350/xiaomi/star/adsp.mbn";
-> +};
-Please keep status as the last property, everywhere.
-
-BTW, is the rear screen connected via DSI, or is it some stupid
-SPI display?
-
-Konrad
+Andrew
