@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDDE7772DDF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 20:29:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C708E772E13
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 20:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbjHGS3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 14:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59370 "EHLO
+        id S229830AbjHGSoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 14:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjHGS3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 14:29:53 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A1410EF;
-        Mon,  7 Aug 2023 11:29:51 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377ITdhQ081719;
-        Mon, 7 Aug 2023 13:29:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691432979;
-        bh=mW6rG9MJw/rvl4+H6oLctG2tKTYJaCepOs6PH34wgWI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=LU/dm8e6jRwmIaVsnUw6F8RvqWxSVr6JF78hJHS37p//4loxaTKA5CI+mPhil0ZpJ
-         FYME+r1QAJ9qpVyu9wsvcZjxhL1TemRJebEuydgRfw8ssCwiFDOVQlCNefgMd84/+v
-         MAk8pVzRe7QKPTNAeSN3SEta673Fe5OGzxSktD+c=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377ITdRU076712
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 13:29:39 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 13:29:38 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 13:29:38 -0500
-Received: from [10.249.132.69] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377ITWfB091198;
-        Mon, 7 Aug 2023 13:29:33 -0500
-Message-ID: <435f9b99-b888-2e18-cf70-8c7d074b68be@ti.com>
-Date:   Mon, 7 Aug 2023 23:59:31 +0530
+        with ESMTP id S229527AbjHGSoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 14:44:32 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150AC171E
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 11:44:31 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fe5c0e58c0so12492055e9.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 11:44:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691433869; x=1692038669;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zol9Y1aLsvmdyfqvAX1V5FxzXvCH4Sriw98PTemVe/Y=;
+        b=vjyhPkEwkKxlqSi04SjKJd3eMNMokdMkJK1iLWhFCbhIqmWw11MawDEdbbsai/YNKD
+         6Qpx8J59b/tBL4kqDdfm4yBWCRakUxcysqa38qCjOa/k3By/sLdHIlI/9lg1SVgReyg3
+         NvCIpoHCeGFfQsvtSL5u9pM972PO+FJXo1+a6j/yLhbU+7lqTyetKKLqafZmM+zf1HgW
+         gIGjderr/ZVvF8JRbLbzig6HT5wgBramYWjQd5zGDyVIgvIal15uEIVfsq8QaDILBsag
+         TNAo6gdW5QDmZMCkaJiPhE4mmmMCf31Bcc3PNrqRwI+XZocg4tYilx91WSuobeFP1khG
+         g6hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691433869; x=1692038669;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zol9Y1aLsvmdyfqvAX1V5FxzXvCH4Sriw98PTemVe/Y=;
+        b=Xq0GKC3W50lYVhKQFy/hMCX7F/smSbdNV+P+4p0dLbg3TKoYglXrFBVGbjwnJTvsjQ
+         E4HFLpXU33zOu8PkuJTqWffD3CKoS9eMK+tvneVMlCl88POKVvYBu+eiR2x2VdX57FPa
+         WBRmUgsbaCvnHAUG35vXMUF7TLkQUBVodES2WjaCDdOVwqdCXEpVJ8/+rh6CS4X5bOjU
+         lS85Q7BOObTgTewsLQapOHCyP56NSWIcGS6x3zUybKFEUI9z9j/clcUNKbMT0HIGkg6/
+         lwCRwbVA6b+bqAC1SRpZUuS8b4F0VwZqXCoM+wzywIOr4f1kYgK5pLPoOACFElJbq6h7
+         uXtQ==
+X-Gm-Message-State: AOJu0YwgvigOn7CJwgJkeMhuLoDUCpKT836/qPSnAhvKf3K8GQ9dIkn/
+        DfNFIFYHMV7CFzQ3NidqNMSN5g==
+X-Google-Smtp-Source: AGHT+IGkU+sRFzXebcv1bEtGyvJz3C5vtCBxWmEJ2Tp8v0Xoa905AJwzisVYBKC4XbijduimSwLgbA==
+X-Received: by 2002:a1c:6a05:0:b0:3fb:415a:d07 with SMTP id f5-20020a1c6a05000000b003fb415a0d07mr7951188wmc.36.1691433869440;
+        Mon, 07 Aug 2023 11:44:29 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id d5-20020a5d6dc5000000b003142ea7a661sm11317894wrz.21.2023.08.07.11.44.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 11:44:28 -0700 (PDT)
+Message-ID: <816359f7-ad4d-659f-db39-c971e1b1cd9a@linaro.org>
+Date:   Mon, 7 Aug 2023 19:44:27 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v9 4/5] arm64: dts: ti: k3-j784s4-evm: Enable
- DisplayPort-0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/6] media: dt-bindings: Document SC8280XP/SM8350 Venus
 Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
-        <nm@ti.com>, <vigneshr@ti.com>
-CC:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <r-ravikumar@ti.com>, <sabiya.d@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>
-References: <20230803080441.367341-1-j-choudhary@ti.com>
- <20230803080441.367341-5-j-choudhary@ti.com>
- <9f19e01e-6211-16eb-c911-998ee2d46161@ti.com>
- <2ddc34f9-92ad-9a0c-8044-0ec671e55e9e@ti.com>
- <06708b12-34af-bcb5-7b65-c9bdd830b9f0@ti.com>
- <7c2b0f22-95d3-2976-7999-7e65c6d9801b@ti.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <7c2b0f22-95d3-2976-7999-7e65c6d9801b@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
+ <20230731-topic-8280_venus-v1-1-8c8bbe1983a5@linaro.org>
+ <84ab9380-2fb2-76f9-2eb9-71d9202718cc@linaro.org>
+ <659e30a7-80f7-4fd8-af58-45505213a2ef@linaro.org>
+ <ba40de82-b308-67b1-5751-bb2d95f2b8a5@linaro.org>
+ <fa5dc696-6c67-49d0-b158-f1e3398813e2@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <fa5dc696-6c67-49d0-b158-f1e3398813e2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,136 +90,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 07-Aug-23 21:19, Andrew Davis wrote:
-> On 8/7/23 7:56 AM, Aradhya Bhatia wrote:
->> Hi Jayesh,
->>
->> On 07-Aug-23 17:54, Jayesh Choudhary wrote:
->>> Hello Aradhya,
->>>
->>> Thank you for the review.
->>>
->>> On 05/08/23 00:52, Aradhya Bhatia wrote:
->>>> Hi Jayesh,
+On 07/08/2023 16:02, Konrad Dybcio wrote:
+> On 7.08.2023 16:04, Krzysztof Kozlowski wrote:
+>> On 07/08/2023 14:41, Konrad Dybcio wrote:
+>>> On 5.08.2023 21:29, Krzysztof Kozlowski wrote:
+>>>> On 04/08/2023 22:09, Konrad Dybcio wrote:
+>>>>> Both of these SoCs implement an IRIS2 block, with SC8280XP being able
+>>>>> to clock it a bit higher.
+>>>>>
 >>>>
+>>>> ...
 >>>>
->>>> On 03-Aug-23 13:34, Jayesh Choudhary wrote:
->>>>> From: Rahul T R <r-ravikumar@ti.com>
->>>>>
->>>>> Enable display for J784S4 EVM.
->>>>>
->>>>> Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux
->>>>> for
->>>>> DP HPD. Add the clock frequency for serdes_refclk.
->>>>>
->>>>> Add the endpoint nodes to describe connection from:
->>>>> DSS => MHDP => DisplayPort connector.
->>>>>
->>>>> Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
->>>>> required for controlling DP power. Set status for all required nodes
->>>>> for DP-0 as "okay".
->>>>>
->>>>> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
->>>>> [j-choudhary@ti.com: move all the changes together to enable DP-0 in
->>>>> EVM]
->>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 119
->>>>> +++++++++++++++++++++++
->>>>>    1 file changed, 119 insertions(+)
->>>
->>> [...]
->>>
->>>>> +        reg = <0>;
->>>>> +        cdns,num-lanes = <4>;
->>>>> +        #phy-cells = <0>;
->>>>> +        cdns,phy-type = <PHY_TYPE_DP>;
->>>>> +        resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
->>>>> +             <&serdes_wiz4 3>, <&serdes_wiz4 4>;
->>>>> +    };
->>>>> +};
 >>>>> +
->>>>> +&mhdp {
->>>>> +    status = "okay";
->>>>> +    pinctrl-names = "default";
->>>>> +    pinctrl-0 = <&dp0_pins_default>;
->>>>> +    phys = <&serdes4_dp_link>;
->>>>> +    phy-names = "dpphy";
->>>>> +};
+>>>>> +  iommus:
+>>>>> +    maxItems: 1
 >>>>> +
->>>>> +&dss_ports {
->>>>> +    port {
+>>>>> +  video-decoder:
+>>>>> +    type: object
+>>>>> +
+>>>>> +    properties:
+>>>>> +      compatible:
+>>>>> +        const: venus-decoder
 >>>>
->>>> Port index has not been added here. Since this port outputs to MHDP
->>>> bridge, this should be "port@0", and a "reg = <0>;" property should be
->>>> added below (along with the address and size cells properties).
+>>>> That's not how compatibles are constructed... missing vendor prefix, SoC
+>>>> or IP block name.
 >>>>
->>>> I suppose this works functionally in this case, because the port gets
->>>> defaulted to "0" by the driver. But in future, when we add support for
->>>> other dss output(s) on j784s4-evm, the driver will need indices to
->>>> distinguish among them.
+>>>>> +
+>>>>> +    required:
+>>>>> +      - compatible
+>>>>> +
+>>>>> +    additionalProperties: false
 >>>>
+>>>> Why do you need this child node? Child nodes without properties are
+>>>> usually useless.
+>>> For both comments: I aligned with what was there..
 >>>
->>> Okay. It makes sense.
->>> Just one thing here. Adding reg here would require it to have #address-
->>> cells and #size-cell but since we have only single child port that too
->>> at reg=<0>, it would throw dtbs_check warning:
->>>
->>> arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi:1828.20-1831.5: Warning
->>> (graph_child_address): /bus@100000/dss@4a00000/ports: graph node has
->>> single child node 'port@0', #address-cells/#size-cells are not necessary
->>>    also defined at arch/arm64/boot/dts/ti/k3-j784s4-evm.dts:911.12-919.3
->>>
+>>> The driver abuses these compats to probe enc/dec submodules, even though
+>>> every Venus implementation (to my knowledge) is implicitly enc/dec capable..
 >>
->> Okay! Was not aware about this. I still think "port@0" should be
->> specified instead of just "port" and the warning should be ignored, if
->> possible.
+>> Holy crap, I see...
 >>
+>>>
+>>> Perhaps a bigger clean-up is due. I guess I could just create the venc/vdec
+>>> devices from the venus core probe and get rid of this fake stuff?
+>>
+>> Few devices (qcom,msm8996-venus.yaml, sdm660, sdm845) have clocks there,
+>> so we actually could stay with these subnodes, just correct the
+>> compatibles to a list with correct prefixes:
+>>
+>> qcom,sc8280xp-venus-decoder + qcom,venus-decoder
+> Hm.. looks like pre-845-v2 (with the v2 being "v2 binding" and not
+> "v2 chip" or "v2 hardware") these were used to look up clocks but
+> then they were moved to the root node.
 > 
-> Do not ignore new DT check warnings, if you go with "port@0" (which you
-> need to do as the "ti,j721e-dss" binding requires it) you must also add
-> the #address-cells/#size-cells.
+> I am not quite sure if it makes sense to distinguish e.g.
+> sc8280xp-venus-decoder within sc8280xp-venus..
 > 
-
-The warning that Jayesh mentioned above comes when "port@0" is
-mentioned, *along-with* the #address-cells/#size-cells properties.
-Essentially, it wants us to not use "port@0" when only single port is
-being added whose reg values is 0.
-
-This warning does not come when only a single port other than 0,
-"port@1" for e.g., is being used. That's the warning, that should get
-ignored, if possible.
-
-However, just mentioning "port@0", without the #address-cells/
-#size-cells, would be plain wrong.
-
-Regards
-Aradhya
-
+> Perhaps deprecating the "8916 way" (clocks under subnodes), adding
+> some boilerplate to look up clocks/pds in both places and converting
+> everybody to the "7180 way" way of doing things (clocks under venus),
+> and then getting rid of venus encoder/decoder completely (by calling
+> device creation from venus probe) would be better. WDYT?
 > 
->> If there were only a "port@1" child node, this warning would not have
->> come up, and I believe "port@0" should be treated just the same.
->>
->> Moreover, while we can add these properties at a later stage as an
->> incremental patch, adding the size and address cells in the dtsi would
->> affect other platform dts files as well, that use this SoC.
->>
->> For e.g., the patch 5/5 of this series, on AM69-SK will still require
->> the size and address cells for its ports. The clean up then will be that
->> much more, when adding those incremental patches.
->>
->> Anyway, I will let Nishanth and Vignesh take the final call on this.
->>
->> Regards
->> Aradhya
->>
->>>
->>>>> +        dpi0_out: endpoint {
->>>>> +            remote-endpoint = <&dp0_in>;
->>>
->>>
->>> [...]
->>
+> Konrad
 
+As I understand it though, for some classes of venus hardware - earlier, 
+it was possible to have two encoders or two decoders and it really 
+didn't - perhaps still doesn't matter which order they are declared in.
+
+That's the logic behind having a compat string that assigns either 
+encoder or decoder to one of the logical blocks.
+
+You can have any mixture of
+- encoder
+- decoder
+
+- encoder
+- encoder
+
+- decoder
+- decoder
+
+- decoder
+- encoder
+
+- encoder
+
+- decoder
+
+I think it should *still* be the case - whether it is a practical 
+reality or not, that any of those mapping can be selected and supported.
+
+---
+bod
