@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27FE3772964
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 17:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B6B772978
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 17:40:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbjHGPh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 11:37:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58416 "EHLO
+        id S230487AbjHGPkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 11:40:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230446AbjHGPh1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 11:37:27 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD421703;
-        Mon,  7 Aug 2023 08:37:20 -0700 (PDT)
+        with ESMTP id S229621AbjHGPkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 11:40:32 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BBD6E3;
+        Mon,  7 Aug 2023 08:40:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1691422640; x=1722958640;
+  t=1691422831; x=1722958831;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=WyY4m65TBzl1YIFH+NrWYCcN8qNM7vHmyLpIsh9nJDU=;
-  b=Bok/7IScVQPnQ5yIJ8+YvltqXhG+uKggPngq9Ej4mBzO4hRwVyzDKC0+
-   Xs3oogrPEm3V6mFpRXqBGSEPROOXbqSD5jDGXC3cuNHhYT+UHSGpSSTSN
-   KiWn6qo143Yw5VSHM+1kO9VznYCf80H0Zbk1nWa9XrRLQozKMgmJJgefM
-   94iEtaIH5SGJ7nKlvjtUg1afZW/6lrAAr0JYKU11uRUE0CWDfEPokt98O
-   VoLhvcYVsTVF9V+iYiFhG1UdYwtId6Jen7yqXA36YiK5d9PIggQse8UQ0
-   diayYrajPrG28voCHU6/GrFnZe/wRjSyedCiQyG56Exj+DD6+IqG1xw3H
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="456960583"
+  bh=8BAIx7FHNmCGdQOU29KO90M3ZGXMHjDFp6/H+S8A6D8=;
+  b=kOfbWFR5igwkbNindwIJ+vB2IV+1WzOBQAMal+yuM2ZMzNJKkjWlqFRb
+   KAPn4KhTwYYusCL+T8HHq8o3J/EQOOrGlC6u9m6MW//q+bpxL16geNiVQ
+   dNVlwP/qCpcT7et8LW/gaCzR8r1vfqA0ZcbW90NDEhUfn3fvxLk6MynFg
+   q1q5M47BTwIJ2dhNesjHoxOiyDUdqRdLLcfSN9PKrdOgT1dTxJ+2fvmxe
+   MO56+0D4wKpGU6MskUL/xF5O3/x+8GMaeRC5veaW/Hm9SRLWYqj2awBt4
+   /nijcNRPEsA0c5O8YqqKsAEZFtfVNjFWblV/po5uWXluBj/KXWsCmVV5L
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="374253438"
 X-IronPort-AV: E=Sophos;i="6.01,262,1684825200"; 
-   d="scan'208";a="456960583"
+   d="scan'208";a="374253438"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2023 08:37:20 -0700
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2023 08:40:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845083880"
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845085831"
 X-IronPort-AV: E=Sophos;i="6.01,262,1684825200"; 
-   d="scan'208";a="845083880"
+   d="scan'208";a="845085831"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP; 07 Aug 2023 08:37:18 -0700
+  by fmsmga002.fm.intel.com with ESMTP; 07 Aug 2023 08:40:28 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
         (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qT2IG-0005qR-08;
-        Mon, 07 Aug 2023 18:37:16 +0300
-Date:   Mon, 7 Aug 2023 18:37:15 +0300
+        id 1qT2LK-000Cjp-0v;
+        Mon, 07 Aug 2023 18:40:26 +0300
+Date:   Mon, 7 Aug 2023 18:40:26 +0300
 From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To:     Rob Herring <robh@kernel.org>
 Cc:     Frank Rowand <frowand.list@gmail.com>,
@@ -52,61 +52,53 @@ Cc:     Frank Rowand <frowand.list@gmail.com>,
         Petr Mladek <pmladek@suse.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] of: dynamic: Move dead property list check into
- property add/update functions
-Message-ID: <ZNEPqwQ0H9srkxxq@smile.fi.intel.com>
+Subject: Re: [PATCH v2 6/6] of: Refactor node and property manipulation
+ function locking
+Message-ID: <ZNEQalGgikGLoZ3p@smile.fi.intel.com>
 References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
- <20230801-dt-changeset-fixes-v2-5-c2b701579dee@kernel.org>
+ <20230801-dt-changeset-fixes-v2-6-c2b701579dee@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230801-dt-changeset-fixes-v2-5-c2b701579dee@kernel.org>
+In-Reply-To: <20230801-dt-changeset-fixes-v2-6-c2b701579dee@kernel.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 04, 2023 at 04:41:55PM -0600, Rob Herring wrote:
-> The changeset code checks for a property in the deadprops list when
-> adding/updating a property, but of_add_property() and
-> of_update_property() do not. As the users of these functions are pretty
-> simple, they have not hit this scenario or else the property lists
-> would get corrupted.
-
-Suggested-by: ? :-)
+On Fri, Aug 04, 2023 at 04:41:56PM -0600, Rob Herring wrote:
+> All callers of __of_{add,remove,update}_property() and
+> __of_{attach,detach}_node() wrap the call with the devtree_lock
+> spinlock. Let's move the spinlock into the functions. This allows moving
+> the sysfs update functions into those functions as well.
 
 ...
 
-> +static void __of_remove_dead_property(struct device_node *np, struct property *prop)
-> +{
-> +	struct property **next;
-> +
-> +	/* If the property is in deadprops then it must be removed */
-> +	for (next = &np->deadprops; *next; next = &(*next)->next) {
-> +		if (*next != prop)
-> +			continue;
-> +
-> +		*next = prop->next;
-> +		prop->next = NULL;
-> +		break;
-
-Why not
-
-		if (*next == prop) {
-			*next = prop->next;
-			prop->next = NULL;
-			break;
-		}
-
-which seems to me clearer?
-
+>  	for (next = &np->properties; *next; next = &(*next)->next) {
+>  		if (*next == prop)
+>  			break;
+>  	}
+> -	if (*next == NULL)
+> -		return -ENODEV;
+> -
+> +	if (*next == NULL) {
+> +		rc = -ENODEV;
+> +		goto out_unlock;
 > +	}
-> +}
+>  	/* found the node */
+>  	*next = prop->next;
+>  	prop->next = np->deadprops;
+
+But this also looks like a dup for deadprop, maybe something like
+
+static int __of_remove_property_dead_or_alive() // pun intended.
+
+?
 
 -- 
 With Best Regards,
