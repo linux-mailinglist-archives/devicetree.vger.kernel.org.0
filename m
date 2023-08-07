@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D53E771CAF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 10:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30235771CB4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 10:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbjHGI42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 04:56:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40988 "EHLO
+        id S230044AbjHGI6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 04:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231237AbjHGI4W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 04:56:22 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBF710FE
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 01:56:21 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-c4cb4919bb9so4662083276.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 01:56:21 -0700 (PDT)
+        with ESMTP id S229733AbjHGI6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 04:58:32 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041ADE6D
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 01:58:32 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b8b4748fe4so26847285ad.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 01:58:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691398581; x=1692003381;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zTR/u2PpG3LKb8wVdD7nsllACEqpd45z6GcRCQZJTqE=;
-        b=g2llslmFRX3ySdXig161Vyh5DEUBnJUIvcrEJN67E5rLmdq2oqwU1ffFvhJTzo+MJa
-         V/tzrXoX50fE7NHvM/WDa1n6S1g/bewiFxGcTQBEv2HhPJzMuRhghasqF/rZDU5j5ils
-         0bXa/jK1mikiBk7bu6CVIUqQsJWnXeVIjy9ZLhcmeWzNqLe+fT5QUA/ncIE+jSgan4Yr
-         QeKkQxLUrin9aF9cCdRe3fdd5Q9fQ9g4MSVdSZH+rcyXYoCCXZ8hZdi4Wfd3Y1Zkjk67
-         m5vD4x+8NjALkDkWEnYcnlj9OJVqD0t+0KBmfCjyhC1RZlP/GGkTcT1XWLwYrMybClRv
-         HsHA==
+        d=chromium.org; s=google; t=1691398711; x=1692003511;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ivUPZKkU9V81XA/9ZzpML9/MoT2AN2Em4Cdug3APMqE=;
+        b=k8fdQc/jO9CQK9AMjUVaYJPPF2jGJAozl8L6QG33AYVjHyCCEaGfbC5AIX/6CcLksi
+         rkAK2yqBJ9RFvU4SquPBJRCd+ZDPS0HT+mOlMwi6RdyMz/upN9GfrgmN0J9s3PPUdFyB
+         E5sLEIa+3V5TvPiqn6O5to+Z1e1f7LyZVUOoM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691398581; x=1692003381;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zTR/u2PpG3LKb8wVdD7nsllACEqpd45z6GcRCQZJTqE=;
-        b=WSnDwbCsb5I5U2mwbwRgYrQfm/DIbVCcwASogrZrkqRZWDT+311gtHrsI0N6cyZN8w
-         sk7fHpZn3MlPzTf6CUBalHSSoQSXVypI3fYosHiGndDPg2spt6A8bnSO+S82awroOQ9n
-         qvY24uSO1TO8W65ZiEhULqJjqgb2bsu21H9j/2LL2Lj1eNQiIrYISs/OxPnY4RKMQGCR
-         RtYDzMBIH9mrAoUulRa3C25/Yz02OqFPryfY5tDx83QFsAKLm5onH0BY/ixTRbyuJ9Wj
-         8Mqd/52Gh6K1l4MFVf2qIXGQRUA0HqnTirz+a4Mtr7K6zVPKf6t9eJmTPcx5hQUh36cK
-         +96A==
-X-Gm-Message-State: AOJu0Yzpmjg5BiL7giCxHOyRZ48WF3xBx05a+LBsCACzywiP4FpJhtgA
-        R+2xCeBhlROOMNraXJuHpCxBLqzDWRui1IX/oAAiDA==
-X-Google-Smtp-Source: AGHT+IEz8bMj8U7s2yoRZBwu0+uMDX8L1rdxKLELEeUY1Cg3hgASws6siBfe5bn9m1H3rny67X2StZqhmW7DsuKoDW0=
-X-Received: by 2002:a25:c345:0:b0:d0f:926b:c734 with SMTP id
- t66-20020a25c345000000b00d0f926bc734mr7593218ybf.61.1691398580784; Mon, 07
- Aug 2023 01:56:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com> <20230724063520.182888-2-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20230724063520.182888-2-alexander.stein@ew.tq-group.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 7 Aug 2023 10:56:09 +0200
-Message-ID: <CACRpkdZFqkn8epsP2OVDO-+Di9ymxe+n02+9Wcc4MAT5ea7GrQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: leds: Add gpio-line-names to PCA9532 GPIO
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1691398711; x=1692003511;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ivUPZKkU9V81XA/9ZzpML9/MoT2AN2Em4Cdug3APMqE=;
+        b=CVvkgH8b8JjNR5+XTnzPkush1e1jY2DTQQZMZ7AsckX8r/09b7XMiO3SXtaLQ/B+FM
+         LF9yRtH6KIOfod5W9OAmL1S0DWglS4S+YAUPe1UCEn4QN6StAPApZdEluM7IeZAT4Aea
+         /urO0lXBeEoo0W6lu8wiDyV8+/wqLyeFvR9gwjXyPasIUgu59oZ54zBuxogevT3se9w2
+         d4CBJyNF8Gb/Upj94jGZGMX6Gf/68sZS0tq9GVoqlMOHm9i8p6EYT96+YUh9xRU/nE0Y
+         j/qoDQr9cOKwL1wsctM0NXRUYr/g9AB4MQzDRSSLCrhAWSs2YnlPdMi/fL6XikPvXsSj
+         lmUA==
+X-Gm-Message-State: AOJu0Ywk01GtRes2oIZ7l0ATjxXJ4+SsHNkqIanE7PmdQkBXOeCSWiZN
+        5WzHbR/JnrfGrzYMBr/qYesfnw==
+X-Google-Smtp-Source: AGHT+IFdeJORfRK7L+sj/NaxVhQeqQYdqhFUl6jyK8r0GnET7N4tBUbW1ngbqwX7Pj6YJBp7RXGPeQ==
+X-Received: by 2002:a17:902:ec92:b0:1b8:b827:aa8e with SMTP id x18-20020a170902ec9200b001b8b827aa8emr8776343plg.11.1691398710772;
+        Mon, 07 Aug 2023 01:58:30 -0700 (PDT)
+Received: from localhost (97.176.124.34.bc.googleusercontent.com. [34.124.176.97])
+        by smtp.gmail.com with UTF8SMTPSA id q9-20020a170902b10900b001b8622c1ad2sm6286044plr.130.2023.08.07.01.58.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 01:58:30 -0700 (PDT)
+From:   Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Google-Original-From: Hsin-Te Yuan <yuanhsinte@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Hsin-Te Yuan <yuanhsinte@google.com>
+Subject: [PATCH] arm64: dts: mt8195: change watchdog reset boot flow
+Date:   Mon,  7 Aug 2023 08:58:12 +0000
+Message-ID: <20230807085811.1.I7d08b8323531c59c0ec247570b2d05a790bfd3d4@changeid>
+X-Mailer: git-send-email 2.41.0.585.gd2178a4bd4-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 8:35=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
+The external output reset signal was originally disabled and sent from
+firmware. However, an unfixed bug in the firmware prevents the signal
+from being sent, causing the device to fail to boot. To fix this, enable
+external output reset signal to allow the device to reboot normally.
 
-> This is a gpio-controller, so gpio-line-names should be allowed as well.
-> pca9532 supports up to 16 GPIOs.
->
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@google.com>
+---
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+ arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Yours,
-Linus Walleij
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+index 37a3e9de90ff7..5dc4214e1840b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+@@ -1147,6 +1147,10 @@ &uart0 {
+ 	status = "okay";
+ };
+ 
++&watchdog {
++	/delete-property/ mediatek,disable-extrst;
++};
++
+ &xhci0 {
+ 	status = "okay";
+ 
+-- 
+2.41.0.585.gd2178a4bd4-goog
+
