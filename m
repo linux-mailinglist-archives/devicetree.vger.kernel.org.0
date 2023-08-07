@@ -2,223 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67555772860
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 16:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4912577287D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 17:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbjHGO6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 10:58:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60070 "EHLO
+        id S229924AbjHGPCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 11:02:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbjHGO6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 10:58:00 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8215010FC;
-        Mon,  7 Aug 2023 07:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=v8cnprTcRW0lb/rZREcoQQN63RLmD3dHcAJ9oi0D9NM=; b=cpmFuoqVi7per+0qehgdVtvb5A
-        PzKNjAmfpcH8XLpPcWxKavt20H5SDXO2wq+VWpHrZq0B5WZ6SZPgyrpHfgG4LIIUQzoWSRMTULYcl
-        EvWPbVYIWkGJMrBL1VN8oGOmNtUGvGzPMF/sMv8L0CpDBqhMtm7rxUvT7AVRq7xzWy5E=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:40284 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qT1fg-0003y0-5w; Mon, 07 Aug 2023 10:57:25 -0400
-Date:   Mon, 7 Aug 2023 10:57:23 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org, Lech Perczak <lech.perczak@camlingroup.com>
-Message-Id: <20230807105723.0ae2cf72e1925e074a9256ad@hugovil.com>
-In-Reply-To: <2023080433-depravity-debate-57d3@gregkh>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
-        <20230725142343.1724130-5-hugo@hugovil.com>
-        <2023073118-mousiness-sandlot-6258@gregkh>
-        <20230803121449.bcf74899e062ca39dfb073a3@hugovil.com>
-        <2023080415-kinetic-repurpose-030a@gregkh>
-        <20230804101554.c63202df93481bd5728bd3f1@hugovil.com>
-        <2023080433-depravity-debate-57d3@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S229689AbjHGPCH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 11:02:07 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.65.254])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125D510CA
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 08:02:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=biqu3d.com;
+        s=tfld2305; t=1691420496;
+        bh=kNVEUFAVbS7sLP87QPT3dDszG0RMz4xD/Y9tyFDq03g=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From;
+        b=LxJq7v5tzitRGbXcOgAYx5C9/jORuBj7/3879rOQ/DpAPexwADzMy/G0I8RzXDaCY
+         Fc8aqaYhdsxq+QzoFxz+mMkY6GOcOX18fZesYa0sMEXTkV+4W/DQherjmrqnByVU5V
+         Tk73REr96JDsr6tdUlETtgB/ZCa/rbJ2O8PFXn/Y=
+X-QQ-mid: bizesmtp65t1691420492tlem05vv
+Received: from [192.168.2.144] ( [178.41.211.221])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Mon, 07 Aug 2023 23:01:20 +0800 (CST)
+X-QQ-SSF: 01400000000000803000000A0000000
+X-QQ-FEAT: vLOCICHxEeDuURQkrq4byYu69a2AxguMzD+YTtCk31skVC+RB3e/NzUVuEsKY
+        o3uR5vLOje3vb56E15ctcOVyd6F8mfwZqWNGTu1AN7XXEMzrLsUpt6jpGtXj8Xs8KVUV2GD
+        Um8qkcAo4uY0beuH86GJ25VjvJt7eb9zu3np1/0B6GJzJ3vJ/A7333Ojbs2y3dBgzgc2gNk
+        Hj2mUYM6IdQJbwgoSChlUD1OWhYUvR6qsi50EWgCKr2Ale9Ytx/k178AYpdSceQDFK9n0S3
+        luF/vzOg9EJksY+uHIV2lgvKGUBY/0EW30BrO/k80VwMTrLNKp2jFp8+vMuf2ifaC7IQPUQ
+        VNlwL6+HWe+BnfrdOb6PBZnJvtAnj4Kac+hQHclC6C2ygio3hhCTdazg06nGoKhmL6YdBjj
+        90t5wjGEKTA=
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 10160666789589212089
+Message-ID: <A5FB84817C757588+1d5864c8-7059-5195-1f3a-617015f3e9ab@biqu3d.com>
+Date:   Mon, 7 Aug 2023 17:01:19 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi
+ support
+Content-Language: en-US
+To:     Martin Botka <martin.botka1@gmail.com>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <20230807145349.2220490-1-martin@biqu3d.com>
+ <09BFA974F83AB0E8+20230807145349.2220490-5-martin@biqu3d.com>
+From:   Martin Botka <martin@biqu3d.com>
+In-Reply-To: <09BFA974F83AB0E8+20230807145349.2220490-5-martin@biqu3d.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:biqu3d.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v9 04/10] serial: sc16is7xx: refactor GPIO controller
- registration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Aug 2023 17:09:13 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+Forgot to mark it but no changes from v3 in this patch.
 
-> On Fri, Aug 04, 2023 at 10:15:54AM -0400, Hugo Villeneuve wrote:
-> > On Fri, 4 Aug 2023 15:14:18 +0200
-> > Greg KH <gregkh@linuxfoundation.org> wrote:
-> > 
-> > > On Thu, Aug 03, 2023 at 12:14:49PM -0400, Hugo Villeneuve wrote:
-> > > > On Mon, 31 Jul 2023 17:55:42 +0200
-> > > > Greg KH <gregkh@linuxfoundation.org> wrote:
-> > > > 
-> > > > > On Tue, Jul 25, 2023 at 10:23:36AM -0400, Hugo Villeneuve wrote:
-> > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > > > 
-> > > > > > In preparation for upcoming patch "fix regression with GPIO
-> > > > > > configuration". To facilitate review and make code more modular.
-> > > > > 
-> > > > > I would much rather the issue be fixed _before_ the code is refactored,
-> > > > > unless it is impossible to fix it without the refactor?
-> > > > 
-> > > > Hi Greg,
-> > > > normally I would agree, but the refactor in this case helps a lot to
-> > > > address some issues raised by you and Andy in V7 of this series.
-> > > > 
-> > > > Maybe I could merge it with the actual patch "fix regression with GPIO
-> > > > configuration"?
-> > > 
-> > > Sure.
-> > 
-> > Hi Greg,
-> > will do.
-> > 
-> >  
-> > > > > > Cc: <stable@vger.kernel.org> # 6.1.x
-> > > > > 
-> > > > > What commit id does this fix?
-> > > > 
-> > > > It doesn't fix anything, but I tought that I needed this tag since
-> > > > this patch is a prerequisite for the next patch in the series, which
-> > > > would be applied to stable kernels. I will remove this tag (assuming
-> > > > the patch stays as it is, depending on your answer to the above
-> > > > question).
-> > > > 
-> > > >  
-> > > > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > > > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
-> > > > > > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
-> > > > > > ---
-> > > > > >  drivers/tty/serial/sc16is7xx.c | 40 ++++++++++++++++++++--------------
-> > > > > >  1 file changed, 24 insertions(+), 16 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-> > > > > > index 32d43d00a583..5b0aeef9d534 100644
-> > > > > > --- a/drivers/tty/serial/sc16is7xx.c
-> > > > > > +++ b/drivers/tty/serial/sc16is7xx.c
-> > > > > > @@ -332,6 +332,7 @@ struct sc16is7xx_one {
-> > > > > >  
-> > > > > >  struct sc16is7xx_port {
-> > > > > >  	const struct sc16is7xx_devtype	*devtype;
-> > > > > > +	struct device			*dev;
-> > > > > 
-> > > > > Why is this pointer needed?
-> > > > > 
-> > > > > Why is it grabbed and yet the reference count is never incremented?  Who
-> > > > > owns the reference count and when will it go away?
-> > > > > 
-> > > > > And what device is this?  The parent?  Current device?  What type of
-> > > > > device is it?  And why is it needed?
-> > > > > 
-> > > > > Using "raw" devices is almost never something a driver should do, they
-> > > > > are only passed into functions by the driver core, but then the driver
-> > > > > should instantly turn them into the "real" structure.
-> > > > 
-> > > > We already discussed that a lot in previous versions (v7)... I am
-> > > > trying my best to modify the code to address your concerns, but I am
-> > > > not fully understanding what you mean about raw devices, and you didn't
-> > > > answer some of my previous questions/interrogations in v7 about that.
-> > > 
-> > > I don't have time to answer all questions, sorry.
-> > > 
-> > > Please help review submitted patches to reduce my load and allow me to
-> > > answer other stuff :)
-> > 
-> > Ok.
-> > 
-> > 
-> > > > So, in the new function that I
-> > > > need to implement, sc16is7xx_setup_gpio_chip(), I absolutely need to use
-> > > > a raw device to read a device tree property and to set
-> > > > s->gpio.parent:
-> > > > 
-> > > >     count = device_property_count_u32(dev, ...
-> > > >     ...
-> > > >     s->gpio.parent = dev;
-> > > > 
-> > > > Do we agree on that?
-> > > 
-> > > Yes, but what type of parent is that?
-> > 
-> > I am confused by your question. I do not understand why the type of
-> > parent matters... And what do you call the parent: s, s->gpio or
-> > s->gpio.parent?
-> > 
-> > For me, the way I understand it, the only question that matters is how I
-> > can extract the raw device structure pointer from maybe "struct
-> > sc16is7xx_port" or some other structure, and then use it in my
-> > new function...
-> > 
-> > I should not have put "s->gpio.parent = dev" in the example, I think it
-> > just complexifies things. Lets start over with a more simple example and
-> > only:
-> > 
-> >     count = device_property_count_u32(dev, ...
-> > 
-> > 
-> > > > Then, how do I pass this raw device to the 
-> > > > device_property_count_u32() function and to the s->gpio.parent
-> > > > assignment?
-> > > > 
-> > > > Should I modify sc16is7xx_setup_gpio_chip() like so:
-> > > > 
-> > > >     static int sc16is7xx_setup_gpio_chip(struct sc16is7xx_port *s)
-> > > >     {
-> > > > 	struct device *dev = &s->p[0].port.dev;
-> > > > 
-> > > >         count = device_property_count_u32(dev, ...
-> > > >         ...
-> > > >         s->gpio.parent = dev;
-> > > 
-> > > Again, what is the real type of that parent?  It's a port, right, so
-> > > pass in the port to this function and then do the "take the struct
-> > > device of the port" at that point in time.
-> > 
-> > With the simplified example, is the following ok:
-> > 
-> > static int sc16is7xx_setup_gpio_chip(struct sc16is7xx_port *s)
-> > {
-> >     struct device *dev = &s->p[0].port.dev;
-> > 
-> >     count = device_property_count_u32(dev, ...
-> >     ...
-> > }
-> > 
-> > If not, please indicate how you would do it with an actual example...
+On 8/7/23 4:53 PM, Martin Botka wrote:
+> The BigTreeTech Pi is an H616 based board based on CB1.
+> Just in Rpi format board.
 > 
-> At this point, after reviewing 500+ patches today, I really have no
-> idea, my brain is fried.  Do what you think is right here and submit a
-> new series and I'll be glad to review it.
-
-Ok :)
-
-Will do.
-
-Hugo.
+> It features the same internals as BTT CB1 but adds:
+>      - Fan port
+>      - IR receiver
+>      - ADXL345 Accelerometer connector via SPI
+>      - 24V DC power supply via terminal plugs
+>      - USB to CAN module connector (The actual USB to CAN happens on the external module)
+> 
+> List of currently working things is same as BTT CB1 but also:
+>      - IR receiver
+>      - ADXL345 connector
+> 
+> Signed-off-by: Martin Botka <martin@biqu3d.com>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+> Changes in V2:
+>      - Add UART alongside aliases and chosen for it
+>      - Add model string
+>      - Enable IR receiver
+>      - Enable SPI0 for ADXL345 connector
+> Changes in V3:
+>      - Add missing semicolons
+>      - Add pinctrl for SPI0
+> 
+>   arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+>   .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 70 +++++++++++++++++++
+>   2 files changed, 71 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 7b386428510b..0b6232a7f328 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -39,5 +39,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> new file mode 100644
+> index 000000000000..b0d0386e8f13
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> @@ -0,0 +1,70 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> +/*
+> + * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-h616-bigtreetech-cb1.dtsi"
+> +
+> +/ {
+> +	model = "BigTreeTech Pi";
+> +	compatible = "bigtreetech,pi", "allwinner,sun50i-h616";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&ehci0 {
+> +	status = "okay";
+> +};
+> +
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +&ehci2 {
+> +	status = "okay";
+> +};
+> +
+> +&ehci3 {
+> +	status = "okay";
+> +};
+> +
+> +&ir {
+> +	status = "okay";
+> +};
+> +
+> +&ohci0 {
+> +	status = "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status = "okay";
+> +};
+> +
+> +&ohci2 {
+> +	status = "okay";
+> +};
+> +
+> +&ohci3 {
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	/* SPI connection for onboard connector for ADXL345 accelerometer */
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_ph_pins>;
+> +	status = "okay";
+> +};
