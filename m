@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22C30771C9C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 10:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C112A771CA2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 10:54:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbjHGIxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 04:53:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39864 "EHLO
+        id S231200AbjHGIyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 04:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230320AbjHGIxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 04:53:22 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24D0010FE
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 01:53:21 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d43930354bcso2064328276.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 01:53:21 -0700 (PDT)
+        with ESMTP id S231178AbjHGIyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 04:54:03 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D24F10FE
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 01:54:01 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-d4f022c6c91so1401161276.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 01:54:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691398400; x=1692003200;
+        d=linaro.org; s=google; t=1691398440; x=1692003240;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VywFqzUwRikyUxE2DnI0oGd/yMt91JTP1bpULF3P/rA=;
-        b=egGsPsWx79ZytXzS8jR876wuwAbVGlnQuNZOvxqrHvHDhZQBDdrpt8HylWcVSaBbFO
-         0nhXfW1vWhDObm6zGgd7Z0RJ2nKkSXVLkHq6HgMAOCey1OUZBhym91aEt/m/W6ZE1lJ0
-         5+rwb4JrT3E4CUGRUh8hyaE3N/ndRccbQyiWSMNVbgQnD8bQNiODFt0iEAP1PeXojTaX
-         xdYJM4z8Iy6Us1Qj+/qHDoc86g4gbfALQ1RAcvaYia1ypCteA7nHLqgNRt6KPiM9I/yB
-         a4ngMaxavijmNe8qRGgnz0/Sb+Pg59piibfchNBgP1cBL21wZVktIzZ+KUdEIg/d787G
-         P68A==
+        bh=QeF5Rq6ezVVBpQULtHVMCwxuhR7zC8qg0BvYuicBYII=;
+        b=u14yqO7GtyZkl2aLiTuZX9kAyeFzKq703yLHusK3SvNEn3XmYb7NDt+7TgtMsEdjsz
+         IslQv34ZnzVbNNqFhoAbWTW87nVX1LsB5gJE4nRvg32ulBZ6+mdBrMz1AjW2v326pFA+
+         WrhZilbLj6tt7vAwX2VVjbBzeYBF+O66g65fKqgizd1DmEZLm5dt03aORtXMOxZ1wEvY
+         iHYeezAmf6tPeU5qDDj3BLksp7oWqiBgfOKMxDEn1ctEqDfNBerIYC2TqMUUjGh3Gm1Y
+         cL9JcLIZJ7D5Ozje6VjmnK9gSUTM1SHJv/fnmepolCDOJK9ufF+EqDxX6ZuetPxHrEE9
+         Pzvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691398400; x=1692003200;
+        d=1e100.net; s=20221208; t=1691398440; x=1692003240;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VywFqzUwRikyUxE2DnI0oGd/yMt91JTP1bpULF3P/rA=;
-        b=dqmTw2FSxekhn+eaY3s74OTQ+v4u4r4xWW5rHPgIZETLOj1FG3ELZc8AypKxfg6bGm
-         2KAY/FBedJrVniVT0VFIAlRRLpgimH+rL6okAc4LLI9GheFgfKTNapDKu0CqjiRfIQiA
-         cuSBQwAKQgbOwXr8RyBETZjsMMAMK/pLuZZW726/f9fUCKyn1vyMF4ZdFcNuQk23t4PO
-         ouzxzzqe5bj+eMCdugjkASSt0Kqude8GxX8Ro2MHOCNbyLmAsWQmm1nReLhZSfjk+8mO
-         zDdeA7U9ZTeUtxVSpzvpJ/EqM4v/8iNyJAwF+jOnja1CUYoasEM5MjGI24Td7++sdU4G
-         rDsg==
-X-Gm-Message-State: AOJu0Yw0vmAPbQGOY0Lfvo+hNjzICwH5zK66uHZhbzltznLHKt64klFD
-        O6W4JklGxkwwPDKk/ti2PKTSVf3KgHklC1eQ1qjW4Q==
-X-Google-Smtp-Source: AGHT+IEz46EERtshtV203W5qQhkfPicBxkUGXbBmQJ7UNsJLN8Ep2x9oUFL1iiaNTNCKH0BmTltIYftcXDjCPL9MIEk=
-X-Received: by 2002:a25:c343:0:b0:ced:44f6:2d73 with SMTP id
- t64-20020a25c343000000b00ced44f62d73mr7277101ybf.50.1691398400362; Mon, 07
- Aug 2023 01:53:20 -0700 (PDT)
+        bh=QeF5Rq6ezVVBpQULtHVMCwxuhR7zC8qg0BvYuicBYII=;
+        b=URuTIN7Vu/soOD2oDpElfRIJrVR/cp5zXuIwHva8ClSJNcNZwSFL7RXy+5v2X2CCwU
+         3fJlAr5SDWPY0i7RmPGVIua9qQW31ZGFjQfSw1YajqWmJRCNTA9tESozEZWPOD36t/t0
+         nmbRz0+X0p3rNtPHDb8Ndu7oTgLCQtkSn3lu1dzldoOGMpdJYgJrxCdJvdvTgACUH3tO
+         CtgXozs/9GGC+gy60SfVvgxnfAoNj8/TB3p0pakRW3YYA4ckuNMCCLcHAU0Ph5qiZJv4
+         GxD9KaADCSatlMZ3PCfwRd+i9jsMKjl/zt9C1iQcEaU6KsawcsmHifVJDEUoAfYbOG/9
+         +QTw==
+X-Gm-Message-State: AOJu0YzlcA9cW5JGK/cczTF+cF2EbERtTB4Xhin/EJcolmkddhEGscCo
+        cYSiFeN8JyLmtUNRkIpEEcjOkZ0hwz3UX982nl0hYQ==
+X-Google-Smtp-Source: AGHT+IFHv86Jsl6/7WkZ07IOOIjjHtRvTVAuY5BH8iBoYJcYDq/HAi6+yMz2REL09FmYDxt3gPGBTsuRHCXbiFfpSBw=
+X-Received: by 2002:a25:bf8c:0:b0:d35:c50c:8ed7 with SMTP id
+ l12-20020a25bf8c000000b00d35c50c8ed7mr8145421ybk.24.1691398440283; Mon, 07
+ Aug 2023 01:54:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230722-topic-6115_lpasstlmm-v2-0-d4883831a858@linaro.org>
-In-Reply-To: <20230722-topic-6115_lpasstlmm-v2-0-d4883831a858@linaro.org>
+References: <20230722-topic-6115_lpasstlmm-v2-0-d4883831a858@linaro.org> <20230722-topic-6115_lpasstlmm-v2-3-d4883831a858@linaro.org>
+In-Reply-To: <20230722-topic-6115_lpasstlmm-v2-3-d4883831a858@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 7 Aug 2023 10:53:09 +0200
-Message-ID: <CACRpkdY+7Ax8Fk4jPLvo_iS1=bggTcFnv9vzUXRS2dNQPxq14A@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] SM6115 LPASS TLMM
+Date:   Mon, 7 Aug 2023 10:53:49 +0200
+Message-ID: <CACRpkdY6K9_PcQa-w4EiVfJVPq8aivuHQPMwrRbH=PmpT0Ordg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: defconfig: enable Qualcomm SM6115 LPASS pinctrl
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -80,19 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 1:39=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
+On Mon, Jul 24, 2023 at 1:40=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
 .org> wrote:
 
-> Konrad Dybcio (3):
->       dt-bindings: pinctrl: qcom,sm6115-lpass-lpi: add SM6115 LPASS TLMM
->       pinctrl: qcom: Introduce SM6115 LPI pinctrl driver
+> Enable the Qualcomm SM6115 LPASS TLMM pin controller driver for
+> providing GPIOs/pins for audio block on SM6115 based boards (e.g.
+> QTI RB2).
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-These two applied to the pinctrl tree. Great work on this series BTW,
-thanks for Krzysztof for review help!
-
->       arm64: defconfig: enable Qualcomm SM6115 LPASS pinctrl
-
-Please funnel this patch into the SoC tree.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
