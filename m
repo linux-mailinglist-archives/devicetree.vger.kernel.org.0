@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D11E8771B56
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 09:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5356F771B7F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 09:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbjHGHQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 03:16:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
+        id S230022AbjHGH3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 03:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231516AbjHGHQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 03:16:50 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D2910CC;
-        Mon,  7 Aug 2023 00:16:48 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe655796faso1661492e87.2;
-        Mon, 07 Aug 2023 00:16:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691392606; x=1691997406;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dCqnFyrjsmevM40T7DHS4yZwJmU6Dycu4PUEvSwweko=;
-        b=bK+/7AyhvhEDrmKmq4j3DTLDJB1DgRKG7ep/CN10+wAhoqCCGVRiRXjyzlD8nmaO09
-         a2r+Y6+yY+hkfBW+1/l/iAjNtVRudSPVCoTrFcmG63DXACfZLjC2X40xLSXgxVgIrPUU
-         j46jY7RO1aY31cvjIrDfy9YEtN/goAY/WEuvwmfLLT6wD5jnc4ia/wlapkfFi7J3Z09b
-         WHi+im43lZ5GpxLVl9Gp/8xVABQI/rYec0qF0SvYLdJRyDg7G8NCItZNcsQTi1hgg0kN
-         RhAcz/Mi33lAOyT/BR+1LCHFfN99xso+ULVcxho+e04jQB7gVDH+YpuH4eCct+LaQDtq
-         C3dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691392606; x=1691997406;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dCqnFyrjsmevM40T7DHS4yZwJmU6Dycu4PUEvSwweko=;
-        b=ISG+Wj0ObHXGHkjzrO115J4SSB44ay7xXCembwpXKaCxR9DTPGEU9weT066Ow2VXN7
-         aMFlcN/iB1P0EwFFG29zVnVIoH3ZGFWLwh9+mquFUNKn9Eh+A53Q7NNRF0dBhQgJb0QM
-         dDxP+cP53M2nmnRevu9fajmOg8KcqPIznqwVIKSvrVhynUcCF9i9QFDbL5lxK7e075zv
-         67LLvMI3s8c+HOooyXEvrviY56Ufc1cr/yma+ZDA5VbuIx9GOeT0BnVDOu3jZcPFRRz7
-         yxcy2ARM4p0I9BZS6eNeLebRJBko9oeCK3N0BuLeLIaJy97Ogm01VBruloYi94P26+93
-         TMqA==
-X-Gm-Message-State: AOJu0Yw8NSVNXdeBXp7JObceno0GOZhcqFmZV1qexA9nb0YzWhaBb4Ee
-        m4QWOZOzbss4MK5Z228AzUs=
-X-Google-Smtp-Source: AGHT+IE4oXeu2ur+BvESAaBbmLBmYtDQyUTl7uuZzuhSCP8y4bLnxBmZmU4D0wT4H//sgwsVkyRCHw==
-X-Received: by 2002:ac2:5f69:0:b0:4f8:5717:e421 with SMTP id c9-20020ac25f69000000b004f85717e421mr4851606lfc.40.1691392605910;
-        Mon, 07 Aug 2023 00:16:45 -0700 (PDT)
-Received: from localhost.localdomain (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id v4-20020ac25924000000b004fe3d7861ccsm1398283lfi.180.2023.08.07.00.16.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Aug 2023 00:16:44 -0700 (PDT)
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229673AbjHGH3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 03:29:00 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA09D10F4
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 00:28:58 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qSufh-0001QK-DQ
+        for devicetree@vger.kernel.org; Mon, 07 Aug 2023 09:28:57 +0200
+Received: from dspam.blackshift.org (localhost [127.0.0.1])
+        by bjornoya.blackshift.org (Postfix) with SMTP id CCEC52058BD
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 07:28:56 +0000 (UTC)
+Received: from hardanger.blackshift.org (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by bjornoya.blackshift.org (Postfix) with ESMTPS id A5F8A2058B0;
+        Mon,  7 Aug 2023 07:28:53 +0000 (UTC)
+Received: from [172.20.34.65] (localhost [::1])
+        by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 3d094674;
+        Mon, 7 Aug 2023 07:28:53 +0000 (UTC)
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Date:   Mon, 07 Aug 2023 09:28:50 +0200
+Subject: [PATCH] Revert "riscv: dts: allwinner: d1: Add CAN controller
+ nodes"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230807-riscv-allwinner-d1-revert-can-controller-nodes-v1-1-eb3f70b435d9@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIADGd0GQC/x2NSwrDMAwFrxK0rsB2U/dzldCFsZVWYOQihbQQc
+ veYLofHvNnASJkMHsMGSisbN+ngTwPkd5IXIZfOEFw4u5u7orLlFVOtXxYhxeKxe6QL5iSYmyz
+ aau2DtEKG8TLHQG6M/p6hn36UZv79g9Nz3w8LpufJgAAAAA==
+To:     linux-can@vger.kernel.org
+Cc:     John Watts <contact@jookia.org>, kernel@pengutronix.de,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] iio: adc: mcp3911: add support for the whole MCP39xx family
-Date:   Mon,  7 Aug 2023 09:18:31 +0200
-Message-Id: <20230807071831.4152183-2-marcus.folkesson@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230807071831.4152183-1-marcus.folkesson@gmail.com>
-References: <20230807071831.4152183-1-marcus.folkesson@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+X-Mailer: b4 0.13-dev-099c9
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1973; i=mkl@pengutronix.de;
+ h=from:subject:message-id; bh=vUrCbLfFW1umHcNBDCaMWrYMwAzAml5hh8vVrEIpxqI=;
+ b=owEBbQGS/pANAwAKAb5QHEoqigToAcsmYgBk0J0y9XBPOwXg5qAWbtBKng7vWOKNUjlkAjCeI
+ vJv36L8zVqJATMEAAEKAB0WIQQOzYG9qPI0qV/1MlC+UBxKKooE6AUCZNCdMgAKCRC+UBxKKooE
+ 6DjbCACSnMGWq408y1/hhxSc6hvJR74UJgy3cIH9AiaMYbHraNzsdIVLBu00wakHgYc7iMugmbI
+ zzCRceBYG/1iRm1Ov7CWzuMdgdRYKMOj+QusBgq9gmoB7ENKdu2HyyYF/knvvz+s0L/lkF3Vz0W
+ VAcD+cODbYjigMa0QlhJdI0eaXi9yssJ5mNtEMm0e+yZX8RISUPGddRAoeP56OnAUn0AWK8RA6w
+ IFvKhrbXG+UIEPQE0q+l+A2GG5AoTvGsjBnZtwRA0R0BA+Q1UsTOuCY3e8le3SaQjo+Q+xqYAsk
+ RaI8TeSg2EmgZI6iH3SBAdSZ0uNYVKubvRGm0jQhVZQ1mElI
+X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
+ fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,654 +80,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Microchip does have many similar chips, add support for those.
+It turned out the dtsi changes were not quite ready, revert them for
+now.
 
-The new supported chips are:
-  - microchip,mcp3910
-  - microchip,mcp3912
-  - microchip,mcp3913
-  - microchip,mcp3914
-  - microchip,mcp3918
-  - microchip,mcp3919
+This reverts commit 6ea1ad888f5900953a21853e709fa499fdfcb317.
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+Link: https://lore.kernel.org/all/2690764.mvXUDI8C0e@jernej-laptop
+Suggested-by: Jernej Škrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 ---
+ arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 30 -----------------------
+ 1 file changed, 30 deletions(-)
 
-Notes:
-    v2:
-        - Use callbacks rather than matching against enum for determine chip variants
-    v3:
-        - Fix cosmetics
-
- drivers/iio/adc/Kconfig   |   5 +-
- drivers/iio/adc/mcp3911.c | 457 +++++++++++++++++++++++++++++++++-----
- 2 files changed, 401 insertions(+), 61 deletions(-)
-
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index eb2b09ef5d5b..9a9838430530 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -774,8 +774,9 @@ config MCP3911
- 	select IIO_BUFFER
- 	select IIO_TRIGGERED_BUFFER
- 	help
--	  Say yes here to build support for Microchip Technology's MCP3911
--	  analog to digital converter.
-+	  Say yes here to build support for Microchip Technology's MCP3910,
-+	  MCP3911, MCP3912, MCP3913, MCP3914, MCP3918 and MCP3919
-+	  analog to digital converters.
- 
- 	  This driver can also be built as a module. If so, the module will be
- 	  called mcp3911.
-diff --git a/drivers/iio/adc/mcp3911.c b/drivers/iio/adc/mcp3911.c
-index 974c5bd923a6..c987665ffc12 100644
---- a/drivers/iio/adc/mcp3911.c
-+++ b/drivers/iio/adc/mcp3911.c
-@@ -61,12 +61,55 @@
- #define MCP3911_REG_WRITE(reg, id)	((((reg) << 1) | ((id) << 6) | (0 << 0)) & 0xff)
- #define MCP3911_REG_MASK		GENMASK(4, 1)
- 
--#define MCP3911_NUM_CHANNELS		2
- #define MCP3911_NUM_SCALES		6
- 
-+/* Registers compatible with MCP3910 */
-+#define MCP3910_REG_STATUSCOM		0x0c
-+#define MCP3910_STATUSCOM_READ		GENMASK(23, 22)
-+#define MCP3910_STATUSCOM_DRHIZ         BIT(20)
-+
-+#define MCP3910_REG_GAIN		0x0b
-+
-+#define MCP3910_REG_CONFIG0		0x0d
-+#define MCP3910_CONFIG0_EN_OFFCAL	BIT(23)
-+#define MCP3910_CONFIG0_OSR		GENMASK(15, 13)
-+
-+#define MCP3910_REG_CONFIG1		0x0e
-+#define MCP3910_CONFIG1_CLKEXT		BIT(6)
-+#define MCP3910_CONFIG1_VREFEXT		BIT(7)
-+
-+#define MCP3910_REG_OFFCAL_CH0		0x0f
-+#define MCP3910_OFFCAL(x)		(MCP3910_REG_OFFCAL_CH0 + x * 6)
-+
-+/* Maximal number of channels used by the MCP39XX family */
-+#define MCP39XX_MAX_NUM_CHANNELS	8
-+
- static const int mcp3911_osr_table[] = { 32, 64, 128, 256, 512, 1024, 2048, 4096 };
- static u32 mcp3911_scale_table[MCP3911_NUM_SCALES][2];
- 
-+enum mcp3911_id {
-+	MCP3910,
-+	MCP3911,
-+	MCP3912,
-+	MCP3913,
-+	MCP3914,
-+	MCP3918,
-+	MCP3919,
-+};
-+
-+struct mcp3911;
-+struct mcp3911_chip_info {
-+	const struct iio_chan_spec *channels;
-+	unsigned int num_channels;
-+
-+	int (*config)(struct mcp3911 *adc);
-+	int (*get_osr)(struct mcp3911 *adc, int *val);
-+	int (*set_osr)(struct mcp3911 *adc, int val);
-+	int (*get_offset)(struct mcp3911 *adc, int channel, int *val);
-+	int (*set_offset)(struct mcp3911 *adc, int channel, int val);
-+	int (*set_scale)(struct mcp3911 *adc, int channel, int val);
-+};
-+
- struct mcp3911 {
- 	struct spi_device *spi;
- 	struct mutex lock;
-@@ -74,14 +117,15 @@ struct mcp3911 {
- 	struct clk *clki;
- 	u32 dev_addr;
- 	struct iio_trigger *trig;
--	u32 gain[MCP3911_NUM_CHANNELS];
-+	u32 gain[MCP39XX_MAX_NUM_CHANNELS];
-+	const struct mcp3911_chip_info *chip;
- 	struct {
--		u32 channels[MCP3911_NUM_CHANNELS];
-+		u32 channels[MCP39XX_MAX_NUM_CHANNELS];
- 		s64 ts __aligned(8);
- 	} scan;
- 
- 	u8 tx_buf __aligned(IIO_DMA_MINALIGN);
--	u8 rx_buf[MCP3911_NUM_CHANNELS * 3];
-+	u8 rx_buf[MCP39XX_MAX_NUM_CHANNELS * 3];
- };
- 
- static int mcp3911_read(struct mcp3911 *adc, u8 reg, u32 *val, u8 len)
-@@ -126,6 +170,98 @@ static int mcp3911_update(struct mcp3911 *adc, u8 reg, u32 mask,
- 	return mcp3911_write(adc, reg, val, len);
- }
- 
-+static int mcp3910_get_offset(struct mcp3911 *adc, int channel, int *val)
-+{
-+	return mcp3911_read(adc, MCP3910_OFFCAL(channel), val, 3);
-+}
-+
-+static int mcp3910_set_offset(struct mcp3911 *adc, int channel, int val)
-+{
-+	int ret;
-+
-+	/* Write offset */
-+	ret = mcp3911_write(adc, MCP3910_OFFCAL(channel), val, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable offset*/
-+	return mcp3911_update(adc, MCP3910_REG_CONFIG0,
-+			MCP3910_CONFIG0_EN_OFFCAL,
-+			MCP3910_CONFIG0_EN_OFFCAL, 3);
-+}
-+
-+static int mcp3911_get_offset(struct mcp3911 *adc, int channel, int *val)
-+{
-+	return mcp3911_read(adc, MCP3911_OFFCAL(channel), val, 3);
-+}
-+
-+static int mcp3911_set_offset(struct mcp3911 *adc, int channel, int val)
-+{
-+	int ret;
-+
-+	/* Write offset */
-+	ret = mcp3911_write(adc, MCP3911_OFFCAL(channel), val, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable offset */
-+	return mcp3911_update(adc, MCP3911_REG_STATUSCOM,
-+			MCP3911_STATUSCOM_EN_OFFCAL,
-+			MCP3911_STATUSCOM_EN_OFFCAL, 2);
-+}
-+
-+static int mcp3910_get_osr(struct mcp3911 *adc, int *val)
-+{
-+	int ret, osr;
-+
-+	ret = mcp3911_read(adc, MCP3910_REG_CONFIG0, val, 3);
-+	osr = FIELD_GET(MCP3910_CONFIG0_OSR, *val);
-+	*val = 32 << osr;
-+	return ret;
-+}
-+
-+static int mcp3910_set_osr(struct mcp3911 *adc, int val)
-+{
-+	int osr;
-+
-+	osr = FIELD_PREP(MCP3910_CONFIG0_OSR, val);
-+	return mcp3911_update(adc, MCP3910_REG_CONFIG0,
-+			MCP3910_CONFIG0_OSR, osr, 3);
-+}
-+
-+static int mcp3911_set_osr(struct mcp3911 *adc, int val)
-+{
-+	int osr;
-+
-+	osr = FIELD_PREP(MCP3911_CONFIG_OSR, val);
-+	return mcp3911_update(adc, MCP3911_REG_CONFIG,
-+			MCP3911_CONFIG_OSR, osr, 2);
-+}
-+
-+static int mcp3911_get_osr(struct mcp3911 *adc, int *val)
-+{
-+	int ret, osr;
-+
-+	ret = mcp3911_read(adc, MCP3911_REG_CONFIG, val, 2);
-+	osr = FIELD_GET(MCP3911_CONFIG_OSR, *val);
-+	*val = 32 << osr;
-+	return ret;
-+}
-+
-+static int mcp3910_set_scale(struct mcp3911 *adc, int channel, int val)
-+{
-+	return mcp3911_update(adc, MCP3910_REG_GAIN,
-+			MCP3911_GAIN_MASK(channel),
-+			MCP3911_GAIN_VAL(channel, val), 3);
-+}
-+
-+static int mcp3911_set_scale(struct mcp3911 *adc, int channel, int val)
-+{
-+	return mcp3911_update(adc, MCP3911_REG_GAIN,
-+			MCP3911_GAIN_MASK(channel),
-+			MCP3911_GAIN_VAL(channel, val), 1);
-+}
-+
- static int mcp3911_write_raw_get_fmt(struct iio_dev *indio_dev,
- 					struct iio_chan_spec const *chan,
- 					long mask)
-@@ -182,20 +318,18 @@ static int mcp3911_read_raw(struct iio_dev *indio_dev,
- 		break;
- 
- 	case IIO_CHAN_INFO_OFFSET:
--		ret = mcp3911_read(adc,
--				   MCP3911_OFFCAL(channel->channel), val, 3);
-+
-+		ret = adc->chip->get_offset(adc, channel->channel, val);
- 		if (ret)
- 			goto out;
- 
- 		ret = IIO_VAL_INT;
- 		break;
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
--		ret = mcp3911_read(adc, MCP3911_REG_CONFIG, val, 2);
-+		ret = adc->chip->get_osr(adc, val);
- 		if (ret)
- 			goto out;
- 
--		*val = FIELD_GET(MCP3911_CONFIG_OSR, *val);
--		*val = 32 << *val;
- 		ret = IIO_VAL_INT;
- 		break;
- 
-@@ -226,9 +360,7 @@ static int mcp3911_write_raw(struct iio_dev *indio_dev,
- 				val2 == mcp3911_scale_table[i][1]) {
- 
- 				adc->gain[channel->channel] = BIT(i);
--				ret = mcp3911_update(adc, MCP3911_REG_GAIN,
--						MCP3911_GAIN_MASK(channel->channel),
--						MCP3911_GAIN_VAL(channel->channel, i), 1);
-+				ret = adc->chip->set_scale(adc, channel->channel, i);
- 			}
- 		}
- 		break;
-@@ -238,24 +370,13 @@ static int mcp3911_write_raw(struct iio_dev *indio_dev,
- 			goto out;
- 		}
- 
--		/* Write offset */
--		ret = mcp3911_write(adc, MCP3911_OFFCAL(channel->channel), val,
--				    3);
--		if (ret)
--			goto out;
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index 4086c0cc0f9d..1bb1e5cae602 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -131,18 +131,6 @@ uart3_pb_pins: uart3-pb-pins {
+ 				pins = "PB6", "PB7";
+ 				function = "uart3";
+ 			};
 -
--		/* Enable offset*/
--		ret = mcp3911_update(adc, MCP3911_REG_STATUSCOM,
--				MCP3911_STATUSCOM_EN_OFFCAL,
--				MCP3911_STATUSCOM_EN_OFFCAL, 2);
-+		ret = adc->chip->set_offset(adc, channel->channel, val);
- 		break;
+-			/omit-if-no-ref/
+-			can0_pins: can0-pins {
+-				pins = "PB2", "PB3";
+-				function = "can0";
+-			};
+-
+-			/omit-if-no-ref/
+-			can1_pins: can1-pins {
+-				pins = "PB4", "PB5";
+-				function = "can1";
+-			};
+ 		};
  
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
- 		for (int i = 0; i < ARRAY_SIZE(mcp3911_osr_table); i++) {
- 			if (val == mcp3911_osr_table[i]) {
--				val = FIELD_PREP(MCP3911_CONFIG_OSR, i);
--				ret = mcp3911_update(adc, MCP3911_REG_CONFIG, MCP3911_CONFIG_OSR,
--						val, 2);
-+				ret = adc->chip->set_osr(adc, i);
- 				break;
- 			}
- 		}
-@@ -326,12 +447,60 @@ static int mcp3911_calc_scale_table(struct mcp3911 *adc)
- 		},						\
- }
- 
-+static const struct iio_chan_spec mcp3910_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	IIO_CHAN_SOFT_TIMESTAMP(2),
-+};
-+
- static const struct iio_chan_spec mcp3911_channels[] = {
- 	MCP3911_CHAN(0),
- 	MCP3911_CHAN(1),
- 	IIO_CHAN_SOFT_TIMESTAMP(2),
- };
- 
-+static const struct iio_chan_spec mcp3912_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	MCP3911_CHAN(3),
-+	IIO_CHAN_SOFT_TIMESTAMP(4),
-+};
-+
-+static const struct iio_chan_spec mcp3913_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	MCP3911_CHAN(3),
-+	MCP3911_CHAN(4),
-+	MCP3911_CHAN(5),
-+	IIO_CHAN_SOFT_TIMESTAMP(6),
-+};
-+
-+static const struct iio_chan_spec mcp3914_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	MCP3911_CHAN(3),
-+	MCP3911_CHAN(4),
-+	MCP3911_CHAN(5),
-+	MCP3911_CHAN(6),
-+	MCP3911_CHAN(7),
-+	IIO_CHAN_SOFT_TIMESTAMP(8),
-+};
-+
-+static const struct iio_chan_spec mcp3918_channels[] = {
-+	MCP3911_CHAN(0),
-+	IIO_CHAN_SOFT_TIMESTAMP(1),
-+};
-+
-+static const struct iio_chan_spec mcp3919_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	IIO_CHAN_SOFT_TIMESTAMP(3),
-+};
-+
- static irqreturn_t mcp3911_trigger_handler(int irq, void *p)
- {
- 	struct iio_poll_func *pf = p;
-@@ -343,7 +512,7 @@ static irqreturn_t mcp3911_trigger_handler(int irq, void *p)
- 			.len = 1,
- 		}, {
- 			.rx_buf = adc->rx_buf,
--			.len = sizeof(adc->rx_buf),
-+			.len = (adc->chip->num_channels - 1) * 3,
- 		},
+ 		ccu: clock-controller@2001000 {
+@@ -891,23 +879,5 @@ rtc: rtc@7090000 {
+ 			clock-names = "bus", "hosc", "ahb";
+ 			#clock-cells = <1>;
+ 		};
+-
+-		can0: can@2504000 {
+-			compatible = "allwinner,sun20i-d1-can";
+-			reg = <0x02504000 0x400>;
+-			interrupts = <SOC_PERIPHERAL_IRQ(21) IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&ccu CLK_BUS_CAN0>;
+-			resets = <&ccu RST_BUS_CAN0>;
+-			status = "disabled";
+-		};
+-
+-		can1: can@2504400 {
+-			compatible = "allwinner,sun20i-d1-can";
+-			reg = <0x02504400 0x400>;
+-			interrupts = <SOC_PERIPHERAL_IRQ(22) IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&ccu CLK_BUS_CAN1>;
+-			resets = <&ccu RST_BUS_CAN1>;
+-			status = "disabled";
+-		};
  	};
- 	int scan_index;
-@@ -383,26 +552,9 @@ static const struct iio_info mcp3911_info = {
- 
- static int mcp3911_config(struct mcp3911 *adc)
- {
--	struct device *dev = &adc->spi->dev;
- 	u32 regval;
- 	int ret;
- 
--	ret = device_property_read_u32(dev, "microchip,device-addr", &adc->dev_addr);
--
--	/*
--	 * Fallback to "device-addr" due to historical mismatch between
--	 * dt-bindings and implementation
--	 */
--	if (ret)
--		device_property_read_u32(dev, "device-addr", &adc->dev_addr);
--	if (adc->dev_addr > 3) {
--		dev_err(&adc->spi->dev,
--			"invalid device address (%i). Must be in range 0-3.\n",
--			adc->dev_addr);
--		return -EINVAL;
--	}
--	dev_dbg(&adc->spi->dev, "use device address %i\n", adc->dev_addr);
--
- 	ret = mcp3911_read(adc, MCP3911_REG_CONFIG, &regval, 2);
- 	if (ret)
- 		return ret;
-@@ -439,7 +591,101 @@ static int mcp3911_config(struct mcp3911 *adc)
- 	regval &= ~MCP3911_STATUSCOM_READ;
- 	regval |= FIELD_PREP(MCP3911_STATUSCOM_READ, 0x02);
- 
--	return  mcp3911_write(adc, MCP3911_REG_STATUSCOM, regval, 2);
-+	regval &= ~MCP3911_STATUSCOM_DRHIZ;
-+	if (device_property_read_bool(&adc->spi->dev, "microchip,data-ready-hiz"))
-+		regval |= FIELD_PREP(MCP3911_STATUSCOM_DRHIZ, 0);
-+	else
-+		regval |= FIELD_PREP(MCP3911_STATUSCOM_DRHIZ, 1);
-+
-+	/* Disable offset to ignore any old values in offset register*/
-+	regval &= ~MCP3911_STATUSCOM_EN_OFFCAL;
-+
-+	ret =  mcp3911_write(adc, MCP3911_REG_STATUSCOM, regval, 2);
-+	if (ret)
-+		return ret;
-+
-+	/* Set gain to 1 for all channels */
-+	ret = mcp3911_read(adc, MCP3911_REG_GAIN, &regval, 1);
-+	if (ret)
-+		return ret;
-+
-+	for (int i = 0; i < adc->chip->num_channels - 1; i++) {
-+		adc->gain[i] = 1;
-+		regval &= ~MCP3911_GAIN_MASK(i);
-+	}
-+
-+	return mcp3911_write(adc, MCP3911_REG_GAIN, regval, 1);
-+}
-+
-+static int mcp3910_config(struct mcp3911 *adc)
-+{
-+	u32 regval;
-+	int ret;
-+
-+	ret = mcp3911_read(adc, MCP3910_REG_CONFIG1, &regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	regval &= ~MCP3910_CONFIG1_VREFEXT;
-+	if (adc->vref) {
-+		dev_dbg(&adc->spi->dev, "use external voltage reference\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_VREFEXT, 1);
-+	} else {
-+		dev_dbg(&adc->spi->dev,
-+			"use internal voltage reference (1.2V)\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_VREFEXT, 0);
-+	}
-+
-+	regval &= ~MCP3910_CONFIG1_CLKEXT;
-+	if (adc->clki) {
-+		dev_dbg(&adc->spi->dev, "use external clock as clocksource\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_CLKEXT, 1);
-+	} else {
-+		dev_dbg(&adc->spi->dev,
-+			"use crystal oscillator as clocksource\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_CLKEXT, 0);
-+	}
-+
-+	ret = mcp3911_write(adc, MCP3910_REG_CONFIG1, regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	ret = mcp3911_read(adc, MCP3910_REG_STATUSCOM, &regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Address counter incremented, cycle through register types */
-+	regval &= ~MCP3910_STATUSCOM_READ;
-+	regval |= FIELD_PREP(MCP3910_STATUSCOM_READ, 0x02);
-+
-+
-+	regval &= ~MCP3910_STATUSCOM_DRHIZ;
-+	if (device_property_read_bool(&adc->spi->dev, "microchip,data-ready-hiz"))
-+		regval |= FIELD_PREP(MCP3910_STATUSCOM_DRHIZ, 0);
-+	else
-+		regval |= FIELD_PREP(MCP3910_STATUSCOM_DRHIZ, 1);
-+
-+	ret = mcp3911_write(adc, MCP3910_REG_STATUSCOM, regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Set gain to 1 for all channels */
-+	ret = mcp3911_read(adc, MCP3910_REG_GAIN, &regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	for (int i = 0; i < adc->chip->num_channels - 1; i++) {
-+		adc->gain[i] = 1;
-+		regval &= ~MCP3911_GAIN_MASK(i);
-+	}
-+	ret = mcp3911_write(adc, MCP3910_REG_GAIN, regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Disable offset to ignore any old values in offset register */
-+	return mcp3911_update(adc, MCP3910_REG_CONFIG0,
-+				MCP3910_CONFIG0_EN_OFFCAL,
-+				MCP3910_CONFIG0_EN_OFFCAL, 3);
- }
- 
- static void mcp3911_cleanup_regulator(void *vref)
-@@ -476,6 +722,7 @@ static int mcp3911_probe(struct spi_device *spi)
- 
- 	adc = iio_priv(indio_dev);
- 	adc->spi = spi;
-+	adc->chip = spi_get_device_match_data(spi);
- 
- 	adc->vref = devm_regulator_get_optional(&adc->spi->dev, "vref");
- 	if (IS_ERR(adc->vref)) {
-@@ -511,16 +758,24 @@ static int mcp3911_probe(struct spi_device *spi)
- 		}
- 	}
- 
--	ret = mcp3911_config(adc);
-+	ret = device_property_read_u32(&adc->spi->dev, "microchip,device-addr", &adc->dev_addr);
-+
-+	/*
-+	 * Fallback to "device-addr" due to historical mismatch between
-+	 * dt-bindings and implementation.
-+	 */
- 	if (ret)
--		return ret;
-+		device_property_read_u32(&adc->spi->dev, "device-addr", &adc->dev_addr);
-+	if (adc->dev_addr > 3) {
-+		dev_err(&adc->spi->dev,
-+			"invalid device address (%i). Must be in range 0-3.\n",
-+			adc->dev_addr);
-+		return -EINVAL;
-+	}
-+	dev_dbg(&adc->spi->dev, "use device address %i\n", adc->dev_addr);
- 
--	if (device_property_read_bool(&adc->spi->dev, "microchip,data-ready-hiz"))
--		ret = mcp3911_update(adc, MCP3911_REG_STATUSCOM, MCP3911_STATUSCOM_DRHIZ,
--				0, 2);
--	else
--		ret = mcp3911_update(adc, MCP3911_REG_STATUSCOM, MCP3911_STATUSCOM_DRHIZ,
--				MCP3911_STATUSCOM_DRHIZ, 2);
-+
-+	ret = adc->chip->config(adc);
- 	if (ret)
- 		return ret;
- 
-@@ -528,8 +783,8 @@ static int mcp3911_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
--       /* Set gain to 1 for all channels */
--	for (int i = 0; i < MCP3911_NUM_CHANNELS; i++) {
-+	/* Set gain to 1 for all channels */
-+	for (int i = 0; i < adc->chip->num_channels - 1; i++) {
- 		adc->gain[i] = 1;
- 		ret = mcp3911_update(adc, MCP3911_REG_GAIN,
- 				MCP3911_GAIN_MASK(i),
-@@ -543,8 +798,8 @@ static int mcp3911_probe(struct spi_device *spi)
- 	indio_dev->info = &mcp3911_info;
- 	spi_set_drvdata(spi, indio_dev);
- 
--	indio_dev->channels = mcp3911_channels;
--	indio_dev->num_channels = ARRAY_SIZE(mcp3911_channels);
-+	indio_dev->channels = adc->chip->channels;
-+	indio_dev->num_channels = adc->chip->num_channels;
- 
- 	mutex_init(&adc->lock);
- 
-@@ -579,17 +834,101 @@ static int mcp3911_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
--	return devm_iio_device_register(&adc->spi->dev, indio_dev);
-+	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
-+static const struct mcp3911_chip_info mcp3911_chip_info[] = {
-+	[MCP3910] = {
-+		.channels = mcp3910_channels,
-+		.num_channels = ARRAY_SIZE(mcp3910_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3911] = {
-+		.channels = mcp3911_channels,
-+		.num_channels = ARRAY_SIZE(mcp3911_channels),
-+		.config = mcp3911_config,
-+		.get_osr = mcp3911_get_osr,
-+		.set_osr = mcp3911_set_osr,
-+		.get_offset = mcp3911_get_offset,
-+		.set_offset = mcp3911_set_offset,
-+		.set_scale = mcp3911_set_scale,
-+	},
-+	[MCP3912] = {
-+		.channels = mcp3912_channels,
-+		.num_channels = ARRAY_SIZE(mcp3912_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3913] = {
-+		.channels = mcp3913_channels,
-+		.num_channels = ARRAY_SIZE(mcp3913_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3914] = {
-+		.channels = mcp3914_channels,
-+		.num_channels = ARRAY_SIZE(mcp3914_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3918] = {
-+		.channels = mcp3918_channels,
-+		.num_channels = ARRAY_SIZE(mcp3918_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3919] = {
-+		.channels = mcp3919_channels,
-+		.num_channels = ARRAY_SIZE(mcp3919_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+};
- static const struct of_device_id mcp3911_dt_ids[] = {
--	{ .compatible = "microchip,mcp3911" },
-+	{ .compatible = "microchip,mcp3910", .data = &mcp3911_chip_info[MCP3910] },
-+	{ .compatible = "microchip,mcp3911", .data = &mcp3911_chip_info[MCP3911] },
-+	{ .compatible = "microchip,mcp3912", .data = &mcp3911_chip_info[MCP3912] },
-+	{ .compatible = "microchip,mcp3913", .data = &mcp3911_chip_info[MCP3913] },
-+	{ .compatible = "microchip,mcp3914", .data = &mcp3911_chip_info[MCP3914] },
-+	{ .compatible = "microchip,mcp3918", .data = &mcp3911_chip_info[MCP3918] },
-+	{ .compatible = "microchip,mcp3919", .data = &mcp3911_chip_info[MCP3919] },
- 	{ }
  };
- MODULE_DEVICE_TABLE(of, mcp3911_dt_ids);
- 
- static const struct spi_device_id mcp3911_id[] = {
--	{ "mcp3911", 0 },
-+	{ "mcp3910", (kernel_ulong_t)&mcp3911_chip_info[MCP3910] },
-+	{ "mcp3911", (kernel_ulong_t)&mcp3911_chip_info[MCP3911] },
-+	{ "mcp3912", (kernel_ulong_t)&mcp3911_chip_info[MCP3912] },
-+	{ "mcp3913", (kernel_ulong_t)&mcp3911_chip_info[MCP3913] },
-+	{ "mcp3914", (kernel_ulong_t)&mcp3911_chip_info[MCP3914] },
-+	{ "mcp3918", (kernel_ulong_t)&mcp3911_chip_info[MCP3918] },
-+	{ "mcp3919", (kernel_ulong_t)&mcp3911_chip_info[MCP3919] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, mcp3911_id);
+
+---
+base-commit: c35e927cbe09d38b2d72183bb215901183927c68
+change-id: 20230807-riscv-allwinner-d1-revert-can-controller-nodes-65f62e04619c
+
+Best regards,
 -- 
-2.40.1
+Marc Kleine-Budde <mkl@pengutronix.de>
+
 
