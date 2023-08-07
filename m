@@ -2,129 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBBB3772A06
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE50A772A16
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjHGQD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 12:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46160 "EHLO
+        id S229739AbjHGQFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 12:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjHGQD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:03:58 -0400
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1213FE72;
-        Mon,  7 Aug 2023 09:03:58 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1bba254a7d4so3657843fac.2;
-        Mon, 07 Aug 2023 09:03:58 -0700 (PDT)
+        with ESMTP id S230312AbjHGQFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:05:50 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27C910C6
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 09:05:44 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so75814931fa.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 09:05:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691424237; x=1692029037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i0HzKgbYKKrvsEPlpYd7jVcrOdTWIpWoaM9sLQyzqjU=;
-        b=T1KpFTPFFfg7EBXxFuTH79npAj9QZ6WzQgsj0rt5xhp0KzAdeaCPb712kYjt6k3mvP
-         K0dpeMBIJUIVhbzaQj8JgX26qIhjkINkwpI2A31UZPM8OfwIkoXSbn6Aykj6bObWaAYE
-         9QCaqthsx6x1DIm/L/rFaypSQ3AQDVuMkGZCJuaq8XwTGIptx6g6m40LIn+1hXsWGAD/
-         BKGLopuvLpXV56emiXDHJo3fVT+nIsX+DpaRgwHBNrgKxVU8h1WY9s+xx/5MrsX0OGd1
-         vxHUWbWA3HLJAIoCpjNm7DOWFzM0gXFO+2fVAOxqL4M0/uQ8Zg4FIgSKqQ4JwRwd2ahV
-         XxoA==
+        d=linaro.org; s=google; t=1691424343; x=1692029143;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f3NRCQqXbUSCCrnt/9oEbb5aA3KgrkhtMfzTxdax6mo=;
+        b=DcuLzHXQ3nc+8APwug6vkpTZHBbXaTio3nT5EOkFocbPjbgKovZOdK9cnlRPvNRL6/
+         pUD/jwsoM155THkC0Z5H5klF1i8aPH3HZZ1hboqV4MAR7Z7lQ2esFRPgXwX9CU9CZyCJ
+         0mgicKVZzzwhuDZrI2tIzAOwI7h/Pagd0DuZuolmmW3lAXL7LjdVuLBNKcI8fbV6x++T
+         VInGiEaLBCv1Pmu523XUgSsqWkKowfP8Mr6KYzP565U0SRxwPoQ3aTE72ZWz2DbY0oI1
+         yhE5cUoUiElPJYvF7Svb7VvCZg2nD+rYXgxeD38jrChX0wlGVUQV/cU0YqSW5uirNglA
+         nSPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691424237; x=1692029037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i0HzKgbYKKrvsEPlpYd7jVcrOdTWIpWoaM9sLQyzqjU=;
-        b=ZExEHDkfYPXQn3joV6lEwFI9f1PEhrT3/CD1KbL7GYlAL0Ft6gcTu2Q3r7EHfT1876
-         mbsCxBOmC5StoPqOMxaLkrS46aFHwLpogRlqWe1OtUEiaYcOgajO7F5+ViG+yXWdAvxQ
-         WsNraVDrl72Qljukv+e2HyoFYYrqd4OYaAu0haRgRRxQGdO+qYun7fyDRTZmD0grA08K
-         T5/hQbbk055UllblpFByRlkb8yygegWD5rzHYXO2p8ojk8JnFKEUM9hojR6yOolNt1e5
-         A1EmhHPXIHmDtjfYymzv/tEuqrk9qFvei4nCF9ktQEKngMMYlg1q34PsS/Hw+OTIXGcd
-         d9sw==
-X-Gm-Message-State: AOJu0YxZcVDuSynl0og34Az20HzgFuB/IfGa8Goo1dDpbZtBzF2woLle
-        uUGFRl3rI7i3JstKMPlR9zsEpv45vA8zZAkinvY=
-X-Google-Smtp-Source: AGHT+IGByrGtGdbLv2uelLBwo0dxbfZy3X9Jlh6s0Niy41MuX4JTPdCN9HFcdski9pT/I3obFKA0M8RkE8hxR9FnPuk=
-X-Received: by 2002:a05:6870:331e:b0:1be:ffae:29a3 with SMTP id
- x30-20020a056870331e00b001beffae29a3mr11079367oae.23.1691424237245; Mon, 07
- Aug 2023 09:03:57 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691424343; x=1692029143;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f3NRCQqXbUSCCrnt/9oEbb5aA3KgrkhtMfzTxdax6mo=;
+        b=LWsDPzW5KAdp1VbId5FShnqZvfeTh+MNFh8oDS+WDiNFho2Bc1UG366KGhJ1avjemi
+         4Q+HShA0WOiLOnh4mtrHnkR41btgVGWkvpyMIeCEXQjDmF+THS68u/kNy6JupeYouVZT
+         QJ+roH4NhNQsNy2AeZ7LxVm0C6BHP+SvmhCE7rh+qiGew158yhr9Zr4AIZzn8k5PDaC5
+         m7FVW5MTzYZlDN8J5lXCUPZrfFHyEh6A9fRnRM+cJVtNkFJt1mncdYTWdUOBNSQtsgbR
+         SMPEPKAV5iJETLSlR8EcdffNz6rDq9DZEGXU2to9aDMVk6YQb//SzrOqZ9PtTwtogBEV
+         6Fjg==
+X-Gm-Message-State: AOJu0Yw6oLA0EmIZxOAzXF3BtBKLJAbzjwskn7epXkg1pgP/gtzCA2M2
+        SmwzuwlcyCMXOD0oWHrxdUV6Cg==
+X-Google-Smtp-Source: AGHT+IFrZnmkbOq1VoMJWoNd8Q5ead/2nUoLqt46vZNA2VGEa4H5MCmc0wtEyHk6dF0qHjlSjUymWA==
+X-Received: by 2002:a2e:a0cc:0:b0:2b9:ee3e:240c with SMTP id f12-20020a2ea0cc000000b002b9ee3e240cmr6846867ljm.24.1691424342886;
+        Mon, 07 Aug 2023 09:05:42 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id e8-20020a2e8188000000b002b724063010sm1884883ljg.47.2023.08.07.09.05.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 09:05:42 -0700 (PDT)
+Message-ID: <27bd3a9e-192f-43e9-b417-784c6d9c3ecd@linaro.org>
+Date:   Mon, 7 Aug 2023 18:05:40 +0200
 MIME-Version: 1.0
-References: <20230726123747.4097755-1-james.hilliard1@gmail.com> <20230726-frosted-scroll-a42298d2ee9c@spud>
-In-Reply-To: <20230726-frosted-scroll-a42298d2ee9c@spud>
-From:   James Hilliard <james.hilliard1@gmail.com>
-Date:   Mon, 7 Aug 2023 10:03:45 -0600
-Message-ID: <CADvTj4oPKyAx3szHhvphJ+cCpvwWaLZiTfaWZdWYQrmU5Aymxg@mail.gmail.com>
-Subject: Re: [PATCH v7 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6 SoM with
- Custom Board
-To:     Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Pierluigi Passaro <pierluigi.p@variscite.com>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add device tree for Xiaomi Mi 11
+ Ultra
+Content-Language: en-US
+To:     wuxilin123@gmail.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20230806-xiaomi-star-v1-0-0c384e8b5737@gmail.com>
+ <20230806-xiaomi-star-v1-3-0c384e8b5737@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230806-xiaomi-star-v1-3-0c384e8b5737@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 26, 2023 at 12:26=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Wed, Jul 26, 2023 at 06:37:39AM -0600, James Hilliard wrote:
-> > Add support for Variscite i.MX6Q VAR-SOM-MX6 SoM with Custom Board.
-> >
-> > Cc: Pierluigi Passaro <pierluigi.p@variscite.com>
-> > Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documenta=
-tion/devicetree/bindings/arm/fsl.yaml
-> > index 2510eaa8906d..76bb098605e7 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -385,6 +385,12 @@ properties:
-> >            - const: toradex,apalis_imx6q
-> >            - const: fsl,imx6q
-> >
-> > +      - description: i.MX6Q Variscite VAR-SOM-MX6 Boards
-> > +        items:
-> > +          - const: variscite,mx6customboard
-> > +          - const: variscite,var-som-imx6q
-> > +          - const: fsl,imx6q
->
-> I find it hard to tell what the sort order here is meant to be, but it
-> appears to be first by what I.MX processor and then by the board
-> compatibles? If so, this is added out of order.
+On 5.08.2023 19:03, Xilin Wu via B4 Relay wrote:
+> From: Xilin Wu <wuxilin123@gmail.com>
+> 
+> Add support for Xiaomi Mi 11 Ultra. This commit brings support for:
+> * Front and rear display panels (initialized by bootloader)
+> * USB
+> * UFS
+> * PCIe0
+> * Thermistor sensors
+> * ADSP/CDSP/Modem/SLPI
+> * IR Transmitter
+> * RTC provided by PMK8350
+> * Buttons
+> 
+> To create a working boot image, you need to run:
+> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/sm8350-xiaomi-\
+> star.dtb > .Image.gz-dtb
+> 
+> mkbootimg \
+> --kernel .Image.gz-dtb \
+> --ramdisk some_initrd.img \
+> --pagesize 4096 \
+> --base 0x0 \
+> --kernel_offset 0x8000 \
+> --ramdisk_offset 0x1000000 \
+> --tags_offset 0x100 \
+> --cmdline "SOME_CMDLINE" \
+> --dtb_offset 0x1f00000 \
+> --header_version 1 \
+> --os_version 14.0.0 \
+> --os_patch_level 2099-12 \
+> -o boot.img-xiaomi-star
+> 
+> Then, you can flash it to slot b on the device:
+> 
+> // You have to either pull vbmeta{"","_system"} from
+> // /dev/block/bootdevice/by-name/ or build one as a part of AOSP build process
+> fastboot --disable-verity --disable-verification flash vbmeta_b vbmeta.img
+> fastboot --disable-verity --disable-verification flash vbmeta_system_b \
+> vbmeta_system.img
+> 
+> fastboot flash boot_b boot.img-xiaomi-star
+> fastboot erase dtbo_b
+> fastboot set_active b
+> fastboot reboot
+> 
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+> ---
+[...]
 
-Ordering follows the same pattern as say the "Variscite VAR-SOM-MX8MM
-based boards", should it be different?
 
->
-> > +
-> >        - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
-> >          items:
-> >            - const: tq,imx6q-mba6x-a
-> > --
-> > 2.34.1
-> >
+> +&adsp {
+> +	status = "okay";
+> +	firmware-name = "qcom/sm8350/xiaomi/star/adsp.mbn";
+> +};
+Please keep status as the last property, everywhere.
+
+BTW, is the rear screen connected via DSI, or is it some stupid
+SPI display?
+
+Konrad
