@@ -2,179 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 868927724CD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 866A0772556
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233768AbjHGM5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 08:57:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51294 "EHLO
+        id S231719AbjHGNTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 09:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233738AbjHGM5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:57:14 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544DE170A;
-        Mon,  7 Aug 2023 05:57:13 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377CuupD019457;
-        Mon, 7 Aug 2023 07:56:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691413016;
-        bh=ikhmkWfl1ICWIRkfls8soHLTQm+EkSPxiAnHEHo67Bk=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=DigWjWZ5tjCanrPD9hM4r3uWaxiAp9zBvKSAieBbKqeCfaBC8A8jPVsO3kK2D+uAO
-         4Jqrxpu24I078yIzMyC8iLaDWP9jfG4aeq1YWPVr56LscmYRUBlRthBHaD35mSChqi
-         4meU7ZBIWv3rBKCKEAhyq7VIRxMR4XUrpKmWbzhg=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377CuueH006401
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 07:56:56 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 07:56:55 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 07:56:55 -0500
-Received: from [172.24.227.132] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377CupCJ000907;
-        Mon, 7 Aug 2023 07:56:51 -0500
-Message-ID: <06708b12-34af-bcb5-7b65-c9bdd830b9f0@ti.com>
-Date:   Mon, 7 Aug 2023 18:26:50 +0530
+        with ESMTP id S230429AbjHGNTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:19:23 -0400
+X-Greylist: delayed 598 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Aug 2023 06:19:22 PDT
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 45243CF;
+        Mon,  7 Aug 2023 06:19:22 -0700 (PDT)
+Received: from 8bytes.org (pd9fe94eb.dip0.t-ipconnect.de [217.254.148.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.8bytes.org (Postfix) with ESMTPSA id CB3112802C0;
+        Mon,  7 Aug 2023 15:00:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1691413215;
+        bh=7JkbUbcsQYDUm7+d1Qwf9eXdnSaQOoOuTXAnXPF6eXs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JPMPMNcXrYSDEc82SoNmtOqraBcGews6IPyM7KqoT53fWXP892yQrt6FntitNudOw
+         aIZudgFHjcWlsw8HCeSgY9qxqkdFRAgpuvTl753O1uV1Sp4cNTC71xOxvpmfH50yb7
+         0rsRVjsm3j1M2pQRDzFnq1Sq/Ez4f8w+eOaD5QrOdnAh0QTwXHdo3dFg68vtgetqmo
+         PraCiPeh53gllj0O0TljM9b6kC4EiPum0LZGv+qgFvl6qajCl0Eo5b1J9EzUkGrqRr
+         TvO9A7Nez2tJI3c5SbUT2557k5CxQlNq7XH7JrP7+PVM/M8cCYN9APgtwcNs9SN6ZH
+         LeUd395XfXWrQ==
+Date:   Mon, 7 Aug 2023 15:00:13 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+        virtualization@lists.linux-foundation.org
+Subject: Re: [PATCH] iommu: Explicitly include correct DT includes
+Message-ID: <ZNDq3da76i13WuqA@8bytes.org>
+References: <20230714174640.4058404-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v9 4/5] arm64: dts: ti: k3-j784s4-evm: Enable
- DisplayPort-0
-To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>
-CC:     <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <r-ravikumar@ti.com>, <sabiya.d@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>,
-        <rogerq@kernel.org>
-References: <20230803080441.367341-1-j-choudhary@ti.com>
- <20230803080441.367341-5-j-choudhary@ti.com>
- <9f19e01e-6211-16eb-c911-998ee2d46161@ti.com>
- <2ddc34f9-92ad-9a0c-8044-0ec671e55e9e@ti.com>
-Content-Language: en-US
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <2ddc34f9-92ad-9a0c-8044-0ec671e55e9e@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230714174640.4058404-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jayesh,
+On Fri, Jul 14, 2023 at 11:46:39AM -0600, Rob Herring wrote:
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom-debug.c | 2 +-
+>  drivers/iommu/arm/arm-smmu/arm-smmu.c            | 1 -
+>  drivers/iommu/arm/arm-smmu/qcom_iommu.c          | 3 +--
+>  drivers/iommu/ipmmu-vmsa.c                       | 1 -
+>  drivers/iommu/sprd-iommu.c                       | 1 +
+>  drivers/iommu/tegra-smmu.c                       | 2 +-
+>  drivers/iommu/virtio-iommu.c                     | 2 +-
+>  7 files changed, 5 insertions(+), 7 deletions(-)
 
-On 07-Aug-23 17:54, Jayesh Choudhary wrote:
-> Hello Aradhya,
-> 
-> Thank you for the review.
-> 
-> On 05/08/23 00:52, Aradhya Bhatia wrote:
->> Hi Jayesh,
->>
->>
->> On 03-Aug-23 13:34, Jayesh Choudhary wrote:
->>> From: Rahul T R <r-ravikumar@ti.com>
->>>
->>> Enable display for J784S4 EVM.
->>>
->>> Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux for
->>> DP HPD. Add the clock frequency for serdes_refclk.
->>>
->>> Add the endpoint nodes to describe connection from:
->>> DSS => MHDP => DisplayPort connector.
->>>
->>> Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
->>> required for controlling DP power. Set status for all required nodes
->>> for DP-0 as "okay".
->>>
->>> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
->>> [j-choudhary@ti.com: move all the changes together to enable DP-0 in
->>> EVM]
->>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 119 +++++++++++++++++++++++
->>>   1 file changed, 119 insertions(+)
-> 
-> [...]
-> 
->>> +        reg = <0>;
->>> +        cdns,num-lanes = <4>;
->>> +        #phy-cells = <0>;
->>> +        cdns,phy-type = <PHY_TYPE_DP>;
->>> +        resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
->>> +             <&serdes_wiz4 3>, <&serdes_wiz4 4>;
->>> +    };
->>> +};
->>> +
->>> +&mhdp {
->>> +    status = "okay";
->>> +    pinctrl-names = "default";
->>> +    pinctrl-0 = <&dp0_pins_default>;
->>> +    phys = <&serdes4_dp_link>;
->>> +    phy-names = "dpphy";
->>> +};
->>> +
->>> +&dss_ports {
->>> +    port {
->>
->> Port index has not been added here. Since this port outputs to MHDP
->> bridge, this should be "port@0", and a "reg = <0>;" property should be
->> added below (along with the address and size cells properties).
->>
->> I suppose this works functionally in this case, because the port gets
->> defaulted to "0" by the driver. But in future, when we add support for
->> other dss output(s) on j784s4-evm, the driver will need indices to
->> distinguish among them.
->>
-> 
-> Okay. It makes sense.
-> Just one thing here. Adding reg here would require it to have #address-
-> cells and #size-cell but since we have only single child port that too
-> at reg=<0>, it would throw dtbs_check warning:
-> 
-> arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi:1828.20-1831.5: Warning
-> (graph_child_address): /bus@100000/dss@4a00000/ports: graph node has
-> single child node 'port@0', #address-cells/#size-cells are not necessary
->   also defined at arch/arm64/boot/dts/ti/k3-j784s4-evm.dts:911.12-919.3
-> 
-
-Okay! Was not aware about this. I still think "port@0" should be
-specified instead of just "port" and the warning should be ignored, if
-possible.
-
-If there were only a "port@1" child node, this warning would not have
-come up, and I believe "port@0" should be treated just the same.
-
-Moreover, while we can add these properties at a later stage as an
-incremental patch, adding the size and address cells in the dtsi would
-affect other platform dts files as well, that use this SoC.
-
-For e.g., the patch 5/5 of this series, on AM69-SK will still require
-the size and address cells for its ports. The clean up then will be that
-much more, when adding those incremental patches.
-
-Anyway, I will let Nishanth and Vignesh take the final call on this.
-
-Regards
-Aradhya
-
-> 
->>> +        dpi0_out: endpoint {
->>> +            remote-endpoint = <&dp0_in>;
-> 
-> 
-> [...]
-
+Applied, thanks.
