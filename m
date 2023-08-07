@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28C44771B0E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 09:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0149771B4C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 09:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbjHGHE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 03:04:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
+        id S229537AbjHGHPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 03:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231453AbjHGHEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 03:04:23 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A07B1703
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 00:04:16 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52256241c66so8827233a12.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 00:04:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691391854; x=1691996654;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h0W6+QdLUJgynbZQgwWh7N15Tm3OM7n0lMK69GE2HrE=;
-        b=zFk4nCcRVFsDnk9v0UmcphZoXlpxMkP2BQ4nYRj+4kLnB9P/L+hISywfUnTwdoX/KS
-         FbNccluyX1lqC/26YenM0GhQAKepKshQ/Lcfu4Wmj2P2Gq5A4+/IJmMzcHFzZOBTbgBW
-         1CxvHtgRYv5TMit8/44jV/WNiLNOOzEOXRJTkRotyNNLHBVHlYEK9qsN00854OPPHKr0
-         5i1AfmBEqkxmACQoLLk07PolkIc7qcsxvW147Zn5v22lgi2kEkpPpPkDaJUmG0bFTZOE
-         CGKuJeGOdM2NPQHDo/fTwQ7g78vyhk8XZY62qtVpqCnY+telRRRUiooKQAV5imshZ2eI
-         8YzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691391854; x=1691996654;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h0W6+QdLUJgynbZQgwWh7N15Tm3OM7n0lMK69GE2HrE=;
-        b=lab2OIrDGTr7KTeIRn47kMxP1mXptN72Vuapj1Wrk5MTJf/7Z/NTPKsiFIzzBicKTU
-         kuXmZID1c6Sqd2YdE776YUsjhNa0sCpqojyQG5Du4G72F3wlZFZPT2zg8aa0aVKiUGcX
-         h3xsYh4Q2F82576SpbAvgKahk2EJmi2RanvyObPkW3p6Ve8bpLo6ogoIyFCIjoD6vjoj
-         bS/Pkuac0VC+luGiywzE5X9QELTlfOf6yFfjYVPADrWKPOpQwoSE8/aYDRl7UPJ7vBhP
-         +pndjrMt7o0hk+3QLilx3BaqQ9vPD67AtRpoipbniZ0yHMP2sc6J0FsfYjLs66XB4WE8
-         sb1Q==
-X-Gm-Message-State: AOJu0YwA+vkPcTVMc0mcA0PkGIoG5NjT19arpcbkhp2s1la5Vl8xrw7i
-        bxeumT+QilXSneF+K9q4ONqAqw==
-X-Google-Smtp-Source: AGHT+IEiwyAhsNltvxs223l22JolgdfXujvQSbMR8kUItZ3zoEsOz8v5drYKxaTaP1z/S0WHRBUPpA==
-X-Received: by 2002:aa7:c784:0:b0:51e:421e:d209 with SMTP id n4-20020aa7c784000000b0051e421ed209mr6723609eds.13.1691391854494;
-        Mon, 07 Aug 2023 00:04:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id g17-20020a056402115100b005230f2a12b9sm4722187edw.43.2023.08.07.00.04.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 00:04:14 -0700 (PDT)
-Message-ID: <a6553faa-8522-d47a-8446-296e3d69ef31@linaro.org>
-Date:   Mon, 7 Aug 2023 09:04:12 +0200
+        with ESMTP id S231500AbjHGHPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 03:15:11 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2F7A198B
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 00:15:04 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qSuRu-000883-Pg; Mon, 07 Aug 2023 09:14:42 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 1A506205885;
+        Mon,  7 Aug 2023 07:14:39 +0000 (UTC)
+Date:   Mon, 7 Aug 2023 09:14:38 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     John Watts <contact@jookia.org>, linux-sunxi@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Maksim Kiselev <bigunclemax@gmail.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: allwinner: d1: Specify default CAN pins
+Message-ID: <20230807-leverage-manatee-687c46db39f8-mkl@pengutronix.de>
+References: <20230731023701.2581713-1-contact@jookia.org>
+ <3248110.44csPzL39Z@jernej-laptop>
+ <ZMyZ5kZSiiJHtdeS@titan>
+ <5696365.DvuYhMxLoT@jernej-laptop>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 3/9] dt-bindings: PCI: fsl,imx6q: Add i.MX7D PCIe EP
- compatibles
-Content-Language: en-US
-To:     Richard Zhu <hongxing.zhu@nxp.com>, frank.li@nxp.com,
-        l.stach@pengutronix.de, shawnguo@kernel.org, lpieralisi@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com
-References: <1691114975-4750-1-git-send-email-hongxing.zhu@nxp.com>
- <1691114975-4750-4-git-send-email-hongxing.zhu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1691114975-4750-4-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xgydx3hdd5gawx7l"
+Content-Disposition: inline
+In-Reply-To: <5696365.DvuYhMxLoT@jernej-laptop>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,15 +66,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2023 04:09, Richard Zhu wrote:
-> Add i.MX7D PCIe EP compatibles.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
 
+--xgydx3hdd5gawx7l
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 04.08.2023 16:39:41, Jernej =C5=A0krabec wrote:
+> Dne petek, 04. avgust 2023 ob 08:25:42 CEST je John Watts napisal(a):
+> > On Thu, Aug 03, 2023 at 10:59:30PM +0200, Jernej =C5=A0krabec wrote:
+> > > pinctrl-names and pinctrl-0 are usually at the top. However, since th=
+ere
+> > > is no hard rule (I've seen it mixed), I'm fine with it.
+> >=20
+> > Happy to change if needed.
+>=20
+> If you don't mind, please do.
+>=20
+> >=20
+> > > Since original DT node entry goes through netdev tree, this should be
+> > > picked there or it can be dropped there and I pick both patches or I =
+can
+> > > pick patch for later kernel version.
+> >=20
+> > Do I have to do something based on this, like resend my patch?
+>=20
+> Nothing on your side.
+>=20
+> Marc, since you took original patch through netdev tree, what is your dec=
+ision=20
+> here?
 
-Best regards,
-Krzysztof
+I'll take the DT patches though linux-can-next to net-next.
 
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--xgydx3hdd5gawx7l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTQmdoACgkQvlAcSiqK
+BOgNigf/WQ0j4jhWfbYXaY/33E7hWV8x/a7lA0uFjqImrlzx6N9e9haXbCDz8Prm
+wlqXv10RoPcam5UnDHoDmeg7RASAIkLBKAFiuTpWZnOEiV77CB8H7sHELLiT8hOg
+W1R26KjIU0a3TFrBy3vfRZc+lRL3Jxcu7X/eh+dMUM9N+bMf0x7h+MW5Wx4CbC6k
+SR0j4D5Cxgi5EcXjGl8SJxatOmfGxBkjlKgJmiw0vUI5ISgluQrZF3m9adflXAza
+IoPSI+WPU7uMHIvMvRv0Ed4MvNhZabRATEAjOTvJsmq0grjT4rk9xYv4ZGEET/Rm
+xSbfq22jvd65w0kOt5NvtJs/NzZxVQ==
+=MX/Y
+-----END PGP SIGNATURE-----
+
+--xgydx3hdd5gawx7l--
