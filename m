@@ -2,53 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 074E077301D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 22:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE46773041
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 22:22:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbjHGUGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 16:06:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51778 "EHLO
+        id S231382AbjHGUWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 16:22:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjHGUGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 16:06:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE0C0E66;
-        Mon,  7 Aug 2023 13:06:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C1FD621C5;
-        Mon,  7 Aug 2023 20:06:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6075CC433C9;
-        Mon,  7 Aug 2023 20:06:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691438793;
-        bh=+1qj84olRLv+gw33x9xv4AJC1ye6/RmLGqEDA6DYiUA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=mRKIamwQFnGtZeHvuUfAhkvUzRFsB94rvDyRHxJD/n7wmLYEPIiGY1xI3x3onJD0Y
-         wvFtumTxXPlINXwRUa4jGH+X37RSTacgL3QPd7MVUkDgo2tBSG7hebGsnRgjPYd93l
-         h67yxebo6d4UyTTvnT+WiT6AO+8tsJhSenCiU7iB6BrRuhGuCF7tysKiu+K2399vQD
-         rfzuBPbJ4AeHxfbVsHjlivcS6un3hiaiV3vIHchkEhNstFvYbKTQENVHKv5dWqxxVT
-         uBRsPFM+bOMl+yGQzH9HjBIPQfzk6KwQQCueLAhRc5NkGe1naAN+5m3MDTfZGMJ1C7
-         GRqBTdrsMGClA==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        Alina Yu <alina_yu@richtek.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <1691389687-31211-1-git-send-email-alina_yu@richtek.com>
-References: <1691389687-31211-1-git-send-email-alina_yu@richtek.com>
-Subject: Re: [PATCH v7 0/2] Add Richtek RTQ2208 SubPMIC support
-Message-Id: <169143879211.313569.6869257260821190569.b4-ty@kernel.org>
-Date:   Mon, 07 Aug 2023 21:06:32 +0100
+        with ESMTP id S231142AbjHGUWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 16:22:10 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86DB610D8;
+        Mon,  7 Aug 2023 13:22:07 -0700 (PDT)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id 4A1B920658;
+        Mon,  7 Aug 2023 22:22:05 +0200 (CEST)
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4]  arm64: dts: ti: Enable Audio on Verdin AM62
+Date:   Mon,  7 Aug 2023 22:21:55 +0200
+Message-Id: <20230807202159.13095-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-034f2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,45 +41,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Aug 2023 14:28:05 +0800, Alina Yu wrote:
-> This patch series adds support for RTQ2208 SubPMIC regulators.
-> The RTQ2208 is a multi-phase, programmable power management IC that
-> integrate with dual multi-configurable, synchronous buck converters
-> and two ldos. The bucks features wide output voltage range from 0.4V to 2.05V
-> and the capability to configure the corresponding power stages.
-> 
-> Thank you,
-> Alina yu
-> 
-> [...]
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Applied to
+Add AM62x AUDIO_REFCLKx to AM62x SoC dtsi, and after doing it, enable audio
+support for Toradex Verdin AM62.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+DT bindings updates, related to the audio codec used here, are already merged
+in next [2][3].
 
-Thanks!
+For correct functionality this fix [1] is also required.
 
-[1/2] regulator: dt-bindings: rtq2208: Add Richtek RTQ2208 SubPMIC
-      commit: 4b591ed6971191134e331f02300b4ec4dee188ea
-[2/2] regulator: rtq2208: Add Richtek RTQ2208 SubPMIC driver
-      commit: 85a11f55621a0c18b22b43ab4219450ac1d19386
+[1] https://lore.kernel.org/all/20230728222639.110409-1-francesco@dolcini.it/
+[2] https://lore.kernel.org/all/20230719124752.248898-1-francesco@dolcini.it/
+[3] https://lore.kernel.org/all/20230719121918.247397-1-francesco@dolcini.it/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+v3:
+ - added Reviewed-by: Jai Luthra <j-luthra@ti.com>
+ - removed changes on k3-am62a-main.dtsi that were introducing warnings 
+v2:
+ - s/clock/clock-controller/ on audio refclk nodes name.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Francesco Dolcini (3):
+  arm64: dts: ti: verdin-am62: Set I2S_1 MCLK rate
+  arm64: dts: ti: verdin-am62: dev: add sound card
+  arm64: dts: ti: verdin-am62: dahlia: add sound card
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Jai Luthra (1):
+  arm64: dts: ti: k3-am62: Enable AUDIO_REFCLKx
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 18 +++++++
+ .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    | 53 +++++++++++++++++++
+ .../arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi | 45 ++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  5 ++
+ 4 files changed, 121 insertions(+)
 
-Thanks,
-Mark
+-- 
+2.25.1
 
