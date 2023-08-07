@@ -2,114 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 003657724F9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DFB77724EB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233847AbjHGNGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 09:06:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53888 "EHLO
+        id S233798AbjHGNG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 09:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233853AbjHGNGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:06:47 -0400
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0CA11991;
-        Mon,  7 Aug 2023 06:06:38 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 2B774100009;
-        Mon,  7 Aug 2023 16:06:37 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2B774100009
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1691413597;
-        bh=wmVs04V+ZYyznAROOcSaMP4Fv7d2hoWqBtKr4yQLETw=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-        b=AL7+EhlGy77101vVTs13e1WYo/fjpsAWICvwGF8es671u+Jz+uc4YIX0sHmOM4GJL
-         +szaCyyBj7rBSA3PA31eeOOFiLxenbbTNYhTjPsl2vnd5zl0ycSt0z6NJzY7HX9EGH
-         gMGqsdeJhSQVnU5swmKfyuMFa1+C85jw5gVPTUSRN9OObitV2U8fCaKl8qrtWhy35R
-         r0gYyXH/23RA1ADvzeY2FCuBUyhM6FlG7agiV9f4/Lhb17i1gY8LKjRZc5l6dcYNcA
-         1K/MGhTEZdAy/uGLuhIaXgCkzu7uxvEsLJCTQl6FUaiaPI6kniiGzVb98PQYlK4HK3
-         dBwaZVSeVPLgA==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233791AbjHGNG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:06:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C424D1701;
+        Mon,  7 Aug 2023 06:06:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Mon,  7 Aug 2023 16:06:36 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 7 Aug 2023 16:06:11 +0300
-From:   Alexey Romanov <avromanov@sberdevices.ru>
-To:     <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
-        <olivia@selenic.com>, <herbert@gondor.apana.org.au>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <conor@kernel.org>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <f.fainelli@gmail.com>, <hkallweit1@gmail.com>, <lists@kaiser.cx>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <kernel@sberdevices.ru>,
-        Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v2 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date:   Mon, 7 Aug 2023 16:06:11 +0300
-Message-ID: <20230807130611.63914-4-avromanov@sberdevices.ru>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230807130611.63914-1-avromanov@sberdevices.ru>
-References: <20230807130611.63914-1-avromanov@sberdevices.ru>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 586DA619CC;
+        Mon,  7 Aug 2023 13:06:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37D0FC433C7;
+        Mon,  7 Aug 2023 13:06:23 +0000 (UTC)
+Message-ID: <0b361e6c-d141-4758-edc2-c75b6f0efbe3@xs4all.nl>
+Date:   Mon, 7 Aug 2023 15:06:21 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 179098 [Aug 07 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVRomanov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 526 526 7a6a9b19f6b9b3921b5701490f189af0e0cd5310, {Tracking_from_domain_doesnt_match_to}, sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/08/07 09:29:00 #21554951
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 3/3] media: exynos4-is: fimc-is: replace duplicate pmu
+ node with phandle
+Content-Language: en-US, nl
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230722115441.139628-1-krzysztof.kozlowski@linaro.org>
+ <20230722115441.139628-3-krzysztof.kozlowski@linaro.org>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20230722115441.139628-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
+Hi Krzysztof,
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 22/07/2023 13:54, Krzysztof Kozlowski wrote:
+> Devicetree for the FIMC IS camera included duplicated PMU node as its
+> child like:
+> 
+>   soc@0 {
+>     system-controller@10020000 { ... }; // Real PMU
+> 
+>     camera@11800000 {
+>       fimc-is@12000000 {
+>         // FIMC IS camera node
+>         pmu@10020000 {
+>           reg = <0x10020000 0x3000>; // Fake PMU node
+>         };
+>       };
+>     };
+>   };
+> 
+> This is not a correct representation of the hardware.  Mapping the PMU
+> (Power Management Unit) IO memory should be via syscon-like phandle
+> (samsung,pmu-syscon, already used for other drivers), not by duplicating
+> "pmu" Devicetree node inside the FIMC IS.  Backward compatibility is
+> preserved.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../platform/samsung/exynos4-is/fimc-is.c     | 33 ++++++++++++++-----
+>  1 file changed, 24 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/media/platform/samsung/exynos4-is/fimc-is.c b/drivers/media/platform/samsung/exynos4-is/fimc-is.c
+> index 530a148fe4d3..c4c191771093 100644
+> --- a/drivers/media/platform/samsung/exynos4-is/fimc-is.c
+> +++ b/drivers/media/platform/samsung/exynos4-is/fimc-is.c
+> @@ -767,12 +767,32 @@ static void fimc_is_debugfs_create(struct fimc_is *is)
+>  static int fimc_is_runtime_resume(struct device *dev);
+>  static int fimc_is_runtime_suspend(struct device *dev);
+>  
+> +static void __iomem *fimc_is_get_pmu_regs(struct device *dev)
+> +{
+> +	struct device_node *node;
+> +	void __iomem *regs;
+> +
+> +	node = of_parse_phandle(dev->of_node, "samsung,pmu-syscon", 0);
+> +	if (!node) {
+> +		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
+> +		node = of_get_child_by_name(dev->of_node, "pmu");
+> +		if (!node)
+> +			return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	regs = of_iomap(node, 0);
+> +	of_node_put(node);
+> +	if (!regs)
+> +		return ERR_PTR(-ENOMEM);
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f24460186d3d..b3a1ecf36467 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -133,6 +133,11 @@ reset: reset-controller@2000 {
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-s4-rng";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
- };
--- 
-2.38.1
+sparse gives me these warnings for these ERR_PTR returns:
+
+drivers/media/platform/samsung/exynos4-is/fimc-is.c:780:39: warning: incorrect type in return expression (different address spaces)
+drivers/media/platform/samsung/exynos4-is/fimc-is.c:780:39:    expected void [noderef] __iomem *
+drivers/media/platform/samsung/exynos4-is/fimc-is.c:780:39:    got void *
+drivers/media/platform/samsung/exynos4-is/fimc-is.c:786:31: warning: incorrect type in return expression (different address spaces)
+drivers/media/platform/samsung/exynos4-is/fimc-is.c:786:31:    expected void [noderef] __iomem *
+drivers/media/platform/samsung/exynos4-is/fimc-is.c:786:31:    got void *
+
+Regards,
+
+	Hans
+
+> +
+> +	return regs;
+> +}
+> +
+>  static int fimc_is_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct fimc_is *is;
+>  	struct resource res;
+> -	struct device_node *node;
+>  	int ret;
+>  
+>  	is = devm_kzalloc(&pdev->dev, sizeof(*is), GFP_KERNEL);
+> @@ -794,14 +814,9 @@ static int fimc_is_probe(struct platform_device *pdev)
+>  	if (IS_ERR(is->regs))
+>  		return PTR_ERR(is->regs);
+>  
+> -	node = of_get_child_by_name(dev->of_node, "pmu");
+> -	if (!node)
+> -		return -ENODEV;
+> -
+> -	is->pmu_regs = of_iomap(node, 0);
+> -	of_node_put(node);
+> -	if (!is->pmu_regs)
+> -		return -ENOMEM;
+> +	is->pmu_regs = fimc_is_get_pmu_regs(dev);
+> +	if (IS_ERR(is->pmu_regs))
+> +		return PTR_ERR(is->pmu_regs);
+>  
+>  	is->irq = irq_of_parse_and_map(dev->of_node, 0);
+>  	if (!is->irq) {
 
