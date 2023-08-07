@@ -2,202 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A8CF7732DE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 00:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B727732F7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 00:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbjHGWSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 18:18:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S230024AbjHGW2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 18:28:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbjHGWSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 18:18:14 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2076.outbound.protection.outlook.com [40.107.95.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2587B94;
-        Mon,  7 Aug 2023 15:18:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O8/pWLQsMtkeJcudSsM/wwuTILL0v6LEfcggmMpCVNNiauf4rW+V8ZdX82JHTImTpCnxlEU9pQwyfFwEq7ZIpnFzVdvD6TZ1XUPAbT+5VDtHjCnuTvatmCJaLvCW00Ek++0W5kUOOfkGEdxgAPotvKXaE25u1VB0UVG+h1/FbEf0ZtUF5Xkx/xFwT3X/sE9GmCPZTaXIAbBJQSFXpsxGZDtgbuKbOBior9V+xC13OZNXkpLxg1gNRNyn5raQA/H4mYg/Flc9aaAvvgg6H3CYsQOF1PtMUlmS+7WnKXodLulLLY0s0wsyEKYnrbWv5ACOAM35ZuMrpqoVAW57ryBjCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=awkLop5uMCOQv/wECiRNtgZ1GNaNSmrMAvLsd/zLsKM=;
- b=Tx9Ud8nDdJnbM+DKKaFE+HNeEt3xIamszkDz+e2CGE+AwKxgA+U3RgyB2RQqdbmAlngV4POafqpxo+Q6nFJgbozVy96vMzs4CqHezg/bBQgroKorstIPI+57uQBMkb687fQbBe1ceG9k/syJ98eqfCuD/u3gmPVmzHhEHgBVdipmBLAEgBF1Rs/8jepSg/ledCcw+nn6lW2Xhsx1c7T+NugvTM/cATM/N8Ueohbx6rBp/q74NBxE/sr1yW7XY9o6aiyrGswdB/kG59HePeCTG8qJxRxWIQAVPYvSY0tZzmEcQQ8sMm0qRavj/Jt7ZSUwcOVXfb7DTM7ap1xEQicY1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=arndb.de smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=awkLop5uMCOQv/wECiRNtgZ1GNaNSmrMAvLsd/zLsKM=;
- b=tO/NTmzCozO/c489h60C13KW1q+d+bZelOTiLBl9GgoLwRag9514Yk8aq1IadxiavEIGgH0n5JxLrHEb+l4QI7WH6LCBIhS4SUa2NL1lmzWIXyZZAJ6MQyGcsx/DIanSOtC3OETOm/CKez5KfdqTjyvRUU7zno83dUJ093cIWOU=
-Received: from BYAPR01CA0072.prod.exchangelabs.com (2603:10b6:a03:94::49) by
- LV2PR12MB5967.namprd12.prod.outlook.com (2603:10b6:408:170::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.20; Mon, 7 Aug
- 2023 22:18:06 +0000
-Received: from CO1PEPF000042AC.namprd03.prod.outlook.com
- (2603:10b6:a03:94:cafe::3e) by BYAPR01CA0072.outlook.office365.com
- (2603:10b6:a03:94::49) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.44 via Frontend
- Transport; Mon, 7 Aug 2023 22:18:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000042AC.mail.protection.outlook.com (10.167.243.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6652.19 via Frontend Transport; Mon, 7 Aug 2023 22:18:09 +0000
-Received: from platform-dev1.pensando.io (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 7 Aug 2023 17:18:04 -0500
-From:   Brad Larson <blarson@amd.com>
-To:     <arnd@arndb.de>
-CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
-        <andy.shevchenko@gmail.com>, <blarson@amd.com>,
-        <brendan.higgins@linux.dev>, <briannorris@chromium.org>,
-        <broonie@kernel.org>, <catalin.marinas@arm.com>,
-        <conor+dt@kernel.org>, <davidgow@google.com>,
-        <devicetree@vger.kernel.org>, <fancer.lancer@gmail.com>,
-        <gerg@linux-m68k.org>, <gsomlo@gmail.com>,
-        <hal.feng@starfivetech.com>, <hasegawa-hitomi@fujitsu.com>,
-        <j.neuschaefer@gmx.net>, <joel@jms.id.au>, <kernel@esmil.dk>,
-        <krzk@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <lee.jones@linaro.org>, <lee@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <p.zabel@pengutronix.de>,
-        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
-        <samuel@sholland.org>, <skhan@linuxfoundation.org>,
-        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
-        <tonyhuang.sunplus@gmail.com>, <ulf.hansson@linaro.org>,
-        <vaishnav.a@ti.com>, <walker.chen@starfivetech.com>,
-        <will@kernel.org>, <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v14 8/8] soc: amd: Add support for AMD Pensando SoC Controller
-Date:   Mon, 7 Aug 2023 15:17:54 -0700
-Message-ID: <20230807221754.51667-1-blarson@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <787582a3-51a1-494e-bfd0-b51d1117432e@app.fastmail.com>
-References: <787582a3-51a1-494e-bfd0-b51d1117432e@app.fastmail.com>
+        with ESMTP id S229934AbjHGW2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 18:28:36 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C648C2
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 15:27:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1691447269;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OoCQj+gG1dm9NiP0aYa0b0pvxLVU+VxmVMWhUGehjZE=;
+        b=YyVPSRfxiV/4Nwa8k8teGYN1WlA6uLZv6jhbw+lmZTRGXArUwoibl1uLfVhYlqLO2AN2po
+        UYSqwJ/2pC0nqEOt3i8b6hYUfCNzWtXnpALGkbflryplfDFYdynF/SQmjHtYb7fCLDucfp
+        dCFaaNCot/x+KEZov170u9rCKrwT044=
+Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com
+ [209.85.217.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-641-sJx8z3IONI2ligjvMdHzUA-1; Mon, 07 Aug 2023 18:27:48 -0400
+X-MC-Unique: sJx8z3IONI2ligjvMdHzUA-1
+Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-44776a9e679so1161384137.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 15:27:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691447267; x=1692052067;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OoCQj+gG1dm9NiP0aYa0b0pvxLVU+VxmVMWhUGehjZE=;
+        b=S/OSNfZKAoc0oZhmtUOuskoAXrB5DRUzfndc0ne0h/vCO0Okyzps1zp9Sdl8AJ1urZ
+         g6pIZ9SbEMIDAh811DoFX5nSmPROtfxiRa5kLj5jFH3q22FKj1P/8rcDPjw+r/g6D1Rk
+         UmED0k//Vq6VOQMX0+M3az/yj9EA4d/+CHSoZTb0jcjPGcrQdA1rBn8TK5D3VJsuI5YD
+         ARXPs2pSDFUPZ+2x1Ss5lSg0NKHseDFiTAQ29WUGHGFKoL+69danVVheUzp+V7jvOcNw
+         fDGtnZWUplqKK0ELSVWrhIqNmti/vAF/HERJ0xni9X/TwIDO8c69whsiqkkL4vP0F6mX
+         3bkw==
+X-Gm-Message-State: AOJu0YyTdkstFBxIXZzGRdOA5W+nV6yIrABXdAr0b+wZPiz+rmW5JbJR
+        kfHHees5PjTftCcK3KrR6lpq/YIZOB2mAjfn6pIWFGxQc7y9zYnfDROsbcaiE/v54v9qA4MCVeM
+        A/7xhmf84dF2yTqwZCX/ZCQ==
+X-Received: by 2002:a67:b602:0:b0:447:a303:bbf2 with SMTP id d2-20020a67b602000000b00447a303bbf2mr4519790vsm.24.1691447267719;
+        Mon, 07 Aug 2023 15:27:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEoKaR+izuGwqD5ORej9M/bSlTm97V1zhmD9i50ejqm8XmB/Yp0iCZwCW0ekYfB7D367IWYEQ==
+X-Received: by 2002:a67:b602:0:b0:447:a303:bbf2 with SMTP id d2-20020a67b602000000b00447a303bbf2mr4519771vsm.24.1691447267397;
+        Mon, 07 Aug 2023 15:27:47 -0700 (PDT)
+Received: from fedora ([2600:1700:1ff0:d0e0::37])
+        by smtp.gmail.com with ESMTPSA id x19-20020a0cda13000000b0063d585225e0sm3136365qvj.61.2023.08.07.15.27.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Aug 2023 15:27:46 -0700 (PDT)
+Date:   Mon, 7 Aug 2023 17:27:44 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 5/9] arm64: dts: qcom: sa8775p-ride: move the reset-gpios
+ property of the PHY
+Message-ID: <ld2j4llgfba6j43gesqxs6wz2baucka5scbj4nef5ehbex2cmt@d4dxsqp2vuoj>
+References: <20230807193507.6488-1-brgl@bgdev.pl>
+ <20230807193507.6488-6-brgl@bgdev.pl>
+ <siqiyihftz3musfjulpcqunhgi7npftumrfwfyh2pqnlx6zeb7@rrpwmkvjshfb>
+ <da679b5e-6712-4849-b29c-6aa42022abc4@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042AC:EE_|LV2PR12MB5967:EE_
-X-MS-Office365-Filtering-Correlation-Id: d29386b3-7d78-42a3-39ae-08db97942ecb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LkiTNTqYOhgV9P0Y7uWayt6f/doYZVbg7Xow9SN42Zh+d0ERHiGsNS3t/78zhlflOgBp6dgUujQcRy7Jwi71/lZfhk7D5D/W5mbqSZWQvkN8nhNuRgtpMw76JuSlMZVBvuyPIhnjwUfqz3jtli91mt6mkLQ08Ld1APqeKwP4+VBG0pZz2uBtJI0tw6Tu9cFPVxmZfD/2YCWDGLkCm5mEQcqp0Vpd4b9VM2Ry0nfl8xocDSTT11P55tob01Xnb4GrWpq5CJU6n+S2WYWihrKo5XH1CbZ3d/QW4KB5ipvjDIToNUZdJUyt5C9u9iojsjMISmCRTTulKi95nHlqYn7kKCQbWftcPlBB2z5NW/oEOhLUMmi7iad7K+z4axfunlGhxR04McuSu2q5LQX3rckT4AYyVKjykrDEhSjMzeFX90G1V7nARg0IiI7WuKcVptHvL3KiR9kVL7wY49UZjWIT9AlNhQoevVXx/tw86MaNEfhFHcIiVl+3B7nypor/0DAtqbz/eAxmRK4X07j1EC8Xu66rnD8KqCdBAkscV5ewOH9sjtXTQHVWt6d9P1kClH4mSFPD1af2Cyw/+6fzFLHUVXuxb3XGuxL+jLgKlKAQ8tRUA3qKr9QiJvgwXBscYo0osTqbHng6IKGEmgwRBNq3NbfETYOy6f1UMfKjvx2JUC+tMj2KiCHL7nAGd6EBa8ksrHPaNslEGvKkbiDOp8ZLhJuwojHchkb+JdSYXdBqtAG9AqQRSFfNxdpOsj+t7FczDLBuGZFbI8d/08JFt8/8ng==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(136003)(376002)(346002)(451199021)(186006)(1800799003)(82310400008)(46966006)(40470700004)(36840700001)(40460700003)(41300700001)(8936002)(8676002)(47076005)(36860700001)(83380400001)(16526019)(26005)(336012)(1076003)(2616005)(426003)(81166007)(356005)(82740400003)(6666004)(6916009)(316002)(36756003)(54906003)(40480700001)(478600001)(4326008)(70586007)(2906002)(5660300002)(70206006)(7406005)(66899021)(7416002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 22:18:09.7675
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d29386b3-7d78-42a3-39ae-08db97942ecb
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AC.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5967
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <da679b5e-6712-4849-b29c-6aa42022abc4@lunn.ch>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+On Mon, Aug 07, 2023 at 11:51:40PM +0200, Andrew Lunn wrote:
+> > > I have proposed a solution for this problem in 2020 but it never got
+> > > upstream. Now we have a workaround in place which allows us to hard-code
+> > > the PHY id in the compatible property, thus skipping the ID scanning).
+> > 
+> > nitpicky, but I think that already existed at that time :D
+> 
+> Yes, it has been there are long long time. It is however only in the
+> last 5 years of so has it been seen as a solution to the chicken egg
+> problem.
+> 
+> > >  		sgmii_phy: phy@8 {
+> > > +			compatible = "ethernet-phy-id0141.0dd4";
+> > >  			reg = <0x8>;
+> > >  			device_type = "ethernet-phy";
+> > > +			reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> > > +			reset-deassert-us = <70000>;
+> > 
+> > Doesn't this need reset-assert-us?
+> 
+> If i remember correctly, there is a default value if DT does not
+> provide one.
+> 
 
-> On Wed, May 24, 2023, at 00:11, Brad Larson wrote:
->>> On Mon, May 15, 2023, at 20:16, Brad Larson wrote:
-...
->>> Also, can you explain why this needs a low-lever user interface
->>> in the first place, rather than something that can be expressed
->>> using high-level abstractions as you already do with the reset
->>> control?
->>>
->>> All of the above should be part of the changelog text to get a
->>> driver like this merged. I don't think we can get a quick
->>> solution here though, so maybe you can start by removing the
->>> ioctl side and having the rest of the driver in drivers/reset?
+I've been trying to make sure I view devicetree properties as an OS
+agnostic ABI lately, with that in mind...
 
-Might be best to pull the whole thing for now until an acceptable 
-solution is reached.  The reset function is a recovery mechanisim rarely
-used where the byte access to the different IP at the 4 chip-selects
-is needed for a system to boot.
+The dt-binding says this for ethernet-phy:
 
->> In the original patchset I added a pensando compatible to spidev and that
->> was nacked in review and reusing some random compatible that made it into 
->> spidev was just wrong.  Further it was recommended this should be a system 
->> specific driver and don't rely on a debug driver like spidev.  I changed 
->> over to a platform specific driver and at that time I also needed to include 
->> a reset controller (emmc reset only).  I put these in drivers/mfd and 
->> drivers/reset.  Review of the device tree for this approach went back and 
->> forth to _not_ have four child nodes on the spi device each with the same 
->> compatible. Decision was to squash the child nodes into the parent and put 
->> the reset-controller there also.  One driver and since its pensando
->> specific its currently in drivers/soc/amd.
->>
->> There are five different user processes and some utilities that access the 
->> functionality in the cpld/fpga.  You're correct, its passing messages that 
->> are specific to the IP accessed via chip-select.  No Elba system will boot 
->> without this driver providing ioctl access.
+  reset-assert-us:
+    description:
+      Delay after the reset was asserted in microseconds. If this
+      property is missing the delay will be skipped.
 
-> Thank you for the detailed summary. Moving away from spidev and
-> from mfd seems all reasonable here. I'm still a bit confused by
-> why you have multiple chipselects here that are for different
-> subdevices but ended with a single user interface for all of them,
-> but that's not a big deal.
+If the hardware needs a delay I think we should encode it based on that
+description, else we risk it starting to look like a unit impulse!
 
-The goal is to isolate the the kernel from device and platform specific
-changes.  All the IO to the spi connected CPLD/FPGA (design/cost dependent)
-is a byte at a time or up to 16 bytes for internal flash mgmt.  Performance
-is not an issue and spidev was sufficient.
-
-Maybe this paints the right picture to zero in on a correct approach.
-Internal and external IP can be present at CS1/CS2 depending on the design
-where the CS0 board controller registers get additions over time in a
-backward compatible manner.
-
-Design 1: FPGA 
-CS0: Board controller registers
-CS1: Designware SPI to I2C to board peripherals
-CS2: Lattice dual I2C master
-CS3: Internal storage
-
-Design 2: CPLD
-CS0: Board controller registers
-CS1: Not used or some other board specific registers
-CS2: Lattice dual I2C master
-CS3: Internal storage
-
-> The main bit that sticks out about this high-level design is how
-> it relies on user space utilities at all to understand the message
-> format. From what I understand about the actual functionality of
-> this device, it most closely resembles an embedded controller that
-> you might find in a laptop or server machine, and those usually
-> have kernel drivers in drivers/platform/ to interact with the
-> device.
-
-The dozens of registers at CS0 for board management are defined in
-userspace programs or script.  Only the regsiter offset/bit for
-emmc reset is needed for the reset function in the patches.
-
-> Has anyone tried to do it like that? Maybe it would help
-> to see what the full protocol and the user space side looks
-> like, in order to move some or all of it into the kernel.
-
-Looking at drivers/platform its pretty sparse.  What do you 
-recommend based on the design 1/2 variations?
-
-Regards,
-Brad
