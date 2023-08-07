@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60D48772BD0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 631A0772BD8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjHGQ6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 12:58:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33518 "EHLO
+        id S231617AbjHGQ6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 12:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbjHGQ5z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:57:55 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF441FD8;
-        Mon,  7 Aug 2023 09:57:29 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377GvIxx076498;
-        Mon, 7 Aug 2023 11:57:18 -0500
+        with ESMTP id S231630AbjHGQ6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:58:49 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CC7213E;
+        Mon,  7 Aug 2023 09:58:28 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377GwIFN070045;
+        Mon, 7 Aug 2023 11:58:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691427438;
-        bh=PF6aaZzeYeb6LziCrXgpvOBeW9cpHEe9HYKTB9xKaAY=;
+        s=ti-com-17Q1; t=1691427498;
+        bh=Xb2R23ZgYywFx3hJHSHVW02hvong79sUJg5PKXsDoW4=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=WzhGnAR8aFFRIS554Z2ApjqthoD4poJKY+eZAmZoRaD0Bht78Hj8oDG12gh260WPG
-         ueHT+FuhKQz7zAGSfkfJjI9YQlQPLbYnsFxw9JUb4gYKT3Nrd+t8GWKna9JGzE1d/U
-         awULCkveHKw7Gasx1HQeZxNAHq7qZPLWqmyDglqM=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377GvIpi020089
+        b=CHuzc3RwKBQ7bEhuzXKpLEzfUfRZuN7dbq1nUapdyeKRM5z6eWoUutD4oFD5cSzWk
+         nb83q9Fh2lyypJU9JkpbSPARlWj4SPCpOU7IMakjP1o4i/SKapj6Jrm1x9IzxXZZgX
+         Wl3m1V7BUwM4qYCIgZF/PO+d3hIZrwhPK05CjnQc=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377GwIlk015180
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 11:57:18 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 7 Aug 2023 11:58:18 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 11:57:17 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 11:58:17 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 11:57:17 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377GvHZL004565;
-        Mon, 7 Aug 2023 11:57:17 -0500
+ Frontend Transport; Mon, 7 Aug 2023 11:58:17 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377GwHcR108326;
+        Mon, 7 Aug 2023 11:58:17 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <t-konduru@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <sinthu.raja@ti.com>, <t-konduru@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vaishnav.a@ti.com>, Udit Kumar <u-kumar1@ti.com>
+        <vaishnav.a@ti.com>, <eblanc@baylibre.com>,
+        Udit Kumar <u-kumar1@ti.com>
 CC:     Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for ospi
-Date:   Mon, 7 Aug 2023 11:57:17 -0500
-Message-ID: <169142733459.1014407.4083667899240359740.b4-ty@ti.com>
+Subject: Re: [PATCH v4] arm64: dts: ti: k3-j721s2: correct pinmux offset for ospi
+Date:   Mon, 7 Aug 2023 11:58:17 -0500
+Message-ID: <169142744580.1014580.3459939134016276729.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230802114126.162445-1-u-kumar1@ti.com>
-References: <20230802114126.162445-1-u-kumar1@ti.com>
+In-Reply-To: <20230804075341.3858488-1-u-kumar1@ti.com>
+References: <20230804075341.3858488-1-u-kumar1@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -67,26 +70,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Udit Kumar,
 
-On Wed, 02 Aug 2023 17:11:26 +0530, Udit Kumar wrote:
-> After splitting wkup_pmx pin mux for J784S4 into four regions.
-> Pin mux offset for OSPI nodes were not updated to align with new
-> regions, due to this while setting ospi pin muxes out of range
-> error was seen.
+On Fri, 04 Aug 2023 13:23:41 +0530, Udit Kumar wrote:
+> Due to non-addressable regions in J721S2 SOC wkup_pmx was split
+> into four regions from wkup_pmx0 to wkup_pmx3.
 > 
-> Pin mux offsets for OSPI nodes are corrected in this patch.
+> Correcting OSPI1 pin mux, which now falls under wkup_pmx1.
+> Along with that removing unused pin mux for OSPI-0.
+> 
+> Fixes: 6bc829ceea41 ("arm64: dts: ti: k3-j721s2: Fix wkup pinmux range")
 > 
 > [...]
 
-As discussed in the chain, please send adc and any other fixes (including
-those for sk-am69 as follow on patch series). In the future, I'd prefer
+Also please make sure that am68-sk is sane as well. In the future, I'd prefer
 all the fixes to be put in a single series to avoid this kind of cherry-pick
 fixing.
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for ospi
-      commit: f10f836ccfea21ae3ad3066eb9576625f1acdea2
+[1/1] arm64: dts: ti: k3-j721s2: correct pinmux offset for ospi
+      commit: 06c4e7aa4af0682910ea52d7c23d85f59ea7dcc6
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
