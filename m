@@ -2,145 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 089097724A0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D19397724B0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 14:49:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231783AbjHGMqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 08:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45068 "EHLO
+        id S231193AbjHGMtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 08:49:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbjHGMqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:46:23 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9601FEA
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 05:46:00 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe0fe622c3so6999142e87.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 05:45:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691412355; x=1692017155;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BM1kbz2sor4nBFnh9WswI/g45TnNXDre/AlWkm0RfbQ=;
-        b=uq30S6T9nAcl4QiN7iOhvdbLiZw77kkr1JRRhfr0W6ShfnXXM5ig2wbNADpcXqk+Rg
-         nXxriE8EAa8JIe4QV0j2eEeEAsdNWzWcpn6wQYuAUMFGtJTjoo6Oj/pjkKgkfpeNYe6m
-         TMS1LBhiauERgvHsD2+aL7eUCkBXxBqXX+Aikay+eamSCHGHwuC6USN0JNigr56wkM4Z
-         f06EgIBfT5XnFEOOpMOjefFzgTXlQWFR9PrN+snpkKL3qTEclHnp7MQogVn9eFbpiFgr
-         Co+igq6se4B6h/BM+d0dowORfaa/NxsPl+OLlY4ggKqTVN8r1v1Ln4NvFIrvnqKgux0H
-         LaEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691412355; x=1692017155;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BM1kbz2sor4nBFnh9WswI/g45TnNXDre/AlWkm0RfbQ=;
-        b=QybclEUxMdyU+7pHZtis7dFaB4oGiDC9hlvwuGboQ44Ac1zMGRC/G1Bhc2KzeTNzGr
-         3riGKGxORm+7KMCN1SZPZPTAucyT8gqGJynq4J0uc+n41b1KjWbBFt0cYDlJhKCT9jfd
-         3zJQlIfrG4c9mgpsmNaxnweQU6Cpy692I7LEhfc9b8y/4vQdJbvEmT54vBte3PDkmEso
-         Znl6Hl6EN0uM1sJhNoxiQDdByqLUdkkS0ji8mvSf2VIJ4DKCsBYL5ezXqyx7hQADUWuG
-         ocewZo0fBqpSuprCdAX0OsFxdDLgriM0snnHb4seX9pZ9l2+ELFtkochpneilDqqlxFN
-         xZlw==
-X-Gm-Message-State: AOJu0YxGuDUc7n/dGGtbUqttvUIoThJ8OLZb2y58rrEMNVqurozKTNL/
-        wzAPWpheO1NtWfmxWGbP/1h7Gw==
-X-Google-Smtp-Source: AGHT+IErCLFJX26zK+vEYznMVLBrXzWNAXrAwI3vp1xDFz3J3Oft8RD/9dMuMHa1JBJ9o58sWbEM8g==
-X-Received: by 2002:a19:5007:0:b0:4fe:85c:aeba with SMTP id e7-20020a195007000000b004fe085caebamr5800744lfb.21.1691412355163;
-        Mon, 07 Aug 2023 05:45:55 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id l17-20020ac24a91000000b004f85d80ca64sm1490547lfp.221.2023.08.07.05.45.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 05:45:54 -0700 (PDT)
-Message-ID: <c4006b16-2c06-4c96-86a1-d4ba235503f4@linaro.org>
-Date:   Mon, 7 Aug 2023 14:45:54 +0200
+        with ESMTP id S232127AbjHGMsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 08:48:54 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019D41701;
+        Mon,  7 Aug 2023 05:48:53 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377CmjiT076533;
+        Mon, 7 Aug 2023 07:48:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691412525;
+        bh=TdmjP6cA4tR4kiz3bfCgCBk+3Sq6v/y/4GyQ2DujN4k=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=MHdYBuymK/+pnhpFaipM/eBfc510Cc5SaP6FlL/cS8DZeMqxZquBRiDHMxnTC7AAH
+         k6BFO9vyRqr7poQylxKxeYw75H6lYfExnSFx9iwGr5pqsSaHsfauCamfLCSbRibVlT
+         lT+5DG8APz3SqIxsmK09IbBvOdTVh1C4UebItbzo=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377CmjIW004475
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Aug 2023 07:48:45 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Aug 2023 07:48:45 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Aug 2023 07:48:45 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377CmjSV002599;
+        Mon, 7 Aug 2023 07:48:45 -0500
+Date:   Mon, 7 Aug 2023 07:48:45 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Apurva Nandan <a-nandan@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-evm: Add bootph-pre-ram
+ property for SPL nodes
+Message-ID: <20230807124845.jyo2pb5goxwb3fqw@dance>
+References: <20230806164838.18088-1-a-nandan@ti.com>
+ <20230806164838.18088-4-a-nandan@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/9] Add pmics supported in Qualcomm's SDX75 platform
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, abel.vesa@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        quic_pkondeti@quicinc.com
-References: <1691411333-1556-1-git-send-email-quic_rohiagar@quicinc.com>
- <83dff121-0a0f-4bd5-bf84-0c7c83f98615@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <83dff121-0a0f-4bd5-bf84-0c7c83f98615@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230806164838.18088-4-a-nandan@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7.08.2023 14:45, Konrad Dybcio wrote:
-> On 7.08.2023 14:28, Rohit Agarwal wrote:
->> Hi,
->>
->> Changes in v2:
->>  - Added compatible for pm7550ba for eusb2 repeater and used it in DT.
->>  - Addressed some minor comments from Konrad to add fixes tag, labels
->>    and update the labels
->>
->> This series add support of pmics that are found in SDX75 platform and
->> add the corresponding regulators in the IDP platform as well.
->> It also parallely updates the pmic found in SDX65 to PM7250b and add pinctrl
->> support for the same pmic chip.
->> This series is based on the new header inclusion[1] and movement of the
->> regulators level from rpmpd to rpmhpd[2].
->> This series can be picked after successfully picking [2] and [3] as [1] has
->> already been applied.
->>
->> [1] https://lore.kernel.org/all/1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com/
->> [2] https://lore.kernel.org/all/1690781104-2290-1-git-send-email-quic_rohiagar@quicinc.com/
->> [3] https://lore.kernel.org/all/1690461813-22564-1-git-send-email-quic_rohiagar@quicinc.com/
->>
->> Thanks,
->> Rohit.
-> Since you resent this (as mentioned in the first thread with "v2" [1]),
-> the subject should be [PATCH RESEND ...]
+On 22:18-20230806, Apurva Nandan wrote:
+> Add bootph-pre-ram property for all the nodes used in SPL stage,
+> for syncing it later to u-boot j784s4 dts.
 > 
-[1] https://lore.kernel.org/linux-arm-msm/f29eae07-b6c4-e7ea-3790-ee800d83859e@quicinc.com/T/#m863acf47848ba75987fcf144c588da21306dc2fe
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 23 +++++++++++++++++++++++
 
-Konrad
+am69-sk is missing in the series.
+
+
+but thanks for starting on this series.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
