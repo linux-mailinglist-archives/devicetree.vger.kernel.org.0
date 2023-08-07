@@ -2,121 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 465367727F2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 16:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCADD772802
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 16:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234433AbjHGOgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 10:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48082 "EHLO
+        id S234708AbjHGOja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 10:39:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234091AbjHGOgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 10:36:47 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9E010F3;
-        Mon,  7 Aug 2023 07:36:31 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B7938E0008;
-        Mon,  7 Aug 2023 14:36:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1691418990;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CoovJrYPxkDFGogd5wvVhZC1R5Dq4lKn3YHaDGn4/LM=;
-        b=HmQ6EWLUrDj97BUk7IGsXLcmAJ2miJvyMgaSQlOietWT5pvqGoMYmO6yr+Bhc0Lx67tKD6
-        df7Z6+KBom37uNEQWfw8FJht1ZSI3QWLiHNjcNXBmvIwSynDxYMQivLHbJtb7uzGw5pJZ2
-        EAinCJbElQ6rO13JeWO3s9sPGU4+27Q8M5T52pS7PcbF+R8WyuQKAjhFeLCmKcp+6TWkuR
-        IdO0UMWLzMibIMpfP4ahj/zKwHCDxTgVc0R059ZGQaSUIC06o5hsPMQ2XYgtkWYBNaUzS4
-        qP1VmAe+U2gpEDS1hmzhbhx0eTbGq6h1G2uNh4GG0oC80TOYZeIgosi77P7S8A==
-Date:   Mon, 7 Aug 2023 16:36:26 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232968AbjHGOja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 10:39:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB0A10DC;
+        Mon,  7 Aug 2023 07:39:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EDA1161D5E;
+        Mon,  7 Aug 2023 14:39:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4259DC433C7;
+        Mon,  7 Aug 2023 14:39:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691419168;
+        bh=iQco7pxNtitwKp1HMGQSoYJsu9kvGpQLvoFE/amgGtQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XyObQZUI96AhyQVk1KiJRgyc+06JUEN3JWAeVsYTu9Auesm40X6tyStZ2VEF+445D
+         5KX/jJW04r+pqmmph88HEwa86wtORSzzOEBkovvWzwc2P+FaascJwvkxYR4Yd7X5NE
+         Tm4ltGmdBLS8taEqA4MpDAsJaYX36De+cuoWCHHtL4rO/dLIG4kHIN5bo6OpzETDmG
+         rM/oA2YmtSNMYY33tqdQVF2urVWi2BSNbBaDJisp6dHsKXJdj52MtaPP4xJlL3S+2j
+         mRRFXkU8ZqvAWFqkgcpek2Wj6uiZozb65CJZu5sRRUe47EPnca5y8uiCMvypkot5VF
+         Ex5u6xGiWQzuA==
+Date:   Mon, 7 Aug 2023 15:39:22 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Suman Anna <s-anna@ti.com>, Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 24/28] pinctrl: Add support for the Lantic PEF2256
- pinmux
-Message-ID: <20230807163626.79a5ca7b@bootlin.com>
-In-Reply-To: <eb99e739-6578-4aee-a0f4-7a0c5e5e81ef@lunn.ch>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
-        <20230726150225.483464-25-herve.codina@bootlin.com>
-        <CACRpkdYXCQRd3ZXNGHwMaQYiJc7tGtAJnBaSh5O-8ruDAJVdiA@mail.gmail.com>
-        <CACRpkdZebvrdGXooLXmgXhUcgdgxBczJBpdEoEyJDR39abaAqQ@mail.gmail.com>
-        <eb99e739-6578-4aee-a0f4-7a0c5e5e81ef@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, srk@ti.com,
+        nm@ti.com
+Subject: Re: [PATCH] dt-bindings: remoteproc: pru: Add Interrupt property
+Message-ID: <20230807-euphemism-trailing-ef4130dc7437@spud>
+References: <20230807110836.2612730-1-danishanwar@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="1jdWVwq42WtLkpBA"
+Content-Disposition: inline
+In-Reply-To: <20230807110836.2612730-1-danishanwar@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus, Andrew,
 
-On Mon, 7 Aug 2023 15:17:11 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+--1jdWVwq42WtLkpBA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Mon, Aug 07, 2023 at 03:06:42PM +0200, Linus Walleij wrote:
-> > On Mon, Aug 7, 2023 at 3:05 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >   
-> > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
-> > >
-> > > So it is a bridge chip? Please use that terminology since Linux
-> > > DRM often talks about bridges.  
-> > 
-> > Replying to self: no it's not a bridge, it's a WAN thingy.
-> > 
-> > So perhaps write that this is a WAN interface adapter chip.  
-> 
-> Hi Linus
-> 
-> In the E1/T1/J1 world, framer is a well understood concept. Maybe the
-> text needs a bit more background information to explain what this is
-> to somebody who does not have an old school telecoms background.
-> 
->    Andrew
+On Mon, Aug 07, 2023 at 04:38:36PM +0530, MD Danish Anwar wrote:
+> Add interrupts and interrupt-names protperties for PRU and RTU cores.
+>=20
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  .../bindings/remoteproc/ti,pru-rproc.yaml     | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.ya=
+ml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> index cd55d80137f7..6970316943bb 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> @@ -66,6 +66,16 @@ properties:
+>        Should contain the name of the default firmware image
+>        file located on the firmware search path.
+> =20
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Interrupt specifiers enable the virtio/rpmsg communication between=
+ MPU
+> +      and the PRU/RTU cores.
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: vring
+> +
+>  if:
+>    properties:
+>      compatible:
+> @@ -171,6 +181,9 @@ examples:
+>                <0x22400 0x100>;
+>          reg-names =3D "iram", "control", "debug";
+>          firmware-name =3D "am65x-pru0_0-fw";
+> +        interrupt-parent =3D <&icssg0_intc>;
+> +        interrupts =3D <16 2 2>;
+> +        interrupt-names =3D "vring";
+>        };
 
-Maybe I can add in my commit log:
---- 8< ---
-This kind of component can be found in old telecommunication system.
-It was used to digital transmission of many simultaneous telephone calls
-by time-division multiplexing. Also using HDLC protocol, WAN networks
-can be reached through the framer.
---- 8< ---
+These examples would probably be more helpful if they used the
+appropriate defines, no?
 
-Do you think it will be better ?
+> =20
+>        rtu0_0: rtu@4000 {
+> @@ -180,6 +193,9 @@ examples:
+>                <0x23400 0x100>;
+>          reg-names =3D "iram", "control", "debug";
+>          firmware-name =3D "am65x-rtu0_0-fw";
+> +        interrupt-parent =3D <&icssg0_intc>;
+> +        interrupts =3D <20 4 4>;
+> +        interrupt-names =3D "vring";
+>        };
+> =20
+>        tx_pru0_0: txpru@a000 {
+> @@ -198,6 +214,9 @@ examples:
+>                <0x24400 0x100>;
+>          reg-names =3D "iram", "control", "debug";
+>          firmware-name =3D "am65x-pru0_1-fw";
+> +        interrupt-parent =3D <&icssg0_intc>;
+> +        interrupts =3D <18 3 3>;
+> +        interrupt-names =3D "vring";
+>        };
+> =20
+>        rtu0_1: rtu@6000 {
+> @@ -207,6 +226,9 @@ examples:
+>                <0x23c00 0x100>;
+>          reg-names =3D "iram", "control", "debug";
+>          firmware-name =3D "am65x-rtu0_1-fw";
+> +        interrupt-parent =3D <&icssg0_intc>;
+> +        interrupts =3D <22 5 5>;
+> +        interrupt-names =3D "vring";
+>        };
+> =20
+>        tx_pru0_1: txpru@c000 {
+> --=20
+> 2.34.1
+>=20
 
-Regards,
-Hervé Codina
+--1jdWVwq42WtLkpBA
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNECFwAKCRB4tDGHoIJi
+0uAAAQCv+PBOP8/27AfSbERfPzfJ8qe0qOYDPQZg6GEo/lmsPAD+Nb/9LP9+9o+J
+8HIuSivmkOmx6egC3SyRduL0FiYz9gs=
+=IG6P
+-----END PGP SIGNATURE-----
+
+--1jdWVwq42WtLkpBA--
