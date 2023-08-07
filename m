@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C74772EBF
+	by mail.lfdr.de (Postfix) with ESMTP id A1E74772EC0
 	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 21:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbjHGTfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 15:35:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55878 "EHLO
+        id S230097AbjHGTfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 15:35:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjHGTfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:35:22 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE93A171A
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 12:35:20 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b974031aeaso76160821fa.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 12:35:20 -0700 (PDT)
+        with ESMTP id S229710AbjHGTfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:35:23 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C934172B
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 12:35:21 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbea14706eso41426645e9.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 12:35:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691436919; x=1692041719;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e27wbiFJtLlf43t1k7vc8pvwOKH5unMgNn5Odb2O+Z8=;
-        b=0ClHwQmDfHox7caha97lX3plPiiO9uO/nV4QJN2dkc8f/qkhCWBPsutilB3bREPHr4
-         9NFno8L+SXRLiDnvRt+qNn8aqOk7Db8x1nMjFqMaRBuMB1Vj1nU2Uwi75BChTWV7tUQx
-         7Hzzz871BHBcswazgRdh5hFNjOo0gA22e1zOHuIO+U4203plfrdrDIKkBPl9kmBMXktF
-         gNJB6sNjiFc8O3jDztpnJuADTxxstNh0XKDuIQXel7XAX1teMKQnzdnB522fQMYeTDjH
-         cswqB1b/e0c1/q28xCtpLeyOslraYAMkbS02ORfJGWYCuQgPrlMDaSt6g9T8NE/UYesB
-         ECdg==
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691436920; x=1692041720;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XSsBSVLtrUYlv/MGrIezXmSe6WOfaa1FZe1kCeq6Zm8=;
+        b=L7uC2z1HR78duqiRFC3J5QmDk0rcMFKv+OS9eicsmH1tv4MLrXE2uEgfPWWfUlB9CU
+         1y9fVJob1NzP2h6EsLC65fc+wae+BPL4KrjdW3lO6SjKS9Gs09G4sAo3f52or5ggzM+M
+         kCe8y/iFwsHevNDhyQLdaYm0vKqp3xV8YfAVPHS/csMHyHWSAM5g8sqX0/rlMGI5KMzG
+         ufaoABATQYUEjKP2z64V4fiRIX055xgNogypA+OeV63ZwwiT/nzcMjVF6U5ugu32LO8l
+         KFMvQRgRNtT/1LlLViC56Yu1iwiVhtzPH0/0WbWnQd+Kg6g5lX1GvxDHpzz6c0MOiIuO
+         rb3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691436919; x=1692041719;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e27wbiFJtLlf43t1k7vc8pvwOKH5unMgNn5Odb2O+Z8=;
-        b=kp/PtegAqwyYGe7TLYF8VzUqadqLeY+d2bYXgd+qO/rNcmOKv/6ef4P9kbDJ6T17yR
-         g2b+J7WtCfIIBWaBueLFVLjkOid0FkFM65/XKb7rgw0LlsrnHHYjhzVcE0sPrPWaeAbd
-         clJ1cB+zvOQZUoypIfijStuzrxaLEWaT4NWizUhasMUDVjnnQUzLm6fzGpXTshqF+t6Q
-         zpg8ZJbKgIs4LRLMMRg5ASpAjOjQ9nQpn1uW/Mf2k9OxfrFpa4+xDP8jMVlikmeWLQyR
-         pyJiRF38sNWHXAqdubvE0E6V7IHXyfkPD5FRau8dkQiH/vbajCCRnsd+8MokQN2/kfaK
-         zK0w==
-X-Gm-Message-State: AOJu0YyqRMi1BOFwwToHUTfLppAjhYdyz6tXn39PG+SjYMY3m2OgUgKZ
-        DisxCMjbdbQV2S0XHnqnm0Oaqg==
-X-Google-Smtp-Source: AGHT+IF792kTobb8MlI4iFxkIWn86W6q+R/OSGQFuQifwhPAUOuWr6eKA+8sKr0Z/k14NOqktWgXqQ==
-X-Received: by 2002:a2e:7217:0:b0:2b9:cb2a:11bf with SMTP id n23-20020a2e7217000000b002b9cb2a11bfmr7483270ljc.49.1691436918813;
-        Mon, 07 Aug 2023 12:35:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691436920; x=1692041720;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XSsBSVLtrUYlv/MGrIezXmSe6WOfaa1FZe1kCeq6Zm8=;
+        b=PGEVkd3WKOBYAOCcgHAhpaOCCtlk3WmVEAwdvcR/RoPdV57A11+1kZHI8Ai5eVrati
+         MehBP+5I6a6diNwBPRNGprAU+4ybKfdDRFltTr8ubkbcPD3Y7oSvLO9m+CASmxpN3x+c
+         ag3g3r/eKmOQfTBP5q4Se5QEtY5T4lJZbaFKe/51vjH3Og2ENtyFBOJAjXV4UvckmGuQ
+         HWyQQROB2g9XQH6uEYZYDj6LNc61Y+YhWR1tadPqCzXlC0+XjXh8BS+Za2OseAgk6SXH
+         gMyqu91adJJGx3WvesrOYu8PFu+ERukYhOad5MfdPPdyq3l9TonysoRfOkL/zBSSPU4z
+         7sTQ==
+X-Gm-Message-State: AOJu0YwgubmeMy043Rnucid/3nATb7pZggAdkoTTX4SBFmnY0MdmK7tZ
+        Hn18s9sD/Ra6X4xWwTMsVvRDFQ==
+X-Google-Smtp-Source: AGHT+IG+SkBKOfidcaodaO1gm6lOflL8wEWK21n8mUiUo5jekg7Zu0ZNOtuA8Mr6YGy0n+zByHfAKQ==
+X-Received: by 2002:a05:600c:2a50:b0:3fe:63ca:ccf2 with SMTP id x16-20020a05600c2a5000b003fe63caccf2mr11136wme.33.1691436919831;
+        Mon, 07 Aug 2023 12:35:19 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b3d6:9e6:79d9:37cd])
-        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003fc04d13242sm16061488wmc.0.2023.08.07.12.35.17
+        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003fc04d13242sm16061488wmc.0.2023.08.07.12.35.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Aug 2023 12:35:18 -0700 (PDT)
+        Mon, 07 Aug 2023 12:35:19 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,10 +62,12 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 0/9] arm64: dts: qcom: enable EMAC1 on sa8775p
-Date:   Mon,  7 Aug 2023 21:34:58 +0200
-Message-Id: <20230807193507.6488-1-brgl@bgdev.pl>
+Subject: [PATCH 1/9] arm64: dts: qcom: sa8775p: add a node for the second serdes PHY
+Date:   Mon,  7 Aug 2023 21:34:59 +0200
+Message-Id: <20230807193507.6488-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230807193507.6488-1-brgl@bgdev.pl>
+References: <20230807193507.6488-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,24 +81,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-This series contains changes required to enable EMAC1 on sa8775p-ride.
+Add a node for the SerDes PHY used by EMAC1 on sa8775p-ride.
 
-Bartosz Golaszewski (9):
-  arm64: dts: qcom: sa8775p: add a node for the second serdes PHY
-  arm64: dts: qcom: sa8775p: add a node for EMAC1
-  arm64: dts: qcom: sa8775p-ride: enable the second SerDes PHY
-  arm64: dts: qcom: sa8775p-ride: add pin functions for ethernet1
-  arm64: dts: qcom: sa8775p-ride: move the reset-gpios property of the
-    PHY
-  arm64: dts: qcom: sa8775p-ride: index the first SGMII PHY
-  arm64: dts: qcom: sa8775p-ride: add the second SGMII PHY
-  arm64: dts: qcom: sa8775p-ride: label the mdio node
-  arm64: dts: qcom: sa8775p-ride: enable EMAC1
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 116 ++++++++++++++++++++--
- arch/arm64/boot/dts/qcom/sa8775p.dtsi     |  43 ++++++++
- 2 files changed, 152 insertions(+), 7 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 7b55cb701472..38d10af37ab0 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -1846,6 +1846,15 @@ serdes0: phy@8901000 {
+ 			status = "disabled";
+ 		};
+ 
++		serdes1: phy@8902000 {
++			compatible = "qcom,sa8775p-dwmac-sgmii-phy";
++			reg = <0x0 0x08902000 0x0 0xe10>;
++			clocks = <&gcc GCC_SGMI_CLKREF_EN>;
++			clock-names = "sgmi_ref";
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sa8775p-pdc", "qcom,pdc";
+ 			reg = <0x0 0x0b220000 0x0 0x30000>,
 -- 
 2.39.2
 
