@@ -2,116 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12ECC77251D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A2477252B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 15:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjHGNKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 09:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57668 "EHLO
+        id S230180AbjHGNNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 09:13:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbjHGNKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:10:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEA410FE;
-        Mon,  7 Aug 2023 06:10:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 030F461A56;
-        Mon,  7 Aug 2023 13:10:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A44A0C433C8;
-        Mon,  7 Aug 2023 13:10:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691413808;
-        bh=+ylZyoYYRfcm6fV2c5Chg3oeks3UOFVe6ienNx0Fhmw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ptPcngcyFrXPhfW+uAcklMgxyhnPVyuRFGiByyYxP0vv5fqTTBf1C+4ZecNjaXNCU
-         x5dexojsK7ip6GaiKDXtsaoPTYSzIcInPyoG7TA1F5LhXIZeJNLz4vhFA354hQ91bs
-         jlsfMHj4h4bMB1a/aQ3hV8/OzE/8wWOiZVToK/QLyt9vfOvmf665T9kjIbKegLgNdG
-         EZ4JdpqVL7wvyWODD+mDyu8mLQ22wCFOdQmTWgvbGeolnFdDe+TK/BROYHkQNEskI5
-         tUJXXtpYQAPIshCzIIkr5tAXQJJ/v2mXmUc9Kz2LqqQ5og6ku6/LbuVEVnS+gnoIru
-         0Ov9IDZ3B4O+w==
-Date:   Mon, 7 Aug 2023 14:09:58 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S229972AbjHGNND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 09:13:03 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FC4B3
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 06:13:01 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fe12820bffso38436145e9.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 06:13:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691413980; x=1692018780;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZW8bAZOpofrAZ+E1cERRtB886PDebwGsovf/Pz2sHNY=;
+        b=NBFvLuOfuqii+YsiP6fAqg2jYNwaUOzi+zy+p6hiHsBwUqsGaqC+jifC8WkeFzHJ3p
+         9bGi50BRrixhKZ/AGczbT2D3DNDVj03v9oFDRRHS2WkCOxSgt0ReT/fFhGpFPPQaiYse
+         HjxvkP/NPV8DohAp7J6hq4SeaAVItFAQMsVt+SfbSHFhqvYCiX33LEnBwSQkefvkpPrQ
+         yAG2arWbsqrzYzjfXZ0MuU6zVyGjf0a83K1Qw76IAac7k0Q0bdpmgA3og9NEk19823Rs
+         PFfEj+kknB+PamtZqAc8GhCIC/I8vL8fk56b6X5XQc+PMdXeDdJWaaRsa4824aUoVD8b
+         8PLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691413980; x=1692018780;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZW8bAZOpofrAZ+E1cERRtB886PDebwGsovf/Pz2sHNY=;
+        b=GJl80mptKhFM2PSMw7lObTTjs9rIATB1KpFfv+sInf+VqQgj2nDQgbc/RworNwV0hN
+         WwSayIEk92oUbc1jmeSuiOQosZY5gVcb9ynOgRStGqt5ielTlIqn8Om00XX3OAR7peMb
+         ExEtx01zzBH2oMZET7TBsXlMRE3GgVjDbtdCazq5P6xurX/xsTAgxS49MvCYTrgxCtqH
+         GGs3UkYo9IPZ/Rjym/rqJ0PGN3ftwRkcODzyL6XcdSx682ypMiYk6FJ2/kbvQOtk5K/K
+         hCleSUKpH+zu6MOh8n2bozQiAJ6nizkrgfpQJ1DphxtW3BfQvbrlRaFtbMZOrEPPegZS
+         xFWw==
+X-Gm-Message-State: AOJu0Yyobfns0FMKgd5ZjjJtoRRxB5Nf6pc+ig1FgNtCqzUFW5iikegq
+        BzoRRhz0MGaAHrIKrA4AASBokQ==
+X-Google-Smtp-Source: AGHT+IFgUw/IsPxcji669Ya7tWBBXSklfkr9EK6+mKTk1ImVlXR/2gF4Mefli/6npyXEZ+Id6V2QeA==
+X-Received: by 2002:a1c:f60b:0:b0:3fa:991c:2af9 with SMTP id w11-20020a1cf60b000000b003fa991c2af9mr5860825wmc.16.1691413980429;
+        Mon, 07 Aug 2023 06:13:00 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id j9-20020a5d4489000000b0031411b7087dsm10618428wrq.20.2023.08.07.06.12.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Aug 2023 06:13:00 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 24/28] pinctrl: Add support for the Lantic PEF2256
- pinmux
-Message-ID: <8f80edf2-c93d-416f-bcab-f7be3badf64a@sirena.org.uk>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
- <20230726150225.483464-25-herve.codina@bootlin.com>
- <CACRpkdYXCQRd3ZXNGHwMaQYiJc7tGtAJnBaSh5O-8ruDAJVdiA@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/3] media: dt-bindings: samsung,exynos4212-fimc-is: replace duplicate pmu node with phandle
+Date:   Mon,  7 Aug 2023 15:12:54 +0200
+Message-Id: <20230807131256.254243-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jTPmHke3dW8il9IP"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYXCQRd3ZXNGHwMaQYiJc7tGtAJnBaSh5O-8ruDAJVdiA@mail.gmail.com>
-X-Cookie: idleness, n.:
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The FIMC IS camera must access the PMU (Power Management Unit) IO memory
+to control camera power.  This was achieved by duplicating the PMU node
+as its child like:
 
---jTPmHke3dW8il9IP
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+  soc@0 {
+    system-controller@10020000 { ... }; // Real PMU
 
-On Mon, Aug 07, 2023 at 03:05:15PM +0200, Linus Walleij wrote:
-> On Wed, Jul 26, 2023 at 5:04=E2=80=AFPM Herve Codina <herve.codina@bootli=
-n.com> wrote:
+    camera@11800000 {
+      fimc-is@12000000 {
+        // FIMC IS camera node
+        pmu@10020000 {
+          reg = <0x10020000 0x3000>; // Fake PMU node
+        };
+      };
+    };
+  };
 
-> > +#include "linux/bitfield.h"
+This is not a correct representation of the hardware.  Mapping the PMU
+(Power Management Unit) IO memory should be via syscon-like phandle
+(samsung,pmu-syscon, already used for other drivers), not by duplicating
+"pmu" Devicetree node inside the FIMC IS.
 
-> Really? I don't think there is such a file there.
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Do you mean <linux/bitfield.h> and does this even compile?
+---
 
-#include "" means "try the local directory first then fall back to
-system includes" so it'll work, it picks up extra stuff on top of what
-<> does.  There's a stylistic issue though.
+Changes in v2:
+1. Add Rb tag.
+---
+ .../media/samsung,exynos4212-fimc-is.yaml         | 15 ++++++++++-----
+ .../devicetree/bindings/media/samsung,fimc.yaml   |  5 +----
+ 2 files changed, 11 insertions(+), 9 deletions(-)
 
---jTPmHke3dW8il9IP
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.yaml b/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.yaml
+index 3691cd4962b2..3a5ff3f47060 100644
+--- a/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.yaml
++++ b/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.yaml
+@@ -75,13 +75,20 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  samsung,pmu-syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Power Management Unit (PMU) system controller interface, used to
++      power/start the ISP.
++
+ patternProperties:
+   "^pmu@[0-9a-f]+$":
+     type: object
+     additionalProperties: false
++    deprecated: true
+     description:
+       Node representing the SoC's Power Management Unit (duplicated with the
+-      correct PMU node in the SoC).
++      correct PMU node in the SoC). Deprecated, use samsung,pmu-syscon.
+ 
+     properties:
+       reg:
+@@ -131,6 +138,7 @@ required:
+   - clock-names
+   - interrupts
+   - ranges
++  - samsung,pmu-syscon
+   - '#size-cells'
+ 
+ additionalProperties: false
+@@ -179,15 +187,12 @@ examples:
+                  <&sysmmu_fimc_fd>, <&sysmmu_fimc_mcuctl>;
+         iommu-names = "isp", "drc", "fd", "mcuctl";
+         power-domains = <&pd_isp>;
++        samsung,pmu-syscon = <&pmu_system_controller>;
+ 
+         #address-cells = <1>;
+         #size-cells = <1>;
+         ranges;
+ 
+-        pmu@10020000 {
+-            reg = <0x10020000 0x3000>;
+-        };
+-
+         i2c-isp@12140000 {
+             compatible = "samsung,exynos4212-i2c-isp";
+             reg = <0x12140000 0x100>;
+diff --git a/Documentation/devicetree/bindings/media/samsung,fimc.yaml b/Documentation/devicetree/bindings/media/samsung,fimc.yaml
+index 79ff6d83a9fd..530a08f5d3fe 100644
+--- a/Documentation/devicetree/bindings/media/samsung,fimc.yaml
++++ b/Documentation/devicetree/bindings/media/samsung,fimc.yaml
+@@ -236,15 +236,12 @@ examples:
+                      <&sysmmu_fimc_fd>, <&sysmmu_fimc_mcuctl>;
+             iommu-names = "isp", "drc", "fd", "mcuctl";
+             power-domains = <&pd_isp>;
++            samsung,pmu-syscon = <&pmu_system_controller>;
+ 
+             #address-cells = <1>;
+             #size-cells = <1>;
+             ranges;
+ 
+-            pmu@10020000 {
+-                reg = <0x10020000 0x3000>;
+-            };
+-
+             i2c-isp@12140000 {
+                 compatible = "samsung,exynos4212-i2c-isp";
+                 reg = <0x12140000 0x100>;
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTQ7SUACgkQJNaLcl1U
-h9Cgmwf/SLPNpdzBUj796oCGdE0sLv3Wx6OOJqUx6r7OcXxbdmI57ntyLtd42nrN
-Bto5bvnu1D1GkKvkmyy+3qu8xEk9s7C2T9S8wddibRU4Ltzcda/eNPj7PwZuLuj1
-0z8caed2ZZTmxKQJzHev6bV798Prre1UC1Wu8xTev1OLJpck8z68ITezl6gh97ma
-TFmBFQx8ZozN8KVhSTI49Oc5lUUWGJC/CYjNSASRYYC5Wm/bSfAfdDHclNhQLaW9
-7VQNOvJvO5CmbCu7s0dq39QvEWgoC2sm0Cx8ZWUpHxjKZVyWbnfMr0sMyPwgLtWb
-vb6uLwRLtAlanfRgULyEgNLTnZ+BIw==
-=+n7M
------END PGP SIGNATURE-----
-
---jTPmHke3dW8il9IP--
