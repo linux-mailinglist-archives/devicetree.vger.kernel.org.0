@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5549B772B99
+	by mail.lfdr.de (Postfix) with ESMTP id A8403772B9B
 	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231948AbjHGQxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231139AbjHGQxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 7 Aug 2023 12:53:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56530 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231953AbjHGQxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:53:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48131BC8;
-        Mon,  7 Aug 2023 09:53:38 -0700 (PDT)
+        with ESMTP id S231935AbjHGQxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:53:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B3919AB;
+        Mon,  7 Aug 2023 09:53:42 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D06361F9C;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 08EBE61F84;
+        Mon,  7 Aug 2023 16:53:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39294C433C9;
         Mon,  7 Aug 2023 16:53:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E750AC433C8;
-        Mon,  7 Aug 2023 16:53:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691427217;
-        bh=d3IEyKFkLTaGuIoiBZGy50KXj/3eibRX6B2ljjyT/mA=;
+        s=k20201202; t=1691427221;
+        bh=xPpxwJzBLsCaca6qQZWRTcviG5VQc7YuCxtBnfOO0Sc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nAcfFxsP9hoSseU0oVL+SpoVVWxXzN/0EOciYwlCvHTMWfRw74fexBngTLM0IatiX
-         ArRiV6z104rl8V7zNWxQWerv2zBgcHujufjmbIPz52D2ttE+kMO6C7D7dNRJGNswLt
-         wJrZyTePJljzXuaxXX9F+AMbVORzjMxrVcyNaPx7LlqK44ISS9aG87vBqaYPUdMV8A
-         j6WZpBIZ42smfnj7N5mNjHfyFrqE0ccu+kKN4vur09NaK8ujT/w7NLuuzDH8dqnI+f
-         mwxjeaaN7gmn10Tjggri8rZo+kCPep984ro35adhJCpqVowWA+WHxncc0369yHjq7e
-         VFiFvFMqXgunw==
+        b=ELlYl3A90FcinI9OsBvt3zZHCOALf/wcoemS/D0A05UghP2h20DUCixmPQQzZmV50
+         mx/y7mE+Fam1rN25tR65O7HIS4A22JHY6EdAdpv/kJaecVHvmG/hmPWa736c3zT61X
+         wJ/MDQ1FfbabkP+ikasZR7SD8tb3oLGO0htGmZmdOc/yXARKD6l68yOGZnD90zb85i
+         bYZwc8P2YmTnXKroDD3KiEV++x4cOq9ujWQPGwIWohljUuTbKjiCwaP0P0z6MBSP/3
+         axkJKvKVeBR4Vc4poLJT1hl2t2Zoo9VN8OUMXD1aru2ff8KuEs4htE4xggvkLREho0
+         JDpFCRWd7H2SQ==
 From:   Jisheng Zhang <jszhang@kernel.org>
 To:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
@@ -47,9 +47,9 @@ Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH net-next v2 01/10] net: stmmac: correct RX COE parsing for xgmac
-Date:   Tue,  8 Aug 2023 00:41:42 +0800
-Message-Id: <20230807164151.1130-2-jszhang@kernel.org>
+Subject: [PATCH net-next v2 02/10] net: stmmac: xgmac: add more feature parsing from hw cap
+Date:   Tue,  8 Aug 2023 00:41:43 +0800
+Message-Id: <20230807164151.1130-3-jszhang@kernel.org>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230807164151.1130-1-jszhang@kernel.org>
 References: <20230807164151.1130-1-jszhang@kernel.org>
@@ -65,36 +65,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-xgmac can support RX COE, but there's no two kinds of COE, I.E type 1
-and type 2 COE.
+The XGMAC_HWFEAT_GMIISEL bit also indicates whether support 10/100Mbps
+or not.
+The XGMAC_HWFEAT_HDSEL bit indicates whether support half duplex or
+not.
+The XGMAC_HWFEAT_ADDMACADRSEL bit indicates whether support Multiple
+MAC address registers or not.
+The XGMAC_HWFEAT_SMASEL bit indicates whether support SMA (MDIO)
+Interface or not.
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 ---
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h     | 3 +++
+ drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c | 4 ++++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index e1f1c034d325..15ed3947361b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -6271,7 +6271,7 @@ static int stmmac_dma_cap_show(struct seq_file *seq, void *v)
- 	seq_printf(seq, "\tAV features: %s\n", (priv->dma_cap.av) ? "Y" : "N");
- 	seq_printf(seq, "\tChecksum Offload in TX: %s\n",
- 		   (priv->dma_cap.tx_coe) ? "Y" : "N");
--	if (priv->synopsys_id >= DWMAC_CORE_4_00) {
-+	if (priv->synopsys_id >= DWMAC_CORE_4_00 || priv->plat->has_xgmac) {
- 		seq_printf(seq, "\tIP Checksum Offload in RX: %s\n",
- 			   (priv->dma_cap.rx_coe) ? "Y" : "N");
- 	} else {
-@@ -7013,7 +7013,7 @@ static int stmmac_hw_init(struct stmmac_priv *priv)
- 	if (priv->plat->rx_coe) {
- 		priv->hw->rx_csum = priv->plat->rx_coe;
- 		dev_info(priv->device, "RX Checksum Offload Engine supported\n");
--		if (priv->synopsys_id < DWMAC_CORE_4_00)
-+		if (priv->synopsys_id < DWMAC_CORE_4_00 && !priv->plat->has_xgmac)
- 			dev_info(priv->device, "COE Type %d\n", priv->hw->rx_csum);
- 	}
- 	if (priv->plat->tx_coe)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
+index 153321fe42c3..81cbb13a101d 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
++++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
+@@ -111,6 +111,7 @@
+ #define XGMAC_LPI_TIMER_CTRL		0x000000d4
+ #define XGMAC_HW_FEATURE0		0x0000011c
+ #define XGMAC_HWFEAT_SAVLANINS		BIT(27)
++#define XGMAC_HWFEAT_ADDMACADRSEL	GENMASK(22, 18)
+ #define XGMAC_HWFEAT_RXCOESEL		BIT(16)
+ #define XGMAC_HWFEAT_TXCOESEL		BIT(14)
+ #define XGMAC_HWFEAT_EEESEL		BIT(13)
+@@ -121,7 +122,9 @@
+ #define XGMAC_HWFEAT_MMCSEL		BIT(8)
+ #define XGMAC_HWFEAT_MGKSEL		BIT(7)
+ #define XGMAC_HWFEAT_RWKSEL		BIT(6)
++#define XGMAC_HWFEAT_SMASEL		BIT(5)
+ #define XGMAC_HWFEAT_VLHASH		BIT(4)
++#define XGMAC_HWFEAT_HDSEL		BIT(3)
+ #define XGMAC_HWFEAT_GMIISEL		BIT(1)
+ #define XGMAC_HW_FEATURE1		0x00000120
+ #define XGMAC_HWFEAT_L3L4FNUM		GENMASK(30, 27)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
+index b09395f5edcb..b5ba4e0cca55 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
+@@ -406,6 +406,10 @@ static int dwxgmac2_get_hw_feature(void __iomem *ioaddr,
+ 	dma_cap->pmt_remote_wake_up = (hw_cap & XGMAC_HWFEAT_RWKSEL) >> 6;
+ 	dma_cap->vlhash = (hw_cap & XGMAC_HWFEAT_VLHASH) >> 4;
+ 	dma_cap->mbps_1000 = (hw_cap & XGMAC_HWFEAT_GMIISEL) >> 1;
++	dma_cap->mbps_10_100 = (hw_cap & XGMAC_HWFEAT_GMIISEL) >> 1;
++	dma_cap->half_duplex = (hw_cap & XGMAC_HWFEAT_HDSEL) >> 3;
++	dma_cap->multi_addr = (hw_cap & XGMAC_HWFEAT_ADDMACADRSEL) >> 18;
++	dma_cap->sma_mdio = (hw_cap & XGMAC_HWFEAT_SMASEL) >> 5;
+ 
+ 	/* MAC HW feature 1 */
+ 	hw_cap = readl(ioaddr + XGMAC_HW_FEATURE1);
 -- 
 2.40.1
 
