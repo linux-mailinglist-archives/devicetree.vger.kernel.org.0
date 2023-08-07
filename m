@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE69D771B01
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 09:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51BD4771B09
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 09:04:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbjHGHD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 03:03:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S231159AbjHGHEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 03:04:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbjHGHD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 03:03:27 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E40110EC
-        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 00:03:26 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99c10ba30afso1114836666b.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 00:03:26 -0700 (PDT)
+        with ESMTP id S229468AbjHGHEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 03:04:06 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D205A171B
+        for <devicetree@vger.kernel.org>; Mon,  7 Aug 2023 00:04:04 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe21e7f3d1so6771999e87.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Aug 2023 00:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691391804; x=1691996604;
+        d=linaro.org; s=google; t=1691391843; x=1691996643;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qPv78rFQ0GszV8FZCKlxOdCrJLAh0N75ySEJ0htjbYQ=;
-        b=xZkUM51omcyTeVIx/PvrGilJUJJDc+fHLxQp46/GeR1Hz+nNk4Ndv98sw9GegdHWRZ
-         //plUlvH0/LdApbInSe+K+tm55X1B/Bmpy01xsTtEAQOZ/eklAPIlkjt0fASCDP8hJYZ
-         9Z9gJnh3ElJZV8yPBQbw23Co90SYCXOH3IVwYP7vx0aR/yNMJp390wSlbizky6Ycdnx0
-         +RO2FTupPspA7oMTMnlOKEthsnG0oN5qdt7JhAfKwPko27WxpG1WU9pJfObtqF31eazT
-         +YtSgzoovfBUERFOa4dM7A+Y8PxIyyO0WhTB78ZO0OaqvYGE8j586gEx1wsMrO4A4/1u
-         CMTQ==
+        bh=7+rw0PkBch+x5hluKRN9y9M6u6RDlB7pTYALP+C2pTI=;
+        b=IMmHkFwTPoVTTAJKTv2YSlJEQqbjwWPFpMGhcVb8DDERqTuTp7qJPiN+bebugzw5Kf
+         L64z2wDnGLu5OvwikTPq+MVkXVWNz2QN/uOUYQQrKLgHWP/BaHc8oM4/fWMPyNPKmzQl
+         D17txum1ifEKzxZEJuDMBrrtZ7dH82MzHnSbf36zxrQeEq9rfdAbI9y+fkp8Wfmes4B9
+         Sl/DmU0P7SkHXQguiGtJus+O4/RNbe6DcyZ6lh6eaePtleTNN+9JwDZOQb/RR3IlA+pq
+         0oJgitZ3ux+VKOOCzbFqVyXwGjELBpW+HYp2JzFmeK2huU0RxqM8v+skKkNtq4CC6QUi
+         yyVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691391804; x=1691996604;
+        d=1e100.net; s=20221208; t=1691391843; x=1691996643;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qPv78rFQ0GszV8FZCKlxOdCrJLAh0N75ySEJ0htjbYQ=;
-        b=l4fAVhX4x6yDh8y0qpibURgVrS5kZfdfls+Bdp+W6QkLCNDEpywa6nS9Wqcj/xrfJh
-         ZkMv1K7SiE3JO9/R5y7N7U8F9IbV5FNcB6pBDTRFQWSSUtTMPYQole1W6xP5nyJD+vHN
-         /kTqeBCfyNXoNRbUJIynCjQf2ILNUhUQAbBttZx3pHF0zmEHvQJLbfUok77HNmCQhfY3
-         UqxuiKawJ1w3/A7cz6OZzjMXuRn9aiYy2tY7JWww8+kpZORWgL/HT+/2wvFo/289Ck0d
-         J45oVJPSLyw3X7HE+EksqzxuAfH+GTCTb5uQAnMM3+Ofcia7gIewj7fHvTgUO2L1F2BT
-         C9kA==
-X-Gm-Message-State: AOJu0YwPvLEIws5GO41zN6ixsmhMYQwlfjtOD7yiRZbCEmrg00jTKEdB
-        bjhGyACdzwoL4eDu+12FarlDug==
-X-Google-Smtp-Source: AGHT+IFdE7sDjxMpbUtadgfD4FLe6aWyTSjhFkXt0/yaIj5Xj5JsVH1ZIjbBUNKdVMyvPzdhEzaFjA==
-X-Received: by 2002:a17:906:7494:b0:988:71c8:9f3a with SMTP id e20-20020a170906749400b0098871c89f3amr7002264ejl.16.1691391804510;
-        Mon, 07 Aug 2023 00:03:24 -0700 (PDT)
+        bh=7+rw0PkBch+x5hluKRN9y9M6u6RDlB7pTYALP+C2pTI=;
+        b=g41NLK6hBevoieq/NBe1cjsl8wAISbEAbOi4wkTbkFyzqnnsPNwDEXd1YZ+DrgRJOv
+         42vFIuvld+RqLLujCE3fSn6YEGME+kp/5e5pB+O5eBsZZfyQGtoRaJszim7Xrh12oAEV
+         nFx6yfLm9XfIr3Q4Xt5xrcAnu2nCtraFAT3TRTq004Zex9q+XxNr7GP9AAmztL9SOCa3
+         Q3FmDRtqREXUO6gSSn/dYmyOK5B1ZLCByd0f1Ayhe49tjJ11POJEo7FN6M5EkNp9HZW7
+         5R/99PmK/MePuFiO4VZ18B1eKnmtl5LCl7R8Be2zasoStdPG7qPeNmluXiyBBsJVOmrt
+         O2Mg==
+X-Gm-Message-State: AOJu0YyEusiyWZIZe6tpZP1tBFlqrN9675xI/uKalbYtvgW2J9w5HUcA
+        qIoFGUZaWcWVGeRFLPAEoe4UCQ==
+X-Google-Smtp-Source: AGHT+IGc2IuyGt84wLzH8x7oM/cgKKUL6knUyu0Can+UVev5txwwNw0x8Iz1k+9q6LFzQAOYrUVi0Q==
+X-Received: by 2002:a05:6512:3ca6:b0:4fe:279b:7609 with SMTP id h38-20020a0565123ca600b004fe279b7609mr6620028lfv.17.1691391842679;
+        Mon, 07 Aug 2023 00:04:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id q14-20020a170906388e00b009737b8d47b6sm4719768ejd.203.2023.08.07.00.03.23
+        by smtp.gmail.com with ESMTPSA id ce21-20020a170906b25500b009920e9a3a73sm4748830ejb.115.2023.08.07.00.04.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 00:03:24 -0700 (PDT)
-Message-ID: <7b2785de-640e-9912-ca84-7c8376c22762@linaro.org>
-Date:   Mon, 7 Aug 2023 09:03:22 +0200
+        Mon, 07 Aug 2023 00:04:02 -0700 (PDT)
+Message-ID: <400580a1-237b-73e1-6367-c246f7217aaf@linaro.org>
+Date:   Mon, 7 Aug 2023 09:04:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 1/9] dt-bindings: PCI: fsl,imx6q: Add i.MX6Q and
- i.MX6QP PCIe EP compatibles
+Subject: Re: [PATCH v2 2/9] dt-bindings: PCI: fsl,imx6q: Add i.MX6SX PCIe EP
+ compatibles
 Content-Language: en-US
 To:     Richard Zhu <hongxing.zhu@nxp.com>, frank.li@nxp.com,
         l.stach@pengutronix.de, shawnguo@kernel.org, lpieralisi@kernel.org,
@@ -64,14 +64,14 @@ Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         kernel@pengutronix.de, linux-imx@nxp.com
 References: <1691114975-4750-1-git-send-email-hongxing.zhu@nxp.com>
- <1691114975-4750-2-git-send-email-hongxing.zhu@nxp.com>
+ <1691114975-4750-3-git-send-email-hongxing.zhu@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1691114975-4750-2-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <1691114975-4750-3-git-send-email-hongxing.zhu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,14 +80,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 04/08/2023 04:09, Richard Zhu wrote:
-> Add i.MX6Q and i.MX6QP PCIe EP compatibles.
-> - Make the interrupts property optional, since i.MX6Q/i.MX6QP PCIe
->   don't have DMA capability.
-> - To pass the schema check, specify the clocks property refer to the
->   different platforms.
+> Add i.MX6SX PCIe EP compatibles.
 > 
 > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 > ---
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
