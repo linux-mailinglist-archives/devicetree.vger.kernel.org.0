@@ -2,116 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62EFA772A94
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00BFD772B09
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 18:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231495AbjHGQYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 12:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59858 "EHLO
+        id S230440AbjHGQfY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Aug 2023 12:35:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbjHGQYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:24:54 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968341FD4;
-        Mon,  7 Aug 2023 09:24:31 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 377GOMcY053379;
-        Mon, 7 Aug 2023 11:24:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691425462;
-        bh=u/JQnZgK0sJk6EN+OgpwOecj/fybTozM58SpbeAk8IQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YH8Lt6EkutrOkRkIvQj8su/KEX+zPAhK3Lu8eoREkge5qRx9IgtG5acdbmOcboqMh
-         VByYYawoo7xcK48feJm3kHKDHzLRTFVr23BiajjG6+gFtxVHrUcB/O6mmoYeG1iebS
-         cvqgpr5EnaWp/C1Y9QxQo9IwFj6HrsaSS8BqBV8U=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 377GOMTA001757
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 11:24:22 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 11:24:22 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 11:24:22 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 377GOMfG078223;
-        Mon, 7 Aug 2023 11:24:22 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Judith Mendez <jm@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a7: Add MCU MCAN nodes
-Date:   Mon, 7 Aug 2023 11:24:19 -0500
-Message-ID: <169142477563.999938.442972514330619285.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230804220137.425442-1-jm@ti.com>
-References: <20230804220137.425442-1-jm@ti.com>
+        with ESMTP id S229654AbjHGQfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 12:35:23 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F38B7;
+        Mon,  7 Aug 2023 09:34:58 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3a3df1ee4a3so2573583b6e.3;
+        Mon, 07 Aug 2023 09:34:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691426083; x=1692030883;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qm+c7GltohnosvSp0amsQIL9B6A2dq128Kc+SejjEVU=;
+        b=MmHuUdR1r6U5T1gFlyft8tLVT6JTGYXpuBI3GGAEGYdhyTcor/L0+WsEnqY8/GKhda
+         Z6/y/5dEbe3/2quB12QrUMSFgUmQz2UGm2oNLFU0S+RgrHaEHhItUdVfC8+hEYPvqQg+
+         drP7McCiPZtkm6TmAAcI1P2g8lRg+EToZ1JRsd9xLc+/AY2hg/sSiQYKsV5wOZaq463w
+         15BedfEqkxpp6ypdLoZe3vp+TnKLAYkbpIw44yCw4u6Hydyl6V1B17u3LS83g3TpO/hL
+         Fp8rKpjQLY4v6jiRZ3OYkFrHJ1//EjRaZhi5qKKA99CbS+ybE22bVj+DQ/JBDt2cTey+
+         VdAA==
+X-Gm-Message-State: AOJu0Ywdc8AZFDU71kgZbrCb+jNrgcDWX5+EXP/GN+XwUA3jKD3R2rO0
+        Pk4XxgAKWdeI+P5UfN6j8EKdt00heI1fUQ==
+X-Google-Smtp-Source: AGHT+IFaAfRsUiu0UcaER8GFaiv7RVNw5PXkzju+ILMuTkDEyKDMq9xefNZEzq/93d8/Ihtylj2IKQ==
+X-Received: by 2002:a05:6808:2193:b0:3a3:9df9:1918 with SMTP id be19-20020a056808219300b003a39df91918mr9266350oib.20.1691426083445;
+        Mon, 07 Aug 2023 09:34:43 -0700 (PDT)
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com. [209.85.216.43])
+        by smtp.gmail.com with ESMTPSA id 206-20020a6300d7000000b0056471d2ae8fsm5063597pga.90.2023.08.07.09.34.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 09:34:43 -0700 (PDT)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-269304c135aso2046396a91.3;
+        Mon, 07 Aug 2023 09:34:43 -0700 (PDT)
+X-Received: by 2002:a17:90a:a792:b0:268:1f0a:9f12 with SMTP id
+ f18-20020a17090aa79200b002681f0a9f12mr9283382pjq.29.1691426082966; Mon, 07
+ Aug 2023 09:34:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230802141829.522595-1-andre.przywara@arm.com>
+ <20230804153432.GA1388331-robh@kernel.org> <20230807144229.5710738d@donnerap.manchester.arm.com>
+In-Reply-To: <20230807144229.5710738d@donnerap.manchester.arm.com>
+Reply-To: wens@csie.org
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Tue, 8 Aug 2023 00:34:31 +0800
+X-Gmail-Original-Message-ID: <CAGb2v640tCyf6HU2KGHQnMpOXdDVM6UQKw=DpWi6zhhO+paQEw@mail.gmail.com>
+Message-ID: <CAGb2v640tCyf6HU2KGHQnMpOXdDVM6UQKw=DpWi6zhhO+paQEw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: x-powers,axp152: make interrupt
+ optional for more chips
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
+        Shengyu Qu <wiagn233@outlook.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Martin Botka <martin@biqu3d.com>,
+        Mark Brown <broonie@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Judith Mendez,
+On Mon, Aug 7, 2023 at 9:42 PM Andre Przywara <andre.przywara@arm.com> wrote:
+>
+> On Fri, 4 Aug 2023 09:34:32 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>
+> Hi,
+>
+> > On Wed, Aug 02, 2023 at 03:18:29PM +0100, Andre Przywara wrote:
+> > > All X-Powers PMICs described by this binding have an IRQ pin, and so
+> > > far (almost) all boards connected this to some NMI pin or GPIO on the SoC
+> > > they are connected to.
+> > > However we start to see boards that omit this connection, and technically
+> > > the IRQ pin is not essential to the basic PMIC operation.
+> > > The existing Linux driver allows skipping an IRQ pin setup for some
+> > > chips already, so update the binding to also make the DT property
+> > > optional for these chips, so that we can actually have DTs describing
+> > > boards with the PMIC interrupt not wired up.
+> > >
+> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > > ---
+> > > Hi,
+> > >
+> > > arguably the IRQ functionality is optional for many more PMICs,
+> > > especially if a board doesn't use GPIOs or a power key.
+> > > So I wonder if the interrupts property should become optional for all?
+> > > After all it's more a board designer's decision to wire up the IRQ pin
+> > > or not, and nothing that's really related to a particular PMIC.
+> >
+> > I would say yes. Particularly if it gets rid of a conditional schema.
+>
+> I see your point, and we might get there, but after some digging extending
+> this to more/all PMICs needs more work, see below.
+> Given that I was wondering if we can merge this patch now, as this
+> blocks multiple DTs from being merged (and Connor already ACKed it).
+> I sent an MFD driver fix to make this actually work for the AXP313a:
+> https://lore.kernel.org/lkml/20230807133930.94309-1-andre.przywara@arm.com/
 
-On Fri, 04 Aug 2023 17:01:37 -0500, Judith Mendez wrote:
-> On AM62ax there are no hardware interrupts routed to A53 GIC
-> interrupt controller for MCU MCAN IPs, so MCU MCAN nodes were
-> omitted from MCU dtsi.
-> 
-> Timer polling was introduced in commits [1][2] enabling 3x MCAN
-> on AM62ax, so now add MCU MCAN nodes to the mcu dtsi for the Cortex A53.
+Question is which tree we merge it through. We can't merge the DTs without
+this guaranteed to go in the same cycle without causing DT validation
+errors.
 
+ChenYu
 
-I understand the dependency, it does create a checkpatch warning on
-rc1, but I am picking this up since the yaml fixup commits are in next
-already and not a new compatible addition - and checkpatch is clean
-on next. if the fixups does'nt end up in linus-master for 6.6-rc1, we
-might need to look at what we need to do. Please let me know if there
-are any concerns and I can drop this series from my tree.
-
-> 
-> [...]
-
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/1] arm64: dts: ti: k3-am62a7: Add MCU MCAN nodes
-      commit: a0592af49737dfadd0bfcd896dccd34403fdfdd2
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+> For supporting this on more PMICs:
+> Currently many Linux (sub-)drivers registered by the MFD driver crash when
+> there is no valid interrupt registered, and we so far just special cased
+> the very simple PMICs to skip just the power key driver registration,
+> which works for those chips. However this affects more drivers (I tested
+> ac-power-supply), so it's not clear if that's really something useful for
+> the other PMICs providing more functionality. I guess we can postpone this
+> until either there is actually a use case for those other PMICs (boards
+> without the IRQ line connected), or when this list of exceptions grows too
+> large.
+>
+> Cheers,
+> Andre
