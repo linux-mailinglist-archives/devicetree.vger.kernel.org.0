@@ -2,53 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39462772FEC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 21:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85F1A772FF0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 21:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbjHGTyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 15:54:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45266 "EHLO
+        id S230028AbjHGTyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 15:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjHGTyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:54:16 -0400
+        with ESMTP id S230097AbjHGTy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 15:54:27 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66017E79;
-        Mon,  7 Aug 2023 12:54:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FEB10DB;
+        Mon,  7 Aug 2023 12:54:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F087F61EB4;
-        Mon,  7 Aug 2023 19:54:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE523C433C7;
-        Mon,  7 Aug 2023 19:54:11 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7390262186;
+        Mon,  7 Aug 2023 19:54:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70B35C433CA;
+        Mon,  7 Aug 2023 19:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691438054;
-        bh=BJz6MirJZr4GIuALmgQd8ZM1FYtuXj7SXO6/fRuEKwc=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=NOQwMSLuGaykZa6XChbrUucGXaE1b3IQozwo0csRfwEVqvjt8Kx+whuxMPf+uz74b
-         gkut8MSqnBkyH1YgK0dVcZPnp/A8j5/0h/0GLfvstdT4lv7vWwtgxhSKNjRwi2f646
-         1iNlv3TOr6Mpgk0N0fYyZZxLy44Ovb3bLfgZDGQfnUTkzQP6oWK6D35YmVZtbKxsNI
-         f2eBflc9a+LkX7EXLHgfBWunmwpo4KJY3vblCLOct2/ssHmjHMZIaWJhinnZpLboV9
-         JLyfBkVAHrWsP1sdySRP78cuxwX1FxAV+dKYVPw/QMmqLFLPw7I8SMMVd7FDEoeBVo
-         UOzjXbj/CBZWQ==
+        s=k20201202; t=1691438064;
+        bh=goD4ByHBwqYYj95qYjcyojZaR3O2ZOeLLA0qA84L1/g=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=gKDmeHJLYLRWhrUN+ij6zHFu8nms8fGCHuVCCQfBknWtTUEZilPDyTd2R4FCFC6tb
+         hdY4A9xchWr7URRVpyq1Ro2ScGT4uV2QLvhzGIL3kcSvpBKJrX/LxjyaRMz0GjIAOp
+         Gsd3MK7clyj1+mr1BDXfLI3k/V1ZLanIs/qakqSciL2is7KMBrenBzkHYrGAWXRFZX
+         m1HtKBcclCTKKBZp5hK2M0VLTlBcWAWNuZd90HXNVdTU4wxQCUaKsEHcTIiMKNsArN
+         tFrFXBE1YLIiQeOqVmuWlxJCBB6naofyFzZA7fZpOcMud7Imv1LnkLowi6j7fNpMJ2
+         /0kmGMgK9tkNQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Ryan Lee <ryans.lee@maximintegrated.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230730201826.70453-1-krzysztof.kozlowski@linaro.org>
-References: <20230730201826.70453-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: Convert maxim,max98925 to DT
- schema
-Message-Id: <169143805139.302632.1243042344493103435.b4-ty@kernel.org>
-Date:   Mon, 07 Aug 2023 20:54:11 +0100
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
+        shumingf@realtek.com, herve.codina@bootlin.com,
+        13916275206@139.com, ryans.lee@analog.com,
+        ckeepax@opensource.cirrus.com, sebastian.reichel@collabora.com,
+        ajye_huang@compal.corp-partner.google.com, povik+lin@cutebit.org,
+        yijiangtao@awinic.com, trix@redhat.com, colin.i.king@gmail.com,
+        liweilei@awinic.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wangweidong.a@awinic.com
+Cc:     zhangjianming@awinic.com
+In-Reply-To: <20230804114749.215460-1-wangweidong.a@awinic.com>
+References: <20230804114749.215460-1-wangweidong.a@awinic.com>
+Subject: Re: [PATCH V4 0/3] ASoC: codecs: Add awinic AW88261 audio
+ amplifier driver
+Message-Id: <169143806017.302632.37564599708375249.b4-ty@kernel.org>
+Date:   Mon, 07 Aug 2023 20:54:20 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -62,13 +64,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Jul 2023 22:18:24 +0200, Krzysztof Kozlowski wrote:
-> Convert the Maxim Integrated MAX98925/MAX98926/MAX98927 speaker
-> amplifier bindings to DT schema format.  Changes during conversion:
-> 1. Add "sound-dai-cells", already used by DTS.
-> 2. Use "maxim,interleave-mode" instead previous "interleave-mode" and
->    undocumented but used interleave_mode.
+On Fri, 04 Aug 2023 19:47:46 +0800, wangweidong.a@awinic.com wrote:
+> The awinic AW88261 is an I2S/TDM input, high efficiency
+> digital Smart K audio amplifier
 > 
+> v3 -> v4: Modify the dev_err_probe usage
+>           Changed the use of sizeof in kzalloc
+>           Changed the function name
+>           Merge aw88261_device.c into aw88261.c
 > 
 > [...]
 
@@ -78,12 +81,12 @@ Applied to
 
 Thanks!
 
-[1/3] ASoC: dt-bindings: Convert maxim,max98925 to DT schema
-      commit: 7136368a2f3fda492d696bdeddf4d2af71fa8b92
-[2/3] ASoC: codecs: max9892x: Unify interleave mode OF property
-      commit: ddef7518e76d832ab9f6d0430ad28cc0e04c083a
-[3/3] ASoC: codecs: max9892x: Reformat to coding style
-      commit: 38b288ab454f9aecf7b717974028f57f5243dc5a
+[1/3] ASoC: dt-bindings: Add schema for "awinic,aw88261"
+      commit: 517d52ae5cf75d55970345ece4f6743abdf4620f
+[2/3] ASoC: codecs: Add code for bin parsing compatible with aw88261
+      commit: 7f4ec77802aa17518990ed954bf536fd3bcf25cb
+[3/3] ASoC: codecs: Add aw88261 amplifier driver
+      commit: 028a2ae256916eeae1040049d2d0129535ace60e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
