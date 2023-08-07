@@ -2,172 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51576773125
-	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 23:23:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2A1773137
+	for <lists+devicetree@lfdr.de>; Mon,  7 Aug 2023 23:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjHGVXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 17:23:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54324 "EHLO
+        id S229689AbjHGV2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 17:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjHGVXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 17:23:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C70E74;
-        Mon,  7 Aug 2023 14:23:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 82C476223E;
-        Mon,  7 Aug 2023 21:23:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 973D8C433C8;
-        Mon,  7 Aug 2023 21:23:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691443410;
-        bh=fmH6Kdyq4qEkTpKz/sfZWAf/z5YO3URGjEZfriKv3/k=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=cmmPnPoQLs9LAC+mZ6R6FOm60WDwQudsdo56n1PGDasuOeWEgaUBqgVfRlB0TKOhw
-         i2AbMX/QPuA9FgvwC2mLMjhDW4zmMRfccVvdXcgMpGvnbteP4OP7v+SaTvUPk7NBhU
-         FRiQsRrFgZZmT8Nkb6naoKF9NqFrM4U6vQ1z/E40LIQB0FAnrI18UfU9227zoAuqnI
-         nGXS+4WiLXuZoRyZ66V6zo4ZGv9X/OGBScJynLne5GW1bHbQ06BnJ2/3+HN3y1hpJx
-         SiJDsAIYtyRdpvux7IthUGjxYFH0KG4TrrsqWKmuQGfP9XAlZGKVwaf+ooXMXQ6aTF
-         Nl32gLh1Jbh7w==
-Date:   Mon, 7 Aug 2023 16:23:28 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski@linaro.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        lpieralisi@kernel.org, bharat.kumar.gogada@amd.com,
-        michal.simek@amd.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] PCI: xilinx-nwl: Update ECAM default value and
- remove unnecessary code.
-Message-ID: <20230807212328.GA272179@bhelgaas>
+        with ESMTP id S229593AbjHGV2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 17:28:23 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFEAE7F;
+        Mon,  7 Aug 2023 14:28:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=M0+0V5eNJK3sPp7H1pvx9nX1Hca+m0XF31IaZ7yS9Os=; b=cthWTZf14I53+5yyjbk9Sio8GX
+        Hs1+O7RGj9xIM/FlbFlqGd2vhldl6PAiJN6knathHWG+IbVfZRLn92/2SXBqSqnvkiybvEV8vzsE9
+        V3zwstfKOapKg7OOswAfoTVBl+0WDDnZPqlY+i/3hGNTXCX01g2MMCw4Y35IT80Ta6JU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qT7lv-003OXY-RH; Mon, 07 Aug 2023 23:28:15 +0200
+Date:   Mon, 7 Aug 2023 23:28:15 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 1/9] arm64: dts: qcom: sa8775p: add a node for the second
+ serdes PHY
+Message-ID: <b5e30baf-4cf4-4a7f-aa2f-348de843226f@lunn.ch>
+References: <20230807193507.6488-1-brgl@bgdev.pl>
+ <20230807193507.6488-2-brgl@bgdev.pl>
+ <qdagbipfnukpsn5a7f6hswbktrwutizluf3zom2gq6q4q6w6df@h4lkoi3mjzes>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230807110733.77364-2-thippeswamy.havalige@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <qdagbipfnukpsn5a7f6hswbktrwutizluf3zom2gq6q4q6w6df@h4lkoi3mjzes>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ideally the subject would include useful information about *why*
-you're changing the ECAM value.  Drop the period at the end of the
-subject.  E.g., something like:
-
-  PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
-
-On Mon, Aug 07, 2023 at 04:37:32PM +0530, Thippeswamy Havalige wrote:
-> Our controller is expecting ECAM size to be programmed by software.
-> By programming "NWL_ECAM_VALUE_DEFAULT  12" controller can access up to
-> 16MB ECAM region which is used to detect 16 buses, so by updating
-> "NWL_ECAM_VALUE_DEFAULT " to 16 so that controller can access up to 256MB
-> ECAM region to detect 256 buses.
-
-Rob needs to ack this because it sounds like this change might make
-the driver incompatible with DTs in the field, i.e., the user might be
-forced to update the DT at the same time as picking up this driver
-change.
-
-> E_ECAM_CONTROL register from bit 16 to 20 uses this value as input
-> to calculate ECAM Size.
+On Mon, Aug 07, 2023 at 04:10:34PM -0500, Andrew Halaney wrote:
+> On Mon, Aug 07, 2023 at 09:34:59PM +0200, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > 
+> > Add a node for the SerDes PHY used by EMAC1 on sa8775p-ride.
+> > 
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> The primary,secondary and sub-ordinate bus number registers are updated
-> by Linux PCI core, so removing code which is updating primary,secondary
-> and sub-ordinate bus numbers of type 1 header 18th offset of ECAM.
-
-This code removal sounds like a separate logical change that could be
-a separate patch.
-
-s/primary,secondary/primary, secondary/ (twice)
-s/removing/remove/
-
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
-> ---
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: 
-> | https://lore.kernel.org/oe-kbuild-all/202308040330.eMTjX3tF-lkp@intel.
-> | com/
-> ---
->  drivers/pci/controller/pcie-xilinx-nwl.c | 18 +++---------------
->  1 file changed, 3 insertions(+), 15 deletions(-)
+> FWIW this seems to match downstream sources.
 > 
-> diff --git a/drivers/pci/controller/pcie-xilinx-nwl.c b/drivers/pci/controller/pcie-xilinx-nwl.c
-> index 176686b..b515019 100644
-> --- a/drivers/pci/controller/pcie-xilinx-nwl.c
-> +++ b/drivers/pci/controller/pcie-xilinx-nwl.c
-> @@ -126,7 +126,7 @@
->  #define E_ECAM_CR_ENABLE		BIT(0)
->  #define E_ECAM_SIZE_LOC			GENMASK(20, 16)
->  #define E_ECAM_SIZE_SHIFT		16
-> -#define NWL_ECAM_VALUE_DEFAULT		12
-> +#define NWL_ECAM_VALUE_DEFAULT		16
->  
->  #define CFG_DMA_REG_BAR			GENMASK(2, 0)
->  #define CFG_PCIE_CACHE			GENMASK(7, 0)
-> @@ -165,8 +165,6 @@ struct nwl_pcie {
->  	u32 ecam_size;
->  	int irq_intx;
->  	int irq_misc;
-> -	u32 ecam_value;
-> -	u8 last_busno;
->  	struct nwl_msi msi;
->  	struct irq_domain *legacy_irq_domain;
->  	struct clk *clk;
-> @@ -625,7 +623,7 @@ static int nwl_pcie_bridge_init(struct nwl_pcie *pcie)
->  {
->  	struct device *dev = pcie->dev;
->  	struct platform_device *pdev = to_platform_device(dev);
-> -	u32 breg_val, ecam_val, first_busno = 0;
-> +	u32 breg_val, ecam_val;
->  	int err;
->  
->  	breg_val = nwl_bridge_readl(pcie, E_BREG_CAPABILITIES) & BREG_PRESENT;
-> @@ -675,7 +673,7 @@ static int nwl_pcie_bridge_init(struct nwl_pcie *pcie)
->  			  E_ECAM_CR_ENABLE, E_ECAM_CONTROL);
->  
->  	nwl_bridge_writel(pcie, nwl_bridge_readl(pcie, E_ECAM_CONTROL) |
-> -			  (pcie->ecam_value << E_ECAM_SIZE_SHIFT),
-> +			  (NWL_ECAM_VALUE_DEFAULT << E_ECAM_SIZE_SHIFT),
->  			  E_ECAM_CONTROL);
->  
->  	nwl_bridge_writel(pcie, lower_32_bits(pcie->phys_ecam_base),
-> @@ -683,15 +681,6 @@ static int nwl_pcie_bridge_init(struct nwl_pcie *pcie)
->  	nwl_bridge_writel(pcie, upper_32_bits(pcie->phys_ecam_base),
->  			  E_ECAM_BASE_HI);
->  
-> -	/* Get bus range */
-> -	ecam_val = nwl_bridge_readl(pcie, E_ECAM_CONTROL);
-> -	pcie->last_busno = (ecam_val & E_ECAM_SIZE_LOC) >> E_ECAM_SIZE_SHIFT;
-> -	/* Write primary, secondary and subordinate bus numbers */
-> -	ecam_val = first_busno;
-> -	ecam_val |= (first_busno + 1) << 8;
-> -	ecam_val |= (pcie->last_busno << E_ECAM_SIZE_SHIFT);
-> -	writel(ecam_val, (pcie->ecam_base + PCI_PRIMARY_BUS));
-> -
->  	if (nwl_pcie_link_up(pcie))
->  		dev_info(dev, "Link is UP\n");
->  	else
-> @@ -792,7 +781,6 @@ static int nwl_pcie_probe(struct platform_device *pdev)
->  	pcie = pci_host_bridge_priv(bridge);
->  
->  	pcie->dev = dev;
-> -	pcie->ecam_value = NWL_ECAM_VALUE_DEFAULT;
->  
->  	err = nwl_pcie_parse_dt(pcie, pdev);
->  	if (err) {
-> -- 
-> 1.8.3.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+
+Why does matching downstream make it correct and deserve a
+Reviewed-by?
+
+Did you actually review the change?
+
+    Andrew
