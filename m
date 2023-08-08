@@ -2,116 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8596F774CA0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:12:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB6BA774CD7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236335AbjHHVMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:12:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53956 "EHLO
+        id S236188AbjHHVSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 17:18:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236642AbjHHVMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:12:16 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D92B1715
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:11:30 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so95099001fa.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:11:30 -0700 (PDT)
+        with ESMTP id S236587AbjHHVSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:18:43 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B09E7;
+        Tue,  8 Aug 2023 14:16:13 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe7e67cc77so947183e87.2;
+        Tue, 08 Aug 2023 14:16:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691529088; x=1692133888;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h1R5RAuDcNFHnQizuPMLw4ddvp2/D6Ygtoh2+KaZC84=;
-        b=P0ir7ms0UHD/psQzlbfBnE6aSnmQk0XsVkcsi4yX92VZiYhQs0Mp8KQeRgzGDo4dx7
-         U4paScWKzKP2FNrEsyDlPjm6gjr7gkB/UVWS9e1AAoium4aqbHnCoO9sIcfiw52I5Wpg
-         GsvOSghr/aOfBX+l2QjlUnQXR6a2i7i+XKcQCVHidw1n/CiwhI2NWIeY1mAp2JEkKEyB
-         BtinggjGs7cd07RLHgVU/D2nbJK9Ns8pch+F37wZvKWo0krIFg3Vi9VSb4b/BaAwZO96
-         QToFQYVeY6bntPAqeuMW1UYbZZFTNolgPkM6F9EfFs4izOXArDEOpL2T+gEvJaQjF4vR
-         5o7g==
+        d=gmail.com; s=20221208; t=1691529372; x=1692134172;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7BNjTP5A6iaNI8I0ONshSv2dOVlvAeNExB7nL8frDXM=;
+        b=kPJk8NVCa0OhcQbj4ylogCMt7dAfsI9yvrORqoGfysNysjEzWc2ZB+7zHoJsOgAVqe
+         oYMcEbr3U93UgOGF/33F1pYatSv/ft5i5CuTJkke34BHbam6cPRIpOkj1C2yeIae0DAq
+         y34jpG95/wTF194ZFgzZxzBl82OqkTWP0BmMjoOvGwM9eRqh8WWv8rQpo1udGGHushcP
+         1/J30RQD0BO400ObLlpNa+rfGLAUfRP+aQSEWfaP+Ic0CijMa8Y9Z9etx4EM+sdcki9V
+         s2/fsAJ1PWpB53TpjptaY41j3f/JUe72riJkmSCyKtR9ivhNQts1wQ6ujmj2T7lIaNZJ
+         frgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691529088; x=1692133888;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1R5RAuDcNFHnQizuPMLw4ddvp2/D6Ygtoh2+KaZC84=;
-        b=DGWFrHEGagcoNU440X4pk9jrK3PodwamTD9ysJ3YUaZEFNmwH1iMY4DvDOpWLrKHwN
-         HaCkryhCHbp1DxcHIF1CZZ4PDFQ/mgi6owhjITtWd31igau3XHWuynH6IpWkKoQe5jNF
-         TVbFFZ3UOGLEvJKqfsHW1xzu5F2rD+51ZWtf3JUjPCj3VjmSFxriufUJ6VzDSnp+GcXy
-         7xFP/x4IxGGTWBs6/vrJC8qo9IXpPupQCaIgs5H/jgqge8p5daApZAn15QZ3q2xPAxMo
-         lnqsdxxVnZZSeWGNpqERi/qgDxy8ihADVjHygjXeFUQ2GoU4Foa/jhHspTwKk6AVCD2f
-         Yuzw==
-X-Gm-Message-State: AOJu0Yx+1UFktPCEPVGgHPGISyZWJb/AZ9SWCjjb5W2bmey0KP05BqRz
-        4pNJFVJ44YAQjurB0Z0m15aK1g==
-X-Google-Smtp-Source: AGHT+IGYzCzaBx+RT4uIMPcpMzVvff8YWRBwXmJ34frHeKF/XozlNEO8qPoGltWMrBJecOYoNTXNsA==
-X-Received: by 2002:a2e:b005:0:b0:2ba:18e5:1063 with SMTP id y5-20020a2eb005000000b002ba18e51063mr441282ljk.50.1691529088351;
-        Tue, 08 Aug 2023 14:11:28 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id l13-20020a2e700d000000b002b9c0822951sm2395753ljc.119.2023.08.08.14.11.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Aug 2023 14:11:27 -0700 (PDT)
-Message-ID: <72891405-eddc-4644-88ba-bfa9baa6e62f@linaro.org>
-Date:   Tue, 8 Aug 2023 23:11:27 +0200
+        d=1e100.net; s=20221208; t=1691529372; x=1692134172;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7BNjTP5A6iaNI8I0ONshSv2dOVlvAeNExB7nL8frDXM=;
+        b=EnhES3LjR/1gxAgrTdU2+LD7qgd9CS8u65WJy76Vk+5ORtOVWR5am5UyD+WiLt0m4Y
+         k4wmO6qbF6OEFbO9FU0PMcm//xm6NLZ9kTe7+HdGBR/j6ycMS3wSpSIme/2kc5CAvnn3
+         yeMp5BdjYclxiiDm9VIzRNvuLamosrBAgPVtig3TVupyFwPTJY4GrVwOdWEyRhjbRWU2
+         v+G97SwagNAREUAOfBZwwK+MHX9oXaAXKEY2PRcvMupmpplvlOUcaGwZLIMEob0iulyS
+         /aFz59nC0Na4yEn6Zztb0wTes8/F8uCE582EmzFfYnPBoxuAgoBodl+mywWPNnpKpBZ5
+         se3A==
+X-Gm-Message-State: AOJu0Yxuoc3xrT9GSVOmGm7ljfc+86zW6HBvw61m67gT7Au3Wg8mipKy
+        Y4zF3a9vtqFyW4UqT/09BnNnv6jbeHk=
+X-Google-Smtp-Source: AGHT+IFrbk/VfHFBjLAmGI1jyvpDVk0+ej8DQKimek6J+8iYsTeNTqGCNG+LkpMVasMLcc+YElYUSg==
+X-Received: by 2002:a05:6512:3f7:b0:4fb:7b4c:d38c with SMTP id n23-20020a05651203f700b004fb7b4cd38cmr360748lfq.60.1691529371918;
+        Tue, 08 Aug 2023 14:16:11 -0700 (PDT)
+Received: from mobilestation (89-109-45-41.dynamic.mts-nn.ru. [89.109.45.41])
+        by smtp.gmail.com with ESMTPSA id t9-20020a19ad09000000b004fe47879d93sm2016304lfc.106.2023.08.08.14.16.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 14:16:11 -0700 (PDT)
+Date:   Wed, 9 Aug 2023 00:16:09 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        "kishon@kernel.org" <kishon@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH v18 08/20] PCI: dwc: Add dw_pcie_link_set_max_link_width()
+Message-ID: <rolemxcg3ezjdjkx2y2zbnoxq3zbpvo6cuukhr4lzevwim7pca@xagj3xq54dgg>
+References: <rt2vwgmdsxvkb2jh4v6mpnjpfvql44o72nxf663wbnkcvkmift@o2dl5oa435k3>
+ <20230808150854.GA304435@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] arm64: dts: qcom: sa8775p-ride: enable the second
- SerDes PHY
-Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230808190144.19999-1-brgl@bgdev.pl>
- <20230808190144.19999-4-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230808190144.19999-4-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230808150854.GA304435@bhelgaas>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -119,14 +87,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8.08.2023 21:01, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Tue, Aug 08, 2023 at 10:08:54AM -0500, Bjorn Helgaas wrote:
+> On Tue, Aug 08, 2023 at 03:15:33AM +0300, Serge Semin wrote:
+> > On Mon, Aug 07, 2023 at 06:40:34PM -0500, Bjorn Helgaas wrote:
+> > > On Tue, Aug 08, 2023 at 01:53:11AM +0300, Serge Semin wrote:
+> > > > On Tue, Aug 01, 2023 at 01:50:59AM +0000, Yoshihiro Shimoda wrote:
+> > > > > > From: Serge Semin, Sent: Tuesday, August 1, 2023 8:54 AM
+> > > > > > On Fri, Jul 21, 2023 at 04:44:40PM +0900, Yoshihiro Shimoda wrote:
+> > > > > > > To improve code readability, add dw_pcie_link_set_max_link_width().
+> > > > > > > ...
+> > > 
+> > > > > > > @@ -1009,49 +1049,5 @@ void dw_pcie_setup(struct dw_pcie *pci)
+> > > > > > >  	val |= PORT_LINK_DLL_LINK_EN;
+> > > > > > >  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> > > > > > >
+> > > > > > > -	if (!pci->num_lanes) {
+> > > > > > > -		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+> > > > > > > -		return;
+> > > > > > > -	}
+> > > > > > > -
+> > > > > > > -	/* Set the number of lanes */
+> > > > > > 
+> > > > > > > -	val &= ~PORT_LINK_FAST_LINK_MODE;
+> > > > > > 
+> > > > > > My series contains the patch which drops this line:
+> > > > > <snip URL>
+> > > > > > So either pick my patch up and add it to your series or still pick it up
+> > > > > > but with changing the authorship and adding me under the Suggested-by
+> > > > > > tag with the email-address I am using to review your series. Bjorn,
+> > > > > > what approach would you prefer? Perhaps alternative?
+> > 
+> > > I don't really see the argument here.  AFAICT, Yoshihiro's patch
+> > > (https://lore.kernel.org/r/20230721074452.65545-9-yoshihiro.shimoda.uh@renesas.com)
+> > > is a trivial refactoring to make dw_pcie_link_set_max_link_width(),
+> > > which might be reused elsewhere later, which seems perfectly fine.
+> > > 
+> > > It'd be fine with me to add a little detail in the commit log to
+> > > reference the Synopsys manual, which I don't have.  But doesn't seem
+> > > like a big deal to me.
+> > 
+> > More details are in one of my earlier comments to this patch which
+> > Yoshihiro promised to add to the patch log on the next patchset
+> > revision. You can read it here:
+> > https://lore.kernel.org/linux-pci/20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com/T/#m8ac364249f40c726da88316b67f11a6d55068ef0
+> > 
+> > > Dropping the PORT_LINK_FAST_LINK_MODE mask seems like a separate
+> > > question that should be in a separate patch.
+> > > https://lore.kernel.org/linux-pci/20230611192005.25636-6-Sergey.Semin@baikalelectronics.ru/
+> > > says it's redundant, so it sounds more like a cleanup than a fix.
+> > 
+> > That's the point of my comment. There is no need in copying that mask
+> > to the dw_pcie_link_set_max_link_width() method because first it's
+> > unrelated to the link-width setting, second it's redundant. There is
+> > my patch dropping the mask with the proper justification:
+> > https://lore.kernel.org/linux-pci/20230611192005.25636-6-Sergey.Semin@baikalelectronics.ru/
+> > It would be good to either merge it in before the Yoshihiro' series or
+> > add my patch to the Yoshihiro' patchset. But it's in the patchwork
+> > limbo now, neither you nor Lorenzo or Krzysztof were willing to merge
+> > it in. That's why I suggested to move the patch here with the denoted
+> > alterations. Could you give your resolution whether the suggested
+> > movement is ok or perhaps you or Lorenzo or Krzysztof consider merge
+> > it in as is?
 > 
-> Enable the second SerDes PHY on sa8775p-ride development board.
+> If I understand Yoshihiro's patch, it pulls code out into
+> dw_pcie_link_set_max_link_width() without changing that code.  That
+> seems like the best approach to me because it's very easy to review.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
+> If we want to remove a little redundant code later in a separate
+> patch, that's fine too but doesn't seem urgent.  I don't think they
+> need to be tied together.
+
+Well, my point was the opposite: why would we need to maintain a dead,
+redundant code which also unrelated to the function it's being copied
+to, meanwhile there is already available patch which drops that code
+and Yoshihiro needs to resubmit a new revision of his series anyway?
+It would have been much better to just merge in my patch/change
+somehow (with another authorship if that's the problem) and forget
+about that from now on. If you get to merge in the Yoshohiro patchset
+first, my patch won't be cleanly applicable after that.
+
+-Serge(y)
+
+> 
+> Bjorn
