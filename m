@@ -2,62 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B12773D2D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9425F774220
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232259AbjHHQO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:14:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
+        id S231783AbjHHRev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:34:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232155AbjHHQNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:13:18 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 51CEA3C19;
-        Tue,  8 Aug 2023 08:47:25 -0700 (PDT)
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37865U8t8011396, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37865U8t8011396
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 8 Aug 2023 14:05:31 +0800
-Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Tue, 8 Aug 2023 14:05:31 +0800
-Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
- RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Tue, 8 Aug 2023 14:05:31 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
- 15.1.2507.17 via Frontend Transport; Tue, 8 Aug 2023 14:05:31 +0800
-From:   Stanley Chang <stanley_chang@realtek.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: usb: dwc3: Add DWC_usb3 TX/RX threshold configurable
-Date:   Tue, 8 Aug 2023 14:05:23 +0800
-Message-ID: <20230808060530.9727-2-stanley_chang@realtek.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230808060530.9727-1-stanley_chang@realtek.com>
-References: <20230808060530.9727-1-stanley_chang@realtek.com>
+        with ESMTP id S234876AbjHHReR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:34:17 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929317ED1
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:14:47 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2ba0f27a4c2so87486771fa.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:14:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691511283; x=1692116083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6L6tMWU3aKaycgVqUwJnj0J3V0zw/N188ab7mQDczlE=;
+        b=LyXhCsLge+Bc4R32YTsLEEqhOS1MVzAJLySXZifiA7f4upGjnbWjWoiQy+gANxCUru
+         SeREnxLmrRD8YgvnGy4PtMHTJs487jc+SOEPp6XPm27o+wBEdB35Fbn7p+xbLgQFNW+m
+         JxPmyuCjsTeJwfyFwrrUq66qqrvEHv3t0VBUNo0g6oFdw+asAH8ABbDDB11jJ2vQLs5o
+         bpYfdPF+wfkLlGjaO2wJDGgxgE8Mnk2GtL7USlruYV1pEZFnDidjubNCpfA3nn6FjE5D
+         ggW74MHSZ1J/d/4t8iX5lz3lHkmqWD7M/S6B/45QQk1xrAygRQ670i+8FfMpespw7yYY
+         rFwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691511283; x=1692116083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6L6tMWU3aKaycgVqUwJnj0J3V0zw/N188ab7mQDczlE=;
+        b=AU3BZezZfRDIBQGljKf+njhmpMzFr6/S82mhziNwBoglQb+RsfZVctJTfH+M4yt6tI
+         nKy2QYIVKqbBFg2t7VLeU0oIXScW9PRdtA9T13DLr01qa8c5s+yZxrEnJD/oKFiwLTNE
+         sdY/tFUkkOfOBrSsOt1xu9EpBgUd8JJx1l5w3v6WXI4F7oxZzGSd++eWeAjsKJVdL81O
+         2rdCRGyOhfKMoNUwmOK2wtTXhFA3FiOtVOYl0lChuP3PS/WTe34k5dzZYOizGglBTDQ4
+         P5TZ0WzYLRJYLU58a6fXN9HWSe8r5P2ShgffF2nGcXzw2asuRq82EktiepP3h7a1EX3A
+         HldQ==
+X-Gm-Message-State: AOJu0YxyfLsfc6jGjaH0ZJr/oQzD+WdJ2TZMCPTxVdFMyAJvcJ+vZP7u
+        c4gXgrN/SdLghkzmGz7miRCDCJDXp4iNFpHmFnw=
+X-Google-Smtp-Source: AGHT+IG+RQBDRreQuCfaB3AJYJr+y4JGtXo/OBe6/HlLumfIT4YYOXaRfEagnfiUj7daFmOn0e5QFg==
+X-Received: by 2002:a17:906:1099:b0:94e:4489:f24d with SMTP id u25-20020a170906109900b0094e4489f24dmr10991221eju.61.1691474953222;
+        Mon, 07 Aug 2023 23:09:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id qh18-20020a170906ecb200b0098733a40bb7sm6183736ejb.155.2023.08.07.23.09.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 23:09:12 -0700 (PDT)
+Message-ID: <66a4856c-69e8-67ad-6f1f-b017912bf61d@linaro.org>
+Date:   Tue, 8 Aug 2023 08:09:11 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-KSE-ServerInfo: RTEXMBS05.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH -next] ARM: dts: integrator: fix PCI bus dtc warnings
+Content-Language: en-US
+To:     Lin Yujun <linyujun809@huawei.com>, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, arnd@arndb.de
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230808012811.2309267-1-linyujun809@huawei.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230808012811.2309267-1-linyujun809@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,93 +75,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In Synopsys's dwc3 data book:
-To avoid underrun and overrun during the burst, in a high-latency bus
-system (like USB), threshold and burst size control is provided through
-GTXTHRCFG and GRXTHRCFG registers.
-By default, USB TX and RX threshold are not enabled. To enable
-TX or RX threshold, both packet threshold count and max burst size
-properties must be set to a valid non-zero value.
+On 08/08/2023 03:28, Lin Yujun wrote:
+> An warning is reported when allmodconfig is used to compile the kernel of the ARM architecture:
+> 
+> arch/arm/boot/dts/arm/integratorap-im-pd1.dts:252.3-14: Warning (dma_ranges_format): /bus@c0000000/bus@c0000000/display@1000000:dma-ranges: empty "dma-ranges" property but its #address-cells (2) differs from /bus@c0000000/bus@c0000000 (1)
 
-In Realtek DHC SoC, DWC3 USB 3.0 uses AHB system bus. When dwc3 is
-connected with USB 2.5G Ethernet, there will be overrun problem.
-Therefore, setting TX/RX thresholds can avoid this issue.
+This does not fix the warning at all.
 
-Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
----
-v1 to v2 change:
-    Add the properties for TX/RX threshold setting
----
- .../devicetree/bindings/usb/snps,dwc3.yaml    | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
+> arch/arm/boot/dts/arm/integratorap.dts:161.22-206.4: Warning (pci_bridge): /pciv3@62000000: node name is not "pci" or "pcie"
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index a696f23730d3..ee5af4b381b1 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -310,6 +310,62 @@ properties:
-     maximum: 62
-     deprecated: true
- 
-+  snps,rx-thr-num-pkt:
-+    description:
-+      USB RX packet threshold count. In host mode, this field specifies
-+      the space that must be available in the RX FIFO before the core can
-+      start the corresponding USB RX transaction (burst).
-+      In device mode, this field specifies the space that must be
-+      available in the RX FIFO before the core can send ERDY for a
-+      flow-controlled endpoint. It is only used for SuperSpeed.
-+      The valid values for this field are from 1 to 15. (DWC3 SuperSpeed
-+      USB 3.0 Controller Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 15
-+
-+  snps,rx-max-burst:
-+    description:
-+      Max USB RX burst size. In host mode, this field specifies the
-+      Maximum Bulk IN burst the DWC_usb3 core can perform. When the system
-+      bus is slower than the USB, RX FIFO can overrun during a long burst.
-+      You can program a smaller value to this field to limit the RX burst
-+      size that the core can perform. It only applies to SS Bulk,
-+      Isochronous, and Interrupt IN endpoints in the host mode.
-+      In device mode, this field specifies the NUMP value that is sent in
-+      ERDY for an OUT endpoint.
-+      The valid values for this field are from 1 to 16. (DWC3 SuperSpeed
-+      USB 3.0 Controller Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 16
-+
-+  snps,tx-thr-num-pkt:
-+    description:
-+      USB TX packet threshold count. This field specifies the number of
-+      packets that must be in the TXFIFO before the core can start
-+      transmission for the corresponding USB transaction (burst).
-+      This count is valid in both host and device modes. It is only used
-+      for SuperSpeed operation.
-+      Valid values are from 1 to 15. (DWC3 SuperSpeed USB 3.0 Controller
-+      Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 15
-+
-+  snps,tx-max-burst:
-+    description:
-+      Max USB TX burst size. When the system bus is slower than the USB,
-+      TX FIFO can underrun during a long burst. Program a smaller value
-+      to this field to limit the TX burst size that the core can execute.
-+      In Host mode, it only applies to SS Bulk, Isochronous, and Interrupt
-+      OUT endpoints. This value is not used in device mode.
-+      Valid values are from 1 to 16. (DWC3 SuperSpeed USB 3.0 Controller
-+      Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 16
-+
-   snps,rx-thr-num-pkt-prd:
-     description:
-       Periodic ESS RX packet threshold count (host mode only). Set this and
--- 
-2.34.1
+Maybe this one is fixed only... Drop all unrelated warnings, because
+this is very confusing.
+
+> arch/arm/boot/dts/arm/integratorap-im-pd1.dtb: Warning (unit_address_format): Failed prerequisite 'pci_bridge'
+> arch/arm/boot/dts/arm/integratorap-im-pd1.dtb: Warning (pci_device_reg): Failed prerequisite 'pci_bridge'
+> arch/arm/boot/dts/arm/integratorap-im-pd1.dtb: Warning (pci_device_bus_num): Failed prerequisite 'pci_bridge'
+> arch/arm/boot/dts/arm/integratorap.dts:161.22-206.4: Warning (pci_bridge): /pciv3@62000000: node name is not "pci" or "pcie"
+> arch/arm/boot/dts/arm/integratorap.dtb: Warning (unit_address_format): Failed prerequisite 'pci_bridge'
+> arch/arm/boot/dts/arm/integratorap.dtb: Warning (pci_device_reg): Failed prerequisite 'pci_bridge'
+> arch/arm/boot/dts/arm/integratorap.dtb: Warning (pci_device_bus_num): Failed prerequisite 'pci_bridge'
+> 
+> Change the node name to pci to clear the build warning.
+> 
+> Fixes: 4952aa696a9f ("ARM: dts: integrator: Tag PCI host with device_type")
+
+No, not a fix. It's just node naming.
+
+> 
+> Signed-off-by: Lin Yujun <linyujun809@huawei.com>
+> ---
+Krzysztof
 
