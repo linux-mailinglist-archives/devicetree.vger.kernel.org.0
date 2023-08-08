@@ -2,116 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47FB5774323
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F331773EF5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:39:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233409AbjHHR51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:57:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50876 "EHLO
+        id S233163AbjHHQjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235203AbjHHR5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:57:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8102CAD1A;
-        Tue,  8 Aug 2023 09:25:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1E4F1623EB;
-        Tue,  8 Aug 2023 04:36:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03487C433C7;
-        Tue,  8 Aug 2023 04:36:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1691469369;
-        bh=IMgWwZ4rdhaoLfJ9wmfKo2+cng5qpJxVkmNuR2ToNbo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kUgys+Xtx3ItPxfY68wwjolIAgO72NEQe5mB342f1M7WPec873Dz3SkSCdrTMW5Hb
-         MPBPYP7vT0yTHLn0VvtFPOts++DefKyFeZboOtwQG/pP4VK3t95O7NvRHYowDE7TmT
-         8mBE4GJFdU36umK//qMGo3+liGHlEEk86BIneeEo=
-Date:   Tue, 8 Aug 2023 06:36:06 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        with ESMTP id S232020AbjHHQjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:39:07 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51683A4FA;
+        Tue,  8 Aug 2023 08:54:14 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3785A2Yr031096;
+        Tue, 8 Aug 2023 05:14:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Fmz3qLzzVzkUuJIGAGdFC/9V+7J2bvmS0Cf4X/w7sXc=;
+ b=iOK78fj43T/5QRw/NNz3entg05zFIbdqEyZRNeE65+/mKorpRyMKk7pUv4rPh8A5a6EZ
+ ub97Acpqe16HTq/hf6SooVT6lPMj1KbtfW06FQjzllLYYzh7MNRFtLTCiUjRvt2m0fPW
+ 3jpZKS67fFPj7RNjrsvmBU7PmS8cTkAH0infAN2rEAEF5QNC/rTMOwNUu/WkDQg0UbHa
+ avTod7a1ML6jPJN85eVFtnPKSXvRIzGZW+bd1OEicYf0GBv3AuHaP8wWzi67YmU6UrxQ
+ +a8nayoFd5w7KIv4XjHgAVlRm2BFMy4qxkqfWnYYhYypJVSsp7LrhdObNw9FbdJoCxPp Pg== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3saxbbsyh0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Aug 2023 05:14:48 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3785EmIW026298
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 8 Aug 2023 05:14:48 GMT
+Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 7 Aug 2023 22:14:43 -0700
+From:   Imran Shaik <quic_imrashai@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] mux: mmio: use reg property when parent device is not
- a syscon
-Message-ID: <2023080854-crummy-armored-420c@gregkh>
-References: <20230605154153.24025-1-afd@ti.com>
- <b16568ec-0428-981b-01ca-571cc5d52704@ti.com>
- <20230807182645.ct2uvkb3s2tuplon@improve>
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC:     Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+Subject: [PATCH 0/4] Add support for Qualcomm ECPRI clock controller
+Date:   Tue, 8 Aug 2023 10:44:03 +0530
+Message-ID: <20230808051407.647395-1-quic_imrashai@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230807182645.ct2uvkb3s2tuplon@improve>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PYpobbKEwLOX1aBqXvUYJM5ZPLiVOMrV
+X-Proofpoint-GUID: PYpobbKEwLOX1aBqXvUYJM5ZPLiVOMrV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-08_03,2023-08-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=784 bulkscore=0
+ spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0 phishscore=0
+ priorityscore=1501 adultscore=0 suspectscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308080046
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 07, 2023 at 01:26:45PM -0500, Nishanth Menon wrote:
-> On 15:12-20230713, Andrew Davis wrote:
-> > On 6/5/23 10:41 AM, Andrew Davis wrote:
-> > > The DT binding for the reg-mux compatible states it can be used when the
-> > > "parent device of mux controller is not syscon device". It also allows
-> > > for a reg property. When the reg property is provided, use that to
-> > > identify the address space for this mux. If not provided fallback to
-> > > using the parent device as a regmap provider.
-> > > 
-> > > Signed-off-by: Andrew Davis <afd@ti.com>
-> > > ---
-> > 
-> > Ping, still needed and applies cleanly on v6.5-rc1.
-> > 
-> > Andrew
-> > 
-> > > 
-> > > Changes from v1:
-> > >   - Flip logic as suggested in v1[0]
-> > > 
-> > > [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
-> > > 
-> > >   drivers/mux/mmio.c | 9 ++++++---
-> > >   1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> 
-> Reviewed-by: Nishanth Menon <nm@ti.com>
-> 
-> Greg: looks like you were missed in CC
-> 
-> Peter/Greg: Any chance of Looking at this? This is a basic corner stone
-> for us to clean up much of the mess we have created up in the device
-> tree syscon nodes and trying to transition those into simple-bus.
-> 
-> > > 
-> > > diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
-> > > index 44a7a0e885b8d..2c9e4df9d6f2c 100644
-> > > --- a/drivers/mux/mmio.c
-> > > +++ b/drivers/mux/mmio.c
-> > > @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
-> > >   	int ret;
-> > >   	int i;
-> > > -	if (of_device_is_compatible(np, "mmio-mux"))
-> > > +	if (of_device_is_compatible(np, "mmio-mux")) {
-> > >   		regmap = syscon_node_to_regmap(np->parent);
-> > > -	else
-> > > -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-> > > +	} else {
-> > > +		regmap = device_node_to_regmap(np);
-> > > +		if (IS_ERR(regmap))
-> > > +			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-> > > +	}
-> > >   	if (IS_ERR(regmap)) {
-> > >   		ret = PTR_ERR(regmap);
-> > >   		dev_err(dev, "failed to get regmap: %d\n", ret);
+The ECPRI clock controller support for QDU1000 and QRU1000. The clock
+controller has a special branch which requires an additional memory to
+be enabled/disabled before the branch ops.
 
-I'm not the maintainer here, it's up to Peter.
+Imran Shaik (3):
+  dt-bindings: clock: qcom: Add ECPRICC clocks for QDU1000 and QRU1000
+  clk: qcom: Add ECPRICC driver support for QDU1000 and QRU1000
+  arm64: dts: qcom: qdu1000: Add ECPRI clock controller
+
+Taniya Das (1):
+  clk: qcom: branch: Add mem ops support for branch2 clocks
+
+ .../bindings/clock/qcom,qdu1000-ecpricc.yaml  |   68 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi         |   14 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |   38 +
+ drivers/clk/qcom/clk-branch.h                 |    4 +
+ drivers/clk/qcom/ecpricc-qdu1000.c            | 3808 +++++++++++++++++
+ .../dt-bindings/clock/qcom,qdu1000-ecpricc.h  |  192 +
+ 8 files changed, 4133 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+ create mode 100644 drivers/clk/qcom/ecpricc-qdu1000.c
+ create mode 100644 include/dt-bindings/clock/qcom,qdu1000-ecpricc.h
+
+-- 
+2.25.1
 
