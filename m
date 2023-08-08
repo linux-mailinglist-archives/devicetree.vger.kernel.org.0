@@ -2,170 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85E107745BD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 407AA77491F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233556AbjHHSpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39220 "EHLO
+        id S229621AbjHHTsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:48:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233411AbjHHSpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:45:01 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB0EB11CD0
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:42:46 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bfcf4c814so859742866b.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:42:46 -0700 (PDT)
+        with ESMTP id S232579AbjHHSVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:21:36 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECAF68F033
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:31:53 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id 5614622812f47-3a77ddccb2bso62303b6e.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691512965; x=1692117765;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2UuNhIPZQtVYzGmtMAw0xH3Mxdy93w7NQpbLuvaKjSg=;
-        b=ouzNgGdEGz67z2jviHQmzclngOYrrmlk8O9iaUUBG8sjcfYTxfl5M/EdsxHvG9L9Iz
-         BwqZqXgT9It5Zt7/O7rRHcr+q1LoC8L7SbSjlR2pExi4eIY6hUM//veGzrQdriGl5BlR
-         6p7Ik4w+bXRZtETpPdrcIHa+nb2rxiAAz5pBcfq06UDYUgQ4DVGHt/pqSnTxYSZZIH0u
-         c+yVYsCU5XTLRoWRra7LvuQba71MdTEJUqI3qvO+g/oDvlw9u6f4ejO0RjyaX2jmq/Ud
-         05sWKsEQGy3VJUQqq5tZG4Wiv7q2SsTBWlCgSB60F8g/2eQQ4qC0ADImoQ6YqEI8NQLV
-         FgVg==
+        d=chromium.org; s=google; t=1691515913; x=1692120713;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FlU7scLqRKsODrrT7JE5RR1BiFxNDrNBXo425TuEI+s=;
+        b=dHfK+nAsACj1xhO3Fq8YaqrvE4y64ymXsjeBtYwDMbS56+ANAsMHocm8Yu9H/P0PHz
+         bC4PK/SCnr0YfGCGdVYeIJu0u0aZSClaLVTsI7KlInfm8aKOB7fJlkaYFTKVNApw8BG7
+         Uhj6hPZcm9AYqTV2Xup7APcvwzwKHzyvG7FYU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691512965; x=1692117765;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1691515913; x=1692120713;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2UuNhIPZQtVYzGmtMAw0xH3Mxdy93w7NQpbLuvaKjSg=;
-        b=kg7rY/8pO/OPAThxTvNsUnojM2RFP6JqaKM7SyDpRDcB/26clwoBuCIyzwEFZXb9CP
-         +5v5w4/5mTloJ2E9gLIQwe5ec9tOo6soFx64385mPru7ea6gzmE0klij3u7QBqOwI2Na
-         TKol4OPJ+b16V7qStKjiONGs8IJcohU8gmYKrQSxr+v6WfRi0lcv2l5DEO1CMDzSrWFD
-         uqLzyP8WmrOXrFz8tyJoI68/CHr+62ZZzszDtVoyxQIVt1CnxT/M4jDRPy5ft0nW9hkp
-         TC8iFzx7r68/kUnyh+ijM+9Vs6RFsaQYTQ20jLjpXa5lKmeXdVUqKTaGV/93AXVun/uF
-         jXmQ==
-X-Gm-Message-State: AOJu0Yz5avGJYL27CX7nHMv7BAZacUN53CfZ1VpYtX/x4tW1160vf0HX
-        +KxEgINAQCv/oa7Om8ot3zQG1y6cMYs1UBTFlnE=
-X-Google-Smtp-Source: AGHT+IHe6NP3MzfgZSWbkR7jxRMoFmcA9NIiePawh4EYEM7Q9mrKbCLB6JP4QQacs26mWD9MoLIIVw==
-X-Received: by 2002:ac2:4ece:0:b0:4f8:5604:4b50 with SMTP id p14-20020ac24ece000000b004f856044b50mr7020474lfr.64.1691487899167;
-        Tue, 08 Aug 2023 02:44:59 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id i6-20020a056512006600b004fdba93b92asm1818884lfo.252.2023.08.08.02.44.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 02:44:58 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 08 Aug 2023 11:44:46 +0200
-Subject: [PATCH v2 6/6] dt-bindings: arm-smmu: Fix MSM8998 clocks
- description
+        bh=FlU7scLqRKsODrrT7JE5RR1BiFxNDrNBXo425TuEI+s=;
+        b=K+tLn8AoFZbNi7kCDw3ZAyM1dPExklVX9skEdKmn4CF1nSu4kUUkqIez77CBAxqRDb
+         hUjBMGeSwiKX6+hDaQCF9a7GgeenVMMKB2gakxRvVShqbmGOSgS3mLITAhpPMtrGmnlH
+         8vL1IsHCkkoyDzLoF1jBLCRzXVFHD9g8olz2wckJdIKRJYCIileUe4cd975c0RFImkGg
+         zNAdDLshHhJlEvPvoa6zLV7orji+W3lUEL9PJXXY87/34tpa3pYhLZyC+MCFt1gvQMfc
+         FhQzCYa9FtVoFY+90I8F4sGwrXEEmV682bBJAU+VPlmEAOVLI1EgG60kAJXd401beQCk
+         Rp/Q==
+X-Gm-Message-State: AOJu0YzymwjjS/OzhQgvkgy5BCFj7/QQivX+POo0/aD8x1il4HsUR1jd
+        RasfmEJPsKmTMsa75KSwAN2uVsenOJ2gLqubRfT+jRsQ5HxQwIu7AGs=
+X-Google-Smtp-Source: AGHT+IEr8X47lVReRVYsjp1wSOdOsFnN16mPRCPrPqN5OO+ugWEzrX8jUAOCzwnG2RrMSH4A34icSl5w/oEXgGIufgU=
+X-Received: by 2002:a67:e3ab:0:b0:443:5ddf:4f5b with SMTP id
+ j11-20020a67e3ab000000b004435ddf4f5bmr3210522vsm.11.1691488450968; Tue, 08
+ Aug 2023 02:54:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230531-topic-8998_mmssclk-v2-6-34273e275c51@linaro.org>
-References: <20230531-topic-8998_mmssclk-v2-0-34273e275c51@linaro.org>
-In-Reply-To: <20230531-topic-8998_mmssclk-v2-0-34273e275c51@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230602090227.7264-1-yong.wu@mediatek.com> <20230602090227.7264-6-yong.wu@mediatek.com>
+In-Reply-To: <20230602090227.7264-6-yong.wu@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 8 Aug 2023 17:53:59 +0800
+Message-ID: <CAGXv+5EKwvn-axETPcuxTpxRkUGLroymeDYL+kr4QW8duAymmQ@mail.gmail.com>
+Subject: Re: [PATCH v12 5/7] iommu/mediatek: Add MT8188 IOMMU Support
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Imran Khan <kimran@codeaurora.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Joonwoo Park <joonwoop@codeaurora.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Will Deacon <will@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691487885; l=2406;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=GiTo3aHVWSJqXeRVvBwFrjMpXiRsIg5liCVx9M1P4EU=;
- b=Nxs8hOuPBNmdHqXrObFj394Ryc0kynWXqn1i40tZ53Cb01Hzw6WwtFi+3X0Jcw4BcgOd603j0
- ZWoh4q6XnKVBZvu54Q3HrIhvJNMsEM/z8rSRfzNPESDS1/k+Iq2OYtg
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        jianjiao.zeng@mediatek.com, chengci.xu@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8998 was abusingly referencing one of the internal bus clocks, that
-were recently dropped from Linux (because the original implementation
-did not make much sense), circumventing the interconnect framework.
+On Fri, Jun 2, 2023 at 5:04=E2=80=AFPM Yong Wu <yong.wu@mediatek.com> wrote=
+:
+>
+> From: "Chengci.Xu" <chengci.xu@mediatek.com>
+>
+> MT8188 has 3 IOMMU, containing 2 MM IOMMUs, one is for vdo, the other
+> is for vpp. and 1 INFRA IOMMU.
+>
+> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> ---
+>  drivers/iommu/mtk_iommu.c | 49 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 9c89cf894a4d..5c66af0c45a8 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -170,6 +170,7 @@ enum mtk_iommu_plat {
+>         M4U_MT8173,
+>         M4U_MT8183,
+>         M4U_MT8186,
+> +       M4U_MT8188,
+>         M4U_MT8192,
+>         M4U_MT8195,
+>         M4U_MT8365,
+> @@ -1593,6 +1594,51 @@ static const struct mtk_iommu_plat_data mt8186_dat=
+a_mm =3D {
+>         .iova_region_larb_msk =3D mt8186_larb_region_msk,
+>  };
+>
+> +static const struct mtk_iommu_plat_data mt8188_data_infra =3D {
+> +       .m4u_plat         =3D M4U_MT8188,
+> +       .flags            =3D WR_THROT_EN | DCM_DISABLE | STD_AXI_MODE | =
+PM_CLK_AO |
+> +                           MTK_IOMMU_TYPE_INFRA | IFA_IOMMU_PCIE_SUPPORT=
+ |
+> +                           PGTABLE_PA_35_EN | CFG_IFA_MASTER_IN_ATF,
 
-Fix it.
+FWIW, CFG_IFA_MASTER_IN_ATF should not be tied to the compatible string,
+but set via a DT property. The IOMMU controls are secured by firmware.
+It is not a property intrinsically tied to the hardware.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../devicetree/bindings/iommu/arm,smmu.yaml        | 41 ++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+If on some other project there is no such security requirement and the
+IOMMU is opened up to non-secure world, and ATF not even having support
+for the SMC call, this becomes unusable and hard to rectify without
+introducing a new compatible string.
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 3a31a979709b..cf29ab10501c 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -270,6 +270,47 @@ allOf:
-           contains:
-             enum:
-               - qcom,msm8998-smmu-v2
-+    then:
-+      anyOf:
-+        - properties:
-+            clock-names:
-+              items:
-+                - const: bus
-+            clocks:
-+              items:
-+                - description: bus clock required for downstream bus access and for
-+                    the smmu ptw
-+        - properties:
-+            clock-names:
-+              items:
-+                - const: iface
-+                - const: mem
-+                - const: mem_iface
-+            clocks:
-+              items:
-+                - description: interface clock required to access smmu's registers
-+                    through the TCU's programming interface.
-+                - description: bus clock required for memory access
-+                - description: bus clock required for GPU memory access
-+        - properties:
-+            clock-names:
-+              items:
-+                - const: iface-mm
-+                - const: iface-smmu
-+                - const: bus-smmu
-+            clocks:
-+              items:
-+                - description: interface clock required to access mnoc's registers
-+                    through the TCU's programming interface.
-+                - description: interface clock required to access smmu's registers
-+                    through the TCU's programming interface.
-+                - description: bus clock required for the smmu ptw
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-               - qcom,sdm630-smmu-v2
-               - qcom,sm6375-smmu-v2
-     then:
+ChenYu
 
--- 
-2.41.0
-
+> +       .inv_sel_reg      =3D REG_MMU_INV_SEL_GEN2,
+> +       .banks_num        =3D 1,
+> +       .banks_enable     =3D {true},
+> +       .iova_region      =3D single_domain,
+> +       .iova_region_nr   =3D ARRAY_SIZE(single_domain),
+> +};
+> +
+> +static const struct mtk_iommu_plat_data mt8188_data_vdo =3D {
+> +       .m4u_plat       =3D M4U_MT8188,
+> +       .flags          =3D HAS_BCLK | HAS_SUB_COMM_3BITS | OUT_ORDER_WR_=
+EN |
+> +                         WR_THROT_EN | IOVA_34_EN | SHARE_PGTABLE |
+> +                         PGTABLE_PA_35_EN | MTK_IOMMU_TYPE_MM,
+> +       .hw_list        =3D &m4ulist,
+> +       .inv_sel_reg    =3D REG_MMU_INV_SEL_GEN2,
+> +       .banks_num      =3D 1,
+> +       .banks_enable   =3D {true},
+> +       .iova_region    =3D mt8192_multi_dom,
+> +       .iova_region_nr =3D ARRAY_SIZE(mt8192_multi_dom),
+> +       .larbid_remap   =3D {{2}, {0}, {21}, {0}, {19}, {9, 10,
+> +                          11 /* 11a */, 25 /* 11c */},
+> +                          {13, 0, 29 /* 16b */, 30 /* 17b */, 0}, {5}},
+> +};
+> +
+> +static const struct mtk_iommu_plat_data mt8188_data_vpp =3D {
+> +       .m4u_plat       =3D M4U_MT8188,
+> +       .flags          =3D HAS_BCLK | HAS_SUB_COMM_3BITS | OUT_ORDER_WR_=
+EN |
+> +                         WR_THROT_EN | IOVA_34_EN | SHARE_PGTABLE |
+> +                         PGTABLE_PA_35_EN | MTK_IOMMU_TYPE_MM,
+> +       .hw_list        =3D &m4ulist,
+> +       .inv_sel_reg    =3D REG_MMU_INV_SEL_GEN2,
+> +       .banks_num      =3D 1,
+> +       .banks_enable   =3D {true},
+> +       .iova_region    =3D mt8192_multi_dom,
+> +       .iova_region_nr =3D ARRAY_SIZE(mt8192_multi_dom),
+> +       .larbid_remap   =3D {{1}, {3}, {23}, {7}, {MTK_INVALID_LARBID},
+> +                          {12, 15, 24 /* 11b */}, {14, MTK_INVALID_LARBI=
+D,
+> +                          16 /* 16a */, 17 /* 17a */, MTK_INVALID_LARBID=
+,
+> +                          27, 28 /* ccu0 */, MTK_INVALID_LARBID}, {4, 6}=
+},
+> +};
+> +
+>  static const unsigned int mt8192_larb_region_msk[MT8192_MULTI_REGION_NR_=
+MAX][MTK_LARB_NR_MAX] =3D {
+>         [0] =3D {~0, ~0},                         /* Region0: larb0/1 */
+>         [1] =3D {0, 0, 0, 0, ~0, ~0, 0, ~0},      /* Region1: larb4/5/7 *=
+/
+> @@ -1701,6 +1747,9 @@ static const struct of_device_id mtk_iommu_of_ids[]=
+ =3D {
+>         { .compatible =3D "mediatek,mt8173-m4u", .data =3D &mt8173_data},
+>         { .compatible =3D "mediatek,mt8183-m4u", .data =3D &mt8183_data},
+>         { .compatible =3D "mediatek,mt8186-iommu-mm",    .data =3D &mt818=
+6_data_mm}, /* mm: m4u */
+> +       { .compatible =3D "mediatek,mt8188-iommu-infra", .data =3D &mt818=
+8_data_infra},
+> +       { .compatible =3D "mediatek,mt8188-iommu-vdo",   .data =3D &mt818=
+8_data_vdo},
+> +       { .compatible =3D "mediatek,mt8188-iommu-vpp",   .data =3D &mt818=
+8_data_vpp},
+>         { .compatible =3D "mediatek,mt8192-m4u", .data =3D &mt8192_data},
+>         { .compatible =3D "mediatek,mt8195-iommu-infra", .data =3D &mt819=
+5_data_infra},
+>         { .compatible =3D "mediatek,mt8195-iommu-vdo",   .data =3D &mt819=
+5_data_vdo},
+> --
+> 2.25.1
+>
+>
