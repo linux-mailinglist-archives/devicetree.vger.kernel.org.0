@@ -2,92 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB7DD7743DE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC3CC774393
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235419AbjHHSLV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Aug 2023 14:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
+        id S234620AbjHHSHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:07:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235356AbjHHSKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:10:47 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D251110EC;
-        Tue,  8 Aug 2023 10:13:15 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 64B66809C;
-        Tue,  8 Aug 2023 22:16:33 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
- 2023 22:16:33 +0800
-Received: from ubuntu.localdomain (161.142.156.69) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
- 2023 22:16:23 +0800
-From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
-To:     Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S235396AbjHHSHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:07:12 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151A861B2F;
+        Tue,  8 Aug 2023 10:07:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=1eMz8Kx1EHbpbcwhOQKyLVqRjaGKTaNj4sW/uynWnl8=; b=nejMPi3VM7ofMENIN8bhAEJL07
+        R1JLkq+Z0e+Vvd3amNjdds5KLa/IkvIBpX/KZhrsGzbSHj/Jpm8DHhBojZxbdLdU2XbGa8Ca9S0Cs
+        WFv1W+lkAfog6/kxtpgQlcebGAxCSMz4Gni1CCitszWFXF4f8IxW2G0nJ4D4I9d5w4tw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qTNeM-003TSm-VY; Tue, 08 Aug 2023 16:25:30 +0200
+Date:   Tue, 8 Aug 2023 16:25:30 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-CC:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] riscv: dts: starfive - Add hwrng node for JH7110 SoC
-Date:   Tue, 8 Aug 2023 22:15:58 +0800
-Message-ID: <20230808141558.296631-3-jiajie.ho@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230808141558.296631-1-jiajie.ho@starfivetech.com>
-References: <20230808141558.296631-1-jiajie.ho@starfivetech.com>
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
+Message-ID: <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
+References: <20230807193102.6374-1-brgl@bgdev.pl>
+ <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
+ <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
+ <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
+ <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [161.142.156.69]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add hardware rng controller node for StarFive JH7110 SoC.
+> > On Tue, Aug 08, 2023 at 10:13:09AM +0200, Bartosz Golaszewski wrote:
+> > > Ok so upon some further investigation, the actual culprit is in stmmac
+> > > platform code - it always tries to register an MDIO bus - independent
+> > > of whether there is an actual mdio child node - unless the MAC is
+> > > marked explicitly as having a fixed-link.
+> > >
+> > > When I fixed that, MAC1's probe is correctly deferred until MAC0 has
+> > > created the MDIO bus.
+> > >
+> > > Even so, isn't it useful to actually reference the shared MDIO bus in some way?
+> > >
+> > > If the schematics look something like this:
+> > >
+> > > --------           -------
+> > > | MAC0 |--MDIO-----| PHY |
+> > > -------- |     |   -------
+> > >          |     |
+> > > -------- |     |   -------
+> > > | MAC1 |--     ----| PHY |
+> > > --------           -------
+> > >
+> > > Then it would make sense to model it on the device tree?
+> >
+> > So I think what you're saying is that MAC0 and MAC1's have MDIO bus
+> > masters, and the hardware designer decided to tie both together to
+> > a single set of clock and data lines, which then go to two PHYs.
+> 
+> The schematics I have are not very clear on that, but now that you
+> mention this, it's most likely the case.
 
-Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+I hope not. That would be very broken. As Russell pointed out, MDIO is
+not multi-master. You need to check with the hardware designer if the
+schematics are not clear.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 76046ca533ce..70d107bdcc10 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -848,6 +848,16 @@ sdma: dma-controller@16008000 {
- 			#dma-cells = <2>;
- 		};
- 
-+		rng: rng@1600c000 {
-+			compatible = "starfive,jh7110-trng";
-+			reg = <0x0 0x1600C000 0x0 0x4000>;
-+			clocks = <&stgcrg JH7110_STGCLK_SEC_AHB>,
-+				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
-+			clock-names = "hclk", "ahb";
-+			resets = <&stgcrg JH7110_STGRST_SEC_AHB>;
-+			interrupts = <30>;
-+		};
-+
- 		gmac0: ethernet@16030000 {
- 			compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
- 			reg = <0x0 0x16030000 0x0 0x10000>;
--- 
-2.34.1
+> Good point, but it's worse than that: when MAC0 is unbound, it will
+> unregister the MDIO bus and destroy all PHY devices. These are not
+> refcounted so they will literally go from under MAC1. Not sure how
+> this can be dealt with?
 
+unbinding is not a normal operation. So i would just live with it, and
+if root decides to shoot herself in the foot, that is her choice.
+
+   Andrew
