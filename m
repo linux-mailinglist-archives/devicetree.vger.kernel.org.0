@@ -2,85 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5E44774F66
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 01:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CEE9774F87
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 01:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231156AbjHHXit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 19:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
+        id S229610AbjHHXrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 19:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjHHXit (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 19:38:49 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D8B1BDF
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 16:38:47 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe15bfb1adso10363251e87.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 16:38:47 -0700 (PDT)
+        with ESMTP id S229506AbjHHXrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 19:47:13 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13AF198D
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 16:47:11 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b962535808so95626671fa.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 16:47:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691537925; x=1692142725;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MUBwQoi1+gnZA4lkKp5lFso1fZvol3uUeQFa+vmJ4Bc=;
-        b=ql6bjZg0EBMnM/lLUMBcuDPLQa6XdtspStSL9bZ6Vj9MAslwpj5muUihstCXVhDOmF
-         Pt0CBexyfh/3PQaHWH01rKotKQc9nOBdi4jR1pzXcnzFDC24W73NVGM+XdDYSOb+amFl
-         KwBub6Nq0VuaUpHME32pev2qorbn3Klie6GFQt9ekHhqTVWeTnZxL8HnO3Y9euYMKl2j
-         zygVo1js92rmrSDgIY1shL27YX7WTsop2So8wRVs/UAqrmTTeC+hP5vcQUJl/T2Ukq51
-         VLKTSB2x1LVp3K8M+Og/qsAVpwUM5Up6ML6kqQ8qXcf8zew4V3R8zr50Dqv0M/F0uNC3
-         ZSiQ==
+        d=linaro.org; s=google; t=1691538430; x=1692143230;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VZG7TCZvLFAbHq/1wBLzx2E5YyVPigTkVZVHiMhQFnM=;
+        b=U+wtHP2lc50CwCQVIKv4CrFV0GfCfxF26eroErW+Sn5QXWbPBU9YME9XmuPVRSUGBj
+         QMDjoDzZeqwOk2jIvaSM4ly0C6xF48aJVJF9DidB4vkcLpNy3VHizUfHp4efk/38JbLz
+         lR7ieaBiGeM05a1baPyWeMxCns5nTAouAWyT72K6Wa4uay7XIWdBdn014Tv7oRL6J5vF
+         8vKoPce4p5ciHVVSqBxcimHI5qDGq0g3wyR4gW4io2qQX7lkXqLS7o8pZ2HzUSWnokYD
+         p5x0eSHthR3L8nnh72hdC+Z7oB+hBBWTAoSGFv7ozyyPnDID3mpDfq4xyjeEkW+pCi3i
+         Toqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691537925; x=1692142725;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MUBwQoi1+gnZA4lkKp5lFso1fZvol3uUeQFa+vmJ4Bc=;
-        b=Ou+9PlOEs0Up9dAFvqhRmpDWkbCNHf0b5nuRzCJc9EZo0/ZpATQa8xCPFzd16EOWmE
-         cBPn/awXAYk7lK/lC/eqGAiVHf3UH/6YhvkESogXOMitJeC+NQy9k4gl8QMorSj4f+CN
-         cUfAKMeKH0+tIc0q97CABZjVRi3tBC0msBiPP9X/5jXK+WgGYzEu0dtfIo4RtCEg5Mox
-         vYNF+TTahrybQ1jIdc8+w91lqjUWzIl1FN9CJVqTkyAdSpctrMhzyooPjlGEi1FsF3O3
-         aX71L9iIhT1zZf4eMIzJBYVZbH7n0I0w8+lLq8KgigZuPCHpVOkA0kSOnPGxBy4hf24h
-         CqzA==
-X-Gm-Message-State: AOJu0Yy4r8Co7Mc1LNQaDEdgNYPUs0veKTMwWRo72iSzdgSoERzZnVW5
-        bX7aPzHVylQyIcSJnv1RL34akrUx9cMOHop1zyk=
-X-Google-Smtp-Source: AGHT+IGmkN5IinsZhsFgRP3hllSkfibwvmz0ecUZsoB7gdWW5++svVn2IhHq7eZHL2IsH5ksL95RaA==
-X-Received: by 2002:ac2:58ea:0:b0:4fe:590:53ca with SMTP id v10-20020ac258ea000000b004fe059053camr632007lfo.4.1691537925264;
-        Tue, 08 Aug 2023 16:38:45 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691538430; x=1692143230;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VZG7TCZvLFAbHq/1wBLzx2E5YyVPigTkVZVHiMhQFnM=;
+        b=OUT2aVsa3U2K8PPtMsZNG8hDg4RoCdUZIEyuoGCYpIulsy5hiM8six7xWFNnStlEsC
+         Y0hdppWDZjKIxHjE5JiaJT4OqGAxxF2JQlCXPanwjYBmCJ3CONOQMlxHZlt4qbDchCqm
+         hhesMs+5n2C0rgnn9tDylTyGL2O4Y6dypPiFP+L/6dh8vVOzuE/YsRbBqeuxhB/hbqVM
+         tBfPQKvFa8GHtqyazFgZFUhPT9cb+DzQs50SyFV7j37eVman/DHQcT/t0WSLZ7zIwOGC
+         TavtqWNOul9ajL5c3su9hQcHG8XgVUphATd8qnA9TSJeJlj2PZGys3y5KPbl+Cr7YLVr
+         cqeA==
+X-Gm-Message-State: AOJu0YzHT000kaBrdQSAobF9PC2+aTOnx6xA0osPaA3V9JQsVy6DQL19
+        mZkAVS8n0YsdxPfuptfmPBsoSg==
+X-Google-Smtp-Source: AGHT+IFBWK7BtOK07P1lkRjIV4kNADCddzfkRWw6PRzybwN5eLRLi+bkzQh96jH5UwNvaKPrKEX05w==
+X-Received: by 2002:a2e:97c3:0:b0:2b9:bf49:901b with SMTP id m3-20020a2e97c3000000b002b9bf49901bmr670235ljj.6.1691538430152;
+        Tue, 08 Aug 2023 16:47:10 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id v24-20020ac25598000000b004fe1d770527sm2031871lfg.309.2023.08.08.16.38.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 16:38:44 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 09 Aug 2023 01:38:29 +0200
-Subject: [PATCH v10 2/2] Input: Add Novatek NT36xxx touchscreen driver
+        by smtp.gmail.com with ESMTPSA id t3-20020a2e9d03000000b002b6d7682050sm2473194lji.89.2023.08.08.16.47.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 16:47:09 -0700 (PDT)
+Message-ID: <60cbc599-e95b-4723-9cc0-525bfe5cfcbb@linaro.org>
+Date:   Wed, 9 Aug 2023 01:47:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230808-topic-nt36xxx-v10-2-dd135dfa0b5e@linaro.org>
-References: <20230808-topic-nt36xxx-v10-0-dd135dfa0b5e@linaro.org>
-In-Reply-To: <20230808-topic-nt36xxx-v10-0-dd135dfa0b5e@linaro.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: msm8996: Improve GPU OPP table
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Del Regno <angelogioacchino.delregno@collabora.com>,
-        Henrik Rydberg <rydberg@bitmath.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691537921; l=27214;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=lqjHD677TxEFOL7MKpoQ8GUqd7kigEeKWGsgzH7Pvq0=;
- b=vlh9HJWsUcKbl8hGB92ipqc6Afk+F2Whf413TGLpn5Rmrov4Amrx8hMl5PSB1HLHYzZrWKU7z
- kKfswQRGAIrBgdW6UttvRADVQvto03j3Dx/OyXZUsuqYznGaTD9rxTO
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>
+References: <20230329-topic-adreno_opp-v1-0-24d34ac6f007@linaro.org>
+ <20230329-topic-adreno_opp-v1-3-24d34ac6f007@linaro.org>
+ <CAA8EJpprgiXWZC2W3JSgG3jtTZDtbwoeQ6LBK=pqfpk0oMvNRw@mail.gmail.com>
+ <bc5dd7d1-e001-8bd2-55c6-b6827c418371@linaro.org>
+ <0e703d3c-7ad9-6265-fa71-b62650b96e79@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <0e703d3c-7ad9-6265-fa71-b62650b96e79@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,1022 +125,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 26.05.2023 15:30, Konrad Dybcio wrote:
+> 
+> 
+> On 30.03.2023 12:57, Konrad Dybcio wrote:
+>>
+>>
+>> On 29.03.2023 23:32, Dmitry Baryshkov wrote:
+>>> On Wed, 29 Mar 2023 at 22:17, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>>>>
+>>>> Remove the self-explanatory comment about opp-supported-hw contents,
+>>>> add required-opps to ensure reasonable power domain levels are voted
+>>>> for (currently we've been piggybacking off of miracles and MDP votes)
+>>>> and add newlines between each subnode.
+>>>
+>>> I'm not sure this is 100% correct. The values that you add are correct
+>>> for the voltage scaling case. However, based on the vendor kernel
+>>> sources I think that MX should only be scaled if the voltage is scaled
+>>> too. I might be wrong here.
+>> MX must be >= CX (and GX), so this should bring no harm.
+>>
+>> (citation needed, but that seems to hold true..)
+> With that in mind, would you ack these patches Dmitry?
+Bump?
 
-This is a driver for the Novatek in-cell touch controller and
-supports various chips from the NT36xxx family, currently
-including NT36525, NT36672A, NT36676F, NT36772 and NT36870.
-
-Functionality like wake gestures and firmware flashing is not
-included: I am not aware of any of these DrIC+Touch combo
-chips not including a non-volatile memory and it should be
-highly unlikely to find one, since the touch firmware is
-embedded into the DriverIC one, which is obviously necessary
-to drive the display unit.
-
-However, the necessary address for the firmware update
-procedure was included into the address table in this driver
-so, in the event that someone finds the need to implement it
-for a reason or another, it will be pretty straightforward to.
-
-This driver is lightly based on the downstream implementation [1].
-[1] https://github.com/Rasenkai/caf-tsoft-Novatek-nt36xxx
-
-Tested-by: Dang Huynh <danct12@riseup.net>
-Tested-by: Amit Pundir <amit.pundir@linaro.org>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/input/touchscreen/Kconfig   |  12 +
- drivers/input/touchscreen/Makefile  |   1 +
- drivers/input/touchscreen/nt36xxx.c | 847 ++++++++++++++++++++++++++++++++++++
- drivers/input/touchscreen/nt36xxx.h |  89 ++++
- 4 files changed, 949 insertions(+)
-
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index e3e2324547b9..33182358b6de 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -664,6 +664,18 @@ config TOUCHSCREEN_NOVATEK_NVT_TS
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called novatek-nvt-ts.
- 
-+config TOUCHSCREEN_NT36XXX
-+	tristate "Novatek NT36XXX In-Cell I2C touchscreen controller"
-+	depends on I2C
-+	help
-+	  Say Y here if you have a Novatek NT36xxx series In-Cell
-+	  touchscreen connected to your system over I2C.
-+
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called nt36xxx.
-+
- config TOUCHSCREEN_IMAGIS
- 	tristate "Imagis touchscreen support"
- 	depends on I2C
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 62bd24f3ac8e..8f5dee2df20b 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -68,6 +68,7 @@ obj-$(CONFIG_TOUCHSCREEN_MSG2638)	+= msg2638.o
- obj-$(CONFIG_TOUCHSCREEN_MTOUCH)	+= mtouch.o
- obj-$(CONFIG_TOUCHSCREEN_MK712)		+= mk712.o
- obj-$(CONFIG_TOUCHSCREEN_NOVATEK_NVT_TS)	+= novatek-nvt-ts.o
-+obj-$(CONFIG_TOUCHSCREEN_NT36XXX)	+= nt36xxx.o
- obj-$(CONFIG_TOUCHSCREEN_HP600)		+= hp680_ts_input.o
- obj-$(CONFIG_TOUCHSCREEN_HP7XX)		+= jornada720_ts.o
- obj-$(CONFIG_TOUCHSCREEN_IPAQ_MICRO)	+= ipaq-micro-ts.o
-diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
-new file mode 100644
-index 000000000000..07d8902f5932
---- /dev/null
-+++ b/drivers/input/touchscreen/nt36xxx.c
-@@ -0,0 +1,847 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Driver for Novatek NT36xxx series touchscreens
-+ *
-+ * Copyright (C) 2010 - 2017 Novatek, Inc.
-+ * Copyright (C) 2020 AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/input/mt.h>
-+#include <linux/input/touchscreen.h>
-+#include <linux/interrupt.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <asm/unaligned.h>
-+
-+#include "nt36xxx.h"
-+
-+/* FW Param address */
-+#define NT36XXX_FW_ADDR			0x01
-+
-+/* Misc */
-+#define NT36XXX_NUM_SUPPLIES		2
-+#define NT36XXX_MAX_RETRIES		5
-+#define NT36XXX_MAX_FW_RST_RETRY	50
-+
-+/* Touch info */
-+#define TOUCH_DEFAULT_MAX_WIDTH 	1080
-+#define TOUCH_DEFAULT_MAX_HEIGHT	2246
-+#define TOUCH_MAX_FINGER_NUM		10
-+#define TOUCH_MAX_PRESSURE		1000
-+
-+/* Point data length */
-+#define POINT_DATA_LEN			65
-+
-+/* Global pages */
-+#define NT36XXX_PAGE_CHIP_INFO		0x0001f64e
-+#define NT36XXX_PAGE_CRC		0x0003f135
-+
-+struct nt36xxx_i2c {
-+	struct i2c_client *hw_client;
-+	struct i2c_client *fw_client;
-+	struct regmap *regmap;
-+	struct regmap *fw_regmap;
-+	struct input_dev *input;
-+	struct regulator_bulk_data *supplies;
-+	struct gpio_desc *reset_gpio;
-+
-+	struct mutex lock;
-+
-+	struct touchscreen_properties prop;
-+	struct nt36xxx_fw_info fw_info;
-+	struct nt36xxx_abs_object abs_obj;
-+
-+	const struct nt36xxx_mem_map *mmap;
-+};
-+
-+static const struct nt36xxx_mem_map nt36xxx_memory_maps[] = {
-+	[NT36525_IC]  = {
-+		.evtbuf_addr = 0x11a00,
-+		.pipe0_addr = 0x10000,
-+		.pipe1_addr = 0x12000,
-+		.flash_csum_addr = 0x14000,
-+		.flash_data_addr = 0x14002,
-+	},
-+	[NT36672A_IC] = {
-+		.evtbuf_addr = 0x21c00,
-+		.pipe0_addr = 0x20000,
-+		.pipe1_addr = 0x23000,
-+		.flash_csum_addr = 0x24000,
-+		.flash_data_addr = 0x24002,
-+	},
-+	[NT36676F_IC] = {
-+		.evtbuf_addr = 0x11a00,
-+		.pipe0_addr = 0x10000,
-+		.pipe1_addr = 0x12000,
-+		.flash_csum_addr = 0x14000,
-+		.flash_data_addr = 0x14002,
-+	},
-+	[NT36772_IC]  = {
-+		.evtbuf_addr = 0x11e00,
-+		.pipe0_addr = 0x10000,
-+		.pipe1_addr = 0x12000,
-+		.flash_csum_addr = 0x14000,
-+		.flash_data_addr = 0x14002,
-+	},
-+	[NT36870_IC]  = {
-+		.evtbuf_addr = 0x25000,
-+		.pipe0_addr = 0x20000,
-+		.pipe1_addr = 0x23000,
-+		.flash_csum_addr = 0x24000,
-+		.flash_data_addr = 0x24002,
-+	},
-+};
-+
-+static const struct nt36xxx_trim_table trim_id_table[] = {
-+	{
-+		.id = { 0x0a, 0xff, 0xff, 0x72, 0x66, 0x03 },
-+		.mask = { 1, 0, 0, 1, 1, 1 },
-+		.mapid = NT36672A_IC,
-+	},
-+	{
-+		.id = { 0x55, 0x00, 0xff, 0x00, 0x00, 0x00 },
-+		.mask = { 1, 1, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0x55, 0x72, 0xff, 0x00, 0x00, 0x00 },
-+		.mask = { 1, 1, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xaa, 0x00, 0xff, 0x00, 0x00, 0x00 },
-+		.mask = { 1, 1, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xaa, 0x72, 0xff, 0x00, 0x00, 0x00 },
-+		.mask = { 1, 1, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x72, 0x67, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x70, 0x66, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x70, 0x67, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x72, 0x66, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x25, 0x65, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x70, 0x68, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36772_IC,
-+	},
-+	{
-+		.id = { 0xff, 0xff, 0xff, 0x76, 0x66, 0x03 },
-+		.mask = { 0, 0, 0, 1, 1, 1 },
-+		.mapid = NT36676F_IC,
-+	},
-+};
-+
-+/**
-+ * nt36xxx_set_page - Set page number for read/write
-+ * @ts: Main driver structure
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_set_page(struct nt36xxx_i2c *ts, u32 pageaddr)
-+{
-+	u32 data = cpu_to_be32(pageaddr) >> 8;
-+	int ret;
-+
-+	ret = regmap_noinc_write(ts->fw_regmap, NT36XXX_CMD_SET_PAGE,
-+				 &data, sizeof(data));
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(100, 200);
-+	return ret;
-+}
-+
-+/**
-+ * nt36xxx_sw_reset_idle - Warm restart the firmware
-+ * @ts: Main driver structure
-+ *
-+ * This function restarts the running firmware without rebooting to
-+ * the bootloader (warm restart)
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_sw_reset_idle(struct nt36xxx_i2c *ts)
-+{
-+	int ret;
-+
-+	ret = regmap_write(ts->regmap, ts->hw_client->addr,
-+			   NT36XXX_CMD_SW_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/* Wait until the MCU resets the fw state */
-+	usleep_range(15000, 16000);
-+	return ret;
-+}
-+
-+/**
-+ * nt36xxx_bootloader_reset - Reset MCU to bootloader
-+ * @ts: Main driver structure
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_bootloader_reset(struct nt36xxx_i2c *ts)
-+{
-+	int ret;
-+
-+	ret = regmap_write(ts->regmap, ts->hw_client->addr,
-+			   NT36XXX_CMD_BOOTLOADER_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/* MCU has to reboot from bootloader - this is the typical boot time */
-+	msleep(35);
-+	return ret;
-+}
-+
-+/**
-+ * nt36xxx_check_reset_state - Check the boot state during reset
-+ * @ts: Main driver structure
-+ * @fw_state: Enumeration containing firmware states
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_check_reset_state(struct nt36xxx_i2c *ts,
-+				     enum nt36xxx_fw_state fw_state)
-+{
-+	u8 buf[2] = { 0 };
-+	int ret, retry = NT36XXX_MAX_FW_RST_RETRY;
-+
-+	do {
-+		ret = regmap_noinc_read(ts->fw_regmap,
-+					NT36XXX_EVT_RESET_COMPLETE,
-+					buf, sizeof(buf));
-+		if (likely(ret == 0) &&
-+		    (buf[0] >= fw_state) &&
-+		    (buf[0] <= NT36XXX_STATE_MAX)) {
-+			ret = 0;
-+			break;
-+		}
-+		usleep_range(10000, 11000);
-+	} while (--retry);
-+
-+	if (!retry) {
-+		dev_err(&ts->hw_client->dev, "Firmware reset failed.\n");
-+		ret = -EBUSY;
-+	}
-+
-+	return ret;
-+}
-+
-+/**
-+ * nt36xxx_read_pid - Read Novatek Project ID
-+ * @ts: Main driver structure
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_read_pid(struct nt36xxx_i2c *ts)
-+{
-+	__be16 pid;
-+	int ret;
-+
-+	ret = nt36xxx_set_page(ts, ts->mmap->evtbuf_addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_PROJECTID,
-+				&pid, sizeof(pid));
-+	if (ret < 0)
-+		return ret;
-+
-+	ts->fw_info.nvt_pid = be16_to_cpu(pid);
-+	return 0;
-+}
-+
-+/**
-+ * __nt36xxx_get_fw_info - Get working params from firmware
-+ * @ts: Main driver structure
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int __nt36xxx_get_fw_info(struct nt36xxx_i2c *ts)
-+{
-+	struct nt36xxx_fw_info *fwi = &ts->fw_info;
-+	u8 buf[11] = { 0 };
-+	int ret = 0;
-+
-+	ret = nt36xxx_set_page(ts, ts->mmap->evtbuf_addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_FWINFO,
-+				buf, sizeof(buf));
-+	if (ret)
-+		return ret;
-+
-+	fwi->fw_ver = buf[0];
-+	fwi->x_num = buf[2];
-+	fwi->y_num = buf[3];
-+	fwi->abs_x_max = get_unaligned_be16(&buf[4]);
-+	fwi->abs_y_max = get_unaligned_be16(&buf[6]);
-+	fwi->max_buttons = buf[10];
-+
-+	/* Check fw info integrity and clear x_num, y_num if broken */
-+	if ((buf[0] + buf[1]) != 0xFF) {
-+		dev_err(&ts->hw_client->dev,
-+			"FW info is broken! fw_ver=0x%02X, ~fw_ver=0x%02X\n",
-+			buf[0], buf[1]);
-+		fwi->fw_ver = 0;
-+		fwi->x_num = 18;
-+		fwi->y_num = 32;
-+		fwi->abs_x_max = TOUCH_DEFAULT_MAX_WIDTH;
-+		fwi->abs_y_max = TOUCH_DEFAULT_MAX_HEIGHT;
-+		fwi->max_buttons = 0;
-+		return -EINVAL;
-+	}
-+
-+	/* Get Novatek ProjectID */
-+	return nt36xxx_read_pid(ts);
-+}
-+
-+static int nt36xxx_get_fw_info(struct nt36xxx_i2c *ts)
-+{
-+	struct nt36xxx_fw_info *fwi = &ts->fw_info;
-+	int i, ret = 0;
-+
-+	for (i = 0; i < NT36XXX_MAX_RETRIES; i++) {
-+		ret = __nt36xxx_get_fw_info(ts);
-+		if (ret == 0)
-+			break;
-+	}
-+
-+	dev_dbg(&ts->hw_client->dev,
-+		"FW Info: PID=0x%x, ver=0x%x res=%ux%u max=%ux%u buttons=%u",
-+		fwi->nvt_pid, fwi->fw_ver, fwi->x_num, fwi->y_num,
-+		fwi->abs_x_max, fwi->abs_y_max, fwi->max_buttons);
-+
-+	return ret;
-+}
-+
-+/**
-+ * nt36xxx_report - Report touch events
-+ * @ts: Main driver structure
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static void nt36xxx_report(struct nt36xxx_i2c *ts)
-+{
-+	struct nt36xxx_abs_object *obj = &ts->abs_obj;
-+	struct input_dev *input = ts->input;
-+	u8 input_id = 0;
-+	u8 point[POINT_DATA_LEN + 1] = { 0 };
-+	unsigned int ppos = 0;
-+	int i, ret, finger_cnt = 0;
-+
-+	mutex_lock(&ts->lock);
-+
-+	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_REPORT,
-+				point, sizeof(point));
-+	if (ret < 0) {
-+		dev_err(&ts->hw_client->dev,
-+			"Cannot read touch point data: %d\n", ret);
-+		goto xfer_error;
-+	}
-+
-+	for (i = 0; i < TOUCH_MAX_FINGER_NUM; i++) {
-+		ppos = 6 * i;
-+		input_id = point[ppos + 0] >> 3;
-+		if ((input_id == 0) || (input_id > TOUCH_MAX_FINGER_NUM))
-+			continue;
-+
-+		if (((point[ppos] & 0x07) == 0x01) ||
-+		    ((point[ppos] & 0x07) == 0x02)) {
-+			obj->x = (point[ppos + 1] << 4) +
-+				 (point[ppos + 3] >> 4);
-+			obj->y = (point[ppos + 2] << 4) +
-+				 (point[ppos + 3] & 0xf);
-+			if ((obj->x > ts->prop.max_x) ||
-+			    (obj->y > ts->prop.max_y))
-+				continue;
-+
-+			obj->tm = point[ppos + 4];
-+			if (obj->tm == 0)
-+				obj->tm = 1;
-+
-+			obj->z = point[ppos + 5];
-+			if (i < 2) {
-+				obj->z += point[i + 63] << 8;
-+				if (obj->z > TOUCH_MAX_PRESSURE)
-+					obj->z = TOUCH_MAX_PRESSURE;
-+			}
-+
-+			if (obj->z == 0)
-+				obj->z = 1;
-+
-+			input_mt_slot(input, input_id - 1);
-+			input_mt_report_slot_state(input,
-+						   MT_TOOL_FINGER, true);
-+			touchscreen_report_pos(input, &ts->prop, obj->x,
-+					       obj->y, true);
-+
-+			input_report_abs(input, ABS_MT_TOUCH_MAJOR, obj->tm);
-+			input_report_abs(input, ABS_MT_PRESSURE, obj->z);
-+
-+			finger_cnt++;
-+		}
-+	}
-+	input_mt_sync_frame(input);
-+	input_sync(input);
-+
-+xfer_error:
-+	enable_irq(ts->hw_client->irq);
-+
-+	mutex_unlock(&ts->lock);
-+}
-+
-+static irqreturn_t nt36xxx_i2c_irq_handler(int irq, void *dev_id)
-+{
-+	struct nt36xxx_i2c *ts = dev_id;
-+
-+	disable_irq_nosync(ts->hw_client->irq);
-+	nt36xxx_report(ts);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static bool nt36xxx_in_crc_reboot_loop(u8 *buf)
-+{
-+	return ((buf[0] == 0xfc) && (buf[1] == 0xfc) && (buf[2] == 0xfc)) ||
-+	       ((buf[0] == 0xff) && (buf[1] == 0xff) && (buf[2] == 0xff));
-+}
-+
-+/**
-+ * nt36xxx_stop_crc_reboot - Stop CRC reboot loop and warm-reboot the firmware
-+ * @ts: Main driver structure
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_stop_crc_reboot(struct nt36xxx_i2c *ts)
-+{
-+	u8 buf[3] = { 0 };
-+	u8 val;
-+	int ret, retry = NT36XXX_MAX_RETRIES;
-+
-+	/* Read dummy buffer to check CRC fail reboot is happening or not */
-+
-+	/* Change I2C index to prevent getting 0xFF, but not 0xFC */
-+	ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CHIP_INFO);
-+	if (ret) {
-+		dev_dbg(&ts->hw_client->dev,
-+			"CRC reset failed: Cannot select page.\n");
-+		return ret;
-+	}
-+
-+	/* If ChipID command returns 0xFC or 0xFF, the MCU is in CRC reboot */
-+	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_CHIPID,
-+				buf, sizeof(buf));
-+	if (ret)
-+		return ret;
-+
-+	if (!nt36xxx_in_crc_reboot_loop(buf))
-+		return 0;
-+
-+	/* IC is in CRC fail reboot loop, needs to be stopped! */
-+	do {
-+		/* Special reset-idle sequence for CRC failure */
-+		ret = regmap_write(ts->regmap, ts->hw_client->addr,
-+				   NT36XXX_CMD_SW_RESET);
-+		if (ret)
-+			dev_dbg(&ts->hw_client->dev,
-+				"SW Reset 1 failed: may not recover\n");
-+
-+		ret = regmap_write(ts->regmap, ts->hw_client->addr,
-+				   NT36XXX_CMD_SW_RESET);
-+		if (ret)
-+			dev_dbg(&ts->hw_client->dev,
-+				"SW Reset 2 failed: may not recover\n");
-+		usleep_range(1000, 1100);
-+
-+		/* Clear CRC_ERR_FLAG */
-+		ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CRC);
-+		if (ret)
-+			continue;
-+
-+		val = 0xa5;
-+		ret = regmap_raw_write(ts->fw_regmap, NT36XXX_EVT_CRC,
-+				       &val, sizeof(val));
-+		if (ret)
-+			continue;
-+
-+		/* Check CRC_ERR_FLAG */
-+		ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CRC);
-+		if (ret)
-+			continue;
-+
-+		ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_CRC,
-+					&buf, sizeof(buf));
-+		if (ret)
-+			continue;
-+
-+		if (buf[0] == 0xa5)
-+			break;
-+	} while (--retry);
-+
-+	if (retry == 0) {
-+		dev_err(&ts->hw_client->dev,
-+			"CRC reset failed: buf=0x%2ph\n", buf);
-+	}
-+
-+	return ret;
-+}
-+
-+/**
-+ * nt36xxx_i2c_chip_version_init - Detect Novatek NT36xxx family IC
-+ * @ts: Main driver structure
-+ *
-+ * This function reads the ChipID from the IC and sets the right
-+ * memory map for the detected chip.
-+ *
-+ * Return: Always zero for success, negative number for error
-+ */
-+static int nt36xxx_i2c_chip_version_init(struct nt36xxx_i2c *ts)
-+{
-+	u8 buf[7] = { 0 };
-+	int retry = NT36XXX_MAX_RETRIES;
-+	int sz = sizeof(trim_id_table) / sizeof(struct nt36xxx_trim_table);
-+	int i, list, mapid, ret;
-+
-+	ret = nt36xxx_bootloader_reset(ts);
-+	if (ret) {
-+		dev_err(&ts->hw_client->dev, "Can't reset the nvt IC\n");
-+		return ret;
-+	}
-+
-+	do {
-+		ret = nt36xxx_sw_reset_idle(ts);
-+		if (ret)
-+			continue;
-+
-+		ret = regmap_write(ts->regmap, ts->hw_client->addr, NT36XXX_CMD_UNLOCK);
-+		if (ret)
-+			continue;
-+		usleep_range(10000, 11000);
-+
-+		ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CHIP_INFO);
-+		if (ret)
-+			continue;
-+
-+		memset(buf, 0, ARRAY_SIZE(buf));
-+		ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_CHIPID,
-+					buf, sizeof(buf));
-+		if (ret)
-+			continue;
-+
-+		/* Compare read chip id with trim list */
-+		for (list = 0; list < sz; list++) {
-+			/* Compare each not masked byte */
-+			for (i = 0; i < NT36XXX_ID_LEN_MAX; i++) {
-+				if (trim_id_table[list].mask[i] &&
-+				    buf[i] != trim_id_table[list].id[i])
-+					break;
-+			}
-+
-+			if (i == NT36XXX_ID_LEN_MAX) {
-+				mapid = trim_id_table[list].mapid;
-+				ts->mmap = &nt36xxx_memory_maps[mapid];
-+				return 0;
-+			}
-+
-+			ts->mmap = NULL;
-+			ret = -ENOENT;
-+		}
-+
-+		/* Stop CRC check to prevent IC auto reboot */
-+		if (nt36xxx_in_crc_reboot_loop(buf)) {
-+			ret = nt36xxx_stop_crc_reboot(ts);
-+			if (ret)
-+				continue;
-+		}
-+
-+		usleep_range(10000, 11000);
-+	} while (--retry);
-+
-+	return ret;
-+}
-+
-+static const struct regmap_config nt36xxx_i2c_regmap_hw_config = {
-+	.name = "nt36xxx_i2c_hw",
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.cache_type = REGCACHE_NONE,
-+};
-+
-+static const struct regmap_config nt36xxx_i2c_regmap_fw_config = {
-+	.name = "nt36xxx_i2c_fw",
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.cache_type = REGCACHE_NONE,
-+};
-+
-+static void nt36xxx_disable_regulators(void *data)
-+{
-+	struct nt36xxx_i2c *ts = data;
-+
-+	regulator_bulk_disable(NT36XXX_NUM_SUPPLIES, ts->supplies);
-+}
-+
-+static int nt36xxx_i2c_probe(struct i2c_client *hw_client)
-+{
-+	struct nt36xxx_i2c *ts;
-+	struct input_dev *input;
-+	int ret;
-+
-+	if (!i2c_check_functionality(hw_client->adapter, I2C_FUNC_I2C)) {
-+		dev_err(&hw_client->dev, "i2c_check_functionality error\n");
-+		return -EIO;
-+	}
-+
-+	if (!hw_client->irq) {
-+		dev_err(&hw_client->dev, "No irq specified\n");
-+		return -EINVAL;
-+	}
-+
-+	ts = devm_kzalloc(&hw_client->dev, sizeof(*ts), GFP_KERNEL);
-+	if (!ts)
-+		return -ENOMEM;
-+
-+	ts->supplies = devm_kcalloc(&hw_client->dev,
-+				    NT36XXX_NUM_SUPPLIES,
-+				    sizeof(*ts->supplies),
-+				    GFP_KERNEL);
-+	if (!ts->supplies)
-+		return -ENOMEM;
-+
-+	input = devm_input_allocate_device(&hw_client->dev);
-+	if (!input)
-+		return -ENOMEM;
-+
-+	ts->fw_client = i2c_new_dummy_device(hw_client->adapter,
-+					     NT36XXX_FW_ADDR);
-+	if (IS_ERR(ts->fw_client)) {
-+		dev_err(&hw_client->dev, "Cannot add FW I2C device\n");
-+		return PTR_ERR(ts->fw_client);
-+	}
-+
-+	ts->hw_client = hw_client;
-+	ts->input = input;
-+	i2c_set_clientdata(ts->hw_client, ts);
-+	i2c_set_clientdata(ts->fw_client, ts);
-+
-+	ts->reset_gpio = devm_gpiod_get_optional(&hw_client->dev, "reset",
-+						 GPIOD_OUT_HIGH);
-+	if (IS_ERR(ts->reset_gpio))
-+		return PTR_ERR(ts->reset_gpio);
-+	gpiod_set_consumer_name(ts->reset_gpio, "nt36xxx reset");
-+
-+	/* These supplies are optional */
-+	ts->supplies[0].supply = "vdd";
-+	ts->supplies[1].supply = "vio";
-+	ret = devm_regulator_bulk_get(&hw_client->dev,
-+				      NT36XXX_NUM_SUPPLIES,
-+				      ts->supplies);
-+	if (ret)
-+		return dev_err_probe(&hw_client->dev, ret,
-+				     "Cannot get supplies: %d\n", ret);
-+
-+	ts->regmap = devm_regmap_init_i2c(ts->hw_client,
-+					  &nt36xxx_i2c_regmap_hw_config);
-+	if (IS_ERR(ts->regmap)) {
-+		dev_err(&hw_client->dev, "regmap (hw-addr) init failed\n");
-+		return PTR_ERR(ts->regmap);
-+	}
-+
-+	ts->fw_regmap = devm_regmap_init_i2c(ts->fw_client,
-+					     &nt36xxx_i2c_regmap_fw_config);
-+	if (IS_ERR(ts->fw_regmap)) {
-+		dev_err(&hw_client->dev, "regmap (fw-addr) init failed\n");
-+		return PTR_ERR(ts->fw_regmap);
-+	}
-+
-+	ret = regulator_bulk_enable(NT36XXX_NUM_SUPPLIES, ts->supplies);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(10000, 11000);
-+
-+	ret = devm_add_action_or_reset(&hw_client->dev,
-+				       nt36xxx_disable_regulators, ts);
-+	if (ret)
-+		return ret;
-+
-+	mutex_init(&ts->lock);
-+
-+	/* Set memory maps for the specific chip version */
-+	ret = nt36xxx_i2c_chip_version_init(ts);
-+	if (ret) {
-+		dev_err(&hw_client->dev, "Failed to check chip version\n");
-+		return ret;
-+	}
-+
-+	/* Reset the MCU */
-+	ret = nt36xxx_bootloader_reset(ts);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Check and eventually wait until the MCU goes in reset state */
-+	ret = nt36xxx_check_reset_state(ts, NT36XXX_STATE_INIT);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Get information from the TS firmware */
-+	ret = nt36xxx_get_fw_info(ts);
-+	if (ret < 0)
-+		return ret;
-+
-+	input->phys = devm_kasprintf(&hw_client->dev, GFP_KERNEL,
-+				     "%s/input0", dev_name(&hw_client->dev));
-+	if (!input->phys)
-+		return -ENOMEM;
-+
-+	input->name = "Novatek NT36XXX Touchscreen";
-+	input->id.bustype = BUS_I2C;
-+	input->dev.parent = &hw_client->dev;
-+
-+	__set_bit(EV_KEY, input->evbit);
-+	__set_bit(EV_ABS, input->evbit);
-+	input_set_capability(input, EV_KEY, BTN_TOUCH);
-+
-+	ret = input_mt_init_slots(input, TOUCH_MAX_FINGER_NUM,
-+				  INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
-+	if (ret) {
-+		dev_err(&hw_client->dev, "Cannot init MT slots (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	input_set_abs_params(input, ABS_MT_PRESSURE, 0,
-+			     TOUCH_MAX_PRESSURE, 0, 0);
-+	input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
-+
-+	input_set_abs_params(input, ABS_MT_POSITION_X, 0,
-+			     ts->fw_info.abs_x_max - 1, 0, 0);
-+	input_set_abs_params(input, ABS_MT_POSITION_Y, 0,
-+			     ts->fw_info.abs_y_max - 1, 0, 0);
-+
-+	/* Override the firmware defaults, if needed */
-+	touchscreen_parse_properties(input, true, &ts->prop);
-+
-+	input_set_drvdata(input, ts);
-+
-+	ret = input_register_device(ts->input);
-+	if (ret) {
-+		dev_err(&hw_client->dev, "Failed to register input device: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	ret = devm_request_threaded_irq(&hw_client->dev, hw_client->irq, NULL,
-+					nt36xxx_i2c_irq_handler, IRQF_ONESHOT,
-+					hw_client->name, ts);
-+	if (ret) {
-+		dev_err(&hw_client->dev, "request irq failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int __maybe_unused nt36xxx_i2c_suspend(struct device *dev)
-+{
-+	struct nt36xxx_i2c *ts = i2c_get_clientdata(to_i2c_client(dev));
-+	int ret;
-+
-+	disable_irq(ts->hw_client->irq);
-+
-+	ret = regmap_write(ts->fw_regmap, NT36XXX_EVT_HOST_CMD,
-+			   NT36XXX_CMD_ENTER_SLEEP);
-+	if (ret) {
-+		dev_err(&ts->hw_client->dev, "Cannot enter suspend!!\n");
-+		return ret;
-+	}
-+
-+	gpiod_set_value(ts->reset_gpio, 1);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused nt36xxx_i2c_resume(struct device *dev)
-+{
-+	struct nt36xxx_i2c *ts = i2c_get_clientdata(to_i2c_client(dev));
-+	int ret;
-+
-+	mutex_lock(&ts->lock);
-+
-+	gpiod_set_value(ts->reset_gpio, 0);
-+
-+	/* Reboot the MCU (also recalibrates the TS) */
-+	ret = nt36xxx_bootloader_reset(ts);
-+	if (ret < 0)
-+		goto end;
-+
-+	ret = nt36xxx_check_reset_state(ts, NT36XXX_STATE_REK);
-+	if (ret < 0)
-+		goto end;
-+
-+	enable_irq(ts->hw_client->irq);
-+end:
-+	mutex_unlock(&ts->lock);
-+	return ret;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(nt36xxx_i2c_pm,
-+			 nt36xxx_i2c_suspend, nt36xxx_i2c_resume);
-+
-+static const struct of_device_id nt36xxx_of_match[] = {
-+	{ .compatible = "novatek,nt36525-i2c" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nt36xxx_of_match);
-+
-+static const struct i2c_device_id nt36xxx_i2c_ts_id[] = {
-+	{ "NVT-ts", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, nt36xxx_i2c_ts_id);
-+
-+static struct i2c_driver nt36xxx_i2c_ts_driver = {
-+	.driver = {
-+		.name	= "nt36xxx_ts",
-+		.pm	= pm_ptr(&nt36xxx_i2c_pm),
-+		.of_match_table = nt36xxx_of_match,
-+	},
-+	.id_table	= nt36xxx_i2c_ts_id,
-+	.probe		= nt36xxx_i2c_probe,
-+};
-+module_i2c_driver(nt36xxx_i2c_ts_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Novatek NT36XXX Touchscreen Driver");
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-diff --git a/drivers/input/touchscreen/nt36xxx.h b/drivers/input/touchscreen/nt36xxx.h
-new file mode 100644
-index 000000000000..66ac9b2886ac
---- /dev/null
-+++ b/drivers/input/touchscreen/nt36xxx.h
-@@ -0,0 +1,89 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (C) 2010 - 2017 Novatek, Inc.
-+ * Copyright (C) 2020 AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#ifndef NT36XXX_H
-+#define NT36XXX_H
-+
-+/* Number of bytes for chip identification */
-+#define NT36XXX_ID_LEN_MAX		6
-+
-+struct nt36xxx_abs_object {
-+	u16 x;
-+	u16 y;
-+	u16 z;
-+	u8 tm;
-+};
-+
-+struct nt36xxx_fw_info {
-+	u8 fw_ver;
-+	u8 x_num;
-+	u8 y_num;
-+	u8 max_buttons;
-+	u16 abs_x_max;
-+	u16 abs_y_max;
-+	u16 nvt_pid;
-+};
-+
-+struct nt36xxx_mem_map {
-+	u32 evtbuf_addr;
-+	u32 pipe0_addr;
-+	u32 pipe1_addr;
-+	u32 flash_csum_addr;
-+	u32 flash_data_addr;
-+};
-+
-+enum nt36xxx_chips {
-+	NT36525_IC = 0,
-+	NT36672A_IC,
-+	NT36676F_IC,
-+	NT36772_IC,
-+	NT36870_IC,
-+	NTMAX_IC,
-+};
-+
-+struct nt36xxx_trim_table {
-+	u8 id[NT36XXX_ID_LEN_MAX];
-+	u8 mask[NT36XXX_ID_LEN_MAX];
-+	enum nt36xxx_chips mapid;
-+};
-+
-+/**
-+ * enum nt36xxx_fw_state - Firmware state
-+ * @NT36XXX_STATE_INIT: IC Reset
-+ * @NT36XXX_STATE_REK: ReK baseline
-+ * @NT36XXX_STATE_REK_FINISH: Baseline is ready
-+ * @NT36XXX_STATE_NORMAL_RUN: Firmware is running
-+ */
-+enum nt36xxx_cmds {
-+	NT36XXX_CMD_ENTER_SLEEP = 0x11,
-+	NT36XXX_CMD_ENTER_WKUP_GESTURE = 0x13,
-+	NT36XXX_CMD_UNLOCK = 0x35,
-+	NT36XXX_CMD_BOOTLOADER_RESET = 0x69,
-+	NT36XXX_CMD_SW_RESET = 0xa5,
-+	NT36XXX_CMD_SET_PAGE = 0xff,
-+};
-+
-+enum nt36xxx_fw_state {
-+	NT36XXX_STATE_INIT = 0xa0,	/* IC reset */
-+	NT36XXX_STATE_REK,		/* ReK baseline */
-+	NT36XXX_STATE_REK_FINISH,	/* Baseline is ready */
-+	NT36XXX_STATE_NORMAL_RUN,	/* Normal run */
-+	NT36XXX_STATE_MAX = 0xaf
-+};
-+
-+enum nt36xxx_events {
-+	NT36XXX_EVT_REPORT = 0x00,
-+	NT36XXX_EVT_CRC = 0x35,
-+	NT36XXX_EVT_CHIPID = 0x4e,
-+	NT36XXX_EVT_HOST_CMD = 0x50,
-+	NT36XXX_EVT_HS_OR_SUBCMD = 0x51,	/* Handshake or subcommand byte */
-+	NT36XXX_EVT_RESET_COMPLETE = 0x60,
-+	NT36XXX_EVT_FWINFO = 0x78,
-+	NT36XXX_EVT_PROJECTID = 0x9a,
-+
-+};
-+
-+#endif
-
--- 
-2.41.0
-
+Konrad
