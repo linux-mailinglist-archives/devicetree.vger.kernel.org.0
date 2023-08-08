@@ -2,76 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E031774961
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 149597747A1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231842AbjHHTx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:53:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37392 "EHLO
+        id S231180AbjHHTRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbjHHTxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:53:45 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293AE13945C;
-        Tue,  8 Aug 2023 11:03:59 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fe2ba3e260so57075665e9.2;
-        Tue, 08 Aug 2023 11:03:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691517837; x=1692122637;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3PeSe/GO6oNsx5WYr31WDuJ/pxid985m44XnUTfQZDY=;
-        b=raYj3mFjJsVhqvQ2f6HG1Vqk1ialYg9hZ0Sl14PNuTYzOhaWbxr7fsByS81K/vP4zz
-         4zD/2v+WpXJoh3wbm1o7iLY513lrSL/KxTJmqOTsmpoXNyhoXYPTsYMTUohiYtSJxHB1
-         w0UTeruOXN54m6UqHXHpkFZc2XuEv8CxUPQ88Q+ESs0MA502075bcGrTkOMJ4y63uDbQ
-         j/YX070Ud7/NHXUxLUmwolZT6oACdPScPmgT5CuR6iupKcW8l6bMlPexVG/lBBcs8rSj
-         v3gzl8cgYk4/Suob6BnNcgKfRUtwNoLNFVqaLkJr1RN9A35hss37i71N0SMbO4qEMRVG
-         dSew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691517837; x=1692122637;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3PeSe/GO6oNsx5WYr31WDuJ/pxid985m44XnUTfQZDY=;
-        b=I+tuAMHBU4jFpowlJw5VO/TiU5ddNQseIRziiAJbZwV++WGKhCO5KBk/FdE5ZX208b
-         uFu2n2j07YmN599KAR0N06QJsrJHCPwvu7dzNsIx9ZV0KEUgE1slgKArE2FBzplchvfw
-         r9RRjoGVmYxTHpAJxkeLo77mO1KYTNweE2CQUYVN7iR8rK1KXkmllOnYdoz9niiayVuv
-         nkkCHh+hkhj2WMJpFhhXI0Ok7ts4ejiBnez+p1zGSF7aBpibTZfvRa9Zm5pAeI99gYCz
-         3juAj3Z9yYw0uUsvcubLLTyfwtp/duH7cFv11wu3XxxFQfmTGrBFgL+1ysdvWVexr3FA
-         JG9Q==
-X-Gm-Message-State: AOJu0Ywv4navyIZGNheLI0cwtYdJp2+Xwk1epOZEAlLqKqEEB6WKOgwH
-        zCAoD3gOlF3589rSC6n0LLqY7oki6oU=
-X-Google-Smtp-Source: AGHT+IGx8qpA8w2DCmIxsFRx1ZOpbeX44oV+zA8r9kZ2Jq+OZ4V6CmfzvpDQTtZ+ULkzH9Mu8g7QLA==
-X-Received: by 2002:a05:6512:310c:b0:4fb:2c1e:4e03 with SMTP id n12-20020a056512310c00b004fb2c1e4e03mr6752682lfb.32.1691477570248;
-        Mon, 07 Aug 2023 23:52:50 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::5? (dc78bmyyyyyyyyyyyyyct-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::5])
-        by smtp.gmail.com with ESMTPSA id h25-20020a197019000000b004fe1fc5d0e3sm1752524lfc.206.2023.08.07.23.52.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 23:52:49 -0700 (PDT)
-Message-ID: <8410ca04-71f1-ab16-76b9-0ebe07065a15@gmail.com>
-Date:   Tue, 8 Aug 2023 09:52:48 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: iio: rohm,bu27010: add missing vdd-supply to
- example
-Content-Language: en-US, en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S236004AbjHHTRE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:17:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D5AFAEF0;
+        Tue,  8 Aug 2023 09:40:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D8C92623E8;
+        Tue,  8 Aug 2023 07:14:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C036C433C7;
+        Tue,  8 Aug 2023 07:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691478844;
+        bh=JbqXnIWrhvRK/1VedLU0rkf4ac3M8lve+ZdK83upX3s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=moDdluEutiSAWzxfn3EQ4PLVJ3yFae5/MaJPjCRjcvChu+Zzgi6gLb3emqsDZtt5+
+         3rh4iFtv9GwYcBjym5ZiRUF7Kpc0/xEyy7AsdXWKxBhwW36mTXsvZ5RRNCrvl+0Agv
+         t6ZDVlYY8vBpkRq4BqulZ5aoiqUvvCZ4wQhM12XlGyXgs5hFanhwUI5ZJRpNiF5zBB
+         XBzrsOX437OFtMaukrBO98qPcjeA/Oxm9sz1WC/z0bVDgNjGD8nQpQUpOQOGH7C/Nw
+         BMvszDYySSkk2CZJnCuTA75QZMsX7YK2a6RtGIA47/3OhHjirYGw5YWTfS0cLwNqIq
+         jAaweAciLz4IQ==
+Date:   Tue, 8 Aug 2023 08:13:59 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230808063223.80431-1-krzysztof.kozlowski@linaro.org>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230808063223.80431-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] riscv: dts: starfive - Add crypto and trng node
+Message-ID: <20230808-despair-calm-40ca60de2afb@spud>
+References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PomhQBfiuNGfjeLQ"
+Content-Disposition: inline
+In-Reply-To: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,26 +61,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/23 09:32, Krzysztof Kozlowski wrote:
-> Bindings require vdd-supply but the example DTS was missing one.  This
-> fixes dt_binding_check error:
-> 
->    Documentation/devicetree/bindings/iio/light/rohm,bu27010.example.dtb: light-sensor@38: 'vdd-supply' is a required property
-> 
-> Fixes: ae8c47c51e5c ("dt-bindings: iio: ROHM BU27010 RGBC + flickering sensor")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Ah. Added supply to required ones when you pointed out it should be - 
-and obviously didn't fix the example :/
+--PomhQBfiuNGfjeLQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks a lot for fixing it!
+On Tue, Aug 08, 2023 at 02:11:48PM +0800, Jia Jie Ho wrote:
+> The following patches add hardware cryptographic and trng module nodes
+> to JH7110 dts. Patches have been tested on VisionFive2 board.
+>=20
+> Best regards,
+> Jia Jie
+>=20
+> Jia Jie Ho (2):
+>   riscv: dts: starfive - Add crypto and DMA node for JH7110
 
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>   riscv: dts: starfive - Add hwrng node for JH7110 SoC
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+I only got one patch, where is the other?
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+--PomhQBfiuNGfjeLQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNHrNAAKCRB4tDGHoIJi
+0nfxAQDxMCy1nMLMOOxrNbqguwHV91F4BpZ9+JdAKtsnKC9RlgEAitOeXozvIkSa
+3fvAp6UpdtjkfDJJdq5/41c70FXLmQ8=
+=YX3x
+-----END PGP SIGNATURE-----
+
+--PomhQBfiuNGfjeLQ--
