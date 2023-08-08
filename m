@@ -2,72 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8583774228
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40C5774294
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234729AbjHHRf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34624 "EHLO
+        id S229548AbjHHRqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:46:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234752AbjHHRff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:35:35 -0400
+        with ESMTP id S231458AbjHHRpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:45:45 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206B397D61;
-        Tue,  8 Aug 2023 09:15:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F1F9005;
+        Tue,  8 Aug 2023 09:20:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9308D624CF;
-        Tue,  8 Aug 2023 11:23:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA69C433C7;
-        Tue,  8 Aug 2023 11:23:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E8A74624D4;
+        Tue,  8 Aug 2023 11:28:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF5CC433C8;
+        Tue,  8 Aug 2023 11:28:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691493810;
-        bh=9dfaHkQsTbz6SSdb5UJdAoztmVevINLHKGS/qmJt5n4=;
+        s=k20201202; t=1691494108;
+        bh=UkivAZmLW9i4huYTFXBK1YV0BryRlhOAytfJztzlggU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pq4dqwphkPXIi18+0GXMV9gShAYkiZK/k4OcBM8SwOG1LdpZXNrapZgz5t5c2/2jZ
-         8QBNNMX0AHJIw+39UDpWf+ogaSuEHSA0gCK0uZZoa0qabWv7wCx0okIcUArS5U+AV/
-         QD5lfhc4yo97Sy1uDKyThSEyQuFUb1rNGTbbj1+hLhWSnaFVz8cHEFFLssFyPh000Q
-         whMw26ZEUo1F4M1Qk4eJDgNAVejOjccjXCcw7w5c8+xyD8XarjeG5oqspA6AqVKiqu
-         Kvu+JbOvQhUpEu4qDi0MpLsS2NK6OmtNXhxfiAECuYIvjxUQe5pW9vR1N6g9qc4gcZ
-         h3BGYGhFBK8/g==
-Date:   Tue, 8 Aug 2023 12:23:23 +0100
+        b=rZ97j+5hLGMVbKHdZ1aViwNCvIbQgg/S4qMWRigfT01dPG1Vgt0pod5bCV01KlhCF
+         BvXzq0suUk+PXfRLLZE0JUfG1i4EirOSb3gBQjc+/dZjEL6IACywl3JXwyQtNtEX1/
+         LCtoht/QdFfiEkLInSeta+ki3qbeB3QJ9wPHEHXLZ585G8ei3+jn2IhPLVJ92/DOZj
+         rn5l+5kXMEEFl6hctodJT7YHMHHPXDNy3ks9K6zDJwONIeFhljJuUJ2hAjOKN9OTD+
+         kw1yHnBoeZx0iuHp6rk0FJWBVxDBYsweTNPDpRYM7blAT8ebE+mmPlfrJnIOjz1m9F
+         xwNHfa4Qv9lyw==
+Date:   Tue, 8 Aug 2023 12:28:22 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Md Danish Anwar <a0501179@ti.com>
+Cc:     MD Danish Anwar <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-hardening@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afaerber@suse.de
-Subject: Re: [PATCH v4 3/8] dt-bindings: clock: Add Marvell PXA1908 clock
- bindings
-Message-ID: <20230808-produce-thievish-3ce1b86a114b@spud>
-References: <20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr>
- <2155917.irdbgypaU6@radijator>
- <20230808-quizzical-footwork-4846d6461f74@spud>
- <10320606.nUPlyArG6x@radijator>
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, srk@ti.com,
+        nm@ti.com
+Subject: Re: [PATCH] dt-bindings: remoteproc: pru: Add Interrupt property
+Message-ID: <20230808-bazooka-uncoated-a3401d94b063@spud>
+References: <20230807110836.2612730-1-danishanwar@ti.com>
+ <20230807-euphemism-trailing-ef4130dc7437@spud>
+ <910a4a98-712a-5517-5a5b-ffb962f83463@ti.com>
+ <20230808-unwomanly-generic-67d20f0e51cd@spud>
+ <cd74e31f-8bc6-445b-9c33-51e53a439cd2@ti.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="PFsVVMVhVavFC5ld"
+        protocol="application/pgp-signature"; boundary="NwSvyREEgDmJNJA5"
 Content-Disposition: inline
-In-Reply-To: <10320606.nUPlyArG6x@radijator>
+In-Reply-To: <cd74e31f-8bc6-445b-9c33-51e53a439cd2@ti.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -79,46 +68,94 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---PFsVVMVhVavFC5ld
-Content-Type: text/plain; charset=utf-8
+--NwSvyREEgDmJNJA5
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 08, 2023 at 01:03:33PM +0200, Duje Mihanovi=C4=87 wrote:
-> On Tuesday, August 8, 2023 12:46:23 PM CEST Conor Dooley wrote:
-> > On Tue, Aug 08, 2023 at 12:41:22PM +0200, Duje Mihanovi=C4=87 wrote:
-> > > They are used by the clock driver when calling mmp_clk_init which the=
-n=20
-> uses
-> > > that as the size of a struct clk array it allocates. In retrospect, 5=
-0 for
-> > > each block may be too much as from what I can tell by reading the
-> > > mmp_register_* functions (number of clocks + 1) for each block should=
- be
-> > > enough, anything less than that causes a null pointer dereference som=
-etime
-> > > during clock initialization.
+On Tue, Aug 08, 2023 at 04:30:32PM +0530, Md Danish Anwar wrote:
+> On 08/08/23 4:18 pm, Conor Dooley wrote:
+> > On Tue, Aug 08, 2023 at 03:14:31PM +0530, Md Danish Anwar wrote:
+> >> On 07/08/23 8:09 pm, Conor Dooley wrote:
+> >>> On Mon, Aug 07, 2023 at 04:38:36PM +0530, MD Danish Anwar wrote:
+> >>>> Add interrupts and interrupt-names protperties for PRU and RTU cores.
+> >>>>
+> >>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> >>>> ---
+> >>>>  .../bindings/remoteproc/ti,pru-rproc.yaml     | 22 ++++++++++++++++=
++++
+> >>>>  1 file changed, 22 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rpr=
+oc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >>>> index cd55d80137f7..6970316943bb 100644
+> >>>> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >>>> @@ -66,6 +66,16 @@ properties:
+> >>>>        Should contain the name of the default firmware image
+> >>>>        file located on the firmware search path.
+> >>>> =20
+> >>>> +  interrupts:
+> >>>> +    maxItems: 1
+> >>>> +    description:
+> >>>> +      Interrupt specifiers enable the virtio/rpmsg communication be=
+tween MPU
+> >>>> +      and the PRU/RTU cores.
+> >>>> +
+> >>>> +  interrupt-names:
+> >>>> +    items:
+> >>>> +      - const: vring
+> >>>> +
+> >>>>  if:
+> >>>>    properties:
+> >>>>      compatible:
+> >>>> @@ -171,6 +181,9 @@ examples:
+> >>>>                <0x22400 0x100>;
+> >>>>          reg-names =3D "iram", "control", "debug";
+> >>>>          firmware-name =3D "am65x-pru0_0-fw";
+> >>>> +        interrupt-parent =3D <&icssg0_intc>;
+> >>>> +        interrupts =3D <16 2 2>;
+> >>>> +        interrupt-names =3D "vring";
+> >>>>        };
+> >>>
+> >>> These examples would probably be more helpful if they used the
+> >>> appropriate defines, no?
+> >>>
+> >>
+> >> PRUSS Interrupt controller doesn't have any appropriate defines. This =
+doesn't
+> >> use GIC so defines from arm-gic.h can not be used here. These are spec=
+ific to
+> >> PRUSS INTC.
 > >=20
-> > I think you might have misread my question, I'm not really interested in
-> > the implementation detail of the driver. If these are not used in
-> > devicetree, remove them - otherwise they are being needlessly added to
-> > the ABI.
+> > I was deliberately vague in case the gic stuff applied too, but my main
+> > question was about the standard defines used for interrupt types.
+> >=20
 >=20
-> Should I also do this in the rest of the MMP clock drivers?
+> There are no standard defines for these interrupt types. However I can cr=
+eate a
+> new .h file defining all the three interrupt cells and their values for b=
+oth
+> PRU and RTU cores if you think that is required. Otherwise we can go with
+> hardcoded values.
+>=20
+> Please let me know what you think should be done here.
 
-Krzysztof has just done it for all of the Samsung ones! I think it
-wouldn't be a bad idea to get rid of them else where & new additions
-should definitely be avoided.
+It'd be good to reference to the documentation for the cells, I don't
+think adding a header is necessary here.
 
---PFsVVMVhVavFC5ld
+Thanks,
+Conor.
+
+--NwSvyREEgDmJNJA5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIlqwAKCRB4tDGHoIJi
-0hb5AQDFHqBxeGJ5Pql2GZJHm+5OVEKHSGgnIdm0oWZdW4UkmAD8CiCkuPlCdNPe
-eY4hEyptsolQmpK08Yltu36YIg7G8gE=
-=WiyK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIm1gAKCRB4tDGHoIJi
+0tOtAQCfCBZovM5h/DFSNCYnfyXE2fsxd2ohVBEMEPk/DVcwhgD/Q16z85gw+G0U
+S6cjm/OHhUkYWI+it8xAji3FtYYPCwY=
+=oc4g
 -----END PGP SIGNATURE-----
 
---PFsVVMVhVavFC5ld--
+--NwSvyREEgDmJNJA5--
