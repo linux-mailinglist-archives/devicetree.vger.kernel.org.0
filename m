@@ -2,124 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7195773E89
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FBC2774248
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231309AbjHHQcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36000 "EHLO
+        id S234878AbjHHRjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232917AbjHHQbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:31:00 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB231394F;
-        Tue,  8 Aug 2023 08:51:39 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 92B0432007F1;
-        Tue,  8 Aug 2023 10:55:22 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Tue, 08 Aug 2023 10:55:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1691506522; x=1691592922; bh=qM
-        9p1VvgDQ68BCFOyyrSFNt07dndXA3zR/iN+rXNXdE=; b=EGvnh+3YW6raxmHExk
-        l+oplb/Rkv4u8bnBVVIcjFu0rID8pDt3FBe2kyXloio02v/T9zaVNJxY2sBnlsK8
-        GFxVzE08v6CIZ9RZ0MUZ8vP/vAztFKNM8pGkWBPTZGQeLuEkvolxOfuVQZGlqy9b
-        WTBQfgJqeofF2qeCRrcXdCmPiuAcc3jcQJbssNnsx8ifl3hlXSLqpkoXiF/PE/Wp
-        /LiSQXnH4YSxWIRLN5HhfgJJijd19hloeFviZklGXKvo4/nxaPUz3rV5d5NFlaTI
-        3i91aP7VkQdDAwDRORO0bBpNCwrV2OZZFiUL/Ph+/QswHuVbXcWEh6Q2Uu863IlJ
-        HNgQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1691506522; x=1691592922; bh=qM9p1VvgDQ68B
-        CFOyyrSFNt07dndXA3zR/iN+rXNXdE=; b=iiAxVSVeGknxHB2f4jAZeQExin81r
-        4FSRXd4RztPI9LtZbwVufhsvY8z34Hw5Cgq9LQEiaU+B9NGk+6u6Z8UVQGjIO+cp
-        YIMpPs6nfMl+NLnIiTnDnwZRihb40DmaA47cg0HJZBBunIlhh0v1tk7cI4ktMhfB
-        zeotgq0FTeTfgnZeT/wwWi7JMKVv62ozjPpftlpmE1aizCi0DXK7V3ZNqi8xXHel
-        WRNbaHePp4CmPNIWkWT7TVCtq+PsSWArSISk/Nwz8d/8tDXyAq/yeUzgKYr2j/Jk
-        RKKwMflAoXoX5/qaxulswaz2c/pXyXKGjz2/l0qQtRrjwM53xed4VPYrg==
-X-ME-Sender: <xms:WFfSZFn8QXJQBZxWujkpLrCDAvk8i7qOs4jyV1N-xjOY16_67vtKFg>
-    <xme:WFfSZA2E0gb7XUYmwJuW4BGgfSzZMpyd3OoA967QQBGTRN4iajSjU_h7NYlxZhryO
-    dtbRANsvnI0bY-76kM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrledvgdekudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:WFfSZLo_ogOFHX6UVKrYjJM2u8mal53AaC42v-l3zX-woAB6nYHNaA>
-    <xmx:WFfSZFmqsaEYE3OM4ZAiuW-lYv4KcxeEgU2YkrdEZibHMa-25xC2Gw>
-    <xmx:WFfSZD1CAeyZjgxeehOdtm1TwIDclaDKbNgPzZdnVWSFucjQnqg6pQ>
-    <xmx:WlfSZBOhyzm43yCApWoWXfPZxu-tKzrSHCK0a3Tgrn40b4obY5epqw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 9C683B60089; Tue,  8 Aug 2023 10:55:20 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-624-g7714e4406d-fm-20230801.001-g7714e440
-Mime-Version: 1.0
-Message-Id: <8e6dce33-980a-4e63-9a8b-b681e3f9bf83@app.fastmail.com>
-In-Reply-To: <CAPDyKFo7p=aEWWrW2OGbhN1tFjHanpqjLApzCMipdPSzE+NknQ@mail.gmail.com>
-References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
- <20230803063703.5659-3-zhuyinbo@loongson.cn>
- <4fef9725-7aea-43fb-b8ef-d20a4c6d9a68@app.fastmail.com>
- <CAPDyKFo7p=aEWWrW2OGbhN1tFjHanpqjLApzCMipdPSzE+NknQ@mail.gmail.com>
-Date:   Tue, 08 Aug 2023 16:55:00 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        with ESMTP id S234821AbjHHRjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:39:12 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B144FE43
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:17:09 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe426b86a8so48745675e9.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:17:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691511360; x=1692116160;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=WYDOE0uAfuvMMd7frP4lQPvrrdCPX7CA5G+ozoaawe4=;
+        b=SmOkCgCe+Zn7m+n3OOojdiYxGFWm4hfRDCokGbizEm3Zg3AsL4zk3Wd3mB72Yr8ciH
+         i/zKn32g2KOymEcIPtwngcjEJcf3hscAqeUWb/1OX8Rxq2RgahYj48FXyw94n6fMT53w
+         LlKCHx7DLU7MhRxMITge2zwAADdMoww7NkTsJTJA4/LnK3arvpvVUFRSPAc0nGzuQ7QD
+         avORu+eKBLgJ510T0a1z+DKj/NBB/vY0dsuIUJ8VKmItFXVTLrnWuH5+dxdZIUfRYlkZ
+         M/fDL8qYc24/icoZLVfsqWYCbDcvpfzJv7SecBf9N7fYjkOct9Qa2zEzq8OxtBeyWY+0
+         jAbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691511360; x=1692116160;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WYDOE0uAfuvMMd7frP4lQPvrrdCPX7CA5G+ozoaawe4=;
+        b=ZXCOL+uiO5FccoauDiX8VURsDxUknz4DTKMY8yC5aTKxG7bGZZoSpX3yf6vJ5hZQYe
+         3dZf7tm3g5G0gz41q/oppK3s4MNaBoNuTPHq8b1x9etCL090Ed/g8sgX0WCyxwtmTskD
+         MlZfn/cF7w5C0IgV+16Oweq90/u0gWPlbeOQra+mTM0uvGdkFMh8DVOM8zUCKn1XkbND
+         LXS2PPDC0t8042QmxI20nFgSBz2NIQT4DBNIlZWpsD9Ar5C3hd5GNcdFcDoaizmp/+36
+         Qe0V/nOLzS7yrUdPSAzvugSmxNnXdJfw9NnkYvtWwDCYhC9SPWGv75SrY+AwMXvjWzgW
+         PchA==
+X-Gm-Message-State: AOJu0YzUKdgdpTDBcFfxzOTavWB8zltqDFt9P1g4EnXDHfjGF4Xlw2Xp
+        FcxNaGxf9HAqFMKro9xWhlmEYSFM8F84L683peU=
+X-Google-Smtp-Source: AGHT+IF/sVg/Jhlijx/RE5QOgQaMgGYHCPyQMz8dSgQ4an0cId67kpg37dk0nwOSpbyiFJyhIGgAng==
+X-Received: by 2002:adf:fa4a:0:b0:315:9de4:92f0 with SMTP id y10-20020adffa4a000000b003159de492f0mr8496109wrr.5.1691507150251;
+        Tue, 08 Aug 2023 08:05:50 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:efd4:f3df:2c50:1776])
+        by smtp.gmail.com with ESMTPSA id y15-20020a5d4acf000000b003144b50034esm13863035wrs.110.2023.08.08.08.05.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 08:05:42 -0700 (PDT)
+References: <20230706-b4-amlogic-bindings-convert-take2-v3-0-f63de6f12dcc@linaro.org>
+ <9adbbde6-a12c-2857-3103-1c012eed6f27@linaro.org>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, "Jianmin Lv" <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, "Liu Peibao" <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
-        "Liu Yun" <liuyun@loongson.cn>
-Subject: Re: [PATCH v6 2/2] soc: loongson2_pm: add power management support
+        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 0/3] dt-bindings: second batch of dt-schema
+ conversions for Amlogic Meson bindings
+Date:   Tue, 08 Aug 2023 17:05:12 +0200
+In-reply-to: <9adbbde6-a12c-2857-3103-1c012eed6f27@linaro.org>
+Message-ID: <1jleelo9q4.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 8, 2023, at 16:42, Ulf Hansson wrote:
-> On Thu, 3 Aug 2023 at 09:03, Arnd Bergmann <arnd@arndb.de> wrote:
->>
->> On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
->> > The Loongson-2's power management controller was ACPI, supports ACPI
->> > S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
->> > Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
->> > (USB, GMAC, PWRBTN, etc.). This driver was to add power management
->> > controller support that base on dts for Loongson-2 series SoCs.
->> >
->> > Co-developed-by: Liu Yun <liuyun@loongson.cn>
->> > Signed-off-by: Liu Yun <liuyun@loongson.cn>
->> > Co-developed-by: Liu Peibao <liupeibao@loongson.cn>
->> > Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
->> > Cc: soc@kernel.org
->> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
->> > Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>
->> I'm still waiting for Ulf to take a look here to see whether
->> this should be in drivers/genpd instead, but he might still
->> be on vacation.
+
+On Fri 04 Aug 2023 at 15:35, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+
+> Hi Jerome,
 >
-> I don't think this belongs in drivers/genpd/ as it's not a genpd
-> provider. Besides that, no further comments from me at this point.
+> On 06/07/2023 16:52, Neil Armstrong wrote:
+>> Batch conversion of the following bindings:
+>> - amlogic,gxbb-clkc.txt
+>> - amlogic,gxbb-aoclkc.txt
+>> 
+>
+> <snip>
+>
+>> ---
+>> Neil Armstrong (3):
+>>        dt-bindings: clock: amlogic: convert amlogic,gxbb-clkc.txt to dt-schema
+>>        dt-bindings: clock: amlogic: convert amlogic,gxbb-aoclkc.txt to dt-schema
+>
+> Do you plan to take patches 1 & 2 ?
+>
+> If you can, it would be simpler if you could take patch 3 in the same batch.
+>
+> Thanks,
+> Neil
 
-Ok, thanks!
+Applied all 3 - fixing the checkpatch on patch 2
 
-Let's try to finish discussing the suspend-address question
-and merge it through the soc tree once that is resolved then.
+>
+>>        dt-bindings: soc: amlogic: document System Control registers
+>>   .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  64 ---------
+>>   .../bindings/clock/amlogic,gxbb-aoclkc.yaml        |  85 +++++++++++
+>>   .../bindings/clock/amlogic,gxbb-clkc.txt           |  53 -------
+>>   .../bindings/clock/amlogic,gxbb-clkc.yaml          |  37 +++++
+>>   .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 160 +++++++++++++++++++++
+>>   5 files changed, 282 insertions(+), 117 deletions(-)
+>> ---
+>> base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
+>> change-id: 20230209-b4-amlogic-bindings-convert-take2-e2caf8e1c13f
+>> Best regards,
 
-     Arnd
