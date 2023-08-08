@@ -2,131 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F3FE7748E5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAFDC774933
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:50:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbjHHTo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:44:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45176 "EHLO
+        id S233148AbjHHTuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:50:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233603AbjHHToN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:44:13 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34944744C
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:47:19 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-63d0228d32bso33595186d6.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:47:19 -0700 (PDT)
+        with ESMTP id S233219AbjHHTtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:49:51 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A9051D02
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:55:50 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fbd33a57b6so57100995e9.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:55:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691513237; x=1692118037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GFaCPHe174CVGEE8zH9Ahbm1V8fDZn/hHt9ByI29bII=;
-        b=yJnd3dGfEET6gsOfSE830puU3gmsrMH9YX5BypwJGDdhNLePFGl0vbR9bwU92dxyDv
-         pl91rz3jrulQ7o4GqGz5ihKTM9u5dePR8r+VHhvmyJctdS4OV4hD7s2XOyfOMXyr9adS
-         F/9ueWVVMP19+j7YaobbFTMRq3+RM4hAlNzujv9issg2WUJnfsE+LFWSDo5uTiDq0d5X
-         auHVvksC3X2g2m6dXEsKTsRQ0ArTqDkCbz4kIEWfB/ZXLniLphX7DpuAXmpyuNnaO2oN
-         ++nD9u6aEbXNIRnD/kGhasdrYg7T4SCtCL9Hz75QWEyFqLLla8UBvR6MZhAVaDpmdJLP
-         w54w==
+        d=linaro.org; s=google; t=1691513742; x=1692118542;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WFfvkly3ynKYhnloBAB5Bwm8QGvgmXjPSUsPPXMqNoQ=;
+        b=P0FYdLayVRNTwu9PJ32uK+I87ELJ6zytunj9Jc2LPhlqDVq7CUwRvng7R1kPAa8LRB
+         rqoQ9/gYD8qwyf0nWGEaPvJQyfJqaxkN1PMrnhd1CW0P4FSl9d7L4xB8i95rUPBa7WlD
+         YJtcYAP8Z4eqkcoM+1Ykf0Who03vNbegXWEALwI0E+uGgNXYKh0wJ7+P8ZXznthH+Hl0
+         lJFdglSWz1VZsOGhX539oqv7zoyNZMPWlQUXBicCJZ49K6aK28FVZ5lUBqg2cc7BcTFV
+         H4/qtkiNqlCadwna1Pvn1Q+gc6ST/OZ8tMrOTSx2Z4WaQjDPCAk197h7j31e+8XtSGaF
+         WhZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691513237; x=1692118037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1691513742; x=1692118542;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GFaCPHe174CVGEE8zH9Ahbm1V8fDZn/hHt9ByI29bII=;
-        b=bXnzm3KiWgRhDwuStdPPhg5DjGf2Ckn7+YzschHIxy0VZ0WecfNr7rKXl7Kc6iXHEx
-         fTXRVVW655WAfTMRvwZwu8AuBXPHXnLkDgzBu9PBrGajDlKAeUaDLBCbwpnPIeRXV8QD
-         Bl15vYsaWnOVXU6+Q1WxoR+cRS89d+USZV53UxaQ/jM4DwePiSielVyjHsqt4Ol2XDae
-         63k2C2xqiWA1uxVPufonUe8jTth7yJ7vKHWF/hk3X9N1PH6g/Ml7TNUWerpwyOwsQLbV
-         hrT1GRfHqmpQJtNIeKFjtSlh95GAHqxbyUrxW+0bCSmPRcbzXIw7/TpJ5ROVeypv0QVL
-         jEfA==
-X-Gm-Message-State: AOJu0Yw8J++PDZQXYqMmDOHBtVFPQuvbiExGVXQP9WVVGH4HBxvLeEtc
-        cbd8eU35/oRPX9VfTbiO0raryR+z35Rub+LeLk7aJzjY0B9a9Z3iiPeaBA==
-X-Google-Smtp-Source: AGHT+IHJBjMCQdov9YPeDDL3pj/hzheBYljv6pXkkWjpc+VqMX3zeR6MAG9XffwSYmTvNmQRvGVPCfEVk5oblz/k9hQ=
-X-Received: by 2002:a67:d095:0:b0:444:e9a0:13f7 with SMTP id
- s21-20020a67d095000000b00444e9a013f7mr5544633vsi.5.1691482400513; Tue, 08 Aug
- 2023 01:13:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230807193102.6374-1-brgl@bgdev.pl> <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
-In-Reply-To: <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 8 Aug 2023 10:13:09 +0200
-Message-ID: <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        bh=WFfvkly3ynKYhnloBAB5Bwm8QGvgmXjPSUsPPXMqNoQ=;
+        b=Kr4dDkHQk1beLTEqfjMr0DfGAp0Yh9yerPtqF92WwwPIJbcMFeHDeNWnLyr9jff9Zw
+         9qbksT4aA8GHXZ9rSrPCGu14UziyMQ1+QUhqWD4VzhYeqgvtZ3xBD4cLtvYZPtoKH0iA
+         m0IvSO5keiBWHPGoS6hLg9xjj9LEs5l8p5ZKXjsiyWN5AatThS5MOEKsPMzs0FysqrQb
+         OAefpcA/LumLTcUfeqvuqt3QduJvz4uPP5YEm8AOarpjEmuzi9Um4tTFITzR+LgswwCz
+         Ljn1V/wWaErS8Pqx5+oIA0SVAo3WMt/nEN4pwChOxK82cSgIWLR+IXCqWppSYwEsi+F7
+         o/HA==
+X-Gm-Message-State: AOJu0YzfY0NfCSiv1966sRT197BB1pM3mXvJLss3q/azMdu3i9SLcOnP
+        5/Cgm825loVYNwzupIFh87guUWOHRRqImXfRDOk=
+X-Google-Smtp-Source: AGHT+IEx9WFWo3clO7Eu0C3jX65Z+oYsA6+ETiWsFoS588U+BcX6IShcpjIAbekFHeKVH5GDiJCa5A==
+X-Received: by 2002:adf:e6cb:0:b0:314:1249:d5d7 with SMTP id y11-20020adfe6cb000000b003141249d5d7mr8311246wrm.16.1691483264463;
+        Tue, 08 Aug 2023 01:27:44 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id s18-20020adfeb12000000b0031779a6b451sm12861246wrn.83.2023.08.08.01.27.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 01:27:44 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 01/11] clk: samsung: exynos3250: do not define number of clocks in bindings
+Date:   Tue,  8 Aug 2023 10:27:28 +0200
+Message-Id: <20230808082738.122804-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
+References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 7, 2023 at 9:50=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Mon, Aug 07, 2023 at 09:31:00PM +0200, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Two MACs may share MDIO lines to the PHYs. Let's allow that in the
-> > stmmac driver by providing a new device-tree property allowing one MAC
-> > node to reference the MDIO bus defined on a second MAC node.
->
-> I don't understand why this is needed. phy-handle can point to a phy
-> on any MDIO bus. So it is no problem for one MAC to point to the other
-> MACs MDIO bus as is.
->
-> You do sometimes get into ordering problems, especially if MAC0 is
-> pointing to a PHY on MAC1 MDIO bus. But MAC0 should get a
-> -EPROBE_DEFER, MAC1 then probes, creating its MDIO bus and the two
-> PHYs on it, and then later MAC0 is probes again and is successful.
->
->      Andrew
+Number of clocks supported by Linux drivers might vary - sometimes we
+add new clocks, not exposed previously.  Therefore this number of clocks
+should not be in the bindings, because otherwise we should not change
+it.
 
-Ok so upon some further investigation, the actual culprit is in stmmac
-platform code - it always tries to register an MDIO bus - independent
-of whether there is an actual mdio child node - unless the MAC is
-marked explicitly as having a fixed-link.
+Define number of clocks per each clock controller inside the driver
+directly.
 
-When I fixed that, MAC1's probe is correctly deferred until MAC0 has
-created the MDIO bus.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ drivers/clk/samsung/clk-exynos3250.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-Even so, isn't it useful to actually reference the shared MDIO bus in some =
-way?
+diff --git a/drivers/clk/samsung/clk-exynos3250.c b/drivers/clk/samsung/clk-exynos3250.c
+index 6cc65ccf867c..a02461667664 100644
+--- a/drivers/clk/samsung/clk-exynos3250.c
++++ b/drivers/clk/samsung/clk-exynos3250.c
+@@ -100,6 +100,11 @@
+ #define PWR_CTRL1_USE_CORE1_WFI			(1 << 1)
+ #define PWR_CTRL1_USE_CORE0_WFI			(1 << 0)
+ 
++/* NOTE: Must be equal to the last clock ID increased by one */
++#define CLKS_NR_MAIN				(CLK_SCLK_MMC2 + 1)
++#define CLKS_NR_DMC				(CLK_DIV_DMCD + 1)
++#define CLKS_NR_ISP				(CLK_SCLK_MPWM_ISP + 1)
++
+ static const unsigned long exynos3250_cmu_clk_regs[] __initconst = {
+ 	SRC_LEFTBUS,
+ 	DIV_LEFTBUS,
+@@ -807,7 +812,7 @@ static const struct samsung_cmu_info cmu_info __initconst = {
+ 	.nr_fixed_factor_clks	= ARRAY_SIZE(fixed_factor_clks),
+ 	.cpu_clks		= exynos3250_cpu_clks,
+ 	.nr_cpu_clks		= ARRAY_SIZE(exynos3250_cpu_clks),
+-	.nr_clk_ids		= CLK_NR_CLKS,
++	.nr_clk_ids		= CLKS_NR_MAIN,
+ 	.clk_regs		= exynos3250_cmu_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(exynos3250_cmu_clk_regs),
+ };
+@@ -923,7 +928,7 @@ static const struct samsung_cmu_info dmc_cmu_info __initconst = {
+ 	.nr_mux_clks		= ARRAY_SIZE(dmc_mux_clks),
+ 	.div_clks		= dmc_div_clks,
+ 	.nr_div_clks		= ARRAY_SIZE(dmc_div_clks),
+-	.nr_clk_ids		= NR_CLKS_DMC,
++	.nr_clk_ids		= CLKS_NR_DMC,
+ 	.clk_regs		= exynos3250_cmu_dmc_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(exynos3250_cmu_dmc_clk_regs),
+ };
+@@ -1067,7 +1072,7 @@ static const struct samsung_cmu_info isp_cmu_info __initconst = {
+ 	.nr_div_clks	= ARRAY_SIZE(isp_div_clks),
+ 	.gate_clks	= isp_gate_clks,
+ 	.nr_gate_clks	= ARRAY_SIZE(isp_gate_clks),
+-	.nr_clk_ids	= NR_CLKS_ISP,
++	.nr_clk_ids	= CLKS_NR_ISP,
+ };
+ 
+ static int __init exynos3250_cmu_isp_probe(struct platform_device *pdev)
+-- 
+2.34.1
 
-If the schematics look something like this:
-
---------           -------
-| MAC0 |--MDIO-----| PHY |
--------- |     |   -------
-         |     |
--------- |     |   -------
-| MAC1 |--     ----| PHY |
---------           -------
-
-Then it would make sense to model it on the device tree?
-
-Anyway, this can be discussed later, I will drop this for now and send
-a fix for stmmac mdio code instead to get this upstream.
-
-Bart
