@@ -2,108 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D16E7773E6F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A37F5773CCF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:09:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbjHHQaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:30:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
+        id S232023AbjHHQJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232770AbjHHQ2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:28:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F0E12536;
-        Tue,  8 Aug 2023 08:51:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE0B862597;
-        Tue,  8 Aug 2023 14:32:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5741BC433C7;
-        Tue,  8 Aug 2023 14:32:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691505134;
-        bh=MH6d9daFOxOoUw3EqmWMlFDO8lTspBrOmvGmg5d/GCo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kicd1tuwLvqYGEBRTc+2ND/MElHfgmvgUIKu3m+om1pjy3kY6ZqlebNr8qgKCgVn8
-         DmlCKah98VHQjUuZdrBp7T5pXTRmw3Ourhp5kWvmKcBYMVo7VajksjhevF2ZTwvu4n
-         m57apNrM2w50viLchtbUFC0gl/yhib9TqJfr2SxOlit2SA1460rgCNo2UXh1UvMHBK
-         mf5XCu7uyuLXmg/IxQ3//algUxmj8dCVUvtp986iEq/nDYUp+ULtryf6c8/txD4oGq
-         RLkKGL4+3fo/0Keos+ZgbMOHt1ZjAoTebXafCiKrDwa1wQjLh1N33R0URvrPlZ8HyA
-         9hmBgKpTIpfcA==
-Date:   Tue, 8 Aug 2023 15:32:08 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Markus Elfring <Markus.Elfring@web.de>
-Cc:     John Watts <contact@jookia.org>, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        kernel-janitors@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maksim Kiselev <bigunclemax@gmail.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        with ESMTP id S231831AbjHHQIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:08:22 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C640C769B
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 08:46:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1691509542;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Lr8QH1hJKMAeMGOo0M5b1qGrUuXmYrB7fQhjBLGi+k0=;
+        b=hS8SmJzWdL1TtS4tCBU18Fi8JOWmwixfEOoH8fBeuCastwR9RwVUzpweEJ4CBzm3TjjGpV
+        JgVoR6cARaf4puEcMTwdcNeeAsq/OsbJx1WzfXWgxvcgi3eVxBmMXSS92ytQmNEWrYc8DJ
+        XhYcCiccot6kDlNNrJ49sCvIfF5Nvug=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-656-cKzMkFZnP5CQzbPz2zRTwQ-1; Tue, 08 Aug 2023 10:44:19 -0400
+X-MC-Unique: cKzMkFZnP5CQzbPz2zRTwQ-1
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-40ff829c836so34641381cf.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 07:44:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691505859; x=1692110659;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Lr8QH1hJKMAeMGOo0M5b1qGrUuXmYrB7fQhjBLGi+k0=;
+        b=bU4ZVoNab0ekNgBi0VOqF8SBzHd0RM0rPGwoCD1D/grKE8OoWbOKZiQZnD/Hk3Z/CU
+         BKpw7O1kB5w8janMzVzRLQkph01FdC3pe8gBp4Rxa2fkDKlKhJvCoeuBVc4N0w/3WhRO
+         ahgD7EKvIpSO44/gnXnhIFIW0qaIsuDFrOBYn5gjC9hKR4ktGQWYxmkw82+i3UEwwhyK
+         kHPC5rn8WWqcUOnauD5Ga55VgH3fNpx5lw2ZbsgB+Q+4lZqv4jcxCINyOmgyVZ73TGZz
+         CgiExsbehOTjueii2d+s5dHygsKRdsrjSVr2aFqNkzjssPDCZuIQNbm4v/SwBdRcdsYJ
+         mM3w==
+X-Gm-Message-State: AOJu0Yx7xindwAZW4CKNbsL6KMwF6Hpicacr4/BBQWZIk0EuvkECvCCy
+        lNjFK3y0SucTcLqJXOhv14+TqkSzvef/Ik/TK2ZdiMxD9BTbUWpvTxaIQoZYIwLJpObylptfXSd
+        4ZRRMx8zhRpTknVXhYdQhZg==
+X-Received: by 2002:ac8:5902:0:b0:40f:f44f:7f79 with SMTP id 2-20020ac85902000000b0040ff44f7f79mr2444qty.16.1691505859183;
+        Tue, 08 Aug 2023 07:44:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG4H/PhZU/WpPuHATF0/xjAxDvtaCGT5yE9Pf+IDINKw6+ypsWmrPVAHe6GEcDu06wD1x60qw==
+X-Received: by 2002:ac8:5902:0:b0:40f:f44f:7f79 with SMTP id 2-20020ac85902000000b0040ff44f7f79mr2428qty.16.1691505858889;
+        Tue, 08 Aug 2023 07:44:18 -0700 (PDT)
+Received: from fedora ([2600:1700:1ff0:d0e0::37])
+        by smtp.gmail.com with ESMTPSA id l5-20020ac84a85000000b0040fdf9a53e6sm3397095qtq.82.2023.08.08.07.44.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 07:44:18 -0700 (PDT)
+Date:   Tue, 8 Aug 2023 09:44:16 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3] riscv: dts: allwinner: d1: Add CAN controller nodes
-Message-ID: <20230808-swerve-tartly-07140c59539e@spud>
-References: <20230807191952.2019208-1-contact@jookia.org>
- <49ce2d9c-eb38-4ceb-bae1-0409df876e9b@web.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
+Message-ID: <xfme5pgj4eqlgao3vmyg6vazaqk6qz2wq6kitgujtorouogjty@cklyof3xz2zm>
+References: <20230807193102.6374-1-brgl@bgdev.pl>
+ <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
+ <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
+ <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
+ <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
+ <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
+ <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xR/RJpD/V1xuh2KJ"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <49ce2d9c-eb38-4ceb-bae1-0409df876e9b@web.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 08, 2023 at 04:30:05PM +0200, Bartosz Golaszewski wrote:
+> On Tue, Aug 8, 2023 at 4:25 PM Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > > > On Tue, Aug 08, 2023 at 10:13:09AM +0200, Bartosz Golaszewski wrote:
+> > > > > Ok so upon some further investigation, the actual culprit is in stmmac
+> > > > > platform code - it always tries to register an MDIO bus - independent
+> > > > > of whether there is an actual mdio child node - unless the MAC is
+> > > > > marked explicitly as having a fixed-link.
+> > > > >
+> > > > > When I fixed that, MAC1's probe is correctly deferred until MAC0 has
+> > > > > created the MDIO bus.
+> > > > >
+> > > > > Even so, isn't it useful to actually reference the shared MDIO bus in some way?
+> > > > >
+> > > > > If the schematics look something like this:
+> > > > >
+> > > > > --------           -------
+> > > > > | MAC0 |--MDIO-----| PHY |
+> > > > > -------- |     |   -------
+> > > > >          |     |
+> > > > > -------- |     |   -------
+> > > > > | MAC1 |--     ----| PHY |
+> > > > > --------           -------
+> > > > >
+> > > > > Then it would make sense to model it on the device tree?
+> > > >
+> > > > So I think what you're saying is that MAC0 and MAC1's have MDIO bus
+> > > > masters, and the hardware designer decided to tie both together to
+> > > > a single set of clock and data lines, which then go to two PHYs.
+> > >
+> > > The schematics I have are not very clear on that, but now that you
+> > > mention this, it's most likely the case.
+> >
+> > I hope not. That would be very broken. As Russell pointed out, MDIO is
+> > not multi-master. You need to check with the hardware designer if the
+> > schematics are not clear.
+> 
+> Sorry, it was not very clear. It's the case that two MDIO masters
+> share the MDC and data lines.
 
---xR/RJpD/V1xuh2KJ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'll make the water muddier (hopefully clearer?). I have access to the
+board schematic (not SIP/SOM stuff though), but that should help here.
 
-On Tue, Aug 08, 2023 at 04:26:17PM +0200, Markus Elfring wrote:
-> =E2=80=A6
-> > Both of these fully support both CAN controllers.
->=20
-> Please choose a corresponding imperative change suggestion.
->=20
-> See also:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
-ocumentation/process/submitting-patches.rst?h=3Dv6.5-rc5#n94
->=20
->=20
-> > Signed-off-by: John Watts <contact@jookia.org>
->=20
-> I find the local-part of this email address suspicious according to the D=
-eveloper's Certificate of Origin.
-> Should it usually indicate an unique person instead of the shown key word?
+MAC0 owns its own MDIO bus (we'll call it MDIO0). It is pinmuxed to
+gpio8/gpio9 for mdc/mdio. MAC1 owns its own bus (MDIO1) which is
+pinmuxed to gpio21/22.
 
-Markus, please stop bothering developers with nuisance comments.
+On MDIO0 there are two SGMII ethernet phys. One is connected to MAC0,
+one is connected to MAC1.
 
---xR/RJpD/V1xuh2KJ
-Content-Type: application/pgp-signature; name="signature.asc"
+MDIO1 is not connected to anything on the board. So there is only one
+MDIO master, MAC0 on MDIO0, and it manages the ethernet phy for both
+MAC0/MAC1.
 
------BEGIN PGP SIGNATURE-----
+Does that make sense? I don't think from a hardware design standpoint
+this is violating anything, it isn't a multimaster setup on MDIO.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNJR5wAKCRB4tDGHoIJi
-0tSMAQDUmixeOBSRBjyu3meJePjabfeS/tTiPYOosilEuZo+6gD/f+9hlaAzN9Mi
-MaLnFLcKtF/WoYl6X7YRywa0eX7w2Ac=
-=+rRS
------END PGP SIGNATURE-----
+> 
+> >
+> > > Good point, but it's worse than that: when MAC0 is unbound, it will
+> > > unregister the MDIO bus and destroy all PHY devices. These are not
+> > > refcounted so they will literally go from under MAC1. Not sure how
+> > > this can be dealt with?
+> >
+> > unbinding is not a normal operation. So i would just live with it, and
+> > if root decides to shoot herself in the foot, that is her choice.
+> >
+> 
+> I disagree. Unbinding is very much a normal operation. Less so for
+> platform devices but still, it is there for a reason and should be
+> expected to work correctly. Or at the very least not crash and burn
+> the system.
+> 
+> On the other hand, I like your approach because I may get away without
+> having to fix it. But if I were to fix it - I would reference the MDIO
+> bus from the secondary mac by phandle and count its references before
+> dropping it. :)
+> 
+> Bartosz
+> 
 
---xR/RJpD/V1xuh2KJ--
