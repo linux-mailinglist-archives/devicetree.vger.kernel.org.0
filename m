@@ -2,74 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76CBD77372F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 04:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0E0E773741
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 05:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbjHHC7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Aug 2023 22:59:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39140 "EHLO
+        id S229462AbjHHDCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Aug 2023 23:02:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbjHHC7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 22:59:05 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B501E10CC;
-        Mon,  7 Aug 2023 19:59:02 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3782wUpzD029217, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3782wUpzD029217
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 8 Aug 2023 10:58:30 +0800
-Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Tue, 8 Aug 2023 10:58:17 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 8 Aug 2023 10:58:17 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Tue, 8 Aug 2023 10:58:17 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] usb: dwc3: add Realtek DHC RTD SoC dwc3 glue layer driver
-Thread-Topic: [PATCH v2 1/2] usb: dwc3: add Realtek DHC RTD SoC dwc3 glue
- layer driver
-Thread-Index: AQHZxFokPxd4W07ijUGGBrmKl0qPKq/VrnaAgADyIuCAAIy6gIAA9MlwgACO44CABeKOsIAAc0MAgACusCA=
-Date:   Tue, 8 Aug 2023 02:58:17 +0000
-Message-ID: <f38e2a4cb00d40429bf3504a183bbc83@realtek.com>
-References: <20230801092541.25261-1-stanley_chang@realtek.com>
- <20230802011400.v4jim6ajsqc3tvei@synopsys.com>
- <ff9ca6f15936450696bff502c0047708@realtek.com>
- <20230803000417.qfuwsx5we5a7lfvd@synopsys.com>
- <7d47cbfdbc31436b89d3d92bf980c8fa@realtek.com>
- <20230803231156.laggnj5bzuhugwfd@synopsys.com>
- <ae619edfcce545b78697c6bcdadfff27@realtek.com>
- <20230807235636.mlos5tpeg5foymnz@synopsys.com>
-In-Reply-To: <20230807235636.mlos5tpeg5foymnz@synopsys.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS01.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229456AbjHHDCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Aug 2023 23:02:32 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06FD310D3;
+        Mon,  7 Aug 2023 20:02:30 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3782MfV7025489;
+        Tue, 8 Aug 2023 03:02:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=aFtzoNl4y4lvbvaP2g/HGPsHP90SAc8cYVHqU/YrCxc=;
+ b=e8mI9z6pgWfKtKqVQyCuBmh5htUFjGqccV3z/2oAeEYJasuGLN3mj8iEU4nJQCJNKVeK
+ JYxrywcQgg6YFy/LAUKpLG6DsZVchG06/orELf08NBtawT331aAsTXsx03YTKgMw2lPV
+ G0zfIj0/q/VOThRh9ByY2mC2/Yt9D6YTowQ6wxH7O1MwFqHeM766DLBc0SENKdMOHdrY
+ 2gc1W7aOyLWYtwiecYo7kuIWXPheU/yd2qNxh94mK0LV1BQEzH+eq0uTghuwU1SJS6YF
+ 6/y5TNPQr6+YL1RkskFsRVqa80q3ET/CqoVBikAgvByPSVNTioh60vfnOKv5ec3s90r1 Vw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sb7bb8k97-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Aug 2023 03:02:06 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 378325HC027201
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 8 Aug 2023 03:02:05 GMT
+Received: from [10.50.30.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 7 Aug
+ 2023 20:02:01 -0700
+Message-ID: <58ff2350-9e07-36a3-e7a6-f882b292bc35@quicinc.com>
+Date:   Tue, 8 Aug 2023 08:31:46 +0530
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH V25 0/3] misc: Add driver support for Data Capture and
+ Compare unit(DCC)
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        "Rajendra Nayak" <quic_rjendra@quicinc.com>
+References: <cover.1687945879.git.quic_schowdhu@quicinc.com>
+ <f25f8c43-2996-23ff-e6af-9e39b7fced86@quicinc.com>
+ <774b688f-0324-9097-6504-58d15a3e6afb@quicinc.com>
+ <2023080438-reacquire-obsessed-3e81@gregkh>
+ <2023080408-zoom-defraud-1ae8@gregkh>
+ <75c25eac-e92c-5ca2-4ef6-06ee89584ce6@quicinc.com>
+ <2023080753-decode-outgoing-b6c6@gregkh>
+Content-Language: en-US
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <2023080753-decode-outgoing-b6c6@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: eq2g4EHpoqaQuw7jecakTqTERzJ-Cqdf
+X-Proofpoint-ORIG-GUID: eq2g4EHpoqaQuw7jecakTqTERzJ-Cqdf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-07_28,2023-08-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ impostorscore=0 spamscore=0 phishscore=0 mlxlogscore=999 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308080025
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,37 +94,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgVGhpbmgsDQoNCj4gT24gTW9uLCBBdWcgMDcsIDIwMjMsIFN0YW5sZXkgQ2hhbmdb5piM6IKy
-5b63XSB3cm90ZToNCj4gPiBIaSBUaGluaCwNCj4gPg0KPiA+ID4gPiA+ID4gPiA+ICtzdGF0aWMg
-aW50IGR3YzNfcnRrX3NldHVwX3JvbGVfc3dpdGNoKHN0cnVjdCBkd2MzX3J0aw0KPiA+ID4gPiA+
-ID4gPiA+ICsqcnRrKQ0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiBBbnkgcmVhc29uIHdo
-eSB3ZSdyZSBkb2luZyB0aGUgcm9sZSBzd2l0Y2ggaGVyZSBhbmQgbm90DQo+ID4gPiA+ID4gPiA+
-IHdoYXQncyBpbXBsZW1lbnRlZCBmcm9tIHRoZSBjb3JlPw0KPiA+ID4gPiA+ID4gPg0KPiA+ID4g
-PiA+ID4gQmVjYXVzZSB3ZSBoYXZlIHRvIHNldCB0aGUgdXNiIDIuMCBwaHkgbW9kZSB0aHJvdWdo
-DQo+ID4gPiA+ID4gPiBzd2l0Y2hfdXNiMl9kcl9tb2RlDQo+ID4gPiA+ID4gaW4gdGhlIGZ1bmN0
-aW9uIGR3YzNfcnRrX3NldF9kcl9tb2RlLg0KPiA+ID4gPiA+ID4gSW4gZmFjdCwgc3dpdGNoX2R3
-YzNfZHJfbW9kZSB3aWxsIHVzZSB0aGUgcm9sZSBzd2l0Y2hpbmcNCj4gPiA+ID4gPiA+IGltcGxl
-bWVudGVkIGJ5DQo+ID4gPiA+ID4gY29yZS4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4NCj4gPiA+
-ID4gPiBJIGRvbid0IHRoaW5rIHRoaXMgaXMgYSBnb29kIHdheSB0byBnbyBhYm91dCBpdC4gRG8g
-eW91ICh0aGUNCj4gPiA+ID4gPiBnbHVlDQo+ID4gPiA+ID4gZHJpdmVyKSBjcmVhdGUgYSByb2xl
-IHN3aXRjaCBzdHJ1Y3R1cmUgYW5kIHJlZ2lzdGVyIHRvIHRoZSBzYW1lDQo+ID4gPiA+ID4gcm9s
-ZSBzd2l0Y2ggZGV2aWNlIHRoYXQgdGhlIGR3YzMgY29yZSB3b3VsZCByZWdpc3RlciBsYXRlcj8g
-SQ0KPiA+ID4gPiA+IGRpZCBub3QgZXhwZWN0IHRoYXQgdG8gd29yayBhdCBhbGwuDQo+ID4gPiA+
-ID4NCj4gPiA+ID4gSW4gb3VyIGFwcGxpY2F0aW9uLCB0aGlzIHJvbGUgc3dpdGNoIGluIHRoZSBn
-bHVlIGRyaXZlciB3b3JrcyBmaW5lLg0KPiA+ID4NCj4gPiA+IElzIHRoZSBvcmRlciBvZiBvcGVy
-YXRpb24gYmV0d2VlbiB0aGUgc3dpdGNoIGZyb20gdGhlIGNvcmUgdnMgdGhlDQo+ID4gPiBnbHVl
-IGRldGVybWluYXRlPyBBbHNvLCB3aGljaCBvcGVyYXRpb24gc2hvdWxkIGhhcHBlbiBmaXJzdD8g
-SXQncw0KPiA+ID4gbm90IGNsZWFyIGhvdyB5b3UgaGFuZGxlIGl0IGhlcmUuDQo+ID4NCj4gPiBX
-ZSBoYXZlIGEgdHlwZSBjIGRyaXZlciB0aGF0IGZpcnN0IGNhbGxzIHJvbGUgc3dpdGNoIGluIGds
-dWUuDQo+ID4gVGhlIHJvbGUgc3dpdGNoaW5nIGZ1bmN0aW9uIGluIGdsdWUgd2lsbCBjYWxsIHRo
-ZSByb2xlIHN3aXRjaGluZyBmdW5jdGlvbiBpbg0KPiBjb3JlLg0KPiANCj4gSG93IGRvIHdlIGtu
-b3cgdGhhdD8gWW91J3JlIHJlZ2lzdGVyaW5nIHRvIHRoZSBzYW1lIHN3aXRjaCBkZXZpY2UsIHdv
-dWxkbid0DQo+IHRoZSBzd2l0Y2ggZXZlbnQgbm90aWZ5IHRoZSBzd2l0Y2ggd29yayBpbiBib3Ro
-IHRoZSBnbHVlIGFuZCB0aGUgY29yZT8gUGVyaGFwcw0KPiBJJ20gbWlzc2luZyBzb21ldGhpbmcg
-aGVyZSwgYnV0IGlzIHRoZXJlIHNvbWUgbWVjaGFuaXNtIHRoYXQgd2FpdHMgZm9yIHRoZQ0KPiBz
-d2l0Y2ggd29yayBmcm9tIHRoZSBnbHVlIHRvIGNvbXBsZXRlIGJlZm9yZSB0aGUgY29yZS4NCg0K
-Rmlyc3QsIHRoZSBzd2l0Y2hlcyBpbiBnbHVlIGFuZCBjb3JlIGFyZSBkaWZmZXJlbnQgZGV2aWNl
-cy4NCkluIHRoZSB0eXBlLWMgZHJpdmVyLCB3ZSBvbmx5IG5vdGlmeSB0aGUgc3dpdGNoIGluIHRo
-ZSBnbHVlLg0KVGhlbiwgdGhlIHN3aXRjaCBpbiB0aGUgZ2x1ZSBjYWxscyB0aGUgc3dpdGNoIGlu
-IHRoZSBjb3JlIHRvIGNoYW5nZSByb2xlcy4NClRoaXMgaXMgYSBzZXF1ZW50aWFsIHByb2Nlc3Mu
-IFNvIHRoZXJlIGlzIG5vIG9yZGVyIHByb2JsZW0uDQoNClRoYW5rcywNClN0YW5sZXkNCg==
+
+
+On 8/7/2023 11:14 PM, Greg Kroah-Hartman wrote:
+> On Mon, Aug 07, 2023 at 11:03:45PM +0530, Souradeep Chowdhury wrote:
+>>
+>>
+>> On 8/4/2023 7:19 PM, Greg Kroah-Hartman wrote:
+>>> On Fri, Aug 04, 2023 at 03:47:26PM +0200, Greg Kroah-Hartman wrote:
+>>>> On Thu, Aug 03, 2023 at 07:35:18AM -0700, Trilok Soni wrote:
+>>>>> On 8/3/2023 12:06 AM, Souradeep Chowdhury wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 6/28/2023 3:53 PM, Souradeep Chowdhury wrote:
+>>>>>
+>>>>> ...
+>>>>>
+>>>>>>>
+>>>>>>> https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/tools/-/tree/opensource-tools.lnx.1.0.r176-rel/dcc_parser
+>>>>>>>
+>>>>>>> Changes in v25
+>>>>>>>
+>>>>>>> * Updated the documentation of the structure dcc_config_entry as per
+>>>>>>> the comments in V23
+>>>>>>> * Updated the documentation of the dcc Kconfig definition as per
+>>>>>>> comment in V24
+>>>>>>> * Used u64 where applicable
+>>>>>>> * Removed the mutex locks where it is not needed
+>>>>>>> * Removed the use of unlikely keyword
+>>>>>>> * Renamed "nr_link_list" to "max_link_list"
+>>>>>>>
+>>>>>>> Souradeep Chowdhury (3):
+>>>>>>>      dt-bindings: misc: qcom,dcc: Add the dtschema
+>>>>>>>      misc: dcc: Add driver support for Data Capture and Compare unit(DCC)
+>>>>>>>      MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+>>>>>>>        support
+>>>>>>>
+>>>>>>>     Documentation/ABI/testing/debugfs-driver-dcc  |   10 +-
+>>>>>>>     .../devicetree/bindings/misc/qcom,dcc.yaml    |   44 +
+>>>>>>>     MAINTAINERS                                   |    8 +
+>>>>>>>     drivers/misc/Kconfig                          |    8 +
+>>>>>>>     drivers/misc/Makefile                         |    1 +
+>>>>>>>     drivers/misc/qcom-dcc.c                       | 1312 +++++++++++++++++
+>>>>>>>     6 files changed, 1378 insertions(+), 5 deletions(-)
+>>>>>>>     create mode 100644 Documentation/devicetree/bindings/misc/qcom,dcc.yaml
+>>>>>>>     create mode 100644 drivers/misc/qcom-dcc.c
+>>>>>>
+>>>>>> Gentle Ping
+>>>>>
+>>>>> Thank you for the reminder Souradeep. Greg and others, please see if we need
+>>>>> any changes here or it can be picked up?
+>>>>
+>>>> It would help if the code would actually build:
+>>>>
+>>>> drivers/misc/qcom-dcc.c: In function ‘ready_read’:
+>>>> drivers/misc/qcom-dcc.c:853:13: error: unused variable ‘ret’ [-Werror=unused-variable]
+>>>>     853 |         int ret = 0;
+>>>>         |             ^~~
+>>>>
+>>>> {sigh}
+>>>>
+>>>> How in the world was this ever tested?
+>>>
+>>> Ok, next time I want to see some QCOM engineers to sign off on this that
+>>> it was actually tested and they can back it up that this is ready to be
+>>> merged.  When the code doesn't even build, that is a huge red flag that
+>>> this whole thing is being rushed as it obviously was never tested in the
+>>> form that was submitted for inclusion.
+>>>
+>>> You all know better than this.
+>>
+>> My apologies on missing out on this, it is a W=1 level compilation warning
+>> that got suppressed on a normal kernel build.
+> 
+> No, not at all, it showed up on my "normal kernel build", I do not have
+> "W=1" set at all.
+> 
+> If you did a simple "make allmodconfig" I am pretty sure it would have
+> tripped this.
+> 
+> How exactly was this tested?
+
+My toolchain interprets this as a W=1 level warning rather than an 
+error. So I am able to build the kernel with it. Probably because I
+am using an older version. Will correct this in the next version.
+
+> 
+> thanks,
+> 
+> greg k-h
