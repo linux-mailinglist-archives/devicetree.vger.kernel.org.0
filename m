@@ -2,181 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ED08774899
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E89774A66
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjHHTf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43020 "EHLO
+        id S229598AbjHHU12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 16:27:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236504AbjHHTfk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:35:40 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4542769C
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 12:02:02 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fe5c0e57d2so20402495e9.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 12:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691521321; x=1692126121;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eaczrn+uDVu4zRaXwsIp1V486qR5q1q+geaugqipQfM=;
-        b=ycRLRc+t47LToHS303dsAghXPi+WMCksYE/Zyy156NmKKpzzWsecjq8UVFucS6Eloy
-         xdmkLpwSpKLhjL9+JHhcpyPfTyydM5W5xrUOxyzQkmdip15cLZdmLNCXpKZKUxjZID6L
-         Xz8ePC0InZ9epnXAi1qrQeuewpybWOu5l9mnpTGNUxIhNQtuIQcGO3iv7iDQZhweUfAh
-         f7RTcX08vJFsBdfxOTtYhVQAp3THIyuIuacsp5WCKXo++B4E0QxhVLdgAyi0Wa0jchT/
-         mc8K0Nf2nYfS/J+rJHMY3u2Zb0rMGdth9F//QNPxVdFek454ht7m0LsiJKPeON5lPJc3
-         fk4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691521321; x=1692126121;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Eaczrn+uDVu4zRaXwsIp1V486qR5q1q+geaugqipQfM=;
-        b=XAuGOycP853aOnjyn5X/w62zCh3oNlOk6A5R6N5SlaV05JWvIMXtEO2zw/wmQ2hJAk
-         1hQXTE0nFFKMwQ50CYvOSvGsR3CljqXaEPTOUl+9APK2r924CVIQ7ULQ/rWSU55MuuyA
-         ZmR927X1/IOldnT/XyL9cHZizEdvfDSYkHXYbGxMFJ4KNyPltsjMqFP6kfKrwR29q3iI
-         QJzdS90gNLmHb1OFagEhyZmE0uCYXp3pJ0twLIqFJFmmaqMMAsXcIHvYlrruMv4AXLYf
-         7jgLtzyanWZ6ZSZ4O5uM1d1+9JW7YNJqZz2nfDsqCI9E8p9EGkdQ4JxPVpQaH2qiSmy+
-         XaNA==
-X-Gm-Message-State: AOJu0YwTtCtZXWiB3+qC6rborihKpd4A5hDhwvEXMycAeygcwlw1ID0A
-        OOMyC3lptNSiGqhLfgCT6gwDgw==
-X-Google-Smtp-Source: AGHT+IH46m86rYJjj9clreQLNhX5NGHUBLPhQI2xG8Bb0/JqcykrOGd7/24ix3Tw5KpU5SFHXtoITw==
-X-Received: by 2002:a1c:cc0d:0:b0:3f8:f1db:d206 with SMTP id h13-20020a1ccc0d000000b003f8f1dbd206mr508160wmb.25.1691521321456;
-        Tue, 08 Aug 2023 12:02:01 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:6a08:bcc0:ae83:e1dc])
-        by smtp.gmail.com with ESMTPSA id z14-20020adfe54e000000b00317e9f8f194sm7301055wrm.34.2023.08.08.12.02.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 12:02:00 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v2 8/8] arm64: dts: qcom: sa8775p-ride: enable EMAC1
-Date:   Tue,  8 Aug 2023 21:01:44 +0200
-Message-Id: <20230808190144.19999-9-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230808190144.19999-1-brgl@bgdev.pl>
-References: <20230808190144.19999-1-brgl@bgdev.pl>
+        with ESMTP id S233851AbjHHU0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:26:55 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4767DB2;
+        Tue,  8 Aug 2023 12:44:08 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3784jZS3035097;
+        Mon, 7 Aug 2023 23:45:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691469935;
+        bh=8TvvH3vVLz1caYe+mRMACPv8Abe/WkjKw7gend+67a8=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=phSki+lTpB9e7K5VsheydqQ+iQPxhARIo3FEn3Q3tErZkOOg5xeT6cguMwm5T89Sj
+         TzGnue+VjDak0RCZBY9iFe1SCT8U0tF7DH1VSTopUC7qIBFXreI1CgCFe/E3k2VskW
+         vJgeKiaOYYzYz5bs2unjVq+/135RFxpIuCewwjt0=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3784jZ3J073754
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Aug 2023 23:45:35 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Aug 2023 23:45:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Aug 2023 23:45:34 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3784jYps098643;
+        Mon, 7 Aug 2023 23:45:34 -0500
+From:   Hari Nagalla <hnagalla@ti.com>
+To:     <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+        <p.zabel@pengutronix.de>, <martyn.welch@collabora.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v5 2/5] arm64: dts: ti: k3-am62 : Add M4F remote proc node
+Date:   Mon, 7 Aug 2023 23:45:26 -0500
+Message-ID: <20230808044529.25925-3-hnagalla@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230808044529.25925-1-hnagalla@ti.com>
+References: <20230808044529.25925-1-hnagalla@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+The AM62x SoCs of the TI K3 family have a Cortex M4F core in the MCU
+domain. This core can be used by non safety applications as a remote
+processor. When used as a remote processor with virtio/rpmessage IPC,
+two carveout reserved memory nodes are needed. The first region is used
+as a DMA pool for the rproc device, and the second region will furnish
+the static carveout regions for the firmware memory.
 
-Enable the second MAC on sa8775p-ride.
+The current carveout addresses and sizes are defined statically for
+each rproc device. The M4F processor do not have an MMU, and as such
+require the exact memory used by the firmware to be set-aside.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Hari Nagalla <hnagalla@ti.com>
 ---
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 71 +++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+Changes in v5:
+ - Add the M4F device tree node patches to the patch list 
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 330553742204..c843bb974689 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -24,6 +24,7 @@ aliases {
- 		spi16 = &spi16;
- 		ufshc1 = &ufs_mem_hc;
- 		ethernet0 = &ethernet0;
-+		ethernet1 = &ethernet1;
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       | 12 ++++++++++++
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 19 +++++++++++++++++++
+ 2 files changed, 31 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+index 80a3e1db26a9..4b55df1da751 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+@@ -171,4 +171,16 @@ mcu_mcan1: can@4e18000 {
+ 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+ 		status = "disabled";
  	};
++
++	mcu_m4fss: m4fss@5000000 {
++		compatible = "ti,am64-m4fss";
++		reg = <0x00 0x5000000 0x00 0x30000>,
++		<0x00 0x5040000 0x00 0x10000>;
++		reg-names = "iram", "dram";
++		ti,sci = <&dmsc>;
++		ti,sci-dev-id = <9>;
++		ti,sci-proc-ids = <0x18 0xff>;
++		resets = <&k3_reset 9 1>;
++		firmware-name = "am62-mcu-m4f0_0-fw";
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+index 34c8ffc553ec..ffca61fcf9ba 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+@@ -47,6 +47,18 @@ ramoops@9ca00000 {
+ 			pmsg-size = <0x8000>;
+ 		};
  
- 	chosen {
-@@ -359,6 +360,76 @@ queue3 {
++		mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
++			compatible = "shared-dma-pool";
++			reg = <0x00 0x9cb00000 0x00 0x100000>;
++			no-map;
++		};
++
++		mcu_m4fss_memory_region: m4f-memory@9cc00000 {
++			compatible = "shared-dma-pool";
++			reg = <0x00 0x9cc00000 0x00 0xe00000>;
++			no-map;
++		};
++
+ 		secure_tfa_ddr: tfa@9e780000 {
+ 			reg = <0x00 0x9e780000 0x00 0x80000>;
+ 			alignment = <0x1000>;
+@@ -362,6 +374,13 @@ mbox_m4_0: mbox-m4-0 {
  	};
  };
  
-+&ethernet1 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&sgmii_phy1>;
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup1>;
-+	snps,mtl-tx-config = <&mtl_tx_setup1>;
-+	snps,ps-speed = <1000>;
-+
-+	status = "okay";
-+
-+	mtl_rx_setup1: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup1: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
++&mcu_m4fss {
++	mboxes = <&mailbox0_cluster0>, <&mbox_m4_0>;
++	memory-region = <&mcu_m4fss_dma_memory_region>,
++			<&mcu_m4fss_memory_region>;
++	sram = <&oc_sram>;
 +};
 +
- &i2c11 {
- 	clock-frequency = <400000>;
- 	pinctrl-0 = <&qup_i2c11_default>;
+ &usbss0 {
+ 	status = "okay";
+ 	ti,vbus-divider;
 -- 
-2.39.2
+2.34.1
 
