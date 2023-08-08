@@ -2,146 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5CE7740CB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A655774199
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234035AbjHHRKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
+        id S234546AbjHHRYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:24:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232454AbjHHRKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:10:20 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C8B61A2
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:04:11 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9b50be31aso90019241fa.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:04:11 -0700 (PDT)
+        with ESMTP id S234480AbjHHRXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:23:41 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 799221EF72;
+        Tue,  8 Aug 2023 09:09:54 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe27849e6aso9496472e87.1;
+        Tue, 08 Aug 2023 09:09:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691510649; x=1692115449;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wkxbaJE1w03H/idk1NWqMQgLO1L7biBsn5GEkh/lQVQ=;
-        b=mPVbr9CMVy667wpEf+XGLyWmb0YfSgHK4nj6hGU6xMrGPh1K2TVHyHt71fK9YrVPIi
-         j0qkm5lWxVRgwV8eNREbv31kJG/X6UwFSR3CrbakNEsISGclOWoAOhFJ4b9PBkdPpv+0
-         S97WivvNd2s0SYI/ZJ9f8MLnQm/YTpt9Bw4XHIgfNMW8kxmfe8AJ+5L2OXBPoXb/mNSs
-         aeilNL8SGkarWAKksU3k0iNEU1yusin6gARGVEpa/XEtJ1ewfkQIo/WnB5r6hZjqeijo
-         1iyaMIEkXRyoARP68Jeb76pFhkyuxaX5glQen1TtobshIa9PImleoYnIFIoXFPUWEdUo
-         atVg==
+        d=gmail.com; s=20221208; t=1691510967; x=1692115767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Qc9TaZ0YZxfr2ijk4qJEfWVJCx/zM4Mwpq5TAaoTRE=;
+        b=RFgjI424/B1J8d6fEQU85hdFR29a2/jvGuzeKNbrcbA2Kz+4Z4+3nkGWGw1SIKjUnl
+         XfQEwoKbPHyPc3IMihHxdlHz4D1RSKgM1PZ+ik2B3T2OqH3aM1CQCVkFcrn+8qCM6LfA
+         48wihyD2GoNsnhjaeEyD7JRgKohwaBlqzUJ5bVpefjLB/qok90Cxn9nQMmvSD31xdFcA
+         /ghsCcLoOrE0ncMr0yGRr7gZv6ejow98BpmWYVuf/eBxkFQMOsrRHOdOndCaIsI7l9kG
+         pp75lojReKqQcHxFA+B7/KiBd5qDmAexqF5KNnN2J81xB2QWRO/TphBxM/JWW8b7K4Rk
+         raoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691510649; x=1692115449;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wkxbaJE1w03H/idk1NWqMQgLO1L7biBsn5GEkh/lQVQ=;
-        b=GAaTnUCCTYnCHvwlf22iblQSz1OB5UOsvNbhsqEclv2HrPkJipuWsYK98ZUaHhgYKC
-         69LCPaI7fHhqsFDqREUNLP7Vrs3H9cVnUdV397H8KAY6UKJeMckvhVU5Uh1eNICrTtnQ
-         RCDOYgU6UqDUgZX6Be7rwPeXdg7t56y2EIUdpkyh4rNBcfo2tcGX3y0dJzY1bMyVpRK1
-         H7mGLKwPtZreoHNl4ZGLGEHpEukCVphOiPDvKTB9mdkZbeIH9pY8+IleqtEqU2tcmUhz
-         wgmoWMLoQuPpDAbe8on7vD4L9GD17RmLUUZ/9BHzI8enr5ba0rTx+ej4UY9isj2USoCM
-         64wQ==
-X-Gm-Message-State: AOJu0YylMcQB/O2Hg0JQ9wCLQKm8f8zdU8J8V+AsUsc0SHz2ILIcxhsx
-        YJT0y6Q+glpDZNGHsjhosjLku6BgzttdVzZkQ4A=
-X-Google-Smtp-Source: AGHT+IGd2EkYnVmcbGVqenoYmJMzDW0/GB/8EFYGT8j/Y3vIO8hIfyRd/OSu9mbr2kbuJOvTwsbF3g==
-X-Received: by 2002:a17:906:cc0f:b0:99b:d440:bf0b with SMTP id ml15-20020a170906cc0f00b0099bd440bf0bmr8097863ejb.67.1691477192381;
-        Mon, 07 Aug 2023 23:46:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id c24-20020a170906155800b00993004239a4sm6147808ejd.215.2023.08.07.23.46.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 23:46:31 -0700 (PDT)
-Message-ID: <1f20d778-cdae-d6d9-ac86-744dd45176d3@linaro.org>
-Date:   Tue, 8 Aug 2023 08:46:29 +0200
+        d=1e100.net; s=20221208; t=1691510967; x=1692115767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Qc9TaZ0YZxfr2ijk4qJEfWVJCx/zM4Mwpq5TAaoTRE=;
+        b=cXBmYIlt0u7Yg1U79aobcPFBRuhoGHXXU97V+Q9TPoOKbx3j2jCZ5Kls9mnJSmQniA
+         XbI7nWAT0IkQvSlpK0c4QwPitVpFF2zFRDigJEpWjscUHue+XqoX0MC8v+RGiQO/4McO
+         gVemFCHUFEdkp19z9pBY5OkJfMQC3hxjlgqx4MI8PKTeueMnMk1jhzJr/99f6NspK/Ce
+         kkLfBvLhHR3cv/N5Ei1kmAEFH/d/mAsFRKwGcOmnpakr28Vzb1nWOdSXvRtZd4Il/5wL
+         3797rADOv7uXtym0T9SkfFf1oHFTBYtG7GxUvvRVZRvx5Mx/N9JHcTJ0XOvhl2xV8sfK
+         hHdg==
+X-Gm-Message-State: AOJu0YxyuZnNfYfhyw/OoE2OG+z8dSXyK84yti0xxSgYXy7sbMwVKdQY
+        XL7O5TONi3OT2Um+tAaaEKgJhCYw6Yg5pI3X
+X-Google-Smtp-Source: AGHT+IGwh13bXO1PdIDK9A2IeD+OcpE7lGUQqZmmNhhWKV9U7iMTXE1/H8R9JVCPsPxdCaTWb6BaTg==
+X-Received: by 2002:a2e:3208:0:b0:2b9:ad7d:a144 with SMTP id y8-20020a2e3208000000b002b9ad7da144mr8929317ljy.11.1691479226041;
+        Tue, 08 Aug 2023 00:20:26 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id z22-20020a2e8856000000b002b95eb96ab7sm2210306ljj.18.2023.08.08.00.20.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 00:20:25 -0700 (PDT)
+Date:   Tue, 8 Aug 2023 09:22:24 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: mcp3911: add support for the whole
+ MCP39xx family
+Message-ID: <ZNHtMBG4yHpgL1kj@gmail.com>
+References: <20230807071831.4152183-1-marcus.folkesson@gmail.com>
+ <20230807071831.4152183-2-marcus.folkesson@gmail.com>
+ <ZNETcVNsEmvK0KKH@smile.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: add qca8386/qca8084 clock and
- reset definitions
-Content-Language: en-US
-To:     Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_srichara@quicinc.com
-References: <20230801085352.22873-1-quic_luoj@quicinc.com>
- <20230801085352.22873-3-quic_luoj@quicinc.com>
- <ef996a7e-6eba-4366-c3ea-0d08f2768e98@linaro.org>
- <cf9788f0-a115-5ff9-1195-f4f302551e04@quicinc.com>
- <d1172ed6-ee3b-83b6-1656-c91e35fbc2df@linaro.org>
- <f25e1043-6dfa-2dcc-2948-88025f4881d8@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f25e1043-6dfa-2dcc-2948-88025f4881d8@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9iQz+m/6foi59TLA"
+Content-Disposition: inline
+In-Reply-To: <ZNETcVNsEmvK0KKH@smile.fi.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2023 08:31, Jie Luo wrote:
-> 
-> 
-> On 8/8/2023 1:57 PM, Krzysztof Kozlowski wrote:
->> On 08/08/2023 07:19, Jie Luo wrote:
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: qcom,nsscc-qca8k
->>>>
->>>> SoC name is before IP block names. See:
->>>> Documentation/devicetree/bindings/arm/qcom-soc.yaml
->>>>
->>>> qca8k is not SoC specific. I don't know what you are documenting here,
->>>> but if this is a SoC, then follow SoC rules.
->>>>
->>>> If this is not SoC, it confuses me a bit to use GCC binding.
->>>>
->>>> Anyway, this was not tested, as pointed out by bot... Please test the
->>>> code before sending.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>> Hi Krzysztof,
->>>
->>> Thanks for the review comments.
->>> qca8383/qca8084 is a network chip that support switch mode and PHY mode,
->>> the hardware register is accessed by MDIO bus, which is not a SOC.
->>>
->>> But it has the self-contained clock controller system, the clock
->>> framework of qca8386/qca8084 is same as the GCC of ipq platform such as
->>> ipq9574.
->>
->> OK
->>
->>>
->>> would you help advise whether we can document it with the compatible
->>> "qcom,qca8k-nsscc"?
->>
->> For example:
->> qcom,qca8084-nsscc
->>
->> Best regards,
->> Krzysztof
->>
-> Thanks Krzysztof for the suggestion.
-> 
-> i will document the compatible below.
-> "qcom,qca8084-nsscc" for the PHY mode of device.
-> "qcom,qca8386-nsscc" for the switch mode of device.
 
-The clocks seem to be exactly the same for both, so use only one
-compatible in the driver (the fallback) and oneOf in the bindings like:
+--9iQz+m/6foi59TLA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
+On Mon, Aug 07, 2023 at 06:53:21PM +0300, Andy Shevchenko wrote:
+> On Mon, Aug 07, 2023 at 09:18:31AM +0200, Marcus Folkesson wrote:
+> > Microchip does have many similar chips, add support for those.
+> >=20
+> > The new supported chips are:
+> >   - microchip,mcp3910
+> >   - microchip,mcp3912
+> >   - microchip,mcp3913
+> >   - microchip,mcp3914
+> >   - microchip,mcp3918
+> >   - microchip,mcp3919
+>=20
+> ...
+>=20
+> > +#define MCP3910_STATUSCOM_DRHIZ         BIT(20)
+>=20
+> Is it deliberately using spaces? If so, why?
 
-Best regards,
-Krzysztof
+No, probably due to my with my new vim setup..
 
+>=20
+> ...
+>=20
+> > +static int mcp3910_get_osr(struct mcp3911 *adc, int *val)
+> > +{
+> > +	int ret, osr;
+> > +
+> > +	ret =3D mcp3911_read(adc, MCP3910_REG_CONFIG0, val, 3);
+>=20
+> > +	osr =3D FIELD_GET(MCP3910_CONFIG0_OSR, *val);
+> > +	*val =3D 32 << osr;
+> > +	return ret;
+>=20
+> I believe this is wrong order. Or bad code. The rule of thumb is not poll=
+ute
+> the output variable if we know the error happened.
+>=20
+> Same applies to another function.
+>=20
+> > +}
+>=20
+> ...
+>=20
+> > -	ret =3D mcp3911_config(adc);
+> > +	ret =3D device_property_read_u32(&adc->spi->dev, "microchip,device-ad=
+dr", &adc->dev_addr);
+>=20
+> Why not spi->dev? Ditto for other uses like this.
+
+After all, I think it is better to stick sith adc->spi-dev to be
+consistent with the rest of the probe function. Change to spi->dev
+should probably be a seperate patch.
+Do you agree?
+
+>=20
+> --=20
+> With Best Regards,
+> Andy Shevchenko
+>=20
+>=20
+
+--9iQz+m/6foi59TLA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmTR7SsACgkQiIBOb1ld
+UjKmLhAAmVbkmMJoLp/7/9BSuDNad52Q4sV0eiG2cYqHMn/ZFLdVISQmtYDtbPAd
+Kb2Co//QorEr0UeoxEKqOqkWOn1VhLHhP7wne2EosuVWZtW0f1t+wBx89NkMcr4O
+PwVZbSjPeOy7ZYqAk9av0pYugdW4H1dRCvivY9FsB653tuOQ3R+jetOxn0pWou06
+mCfA0jtBVFptfKjTuifEsPuGqJS4g20yyfMuDMOBhOA6362ShAV/vlq/EUr3c+C9
+f5t3MfCfYXrC/8tOI4DDzZ8VlFCDmEbPdAwjaOvaEJLh+enC4Yjh/kS3B6IryOGM
+VUatDrmCg1/vSrtBHCLsysC2ZPep1Liz+tthDwNB68KPlOiugQd1NN1LoO1mb3Jn
+khDZUdB9CEAJvSzA6sx3ZtehW7iKIrPCuc8EY9NClbHd63Q4hkXXXvbWzFSEr6Vv
++/Fkg8WA4rfTjq1oOHsna2CNiHsb+xpbhoSPV4Y5qRpKsNQOSB74T8aU+YDxYDmy
+fhvC/d0aKPFcInIZaforvFOP4AAFgsDtYKNSI64qkiR4DjCe4+s0HsVNxWqFgjcg
+EZMzT8iuaZ4sFuNmlqskhQgqj/b+iN7vA/kaSztrnOlx6Ir5+uOk7dyHD+walUJs
+j+LuiTv4faZM22I4+J8df8ORUoLhj2r9nhggYg6zIXox04Bbu4s=
+=B4Sa
+-----END PGP SIGNATURE-----
+
+--9iQz+m/6foi59TLA--
