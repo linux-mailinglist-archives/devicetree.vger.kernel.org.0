@@ -2,113 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6D27774951
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD997743E8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjHHTvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:51:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36578 "EHLO
+        id S235294AbjHHSM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233397AbjHHTvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:51:23 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8155319429
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:57:43 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fe0fe622c3so9333001e87.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:57:43 -0700 (PDT)
+        with ESMTP id S235413AbjHHSL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:11:57 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D9C168B42
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:15:48 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-686bea20652so5851701b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:15:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691513862; x=1692118662;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+95TtRVa7NMKHx76eoSdAamTsOS7iUF0pJWsPf/wsnY=;
-        b=IHpotwcuh6jszx4RcDpinWCHsfXfyvrcAvixu1yGPlGpBmnROhW9ZibHng9j1P3LB9
-         bd21OsZEAxEhILorCZZbJLj8YV3wsH8E5Aa5Jm6TALBnsEOqlRymHswgEX4Z1eTNrPpO
-         kpxiuFMPVUengXWuGtbHmpst8MywDp5yUaF3KuPT/wYQffyQYejPWgik7ileQvipwRSl
-         hymm04IDfQsMzu9dOMvzghMMWLydmbOZmL6DqSH9s0sZ15+ixFsAsKhFdyDvvCqJgZqD
-         nBcJnVuUbTTORq0Zi7zO8pDk6TaBhMcTlcX/Cn92QSkPJlEusfbxji4ZAydpO7lg1MH5
-         Xi1A==
+        d=linaro.org; s=google; t=1691514946; x=1692119746;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6S+a7yYbAbaMGNTQ39CoTTiQM46sZCpEJ7cTfZYNXGA=;
+        b=Lx5g90Y9FoTVVViMPXEL4bXWDJVCil+eGqVwHTyT4cg0PzhXdny4MdmsD1q12iqKem
+         26vh+T0JUf7vnMMPRHvajoabXdO3wFugYppfCwT8MTL4mdatDDO4tG9lzEuwSGvqfLUt
+         TcV9lYKMTmRFDN+or8svOrX2E69p8qsQMFhyFAEZ+LmxnROQfJMRHFNNY/M1xw35WOIg
+         Wu989wc4iaeCJH5V1aLGe0CLwufQlUlgnbos5xGmdBH330HeUbzdpEm8UUVLb3DLqWH3
+         mcMNUal5VffH335OADi3l82ayxcb8wyTB0SPvI0IJsBMbv1IbpsPNNAvzDQOD0BD/x9Q
+         P30w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691513862; x=1692118662;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+95TtRVa7NMKHx76eoSdAamTsOS7iUF0pJWsPf/wsnY=;
-        b=Vojzx/kS7fbT43VkwfSDJU9pz5Ben1koPegTzx6FDi51Oi4ZifPP0CJcm1kJA7fp/t
-         VElHryu0/F2Qn6DK9H9X3ETRhx7YsLmF75c+9S69OoH89lTuAa55ZVJlkJbqGYx2TeRj
-         6jrR3atkVwrWKr+VoEQdph0GoaXeVXrmDkuVMWNj78gbwLolX/2wDOLSwN015YMwdTnv
-         KS69AptqSoCUTjfy2aboQ7YkYLwkykT5WWFgRGZx8gjZJAaJsaOpW3BmGwM7N0Bfb6dQ
-         i/xi102B+St89InRL9Tj1zwivwaJIHS5bcxXXsqvm00cXUIZcJuGStfm0Pf4NPNkl+8v
-         It1g==
-X-Gm-Message-State: AOJu0Yx8NDMHhhbpvuN2cADuIppfVdH/26TRH0DEtomEgjlfGm4ijt/Z
-        +Y+N70bRDJLlv7nhCt8mVxjojhYOdacuX1y3YfQ=
-X-Google-Smtp-Source: AGHT+IE9RVdSnBVCqSMdAuNawk+jk+kg44DyDIpSMpQjU6+I7Pq9c966UbP+ru5Fn1tIIgW2DBUZx9ALGvLSYI3VrfY=
-X-Received: by 2002:a05:6512:348c:b0:4f8:5b23:5287 with SMTP id
- v12-20020a056512348c00b004f85b235287mr38747lfr.62.1691513861193; Tue, 08 Aug
- 2023 09:57:41 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691514946; x=1692119746;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6S+a7yYbAbaMGNTQ39CoTTiQM46sZCpEJ7cTfZYNXGA=;
+        b=O2V7uIIIDHkigJTPcuf60iq1OiLgnTJz/RWMVc2h/pxxVAkQYUuwvy5fAiyNXy1H3g
+         BtxxEKh22I1wJWTpV3yCzoQD81hkdCEcNKsFh/AnnxvdpyBTicWNMXNociEYjfN3/Z2l
+         IJMgQmK+JF5FeU/9Jz7r/8qKzyS2JTnvwIJCJJzpdsJt72+kTKOXQ+fLePoZ5Zo+7m7u
+         moNfbRIZ8WQZKxJJhEjDRMrB9aVdr0hn3Oe7qlC5FwF/1AbTNV5/TIq0osU6aCGZz53L
+         GrA4LPecV0KPdY5z7gPBupQfWvynpRDyfTq19gO9MxYJPbbFRg/HJX6rxUYxt0TeROxT
+         ViLw==
+X-Gm-Message-State: AOJu0YyurhMrWZWEh7B4GOeMVZcA5vB7dkzOLHmAkwvya2GQltl7Q//B
+        mcUqxvsJ6/JWhjJ6sctdoIvaZg+wHiBezXNjgF4dGQ==
+X-Google-Smtp-Source: AGHT+IGNaqV23dBBot7rOX2J7bjM37vOJ8eoGZABaopwO5OZt2zgCY1gyz5T/l8PD7NzJI9RShv6W3tBEWZXRJy+hew=
+X-Received: by 2002:a17:90b:2385:b0:262:e821:b3f8 with SMTP id
+ mr5-20020a17090b238500b00262e821b3f8mr169486pjb.38.1691514945940; Tue, 08 Aug
+ 2023 10:15:45 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a05:6f02:2090:b0:54:12f2:b0c2 with HTTP; Tue, 8 Aug 2023
- 09:57:40 -0700 (PDT)
-Reply-To: otatianaa557@gmail.com
-From:   Tatiana Oligarch <ew.fideliar@gmail.com>
-Date:   Tue, 8 Aug 2023 09:57:40 -0700
-Message-ID: <CACd2tRP6MgFV+RLEixofxuE1R8utOwDUy512N3oSFFO6yj_EcA@mail.gmail.com>
-Subject: Kindly reply me today
-To:     undisclosed-recipients:;
+References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org> <20230808082738.122804-10-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230808082738.122804-10-krzysztof.kozlowski@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Tue, 8 Aug 2023 12:15:34 -0500
+Message-ID: <CAPLW+4=h7EvHwzkP84+z1T3o=PvBScsaBFsbG=Y+odYrjmVu1g@mail.gmail.com>
+Subject: Re: [PATCH 09/11] clk: samsung: exynos850: do not define number of
+ clocks in bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,UNDISC_FREEM,UNDISC_MONEY autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Report: *  0.0 RCVD_IN_DNSWL_BLOCKED RBL: ADMINISTRATOR NOTICE: The query to
-        *      DNSWL was blocked.  See
-        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-        *      for more information.
-        *      [2a00:1450:4864:20:0:0:0:12d listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [ew.fideliar[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [otatianaa557[at]gmail.com]
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        *  2.6 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  2.8 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: *******
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-My Greetings,
+On Tue, 8 Aug 2023 at 11:15, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Number of clocks supported by Linux drivers might vary - sometimes we
+> add new clocks, not exposed previously.  Therefore this number of clocks
+> should not be in the bindings, because otherwise we should not change
+> it.
+>
+> Define number of clocks per each clock controller inside the driver
+> directly.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-I write you with sadness in my heart because of constant attack to our
-country Ukraine by Russian army which has caused lots of deaths,
-destructions of properties and homes.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-I am Mrs Tatiana Oligarch, a citizen of Ukraine currently in Kyiv, I
-am looking for a reliable partner who can help to receive my fund
-deposited in a foreign bank for safe keeping and investment in good
-profiting business. I want you to help and receive my fund in your
-country and I will come over to meet you for foreign investment
-partnership under your care and advice.
-
-Hoping to read from you today and know your sincere opinion in helping
-me genuinely.
-
-Sincerely,
-Mrs,Tatiana Oligarch
+>  drivers/clk/samsung/clk-exynos850.c | 35 ++++++++++++++++++++---------
+>  1 file changed, 24 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
+> index c32b2e6451a0..bdc1eef7d6e5 100644
+> --- a/drivers/clk/samsung/clk-exynos850.c
+> +++ b/drivers/clk/samsung/clk-exynos850.c
+> @@ -16,6 +16,19 @@
+>  #include "clk.h"
+>  #include "clk-exynos-arm64.h"
+>
+> +/* NOTE: Must be equal to the last clock ID increased by one */
+> +#define CLKS_NR_TOP                    (CLK_DOUT_G3D_SWITCH + 1)
+> +#define CLKS_NR_APM                    (CLK_GOUT_SYSREG_APM_PCLK + 1)
+> +#define CLKS_NR_AUD                    (CLK_GOUT_AUD_CMU_AUD_PCLK + 1)
+> +#define CLKS_NR_CMGP                   (CLK_GOUT_SYSREG_CMGP_PCLK + 1)
+> +#define CLKS_NR_G3D                    (CLK_GOUT_G3D_SYSREG_PCLK + 1)
+> +#define CLKS_NR_HSI                    (CLK_GOUT_HSI_CMU_HSI_PCLK + 1)
+> +#define CLKS_NR_IS                     (CLK_GOUT_IS_SYSREG_PCLK + 1)
+> +#define CLKS_NR_MFCMSCL                        (CLK_GOUT_MFCMSCL_SYSREG_PCLK + 1)
+> +#define CLKS_NR_PERI                   (CLK_GOUT_WDT1_PCLK + 1)
+> +#define CLKS_NR_CORE                   (CLK_GOUT_SYSREG_CORE_PCLK + 1)
+> +#define CLKS_NR_DPU                    (CLK_GOUT_DPU_SYSREG_PCLK + 1)
+> +
+>  /* ---- CMU_TOP ------------------------------------------------------------- */
+>
+>  /* Register Offset definitions for CMU_TOP (0x120e0000) */
+> @@ -485,7 +498,7 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(top_div_clks),
+>         .gate_clks              = top_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(top_gate_clks),
+> -       .nr_clk_ids             = TOP_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_TOP,
+>         .clk_regs               = top_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(top_clk_regs),
+>  };
+> @@ -625,7 +638,7 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
+>         .nr_gate_clks           = ARRAY_SIZE(apm_gate_clks),
+>         .fixed_clks             = apm_fixed_clks,
+>         .nr_fixed_clks          = ARRAY_SIZE(apm_fixed_clks),
+> -       .nr_clk_ids             = APM_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_APM,
+>         .clk_regs               = apm_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(apm_clk_regs),
+>         .clk_name               = "dout_clkcmu_apm_bus",
+> @@ -908,7 +921,7 @@ static const struct samsung_cmu_info aud_cmu_info __initconst = {
+>         .nr_gate_clks           = ARRAY_SIZE(aud_gate_clks),
+>         .fixed_clks             = aud_fixed_clks,
+>         .nr_fixed_clks          = ARRAY_SIZE(aud_fixed_clks),
+> -       .nr_clk_ids             = AUD_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_AUD,
+>         .clk_regs               = aud_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(aud_clk_regs),
+>         .clk_name               = "dout_aud",
+> @@ -1011,7 +1024,7 @@ static const struct samsung_cmu_info cmgp_cmu_info __initconst = {
+>         .nr_gate_clks           = ARRAY_SIZE(cmgp_gate_clks),
+>         .fixed_clks             = cmgp_fixed_clks,
+>         .nr_fixed_clks          = ARRAY_SIZE(cmgp_fixed_clks),
+> -       .nr_clk_ids             = CMGP_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_CMGP,
+>         .clk_regs               = cmgp_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(cmgp_clk_regs),
+>         .clk_name               = "gout_clkcmu_cmgp_bus",
+> @@ -1107,7 +1120,7 @@ static const struct samsung_cmu_info g3d_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(g3d_div_clks),
+>         .gate_clks              = g3d_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(g3d_gate_clks),
+> -       .nr_clk_ids             = G3D_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_G3D,
+>         .clk_regs               = g3d_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(g3d_clk_regs),
+>         .clk_name               = "dout_g3d_switch",
+> @@ -1209,7 +1222,7 @@ static const struct samsung_cmu_info hsi_cmu_info __initconst = {
+>         .nr_mux_clks            = ARRAY_SIZE(hsi_mux_clks),
+>         .gate_clks              = hsi_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(hsi_gate_clks),
+> -       .nr_clk_ids             = HSI_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_HSI,
+>         .clk_regs               = hsi_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(hsi_clk_regs),
+>         .clk_name               = "dout_hsi_bus",
+> @@ -1341,7 +1354,7 @@ static const struct samsung_cmu_info is_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(is_div_clks),
+>         .gate_clks              = is_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(is_gate_clks),
+> -       .nr_clk_ids             = IS_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_IS,
+>         .clk_regs               = is_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(is_clk_regs),
+>         .clk_name               = "dout_is_bus",
+> @@ -1450,7 +1463,7 @@ static const struct samsung_cmu_info mfcmscl_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(mfcmscl_div_clks),
+>         .gate_clks              = mfcmscl_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(mfcmscl_gate_clks),
+> -       .nr_clk_ids             = MFCMSCL_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_MFCMSCL,
+>         .clk_regs               = mfcmscl_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(mfcmscl_clk_regs),
+>         .clk_name               = "dout_mfcmscl_mfc",
+> @@ -1625,7 +1638,7 @@ static const struct samsung_cmu_info peri_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(peri_div_clks),
+>         .gate_clks              = peri_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(peri_gate_clks),
+> -       .nr_clk_ids             = PERI_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_PERI,
+>         .clk_regs               = peri_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(peri_clk_regs),
+>         .clk_name               = "dout_peri_bus",
+> @@ -1732,7 +1745,7 @@ static const struct samsung_cmu_info core_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(core_div_clks),
+>         .gate_clks              = core_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(core_gate_clks),
+> -       .nr_clk_ids             = CORE_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_CORE,
+>         .clk_regs               = core_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(core_clk_regs),
+>         .clk_name               = "dout_core_bus",
+> @@ -1806,7 +1819,7 @@ static const struct samsung_cmu_info dpu_cmu_info __initconst = {
+>         .nr_div_clks            = ARRAY_SIZE(dpu_div_clks),
+>         .gate_clks              = dpu_gate_clks,
+>         .nr_gate_clks           = ARRAY_SIZE(dpu_gate_clks),
+> -       .nr_clk_ids             = DPU_NR_CLK,
+> +       .nr_clk_ids             = CLKS_NR_DPU,
+>         .clk_regs               = dpu_clk_regs,
+>         .nr_clk_regs            = ARRAY_SIZE(dpu_clk_regs),
+>         .clk_name               = "dout_dpu",
+> --
+> 2.34.1
+>
