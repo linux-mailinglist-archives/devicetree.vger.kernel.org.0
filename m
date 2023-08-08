@@ -2,112 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC3CC774393
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F88B77449F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234620AbjHHSHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
+        id S232450AbjHHSYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235396AbjHHSHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:07:12 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151A861B2F;
-        Tue,  8 Aug 2023 10:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=1eMz8Kx1EHbpbcwhOQKyLVqRjaGKTaNj4sW/uynWnl8=; b=nejMPi3VM7ofMENIN8bhAEJL07
-        R1JLkq+Z0e+Vvd3amNjdds5KLa/IkvIBpX/KZhrsGzbSHj/Jpm8DHhBojZxbdLdU2XbGa8Ca9S0Cs
-        WFv1W+lkAfog6/kxtpgQlcebGAxCSMz4Gni1CCitszWFXF4f8IxW2G0nJ4D4I9d5w4tw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qTNeM-003TSm-VY; Tue, 08 Aug 2023 16:25:30 +0200
-Date:   Tue, 8 Aug 2023 16:25:30 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
+        with ESMTP id S235238AbjHHSYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:24:23 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C0857EDF
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:35:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1691516121;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=VbnqxuiXQisIH6XjOaSNew/BEqT5g+My50f9mjhVZsE=;
+        b=Qt69caxCFle1Ug9j3vGsjYYmMHd7EwuQ403saQi5bocaoKl6nTfa/QVpQRmPo8UIP7rWee
+        sSOC404oyVzZaLMYyO/9eVsjRom2jhzGv2/eHk7c4ZifE45u/ELDvoaFNdTDqXnr5Zsgxw
+        7fJITLK2O/xBddR9+asDyHQ18E6piaQ=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-206-sUKnFjvoPnK68nRYyKBJhQ-1; Tue, 08 Aug 2023 10:27:30 -0400
+X-MC-Unique: sUKnFjvoPnK68nRYyKBJhQ-1
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-63d10be64c8so64378716d6.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 07:27:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691504850; x=1692109650;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VbnqxuiXQisIH6XjOaSNew/BEqT5g+My50f9mjhVZsE=;
+        b=jUIYlhEXAmx8hX/jaa2jkAe8C6vJmImOk7moZdwDhCOkHeHQpbOADOaL3MCIyRVj8B
+         NMaOGMejiz2kWxXjb60dinxD7WksGJO/duJbp8NlGZOjsLMQd9G6DNgC1U4CU/21FP/r
+         ez+F9KqPmkB5EFHle/d+9QcV49a6Rpu3mIM+E72ffMlrKKuCTaLqLiuu6EUiW7Y2bZob
+         5wq138lrOJ0xUpkzLmWJFAmUwvl5jZtCk+VBDyb+Vdheo/cnqUs0qXcE8qaScgKcLE9G
+         YxI4FNAAIv3WkGjIOxMEaiCWhimVOQXyW/4lVxd8Bn3U4g7tDEJC2TfdiHTKG5d4Cqfa
+         eHyg==
+X-Gm-Message-State: AOJu0Yzh4Sc4Z/LBgYiEl7sEyE95VcUAucMvnPO/OOIYSTgox1l0hNR1
+        11Txr5kuSPilQVoKhiC7TdS/ErIldgKK9aohK1j/Qa7pU76OYSJQnkNvn7eF7Zc8ZzDOrPr7y0+
+        OJ3VCI2V4fdCwLiDjnBN5+w==
+X-Received: by 2002:a0c:e1d4:0:b0:63c:ff08:20f1 with SMTP id v20-20020a0ce1d4000000b0063cff0820f1mr13380078qvl.10.1691504850374;
+        Tue, 08 Aug 2023 07:27:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGvKElmz3eZY2ly9zcbNbNf3JHFZdq6y/SHJi6VaPpXTDEO5rg1+t529/wj3RWJcJY8dNswzQ==
+X-Received: by 2002:a0c:e1d4:0:b0:63c:ff08:20f1 with SMTP id v20-20020a0ce1d4000000b0063cff0820f1mr13380045qvl.10.1691504850119;
+        Tue, 08 Aug 2023 07:27:30 -0700 (PDT)
+Received: from fedora ([2600:1700:1ff0:d0e0::37])
+        by smtp.gmail.com with ESMTPSA id h18-20020a0cf212000000b005dd8b9345b4sm3680637qvk.76.2023.08.08.07.27.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 07:27:29 -0700 (PDT)
+Date:   Tue, 8 Aug 2023 09:27:27 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
 To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+Cc:     Andrew Lunn <andrew@lunn.ch>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Andrew Halaney <ahalaney@redhat.com>,
         Alex Elder <elder@linaro.org>,
         Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-Message-ID: <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
-References: <20230807193102.6374-1-brgl@bgdev.pl>
- <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
- <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
- <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
- <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
+Subject: Re: [PATCH 5/9] arm64: dts: qcom: sa8775p-ride: move the reset-gpios
+ property of the PHY
+Message-ID: <xklkqdodcho4du26mvds4bxrevvwiaftnu7gu2ukchczd7hgcb@ry3dhjnoprgh>
+References: <20230807193507.6488-1-brgl@bgdev.pl>
+ <20230807193507.6488-6-brgl@bgdev.pl>
+ <siqiyihftz3musfjulpcqunhgi7npftumrfwfyh2pqnlx6zeb7@rrpwmkvjshfb>
+ <da679b5e-6712-4849-b29c-6aa42022abc4@lunn.ch>
+ <ld2j4llgfba6j43gesqxs6wz2baucka5scbj4nef5ehbex2cmt@d4dxsqp2vuoj>
+ <CAMRc=MdLky5sUbdFGFc+as906kr-J_XDmKmYtBBCHvETvqtAQA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MdLky5sUbdFGFc+as906kr-J_XDmKmYtBBCHvETvqtAQA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > On Tue, Aug 08, 2023 at 10:13:09AM +0200, Bartosz Golaszewski wrote:
-> > > Ok so upon some further investigation, the actual culprit is in stmmac
-> > > platform code - it always tries to register an MDIO bus - independent
-> > > of whether there is an actual mdio child node - unless the MAC is
-> > > marked explicitly as having a fixed-link.
-> > >
-> > > When I fixed that, MAC1's probe is correctly deferred until MAC0 has
-> > > created the MDIO bus.
-> > >
-> > > Even so, isn't it useful to actually reference the shared MDIO bus in some way?
-> > >
-> > > If the schematics look something like this:
-> > >
-> > > --------           -------
-> > > | MAC0 |--MDIO-----| PHY |
-> > > -------- |     |   -------
-> > >          |     |
-> > > -------- |     |   -------
-> > > | MAC1 |--     ----| PHY |
-> > > --------           -------
-> > >
-> > > Then it would make sense to model it on the device tree?
+On Tue, Aug 08, 2023 at 02:16:50PM +0200, Bartosz Golaszewski wrote:
+> On Tue, Aug 8, 2023 at 12:27 AM Andrew Halaney <ahalaney@redhat.com> wrote:
 > >
-> > So I think what you're saying is that MAC0 and MAC1's have MDIO bus
-> > masters, and the hardware designer decided to tie both together to
-> > a single set of clock and data lines, which then go to two PHYs.
+> > On Mon, Aug 07, 2023 at 11:51:40PM +0200, Andrew Lunn wrote:
+> > > > > I have proposed a solution for this problem in 2020 but it never got
+> > > > > upstream. Now we have a workaround in place which allows us to hard-code
+> > > > > the PHY id in the compatible property, thus skipping the ID scanning).
+> > > >
+> > > > nitpicky, but I think that already existed at that time :D
+> > >
+> > > Yes, it has been there are long long time. It is however only in the
+> > > last 5 years of so has it been seen as a solution to the chicken egg
+> > > problem.
+> > >
+> > > > >           sgmii_phy: phy@8 {
+> > > > > +                 compatible = "ethernet-phy-id0141.0dd4";
+> > > > >                   reg = <0x8>;
+> > > > >                   device_type = "ethernet-phy";
+> > > > > +                 reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> > > > > +                 reset-deassert-us = <70000>;
+> > > >
+> > > > Doesn't this need reset-assert-us?
+> > >
+> > > If i remember correctly, there is a default value if DT does not
+> > > provide one.
+> > >
+> >
+> > I've been trying to make sure I view devicetree properties as an OS
+> > agnostic ABI lately, with that in mind...
+> >
+> > The dt-binding says this for ethernet-phy:
+> >
+> >   reset-assert-us:
+> >     description:
+> >       Delay after the reset was asserted in microseconds. If this
+> >       property is missing the delay will be skipped.
+> >
+> > If the hardware needs a delay I think we should encode it based on that
+> > description, else we risk it starting to look like a unit impulse!
+> >
 > 
-> The schematics I have are not very clear on that, but now that you
-> mention this, it's most likely the case.
+> Please note that the mdio-level delay properties are not the same as
+> the ones on the PHY levels.
+> 
+> reset-delay-us - this is the delay BEFORE *DEASSERTING* the reset line
+> reset-post-delay-us - this is the delay AFTER *DEASSERTING* the reset line
+> 
+> On PHY level we have:
+> 
+> reset-assert-us - AFTER *ASSERTING*
+> reset-deassert-us - AFTER *DEASSERTING*
+> 
+> There never has been any reset-assert delay on that line before. It
+> doesn't look like we need a delay BEFORE deasserting the line, do we?
+> 
 
-I hope not. That would be very broken. As Russell pointed out, MDIO is
-not multi-master. You need to check with the hardware designer if the
-schematics are not clear.
+The MDIO reset-delay-us happens "before deassert"/"after assert", so to
+make things a proper move here I think it needs a resrt-assert, otherwise
+behavior with respect to reset timing is definitely changed from this
+patch!
 
-> Good point, but it's worse than that: when MAC0 is unbound, it will
-> unregister the MDIO bus and destroy all PHY devices. These are not
-> refcounted so they will literally go from under MAC1. Not sure how
-> this can be dealt with?
+Here's a trimmed version of the reset handling in mdio_bus.c to back
+that up:
 
-unbinding is not a normal operation. So i would just live with it, and
-if root decides to shoot herself in the foot, that is her choice.
+	/* assert bus level PHY GPIO reset */
+	gpiod = devm_gpiod_get_optional(&bus->dev, "reset", GPIOD_OUT_HIGH);
+    ...
+	} else	if (gpiod) {
+		bus->reset_gpiod = gpiod;
+		fsleep(bus->reset_delay_us);
+		gpiod_set_value_cansleep(gpiod, 0);
+		if (bus->reset_post_delay_us > 0)
+			fsleep(bus->reset_post_delay_us);
+	}
 
-   Andrew
+so its assert reset, sleep reset_delay_us, deassert, sleep
+reset_post_delay_us for the MDIO case.
+
+Thanks,
+Andrew
+
