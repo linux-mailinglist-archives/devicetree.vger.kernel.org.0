@@ -2,105 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84660774813
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 933FA7748AF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234179AbjHHT0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39082 "EHLO
+        id S236358AbjHHThN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234188AbjHHTZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:25:55 -0400
-Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8F315C77;
-        Tue,  8 Aug 2023 11:50:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=4/GzwtgyO3yL3knqSnKkQgDt/ZjWhgYmwDUnxSNeivU=; b=ZTaAl906VvA1CO04UyyOSNt18z
-        +3IsbiVKTQid2ofLWwAJuV39pbuhwcrgBohShnT12TDmSKX2N398Smb0yQ6vYmLiMSQI9SmWE0ST8
-        /HLOX7gO106Vq7WzEURe/5tYXFhRWYMXi3GeTQv6ElTJ6RsBP+fmFhTpgWlGtr9iGHGDvZ7KtytVB
-        HEV8tzkFgXo8CCAK+ekTHO020J4KkSVQw2RNgKj8vzxYDdcwvl2MN9QFi0hEzMMIi9m1102JahkG8
-        glkP/uOPnrvH2Sdkg/PqFXfhl4KSnLpr0mDWeN71gIBtcfe2J8lxXA548ZuypvtcoOdL130E/jCjC
-        NTlYDDug==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42308)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.96)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1qTRar-0001Vc-0w;
-        Tue, 08 Aug 2023 19:38:09 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1qTRao-0008LX-FJ; Tue, 08 Aug 2023 19:38:06 +0100
-Date:   Tue, 8 Aug 2023 19:38:06 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Andrew Halaney <ahalaney@redhat.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S233284AbjHHTgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:36:54 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C8F21268
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 12:01:54 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31768ce2e81so5193729f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 12:01:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691521313; x=1692126113;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t5eZZaGHIEmrXbC9ihksQt3JILJFBUT+nlFqhiJDUhc=;
+        b=muJ2RZc6gE0q3bGIwoIacuVABoVWK1CMCcBShpoMNUuEJhpwGIedGh84k3KWQXkcSQ
+         RMOgk3Y2SwhXBxNA3KeTuC7lhATwI8rMM+6BwrcS+H0581gU3Nuv2OFu+wzKq/pQVbF6
+         dPGc6qAYPwgCyYsBzxU8MjoBqTqLXKJJ13y0E3oAvkaQOTiP4H3Hv6RdzjTNWpAdVw7f
+         PJO4N/IJt9f84KKXuYKrmX5u2/GyV9Q1CD+srEeJcD4CeA+f3Qzsv51u/02SkPicKs3m
+         AaGnhf+SQsawiw19Wie75ujVygE+1VaeO2ak/l8+wpjZ0/JQansfY8oshOs4wKgGBddb
+         tXjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691521313; x=1692126113;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t5eZZaGHIEmrXbC9ihksQt3JILJFBUT+nlFqhiJDUhc=;
+        b=XTDp6kCunr7Je/3Zbz4UAjSwseLZI/iVGC5r8xDEXFYxwINGsr920EsyHiGnefqlyS
+         fwriRghMlp8aEri+ZohY05swDy72uFx5IBCBd/AJlAXSEcH18OPNATrvxKssoyXbpgeV
+         /OfEwo+Q4jXnTebw7MIirzCP2H2R7VcX2cARuaLOwze8ZBP5ghWOrdQXDMOMSwL/orKt
+         py+F9D6gTaLJUu6XL6GIie5fRtZsnBdMXMSHge/IgrK00Am3oE61LCH8fl92qKAgFgBg
+         IasMrQcKXG+Gf9mNf0M1ldV7cIKtl7yt/WMWHC1VWsge2lTYIacuoNVakRc8EQV9VbMD
+         KNqg==
+X-Gm-Message-State: AOJu0YykArv+6CpLoMRJlqzDDEPkDmNvTpZqholxui6RzSHytYfyNXsS
+        IIMf9xGY3pET8F8eQZP+o2DRTA==
+X-Google-Smtp-Source: AGHT+IHRc2Pztk2xm858gOk9xLjmtIGThyo0DvxdqNVanOdxVDhdsD3uekaaPNOBa8lgyHxda+kpTA==
+X-Received: by 2002:a5d:4d83:0:b0:314:2e77:afec with SMTP id b3-20020a5d4d83000000b003142e77afecmr269542wru.57.1691521312330;
+        Tue, 08 Aug 2023 12:01:52 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:6a08:bcc0:ae83:e1dc])
+        by smtp.gmail.com with ESMTPSA id z14-20020adfe54e000000b00317e9f8f194sm7301055wrm.34.2023.08.08.12.01.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 12:01:51 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Alex Elder <elder@linaro.org>,
         Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
+        Andrew Halaney <ahalaney@redhat.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-Message-ID: <ZNKLjuxnR2+V3g1D@shell.armlinux.org.uk>
-References: <20230807193102.6374-1-brgl@bgdev.pl>
- <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
- <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
- <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
- <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
- <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
- <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
- <xfme5pgj4eqlgao3vmyg6vazaqk6qz2wq6kitgujtorouogjty@cklyof3xz2zm>
- <d021b8ae-a6a3-4697-a683-c9bd45e6c74b@lunn.ch>
- <CAMRc=MegMdB0LZNRRrCfqFGZQWMFdBhd8o+_NBxwLk0xS99M_w@mail.gmail.com>
+Subject: [PATCH v2 0/8] arm64: dts: qcom: enable EMAC1 on sa8775p
+Date:   Tue,  8 Aug 2023 21:01:36 +0200
+Message-Id: <20230808190144.19999-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MegMdB0LZNRRrCfqFGZQWMFdBhd8o+_NBxwLk0xS99M_w@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 08:26:22PM +0200, Bartosz Golaszewski wrote:
-> When I say "device unbind", I don't just mean manual unbinding using
-> sysfs. I mean any code path (rmmod, unplugging the USB, etc.) that
-> leads to the device being detached from its driver. This is a
-> perfectly normal situation and should work correctly.
-> 
-> I won't be fixing it for this series but may end up looking into
-> establishing some kind of device links between MACs and their "remote"
-> PHYs that would allow to safely unbind them.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-I don't think you're the first to suggest that!
+This series contains changes required to enable EMAC1 on sa8775p-ride.
+This iteration no longer depends on any changes to the stmmac driver to
+be functional. It turns out I was mistaken in thinking that the two
+MACs' MDIO masters share the MDIO clock and data lines. In reality, only
+one MAC is connected to an MDIO bus and it controlls PHYs for both MAC0
+and MAC1. The MDIO master on MAC1 is not connected to anything.
 
-That gets difficult - because although the PHY may be a different
-driver, the MDIO bus may be provided by the _same_ hardware as the
-ethernet MAC itself. So you end up with a circular dependency - the
-PHY device depends on the MDIO bus device (which is the ethernet MAC)
-and then you make the ethernet MAC depend on the PHY device.
+v1 -> v2:
+- remove pin functions for MDIO signals and don't assign them to MAC1
+- add a delay after asserting the PHY's reset signal, not only when it's
+  released
+- remove the entire concept of shared-mdio property
+- add aliases for ethernet nodes in order to avoid MDIO bus name
+  conflicts in stmmac
+
+Bartosz Golaszewski (8):
+  arm64: dts: qcom: sa8775p: add a node for the second serdes PHY
+  arm64: dts: qcom: sa8775p: add a node for EMAC1
+  arm64: dts: qcom: sa8775p-ride: enable the second SerDes PHY
+  arm64: dts: qcom: sa8775p-ride: move the reset-gpios property of the
+    PHY
+  arm64: dts: qcom: sa8775p-ride: index the first SGMII PHY
+  arm64: dts: qcom: sa8775p-ride: add the second SGMII PHY
+  arm64: dts: qcom: sa8775p-ride: add an alias for ethernet0
+  arm64: dts: qcom: sa8775p-ride: enable EMAC1
+
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 98 +++++++++++++++++++++--
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi     | 43 ++++++++++
+ 2 files changed, 135 insertions(+), 6 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.39.2
+
