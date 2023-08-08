@@ -2,296 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69BEC774126
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:15:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB9EB774176
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234217AbjHHRPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:15:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36094 "EHLO
+        id S234463AbjHHRVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:21:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234222AbjHHROy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:14:54 -0400
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F43FB2AC;
-        Tue,  8 Aug 2023 09:06:10 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1qTPDM-0007ca-10;
-        Tue, 08 Aug 2023 16:05:44 +0000
-Date:   Tue, 8 Aug 2023 17:05:36 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Golle <daniel@makrotopia.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 8/8] mtd: ubi: provide NVMEM layer over UBI volumes
-Message-ID: <1cf385cf00ef8dc918060f56b129061662656287.1691510312.git.daniel@makrotopia.org>
-References: <cover.1691510312.git.daniel@makrotopia.org>
+        with ESMTP id S234455AbjHHRUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:20:50 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8282D783F2
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:08:29 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe7e1ef45dso545418e87.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:08:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691510880; x=1692115680;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8fDUJSyowELFFr/mrbugPdpucnV9wVL9S5WvHo40rsE=;
+        b=syjniGA9emAaKbQCvO3DbyIHMXmgKct+616AL0Ux8lS0WSatjyIHeVzYy8Erj5zv4k
+         35mqa5hY42FbSDoe9WtnzP+vLJW4WRP1ZbeNWmiK9XQ9QtSM0DetgUO9RFM7Ik+KEDg3
+         P1We3+ALCMRAREVdBHR10O9BnLo7mSYjnbniZL4HmhC8f2KuGjdZS6eeQgyLaYnh6Les
+         hkmgITOK/jVtVPhXo583u+gjhiTZRj1bep52b/IFjgg4HT/FgRZQl0Sd16g+GzRepMwr
+         jYyUt03Y2xgT9kF6XO62FUoKCkUDBn6JnLJXOk9TpgesVnr68wttB/8ihnNfnhpWEwM3
+         rPVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691510880; x=1692115680;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8fDUJSyowELFFr/mrbugPdpucnV9wVL9S5WvHo40rsE=;
+        b=HvYpm6PpQludwW7/FxczNpFZck+KhjsuhMA91ILeAea8g60SEM9KN4xZdcMLkchbIB
+         Hbm9WtnEfG/IzBQQRVUn8k8nQlsfTK8SR2g98WO5nSWYt/JJfxRIFSl+aMk8qy0oM4cR
+         ESKFI6uY/Y7GNFMkO96D8kQ030yd8fJjxVJ3XKfpKbP/NKXS9RGZXL/jhhAPumZZz2dN
+         MSmUNXX08FSP/tD1kICHB5LS9DzYW9qsguSPlD+UTLEeIzQ8CIfoO00LunsMirLiiNG6
+         S3HnigC8k/LevkTI0tWtSQnfRj5TkKScinwDLCHGDtzRu+OYG58rs/ye+zpKJMXu8/RS
+         P6TQ==
+X-Gm-Message-State: AOJu0YzzbqPpthwVDcXUaUNcjbrThprdzNg3sgMDm5E1y9DBklZ+A27W
+        GbNuIrA1ycBhP8h5DA5NNMDQfg==
+X-Google-Smtp-Source: AGHT+IFeJnROaNDYChsa8tqDPdUZ0jbri12bPyUnucgweW28Yum76XnbsnQfFybEIs8a1gFhxfZWEw==
+X-Received: by 2002:ac2:5b03:0:b0:4f8:7781:9870 with SMTP id v3-20020ac25b03000000b004f877819870mr7470934lfn.60.1691510880011;
+        Tue, 08 Aug 2023 09:08:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id g8-20020a056402180800b005227ead61d0sm6972572edy.83.2023.08.08.09.07.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 09:07:59 -0700 (PDT)
+Message-ID: <9a86a125-2eda-721b-8b17-c1cfe144adc9@linaro.org>
+Date:   Tue, 8 Aug 2023 18:07:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1691510312.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 2/4] dt-bindings: arm: fsl: fix DEBIX binding
+Content-Language: en-US
+To:     Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        dan.scally@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230807171513.156907-1-m.felsch@pengutronix.de>
+ <20230807171513.156907-2-m.felsch@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230807171513.156907-2-m.felsch@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In an ideal world we would like UBI to be used where ever possible on a
-NAND chip. And with UBI support in ARM Trusted Firmware and U-Boot it
-is possible to achieve an (almost-)all-UBI flash layout. Hence the need
-for a way to also use UBI volumes to store board-level constants, such
-as MAC addresses and calibration data of wireless interfaces.
+On 07/08/2023 19:15, Marco Felsch wrote:
+> The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
+> corresponding bindings by adding an own entry for it. Mark
+> polyhex,imx8mp-debix as deprecated but keep it within the dts file since
 
-Add UBI volume NVMEM driver module exposing UBI volumes as NVMEM
-providers. Allow UBI devices to have a "volumes" firmware subnode with
-volumes which may be compatible with "nvmem-cells".
-Access to UBI volumes via the NVMEM interface at this point is
-read-only, and it is slow, opening and closing the UBI volume for each
-access due to limitations of the NVMEM provider API.
+The deprecation did not happen anymore.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- drivers/mtd/ubi/Kconfig  |  12 +++
- drivers/mtd/ubi/Makefile |   1 +
- drivers/mtd/ubi/nvmem.c  | 189 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 202 insertions(+)
- create mode 100644 drivers/mtd/ubi/nvmem.c
+> we already have a user for it [1].
+> 
+> [1] https://elixir.bootlin.com/barebox/v2023.07.1/source/arch/arm/ \
+>     boards/polyhex-debix/board.c#L38
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Changelog:
+> 
+> v3:
+> - drop 'deprecated' status and adapt comment instead
 
-diff --git a/drivers/mtd/ubi/Kconfig b/drivers/mtd/ubi/Kconfig
-index 2ed77b7b3fcb5..45d939bbfa853 100644
---- a/drivers/mtd/ubi/Kconfig
-+++ b/drivers/mtd/ubi/Kconfig
-@@ -104,4 +104,16 @@ config MTD_UBI_BLOCK
- 
- 	   If in doubt, say "N".
- 
-+config MTD_UBI_NVMEM
-+	tristate "UBI virtual NVMEM"
-+	default n
-+	depends on NVMEM
-+	help
-+	   This option enabled an additional driver exposing UBI volumes as NVMEM
-+	   providers, intended for platforms where UBI is part of the firmware
-+	   specification and used to store also e.g. MAC addresses or board-
-+	   specific Wi-Fi calibration data.
-+
-+	   If in doubt, say "N".
-+
- endif # MTD_UBI
-diff --git a/drivers/mtd/ubi/Makefile b/drivers/mtd/ubi/Makefile
-index 543673605ca72..4b51aaf00d1a2 100644
---- a/drivers/mtd/ubi/Makefile
-+++ b/drivers/mtd/ubi/Makefile
-@@ -7,3 +7,4 @@ ubi-$(CONFIG_MTD_UBI_FASTMAP) += fastmap.o
- ubi-$(CONFIG_MTD_UBI_BLOCK) += block.o
- 
- obj-$(CONFIG_MTD_UBI_GLUEBI) += gluebi.o
-+obj-$(CONFIG_MTD_UBI_NVMEM) += nvmem.o
-diff --git a/drivers/mtd/ubi/nvmem.c b/drivers/mtd/ubi/nvmem.c
-new file mode 100644
-index 0000000000000..dd7cc6afb8d00
---- /dev/null
-+++ b/drivers/mtd/ubi/nvmem.c
-@@ -0,0 +1,189 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2023 Daniel Golle <daniel@makrotopia.org>
-+ */
-+
-+/* UBI NVMEM provider */
-+#include "ubi.h"
-+#include <linux/nvmem-provider.h>
-+
-+/* List of all NVMEM devices */
-+static LIST_HEAD(nvmem_devices);
-+static DEFINE_MUTEX(devices_mutex);
-+
-+struct ubi_nvmem {
-+	struct nvmem_device *nvmem;
-+	int ubi_num;
-+	int vol_id;
-+	int usable_leb_size;
-+	struct list_head list;
-+};
-+
-+static int ubi_nvmem_reg_read(void *priv, unsigned int from,
-+			      void *val, size_t bytes)
-+{
-+	struct ubi_nvmem *unv = priv;
-+	struct ubi_volume_desc *desc;
-+	int err = 0, lnum, offs, bytes_left;
-+	size_t to_read;
-+
-+	desc = ubi_open_volume(unv->ubi_num, unv->vol_id, UBI_READONLY);
-+	if (IS_ERR(desc))
-+		return PTR_ERR(desc);
-+
-+	lnum = div_u64_rem(from, unv->usable_leb_size, &offs);
-+	bytes_left = bytes;
-+	while (bytes_left) {
-+		to_read = unv->usable_leb_size - offs;
-+
-+		if (to_read > bytes_left)
-+			to_read = bytes_left;
-+
-+		err = ubi_read(desc, lnum, val, offs, to_read);
-+		if (err)
-+			break;
-+
-+		lnum += 1;
-+		offs = 0;
-+		bytes_left -= to_read;
-+		val += to_read;
-+	}
-+	ubi_close_volume(desc);
-+
-+	if (err)
-+		return err;
-+
-+	return bytes_left == 0 ? 0 : -EIO;
-+}
-+
-+static int ubi_nvmem_add(struct ubi_volume_info *vi)
-+{
-+	struct nvmem_config config = {};
-+	struct ubi_nvmem *unv;
-+	int ret;
-+
-+	if (!device_is_compatible(vi->dev, "nvmem-cells"))
-+		return 0;
-+
-+	unv = kzalloc(sizeof(struct ubi_nvmem), GFP_KERNEL);
-+	if (!unv)
-+		return -ENOMEM;
-+
-+	config.id = NVMEM_DEVID_NONE;
-+	config.dev = vi->dev;
-+	config.name = dev_name(vi->dev);
-+	config.owner = THIS_MODULE;
-+	config.priv = unv;
-+	config.reg_read = ubi_nvmem_reg_read;
-+	config.size = vi->usable_leb_size * vi->size;
-+	config.word_size = 1;
-+	config.stride = 1;
-+	config.read_only = true;
-+	config.root_only = true;
-+	config.ignore_wp = true;
-+	config.of_node = dev_of_node(vi->dev);
-+
-+	if (!config.of_node)
-+		config.no_of_node = true;
-+
-+	unv->ubi_num = vi->ubi_num;
-+	unv->vol_id = vi->vol_id;
-+	unv->usable_leb_size = vi->usable_leb_size;
-+	unv->nvmem = nvmem_register(&config);
-+	if (IS_ERR(unv->nvmem)) {
-+		/* Just ignore if there is no NVMEM support in the kernel */
-+		if (PTR_ERR(unv->nvmem) == -EOPNOTSUPP)
-+			ret = 0;
-+		else
-+			ret = dev_err_probe(vi->dev, PTR_ERR(unv->nvmem),
-+					    "Failed to register NVMEM device\n");
-+
-+		kfree(unv);
-+		return ret;
-+	}
-+
-+	mutex_lock(&devices_mutex);
-+	list_add_tail(&unv->list, &nvmem_devices);
-+	mutex_unlock(&devices_mutex);
-+
-+	return 0;
-+}
-+
-+static void ubi_nvmem_remove(struct ubi_volume_info *vi)
-+{
-+	struct ubi_nvmem *unv_c, *unv = NULL;
-+
-+	mutex_lock(&devices_mutex);
-+	list_for_each_entry(unv_c, &nvmem_devices, list)
-+		if (unv_c->ubi_num == vi->ubi_num && unv_c->vol_id == vi->vol_id) {
-+			unv = unv_c;
-+			break;
-+		}
-+
-+	if (!unv) {
-+		mutex_unlock(&devices_mutex);
-+		return;
-+	}
-+
-+	list_del(&unv->list);
-+	mutex_unlock(&devices_mutex);
-+	nvmem_unregister(unv->nvmem);
-+	kfree(unv);
-+}
-+
-+/**
-+ * nvmem_notify - UBI notification handler.
-+ * @nb: registered notifier block
-+ * @l: notification type
-+ * @ns_ptr: pointer to the &struct ubi_notification object
-+ */
-+static int nvmem_notify(struct notifier_block *nb, unsigned long l,
-+			 void *ns_ptr)
-+{
-+	struct ubi_notification *nt = ns_ptr;
-+
-+	switch (l) {
-+	case UBI_VOLUME_RESIZED:
-+		ubi_nvmem_remove(&nt->vi);
-+		fallthrough;
-+	case UBI_VOLUME_ADDED:
-+		ubi_nvmem_add(&nt->vi);
-+		break;
-+	case UBI_VOLUME_SHUTDOWN:
-+		ubi_nvmem_remove(&nt->vi);
-+		break;
-+	default:
-+		break;
-+	}
-+	return NOTIFY_OK;
-+}
-+
-+static struct notifier_block nvmem_notifier = {
-+	.notifier_call = nvmem_notify,
-+};
-+
-+static int __init ubi_nvmem_init(void)
-+{
-+	return ubi_register_volume_notifier(&nvmem_notifier, 0);
-+}
-+
-+static void __exit ubi_nvmem_exit(void)
-+{
-+	struct ubi_nvmem *unv, *tmp;
-+
-+	mutex_lock(&devices_mutex);
-+	list_for_each_entry_safe(unv, tmp, &nvmem_devices, list) {
-+		nvmem_unregister(unv->nvmem);
-+		list_del(&unv->list);
-+		kfree(unv);
-+	}
-+	mutex_unlock(&devices_mutex);
-+
-+	ubi_unregister_volume_notifier(&nvmem_notifier);
-+}
-+
-+module_init(ubi_nvmem_init);
-+module_exit(ubi_nvmem_exit);
-+MODULE_DESCRIPTION("NVMEM layer over UBI volumes");
-+MODULE_AUTHOR("Daniel Golle");
-+MODULE_LICENSE("GPL");
--- 
-2.41.0
+With adjustments in commit msg:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
+
