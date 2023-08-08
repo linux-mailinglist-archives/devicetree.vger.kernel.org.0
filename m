@@ -2,111 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC94774815
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70C5577494B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234301AbjHHT0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39084 "EHLO
+        id S233512AbjHHTvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234230AbjHHTZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:25:55 -0400
-Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837D180B0;
-        Tue,  8 Aug 2023 11:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=r10h6nVMk04j6nRxoY62Y1rHsX1nNYozakCPbJXDblk=; b=G0AnBQDNcml/ZR//sKTnjynE4r
-        80iRL3AcMWA776SfbTIHkbVQK9yPk08vd1NrwK8Ldc+zL8AdcbA87tN2wNNu8HSiAdL7x+w0Xb2rI
-        4Bu+QljQkFUgQQuKBwvVGQy7OljI5Fwy7qMhFCiev8lJ8yrHkMJ+64VA8SYIQSzQDm80tgCyli72X
-        fGpsOaMoUUM61OdT4sIWsEtyqnKHyS9qBg2DlDD/rb/7AO2POmVMtMAWv2OJc4NseezFPDWFSwybl
-        0IM1vqtSyHBh9OAiaKgjzBL7iKLwQAhhMlzyVP0j3J8jlbtWev83mp4aaZEV1ZxuH8S6KN+pWdOuw
-        M5PrwVUA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36762)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.96)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1qTOc1-0000HF-2P;
-        Tue, 08 Aug 2023 16:27:09 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1qTObz-0008Dn-JR; Tue, 08 Aug 2023 16:27:07 +0100
-Date:   Tue, 8 Aug 2023 16:27:07 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Andrew Halaney <ahalaney@redhat.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232992AbjHHTuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:50:51 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F6B19421;
+        Tue,  8 Aug 2023 09:57:39 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qTPCG-0007Zq-0R;
+        Tue, 08 Aug 2023 16:04:36 +0000
+Date:   Tue, 8 Aug 2023 17:04:28 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-Message-ID: <ZNJeyxeZIr2DahTl@shell.armlinux.org.uk>
-References: <20230807193102.6374-1-brgl@bgdev.pl>
- <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
- <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
- <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
- <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
- <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
- <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
- <xfme5pgj4eqlgao3vmyg6vazaqk6qz2wq6kitgujtorouogjty@cklyof3xz2zm>
- <d021b8ae-a6a3-4697-a683-c9bd45e6c74b@lunn.ch>
+        Daniel Golle <daniel@makrotopia.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 4/8] mtd: ubi: block: use notifier to create ubiblock from
+ parameter
+Message-ID: <f127480389cf9168feb7bbb912cf04242c2886a6.1691510312.git.daniel@makrotopia.org>
+References: <cover.1691510312.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d021b8ae-a6a3-4697-a683-c9bd45e6c74b@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+In-Reply-To: <cover.1691510312.git.daniel@makrotopia.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 05:15:45PM +0200, Andrew Lunn wrote:
-> > > > > Good point, but it's worse than that: when MAC0 is unbound, it will
-> > > > > unregister the MDIO bus and destroy all PHY devices. These are not
-> > > > > refcounted so they will literally go from under MAC1. Not sure how
-> > > > > this can be dealt with?
-> > > >
-> > > > unbinding is not a normal operation. So i would just live with it, and
-> > > > if root decides to shoot herself in the foot, that is her choice.
-> > > >
-> > > 
-> > > I disagree. Unbinding is very much a normal operation.
-> 
-> What do you use it for?
-> 
-> I don't think i've ever manually done it. Maybe as part of a script to
-> unbind the FTDI driver from an FTDI device in order to use user space
-> tools to program the EEPROM? But that is about it.
-> 
-> I actually expect many unbind operations are broken because it is very
-> rarely used.
+Use UBI_VOLUME_ADDED notification to create ubiblock device specified
+on kernel cmdline or module parameter.
+This makes thing more simple and has the advantage that ubiblock devices
+on volumes which are not present at the time the ubi module is probed
+will still be created.
 
-rmmod! Particularly useful during driver development, I tend to use it
-extensively - and it has the advantage of testing those unbind paths!
+Suggested-by: Zhihao Cheng <chengzhihao1@huawei.com>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+ drivers/mtd/ubi/block.c | 152 ++++++++++++++++++++++------------------
+ 1 file changed, 84 insertions(+), 68 deletions(-)
 
+diff --git a/drivers/mtd/ubi/block.c b/drivers/mtd/ubi/block.c
+index 69fa6fecb8494..e0618bbde3613 100644
+--- a/drivers/mtd/ubi/block.c
++++ b/drivers/mtd/ubi/block.c
+@@ -33,6 +33,7 @@
+ #include <linux/kernel.h>
+ #include <linux/list.h>
+ #include <linux/mutex.h>
++#include <linux/namei.h>
+ #include <linux/slab.h>
+ #include <linux/mtd/ubi.h>
+ #include <linux/blkdev.h>
+@@ -65,10 +66,10 @@ struct ubiblock_pdu {
+ };
+ 
+ /* Numbers of elements set in the @ubiblock_param array */
+-static int ubiblock_devs __initdata;
++static int ubiblock_devs;
+ 
+ /* MTD devices specification parameters */
+-static struct ubiblock_param ubiblock_param[UBIBLOCK_MAX_DEVICES] __initdata;
++static struct ubiblock_param ubiblock_param[UBIBLOCK_MAX_DEVICES];
+ 
+ struct ubiblock {
+ 	struct ubi_volume_desc *desc;
+@@ -532,6 +533,85 @@ static int ubiblock_resize(struct ubi_volume_info *vi)
+ 	return 0;
+ }
+ 
++static bool
++match_volume_desc(struct ubi_volume_info *vi, const char *name, int ubi_num, int vol_id)
++{
++	int err, len;
++	struct path path;
++	struct kstat stat;
++
++	if (ubi_num == -1) {
++		/* No ubi num, name must be a vol device path */
++		err = kern_path(name, LOOKUP_FOLLOW, &path);
++		if (err)
++			return false;
++
++		err = vfs_getattr(&path, &stat, STATX_TYPE, AT_STATX_SYNC_AS_STAT);
++		path_put(&path);
++		if (err)
++			return false;
++
++		if (!S_ISCHR(stat.mode))
++			return false;
++
++		if (vi->ubi_num != ubi_major2num(MAJOR(stat.rdev)))
++			return false;
++
++		if (vi->vol_id != MINOR(stat.rdev) - 1)
++			return false;
++
++		return true;
++	}
++
++	if (vol_id == -1) {
++		if (vi->ubi_num != ubi_num)
++			return false;
++
++		len = strnlen(name, UBI_VOL_NAME_MAX + 1);
++		if (len < 1 || vi->name_len != len)
++			return false;
++
++		if (strcmp(name, vi->name))
++			return false;
++
++		return true;
++	}
++
++	if (vi->ubi_num != ubi_num)
++		return false;
++
++	if (vi->vol_id != vol_id)
++		return false;
++
++	return true;
++}
++
++static void
++ubiblock_create_from_param(struct ubi_volume_info *vi)
++{
++	int i, ret = 0;
++	struct ubiblock_param *p;
++
++	/*
++	 * Iterate over ubiblock cmdline parameters. If a parameter matches the
++	 * newly added volume create the ubiblock device for it.
++	 */
++	for (i = 0; i < ubiblock_devs; i++) {
++		p = &ubiblock_param[i];
++
++		if (!match_volume_desc(vi, p->name, p->ubi_num, p->vol_id))
++			continue;
++
++		ret = ubiblock_create(vi);
++		if (ret) {
++			pr_err(
++			       "UBI: block: can't add '%s' volume on ubi%d_%d, err=%d\n",
++			       vi->name, p->ubi_num, p->vol_id, ret);
++		}
++		break;
++	}
++}
++
+ static int ubiblock_notify(struct notifier_block *nb,
+ 			 unsigned long notification_type, void *ns_ptr)
+ {
+@@ -539,10 +619,7 @@ static int ubiblock_notify(struct notifier_block *nb,
+ 
+ 	switch (notification_type) {
+ 	case UBI_VOLUME_ADDED:
+-		/*
+-		 * We want to enforce explicit block device creation for
+-		 * volumes, so when a volume is added we do nothing.
+-		 */
++		ubiblock_create_from_param(&nt->vi);
+ 		break;
+ 	case UBI_VOLUME_REMOVED:
+ 		ubiblock_remove(&nt->vi, true);
+@@ -568,56 +645,6 @@ static struct notifier_block ubiblock_notifier = {
+ 	.notifier_call = ubiblock_notify,
+ };
+ 
+-static struct ubi_volume_desc * __init
+-open_volume_desc(const char *name, int ubi_num, int vol_id)
+-{
+-	if (ubi_num == -1)
+-		/* No ubi num, name must be a vol device path */
+-		return ubi_open_volume_path(name, UBI_READONLY);
+-	else if (vol_id == -1)
+-		/* No vol_id, must be vol_name */
+-		return ubi_open_volume_nm(ubi_num, name, UBI_READONLY);
+-	else
+-		return ubi_open_volume(ubi_num, vol_id, UBI_READONLY);
+-}
+-
+-static void __init ubiblock_create_from_param(void)
+-{
+-	int i, ret = 0;
+-	struct ubiblock_param *p;
+-	struct ubi_volume_desc *desc;
+-	struct ubi_volume_info vi;
+-
+-	/*
+-	 * If there is an error creating one of the ubiblocks, continue on to
+-	 * create the following ubiblocks. This helps in a circumstance where
+-	 * the kernel command-line specifies multiple block devices and some
+-	 * may be broken, but we still want the working ones to come up.
+-	 */
+-	for (i = 0; i < ubiblock_devs; i++) {
+-		p = &ubiblock_param[i];
+-
+-		desc = open_volume_desc(p->name, p->ubi_num, p->vol_id);
+-		if (IS_ERR(desc)) {
+-			pr_err(
+-			       "UBI: block: can't open volume on ubi%d_%d, err=%ld\n",
+-			       p->ubi_num, p->vol_id, PTR_ERR(desc));
+-			continue;
+-		}
+-
+-		ubi_get_volume_info(desc, &vi);
+-		ubi_close_volume(desc);
+-
+-		ret = ubiblock_create(&vi);
+-		if (ret) {
+-			pr_err(
+-			       "UBI: block: can't add '%s' volume on ubi%d_%d, err=%d\n",
+-			       vi.name, p->ubi_num, p->vol_id, ret);
+-			continue;
+-		}
+-	}
+-}
+-
+ static void ubiblock_remove_all(void)
+ {
+ 	struct ubiblock *next;
+@@ -643,18 +670,7 @@ int __init ubiblock_init(void)
+ 	if (ubiblock_major < 0)
+ 		return ubiblock_major;
+ 
+-	/*
+-	 * Attach block devices from 'block=' module param.
+-	 * Even if one block device in the param list fails to come up,
+-	 * still allow the module to load and leave any others up.
+-	 */
+-	ubiblock_create_from_param();
+-
+-	/*
+-	 * Block devices are only created upon user requests, so we ignore
+-	 * existing volumes.
+-	 */
+-	ret = ubi_register_volume_notifier(&ubiblock_notifier, 1);
++	ret = ubi_register_volume_notifier(&ubiblock_notifier, 0);
+ 	if (ret)
+ 		goto err_unreg;
+ 	return 0;
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.41.0
