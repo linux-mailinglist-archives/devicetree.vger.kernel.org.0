@@ -2,81 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44CA0774EAE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 00:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B1E774EB7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 00:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjHHWxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 18:53:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35820 "EHLO
+        id S230131AbjHHW4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 18:56:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjHHWxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 18:53:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89102173F;
-        Tue,  8 Aug 2023 15:53:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B78562DFC;
-        Tue,  8 Aug 2023 22:53:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E512EC433C8;
-        Tue,  8 Aug 2023 22:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691535196;
-        bh=1gOeRTsFXmQto/w6QtWmIOTr5WO2jJS/Rnlqgow9WNM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=EePUFjZuFqQjcPPRVFStz5aFRARMwCXyHEG10Ao6tbEk8Osw71qQU0NQfUbArfVP3
-         6IK9UJeh2+tABdWa78TfEvVCvlK6W6m9qeRD1gMemE09avgyhT43sZuI+gOCOQ9UMu
-         XI90EDt5z6Rp4k+bzHbBDkYCkSYo1Q5t7ImxIKGDZlmwXZLvKVVylwthx9fQeotQkI
-         TGi2CRyqeVxv00rM0wsvfSVbj71ZSi9JItImRYDwCLzopF2Ubg05WjRoIoULx9nkit
-         m80u6o2+CBGZolkKLkb+f+4Rd9jL+uOIWmkvkzWehbWZ2c/+YF6LpqWeHpn0JmnXy0
-         IUyCibHwArkpw==
-Date:   Tue, 8 Aug 2023 15:53:15 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     <vkoul@kernel.org>
-Cc:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <michal.simek@amd.com>,
-        <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
-        <linux@armlinux.org.uk>, <dmaengine@vger.kernel.org>,
+        with ESMTP id S229943AbjHHW4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 18:56:16 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ABF1982;
+        Tue,  8 Aug 2023 15:56:14 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378MtmE6052417;
+        Tue, 8 Aug 2023 17:55:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691535348;
+        bh=gn/RlHO0agg8ZMQ2jXn9GbN0dKI57+e4J4guDc2I+a4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=raCDqDMQwtc2aZBfj+fjR7CYJzw97gNMMvJQ/27XZEFsPHTAJIr+52L/deBtei6Po
+         wgQr+OnNQKYDlRV1UK/czkH8bxCsIaGNZQSntBf6vdsU77+xGFDz64t3VkFjrJCp7i
+         jS6sXORfWX4oZgDBarJEVuIRSwRx1/OdavkE7wRA=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378Mtmw8013590
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Aug 2023 17:55:48 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Aug 2023 17:55:47 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 8 Aug 2023 17:55:47 -0500
+Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378MtfSI033110;
+        Tue, 8 Aug 2023 17:55:42 -0500
+Message-ID: <fcf19efc-2e3c-1b5d-37c2-ddd1d8b4981a@ti.com>
+Date:   Wed, 9 Aug 2023 04:25:41 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v8 00/16] CSI2RX support on J721E and AM62
+Content-Language: en-US
+To:     Jai Luthra <j-luthra@ti.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <git@amd.com>
-Subject: Re: [PATCH net-next v5 00/10] net: axienet: Introduce dmaengine
-Message-ID: <20230808155315.2e68b95c@kernel.org>
-In-Reply-To: <1691387509-2113129-1-git-send-email-radhey.shyam.pandey@amd.com>
-References: <1691387509-2113129-1-git-send-email-radhey.shyam.pandey@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Benoit Parrot <bparrot@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <nm@ti.com>,
+        <devarsht@ti.com>
+References: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Aug 2023 11:21:39 +0530 Radhey Shyam Pandey wrote:
-> The axiethernet driver can use the dmaengine framework to communicate
-> with the xilinx DMAengine driver(AXIDMA, MCDMA). The inspiration behind
-> this dmaengine adoption is to reuse the in-kernel xilinx dma engine
-> driver[1] and remove redundant dma programming sequence[2] from the
-> ethernet driver. This simplifies the ethernet driver and also makes
-> it generic to be hooked to any complaint dma IP i.e AXIDMA, MCDMA
-> without any modification.
-> 
-> The dmaengine framework was extended for metadata API support during
-> the axidma RFC[3] discussion. However, it still needs further
-> enhancements to make it well suited for ethernet usecases.
-> 
-> Comments, suggestions, thoughts to implement remaining functional
-> features are very welcome!
 
-Vinod, any preference on how this gets merged?
-Since we're already at -rc5 if the dmaengine parts look good to you 
-taking those in for 6.6 and delaying the networking bits until 6.7
-could be on the table? Possibly?
+On 31/07/23 13:59, Jai Luthra wrote:
+> Hi,
+> 
+> This series adds support for CSI2 capture on J721E. It includes some
+> fixes to the Cadence CSI2RX driver, and adds the TI CSI2RX wrapper driver.
+> 
+> This is a V8 of the below V7 series,
+> https://lore.kernel.org/all/20230314115516.667-1-vaishnav.a@ti.com/
+> 
+> Since Pratyush moved out of TI, Vaishnav & I have been working on
+> this driver, and I will be maintaining it upstream.
+> 
+> J721E CSI2RX driver can also be extended to support multi-stream
+> capture, filtering different CSI Virtual Channels (VC) or Data Types
+> (DT) to different DMA channels. A WIP series based on v7 is available
+> for reference at https://github.com/jailuthra/linux/commits/csi_multi_wip
+> 
+> I will rebase the multi-stream patches on the current series (v8) and
+> post them as RFC in the coming weeks.
+> 
+> Testing logs: https://gist.github.com/jailuthra/eaeb3af3c65b67e1bc0d5db28180131d
+> 
+
+Hi Jai,
+
+Thank you for the series,
+
+Tested the series for capture with OV5640 (LI-OV5640 module) on J721E EVM,
+Logs and captured images available here:
+https://gist.github.com/vaishnavachath/0b70bc5aaef6a3a88be4900979c788d6
+
+Tested-by: Vaishnav Achath <vaishnav.a@ti.com>
+
+Thanks and Regards,
+Vaishnav
+
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+> 
+> Range-diff from v7 -> v8: http://0x0.st/H21u.diff
+> 
+> New Patches:
+> [01/16]	   Export v4l2_subdev_link_validate_get_format() helper
+> [03-04/16] Add new compatible for TI-specific SoC intergration of the
+>            Cadence CSI2RX bridge IP
+> [14/16]    Add support for RAW8 and RAW10 formats in Cadence CSI2RX
+> 
+> For [07/16] media: cadence: csi2rx: Add get_fmt and set_fmt pad ops:
+> - Use active subdev state to use v4l2_subdev_get_fmt
+> - Propagate formats from sink to source pads
+> - Drop Laurent's R-by because of the above changes
+> 
+> For [08/16] media: cadence: csi2rx: Configure DPHY using link freq:
+> - Drop original patch in-lieu of already merged
+>   https://lore.kernel.org/linux-media/20230523085626.3295-5-jack.zhu@starfivetech.com/
+> - Add a new patch to configure DPHY using link_freq control from the
+>   source
+> 
+> For [10/16] media: cadence: csi2rx: Set the STOP bit when stopping a stream:
+> - Fix bug where intention was to wait till stream status is idle, i.e.
+>   STREAM_STATUS[31] -> 0 - but we were instead checking the opposite
+> 
+> For [15/16] media: dt-bindings: Add DT bindings for TI J721E CSI2RX driver:
+> - Drop "Device Tree Bindings" from title
+> - Rename "Wrapper" to "Shim" in title as that is the name referred in
+>   the TRM and other places
+> - Update maintainer to myself
+> - Drop items from compatible as only a single element is present
+> - Rename compatible to "ti,j721e-csi2rx-shim" to distinguish from the
+>   SoC-specific CSI2RX bridge compatible
+> 
+> For [16/16] media: ti: Add CSI2RX support for J721E:
+> - Move after dt-bindings to keep the series bisectable
+> - Rename compatible to "ti,j721e-csi2rx-shim" to distinguish from the
+>   SoC-specific CSI2RX bridge compatible
+> - Make myself the Maintainer
+> - Support RAW8 and RAW10 formats, and setting the pixel-unwrap size on
+>   SHIM (RAW10 is stored in 16-bit containers, while RAW8 in 8-bit containers)
+> - Fix enum_fmt_vid_cap() to respect CAP_IO_MC and only list pixelformats
+>   matching the mbus formats set on the subdev.
+> - Fix enum_framesizes() to stop enumerating more than a single framesize
+>   (reject non-zero fsize->index)
+> - Simplify notifier bound fucntion to use v4l2_create_fwnode_links_to_pad()
+>   and inline the video_register() method
+> - Add support for draining the DMA with an extra buffer, to get rid of
+>   stale data in the pipeline on stream stop (or when frames start
+>   getting dropped due to load)
+> - Queue all available buffers to DMAEngine in the callback, also use a
+>   separate "submitted" queue to track all buffers submitted to DMA
+> - Use video_device_pipeline_start() instead of media_pipeline_start()
+> - Drop support for VB_READ
+> - Print issues in link validation as DEBUG instead of ERROR
+> - s/async_subdev/async_connection
+> 
+> For [v7 13/13] media: dt-bindings: Convert Cadence CSI2RX binding to YAML:
+>  - Drop patch in-lieu of
+>    https://lore.kernel.org/linux-media/20230523085626.3295-2-jack.zhu@starfivetech.com/
+> 
+> ---
+> Jai Luthra (4):
+>       media: subdev: Export get_format helper for link validation
+>       media: dt-bindings: cadence-csi2rx: Add TI compatible string
+>       media: cadence: Add support for TI SoCs
+>       media: cadence: csi2rx: Support RAW8 and RAW10 formats
+> 
+> Pratyush Yadav (12):
+>       media: dt-bindings: Make sure items in data-lanes are unique
+>       media: cadence: csi2rx: Unregister v4l2 async notifier
+>       media: cadence: csi2rx: Cleanup media entity properly
+>       media: cadence: csi2rx: Add get_fmt and set_fmt pad ops
+>       media: cadence: csi2rx: Configure DPHY using link freq
+>       media: cadence: csi2rx: Soft reset the streams before starting capture
+>       media: cadence: csi2rx: Set the STOP bit when stopping a stream
+>       media: cadence: csi2rx: Fix stream data configuration
+>       media: cadence: csi2rx: Populate subdev devnode
+>       media: cadence: csi2rx: Add link validation
+>       media: dt-bindings: Add TI J721E CSI2RX
+>       media: ti: Add CSI2RX support for J721E
+> 
+>  .../devicetree/bindings/media/cdns,csi2rx.yaml     |    1 +
+>  .../bindings/media/ti,j721e-csi2rx-shim.yaml       |  100 ++
+>  .../bindings/media/video-interfaces.yaml           |    1 +
+>  MAINTAINERS                                        |    7 +
+>  drivers/media/platform/cadence/cdns-csi2rx.c       |  217 +++-
+>  drivers/media/platform/ti/Kconfig                  |   12 +
+>  drivers/media/platform/ti/Makefile                 |    1 +
+>  drivers/media/platform/ti/j721e-csi2rx/Makefile    |    2 +
+>  .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 1127 ++++++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-subdev.c              |    8 +-
+>  include/media/v4l2-subdev.h                        |   12 +
+>  11 files changed, 1478 insertions(+), 10 deletions(-)
+> ---
+> base-commit: ec89391563792edd11d138a853901bce76d11f44
+> change-id: 20230727-upstream_csi-acbeabe038d8
+> 
+> Best regards,
