@@ -2,142 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A1F7747EC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B2B97745F5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235198AbjHHTWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60374 "EHLO
+        id S231717AbjHHStk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236184AbjHHTWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:22:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA1310E9C8;
-        Tue,  8 Aug 2023 09:45:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E096624A6;
-        Tue,  8 Aug 2023 10:48:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3F57C433C8;
-        Tue,  8 Aug 2023 10:48:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691491687;
-        bh=g4Al6u/oxW9sOdVO40WZiYWYztfE/tWlGU1STUdbHRs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rsIaGXcA79+KRvi55vDwZcaycKr5Mc/tVkLjU9fnNOY0UZLyw4vPkks1ugyvNMdZv
-         srirx/T+v64qvDgrub2wSDxGiS/PYNi3uuTSQoz89p7MJQy3+2poNJRzUWKNVWRLpg
-         wQP0U7Mdof49bv8EQ0mxaWPbO00xd64PzEDXDyLSCKUw1N6Kwpdr+2B21tHFn1aTwp
-         E2oma7Au+eu76VP9dHf8q2a11dhwdmCzggYmbElo7c2WGOjSEHsYn3sM6kZdXQeANH
-         EvYNDPEwf6tVZEpntFzO6jB/RyIpiIdleHwr0hQTx3SD77GNmeoiHOgVaKiRK8405H
-         RaOFRZFBn8QcQ==
-Date:   Tue, 8 Aug 2023 11:48:02 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Md Danish Anwar <a0501179@ti.com>
-Cc:     MD Danish Anwar <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
+        with ESMTP id S233122AbjHHStX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:49:23 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C78419ACC
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:01:10 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-d05a63946e0so5856059276.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691514069; x=1692118869;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=EyDtqRMa+XeuHmfOHzoFQ2EBCRcPgUdz7VrLow00vho=;
+        b=v7+keYpeLmzS82nSRxoyllUb/p1fHZmr2sZOF363fKLTd32cMEindgpz9V7AVNU/r9
+         iUXhv1dc3yKfm3EglfrqCuAxbqL+kgcZg1GcRlfEuG4SKxIdZmMyeNvH1KwyPEuW295P
+         ANVoBed68VNwzpt78vG8RY4flCVVx+f3ynjGrtAR/OFYLIkR+DUjJn8BVFn5L6Mzzw/p
+         qfcpepXIWoTfz4TtQsN8mfnjGsmwuwIcfmiQncYvrV8mTlGbL90RnjT89FWNhczkK9Xy
+         W7F6UbmVuAfA4+e60e6xa6Xb8p5MS2vWz/E56o3fqgs4T22YGr0K+oAGsQ7Gnome5rMB
+         6QNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691514069; x=1692118869;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EyDtqRMa+XeuHmfOHzoFQ2EBCRcPgUdz7VrLow00vho=;
+        b=bSm+xX5cvYiZnexO1cuS8k81SNlD09hOzi8KS1SanxHxN1VBYgW6NSEDZ102JTfEbQ
+         pMbjLEhDa+GOXMlzLRrD+uGdmpWJXWM9cJ0mvN6R0DYDgISrj7xZuytVQ0PWpIBebvx2
+         djAN0sgPIFwE7GrzjKpVRAoKQFzIY7+AIcc9UmoOVeiDZ1fy93u6BaLKm421HvJz6XYw
+         QuDNXZrM/bkQuAIGroIC5KeCwIaxsPI9MBT1TE7bScNsrwQnjlPdn2Ha5t+77Pdq0vP6
+         mQUz7tayBOITS54kByUhW2XQ8WTfNl07of3GQL/qBpVnOemvQcHVkcmHZtKifYm/g7JX
+         mA/Q==
+X-Gm-Message-State: AOJu0YwHAanukcxM6yyN1oNsFETxtlevjqorzY6QqcY9MONALLTEiQNF
+        NbO/mXlF6HZyH50eDpcHaqn8XZjbqXjQoLfuSeP7xByVLOItFY3p
+X-Google-Smtp-Source: AGHT+IEyc7HHsMlkF2r9nll2T0yEWZZ5v0pKzIcru7d42nj6cqrIRE36KBIE7qFz1IaWZ2c38uHVZnZYbGIn7T2NF0c=
+X-Received: by 2002:a25:8d12:0:b0:d1d:514e:27c6 with SMTP id
+ n18-20020a258d12000000b00d1d514e27c6mr10881786ybl.6.1691492001963; Tue, 08
+ Aug 2023 03:53:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <bf912d5f5e74b43903a84262565f564bfe0fed7e.1691047370.git.michal.simek@amd.com>
+In-Reply-To: <bf912d5f5e74b43903a84262565f564bfe0fed7e.1691047370.git.michal.simek@amd.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 8 Aug 2023 12:52:46 +0200
+Message-ID: <CAPDyKFoQk+ETga2za3=pLdN+btKsy6tx70o3wsZGZFQ0XWmEVg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: arasan,sdci: Add power-domains and
+ iommus properties
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com,
+        Adrian Hunter <adrian.hunter@intel.com>,
         Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, srk@ti.com,
-        nm@ti.com
-Subject: Re: [PATCH] dt-bindings: remoteproc: pru: Add Interrupt property
-Message-ID: <20230808-unwomanly-generic-67d20f0e51cd@spud>
-References: <20230807110836.2612730-1-danishanwar@ti.com>
- <20230807-euphemism-trailing-ef4130dc7437@spud>
- <910a4a98-712a-5517-5a5b-ffb962f83463@ti.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="RzfM45YTf9+4RvqO"
-Content-Disposition: inline
-In-Reply-To: <910a4a98-712a-5517-5a5b-ffb962f83463@ti.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 3 Aug 2023 at 09:23, Michal Simek <michal.simek@amd.com> wrote:
+>
+> ZynqMP SDHCI Arasan IP core has own power domain and also iommu ID that's
+> why describe optional power-domains and iommus properties.
+>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
---RzfM45YTf9+4RvqO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied for next, thanks!
 
-On Tue, Aug 08, 2023 at 03:14:31PM +0530, Md Danish Anwar wrote:
-> Hi Conor,
->=20
-> On 07/08/23 8:09 pm, Conor Dooley wrote:
-> > On Mon, Aug 07, 2023 at 04:38:36PM +0530, MD Danish Anwar wrote:
-> >> Add interrupts and interrupt-names protperties for PRU and RTU cores.
-> >>
-> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> >> ---
-> >>  .../bindings/remoteproc/ti,pru-rproc.yaml     | 22 +++++++++++++++++++
-> >>  1 file changed, 22 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc=
-=2Eyaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-> >> index cd55d80137f7..6970316943bb 100644
-> >> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-> >> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-> >> @@ -66,6 +66,16 @@ properties:
-> >>        Should contain the name of the default firmware image
-> >>        file located on the firmware search path.
-> >> =20
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +    description:
-> >> +      Interrupt specifiers enable the virtio/rpmsg communication betw=
-een MPU
-> >> +      and the PRU/RTU cores.
-> >> +
-> >> +  interrupt-names:
-> >> +    items:
-> >> +      - const: vring
-> >> +
-> >>  if:
-> >>    properties:
-> >>      compatible:
-> >> @@ -171,6 +181,9 @@ examples:
-> >>                <0x22400 0x100>;
-> >>          reg-names =3D "iram", "control", "debug";
-> >>          firmware-name =3D "am65x-pru0_0-fw";
-> >> +        interrupt-parent =3D <&icssg0_intc>;
-> >> +        interrupts =3D <16 2 2>;
-> >> +        interrupt-names =3D "vring";
-> >>        };
-> >=20
-> > These examples would probably be more helpful if they used the
-> > appropriate defines, no?
-> >=20
->=20
-> PRUSS Interrupt controller doesn't have any appropriate defines. This doe=
-sn't
-> use GIC so defines from arm-gic.h can not be used here. These are specifi=
-c to
-> PRUSS INTC.
+Kind regards
+Uffe
 
-I was deliberately vague in case the gic stuff applied too, but my main
-question was about the standard defines used for interrupt types.
 
-> I think these example are OK. Please let me know if this is OK to you.
-
---RzfM45YTf9+4RvqO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIdYgAKCRB4tDGHoIJi
-0sfFAQDUGTaUH2VxL1ST+sf18hKE5yCqpFEUkOJu+bgGPLkmuQD/XAUCs4HrdF2v
-1lu3PdJ0QSaQoDb36Qrpa6k3hHGvUQg=
-=l++a
------END PGP SIGNATURE-----
-
---RzfM45YTf9+4RvqO--
+> ---
+>
+>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> index a6c19a6cc99e..3e99801f77d2 100644
+> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> @@ -160,6 +160,12 @@ properties:
+>      description:
+>        The MIO bank number in which the command and data lines are configured.
+>
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  dependencies:
+>    '#clock-cells': [ clock-output-names ]
+>
+> --
+> 2.36.1
+>
