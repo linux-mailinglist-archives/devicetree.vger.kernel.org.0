@@ -2,92 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40B53773C2E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47FB5774323
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbjHHQBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:01:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34366 "EHLO
+        id S233409AbjHHR51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:57:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231472AbjHHP7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 11:59:35 -0400
-Received: from TWMBX03.aspeed.com (mail.aspeedtech.com [211.20.114.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0007661B1;
-        Tue,  8 Aug 2023 08:44:32 -0700 (PDT)
-Received: from TWMBX02.aspeed.com (192.168.0.24) by TWMBX03.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Aug
- 2023 23:42:45 +0800
-Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 8 Aug 2023 23:42:45 +0800
-From:   Dylan Hung <dylan_hung@aspeedtech.com>
-To:     <jk@codeconstruct.com.au>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <p.zabel@pengutronix.de>, <linux-i3c@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>, <kobedylan@gmail.com>
-Subject: [PATCH 3/3] i3c: ast2600: Add reset deassertion for global registers
-Date:   Tue, 8 Aug 2023 23:42:41 +0800
-Message-ID: <20230808154241.749641-4-dylan_hung@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230808154241.749641-1-dylan_hung@aspeedtech.com>
-References: <20230808154241.749641-1-dylan_hung@aspeedtech.com>
+        with ESMTP id S235203AbjHHR5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:57:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8102CAD1A;
+        Tue,  8 Aug 2023 09:25:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1E4F1623EB;
+        Tue,  8 Aug 2023 04:36:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03487C433C7;
+        Tue,  8 Aug 2023 04:36:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1691469369;
+        bh=IMgWwZ4rdhaoLfJ9wmfKo2+cng5qpJxVkmNuR2ToNbo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kUgys+Xtx3ItPxfY68wwjolIAgO72NEQe5mB342f1M7WPec873Dz3SkSCdrTMW5Hb
+         MPBPYP7vT0yTHLn0VvtFPOts++DefKyFeZboOtwQG/pP4VK3t95O7NvRHYowDE7TmT
+         8mBE4GJFdU36umK//qMGo3+liGHlEEk86BIneeEo=
+Date:   Tue, 8 Aug 2023 06:36:06 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] mux: mmio: use reg property when parent device is not
+ a syscon
+Message-ID: <2023080854-crummy-armored-420c@gregkh>
+References: <20230605154153.24025-1-afd@ti.com>
+ <b16568ec-0428-981b-01ca-571cc5d52704@ti.com>
+ <20230807182645.ct2uvkb3s2tuplon@improve>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_FAIL,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230807182645.ct2uvkb3s2tuplon@improve>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing reset deassertion of the I3C global control registers.
+On Mon, Aug 07, 2023 at 01:26:45PM -0500, Nishanth Menon wrote:
+> On 15:12-20230713, Andrew Davis wrote:
+> > On 6/5/23 10:41 AM, Andrew Davis wrote:
+> > > The DT binding for the reg-mux compatible states it can be used when the
+> > > "parent device of mux controller is not syscon device". It also allows
+> > > for a reg property. When the reg property is provided, use that to
+> > > identify the address space for this mux. If not provided fallback to
+> > > using the parent device as a regmap provider.
+> > > 
+> > > Signed-off-by: Andrew Davis <afd@ti.com>
+> > > ---
+> > 
+> > Ping, still needed and applies cleanly on v6.5-rc1.
+> > 
+> > Andrew
+> > 
+> > > 
+> > > Changes from v1:
+> > >   - Flip logic as suggested in v1[0]
+> > > 
+> > > [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+> > > 
+> > >   drivers/mux/mmio.c | 9 ++++++---
+> > >   1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> 
+> Reviewed-by: Nishanth Menon <nm@ti.com>
+> 
+> Greg: looks like you were missed in CC
+> 
+> Peter/Greg: Any chance of Looking at this? This is a basic corner stone
+> for us to clean up much of the mess we have created up in the device
+> tree syscon nodes and trying to transition those into simple-bus.
+> 
+> > > 
+> > > diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+> > > index 44a7a0e885b8d..2c9e4df9d6f2c 100644
+> > > --- a/drivers/mux/mmio.c
+> > > +++ b/drivers/mux/mmio.c
+> > > @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
+> > >   	int ret;
+> > >   	int i;
+> > > -	if (of_device_is_compatible(np, "mmio-mux"))
+> > > +	if (of_device_is_compatible(np, "mmio-mux")) {
+> > >   		regmap = syscon_node_to_regmap(np->parent);
+> > > -	else
+> > > -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+> > > +	} else {
+> > > +		regmap = device_node_to_regmap(np);
+> > > +		if (IS_ERR(regmap))
+> > > +			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+> > > +	}
+> > >   	if (IS_ERR(regmap)) {
+> > >   		ret = PTR_ERR(regmap);
+> > >   		dev_err(dev, "failed to get regmap: %d\n", ret);
 
-Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
----
- drivers/i3c/master/ast2600-i3c-master.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/i3c/master/ast2600-i3c-master.c b/drivers/i3c/master/ast2600-i3c-master.c
-index 09ed19d489e9..5d9d060134e0 100644
---- a/drivers/i3c/master/ast2600-i3c-master.c
-+++ b/drivers/i3c/master/ast2600-i3c-master.c
-@@ -11,6 +11,7 @@
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-+#include <linux/reset.h>
- 
- #include "dw-i3c-master.h"
- 
-@@ -128,6 +129,7 @@ static int ast2600_i3c_probe(struct platform_device *pdev)
- 	struct device_node *np = pdev->dev.of_node;
- 	struct of_phandle_args gspec;
- 	struct ast2600_i3c *i3c;
-+	struct reset_control *rst;
- 	int rc;
- 
- 	i3c = devm_kzalloc(&pdev->dev, sizeof(*i3c), GFP_KERNEL);
-@@ -156,6 +158,13 @@ static int ast2600_i3c_probe(struct platform_device *pdev)
- 		dev_err(&pdev->dev, "invalid sda-pullup value %d\n",
- 			i3c->sda_pullup);
- 
-+	rst = devm_reset_control_get_shared(&pdev->dev, "global_rst");
-+	if (IS_ERR(rst)) {
-+		dev_err(&pdev->dev, "missing of invalid reset entry");
-+		return PTR_ERR(rst);
-+	}
-+	reset_control_deassert(rst);
-+
- 	i3c->dw.platform_ops = &ast2600_i3c_ops;
- 	i3c->dw.ibi_capable = true;
- 	return dw_i3c_common_probe(&i3c->dw, pdev);
--- 
-2.25.1
+I'm not the maintainer here, it's up to Peter.
 
