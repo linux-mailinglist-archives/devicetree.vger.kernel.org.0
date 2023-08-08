@@ -2,86 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B3A877446D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84660774813
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234992AbjHHSSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:18:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42844 "EHLO
+        id S234179AbjHHT0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234993AbjHHSRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:17:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4151776B8
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:25:25 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qTQSP-0003Jg-Kc; Tue, 08 Aug 2023 19:25:21 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qTQSO-0007Eh-NV; Tue, 08 Aug 2023 19:25:20 +0200
-Date:   Tue, 8 Aug 2023 19:25:20 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: arm: fsl: fix DEBIX binding
-Message-ID: <20230808172520.5nboxnch4yzqyu3z@pengutronix.de>
-References: <20230807171513.156907-1-m.felsch@pengutronix.de>
- <20230807171513.156907-2-m.felsch@pengutronix.de>
- <9a86a125-2eda-721b-8b17-c1cfe144adc9@linaro.org>
+        with ESMTP id S234188AbjHHTZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:25:55 -0400
+Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8F315C77;
+        Tue,  8 Aug 2023 11:50:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=4/GzwtgyO3yL3knqSnKkQgDt/ZjWhgYmwDUnxSNeivU=; b=ZTaAl906VvA1CO04UyyOSNt18z
+        +3IsbiVKTQid2ofLWwAJuV39pbuhwcrgBohShnT12TDmSKX2N398Smb0yQ6vYmLiMSQI9SmWE0ST8
+        /HLOX7gO106Vq7WzEURe/5tYXFhRWYMXi3GeTQv6ElTJ6RsBP+fmFhTpgWlGtr9iGHGDvZ7KtytVB
+        HEV8tzkFgXo8CCAK+ekTHO020J4KkSVQw2RNgKj8vzxYDdcwvl2MN9QFi0hEzMMIi9m1102JahkG8
+        glkP/uOPnrvH2Sdkg/PqFXfhl4KSnLpr0mDWeN71gIBtcfe2J8lxXA548ZuypvtcoOdL130E/jCjC
+        NTlYDDug==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42308)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.96)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1qTRar-0001Vc-0w;
+        Tue, 08 Aug 2023 19:38:09 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1qTRao-0008LX-FJ; Tue, 08 Aug 2023 19:38:06 +0100
+Date:   Tue, 8 Aug 2023 19:38:06 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Andrew Halaney <ahalaney@redhat.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
+Message-ID: <ZNKLjuxnR2+V3g1D@shell.armlinux.org.uk>
+References: <20230807193102.6374-1-brgl@bgdev.pl>
+ <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
+ <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
+ <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
+ <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
+ <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
+ <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
+ <xfme5pgj4eqlgao3vmyg6vazaqk6qz2wq6kitgujtorouogjty@cklyof3xz2zm>
+ <d021b8ae-a6a3-4697-a683-c9bd45e6c74b@lunn.ch>
+ <CAMRc=MegMdB0LZNRRrCfqFGZQWMFdBhd8o+_NBxwLk0xS99M_w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9a86a125-2eda-721b-8b17-c1cfe144adc9@linaro.org>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAMRc=MegMdB0LZNRRrCfqFGZQWMFdBhd8o+_NBxwLk0xS99M_w@mail.gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-08-08, Krzysztof Kozlowski wrote:
-> On 07/08/2023 19:15, Marco Felsch wrote:
-> > The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
-> > corresponding bindings by adding an own entry for it. Mark
-> > polyhex,imx8mp-debix as deprecated but keep it within the dts file since
+On Tue, Aug 08, 2023 at 08:26:22PM +0200, Bartosz Golaszewski wrote:
+> When I say "device unbind", I don't just mean manual unbinding using
+> sysfs. I mean any code path (rmmod, unplugging the USB, etc.) that
+> leads to the device being detached from its driver. This is a
+> perfectly normal situation and should work correctly.
 > 
-> The deprecation did not happen anymore.
+> I won't be fixing it for this series but may end up looking into
+> establishing some kind of device links between MACs and their "remote"
+> PHYs that would allow to safely unbind them.
 
-Damn, you're right. I will fix this thanks.
+I don't think you're the first to suggest that!
 
-> > we already have a user for it [1].
-> > 
-> > [1] https://elixir.bootlin.com/barebox/v2023.07.1/source/arch/arm/ \
-> >     boards/polyhex-debix/board.c#L38
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> > Changelog:
-> > 
-> > v3:
-> > - drop 'deprecated' status and adapt comment instead
-> 
-> With adjustments in commit msg:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+That gets difficult - because although the PHY may be a different
+driver, the MDIO bus may be provided by the _same_ hardware as the
+ethernet MAC itself. So you end up with a circular dependency - the
+PHY device depends on the MDIO bus device (which is the ethernet MAC)
+and then you make the ethernet MAC depend on the PHY device.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
