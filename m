@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB9A774CE7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62478774A19
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236654AbjHHVVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49084 "EHLO
+        id S234653AbjHHUSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 16:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236381AbjHHVUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:20:54 -0400
+        with ESMTP id S234700AbjHHUSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:18:45 -0400
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3D23108165;
-        Tue,  8 Aug 2023 12:20:57 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3786U6qv060793;
-        Tue, 8 Aug 2023 01:30:06 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 41ADA59B3;
+        Tue,  8 Aug 2023 12:23:09 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3786Wk7Z062958;
+        Tue, 8 Aug 2023 01:32:46 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691476206;
-        bh=wF+Od39Rcqfp149eexmbTsgWrXqjZlSJnDdokcfMF7I=;
+        s=ti-com-17Q1; t=1691476366;
+        bh=m/z+ZEorE7Nb1tbGH4kNDp3mTcCQejFrJD/Y819NZo4=;
         h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=X3gyPlK6E9S6XUh4WgWqDdXrCLtAwiUggSNP0Axbr5VXHMmo2+Bi0kPPX2+5E6Ho2
-         eNFXPlWD2Y5vpStcikSjQDnxjpvBRz8j0RRrH6Nx7p8FpdF8JlZYnpILyKbFuaNsay
-         18jUEXdmfqOaw7jNpEOqNQ7FhTC403t4lnMEQWQc=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3786U43S009248
+        b=VdhOLCEYcaI1faJJZCkJxVg5Zr21yp0BB6AhS/mt61R/IK5fYk59ewVEAzaaNsBoM
+         GW+W+FCKr4LqUgtvMMvQXNkhOkHNjnouCFFU7Rz4GH4hySjag/xbX812oIA0jKYVck
+         3Ptw5d6S8WxaZ5gJVtRfx8wyENS7rsgEk6t/nDlI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3786WjGo120625
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 01:30:06 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 8 Aug 2023 01:32:45 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 01:30:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 01:32:45 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 01:30:06 -0500
-Received: from [172.24.227.112] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3786U1gp038423;
-        Tue, 8 Aug 2023 01:30:01 -0500
-Message-ID: <bf28aa72-532d-630e-8d13-8771c3c120ed@ti.com>
-Date:   Tue, 8 Aug 2023 12:00:00 +0530
+ Frontend Transport; Tue, 8 Aug 2023 01:32:45 -0500
+Received: from [172.24.227.112] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3786WduE080841;
+        Tue, 8 Aug 2023 01:32:40 -0500
+Message-ID: <958bd2bc-4f82-fe42-264d-01a6bcb65990@ti.com>
+Date:   Tue, 8 Aug 2023 12:02:38 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v4 3/6] arm64: dts: ti: k3-am62x-sk-common: Add HDMI
+Subject: Re: [PATCH v4 5/6] arm64: dts: ti: k3-am625-beagleplay: Add HDMI
  support
 Content-Language: en-US
 To:     Aradhya Bhatia <a-bhatia1@ti.com>, Nishanth Menon <nm@ti.com>,
@@ -63,9 +63,9 @@ CC:     Devicetree List <devicetree@vger.kernel.org>,
         Rahul T R <r-ravikumar@ti.com>,
         Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
 References: <20230807153307.22174-1-a-bhatia1@ti.com>
- <20230807153307.22174-4-a-bhatia1@ti.com>
+ <20230807153307.22174-6-a-bhatia1@ti.com>
 From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <20230807153307.22174-4-a-bhatia1@ti.com>
+In-Reply-To: <20230807153307.22174-6-a-bhatia1@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
@@ -82,51 +82,87 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 07/08/23 21:03, Aradhya Bhatia wrote:
+> From: Nishanth Menon <nm@ti.com>
+> 
 > The DSS outputs DPI signals via its second video port (VP2). The DPI
 > output from DSS is 24 bits (RGB888) and is forwarded to an HDMI
-> transmitter (SIL9022) on the board.
+> transmitter (ITE-IT66121) on the BeaglePlay platform. For audio output,
+> BeaglePlay uses mcasp1.
 > 
-> Add pinmux info for DSS DPI output.
+> Add pinmux info for DSS DPI signals.
 > 
-> Add DT nodes for SIL9022 HDMI transmitter (TX), and the HDMI connector
-> on the AM625 SK and AM62-LP SK platforms.
+> Further, add support for HDMI audio and video output.
 > 
-> Additionally, connect the output of DSS (VP2) with input of the HDMI TX,
-> and the output of HDMI TX to the input of the HDMI connector.
-> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> [a-bhatia1: Edit sound node properties and HDMI node and label names]
 > Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
 > ---
->   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 93 +++++++++++++++++++
->   1 file changed, 93 insertions(+)
+>   .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 158 ++++++++++++++++++
+>   1 file changed, 158 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> index 540ed8a0d7fb..edbe5295373b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> @@ -114,6 +114,17 @@ sound_master: simple-audio-card,codec {
->   			clocks = <&tlv320_mclk>;
->   		};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> index e07ddff22e07..582410be9570 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> @@ -192,6 +192,34 @@ usr: button-usr {
+>   
 >   	};
-> +
+>   
 > +	hdmi0: connector-hdmi {
 > +		compatible = "hdmi-connector";
 > +		label = "hdmi";
 > +		type = "a";
 > +		port {
 > +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&sii9022_out>;
+> +				remote-endpoint = <&it66121_out>;
 > +			};
 > +		};
 > +	};
->   };
->   
->   &main_pmx0 {
-> @@ -226,6 +237,39 @@ AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25/J17) GPMC0_WEN.MCASP1_AXR0 */
->   			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23/K20) GPMC0_ADVN_ALE.MCASP1_AXR2 */
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "it66121 HDMI";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,bitclock-master = <&hdmi_dailink_master>;
+> +		simple-audio-card,frame-master = <&hdmi_dailink_master>;
+> +
+> +		hdmi_dailink_master: simple-audio-card,cpu {
+> +			sound-dai = <&mcasp1>;
+> +			system-clock-direction-out;
+> +		};
+> +
+> +		simple-audio-card,codec {
+> +			sound-dai = <&it66121>;
+> +		};
+> +	};
+> +
+>   	/* Workaround for errata i2329 - just use mdio bitbang */
+>   	mdio0: mdio {
+>   		compatible = "virtual,mdio-gpio";
+> @@ -422,6 +450,57 @@ pmic_irq_pins_default: pmic-irq-default-pins {
+>   			AM62X_IOPAD(0x01f4, PIN_INPUT_PULLUP, 0) /* (D16) EXTINTn */
 >   		>;
 >   	};
 > +
-> +	main_dss0_pins_default: main-dss0-default-pins {
+> +	hdmi_gpio_pins_default: hdmi-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x0094, PIN_INPUT_PULLUP | PIN_DEBOUNCE_CONF6, 7) /* (N20) GPMC0_BE1n.GPIO0_36 */
+> +			AM62X_IOPAD(0x0054, PIN_OUTPUT_PULLUP, 7) /* (P21) GPMC0_AD6.GPIO0_21 */
+> +		>;
+> +	};
+> +
+> +	mcasp_hdmi_pins_default: mcasp-hdmi-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x0090, PIN_INPUT, 2) /* (M24) GPMC0_BE0n_CLE.MCASP1_ACLKX */
+> +			AM62X_IOPAD(0x0098, PIN_INPUT, 2) /* (U23) GPMC0_WAIT0.MCASP1_AFSX */
+> +			AM62X_IOPAD(0x008c, PIN_OUTPUT, 2) /* (L25) GPMC0_WEn.MCASP1_AXR0 */
+> +			AM62X_IOPAD(0x0088, PIN_INPUT, 2) /* (L24) GPMC0_OEn_REn.MCASP1_AXR1 */
+> +			AM62X_IOPAD(0x0084, PIN_INPUT, 2) /* (L23) GPMC0_ADVn_ALE.MCASP1_AXR2 */
+> +			AM62X_IOPAD(0x007c, PIN_INPUT, 2) /* (P25) GPMC0_CLK.MCASP1_AXR3 */
+> +		>;
+> +	};
+> +
+> +	dss0_pins_default: dss0-default-pins {
 > +		pinctrl-single,pins = <
 > +			AM62X_IOPAD(0x0100, PIN_OUTPUT, 0) /* (AC25) VOUT0_VSYNC */
 > +			AM62X_IOPAD(0x00f8, PIN_OUTPUT, 0) /* (AB24) VOUT0_HSYNC */
@@ -156,36 +192,35 @@ On 07/08/23 21:03, Aradhya Bhatia wrote:
 > +			AM62X_IOPAD(0x0070, PIN_OUTPUT, 1) /* (T24) GPMC0_AD13.VOUT0_DATA21 */
 > +			AM62X_IOPAD(0x0074, PIN_OUTPUT, 1) /* (U25) GPMC0_AD14.VOUT0_DATA22 */
 > +			AM62X_IOPAD(0x0078, PIN_OUTPUT, 1) /* (U24) GPMC0_AD15.VOUT0_DATA23 */
-
-Rest of the pinmux in the file uses padding of 3. Here you are using
-padding of 4. Consistency would be good.
-
-
 > +		>;
 > +	};
 >   };
 >   
 >   &mcu_pmx0 {
-> @@ -313,6 +357,38 @@ tlv320aic3106: audio-codec@1b {
->   		IOVDD-supply = <&vcc_3v3_sys>;
->   		DRVDD-supply = <&vcc_3v3_sys>;
->   	};
+> @@ -670,6 +749,46 @@ &main_i2c2 {
+>   	pinctrl-0 = <&i2c2_1v8_pins_default>;
+>   	clock-frequency = <100000>;
+>   	status = "okay";
 > +
-> +	sii9022: bridge-hdmi@3b {
-> +		compatible = "sil,sii9022";
-> +		reg = <0x3b>;
+> +	it66121: bridge-hdmi@4c {
+> +		compatible = "ite,it66121";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hdmi_gpio_pins_default>;
+> +		reg = <0x4c>;
 > +
-
-Line break not needed.
-
-> +		interrupt-parent = <&exp1>;
-> +		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-> +
-
-Same.
-
 > +		#sound-dai-cells = <0>;
-> +		sil,i2s-data-lanes = < 0 >;
+> +
+> +		interrupt-parent = <&main_gpio0>;
+> +		interrupts = <36 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		vcn33-supply = <&vdd_3v3>;
+> +		vcn18-supply = <&buck2_reg>;
+> +		vrf12-supply = <&buck3_reg>;
+> +
+
+Fix unnecessary line breaks in this node.
+
+> +		reset-gpios = <&main_gpio0 21 GPIO_ACTIVE_LOW>;
 > +
 > +		ports {
 > +			#address-cells = <1>;
@@ -194,7 +229,8 @@ Same.
 > +			port@0 {
 > +				reg = <0>;
 > +
-> +				sii9022_in: endpoint {
+> +				it66121_in: endpoint {
+> +					bus-width = <24>;
 > +					remote-endpoint = <&dpi1_out>;
 > +				};
 > +			};
@@ -202,7 +238,7 @@ Same.
 > +			port@1 {
 > +				reg = <1>;
 > +
-> +				sii9022_out: endpoint {
+> +				it66121_out: endpoint {
 > +					remote-endpoint = <&hdmi_connector_in>;
 > +				};
 > +			};
@@ -210,16 +246,16 @@ Same.
 > +	};
 >   };
 >   
->   &sdhci0 {
-> @@ -410,3 +486,20 @@ &mcasp1 {
->   	tx-num-evt = <32>;
->   	rx-num-evt = <32>;
+>   &main_i2c3 {
+> @@ -756,3 +875,42 @@ &main_uart6 {
+>   	pinctrl-0 = <&wifi_debug_uart_pins_default>;
+>   	status = "okay";
 >   };
 > +
 > +&dss {
 > +	status = "okay";
 > +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_dss0_pins_default>;
+> +	pinctrl-0 = <&dss0_pins_default>;
 > +};
 > +
 > +&dss_ports {
@@ -228,7 +264,32 @@ Same.
 > +		reg = <1>;
 > +
 > +		dpi1_out: endpoint {
-> +			remote-endpoint = <&sii9022_in>;
+> +			remote-endpoint = <&it66121_in>;
 > +		};
 > +	};
+> +};
+> +
+> +&mcasp1 {
+> +	status = "okay";
+> +	#sound-dai-cells = <0>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcasp_hdmi_pins_default>;
+> +
+> +	auxclk-fs-ratio = <2177>;
+> +
+> +	op-mode = <0>;          /* MCASP_IIS_MODE */
+> +	tdm-slots = <2>;
+> +
+
+Fix unnecessary line breaks in this node.
+
+> +	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+> +	       1 0 0 0
+> +	       0 0 0 0
+> +	       0 0 0 0
+> +	       0 0 0 0
+> +	>;
+> +	tx-num-evt = <32>;
+> +	rx-num-evt = <32>;
 > +};
