@@ -2,133 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A7F774818
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2522377474F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:14:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233245AbjHHT0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
+        id S235391AbjHHTOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234239AbjHHTZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:25:55 -0400
-Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE70B80BD;
-        Tue,  8 Aug 2023 11:50:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=TONQWGBEefR53xCwNIMqBbfwJkoHzB+BW3pjEzAo/Vk=; b=Q5Mw52YTP2WyavImCS6k7amT0W
-        ruy8Pus8OBffBbQ8/CgYtJD0ZV11Fj+/f4kIj3dKJkbRYTU2+XNBkmlbUJmWQ8UJpidfHO1P9AC8v
-        gv5TeBrL2JBmgbXN2KEmHy9mBzxoLrL9hxcz/aaKIIjIP0flNOIAupgt4w8NvxYuKAAdk76MGO5G0
-        TIWAYziNRfQj38Uuf8JG0FY8Hiyo6cWhw9npHZsgtejfaoa4NresaJyvrzUoyLv+yky01EeywoZDN
-        NDEFGKezpRxCpRW0EnhoXrRmiLUw6aeDmtogJQVCuiy8cDlMAwfqZvW0/YLBKLfeDwJMeSgkS0FEk
-        3P5szoTw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51866)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.96)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1qTMjH-0007zl-33;
-        Tue, 08 Aug 2023 14:26:31 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1qTMjF-00088c-F4; Tue, 08 Aug 2023 14:26:29 +0100
-Date:   Tue, 8 Aug 2023 14:26:29 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S234166AbjHHTNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:13:46 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51FC36008;
+        Tue,  8 Aug 2023 09:36:26 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378DZ6im081673;
+        Tue, 8 Aug 2023 08:35:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691501706;
+        bh=KuRrfwlrYN7ck4e9lXUh/hH/ruzG2lPDTZNjQtzdsy8=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=Th5ZbRLJq9LxPLjJnRxTYXGok3Cv2EiTlHuVU+HOZTCXKzPew0bIp2pxtkgXz5OeE
+         eS3c7PBntXZ5OflBZMQoln1awASBYvCmSA5r6SV+DcbYRG2BrExa2H/16GqB3GjuS6
+         hL84m34fMWbu3eRBZws91oRtfem8Pw4YrFdSsts0=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378DZ6Sp113437
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Aug 2023 08:35:06 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Aug 2023 08:35:06 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 8 Aug 2023 08:35:06 -0500
+Received: from fllv0039.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378DZ4Ps053163;
+        Tue, 8 Aug 2023 08:35:05 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-Message-ID: <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
-References: <20230807193102.6374-1-brgl@bgdev.pl>
- <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
- <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH v2 02/13] arm64: dts: ti: k3-j7200: Enable SDHCI nodes at the board level
+Date:   Tue, 8 Aug 2023 08:34:46 -0500
+Message-ID: <20230808133457.25060-3-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230808133457.25060-1-afd@ti.com>
+References: <20230808133457.25060-1-afd@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 10:13:09AM +0200, Bartosz Golaszewski wrote:
-> Ok so upon some further investigation, the actual culprit is in stmmac
-> platform code - it always tries to register an MDIO bus - independent
-> of whether there is an actual mdio child node - unless the MAC is
-> marked explicitly as having a fixed-link.
-> 
-> When I fixed that, MAC1's probe is correctly deferred until MAC0 has
-> created the MDIO bus.
-> 
-> Even so, isn't it useful to actually reference the shared MDIO bus in some way?
-> 
-> If the schematics look something like this:
-> 
-> --------           -------
-> | MAC0 |--MDIO-----| PHY |
-> -------- |     |   -------
->          |     |
-> -------- |     |   -------
-> | MAC1 |--     ----| PHY |
-> --------           -------
-> 
-> Then it would make sense to model it on the device tree?
+SDHCI nodes defined in the top-level J7200 SoC dtsi files are incomplete
+and will not be functional unless they are extended.
 
-So I think what you're saying is that MAC0 and MAC1's have MDIO bus
-masters, and the hardware designer decided to tie both together to
-a single set of clock and data lines, which then go to two PHYs.
+As the attached SD/eMMC is only known about at the board integration level,
+these nodes should only be enabled when provided with this information.
 
-In that case, I would strongly advise only registering one MDIO bus,
-and avoid registering the second one - thereby preventing any issues
-caused by both MDIO bus masters trying to talk at the same time.
+Disable the SDHCI nodes in the dtsi files and only enable the ones that
+are actually pinned out on a given board.
 
-The PHYs should be populated in firmware on just one of the buses.
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 2 ++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi             | 2 ++
+ 2 files changed, 4 insertions(+)
 
-You will also need to ensure that whatever registers the bus does
-make sure that the clocks necessary for communicating on the bus
-are under control of the MDIO bus code and not the ethernet MAC
-code. We've run into problems in the past where this has not been
-the case, and it means - taking your example above - that when MAC1
-wants to talk to its PHY, if MAC0 isn't alive it can't.
-
-So just be aware of the clocking situation and make sure that your
-MDIO bus code is managing the clocks necessary for the MDIO bus
-master to work.
-
-In regard to sharing of the MDIO bus signals between two bus
-masters, I do not believe that is permissible - there's no
-collision detection in hardware like there is on I²C. So
-having two MDIO bus masters talking at the same time would
-end up corrupting the MDC (clock) and MDIO (data) signals if
-both were active at the same time.
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+index 92a5414911729..dee9056f56051 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+@@ -326,6 +326,7 @@ exp3: gpio@20 {
+ 
+ &main_sdhci0 {
+ 	/* eMMC */
++	status = "okay";
+ 	non-removable;
+ 	ti,driver-strength-ohm = <50>;
+ 	disable-wp;
+@@ -333,6 +334,7 @@ &main_sdhci0 {
+ 
+ &main_sdhci1 {
+ 	/* SD card */
++	status = "okay";
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	pinctrl-names = "default";
+ 	vmmc-supply = <&vdd_mmc1>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index 6eaade5aeb423..5d7542ba41b93 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -654,6 +654,7 @@ main_sdhci0: mmc@4f80000 {
+ 		mmc-hs200-1_8v;
+ 		mmc-hs400-1_8v;
+ 		dma-coherent;
++		status = "disabled";
+ 	};
+ 
+ 	main_sdhci1: mmc@4fb0000 {
+@@ -677,6 +678,7 @@ main_sdhci1: mmc@4fb0000 {
+ 		ti,clkbuf-sel = <0x7>;
+ 		ti,trm-icp = <0x8>;
+ 		dma-coherent;
++		status = "disabled";
+ 	};
+ 
+ 	serdes_wiz0: wiz@5060000 {
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.39.2
+
