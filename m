@@ -2,54 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1371F77419E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8583774228
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234535AbjHHRZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36648 "EHLO
+        id S234729AbjHHRf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234314AbjHHRZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:25:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8722025F;
-        Tue,  8 Aug 2023 09:10:55 -0700 (PDT)
+        with ESMTP id S234752AbjHHRff (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:35:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206B397D61;
+        Tue,  8 Aug 2023 09:15:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CCE3C6249F;
-        Tue,  8 Aug 2023 11:21:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2BF3C433C8;
-        Tue,  8 Aug 2023 11:21:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9308D624CF;
+        Tue,  8 Aug 2023 11:23:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA69C433C7;
+        Tue,  8 Aug 2023 11:23:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691493689;
-        bh=e8JSSUEtITPhq0JIZhNW72QrDWLk51aA2iMyz+d3IoY=;
+        s=k20201202; t=1691493810;
+        bh=9dfaHkQsTbz6SSdb5UJdAoztmVevINLHKGS/qmJt5n4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gskj/JtqlzaqRkheKEHTymW3IV8FZygZbtB9F9f/IH4+WygzuZZvUqMRmdvqSQg6m
-         D929oAyHtmZcegCTsOh025NcQImy8Im5Nk0Gln9HihQfs4CpxRWQ5zSxg7L4vZyOHY
-         6BVkOlSSNHhunzy0cU3OKbkRfukOwv+ghLnPkUZz3WPQQl91JbSMKRzt2rfN5LPETy
-         JBouZp7ZI7R5xGsqRqN35gcFBrI8Pxf70UenAHsm08kM/zHrBMZzjeZR+ouednh9se
-         NL238Q8xF1G+Rrk29spdXvj9ov8H87QqM6I6+KPOzpGhhYzU4tUuunFyOEEf7JV8mS
-         XsXcbXgS5owPA==
-Date:   Tue, 8 Aug 2023 12:21:24 +0100
+        b=pq4dqwphkPXIi18+0GXMV9gShAYkiZK/k4OcBM8SwOG1LdpZXNrapZgz5t5c2/2jZ
+         8QBNNMX0AHJIw+39UDpWf+ogaSuEHSA0gCK0uZZoa0qabWv7wCx0okIcUArS5U+AV/
+         QD5lfhc4yo97Sy1uDKyThSEyQuFUb1rNGTbbj1+hLhWSnaFVz8cHEFFLssFyPh000Q
+         whMw26ZEUo1F4M1Qk4eJDgNAVejOjccjXCcw7w5c8+xyD8XarjeG5oqspA6AqVKiqu
+         Kvu+JbOvQhUpEu4qDi0MpLsS2NK6OmtNXhxfiAECuYIvjxUQe5pW9vR1N6g9qc4gcZ
+         h3BGYGhFBK8/g==
+Date:   Tue, 8 Aug 2023 12:23:23 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bruno.thomsen@gmail.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: add properties to set
- battery-related functions
-Message-ID: <20230808-capsize-deodorize-5776d3dbb192@spud>
-References: <20230802191153.952667-1-hugo@hugovil.com>
- <20230802191153.952667-2-hugo@hugovil.com>
+To:     Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-hardening@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afaerber@suse.de
+Subject: Re: [PATCH v4 3/8] dt-bindings: clock: Add Marvell PXA1908 clock
+ bindings
+Message-ID: <20230808-produce-thievish-3ce1b86a114b@spud>
+References: <20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr>
+ <2155917.irdbgypaU6@radijator>
+ <20230808-quizzical-footwork-4846d6461f74@spud>
+ <10320606.nUPlyArG6x@radijator>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3UflZlgy4WxKN7bd"
+        protocol="application/pgp-signature"; boundary="PFsVVMVhVavFC5ld"
 Content-Disposition: inline
-In-Reply-To: <20230802191153.952667-2-hugo@hugovil.com>
+In-Reply-To: <10320606.nUPlyArG6x@radijator>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -61,80 +79,46 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3UflZlgy4WxKN7bd
-Content-Type: text/plain; charset=us-ascii
+--PFsVVMVhVavFC5ld
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hey Hugo,
-
-On Wed, Aug 02, 2023 at 03:11:52PM -0400, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Tue, Aug 08, 2023 at 01:03:33PM +0200, Duje Mihanovi=C4=87 wrote:
+> On Tuesday, August 8, 2023 12:46:23 PM CEST Conor Dooley wrote:
+> > On Tue, Aug 08, 2023 at 12:41:22PM +0200, Duje Mihanovi=C4=87 wrote:
+> > > They are used by the clock driver when calling mmp_clk_init which the=
+n=20
+> uses
+> > > that as the size of a struct clk array it allocates. In retrospect, 5=
+0 for
+> > > each block may be too much as from what I can tell by reading the
+> > > mmp_register_* functions (number of clocks + 1) for each block should=
+ be
+> > > enough, anything less than that causes a null pointer dereference som=
+etime
+> > > during clock initialization.
+> >=20
+> > I think you might have misread my question, I'm not really interested in
+> > the implementation detail of the driver. If these are not used in
+> > devicetree, remove them - otherwise they are being needlessly added to
+> > the ABI.
 >=20
-> These properties can be defined in the board's device tree to set the
-> default power-on values for battery-related functions.
->=20
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  .../devicetree/bindings/rtc/rtc.yaml          | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentati=
-on/devicetree/bindings/rtc/rtc.yaml
-> index efb66df82782..0217d229e3fa 100644
-> --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
-> @@ -26,6 +26,25 @@ properties:
->        0: not chargeable
->        1: chargeable
-> =20
-> +  battery-low-detect:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    description: |
-> +      For RTC devices supporting a backup battery/supercap, this flag ca=
-n be
-> +      used to configure the battery low detection reporting function:
-> +      0: disabled
-> +      1: enabled
-> +
-> +  battery-switch-over:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    description: |
-> +      For RTC devices supporting a backup battery/supercap, this flag ca=
-n be
-> +      used to configure the battery switch over when the main voltage so=
-urce is
-> +      turned off:
-> +      0: disabled
-> +      1: enabled
+> Should I also do this in the rest of the MMP clock drivers?
 
-Why are these implemented as enums? This seems to fall into the category
-of using DT to determine software policy - why's it not sufficient to
-have boolean properties that indicate hardware support and let the software
-decide what to do with them?
+Krzysztof has just done it for all of the Samsung ones! I think it
+wouldn't be a bad idea to get rid of them else where & new additions
+should definitely be avoided.
 
-Thanks,
-Conor.
-
-> +
->    quartz-load-femtofarads:
->      description:
->        The capacitive load of the quartz(x-tal), expressed in femto
-> --=20
-> 2.30.2
->=20
-
---3UflZlgy4WxKN7bd
+--PFsVVMVhVavFC5ld
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIlNAAKCRB4tDGHoIJi
-0v7jAP9rQLVFgVSILfg0Xk+EmhkACUJNVyd8hQdU1ezTUvBj7AD/Z8+0R8K2LBP2
-8GPSlFPex9mmVsq3YSnvJeUGR3KgpA8=
-=I2L7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIlqwAKCRB4tDGHoIJi
+0hb5AQDFHqBxeGJ5Pql2GZJHm+5OVEKHSGgnIdm0oWZdW4UkmAD8CiCkuPlCdNPe
+eY4hEyptsolQmpK08Yltu36YIg7G8gE=
+=WiyK
 -----END PGP SIGNATURE-----
 
---3UflZlgy4WxKN7bd--
+--PFsVVMVhVavFC5ld--
