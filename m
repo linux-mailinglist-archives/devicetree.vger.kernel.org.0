@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A44A7774931
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB7DD7743DE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231431AbjHHTtz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Aug 2023 15:49:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37474 "EHLO
+        id S235419AbjHHSLV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Aug 2023 14:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231293AbjHHTtr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:49:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CE7250D87
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:55:10 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1qTN3D-0007uR-2P; Tue, 08 Aug 2023 15:47:07 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1qTN3C-001znZ-1p; Tue, 08 Aug 2023 15:47:06 +0200
-Received: from pza by lupine with local (Exim 4.96)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1qTN3B-000DUK-2Z;
-        Tue, 08 Aug 2023 15:47:05 +0200
-Message-ID: <68df3276e587f652c46adbe66d1343beb2753779.camel@pengutronix.de>
-Subject: Re: [PATCH V2 0/2] reset: reset-zynqmp: add support for Versal NET
- platform
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Piyush Mehta <piyush.mehta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        michal.simek@amd.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        git@amd.com
-Date:   Tue, 08 Aug 2023 15:47:05 +0200
-In-Reply-To: <20230721041119.4058430-1-piyush.mehta@amd.com>
-References: <20230721041119.4058430-1-piyush.mehta@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4-2 
+        with ESMTP id S235356AbjHHSKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:10:47 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D251110EC;
+        Tue,  8 Aug 2023 10:13:15 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 64B66809C;
+        Tue,  8 Aug 2023 22:16:33 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
+ 2023 22:16:33 +0800
+Received: from ubuntu.localdomain (161.142.156.69) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
+ 2023 22:16:23 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+CC:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 2/2] riscv: dts: starfive - Add hwrng node for JH7110 SoC
+Date:   Tue, 8 Aug 2023 22:15:58 +0800
+Message-ID: <20230808141558.296631-3-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230808141558.296631-1-jiajie.ho@starfivetech.com>
+References: <20230808141558.296631-1-jiajie.ho@starfivetech.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-Originating-IP: [161.142.156.69]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,16 +57,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fr, 2023-07-21 at 09:41 +0530, Piyush Mehta wrote:
-> Extended the ZynqMP and versal reset driver to support Versal NET platform,
-> accordingly added compatible string dt-binding for the Versal NET platform
-> specific.
-> 
-> The Versal Net  device includes more security features in the platform
-> management controller (PMC) and increases the number of CPUs in the
-> application processing unit (APU) and the real-time processing unit (RPU).
+Add hardware rng controller node for StarFive JH7110 SoC.
 
-Thank you, applied to reset/next.
+Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
+Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
+Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+---
+ arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-regards
-Philipp
+diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+index 76046ca533ce..70d107bdcc10 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+@@ -848,6 +848,16 @@ sdma: dma-controller@16008000 {
+ 			#dma-cells = <2>;
+ 		};
+ 
++		rng: rng@1600c000 {
++			compatible = "starfive,jh7110-trng";
++			reg = <0x0 0x1600C000 0x0 0x4000>;
++			clocks = <&stgcrg JH7110_STGCLK_SEC_AHB>,
++				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
++			clock-names = "hclk", "ahb";
++			resets = <&stgcrg JH7110_STGRST_SEC_AHB>;
++			interrupts = <30>;
++		};
++
+ 		gmac0: ethernet@16030000 {
+ 			compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
+ 			reg = <0x0 0x16030000 0x0 0x10000>;
+-- 
+2.34.1
+
