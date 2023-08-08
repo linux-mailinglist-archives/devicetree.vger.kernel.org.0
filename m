@@ -2,73 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A399774A00
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FDF4774A22
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233777AbjHHUKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 16:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50626 "EHLO
+        id S231494AbjHHUUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 16:20:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231521AbjHHUJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:09:54 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8200527210;
-        Tue,  8 Aug 2023 11:32:21 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378IW6xp062836;
-        Tue, 8 Aug 2023 13:32:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691519526;
-        bh=fX/sNFKyF1sSp1B1BKJh2rtMZvIKLQqD4XqA88vsY9U=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=YJaBGPe2w4HqYMMUmjND+adsatrfKGsYsQOR1riOE7Yy21KL725zdN0KbqQzQM2QL
-         L5jtbtZ79upaz2dSKVFMYGRrA05Pohx/WgOo1zsHbpggmPXPsSUJGgOucvTsX8woCq
-         /QgsVwS5Zq6s6OlQEa/uKCQAjBxOZdGNgzdvQe80=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378IW6pu083697
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 13:32:06 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 13:32:04 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 13:32:05 -0500
-Received: from [10.24.69.34] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378IW11r128141;
-        Tue, 8 Aug 2023 13:32:01 -0500
-Message-ID: <feb5d534-1e1b-2b3d-6eff-22a362df08db@ti.com>
-Date:   Wed, 9 Aug 2023 00:02:00 +0530
+        with ESMTP id S231304AbjHHUUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:20:11 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0922018C1E
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 12:25:43 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b9b9f0387dso94465351fa.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 12:25:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691522741; x=1692127541;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZWz3qQqLo6+NTjkOSd8uE4a4XgzJ8kEH78fcuevPkok=;
+        b=gg1WtVATKemk/CosT+oqfEbMRt445E08XkyuE2z2K2MPa7ahPqTMVFgmeax06Exd8y
+         hGZYkEEaP6JFDJiqM8D0UCF/oZcSKJB3EazRyWIoFBIDzyncrjU3wnuHZBFofOQZpaL4
+         GdWDmBV05Y/5f61iNYKpVHUnRSgLwcbn3JqSr8ihwoXWbwGmqy7o6n7OhpCfNG21Ly2p
+         DzRkyWtoguqSP3mF9W7iIUVcQLCC9C08BqYCmhAa2OU+kzcSLviQYoZ4IM+xjfYlftmc
+         VYT7fzljTvpyyaEY/5bwnNcNEs9DekW3Au7uMTwhwcj5Zjyc8F6vg8qKGey0f554SfoT
+         YMJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691522741; x=1692127541;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZWz3qQqLo6+NTjkOSd8uE4a4XgzJ8kEH78fcuevPkok=;
+        b=S5ldUAjzmjlPNWbTU/4ZqsA1NTgLmwOpsZIO31JD9xnYOH37MppXx/NX6wwPD19X2s
+         yHP0fid8+wxBEhNFLg68KU+XsZ00IgAtGQbEKXtv8N9psXwicK+6uucHFJt8jqarJbl1
+         x7mMs3mo5+d7vk0s4boR8fdq0EGqXFFZfqiLTN8udVAFOWG8urrS/V46mF/wxEVGdn5r
+         VfoZUZ0DRWEAxteqIA5k6U3J+HsPI8j8xYvWq/PUjZ5TeKYLFeWqbo/Apyhr41/ifdAh
+         o0/elEqvOqu5Oeb2PQnmWTxuaJPH5WNd6br6qLIIfNnYtjeIO5dnNqkkONmYQS6lPFBl
+         JV/g==
+X-Gm-Message-State: AOJu0Yw+Yfbu2KhDVo5UdxnRgB2PcPFAlc0qDK51uoHk17Rn8ql0w3kT
+        WcsjlKYRgiSRkWCc7XfzMs+uOg==
+X-Google-Smtp-Source: AGHT+IHOpky/qe6Tx3XP5zbsSQMRA2DWMpyV8S0K8pPuXyFNWfzUl6Rsd3cg9LmpHVQUe+/RMbc84g==
+X-Received: by 2002:a2e:8893:0:b0:2b6:a5df:c7fb with SMTP id k19-20020a2e8893000000b002b6a5dfc7fbmr333200lji.26.1691522741098;
+        Tue, 08 Aug 2023 12:25:41 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id o21-20020a2e9455000000b002b9bf5b071bsm2404162ljh.20.2023.08.08.12.25.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 12:25:40 -0700 (PDT)
+Message-ID: <595198d4-eb60-4307-bfde-4e032ce7988c@linaro.org>
+Date:   Tue, 8 Aug 2023 21:25:39 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-j784s4-main: Add bootph-pre-ram
- property for SPL nodes
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/8] arm64: dts: qcom: sa8775p: add a node for the
+ second serdes PHY
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>,
-        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>,
-        Tom Rini <trini@konsulko.com>
-References: <20230807185645.128751-1-a-nandan@ti.com>
- <20230807185645.128751-2-a-nandan@ti.com>
- <20230807190739.a33f5piskapfphxh@blatantly>
-From:   Apurva Nandan <a-nandan@ti.com>
-In-Reply-To: <20230807190739.a33f5piskapfphxh@blatantly>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andrew Halaney <ahalaney@redhat.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230808190144.19999-1-brgl@bgdev.pl>
+ <20230808190144.19999-2-brgl@bgdev.pl>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230808190144.19999-2-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,76 +119,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+On 8.08.2023 21:01, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Add a node for the SerDes PHY used by EMAC1 on sa8775p-ride.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-On 08/08/23 00:37, Nishanth Menon wrote:
-> On 00:26-20230808, Apurva Nandan wrote:
->> Add bootph-pre-ram property for all the nodes used in SPL stage,
->> for syncing it later to u-boot j784s4 dts.
->>
->> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
->> ---
-> We need to rework this a little more:
->
-> The approach taken in this series is enable pre-ram for everything. I am
-> not sure that is the right direction.
-These patches only enable bootph-pre-ram for the nodes, that already had 
-bootph-pre-ram property in u-boot dts
-patches for j784s4. And these are selected after removing unnecessary 
-nodes that had this property, so not added for
-everything. Are there a nodes which seem to have unnecessary 
-bootph-pre-ram property according to you, need to remove?
-> https://github.com/devicetree-org/dt-schema/blob/e87ba2f515392c2a4694642063efb43023331ff6/dtschema/schemas/bootph.yaml#L70
->
-> patch #1: board generic changes: patch #1
-> patch #2-: board specific change (per board)
->
-> Make sure you use the correct property and document why this is needed
-> in the section added as well - esp for board generic changes introduced
-> into SoC.dtsi files.
->
-I am little unclear about what nodes you refer with board generic vs 
-board specific bootph-pre-ram.
-I have currently added bootph-pre-ram in board EVM dts files if the node 
-is disabled in SoC dtsi and enabled
-in EVM dts (no point adding bootph-pre-ram in disabled node), or for 
-pinmuxes, etc. What is the segregation
-you want in the patch, do you want some bootph-pre-ram to be moved from 
-where they are?
->>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> index 2ea0adae6832..aaec569fe91a 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> @@ -6,6 +6,7 @@
->>    */
->>   
->>   &cbass_main {
->> +	bootph-pre-ram;
-> Is this better done where the node is defined?
-Okay, this I will fix.
->
->>   	msmc_ram: sram@70000000 {
->>   		compatible = "mmio-sram";
->>   		reg = <0x00 0x70000000 0x00 0x800000>;
->> @@ -670,6 +671,7 @@ main_sdhci1: mmc@4fb0000 {
->>   	};
->>   
->>   	main_navss: bus@30000000 {
->> +		bootph-pre-ram;
->>   		compatible = "simple-bus";
->>   		#address-cells = <2>;
->>   		#size-cells = <2>;
->> @@ -705,6 +707,7 @@ main_udmass_inta: msi-controller@33d00000 {
->>   		};
->>   
->>   		secure_proxy_main: mailbox@32c00000 {
->> +			bootph-pre-ram;
->>   			compatible = "ti,am654-secure-proxy";
->>   			#mbox-cells = <1>;
->>   			reg-names = "target_data", "rt", "scfg";
->> -- 
->> 2.34.1
->>
+Konrad
