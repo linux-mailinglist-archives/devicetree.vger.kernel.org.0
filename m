@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE131774C9F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8596F774CA0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236156AbjHHVM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:12:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54182 "EHLO
+        id S236335AbjHHVMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 17:12:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236525AbjHHVML (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:12:11 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D392A5FF2
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:11:11 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so95095921fa.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:11:11 -0700 (PDT)
+        with ESMTP id S236642AbjHHVMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:12:16 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D92B1715
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:11:30 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so95099001fa.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:11:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691529070; x=1692133870;
+        d=linaro.org; s=google; t=1691529088; x=1692133888;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IsJE7CLGLu+KZjF2WESmSbTTbo9uc2Io0owhaH6Mh+s=;
-        b=gkRXpb1hGueeAk63n5aZTAXFfI2nVP1qIODlvxlORfJcQCkCKlMJdyQKDWo+yB9D8S
-         7WMLdIdXN6E/rTWcIipVIu5WuqaZO8ysrbOq4IaNuugSXpDjBLzVh8Y3UmDE0WDsnxOY
-         OwbT80zxF7wdG8rc6lUXLQcInSVjr2NAl+VxVsh1sTyIkGunDe8+1gjnvJ/9g34Ey5ok
-         aZlaP0tQnz7Q6RfHAxeXY4YF92W+JdErZ4EdfPjrgHbZ5VTaoFJDkVF/K8sZ5ovqmr78
-         fEbeCqnRdECojWw41eF4bhtMeOI/tA/eAr0vf20IDKA/o8NyO0ICmCr/P2K6dXzx8NTs
-         Trpw==
+        bh=h1R5RAuDcNFHnQizuPMLw4ddvp2/D6Ygtoh2+KaZC84=;
+        b=P0ir7ms0UHD/psQzlbfBnE6aSnmQk0XsVkcsi4yX92VZiYhQs0Mp8KQeRgzGDo4dx7
+         U4paScWKzKP2FNrEsyDlPjm6gjr7gkB/UVWS9e1AAoium4aqbHnCoO9sIcfiw52I5Wpg
+         GsvOSghr/aOfBX+l2QjlUnQXR6a2i7i+XKcQCVHidw1n/CiwhI2NWIeY1mAp2JEkKEyB
+         BtinggjGs7cd07RLHgVU/D2nbJK9Ns8pch+F37wZvKWo0krIFg3Vi9VSb4b/BaAwZO96
+         QToFQYVeY6bntPAqeuMW1UYbZZFTNolgPkM6F9EfFs4izOXArDEOpL2T+gEvJaQjF4vR
+         5o7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691529070; x=1692133870;
+        d=1e100.net; s=20221208; t=1691529088; x=1692133888;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IsJE7CLGLu+KZjF2WESmSbTTbo9uc2Io0owhaH6Mh+s=;
-        b=V37tE9MwF6AlnaNi0JyEbBU16heN2spWgW0lmrY7y+tp30cPhkvLiwi3moWpop+g/M
-         YvZcp97aHZ0HKTaiV1uZRiHuvNMA/dPaKNQAcXOdfmGFtVIVx9/0xdW0RML7MVN1S9u1
-         Wew4UuVkAIc0bgtOIgsa5WSdg7mGbavSbBhmoGpQwDCyklex+NcIUDx1MnTYf6xmzpkk
-         IPGkJIXSk3umU/Y6wWeAGPEpeF6yOm9W/z7IzCeVi/OfEOv0n7MNKNniJM0jOJvBZAKJ
-         vPZ3tamK1tWGdN8VPpVq1JbGsEPiXAUgwvBFeGv1Zp+k2JZ0vWHb06JTfgUQyQbK38Vq
-         smEA==
-X-Gm-Message-State: AOJu0Ywq6zXOM44BScDp7PE4kqMa331ONUpIFdexJ7f6RmB1obI2xjJK
-        eWVtalRdmtff33B8b7khjok+4Q==
-X-Google-Smtp-Source: AGHT+IGWwS2p2xQBwftxdDy6pjy87D3SMcMRnG/svOcaZqZW7N59uBq+8wz0r2xqmLrpFz6aEt9x1w==
-X-Received: by 2002:a05:651c:22c:b0:2b9:e24d:21f6 with SMTP id z12-20020a05651c022c00b002b9e24d21f6mr530515ljn.20.1691529070007;
-        Tue, 08 Aug 2023 14:11:10 -0700 (PDT)
+        bh=h1R5RAuDcNFHnQizuPMLw4ddvp2/D6Ygtoh2+KaZC84=;
+        b=DGWFrHEGagcoNU440X4pk9jrK3PodwamTD9ysJ3YUaZEFNmwH1iMY4DvDOpWLrKHwN
+         HaCkryhCHbp1DxcHIF1CZZ4PDFQ/mgi6owhjITtWd31igau3XHWuynH6IpWkKoQe5jNF
+         TVbFFZ3UOGLEvJKqfsHW1xzu5F2rD+51ZWtf3JUjPCj3VjmSFxriufUJ6VzDSnp+GcXy
+         7xFP/x4IxGGTWBs6/vrJC8qo9IXpPupQCaIgs5H/jgqge8p5daApZAn15QZ3q2xPAxMo
+         lnqsdxxVnZZSeWGNpqERi/qgDxy8ihADVjHygjXeFUQ2GoU4Foa/jhHspTwKk6AVCD2f
+         Yuzw==
+X-Gm-Message-State: AOJu0Yx+1UFktPCEPVGgHPGISyZWJb/AZ9SWCjjb5W2bmey0KP05BqRz
+        4pNJFVJ44YAQjurB0Z0m15aK1g==
+X-Google-Smtp-Source: AGHT+IGYzCzaBx+RT4uIMPcpMzVvff8YWRBwXmJ34frHeKF/XozlNEO8qPoGltWMrBJecOYoNTXNsA==
+X-Received: by 2002:a2e:b005:0:b0:2ba:18e5:1063 with SMTP id y5-20020a2eb005000000b002ba18e51063mr441282ljk.50.1691529088351;
+        Tue, 08 Aug 2023 14:11:28 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id l13-20020a2e700d000000b002b9c0822951sm2395753ljc.119.2023.08.08.14.11.08
+        by smtp.gmail.com with ESMTPSA id l13-20020a2e700d000000b002b9c0822951sm2395753ljc.119.2023.08.08.14.11.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Aug 2023 14:11:09 -0700 (PDT)
-Message-ID: <a819dac3-7856-4d97-b59b-cfe1866dc176@linaro.org>
-Date:   Tue, 8 Aug 2023 23:11:08 +0200
+        Tue, 08 Aug 2023 14:11:27 -0700 (PDT)
+Message-ID: <72891405-eddc-4644-88ba-bfa9baa6e62f@linaro.org>
+Date:   Tue, 8 Aug 2023 23:11:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] arm64: dts: qcom: sa8775p: add a node for EMAC1
+Subject: Re: [PATCH v2 3/8] arm64: dts: qcom: sa8775p-ride: enable the second
+ SerDes PHY
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
@@ -68,7 +69,7 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20230808190144.19999-1-brgl@bgdev.pl>
- <20230808190144.19999-3-brgl@bgdev.pl>
+ <20230808190144.19999-4-brgl@bgdev.pl>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -105,13 +106,13 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230808190144.19999-3-brgl@bgdev.pl>
+In-Reply-To: <20230808190144.19999-4-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -121,43 +122,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 8.08.2023 21:01, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Add a node for the second MAC on sa8775p platforms.
+> Enable the second SerDes PHY on sa8775p-ride development board.
 > 
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 34 +++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 38d10af37ab0..82af2e6cbda4 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2325,6 +2325,40 @@ cpufreq_hw: cpufreq@18591000 {
->  			#freq-domain-cells = <1>;
->  		};
->  
-> +		ethernet1: ethernet@23000000 {
-> +			compatible = "qcom,sa8775p-ethqos";
-> +			reg = <0x0 0x23000000 0x0 0x10000>,
-> +			      <0x0 0x23016000 0x0 0x100>;
-> +			reg-names = "stmmaceth", "rgmii";
-> +
-> +			interrupts = <GIC_SPI 929 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "macirq";
-> +
-> +			clocks = <&gcc GCC_EMAC1_AXI_CLK>,
-> +				 <&gcc GCC_EMAC1_SLV_AHB_CLK>,
-> +				 <&gcc GCC_EMAC1_PTP_CLK>,
-> +				 <&gcc GCC_EMAC1_PHY_AUX_CLK>;
-> +
-> +			clock-names = "stmmaceth",
-> +				      "pclk",
-> +				      "ptp_ref",
-> +				      "phyaux";
-This is a very nitty nit, but if there's going to be a v3, please remove
-the newline between clocks and clock-names
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
