@@ -2,251 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECF407742D5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A3977415E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235069AbjHHRux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
+        id S234352AbjHHRTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234953AbjHHRuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:50:24 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5BC27570;
-        Tue,  8 Aug 2023 09:22:27 -0700 (PDT)
+        with ESMTP id S234073AbjHHRSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:18:33 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 82D282D66;
+        Tue,  8 Aug 2023 09:07:36 -0700 (PDT)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378DAUek094282;
-        Tue, 8 Aug 2023 08:10:30 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378DGWi0021733;
+        Tue, 8 Aug 2023 08:16:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691500230;
-        bh=qXuYKk139NgvV423lfYnq+098xTyM+6thAwcW6OsYx8=;
+        s=ti-com-17Q1; t=1691500592;
+        bh=bIvQZUfUTs7cfe2MxD6gzLOpss1VlgflDBuAfiDDw28=;
         h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=VYL3koAV1DeI0UpsdX+iYiQkj7CDglWwDKjUMgagubCRn08gs1SALLaN3T/VfWket
-         6PhdnTs1jTCVEMH8siU8y3CMCITF7TzTyz60IRL3xtJ1c38enCI7EYV4B0l/5zONGQ
-         aX3x7x39ErJ94YNZzqYCeOpF1eC77AvGX5iAfbQM=
+        b=e4fntY8yrfgX1M3Gv8SSeES03odglvg2KCHYUWqQSA3VSfi4FeJ4CVrIFTBOYBb3S
+         SRCKzI57LoDlwEUWYoeGwr0a0Qg+DUoxyFRgA1Cj8afQ5YW3AkJrNcjHmPfUZkzupb
+         s+M+w2b4TZ+7zdJEAEnKVXHdIrZNhAnZjqY65FFc=
 Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378DAUKM121030
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378DGWGx124496
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 08:10:30 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+        Tue, 8 Aug 2023 08:16:32 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
  (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 08:10:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 08:16:32 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 08:10:30 -0500
-Received: from [172.24.227.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378DAOx8008267;
-        Tue, 8 Aug 2023 08:10:24 -0500
-Message-ID: <0b141b27-57b8-fb96-200a-d4c3d75193be@ti.com>
-Date:   Tue, 8 Aug 2023 18:40:23 +0530
+ Frontend Transport; Tue, 8 Aug 2023 08:16:32 -0500
+Received: from [10.250.36.243] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378DGVcJ001287;
+        Tue, 8 Aug 2023 08:16:31 -0500
+Message-ID: <9830f204-0e4d-bfb0-aea4-9f63d3be9124@ti.com>
+Date:   Tue, 8 Aug 2023 08:16:31 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 5/5] net: ti: icssg-prueth: am65x SR2.0 add 10M full
- duplex support
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Simon Horman <simon.horman@corigine.com>,
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 04/13] arm64: dts: ti: k3-am65: Enable OSPI nodes at the
+ board level
+To:     Jan Kiszka <jan.kiszka@siemens.com>, Dhruva Gole <d-gole@ti.com>,
+        Nishanth Menon <nm@ti.com>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>
-References: <20230807110048.2611456-1-danishanwar@ti.com>
- <20230807110048.2611456-6-danishanwar@ti.com>
- <a333e70a-88ba-750d-34ce-6c8fa91e355b@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <a333e70a-88ba-750d-34ce-6c8fa91e355b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230802205309.257392-1-afd@ti.com>
+ <20230802205309.257392-5-afd@ti.com>
+ <bb87effc-00c3-7d97-08c9-68408f9c514c@ti.com>
+ <627ed411-a6f7-cbc9-d48f-2678bf63c609@ti.com>
+ <a274dabf-3987-0885-54f5-3bd7e7f2d1d5@siemens.com>
+Content-Language: en-US
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <a274dabf-3987-0885-54f5-3bd7e7f2d1d5@siemens.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/23 4:44 pm, Roger Quadros wrote:
+On 8/8/23 12:27 AM, Jan Kiszka wrote:
+> On 07.08.23 17:18, Andrew Davis wrote:
+>> On 8/7/23 1:16 AM, Dhruva Gole wrote:
+>>> Hi Andrew,
+>>>
+>>> On 03/08/23 02:23, Andrew Davis wrote:
+>>>> OSPI nodes defined in the top-level AM65x SoC dtsi files are incomplete
+>>>> and may not be functional unless they are extended with pinmux and
+>>>> device information.
+>>>>
+>>>> As the attached OSPI device is only known about at the board integration
+>>>> level, these nodes should only be enabled when provided with this
+>>>> information.
+>>>>
+>>>> Disable the OSPI nodes in the dtsi files and only enable the ones that
+>>>> are actually pinned out on a given board.
+>>>>
+>>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 1 +
+>>>>    arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi            | 2 ++
+>>>>    arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 1 +
+>>>>    3 files changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>>> b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>>> index e26bd988e5224..6041862d5aa75 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>>> @@ -593,6 +593,7 @@ adc {
+>>>>    };
+>>>>    &ospi0 {
+>>>> +    status = "okay";
+>>>
+>>> Ok, so this k3-am65-iot2050 series of DT files seem to be structured in
+>>> a bit different manner than our SKs and EVMs?
+>>>
+>>> The terminologies like advanced, advanced-m2, basic, etc. are a little
+>>> confusing to me. However, I am wondering if we don't do any status = ..
+>>> here, and rather make ospi status okays from the iot2050 dts files?
+>>>
+>>> Pardon me if I am making an invalid suggestion, I don't have much
+>>> background on these boards.
+>>>
+>>
+>> This is a valid question, and yes the IOT2050 DTS organization is
+>> slightly different than the one we use with our SK/EVMs.
+>>
+>> The way these DT files tend to work is layering more functionality
+>> or information in each file, starting with the core/most common
+>> in the base .dtsi, and ending with .dts that is specific to a given
+>> board. (In that way I would consider instances of "/delete-node/"
+>> to be an indicator of bad layering, but that is a different topic..)
+>>
+>> Any node that is only partially defined in a layer should be marked
+>> disabled, and then only enabled in the layer that finally completes
+>> the node. That is often the pinmux info at the board level.
+>>
+>> In this case, the OSPI nodes are complete after this point, there
+>> is no additional information given in the DTS files, so we can
+>> enable it here in this .dtsi file.
+>>
 > 
+> Ack, this file is the right place to enable OSPI because all our boards
+> have OSPI in use, and therefore it is configured at this common level
+> already.
 > 
-> On 07/08/2023 14:00, MD Danish Anwar wrote:
->> From: Grygorii Strashko <grygorii.strashko@ti.com>
->>
->> For AM65x SR2.0 it's required to enable IEP1 in raw 64bit mode which is
->> used by PRU FW to monitor the link and apply w/a for 10M link issue.
->> Note. No public errata available yet.
->>
->> Without this w/a the PRU FW will stuck if link state changes under TX
->> traffic pressure.
->>
->> Hence, add support for 10M full duplex for AM65x SR2.0:
->>  - add new IEP API to enable IEP, but without PTP support
->>  - add pdata quirk_10m_link_issue to enable 10M link issue w/a.
->>
->> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  drivers/net/ethernet/ti/icssg/icss_iep.c     | 26 ++++++++++++++++++++
->>  drivers/net/ethernet/ti/icssg/icss_iep.h     |  2 ++
->>  drivers/net/ethernet/ti/icssg/icssg_config.c |  6 +++++
->>  drivers/net/ethernet/ti/icssg/icssg_prueth.c | 17 +++++++++++--
->>  4 files changed, 49 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
->> index 455c803dea36..527f17430f05 100644
->> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
->> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
->> @@ -721,6 +721,32 @@ void icss_iep_put(struct icss_iep *iep)
->>  }
->>  EXPORT_SYMBOL_GPL(icss_iep_put);
->>  
->> +void icss_iep_init_fw(struct icss_iep *iep)
->> +{
->> +	/* start IEP for FW use in raw 64bit mode, no PTP support */
->> +	iep->clk_tick_time = iep->def_inc;
->> +	iep->cycle_time_ns = 0;
->> +	iep->ops = NULL;
->> +	iep->clockops_data = NULL;
->> +	icss_iep_set_default_inc(iep, iep->def_inc);
->> +	icss_iep_set_compensation_inc(iep, iep->def_inc);
->> +	icss_iep_set_compensation_count(iep, 0);
->> +	regmap_write(iep->map, ICSS_IEP_SYNC_PWIDTH_REG, iep->refclk_freq / 10); /* 100 ms pulse */
->> +	regmap_write(iep->map, ICSS_IEP_SYNC0_PERIOD_REG, 0);
->> +	if (iep->plat_data->flags & ICSS_IEP_SLOW_COMPEN_REG_SUPPORT)
->> +		icss_iep_set_slow_compensation_count(iep, 0);
->> +
->> +	icss_iep_enable(iep);
->> +	icss_iep_settime(iep, 0);
->> +}
->> +EXPORT_SYMBOL_GPL(icss_iep_init_fw);
->> +
->> +void icss_iep_exit_fw(struct icss_iep *iep)
->> +{
->> +	icss_iep_disable(iep);
->> +}
->> +EXPORT_SYMBOL_GPL(icss_iep_exit_fw);
->> +
->>  int icss_iep_init(struct icss_iep *iep, const struct icss_iep_clockops *clkops,
->>  		  void *clockops_data, u32 cycle_time_ns)
->>  {
->> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.h b/drivers/net/ethernet/ti/icssg/icss_iep.h
->> index 9c7f4d0a0916..803a4b714893 100644
->> --- a/drivers/net/ethernet/ti/icssg/icss_iep.h
->> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.h
->> @@ -35,5 +35,7 @@ int icss_iep_exit(struct icss_iep *iep);
->>  int icss_iep_get_count_low(struct icss_iep *iep);
->>  int icss_iep_get_count_hi(struct icss_iep *iep);
->>  int icss_iep_get_ptp_clock_idx(struct icss_iep *iep);
->> +void icss_iep_init_fw(struct icss_iep *iep);
->> +void icss_iep_exit_fw(struct icss_iep *iep);
->>  
->>  #endif /* __NET_TI_ICSS_IEP_H */
->> diff --git a/drivers/net/ethernet/ti/icssg/icssg_config.c b/drivers/net/ethernet/ti/icssg/icssg_config.c
->> index ab648d3efe85..4c2b5d496670 100644
->> --- a/drivers/net/ethernet/ti/icssg/icssg_config.c
->> +++ b/drivers/net/ethernet/ti/icssg/icssg_config.c
->> @@ -210,6 +210,9 @@ void icssg_config_ipg(struct prueth_emac *emac)
->>  	case SPEED_100:
->>  		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
->>  		break;
->> +	case SPEED_10:
->> +		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
->> +		break;
->>  	default:
->>  		/* Other links speeds not supported */
->>  		netdev_err(emac->ndev, "Unsupported link speed\n");
->> @@ -440,6 +443,9 @@ void icssg_config_set_speed(struct prueth_emac *emac)
->>  	case SPEED_100:
->>  		fw_speed = FW_LINK_SPEED_100M;
->>  		break;
->> +	case SPEED_10:
->> +		fw_speed = FW_LINK_SPEED_10M;
->> +		break;
->>  	default:
->>  		/* Other links speeds not supported */
->>  		netdev_err(emac->ndev, "Unsupported link speed\n");
->> diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
->> index b82a718fd602..216918162960 100644
->> --- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
->> +++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
->> @@ -1131,7 +1131,6 @@ static int emac_phy_connect(struct prueth_emac *emac)
->>  
->>  	/* remove unsupported modes */
->>  	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
->> -	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
->>  	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
->>  	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT);
->>  	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
->> @@ -2081,13 +2080,20 @@ static int prueth_probe(struct platform_device *pdev)
->>  		goto free_pool;
->>  	}
->>  
->> +	if (prueth->pdata.quirk_10m_link_issue) {
->> +		/* Enable IEP1 for FW in 64bit mode as W/A for 10M FD link detect issue under TX
->> +		 * traffic.
->> +		 */
->> +		icss_iep_init_fw(prueth->iep1);
-> 
-> This is the only place where IEP1 is used.
-> You should add all IEP1 related code in this patch.
+> And the reasons for delete-node is obviously that there is no dtsi file
+> that describes the AM6528 with its two cores only. If you consider that
+> bad layering, you should change your dtsi files ;). But I see no real
+> problem here, that pattern is not uncommon.
 
-Sure Roger, I'll do that.
-> 
->> +	}
->> +
->>  	/* setup netdev interfaces */
->>  	if (eth0_node) {
->>  		ret = prueth_netdev_init(prueth, eth0_node);
->>  		if (ret) {
->>  			dev_err_probe(dev, ret, "netdev init %s failed\n",
->>  				      eth0_node->name);
->> -			goto netdev_exit;
->> +			goto exit_iep;
->>  		}
->>  		prueth->emac[PRUETH_MAC0]->iep = prueth->iep0;
->>  	}
->> @@ -2158,6 +2164,10 @@ static int prueth_probe(struct platform_device *pdev)
->>  		prueth_netdev_exit(prueth, eth_node);
->>  	}
->>  
->> +exit_iep:
->> +	if (prueth->pdata.quirk_10m_link_issue)
->> +		icss_iep_exit_fw(prueth->iep1);
->> +
->>  free_pool:
->>  	gen_pool_free(prueth->sram_pool,
->>  		      (unsigned long)prueth->msmcram.va, msmc_ram_size);
->> @@ -2203,6 +2213,9 @@ static void prueth_remove(struct platform_device *pdev)
->>  		prueth_netdev_exit(prueth, eth_node);
->>  	}
->>  
->> +	if (prueth->pdata.quirk_10m_link_issue)
->> +		icss_iep_exit_fw(prueth->iep1);
->> +
->>  	icss_iep_put(prueth->iep1);
->>  	icss_iep_put(prueth->iep0);
->>  
-> 
+Yup, wasn't finger pointing, that is our layering problem. It actually
+looks like an easy fix to add an k3-am652.dtsi with only two cores, I'll
+go do that for next cycle.
 
--- 
-Thanks and Regards,
-Danish.
+Andrew
+
+> 
+> Jan
+> 
