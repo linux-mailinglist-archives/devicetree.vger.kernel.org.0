@@ -2,47 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B32774261
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF0EC774265
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:44:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233172AbjHHRnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58792 "EHLO
+        id S232864AbjHHRoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234036AbjHHRmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:42:39 -0400
+        with ESMTP id S231458AbjHHRnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:43:41 -0400
 Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050:0:465::101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886F35A66
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:18:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B34249B0
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:19:28 -0700 (PDT)
 Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4RKyzD5PMMz9srj;
-        Tue,  8 Aug 2023 18:18:16 +0200 (CEST)
+        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4RKyzF6RRyz9tMn;
+        Tue,  8 Aug 2023 18:18:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1691511496;
+        t=1691511497;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=8pP2tQ9G1CSgP96+czw5oj85ohoirg2opvYsmKnh0zo=;
-        b=swD0Gt911PkveINFB9XoG1S0KrqsjzhC6JkYGgzBTXWYMykA76Sy3Ab+0BP1HuX5dx8qI7
-        gDzm0hT9FLG4Dtx3jlWoyd91LSoqghGkE4AzkqToxbMOS0HVsdMi7639O0jGDVCFYxkb8x
-        qBlHbzQ4T1F44LTS1RE+uoaqnHigTfI2dJUhgR3g+4SQdP2zZhaj21HSatMVO+cjdpHi1V
-        MCkiQI9a8btiGvTOYS8amPl5RaBXx23VPB1lOgzWvrRuj+c2dar7fug1NY15pHEuq9obur
-        TDz+p4dCIHwzhzS7aJ6Zzjwlw+/J4E3MV4e05U7dsBneQBmD6vC17PufYWs3gA==
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=aGGUmP8Tng3VDvVivMqZI/5pDN809RPPjvmptF0sisg=;
+        b=bsTIBi12Pe64JIxoBnSalS1DT7RjeXs4s2VYNnHcpZcJg3xvWJz+NagR/HZIgRYEWRJuKa
+        BhD0eBFJ8RaCswhOVwKWl5zuHpAoIm6jHQgJZVtCf8wieR09LrczJNpIdesQifxEBvD6im
+        E9e1UlIh2Gn/ZJ09htJxFMG1STTZjwncUewKt2lsNB/OzlUVXIMXUcSloURfshw22Kgy7k
+        ezKLs0+40M1GvoSypeOVukBXPf2H35OzmspJYH/eLC+LQL5RCO4zoppesCVBISg7LVLNAD
+        LqNg+ok03E8eImLmjJ+EE8amCqBzLvKqdcMyUgt+SOJ5NUNlzVYJzH9KSm1hOw==
 From:   Alexander Stein <alexander.stein@mailbox.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1691511494;
+        t=1691511495;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=8pP2tQ9G1CSgP96+czw5oj85ohoirg2opvYsmKnh0zo=;
-        b=IvweC6uzvKC04XZnV72YV25I4ec45dN7dN/KpjCvk9aMgFbDvEijP+6dSNRpoLTveSnbrb
-        bVzzS6UpI5+lPrRiN88ADJMf7NIlOJqkZ+CKGuAOHCf7VK03BSRWCpIsPTysVV290aMC7T
-        RkXe16oNWOnAOyD/HWeB0wlgli9VzhTfR/wkj4HO8jxDBZyjTOrmN5WWe7+ssXjsmMeRaW
-        su/ch8mOhEX6FP9gYgsu/JxwDxuzAUwk0xdMMo8+k4UYDeAZBqsPQbSZu5MaT8uhCbJqEU
-        h1Te08p6fsWwpgIz9BwBXwORyHEQKHNEGPKSjbX/hAQMaTfO5V+z7EHWEvTqcQ==
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=aGGUmP8Tng3VDvVivMqZI/5pDN809RPPjvmptF0sisg=;
+        b=U0gwFzhLSqiiHgzavg8A96lBqmiAWamAwodMhVepBYigWqUtnFjeRI+RFpMMUuTNHIfth4
+        +HV+KBMBxipaUDEMwjFynvcBLRxOI6Snuh2QDHVe89N/ZeVAX6yPXJXhlH+DjPEhJEAf5j
+        L5Stvge1VZL7ORa11JlL+2p8PjO9obJeeM2qQXG4YS5SBPWpQNxoHaebraNGdxOjFt/Fpf
+        21wzS01Wwb4e/7GobQZUnbkIoVbqg2dO6lf9yozNOU4YZAWLXpn8bSmK+VXItlvsytVi+O
+        5SVpP3sVQeYIDJcqRc4GEhMA+Sy+uZZhXUP8WvOZbyvxlKEe5YdXFO730QzPqA==
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -53,13 +55,15 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Alexander Stein <alexander.stein@mailbox.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH 1/2] arm64: dts: meson-g12: Fix clock order for amlogic,axg-tdm-iface devices
-Date:   Tue,  8 Aug 2023 18:17:52 +0200
-Message-ID: <20230808161755.31594-1-alexander.stein@mailbox.org>
+Subject: [PATCH 2/2] arm64: dts: meson-g12: Fix compatible for amlogic,g12a-tdmin
+Date:   Tue,  8 Aug 2023 18:17:53 +0200
+Message-ID: <20230808161755.31594-2-alexander.stein@mailbox.org>
+In-Reply-To: <20230808161755.31594-1-alexander.stein@mailbox.org>
+References: <20230808161755.31594-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: ca8srwyci65agwfa3nidgadabspxws16
-X-MBO-RS-ID: 55e9cb80a79df6dca71
+X-MBO-RS-META: k5isb4nfwbxr8ra4z48s7oyw57iabrgp
+X-MBO-RS-ID: bb2cb0716d7e664ae40
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -70,84 +74,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Binding specify order of clocks as:
-1. "sclk"
-2. "lrclk"
-3. "mclk"
-Adjust clocks accordingly. Fixes warnings:
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
-        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+amlogic,axg-tdmin is not listed as compatible to g12a-tdmin in bindings.
+Remove superfluous compatible. Fixes the dtbs_check warnings:
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@300: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@340: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@380: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: audio-controller@3c0: compatible: ['amlogic,g12a-tdmin', 'amlogic,axg-tdmin'] is too long
+ from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
 
 Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 24 +++++++++++-----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-index 6a1f4dcf6488..3ae6875707fb 100644
+index 3ae6875707fb..eb442aaf57e4 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-@@ -15,10 +15,10 @@ tdmif_a: audio-controller-0 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_A";
--		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
-+		clocks = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
- 		status = "disabled";
- 	};
+@@ -195,8 +195,7 @@ arb: reset-controller@280 {
+ 		};
  
-@@ -26,10 +26,10 @@ tdmif_b: audio-controller-1 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_B";
--		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
-+		clocks = <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
- 		status = "disabled";
- 	};
+ 		tdmin_a: audio-controller@300 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x300 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_A";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_A>;
+@@ -211,8 +210,7 @@ tdmin_a: audio-controller@300 {
+ 		};
  
-@@ -37,10 +37,10 @@ tdmif_c: audio-controller-2 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_C";
--		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
-+		clocks = <&clkc_audio AUD_CLKID_MST_C_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_MCLK>;
-+		clock-names = "sclk", "lrclk", "mclk";
- 		status = "disabled";
- 	};
- };
+ 		tdmin_b: audio-controller@340 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x340 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_B";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_B>;
+@@ -227,8 +225,7 @@ tdmin_b: audio-controller@340 {
+ 		};
+ 
+ 		tdmin_c: audio-controller@380 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x380 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_C";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_C>;
+@@ -243,8 +240,7 @@ tdmin_c: audio-controller@380 {
+ 		};
+ 
+ 		tdmin_lb: audio-controller@3c0 {
+-			compatible = "amlogic,g12a-tdmin",
+-				     "amlogic,axg-tdmin";
++			compatible = "amlogic,g12a-tdmin";
+ 			reg = <0x0 0x3c0 0x0 0x40>;
+ 			sound-name-prefix = "TDMIN_LB";
+ 			resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
 -- 
 2.41.0
 
