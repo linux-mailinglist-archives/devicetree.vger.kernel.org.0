@@ -2,147 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BE62774271
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93F6F773EA8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232045AbjHHRpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55852 "EHLO
+        id S233040AbjHHQdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234243AbjHHRpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:45:02 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43BEC25B12
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:20:24 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fe5695b180so23668395e9.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:20:24 -0700 (PDT)
+        with ESMTP id S232889AbjHHQcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:32:45 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C223E3103B
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 08:52:03 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso812003366b.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 08:52:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691511580; x=1692116380;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gAg8mzz6tXJyaH1tEofpHQ5TEsFiQj+ho2hy+w4Tmaw=;
-        b=TDkU0E572xKKo82+QQZCoMYyi0b9xe8OQwCrw5ywX67otBr4djppYnqPsU5uP/Q/Nu
-         Fdv+9Na2Iay+1nd5RpmcyefL1psywFffiRjdGFYwK73bhhmBap5qAQcPxKfpk4ADrZ0V
-         aeXTMOiF9Bj1E7yJX41sJYSI0GN6ckTB99A1j3lsorwMVfa/QiakXA/mbCtGEddT8kCs
-         0SapLeiHWvTEpVCCGbMhaliJCXY3cPDJEMvzRR4RqnlSsLXlQr88de9GA9m7tOci4fFj
-         SsRGQpzVP0wNSnOzugBvsgf7ewN1TXl6QWRaABCjrUPyGejoobyCSCb5ym+GEsQKbyNw
-         0/2Q==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691509915; x=1692114715;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r+/8A+T5kJZ2sAJcy7n9I+3axWMphmfRgNl05Gm90p8=;
+        b=m1Hd0rphhX4XX1oL3jfFRLoK8/96Lx1LdCC97vIjhspPxw9DaJti+qvmBIwGX/3JQZ
+         Fm26SxcEI4uZ+VVfp2WQMP7wIAMvcG3ba0o9Y/0zN1lbKgpgmRYCthZkGpkKGBA+FtN+
+         Vb2kLYV0C1hlAFrHywvQxMhI0qvhW0VqUtVyptdKvgXgzJkWO2AtiD/ARyOyQh0shN60
+         d7wwJjxcRzRhIsCGOinFLgaZxRA/+p+TakqaxPioJBsynf9yYnFkAxqa6G6Ji0OwNZgY
+         VKBgnYFGkFzDGHOXquvdxb6x907Jk1J/StpvCq15klRokHbGkYFXGQeSGjorpXLPLNQU
+         Plpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691511580; x=1692116380;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1691509915; x=1692114715;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gAg8mzz6tXJyaH1tEofpHQ5TEsFiQj+ho2hy+w4Tmaw=;
-        b=PwGCyAXtT/6b7cMK4AEeySs2f0h7nw9AZZxeg/CM3DIJzFuLSgna6J7Sg8guLnvnQU
-         TCefyIFM3DEaCm1BaXybPEFM1MIFKWZlPYlC9+7WxkiLnr90CwCozRKTsjBN14v2Qmpe
-         I1/mNbkSHNbmJD5b1oRhhPgJ626Y+lHShKly3XIjOawDX7h04UWI25u5inmyO9J5DoOW
-         qqbL0iMH8iWyn5voGeOGpROs6ongNXPS5gcJZK3Zdvd7THy1iRmtC7D7Wh5snP7DPzb9
-         A2sLCYUO8ve05rYP1W1pkFn8raJVjPPMO/mJbHGuaJmua2xIb2UT/BDCQSIVuzC246w8
-         BprA==
-X-Gm-Message-State: AOJu0YzsUvOuWdIsQnNYCDL4NIKmHpqif0/NTrAVqq1FGjcjvrMhaeS9
-        GomnenZTKQ+OofCb9bcoE0fJ2JA9DYRvq4bas7Y=
-X-Google-Smtp-Source: AGHT+IHZdXCtug2ljX6dDSj6oQkG8V1UJLNKTYOKnSjmV42sR9+Wv2CCmrrKVl5VAmfJlHe6DhBOLg==
-X-Received: by 2002:a05:6512:2018:b0:4fd:c771:ed86 with SMTP id a24-20020a056512201800b004fdc771ed86mr6615303lfb.67.1691487895251;
-        Tue, 08 Aug 2023 02:44:55 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id i6-20020a056512006600b004fdba93b92asm1818884lfo.252.2023.08.08.02.44.53
+        bh=r+/8A+T5kJZ2sAJcy7n9I+3axWMphmfRgNl05Gm90p8=;
+        b=F0NTjxdh0BFpi7nJJHlaRM4NnB3e+vBHYZhhXyRf7CeZ5wtIHgzYtZ6vdaE8C/x5Ia
+         WscwJ8Zu8LCB3Na0moovJQFcqThNc4gaMVpMsLDmUFzzb7D9czktcnrS3RsK+ettilmR
+         PwJfdfLvcGh0xR3K+NomfQ1jhMuS/IqwZSRcxioNQXigQ95nWOmemqAAc3FHam7nZaCJ
+         HLOyyAOOc4woHoLKVRgejAwZM8ybYI5MUJOBmzOBkF4+uYIeJuxccd2ETXNq1Fr3CXdo
+         xRDF7XHI5NdvMxspdHuSg7BBV+4+/deg3Hib/vLYt4QW8jT48F21nQhskELPWJZbH/hF
+         rUQQ==
+X-Gm-Message-State: AOJu0Yw3/mEkGSA9VkKEZL78unt2Y75FlxlPqK3eHxytkqvjN7rchIyK
+        lcop3CKAlhM+HkXPessTPWmU8x/jL0fPPpcO5dI=
+X-Google-Smtp-Source: AGHT+IGCn2asXBAYQXYX9ZgKLoWcp+AtEuDppAqyRaH1bhY7zh95GS9v1NDzWXazD0FnzkfprrmIWA==
+X-Received: by 2002:a5d:6d51:0:b0:317:f7b0:85f with SMTP id k17-20020a5d6d51000000b00317f7b0085fmr1442288wri.33.1691489279549;
+        Tue, 08 Aug 2023 03:07:59 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:efd4:f3df:2c50:1776])
+        by smtp.googlemail.com with ESMTPSA id e11-20020a5d500b000000b003143c9beeaesm13109420wrt.44.2023.08.08.03.07.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 02:44:54 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 08 Aug 2023 11:44:44 +0200
-Subject: [PATCH v2 4/6] clk: qcom: mmcc-msm8998: Don't check halt bit on
- some branch clks
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230531-topic-8998_mmssclk-v2-4-34273e275c51@linaro.org>
-References: <20230531-topic-8998_mmssclk-v2-0-34273e275c51@linaro.org>
-In-Reply-To: <20230531-topic-8998_mmssclk-v2-0-34273e275c51@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        Tue, 08 Aug 2023 03:07:59 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Imran Khan <kimran@codeaurora.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Joonwoo Park <joonwoop@codeaurora.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691487885; l=1407;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=haDOFYx+cWB8WYF0AFsxGiNUFhwDHpLSQyDe+vgkap0=;
- b=ZrMZ0b0kru/BioU+kcPyTGDosiv5UYR3dvjZ97R7NYb1CKIWbtfb6OQL9uoCg1eDGTN2RtwgC
- KnIylLEWD68BzoXZqSp7GXw9MgJJMQxVOqARg8YLk04oG4zFHl8Kfq8
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, Da Xue <da@libre.computer>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: usb: add device for Genesys Logic hub gl3510
+Date:   Tue,  8 Aug 2023 12:07:45 +0200
+Message-Id: <20230808100746.391365-2-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230808100746.391365-1-jbrunet@baylibre.com>
+References: <20230808100746.391365-1-jbrunet@baylibre.com>
+MIME-Version: 1.0
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some branch clocks are governed externally and we're only supposed to
-send a request concerning their shutdown, not actually ensure it happens.
+Add gl3510 USB 3 root hub device id
 
-Use the BRANCH_HALT_SKIP define to skip checking the halt bit.
-
-Fixes: d14b15b5931c ("clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver")
-Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/qcom/mmcc-msm8998.c | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/qcom/mmcc-msm8998.c b/drivers/clk/qcom/mmcc-msm8998.c
-index c62aa270af1c..d0a5440e2291 100644
---- a/drivers/clk/qcom/mmcc-msm8998.c
-+++ b/drivers/clk/qcom/mmcc-msm8998.c
-@@ -2452,6 +2452,7 @@ static struct clk_branch fd_ahb_clk = {
+diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+index cc4cf92b70d1..a7e7142651f8 100644
+--- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
++++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- static struct clk_branch mnoc_ahb_clk = {
- 	.halt_reg = 0x5024,
-+	.halt_check = BRANCH_HALT_SKIP,
- 	.clkr = {
- 		.enable_reg = 0x5024,
- 		.enable_mask = BIT(0),
-@@ -2467,6 +2468,7 @@ static struct clk_branch mnoc_ahb_clk = {
+-title: Genesys Logic GL850G USB 2.0 hub controller
++title: Genesys Logic USB hub controller
  
- static struct clk_branch bimc_smmu_ahb_clk = {
- 	.halt_reg = 0xe004,
-+	.halt_check = BRANCH_HALT_SKIP,
- 	.hwcg_reg = 0xe004,
- 	.hwcg_bit = 1,
- 	.clkr = {
-@@ -2484,6 +2486,7 @@ static struct clk_branch bimc_smmu_ahb_clk = {
+ maintainers:
+   - Icenowy Zheng <uwu@icenowy.me>
+@@ -17,6 +17,7 @@ properties:
+     enum:
+       - usb5e3,608
+       - usb5e3,610
++      - usb5e3.626
  
- static struct clk_branch bimc_smmu_axi_clk = {
- 	.halt_reg = 0xe008,
-+	.halt_check = BRANCH_HALT_SKIP,
- 	.hwcg_reg = 0xe008,
- 	.hwcg_bit = 1,
- 	.clkr = {
-
+   reg: true
+ 
 -- 
-2.41.0
+2.40.1
 
