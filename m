@@ -2,65 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2903773C93
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED446773D8F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231636AbjHHQHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:07:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32896 "EHLO
+        id S232093AbjHHQTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:19:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbjHHQGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:06:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF6A7298;
-        Tue,  8 Aug 2023 08:45:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D4F862418;
-        Tue,  8 Aug 2023 07:28:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95548C433C8;
-        Tue,  8 Aug 2023 07:28:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691479702;
-        bh=RdAScwYlQbKFjCynaCzGyIqpOLXi5HTfM61jXRC5qNU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SCaX5vfTNteeYwn0mRM/82W4iAZTVE0CK0WPc2s4D0/jQVxYDhjAXdCc9hlJ/Q1K/
-         tTw9BwQ8fdS9SXQFjmL17IjhfNatxVIZ4STGwRiV6PZ6ccDfkMmFBaMewlLaBnJUeb
-         QH/WiBN6a779Q6E2Dtsuao3G9JkMGPoIeojf9TPHx6qOjwcP/76JvCR79In2hbGAw1
-         pltGnW0Mz2Y7Y8g41j1d/F2xrh5OKceWpuu2++vp0Wun9d0NA3f2IQ3pDptmCBACLT
-         jMevdDnVSNqzO+RsmsQF2JNxrV9UyagzP6cDzvfUjwZI4n2IacakOdnIpCKLUfNy1I
-         nDA7flO6HOVlA==
-Date:   Tue, 8 Aug 2023 08:28:17 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232444AbjHHQS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:18:29 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2044.outbound.protection.outlook.com [40.107.117.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB53A10CC;
+        Tue,  8 Aug 2023 08:48:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F9jXzhawctvu9h5k2bCcJM72JuFatQqymeHctinTA++tC6ZvUkL8H3k6vXrWg7C74QuUWslFMnJBJ1fqZWGRr/73HXmycs+aXg0QzQcKlT9XurujI+AEW1SX6GtMVzwRsQEyig/vQJksVsmUN2m8xeOjK8hMCv3oznxZ/z4GBP3b23pc74J40V0WKIDUSJTKe4ugdYpUitA3TV9ulr0N9aa3i9OOgNWMBZVA9pzxZT2qIFwjHxXmX8RRCHG8Otl9gqi0QUK9h3jWb49vs001kVNRz84y0wMyr1enyL6GddPRWsmhb7fIqKo3Lhge/yXlYesFk4rKk2e5r9oBTHDrbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/LwnuwlCmyloyZ03i82PUqrnlt8+YgjpyoUKttCGMRA=;
+ b=X6nR/jihRUKh78bpxcLwqhIOFxmGrgcYSlOa8LJojBoloj8WZdtd3upDvm/pwRJLATUiY8pylvIfSw1rx3y+ouycxnzgShIOGGGquDYiQhgvpLUVRRYJjTu0Mu4LCJyqxgguPAICEdWf0Xu6Z4HQF2kcLXNDgo1gHC9VdZ2A8RCnuBQYC4uVzLhmVCrcSSPWaqQbokun1f56QNpCZr+etF6m2CcSYVcVTJevl9RMHykPhy6WnuA+fQ6n1sgh53slkc95/IFokkdMqjxac55B3zMbPLR2ycp5op49hcyqo/jJj1/4MBpN9nNWDJi61vpcQRWEvaeOnhI5rW+VVzPGKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/LwnuwlCmyloyZ03i82PUqrnlt8+YgjpyoUKttCGMRA=;
+ b=ysPLGmbT6YXJ8YdPkiWpQ1VMv9KO5gsWkNjunOMN8D2pxpqrwLcyq5R8s+lJL6lxMs4Srx1wAvuCYYnbU/8xWo9JnHneh8qtOA3B/nLnOe6AF6qcuQQJCtULBD5P2Zma/vljuWn9RTkXWqjPSJc2EoxpIcCDdIzf2V1Ubh0fmhV5dyfItQC0fExhqwUKNykY2dcPE+VneVuKQlos+M6zRyNCCkbM1+UlU+Rn8hwAZaBD3CTmOTvkMoW5K0eIkjuo3MRgwT1dF/YyGYRFz0/tWyyRC/H/M39unzihqzLPMR3cPsWAo7f1Ow6iJnF+4TxhUm4Z4qwfJpB6ziWllnfnPg==
+Received: from SI2P153CA0008.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::19) by
+ KL1PR04MB7124.apcprd04.prod.outlook.com (2603:1096:820:f5::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6652.27; Tue, 8 Aug 2023 07:30:03 +0000
+Received: from HK2PEPF00006FB1.apcprd02.prod.outlook.com
+ (2603:1096:4:140:cafe::a1) by SI2P153CA0008.outlook.office365.com
+ (2603:1096:4:140::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.2 via Frontend
+ Transport; Tue, 8 Aug 2023 07:30:03 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB1.mail.protection.outlook.com (10.167.8.7) with Microsoft SMTP
+ Server id 15.20.6652.19 via Frontend Transport; Tue, 8 Aug 2023 07:30:02
+ +0000
+From:   Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To:     patrick@stwcx.xyz
+Cc:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v2 07/10] dt-bindings: net: snps,dwmac: add
- safety irq support
-Message-ID: <20230808-guidance-propose-407154f8bff4@spud>
-References: <20230807164151.1130-1-jszhang@kernel.org>
- <20230807164151.1130-8-jszhang@kernel.org>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/2] ARM: dts: Facebook Yosemite 4 platform
+Date:   Tue,  8 Aug 2023 15:29:55 +0800
+Message-Id: <20230808073000.989942-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="CcVArbuGnTOxANs0"
-Content-Disposition: inline
-In-Reply-To: <20230807164151.1130-8-jszhang@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB1:EE_|KL1PR04MB7124:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: c99c9a9c-2dfa-43f4-06bc-08db97e147aa
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QISHe5m0mGeeUfBkqqBiNRt7NEwgcn83K/pmByWbT5J5oupEjgHztPzGPtD2+O2yHs3V8ObEeead55znjAKA5267DfyDf4Cs/WHgDp9H+AQRMATpE+c1f53UesttZYnVzuoL/uBXnTtEh/CwRzfTtbmUbIZSvSG85Lr9KIAUs3oQpOMu67bGAvpETxnNe6+JW43OVvN4Q3U9iUMv7kJo9h0V4t2ii4uVlmUO43/C/JiACjq8uhOB+kjc0hl4YJlJznc8KP82ZWpFeB4XGNfyT6DCjxUoA8JvkyH63vI2lvrKo8G0+FCf0ddUMBGRk4V1dGMs2yOK5bIaxoIavltp9LCOtJDt+GSc/TCR4n8RAC0F8z/Ji7Alf8mKu0ZCj4Ng799Ak05e61NAXNzfFwSQDahr/bN/IByysT+lN57lUikpcpNayG3GK8zyOqZvYS2+HgykXmKW6VsYkKI5tltG9xhISVFvGOOLqoyCJBW0XTkwa17LuIqYT0Mmro3zc7OX5gmkp3GtSE50YuRL7fakFTWKuVM5XGJ/IUUMXOXIDeZHX+drt2DwbwZGzA3q8X6o/UtmXX/1akaxxJ+SBXbPkKnQmxxQqisfgZ2bpA3jZw0zi268bYHbV++rQRD5soq/39ApOSHHGn9XeIuW3yuXn8lNdIk6zYzGwRKnWcvGoHWV+fEca2WzX2EpyIBCXXSDtbOHffaC7GgiMtB8TyyvCIJ+lEIT+EaAIzlxS1ehoSNNeYlJm5JSC6f2kjySd4eMvolEEiw1v9mj7Zbc0Axy9Q==
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230028)(6069001)(4636009)(396003)(39860400002)(136003)(376002)(346002)(47680400002)(90021799007)(451199021)(82310400008)(1800799003)(90011799007)(186006)(46966006)(36840700001)(7416002)(8936002)(8676002)(6916009)(4326008)(36736006)(5660300002)(41300700001)(316002)(47076005)(40480700001)(86362001)(4744005)(2906002)(36860700001)(6512007)(6666004)(6486002)(956004)(2616005)(1076003)(6506007)(26005)(336012)(9316004)(70586007)(70206006)(36756003)(478600001)(81166007)(356005)(82740400003)(54906003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2023 07:30:02.5536
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c99c9a9c-2dfa-43f4-06bc-08db97e147aa
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: HK2PEPF00006FB1.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB7124
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,57 +96,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add linux device tree entry related to
+Yosemite 4 specific devices connected to BMC SoC.
 
---CcVArbuGnTOxANs0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changelog:
+v6 - Change project name from yosemitev4 to yosemite4
+v5 - Revise rtc setting
+   - Remove duplicated multi-master setting
+v4 - Resend with cover letter
+v3 - Revise the bootargs to stdout-path
+   - Revise i2c devices
+v2 - Revise the DTS node name
+v1 - Add binding document
 
-On Tue, Aug 08, 2023 at 12:41:48AM +0800, Jisheng Zhang wrote:
-> The snps dwmac IP support safety features, and those Safety Feature
-> Correctible Error and Uncorrectible Error irqs may be separate irqs.
->=20
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index ddf9522a5dc2..5d81042f5634 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -107,6 +107,8 @@ properties:
->        - description: Combined signal for various interrupt events
->        - description: The interrupt to manage the remote wake-up packet d=
-etection
->        - description: The interrupt that occurs when Rx exits the LPI sta=
-te
-> +      - description: The interrupt that occurs when Safety Feature Corre=
-ctible Errors happen
-> +      - description: The interrupt that occurs when Safety Feature Uncor=
-rectible Errors happen
-> =20
->    interrupt-names:
->      minItems: 1
-> @@ -114,6 +116,8 @@ properties:
->        - const: macirq
->        - enum: [eth_wake_irq, eth_lpi]
->        - const: eth_lpi
-> +      - const: sfty_ce
-> +      - const: sfty_ue
+Delphine CC Chiu (2):
+  dt-bindings: arm: aspeed: add Facebook Yosemite 4 board
+  ARM: dts: aspeed: yosemitev4: add Facebook Yosemite 4 BMC
 
-Did I not already ack this?
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 633 ++++++++++++++++++
+ 3 files changed, 635 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
 
---CcVArbuGnTOxANs0
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNHukQAKCRB4tDGHoIJi
-0q8sAQDdMaiGwRgtoaOMOSoYM8rEhQWRBaqsZ9Sqog8hWbs5CAEAyV2Y7L7++Dz6
-xHP/9iGKo8Kh8UMNTMtcAUByYyRAXA0=
-=0Pro
------END PGP SIGNATURE-----
-
---CcVArbuGnTOxANs0--
