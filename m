@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25EB17747A3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A1F7747EC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbjHHTRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33172 "EHLO
+        id S235198AbjHHTWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236036AbjHHTRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:17:08 -0400
+        with ESMTP id S236184AbjHHTWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:22:00 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFFD1558A;
-        Tue,  8 Aug 2023 09:40:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA1310E9C8;
+        Tue,  8 Aug 2023 09:45:43 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E73CD623FC;
-        Tue,  8 Aug 2023 10:44:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 294EEC433C7;
-        Tue,  8 Aug 2023 10:44:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E096624A6;
+        Tue,  8 Aug 2023 10:48:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3F57C433C8;
+        Tue,  8 Aug 2023 10:48:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691491476;
-        bh=V/umhZTGl3evHtInzC211fdgJQGdc7LiET+/8luRldw=;
+        s=k20201202; t=1691491687;
+        bh=g4Al6u/oxW9sOdVO40WZiYWYztfE/tWlGU1STUdbHRs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DfFlpldYwSRpM2j1rpKqckV466YsUzwY+XAIqjL4gid3Zgl2JNmmxgeNVToD9nTBt
-         dugoK7A2LEEwRPz0mJtNzvhYSKhigNLrAy9sOIJPi9iY/KOo9Axdw0sUX9j3Y/MJuk
-         8b0ZBH5Nw6LtWQOgJRUvWMOPY8mL+TnkDxRMemgR8zjnDtfZv76rqxyO46XLx3q1FU
-         0Ke9D+42xkd6yBtTMa4subvtzbIKu4m4lJhBHBCend65RpLsbzAFqQ1YiMNsOZ8AL9
-         3aj76VJkpzWOIyK+GyPZEraKxwYRXAL2lKqqj/3M/DhZyJpEbfCwFJ995r/LAqG+o8
-         Dkur1MG63RPKA==
-Date:   Tue, 8 Aug 2023 11:44:31 +0100
+        b=rsIaGXcA79+KRvi55vDwZcaycKr5Mc/tVkLjU9fnNOY0UZLyw4vPkks1ugyvNMdZv
+         srirx/T+v64qvDgrub2wSDxGiS/PYNi3uuTSQoz89p7MJQy3+2poNJRzUWKNVWRLpg
+         wQP0U7Mdof49bv8EQ0mxaWPbO00xd64PzEDXDyLSCKUw1N6Kwpdr+2B21tHFn1aTwp
+         E2oma7Au+eu76VP9dHf8q2a11dhwdmCzggYmbElo7c2WGOjSEHsYn3sM6kZdXQeANH
+         EvYNDPEwf6tVZEpntFzO6jB/RyIpiIdleHwr0hQTx3SD77GNmeoiHOgVaKiRK8405H
+         RaOFRZFBn8QcQ==
+Date:   Tue, 8 Aug 2023 11:48:02 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     JiaJie Ho <jiajie.ho@starfivetech.com>
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Md Danish Anwar <a0501179@ti.com>
+Cc:     MD Danish Anwar <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/2] riscv: dts: starfive - Add crypto and trng node
-Message-ID: <20230808-fiber-stifle-430ab25390be@spud>
-References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
- <20230808-despair-calm-40ca60de2afb@spud>
- <6c26992dca244c6eab05b64a16be0d0c@EXMBX068.cuchost.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, srk@ti.com,
+        nm@ti.com
+Subject: Re: [PATCH] dt-bindings: remoteproc: pru: Add Interrupt property
+Message-ID: <20230808-unwomanly-generic-67d20f0e51cd@spud>
+References: <20230807110836.2612730-1-danishanwar@ti.com>
+ <20230807-euphemism-trailing-ef4130dc7437@spud>
+ <910a4a98-712a-5517-5a5b-ffb962f83463@ti.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="RgPVqGKbYiebNqo8"
+        protocol="application/pgp-signature"; boundary="RzfM45YTf9+4RvqO"
 Content-Disposition: inline
-In-Reply-To: <6c26992dca244c6eab05b64a16be0d0c@EXMBX068.cuchost.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <910a4a98-712a-5517-5a5b-ffb962f83463@ti.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,41 +65,79 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---RgPVqGKbYiebNqo8
+--RzfM45YTf9+4RvqO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 08, 2023 at 10:17:22AM +0000, JiaJie Ho wrote:
-> > On Tue, Aug 08, 2023 at 02:11:48PM +0800, Jia Jie Ho wrote:
-> > > The following patches add hardware cryptographic and trng module nodes
-> > > to JH7110 dts. Patches have been tested on VisionFive2 board.
-> > >
-> > > Best regards,
-> > > Jia Jie
-> > >
-> > > Jia Jie Ho (2):
-> > >   riscv: dts: starfive - Add crypto and DMA node for JH7110
-> >=20
-> > >   riscv: dts: starfive - Add hwrng node for JH7110 SoC
-> >=20
-> > I only got one patch, where is the other?
->=20
+On Tue, Aug 08, 2023 at 03:14:31PM +0530, Md Danish Anwar wrote:
 > Hi Conor,
-> My mailing server failed to send out the 2nd patch.
-> Do I resend the patch or send it out together with other fixes in v2?
+>=20
+> On 07/08/23 8:09 pm, Conor Dooley wrote:
+> > On Mon, Aug 07, 2023 at 04:38:36PM +0530, MD Danish Anwar wrote:
+> >> Add interrupts and interrupt-names protperties for PRU and RTU cores.
+> >>
+> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> >> ---
+> >>  .../bindings/remoteproc/ti,pru-rproc.yaml     | 22 +++++++++++++++++++
+> >>  1 file changed, 22 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc=
+=2Eyaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >> index cd55d80137f7..6970316943bb 100644
+> >> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >> @@ -66,6 +66,16 @@ properties:
+> >>        Should contain the name of the default firmware image
+> >>        file located on the firmware search path.
+> >> =20
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +    description:
+> >> +      Interrupt specifiers enable the virtio/rpmsg communication betw=
+een MPU
+> >> +      and the PRU/RTU cores.
+> >> +
+> >> +  interrupt-names:
+> >> +    items:
+> >> +      - const: vring
+> >> +
+> >>  if:
+> >>    properties:
+> >>      compatible:
+> >> @@ -171,6 +181,9 @@ examples:
+> >>                <0x22400 0x100>;
+> >>          reg-names =3D "iram", "control", "debug";
+> >>          firmware-name =3D "am65x-pru0_0-fw";
+> >> +        interrupt-parent =3D <&icssg0_intc>;
+> >> +        interrupts =3D <16 2 2>;
+> >> +        interrupt-names =3D "vring";
+> >>        };
+> >=20
+> > These examples would probably be more helpful if they used the
+> > appropriate defines, no?
+> >=20
+>=20
+> PRUSS Interrupt controller doesn't have any appropriate defines. This doe=
+sn't
+> use GIC so defines from arm-gic.h can not be used here. These are specifi=
+c to
+> PRUSS INTC.
 
-A fixed up v2 please.
+I was deliberately vague in case the gic stuff applied too, but my main
+question was about the standard defines used for interrupt types.
 
---RgPVqGKbYiebNqo8
+> I think these example are OK. Please let me know if this is OK to you.
+
+--RzfM45YTf9+4RvqO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIcjwAKCRB4tDGHoIJi
-0qjkAQC1Ijbj5bIIJ9R2E2WPDNjZr3nVjnA6RDcKtkWkXI0ATQEAoi1Wsv4j9Qiq
-rV/3HbsbpW1FWrJT7qhMXFwBYWIqjAI=
-=sG6w
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIdYgAKCRB4tDGHoIJi
+0sfFAQDUGTaUH2VxL1ST+sf18hKE5yCqpFEUkOJu+bgGPLkmuQD/XAUCs4HrdF2v
+1lu3PdJ0QSaQoDb36Qrpa6k3hHGvUQg=
+=l++a
 -----END PGP SIGNATURE-----
 
---RgPVqGKbYiebNqo8--
+--RzfM45YTf9+4RvqO--
