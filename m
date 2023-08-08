@@ -2,61 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC624773C7C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92D0A774135
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231759AbjHHQGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40034 "EHLO
+        id S234208AbjHHRQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231426AbjHHQFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:05:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49FE30C7;
-        Tue,  8 Aug 2023 08:45:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E0F86259F;
-        Tue,  8 Aug 2023 14:28:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D866C433C7;
-        Tue,  8 Aug 2023 14:28:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691504894;
-        bh=qMriDtXrpLpfOWzb5+F5aOCYEZhH3+5fP0nhoxADdxA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tV/68gEXuyvM/3aR/Qp/99bWWBgEJWNV2ioFTuNK7maHxoA1B+jr4legADPGIpFmC
-         TdlpfRfEciPYC863Fr1g9haSn9B6FuQ3YFQQcWcYtAr3XM1PDaDLeJYHG3t47A4Chw
-         UePvtRvh7fol4x07yLv8vsqeQn8LoyKEuJWEzMceYnNDdk/UBRmeCnS3r3upT33N7F
-         wef4uKoHfk0fO2u7TR874aKZ8TochZneW8BekRHnLwTLS+D9DmohjHcNFHmugnARaT
-         Cmqda5nh8N4n+7M0qOsDiPlx8rWolfpIt/xBVePqjkzPi25YffJO9H1VE4N+DFwxnH
-         oZQs+tSbh3JXA==
-Date:   Tue, 8 Aug 2023 15:28:10 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Naresh Solanki <naresh.solanki@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Message-ID: <20230808-esquire-epidemic-f9bd74ffde25@spud>
-References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
- <20230808-stand-cheddar-b76b0b7509a0@spud>
- <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
+        with ESMTP id S234214AbjHHRQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:16:17 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B251CEB0
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:06:37 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id 6a1803df08f44-63cffc0f95eso29147196d6.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:06:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691510789; x=1692115589;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KmZq8plralUfhUCeO0zuZ8rV58wpzJBRG27vY2vs6cs=;
+        b=hV8az3MPC71mBlUV5SSiJpo2eAx+uJnTg8ppHE+Hy4uAJGL63sW9p8Z0DAb5gohukM
+         uy8mTf9m68Z8jJSTAfsoHsrLRbfeA5ck5fLzkCwlg+0qW38nordujrRQgcKbCN17XViZ
+         vV383QSL/6B8fNuCz83pDbtFqJn/mm1/GFU602T8TNjZJ92EPQVh7RQYdnsbBYkk0GFt
+         qbjfej6F8LWOlC93csJCC0GIbHqkIaD3ghmgaFtOQyABSgC6Cc8BolZgq7KJqY8Hvr98
+         +WlDXnMj8sG+gziP+bhLtxrySI3SK7FEkY6Xd5vHVRxwvxCMAyCbZG+umvocnVZuk2LS
+         SRzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691510789; x=1692115589;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KmZq8plralUfhUCeO0zuZ8rV58wpzJBRG27vY2vs6cs=;
+        b=W6rwbKgRocdXFcZ9UugDCvBGLGeRLETkQxbVBEX9NhcncJBcDvd7xq7MPY5odLvplK
+         P4XMpbTNIpcgUV3ht4MRqK3Dy9bEOFjeTVHrJKivA13hvTJ/fu63rL2tt6j2aolrt6Jw
+         5simmloxnGu88HEVi0OVMRuE0EI5rxAQ4GJ5mSmpGU2XjwsNDROIJj8i5ml/9C0fj64Q
+         g9uqIIUKaDXR9P87eHOwxV4MHKm6MEOaPC7Ag9gnNuhIsnmxOUvU65ySlqosEiAiUK84
+         KDJWifRUd7quWNIeEnjHJTjegMKrf3Q4xJUwZ92Ot810nU16nrhcz27YBOOVzHrrOasB
+         yVfw==
+X-Gm-Message-State: AOJu0YwonvbmGsziFEVunuc92qwgvPJXVrRP4x3C7L0TrRaSwUfjHdrA
+        wRaLQP2qmgd6oNCK4PsqrZ4K/gDe/dYFTHky5bSv+qEu6nWJbFhf7oo=
+X-Google-Smtp-Source: AGHT+IGKZbzqHtAQeH+ERa/8lc1KwqmrCEauq29EtyhIWFzJmE3Z/R6hI/O84pNycisvdvGnKhmQiTpqB01gZJI0Wxg=
+X-Received: by 2002:a1f:bdd1:0:b0:471:8787:2c6c with SMTP id
+ n200-20020a1fbdd1000000b0047187872c6cmr4968353vkf.6.1691505016313; Tue, 08
+ Aug 2023 07:30:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="XfJu5TZS5xk5xqji"
-Content-Disposition: inline
-In-Reply-To: <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230807193102.6374-1-brgl@bgdev.pl> <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
+ <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
+ <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk> <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
+ <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
+In-Reply-To: <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 8 Aug 2023 16:30:05 +0200
+Message-ID: <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,60 +87,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 8, 2023 at 4:25=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > > On Tue, Aug 08, 2023 at 10:13:09AM +0200, Bartosz Golaszewski wrote:
+> > > > Ok so upon some further investigation, the actual culprit is in stm=
+mac
+> > > > platform code - it always tries to register an MDIO bus - independe=
+nt
+> > > > of whether there is an actual mdio child node - unless the MAC is
+> > > > marked explicitly as having a fixed-link.
+> > > >
+> > > > When I fixed that, MAC1's probe is correctly deferred until MAC0 ha=
+s
+> > > > created the MDIO bus.
+> > > >
+> > > > Even so, isn't it useful to actually reference the shared MDIO bus =
+in some way?
+> > > >
+> > > > If the schematics look something like this:
+> > > >
+> > > > --------           -------
+> > > > | MAC0 |--MDIO-----| PHY |
+> > > > -------- |     |   -------
+> > > >          |     |
+> > > > -------- |     |   -------
+> > > > | MAC1 |--     ----| PHY |
+> > > > --------           -------
+> > > >
+> > > > Then it would make sense to model it on the device tree?
+> > >
+> > > So I think what you're saying is that MAC0 and MAC1's have MDIO bus
+> > > masters, and the hardware designer decided to tie both together to
+> > > a single set of clock and data lines, which then go to two PHYs.
+> >
+> > The schematics I have are not very clear on that, but now that you
+> > mention this, it's most likely the case.
+>
+> I hope not. That would be very broken. As Russell pointed out, MDIO is
+> not multi-master. You need to check with the hardware designer if the
+> schematics are not clear.
 
---XfJu5TZS5xk5xqji
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sorry, it was not very clear. It's the case that two MDIO masters
+share the MDC and data lines.
 
-On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
-> On 8/8/23 04:46, Conor Dooley wrote:
-> > On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
-> > > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > >=20
-> > > The TDA38640 chip has different output control mechanisms depending on
-> > > its mode of operation. When the chip is in SVID mode, only
-> > > hardware-based output control is supported via ENABLE pin. However, w=
-hen
-> > > it operates in PMBus mode, software control works perfectly.
-> > >=20
-> > > To enable software control as a workaround in SVID mode, add the DT
-> > > property 'infineon,en-svid-control'. This property will enable the
-> > > workaround, which utilizes ENABLE pin polarity flipping for output wh=
-en
-> > > the chip is in SVID mode.
-> >=20
-> > Why do you need a custom property for this? How come it is not possible
-> > to determine what bus you are on?
-> >=20
->=20
-> That is not the point. Yes, it can be detected if the control method is
-> PMBus or SVID. However, in SVID mode, SVID is supposed to control the
-> output, not PMBUs. This is bypassed by controlling the polarity of the
-> (physical) output enable signal. We do _not_ want this enabled automatica=
-lly
-> in SVID mode. Its side effects on random boards using this chip are unkno=
-wn.
-> Thus, this needs a property which specifically enables this functionality
-> for users who _really_ need to use it and (hopefully) know what they are
-> doing.
+>
+> > Good point, but it's worse than that: when MAC0 is unbound, it will
+> > unregister the MDIO bus and destroy all PHY devices. These are not
+> > refcounted so they will literally go from under MAC1. Not sure how
+> > this can be dealt with?
+>
+> unbinding is not a normal operation. So i would just live with it, and
+> if root decides to shoot herself in the foot, that is her choice.
+>
 
-Hmm, reading this it makes a lot more sense why this is a property - I
-guess I just struggled to understand the commit message here,
-particularly what the benefit of using the workaround is. I'm still
-having difficulty parsing the commit & property text though - its
-unclear to me when you would need to use it - so I will stay out
-of the way & let Rob or Krzysztof handle things.
+I disagree. Unbinding is very much a normal operation. Less so for
+platform devices but still, it is there for a reason and should be
+expected to work correctly. Or at the very least not crash and burn
+the system.
 
---XfJu5TZS5xk5xqji
-Content-Type: application/pgp-signature; name="signature.asc"
+On the other hand, I like your approach because I may get away without
+having to fix it. But if I were to fix it - I would reference the MDIO
+bus from the secondary mac by phandle and count its references before
+dropping it. :)
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNJQ+gAKCRB4tDGHoIJi
-0rsaAP4p4HX4bMrdis5l4TikUX588o40cMUso+iMzqcRc+4sBQEAiZOIdiIzqofV
-HE+wZrIM/ImGNTwKIwWUHO0dKzccKg8=
-=+V64
------END PGP SIGNATURE-----
-
---XfJu5TZS5xk5xqji--
+Bartosz
