@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B687A77444C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 334417745F8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235427AbjHHSQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47364 "EHLO
+        id S233871AbjHHSt5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Aug 2023 14:49:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234476AbjHHSQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:16:12 -0400
-Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01F717A1E3;
-        Tue,  8 Aug 2023 10:22:46 -0700 (PDT)
-Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-        by mx.skole.hr (mx.skole.hr) with ESMTP id 6BCF385027;
-        Tue,  8 Aug 2023 12:14:32 +0200 (CEST)
-From:   =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-To:     Robert Jarzmik <robert.jarzmik@free.fr>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230418AbjHHSta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:49:30 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F384E6EA9;
+        Tue,  8 Aug 2023 10:01:23 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A5F65831C;
+        Tue,  8 Aug 2023 18:17:22 +0800 (CST)
+Received: from EXMBX161.cuchost.com (172.16.6.71) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
+ 2023 18:17:22 +0800
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX161.cuchost.com
+ (172.16.6.71) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
+ 2023 18:17:22 +0800
+Received: from EXMBX068.cuchost.com ([fe80::e99c:4abb:32f:d650]) by
+ EXMBX068.cuchost.com ([fe80::e99c:4abb:32f:d650%16]) with mapi id
+ 15.00.1497.044; Tue, 8 Aug 2023 18:17:22 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G . Piccoli" <gpiccoli@igalia.com>,
-        =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-hardening@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afaerber@suse.de
-Subject: [PATCH v4 8/8] MAINTAINERS: add myself as Marvell PXA1908 maintainer
-Date:   Tue,  8 Aug 2023 12:13:06 +0200
-Message-ID: <20230808101313.13081-1-duje.mihanovic@skole.hr>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr>
-References: <20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 0/2] riscv: dts: starfive - Add crypto and trng node
+Thread-Topic: [PATCH 0/2] riscv: dts: starfive - Add crypto and trng node
+Thread-Index: AQHZycgtdre3xH++D0m1ckikpOWjy6/gLsnA
+Date:   Tue, 8 Aug 2023 10:17:22 +0000
+Message-ID: <6c26992dca244c6eab05b64a16be0d0c@EXMBX068.cuchost.com>
+References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
+ <20230808-despair-calm-40ca60de2afb@spud>
+In-Reply-To: <20230808-despair-calm-40ca60de2afb@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [161.142.156.69]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer for Marvell PXA1908 SoC support.
+> On Tue, Aug 08, 2023 at 02:11:48PM +0800, Jia Jie Ho wrote:
+> > The following patches add hardware cryptographic and trng module nodes
+> > to JH7110 dts. Patches have been tested on VisionFive2 board.
+> >
+> > Best regards,
+> > Jia Jie
+> >
+> > Jia Jie Ho (2):
+> >   riscv: dts: starfive - Add crypto and DMA node for JH7110
+> 
+> >   riscv: dts: starfive - Add hwrng node for JH7110 SoC
+> 
+> I only got one patch, where is the other?
 
-Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Hi Conor,
+My mailing server failed to send out the 2nd patch.
+Do I resend the patch or send it out together with other fixes in v2?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0f966f05fb0d..6f5233f3904b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2299,6 +2299,15 @@ F:	drivers/irqchip/irq-mvebu-*
- F:	drivers/pinctrl/mvebu/
- F:	drivers/rtc/rtc-armada38x.c
- 
-+ARM/Marvell PXA1908 SOC support
-+M:	Duje Mihanović <duje.mihanovic@skole.hr>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+T:	git https://gitlab.com/LegoLivesMatter/linux
-+F:	arch/arm64/boot/dts/marvell/pxa1908*
-+F:	drivers/clk/mmp/clk-of-pxa1908.c
-+F:	include/dt-bindings/clock/marvell,pxa1908.h
-+
- ARM/Mediatek RTC DRIVER
- M:	Eddie Huang <eddie.huang@mediatek.com>
- M:	Sean Wang <sean.wang@mediatek.com>
--- 
-2.41.0
-
-
+Thanks
+Jia Jie
