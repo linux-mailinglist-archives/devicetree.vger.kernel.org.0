@@ -2,92 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E06774613
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62B47743F6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:14:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233592AbjHHSwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:52:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54150 "EHLO
+        id S233803AbjHHSO2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Aug 2023 14:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235852AbjHHSwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:52:30 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929915FDD7
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:06:29 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99bed101b70so845317266b.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:06:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691514387; x=1692119187;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U/ENPbWDACTq/gT25pwElyGsToVBQemAbfEgTyGefM8=;
-        b=KiZVYnjUU1vKIHhB5HsmiqD4lZSuz2o74EEUASVHAIt6FBa8QHq14UTb4xONXiKgyM
-         F86eDQowNmcyGmElTbJCo2Si44K684oPoWIRBrFHc36IwKEzawhozW3yw8rSImAxk87X
-         ieMnJ4d5+4FAJMxW/uSvr5SKaeTyf08GPm3KoCUdhoXLIIe3goQfmweiMWK4srN0eJI7
-         i1AQ9gsUm0R/YigTdJ7s2DZHWoqtMOYA59cOX4msvE8oSbvJA1SSgatpm83QIiDwQGwA
-         xJ1onLxoI8AthowtZIc+0sM2eiYST4JzcIqro+hKWcM69zHk+e2PP6ne3HLHjPUW84cc
-         AWGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691514387; x=1692119187;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U/ENPbWDACTq/gT25pwElyGsToVBQemAbfEgTyGefM8=;
-        b=D9MKh20KDYve9ao+hlCZR0Nc3Nw1o9t9d//6yrcBzt3R7zmknW4AdlJbyy+NhIPByT
-         QNthbz4BaSVQyeng3w5yu28Vi0cS8g3DcXcQsvj0JxN9AHV7/tgfFRIexmvvnAkrio/y
-         4ialmilKzLWfPNaRcXw9lWJuxVkAASTShmHOZt8C541e0LjiZj8hfJPc0DtdXOxEJpAp
-         smN390kDiOIlQ5akijoAdqhOHRsCDtT35CmsPH2Ffvbzl7zLHHlFDeMnGCerrnSLR8U/
-         2KxdDWz9TIBtAEEKiI8yP2pcwVwgm+F3w7JaxFHqJxzrDC6m9dEwQ+RWggZYLsQnYGNQ
-         k47A==
-X-Gm-Message-State: AOJu0YxVO+7lUokH6kpZrPKx7UiZ14ndTqHL14xPhHTVw7gQyGv0l98G
-        zX0eHFYwGipNsP7lNBbDEXbNQRNedKvkNM7g7+k=
-X-Google-Smtp-Source: AGHT+IH20o5oXu1MzFaME7Vqm8k1vG/h5IULgofIK8nWT0wfuYK0Ryctno9bzeuLujRtR/SQOzZBWA==
-X-Received: by 2002:a17:906:d8:b0:99b:ca5d:1466 with SMTP id 24-20020a17090600d800b0099bca5d1466mr11379531eji.66.1691474329221;
-        Mon, 07 Aug 2023 22:58:49 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id e4-20020a1709062c0400b00982d0563b11sm3463474ejh.197.2023.08.07.22.58.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 22:58:48 -0700 (PDT)
-Message-ID: <9e235de6-972a-84e5-3e09-f0b07b10e28d@linaro.org>
-Date:   Tue, 8 Aug 2023 07:58:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 0/8] Initial Marvell PXA1908 support
-Content-Language: en-US
-To:     =?UTF-8?Q?Duje_Mihanovi=c4=87?= <duje.mihanovic@skole.hr>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S231528AbjHHSN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:13:57 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C66E8CA8;
+        Tue,  8 Aug 2023 10:19:39 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id D4BB824E269;
+        Tue,  8 Aug 2023 14:12:36 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
+ 2023 14:12:36 +0800
+Received: from ubuntu.localdomain (202.188.176.82) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
+ 2023 14:11:58 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-hardening@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afaerber@suse.de,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr>
- <5723818.DvuYhMxLoT@radijator>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5723818.DvuYhMxLoT@radijator>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+CC:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] riscv: dts: starfive - Add crypto and DMA node for JH7110
+Date:   Tue, 8 Aug 2023 14:11:49 +0800
+Message-ID: <20230808061150.81491-2-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
+References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,15 +57,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/08/2023 23:02, Duje Mihanović wrote:
-> Patch 8/8 is missing because b4 lost connection to my SMTP server while 
-> sending it. Should I resend the whole series?
-> 
->
+Add hardware crypto module and dedicated dma controller node to StarFive
+JH7110 SoC.
 
-Just send patch 8 manually setting in-reply-to= argument to git
-send-email. b4 maybe also has this option, I don't know.
+Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
+Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+---
+ arch/riscv/boot/dts/starfive/jh7110.dtsi | 28 ++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+index a608433200e8..47cd12ccc988 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+@@ -821,6 +821,34 @@ watchdog@13070000 {
+ 				 <&syscrg JH7110_SYSRST_WDT_CORE>;
+ 		};
+ 
++		crypto: crypto@16000000 {
++			compatible = "starfive,jh7110-crypto";
++			reg = <0x0 0x16000000 0x0 0x4000>;
++			clocks = <&stgcrg JH7110_STGCLK_SEC_AHB>,
++				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
++			clock-names = "hclk", "ahb";
++			interrupts = <28>;
++			resets = <&stgcrg JH7110_STGRST_SEC_AHB>;
++			dmas = <&sdma 1 2>, <&sdma 0 2>;
++			dma-names = "tx", "rx";
++		};
++
++		sdma: dma@16008000 {
++			compatible = "arm,pl080", "arm,primecell";
++			arm,primecell-periphid = <0x00041080>;
++			reg = <0x0 0x16008000 0x0 0x4000>;
++			interrupts = <29>;
++			clocks = <&stgcrg JH7110_STGCLK_SEC_AHB>,
++				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
++			clock-names = "hclk", "apb_pclk";
++			resets = <&stgcrg JH7110_STGRST_SEC_AHB>;
++			lli-bus-interface-ahb1;
++			mem-bus-interface-ahb1;
++			memcpy-burst-size = <256>;
++			memcpy-bus-width = <32>;
++			#dma-cells = <2>;
++		};
++
+ 		gmac0: ethernet@16030000 {
+ 			compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
+ 			reg = <0x0 0x16030000 0x0 0x10000>;
+-- 
+2.34.1
 
