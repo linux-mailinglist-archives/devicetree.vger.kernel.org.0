@@ -2,63 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E89774A66
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A88C774A80
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbjHHU12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 16:27:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53306 "EHLO
+        id S234228AbjHHUaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 16:30:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233851AbjHHU0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:26:55 -0400
+        with ESMTP id S232950AbjHHUaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:30:05 -0400
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4767DB2;
-        Tue,  8 Aug 2023 12:44:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB328C26;
+        Tue,  8 Aug 2023 12:50:22 -0700 (PDT)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3784jZS3035097;
-        Mon, 7 Aug 2023 23:45:35 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3785DDhV041250;
+        Tue, 8 Aug 2023 00:13:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691469935;
-        bh=8TvvH3vVLz1caYe+mRMACPv8Abe/WkjKw7gend+67a8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=phSki+lTpB9e7K5VsheydqQ+iQPxhARIo3FEn3Q3tErZkOOg5xeT6cguMwm5T89Sj
-         TzGnue+VjDak0RCZBY9iFe1SCT8U0tF7DH1VSTopUC7qIBFXreI1CgCFe/E3k2VskW
-         vJgeKiaOYYzYz5bs2unjVq+/135RFxpIuCewwjt0=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3784jZ3J073754
+        s=ti-com-17Q1; t=1691471593;
+        bh=idXsfTNqRQLiOVJSZaBLKR1hyKNqp0FqZ6LHOlTsRFU=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=x5Lx0wuGxLoYfS2kVn8nJFBoMrYBFnF+W8FA0S33V7gUquIj6emIM7VEJAHlfTtnP
+         GIZdTQKgogzFUcUZNKpc+QarYVahqmMLpkgzuGIOKxtqlJu6ow7kJIh1ioeo4/fIM0
+         n1Zzw4/9Cine02vOo6O/NlsOKDDSpZepfPH0xmxU=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3785DDXQ094842
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Aug 2023 23:45:35 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Aug 2023 23:45:34 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 8 Aug 2023 00:13:13 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Aug 2023 00:13:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Aug 2023 23:45:34 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3784jYps098643;
-        Mon, 7 Aug 2023 23:45:34 -0500
-From:   Hari Nagalla <hnagalla@ti.com>
-To:     <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
-        <p.zabel@pengutronix.de>, <martyn.welch@collabora.com>,
-        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v5 2/5] arm64: dts: ti: k3-am62 : Add M4F remote proc node
-Date:   Mon, 7 Aug 2023 23:45:26 -0500
-Message-ID: <20230808044529.25925-3-hnagalla@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230808044529.25925-1-hnagalla@ti.com>
-References: <20230808044529.25925-1-hnagalla@ti.com>
+ Frontend Transport; Tue, 8 Aug 2023 00:13:12 -0500
+Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3785D5EM011348;
+        Tue, 8 Aug 2023 00:13:06 -0500
+Message-ID: <a0e2b828-36c9-326b-9247-863bb62b760f@ti.com>
+Date:   Tue, 8 Aug 2023 10:43:05 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 5/5] net: ti: icssg-prueth: am65x SR2.0 add 10M full
+ duplex support
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>, MD Danish Anwar <danishanwar@ti.com>
+CC:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230807110048.2611456-1-danishanwar@ti.com>
+ <20230807110048.2611456-6-danishanwar@ti.com>
+ <dd0e538a-9369-4682-8eda-753d7cb83fb1@lunn.ch>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <dd0e538a-9369-4682-8eda-753d7cb83fb1@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,84 +82,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM62x SoCs of the TI K3 family have a Cortex M4F core in the MCU
-domain. This core can be used by non safety applications as a remote
-processor. When used as a remote processor with virtio/rpmessage IPC,
-two carveout reserved memory nodes are needed. The first region is used
-as a DMA pool for the rproc device, and the second region will furnish
-the static carveout regions for the firmware memory.
+On 07/08/23 7:55 pm, Andrew Lunn wrote:
+>> @@ -210,6 +210,9 @@ void icssg_config_ipg(struct prueth_emac *emac)
+>>  	case SPEED_100:
+>>  		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
+>>  		break;
+>> +	case SPEED_10:
+>> +		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
+>> +		break;
+> 
+> Since that looks like a typO, you might want to add a comment.
+> 
+>       Adnrew
 
-The current carveout addresses and sizes are defined statically for
-each rproc device. The M4F processor do not have an MMU, and as such
-require the exact memory used by the firmware to be set-aside.
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
----
-Changes in v5:
- - Add the M4F device tree node patches to the patch list 
+Sure, Andrew. I'll add the below comment in 'case SPEED_10' so that it doesn't
+seem like a typo.
 
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       | 12 ++++++++++++
- .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 19 +++++++++++++++++++
- 2 files changed, 31 insertions(+)
+	
+case SPEED_10:
+	/* IPG for 10M is same as 100M */
+	icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
+	break;
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-index 80a3e1db26a9..4b55df1da751 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -171,4 +171,16 @@ mcu_mcan1: can@4e18000 {
- 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
- 		status = "disabled";
- 	};
-+
-+	mcu_m4fss: m4fss@5000000 {
-+		compatible = "ti,am64-m4fss";
-+		reg = <0x00 0x5000000 0x00 0x30000>,
-+		<0x00 0x5040000 0x00 0x10000>;
-+		reg-names = "iram", "dram";
-+		ti,sci = <&dmsc>;
-+		ti,sci-dev-id = <9>;
-+		ti,sci-proc-ids = <0x18 0xff>;
-+		resets = <&k3_reset 9 1>;
-+		firmware-name = "am62-mcu-m4f0_0-fw";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 34c8ffc553ec..ffca61fcf9ba 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -47,6 +47,18 @@ ramoops@9ca00000 {
- 			pmsg-size = <0x8000>;
- 		};
- 
-+		mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9cb00000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_m4fss_memory_region: m4f-memory@9cc00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9cc00000 0x00 0xe00000>;
-+			no-map;
-+		};
-+
- 		secure_tfa_ddr: tfa@9e780000 {
- 			reg = <0x00 0x9e780000 0x00 0x80000>;
- 			alignment = <0x1000>;
-@@ -362,6 +374,13 @@ mbox_m4_0: mbox-m4-0 {
- 	};
- };
- 
-+&mcu_m4fss {
-+	mboxes = <&mailbox0_cluster0>, <&mbox_m4_0>;
-+	memory-region = <&mcu_m4fss_dma_memory_region>,
-+			<&mcu_m4fss_memory_region>;
-+	sram = <&oc_sram>;
-+};
-+
- &usbss0 {
- 	status = "okay";
- 	ti,vbus-divider;
+
 -- 
-2.34.1
-
+Thanks and Regards,
+Danish.
