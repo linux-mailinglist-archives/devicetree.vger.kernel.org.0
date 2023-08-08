@@ -2,164 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3CCF773CD2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B7A773DF5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:25:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231831AbjHHQJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39996 "EHLO
+        id S230406AbjHHQYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231835AbjHHQIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:08:23 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC80E72B1;
-        Tue,  8 Aug 2023 08:46:15 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3784Emmx011882;
-        Tue, 8 Aug 2023 05:19:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PIdgMZR8W+Ik6UeWAcjVFurIfmZejnHlq4mvtB1MIRY=;
- b=HyW7PCKJacgBLG6Orka3HZgv2VdB/Qoiq6cGDeLrl6QaZ8CpgEgdpjmuyZL+X7PP3LI5
- WqaGs2HCSq9eiKIuP4F2ZwIuOSG1aZDrG/C7VXU3X4FlbUpFj6CUBYBONSAG114ifopZ
- KcfV69ckVlzFJI9r+Vy+VygrqSi5AfS+bB7iXjL1+QWoy5LtLGXOuoQMnh+iHvd+ZXmb
- gDJoTGCiPtQsPGfnM/UWEe00ENoPn3tf4oYG/L1XYVrHYcN7fKWBDcup+nyWU2YPuZAF
- 2+dLC4PvvkVDjPfPUvZcFA324t6xhAYt6R7NsBoupF4uNaErAswGroJfIHHAK3L34Wwo Qw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sb7bb8sqh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Aug 2023 05:19:11 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3785J9qc031032
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 8 Aug 2023 05:19:10 GMT
-Received: from [10.253.9.41] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 7 Aug
- 2023 22:19:06 -0700
-Message-ID: <cf9788f0-a115-5ff9-1195-f4f302551e04@quicinc.com>
-Date:   Tue, 8 Aug 2023 13:19:02 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: add qca8386/qca8084 clock and
- reset definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <p.zabel@pengutronix.de>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230801085352.22873-1-quic_luoj@quicinc.com>
- <20230801085352.22873-3-quic_luoj@quicinc.com>
- <ef996a7e-6eba-4366-c3ea-0d08f2768e98@linaro.org>
+        with ESMTP id S232319AbjHHQX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:23:27 -0400
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2048.outbound.protection.outlook.com [40.107.14.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3592A5D1;
+        Tue,  8 Aug 2023 08:49:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UaOtF4C8fnqQgFQfQEUfJkm3JAIHM9nF9uCOyI0MjoMpx346/SSGpij8r1IcPqxXqjYK9fYhCHAFmsuNJsYQQ8HPnEEftEfdJfVEIc5SFOhW0F9WoiuQRWcKaMaVXl4vIxE3bMcqgBm914DVwiAU5tmwlj1MfmxWQKEU/pmWETSSkeMFCeAEXNvDyyKFoiuOYYSyo7Sv73buBxWIqExr8q73N5ROZiYp4mtg3ZEyDXygHL66kUznNYoJKudlxbd3YLRximWGHbba7ld/OyOIOwYXyBvhrZmYy4si4GvZLpr7OTL7MhS0FFkFisMYuD4VW3y8PJSi5dnL5mYYP6WKzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=abnbn52zjsWiR2WnD3Ou6spo2IBlBZEb7kFUWdYr5eY=;
+ b=agU82+e9SG9g4R4Fz0JAoLaOjWJqeFsJUgCOn9Q+t2iBoAwxHkVCOUdTc17BjYCC7w1q+pFO5pMuhOTXRSKZr24oe9RHvkaVkRGXd5+isMp2yHgwxllssuuZ8ALoVQ0LnNbz7QS/0eyxcDdJYr+BKJ+WbjESVIYea6+c5wC/dwlAWmYwVVy5p72PFo3/2GIOwexu1v2eA29soZ3p/67FjTiZBRaEVgmlgxFdH9nNM8htvkdzhpNqsP3MLm4DMSfp4kMia3gQEjGXMp/g9IHsEotgy0CxxLLTeJPq5bTmFVaf3lrCYqSQzpk5NbDepe4HSGeSoSqAxJiokVKub9YWwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=abnbn52zjsWiR2WnD3Ou6spo2IBlBZEb7kFUWdYr5eY=;
+ b=U7yvizPUS7AWCDEg0vjvvM7x9j/VVV3hBs+h5zHvZEd+267dNy85noKeJUWz6Kl1b1+Lmj7OuZ+fsuYeIEoWHPHbqgA6sEpXBvc0KaV1dEMsVtJtqctYrnICfLu1rvc4LNNmG+up/HZnAwMb2lEbJmaDynpbl72Rq052z6IJCCD0A16+dKiyv30HoNQ0zKdmKGZK3C1RmKMdxD5TMCOF824XPCJFMlut6hpJf2SjudVTuCGbpdbkiwWe+9FM7eHvBvXrVriwkCTgKku53rLmq5gHtVzkp95S42HWzI53Xx4yTANvnKd77FUXvcvtaZwua3hASX4tigCtl0CiyiOV9Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+Received: from GV2PR10MB6186.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:76::15)
+ by AS2PR10MB6711.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:55f::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.27; Tue, 8 Aug
+ 2023 05:27:22 +0000
+Received: from GV2PR10MB6186.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9a7a:31ac:7fd:e106]) by GV2PR10MB6186.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9a7a:31ac:7fd:e106%3]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
+ 05:27:22 +0000
+Message-ID: <a274dabf-3987-0885-54f5-3bd7e7f2d1d5@siemens.com>
+Date:   Tue, 8 Aug 2023 07:27:17 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/13] arm64: dts: ti: k3-am65: Enable OSPI nodes at the
+ board level
 Content-Language: en-US
-From:   Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <ef996a7e-6eba-4366-c3ea-0d08f2768e98@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OLwaJZaka2cXgwYjJ3UdM-BCW9JfqH3y
-X-Proofpoint-ORIG-GUID: OLwaJZaka2cXgwYjJ3UdM-BCW9JfqH3y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-08_03,2023-08-03_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 malwarescore=0
- impostorscore=0 spamscore=0 phishscore=0 mlxlogscore=999 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308080046
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Andrew Davis <afd@ti.com>, Dhruva Gole <d-gole@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230802205309.257392-1-afd@ti.com>
+ <20230802205309.257392-5-afd@ti.com>
+ <bb87effc-00c3-7d97-08c9-68408f9c514c@ti.com>
+ <627ed411-a6f7-cbc9-d48f-2678bf63c609@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+In-Reply-To: <627ed411-a6f7-cbc9-d48f-2678bf63c609@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0074.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1f::12) To GV2PR10MB6186.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:150:76::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR10MB6186:EE_|AS2PR10MB6711:EE_
+X-MS-Office365-Filtering-Correlation-Id: aedbee04-2bd6-4b06-d840-08db97d02421
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Zz8go6kEuOAoHHotbZQVKbWkoL0vbyWz4/tRMv9nbze9lD2Tpo9cpoSSbNrG9MytRZEVG0GaB75Zqb5/PisPSc2lyYdtzRMZCR9lk36l6NSaG2w/VS9VjiwVTsNyZanzHMLTX0jxdVjgKVtL/Hwyd+Y9vYBe3Rv+BcXmKI/jHWFIaGwZ1kamRagobOgmtHFoA6btYV19GQdJyqup1CfGSZM45gUZdO1Mm8G/xBXyeEGt/8Z1XJiAU4PrxMeKektyfsRy6XtAgh0CXjFmoN16ieOde+oorfYPT5kd7yuCrBXZ0OTcbisxrYuYIhQgb2vDpcx4A3NQciaZEcKIhSe6PBtKC4SsAgOr8WqSVhNrbKqWGI0iRRJ0u/QxhyWRSKMOkDApTHGuevoPhHcSxqt0pHD7t7dBGjVH2grXkzJqjJBK5izdihLJDVvCUOCdD75R0++eHccAaVlJ+86GfnQrxZZ7Awhb0vA0QXq/PUDW4TqIoyh+71zJ7zlnXZOKYwtUhdBsqFsyv4VBwCY60W/yiIZUu0PghDl5r/ZwgGpaw/+WVHc3Koy16OF4pGHbLDWTTsfujWMmCnZh94jPFNSJnNs3SjhBmB1RI5DlE/l1amfbjN1d6t8VM+4BfoS/itQ6vDpbNtJ4clIofaSDc26/ZVpdh395prrOpJ1V1z7A5FEi9WolLlrt/NUj9pDhn7+gyOM9vo4a5YFZOPjTmQ/1wg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR10MB6186.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(346002)(366004)(396003)(376002)(39860400002)(451199021)(1800799003)(186006)(90011799007)(90021799007)(36756003)(2906002)(83380400001)(5660300002)(2616005)(110136005)(6666004)(38100700002)(6486002)(66556008)(66476007)(66946007)(6512007)(82960400001)(4326008)(316002)(31686004)(41300700001)(31696002)(86362001)(44832011)(8676002)(8936002)(26005)(7416002)(6506007)(478600001)(53546011)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXFkY3AxS1Z2ZVBkTEJuOEsrNEdOTzlqc1M2d0RXYU9tTVBoT2tOcnIvUWNS?=
+ =?utf-8?B?Lzc1VTkyRjdsSmhjSG5iNEN4YklxODNoQVdtV1hCRGNYZTZLMXVtdi8zdFM5?=
+ =?utf-8?B?VS9sdU9jR2hDaFZrQjB6UXZ1c0xzU0l2enpJOXdqM2g3ODhUQlRsQXpKbWpt?=
+ =?utf-8?B?blFuVjZUa2IxWGJ2dm5yVytBQ3NUVVptWnpwWkYxcy9FTlFUdjlub2xxNUtZ?=
+ =?utf-8?B?andRTEFPOTgrWSttalJLU0J0eGU3dEhPekNTYzNvUk9iNmxTNW5MZHZkU0dQ?=
+ =?utf-8?B?SWZNSlBhMk14TVIvWCt5ejVwN3hVaDdlU1JnVnNhUnNJTkRwN2RhT3MyTDZr?=
+ =?utf-8?B?dWZ2TGM2YUx4YjZLdGs5Z2J4REltNVZ2UXFJTWppTzIzTlh1dklMY256aVJO?=
+ =?utf-8?B?WXRtUTNxOXl0aGhpbFJOb1BKMGppU1UxLy9BeXh6U0Q5Qk1abTVOL3d0MFNZ?=
+ =?utf-8?B?MXY4aTBTWGVDNi90RnZVMXZ6K0VtUU9MMzFsUG0zZU1VMGd2eTJwNElTMmJE?=
+ =?utf-8?B?V2FqQ3M3TU9OSDJRNXB6TXNLS0tVZ0RlUSthUmxBRE5kdkkvTUpIQ1FKSzFC?=
+ =?utf-8?B?VFBqQURtOFAyalJDL0piWHVrVU54Y0VKaWhWVy9xWVhabVo4UjFZVCs4ZEQy?=
+ =?utf-8?B?T3FQaW9EQy92VitvVGxYZHh1ZW1NNXJFTWE2WG5NSFNZdlArYzdMUk04cDYr?=
+ =?utf-8?B?MkJVaWNQd3ZRSlJaNHI0YnhhelJta1lOWjg4ZE8yeDRNa3hjMTRkSjRrUGVF?=
+ =?utf-8?B?MXhBMkI4eFl3RXpyWmdNZmNWRnB2V3FYRzZsc2dPaWFudndkZmtiWTRZM3Jn?=
+ =?utf-8?B?UEhuVk1CbWFnUk8wRXRNVFF1Y0UxZkNPMWlVUGJlQTFXNGFwQnpvcTdaZlNp?=
+ =?utf-8?B?Nmh2NTk4WGdZclRsR3ZUUzhuMGU3Z2poS1BoRTBwY08yaSsrUTFkclBnQmZn?=
+ =?utf-8?B?dFY0eVVxclE4Q1JsaUNvaFp5Mjk2eVhaSFAydDY5aEVpYm9aNEdUd210SVhZ?=
+ =?utf-8?B?MFBPWDcrVTBEcUxva2JKSnFqVGZxODBTc1hSbjgxTEJYMzk3NElDajJVSVZr?=
+ =?utf-8?B?WDZDYTNLdlNrbElaUjlnOW1seXNrNDBqd3A2ZklTa096elFJL3duL1VHZ3B4?=
+ =?utf-8?B?NXB4eFBQQWVTNjU2VXAwclhseGhCeGZ6WW1kMWI2MmhyQktBS3dQQndid0Vs?=
+ =?utf-8?B?ZElCQVo1SjNueG1zSW41dzZzd0tiM0pJRk5IeWJOYStXV3dpc0d1K29rZ0ky?=
+ =?utf-8?B?SEJHNnZRd2FFRVdIWDk3Vk93NW45VmI0WS9kYUk4REo1dXB6ZE1FZjR2OXhL?=
+ =?utf-8?B?Y3BoekdKR1FuSHNBZDhlNktVVitoSTlQUnlNbTl1aWFwQ2NoYkduV2ZUc1J5?=
+ =?utf-8?B?RUY3Z1VLcU9yRWIrbmpnK0NlUXVzc0IrY25CS2ZFTm90T1NId0xTK211cnFu?=
+ =?utf-8?B?eUd0YWs0WVU3QmNOVXVFRmtZRnBkN1pRelFWdkNsYm9Vb25FTGNKY2duOXBo?=
+ =?utf-8?B?REJBQ1J4R3YvQm1jMFJQOUhaUWhXTHZrWVNiVktnazdUVy92K2lYZmlmb2dE?=
+ =?utf-8?B?Sm9OdmJldFVwVUNoWXNrc2V5SDh4eHM2Zk1DWUp0dFdXck1CMVBXZmszdWV3?=
+ =?utf-8?B?dEpGdHA1WHNnV3hTNXVKT2xhYjNRNHBRR05ua0ppbEp4TWtnZjJsRlVsRDhS?=
+ =?utf-8?B?TVBlN0xrMHVCMC9YSHlyeGZEaDdaY1VsYlgvY3lIOGdaekR4amVxcS9nU2Zk?=
+ =?utf-8?B?SFFWNmpYMGJZdFpzWHdYaHc1RjZtQkxkQ25ubWlPTTYxNTd6eG50MGRpRGhw?=
+ =?utf-8?B?ZU5oaHd0SStsL25FNzRwMThjc0ZWekRBeXFQaDBTS3BkeHJOdjA2TkpwYlFN?=
+ =?utf-8?B?WGxlc2crcksxRmVlZCtVcmNTMTVsUDNmMjFKdlBpUUxPekpSUk5YSDBKOVhi?=
+ =?utf-8?B?V2ZEbTRlOHlmcml3eThwVHVrcEhIVjBTS1crNDdHU2lJdDVOM2JRYTFwUUt0?=
+ =?utf-8?B?ZnkvaUVxei9MTG5SZlIzOTZQZnBSbE5SaDZ0Q05aUjJMRTRHQm5NaEZpbmRi?=
+ =?utf-8?B?blM5cGplMC8yaWpsVnA1UHREdDlDRFhkTGNsQmdJL0ZueklXSGFqNnlXUWZw?=
+ =?utf-8?Q?zocovIaWBWvntVG4B+RXhWnDM?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: aedbee04-2bd6-4b06-d840-08db97d02421
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR10MB6186.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2023 05:27:22.0596
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f06lAuFgBK7uKJU2+pTlYeD6THzNqmRgGX+3uVHPKNOES+VTc/8GV58OhbQ14aSXM9iOdI8etLC7NNrmwBAy9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR10MB6711
+X-OriginatorOrg: siemens.com
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/7/2023 2:52 PM, Krzysztof Kozlowski wrote:
-> On 01/08/2023 10:53, Luo Jie wrote:
->> QCA8386/QCA8084 includes the clock & reset controller that is
->> accessed by MDIO bus. Two work modes are supported, qca8386 works
->> as switch mode, qca8084 works as PHY mode.
+On 07.08.23 17:18, Andrew Davis wrote:
+> On 8/7/23 1:16 AM, Dhruva Gole wrote:
+>> Hi Andrew,
 >>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   .../bindings/clock/qcom,nsscc-qca8k.yaml      |  59 ++++++++++
->>   include/dt-bindings/clock/qcom,nsscc-qca8k.h  | 102 ++++++++++++++++++
->>   include/dt-bindings/reset/qcom,nsscc-qca8k.h  |  76 +++++++++++++
->>   3 files changed, 237 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.yaml
->>   create mode 100644 include/dt-bindings/clock/qcom,nsscc-qca8k.h
->>   create mode 100644 include/dt-bindings/reset/qcom,nsscc-qca8k.h
+>> On 03/08/23 02:23, Andrew Davis wrote:
+>>> OSPI nodes defined in the top-level AM65x SoC dtsi files are incomplete
+>>> and may not be functional unless they are extended with pinmux and
+>>> device information.
+>>>
+>>> As the attached OSPI device is only known about at the board integration
+>>> level, these nodes should only be enabled when provided with this
+>>> information.
+>>>
+>>> Disable the OSPI nodes in the dtsi files and only enable the ones that
+>>> are actually pinned out on a given board.
+>>>
+>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>> ---
+>>>   arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 1 +
+>>>   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi            | 2 ++
+>>>   arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 1 +
+>>>   3 files changed, 4 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>> b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>> index e26bd988e5224..6041862d5aa75 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>>> @@ -593,6 +593,7 @@ adc {
+>>>   };
+>>>   &ospi0 {
+>>> +    status = "okay";
 >>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.yaml b/Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.yaml
->> new file mode 100644
->> index 000000000000..8fb77156070c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,nsscc-qca8k.yaml
->> @@ -0,0 +1,59 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,nsscc-qca8k.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm NSS Clock & Reset Controller on QCA8386/QCA8084
->> +
->> +maintainers:
->> +  - Luo Jie <quic_luoj@quicinc.com>
->> +
->> +description: |
->> +  Qualcomm NSS clock control module provides the clocks and resets
->> +  on QCA8386(switch mode)/QCA8084(PHY mode)
->> +
->> +  See also::
->> +    include/dt-bindings/clock/qcom,nsscc-qca8k.h
->> +    include/dt-bindings/reset/qcom,nsscc-qca8k.h
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,nsscc-qca8k
+>> Ok, so this k3-am65-iot2050 series of DT files seem to be structured in
+>> a bit different manner than our SKs and EVMs?
+>>
+>> The terminologies like advanced, advanced-m2, basic, etc. are a little
+>> confusing to me. However, I am wondering if we don't do any status = ..
+>> here, and rather make ospi status okays from the iot2050 dts files?
+>>
+>> Pardon me if I am making an invalid suggestion, I don't have much
+>> background on these boards.
+>>
 > 
-> SoC name is before IP block names. See:
-> Documentation/devicetree/bindings/arm/qcom-soc.yaml
+> This is a valid question, and yes the IOT2050 DTS organization is
+> slightly different than the one we use with our SK/EVMs.
 > 
-> qca8k is not SoC specific. I don't know what you are documenting here,
-> but if this is a SoC, then follow SoC rules.
+> The way these DT files tend to work is layering more functionality
+> or information in each file, starting with the core/most common
+> in the base .dtsi, and ending with .dts that is specific to a given
+> board. (In that way I would consider instances of "/delete-node/"
+> to be an indicator of bad layering, but that is a different topic..)
 > 
-> If this is not SoC, it confuses me a bit to use GCC binding.
+> Any node that is only partially defined in a layer should be marked
+> disabled, and then only enabled in the layer that finally completes
+> the node. That is often the pinmux info at the board level.
 > 
-> Anyway, this was not tested, as pointed out by bot... Please test the
-> code before sending.
-> 
-> Best regards,
-> Krzysztof
+> In this case, the OSPI nodes are complete after this point, there
+> is no additional information given in the DTS files, so we can
+> enable it here in this .dtsi file.
 > 
 
-Hi Krzysztof,
+Ack, this file is the right place to enable OSPI because all our boards
+have OSPI in use, and therefore it is configured at this common level
+already.
 
-Thanks for the review comments.
-qca8383/qca8084 is a network chip that support switch mode and PHY mode,
-the hardware register is accessed by MDIO bus, which is not a SOC.
+And the reasons for delete-node is obviously that there is no dtsi file
+that describes the AM6528 with its two cores only. If you consider that
+bad layering, you should change your dtsi files ;). But I see no real
+problem here, that pattern is not uncommon.
 
-But it has the self-contained clock controller system, the clock 
-framework of qca8386/qca8084 is same as the GCC of ipq platform such as 
-ipq9574.
+Jan
 
-would you help advise whether we can document it with the compatible
-"qcom,qca8k-nsscc"?
+-- 
+Siemens AG, Technology
+Linux Expert Center
 
-Jie.
