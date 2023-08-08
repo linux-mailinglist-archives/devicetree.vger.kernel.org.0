@@ -2,108 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D1BF774783
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D9B77462F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbjHHTPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56396 "EHLO
+        id S233052AbjHHSyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:54:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235731AbjHHTPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:15:13 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DEBF3C225;
-        Tue,  8 Aug 2023 09:38:09 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c136ee106so857169766b.1;
-        Tue, 08 Aug 2023 09:38:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691512678; x=1692117478;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rw/U1juJW++TN/CPqRVhgWO7e9qZoHR3vAiibGfwoUg=;
-        b=pWVIh58NFCf5ruJ4rs5GCaWSHk+ZnlAcZTqLCBEHNQsH5GUhqzLgJMn0kcFCwNAzir
-         efjY6NHJR2wiNtBaCq6u34SvsxQ3VToBx4W9GnksZcvYJFqlgYQolantcczUXG994wdg
-         3TMud+97Xv2M5SHUK68InQtpTnBB906i9O2svh7H8MZxELBNudugN1CPIFTj5d9xg9Au
-         rvtgFNrqBlf7kRounGhphAzCoOhu1ac48UbF7mOLJN0ePoF098faqxZLkdGnJmGajXtQ
-         6Y0Q0PDcFD4Z+OAhnW5d/1s13MR1Dm2yGHn+jipy9u9qbMW69hFGdWnK0FEQze8Pzs+6
-         +wrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691512678; x=1692117478;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rw/U1juJW++TN/CPqRVhgWO7e9qZoHR3vAiibGfwoUg=;
-        b=VhtQqlxIdwKux0KUCrHJZVsyiy5yJHz6ypNY4PwhQEmnixFhBL9AkTMLdMGc5HlzW0
-         xRNrm1nBcIGvjmiuU3kwFJMJk1xltSn3PXRDmNX8PKA0yJ7aTa9Ztjtq5MkynwZ7dlml
-         d4HIokfptjoyeTaH2gNzKi2A9XFcdZx90ZZuhxDLGjoSSlQsK48Goyc9Lb3F1PSKIq9X
-         TcapPB78EutUBKGJ4OfT3cIRKRSaYA8pYHGMqB8fBTvPO1GD9Gyr6gHWdJ2uBvEY26C/
-         Myct23svfKj52jISPMWZGhtcMfCuFN8BxWkkfaOmYuEG7skYITMwnypSy5/+AGdyUKOK
-         z5aw==
-X-Gm-Message-State: AOJu0YwJZ7f88BVTIii6TE8HXicUxcQ4yHyKEDIvE3AvXEI+uhPjlK0A
-        cq0Ptg7ogBKmHLiCwtN+lHXEqNKZLycRVDYN
-X-Google-Smtp-Source: AGHT+IFP72Tw+xIhBH3OCKy8dTwEFRVt0e08PihUpstVfcRZiD1229U4loKm3Rco7giOl8WkyfhNTA==
-X-Received: by 2002:a17:907:2c77:b0:978:acec:36b1 with SMTP id ib23-20020a1709072c7700b00978acec36b1mr10450643ejc.17.1691497030223;
-        Tue, 08 Aug 2023 05:17:10 -0700 (PDT)
-Received: from skbuf ([188.27.184.201])
-        by smtp.gmail.com with ESMTPSA id qo2-20020a170907212200b0099364d9f0e2sm6579767ejb.98.2023.08.08.05.17.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 05:17:09 -0700 (PDT)
-Date:   Tue, 8 Aug 2023 15:17:07 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, netdev@vger.kernel.org,
+        with ESMTP id S233300AbjHHSxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:53:49 -0400
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F25A790;
+        Tue,  8 Aug 2023 10:08:34 -0700 (PDT)
+Received: from relay1-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::221])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id B5DB4C6DC9;
+        Tue,  8 Aug 2023 12:32:31 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8F88D24000C;
+        Tue,  8 Aug 2023 12:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1691497948;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Uz4PDleM9cm+NzvA+51SH9T9J1LoZFkV7vQFvjxHPvc=;
+        b=U2zxC6kUkqR+q7UizYXdWgf/r3Vv4/Jg+KWT7f32GCj/bzuGXUXHVrjF9juLgxAk59QO55
+        nBT+btfgySUbEbIp+OxLwsbqA0KcDR/SzFuClmKp0Vli07c53KQOh3Dpn9pB+g5EEoP0Lz
+        9cHdE24aGeI1LNaPdDm5VJureEoSymKLPQBSf3GLIxRF4FukB8m8Fmcw50wnSCwHSdRXPt
+        JO8wWPyfSqvxR+cmD6JcqKO0e9PFc5FnlKNt5KYh6bygJ5nzzdT81Z2vCXGQkR+sfRVybJ
+        AfwpFM8BoGFkaaZmTrbKbBvv8/fkPI/WgtqnNfPyKeWI/Kjaga1F/qnFSzClyg==
+Date:   Tue, 8 Aug 2023 14:32:26 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Conor Dooley <conor@kernel.org>, a.zummo@towertech.it,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-rtc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH RESEND net-next 2/2] dt-bindings: net: dsa:
- mediatek,mt7530: document MDIO-bus
-Message-ID: <20230808121707.chona7hakapp6whe@skbuf>
-References: <6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org>
- <9aec0fe0cb676b76132c388bb3ead46f596a6e6e.1691246461.git.daniel@makrotopia.org>
- <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com>
+        bruno.thomsen@gmail.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: add properties to set
+ battery-related functions
+Message-ID: <202308081232266ec8a9b7@mail.local>
+References: <20230802191153.952667-1-hugo@hugovil.com>
+ <20230802191153.952667-2-hugo@hugovil.com>
+ <20230808-capsize-deodorize-5776d3dbb192@spud>
+ <20230808082533.b608c9a2a4bd922920643c4b@hugovil.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com>
+In-Reply-To: <20230808082533.b608c9a2a4bd922920643c4b@hugovil.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 05, 2023 at 11:15:15PM +0300, Arınç ÜNAL wrote:
-> I don't see a reason to resubmit this without addressing the requested
-> change.
+On 08/08/2023 08:25:33-0400, Hugo Villeneuve wrote:
+> On Tue, 8 Aug 2023 12:21:24 +0100
+> Conor Dooley <conor@kernel.org> wrote:
 > 
-> > > Wouldn't we just skip the whole issue by documenting the need for defining all PHYs
-> > > used on the switch when defining the MDIO bus?
+> > Hey Hugo,
 > > 
-> > Good idea, please do that.
+> > On Wed, Aug 02, 2023 at 03:11:52PM -0400, Hugo Villeneuve wrote:
+> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > 
+> > > These properties can be defined in the board's device tree to set the
+> > > default power-on values for battery-related functions.
+> > > 
+> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > ---
+> > >  .../devicetree/bindings/rtc/rtc.yaml          | 19 +++++++++++++++++++
+> > >  1 file changed, 19 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > index efb66df82782..0217d229e3fa 100644
+> > > --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > @@ -26,6 +26,25 @@ properties:
+> > >        0: not chargeable
+> > >        1: chargeable
+> > >  
+> > > +  battery-low-detect:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1]
+> > > +    description: |
+> > > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > > +      used to configure the battery low detection reporting function:
+> > > +      0: disabled
+> > > +      1: enabled
+> > > +
+> > > +  battery-switch-over:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1]
+> > > +    description: |
+> > > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > > +      used to configure the battery switch over when the main voltage source is
+> > > +      turned off:
+> > > +      0: disabled
+> > > +      1: enabled
+> > 
+> > Why are these implemented as enums? This seems to fall into the category
+> > of using DT to determine software policy - why's it not sufficient to
+> > have boolean properties that indicate hardware support and let the software
+> > decide what to do with them?
 > 
-> https://lore.kernel.org/netdev/0f501bb6-18a0-1713-b08c-6ad244c022ec@arinc9.com/
+> Hi Conor,
+> the reason is that I based the new properties on the existing property
+> "aux-voltage-chargeable":
 > 
-> Arınç
+> -------------------
+>  aux-voltage-chargeable:
+>     $ref: /schemas/types.yaml#/definitions/uint32
+>     enum: [0, 1]
+>     description: |
+>       Tells whether the battery/supercap of the RTC (if any) is
+>       chargeable or not:
+>       0: not chargeable
+>       1: chargeable
+> -------------------
+> 
+> I agree with you that a boolean would be more appropriate. Should I
+> also submit a (separate) patch to fix the "aux-voltage-chargeable"
+> property to a boolean?
+> 
 
-Arınç, where do you see that comment being added? AFAIU, it is a
-characteristic of the generic __of_mdiobus_register() code to set
-mdio->phy_mask = ~0, and nothing specific to the mt7530.
+No, this is an enum on purpose.
+I will not take battery switch over related properties, this is not
+hardware description but software configuration. There is an ioctl for
+this.
+
+> Hugo.
+> 
+> 
+> > Thanks,
+> > Conor.
+> > 
+> > > +
+> > >    quartz-load-femtofarads:
+> > >      description:
+> > >        The capacitive load of the quartz(x-tal), expressed in femto
+> > > -- 
+> > > 2.30.2
+> > > 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
