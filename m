@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11EBD774C3C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 638EF774C42
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235829AbjHHVD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53550 "EHLO
+        id S234471AbjHHVEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 17:04:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235642AbjHHVDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:03:39 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267DB5270
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:03:07 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b9bf52cd08so95240291fa.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:03:07 -0700 (PDT)
+        with ESMTP id S235760AbjHHVDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:03:41 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6125959B3
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:03:08 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so95008151fa.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:03:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691528585; x=1692133385;
+        d=linaro.org; s=google; t=1691528586; x=1692133386;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oWSqXH+9RfbwUTEnzUS/yIoSzpfO5MDzRDb4ETGPnXo=;
-        b=HDjwem1ulOLEnOWwiJkSQF5CYp47hiV60zxYdQN0lOvnSjDIYHmdTvaPoFHM51st+1
-         hYJFv+X9JYZ6CXSMmV+3JcekbOuuv9Z0NbMJZWoDG1UCpkR9990ABDwO+Jtb0G5dOM09
-         0wwadN6rqKQ3qDofigBIoMTKhaav/nyoYL9khx6W3eGYgIwsIHuUDeF2YU4A3PiyPaUV
-         9NM2vLTCzWKVOJ5axWTUTjKab3NNyLujAN9QKx7Y/Z+Y7aW7FTXta/LEwVR/PNfa2XrA
-         rjW+2bwO30ji2U8WPdreGKkVULpqPYVVp/JaY9zzS0dOr7HNuZTIpRGc9/xGyacj/FFf
-         7i0g==
+        bh=zThXIzbWU/BroFBAHAP99vCVEFjH5bD8LBiNoj0YJvE=;
+        b=zwv8HLFYxye0L1MB/rYFcEksw2FK5jzLSQmog0Kx7s96skYs7vRd3DqNKnJcnGV0rh
+         XxMr+TX7UgG6Ah8TKl3xCFyeymolRcQSb1zfU/50qs1EQ5giXVcnVyHVmMIrkqBeYHjm
+         X/tuF5zGu+1fFDoNaAgkEJ79mh1ELxWyFWYx16YtgM29jvYq1zsfcrzX2MudrooxY+Mn
+         zwx2X1ZAEA6X0FFc+dC1iv9Xn1D2mFrTIdTtEifvKC7EPfTLxwLEoiBaqBiaNb7pJ8+O
+         dqVFt4HhoyoBxLY/GubLDxxz5Ry0H6/mivbQwcc00MuyQ3GzyanPaGh7uWPfTg8+5YL3
+         lTWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691528585; x=1692133385;
+        d=1e100.net; s=20221208; t=1691528586; x=1692133386;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oWSqXH+9RfbwUTEnzUS/yIoSzpfO5MDzRDb4ETGPnXo=;
-        b=ShsRfOi+HkTm6N0sVKMsyuJ5ZnVA3tjKFKpl+etZxMynL6VDExlFnxsWldKwNXKJIS
-         LYOQr4ptlNOCOyYKna4Am4KtCPv0LaqczsmuWeR131dcCrAMc9i27FOIklOPF+fB6mA6
-         CM+qqmnSLEc/rF+XIwEGHa+nQqE93OyLgXibB2gA9AyGspyEVAVvDTiQSb6oQqSob7LN
-         +lO2L7O6fWeew4LGSNQfEHJsmGuunFG+3kyurqDDGMsVdUOCtKkO9+rfLLoU/n5qidcg
-         tlBezHQlVdF8BbL0Ql73etya8CkjWI7gWdrPMTIzWXEqBjRsnEqs/GxWgUs1G1qpC/9l
-         QAEA==
-X-Gm-Message-State: AOJu0YwFY+JXN/Vpog5UVoC5SuuulqcbjjwouOcGfBfWOqHTVHgn6B0x
-        xbO9ofg7qXH6ezbYr0ZCIyrSdA==
-X-Google-Smtp-Source: AGHT+IH30kcdgrakV3yA9VIz6jtlC0ExfeVhv/nhNZepLIccW64T5ouuUZPiVHp6SNXZ5fohgyAt6A==
-X-Received: by 2002:a2e:b009:0:b0:2b6:df23:2117 with SMTP id y9-20020a2eb009000000b002b6df232117mr484344ljk.43.1691528585080;
-        Tue, 08 Aug 2023 14:03:05 -0700 (PDT)
+        bh=zThXIzbWU/BroFBAHAP99vCVEFjH5bD8LBiNoj0YJvE=;
+        b=iJsYTrEO/X/eJXZUEyb1niPj8NsIoBYtCj75tUYl8ODbpWTkg7QU5GkaMnq5BAjBOs
+         wuKdtnmR8j7d8gp+mYI5vpySEcznra15UxM16ypOre0/BXMO4dw4rVoX5YEGMlZngFWp
+         2mo+Qw4sQl+DuzcrWtt0Tuaa601cY5VvaAjt92vcn5cl94VLxuQRFnJUGGNn+/9eqEcd
+         HyednVJMRYdyrQWrkPegdv2npnX8PEQCDBsMh+H0SQ/au2SFvP82VeDYzoIiKZ2LAsoW
+         0s5rBB8M08WjMCk1W2DFV2dk6x12paGp11MymasfoQ8hK77q6tLvzMgQpKq4CYGFrfPP
+         mNkg==
+X-Gm-Message-State: AOJu0Yxvbz4qVzISCxqOldMI02FBWbVLvUYbDb7y2hL2P3vJVQXHy9wu
+        7jqcvwtCt7AxmsDx4z3V4QacPA==
+X-Google-Smtp-Source: AGHT+IHZNe4lgeDJxTN+qXQRHIvX6WX0+lgI8/FtX6nSBcE3VsHAkx6uY3SGy1JXj2gxI/JI9TJmOw==
+X-Received: by 2002:a2e:9848:0:b0:2b6:bb08:91c4 with SMTP id e8-20020a2e9848000000b002b6bb0891c4mr508151ljj.42.1691528586694;
+        Tue, 08 Aug 2023 14:03:06 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id h11-20020a2eb0eb000000b002b6cc17add3sm2431483ljl.25.2023.08.08.14.03.03
+        by smtp.gmail.com with ESMTPSA id h11-20020a2eb0eb000000b002b6cc17add3sm2431483ljl.25.2023.08.08.14.03.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 14:03:04 -0700 (PDT)
+        Tue, 08 Aug 2023 14:03:06 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 08 Aug 2023 23:02:47 +0200
-Subject: [PATCH v2 09/14] drm/msm/a6xx: Send ACD state to QMP at GMU resume
+Date:   Tue, 08 Aug 2023 23:02:48 +0200
+Subject: [PATCH v2 10/14] drm/msm/a6xx: Mostly implement A7xx gpu_state
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230628-topic-a7xx_drmmsm-v2-9-1439e1b2343f@linaro.org>
+Message-Id: <20230628-topic-a7xx_drmmsm-v2-10-1439e1b2343f@linaro.org>
 References: <20230628-topic-a7xx_drmmsm-v2-0-1439e1b2343f@linaro.org>
 In-Reply-To: <20230628-topic-a7xx_drmmsm-v2-0-1439e1b2343f@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -74,117 +74,210 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691528566; l=3163;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691528566; l=7067;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=JkmXZM9EFVG7rbP7M14vpehHX3UdHrePo85jPFtHIho=;
- b=ViUB144QP1ZseV6WexhJNzar78IsyKH78bT0Xt0p7SqasyBwYAzOh2k7+FDqwIYL1eHLPJWBA
- tu3tvQBD+r6DlevjhGDLQ/8G40/Oonz8jbwPfKu+zeA0HCwI0qi0QTQ
+ bh=loqI1PthvvbTeOGvwIoPnH2y/NMnLW1i8nFc76YUrQk=;
+ b=ph8zeQdC2aYwjNDf+2zW+AfbXLeF/T6m5Agopbfo13YUHQ22S8+BdrAtQGBdypqyFzbVZmVld
+ +L23vLbBN71BMTYEEWZb5iv3LnyhUKTOG2USBJpvMoro9UYlqwZ8Hy5
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QMP mailbox expects to be notified of the ACD (Adaptive Clock
-Distribution) state. Get a handle to the mailbox at probe time and
-poke it at GMU resume.
-
-Since we don't fully support ACD yet, hardcode the message to "val: 0"
-(state = disabled).
+Provide the necessary alternations to mostly support state dumping on
+A7xx. Newer GPUs will probably require more changes here. Crashdumper
+and debugbus remain untested.
 
 Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
 Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 21 +++++++++++++++++++++
- drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  3 +++
- 2 files changed, 24 insertions(+)
+ drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c | 52 +++++++++++++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h | 61 ++++++++++++++++++++++++++++-
+ 2 files changed, 110 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-index 75984260898e..17e1e72f5d7d 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-@@ -980,11 +980,13 @@ static void a6xx_gmu_set_initial_bw(struct msm_gpu *gpu, struct a6xx_gmu *gmu)
- 	dev_pm_opp_put(gpu_opp);
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+index 4e5d650578c6..18be2d3bde09 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+@@ -948,6 +948,18 @@ static u32 a6xx_get_cp_roq_size(struct msm_gpu *gpu)
+ 	return gpu_read(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_2) >> 14;
  }
  
-+#define GMU_ACD_STATE_MSG_LEN	36
- int a6xx_gmu_resume(struct a6xx_gpu *a6xx_gpu)
- {
- 	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
- 	struct msm_gpu *gpu = &adreno_gpu->base;
- 	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
-+	char buf[GMU_ACD_STATE_MSG_LEN];
- 	int status, ret;
- 
- 	if (WARN(!gmu->initialized, "The GMU is not set up yet\n"))
-@@ -992,6 +994,18 @@ int a6xx_gmu_resume(struct a6xx_gpu *a6xx_gpu)
- 
- 	gmu->hung = false;
- 
-+	/* Notify AOSS about the ACD state (unimplemented for now => disable it) */
-+	if (!IS_ERR(gmu->qmp)) {
-+		ret = snprintf(buf, sizeof(buf),
-+			       "{class: gpu, res: acd, val: %d}",
-+			       0 /* Hardcode ACD to be disabled for now */);
-+		WARN_ON(ret >= GMU_ACD_STATE_MSG_LEN);
++static u32 a7xx_get_cp_roq_size(struct msm_gpu *gpu)
++{
++	/*
++	 * The value at CP_ROQ_THRESHOLDS_2[20:31] is in 4dword units.
++	 * That register however is not directly accessible from APSS on A7xx.
++	 * Program the SQE_UCODE_DBG_ADDR with offset=0x70d3 and read the value.
++	 */
++	gpu_write(gpu, REG_A6XX_CP_SQE_UCODE_DBG_ADDR, 0x70d3);
 +
-+		ret = qmp_send(gmu->qmp, buf, sizeof(buf));
-+		if (ret)
-+			dev_err(gmu->dev, "failed to send GPU ACD state\n");
++	return 4 * (gpu_read(gpu, REG_A6XX_CP_SQE_UCODE_DBG_DATA) >> 20);
++}
++
+ /* Read a block of data from an indexed register pair */
+ static void a6xx_get_indexed_regs(struct msm_gpu *gpu,
+ 		struct a6xx_gpu_state *a6xx_state,
+@@ -1019,8 +1031,40 @@ static void a6xx_get_indexed_registers(struct msm_gpu *gpu,
+ 
+ 	/* Restore the size in the hardware */
+ 	gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, mempool_size);
++}
++
++static void a7xx_get_indexed_registers(struct msm_gpu *gpu,
++		struct a6xx_gpu_state *a6xx_state)
++{
++	int i, indexed_count, mempool_count;
++
++	indexed_count = ARRAY_SIZE(a7xx_indexed_reglist);
++	mempool_count = ARRAY_SIZE(a7xx_cp_bv_mempool_indexed);
+ 
+-	a6xx_state->nr_indexed_regs = count;
++	a6xx_state->indexed_regs = state_kcalloc(a6xx_state,
++					indexed_count + mempool_count,
++					sizeof(*a6xx_state->indexed_regs));
++	if (!a6xx_state->indexed_regs)
++		return;
++
++	a6xx_state->nr_indexed_regs = indexed_count + mempool_count;
++
++	/* First read the common regs */
++	for (i = 0; i < indexed_count; i++)
++		a6xx_get_indexed_regs(gpu, a6xx_state, &a7xx_indexed_reglist[i],
++			&a6xx_state->indexed_regs[i]);
++
++	gpu_rmw(gpu, REG_A6XX_CP_CHICKEN_DBG, 0, BIT(2));
++	gpu_rmw(gpu, REG_A7XX_CP_BV_CHICKEN_DBG, 0, BIT(2));
++
++	/* Get the contents of the CP_BV mempool */
++	for (i = 0; i < mempool_count; i++)
++		a6xx_get_indexed_regs(gpu, a6xx_state, a7xx_cp_bv_mempool_indexed,
++			&a6xx_state->indexed_regs[indexed_count - 1 + i]);
++
++	gpu_rmw(gpu, REG_A6XX_CP_CHICKEN_DBG, BIT(2), 0);
++	gpu_rmw(gpu, REG_A7XX_CP_BV_CHICKEN_DBG, BIT(2), 0);
++	return;
+ }
+ 
+ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu)
+@@ -1056,6 +1100,12 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu)
+ 		return &a6xx_state->base;
+ 
+ 	/* Get the banks of indexed registers */
++	if (adreno_is_a7xx(adreno_gpu)) {
++		a7xx_get_indexed_registers(gpu, a6xx_state);
++		/* Further codeflow is untested on A7xx. */
++		return &a6xx_state->base;
 +	}
 +
- 	/* Turn on the resources */
- 	pm_runtime_get_sync(gmu->dev);
+ 	a6xx_get_indexed_registers(gpu, a6xx_state);
  
-@@ -1744,6 +1758,10 @@ int a6xx_gmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
- 		goto detach_cxpd;
- 	}
+ 	/*
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h
+index e788ed72eb0d..8d7e6f26480a 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h
+@@ -338,6 +338,28 @@ static const struct a6xx_registers a6xx_vbif_reglist =
+ static const struct a6xx_registers a6xx_gbif_reglist =
+ 			REGS(a6xx_gbif_registers, 0, 0);
  
-+	gmu->qmp = qmp_get(gmu->dev);
-+	if (IS_ERR(gmu->qmp) && adreno_is_a7xx(adreno_gpu))
-+		return PTR_ERR(gmu->qmp);
++static const u32 a7xx_ahb_registers[] = {
++	/* RBBM_STATUS */
++	0x210, 0x210,
++	/* RBBM_STATUS2-3 */
++	0x212, 0x213,
++};
 +
- 	init_completion(&gmu->pd_gate);
- 	complete_all(&gmu->pd_gate);
- 	gmu->pd_nb.notifier_call = cxpd_notifier_cb;
-@@ -1767,6 +1785,9 @@ int a6xx_gmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
- 
- 	return 0;
- 
-+	if (!IS_ERR_OR_NULL(gmu->qmp))
-+		qmp_put(gmu->qmp);
++static const u32 a7xx_gbif_registers[] = {
++	0x3c00, 0x3c0b,
++	0x3c40, 0x3c42,
++	0x3c45, 0x3c47,
++	0x3c49, 0x3c4a,
++	0x3cc0, 0x3cd1,
++};
 +
- detach_cxpd:
- 	dev_pm_domain_detach(gmu->cxpd, false);
- 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.h b/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
-index 236f81a43caa..592b296aab22 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
-@@ -8,6 +8,7 @@
- #include <linux/iopoll.h>
- #include <linux/interrupt.h>
- #include <linux/notifier.h>
-+#include <linux/soc/qcom/qcom_aoss.h>
- #include "msm_drv.h"
- #include "a6xx_hfi.h"
- 
-@@ -96,6 +97,8 @@ struct a6xx_gmu {
- 	/* For power domain callback */
- 	struct notifier_block pd_nb;
- 	struct completion pd_gate;
++static const struct a6xx_registers a7xx_ahb_reglist[] = {
++	REGS(a7xx_ahb_registers, 0, 0),
++};
 +
-+	struct qmp *qmp;
++static const struct a6xx_registers a7xx_gbif_reglist =
++	REGS(a7xx_gbif_registers, 0, 0);
++
+ static const u32 a6xx_gmu_gx_registers[] = {
+ 	/* GMU GX */
+ 	0x0000, 0x0000, 0x0010, 0x0013, 0x0016, 0x0016, 0x0018, 0x001b,
+@@ -384,14 +406,17 @@ static const struct a6xx_registers a6xx_gmu_reglist[] = {
  };
  
- static inline u32 gmu_read(struct a6xx_gmu *gmu, u32 offset)
+ static u32 a6xx_get_cp_roq_size(struct msm_gpu *gpu);
++static u32 a7xx_get_cp_roq_size(struct msm_gpu *gpu);
+ 
+-static struct a6xx_indexed_registers {
++struct a6xx_indexed_registers {
+ 	const char *name;
+ 	u32 addr;
+ 	u32 data;
+ 	u32 count;
+ 	u32 (*count_fn)(struct msm_gpu *gpu);
+-} a6xx_indexed_reglist[] = {
++};
++
++static struct a6xx_indexed_registers a6xx_indexed_reglist[] = {
+ 	{ "CP_SQE_STAT", REG_A6XX_CP_SQE_STAT_ADDR,
+ 		REG_A6XX_CP_SQE_STAT_DATA, 0x33, NULL },
+ 	{ "CP_DRAW_STATE", REG_A6XX_CP_DRAW_STATE_ADDR,
+@@ -402,11 +427,43 @@ static struct a6xx_indexed_registers {
+ 		REG_A6XX_CP_ROQ_DBG_DATA, 0, a6xx_get_cp_roq_size},
+ };
+ 
++static struct a6xx_indexed_registers a7xx_indexed_reglist[] = {
++	{ "CP_SQE_STAT", REG_A6XX_CP_SQE_STAT_ADDR,
++		REG_A6XX_CP_SQE_STAT_DATA, 0x33, NULL },
++	{ "CP_DRAW_STATE", REG_A6XX_CP_DRAW_STATE_ADDR,
++		REG_A6XX_CP_DRAW_STATE_DATA, 0x100, NULL },
++	{ "CP_UCODE_DBG_DATA", REG_A6XX_CP_SQE_UCODE_DBG_ADDR,
++		REG_A6XX_CP_SQE_UCODE_DBG_DATA, 0x8000, NULL },
++	{ "CP_BV_SQE_STAT_ADDR", REG_A7XX_CP_BV_SQE_STAT_ADDR,
++		REG_A7XX_CP_BV_SQE_STAT_DATA, 0x33, NULL },
++	{ "CP_BV_DRAW_STATE_ADDR", REG_A7XX_CP_BV_DRAW_STATE_ADDR,
++		REG_A7XX_CP_BV_DRAW_STATE_DATA, 0x100, NULL },
++	{ "CP_BV_SQE_UCODE_DBG_ADDR", REG_A7XX_CP_BV_SQE_UCODE_DBG_ADDR,
++		REG_A7XX_CP_BV_SQE_UCODE_DBG_DATA, 0x8000, NULL },
++	{ "CP_SQE_AC_STAT_ADDR", REG_A7XX_CP_SQE_AC_STAT_ADDR,
++		REG_A7XX_CP_SQE_AC_STAT_DATA, 0x33, NULL },
++	{ "CP_LPAC_DRAW_STATE_ADDR", REG_A7XX_CP_LPAC_DRAW_STATE_ADDR,
++		REG_A7XX_CP_LPAC_DRAW_STATE_DATA, 0x100, NULL },
++	{ "CP_SQE_AC_UCODE_DBG_ADDR", REG_A7XX_CP_SQE_AC_UCODE_DBG_ADDR,
++		REG_A7XX_CP_SQE_AC_UCODE_DBG_DATA, 0x8000, NULL },
++	{ "CP_LPAC_FIFO_DBG_ADDR", REG_A7XX_CP_LPAC_FIFO_DBG_ADDR,
++		REG_A7XX_CP_LPAC_FIFO_DBG_DATA, 0x40, NULL },
++	{ "CP_ROQ", REG_A6XX_CP_ROQ_DBG_ADDR,
++		REG_A6XX_CP_ROQ_DBG_DATA, 0, a7xx_get_cp_roq_size },
++};
++
+ static struct a6xx_indexed_registers a6xx_cp_mempool_indexed = {
+ 	"CP_MEMPOOL", REG_A6XX_CP_MEM_POOL_DBG_ADDR,
+ 		REG_A6XX_CP_MEM_POOL_DBG_DATA, 0x2060, NULL,
+ };
+ 
++static struct a6xx_indexed_registers a7xx_cp_bv_mempool_indexed[] = {
++	{ "CP_MEMPOOL", REG_A6XX_CP_MEM_POOL_DBG_ADDR,
++		REG_A6XX_CP_MEM_POOL_DBG_DATA, 0x2100, NULL },
++	{ "CP_BV_MEMPOOL", REG_A7XX_CP_BV_MEM_POOL_DBG_ADDR,
++		REG_A7XX_CP_BV_MEM_POOL_DBG_DATA, 0x2100, NULL },
++};
++
+ #define DEBUGBUS(_id, _count) { .id = _id, .name = #_id, .count = _count }
+ 
+ static const struct a6xx_debugbus_block {
 
 -- 
 2.41.0
