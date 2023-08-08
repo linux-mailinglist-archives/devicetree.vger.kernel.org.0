@@ -2,163 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F9D97745C1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C176774905
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:47:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbjHHSp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:45:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40956 "EHLO
+        id S229818AbjHHTrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:47:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234046AbjHHSpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:45:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE8744F41;
-        Tue,  8 Aug 2023 09:46:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 389CB6240C;
-        Tue,  8 Aug 2023 07:16:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A53C433C8;
-        Tue,  8 Aug 2023 07:16:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691478967;
-        bh=wdK+9Ne6kOu2jOFRxaqlATBoNfqfJEYBNTQphi91d8A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=B/HgSJtxGYJVUcS/NCQW7wu2/YRoM145DE9eBE6P0ctDW2ynLtSvQei/8yLucACpJ
-         a4oJrgpShuJDrXtrP3e5CAvkL2FBsejr2rRpsYRUrpw/EPMvU8vLl6bP3mhH/QAhVl
-         IYmd/kIsh9mukmgzxbq8AzTXWVGI7we8rUYWfOXTNJMSt0bXs2A6l0m/rIxq+mBqbv
-         LYrEzK2g4ErCiE4x1YA8bH4Wu2yEus+qJ07a7CmZLk1cfh9cko10MAJEs1fksKj+tl
-         ewVn0siow0JthA8OsOCzhJhPlCkQt6goShO8dozdYfZB9HO0tML+dS3utnIKr88Slk
-         cH3xlMt/ixkaQ==
-Date:   Tue, 8 Aug 2023 08:16:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235494AbjHHTqp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:46:45 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853A44A046
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:50:24 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-68783b2e40bso4152701b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1691513424; x=1692118224;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HvqYw50hA3eg6fTEyMxs963EOcH3mDmkMLxwXE575wg=;
+        b=SspSYM+8cBxGw/iCQyPDIpRCVJkXFS1HRkriiV2a9QAFLSXxsc1Zi81wE65+NI5K8o
+         G+K8dLRZ83DESdVmB2Fy4Zft3IWyRO8joEQ7EEuU6ArUb/vXQ4TMTPT2r6QtuPGKHuze
+         IEt7VJ1UHQZMWC23JpGr4mgh2WS2gYI0n8iC0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691513424; x=1692118224;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HvqYw50hA3eg6fTEyMxs963EOcH3mDmkMLxwXE575wg=;
+        b=FsIE1RFQ2DGCtHZgrEVGHBarigqcHk/57JOtj7QvyUW8OX8QyB1BFNVvDGSsu32UWN
+         Mk3wStW9sCJNayfuXgeErttFqKjRy1VGlXbgOUXSTjUlMV3b6r2xWNgUBZ+IqC2b/tXV
+         xM7Da1ABsPgWVN5oGuiXZC0RyU5LmLe4IVziO+a9FhkYLXTYCuMfbpm2qXx8d64niXW6
+         HRoFfYTR0cGocoglPLzmZnpmloj7eesQ5wFozEVpcpn5oi0adPPbED5mg28yoT3DTnD1
+         kJd/y6FSLCCQbB4c6VVRZow3W9/ftq+214F0Rc//Nvmmbus2t4iQ8OG+dauP2ljWSjiv
+         tHug==
+X-Gm-Message-State: AOJu0Yxx8pXZDOF/5Os+AJM8vu9NKzbJMx+ssoCKHRbRAS7S8Yg5u3Va
+        LxhVNTH1LTo0MuG2fKsyFv/cHQARmfmNIHKfeNc=
+X-Google-Smtp-Source: AGHT+IEr4kRNf11XniaflwZ5G4MFT6CEIrEsTvEvbpcV/reJoBZs+xiAbEYbAhT6n5rT/1rjg8mLWA==
+X-Received: by 2002:a05:6a20:6a10:b0:13d:ee19:7725 with SMTP id p16-20020a056a206a1000b0013dee197725mr12015955pzk.12.1691480036426;
+        Tue, 08 Aug 2023 00:33:56 -0700 (PDT)
+Received: from localhost (97.176.124.34.bc.googleusercontent.com. [34.124.176.97])
+        by smtp.gmail.com with UTF8SMTPSA id i5-20020a170902eb4500b001b04c2023e3sm8161899pli.218.2023.08.08.00.33.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 00:33:55 -0700 (PDT)
+From:   Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Google-Original-From: Hsin-Te Yuan <yuanhsinte@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] riscv: dts: starfive - Add crypto and DMA node for
- JH7110
-Message-ID: <20230808-cilantro-fondue-21485b78e83e@spud>
-References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
- <20230808061150.81491-2-jiajie.ho@starfivetech.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Hsin-Te Yuan <yuanhsinte@google.com>
+Subject: [PATCH v2] arm64: dts: mt8195-cherry-tomato: change watchdog reset boot flow
+Date:   Tue,  8 Aug 2023 07:33:07 +0000
+Message-ID: <20230808073342.1054762-1-yuanhsinte@google.com>
+X-Mailer: git-send-email 2.41.0.640.ga95def55d0-goog
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="HJ5okk+lpfymq+RC"
-Content-Disposition: inline
-In-Reply-To: <20230808061150.81491-2-jiajie.ho@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The external output reset signal was originally disabled and sent from
+firmware. However, an unfixed bug in the firmware on tomato prevents
+the signal from being sent, causing the device to fail to boot. To fix
+this, enable external output reset signal to allow the device to reboot
+normally.
 
---HJ5okk+lpfymq+RC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@google.com>
+---
 
-On Tue, Aug 08, 2023 at 02:11:49PM +0800, Jia Jie Ho wrote:
-> Add hardware crypto module and dedicated dma controller node to StarFive
-> JH7110 SoC.
->=20
-> Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
-> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 28 ++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-> index a608433200e8..47cd12ccc988 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -821,6 +821,34 @@ watchdog@13070000 {
->  				 <&syscrg JH7110_SYSRST_WDT_CORE>;
->  		};
-> =20
-> +		crypto: crypto@16000000 {
-> +			compatible =3D "starfive,jh7110-crypto";
-> +			reg =3D <0x0 0x16000000 0x0 0x4000>;
-> +			clocks =3D <&stgcrg JH7110_STGCLK_SEC_AHB>,
-> +				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
-> +			clock-names =3D "hclk", "ahb";
-> +			interrupts =3D <28>;
-> +			resets =3D <&stgcrg JH7110_STGRST_SEC_AHB>;
-> +			dmas =3D <&sdma 1 2>, <&sdma 0 2>;
-> +			dma-names =3D "tx", "rx";
-> +		};
-> +
-> +		sdma: dma@16008000 {
-> +			compatible =3D "arm,pl080", "arm,primecell";
-> +			arm,primecell-periphid =3D <0x00041080>;
-> +			reg =3D <0x0 0x16008000 0x0 0x4000>;
-> +			interrupts =3D <29>;
-> +			clocks =3D <&stgcrg JH7110_STGCLK_SEC_AHB>,
-> +				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
-> +			clock-names =3D "hclk", "apb_pclk";
-> +			resets =3D <&stgcrg JH7110_STGRST_SEC_AHB>;
-> +			lli-bus-interface-ahb1;
-> +			mem-bus-interface-ahb1;
-> +			memcpy-burst-size =3D <256>;
-> +			memcpy-bus-width =3D <32>;
-> +			#dma-cells =3D <2>;
-> +		};
-> +
+Changes in v2:
+- Limit the effect only on tomato.
 
-Against linux-next, I get these warnings:
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16=
-008000: $nodename:0: 'dma@16008000' does not match '^dma-controller(@.*)?$'
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16=
-008000: clocks: [[26, 15], [26, 16]] is too long
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16=
-008000: clock-names: ['hclk', 'apb_pclk'] is too long
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16=
-008000: Unevaluated properties are not allowed ('#dma-cells' was unexpected)
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16=
-008000: $nodename:0: 'dma@16008000' does not match '^dma-controller(@.*)?$'
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16=
-008000: clocks: [[26, 15], [26, 16]] is too long
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16=
-008000: clock-names: ['hclk', 'apb_pclk'] is too long
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16=
-008000: Unevaluated properties are not allowed ('#dma-cells' was unexpected)
-        from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
+ arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 4 ++++
+ arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts | 4 ++++
+ arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts | 4 ++++
+ 3 files changed, 12 insertions(+)
 
-Please fix these & submit a tested v2.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+index 2d5e8f371b6de..a82d716f10d44 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+@@ -23,3 +23,7 @@ &sound {
+ &ts_10 {
+ 	status = "okay";
+ };
++
++&watchdog {
++	/delete-property/ mediatek,disable-extrst;
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
+index 2586c32ce6e6f..2fe20e0dad836 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
+@@ -43,3 +43,7 @@ &sound {
+ &ts_10 {
+ 	status = "okay";
+ };
++
++&watchdog {
++	/delete-property/ mediatek,disable-extrst;
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
+index f54f9477b99da..dd294ca98194c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
+@@ -44,3 +44,7 @@ &sound {
+ &ts_10 {
+ 	status = "okay";
+ };
++
++&watchdog {
++	/delete-property/ mediatek,disable-extrst;
++};
+-- 
+2.41.0.640.ga95def55d0-goog
 
-Thanks,
-Conor.
-
---HJ5okk+lpfymq+RC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNHrsgAKCRB4tDGHoIJi
-0kb0AQD1jry9R75FXkJ1CDgC0bpJTZccbpjm1HUzMkOrE8ljrAD+Mkm6QG7kb9cH
-hqiQIX0FireyLJg6k/eabmle3kriJwg=
-=/ifW
------END PGP SIGNATURE-----
-
---HJ5okk+lpfymq+RC--
