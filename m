@@ -2,213 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FCAA774515
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956EB77470A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232721AbjHHSgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:36:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34832 "EHLO
+        id S234599AbjHHTIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233183AbjHHSgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:36:20 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73DB15C90;
-        Tue,  8 Aug 2023 09:41:43 -0700 (PDT)
-Received: from i53875a28.versanet.de ([83.135.90.40] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1qTKzY-0007r7-Mx; Tue, 08 Aug 2023 13:35:12 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thomas McKahan <tmckahan@singleboardsolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232367AbjHHTIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:08:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B0A8D4BEB;
+        Tue,  8 Aug 2023 09:30:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AAF9624E6;
+        Tue,  8 Aug 2023 11:42:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F8AFC433C7;
+        Tue,  8 Aug 2023 11:42:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691494924;
+        bh=7W8arS9xc1VsyrYsfgzjRG4MftCWFePfOyZF4K36c+Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pW9seNGRY4R+UZe/yEDFe+2l2D1h1LIQb9LdZocYP0kb717N0yTUxlV35S6OgUjHp
+         8SUo26EeRVvTqvoWI2SBfckr2Ri0EcA+xycqL98KEk5aZCvtbFOXfqGxl6jvccniFN
+         8qrLIix/ofVBDvPuL+f190jlLZUUKOKPxLBUvcILbzx5+Zz3/ExRT8gsdLrhGf4ODQ
+         6LQF/BA7Re9Q8+v5jY9mpo1TNNaTTFND+P67bfIO4j/glifactZTPFQmNIEOBEBbe4
+         KfErmMg2IMP7OvtR8dSeL6QmNa5L9bhcn2r+//aC1njNAPMNeb2/8xOpE1+Vqox/En
+         wlPM9oyA/t/eQ==
+Date:   Tue, 8 Aug 2023 13:42:01 +0200
+From:   Andi Shyti <andi.shyti@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add NanoPC T6
-Date:   Tue, 08 Aug 2023 13:35:11 +0200
-Message-ID: <1770215.VLH7GnMWUR@diego>
-In-Reply-To: <20230808002751.00001385@singleboardsolutions.com>
-References: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
- <f49a803f-9ff4-794e-265b-a98e3711cca8@linaro.org>
- <20230808002751.00001385@singleboardsolutions.com>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] media: exynos4-is: fimc-is: replace duplicate pmu
+ node with phandle
+Message-ID: <20230808114201.ztr22migzzyfsfwq@intel.intel>
+References: <20230807131256.254243-1-krzysztof.kozlowski@linaro.org>
+ <20230807131256.254243-3-krzysztof.kozlowski@linaro.org>
+ <20230807231320.svssge6uymw3jiho@intel.intel>
+ <84fbcc37-d226-b637-caa1-b24ebaf03d58@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <84fbcc37-d226-b637-caa1-b24ebaf03d58@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 8. August 2023, 06:32:45 CEST schrieb Thomas McKahan:
-> On Mon, 7 Aug 2023 08:44:40 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
-> > On 02/08/2023 07:14, Thomas McKahan wrote:
-> > > Add the NanoPC T6, a single board computer from FriendlyElec based on
-> > > the RK3588.
-> > > 
-> > > Initial device tree supports debug UART, SD, eMMC, PCIe 3, PMIC,
-> > > and 40 pin GPIO assignments.
-> > > 
-> > > Signed-off-by: Thomas McKahan <tmckahan@singleboardsolutions.com>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> > >  .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 845 ++++++++++++++++++
-> > >  2 files changed, 846 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> > > index 1ebbb3e9c2f9..e7728007fd1b 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > > @@ -100,6 +100,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
-> > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-indiedroid-nova.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-khadas-edge2.dtb
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-> > > new file mode 100644
-> > > index 000000000000..2362da2c53d9
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-> > > @@ -0,0 +1,845 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +/*
-> > > + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-> > > + * Copyright (c) 2023 Thomas McKahan
-> > > + *
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/pinctrl/rockchip.h>
-> > > +#include <dt-bindings/usb/pd.h>
-> > > +#include "rk3588.dtsi"
-> > > +
-> > > +/ {
-> > > +	model = "FriendlyElec NanoPC-T6";
-> > > +	compatible = "friendlyarm,nanopc-t6", "rockchip,rk3588";
-> > > +
-> 
-> ...
-> 
-> > > +&spi2 {
-> > > +	status = "okay";
-> > > +	assigned-clocks = <&cru CLK_SPI2>;
-> > > +	assigned-clock-rates = <200000000>;
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-> > > +	num-cs = <1>;
-> > > +
-> > > +	pmic@0 {
-> > > +		compatible = "rockchip,rk806";
-> > > +		spi-max-frequency = <1000000>;
-> > > +		reg = <0x0>;
-> > > +
-> > > +		interrupt-parent = <&gpio0>;
-> > > +		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-> > > +			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
-> > > +
-> > > +		vcc1-supply = <&vcc4v0_sys>;
-> > > +		vcc2-supply = <&vcc4v0_sys>;
-> > > +		vcc3-supply = <&vcc4v0_sys>;
-> > > +		vcc4-supply = <&vcc4v0_sys>;
-> > > +		vcc5-supply = <&vcc4v0_sys>;
-> > > +		vcc6-supply = <&vcc4v0_sys>;
-> > > +		vcc7-supply = <&vcc4v0_sys>;
-> > > +		vcc8-supply = <&vcc4v0_sys>;
-> > > +		vcc9-supply = <&vcc4v0_sys>;
-> > > +		vcc10-supply = <&vcc4v0_sys>;
-> > > +		vcc11-supply = <&vcc_2v0_pldo_s3>;
-> > > +		vcc12-supply = <&vcc4v0_sys>;
-> > > +		vcc13-supply = <&vcc_1v1_nldo_s3>;
-> > > +		vcc14-supply = <&vcc_1v1_nldo_s3>;
-> > > +		vcca-supply = <&vcc4v0_sys>;
-> > > +
-> > > +		gpio-controller;
-> > > +		#gpio-cells = <2>;
-> > > +
-> > > +		rk806_dvs1_null: dvs1-null-pins {
-> > > +			pins = "gpio_pwrctrl2";
-> > > +			function = "pin_fun0";
-> > > +		};
-> > > +
-> > > +		rk806_dvs2_null: dvs2-null-pins {
-> > > +			pins = "gpio_pwrctrl2";
-> > > +			function = "pin_fun0";
-> > > +		};
-> > > +
-> > > +		rk806_dvs3_null: dvs3-null-pins {
-> > > +			pins = "gpio_pwrctrl3";
-> > > +			function = "pin_fun0";
-> > > +		};
-> > > +
-> > > +		regulators {
-> > > +			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
-> > > +				regulator-boot-on;  
+> >> +static void __iomem *fimc_is_get_pmu_regs(struct device *dev)
+> >> +{
+> >> +	struct device_node *node;
+> >> +	void __iomem *regs;
+> >> +
+> >> +	node = of_parse_phandle(dev->of_node, "samsung,pmu-syscon", 0);
+> >> +	if (!node) {
+> >> +		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
+> >> +		node = of_get_child_by_name(dev->of_node, "pmu");
+> >> +		if (!node)
+> >> +			return IOMEM_ERR_PTR(-ENODEV);
 > > 
-> > Boolean properties are not first, but last. regulator-name is the first
-> > one. This odd style...
+> > in my opinion this should be:
 > > 
+> > 		...
+> > 		if (!node)
+> > 			return IOMEM_ERR_PTR(-ENODEV);
+> > 
+> > 		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
+> > 
+> > Because if you don't have both "samsung,pmu-syscon and "pmu" then
+> > the warning should not be printed and you need to return -ENODEV.
 > 
-> I agree, however it seems the norm in Rockchip devices. This will
-> become an outlier in Rockchip but fall in line with the general case.
-> I'll put it in V2 with the other mentioned fixes unless a conflicting 
-> opinion is expressed. 
+> Why not? Warning is correct - the driver is trying to find, thus
+> continuous tense "Finding", PMU node via old method.
 
-I definitly do prefer regulator-name to be the first regulator-* (same as
-compatible for regular nodes) and I think generally I do catch outliers
-in this .
+Alright, I'll go along with what you're suggesting, but I have to
+say, I find it misleading.
 
-But for the rest of the propeties I guess it's different. While true I
-followed a scheme of booleans at the bottom in the past, going with
-"name at the top, rest alphabetically" is way easier to explain to people.
+From what I understand, you're requesting an update to the dtb
+because it's using deprecated methods. However, the reality might 
+be that the node is not present in any method at all.
 
-[normal nodes should do: {compatible, regs, interrupts, ..alphabetical..,
-  status} of course ]
+Your statement would be accurate if you failed to find the
+previous method but then did end up finding it.
 
-And of course regulator nodes are generally in board-files not in central
-soc dtsis and if needed I'll also just move things around when applying ;-).
+Relying on the present continuous tense for clarity is a bold
+move, don't you think? :)
 
+Andi
 
-Heiko
-
-
+> > ... and... "*please* update your DTB", the user might get upset
+> > and out of sheer spite, decides not to do it – just because! :)
 > 
-> > > +				regulator-min-microvolt = <550000>;
-> > > +				regulator-max-microvolt = <950000>;
-> > > +				regulator-ramp-delay = <12500>;
-> > > +				regulator-name = "vdd_gpu_s0";
-> > > +				regulator-enable-ramp-delay = <400>;
-> > > +
-> > > +				regulator-state-mem {
-> > > +					regulator-off-in-suspend;
-> > > +				};
-> > > +			};  
-> > 
-> > 
-> > 
-> > Best regards,
-> > Krzysztof
-> > 
+> The message is already long enough, why making it longer? Anyone who
+> ships DTS outside of Linux kernel is doomed anyway...
 > 
-> Best Regards,
-> Thomas
+> Best regards,
+> Krzysztof
 > 
-
-
-
-
