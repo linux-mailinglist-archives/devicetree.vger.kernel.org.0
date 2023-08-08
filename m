@@ -2,168 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F80774B59
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F4B6774D52
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234672AbjHHUpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 16:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49872 "EHLO
+        id S229533AbjHHVs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 17:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232759AbjHHUpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:45:33 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76865F3A10;
-        Tue,  8 Aug 2023 09:37:06 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378DZ8AE081682;
-        Tue, 8 Aug 2023 08:35:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691501708;
-        bh=fQ/532nBdHyDyg7gVLVsTIcGiqz0ZCTnjYpgJNoX93k=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZD+qiHqtPtDYxBm/yEkmNt/uF3HaHm2KpWoM7wUiw8JDlhTNYorIgg0sgIaaO3ytH
-         /oLTEHE1eK25OhMIAdIW9HjBTDlyST7OO5SyM9lHg1RaGlN1P8USMoyqfGcMJlq1Ft
-         dankptUHXIFqJYtTrQk9iQUnVtbAVTe8tIOkdTSQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378DZ8DL028282
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 08:35:08 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 08:35:08 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 08:35:08 -0500
-Received: from fllv0039.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378DZ4Pv053163;
-        Tue, 8 Aug 2023 08:35:07 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH v2 05/13] arm64: dts: ti: k3-j721e: Enable OSPI nodes at the board level
-Date:   Tue, 8 Aug 2023 08:34:49 -0500
-Message-ID: <20230808133457.25060-6-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230808133457.25060-1-afd@ti.com>
-References: <20230808133457.25060-1-afd@ti.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232163AbjHHVsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:48:14 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A08E61CEA5;
+        Tue,  8 Aug 2023 10:16:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+        :Date:subject:date:message-id:reply-to;
+        bh=9sVX9BvFPnR6ajSwDaIBsOtrzD17lklAlKdcnkookpA=; b=jW+ArCMsUgOXYfZJ8oy3p1HqQ+
+        f3JK5Xf4z1pq/mwvsOI0BmVfXEk5iWiSxMpvxcFKBN0rpLoIEfrPxJSYyElM3/gcjKdVket8eqIrC
+        xi/sGHG91hFyGsuNCbFfv3/UJfXcjFF+6Y6fPhEDJZUTdLhiF4qyHprgqiiUyKbCg7Go=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:40076 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qTQK1-00010f-Vm; Tue, 08 Aug 2023 13:16:42 -0400
+Date:   Tue, 8 Aug 2023 13:16:41 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <bhelgaas@google.com>, <krzysztof.kozlowski@linaro.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <lpieralisi@kernel.org>, <bharat.kumar.gogada@amd.com>,
+        <michal.simek@amd.com>, <linux-arm-kernel@lists.infradead.org>
+Message-Id: <20230808131641.ebafb9e042c7463e55c7fb00@hugovil.com>
+In-Reply-To: <20230808103733.93707-3-thippeswamy.havalige@amd.com>
+References: <20230808103733.93707-1-thippeswamy.havalige@amd.com>
+        <20230808103733.93707-3-thippeswamy.havalige@amd.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: xilinx-nwl: Modify ECAM size
+ in example.
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-OSPI nodes defined in the top-level J721e SoC dtsi files are incomplete
-and may not be functional unless they are extended with pinmux and
-device information.
+On Tue, 8 Aug 2023 16:07:32 +0530
+Thippeswamy Havalige <thippeswamy.havalige@amd.com> wrote:
 
-As the attached OSPI device is only known about at the board integration
-level, these nodes should only be enabled when provided with this
-information.
+Hi,
+drop the final dot in all commit titles.
 
-Disable the OSPI nodes in the dtsi files and only enable the ones that
-are actually pinned out on a given board.
+Hugo Villeneuve.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 10 ----------
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi    |  2 ++
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts             |  6 +-----
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi        |  1 +
- 4 files changed, 4 insertions(+), 15 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-index 64eed76bbb7a3..0b89977351c98 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-@@ -580,16 +580,6 @@ &main_sdhci1 {
- 	disable-wp;
- };
- 
--&ospi0 {
--	/* Unused */
--	status = "disabled";
--};
--
--&ospi1 {
--	/* Unused */
--	status = "disabled";
--};
--
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index c1b6f8d7d1898..0c01bdd9656f1 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -378,6 +378,7 @@ ospi0: spi@47040000 {
- 			power-domains = <&k3_pds 103 TI_SCI_PD_EXCLUSIVE>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			status = "disabled";
- 		};
- 
- 		ospi1: spi@47050000 {
-@@ -392,6 +393,7 @@ ospi1: spi@47050000 {
- 			power-domains = <&k3_pds 104 TI_SCI_PD_EXCLUSIVE>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			status = "disabled";
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index bd1bd1b746056..4cd5346f2dd59 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -594,6 +594,7 @@ &main_sdhci1 {
- };
- 
- &ospi0 {
-+	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
- 
-@@ -657,11 +658,6 @@ partition@3fc0000 {
- 	};
- };
- 
--&ospi1 {
--	/* Unused */
--	status = "disabled";
--};
--
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-index e90e43202546e..928d3a8ad2d09 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-@@ -202,6 +202,7 @@ eeprom@50 {
- };
- 
- &ospi0 {
-+	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
- 
--- 
-2.39.2
-
+> Update ECAM size in example to discover up to 256 buses.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+> ---
+> changes in v2:
+> None.
+> changes in v1:
+> None.
+> ---
+>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> index 8976025..426f90a 100644
+> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> @@ -118,7 +118,7 @@ examples:
+>              compatible = "xlnx,nwl-pcie-2.11";
+>              reg = <0x0 0xfd0e0000 0x0 0x1000>,
+>                    <0x0 0xfd480000 0x0 0x1000>,
+> -                  <0x80 0x00000000 0x0 0x1000000>;
+> +                  <0x80 0x00000000 0x0 0x10000000>;
+>              reg-names = "breg", "pcireg", "cfg";
+>              ranges = <0x02000000 0x0 0xe0000000 0x0 0xe0000000 0x0 0x10000000>,
+>                       <0x43000000 0x00000006 0x0 0x00000006 0x0 0x00000002 0x0>;
+> -- 
+> 1.8.3.1
+> 
