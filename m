@@ -2,323 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD2D774B46
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E58774B8E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbjHHUoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 16:44:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59410 "EHLO
+        id S234273AbjHHUt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 16:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbjHHUn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:43:56 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECD761B0;
-        Tue,  8 Aug 2023 13:19:02 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378KIvNa108306;
-        Tue, 8 Aug 2023 15:18:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691525937;
-        bh=EBbofdWbt1UYqIFQKIqPz1Z4VNUQSWanCdbAkyOYmaM=;
-        h=From:To:Subject:Date:In-Reply-To:References;
-        b=uKdX+EotFOVFL79Msjr06+wDCyrzqNAYHiYqi4amBbDhzs58NJuXqIMvaXOyInWnA
-         qsLFszEcyVA8+bfjlHYvs8zBphukzQhYB9P97e+DI5bHOeu578AYdKITPdXgkf4Afg
-         +6iCvS7KljJvd2uISbBuaOZrs+vXftdKqvMrLYtE=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378KIvNQ127054
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 15:18:57 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 15:18:56 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 15:18:57 -0500
-Received: from TI.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378KIgrh028651;
-        Tue, 8 Aug 2023 15:18:53 -0500
-From:   Apurva Nandan <a-nandan@ti.com>
-To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>
-Subject: [PATCH v2 3/3] arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for R5F and C71x DSPs
-Date:   Wed, 9 Aug 2023 01:48:42 +0530
-Message-ID: <20230808201842.292911-4-a-nandan@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230808201842.292911-1-a-nandan@ti.com>
-References: <20230808201842.292911-1-a-nandan@ti.com>
+        with ESMTP id S235190AbjHHUts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:49:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2173F7AB6;
+        Tue,  8 Aug 2023 13:31:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC13762C74;
+        Tue,  8 Aug 2023 20:31:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC4A4C433C8;
+        Tue,  8 Aug 2023 20:31:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691526702;
+        bh=Hn9mNFdS9H/jjeLOgpbGHT61hv6DZ1X5BjlZ+cnfyWY=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=NiWa4a3pnvcBdxVZdv4h/X6SFQV8kAICgWYmBYrKYr57ZycQfI8dRZTj+M+6nzqcG
+         Xb3xpqokXG3Kt/jDLw4hXEcnfvPvFMaha+4vyhAOV8+yaKF5JVwS+Q+cs8JqxxdWTg
+         GvSOTbdi3rOiT3kMkOMVRCG3jRVeJpWgeRDodLqzcNr1ntKpaFNESDZYeobiVcvuzp
+         stK6jJfwkUKAuxpdt9Mxt5hUUMMu5icWVYyWncXQp3t9hmx9S9amdKNh7KI8xFMw+x
+         Im25soeE3mBZqYjjLji7TEhHsDLuNK0a5gTv35Ge/TmDUrcqxJme7qTURh9D0XPb2c
+         3jGy1C3ian2qw==
+Received: (nullmailer pid 4174907 invoked by uid 1000);
+        Tue, 08 Aug 2023 20:31:39 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Hari Nagalla <hnagalla@ti.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, martyn.welch@collabora.com,
+        mathieu.poirier@linaro.org, vigneshr@ti.com, andersson@kernel.org,
+        linux-remoteproc@vger.kernel.org, p.zabel@pengutronix.de,
+        conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        nm@ti.com, linux-kernel@vger.kernel.org, kristo@kernel.org
+In-Reply-To: <20230808044529.25925-2-hnagalla@ti.com>
+References: <20230808044529.25925-1-hnagalla@ti.com>
+ <20230808044529.25925-2-hnagalla@ti.com>
+Message-Id: <169152669984.4174873.13897253372545928644.robh@kernel.org>
+Subject: Re: [PATCH v5 1/5] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x
+ SoCs
+Date:   Tue, 08 Aug 2023 14:31:39 -0600
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hari Nagalla <hnagalla@ti.com>
 
-Two carveout reserved memory nodes each have been added for each of the
-R5F and C71x remote processor devices/DSP/DSPs within both the MCU and
-MAIN domains for the TI J721S2 EVM boards. These nodes are assigned to
-the respective rproc device nodes as well. The first region will be used
-as the DMA pool for the rproc device, and the second region will furnish
-the static carveout regions for the firmware memory.
+On Mon, 07 Aug 2023 23:45:25 -0500, Hari Nagalla wrote:
+> K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
+> The remote processor's life cycle management and IPC mechanisms are
+> similar across the R5F and M4F cores from remote processor driver
+> point of view. However, there are subtle differences in image loading
+> and starting the M4F subsystems.
+> 
+> The YAML binding document provides the various node properties to be
+> configured by the consumers of the M4F subsystem.
+> 
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+> Changes since v1:
+>  - Spelling corrections
+>  - Corrected to pass DT checks
+> 
+> Changes since v2:
+>  - Missed spelling correction to commit message
+> 
+> Changes since v3:
+>  - Removed unnecessary descriptions and used generic memory region names
+>  - Made mboxes and memory-region optional
+>  - Removed unrelated items from examples
+> 
+> Changes since v4:
+>  - Rebased to the latest kernel-next tree
+>  - Added optional sram memory region for m4f device node
+> 
+>  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> 
 
-The current carveout addresses and sizes are defined statically for each
-device. The R5F processors do not have an MMU, and as such require the
-exact memory used by the firmwares to be set-aside. The firmware images
-do not require any RSC_CARVEOUT entries in their resource tables either
-to allocate the memory for firmware memory segments.
-The C71x DSP processor does support a MMU called CMMU, but is not
-currently supported and as such requires the exact memory used by the
-firmware to be set-aside.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that the R5F1 carveouts are needed only if the R5F cluster is running
-in Split (non-LockStep) mode. The reserved memory nodes can be disabled
-later on if there is no use-case defined to use the corresponding
-remote processor.
+yamllint warnings/errors:
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Apurva Nandan <a-nandan@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 206 +++++++++++++++++++
- 1 file changed, 206 insertions(+)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/stericsson,dma40.example.dtb: dma-controller@801c0000: sram:0: [4294967295, 4294967295] is too long
+	from schema $id: http://devicetree.org/schemas/dma/stericsson,dma40.yaml#
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-index 594766482071..0b926ff4dd9a 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-@@ -29,6 +29,108 @@ secure_ddr: optee@9e800000 {
- 			alignment = <0x1000>;
- 			no-map;
- 		};
-+
-+		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core1_memory_region: r5f-memory@a1100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a2000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region: r5f-memory@a2100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core1_dma_memory_region: r5f-dma-memory@a3000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core1_memory_region: r5f-memory@a3100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core0_dma_memory_region: r5f-dma-memory@a4000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core0_memory_region: r5f-memory@a4100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core1_dma_memory_region: r5f-dma-memory@a5000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa5000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core1_memory_region: r5f-memory@a5100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa5100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c71_0_dma_memory_region: c71-dma-memory@a6000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa6000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c71_0_memory_region: c71-memory@a6100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa6100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c71_1_dma_memory_region: c71-dma-memory@a7000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa7000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c71_1_memory_region: c71-memory@a7100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa7100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@a8000000 {
-+			reg = <0x00 0xa8000000 0x00 0x01c00000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
- 	};
- 
- 	mux0: mux-controller {
-@@ -154,3 +256,107 @@ flash@0 {
- 		cdns,read-delay = <4>;
- 	};
- };
-+
-+&mailbox0_cluster0 {
-+	status = "okay";
-+	interrupts = <436>;
-+	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+	interrupts = <432>;
-+	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	status = "okay";
-+	interrupts = <428>;
-+	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster4 {
-+	status = "okay";
-+	interrupts = <420>;
-+	mbox_c71_0: mbox-c71-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_c71_1: mbox-c71-1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0>, <&mbox_mcu_r5fss0_core0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+};
-+
-+&mcu_r5fss0_core1 {
-+	mboxes = <&mailbox0_cluster0>, <&mbox_mcu_r5fss0_core1>;
-+	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
-+			<&mcu_r5fss0_core1_memory_region>;
-+};
-+
-+&main_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster1>, <&mbox_main_r5fss0_core0>;
-+	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-+			<&main_r5fss0_core0_memory_region>;
-+};
-+
-+&main_r5fss0_core1 {
-+	mboxes = <&mailbox0_cluster1>, <&mbox_main_r5fss0_core1>;
-+	memory-region = <&main_r5fss0_core1_dma_memory_region>,
-+			<&main_r5fss0_core1_memory_region>;
-+};
-+
-+&main_r5fss1_core0 {
-+	mboxes = <&mailbox0_cluster2>, <&mbox_main_r5fss1_core0>;
-+	memory-region = <&main_r5fss1_core0_dma_memory_region>,
-+			<&main_r5fss1_core0_memory_region>;
-+};
-+
-+&main_r5fss1_core1 {
-+	mboxes = <&mailbox0_cluster2>, <&mbox_main_r5fss1_core1>;
-+	memory-region = <&main_r5fss1_core1_dma_memory_region>,
-+			<&main_r5fss1_core1_memory_region>;
-+};
-+
-+&c71_0 {
-+	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
-+	memory-region = <&c71_0_dma_memory_region>,
-+			<&c71_0_memory_region>;
-+};
-+
-+&c71_1 {
-+	mboxes = <&mailbox0_cluster4>, <&mbox_c71_1>;
-+	memory-region = <&c71_1_dma_memory_region>,
-+			<&c71_1_memory_region>;
-+};
--- 
-2.34.1
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230808044529.25925-2-hnagalla@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
