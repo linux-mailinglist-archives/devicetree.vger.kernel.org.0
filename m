@@ -2,3538 +2,1091 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A4D773E10
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19DD0774016
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232569AbjHHQZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
+        id S233868AbjHHQ7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:59:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232576AbjHHQYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:24:36 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E652AD10;
-        Tue,  8 Aug 2023 08:50:03 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378CYvqv076297;
-        Tue, 8 Aug 2023 07:34:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691498097;
-        bh=TBqUgdi+wLZuIoA8p/PwnoLxq4rSQ6gQwP4UpwiLWqs=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=iWTKj+h958hAfzn7WQNYpROA8LdnfLPVovKIF+/XqGfaoFwxyjZ8FdelZZ1peOC1h
-         jbRzp+X9/pyXx0digTAMhdzVdoa1zmECFc46qyeEnrCysgAkyn6yEEWRd4ewyf80s6
-         8Ut6jF+mhsKIlD4hL3g4A+PhApYfVm6MmZS1f2Ds=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378CYv6Q074301
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 07:34:57 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 07:34:56 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 07:34:56 -0500
-Received: from [172.24.227.6] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378CYnVT124167;
-        Tue, 8 Aug 2023 07:34:50 -0500
-Message-ID: <5a29dea0-6147-462b-b6dd-bb42574e70ae@ti.com>
-Date:   Tue, 8 Aug 2023 18:04:49 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/2] media: imagination: Add E5010 JPEG Encoder driver
+        with ESMTP id S233777AbjHHQ6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:58:02 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on0622.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0c::622])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB0DB4C3D;
+        Tue,  8 Aug 2023 08:42:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gXStPP4ko5h2bCxCus59rtJooAJXXsAt6t2kIrpJ+xbr+3olX4zJkLy7Ro0bG4jZ3elHwzFqTd/8bY/BMCJgtOiiY2afIBfl5cjUWXAbGnb0GMMKvNMd5ZS3ziKq67pxDnToqQn2P+zNkO/O7wJuDVahx6wJn+VIyrOkoPo929yFyjUKj4OLuhN7f5KEejqHuAXQHzFIHLBD7Hoc42vin+0j2yjTm1E5VJSpAghX/h4cNgB85ZMCsKKhmBqM0ovsOZBFe6uqLP2KsW4YrhPlcnI5bmpJ1EbCRT9aoeazX2g/Js4FxQYd70ZBKruj1hO+SdrufI46YwRBF9E6jMnHzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6XUkCUXiInaIUGqFUQrvheJ+LyZWzvK+2sdRW4nyhl4=;
+ b=Nm6h2HmiiU67LeNLU2xDVSJl1xglKHNWPdD4PseB6YYNiUUkGpg/jOwxCjSKVfmU1lHlTKim5hA3TkY9qHAX3DuoF5cHmGq2flpNEbWZPZrD5rYl4pjWQ15QZJekIx7/lTeY//N4Pw33X+GKHZLqxKaigDc33qinlJFiQ07srGZ8QiKy0v1b6qB0qPOKaNJL7ROpE4KQY2FKzi6VxVEzjBh3N0z+e/GTS0Qja2BLjhl4KCCZPCw69wSNfFFIQZi8rsfnq4Dhch3eCwfLxnmFFjxU00ntYOjtNIvTReT2IObbNjk0eZB0grOnWC/cfd8jFE+ZHJ/WWY2p9aDWHEfBrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6XUkCUXiInaIUGqFUQrvheJ+LyZWzvK+2sdRW4nyhl4=;
+ b=CH8pyqnc3Wo7IzJk1O02ieJhAQ1WR6Dz3lwKD2z9/OvwfFk1zFvlV+pgGUXaoljq7cc1I7r7GYyepzp3Oi9iDTfgfQ0jK9hFsh6yIoSzYbx/Tff+8FzhMSk/pDY9KSOOO1mD6MyasN8Ga8DrlioSBA0RtudxkfMUFJpzgd+YHOk=
+Received: from DU2PR04MB8630.eurprd04.prod.outlook.com (2603:10a6:10:2dd::15)
+ by GVXPR04MB9829.eurprd04.prod.outlook.com (2603:10a6:150:116::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.26; Tue, 8 Aug
+ 2023 12:36:56 +0000
+Received: from DU2PR04MB8630.eurprd04.prod.outlook.com
+ ([fe80::175:d311:2cb4:7915]) by DU2PR04MB8630.eurprd04.prod.outlook.com
+ ([fe80::175:d311:2cb4:7915%7]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
+ 12:36:55 +0000
+From:   Pankaj Gupta <pankaj.gupta@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "clin@suse.com" <clin@suse.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Gaurav Jain <gaurav.jain@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        Sahil Malhotra <sahil.malhotra@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Varun Sethi <V.Sethi@nxp.com>
+CC:     kernel test robot <lkp@intel.com>
+Subject: RE: [EXT] Re: [PATCH v4 6/7] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Thread-Topic: [EXT] Re: [PATCH v4 6/7] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Thread-Index: AQHZtLpKAfPHv7WBBUqYX9KZenNkwK+2e7wAgBOGnVA=
+Date:   Tue, 8 Aug 2023 12:36:55 +0000
+Message-ID: <DU2PR04MB86306BC4EAB6F8EF2F252F8F950DA@DU2PR04MB8630.eurprd04.prod.outlook.com>
+References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
+ <20230712121219.2654234-7-pankaj.gupta@nxp.com>
+ <e143fd58-5c2b-fdb6-96bf-57bbf799d76c@linaro.org>
+In-Reply-To: <e143fd58-5c2b-fdb6-96bf-57bbf799d76c@linaro.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>, <mchehab@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <laurent.pinchart@ideasonboard.com>, <eugen.hristev@collabora.com>,
-        <ezequiel@vanguardiasur.com.ar>, <u.kleine-koenig@pengutronix.de>,
-        <sakari.ailus@linux.intel.com>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <a-bhatia1@ti.com>, <j-luthra@ti.com>, <b-brnich@ti.com>,
-        <detheridge@ti.com>, <p-mantena@ti.com>, <vijayp@ti.com>
-References: <20230727112546.2201995-1-devarsht@ti.com>
- <20230727112546.2201995-3-devarsht@ti.com>
- <b83249c002c6986f471913cf96fa631c46ec69be.camel@ndufresne.ca>
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <b83249c002c6986f471913cf96fa631c46ec69be.camel@ndufresne.ca>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,UPPERCASE_50_75,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU2PR04MB8630:EE_|GVXPR04MB9829:EE_
+x-ms-office365-filtering-correlation-id: 8ca31803-13aa-4452-9b5a-08db980c2654
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FDA61+bkZWHmeRqkrgXyXnUdBUBuR17RKsoVnQfcivgMQK2fmF5Tzwgjey8GTXhg8XxwNks6HhOGfAlmOkeWomHCDlKcn95snmFVoDZZPbl4AtnJ7lBPaOONGY0ltfGs9zclpX6p7j8GmdrCTrnN9+uWdzRBCR0OnlLcHb1eoVuGScwrvJcuOYTaz76ARMBcRqfe4wq6sY4e6bdyT+VZUPJoEGpLIUvwxMtyPnx5ys7pTacTkWap0VyBm/9kW1vNH0SohHM4dybuzq9xIEUh1rdETkJcc8dpYQuwsTPLvXtfHl6QP2ABm1ztpjBBX7L0Efol4kXV8vX9uTr7F9zuEiXWmsS3wwnv5cO4hNDEcvFheK0RmdHa+UzYCOlS/tCBq6qLgLV9zJlCAAzJOM3zFJX8LA5FnUDf2khJrM7+4i3H8/1YgYf6ggirhDjRWufwRdwwimpnhkoqgePL3vHIIbfJdqEo2wY/VCmKSdoTir/CiwkgPpamSA66kaOq0UuuQ8ccWqGu730V8H/7pMDtdQ2PhsPw4LlAB7odvZlT5oViZFwaG8FKwtA/Bcle7ZU+jDIOvE5HhPG8hXz06/A5oxqoCHKfeyIf/lqKGaFx9iuzyoDR1V//SsTekNo2BUBtOrIZkWhPt7gCVoUZBaOQnw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(366004)(346002)(376002)(136003)(451199021)(1800799003)(186006)(55016003)(4326008)(9686003)(38100700002)(316002)(921005)(86362001)(122000001)(6636002)(76116006)(110136005)(478600001)(66946007)(71200400001)(66446008)(66556008)(64756008)(66476007)(33656002)(53546011)(7696005)(6506007)(41300700001)(52536014)(38070700005)(8676002)(8936002)(2906002)(30864003)(83380400001)(7416002)(5660300002)(44832011)(579004)(559001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SCt3d0k1bmowL0IxVzV2YjJZVGM2Z3FHRnlnWXY3emRUekF2UXJhVDRDampG?=
+ =?utf-8?B?QWM3Q0NIUlo2bTM3L0ZmcFUwREJncTcxdTNRdGo4OEQweVFRbGN1RGdvK3dP?=
+ =?utf-8?B?eGtqWUJLeUJCdWovNm93TWtGT0tadFE4Z3RndHFsTlplMlVBU29PWTFFamFD?=
+ =?utf-8?B?UjM3Wm5Id2p3R05xbVhVdU1WNktvWjFFUWw3WnFWLzdNWWlRK1gwdVNicE1o?=
+ =?utf-8?B?OGQ2QzBpbzJIRVBYR3FZN1hYREtkQ1ZwaGorOVRWWnZuM3htalRHUkQwTnd6?=
+ =?utf-8?B?T0NhWE9MdTZHNHBrM2FvUFhLRy9QWlVxRlVhZ1ZBYmM2cHVrd3NEb3B3bVhq?=
+ =?utf-8?B?eGhxN1NSWTd6OGQ0cEdvckRSRmtXUmJJaGtQVWxHYWp6WUNxSjNRSnZwWkNV?=
+ =?utf-8?B?S0phYm1ZbFQyaC9TSWt4VzYyTGdNK0o1ME1TZk1BMUR4VkNLb1VnSXYvOG9X?=
+ =?utf-8?B?T1lkY29uSFcwVXF6Q0NYckY4dmpDcUVBR3AxSUY2ZmFURWhNaWVIQnVxWkFi?=
+ =?utf-8?B?Yy9ZWkdKdnJZckcxYW9tb0R0cmMzOS95OHV5aDlMSnIwdDlXd2w2bDh3b0NM?=
+ =?utf-8?B?UTU5UTB1MW9Md2Y1YUZJVlFMTDFlTm92WVJ3RWE4dXppZzVWVTY1KzlJNXJw?=
+ =?utf-8?B?TnVJM1NQcWZmcUU3L3BWZEpOZyt5OWQvdCttNi9tZG9yaGlmby9Nc2EwY1Rj?=
+ =?utf-8?B?Z1dIa1RqNFZueW82Znk1WWFBaEN2SmVab3RIeGRDRnQ3aFJDcHEzSDJ0SFZS?=
+ =?utf-8?B?MTQwWExLMm9yYjduSHBYTmxoeWhpVzRWWnlIODhIUGhGeFMzUVFsMlhkcGFy?=
+ =?utf-8?B?cDJvd0o0aEZ4YitpQjM0cDQrOUVVRUgxeGlhYnpxdmFheWkzRThSUk5YNngr?=
+ =?utf-8?B?VHQ2NzFoTlNyc3FlWElmb09sREcxVDZaSGR1T25KQ0xReWNYV0FTZTR1S0VU?=
+ =?utf-8?B?dHJtb3pwZE5tTm55WmQzdjNqNlByUGZpNG1UckwrRm1kWkRHS1RHMTVpd3BK?=
+ =?utf-8?B?YVEvVTZVUXBzRW9GV1RucWY3bVEzNllhOG94SXhLUkF4bXhFRGliTE51OEh6?=
+ =?utf-8?B?OHc2dWVjSFBMa1BZWVpoN0lad2g5SldVb2NWOTNRbFEyM1A0MkE1MnppVkhM?=
+ =?utf-8?B?ZlVnYWJzOGRvZm1pWXE5TnBXWkNJb01TdzZwRm1xbkY0TDd3UExoUkhSU2Yv?=
+ =?utf-8?B?MkdxRFR5djdSMDlmZ2NCOW9TMnVlMTFqVlZMK25vMW82Y2ZJL2FrWXdJQjJi?=
+ =?utf-8?B?NGE1OWdXSUdkQnNGcHYrbWl0dWZVOUJubXExakFTVExubUFHakhIcDd1ODJX?=
+ =?utf-8?B?ZzFBK3lWRXRKd0owUjV4Sm83bDc2Y3JVY0dySkFSejNYbndoaFQ1QjBiNlRG?=
+ =?utf-8?B?U2xCVXlLd3Q0RDlNVzE4aHljTFk3emlSaWZCelQrRUJvWTA2dFBKT2p2dDhO?=
+ =?utf-8?B?N0drOWF0SnpVbUExaGdRek14eW83ZU5zRUNRKzRvc0ZhWkpFQXM3UGFjVFZS?=
+ =?utf-8?B?SnFZTTgwYzJ2UHNFZ1ZqNE42SlNvUGVWdzJHQnF0RlBSS2lYOVdkcDZ5SnAz?=
+ =?utf-8?B?TFZlZHlYa01KdFZGeS9pUlVlRlorcXRLanp3TzRjL2RNNDhOcWtUbTQwTVY1?=
+ =?utf-8?B?VDFiQ2gvTFlSazBDWll5NlFTNm16SS9PWDZQQmovOGNiemE3NnNIeWp0VE9q?=
+ =?utf-8?B?U2tQOERkOTN6RTY1a20wWi9pQ3h2K3dMNkFVNHRIck5XcENqNkwveWNLd0do?=
+ =?utf-8?B?bEJLQ29jK2VVeE56RTdJYU5QNTNHSkVSWU5WREhibHg2Wmx4L0xsc0QyeE9j?=
+ =?utf-8?B?UWdnbXIyNHJ3azkvakZMaUZNMERWUkNGVFdjWUE1R2dtR1FUWjhBTUZqa1k5?=
+ =?utf-8?B?OUluR1Zrb0FIZTA3Znp3Tm1oMUpONUNtV0RQOUY5SkgyQlJpcG9jTzlmOWZv?=
+ =?utf-8?B?TGtmY1hZcWt1TWFHUGFSMm5QNGd3QkNmdE1RWHB4QjI0cVZGSmlEZHI3MmEy?=
+ =?utf-8?B?VitlT3lBYXlrZHdFU2F3YkdUSWM4MVp4djJWMTdOZEFla2VDOFh6VDF2aG4w?=
+ =?utf-8?B?eEFSMm1HSUR5M3RraW1pamsyNmRTaThTaWFaQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8630.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ca31803-13aa-4452-9b5a-08db980c2654
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2023 12:36:55.2668
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gXzZN2mYXSyTxdNNb5sZiojtEmJ7M3Lq96vkY6r+XS05xyt2WJvLhBLaFzMnVVZx8m7fe8efzHqeXHsy8/ycfA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9829
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_PERMERROR,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
-
-Thanks for the review.
-
-On 27/07/23 19:40, Nicolas Dufresne wrote:
-> Le jeudi 27 juillet 2023 à 16:55 +0530, Devarsh Thakkar a écrit :
->> This adds support for stateful V4L2 M2M based driver
->> for Imagination E5010 JPEG Encoder [1] which supports baseline
->> encoding with two different quantization tables and compression
->> ratio as demanded.
->>
->> Support for both contigous and non-contigous YUV420 and YUV422
->                    contiguous        contiguous
-> 
-
-Agreed.
-
->> semiplanar formats is added along with alignment restrictions
->> as required by the hardware.
->>
->> System and runtime PM hooks are added in the driver along with v4l2
->> crop and selection API support.
->>
->> Minimum resolution supported is 64x64 and
->> Maximum resolution supported is 8192x8192.
->>
->> All v4l2-compliance tests are passing [2] :
->> v4l2-compliance -s -f -a  -d /dev/video0 -e /dev/video1
->>
->> Total for e5010 device /dev/video0: 78, Succeeded: 78, Failed: 0,
->> Warnings: 0
->>
->> NOTE: video1 here is VIVID test pattern generator
->>
->> Also tests [3] were run manually to verify below driver features:
->>  - Runtime Power Management
->>  - Multi-instance JPEG Encoding
->>  - DMABUF import, export support
->>  - NV12, NV21, NV16, NV61 video format support
->>  - Compression quality S_CTRL
->>
->> Existing V4L2 M2M based JPEG drivers namely s5p-jpeg,
->> imx-jpeg and rcar_jpu were referred while making this.
->>
->> [1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
->> Link: https://www.ti.com/lit/pdf/spruj16
->>
->> [2]: v4l2-compliance test :
->> Link: https://gist.github.com/devarsht/867b1d646bca3f3877edb1f3638aae31
->>
->> [3]: E5010 JPEG Encoder Manual tests :
->> Link: https://gist.github.com/devarsht/ea31179199393c2026ae457219bb6321
->>
->> Co-developed-by: David Huang <d-huang@ti.com>
->> Signed-off-by: David Huang <d-huang@ti.com>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> ---
->> V2: No change
->>
->>  MAINTAINERS                                   |    2 +
->>  drivers/media/platform/Kconfig                |    1 +
->>  drivers/media/platform/Makefile               |    1 +
->>  drivers/media/platform/imagination/Kconfig    |   13 +
->>  drivers/media/platform/imagination/Makefile   |    3 +
->>  .../platform/imagination/e5010-core-regs.h    |  584 ++++++
->>  .../platform/imagination/e5010-jpeg-enc-hw.c  |  319 +++
->>  .../platform/imagination/e5010-jpeg-enc-hw.h  |   41 +
->>  .../platform/imagination/e5010-jpeg-enc.c     | 1762 +++++++++++++++++
->>  .../platform/imagination/e5010-jpeg-enc.h     |  165 ++
->>  .../platform/imagination/e5010-mmu-regs.h     |  303 +++
->>  11 files changed, 3194 insertions(+)
->>  create mode 100644 drivers/media/platform/imagination/Kconfig
->>  create mode 100644 drivers/media/platform/imagination/Makefile
->>  create mode 100644 drivers/media/platform/imagination/e5010-core-regs.h
->>  create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc-hw.c
->>  create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc-hw.h
->>  create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc.c
->>  create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc.h
->>  create mode 100644 drivers/media/platform/imagination/e5010-mmu-regs.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index aab11219810f..49172c2dabf1 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -10172,8 +10172,10 @@ F:	drivers/auxdisplay/img-ascii-lcd.c
->>  
->>  IMGTEC JPEG ENCODER DRIVER
->>  M:	Devarsh Thakkar <devarsht@ti.com>
->> +L:	linux-media@vger.kernel.org
->>  S:	Supported
->>  F:	Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->> +F:	drivers/media/platform/imagination/e5010*
->>  
->>  IMGTEC IR DECODER DRIVER
->>  S:	Orphan
->> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
->> index ee579916f874..72b4bedd47fb 100644
->> --- a/drivers/media/platform/Kconfig
->> +++ b/drivers/media/platform/Kconfig
->> @@ -69,6 +69,7 @@ source "drivers/media/platform/aspeed/Kconfig"
->>  source "drivers/media/platform/atmel/Kconfig"
->>  source "drivers/media/platform/cadence/Kconfig"
->>  source "drivers/media/platform/chips-media/Kconfig"
->> +source "drivers/media/platform/imagination/Kconfig"
->>  source "drivers/media/platform/intel/Kconfig"
->>  source "drivers/media/platform/marvell/Kconfig"
->>  source "drivers/media/platform/mediatek/Kconfig"
->> diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
->> index 5453bb868e67..96db57cc9412 100644
->> --- a/drivers/media/platform/Makefile
->> +++ b/drivers/media/platform/Makefile
->> @@ -12,6 +12,7 @@ obj-y += aspeed/
->>  obj-y += atmel/
->>  obj-y += cadence/
->>  obj-y += chips-media/
->> +obj-y += imagination/
->>  obj-y += intel/
->>  obj-y += marvell/
->>  obj-y += mediatek/
->> diff --git a/drivers/media/platform/imagination/Kconfig b/drivers/media/platform/imagination/Kconfig
->> new file mode 100644
->> index 000000000000..792dc455b168
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/Kconfig
->> @@ -0,0 +1,13 @@
->> +# SPDX-License-Identifier: GPL-2.0
->> +config VIDEO_E5010_JPEG_ENC
->> +	tristate "Imagination E5010 JPEG Encoder Driver"
->> +	depends on VIDEO_DEV
->> +	depends on ARCH_K3 || COMPILE_TEST
->> +	select VIDEOBUF2_DMA_CONTIG
->> +	select VIDEOBUF2_VMALLOC
->> +	select V4L2_MEM2MEM_DEV
->> +	help
->> +	  This is a video4linux2 M2M driver for Imagination E5010 JPEG encoder,
->> +	  which supports JPEG and MJPEG baseline encoding of YUV422 and YUV420
->> +	  semiplanar video formats, with resolution ranging from 64x64 to 8K x 8K
->> +	  pixels. The module will be named as e5010_jpeg_enc.
->                              is
->   
->> diff --git a/drivers/media/platform/imagination/Makefile b/drivers/media/platform/imagination/Makefile
->> new file mode 100644
->> index 000000000000..d45b85b88575
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/Makefile
->> @@ -0,0 +1,3 @@
->> +# SPDX-License-Identifier: GPL-2.0
->> +e5010_jpeg_enc-objs := e5010-jpeg-enc-hw.o e5010-jpeg-enc.o
->> +obj-$(CONFIG_VIDEO_E5010_JPEG_ENC) += e5010_jpeg_enc.o
->> diff --git a/drivers/media/platform/imagination/e5010-core-regs.h b/drivers/media/platform/imagination/e5010-core-regs.h
->> new file mode 100644
->> index 000000000000..aa2d57146c3d
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/e5010-core-regs.h
->> @@ -0,0 +1,584 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * TI E5010 JPEG Encoder driver.
->> + *
->> + * Copyright (c) 2023 Texas Instruments Inc.
->> + * Author: David Huang <d-huang@ti.com>
->> + * Author: Devarsh Thakkar <devarsht@ti.com>
->> + */
->> +
->> +#ifndef _E5010_CORE_REGS_H
->> +#define _E5010_CORE_REGS_H
-> 
-> nit: Could be modernized to "#pragma once" (though only used in selftest so far)
-> 
-
-Will be sticking with existing scheme as per
-https://lore.kernel.org/lkml/CAHk-=wi13+FLcRo4zmnRUmmY=AAns-Yd5NR_mVdcAd6ZrPq2fA@mail.gmail.com/.
-as suggested by Laurent.
-
->> +
->> +#define JASPER_CORE_ID_OFFSET				(0x0000)
-> 
-> nit: Should the code name "jasper" be referred in the doc ?
-> 
-
-Yes the code name is used in register naming too in TRM [0]
-(Section 14.3.6 for JPEG Encoder registers).
-
- https://www.ti.com/lit/pdf/spruj16
-
->> +#define JASPER_CORE_ID_CR_GROUP_ID_MASK			(0xFF000000)
->> +#define JASPER_CORE_ID_CR_GROUP_ID_SHIFT		(24)
->> +#define JASPER_CORE_ID_CR_CORE_ID_MASK			(0x00FF0000)
->> +#define JASPER_CORE_ID_CR_CORE_ID_SHIFT			(16)
->> +#define JASPER_CORE_ID_CR_UNIQUE_NUM_MASK		(0x0000FFF8)
->> +#define JASPER_CORE_ID_CR_UNIQUE_NUM_SHIFT		(3)
->> +#define JASPER_CORE_ID_CR_PELS_PER_CYCLE_MASK		(0x00000007)
->> +#define JASPER_CORE_ID_CR_PELS_PER_CYCLE_SHIFT		(0)
->> +
->> +#define JASPER_CORE_REV_OFFSET				(0x0004)
->> +#define JASPER_CORE_REV_CR_JASPER_DESIGNER_MASK		(0xFF000000)
->> +#define JASPER_CORE_REV_CR_JASPER_DESIGNER_SHIFT	(24)
->> +#define JASPER_CORE_REV_CR_JASPER_MAJOR_REV_MASK	(0x00FF0000)
->> +#define JASPER_CORE_REV_CR_JASPER_MAJOR_REV_SHIFT	(16)
->> +#define JASPER_CORE_REV_CR_JASPER_MINOR_REV_MASK	(0x0000FF00)
->> +#define JASPER_CORE_REV_CR_JASPER_MINOR_REV_SHIFT	(8)
->> +#define JASPER_CORE_REV_CR_JASPER_MAINT_REV_MASK	(0x000000FF)
->> +#define JASPER_CORE_REV_CR_JASPER_MAINT_REV_SHIFT	(0)
->> +
->> +#define JASPER_INTERRUPT_MASK_OFFSET					(0x0008)
->> +#define JASPER_INTERRUPT_MASK_CR_OUTPUT_ADDRESS_ERROR_ENABLE_MASK	(0x00000002)
->> +#define JASPER_INTERRUPT_MASK_CR_OUTPUT_ADDRESS_ERROR_ENABLE_SHIFT	(1)
->> +#define JASPER_INTERRUPT_MASK_CR_PICTURE_DONE_ENABLE_MASK		(0x00000001)
->> +#define JASPER_INTERRUPT_MASK_CR_PICTURE_DONE_ENABLE_SHIFT		(0)
->> +
->> +#define JASPER_INTERRUPT_STATUS_OFFSET					(0x000C)
->> +#define JASPER_INTERRUPT_STATUS_CR_OUTPUT_ADDRESS_ERROR_IRQ_MASK	(0x00000002)
->> +#define JASPER_INTERRUPT_STATUS_CR_OUTPUT_ADDRESS_ERROR_IRQ_SHIFT	(1)
->> +#define JASPER_INTERRUPT_STATUS_CR_PICTURE_DONE_IRQ_MASK		(0x00000001)
->> +#define JASPER_INTERRUPT_STATUS_CR_PICTURE_DONE_IRQ_SHIFT		(0)
->> +
->> +#define JASPER_INTERRUPT_CLEAR_OFFSET					(0x0010)
->> +#define JASPER_INTERRUPT_CLEAR_CR_OUTPUT_ERROR_CLEAR_MASK		(0x00000002)
->> +#define JASPER_INTERRUPT_CLEAR_CR_OUTPUT_ERROR_CLEAR_SHIFT		(1)
->> +#define JASPER_INTERRUPT_CLEAR_CR_PICTURE_DONE_CLEAR_MASK		(0x00000001)
->> +#define JASPER_INTERRUPT_CLEAR_CR_PICTURE_DONE_CLEAR_SHIFT		(0)
->> +
->> +#define JASPER_CLK_CONTROL_OFFSET				(0x0014)
->> +#define JASPER_CLK_CONTROL_CR_JASPER_AUTO_CLKG_ENABLE_MASK	(0x00000002)
->> +#define JASPER_CLK_CONTROL_CR_JASPER_AUTO_CLKG_ENABLE_SHIFT	(1)
->> +#define JASPER_CLK_CONTROL_CR_JASPER_MAN_CLKG_ENABLE_MASK	(0x00000001)
->> +#define JASPER_CLK_CONTROL_CR_JASPER_MAN_CLKG_ENABLE_SHIFT	(0)
->> +
->> +#define JASPER_CLK_STATUS_OFFSET			(0x0018)
->> +#define JASPER_CLK_STATUS_CR_JASPER_CLKG_STATUS_MASK	(0x00000001)
->> +#define JASPER_CLK_STATUS_CR_JASPER_CLKG_STATUS_SHIFT	(0)
->> +
->> +#define JASPER_RESET_OFFSET			(0x001C)
->> +#define JASPER_RESET_CR_SYS_RESET_MASK		(0x00000002)
->> +#define JASPER_RESET_CR_SYS_RESET_SHIFT		(1)
->> +#define JASPER_RESET_CR_CORE_RESET_MASK		(0x00000001)
->> +#define JASPER_RESET_CR_CORE_RESET_SHIFT	(0)
->> +
->> +#define JASPER_CORE_CTRL_OFFSET				(0x0020)
->> +#define JASPER_CORE_CTRL_CR_JASPER_ENCODE_START_MASK	(0x00000001)
->> +#define JASPER_CORE_CTRL_CR_JASPER_ENCODE_START_SHIFT	(0)
->> +
->> +#define JASPER_STATUS_OFFSET				(0x0024)
->> +#define JASPER_STATUS_CR_FLUSH_MODE_MASK		(0x00000002)
->> +#define JASPER_STATUS_CR_FLUSH_MODE_SHIFT		(1)
->> +#define JASPER_STATUS_CR_JASPER_BUSY_MASK		(0x00000001)
->> +#define JASPER_STATUS_CR_JASPER_BUSY_SHIFT		(0)
->> +
->> +#define JASPER_CRC_CLEAR_OFFSET					(0x0028)
->> +#define JASPER_CRC_CLEAR_CR_FRONT_END_CRC_CLEAR_MASK		(0x00000001)
->> +#define JASPER_CRC_CLEAR_CR_FRONT_END_CRC_CLEAR_SHIFT		(0)
->> +#define JASPER_CRC_CLEAR_CR_DCT_CRC_CLEAR_MASK			(0x00000002)
->> +#define JASPER_CRC_CLEAR_CR_DCT_CRC_CLEAR_SHIFT			(1)
->> +#define JASPER_CRC_CLEAR_CR_ZZ_CRC_CLEAR_MASK			(0x00000004)
->> +#define JASPER_CRC_CLEAR_CR_ZZ_CRC_CLEAR_SHIFT			(2)
->> +#define JASPER_CRC_CLEAR_CR_QUANT_CRC_CLEAR_MASK		(0x00000008)
->> +#define JASPER_CRC_CLEAR_CR_QUANT_CRC_CLEAR_SHIFT		(3)
->> +#define JASPER_CRC_CLEAR_CR_ENTROPY_ENCODER_CRC_CLEAR_MASK	(0x00000010)
->> +#define JASPER_CRC_CLEAR_CR_ENTROPY_ENCODER_CRC_CLEAR_SHIFT	(4)
->> +#define JASPER_CRC_CLEAR_CR_PACKING_BUFFER_CRC_CLEAR_MASK	(0x00000020)
->> +#define JASPER_CRC_CLEAR_CR_PACKING_BUFFER_CRC_CLEAR_SHIFT	(5)
->> +
->> +#define JASPER_INPUT_CTRL0_OFFSET			(0x002C)
->> +#define JASPER_INPUT_CTRL0_CR_INPUT_CHROMA_ORDER_MASK	(0x01000000)
->> +#define JASPER_INPUT_CTRL0_CR_INPUT_CHROMA_ORDER_SHIFT	(24)
->> +#define JASPER_INPUT_CTRL0_CR_INPUT_SUBSAMPLING_MASK	(0x00030000)
->> +#define JASPER_INPUT_CTRL0_CR_INPUT_SUBSAMPLING_SHIFT	(16)
->> +#define JASPER_INPUT_CTRL0_CR_INPUT_SOURCE_MASK		(0x00000004)
->> +#define JASPER_INPUT_CTRL0_CR_INPUT_SOURCE_SHIFT	(2)
->> +
->> +#define JASPER_INPUT_CTRL1_OFFSET			(0x0030)
->> +#define JASPER_INPUT_CTRL1_CR_INPUT_LUMA_STRIDE_MASK	(0x1FC00000)
->> +#define JASPER_INPUT_CTRL1_CR_INPUT_LUMA_STRIDE_SHIFT	(22)
->> +#define JASPER_INPUT_CTRL1_CR_INPUT_CHROMA_STRIDE_MASK	(0x00001FC0)
->> +#define JASPER_INPUT_CTRL1_CR_INPUT_CHROMA_STRIDE_SHIFT	(6)
->> +
->> +#define JASPER_MMU_CTRL_OFFSET				(0x0034)
->> +#define JASPER_MMU_CTRL_CR_JASPER_TILING_SCHEME_MASK	(0x00000002)
->> +#define JASPER_MMU_CTRL_CR_JASPER_TILING_SCHEME_SHIFT	(1)
->> +#define JASPER_MMU_CTRL_CR_JASPER_TILING_ENABLE_MASK	(0x00000001)
->> +#define JASPER_MMU_CTRL_CR_JASPER_TILING_ENABLE_SHIFT	(0)
->> +
->> +#define JASPER_IMAGE_SIZE_OFFSET				(0x0038)
->> +#define JASPER_IMAGE_SIZE_CR_IMAGE_VERTICAL_SIZE_MASK		(0x1FFF0000)
->> +#define JASPER_IMAGE_SIZE_CR_IMAGE_VERTICAL_SIZE_SHIFT		(16)
->> +#define JASPER_IMAGE_SIZE_CR_IMAGE_HORIZONTAL_SIZE_MASK		(0x00001FFF)
->> +#define JASPER_IMAGE_SIZE_CR_IMAGE_HORIZONTAL_SIZE_SHIFT	(0)
->> +
->> +#define INPUT_LUMA_BASE_OFFSET				(0x003C)
->> +#define INPUT_LUMA_BASE_CR_INPUT_LUMA_BASE_MASK		(0xFFFFFFC0)
->> +#define INPUT_LUMA_BASE_CR_INPUT_LUMA_BASE_SHIFT	(6)
->> +
->> +#define INPUT_CHROMA_BASE_OFFSET			(0x0040)
->> +#define INPUT_CHROMA_BASE_CR_INPUT_CHROMA_BASE_MASK	(0xFFFFFFC0)
->> +#define INPUT_CHROMA_BASE_CR_INPUT_CHROMA_BASE_SHIFT	(6)
->> +
->> +#define JASPER_OUTPUT_BASE_OFFSET		(0x0044)
->> +#define JASPER_OUTPUT_BASE_CR_OUTPUT_BASE_MASK	(0xFFFFFFFF)
->> +#define JASPER_OUTPUT_BASE_CR_OUTPUT_BASE_SHIFT	(0)
->> +
->> +#define JASPER_OUTPUT_SIZE_OFFSET			(0x0048)
->> +#define JASPER_OUTPUT_SIZE_CR_OUTPUT_SIZE_MASK		(0xFFFFFFFF)
->> +#define JASPER_OUTPUT_SIZE_CR_OUTPUT_SIZE_SHIFT		(0)
->> +#define JASPER_OUTPUT_MAX_SIZE_OFFSET			(0x004C)
->> +#define JASPER_OUTPUT_MAX_SIZE_CR_OUTPUT_MAX_SIZE_MASK	(0xFFFFFFFF)
->> +#define JASPER_OUTPUT_MAX_SIZE_CR_OUTPUT_MAX_SIZE_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_OFFSET					(0x0050)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_03_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_03_SHIFT	(24)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_02_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_02_SHIFT	(16)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_01_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_01_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_00_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE0_CR_LUMA_QUANTIZATION_TABLE_00_SHIFT	(0)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_OFFSET					(0x0054)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_07_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_07_SHIFT	(24)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_06_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_06_SHIFT	(16)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_05_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_05_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_04_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE1_CR_LUMA_QUANTIZATION_TABLE_04_SHIFT	(0)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_OFFSET					(0x0058)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_13_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_13_SHIFT	(24)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_12_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_12_SHIFT	(16)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_11_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_11_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_10_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE2_CR_LUMA_QUANTIZATION_TABLE_10_SHIFT	(0)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_OFFSET					(0x005C)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_17_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_17_SHIFT	(24)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_16_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_16_SHIFT	(16)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_15_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_15_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_14_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE3_CR_LUMA_QUANTIZATION_TABLE_14_SHIFT	(0)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE4_OFFSET					(0x0060)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE4_CR_LUMA_QUANTIZATION_TABLE_21_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE4_CR_LUMA_QUANTIZATION_TABLE_21_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE4_CR_LUMA_QUANTIZATION_TABLE_20_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE4_CR_LUMA_QUANTIZATION_TABLE_20_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_OFFSET					(0x0064)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_27_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_27_SHIFT	(24)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_26_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_26_SHIFT	(16)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_25_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_25_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_24_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE5_CR_LUMA_QUANTIZATION_TABLE_24_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_OFFSET					(0x0068)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_33_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_33_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_32_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_32_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_31_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_31_SHIFT	(8)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_30_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE6_CR_LUMA_QUANTIZATION_TABLE_30_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_OFFSET					(0x006C)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_37_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_37_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_36_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_36_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_35_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_35_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_34_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE7_CR_LUMA_QUANTIZATION_TABLE_34_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_OFFSET					(0x0070)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_43_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_43_SHIFT	(24)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_42_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_42_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_41_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_41_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_40_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE8_CR_LUMA_QUANTIZATION_TABLE_40_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_OFFSET					(0x0074)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_47_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_47_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_46_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_46_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_45_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_45_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_44_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE9_CR_LUMA_QUANTIZATION_TABLE_44_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_OFFSET					(0x0078)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_53_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_53_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_52_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_52_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_51_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_51_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_50_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE10_CR_LUMA_QUANTIZATION_TABLE_50_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_OFFSET					(0x007C)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_57_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_57_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_56_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_56_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_55_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_55_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_54_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE11_CR_LUMA_QUANTIZATION_TABLE_54_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_OFFSET					(0x0080)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_63_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_63_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_62_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_62_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_61_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_61_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_60_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE12_CR_LUMA_QUANTIZATION_TABLE_60_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_OFFSET					(0x0084)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_67_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_67_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_66_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_66_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_65_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_65_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_64_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE13_CR_LUMA_QUANTIZATION_TABLE_64_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_OFFSET					(0x0088)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_73_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_73_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_72_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_72_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_71_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_71_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_70_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE14_CR_LUMA_QUANTIZATION_TABLE_70_SHIFT	(0)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_OFFSET					(0x008C)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_77_MASK	(0xFF000000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_77_SHIFT	(24)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_76_MASK	(0x00FF0000)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_76_SHIFT	(16)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_75_MASK	(0x0000FF00)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_75_SHIFT	(8)
->> +
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_74_MASK	(0x000000FF)
->> +#define JASPER_LUMA_QUANTIZATION_TABLE15_CR_LUMA_QUANTIZATION_TABLE_74_SHIFT	(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_OFFSET				(0x0090)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_03_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_03_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_02_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_02_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_01_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_01_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_00_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE0_CR_CHROMA_QUANTIZATION_TABLE_00_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_OFFSET					(0x0094)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_07_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_07_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_06_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_06_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_05_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_05_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_04_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE1_CR_CHROMA_QUANTIZATION_TABLE_04_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_OFFSET					(0x0098)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_13_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_13_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_12_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_12_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_11_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_11_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_10_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE2_CR_CHROMA_QUANTIZATION_TABLE_10_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_OFFSET					(0x009C)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_17_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_17_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_16_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_16_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_15_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_15_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_14_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE3_CR_CHROMA_QUANTIZATION_TABLE_14_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_OFFSET					(0x00A0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_23_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_23_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_22_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_22_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_21_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_21_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_20_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE4_CR_CHROMA_QUANTIZATION_TABLE_20_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_OFFSET					(0x00A4)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_27_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_27_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_26_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_26_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_25_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_25_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_24_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE5_CR_CHROMA_QUANTIZATION_TABLE_24_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_OFFSET					(0x00A8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_33_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_33_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_32_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_32_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_31_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_31_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_30_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE6_CR_CHROMA_QUANTIZATION_TABLE_30_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_OFFSET					(0x00AC)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_37_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_37_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_36_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_36_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_35_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_35_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_34_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE7_CR_CHROMA_QUANTIZATION_TABLE_34_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_OFFSET					(0x00B0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_43_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_43_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_42_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_42_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_41_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_41_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_40_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE8_CR_CHROMA_QUANTIZATION_TABLE_40_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_OFFSET					(0x00B4)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_47_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_47_SHIFT		(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_46_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_46_SHIFT		(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_45_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_45_SHIFT		(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_44_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE9_CR_CHROMA_QUANTIZATION_TABLE_44_SHIFT		(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_OFFSET					(0x00B8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_53_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_53_SHIFT	(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_52_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_52_SHIFT	(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_51_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_51_SHIFT	(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_50_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE10_CR_CHROMA_QUANTIZATION_TABLE_50_SHIFT	(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_OFFSET					(0x00BC)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_57_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_57_SHIFT	(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_56_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_56_SHIFT	(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_55_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_55_SHIFT	(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_54_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE11_CR_CHROMA_QUANTIZATION_TABLE_54_SHIFT	(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_OFFSET					(0x00C0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_63_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_63_SHIFT	(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_62_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_62_SHIFT	(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_61_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_61_SHIFT	(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_60_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE12_CR_CHROMA_QUANTIZATION_TABLE_60_SHIFT	(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_OFFSET					(0x00C4)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_67_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_67_SHIFT	(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_66_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_66_SHIFT	(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_65_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_65_SHIFT	(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_64_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE13_CR_CHROMA_QUANTIZATION_TABLE_64_SHIFT	(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_OFFSET					(0x00C8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_73_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_73_SHIFT	(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_72_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_72_SHIFT	(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_71_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_71_SHIFT	(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_70_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE14_CR_CHROMA_QUANTIZATION_TABLE_70_SHIFT	(0)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_OFFSET					(0x00CC)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_77_MASK		(0xFF000000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_77_SHIFT	(24)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_76_MASK		(0x00FF0000)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_76_SHIFT	(16)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_75_MASK		(0x0000FF00)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_75_SHIFT	(8)
->> +
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_74_MASK		(0x000000FF)
->> +#define JASPER_CHROMA_QUANTIZATION_TABLE15_CR_CHROMA_QUANTIZATION_TABLE_74_SHIFT	(0)
->> +
->> +#define JASPER_CRC_CTRL_OFFSET				(0x00D0)
->> +#define JASPER_CRC_CTRL_JASPER_CRC_ENABLE_MASK		(0x00000001)
->> +#define JASPER_CRC_CTRL_JASPER_CRC_ENABLE_SHIFT		(0)
->> +
->> +#define JASPER_FRONT_END_CRC_OFFSET				(0x00D4)
->> +#define JASPER_FRONT_END_CRC_CR_JASPER_FRONT_END_CRC_OUT_MASK	(0xFFFFFFFF)
->> +#define JASPER_FRONT_END_CRC_CR_JASPER_FRONT_END_CRC_OUT_SHIFT	(0)
->> +
->> +#define JASPER_DCT_CRC_OFFSET				(0x00D8)
->> +#define JASPER_DCT_CRC_CR_JASPER_DCT_CRC_OUT_MASK	(0xFFFFFFFF)
->> +#define JASPER_DCT_CRC_CR_JASPER_DCT_CRC_OUT_SHIFT	(0)
->> +
->> +#define JASPER_ZZ_CRC_OFFSET				(0x00DC)
->> +#define JASPER_ZZ_CRC_CR_JASPER_ZZ_CRC_OUT_MASK		(0xFFFFFFFF)
->> +#define JASPER_ZZ_CRC_CR_JASPER_ZZ_CRC_OUT_SHIFT	(0)
->> +
->> +#define JASPER_QUANT_CRC_OFFSET				(0x00E0)
->> +#define JASPER_QUANT_CRC_CR_JASPER_QUANT_CRC_OUT_MASK	(0xFFFFFFFF)
->> +#define JASPER_QUANT_CRC_CR_JASPER_QUANT_CRC_OUT_SHIFT	(0)
->> +
->> +#define JASPER_ENTROPY_ENCODER_CRC_OFFSET		(0x00E4)
->> +#define JASPER_ENTROPY_ENCODER_CRC_CR_JASPER_ENTROPY_CRC_OUT_MASK	(0xFFFFFFFF)
->> +#define JASPER_ENTROPY_ENCODER_CRC_CR_JASPER_ENTROPY_CRC_OUT_SHIFT	(0)
->> +
->> +#define JASPER_PACKING_BUFFER_DATA_CRC_OFFSET		(0x00E8)
->> +#define JASPER_PACKING_BUFFER_DATA_CRC_CR_JASPER_PACKING_DATA_CRC_OUT_MASK		(0xFFFFFFFF)
->> +#define JASPER_PACKING_BUFFER_DATA_CRC_CR_JASPER_PACKING_DATA_CRC_OUT_SHIFT		(0)
->> +
->> +#define JASPER_PACKING_BUFFER_ADDR_CRC_OFFSET		(0x00EC)
->> +#define JASPER_PACKING_BUFFER_ADDR_CRC_CR_JASPER_PACKING_ADDR_OUT_CRC_MASK		(0xFFFFFFFF)
->> +#define JASPER_PACKING_BUFFER_ADDR_CRC_CR_JASPER_PACKING_ADDR_OUT_CRC_SHIFT		(0)
->> +
->> +#define JASPER_CORE_BYTE_SIZE		(0x00F0)
->> +
->> +#endif
->> diff --git a/drivers/media/platform/imagination/e5010-jpeg-enc-hw.c b/drivers/media/platform/imagination/e5010-jpeg-enc-hw.c
->> new file mode 100644
->> index 000000000000..ed36b55086e5
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/e5010-jpeg-enc-hw.c
->> @@ -0,0 +1,319 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * TI E5010 JPEG Encoder HW driver.
->> + *
->> + * Copyright (c) 2023 Texas Instruments Inc.
->> + * Author: David Huang <d-huang@ti.com>
->> + * Author: Devarsh Thakkar <devarsht@ti.com>
->> + */
->> +
->> +#include <linux/io.h>
->> +#include <linux/iopoll.h>
->> +#include <linux/dev_printk.h>
->> +#include "e5010-jpeg-enc-hw.h"
->> +
->> +static void write_reg_field(void __iomem *base, unsigned int offset, u32 mask,
->> +			    unsigned int shift, u32 value)
->> +{
->> +	u32 reg;
->> +
->> +	value <<= shift;
->> +	if (mask != 0xffffffff) {
->> +		reg = readl(base + offset);
->> +		value = (value & mask) | (reg & ~mask);
->> +	}
->> +	writel(value, (base + offset));
->> +}
->> +
->> +static int write_reg_field_not_busy(void __iomem *jasper_base, void __iomem *wr_base,
->> +				    unsigned int offset, u32 mask, unsigned int shift,
->> +				    u32 value)
->> +{
->> +	int ret;
->> +	u32 val;
->> +
->> +	ret = readl_poll_timeout_atomic(jasper_base + JASPER_STATUS_OFFSET, val,
->> +					(val & JASPER_STATUS_CR_JASPER_BUSY_MASK) == 0,
->> +					2000, 50000);
->> +	if (ret)
->> +		return ret;
->> +
->> +	write_reg_field(wr_base, offset, mask, shift, value);
->> +
->> +	return 0;
->> +}
->> +
->> +void e5010_reset(struct device *dev, void __iomem *core_base, void __iomem *mmu_base)
->> +{
->> +	int ret = 0;
->> +	u32 val;
->> +
->> +	write_reg_field(core_base, JASPER_RESET_OFFSET,
->> +			JASPER_RESET_CR_CORE_RESET_MASK,
->> +			JASPER_RESET_CR_CORE_RESET_SHIFT, 1);
->> +
->> +	write_reg_field(mmu_base, MMU_MMU_CONTROL1_OFFSET,
->> +			MMU_MMU_CONTROL1_MMU_SOFT_RESET_MASK,
->> +			MMU_MMU_CONTROL1_MMU_SOFT_RESET_SHIFT, 1);
->> +
->> +	ret = readl_poll_timeout_atomic(mmu_base + MMU_MMU_CONTROL1_OFFSET, val,
->> +					(val & MMU_MMU_CONTROL1_MMU_SOFT_RESET_MASK) == 0,
->> +					2000, 50000);
->> +	if (ret)
->> +		dev_warn(dev, "MMU soft reset timed out, forcing system soft reset\n");
->> +
->> +	write_reg_field(core_base, JASPER_RESET_OFFSET,
->> +			JASPER_RESET_CR_SYS_RESET_MASK,
->> +			JASPER_RESET_CR_SYS_RESET_SHIFT, 1);
->> +}
->> +
->> +void e5010_hw_bypass_mmu(void __iomem *mmu_base, u32 enable)
->> +{
->> +	/* Bypass MMU */
->> +	write_reg_field(mmu_base,
->> +			MMU_MMU_ADDRESS_CONTROL_OFFSET,
->> +			MMU_MMU_ADDRESS_CONTROL_MMU_BYPASS_MASK,
->> +			MMU_MMU_ADDRESS_CONTROL_MMU_BYPASS_SHIFT,
->> +			enable);
->> +}
->> +
->> +int e5010_hw_enable_output_address_error_irq(void __iomem *core_base, u32 enable)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INTERRUPT_MASK_OFFSET,
->> +				       JASPER_INTERRUPT_MASK_CR_OUTPUT_ADDRESS_ERROR_ENABLE_MASK,
->> +				       JASPER_INTERRUPT_MASK_CR_OUTPUT_ADDRESS_ERROR_ENABLE_SHIFT,
->> +				       enable);
->> +	return ret;
->> +}
->> +
->> +bool e5010_hw_pic_done_irq(void __iomem *core_base)
->> +{
->> +	u32 reg;
->> +	bool pic_done;
->> +
->> +	reg = readl(core_base + JASPER_INTERRUPT_STATUS_OFFSET);
->> +	pic_done = (reg & JASPER_INTERRUPT_STATUS_CR_PICTURE_DONE_IRQ_MASK) ? true : false;
->> +
->> +	return pic_done;
->> +}
->> +
->> +bool e5010_hw_output_address_irq(void __iomem *core_base)
->> +{
->> +	u32 reg;
->> +	bool output_address_error;
->> +
->> +	reg = readl(core_base + JASPER_INTERRUPT_STATUS_OFFSET);
->> +	output_address_error = (reg & JASPER_INTERRUPT_STATUS_CR_OUTPUT_ADDRESS_ERROR_IRQ_MASK) ?
->> +				true : false;
->> +
->> +	return output_address_error;
->> +}
->> +
->> +int e5010_hw_enable_picture_done_irq(void __iomem *core_base, u32 enable)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INTERRUPT_MASK_OFFSET,
->> +				       JASPER_INTERRUPT_MASK_CR_PICTURE_DONE_ENABLE_MASK,
->> +				       JASPER_INTERRUPT_MASK_CR_PICTURE_DONE_ENABLE_SHIFT,
->> +				       enable);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_enable_auto_clock_gating(void __iomem *core_base, u32 enable)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_CLK_CONTROL_OFFSET,
->> +				       JASPER_CLK_CONTROL_CR_JASPER_AUTO_CLKG_ENABLE_MASK,
->> +				       JASPER_CLK_CONTROL_CR_JASPER_AUTO_CLKG_ENABLE_SHIFT,
->> +				       enable);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_enable_manual_clock_gating(void __iomem *core_base, u32 enable)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_CLK_CONTROL_OFFSET,
->> +				       JASPER_CLK_CONTROL_CR_JASPER_MAN_CLKG_ENABLE_MASK,
->> +				       JASPER_CLK_CONTROL_CR_JASPER_MAN_CLKG_ENABLE_SHIFT, 0);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_enable_crc_check(void __iomem *core_base, u32 enable)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_CRC_CTRL_OFFSET,
->> +				       JASPER_CRC_CTRL_JASPER_CRC_ENABLE_MASK,
->> +				       JASPER_CRC_CTRL_JASPER_CRC_ENABLE_SHIFT, enable);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_input_source_to_memory(void __iomem *core_base, u32 set)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INPUT_CTRL0_OFFSET,
->> +				       JASPER_INPUT_CTRL0_CR_INPUT_SOURCE_MASK,
->> +				       JASPER_INPUT_CTRL0_CR_INPUT_SOURCE_SHIFT, set);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_input_luma_addr(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       INPUT_LUMA_BASE_OFFSET,
->> +				       INPUT_LUMA_BASE_CR_INPUT_LUMA_BASE_MASK, 0, val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_input_chroma_addr(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       INPUT_CHROMA_BASE_OFFSET,
->> +				       INPUT_CHROMA_BASE_CR_INPUT_CHROMA_BASE_MASK, 0, val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_output_base_addr(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_OUTPUT_BASE_OFFSET,
->> +				       JASPER_OUTPUT_BASE_CR_OUTPUT_BASE_MASK,
->> +				       JASPER_OUTPUT_BASE_CR_OUTPUT_BASE_SHIFT, val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_horizontal_size(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_IMAGE_SIZE_OFFSET,
->> +				       JASPER_IMAGE_SIZE_CR_IMAGE_HORIZONTAL_SIZE_MASK,
->> +				       JASPER_IMAGE_SIZE_CR_IMAGE_HORIZONTAL_SIZE_SHIFT,
->> +				       val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_vertical_size(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_IMAGE_SIZE_OFFSET,
->> +				       JASPER_IMAGE_SIZE_CR_IMAGE_VERTICAL_SIZE_MASK,
->> +				       JASPER_IMAGE_SIZE_CR_IMAGE_VERTICAL_SIZE_SHIFT,
->> +				       val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_luma_stride(void __iomem *core_base, u32 bytesperline)
->> +{
->> +	int ret;
->> +	u32 val = bytesperline / 64;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INPUT_CTRL1_OFFSET,
->> +				       JASPER_INPUT_CTRL1_CR_INPUT_LUMA_STRIDE_MASK,
->> +				       JASPER_INPUT_CTRL1_CR_INPUT_LUMA_STRIDE_SHIFT,
->> +				       val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_chroma_stride(void __iomem *core_base, u32 bytesperline)
->> +{
->> +	int ret;
->> +	u32 val = bytesperline / 64;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INPUT_CTRL1_OFFSET,
->> +				       JASPER_INPUT_CTRL1_CR_INPUT_CHROMA_STRIDE_MASK,
->> +				       JASPER_INPUT_CTRL1_CR_INPUT_CHROMA_STRIDE_SHIFT,
->> +				       val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_input_subsampling(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INPUT_CTRL0_OFFSET,
->> +				       JASPER_INPUT_CTRL0_CR_INPUT_SUBSAMPLING_MASK,
->> +				       JASPER_INPUT_CTRL0_CR_INPUT_SUBSAMPLING_SHIFT,
->> +				       val);
->> +	return ret;
->> +}
->> +
->> +int e5010_hw_set_chroma_order(void __iomem *core_base, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base,
->> +				       JASPER_INPUT_CTRL0_OFFSET,
->> +				       JASPER_INPUT_CTRL0_CR_INPUT_CHROMA_ORDER_MASK,
->> +				       JASPER_INPUT_CTRL0_CR_INPUT_CHROMA_ORDER_SHIFT,
->> +				       val);
->> +	return ret;
->> +}
->> +
->> +void e5010_hw_set_output_max_size(void __iomem *core_base, u32 val)
->> +{
->> +	write_reg_field(core_base, JASPER_OUTPUT_MAX_SIZE_OFFSET,
->> +			JASPER_OUTPUT_MAX_SIZE_CR_OUTPUT_MAX_SIZE_MASK,
->> +			JASPER_OUTPUT_MAX_SIZE_CR_OUTPUT_MAX_SIZE_SHIFT,
->> +			val);
->> +}
->> +
->> +int e5010_hw_set_qpvalue(void __iomem *core_base, u32 offset, u32 val)
->> +{
->> +	int ret;
->> +
->> +	ret = write_reg_field_not_busy(core_base, core_base, offset, 0xffffffff, 0, val);
->> +	return ret;
->> +}
->> +
->> +void e5010_hw_clear_output_error(void __iomem *core_base, u32 clear)
->> +{
->> +	/* Make sure interrupts are clear */
->> +	write_reg_field(core_base, JASPER_INTERRUPT_CLEAR_OFFSET,
->> +			JASPER_INTERRUPT_CLEAR_CR_OUTPUT_ERROR_CLEAR_MASK,
->> +			JASPER_INTERRUPT_CLEAR_CR_OUTPUT_ERROR_CLEAR_SHIFT, clear);
->> +}
->> +
->> +void e5010_hw_clear_picture_done(void __iomem *core_base, u32 clear)
->> +{
->> +	write_reg_field(core_base,
->> +			JASPER_INTERRUPT_CLEAR_OFFSET,
->> +			JASPER_INTERRUPT_CLEAR_CR_PICTURE_DONE_CLEAR_MASK,
->> +			JASPER_INTERRUPT_CLEAR_CR_PICTURE_DONE_CLEAR_SHIFT, clear);
->> +}
->> +
->> +int e5010_hw_get_output_size(void __iomem *core_base)
->> +{
->> +	return readl(core_base + JASPER_OUTPUT_SIZE_OFFSET);
->> +}
->> +
->> +void e5010_hw_encode_start(void __iomem *core_base, u32 start)
->> +{
->> +	write_reg_field(core_base, JASPER_CORE_CTRL_OFFSET,
->> +			JASPER_CORE_CTRL_CR_JASPER_ENCODE_START_MASK,
->> +			JASPER_CORE_CTRL_CR_JASPER_ENCODE_START_SHIFT, start);
->> +}
->> diff --git a/drivers/media/platform/imagination/e5010-jpeg-enc-hw.h b/drivers/media/platform/imagination/e5010-jpeg-enc-hw.h
->> new file mode 100644
->> index 000000000000..d3a008a86bf2
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/e5010-jpeg-enc-hw.h
->> @@ -0,0 +1,41 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * TI E5010 JPEG Encoder driver.
->> + *
->> + * Copyright (c) 2023 Texas Instruments Inc.
->> + * Author: David Huang <d-huang@ti.com>
->> + * Author: Devarsh Thakkar <devarsht@ti.com>
->> + */
->> +
->> +#ifndef _E5010_JPEG_ENC_HW_H
->> +#define _E5010_JPEG_ENC_HW_H
->> +
->> +#include "e5010-core-regs.h"
->> +#include "e5010-mmu-regs.h"
->> +
->> +int e5010_hw_enable_output_address_error_irq(void __iomem *core_offset, u32 enable);
->> +int e5010_hw_enable_picture_done_irq(void __iomem *core_offset, u32 enable);
->> +int e5010_hw_enable_auto_clock_gating(void __iomem *core_offset, u32 enable);
->> +int e5010_hw_enable_manual_clock_gating(void __iomem *core_offset, u32 enable);
->> +int e5010_hw_enable_crc_check(void __iomem *core_offset, u32 enable);
->> +int e5010_hw_set_input_source_to_memory(void __iomem *core_offset, u32 set);
->> +int e5010_hw_set_input_luma_addr(void __iomem *core_offset, u32 val);
->> +int e5010_hw_set_input_chroma_addr(void __iomem *core_offset, u32 val);
->> +int e5010_hw_set_output_base_addr(void __iomem *core_offset, u32 val);
->> +int e5010_hw_get_output_size(void __iomem *core_offset);
->> +int e5010_hw_set_horizontal_size(void __iomem *core_offset, u32 val);
->> +int e5010_hw_set_vertical_size(void __iomem *core_offset, u32 val);
->> +int e5010_hw_set_luma_stride(void __iomem *core_offset, u32 bytesperline);
->> +int e5010_hw_set_chroma_stride(void __iomem *core_offset, u32 bytesperline);
->> +int e5010_hw_set_input_subsampling(void __iomem *core_offset, u32 val);
->> +int e5010_hw_set_chroma_order(void __iomem *core_offset, u32 val);
->> +int e5010_hw_set_qpvalue(void __iomem *core_offset, u32 offset, u32 value);
->> +void e5010_reset(struct device *dev, void __iomem *core_offset, void __iomem *mmu_offset);
->> +void e5010_hw_set_output_max_size(void __iomem *core_offset, u32 val);
->> +void e5010_hw_clear_picture_done(void __iomem *core_offset, u32 clear);
->> +void e5010_hw_encode_start(void __iomem *core_offset, u32 start);
->> +void e5010_hw_clear_output_error(void __iomem *core_offset, u32 clear);
->> +void e5010_hw_bypass_mmu(void __iomem *mmu_base, u32 enable);
->> +bool e5010_hw_pic_done_irq(void __iomem *core_base);
->> +bool e5010_hw_output_address_irq(void __iomem *core_base);
->> +#endif
->> diff --git a/drivers/media/platform/imagination/e5010-jpeg-enc.c b/drivers/media/platform/imagination/e5010-jpeg-enc.c
->> new file mode 100644
->> index 000000000000..e2d1278d0d5f
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/e5010-jpeg-enc.c
->> @@ -0,0 +1,1762 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Imagination E5010 JPEG Encoder driver.
->> + *
->> + * Copyright (c) 2023 Texas Instruments Inc.
->> + * Author: David Huang <d-huang@ti.com>
->> + * Author: Devarsh Thakkar <devarsht@ti.com>
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
->> +#include <linux/ioctl.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/err.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/clk.h>
->> +#include <media/v4l2-common.h>
->> +#include <media/v4l2-ctrls.h>
->> +#include <media/v4l2-device.h>
->> +#include <media/v4l2-event.h>
->> +#include <media/v4l2-ioctl.h>
->> +#include <media/v4l2-mem2mem.h>
->> +#include <media/videobuf2-v4l2.h>
->> +#include <media/videobuf2-dma-contig.h>
->> +#include "e5010-jpeg-enc.h"
->> +#include "e5010-jpeg-enc-hw.h"
->> +
->> +static const struct of_device_id e5010_of_match[];
->> +
->> +static const struct v4l2_file_operations e5010_fops;
->> +
->> +static const struct v4l2_ioctl_ops e5010_ioctl_ops;
->> +
->> +static const struct vb2_ops e5010_video_ops;
->> +
->> +static const struct v4l2_m2m_ops e5010_m2m_ops;
-> 
-> nit: While reviewing top down, I was wondering why you use uninitialized global.
-> Might be worth commenting that these are forward declaration.
-> 
-
-Agreed.
->> +
->> +static struct e5010_fmt e5010_formats[] = {
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV12,
->> +		.num_planes = 1,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_420,
->> +		.chroma_order = CHROMA_ORDER_CB_CR,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV12M,
->> +		.num_planes = 2,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_420,
->> +		.chroma_order = CHROMA_ORDER_CB_CR,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV21,
->> +		.num_planes = 1,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_420,
->> +		.chroma_order = CHROMA_ORDER_CR_CB,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV21M,
->> +		.num_planes = 2,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_420,
->> +		.chroma_order = CHROMA_ORDER_CR_CB,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV16,
->> +		.num_planes = 1,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_422,
->> +		.chroma_order = CHROMA_ORDER_CB_CR,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV16M,
->> +		.num_planes = 2,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_422,
->> +		.chroma_order = CHROMA_ORDER_CB_CR,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV61,
->> +		.num_planes = 1,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_422,
->> +		.chroma_order = CHROMA_ORDER_CR_CB,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_NV61M,
->> +		.num_planes = 2,
->> +		.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE,
->> +		.subsampling = V4L2_JPEG_CHROMA_SUBSAMPLING_422,
->> +		.chroma_order = CHROMA_ORDER_CR_CB,
->> +		.h_align = 6,
->> +		.v_align = 3,
->> +	},
->> +	{
->> +		.fourcc = V4L2_PIX_FMT_JPEG,
->> +		.num_planes = 1,
->> +		.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE,
->> +		.subsampling = 0,
->> +		.chroma_order = 0,
->> +		.h_align = 0,
->> +		.v_align = 0,
->> +	},
->> +};
->> +
->> +/* Luma and chroma qp table to acheive 50% compression quality
->> + * This is as per example in Annex K.1 of IS0/IEC 10918-1:1994(E)
->> + */
->> +static const u8 luma[64] = {
->> +	16, 11, 10, 16, 24, 40, 51, 61,
->> +	12, 12, 14, 19, 26, 58, 60, 55,
->> +	14, 13, 16, 24, 40, 57, 69, 56,
->> +	14, 17, 22, 29, 51, 87, 80, 62,
->> +	18, 22, 37, 56, 68, 109, 103, 77,
->> +	24, 35, 55, 64, 81, 104, 113, 92,
->> +	49, 64, 78, 87, 103, 121, 120, 101,
->> +	72, 92, 95, 98, 112, 100, 103, 99
->> +};
->> +
->> +static const u8 chroma[64] = {
->> +	17, 18, 24, 47, 99, 99, 99, 99,
->> +	18, 21, 26, 66, 99, 99, 99, 99,
->> +	24, 26, 56, 99, 99, 99, 99, 99,
->> +	47, 66, 99, 99, 99, 99, 99, 99,
->> +	99, 99, 99, 99, 99, 99, 99, 99,
->> +	99, 99, 99, 99, 99, 99, 99, 99,
->> +	99, 99, 99, 99, 99, 99, 99, 99,
->> +	99, 99, 99, 99, 99, 99, 99, 99
->> +};
->> +
->> +/* Zigzag scan pattern */
->> +static const u8 zigzag[64] = {
->> +	0,   1,  8, 16,  9,  2,  3, 10,
->> +	17, 24, 32, 25, 18, 11,  4,  5,
->> +	12, 19, 26, 33, 40, 48, 41, 34,
->> +	27, 20, 13,  6,  7, 14, 21, 28,
->> +	35, 42, 49, 56, 57, 50, 43, 36,
->> +	29, 22, 15, 23, 30, 37, 44, 51,
->> +	58, 59, 52, 45, 38, 31, 39, 46,
->> +	53, 60, 61, 54, 47, 55, 62, 63
->> +};
->> +
->> +/*
->> + * Contains the data that needs to be sent in the marker segment of an interchange format JPEG
->> + * stream or an abbreviated format table specification data stream.
->> + * Specifies the huffman table used for encoding the luminance DC coefficient differences.
->> + * The table represents Table K.3 of IS0/IEC 10918-1:1994(E)
->> + */
->> +static const u8 marker_luma_dc[] = {
->> +	0x00, 0x00, 0x01, 0x05, 0x01, 0x01, 0x01, 0x01, 0x01,
->> +	0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->> +	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B
->> +};
->> +
->> +/*
->> + * Contains the data that needs to be sent in the marker segment of an interchange format JPEG
->> + * stream or an abbreviated format table specification data stream.
->> + * Specifies the huffman table used for encoding the luminance AC coefficients.
->> + * The table represents Table K.5 of IS0/IEC 10918-1:1994(E)
->> + */
->> +static const u8 marker_luma_ac[] = {
->> +	0x10, 0x00, 0x02, 0x01, 0x03, 0x03, 0x02, 0x04, 0x03,
->> +	0x05, 0x05, 0x04, 0x04, 0x00, 0x00, 0x01, 0x7D,
->> +	0x01, 0x02, 0x03, 0x00, 0x04, 0x11, 0x05, 0x12, 0x21, 0x31, 0x41, 0x06, 0x13, 0x51, 0x61,
->> +	0x07, 0x22, 0x71, 0x14, 0x32, 0x81, 0x91, 0xA1, 0x08, 0x23, 0x42, 0xB1, 0xC1, 0x15, 0x52,
->> +	0xD1, 0xF0, 0x24, 0x33, 0x62, 0x72, 0x82, 0x09, 0x0A, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x25,
->> +	0x26, 0x27, 0x28, 0x29, 0x2A, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x43, 0x44, 0x45,
->> +	0x46, 0x47, 0x48, 0x49, 0x4A, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A, 0x63, 0x64,
->> +	0x65, 0x66, 0x67, 0x68, 0x69, 0x6A, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x83,
->> +	0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x92, 0x93, 0x94, 0x95, 0x96, 0x97, 0x98, 0x99,
->> +	0x9A, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6,
->> +	0xB7, 0xB8, 0xB9, 0xBA, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xD2, 0xD3,
->> +	0xD4, 0xD5, 0xD6, 0xD7, 0xD8, 0xD9, 0xDA, 0xE1, 0xE2, 0xE3, 0xE4, 0xE5, 0xE6, 0xE7, 0xE8,
->> +	0xE9, 0xEA, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA
->> +};
->> +
->> +/*
->> + * Contains the data that needs to be sent in the marker segment of an interchange format JPEG
->> + * stream or an abbreviated format table specification data stream.
->> + * Specifies the huffman table used for encoding the chrominance DC coefficient differences.
->> + * The table represents Table K.4 of IS0/IEC 10918-1:1994(E)
->> + */
->> +static const u8 marker_chroma_dc[] = {
->> +	0x01, 0x00, 0x03, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
->> +	0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
->> +	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B
->> +};
->> +
->> +/*
->> + * Contains the data that needs to be sent in the marker segment of an interchange format JPEG
->> + * stream or an abbreviated format table specification data stream.
->> + * Specifies the huffman table used for encoding the chrominance AC coefficients.
->> + * The table represents Table K.6 of IS0/IEC 10918-1:1994(E)
->> + */
->> +static const u8 marker_chroma_ac[] = {
->> +	0x11, 0x00, 0x02, 0x01, 0x02, 0x04, 0x04, 0x03, 0x04,
->> +	0x07, 0x05, 0x04, 0x04, 0x00, 0x01, 0x02, 0x77,
->> +	0x00, 0x01, 0x02, 0x03, 0x11, 0x04, 0x05, 0x21, 0x31, 0x06, 0x12, 0x41, 0x51, 0x07, 0x61,
->> +	0x71, 0x13, 0x22, 0x32, 0x81, 0x08, 0x14, 0x42, 0x91, 0xA1, 0xB1, 0xC1, 0x09, 0x23, 0x33,
->> +	0x52, 0xF0, 0x15, 0x62, 0x72, 0xD1, 0x0A, 0x16, 0x24, 0x34, 0xE1, 0x25, 0xF1, 0x17, 0x18,
->> +	0x19, 0x1A, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x43, 0x44,
->> +	0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A, 0x63,
->> +	0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6A, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A,
->> +	0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x92, 0x93, 0x94, 0x95, 0x96, 0x97,
->> +	0x98, 0x99, 0x9A, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xB2, 0xB3, 0xB4,
->> +	0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
->> +	0xD2, 0xD3, 0xD4, 0xD5, 0xD6, 0xD7, 0xD8, 0xD9, 0xDA, 0xE2, 0xE3, 0xE4, 0xE5, 0xE6, 0xE7,
->> +	0xE8, 0xE9, 0xEA, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA
->> +};
->> +
->> +static unsigned int debug;
->> +module_param(debug, uint, 0644);
->> +MODULE_PARM_DESC(debug, "debug level");
->> +
->> +#define dprintk(dev, lvl, fmt, arg...) \
->> +	v4l2_dbg(lvl, debug, &(dev)->v4l2_dev, "%s: " fmt, __func__, ## arg)
->> +
->> +static const struct v4l2_event e5010_eos_event = {
->> +	.type = V4L2_EVENT_EOS
->> +};
->> +
->> +static const char *type_name(enum v4l2_buf_type type)
->> +{
->> +	switch (type) {
->> +	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
->> +		return "Output";
->> +	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
->> +		return "Capture";
->> +	default:
->> +		return "Invalid";
->> +	}
->> +}
->> +
->> +static struct e5010_q_data *get_queue(struct e5010_context *ctx, enum v4l2_buf_type type)
->> +{
->> +	switch (type) {
->> +	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
->> +		return &ctx->out_queue;
->> +	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
->> +		return &ctx->cap_queue;
->> +	default:
->> +		return ERR_PTR(-EINVAL);
->> +	}
->> +
->> +	return ERR_PTR(-EINVAL);
->> +}
->> +
->> +static void calculate_qp_tables(struct e5010_context *ctx)
->> +{
->> +	long long luminosity, contrast;
->> +	int quality, i;
->> +
->> +	quality = 100 - ctx->quality;
->> +	quality -= 50;
-> 
-> Why not just (a number between -50 and 50)?
-> 
-> 	quality = 50 - ctx->quality;
-> 
-
-Agreed.
-
->> +
->> +	luminosity = LUMINOSITY * quality / 50;
->> +	contrast = CONTRAST * quality / 50;
->> +
->> +	if (quality > 0) {
->> +		luminosity *= INCREASE;
->> +		contrast *= INCREASE;
->> +	}
->> +
->> +	for (i = 0; i < 64; i++) {
->> +		long long delta = chroma[i] * contrast + luminosity;
->> +		int val = (int)(chroma[i] + delta);
->> +
->> +		if (val < 1)
->> +			val = 1;
->> +		if (val > 255)
->> +			val = 255;
-> 
-> What about:
-> 
-> 		clamp(val, 1, 255);
-> 
-
-Agreed, this should also work, will test with it.
-
->> +		ctx->chroma_qp[i] = quality == -50 ? 1 : val;
->> +
->> +		delta = luma[i] * contrast + luminosity;
->> +		val = (int)(luma[i] + delta);
->> +		if (val < 1)
->> +			val = 1;
->> +		if (val > 255)
->> +			val = 255;
-> 
-> Same.
-
-Agreed, this should also work, will test with it.
-
-> 
->> +		ctx->luma_qp[i] = quality == -50 ? 1 : val;
->> +	}
->> +
->> +	ctx->update_qp = true;
->> +}
->> +
->> +static int update_qp_tables(struct e5010_context *ctx)
->> +{
->> +	struct e5010_dev *dev = ctx->dev;
->> +	int i, ret = 0;
->> +	u32 lvalue, cvalue;
->> +
->> +	lvalue = 0;
->> +	cvalue = 0;
->> +
->> +	for (i = 0; i < (QP_TABLE_SIZE); i++) {
-> 
-> No need for this parenthesis.
-> 
-
-Agreed
-
->> +		lvalue |= ctx->luma_qp[i] << (8 * (i % 4));
->> +		cvalue |= ctx->chroma_qp[i] << (8 * (i % 4));
->> +		if (i % 4 == 3) {
->> +			ret |= e5010_hw_set_qpvalue(dev->jasper_base,
->> +							JASPER_LUMA_QUANTIZATION_TABLE0_OFFSET
->> +							+ QP_TABLE_FIELD_OFFSET * ((i - 3) / 4),
->> +							lvalue);
->> +			ret |= e5010_hw_set_qpvalue(dev->jasper_base,
->> +							JASPER_CHROMA_QUANTIZATION_TABLE0_OFFSET
->> +							+ QP_TABLE_FIELD_OFFSET * ((i - 3) / 4),
->> +							cvalue);
->> +			lvalue = 0;
->> +			cvalue = 0;
->> +		}
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static int e5010_set_input_subsampling(void __iomem *core_base, int subsampling)
->> +{
->> +	switch (subsampling) {
->> +	case V4L2_JPEG_CHROMA_SUBSAMPLING_420:
->> +		return e5010_hw_set_input_subsampling(core_base, SUBSAMPLING_420);
->> +	case V4L2_JPEG_CHROMA_SUBSAMPLING_422:
->> +		return e5010_hw_set_input_subsampling(core_base, SUBSAMPLING_422);
->> +	default:
->> +		return -EINVAL;
->> +	};
->> +}
->> +
->> +static int e5010_querycap(struct file *file, void *priv, struct v4l2_capability *cap)
->> +{
->> +	strscpy(cap->driver, E5010_MODULE_NAME, sizeof(cap->driver));
->> +	strscpy(cap->card, E5010_MODULE_NAME, sizeof(cap->card));
->> +	snprintf(cap->bus_info, sizeof(cap->bus_info), "platform:%s", E5010_MODULE_NAME);
->> +	cap->device_caps = V4L2_CAP_VIDEO_M2M_MPLANE | V4L2_CAP_STREAMING;
->> +	cap->capabilities = cap->device_caps | V4L2_CAP_DEVICE_CAPS;
->> +
->> +	return 0;
->> +}
->> +
->> +static struct e5010_fmt *find_format(struct v4l2_format *f)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < ARRAY_SIZE(e5010_formats); ++i) {
->> +		if (e5010_formats[i].fourcc == f->fmt.pix_mp.pixelformat &&
->> +		    e5010_formats[i].type == f->type)
->> +			return &e5010_formats[i];
->> +	}
->> +
->> +	return NULL;
->> +}
->> +
->> +static int e5010_enum_fmt(struct file *file, void *priv, struct v4l2_fmtdesc *f)
->> +{
->> +	int i, index = 0;
->> +	struct e5010_fmt *fmt = NULL;
->> +	struct e5010_context *ctx = file->private_data;
->> +
->> +	if (!V4L2_TYPE_IS_MULTIPLANAR(f->type)) {
->> +		dev_err(ctx->dev->dev, "ENUMFMT with Invalid type: %d\n", f->type);
->> +		return -EINVAL;
->> +	}
->> +
->> +	for (i = 0; i < ARRAY_SIZE(e5010_formats); ++i) {
->> +		if (e5010_formats[i].type == f->type) {
->> +			if (index == f->index) {
->> +				fmt = &e5010_formats[i];
->> +				break;
->> +			}
->> +			index++;
->> +		}
->> +	}
->> +
->> +	if (!fmt)
->> +		return -EINVAL;
->> +
->> +	f->pixelformat = fmt->fourcc;
->> +	return 0;
->> +}
->> +
->> +static int e5010_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
->> +{
->> +	struct e5010_context *ctx = file->private_data;
->> +	struct e5010_q_data *queue;
->> +	int i;
->> +	struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
->> +	struct v4l2_plane_pix_format *plane_fmt = pix_mp->plane_fmt;
->> +
->> +	if (!V4L2_TYPE_IS_MULTIPLANAR(f->type)) {
->> +		dev_err(ctx->dev->dev, "G_FMT with Invalid type: %d\n", f->type);
->> +		return -EINVAL;
->> +	}
->> +
->> +	queue = get_queue(ctx, f->type);
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +
->> +	pix_mp->flags = 0;
->> +	pix_mp->field = V4L2_FIELD_NONE;
->> +	pix_mp->pixelformat = queue->fmt->fourcc;
->> +	pix_mp->width = queue->width_adjusted;
->> +	pix_mp->height = queue->height_adjusted;
->> +	pix_mp->num_planes = queue->fmt->num_planes;
->> +
->> +	if (V4L2_TYPE_IS_OUTPUT(f->type)) {
->> +		if (!pix_mp->colorspace)
->> +			pix_mp->colorspace = V4L2_COLORSPACE_SRGB;
->> +
->> +		for (i = 0; i < queue->fmt->num_planes; i++) {
->> +			plane_fmt[i].sizeimage = queue->sizeimage[i];
->> +			plane_fmt[i].bytesperline = queue->bytesperline[i];
->> +		}
->> +
->> +	} else {
->> +		pix_mp->colorspace = V4L2_COLORSPACE_JPEG;
->> +		plane_fmt[0].bytesperline = 0;
->> +		plane_fmt[0].sizeimage = queue->sizeimage[0];
->> +	}
->> +	pix_mp->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
->> +	pix_mp->xfer_func = V4L2_XFER_FUNC_DEFAULT;
->> +	pix_mp->quantization = V4L2_QUANTIZATION_DEFAULT;
->> +
->> +	return 0;
->> +}
->> +
->> +static void e5010_queue_update_bytesperline(struct e5010_q_data *q)
->> +{
->> +	if (q->fmt->fourcc == V4L2_PIX_FMT_JPEG) {
->> +		/* bytesperline unused for compressed formats */
->> +		q->bytesperline[0] = 0;
->> +		q->bytesperline[1] = 0;
->> +	} else if (q->fmt->num_planes == 1) {
->> +		q->bytesperline[0] = q->width_adjusted;
->> +		q->bytesperline[1] = 0;
->> +	} else {
->> +		q->bytesperline[0] = q->width_adjusted;
->> +		q->bytesperline[1] = q->bytesperline[0];
->> +	}
->> +}
->> +
->> +static void e5010_queue_update_sizeimage(struct e5010_q_data *q, struct e5010_context *ctx)
->> +{
->> +	if (q->fmt->fourcc == V4L2_PIX_FMT_JPEG) {
->> +		if (ctx->out_queue.fmt->subsampling == V4L2_JPEG_CHROMA_SUBSAMPLING_420)
->> +			q->sizeimage[0] = q->width_adjusted * q->height_adjusted * 3 / 2;
->> +		else
->> +			q->sizeimage[0] = q->width_adjusted * q->height_adjusted * 2;
->> +		q->sizeimage[0] += HEADER_SIZE;
->> +		q->sizeimage[1] = 0;
->> +	} else if (q->fmt->subsampling == V4L2_JPEG_CHROMA_SUBSAMPLING_420) {
->> +		if (q->fmt->num_planes == 1)	{
->> +			q->sizeimage[0] = q->width_adjusted * q->height_adjusted * 3 / 2;
->> +			q->sizeimage[1] = 0;
->> +		} else {
->> +			q->sizeimage[0] = q->width_adjusted * q->height_adjusted;
->> +			q->sizeimage[1] = q->sizeimage[0] / 2;
->> +		}
->> +	} else {
->> +		if (q->fmt->num_planes == 1)	{
->> +			q->sizeimage[0] = q->width_adjusted * q->height_adjusted * 2;
->> +			q->sizeimage[1] = 0;
->> +		} else {
->> +			q->sizeimage[0] = q->width_adjusted * q->height_adjusted;
->> +			q->sizeimage[1] = q->sizeimage[0];
->> +		}
->> +	}
-> 
-> Instead of free coding this, please use v4l2-common.h.
-> 
-
-Agreed, will try using v4l2_fill_pixfmt_mp and test.
-
->> +}
->> +
->> +static int e5010_jpeg_try_fmt(struct v4l2_format *f, struct e5010_context *ctx)
->> +{
->> +	struct e5010_fmt *fmt;
->> +	struct e5010_q_data *queue;
->> +	int i;
->> +	struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
->> +	struct v4l2_plane_pix_format *plane_fmt = pix_mp->plane_fmt;
->> +
->> +	if (!V4L2_TYPE_IS_MULTIPLANAR(f->type)) {
->> +		dev_err(ctx->dev->dev, "G_FMT with Invalid type: %d\n", f->type);
->> +		return -EINVAL;
->> +	}
->> +
->> +	fmt = find_format(f);
->> +	if (!fmt) {
->> +		if (V4L2_TYPE_IS_OUTPUT(f->type))
->> +			pix_mp->pixelformat = V4L2_PIX_FMT_NV12;
->> +		else
->> +			pix_mp->pixelformat = V4L2_PIX_FMT_JPEG;
->> +		fmt = find_format(f);
->> +		if (!fmt)
->> +			return -EINVAL;
->> +	}
->> +
->> +	queue = get_queue(ctx, f->type);
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +
->> +	queue->fmt = fmt;
->> +	queue->width = pix_mp->width;
->> +	queue->height = pix_mp->height;
->> +
->> +	queue->width_adjusted = queue->width;
->> +	queue->height_adjusted = queue->height;
->> +
->> +	if (V4L2_TYPE_IS_OUTPUT(f->type)) {
->> +		if (!pix_mp->colorspace)
->> +			pix_mp->colorspace = V4L2_COLORSPACE_JPEG;
->> +		if (!pix_mp->ycbcr_enc)
->> +			pix_mp->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
->> +		if (!pix_mp->quantization)
->> +			pix_mp->quantization = V4L2_QUANTIZATION_DEFAULT;
->> +		if (!pix_mp->xfer_func)
->> +			pix_mp->xfer_func = V4L2_XFER_FUNC_DEFAULT;
->> +
->> +		v4l_bound_align_image(&queue->width_adjusted,
->> +				      MIN_DIMENSION,
->> +				      MAX_DIMENSION,
->> +				      fmt->h_align,
->> +				      &queue->height_adjusted,
->> +				      MIN_DIMENSION, /* adjust upwards*/
->> +				      MAX_DIMENSION,
->> +				      fmt->v_align,
->> +				      0);
->> +		e5010_queue_update_bytesperline(queue);
->> +		e5010_queue_update_sizeimage(queue, ctx);
->> +		for (i = 0; i < fmt->num_planes; i++) {
->> +			memset(plane_fmt[i].reserved, 0, sizeof(plane_fmt[i].reserved));
->> +			plane_fmt[i].bytesperline = queue->bytesperline[i];
->> +			plane_fmt[i].sizeimage = queue->sizeimage[i];
->> +		}
-> 
-> We hav v4l2_apply_frmsize_constraints() and struct v4l2_frmsize_stepwise now
-> that can be set directly in your program table. It is much cleaner then this old
-> method.
-
-Agreed, will try using these helpers.
-
-> 
->> +	} else {
->> +		pix_mp->colorspace = V4L2_COLORSPACE_JPEG;
->> +		pix_mp->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
->> +		pix_mp->quantization = V4L2_QUANTIZATION_DEFAULT;
->> +		pix_mp->xfer_func = V4L2_XFER_FUNC_DEFAULT;
->> +
->> +		plane_fmt[0].bytesperline = 0;
->> +
->> +		memset(plane_fmt[0].reserved, 0, sizeof(plane_fmt[0].reserved));
->> +		v4l_bound_align_image(&queue->width_adjusted,
->> +				      MIN_DIMENSION,
->> +				      MAX_DIMENSION,
->> +				      4,
->> +				      &queue->height_adjusted,
->> +				      MIN_DIMENSION, /* adjust upwards*/
->> +				      MAX_DIMENSION,
->> +				      ctx->out_queue.fmt->v_align,
->> +				      0);
->> +		e5010_queue_update_bytesperline(queue);
->> +		e5010_queue_update_sizeimage(queue, ctx);
->> +		plane_fmt[0].sizeimage = queue->sizeimage[0];
->> +	}
->> +	pix_mp->flags = 0;
->> +	pix_mp->field = V4L2_FIELD_NONE;
->> +	pix_mp->pixelformat = fmt->fourcc;
->> +	pix_mp->width = queue->width_adjusted;
->> +	pix_mp->height = queue->height_adjusted;
->> +	pix_mp->num_planes = fmt->num_planes;
->> +	memset(pix_mp->reserved, 0, sizeof(pix_mp->reserved));
->> +
->> +	dprintk(ctx->dev, 2,
->> +		"ctx: 0x%p: format type %s:, wxh: %dx%d (plane0 : %d bytes, plane1 : %d bytes),fmt: %c%c%c%c\n",
->> +		ctx, type_name(f->type), queue->width_adjusted, queue->height_adjusted,
->> +		queue->sizeimage[0], queue->sizeimage[1],
->> +		(queue->fmt->fourcc & 0xff),
->> +		(queue->fmt->fourcc >>  8) & 0xff,
->> +		(queue->fmt->fourcc >> 16) & 0xff,
->> +		(queue->fmt->fourcc >> 24) & 0xff);
-> 
-> The queue already trace all this, not sure what is the value of that trace. Its
-> activated with something like:
-> 
-
-Yes it does print some of the info present in this custom print, but not all
-together. This helps debug/analyze multi-instance scenarios (running with
-different resolutions) where otherwise it was difficult to map individual
-queue properties of interest to context
-which is set.
-
->   echo 0xff > /sys/class/video4linux/video0/dev_debug
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
->> +{
->> +	struct e5010_context *ctx = file->private_data;
->> +
->> +	return e5010_jpeg_try_fmt(f, ctx);
->> +}
->> +
->> +static int e5010_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
->> +{
->> +	struct e5010_context *ctx = file->private_data;
->> +	struct vb2_queue *vq;
->> +
->> +	vq = v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type);
->> +	if (!vq)
->> +		return -EINVAL;
->> +
->> +	if (vb2_is_busy(vq)) {
->> +		v4l2_err(&ctx->dev->v4l2_dev, "queue busy\n");
->> +		return -EBUSY;
->> +	}
->> +
->> +	return e5010_jpeg_try_fmt(f, ctx);
->> +}
->> +
->> +static int e5010_enum_framesizes(struct file *file, void *priv, struct v4l2_frmsizeenum *fsize)
->> +{
->> +	struct v4l2_format f;
->> +
->> +	if (fsize->index != 0)
->> +		return -EINVAL;
->> +
->> +	f.fmt.pix_mp.pixelformat = fsize->pixel_format;
->> +	if (f.fmt.pix_mp.pixelformat ==  V4L2_PIX_FMT_JPEG)
->> +		f.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
->> +	else
->> +		f.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
->> +
->> +	if (!find_format(&f))
->> +		return -EINVAL;
->> +
->> +	fsize->type = V4L2_FRMSIZE_TYPE_CONTINUOUS;
->> +	fsize->stepwise.min_width = MIN_DIMENSION;
->> +	fsize->stepwise.max_width = MAX_DIMENSION;
->> +	fsize->stepwise.step_width = 1;
->> +	fsize->stepwise.min_height = MIN_DIMENSION;
->> +	fsize->stepwise.max_height = MAX_DIMENSION;
->> +	fsize->stepwise.step_height = 1;
-> 
-> With struct v4l2_frmsize_stepwise, all this code would be reduced.
-> 
-
-Thanks, will try this.
-
->> +
->> +	fsize->reserved[0] = 0;
->> +	fsize->reserved[1] = 0;
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_g_selection(struct file *file, void *fh, struct v4l2_selection *s)
->> +{
->> +	struct e5010_context *ctx = file->private_data;
->> +	struct e5010_q_data *queue;
->> +
->> +	if (s->type != V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
->> +		return -EINVAL;
->> +
->> +	queue = get_queue(ctx, s->type);
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +
->> +	switch (s->target) {
->> +	case V4L2_SEL_TGT_CROP_DEFAULT:
->> +	case V4L2_SEL_TGT_CROP_BOUNDS:
->> +		s->r.left = 0;
->> +		s->r.top = 0;
->> +		s->r.width = queue->width;
->> +		s->r.height = queue->height;
->> +		break;
->> +	case V4L2_SEL_TGT_CROP:
->> +		s->r = queue->crop;
->> +		break;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_s_selection(struct file *file, void *fh, struct v4l2_selection *s)
->> +{
->> +	struct e5010_context *ctx = file->private_data;
->> +	struct e5010_q_data *queue;
->> +
->> +	if (s->type != V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
->> +		return -EINVAL;
->> +
->> +	queue = get_queue(ctx, s->type);
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +
->> +	queue->crop.left = 0;
->> +	queue->crop.top = 0;
->> +	queue->crop.width = s->r.width;
->> +	queue->crop.height = s->r.height;
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_subscribe_event(struct v4l2_fh *fh, const struct v4l2_event_subscription *sub)
->> +{
->> +	switch (sub->type) {
->> +	case V4L2_EVENT_EOS:
->> +		return v4l2_event_subscribe(fh, sub, 0, NULL);
->> +	case V4L2_EVENT_CTRL:
->> +		return v4l2_ctrl_subscribe_event(fh, sub);
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
->> +{
->> +	struct e5010_context *ctx = priv;
->> +	struct e5010_dev *dev = ctx->dev;
->> +	int ret = 0;
->> +
->> +	/* src_vq */
->> +	memset(src_vq, 0, sizeof(*src_vq));
->> +	src_vq->type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
->> +	src_vq->dma_attrs = DMA_ATTR_FORCE_CONTIGUOUS;
->> +	src_vq->io_modes = VB2_MMAP | VB2_DMABUF;
->> +	src_vq->drv_priv = ctx;
->> +	src_vq->buf_struct_size = sizeof(struct e5010_buffer);
->> +	src_vq->ops = &e5010_video_ops;
->> +	src_vq->mem_ops = &vb2_dma_contig_memops;
->> +	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
->> +	src_vq->lock = &dev->mutex;
->> +	src_vq->dev = dev->v4l2_dev.dev;
->> +
->> +	ret = vb2_queue_init(src_vq);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* dst_vq */
->> +	memset(dst_vq, 0, sizeof(*dst_vq));
->> +	dst_vq->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
->> +	src_vq->dma_attrs = DMA_ATTR_FORCE_CONTIGUOUS;
->> +	dst_vq->io_modes = VB2_MMAP | VB2_DMABUF;
->> +	dst_vq->drv_priv = ctx;
->> +	dst_vq->buf_struct_size = sizeof(struct e5010_buffer);
->> +	dst_vq->ops = &e5010_video_ops;
->> +	dst_vq->mem_ops = &vb2_dma_contig_memops;
->> +	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
->> +	dst_vq->lock = &dev->mutex;
->> +	dst_vq->dev = dev->v4l2_dev.dev;
->> +
->> +	ret = vb2_queue_init(dst_vq);
->> +	if (ret) {
->> +		vb2_queue_release(src_vq);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_s_ctrl(struct v4l2_ctrl *ctrl)
->> +{
->> +	struct e5010_context *ctx =
->> +		container_of(ctrl->handler, struct e5010_context, ctrl_handler);
->> +
->> +	switch (ctrl->id) {
->> +	case V4L2_CID_JPEG_COMPRESSION_QUALITY:
->> +		ctx->quality = ctrl->val;
->> +		calculate_qp_tables(ctx);
->> +		break;
->> +	default:
->> +		dev_err(ctx->dev->dev, "Invalid control, id = %d, val = %d\n",
->> +			ctrl->id, ctrl->val);
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct v4l2_ctrl_ops e5010_ctrl_ops = {
->> +	.s_ctrl = e5010_s_ctrl,
->> +};
->> +
->> +static void e5010_encode_ctrls(struct e5010_context *ctx)
->> +{
->> +	v4l2_ctrl_new_std(&ctx->ctrl_handler, &e5010_ctrl_ops,
->> +			  V4L2_CID_JPEG_COMPRESSION_QUALITY, 1, 100, 1, 75);
->> +}
->> +
->> +static int e5010_ctrls_setup(struct e5010_context *ctx)
->> +{
->> +	int err;
->> +
->> +	v4l2_ctrl_handler_init(&ctx->ctrl_handler, 1);
->> +
->> +	e5010_encode_ctrls(ctx);
->> +
->> +	if (ctx->ctrl_handler.error) {
->> +		err = ctx->ctrl_handler.error;
->> +		v4l2_ctrl_handler_free(&ctx->ctrl_handler);
->> +		return err;
->> +	}
->> +
->> +	err = v4l2_ctrl_handler_setup(&ctx->ctrl_handler);
->> +	if (err)
->> +		v4l2_ctrl_handler_free(&ctx->ctrl_handler);
->> +
->> +	return err;
->> +}
->> +
->> +static void e5010_jpeg_set_default_params(struct e5010_context *ctx)
->> +{
->> +	struct e5010_q_data *queue;
->> +	struct v4l2_format f;
->> +	struct e5010_fmt *fmt;
->> +
->> +	f.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
->> +	f.fmt.pix_mp.pixelformat = V4L2_PIX_FMT_NV12;
->> +	fmt = find_format(&f);
->> +	queue = &ctx->out_queue;
->> +	queue->fmt = fmt;
->> +	queue->width = DEFAULT_WIDTH;
->> +	queue->height = DEFAULT_HEIGHT;
->> +	queue->width_adjusted = queue->width;
->> +	queue->height_adjusted = queue->height;
->> +
->> +	v4l_bound_align_image(&queue->width_adjusted,
->> +			      MIN_DIMENSION,
->> +			      MAX_DIMENSION,
->> +			      fmt->h_align,
->> +			      &queue->height_adjusted,
->> +			      MIN_DIMENSION, /* adjust upwards*/
->> +			      MAX_DIMENSION,
->> +			      fmt->v_align,
->> +			      0);
->> +
->> +	e5010_queue_update_bytesperline(queue);
->> +	e5010_queue_update_sizeimage(queue, ctx);
->> +	queue->format_set = false;
->> +	queue->streaming = false;
->> +
->> +	f.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
->> +	f.fmt.pix_mp.pixelformat = V4L2_PIX_FMT_JPEG;
->> +	fmt = find_format(&f);
->> +	queue = &ctx->cap_queue;
->> +	queue->fmt = fmt;
->> +	queue->width = DEFAULT_WIDTH;
->> +	queue->height = DEFAULT_HEIGHT;
->> +	queue->width_adjusted = queue->width;
->> +	queue->height_adjusted = queue->height;
->> +	v4l_bound_align_image(&queue->width_adjusted,
->> +			      MIN_DIMENSION,
->> +			      MAX_DIMENSION,
->> +			      4,
->> +			      &queue->height_adjusted,
->> +			      MIN_DIMENSION, /* adjust upwards*/
->> +			      MAX_DIMENSION,
->> +			      ctx->out_queue.fmt->v_align,
->> +			      0);
->> +
->> +	e5010_queue_update_bytesperline(queue);
->> +	e5010_queue_update_sizeimage(queue, ctx);
->> +	queue->format_set = false;
->> +	queue->streaming = false;
->> +}
->> +
->> +static int e5010_open(struct file *file)
->> +{
->> +	struct e5010_dev *dev = video_drvdata(file);
->> +	struct video_device *vdev = video_devdata(file);
->> +	struct e5010_context *ctx;
->> +	int ret = 0;
->> +
->> +	ctx = kzalloc(sizeof(*ctx), GFP_KERNEL);
->> +	if (!ctx)
->> +		return -ENOMEM;
->> +
->> +	if (mutex_lock_interruptible(&dev->mutex)) {
->> +		ret = -ERESTARTSYS;
->> +		goto free;
->> +	}
->> +
->> +	v4l2_fh_init(&ctx->fh, vdev);
->> +	file->private_data = ctx;
->> +	v4l2_fh_add(&ctx->fh);
->> +
->> +	ctx->dev = dev;
->> +	ctx->fh.m2m_ctx = v4l2_m2m_ctx_init(dev->m2m_dev, ctx, queue_init);
->> +	if (IS_ERR(ctx->fh.m2m_ctx)) {
->> +		dev_err(dev->dev, "Failed to init m2m ctx\n");
->> +		ret = PTR_ERR(ctx->fh.m2m_ctx);
->> +		goto exit;
->> +	}
->> +
->> +	ret = e5010_ctrls_setup(ctx);
->> +	if (ret) {
->> +		dev_err(ctx->dev->dev, "failed to setup e5010 jpeg controls\n");
->> +		goto err_ctrls_setup;
->> +	}
->> +	ctx->fh.ctrl_handler = &ctx->ctrl_handler;
->> +
->> +	e5010_jpeg_set_default_params(ctx);
->> +
->> +	dprintk(dev, 1, "Created instance: 0x%p, m2m_ctx: 0x%p\n", ctx, ctx->fh.m2m_ctx);
->> +
->> +	mutex_unlock(&dev->mutex);
->> +	return 0;
->> +
->> +err_ctrls_setup:
->> +	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
->> +exit:
->> +	v4l2_fh_del(&ctx->fh);
->> +	v4l2_fh_exit(&ctx->fh);
->> +	mutex_unlock(&dev->mutex);
->> +free:
->> +	kfree(ctx);
->> +	return ret;
->> +}
->> +
->> +static int e5010_release(struct file *file)
->> +{
->> +	struct e5010_dev *dev = video_drvdata(file);
->> +	struct e5010_context *ctx = file->private_data;
->> +
->> +	dprintk(dev, 1, "Releasing instance: 0x%p, m2m_ctx: 0x%p\n", ctx, ctx->fh.m2m_ctx);
->> +	mutex_lock(&dev->mutex);
->> +	v4l2_ctrl_handler_free(&ctx->ctrl_handler);
->> +	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
->> +	v4l2_fh_del(&ctx->fh);
->> +	v4l2_fh_exit(&ctx->fh);
->> +	kfree(ctx);
->> +	mutex_unlock(&dev->mutex);
->> +
->> +	return 0;
->> +}
->> +
->> +static struct video_device e5010_videodev = {
->> +	.name = E5010_MODULE_NAME,
->> +	.fops = &e5010_fops,
->> +	.ioctl_ops = &e5010_ioctl_ops,
->> +	.minor = -1,
->> +	.release = video_device_release_empty,
->> +	.vfl_dir = VFL_DIR_M2M,
->> +	.device_caps = V4L2_CAP_VIDEO_M2M_MPLANE | V4L2_CAP_STREAMING,
->> +};
->> +
->> +static void header_write(struct e5010_context *ctx, u8 *addr, unsigned int *offset,
->> +			 unsigned int no_bytes, unsigned long bits)
->> +{
->> +	u8 *w_addr = addr + *offset;
->> +	int i;
->> +
->> +	if ((*offset + no_bytes) > HEADER_SIZE) {
->> +		dev_warn(ctx->dev->dev, "%s: %s: %d: Problem writing header. %d > HEADER_SIZE %d\n",
->> +			 __FILE__, __func__, __LINE__, *offset + no_bytes, HEADER_SIZE);
->> +		return;
->> +	}
->> +
->> +	for (i = no_bytes - 1; i >= 0; i--)
->> +		*(w_addr++) = ((u8 *)&bits)[i];
->> +
->> +	*offset += no_bytes;
->> +}
->> +
->> +static void encode_marker_segment(struct e5010_context *ctx, void *addr, unsigned int *offset)
->> +{
->> +	u8 *buffer = (u8 *)addr;
->> +	int i;
->> +
->> +	header_write(ctx, buffer, offset, 2, START_OF_IMAGE);
->> +	header_write(ctx, buffer, offset, 2, DQT_MARKER);
->> +	header_write(ctx, buffer, offset, 3, LQPQ << 4);
->> +	for (i = 0; i < PELS_IN_BLOCK; i++)
->> +		header_write(ctx, buffer, offset, 1, ctx->luma_qp[zigzag[i]]);
->> +
->> +	header_write(ctx, buffer, offset, 2, DQT_MARKER);
->> +	header_write(ctx, buffer, offset, 3, (LQPQ << 4) | 1);
->> +	for (i = 0; i < PELS_IN_BLOCK; i++)
->> +		header_write(ctx, buffer, offset, 1, ctx->chroma_qp[zigzag[i]]);
->> +
->> +	/* Huffman tables */
->> +	header_write(ctx, buffer, offset, 2, DHT_MARKER);
->> +	header_write(ctx, buffer, offset, 2, LH_DC);
->> +	for (i = 0 ; i < (LH_DC - 2); i++)
->> +		header_write(ctx, buffer, offset, 1, marker_luma_dc[i]);
->> +
->> +	header_write(ctx, buffer, offset, 2, DHT_MARKER);
->> +	header_write(ctx, buffer, offset, 2, LH_AC);
->> +	for (i = 0 ; i < (LH_AC - 2); i++)
->> +		header_write(ctx, buffer, offset, 1, marker_luma_ac[i]);
->> +
->> +	header_write(ctx, buffer, offset, 2, DHT_MARKER);
->> +	header_write(ctx, buffer, offset, 2, LH_DC);
->> +	for (i = 0 ; i < (LH_DC - 2); i++)
->> +		header_write(ctx, buffer, offset, 1, marker_chroma_dc[i]);
->> +
->> +	header_write(ctx, buffer, offset, 2, DHT_MARKER);
->> +	header_write(ctx, buffer, offset, 2, LH_AC);
->> +	for (i = 0 ; i < (LH_AC - 2); i++)
->> +		header_write(ctx, buffer, offset, 1, marker_chroma_ac[i]);
->> +}
->> +
->> +static void encode_frame_header(struct e5010_context *ctx, void *addr, unsigned int *offset)
->> +{
->> +	u8 *buffer = (u8 *)addr;
->> +
->> +	header_write(ctx, buffer, offset, 2, SOF_BASELINE_DCT);
->> +	header_write(ctx, buffer, offset, 2, 8 + (3 * UC_NUM_COMP));
->> +	header_write(ctx, buffer, offset, 1, PRECISION);
->> +	header_write(ctx, buffer, offset, 2, ctx->out_queue.height);
->> +	header_write(ctx, buffer, offset, 2, ctx->out_queue.width);
->> +	header_write(ctx, buffer, offset, 1, UC_NUM_COMP);
->> +
->> +	/* Luma details */
->> +	header_write(ctx, buffer, offset, 1, 1);
->> +	if (ctx->out_queue.fmt->subsampling == V4L2_JPEG_CHROMA_SUBSAMPLING_422)
->> +		header_write(ctx, buffer, offset, 1,
->> +			     HORZ_SAMPLING_FACTOR | (VERT_SAMPLING_FACTOR_422));
->> +	else
->> +		header_write(ctx, buffer, offset, 1,
->> +			     HORZ_SAMPLING_FACTOR | (VERT_SAMPLING_FACTOR_420));
->> +	header_write(ctx, buffer, offset, 1, 0);
->> +	/* Chroma details */
->> +	header_write(ctx, buffer, offset, 1, 2);
->> +	header_write(ctx, buffer, offset, 1, (HORZ_SAMPLING_FACTOR >> 1) | 1);
->> +	header_write(ctx, buffer, offset, 1, 1);
->> +	header_write(ctx, buffer, offset, 1, 3);
->> +	header_write(ctx, buffer, offset, 1, (HORZ_SAMPLING_FACTOR >> 1) | 1);
->> +	header_write(ctx, buffer, offset, 1, 1);
->> +
->> +	header_write(ctx, buffer, offset, 1, 0xFF);
->> +}
->> +
->> +static void jpg_encode_sos_header(struct e5010_context *ctx, void *addr, unsigned int *offset)
->> +{
->> +	u8 *buffer = (u8 *)addr;
->> +	int i;
->> +
->> +	header_write(ctx, buffer, offset, 2, START_OF_SCAN);
->> +	header_write(ctx, buffer, offset, 2, 6 + (COMPONENTS_IN_SCAN << 1));
->> +	header_write(ctx, buffer, offset, 1, COMPONENTS_IN_SCAN);
->> +
->> +	for (i = 0; i < COMPONENTS_IN_SCAN; i++) {
->> +		header_write(ctx, buffer, offset, 1, i + 1);
->> +		if (i == 0)
->> +			header_write(ctx, buffer, offset, 1, 0);
->> +		else
->> +			header_write(ctx, buffer, offset, 1, 17);
->> +	}
->> +
->> +	header_write(ctx, buffer, offset, 1, 0);
->> +	header_write(ctx, buffer, offset, 1, 63);
->> +	header_write(ctx, buffer, offset, 1, 0);
->> +}
->> +
->> +static void write_header(struct e5010_context *ctx, void *addr)
->> +{
->> +	unsigned int offset = 0;
->> +
->> +	encode_marker_segment(ctx, addr, &offset);
->> +	encode_frame_header(ctx, addr, &offset);
->> +	jpg_encode_sos_header(ctx, addr, &offset);
->> +}
->> +
->> +static irqreturn_t e5010_irq(int irq, void *data)
->> +{
->> +	struct e5010_dev *dev = data;
->> +	struct e5010_context *ctx;
->> +	int output_size;
->> +	struct vb2_v4l2_buffer *src_buf, *dst_buf;
->> +	bool pic_done, out_addr_err;
->> +
->> +	spin_lock(&dev->hw_lock);
->> +	pic_done = e5010_hw_pic_done_irq(dev->jasper_base);
->> +	out_addr_err = e5010_hw_output_address_irq(dev->jasper_base);
->> +
->> +	if (!pic_done && !out_addr_err) {
->> +		spin_unlock(&dev->hw_lock);
->> +		return IRQ_NONE;
->> +	}
->> +
->> +	ctx = v4l2_m2m_get_curr_priv(dev->m2m_dev);
->> +	if (WARN_ON(!ctx))
->> +		goto job_unlock;
->> +
->> +	dst_buf = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
->> +	src_buf = v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
->> +	if (!dst_buf || !src_buf) {
->> +		dev_err(dev->dev, "ctx: 0x%p No source or destination buffer\n", ctx);
->> +		goto job_unlock;
->> +	}
->> +
->> +	if (out_addr_err) {
->> +		e5010_hw_clear_output_error(dev->jasper_base, 1);
->> +		dev_warn(dev->dev, "ctx: 0x%p Output bitstream size exceeded max size\n", ctx);
->> +		v4l2_m2m_buf_done(src_buf, VB2_BUF_STATE_ERROR);
->> +		vb2_set_plane_payload(&dst_buf->vb2_buf, 0, dst_buf->planes[0].length);
->> +		v4l2_m2m_buf_done(dst_buf, VB2_BUF_STATE_ERROR);
->> +		if (v4l2_m2m_is_last_draining_src_buf(ctx->fh.m2m_ctx, src_buf)) {
->> +			dst_buf->flags |= V4L2_BUF_FLAG_LAST;
->> +			v4l2_m2m_mark_stopped(ctx->fh.m2m_ctx);
->> +			v4l2_event_queue_fh(&ctx->fh, &e5010_eos_event);
->> +			dprintk(dev, 2, "ctx: 0x%p Sending EOS\n", ctx);
->> +		}
->> +	}
->> +
->> +	if (pic_done) {
->> +		e5010_hw_clear_picture_done(dev->jasper_base, 1);
->> +		dprintk(dev, 3, "ctx: 0x%p Got output bitstream of size %d bytes\n",
->> +			ctx, readl(dev->jasper_base + JASPER_OUTPUT_SIZE_OFFSET));
->> +
->> +		if (v4l2_m2m_is_last_draining_src_buf(ctx->fh.m2m_ctx, src_buf)) {
->> +			dst_buf->flags |= V4L2_BUF_FLAG_LAST;
->> +			v4l2_m2m_mark_stopped(ctx->fh.m2m_ctx);
->> +			v4l2_event_queue_fh(&ctx->fh, &e5010_eos_event);
->> +			dprintk(dev, 2, "ctx: 0x%p Sending EOS\n", ctx);
->> +		}
->> +		v4l2_m2m_buf_done(src_buf, VB2_BUF_STATE_DONE);
->> +		output_size = e5010_hw_get_output_size(dev->jasper_base);
->> +		vb2_set_plane_payload(&dst_buf->vb2_buf, 0, output_size + HEADER_SIZE);
->> +		v4l2_m2m_buf_done(dst_buf, VB2_BUF_STATE_DONE);
->> +		dprintk(dev, 3,
->> +			"ctx: 0x%p frame done for dst_buf->sequence: %d src_buf->sequence: %d\n",
->> +			ctx, dst_buf->sequence, src_buf->sequence);
->> +	}
->> +
->> +	v4l2_m2m_job_finish(dev->m2m_dev, ctx->fh.m2m_ctx);
->> +	dprintk(dev, 3, "ctx: 0x%p Finish job\n", ctx);
->> +
->> +job_unlock:
->> +	spin_unlock(&dev->hw_lock);
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int e5010_init_device(struct e5010_dev *dev)
->> +{
->> +	int ret = 0;
->> +
->> +	/*TODO: Set MMU in bypass mode until support for the same is added in driver*/
-> 
-> Normally we place TODO at the top too, could also be nice to mention this in the
-> commit message.
-> 
-
-Agreed will do.
-
->> +	e5010_hw_bypass_mmu(dev->mmu_base, 1);
->> +
->> +	if (e5010_hw_enable_auto_clock_gating(dev->jasper_base, 1))
->> +		dev_warn(dev->dev, "Failed to enable auto clock gating\n");
->> +
->> +	if (e5010_hw_enable_manual_clock_gating(dev->jasper_base, 0))
->> +		dev_warn(dev->dev, "Failed to disable manual clock gating\n");
->> +
->> +	if (e5010_hw_enable_crc_check(dev->jasper_base, 0))
->> +		dev_warn(dev->dev, "Failed to disable CRC check\n");
->> +
->> +	if (e5010_hw_enable_output_address_error_irq(dev->jasper_base, 1))
->> +		dev_err(dev->dev, "Failed to enable Output Address Error interrupts\n");
->> +
->> +	ret = e5010_hw_set_input_source_to_memory(dev->jasper_base, 1);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set input source to memory\n");
->> +		goto fail;
->> +	}
->> +
->> +	ret = e5010_hw_enable_picture_done_irq(dev->jasper_base, 1);
->> +	if (ret)
->> +		dev_err(dev->dev, "Failed to enable Picture Done interrupts\n");
->> +fail:
->> +	return ret;
->> +}
->> +
->> +static int e5010_probe(struct platform_device *pdev)
->> +{
->> +	const struct of_device_id *of_dev_id;
->> +	struct e5010_dev *dev;
->> +	struct resource *res;
->> +	int irq, ret = 0;
->> +
->> +	of_dev_id = of_match_device(e5010_of_match, &pdev->dev);
->> +	if (!of_dev_id) {
->> +		dev_err(&pdev->dev, "%s: Unable to match device\n", __func__);
->> +		return -ENODEV;
->> +	}
->> +
->> +	ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
->> +	if (ret) {
->> +		dev_err(&pdev->dev, "32-bit consistent DMA enable failed\n");
->> +		return ret;
->> +	}
->> +
->> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
->> +	if (!dev)
->> +		return -ENOMEM;
->> +
->> +	platform_set_drvdata(pdev, dev);
->> +
->> +	dev->dev = &pdev->dev;
->> +
->> +	mutex_init(&dev->mutex);
->> +	spin_lock_init(&dev->hw_lock);
->> +
->> +	dev->vdev = &e5010_videodev;
->> +	dev->vdev->v4l2_dev = &dev->v4l2_dev;
->> +	dev->vdev->lock = &dev->mutex;
->> +	dev->vdev->queue = NULL;
->> +	dev->vdev->prio = NULL;
->> +	dev->vdev->dev_parent = NULL;
->> +	dev->vdev->minor = -1;
->> +
->> +	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to register v4l2 device\n");
->> +		return ret;
->> +	}
->> +
->> +	dev->m2m_dev = v4l2_m2m_init(&e5010_m2m_ops);
->> +	if (!dev->m2m_dev) {
->> +		dev_err(dev->dev, "Failed to initialize m2m device\n");
->> +		ret = -ENOMEM;
->> +		goto fail_after_v4l2_register;
->> +	}
->> +
->> +	video_set_drvdata(dev->vdev, dev);
->> +
->> +	ret = video_register_device(dev->vdev, VFL_TYPE_VIDEO, 0);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to register video device\n");
->> +		ret = -ENOMEM;
->> +		goto fail_after_v4l2_register;
->> +	}
->> +
->> +	dev_info(dev->dev, "Device registered as /dev/video%d\n",
->> +		 dev->vdev->num);
->> +
->> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regjasper");
->> +	if (!res) {
->> +		dev_err(dev->dev, "Missing 'regjasper' resources area\n");
->> +		ret = -ENOMEM;
->> +		goto fail_after_video_register_device;
->> +	}
->> +	dev->jasper_base = devm_ioremap_resource(&pdev->dev, res);
->> +	if (!dev->jasper_base) {
->> +		ret = -ENOMEM;
->> +		goto fail_after_video_register_device;
->> +	}
->> +
->> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regmmu");
->> +	if (!res) {
->> +		dev_err(dev->dev, "Missing 'regmmu' resources area\n");
->> +		ret = -ENOMEM;
->> +		goto fail_after_video_register_device;
->> +	}
->> +	dev->mmu_base = devm_ioremap_resource(&pdev->dev, res);
->> +	if (!dev->mmu_base) {
->> +		ret = -ENOMEM;
->> +		goto fail_after_video_register_device;
->> +	}
->> +
->> +	dev->last_context_run = NULL;
->> +
->> +	irq = platform_get_irq(pdev, 0);
->> +	ret = devm_request_irq(dev->dev, irq, e5010_irq, 0,
->> +			       E5010_MODULE_NAME, dev);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to register IRQ %d\n", irq);
->> +		goto fail_after_video_register_device;
->> +	}
->> +
->> +	dev->clk = devm_clk_get(&pdev->dev, "core_clk");
->> +	if (IS_ERR(dev->clk)) {
->> +		dev_err(dev->dev, "failed to get clock\n");
->> +		ret = PTR_ERR(dev->clk);
->> +		goto fail_after_video_register_device;
->> +	}
->> +
->> +	pm_runtime_enable(dev->dev);
->> +
->> +	return 0;
->> +
->> +fail_after_video_register_device:
->> +	v4l2_m2m_release(dev->m2m_dev);
->> +fail_after_v4l2_register:
->> +	v4l2_device_unregister(&dev->v4l2_dev);
->> +	return ret;
->> +}
->> +
->> +static int e5010_remove(struct platform_device *pdev)
->> +{
->> +	struct e5010_dev *dev = platform_get_drvdata(pdev);
->> +
->> +	pm_runtime_disable(dev->dev);
->> +	video_unregister_device(dev->vdev);
->> +	v4l2_m2m_release(dev->m2m_dev);
->> +	v4l2_device_unregister(&dev->v4l2_dev);
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers, unsigned int *nplanes,
->> +			     unsigned int sizes[], struct device *alloc_devs[])
->> +{
->> +	struct e5010_context *ctx = vb2_get_drv_priv(vq);
->> +	struct e5010_q_data *queue;
->> +	int i;
->> +
->> +	if (!V4L2_TYPE_IS_MULTIPLANAR(vq->type)) {
->> +		dev_err(ctx->dev->dev, "queue setup with Invalid type: %d\n", vq->type);
->> +		return -EINVAL;
->> +	}
->> +
->> +	queue = get_queue(ctx, vq->type);
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +
->> +	if (*nplanes) {
->> +		if (*nplanes != queue->fmt->num_planes)
->> +			return -EINVAL;
->> +		for (i = 0; i < *nplanes; i++) {
->> +			if (sizes[i] < queue->sizeimage[i])
->> +				return -EINVAL;
->> +		}
->> +		return 0;
->> +	}
->> +
->> +	*nbuffers = max_t(unsigned int, *nbuffers, 1);
->> +	*nplanes = queue->fmt->num_planes;
->> +	for (i = 0; i < *nplanes; i++)
->> +		sizes[i] = queue->sizeimage[i];
->> +
->> +	dprintk(ctx->dev, 2,
->> +		"ctx: 0x%p, type %s, buffer(s): %d, planes %d, plane1: bytes %d plane2: %d bytes\n",
->> +		ctx, type_name(vq->type), *nbuffers, *nplanes, sizes[0], sizes[1]);
->> +
->> +	return 0;
->> +}
->> +
->> +static void e5010_buf_finish(struct vb2_buffer *vb)
->> +{
->> +	struct e5010_context *ctx = vb2_get_drv_priv(vb->vb2_queue);
->> +	void *d_addr;
->> +
->> +	if (vb->state != VB2_BUF_STATE_DONE || V4L2_TYPE_IS_OUTPUT(vb->vb2_queue->type))
->> +		return;
->> +
->> +	d_addr = vb2_plane_vaddr(vb, 0);
->> +	write_header(ctx, d_addr);
->> +}
->> +
->> +static int e5010_buf_out_validate(struct vb2_buffer *vb)
->> +{
->> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->> +	struct e5010_context *ctx = vb2_get_drv_priv(vb->vb2_queue);
->> +
->> +	if (vbuf->field != V4L2_FIELD_NONE)
->> +		dprintk(ctx->dev, 1, "ctx: 0x%p, field isn't supported\n", ctx);
->> +
->> +	vbuf->field = V4L2_FIELD_NONE;
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_buf_prepare(struct vb2_buffer *vb)
->> +{
->> +	struct e5010_context *ctx = vb2_get_drv_priv(vb->vb2_queue);
->> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->> +	struct e5010_q_data *queue;
->> +	int i;
->> +
->> +	vbuf->field = V4L2_FIELD_NONE;
->> +
->> +	queue = get_queue(ctx, vb->vb2_queue->type);
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +
->> +	for (i = 0; i < queue->fmt->num_planes; i++) {
->> +		if (vb2_plane_size(vb, i) < (unsigned long)queue->sizeimage[i]) {
->> +			dev_err(ctx->dev->dev, "plane %d too small (%lu < %lu)", i,
->> +				vb2_plane_size(vb, i), (unsigned long)queue->sizeimage[i]);
->> +
->> +			return -EINVAL;
->> +		}
->> +	}
->> +
->> +	if (V4L2_TYPE_IS_CAPTURE(vb->vb2_queue->type)) {
->> +		vb2_set_plane_payload(vb, 0, 0);
->> +		vb2_set_plane_payload(vb, 1, 0);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void e5010_buf_queue(struct vb2_buffer *vb)
->> +{
->> +	struct e5010_context *ctx = vb2_get_drv_priv(vb->vb2_queue);
->> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->> +
->> +	if (V4L2_TYPE_IS_CAPTURE(vb->vb2_queue->type) &&
->> +	    vb2_is_streaming(vb->vb2_queue) &&
->> +	    v4l2_m2m_dst_buf_is_last(ctx->fh.m2m_ctx)) {
->> +		struct e5010_q_data *queue = get_queue(ctx, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
->> +
->> +		if (IS_ERR(queue))
->> +			return;
->> +		vbuf->sequence = queue->sequence++;
->> +		v4l2_m2m_last_buffer_done(ctx->fh.m2m_ctx, vbuf);
->> +		v4l2_event_queue_fh(&ctx->fh, &e5010_eos_event);
->> +		return;
->> +	}
->> +
->> +	v4l2_m2m_buf_queue(ctx->fh.m2m_ctx, vbuf);
->> +}
->> +
->> +static int e5010_encoder_cmd(struct file *file, void *priv,
->> +			     struct v4l2_encoder_cmd *cmd)
->> +{
->> +	struct e5010_context *ctx = file->private_data;
->> +	int ret;
->> +	struct vb2_queue *cap_vq;
->> +
->> +	cap_vq = v4l2_m2m_get_vq(ctx->fh.m2m_ctx, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
->> +
->> +	ret = v4l2_m2m_ioctl_try_encoder_cmd(file, &ctx->fh, cmd);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	if (!vb2_is_streaming(v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx)) ||
->> +	    !vb2_is_streaming(v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx)))
->> +		return 0;
->> +
->> +	ret = v4l2_m2m_ioctl_encoder_cmd(file, &ctx->fh, cmd);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	if (cmd->cmd == V4L2_ENC_CMD_STOP &&
->> +	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
->> +		v4l2_event_queue_fh(&ctx->fh, &e5010_eos_event);
->> +
->> +	if (cmd->cmd == V4L2_ENC_CMD_START &&
->> +	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx))
->> +		vb2_clear_last_buffer_dequeued(cap_vq);
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_start_streaming(struct vb2_queue *q, unsigned int count)
->> +{
->> +	struct e5010_context *ctx = vb2_get_drv_priv(q);
->> +	int ret;
->> +
->> +	struct e5010_q_data *queue = get_queue(ctx, q->type);
->> +
->> +	if (IS_ERR(queue))
->> +		return PTR_ERR(queue);
->> +	queue->streaming = true;
->> +	v4l2_m2m_update_start_streaming_state(ctx->fh.m2m_ctx, q);
->> +	queue->sequence = 0;
->> +
->> +	ret = pm_runtime_resume_and_get(ctx->dev->dev);
->> +	if (ret < 0) {
->> +		dev_err(ctx->dev->dev, "Failed to power up jpeg\n");
->> +		return ret;
->> +	}
->> +
->> +	ret = e5010_init_device(ctx->dev);
->> +	if (ret)
->> +		dev_err(ctx->dev->dev, "Failed to Enable e5010 device\n");
->> +
->> +	return ret;
->> +}
->> +
->> +static void e5010_stop_streaming(struct vb2_queue *q)
->> +{
->> +	struct e5010_context *ctx = vb2_get_drv_priv(q);
->> +	struct vb2_v4l2_buffer *vbuf;
->> +	struct e5010_q_data *queue;
->> +
->> +	queue = get_queue(ctx, q->type);
->> +	if (IS_ERR(queue))
->> +		return;
->> +
->> +	queue->streaming = false;
->> +
->> +	if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
->> +		while ((vbuf = v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx))) {
->> +			dprintk(ctx->dev, 2, "ctx: 0x%p, buf type %s | index %d\n",
->> +				ctx, type_name(vbuf->vb2_buf.type), vbuf->vb2_buf.index);
->> +			v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
->> +		}
->> +	} else {
->> +		while ((vbuf = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx))) {
->> +			dprintk(ctx->dev, 2, "ctx: 0x%p, buf type %s | index %d\n",
->> +				ctx, type_name(vbuf->vb2_buf.type), vbuf->vb2_buf.index);
->> +			vb2_set_plane_payload(&vbuf->vb2_buf, 0, 0);
->> +			v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
->> +		}
->> +	}
->> +
->> +	if (V4L2_TYPE_IS_OUTPUT(q->type))
->> +		v4l2_m2m_update_stop_streaming_state(ctx->fh.m2m_ctx, q);
->> +
->> +	if (V4L2_TYPE_IS_OUTPUT(q->type) &&
->> +	    v4l2_m2m_has_stopped(ctx->fh.m2m_ctx)) {
->> +		v4l2_event_queue_fh(&ctx->fh, &e5010_eos_event);
->> +	}
->> +
->> +	pm_runtime_put_sync(ctx->dev->dev);
->> +}
->> +
->> +static void e5010_device_run(void *priv)
->> +{
->> +	struct e5010_context *ctx = priv;
->> +	struct e5010_dev *dev = ctx->dev;
->> +	struct vb2_v4l2_buffer *s_vb, *d_vb;
->> +	u32 reg = 0;
->> +	int ret = 0;
->> +	unsigned long flags;
->> +	int num_planes = ctx->out_queue.fmt->num_planes;
->> +
->> +	spin_lock_irqsave(&dev->hw_lock, flags);
->> +	s_vb = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
->> +	WARN_ON(!s_vb);
->> +	d_vb = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
->> +	WARN_ON(!d_vb);
->> +	if (!s_vb || !d_vb)
->> +		goto no_ready_buf_err;
->> +
->> +	s_vb->sequence = ctx->out_queue.sequence++;
->> +	d_vb->sequence = ctx->cap_queue.sequence++;
->> +
->> +	v4l2_m2m_buf_copy_metadata(s_vb, d_vb, false);
->> +
->> +	if (ctx != dev->last_context_run || ctx->update_qp) {
->> +		dprintk(dev, 1, "ctx updated: 0x%p -> 0x%p, updating qp tables\n",
->> +			dev->last_context_run, ctx);
->> +		ret = update_qp_tables(ctx);
->> +	}
->> +
->> +	if (ret) {
->> +		ctx->update_qp = true;
->> +		dev_err(dev->dev, "Failed to update QP tables\n");
->> +		goto device_busy_err;
->> +	} else {
->> +		dev->last_context_run = ctx;
->> +		ctx->update_qp = false;
->> +	}
->> +
->> +	/* Set I/O Buffer addresses */
->> +	reg = (u32)vb2_dma_contig_plane_dma_addr(&s_vb->vb2_buf, 0);
->> +	ret = e5010_hw_set_input_luma_addr(dev->jasper_base, reg);
->> +	if (ret || !reg) {
->> +		dev_err(dev->dev, "Failed to set input luma address\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	if (num_planes == 1)
->> +		reg += (ctx->out_queue.bytesperline[0]) * (ctx->out_queue.height);
->> +	else
->> +		reg = (u32)vb2_dma_contig_plane_dma_addr(&s_vb->vb2_buf, 1);
->> +
->> +	dprintk(dev, 3,
->> +		"ctx: 0x%p, luma_addr: 0x%x, chroma_addr: 0x%x, out_addr: 0x%x\n",
->> +		ctx, (u32)vb2_dma_contig_plane_dma_addr(&s_vb->vb2_buf, 0), reg,
->> +		(u32)vb2_dma_contig_plane_dma_addr(&d_vb->vb2_buf, 0));
->> +
->> +	dprintk(dev, 3,
->> +		"ctx: 0x%p, buf indices: src_index: %d, dst_index: %d\n",
->> +		ctx, s_vb->vb2_buf.index, d_vb->vb2_buf.index);
->> +
->> +	ret = e5010_hw_set_input_chroma_addr(dev->jasper_base, reg);
->> +	if (ret || !reg) {
->> +		dev_err(dev->dev, "Failed to set input chroma address\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	reg = (u32)vb2_dma_contig_plane_dma_addr(&d_vb->vb2_buf, 0);
->> +	reg += HEADER_SIZE;
->> +	ret = e5010_hw_set_output_base_addr(dev->jasper_base, reg);
->> +	if (ret || !reg) {
->> +		dev_err(dev->dev, "Failed to set output size\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	/* Set input settings */
->> +	ret = e5010_hw_set_horizontal_size(dev->jasper_base, ctx->out_queue.width - 1);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set input width\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	ret = e5010_hw_set_vertical_size(dev->jasper_base, ctx->out_queue.height - 1);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set input width\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	ret = e5010_hw_set_luma_stride(dev->jasper_base, ctx->out_queue.bytesperline[0]);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set luma stride\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	ret = e5010_hw_set_chroma_stride(dev->jasper_base, ctx->out_queue.bytesperline[0]);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set chroma stride\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	ret = e5010_set_input_subsampling(dev->jasper_base, ctx->out_queue.fmt->subsampling);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set input subsampling\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	ret = e5010_hw_set_chroma_order(dev->jasper_base, ctx->out_queue.fmt->chroma_order);
->> +	if (ret) {
->> +		dev_err(dev->dev, "Failed to set chroma order\n");
->> +		goto device_busy_err;
->> +	}
->> +
->> +	e5010_hw_set_output_max_size(dev->jasper_base, d_vb->planes[0].length);
->> +	e5010_hw_encode_start(dev->jasper_base, 1);
->> +
->> +	spin_unlock_irqrestore(&dev->hw_lock, flags);
->> +
->> +	return;
->> +
->> +device_busy_err:
->> +	e5010_reset(dev->dev, dev->jasper_base, dev->mmu_base);
->> +
->> +no_ready_buf_err:
->> +	if (s_vb) {
->> +		v4l2_m2m_src_buf_remove_by_buf(ctx->fh.m2m_ctx, s_vb);
->> +		v4l2_m2m_buf_done(s_vb, VB2_BUF_STATE_ERROR);
->> +	}
->> +
->> +	if (d_vb) {
->> +		v4l2_m2m_dst_buf_remove_by_buf(ctx->fh.m2m_ctx, d_vb);
->> +		/* Payload set to 1 since 0 payload can trigger EOS */
->> +		vb2_set_plane_payload(&d_vb->vb2_buf, 0, 1);
->> +		v4l2_m2m_buf_done(d_vb, VB2_BUF_STATE_ERROR);
->> +	}
->> +	v4l2_m2m_job_finish(dev->m2m_dev, ctx->fh.m2m_ctx);
->> +	spin_unlock_irqrestore(&dev->hw_lock, flags);
->> +}
->> +
->> +#ifdef CONFIG_PM
->> +static int e5010_runtime_resume(struct device *dev)
->> +{
->> +	struct e5010_dev *e5010_dev = dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(e5010_dev->clk);
->> +	if (ret < 0) {
->> +		dev_err(dev, "failed to enable clock\n");
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int e5010_runtime_suspend(struct device *dev)
->> +{
->> +	struct e5010_dev *e5010_dev = dev_get_drvdata(dev);
->> +
->> +	clk_disable_unprepare(e5010_dev->clk);
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
->> +#ifdef CONFIG_PM_SLEEP
->> +static int e5010_suspend(struct device *dev)
->> +{
->> +	struct e5010_dev *e5010_dev = dev_get_drvdata(dev);
->> +
->> +	v4l2_m2m_suspend(e5010_dev->m2m_dev);
->> +	return pm_runtime_force_suspend(dev);
->> +}
->> +
->> +static int e5010_resume(struct device *dev)
->> +{
->> +	struct e5010_dev *e5010_dev = dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	ret = pm_runtime_force_resume(dev);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	v4l2_m2m_resume(e5010_dev->m2m_dev);
->> +	return ret;
->> +}
->> +#endif
->> +
->> +static const struct dev_pm_ops	e5010_pm_ops = {
->> +	SET_RUNTIME_PM_OPS(e5010_runtime_suspend,
->> +			   e5010_runtime_resume, NULL)
->> +	SET_SYSTEM_SLEEP_PM_OPS(e5010_suspend, e5010_resume)
->> +};
->> +
->> +static const struct v4l2_ioctl_ops e5010_ioctl_ops = {
->> +	.vidioc_querycap = e5010_querycap,
->> +
->> +	.vidioc_enum_fmt_vid_cap = e5010_enum_fmt,
->> +	.vidioc_g_fmt_vid_cap_mplane = e5010_g_fmt,
->> +	.vidioc_try_fmt_vid_cap_mplane = e5010_try_fmt,
->> +	.vidioc_s_fmt_vid_cap_mplane = e5010_s_fmt,
->> +
->> +	.vidioc_enum_fmt_vid_out = e5010_enum_fmt,
->> +	.vidioc_g_fmt_vid_out_mplane = e5010_g_fmt,
->> +	.vidioc_try_fmt_vid_out_mplane = e5010_try_fmt,
->> +	.vidioc_s_fmt_vid_out_mplane = e5010_s_fmt,
->> +
->> +	.vidioc_g_selection = e5010_g_selection,
->> +	.vidioc_s_selection = e5010_s_selection,
->> +
->> +	.vidioc_reqbufs = v4l2_m2m_ioctl_reqbufs,
->> +	.vidioc_querybuf = v4l2_m2m_ioctl_querybuf,
->> +	.vidioc_qbuf = v4l2_m2m_ioctl_qbuf,
->> +	.vidioc_dqbuf = v4l2_m2m_ioctl_dqbuf,
->> +	.vidioc_expbuf = v4l2_m2m_ioctl_expbuf,
->> +	.vidioc_create_bufs = v4l2_m2m_ioctl_create_bufs,
->> +	.vidioc_prepare_buf = v4l2_m2m_ioctl_prepare_buf,
->> +
->> +	.vidioc_streamon = v4l2_m2m_ioctl_streamon,
->> +	.vidioc_streamoff = v4l2_m2m_ioctl_streamoff,
->> +	.vidioc_log_status = v4l2_ctrl_log_status,
->> +
->> +	.vidioc_subscribe_event = e5010_subscribe_event,
->> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
->> +	.vidioc_try_encoder_cmd = v4l2_m2m_ioctl_try_encoder_cmd,
->> +	.vidioc_encoder_cmd = e5010_encoder_cmd,
->> +
->> +	.vidioc_enum_framesizes = e5010_enum_framesizes,
->> +};
->> +
->> +static const struct vb2_ops e5010_video_ops = {
->> +	.queue_setup = e5010_queue_setup,
->> +	.buf_queue = e5010_buf_queue,
->> +	.buf_finish = e5010_buf_finish,
->> +	.buf_prepare = e5010_buf_prepare,
->> +	.buf_out_validate = e5010_buf_out_validate,
->> +	.wait_prepare = vb2_ops_wait_prepare,
->> +	.wait_finish = vb2_ops_wait_finish,
->> +	.start_streaming = e5010_start_streaming,
->> +	.stop_streaming = e5010_stop_streaming,
->> +};
->> +
->> +static const struct v4l2_file_operations e5010_fops = {
->> +	.owner = THIS_MODULE,
->> +	.open = e5010_open,
->> +	.release = e5010_release,
->> +	.poll = v4l2_m2m_fop_poll,
->> +	.unlocked_ioctl = video_ioctl2,
->> +	.mmap = v4l2_m2m_fop_mmap,
->> +};
->> +
->> +static const struct v4l2_m2m_ops e5010_m2m_ops = {
->> +	.device_run = e5010_device_run,
->> +};
->> +
->> +static const struct of_device_id e5010_of_match[] = {
->> +	{.compatible = "img,e5010-jpeg-enc"},   { /* end */},
->> +};
->> +MODULE_DEVICE_TABLE(of, e5010_of_match);
->> +
->> +static struct platform_driver e5010_driver = {
->> +	.probe = e5010_probe,
->> +	.remove = e5010_remove,
->> +	.driver = {
->> +		.name = E5010_MODULE_NAME,
->> +		.of_match_table = e5010_of_match,
->> +		.pm = &e5010_pm_ops,
->> +	},
->> +};
->> +module_platform_driver(e5010_driver);
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_DESCRIPTION("Imagination E5010 JPEG encoder driver");
->> diff --git a/drivers/media/platform/imagination/e5010-jpeg-enc.h b/drivers/media/platform/imagination/e5010-jpeg-enc.h
->> new file mode 100644
->> index 000000000000..1f64c5e3a31a
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/e5010-jpeg-enc.h
->> @@ -0,0 +1,165 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (c) 2023 Texas Instruments Inc.
->> + *
->> + */
->> +
->> +#include <media/v4l2-ctrls.h>
->> +#include <media/v4l2-device.h>
->> +#include <media/v4l2-fh.h>
->> +
->> +#ifndef _E5010_JPEG_ENC_H
->> +#define _E5010_JPEG_ENC_H
->> +
->> +#define MAX_PLANES			2
->> +#define HEADER_SIZE			0x025E
->> +#define MIN_DIMENSION			64
->> +#define MAX_DIMENSION			8192
->> +#define DEFAULT_WIDTH			640
->> +#define DEFAULT_HEIGHT			480
->> +#define E5010_MODULE_NAME		"e5010"
->> +
->> +/* JPEG marker definitions */
->> +#define START_OF_IMAGE			0xFFD8
->> +#define SOF_BASELINE_DCT		0xFFC0
->> +#define END_OF_IMAGE			0xFFD9
->> +#define START_OF_SCAN			0xFFDA
->> +
->> +/* Definitions for the huffman table specification in the Marker segment */
->> +#define DHT_MARKER			0xFFC4
->> +#define LH_DC				0x001F
->> +#define LH_AC				0x00B5
->> +
->> +/* Definitions for the quantization table specification in the Marker segment */
->> +#define DQT_MARKER			0xFFDB
->> +#define ACMAX				0x03FF
->> +#define DCMAX				0x07FF
->> +
->> +/* Length and precision of the quantization table parameters */
->> +#define LQPQ				0x00430
->> +#define QMAX				255
->> +
->> +/* Misc JPEG header definitions */
->> +#define UC_NUM_COMP			3
->> +#define PRECISION			8
->> +#define HORZ_SAMPLING_FACTOR		(2 << 4)
->> +#define VERT_SAMPLING_FACTOR_422	1
->> +#define VERT_SAMPLING_FACTOR_420	2
->> +#define COMPONENTS_IN_SCAN		3
->> +#define PELS_IN_BLOCK			64
->> +
->> +/* Used for Qp table generation */
->> +#define LUMINOSITY			10
->> +#define CONTRAST			1
->> +#define INCREASE			2
->> +#define QP_TABLE_SIZE			(8 * 8)
->> +#define QP_TABLE_FIELD_OFFSET		0x04
->> +
->> +/*
->> + * vb2 queue structure
->> + * contains queue data information
->> + *
->> + * @fmt: format info
->> + * @width: frame width
->> + * @height: frame height
->> + * @bytesperline: bytes per line in memory
->> + * @size_image: image size in memory
->> + */
->> +struct e5010_q_data {
->> +	struct e5010_fmt *fmt;
->> +	u32 width;
->> +	u32 height;
->> +	u32 width_adjusted;
->> +	u32 height_adjusted;
->> +	u32 sizeimage[MAX_PLANES];
->> +	u32 bytesperline[MAX_PLANES];
->> +	bool format_set;
->> +	bool streaming;
->> +	u32			sequence;
->> +	struct v4l2_rect	crop;
->> +};
->> +
->> +/*
->> + * Driver device structure
->> + * Holds all memory handles and global parameters
->> + * Shared by all instances
->> + */
->> +struct e5010_dev {
->> +	struct device *dev;
->> +	struct v4l2_device v4l2_dev;
->> +	struct v4l2_m2m_dev *m2m_dev;
->> +	struct video_device *vdev;
->> +	void __iomem *jasper_base;
->> +	void __iomem *mmu_base;
->> +	struct clk   *clk;
->> +	struct e5010_context *last_context_run;
->> +	/* Protect access to device data */
->> +	struct mutex mutex;
->> +	/* Protect access to hardware*/
->> +	spinlock_t hw_lock;
->> +};
->> +
->> +/*
->> + * Driver context structure
->> + * One of these exists for every m2m context
->> + * Holds context specific data
->> + */
->> +struct e5010_context {
->> +	struct v4l2_fh fh;
->> +	struct e5010_dev *dev;
->> +	struct e5010_q_data out_queue;
->> +	struct e5010_q_data cap_queue;
->> +	int quality;
->> +	bool update_qp;
->> +	struct v4l2_ctrl_handler ctrl_handler;
->> +	u8 luma_qp[QP_TABLE_SIZE];
->> +	u8 chroma_qp[QP_TABLE_SIZE];
->> +};
->> +
->> +/*
->> + * Buffer structure
->> + * Contains info for all buffers
->> + */
->> +struct e5010_buffer {
->> +	struct v4l2_m2m_buffer buffer;
->> +};
->> +
->> +enum {
->> +	CHROMA_ORDER_CB_CR = 0, //UV ordering
->> +	CHROMA_ORDER_CR_CB = 1, //VU ordering
->> +};
->> +
->> +enum {
->> +	SUBSAMPLING_420 = 1,
->> +	SUBSAMPLING_422 = 2,
->> +};
->> +
->> +/*
->> + * e5010 format structure
->> + * contains format information
->> + */
->> +struct e5010_fmt {
->> +	u32 fourcc;
->> +	unsigned int num_planes;
->> +	unsigned int type;
->> +	u32 subsampling;
->> +	u32 chroma_order;
->> +	u32 h_align;
->> +	u32 v_align;
->> +};
->> +
->> +/*
->> + * struct e5010_ctrl - contains info for each supported v4l2 control
->> + */
->> +struct e5010_ctrl {
->> +	unsigned int cid;
->> +	enum v4l2_ctrl_type type;
->> +	unsigned char name[32];
->> +	int minimum;
->> +	int maximum;
->> +	int step;
->> +	int default_value;
->> +	unsigned char compound;
->> +};
->> +
->> +#endif
->> diff --git a/drivers/media/platform/imagination/e5010-mmu-regs.h b/drivers/media/platform/imagination/e5010-mmu-regs.h
->> new file mode 100644
->> index 000000000000..58241071b228
->> --- /dev/null
->> +++ b/drivers/media/platform/imagination/e5010-mmu-regs.h
->> @@ -0,0 +1,303 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +
->> +#ifndef _E5010_MMU_REGS_H
->> +#define _E5010_MMU_REGS_H
->> +
->> +#define MMU_MMU_DIR_BASE_ADDR_OFFSET					(0x0020)
->> +#define MMU_MMU_DIR_BASE_ADDR_STRIDE					(4)
->> +#define MMU_MMU_DIR_BASE_ADDR_NO_ENTRIES				(4)
->> +
->> +#define MMU_MMU_DIR_BASE_ADDR_MMU_DIR_BASE_ADDR_MASK			(0xFFFFFFFF)
->> +#define MMU_MMU_DIR_BASE_ADDR_MMU_DIR_BASE_ADDR_SHIFT			(0)
->> +
->> +#define MMU_MMU_TILE_CFG_OFFSET						(0x0040)
->> +#define MMU_MMU_TILE_CFG_STRIDE						(4)
->> +#define MMU_MMU_TILE_CFG_NO_ENTRIES					(4)
->> +
->> +#define MMU_MMU_TILE_CFG_TILE_128INTERLEAVE_MASK			(0x00000010)
->> +#define MMU_MMU_TILE_CFG_TILE_128INTERLEAVE_SHIFT			(4)
->> +
->> +#define MMU_MMU_TILE_CFG_TILE_ENABLE_MASK				(0x00000008)
->> +#define MMU_MMU_TILE_CFG_TILE_ENABLE_SHIFT				(3)
->> +
->> +#define MMU_MMU_TILE_CFG_TILE_STRIDE_MASK				(0x00000007)
->> +#define MMU_MMU_TILE_CFG_TILE_STRIDE_SHIFT				(0)
->> +
->> +#define MMU_MMU_TILE_MIN_ADDR_OFFSET					(0x0050)
->> +#define MMU_MMU_TILE_MIN_ADDR_STRIDE					(4)
->> +#define MMU_MMU_TILE_MIN_ADDR_NO_ENTRIES				(4)
->> +
->> +#define MMU_MMU_TILE_MIN_ADDR_TILE_MIN_ADDR_MASK			(0xFFFFFFFF)
->> +#define MMU_MMU_TILE_MIN_ADDR_TILE_MIN_ADDR_SHIFT			(0)
->> +
->> +#define MMU_MMU_TILE_MAX_ADDR_OFFSET					(0x0060)
->> +#define MMU_MMU_TILE_MAX_ADDR_STRIDE					(4)
->> +#define MMU_MMU_TILE_MAX_ADDR_NO_ENTRIES				(4)
->> +
->> +#define MMU_MMU_TILE_MAX_ADDR_TILE_MAX_ADDR_MASK			(0xFFFFFFFF)
->> +#define MMU_MMU_TILE_MAX_ADDR_TILE_MAX_ADDR_SHIFT			(0)
->> +
->> +#define MMU_MMU_CONTROL0_OFFSET						(0x0000)
->> +
->> +#define MMU_MMU_CONTROL0_MMU_TILING_SCHEME_MASK				(0x00000001)
->> +#define MMU_MMU_CONTROL0_MMU_TILING_SCHEME_SHIFT			(0)
->> +
->> +#define MMU_MMU_CONTROL0_MMU_CACHE_POLICY_MASK				(0x00000100)
->> +#define MMU_MMU_CONTROL0_MMU_CACHE_POLICY_SHIFT				(8)
->> +
->> +#define MMU_MMU_CONTROL0_FORCE_CACHE_POLICY_BYPASS_MASK			(0x00000200)
->> +#define MMU_MMU_CONTROL0_FORCE_CACHE_POLICY_BYPASS_SHIFT		(9)
->> +
->> +#define MMU_MMU_CONTROL0_STALL_ON_PROTOCOL_FAULT_MASK			(0x00001000)
->> +#define MMU_MMU_CONTROL0_STALL_ON_PROTOCOL_FAULT_SHIFT			(12)
->> +
->> +#define MMU_MMU_CONTROL1_OFFSET						(0x0008)
->> +
->> +#define MMU_MMU_CONTROL1_MMU_FLUSH_MASK					(0x00000008)
->> +#define MMU_MMU_CONTROL1_MMU_FLUSH_SHIFT				(3)
->> +#define MMU_MMU_CONTROL1_MMU_FLUSH_NO_REPS				(4)
->> +#define MMU_MMU_CONTROL1_MMU_FLUSH_SIZE					(1)
->> +
->> +#define MMU_MMU_CONTROL1_MMU_INVALDC_MASK				(0x00000800)
->> +#define MMU_MMU_CONTROL1_MMU_INVALDC_SHIFT				(11)
->> +#define MMU_MMU_CONTROL1_MMU_INVALDC_NO_REPS				(4)
->> +#define MMU_MMU_CONTROL1_MMU_INVALDC_SIZE				(1)
->> +
->> +#define MMU_MMU_CONTROL1_MMU_FAULT_CLEAR_MASK				(0x00010000)
->> +#define MMU_MMU_CONTROL1_MMU_FAULT_CLEAR_SHIFT				(16)
->> +
->> +#define MMU_MMU_CONTROL1_PROTOCOL_FAULT_CLEAR_MASK			(0x00100000)
->> +#define MMU_MMU_CONTROL1_PROTOCOL_FAULT_CLEAR_SHIFT			(20)
->> +
->> +#define MMU_MMU_CONTROL1_MMU_PAUSE_SET_MASK				(0x01000000)
->> +#define MMU_MMU_CONTROL1_MMU_PAUSE_SET_SHIFT				(24)
->> +
->> +#define MMU_MMU_CONTROL1_MMU_PAUSE_CLEAR_MASK				(0x02000000)
->> +#define MMU_MMU_CONTROL1_MMU_PAUSE_CLEAR_SHIFT				(25)
->> +
->> +#define MMU_MMU_CONTROL1_MMU_SOFT_RESET_MASK				(0x10000000)
->> +#define MMU_MMU_CONTROL1_MMU_SOFT_RESET_SHIFT				(28)
->> +
->> +#define MMU_MMU_BANK_INDEX_OFFSET					(0x0010)
->> +
->> +#define MMU_MMU_BANK_INDEX_MMU_BANK_INDEX_MASK				(0xC0000000)
->> +#define MMU_MMU_BANK_INDEX_MMU_BANK_INDEX_SHIFT				(30)
->> +#define MMU_MMU_BANK_INDEX_MMU_BANK_INDEX_NO_REPS			(16)
->> +#define MMU_MMU_BANK_INDEX_MMU_BANK_INDEX_SIZE				(2)
->> +
->> +#define MMU_REQUEST_PRIORITY_ENABLE_OFFSET				(0x0018)
->> +
->> +#define MMU_REQUEST_PRIORITY_ENABLE_CMD_PRIORITY_ENABLE_MASK		(0x00008000)
->> +#define MMU_REQUEST_PRIORITY_ENABLE_CMD_PRIORITY_ENABLE_SHIFT		(15)
->> +#define MMU_REQUEST_PRIORITY_ENABLE_CMD_PRIORITY_ENABLE_NO_REPS		(16)
->> +#define MMU_REQUEST_PRIORITY_ENABLE_CMD_PRIORITY_ENABLE_SIZE		(1)
->> +
->> +#define MMU_REQUEST_PRIORITY_ENABLE_CMD_MMU_PRIORITY_ENABLE_MASK	(0x00010000)
->> +#define MMU_REQUEST_PRIORITY_ENABLE_CMD_MMU_PRIORITY_ENABLE_SHIFT	(16)
->> +
->> +#define MMU_REQUEST_LIMITED_THROUGHPUT_OFFSET				(0x001C)
->> +
->> +#define MMU_REQUEST_LIMITED_THROUGHPUT_LIMITED_WORDS_MASK		(0x000003FF)
->> +#define MMU_REQUEST_LIMITED_THROUGHPUT_LIMITED_WORDS_SHIFT		(0)
->> +
->> +#define MMU_REQUEST_LIMITED_THROUGHPUT_REQUEST_GAP_MASK			(0x0FFF0000)
->> +#define MMU_REQUEST_LIMITED_THROUGHPUT_REQUEST_GAP_SHIFT		(16)
->> +
->> +#define MMU_MMU_ADDRESS_CONTROL_OFFSET					(0x0070)
->> +#define MMU_MMU_ADDRESS_CONTROL_TRUSTED					(IMG_TRUE)
->> +
->> +#define MMU_MMU_ADDRESS_CONTROL_MMU_BYPASS_MASK				(0x00000001)
->> +#define MMU_MMU_ADDRESS_CONTROL_MMU_BYPASS_SHIFT			(0)
->> +
->> +#define MMU_MMU_ADDRESS_CONTROL_MMU_ENABLE_EXT_ADDRESSING_MASK		(0x00000010)
->> +#define MMU_MMU_ADDRESS_CONTROL_MMU_ENABLE_EXT_ADDRESSING_SHIFT		(4)
->> +
->> +#define MMU_MMU_ADDRESS_CONTROL_UPPER_ADDRESS_FIXED_MASK		(0x00FF0000)
->> +#define MMU_MMU_ADDRESS_CONTROL_UPPER_ADDRESS_FIXED_SHIFT		(16)
->> +
->> +#define MMU_MMU_CONFIG0_OFFSET						(0x0080)
->> +
->> +#define MMU_MMU_CONFIG0_NUM_REQUESTORS_MASK				(0x0000000F)
->> +#define MMU_MMU_CONFIG0_NUM_REQUESTORS_SHIFT				(0)
->> +
->> +#define MMU_MMU_CONFIG0_EXTENDED_ADDR_RANGE_MASK			(0x000000F0)
->> +#define MMU_MMU_CONFIG0_EXTENDED_ADDR_RANGE_SHIFT			(4)
->> +
->> +#define MMU_MMU_CONFIG0_GROUP_OVERRIDE_SIZE_MASK			(0x00000700)
->> +#define MMU_MMU_CONFIG0_GROUP_OVERRIDE_SIZE_SHIFT			(8)
->> +
->> +#define MMU_MMU_CONFIG0_ADDR_COHERENCY_SUPPORTED_MASK			(0x00001000)
->> +#define MMU_MMU_CONFIG0_ADDR_COHERENCY_SUPPORTED_SHIFT			(12)
->> +
->> +#define MMU_MMU_CONFIG0_MMU_SUPPORTED_MASK				(0x00002000)
->> +#define MMU_MMU_CONFIG0_MMU_SUPPORTED_SHIFT				(13)
->> +
->> +#define MMU_MMU_CONFIG0_TILE_ADDR_GRANULARITY_MASK			(0x001F0000)
->> +#define MMU_MMU_CONFIG0_TILE_ADDR_GRANULARITY_SHIFT			(16)
->> +
->> +#define MMU_MMU_CONFIG0_NO_READ_REORDER_MASK				(0x00200000)
->> +#define MMU_MMU_CONFIG0_NO_READ_REORDER_SHIFT				(21)
->> +
->> +#define MMU_MMU_CONFIG0_TAGS_SUPPORTED_MASK				(0xFFC00000)
->> +#define MMU_MMU_CONFIG0_TAGS_SUPPORTED_SHIFT				(22)
->> +
->> +#define MMU_MMU_CONFIG1_OFFSET						(0x0084)
->> +
->> +#define MMU_MMU_CONFIG1_PAGE_SIZE_MASK					(0x0000000F)
->> +#define MMU_MMU_CONFIG1_PAGE_SIZE_SHIFT					(0)
->> +
->> +#define MMU_MMU_CONFIG1_PAGE_CACHE_ENTRIES_MASK				(0x0000FF00)
->> +#define MMU_MMU_CONFIG1_PAGE_CACHE_ENTRIES_SHIFT			(8)
->> +
->> +#define MMU_MMU_CONFIG1_DIR_CACHE_ENTRIES_MASK				(0x001F0000)
->> +#define MMU_MMU_CONFIG1_DIR_CACHE_ENTRIES_SHIFT				(16)
->> +
->> +#define MMU_MMU_CONFIG1_BANDWIDTH_COUNT_SUPPORTED_MASK			(0x01000000)
->> +#define MMU_MMU_CONFIG1_BANDWIDTH_COUNT_SUPPORTED_SHIFT			(24)
->> +
->> +#define MMU_MMU_CONFIG1_STALL_COUNT_SUPPORTED_MASK			(0x02000000)
->> +#define MMU_MMU_CONFIG1_STALL_COUNT_SUPPORTED_SHIFT			(25)
->> +
->> +#define MMU_MMU_CONFIG1_LATENCY_COUNT_SUPPORTED_MASK			(0x04000000)
->> +#define MMU_MMU_CONFIG1_LATENCY_COUNT_SUPPORTED_SHIFT			(26)
->> +
->> +#define MMU_MMU_STATUS0_OFFSET						(0x0088)
->> +
->> +#define MMU_MMU_STATUS0_MMU_PF_N_RW_MASK				(0x00000001)
->> +#define MMU_MMU_STATUS0_MMU_PF_N_RW_SHIFT				(0)
->> +
->> +#define MMU_MMU_STATUS0_MMU_FAULT_ADDR_MASK				(0xFFFFF000)
->> +#define MMU_MMU_STATUS0_MMU_FAULT_ADDR_SHIFT				(12)
->> +
->> +#define MMU_MMU_STATUS1_OFFSET						(0x008C)
->> +
->> +#define MMU_MMU_STATUS1_MMU_FAULT_REQ_STAT_MASK				(0x0000FFFF)
->> +#define MMU_MMU_STATUS1_MMU_FAULT_REQ_STAT_SHIFT			(0)
->> +
->> +#define MMU_MMU_STATUS1_MMU_FAULT_REQ_ID_MASK				(0x000F0000)
->> +#define MMU_MMU_STATUS1_MMU_FAULT_REQ_ID_SHIFT				(16)
->> +
->> +#define MMU_MMU_STATUS1_MMU_FAULT_INDEX_MASK				(0x03000000)
->> +#define MMU_MMU_STATUS1_MMU_FAULT_INDEX_SHIFT				(24)
->> +
->> +#define MMU_MMU_STATUS1_MMU_FAULT_RNW_MASK				(0x10000000)
->> +#define MMU_MMU_STATUS1_MMU_FAULT_RNW_SHIFT				(28)
->> +
->> +#define MMU_MMU_MEM_REQ_OFFSET						(0x0090)
->> +
->> +#define MMU_MMU_MEM_REQ_TAG_OUTSTANDING_MASK				(0x000003FF)
->> +#define MMU_MMU_MEM_REQ_TAG_OUTSTANDING_SHIFT				(0)
->> +
->> +#define MMU_MMU_MEM_REQ_EXT_WRRESP_FAULT_MASK				(0x00001000)
->> +#define MMU_MMU_MEM_REQ_EXT_WRRESP_FAULT_SHIFT				(12)
->> +
->> +#define MMU_MMU_MEM_REQ_EXT_RDRESP_FAULT_MASK				(0x00002000)
->> +#define MMU_MMU_MEM_REQ_EXT_RDRESP_FAULT_SHIFT				(13)
->> +
->> +#define MMU_MMU_MEM_REQ_EXT_READ_BURST_FAULT_MASK			(0x00004000)
->> +#define MMU_MMU_MEM_REQ_EXT_READ_BURST_FAULT_SHIFT			(14)
->> +
->> +#define MMU_MMU_MEM_REQ_INT_PROTOCOL_FAULT_MASK				(0x80000000)
->> +#define MMU_MMU_MEM_REQ_INT_PROTOCOL_FAULT_SHIFT			(31)
->> +#define MMU_MMU_MEM_REQ_INT_PROTOCOL_FAULT_NO_REPS			(16)
->> +#define MMU_MMU_MEM_REQ_INT_PROTOCOL_FAULT_SIZE				(1)
->> +
->> +#define MMU_MMU_FAULT_SELECT_OFFSET					(0x00A0)
->> +
->> +#define MMU_MMU_FAULT_SELECT_MMU_FAULT_SELECT_MASK			(0x0000000F)
->> +#define MMU_MMU_FAULT_SELECT_MMU_FAULT_SELECT_SHIFT			(0)
->> +
->> +#define MMU_PROTOCOL_FAULT_OFFSET					(0x00A8)
->> +
->> +#define MMU_PROTOCOL_FAULT_FAULT_PAGE_BREAK_MASK			(0x00000001)
->> +#define MMU_PROTOCOL_FAULT_FAULT_PAGE_BREAK_SHIFT			(0)
->> +
->> +#define MMU_PROTOCOL_FAULT_FAULT_WRITE_MASK				(0x00000010)
->> +#define MMU_PROTOCOL_FAULT_FAULT_WRITE_SHIFT				(4)
->> +
->> +#define MMU_PROTOCOL_FAULT_FAULT_READ_MASK				(0x00000020)
->> +#define MMU_PROTOCOL_FAULT_FAULT_READ_SHIFT				(5)
->> +
->> +#define MMU_TOTAL_READ_REQ_OFFSET					(0x0100)
->> +
->> +#define MMU_TOTAL_READ_REQ_TOTAL_READ_REQ_MASK				(0xFFFFFFFF)
->> +#define MMU_TOTAL_READ_REQ_TOTAL_READ_REQ_SHIFT				(0)
->> +
->> +#define MMU_TOTAL_WRITE_REQ_OFFSET					(0x0104)
->> +
->> +#define MMU_TOTAL_WRITE_REQ_TOTAL_WRITE_REQ_MASK			(0xFFFFFFFF)
->> +#define MMU_TOTAL_WRITE_REQ_TOTAL_WRITE_REQ_SHIFT			(0)
->> +
->> +#define MMU_READS_LESS_64_REQ_OFFSET					(0x0108)
->> +
->> +#define MMU_READS_LESS_64_REQ_READS_LESS_64_REQ_MASK			(0xFFFFFFFF)
->> +#define MMU_READS_LESS_64_REQ_READS_LESS_64_REQ_SHIFT			(0)
->> +
->> +#define MMU_WRITES_LESS_64_REQ_OFFSET					(0x010C)
->> +
->> +#define MMU_WRITES_LESS_64_REQ_WRITES_LESS_64_REQ_MASK			(0xFFFFFFFF)
->> +#define MMU_WRITES_LESS_64_REQ_WRITES_LESS_64_REQ_SHIFT			(0)
->> +
->> +#define MMU_EXT_CMD_STALL_OFFSET					(0x0120)
->> +
->> +#define MMU_EXT_CMD_STALL_EXT_CMD_STALL_MASK				(0xFFFFFFFF)
->> +#define MMU_EXT_CMD_STALL_EXT_CMD_STALL_SHIFT				(0)
->> +
->> +#define MMU_WRITE_REQ_STALL_OFFSET					(0x0124)
->> +
->> +#define MMU_WRITE_REQ_STALL_WRITE_REQ_STALL_MASK			(0xFFFFFFFF)
->> +#define MMU_WRITE_REQ_STALL_WRITE_REQ_STALL_SHIFT			(0)
->> +
->> +#define MMU_MMU_MISS_STALL_OFFSET					(0x0128)
->> +
->> +#define MMU_MMU_MISS_STALL_MMU_MISS_STALL_MASK				(0xFFFFFFFF)
->> +#define MMU_MMU_MISS_STALL_MMU_MISS_STALL_SHIFT				(0)
->> +
->> +#define MMU_ADDRESS_STALL_OFFSET					(0x012C)
->> +
->> +#define MMU_ADDRESS_STALL_ADDRESS_STALL_MASK				(0xFFFFFFFF)
->> +#define MMU_ADDRESS_STALL_ADDRESS_STALL_SHIFT				(0)
->> +
->> +#define MMU_TAG_STALL_OFFSET						(0x0130)
->> +
->> +#define MMU_TAG_STALL_TAG_STALL_MASK					(0xFFFFFFFF)
->> +#define MMU_TAG_STALL_TAG_STALL_SHIFT					(0)
->> +
->> +#define MMU_PEAK_READ_OUTSTANDING_OFFSET				(0x0140)
->> +
->> +#define MMU_PEAK_READ_OUTSTANDING_PEAK_TAG_OUTSTANDING_MASK		(0x000003FF)
->> +#define MMU_PEAK_READ_OUTSTANDING_PEAK_TAG_OUTSTANDING_SHIFT		(0)
->> +
->> +#define MMU_PEAK_READ_OUTSTANDING_PEAK_READ_LATENCY_MASK		(0xFFFF0000)
->> +#define MMU_PEAK_READ_OUTSTANDING_PEAK_READ_LATENCY_SHIFT		(16)
->> +
->> +#define MMU_AVERAGE_READ_LATENCY_OFFSET					(0x0144)
->> +
->> +#define MMU_AVERAGE_READ_LATENCY_AVERAGE_READ_LATENCY_MASK		(0xFFFFFFFF)
->> +#define MMU_AVERAGE_READ_LATENCY_AVERAGE_READ_LATENCY_SHIFT		(0)
->> +
->> +#define MMU_STATISTICS_CONTROL_OFFSET					(0x0160)
->> +
->> +#define MMU_STATISTICS_CONTROL_BANDWIDTH_STATS_INIT_MASK		(0x00000001)
->> +#define MMU_STATISTICS_CONTROL_BANDWIDTH_STATS_INIT_SHIFT		(0)
->> +
->> +#define MMU_STATISTICS_CONTROL_STALL_STATS_INIT_MASK			(0x00000002)
->> +#define MMU_STATISTICS_CONTROL_STALL_STATS_INIT_SHIFT			(1)
->> +
->> +#define MMU_STATISTICS_CONTROL_LATENCY_STATS_INIT_MASK			(0x00000004)
->> +#define MMU_STATISTICS_CONTROL_LATENCY_STATS_INIT_SHIFT			(2)
->> +
->> +#define MMU_MMU_VERSION_OFFSET						(0x01D0)
->> +
->> +#define MMU_MMU_VERSION_MMU_MAJOR_REV_MASK				(0x00FF0000)
->> +#define MMU_MMU_VERSION_MMU_MAJOR_REV_SHIFT				(16)
->> +
->> +#define MMU_MMU_VERSION_MMU_MINOR_REV_MASK				(0x0000FF00)
->> +#define MMU_MMU_VERSION_MMU_MINOR_REV_SHIFT				(8)
->> +
->> +#define MMU_MMU_VERSION_MMU_MAINT_REV_MASK				(0x000000FF)
->> +#define MMU_MMU_VERSION_MMU_MAINT_REV_SHIFT				(0)
->> +
->> +#define MMU_BYTE_SIZE							(0x01D4)
->> +
->> +#endif
-> 
-> Looks good in general, I think its worth small modernization toward using more
-> of v4l2-common, though nothing major.
->
-
-Thanks, yes I am taking a look at the v4l2-common helpers you suggested.
-
-Regards
-Devarsh
-
-> regards,
-> Nicolas
-> 
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
+SnVseSAxMywgMjAyMyAxMjoyNyBBTQ0KPiBUbzogUGFua2FqIEd1cHRhIDxwYW5rYWouZ3VwdGFA
+bnhwLmNvbT47IHNoYXduZ3VvQGtlcm5lbC5vcmc7DQo+IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7
+IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgY2xpbkBzdXNlLmNvbTsNCj4gY29ub3IrZHRAa2VybmVs
+Lm9yZzsgcGllcnJlLmdvbmRvaXNAYXJtLmNvbTsgSmFja3kgQmFpDQo+IDxwaW5nLmJhaUBueHAu
+Y29tPjsgQ2xhcmsgV2FuZyA8eGlhb25pbmcud2FuZ0BueHAuY29tPjsgV2VpIEZhbmcNCj4gPHdl
+aS5mYW5nQG54cC5jb20+OyBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT47IEJvdWdoIENoZW4N
+Cj4gPGhhaWJvLmNoZW5AbnhwLmNvbT47IGZlc3RldmFtQGdtYWlsLmNvbTsgZGwtbGludXgtaW14
+IDxsaW51eC0NCj4gaW14QG54cC5jb20+OyBkYXZlbUBkYXZlbWxvZnQubmV0OyByb2JoK2R0QGtl
+cm5lbC5vcmc7DQo+IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZzsgbGludXgtYXJt
+LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgR2F1cmF2IEphaW4NCj4gPGdhdXJhdi5q
+YWluQG54cC5jb20+OyBhbGV4YW5kZXIuc3RlaW5AZXcudHEtZ3JvdXAuY29tOyBTYWhpbCBNYWxo
+b3RyYQ0KPiA8c2FoaWwubWFsaG90cmFAbnhwLmNvbT47IEFpc2hlbmcgRG9uZyA8YWlzaGVuZy5k
+b25nQG54cC5jb20+OyBWYXJ1bg0KPiBTZXRoaSA8Vi5TZXRoaUBueHAuY29tPg0KPiBDYzoga2Vy
+bmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBbUEFU
+Q0ggdjQgNi83XSBmaXJtd2FyZTogaW14OiBhZGQgZHJpdmVyIGZvciBOWFAgRWRnZUxvY2sNCj4g
+RW5jbGF2ZQ0KPiANCj4gQ2F1dGlvbjogVGhpcyBpcyBhbiBleHRlcm5hbCBlbWFpbC4gUGxlYXNl
+IHRha2UgY2FyZSB3aGVuIGNsaWNraW5nIGxpbmtzIG9yDQo+IG9wZW5pbmcgYXR0YWNobWVudHMu
+IFdoZW4gaW4gZG91YnQsIHJlcG9ydCB0aGUgbWVzc2FnZSB1c2luZyB0aGUgJ1JlcG9ydA0KPiB0
+aGlzIGVtYWlsJyBidXR0b24NCj4gDQo+IA0KPiBPbiAxMi8wNy8yMDIzIDE0OjEyLCBQYW5rYWog
+R3VwdGEgd3JvdGU6DQo+ID4gVGhlIEVkZ2Vsb2NrIEVuY2xhdmUgLCBpcyB0aGUgc2VjdXJlIGVu
+Y2xhdmUgZW1iZWRkZWQgaW4gdGhlIFNvQyB0bw0KPiA+IHN1cHBvcnQgdGhlIGZlYXR1cmVzIGxp
+a2UgSFNNLCBTSEUgJiBWMlgsIHVzaW5nIG1lc3NhZ2UgYmFzZWQNCj4gPiBjb21tdW5pY2F0aW9u
+IGNoYW5uZWwuDQo+ID4NCj4gPiBFTEUgRlcgY29tbXVuaWNhdGVzIG9uIGEgZGVkaWNhdGVkIE1V
+IHdpdGggYXBwbGljYXRpb24gY29yZSB3aGVyZQ0KPiA+IGtlcm5lbCBpcyBydW5uaW5nLiBJdCBl
+eGlzdHMgb24gc3BlY2lmaWMgaS5NWCBwcm9jZXNzb3JzLiBlLmcuDQo+ID4gaS5NWDhVTFAsIGku
+TVg5My4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEdhdXJhdiBKYWluIDxnYXVyYXYuamFpbkBu
+eHAuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFBhbmthaiBHdXB0YSA8cGFua2FqLmd1cHRhQG54
+cC5jb20+DQo+ID4gUmVwb3J0ZWQtYnk6IGtlcm5lbCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29t
+Pg0KPiANCj4gV2hhdCBkaWQgdGhlIHJvYm90IHJlcG9ydD8gTmV3IGRyaXZlcj8NCltQYW5rYWpd
+IHJlcG9ydGVkIHByaW50ZiBmb3JtYXQtc3BlY2lmaWVyIGZvciBzaXplX3QuIA0KDQo+IA0KPiAu
+Li4NCj4gDQo+ID4gKw0KPiA+ICsvKiBGaWxsIGEgY29tbWFuZCBtZXNzYWdlIGhlYWRlciB3aXRo
+IGEgZ2l2ZW4gY29tbWFuZCBJRCBhbmQgbGVuZ3RoDQo+ID4gK2luIGJ5dGVzLiAqLyBzdGF0aWMg
+aW50IHBsYXRfZmlsbF9jbWRfbXNnX2hkcihzdHJ1Y3QgbXVfaGRyICpoZHIsDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHVpbnQ4X3QgY21kLA0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICB1aW50MzJfdCBsZW4pIHsNCj4gPiArICAgICBzdHJ1Y3QgZWxlX211
+X3ByaXYgKnByaXYgPSBOVUxMOw0KPiA+ICsgICAgIGludCBlcnI7DQo+ID4gKw0KPiA+ICsgICAg
+IGVyciA9IGdldF9lbGVfbXVfcHJpdigmcHJpdik7DQo+ID4gKyAgICAgaWYgKGVycikgew0KPiA+
+ICsgICAgICAgICAgICAgcHJfZXJyKCJFcnJvcjogaU1YIEVkZ2VMb2NrIEVuY2xhdmUgTVUsIHVz
+ZWQgYmVmb3JlDQo+ID4gKyBwcm9iaW5nLlxuIik7DQo+IA0KPiBkZXZfZXJyKCksIGV2ZXJ5d2hl
+cmUuDQo+IA0KQWNjZXB0ZWQuIFdpbGwgY29ycmVjdCBpbiBWNS4NCg0KPiA+ICsgICAgICAgICAg
+ICAgcmV0dXJuIGVycjsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIGhkci0+dGFnID0g
+cHJpdi0+Y21kX3RhZzsNCj4gPiArICAgICBoZHItPnZlciA9IEVMRV9CQVNFX0FQSV9WRVJTSU9O
+Ow0KPiA+ICsgICAgIGhkci0+Y29tbWFuZCA9IGNtZDsNCj4gPiArICAgICBoZHItPnNpemUgPSBs
+ZW4gPj4gMjsNCj4gPiArDQo+ID4gKyAgICAgcmV0dXJuIGVycjsNCj4gPiArfQ0KPiA+ICsNCj4g
+PiArc3RhdGljIHUzMiBwbGF0X2FkZF9tc2dfY3JjKHVpbnQzMl90ICptc2csIHVpbnQzMl90IG1z
+Z19sZW4pIHsNCj4gPiArICAgICB1aW50MzJfdCBpOw0KPiA+ICsgICAgIHVpbnQzMl90IGNyYyA9
+IDA7DQo+ID4gKyAgICAgdWludDMyX3QgbmJfd29yZHMgPSBtc2dfbGVuID4+IDI7DQo+ID4gKw0K
+PiA+ICsgICAgIGZvciAoaSA9IDA7IGkgPCBuYl93b3JkcyAtIDE7IGkrKykNCj4gPiArICAgICAg
+ICAgICAgIGNyYyBePSAqKG1zZyArIGkpOw0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gY3JjOw0K
+PiA+ICt9DQo+ID4gKw0KPiA+ICtpbnQgaW14X2VsZV9tc2dfc2VuZF9yY3Yoc3RydWN0IGVsZV9t
+dV9wcml2ICpwcml2KSB7DQo+ID4gKyAgICAgdW5zaWduZWQgaW50IHdhaXQ7DQo+ID4gKyAgICAg
+aW50IGVycjsNCj4gPiArDQo+ID4gKyAgICAgbXV0ZXhfbG9jaygmcHJpdi0+bXVfY21kX2xvY2sp
+Ow0KPiA+ICsgICAgIG11dGV4X2xvY2soJnByaXYtPm11X2xvY2spOw0KPiA+ICsNCj4gPiArICAg
+ICBlcnIgPSBtYm94X3NlbmRfbWVzc2FnZShwcml2LT50eF9jaGFuLCAmcHJpdi0+dHhfbXNnKTsN
+Cj4gPiArICAgICBpZiAoZXJyIDwgMCkgew0KPiA+ICsgICAgICAgICAgICAgcHJfZXJyKCJFcnJv
+cjogbWJveF9zZW5kX21lc3NhZ2UgZmFpbHVyZS5cbiIpOw0KPiA+ICsgICAgICAgICAgICAgbXV0
+ZXhfdW5sb2NrKCZwcml2LT5tdV9sb2NrKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybiBlcnI7
+DQo+ID4gKyAgICAgfQ0KPiA+ICsgICAgIG11dGV4X3VubG9jaygmcHJpdi0+bXVfbG9jayk7DQo+
+ID4gKw0KPiA+ICsgICAgIHdhaXQgPSBtc2Vjc190b19qaWZmaWVzKDEwMDApOw0KPiA+ICsgICAg
+IGlmICghd2FpdF9mb3JfY29tcGxldGlvbl90aW1lb3V0KCZwcml2LT5kb25lLCB3YWl0KSkgew0K
+PiA+ICsgICAgICAgICAgICAgcHJfZXJyKCJFcnJvcjogd2FpdF9mb3JfY29tcGxldGlvbiB0aW1l
+ZCBvdXQuXG4iKTsNCj4gPiArICAgICAgICAgICAgIGVyciA9IC1FVElNRURPVVQ7DQo+ID4gKyAg
+ICAgfQ0KPiA+ICsNCj4gPiArICAgICBtdXRleF91bmxvY2soJnByaXYtPm11X2NtZF9sb2NrKTsN
+Cj4gPiArDQo+ID4gKyAgICAgcmV0dXJuIGVycjsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGlj
+IGludCByZWFkX290cF91bmlxX2lkKHN0cnVjdCBlbGVfbXVfcHJpdiAqcHJpdiwgdTMyICp2YWx1
+ZSkgew0KPiA+ICsgICAgIHVuc2lnbmVkIGludCB0YWcsIGNvbW1hbmQsIHNpemUsIHZlciwgc3Rh
+dHVzOw0KPiA+ICsNCj4gPiArICAgICB0YWcgPSBNU0dfVEFHKHByaXYtPnJ4X21zZy5oZWFkZXIp
+Ow0KPiA+ICsgICAgIGNvbW1hbmQgPSBNU0dfQ09NTUFORChwcml2LT5yeF9tc2cuaGVhZGVyKTsN
+Cj4gPiArICAgICBzaXplID0gTVNHX1NJWkUocHJpdi0+cnhfbXNnLmhlYWRlcik7DQo+ID4gKyAg
+ICAgdmVyID0gTVNHX1ZFUihwcml2LT5yeF9tc2cuaGVhZGVyKTsNCj4gPiArICAgICBzdGF0dXMg
+PSBSRVNfU1RBVFVTKHByaXYtPnJ4X21zZy5kYXRhWzBdKTsNCj4gPiArDQo+ID4gKyAgICAgaWYg
+KHRhZyA9PSBwcml2LT5yc3BfdGFnICYmDQo+ID4gKyAgICAgICAgIGNvbW1hbmQgPT0gRUxFX1JF
+QURfRlVTRV9SRVEgJiYNCj4gPiArICAgICAgICAgc2l6ZSA9PSBFTEVfUkVBRF9GVVNFX1JTUF9N
+U0dfU1ogJiYNCj4gPiArICAgICAgICAgdmVyID09IEVMRV9CQVNFX0FQSV9WRVJTSU9OICYmDQo+
+ID4gKyAgICAgICAgIHN0YXR1cyA9PSBFTEVfU1VDQ0VTU19JTkQpIHsNCj4gPiArICAgICAgICAg
+ICAgIHZhbHVlWzBdID0gcHJpdi0+cnhfbXNnLmRhdGFbMV07DQo+ID4gKyAgICAgICAgICAgICB2
+YWx1ZVsxXSA9IHByaXYtPnJ4X21zZy5kYXRhWzJdOw0KPiA+ICsgICAgICAgICAgICAgdmFsdWVb
+Ml0gPSBwcml2LT5yeF9tc2cuZGF0YVszXTsNCj4gPiArICAgICAgICAgICAgIHZhbHVlWzNdID0g
+cHJpdi0+cnhfbXNnLmRhdGFbNF07DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gMDsNCj4gPiAr
+ICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICt9DQo+ID4gKw0K
+PiA+ICtzdGF0aWMgaW50IHJlYWRfZnVzZV93b3JkKHN0cnVjdCBlbGVfbXVfcHJpdiAqcHJpdiwg
+dTMyICp2YWx1ZSkgew0KPiA+ICsgICAgIHVuc2lnbmVkIGludCB0YWcsIGNvbW1hbmQsIHNpemUs
+IHZlciwgc3RhdHVzOw0KPiA+ICsNCj4gPiArICAgICB0YWcgPSBNU0dfVEFHKHByaXYtPnJ4X21z
+Zy5oZWFkZXIpOw0KPiA+ICsgICAgIGNvbW1hbmQgPSBNU0dfQ09NTUFORChwcml2LT5yeF9tc2cu
+aGVhZGVyKTsNCj4gPiArICAgICBzaXplID0gTVNHX1NJWkUocHJpdi0+cnhfbXNnLmhlYWRlcik7
+DQo+ID4gKyAgICAgdmVyID0gTVNHX1ZFUihwcml2LT5yeF9tc2cuaGVhZGVyKTsNCj4gPiArICAg
+ICBzdGF0dXMgPSBSRVNfU1RBVFVTKHByaXYtPnJ4X21zZy5kYXRhWzBdKTsNCj4gPiArDQo+ID4g
+KyAgICAgaWYgKHRhZyA9PSBwcml2LT5yc3BfdGFnICYmDQo+ID4gKyAgICAgICAgIGNvbW1hbmQg
+PT0gRUxFX1JFQURfRlVTRV9SRVEgJiYNCj4gPiArICAgICAgICAgc2l6ZSA9PSBFTEVfUkVBRF9G
+VVNFX1JFUV9NU0dfU1ogJiYNCj4gPiArICAgICAgICAgdmVyID09IEVMRV9CQVNFX0FQSV9WRVJT
+SU9OICYmDQo+ID4gKyAgICAgICAgIHN0YXR1cyA9PSBFTEVfU1VDQ0VTU19JTkQpIHsNCj4gPiAr
+ICAgICAgICAgICAgIHZhbHVlWzBdID0gcHJpdi0+cnhfbXNnLmRhdGFbMV07DQo+ID4gKyAgICAg
+ICAgICAgICByZXR1cm4gMDsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIHJldHVybiAt
+RUlOVkFMOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtpbnQgcmVhZF9jb21tb25fZnVzZSh1aW50MTZf
+dCBmdXNlX2lkLCB1MzIgKnZhbHVlKSB7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9wcml2ICpw
+cml2ID0gTlVMTDsNCj4gPiArICAgICBpbnQgZXJyOw0KPiA+ICsNCj4gPiArICAgICBlcnIgPSBn
+ZXRfZWxlX211X3ByaXYoJnByaXYpOw0KPiA+ICsgICAgIGlmIChlcnIpIHsNCj4gPiArICAgICAg
+ICAgICAgIHByX2VycigiRXJyb3I6IGlNWCBFZGdlTG9jayBFbmNsYXZlIE1VLCB1c2VkIGJlZm9y
+ZSBwcm9iaW5nLlxuIik7DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gZXJyOw0KPiA+ICsgICAg
+IH0NCj4gPiArICAgICBlcnIgPSBwbGF0X2ZpbGxfY21kX21zZ19oZHIoKHN0cnVjdCBtdV9oZHIg
+KikmcHJpdi0+dHhfbXNnLmhlYWRlciwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgRUxFX1JFQURfRlVTRV9SRVEsIDgpOw0KPiA+ICsgICAgIGlmIChlcnIpIHsNCj4gPiAr
+ICAgICAgICAgICAgIHByX2VycigiRXJyb3I6IHBsYXRfZmlsbF9jbWRfbXNnX2hkciBmYWlsZWQu
+XG4iKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybiBlcnI7DQo+ID4gKyAgICAgfQ0KPiA+ICsN
+Cj4gPiArICAgICBwcml2LT50eF9tc2cuZGF0YVswXSA9IGZ1c2VfaWQ7DQo+ID4gKyAgICAgZXJy
+ID0gaW14X2VsZV9tc2dfc2VuZF9yY3YocHJpdik7DQo+ID4gKyAgICAgaWYgKGVyciA8IDApDQo+
+ID4gKyAgICAgICAgICAgICByZXR1cm4gZXJyOw0KPiA+ICsNCj4gPiArICAgICBzd2l0Y2ggKGZ1
+c2VfaWQpIHsNCj4gPiArICAgICBjYXNlIE9UUF9VTklRX0lEOg0KPiA+ICsgICAgICAgICAgICAg
+ZXJyID0gcmVhZF9vdHBfdW5pcV9pZChwcml2LCB2YWx1ZSk7DQo+ID4gKyAgICAgICAgICAgICBi
+cmVhazsNCj4gPiArICAgICBkZWZhdWx0Og0KPiA+ICsgICAgICAgICAgICAgZXJyID0gcmVhZF9m
+dXNlX3dvcmQocHJpdiwgdmFsdWUpOw0KPiA+ICsgICAgICAgICAgICAgYnJlYWs7DQo+ID4gKyAg
+ICAgfQ0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gZXJyOw0KPiA+ICt9DQo+ID4gK0VYUE9SVF9T
+WU1CT0xfR1BMKHJlYWRfY29tbW9uX2Z1c2UpOw0KPiA+ICsNCj4gPiAraW50IGVsZV9waW5nKHZv
+aWQpDQo+IA0KPiBObywgd2h5IHRoaXMgaXMgdm9pZD8gRG9uJ3QgZG8gc29tZSBzaW5nbGV0b25z
+IHdoZW4gbm90IG5lY2Vzc2FyeS4gSXQncyB3cm9uZw0KPiBkZXNpZ24sIGVycm9yIHByb25lIGFu
+ZCB0cmlja3kgdG8gbWFrZSB3b3JrIHdpdGggZGVmZXJyZWQgcHJvYmUuDQo+IA0KDQo+IFdoeSB0
+aGUgY29uc3VtZXJzIGNhbm5vdCBiZSBkZXNpZ25lZCBsaWtlIGEgY29uc3VtZXIgLSB0YWtlIGEg
+cmVzcGVjdGl2ZQ0KPiBwaGFuZGxlIGZyb20gcHJvZHVjZXI/DQo+IA0KW1Bhbmthal0gQWNjZXB0
+ZWQuIERldmljZSByZWZlcmVuY2UgaXMgdXNlZC4NClRoYW5rcyBmb3IgcG9pbnRpbmcgaXQgb3V0
+LiANCg0KPiA+ICt7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9wcml2ICpwcml2ID0gTlVMTDsN
+Cj4gPiArICAgICB1bnNpZ25lZCBpbnQgdGFnLCBjb21tYW5kLCBzaXplLCB2ZXIsIHN0YXR1czsN
+Cj4gPiArICAgICBpbnQgZXJyOw0KPiA+ICsNCj4gPiArICAgICBlcnIgPSBnZXRfZWxlX211X3By
+aXYoJnByaXYpOw0KPiA+ICsgICAgIGlmIChlcnIpIHsNCj4gPiArICAgICAgICAgICAgIHByX2Vy
+cigiRXJyb3I6IGlNWCBFZGdlTG9jayBFbmNsYXZlIE1VLCB1c2VkIGJlZm9yZSBwcm9iaW5nLlxu
+Iik7DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gZXJyOw0KPiA+ICsgICAgIH0NCj4gPiArICAg
+ICBlcnIgPSBwbGF0X2ZpbGxfY21kX21zZ19oZHIoKHN0cnVjdCBtdV9oZHIgKikmcHJpdi0+dHhf
+bXNnLmhlYWRlciwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRUxFX1BJ
+TkdfUkVRLCA0KTsNCj4gPiArICAgICBpZiAoZXJyKSB7DQo+ID4gKyAgICAgICAgICAgICBwcl9l
+cnIoIkVycm9yOiBwbGF0X2ZpbGxfY21kX21zZ19oZHIgZmFpbGVkLlxuIik7DQo+ID4gKyAgICAg
+ICAgICAgICByZXR1cm4gZXJyOw0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgZXJyID0g
+aW14X2VsZV9tc2dfc2VuZF9yY3YocHJpdik7DQo+ID4gKyAgICAgaWYgKGVyciA8IDApDQo+ID4g
+KyAgICAgICAgICAgICByZXR1cm4gZXJyOw0KPiA+ICsNCj4gPiArICAgICB0YWcgPSBNU0dfVEFH
+KHByaXYtPnJ4X21zZy5oZWFkZXIpOw0KPiA+ICsgICAgIGNvbW1hbmQgPSBNU0dfQ09NTUFORChw
+cml2LT5yeF9tc2cuaGVhZGVyKTsNCj4gPiArICAgICBzaXplID0gTVNHX1NJWkUocHJpdi0+cnhf
+bXNnLmhlYWRlcik7DQo+ID4gKyAgICAgdmVyID0gTVNHX1ZFUihwcml2LT5yeF9tc2cuaGVhZGVy
+KTsNCj4gPiArICAgICBzdGF0dXMgPSBSRVNfU1RBVFVTKHByaXYtPnJ4X21zZy5kYXRhWzBdKTsN
+Cj4gPiArDQo+ID4gKyAgICAgaWYgKHRhZyA9PSBwcml2LT5yc3BfdGFnICYmIGNvbW1hbmQgPT0g
+RUxFX1BJTkdfUkVRICYmDQo+ID4gKyAgICAgICAgIHNpemUgPT0gRUxFX1BJTkdfUkVRX01TR19T
+WiAmJiB2ZXIgPT0gRUxFX0JBU0VfQVBJX1ZFUlNJT04NCj4gJiYNCj4gPiArICAgICAgICAgc3Rh
+dHVzID09IEVMRV9TVUNDRVNTX0lORCkNCj4gPiArICAgICAgICAgICAgIHJldHVybiAwOw0KPiA+
+ICsNCj4gPiArICAgICByZXR1cm4gLUVBR0FJTjsNCj4gPiArfQ0KPiA+ICtFWFBPUlRfU1lNQk9M
+X0dQTChlbGVfcGluZyk7DQo+IA0KPiBOb3BlLiBZb3UgaGF2ZSBvbmUgZHJpdmVyLiBUaGlzIGRv
+ZXMgbm90IGhhdmUgdG8gYmUgZXhwb3J0ZWQuDQo+IA0KPiBUaGlzIGlzIGEgc3Ryb25nIE5BSy4N
+Cj4gDQpbUGFua2FqXSBBY2NlcHRlZC4gV2lsbCBiZSByZW1vdmVkIGluIFY1Lg0KPiANCj4gPiAr
+DQo+ID4gK2ludCBlbGVfc2VydmljZV9zd2FwKHBoeXNfYWRkcl90IGFkZHIsIHUzMiBhZGRyX3Np
+emUsIHUxNiBmbGFnKSB7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9wcml2ICpwcml2Ow0KPiA+
+ICsgICAgIGludCByZXQ7DQo+ID4gKyAgICAgdW5zaWduZWQgaW50IHRhZywgY29tbWFuZCwgc2l6
+ZSwgdmVyLCBzdGF0dXM7DQo+ID4gKw0KPiA+ICsgICAgIHJldCA9IGdldF9lbGVfbXVfcHJpdigm
+cHJpdik7DQo+ID4gKyAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgIHJldHVybiByZXQ7
+DQo+ID4gKw0KPiA+ICsgICAgIHJldCA9IHBsYXRfZmlsbF9jbWRfbXNnX2hkcigoc3RydWN0IG11
+X2hkciAqKSZwcml2LT50eF9tc2cuaGVhZGVyLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBFTEVfU0VSVklDRV9TV0FQX1JFUSwgMjQpOw0KPiA+ICsgICAgIGlmIChyZXQp
+DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArICAgICBwcml2LT50
+eF9tc2cuZGF0YVswXSA9IGZsYWc7DQo+ID4gKyAgICAgcHJpdi0+dHhfbXNnLmRhdGFbMV0gPSBh
+ZGRyX3NpemU7DQo+ID4gKyAgICAgcHJpdi0+dHhfbXNnLmRhdGFbMl0gPSBFTEVfTk9ORV9WQUw7
+DQo+ID4gKyAgICAgcHJpdi0+dHhfbXNnLmRhdGFbM10gPSBsb3dlcl8zMl9iaXRzKGFkZHIpOw0K
+PiA+ICsgICAgIHByaXYtPnR4X21zZy5kYXRhWzRdID0gcGxhdF9hZGRfbXNnX2NyYygodWludDMy
+X3QgKikmcHJpdi0+dHhfbXNnLA0KPiAyNCk7DQo+ID4gKyAgICAgcmV0ID0gaW14X2VsZV9tc2df
+c2VuZF9yY3YocHJpdik7DQo+ID4gKyAgICAgaWYgKHJldCA8IDApDQo+ID4gKyAgICAgICAgICAg
+ICByZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArICAgICB0YWcgPSBNU0dfVEFHKHByaXYtPnJ4X21z
+Zy5oZWFkZXIpOw0KPiA+ICsgICAgIGNvbW1hbmQgPSBNU0dfQ09NTUFORChwcml2LT5yeF9tc2cu
+aGVhZGVyKTsNCj4gPiArICAgICBzaXplID0gTVNHX1NJWkUocHJpdi0+cnhfbXNnLmhlYWRlcik7
+DQo+ID4gKyAgICAgdmVyID0gTVNHX1ZFUihwcml2LT5yeF9tc2cuaGVhZGVyKTsNCj4gPiArICAg
+ICBzdGF0dXMgPSBSRVNfU1RBVFVTKHByaXYtPnJ4X21zZy5kYXRhWzBdKTsNCj4gPiArICAgICBp
+ZiAodGFnID09IHByaXYtPnJzcF90YWcgJiYNCj4gPiArICAgICAgICAgY29tbWFuZCA9PSBFTEVf
+U0VSVklDRV9TV0FQX1JFUSAmJg0KPiA+ICsgICAgICAgICBzaXplID09IEVMRV9TRVJWSUNFX1NX
+QVBfUkVRX01TR19TWiAmJg0KPiA+ICsgICAgICAgICB2ZXIgPT0gRUxFX0JBU0VfQVBJX1ZFUlNJ
+T04gJiYNCj4gPiArICAgICAgICAgc3RhdHVzID09IEVMRV9TVUNDRVNTX0lORCkgew0KPiA+ICsg
+ICAgICAgICAgICAgaWYgKGZsYWcgPT0gRUxFX0lNRU1fRVhQT1JUKQ0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICByZXR1cm4gcHJpdi0+cnhfbXNnLmRhdGFbMV07DQo+ID4gKyAgICAgICAgICAg
+ICBlbHNlDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIHJldHVybiAwOw0KPiA+ICsgICAgIH0N
+Cj4gPiArDQo+ID4gKyAgICAgcmV0dXJuIC1FSU5WQUw7DQo+ID4gK30NCj4gPiArRVhQT1JUX1NZ
+TUJPTF9HUEwoZWxlX3NlcnZpY2Vfc3dhcCk7DQo+ID4gKw0KPiA+ICtpbnQgZWxlX2dldF9pbmZv
+KHBoeXNfYWRkcl90IGFkZHIsIHUzMiBkYXRhX3NpemUpIHsNCj4gPiArICAgICBzdHJ1Y3QgZWxl
+X211X3ByaXYgKnByaXY7DQo+ID4gKyAgICAgaW50IHJldDsNCj4gPiArICAgICB1bnNpZ25lZCBp
+bnQgdGFnLCBjb21tYW5kLCBzaXplLCB2ZXIsIHN0YXR1czsNCj4gPiArDQo+ID4gKyAgICAgcmV0
+ID0gZ2V0X2VsZV9tdV9wcml2KCZwcml2KTsNCj4gPiArICAgICBpZiAocmV0KQ0KPiA+ICsgICAg
+ICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKyAgICAgcmV0ID0gcGxhdF9maWxsX2Nt
+ZF9tc2dfaGRyKChzdHJ1Y3QgbXVfaGRyICopJnByaXYtPnR4X21zZy5oZWFkZXIsDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVMRV9HRVRfSU5GT19SRVEsIDE2KTsNCj4g
+PiArICAgICBpZiAocmV0KQ0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArDQo+
+ID4gKyAgICAgcHJpdi0+dHhfbXNnLmRhdGFbMF0gPSB1cHBlcl8zMl9iaXRzKGFkZHIpOw0KPiA+
+ICsgICAgIHByaXYtPnR4X21zZy5kYXRhWzFdID0gbG93ZXJfMzJfYml0cyhhZGRyKTsNCj4gPiAr
+ICAgICBwcml2LT50eF9tc2cuZGF0YVsyXSA9IGRhdGFfc2l6ZTsNCj4gPiArICAgICByZXQgPSBp
+bXhfZWxlX21zZ19zZW5kX3Jjdihwcml2KTsNCj4gPiArICAgICBpZiAocmV0IDwgMCkNCj4gPiAr
+ICAgICAgICAgICAgIHJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsgICAgIHRhZyA9IE1TR19UQUco
+cHJpdi0+cnhfbXNnLmhlYWRlcik7DQo+ID4gKyAgICAgY29tbWFuZCA9IE1TR19DT01NQU5EKHBy
+aXYtPnJ4X21zZy5oZWFkZXIpOw0KPiA+ICsgICAgIHNpemUgPSBNU0dfU0laRShwcml2LT5yeF9t
+c2cuaGVhZGVyKTsNCj4gPiArICAgICB2ZXIgPSBNU0dfVkVSKHByaXYtPnJ4X21zZy5oZWFkZXIp
+Ow0KPiA+ICsgICAgIHN0YXR1cyA9IFJFU19TVEFUVVMocHJpdi0+cnhfbXNnLmRhdGFbMF0pOw0K
+PiA+ICsgICAgIGlmICh0YWcgPT0gcHJpdi0+cnNwX3RhZyAmJg0KPiA+ICsgICAgICAgICBjb21t
+YW5kID09IEVMRV9HRVRfSU5GT19SRVEgJiYNCj4gPiArICAgICAgICAgc2l6ZSA9PSBFTEVfR0VU
+X0lORk9fUkVRX01TR19TWiAmJg0KPiA+ICsgICAgICAgICB2ZXIgPT0gRUxFX0JBU0VfQVBJX1ZF
+UlNJT04gJiYNCj4gPiArICAgICAgICAgc3RhdHVzID09IEVMRV9TVUNDRVNTX0lORCkNCj4gPiAr
+ICAgICAgICAgICAgIHJldHVybiAwOw0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gLUVJTlZBTDsN
+Cj4gPiArfQ0KPiA+ICtFWFBPUlRfU1lNQk9MX0dQTChlbGVfZ2V0X2luZm8pOw0KPiA+ICsNCj4g
+PiArLyoNCj4gPiArICogZWxlX2dldF90cm5nX3N0YXRlKCkgLSBwcmVwYXJlIGFuZCBzZW5kIHRo
+ZSBjb21tYW5kIHRvIHJlYWQNCj4gPiArICogICAgICAgICAgICAgICAgICAgICAgICBjcnlwdG8g
+bGliIGFuZCBUUk5HIHN0YXRlDQo+ID4gKyAqIFRSTkcgc3RhdGUNCj4gPiArICogIDB4MSAgICAg
+ICAgICAgICAgVFJORyBpcyBpbiBwcm9ncmFtIG1vZGUNCj4gPiArICogIDB4MiAgICAgICAgICAg
+ICAgVFJORyBpcyBzdGlsbCBnZW5lcmF0aW5nIGVudHJvcHkNCj4gPiArICogIDB4MyAgICAgICAg
+ICAgICAgVFJORyBlbnRyb3B5IGlzIHZhbGlkIGFuZCByZWFkeSB0byBiZSByZWFkDQo+ID4gKyAq
+ICAweDQgICAgICAgICAgICAgIFRSTkcgZW5jb3VudGVyIGFuIGVycm9yIHdoaWxlIGdlbmVyYXRp
+bmcgZW50cm9weQ0KPiA+ICsgKg0KPiA+ICsgKiBDU0FMIHN0YXRlDQo+ID4gKyAqICAweDAgICAg
+ICAgICAgICAgIENyeXB0byBMaWIgcmFuZG9tIGNvbnRleHQgaW5pdGlhbGl6YXRpb24gaXMgbm90
+IGRvbmUgeWV0DQo+ID4gKyAqICAweDEgICAgICAgICAgICAgIENyeXB0byBMaWIgcmFuZG9tIGNv
+bnRleHQgaW5pdGlhbGl6YXRpb24gaXMgb24tZ29pbmcNCj4gPiArICogIDB4MiAgICAgICAgICAg
+ICAgQ3J5cHRvIExpYiByYW5kb20gY29udGV4dCBpbml0aWFsaXphdGlvbiBzdWNjZWVkDQo+ID4g
+KyAqICAweDMgICAgICAgICAgICAgIENyeXB0byBMaWIgcmFuZG9tIGNvbnRleHQgaW5pdGlhbGl6
+YXRpb24gZmFpbGVkDQo+ID4gKyAqDQo+ID4gKyAqIHJldHVybnM6IGNzYWwgYW5kIHRybmcgc3Rh
+dGUuDQo+ID4gKyAqDQo+ID4gKyAqLw0KPiA+ICtpbnQgZWxlX2dldF90cm5nX3N0YXRlKHZvaWQp
+DQo+ID4gK3sNCj4gPiArICAgICBzdHJ1Y3QgZWxlX211X3ByaXYgKnByaXY7DQo+ID4gKyAgICAg
+aW50IHJldDsNCj4gPiArICAgICB1bnNpZ25lZCBpbnQgdGFnLCBjb21tYW5kLCBzaXplLCB2ZXIs
+IHN0YXR1czsNCj4gPiArDQo+ID4gKyAgICAgLyogYWNjZXNzIGVsZV9tdV9wcml2IGRhdGEgc3Ry
+dWN0dXJlIHBvaW50ZXIqLw0KPiA+ICsgICAgIHJldCA9IGdldF9lbGVfbXVfcHJpdigmcHJpdik7
+DQo+ID4gKyAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgIHJldHVybiByZXQ7DQo+ID4g
+Kw0KPiA+ICsgICAgIHJldCA9IHBsYXRfZmlsbF9jbWRfbXNnX2hkcigoc3RydWN0IG11X2hkciAq
+KSZwcml2LT50eF9tc2cuaGVhZGVyLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBFTEVfR0VUX1RSTkdfU1RBVEVfUkVRLCA0KTsNCj4gPiArICAgICBpZiAocmV0KQ0KPiA+
+ICsgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKyAgICAgcmV0ID0gaW14X2Vs
+ZV9tc2dfc2VuZF9yY3YocHJpdik7DQo+ID4gKyAgICAgaWYgKHJldCA8IDApDQo+ID4gKyAgICAg
+ICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArICAgICB0YWcgPSBNU0dfVEFHKHByaXYt
+PnJ4X21zZy5oZWFkZXIpOw0KPiA+ICsgICAgIGNvbW1hbmQgPSBNU0dfQ09NTUFORChwcml2LT5y
+eF9tc2cuaGVhZGVyKTsNCj4gPiArICAgICBzaXplID0gTVNHX1NJWkUocHJpdi0+cnhfbXNnLmhl
+YWRlcik7DQo+ID4gKyAgICAgdmVyID0gTVNHX1ZFUihwcml2LT5yeF9tc2cuaGVhZGVyKTsNCj4g
+PiArICAgICBzdGF0dXMgPSBSRVNfU1RBVFVTKHByaXYtPnJ4X21zZy5kYXRhWzBdKTsNCj4gPiAr
+ICAgICBpZiAodGFnID09IHByaXYtPnJzcF90YWcgJiYNCj4gPiArICAgICAgICAgY29tbWFuZCA9
+PSBFTEVfR0VUX1RSTkdfU1RBVEVfUkVRICYmDQo+ID4gKyAgICAgICAgIHNpemUgPT0gRUxFX0dF
+VF9UUk5HX1NUQVRFX1JFUV9NU0dfU1ogJiYNCj4gPiArICAgICAgICAgdmVyID09IEVMRV9CQVNF
+X0FQSV9WRVJTSU9OICYmDQo+ID4gKyAgICAgICAgIHN0YXR1cyA9PSBFTEVfU1VDQ0VTU19JTkQp
+IHsNCj4gPiArICAgICAgICAgICAgIHJldHVybiAocHJpdi0+cnhfbXNnLmRhdGFbMV0gJiBDU0FM
+X1RSTkdfU1RBVEVfTUFTSyk7DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICByZXR1cm4g
+LUVJTlZBTDsNCj4gPiArfQ0KPiA+ICtFWFBPUlRfU1lNQk9MX0dQTChlbGVfZ2V0X3Rybmdfc3Rh
+dGUpOw0KPiA+ICsNCj4gPiArLyoNCj4gPiArICogZWxlX3N0YXJ0X3JuZygpIC0gcHJlcGFyZSBh
+bmQgc2VuZCB0aGUgY29tbWFuZCB0byBzdGFydA0KPiA+ICsgKiAgICAgICAgICAgICAgICAgICBp
+bml0aWFsaXphdGlvbiBvZiB0aGUgRUxFIFJORyBjb250ZXh0DQo+ID4gKyAqDQo+ID4gKyAqIHJl
+dHVybnM6ICAwIG9uIHN1Y2Nlc3MuDQo+ID4gKyAqLw0KPiA+ICtpbnQgZWxlX3N0YXJ0X3JuZyh2
+b2lkKQ0KPiA+ICt7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9wcml2ICpwcml2Ow0KPiA+ICsg
+ICAgIGludCByZXQ7DQo+ID4gKyAgICAgdW5zaWduZWQgaW50IHRhZywgY29tbWFuZCwgc2l6ZSwg
+dmVyLCBzdGF0dXM7DQo+ID4gKw0KPiA+ICsgICAgIC8qIGFjY2VzcyBlbGVfbXVfcHJpdiBkYXRh
+IHN0cnVjdHVyZSBwb2ludGVyKi8NCj4gPiArICAgICByZXQgPSBnZXRfZWxlX211X3ByaXYoJnBy
+aXYpOw0KPiA+ICsgICAgIGlmIChyZXQpDQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gcmV0Ow0K
+PiA+ICsNCj4gPiArICAgICByZXQgPSBwbGF0X2ZpbGxfY21kX21zZ19oZHIoKHN0cnVjdCBtdV9o
+ZHIgKikmcHJpdi0+dHhfbXNnLmhlYWRlciwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgRUxFX1NUQVJUX1JOR19SRVEsIDQpOw0KPiA+ICsgICAgIGlmIChyZXQpDQo+ID4g
+KyAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArICAgICByZXQgPSBpbXhfZWxl
+X21zZ19zZW5kX3Jjdihwcml2KTsNCj4gPiArICAgICBpZiAocmV0IDwgMCkNCj4gPiArICAgICAg
+ICAgICAgIHJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsgICAgIHRhZyA9IE1TR19UQUcocHJpdi0+
+cnhfbXNnLmhlYWRlcik7DQo+ID4gKyAgICAgY29tbWFuZCA9IE1TR19DT01NQU5EKHByaXYtPnJ4
+X21zZy5oZWFkZXIpOw0KPiA+ICsgICAgIHNpemUgPSBNU0dfU0laRShwcml2LT5yeF9tc2cuaGVh
+ZGVyKTsNCj4gPiArICAgICB2ZXIgPSBNU0dfVkVSKHByaXYtPnJ4X21zZy5oZWFkZXIpOw0KPiA+
+ICsgICAgIHN0YXR1cyA9IFJFU19TVEFUVVMocHJpdi0+cnhfbXNnLmRhdGFbMF0pOw0KPiA+ICsg
+ICAgIGlmICh0YWcgPT0gcHJpdi0+cnNwX3RhZyAmJg0KPiA+ICsgICAgICAgICBjb21tYW5kID09
+IEVMRV9TVEFSVF9STkdfUkVRICYmDQo+ID4gKyAgICAgICAgIHNpemUgPT0gRUxFX1NUQVJUX1JO
+R19SRVFfTVNHX1NaICYmDQo+ID4gKyAgICAgICAgIHZlciA9PSBFTEVfQkFTRV9BUElfVkVSU0lP
+TiAmJg0KPiA+ICsgICAgICAgICBzdGF0dXMgPT0gRUxFX1NVQ0NFU1NfSU5EKSB7DQo+ID4gKyAg
+ICAgICAgICAgICByZXR1cm4gMDsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIHJldHVy
+biAtRUlOVkFMOw0KPiA+ICt9DQo+ID4gK0VYUE9SVF9TWU1CT0xfR1BMKGVsZV9zdGFydF9ybmcp
+Ow0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Zpcm13YXJlL2lteC9lbGVfZndfYXBpLmMNCj4g
+PiBiL2RyaXZlcnMvZmlybXdhcmUvaW14L2VsZV9md19hcGkuYw0KPiA+IG5ldyBmaWxlIG1vZGUg
+MTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi4yYTNmZGM0MjI5NGINCj4gPiAtLS0gL2Rl
+di9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9maXJtd2FyZS9pbXgvZWxlX2Z3X2FwaS5jDQo+ID4g
+QEAgLTAsMCArMSwxMTIgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0y
+LjAtb3ItbGF0ZXINCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IDIwMjMgTlhQDQo+ID4gKyAq
+Lw0KPiA+ICsNCj4gPiArI2luY2x1ZGUgPGxpbnV4L2RtYS1tYXBwaW5nLmg+DQo+ID4gKyNpbmNs
+dWRlIDxsaW51eC9maXJtd2FyZS9pbXgvZWxlX2Z3X2FwaS5oPg0KPiA+ICsNCj4gPiArI2luY2x1
+ZGUgInNlX2Z3LmgiDQo+ID4gKw0KPiA+ICsvKiBGaWxsIGEgY29tbWFuZCBtZXNzYWdlIGhlYWRl
+ciB3aXRoIGEgZ2l2ZW4gY29tbWFuZCBJRCBhbmQgbGVuZ3RoDQo+ID4gK2luIGJ5dGVzLiAqLyBz
+dGF0aWMgaW50IHBsYXRfZmlsbF9jbWRfbXNnX2hkcihzdHJ1Y3QgbXVfaGRyICpoZHIsDQo+ID4g
+K3VpbnQ4X3QgY21kLCB1aW50MzJfdCBsZW4pIHsNCj4gPiArICAgICBzdHJ1Y3QgZWxlX211X3By
+aXYgKnByaXYgPSBOVUxMOw0KPiA+ICsgICAgIGludCBlcnIgPSAwOw0KPiA+ICsNCj4gPiArICAg
+ICBlcnIgPSBnZXRfZWxlX211X3ByaXYoJnByaXYpOw0KPiA+ICsgICAgIGlmIChlcnIpIHsNCj4g
+PiArICAgICAgICAgICAgIHByX2VycigiRXJyb3I6IGlNWCBFZGdlTG9jayBFbmNsYXZlIE1VIGlz
+IG5vdCBwcm9iZWQNCj4gc3VjY2Vzc2Z1bGx5LlxuIik7DQo+ID4gKyAgICAgICAgICAgICByZXR1
+cm4gZXJyOw0KPiA+ICsgICAgIH0NCj4gPiArICAgICBoZHItPnRhZyA9IHByaXYtPmNtZF90YWc7
+DQo+ID4gKyAgICAgaGRyLT52ZXIgPSBNRVNTQUdJTkdfVkVSU0lPTl83Ow0KPiA+ICsgICAgIGhk
+ci0+Y29tbWFuZCA9IGNtZDsNCj4gPiArICAgICBoZHItPnNpemUgPSAodWludDhfdCkobGVuIC8g
+c2l6ZW9mKHVpbnQzMl90KSk7DQo+ID4gKw0KPiA+ICsgICAgIHJldHVybiBlcnI7DQo+ID4gK30N
+Cj4gPiArDQo+ID4gKy8qDQo+ID4gKyAqIGVsZV9nZXRfcmFuZG9tKCkgLSBwcmVwYXJlIGFuZCBz
+ZW5kIHRoZSBjb21tYW5kIHRvIHByb2NlZWQNCj4gPiArICogICAgICAgICAgICAgICAgICAgIHdp
+dGggYSByYW5kb20gbnVtYmVyIGdlbmVyYXRpb24gb3BlcmF0aW9uDQo+ID4gKyAqDQo+ID4gKyAq
+IHJldHVybnM6ICBzaXplIG9mIHRoZSByb25kb20gbnVtYmVyIGdlbmVyYXRlZCAgKi8gaW50DQo+
+ID4gK2VsZV9nZXRfcmFuZG9tKHN0cnVjdCBod3JuZyAqcm5nLCB2b2lkICpkYXRhLCBzaXplX3Qg
+bGVuLCBib29sIHdhaXQpDQo+ID4gK3sNCj4gPiArICAgICBzdHJ1Y3QgZWxlX211X3ByaXYgKnBy
+aXY7DQo+ID4gKyAgICAgdW5zaWduZWQgaW50IHRhZywgY29tbWFuZCwgc2l6ZSwgdmVyLCBzdGF0
+dXM7DQo+ID4gKyAgICAgZG1hX2FkZHJfdCBkc3RfZG1hOw0KPiA+ICsgICAgIHU4ICpidWY7DQo+
+ID4gKyAgICAgaW50IHJldDsNCj4gPiArDQo+ID4gKyAgICAgLyogYWNjZXNzIGVsZV9tdV9wcml2
+IGRhdGEgc3RydWN0dXJlIHBvaW50ZXIqLw0KPiA+ICsgICAgIHJldCA9IGdldF9lbGVfbXVfcHJp
+digmcHJpdik7DQo+ID4gKyAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgIHJldHVybiBy
+ZXQ7DQo+ID4gKw0KPiA+ICsgICAgIGJ1ZiA9IGRtYW1fYWxsb2NfY29oZXJlbnQocHJpdi0+ZGV2
+LCBsZW4sICZkc3RfZG1hLCBHRlBfS0VSTkVMKTsNCj4gPiArICAgICBpZiAoIWJ1Zikgew0KPiA+
+ICsgICAgICAgICAgICAgZGV2X2Vycihwcml2LT5kZXYsICJGYWlsZWQgdG8gbWFwIGRlc3RpbmF0
+aW9uIGJ1ZmZlciBtZW1vcnlcbiIpOw0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07
+DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICByZXQgPSBwbGF0X2ZpbGxfY21kX21zZ19o
+ZHIoKHN0cnVjdCBtdV9oZHIgKikmcHJpdi0+dHhfbXNnLmhlYWRlciwNCj4gRUxFX0dFVF9SQU5E
+T01fUkVRLCAxNik7DQo+ID4gKyAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgIGdvdG8g
+ZXhpdDsNCj4gPiArDQo+ID4gKyAgICAgcHJpdi0+dHhfbXNnLmRhdGFbMF0gPSAweDA7DQo+ID4g
+KyAgICAgcHJpdi0+dHhfbXNnLmRhdGFbMV0gPSBkc3RfZG1hOw0KPiA+ICsgICAgIHByaXYtPnR4
+X21zZy5kYXRhWzJdID0gbGVuOw0KPiA+ICsgICAgIHJldCA9IGlteF9lbGVfbXNnX3NlbmRfcmN2
+KHByaXYpOw0KPiA+ICsgICAgIGlmIChyZXQgPCAwKQ0KPiA+ICsgICAgICAgICAgICAgZ290byBl
+eGl0Ow0KPiA+ICsNCj4gPiArICAgICB0YWcgPSBNU0dfVEFHKHByaXYtPnJ4X21zZy5oZWFkZXIp
+Ow0KPiA+ICsgICAgIGNvbW1hbmQgPSBNU0dfQ09NTUFORChwcml2LT5yeF9tc2cuaGVhZGVyKTsN
+Cj4gPiArICAgICBzaXplID0gTVNHX1NJWkUocHJpdi0+cnhfbXNnLmhlYWRlcik7DQo+ID4gKyAg
+ICAgdmVyID0gTVNHX1ZFUihwcml2LT5yeF9tc2cuaGVhZGVyKTsNCj4gPiArICAgICBzdGF0dXMg
+PSBSRVNfU1RBVFVTKHByaXYtPnJ4X21zZy5kYXRhWzBdKTsNCj4gPiArICAgICBpZiAodGFnID09
+IDB4ZTEgJiYgY29tbWFuZCA9PSBFTEVfR0VUX1JBTkRPTV9SRVEgJiYgc2l6ZSA9PQ0KPiAweDAy
+ICYmDQo+ID4gKyAgICAgICAgIHZlciA9PSAweDA3ICYmIHN0YXR1cyA9PSAweGQ2KSB7DQo+ID4g
+KyAgICAgICAgICAgICBtZW1jcHkoZGF0YSwgYnVmLCBsZW4pOw0KPiA+ICsgICAgICAgICAgICAg
+cmV0ID0gbGVuOw0KPiA+ICsgICAgIH0gZWxzZQ0KPiA+ICsgICAgICAgICAgICAgcmV0ID0gLUVJ
+TlZBTDsNCj4gPiArDQo+ID4gK2V4aXQ6DQo+ID4gKyAgICAgZG1hbV9mcmVlX2NvaGVyZW50KHBy
+aXYtPmRldiwgbGVuLCBidWYsIGRzdF9kbWEpOw0KPiA+ICsgICAgIHJldHVybiByZXQ7DQo+ID4g
+K30NCj4gPiArDQo+ID4gK2ludCBlbGVfaW5pdF9mdyh2b2lkKQ0KPiA+ICt7DQo+ID4gKyAgICAg
+c3RydWN0IGVsZV9tdV9wcml2ICpwcml2Ow0KPiA+ICsgICAgIGludCByZXQ7DQo+ID4gKyAgICAg
+dW5zaWduZWQgaW50IHRhZywgY29tbWFuZCwgc2l6ZSwgdmVyLCBzdGF0dXM7DQo+ID4gKw0KPiA+
+ICsgICAgIHJldCA9IGdldF9lbGVfbXVfcHJpdigmcHJpdik7DQo+ID4gKyAgICAgaWYgKHJldCkN
+Cj4gPiArICAgICAgICAgICAgIHJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsgICAgIHJldCA9IHBs
+YXRfZmlsbF9jbWRfbXNnX2hkcigoc3RydWN0IG11X2hkciAqKSZwcml2LT50eF9tc2cuaGVhZGVy
+LA0KPiBFTEVfSU5JVF9GV19SRVEsIDQpOw0KPiA+ICsgICAgIGlmIChyZXQpDQo+ID4gKyAgICAg
+ICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArICAgICByZXQgPSBpbXhfZWxlX21zZ19z
+ZW5kX3Jjdihwcml2KTsNCj4gPiArICAgICBpZiAocmV0IDwgMCkNCj4gPiArICAgICAgICAgICAg
+IHJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsgICAgIHRhZyA9IE1TR19UQUcocHJpdi0+cnhfbXNn
+LmhlYWRlcik7DQo+ID4gKyAgICAgY29tbWFuZCA9IE1TR19DT01NQU5EKHByaXYtPnJ4X21zZy5o
+ZWFkZXIpOw0KPiA+ICsgICAgIHNpemUgPSBNU0dfU0laRShwcml2LT5yeF9tc2cuaGVhZGVyKTsN
+Cj4gPiArICAgICB2ZXIgPSBNU0dfVkVSKHByaXYtPnJ4X21zZy5oZWFkZXIpOw0KPiA+ICsgICAg
+IHN0YXR1cyA9IFJFU19TVEFUVVMocHJpdi0+cnhfbXNnLmRhdGFbMF0pOw0KPiA+ICsNCj4gPiAr
+ICAgICBpZiAodGFnID09IDB4ZTEgJiYgY29tbWFuZCA9PSBFTEVfSU5JVF9GV19SRVEgJiYgc2l6
+ZSA9PSAweDAyICYmDQo+ID4gKyAgICAgICAgIHZlciA9PSAweDA2ICYmIHN0YXR1cyA9PSAweGQ2
+KQ0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIDA7DQo+ID4gKw0KPiA+ICsgICAgIHJldHVybiAt
+RUlOVkFMOw0KPiA+ICt9DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZmlybXdhcmUvaW14L3Nl
+X2Z3LmMNCj4gPiBiL2RyaXZlcnMvZmlybXdhcmUvaW14L3NlX2Z3LmMgbmV3IGZpbGUgbW9kZSAx
+MDA2NDQgaW5kZXgNCj4gPiAwMDAwMDAwMDAwMDAuLjE0ZTRiYjQyMjVlMQ0KPiA+IC0tLSAvZGV2
+L251bGwNCj4gPiArKysgYi9kcml2ZXJzL2Zpcm13YXJlL2lteC9zZV9mdy5jDQo+ID4gQEAgLTAs
+MCArMSwxNDQzIEBADQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKw0K
+PiA+ICsvKg0KPiA+ICsgKiBDb3B5cmlnaHQgMjAyMS0yMDIzIE5YUA0KPiA+ICsgKi8NCj4gPiAr
+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9kbWEtbWFwcGluZy5oPg0KPiA+ICsjaW5jbHVkZSA8bGlu
+dXgvY29tcGxldGlvbi5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvZGV2X3ByaW50ay5oPg0KPiA+
+ICsjaW5jbHVkZSA8bGludXgvZXJybm8uaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2V4cG9ydC5o
+Pg0KPiA+ICsjaW5jbHVkZSA8bGludXgvZmlybXdhcmUvaW14L2VsZV9md19hcGkuaD4gI2luY2x1
+ZGUNCj4gPiArPGxpbnV4L2Zpcm13YXJlL2lteC9lbGVfYmFzZV9tc2cuaD4NCj4gPiArI2luY2x1
+ZGUgPGxpbnV4L2Zpcm13YXJlL2lteC9lbGVfbXVfaW9jdGwuaD4NCj4gPiArI2luY2x1ZGUgPGxp
+bnV4L2dlbmFsbG9jLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9pby5oPg0KPiA+ICsjaW5jbHVk
+ZSA8bGludXgvaW5pdC5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvbWlzY2RldmljZS5oPg0KPiA+
+ICsjaW5jbHVkZSA8bGludXgvbW9kX2RldmljZXRhYmxlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51
+eC9tb2R1bGUuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L29mX3BsYXRmb3JtLmg+DQo+ID4gKyNp
+bmNsdWRlIDxsaW51eC9vZl9yZXNlcnZlZF9tZW0uaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3Bs
+YXRmb3JtX2RldmljZS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvc2xhYi5oPg0KPiA+ICsjaW5j
+bHVkZSA8bGludXgvZGVsYXkuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3N5c19zb2MuaD4NCj4g
+PiArI2luY2x1ZGUgPGxpbnV4L3dvcmtxdWV1ZS5oPg0KPiA+ICsNCj4gPiArI2luY2x1ZGUgInNl
+X2Z3LmgiDQo+ID4gKw0KPiA+ICsjZGVmaW5lIEVMRV9QSU5HX0lOVEVSVkFMICAgICAgICAgICAg
+KDM2MDAgKiBIWikNCj4gPiArI2RlZmluZSBFTEVfVFJOR19TVEFURV9PSyAgICAgICAgICAgIDB4
+MjAzDQo+ID4gKyNkZWZpbmUgRUxFX0dFVF9UUk5HX1NUQVRFX1JFVFJZX0NPVU5UICAgICAgIDB4
+NQ0KPiA+ICsNCj4gPiArI2RlZmluZSBFTEVfR0VUX0lORk9fQlVGRl9TWiAgICAgICAgIDB4MTAw
+DQo+ID4gKyNkZWZpbmUgRUxFX0dFVF9JTkZPX1JFQURfU1ogICAgICAgICAweEEwDQo+ID4gKyNk
+ZWZpbmUgRUxFX0lNRU1fU0laRSAgICAgICAgICAgICAgICAgICAgICAgIDB4MTAwMDANCj4gPiAr
+I2RlZmluZSBFTEVfSU1FTV9TVEFURV9PSyAgICAgICAgICAgIDB4Q0ENCj4gPiArI2RlZmluZSBF
+TEVfSU1FTV9TVEFURV9CQUQgICAgICAgICAgIDB4RkUNCj4gPiArI2RlZmluZSBFTEVfSU1FTV9T
+VEFURV9XT1JEICAgICAgICAgIDB4MjcNCj4gPiArI2RlZmluZSBFTEVfSU1FTV9TVEFURV9NQVNL
+ICAgICAgICAgIDB4MDBmZjAwMDANCj4gPiArDQo+ID4gKyNkZWZpbmUgU09DX0lEX09GX0lNWDhV
+TFAgICAgICAgICAgICAweDA4NEQNCj4gPiArI2RlZmluZSBTT0NfSURfT0ZfSU1YOTMgICAgICAg
+ICAgICAgICAgICAgICAgMHg5MzAwDQo+ID4gKyNkZWZpbmUgU09DX1ZFUl9NQVNLICAgICAgICAg
+ICAgICAgICAweEZGRkYwMDAwDQo+ID4gKyNkZWZpbmUgU09DX0lEX01BU0sgICAgICAgICAgICAg
+ICAgICAweDAwMDBGRkZGDQo+ID4gKyNkZWZpbmUgREVWSUNFX0dFVF9JTkZPX1NaICAgICAgICAg
+ICAweDEwMA0KPiA+ICsNCj4gPiArI2RlZmluZSBHRVRfSU5GT19TT0NfSU5GT19XT1JEX09GRlNF
+VCAgICAgICAgMQ0KPiA+ICsjZGVmaW5lIEdFVF9JTkZPX1VVSURfV09SRF9PRkZTRVQgICAgMw0K
+PiA+ICsjZGVmaW5lIEdFVF9JTkZPX1NMX05VTV9NU0JfV09SRF9PRkYgXA0KPiA+ICsgICAgIChH
+RVRfSU5GT19VVUlEX1dPUkRfT0ZGU0VUICsgMykNCj4gPiArI2RlZmluZSBHRVRfSU5GT19TTF9O
+VU1fTFNCX1dPUkRfT0ZGIFwNCj4gPiArICAgICAoR0VUX0lORk9fVVVJRF9XT1JEX09GRlNFVCAr
+IDApDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFJFU0VSVkVEX0RNQV9QT09MICAgICAgICAgICAgQklU
+KDEpDQo+ID4gKw0KPiA+ICtzdHJ1Y3QgZWxlX211X3ByaXYgKmVsZV9wcml2X2V4cG9ydDsNCj4g
+PiArDQo+ID4gK3N0cnVjdCBpbXhfaW5mbyB7DQo+ID4gKyAgICAgYm9vbCBzb2NkZXY7DQo+ID4g
+KyAgICAgdWludDhfdCBtYXhfZGV2X2N0eDsNCj4gPiArICAgICB1aW50OF90IGNtZF90YWc7DQo+
+ID4gKyAgICAgdWludDhfdCByc3BfdGFnOw0KPiA+ICsgICAgIHVpbnQ4X3QgKnBvb2xfbmFtZTsN
+Cj4gPiArICAgICAvKiBwbGF0Zm9ybSBzcGVjaWZpYyBmbGFnIHRvIGVuYWJsZS9kaXNhYmxlIHRo
+ZSBFTEUgVHJ1ZSBSTkcgKi8NCj4gPiArICAgICBib29sIHN0YXJ0X3JuZzsNCj4gPiArICAgICBi
+b29sIGVuYWJsZV9lbGVfdHJuZzsNCj4gPiArICAgICBib29sIHJlc2VydmVkX2RtYV9yYW5nZXM7
+DQo+ID4gKyAgICAgYm9vbCBpbml0X2Z3Ow0KPiA+ICsgICAgIGJvb2wgaW1lbV9tZ210Ow0KPiA+
+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBpbXhfaW5mbyBpbXg4dWxwX2lu
+Zm8gPSB7DQo+ID4gKyAgICAgLnNvY2RldiA9IHRydWUsDQo+ID4gKyAgICAgLm1heF9kZXZfY3R4
+ID0gNCwNCj4gPiArICAgICAuY21kX3RhZyA9IDB4MTcsDQo+ID4gKyAgICAgLnJzcF90YWcgPSAw
+eGUxLA0KPiA+ICsgICAgIC5wb29sX25hbWUgPSAic3JhbS1wb29sIiwNCj4gPiArICAgICAuc3Rh
+cnRfcm5nID0gdHJ1ZSwNCj4gPiArICAgICAuZW5hYmxlX2VsZV90cm5nID0gZmFsc2UsDQo+ID4g
+KyAgICAgLnJlc2VydmVkX2RtYV9yYW5nZXMgPSB0cnVlLA0KPiA+ICsgICAgIC5pbml0X2Z3ID0g
+ZmFsc2UsDQo+ID4gKyAgICAgLmltZW1fbWdtdCA9IHRydWUsDQo+ID4gK307DQo+ID4gKw0KPiA+
+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGlteF9pbmZvIGlteDkzX2luZm8gPSB7DQo+ID4gKyAgICAg
+LnNvY2RldiA9IHRydWUsDQo+ID4gKyAgICAgLm1heF9kZXZfY3R4ID0gNCwNCj4gPiArICAgICAu
+Y21kX3RhZyA9IDB4MTcsDQo+ID4gKyAgICAgLnJzcF90YWcgPSAweGUxLA0KPiA+ICsgICAgIC5w
+b29sX25hbWUgPSBOVUxMLA0KPiA+ICsgICAgIC5zdGFydF9ybmcgPSB0cnVlLA0KPiA+ICsgICAg
+IC5lbmFibGVfZWxlX3RybmcgPSB0cnVlLA0KPiA+ICsgICAgIC5yZXNlcnZlZF9kbWFfcmFuZ2Vz
+ID0gdHJ1ZSwNCj4gPiArICAgICAuaW5pdF9mdyA9IHRydWUsDQo+ID4gKyAgICAgLmltZW1fbWdt
+dCA9IGZhbHNlLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9k
+ZXZpY2VfaWQgZWxlX211X21hdGNoW10gPSB7DQo+ID4gKyAgICAgeyAuY29tcGF0aWJsZSA9ICJm
+c2wsaW14LWVsZSIsIC5kYXRhID0gKHZvaWQgKikmaW14OHVscF9pbmZvfSwNCj4gPiArICAgICB7
+IC5jb21wYXRpYmxlID0gImZzbCxpbXg5My1lbGUiLCAuZGF0YSA9ICh2b2lkICopJmlteDkzX2lu
+Zm99LA0KPiA+ICsgICAgIHt9LA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAraW50IGdldF9lbGVfbXVf
+cHJpdihzdHJ1Y3QgZWxlX211X3ByaXYgKipleHBvcnQpIHsNCj4gPiArICAgICBpZiAoIWVsZV9w
+cml2X2V4cG9ydCkNCj4gPiArICAgICAgICAgICAgIHJldHVybiAtRVBST0JFX0RFRkVSOw0KPiA+
+ICsNCj4gPiArICAgICAqZXhwb3J0ID0gZWxlX3ByaXZfZXhwb3J0Ow0KPiA+ICsgICAgIHJldHVy
+biAwOw0KPiA+ICt9DQo+ID4gK0VYUE9SVF9TWU1CT0xfR1BMKGdldF9lbGVfbXVfcHJpdik7DQo+
+ID4gKw0KPiA+ICsvKg0KPiA+ICsgKiBDYWxsYmFjayBjYWxsZWQgYnkgbWFpbGJveCBGVyB3aGVu
+IGRhdGEgYXJlIHJlY2VpdmVkICAqLyBzdGF0aWMNCj4gPiArdm9pZCBlbGVfbXVfcnhfY2FsbGJh
+Y2soc3RydWN0IG1ib3hfY2xpZW50ICpjLCB2b2lkICptc2cpIHsNCj4gPiArICAgICBzdHJ1Y3Qg
+ZGV2aWNlICpkZXYgPSBjLT5kZXY7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9wcml2ICpwcml2
+ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9kZXZpY2Vf
+Y3R4ICpkZXZfY3R4Ow0KPiA+ICsgICAgIGJvb2wgaXNfcmVzcG9uc2UgPSBmYWxzZTsNCj4gPiAr
+ICAgICBpbnQgbXNnX3NpemU7DQo+ID4gKyAgICAgc3RydWN0IG11X2hkciBoZWFkZXI7DQo+ID4g
+Kw0KPiA+ICsgICAgIGRldl9kYmcoZGV2LCAiTWVzc2FnZSByZWNlaXZlZCBvbiBtYWlsYm94XG4i
+KTsNCj4gDQo+IERyb3AuDQo+IA0KW0FjY2VwdGVkLl0gd2lsbCBjb3JyZWN0IGluIFY1Lg0KPiA+
+ICsNCj4gPiArICAgICAvKiBUaGUgZnVuY3Rpb24gY2FuIGJlIGNhbGxlZCB3aXRoIE5VTEwgbXNn
+ICovDQo+ID4gKyAgICAgaWYgKCFtc2cpIHsNCj4gPiArICAgICAgICAgICAgIGRldl9lcnIoZGV2
+LCAiTWVzc2FnZSBpcyBpbnZhbGlkXG4iKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybjsNCj4g
+PiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIGlmIChJU19FUlIobXNnKSkgew0KPiANCj4gSVNf
+RVJSX09SX05VTEwgaXMgYSBzaWduIG9mIHBvb3IgY29kaW5nIG9yIGJ1Zy4NCj4gDQo+ID4gKyAg
+ICAgICAgICAgICBkZXZfZXJyKGRldiwgIkVycm9yIGR1cmluZyByZWNlcHRpb24gb2YgbWVzc2Fn
+ZTogJWxkXG4iLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFBUUl9FUlIobXNn
+KSk7DQo+ID4gKyAgICAgICAgICAgICByZXR1cm47DQo+ID4gKyAgICAgfQ0KPiANCltBY2NlcHRl
+ZF0gd2lsbCBiZSByZW1vdmVkIGluIFY1Lg0KDQo+ID4gKw0KPiA+ICsgICAgIGhlYWRlci50YWcg
+PSAoKHU4ICopbXNnKVtUQUdfT0ZGU0VUXTsNCj4gPiArICAgICBoZWFkZXIuY29tbWFuZCA9ICgo
+dTggKiltc2cpW0NNRF9PRkZTRVRdOw0KPiA+ICsgICAgIGhlYWRlci5zaXplID0gKCh1OCAqKW1z
+ZylbU1pfT0ZGU0VUXTsNCj4gPiArICAgICBoZWFkZXIudmVyID0gKCh1OCAqKW1zZylbVkVSX09G
+RlNFVF07DQo+ID4gKw0KPiA+ICsgICAgIGRldl9kYmcoZGV2LCAiU2VsZWN0aW5nIGRldmljZVxu
+Iik7DQo+IA0KPiBEcm9wLCB1c2VsZXNzIGRlYnVnLg0KPiANCltBY2NlcHRlZC5dIHdpbGwgY29y
+cmVjdCBpbiBWNS4NCj4gPiArDQo+ID4gKyAgICAgLyogSW5jb21pbmcgY29tbWFuZDogd2FrZSB1
+cCB0aGUgcmVjZWl2ZXIgaWYgYW55LiAqLw0KPiA+ICsgICAgIGlmIChoZWFkZXIudGFnID09IHBy
+aXYtPmNtZF90YWcpIHsNCj4gPiArICAgICAgICAgICAgIGRldl9kYmcoZGV2LCAiU2VsZWN0aW5n
+IGNtZCByZWNlaXZlclxuIik7DQo+ID4gKyAgICAgICAgICAgICBkZXZfY3R4ID0gcHJpdi0+Y21k
+X3JlY2VpdmVyX2RldjsNCj4gPiArICAgICB9IGVsc2UgaWYgKGhlYWRlci50YWcgPT0gcHJpdi0+
+cnNwX3RhZykgew0KPiA+ICsgICAgICAgICAgICAgaWYgKHByaXYtPndhaXRpbmdfcnNwX2Rldikg
+ew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBkZXZfZGJnKGRldiwgIlNlbGVjdGluZyByc3Ag
+d2FpdGVyXG4iKTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgZGV2X2N0eCA9IHByaXYtPndh
+aXRpbmdfcnNwX2RldjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgaXNfcmVzcG9uc2UgPSB0
+cnVlOw0KPiA+ICsgICAgICAgICAgICAgfSBlbHNlIHsNCj4gPiArICAgICAgICAgICAgICAgICAg
+ICAgLyogUmVhZGluZyB0aGUgRWRnZUxvY2sgRW5jbGF2ZSByZXNwb25zZQ0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgKiB0byB0aGUgY29tbWFuZCBzZW50IGJ5IG90aGVyDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAqIGxpbnV4IGtlcm5lbCBzZXJ2aWNlcy4NCj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgICovDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIHNwaW5fbG9jaygmcHJp
+di0+bG9jayk7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIHByaXYtPnJ4X21zZyA9ICooc3Ry
+dWN0IGVsZV9hcGlfbXNnICopbXNnOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBjb21wbGV0
+ZSgmcHJpdi0+ZG9uZSk7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIHNwaW5fdW5sb2NrKCZw
+cml2LT5sb2NrKTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgcmV0dXJuOw0KPiA+ICsgICAg
+ICAgICAgICAgfQ0KPiA+ICsgICAgIH0gZWxzZSB7DQo+ID4gKyAgICAgICAgICAgICBkZXZfZXJy
+KGRldiwgIkZhaWxlZCB0byBzZWxlY3QgYSBkZXZpY2UgZm9yIG1lc3NhZ2U6ICUuOHhcbiIsDQo+
+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKigodTMyICopICZoZWFkZXIpKTsNCj4g
+PiArICAgICAgICAgICAgIHJldHVybjsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIGlm
+ICghZGV2X2N0eCkgew0KPiA+ICsgICAgICAgICAgICAgZGV2X2VycihkZXYsICJObyBkZXZpY2Ug
+Y29udGV4dCBzZWxlY3RlZCBmb3IgbWVzc2FnZTogJS44eFxuIiwNCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAqKCh1MzIgKikmaGVhZGVyKSk7DQo+ID4gKyAgICAgICAgICAgICBy
+ZXR1cm47DQo+ID4gKyAgICAgfQ0KPiA+ICsgICAgIC8qIEluaXQgcmVjZXB0aW9uICovDQo+ID4g
+KyAgICAgbXNnX3NpemUgPSBoZWFkZXIuc2l6ZTsNCj4gPiArICAgICBpZiAobXNnX3NpemUgPiBN
+QVhfUkVDVl9TSVpFKSB7DQo+ID4gKyAgICAgICAgICAgICBkZXZjdHhfZXJyKGRldl9jdHgsICJN
+ZXNzYWdlIGlzIHRvbyBiaWcgKCVkID4gJWQpIiwgbXNnX3NpemUsDQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgTUFYX1JFQ1ZfU0laRSk7DQo+ID4gKyAgICAgICAgICAgICByZXR1
+cm47DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICBtZW1jcHkoZGV2X2N0eC0+dGVtcF9y
+ZXNwLCBtc2csIG1zZ19zaXplIDw8IDIpOw0KPiA+ICsgICAgIGRldl9jdHgtPnRlbXBfcmVzcF9z
+aXplID0gbXNnX3NpemU7DQo+ID4gKw0KPiA+ICsgICAgIC8qIEFsbG93IHVzZXIgdG8gcmVhZCAq
+Lw0KPiA+ICsgICAgIGRldl9jdHgtPnBlbmRpbmdfaGRyID0gZGV2X2N0eC0+dGVtcF9yZXNwWzBd
+Ow0KPiA+ICsgICAgIHdha2VfdXBfaW50ZXJydXB0aWJsZSgmZGV2X2N0eC0+d3EpOw0KPiA+ICsN
+Cj4gPiArICAgICBpZiAoaXNfcmVzcG9uc2UpDQo+ID4gKyAgICAgICAgICAgICBwcml2LT53YWl0
+aW5nX3JzcF9kZXYgPSBOVUxMOw0KPiA+ICsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZv
+aWQgZWxlX3BpbmdfaGFuZGxlcihzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspIHsNCj4gPiArICAg
+ICBpbnQgcmV0Ow0KPiA+ICsNCj4gPiArICAgICByZXQgPSBlbGVfcGluZygpOw0KPiA+ICsgICAg
+IGlmIChyZXQpDQo+ID4gKyAgICAgICAgICAgICBwcl9lcnIoInBpbmcgZWxlIGZhaWxlZCwgdHJ5
+IGFnYWluIVxuIik7DQo+IA0KPiBXaHk/IEhvdyB0byB0cnkgYWdhaW4/DQo+IA0KW1Bhbmthal0g
+QWNjZXB0ZWQuDQoNCj4gPiArDQo+ID4gKyAgICAgLyogcmVzY2hlZHVsZSB0aGUgZGVsYXkgd29y
+ayAqLw0KPiA+ICsgICAgIHNjaGVkdWxlX2RlbGF5ZWRfd29yayh0b19kZWxheWVkX3dvcmsod29y
+ayksIEVMRV9QSU5HX0lOVEVSVkFMKTsNCj4gPiArfSBzdGF0aWMgREVDTEFSRV9ERUxBWUVEX1dP
+UksoZWxlX3Bpbmdfd29yaywgZWxlX3BpbmdfaGFuZGxlcik7DQo+ID4gKw0KPiA+ICtzdGF0aWMg
+cGh5c19hZGRyX3QgZ2V0X3BoeV9idWZfbWVtX3Bvb2woc3RydWN0IGRldmljZV9ub2RlICpvZl9u
+b2RlLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2hhciAqbWVt
+X3Bvb2xfbmFtZSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHUz
+MiAqKmJ1ZiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVpbnQz
+Ml90IHNpemUpIHsNCj4gPiArICAgICBzdHJ1Y3QgZ2VuX3Bvb2wgKm1lbV9wb29sID0gb2ZfZ2Vu
+X3Bvb2xfZ2V0KG9mX25vZGUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBtZW1fcG9vbF9uYW1lLCAwKTsNCj4gPiArICAgICBpZiAoIW1lbV9w
+b29sKSB7DQo+ID4gKyAgICAgICAgICAgICBwcl9lcnIoIlVuYWJsZSB0byBnZXQgc3JhbSBwb29s
+XG4iKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybiAwOw0KPiA+ICsgICAgIH0NCj4gPiArDQo+
+ID4gKyAgICAgKmJ1ZiA9ICh1MzIgKilnZW5fcG9vbF9hbGxvYyhtZW1fcG9vbCwgc2l6ZSk7DQo+
+ID4gKyAgICAgaWYgKCFidWYpIHsNCj4gPiArICAgICAgICAgICAgIHByX2VycigiVW5hYmxlIHRv
+IGFsbG9jIHNyYW0gZnJvbSBzcmFtIHBvb2xcbiIpOw0KPiA+ICsgICAgICAgICAgICAgcmV0dXJu
+IDA7DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gZ2VuX3Bvb2xfdmlydF90
+b19waHlzKG1lbV9wb29sLCAodWxvbmcpKmJ1Zik7IH0NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lk
+IGZyZWVfcGh5YnVmX21lbV9wb29sKHN0cnVjdCBkZXZpY2Vfbm9kZSAqb2Zfbm9kZSwNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2hhciAqbWVtX3Bvb2xfbmFtZSwNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTMyICpidWYsDQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHVpbnQzMl90IHNpemUpIHsNCj4gPiArICAgICBzdHJ1Y3QgZ2Vu
+X3Bvb2wgKm1lbV9wb29sID0gb2ZfZ2VuX3Bvb2xfZ2V0KG9mX25vZGUsDQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtZW1fcG9vbF9uYW1lLCAw
+KTsNCj4gPiArICAgICBpZiAoIW1lbV9wb29sKQ0KPiA+ICsgICAgICAgICAgICAgcHJfZXJyKCIl
+cyBmYWlsZWQ6IFVuYWJsZSB0byBnZXQgc3JhbSBwb29sLlxuIiwNCj4gPiArX19mdW5jX18pOw0K
+PiA+ICsNCj4gPiArICAgICBnZW5fcG9vbF9mcmVlKG1lbV9wb29sLCAodW5zaWduZWQgbG9uZyli
+dWYsIHNpemUpOyB9DQo+ID4gKw0KPiA+ICsNCj4gPiArc3RhdGljIGludCBpbXhfc29jX2Rldmlj
+ZV9yZWdpc3RlcihzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2LA0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBpbXhfaW5mbyAqaW5mbykgew0KPiA+ICsgICAg
+IHN0cnVjdCBzb2NfZGV2aWNlX2F0dHJpYnV0ZSAqYXR0cjsNCj4gPiArICAgICBzdHJ1Y3Qgc29j
+X2RldmljZSAqZGV2Ow0KPiA+ICsgICAgIHBoeXNfYWRkcl90IGdldF9pbmZvX2FkZHIgPSAwOw0K
+PiA+ICsgICAgIHUzMiAqZ2V0X2luZm9fZGF0YSA9IE5VTEw7DQo+ID4gKyAgICAgdTggbWFqb3Jf
+dmVyLCBtaW5vcl92ZXI7DQo+ID4gKyAgICAgaW50IGVycjsNCj4gPiArDQo+ID4gKyAgICAgaWYg
+KGluZm8tPnBvb2xfbmFtZSkgew0KPiA+ICsgICAgICAgICAgICAgZ2V0X2luZm9fYWRkciA9IGdl
+dF9waHlfYnVmX21lbV9wb29sKHBkZXYtPmRldi5vZl9ub2RlLA0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGluZm8tPnBvb2xfbmFtZSwNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmZ2V0
+X2luZm9fZGF0YSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBERVZJQ0VfR0VUX0lORk9fU1opOw0KPiA+ICsgICAgIH0gZWxzZSB7DQo+ID4g
+KyAgICAgICAgICAgICBnZXRfaW5mb19kYXRhID0gZG1hbV9hbGxvY19jb2hlcmVudCgmcGRldi0+
+ZGV2LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgREVWSUNFX0dFVF9JTkZPX1NaLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgJmdldF9pbmZvX2FkZHIsDQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBHRlBfS0VSTkVMKTsNCj4gPiArICAg
+ICB9DQo+ID4gKyAgICAgaWYgKCFnZXRfaW5mb19hZGRyKSB7DQo+ID4gKyAgICAgICAgICAgICBw
+cl9lcnIoIlVuYWJsZSB0byBhbGxvYyBidWZmZXIgZm9yIGRldmljZSBpbmZvLlxuIik7DQo+ID4g
+KyAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsg
+ICAgIGF0dHIgPSBremFsbG9jKHNpemVvZigqYXR0ciksIEdGUF9LRVJORUwpOw0KPiA+ICsgICAg
+IGlmICghYXR0cikNCj4gPiArICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOw0KPiA+ICsNCj4g
+PiArICAgICBlcnIgPSBlbGVfZ2V0X2luZm8oZ2V0X2luZm9fYWRkciwgRUxFX0dFVF9JTkZPX1JF
+QURfU1opOw0KPiA+ICsgICAgIGlmIChlcnIpIHsNCj4gPiArICAgICAgICAgICAgIGF0dHItPnJl
+dmlzaW9uID0ga2FzcHJpbnRmKEdGUF9LRVJORUwsICJBMCIpOw0KPiA+ICsgICAgIH0gZWxzZSB7
+DQo+ID4gKyAgICAgICAgICAgICBtYWpvcl92ZXIgPSAoZ2V0X2luZm9fZGF0YVtHRVRfSU5GT19T
+T0NfSU5GT19XT1JEX09GRlNFVF0NCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAm
+IFNPQ19WRVJfTUFTSykgPj4gMjQ7DQo+ID4gKyAgICAgICAgICAgICBtaW5vcl92ZXIgPSAoKGdl
+dF9pbmZvX2RhdGFbR0VUX0lORk9fU09DX0lORk9fV09SRF9PRkZTRVRdDQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgJiBTT0NfVkVSX01BU0spID4+IDE2KSAmIDB4RkY7DQo+ID4g
+KyAgICAgICAgICAgICBpZiAobWlub3JfdmVyKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBh
+dHRyLT5yZXZpc2lvbiA9IGthc3ByaW50ZihHRlBfS0VSTkVMLA0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiJXguJXgiLA0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtYWpvcl92ZXIsDQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1pbm9yX3Zl
+cik7DQo+ID4gKyAgICAgICAgICAgICBlbHNlDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGF0
+dHItPnJldmlzaW9uID0ga2FzcHJpbnRmKEdGUF9LRVJORUwsDQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICIleCIsDQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1ham9yX3Zlcik7DQo+ID4gKw0K
+PiA+ICsgICAgICAgICAgICAgc3dpdGNoIChnZXRfaW5mb19kYXRhW0dFVF9JTkZPX1NPQ19JTkZP
+X1dPUkRfT0ZGU0VUXQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICYgU09DX0lE
+X01BU0spIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgY2FzZSBTT0NfSURfT0ZfSU1YOFVM
+UDoNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyLT5zb2NfaWQgPSBrYXNw
+cmludGYoR0ZQX0tFUk5FTCwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgImkuTVg4VUxQIik7DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgYnJlYWs7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGNhc2UgU09DX0lE
+X09GX0lNWDkzOg0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGF0dHItPnNvY19p
+ZCA9IGthc3ByaW50ZihHRlBfS0VSTkVMLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaS5NWDkzIik7DQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgYnJlYWs7DQo+ID4gKyAgICAgICAgICAgICB9DQo+ID4gKyAgICAg
+fQ0KPiA+ICsNCj4gPiArICAgICBlcnIgPSBvZl9wcm9wZXJ0eV9yZWFkX3N0cmluZyhvZl9yb290
+LCAibW9kZWwiLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZhdHRy
+LT5tYWNoaW5lKTsNCj4gPiArICAgICBpZiAoZXJyKSB7DQo+ID4gKyAgICAgICAgICAgICBrZnJl
+ZShhdHRyKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICsgICAgIH0N
+Cj4gPiArICAgICBhdHRyLT5mYW1pbHkgPSBrYXNwcmludGYoR0ZQX0tFUk5FTCwgIkZyZWVzY2Fs
+ZSBpLk1YIik7DQo+IA0KPiBXaHkgYXJlIHlvdSBkb2luZyBzb2MgYXR0ciBmb3IgZW50aXJlIG1h
+Y2hpbmUgaW4gdW5yZWxhdGVkIGRyaXZlcj8NCj4gDQpbUGFua2FqXSBUaGlzIGRyaXZlciBlbmFi
+bGVzIHRoZSBwYXRoIHRvIEZXLiBXaGljaCBoYXMgdGhlIGFjY2VzcyBwZXJtaXNzaW9uIHRvIHJl
+YWQgdGhlIGZ1c2VzIG9mIFNvQy4gVGhlc2UgZnVzZXMgY29udGFpbnMgU29DIHNlcmlhbCBudW1i
+ZXIuDQoJVGhpcyBjYW4gYmUgZmV0Y2hlZCBwb3N0IHRoaXMgZHJpdmVyIGluaXRpYWxpemF0aW9u
+IG9ubHkuDQoJVGhlcmUgYXJlIG90aGVyIGluZm9ybWF0aW9uIHRvbywgbGlrZSBzb2MgcmV2aXNp
+b24gZXRjLCB3aGljaCBpcyBmZXRjaGVkIGFmdGVyIEFQSShHRVQtSU5GTykgZXhjaGFuZ2Ugd2l0
+aCBGVy4NCj4gPiArDQo+ID4gKyAgICAgYXR0ci0+c2VyaWFsX251bWJlcg0KPiA+ICsgICAgICAg
+ICAgICAgPSBrYXNwcmludGYoR0ZQX0tFUk5FTCwgIiUwMTZsbFgiLA0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgKHU2NClnZXRfaW5mb19kYXRhW0dFVF9JTkZPX1NMX05VTV9NU0JfV09S
+RF9PRkZdDQo+IDw8IDMyDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICB8DQo+ID4gKyBn
+ZXRfaW5mb19kYXRhW0dFVF9JTkZPX1NMX05VTV9MU0JfV09SRF9PRkZdKTsNCj4gPiArDQo+ID4g
+KyAgICAgaWYgKGluZm8tPnBvb2xfbmFtZSkgew0KPiA+ICsgICAgICAgICAgICAgZnJlZV9waHli
+dWZfbWVtX3Bvb2wocGRldi0+ZGV2Lm9mX25vZGUsIGluZm8tPnBvb2xfbmFtZSwNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGdldF9pbmZvX2RhdGEsIERFVklDRV9HRVRf
+SU5GT19TWik7DQo+ID4gKyAgICAgfSBlbHNlIHsNCj4gPiArICAgICAgICAgICAgIGRtYW1fZnJl
+ZV9jb2hlcmVudCgmcGRldi0+ZGV2LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIERFVklDRV9HRVRfSU5GT19TWiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBnZXRfaW5mb19kYXRhLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IGdldF9pbmZvX2FkZHIpOw0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgZGV2ID0gc29j
+X2RldmljZV9yZWdpc3RlcihhdHRyKTsNCj4gDQo+IE5vcGUsIHRoaXMgaXMgbm90IGEgc29jIGRl
+dmljZS4NCltQYW5rYWpdIEFjY2VwdGVkLiBDb3JyZWN0ZWQgaW4gVjUuDQo+IA0KPiA+ICsgICAg
+IGlmIChJU19FUlIoZGV2KSkgew0KPiA+ICsgICAgICAgICAgICAga2ZyZWUoYXR0ci0+c29jX2lk
+KTsNCj4gPiArICAgICAgICAgICAgIGtmcmVlKGF0dHItPnNlcmlhbF9udW1iZXIpOw0KPiA+ICsg
+ICAgICAgICAgICAga2ZyZWUoYXR0ci0+cmV2aXNpb24pOw0KPiA+ICsgICAgICAgICAgICAga2Zy
+ZWUoYXR0ci0+ZmFtaWx5KTsNCj4gPiArICAgICAgICAgICAgIGtmcmVlKGF0dHItPm1hY2hpbmUp
+Ow0KPiA+ICsgICAgICAgICAgICAga2ZyZWUoYXR0cik7DQo+ID4gKyAgICAgICAgICAgICByZXR1
+cm4gUFRSX0VSUihkZXYpOw0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgcmV0dXJuIDA7
+DQo+ID4gK30NCj4gPiArDQo+IA0KPiAuLi4NCj4gDQo+ID4gKyAgICAgcmV0dXJuIGVycjsNCj4g
+PiArfQ0KPiA+ICsNCj4gPiArDQo+ID4gKw0KPiANCj4gRHJvcCBzdHJheSBibGFuayBsaW5lcy4g
+RXZlcnl3aGVyZS4NCj4gDQo+IA0KV2lsbCBjb3JyZWN0IGluIFY1Lg0KDQo+ID4gKy8qIE9wZW4g
+YSBjaGFyIGRldmljZS4gKi8NCj4gPiArc3RhdGljIGludCBlbGVfbXVfZm9wc19vcGVuKHN0cnVj
+dCBpbm9kZSAqbmQsIHN0cnVjdCBmaWxlICpmcCkgew0KPiA+ICsgICAgIHN0cnVjdCBlbGVfbXVf
+ZGV2aWNlX2N0eCAqZGV2X2N0eA0KPiA+ICsgICAgICAgICAgICAgPSBjb250YWluZXJfb2YoZnAt
+PnByaXZhdGVfZGF0YSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBl
+bGVfbXVfZGV2aWNlX2N0eCwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1pc2Nk
+ZXYpOw0KPiA+ICsgICAgIGludCBlcnI7DQo+ID4gKw0KPiA+ICsgICAgIC8qIEF2b2lkIHJhY2Ug
+aWYgb3BlbmVkIGF0IHRoZSBzYW1lIHRpbWUgKi8NCj4gPiArICAgICBpZiAoZG93bl90cnlsb2Nr
+KCZkZXZfY3R4LT5mb3BzX2xvY2spKQ0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIC1FQlVTWTsN
+Cj4gPiArDQo+ID4gKyAgICAgLyogQXV0aG9yaXplIG9ubHkgMSBpbnN0YW5jZS4gKi8NCj4gPiAr
+ICAgICBpZiAoZGV2X2N0eC0+c3RhdHVzICE9IE1VX0ZSRUUpIHsNCj4gPiArICAgICAgICAgICAg
+IGVyciA9IC1FQlVTWTsNCj4gPiArICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiArICAgICB9
+DQo+ID4gKw0KPiA+ICsgICAgIC8qDQo+ID4gKyAgICAgICogQWxsb2NhdGUgc29tZSBtZW1vcnkg
+Zm9yIGRhdGEgZXhjaGFuZ2VzIHdpdGggUzQweC4NCj4gPiArICAgICAgKiBUaGlzIHdpbGwgYmUg
+dXNlZCBmb3IgZGF0YSBub3QgcmVxdWlyaW5nIHNlY3VyZSBtZW1vcnkuDQo+ID4gKyAgICAgICov
+DQo+ID4gKyAgICAgZGV2X2N0eC0+bm9uX3NlY3VyZV9tZW0ucHRyID0gZG1hbV9hbGxvY19jb2hl
+cmVudChkZXZfY3R4LT5kZXYsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBNQVhfREFUQV9TSVpFX1BFUl9VU0VSLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgJmRldl9jdHgtPm5vbl9zZWN1cmVfbWVtLmRtYV9hZGRyLA0KPiA+ICsg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgR0ZQX0tFUk5FTCk7DQo+ID4gKyAg
+ICAgaWYgKCFkZXZfY3R4LT5ub25fc2VjdXJlX21lbS5wdHIpIHsNCj4gPiArICAgICAgICAgICAg
+IGVyciA9IC1FTk9NRU07DQo+ID4gKyAgICAgICAgICAgICBkZXZjdHhfZXJyKGRldl9jdHgsICJG
+YWlsZWQgdG8gbWFwIHNoYXJlZCBtZW1vcnkgd2l0aCBTNDB4XG4iKTsNCj4gPiArICAgICAgICAg
+ICAgIGdvdG8gZXhpdDsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIGVyciA9IGVsZV9t
+dV9zZXR1cF9lbGVfbWVtX2FjY2VzcyhkZXZfY3R4LA0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBkZXZfY3R4LT5ub25fc2VjdXJlX21lbS5kbWFfYWRkciwNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTUFYX0RBVEFfU0laRV9Q
+RVJfVVNFUik7DQo+ID4gKyAgICAgaWYgKGVycikgew0KPiA+ICsgICAgICAgICAgICAgZXJyID0g
+LUVQRVJNOw0KPiA+ICsgICAgICAgICAgICAgZGV2Y3R4X2VycihkZXZfY3R4LA0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAiRmFpbGVkIHRvIHNoYXJlIGFjY2VzcyB0byBzaGFyZWQgbWVt
+b3J5XG4iKTsNCj4gPiArICAgICAgICAgICAgIGdvdG8gZnJlZV9jb2hlcmVudDsNCj4gPiArICAg
+ICB9DQo+ID4gKw0KPiA+ICsgICAgIGRldl9jdHgtPm5vbl9zZWN1cmVfbWVtLnNpemUgPSBNQVhf
+REFUQV9TSVpFX1BFUl9VU0VSOw0KPiA+ICsgICAgIGRldl9jdHgtPm5vbl9zZWN1cmVfbWVtLnBv
+cyA9IDA7DQo+ID4gKyAgICAgZGV2X2N0eC0+c3RhdHVzID0gTVVfT1BFTkVEOw0KPiA+ICsNCj4g
+PiArICAgICBkZXZfY3R4LT5wZW5kaW5nX2hkciA9IDA7DQo+ID4gKw0KPiA+ICsgICAgIGdvdG8g
+ZXhpdDsNCj4gPiArDQo+ID4gK2ZyZWVfY29oZXJlbnQ6DQo+ID4gKyAgICAgZG1hbV9mcmVlX2Nv
+aGVyZW50KGRldl9jdHgtPnByaXYtPmRldiwgTUFYX0RBVEFfU0laRV9QRVJfVVNFUiwNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgZGV2X2N0eC0+bm9uX3NlY3VyZV9tZW0ucHRyLA0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICBkZXZfY3R4LT5ub25fc2VjdXJlX21lbS5kbWFfYWRk
+cik7DQo+ID4gKw0KPiA+ICtleGl0Og0KPiA+ICsgICAgIHVwKCZkZXZfY3R4LT5mb3BzX2xvY2sp
+Ow0KPiA+ICsgICAgIHJldHVybiBlcnI7DQo+ID4gK30NCj4gPiArDQo+ID4gKy8qIENsb3NlIGEg
+Y2hhciBkZXZpY2UuICovDQo+ID4gK3N0YXRpYyBpbnQgZWxlX211X2ZvcHNfY2xvc2Uoc3RydWN0
+IGlub2RlICpuZCwgc3RydWN0IGZpbGUgKmZwKSB7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9tdV9k
+ZXZpY2VfY3R4ICpkZXZfY3R4ID0gY29udGFpbmVyX29mKGZwLT5wcml2YXRlX2RhdGEsDQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZWxlX211X2Rldmlj
+ZV9jdHgsIG1pc2NkZXYpOw0KPiA+ICsgICAgIHN0cnVjdCBlbGVfbXVfcHJpdiAqcHJpdiA9IGRl
+dl9jdHgtPnByaXY7DQo+ID4gKyAgICAgc3RydWN0IGVsZV9idWZfZGVzYyAqYl9kZXNjOw0KPiA+
+ICsNCj4gPiArICAgICAvKiBBdm9pZCByYWNlIGlmIGNsb3NlZCBhdCB0aGUgc2FtZSB0aW1lICov
+DQo+ID4gKyAgICAgaWYgKGRvd25fdHJ5bG9jaygmZGV2X2N0eC0+Zm9wc19sb2NrKSkNCj4gPiAr
+ICAgICAgICAgICAgIHJldHVybiAtRUJVU1k7DQo+ID4gKw0KPiA+ICsgICAgIC8qIFRoZSBkZXZp
+Y2UgY29udGV4dCBoYXMgbm90IGJlZW4gb3BlbmVkICovDQo+ID4gKyAgICAgaWYgKGRldl9jdHgt
+PnN0YXR1cyAhPSBNVV9PUEVORUQpDQo+ID4gKyAgICAgICAgICAgICBnb3RvIGV4aXQ7DQo+ID4g
+Kw0KPiA+ICsgICAgIC8qIGNoZWNrIGlmIHRoaXMgZGV2aWNlIHdhcyByZWdpc3RlcmVkIGFzIGNv
+bW1hbmQgcmVjZWl2ZXIuICovDQo+ID4gKyAgICAgaWYgKHByaXYtPmNtZF9yZWNlaXZlcl9kZXYg
+PT0gZGV2X2N0eCkNCj4gPiArICAgICAgICAgICAgIHByaXYtPmNtZF9yZWNlaXZlcl9kZXYgPSBO
+VUxMOw0KPiA+ICsNCj4gPiArICAgICAvKiBjaGVjayBpZiB0aGlzIGRldmljZSB3YXMgcmVnaXN0
+ZXJlZCBhcyB3YWl0aW5nIHJlc3BvbnNlLiAqLw0KPiA+ICsgICAgIGlmIChwcml2LT53YWl0aW5n
+X3JzcF9kZXYgPT0gZGV2X2N0eCkgew0KPiA+ICsgICAgICAgICAgICAgcHJpdi0+d2FpdGluZ19y
+c3BfZGV2ID0gTlVMTDsNCj4gPiArICAgICAgICAgICAgIG11dGV4X3VubG9jaygmcHJpdi0+bXVf
+Y21kX2xvY2spOw0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgLyogVW5tYXAgc2VjdXJl
+IG1lbW9yeSBzaGFyZWQgYnVmZmVyLiAqLw0KPiA+ICsgICAgIGlmIChkZXZfY3R4LT5zZWN1cmVf
+bWVtLnB0cikNCj4gPiArICAgICAgICAgICAgIGRldm1faW91bm1hcChkZXZfY3R4LT5kZXYsIGRl
+dl9jdHgtPnNlY3VyZV9tZW0ucHRyKTsNCj4gPiArDQo+ID4gKyAgICAgZGV2X2N0eC0+c2VjdXJl
+X21lbS5wdHIgPSBOVUxMOw0KPiA+ICsgICAgIGRldl9jdHgtPnNlY3VyZV9tZW0uZG1hX2FkZHIg
+PSAwOw0KPiA+ICsgICAgIGRldl9jdHgtPnNlY3VyZV9tZW0uc2l6ZSA9IDA7DQo+ID4gKyAgICAg
+ZGV2X2N0eC0+c2VjdXJlX21lbS5wb3MgPSAwOw0KPiA+ICsNCj4gPiArICAgICAvKiBGcmVlIG5v
+bi1zZWN1cmUgc2hhcmVkIGJ1ZmZlci4gKi8NCj4gPiArICAgICBkbWFtX2ZyZWVfY29oZXJlbnQo
+ZGV2X2N0eC0+cHJpdi0+ZGV2LCBNQVhfREFUQV9TSVpFX1BFUl9VU0VSLA0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICBkZXZfY3R4LT5ub25fc2VjdXJlX21lbS5wdHIsDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgIGRldl9jdHgtPm5vbl9zZWN1cmVfbWVtLmRtYV9hZGRyKTsNCj4g
+PiArDQo+ID4gKyAgICAgZGV2X2N0eC0+bm9uX3NlY3VyZV9tZW0ucHRyID0gTlVMTDsNCj4gPiAr
+ICAgICBkZXZfY3R4LT5ub25fc2VjdXJlX21lbS5kbWFfYWRkciA9IDA7DQo+ID4gKyAgICAgZGV2
+X2N0eC0+bm9uX3NlY3VyZV9tZW0uc2l6ZSA9IDA7DQo+ID4gKyAgICAgZGV2X2N0eC0+bm9uX3Nl
+Y3VyZV9tZW0ucG9zID0gMDsNCj4gPiArDQo+ID4gKyAgICAgd2hpbGUgKCFsaXN0X2VtcHR5KCZk
+ZXZfY3R4LT5wZW5kaW5nX2luKSB8fA0KPiA+ICsgICAgICAgICAgICAhbGlzdF9lbXB0eSgmZGV2
+X2N0eC0+cGVuZGluZ19vdXQpKSB7DQo+ID4gKyAgICAgICAgICAgICBpZiAoIWxpc3RfZW1wdHko
+JmRldl9jdHgtPnBlbmRpbmdfaW4pKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBiX2Rlc2Mg
+PSBsaXN0X2ZpcnN0X2VudHJ5X29yX251bGwoJmRldl9jdHgtPnBlbmRpbmdfaW4sDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1
+Y3QgZWxlX2J1Zl9kZXNjLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgbGluayk7DQo+ID4gKyAgICAgICAgICAgICBlbHNlDQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgIGJfZGVzYyA9IGxpc3RfZmlyc3RfZW50cnlfb3JfbnVsbCgm
+ZGV2X2N0eC0+cGVuZGluZ19vdXQsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZWxlX2J1Zl9kZXNjLA0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbGluayk7
+DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgaWYgKCFiX2Rlc2MpDQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgIGNvbnRpbnVlOw0KPiA+ICsNCj4gPiArICAgICAgICAgICAgIGlmIChiX2Rlc2Mt
+PnNoYXJlZF9idWZfcHRyKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBtZW1zZXQoYl9kZXNj
+LT5zaGFyZWRfYnVmX3B0ciwgMCwgYl9kZXNjLT5zaXplKTsNCj4gPiArDQo+ID4gKyAgICAgICAg
+ICAgICBfX2xpc3RfZGVsX2VudHJ5KCZiX2Rlc2MtPmxpbmspOw0KPiA+ICsgICAgICAgICAgICAg
+ZGV2bV9rZnJlZShkZXZfY3R4LT5kZXYsIGJfZGVzYyk7DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4g
+PiArICAgICBkZXZfY3R4LT5zdGF0dXMgPSBNVV9GUkVFOw0KPiA+ICsNCj4gPiArZXhpdDoNCj4g
+PiArICAgICB1cCgmZGV2X2N0eC0+Zm9wc19sb2NrKTsNCj4gPiArICAgICByZXR1cm4gMDsNCj4g
+PiArfQ0KPiA+ICsNCj4gPiArLyogSU9DVEwgZW50cnkgcG9pbnQgb2YgYSBjaGFyIGRldmljZSAq
+LyBzdGF0aWMgbG9uZw0KPiA+ICtlbGVfbXVfaW9jdGwoc3RydWN0IGZpbGUgKmZwLCB1bnNpZ25l
+ZCBpbnQgY21kLCB1bnNpZ25lZCBsb25nIGFyZykgew0KPiA+ICsgICAgIHN0cnVjdCBlbGVfbXVf
+ZGV2aWNlX2N0eCAqZGV2X2N0eA0KPiA+ICsgICAgICAgICAgICAgPSBjb250YWluZXJfb2YoZnAt
+PnByaXZhdGVfZGF0YSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBl
+bGVfbXVfZGV2aWNlX2N0eCwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1pc2Nk
+ZXYpOw0KPiA+ICsgICAgIHN0cnVjdCBlbGVfbXVfcHJpdiAqZWxlX211X3ByaXYgPSBkZXZfY3R4
+LT5wcml2Ow0KPiA+ICsgICAgIGludCBlcnIgPSAtRUlOVkFMOw0KPiA+ICsNCj4gPiArICAgICAv
+KiBQcmV2ZW50IHJhY2UgZHVyaW5nIGNoYW5nZSBvZiBkZXZpY2UgY29udGV4dCAqLw0KPiA+ICsg
+ICAgIGlmIChkb3duX2ludGVycnVwdGlibGUoJmRldl9jdHgtPmZvcHNfbG9jaykpDQo+ID4gKyAg
+ICAgICAgICAgICByZXR1cm4gLUVCVVNZOw0KPiA+ICsNCj4gPiArICAgICBzd2l0Y2ggKGNtZCkg
+ew0KPiA+ICsgICAgIGNhc2UgRUxFX01VX0lPQ1RMX0VOQUJMRV9DTURfUkNWOg0KPiA+ICsgICAg
+ICAgICAgICAgaWYgKCFlbGVfbXVfcHJpdi0+Y21kX3JlY2VpdmVyX2Rldikgew0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICBlbGVfbXVfcHJpdi0+Y21kX3JlY2VpdmVyX2RldiA9IGRldl9jdHg7
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGVyciA9IDA7DQo+ID4gKyAgICAgICAgICAgICB9
+Ow0KPiA+ICsgICAgICAgICAgICAgYnJlYWs7DQo+ID4gKyAgICAgY2FzZSBFTEVfTVVfSU9DVExf
+R0VUX01VX0lORk86DQo+ID4gKyAgICAgICAgICAgICBlcnIgPSBlbGVfbXVfaW9jdGxfZ2V0X211
+X2luZm8oZGV2X2N0eCwgYXJnKTsNCj4gPiArICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsgICAg
+IGNhc2UgRUxFX01VX0lPQ1RMX1NIQVJFRF9CVUZfQ0ZHOg0KPiA+ICsgICAgICAgICAgICAgZGV2
+Y3R4X2VycihkZXZfY3R4LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAiRUxFX01VX0lP
+Q1RMX1NIQVJFRF9CVUZfQ0ZHIG5vdCBzdXBwb3J0ZWQgWzB4JXhdLlxuIiwNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgZXJyKTsNCj4gPiArICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsg
+ICAgIGNhc2UgRUxFX01VX0lPQ1RMX1NFVFVQX0lPQlVGOg0KPiA+ICsgICAgICAgICAgICAgZXJy
+ID0gZWxlX211X2lvY3RsX3NldHVwX2lvYnVmX2hhbmRsZXIoZGV2X2N0eCwgYXJnKTsNCj4gPiAr
+ICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsgICAgIGNhc2UgRUxFX01VX0lPQ1RMX1NJR05FRF9N
+RVNTQUdFOg0KPiA+ICsgICAgICAgICAgICAgZGV2Y3R4X2VycihkZXZfY3R4LA0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAiRUxFX01VX0lPQ1RMX1NJR05FRF9NRVNTQUdFIG5vdCBzdXBw
+b3J0ZWQgWzB4JXhdLlxuIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgZXJyKTsNCj4g
+PiArICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsgICAgIGRlZmF1bHQ6DQo+ID4gKyAgICAgICAg
+ICAgICBlcnIgPSAtRUlOVkFMOw0KPiA+ICsgICAgICAgICAgICAgZGV2Y3R4X2RiZyhkZXZfY3R4
+LCAiSU9DVEwgJS44eCBub3Qgc3VwcG9ydGVkXG4iLCBjbWQpOw0KPiA+ICsgICAgIH0NCj4gPiAr
+DQo+ID4gKyAgICAgdXAoJmRldl9jdHgtPmZvcHNfbG9jayk7DQo+ID4gKyAgICAgcmV0dXJuIChs
+b25nKWVycjsNCj4gPiArfQ0KPiA+ICsNCj4gPiArLyogQ2hhciBkcml2ZXIgc2V0dXAgKi8NCj4g
+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBmaWxlX29wZXJhdGlvbnMgZWxlX211X2ZvcHMgPSB7DQo+
+IA0KPiBXaGVyZSBkaWQgeW91IGRvY3VtZW50IHVzZXItc3BhY2UgQUJJPw0KPiANCltQYW5rYWpd
+IFdpbGwgZGVmaW5pdGVseSBhZGQgaXQsIG5leHQgdG8gdGhpcyBwYXRjaC4NClRoYW5rcyBmb3Ig
+cG9pbnRpbmcgaXQgb3V0Lg0KDQo+ID4gKyAgICAgLm9wZW4gICAgICAgICAgID0gZWxlX211X2Zv
+cHNfb3BlbiwNCj4gPiArICAgICAub3duZXIgICAgICAgICAgPSBUSElTX01PRFVMRSwNCj4gPiAr
+ICAgICAucmVsZWFzZSAgICAgICAgPSBlbGVfbXVfZm9wc19jbG9zZSwNCj4gPiArICAgICAudW5s
+b2NrZWRfaW9jdGwgPSBlbGVfbXVfaW9jdGwsDQo+ID4gKyAgICAgLnJlYWQgICAgICAgICAgID0g
+ZWxlX211X2ZvcHNfcmVhZCwNCj4gPiArICAgICAud3JpdGUgICAgICAgICAgPSBlbGVfbXVfZm9w
+c193cml0ZSwNCj4gPiArfTsNCj4gPiArDQo+ID4gKy8qIGludGVyZmFjZSBmb3IgbWFuYWdlZCBy
+ZXMgdG8gZnJlZSBhIG1haWxib3ggY2hhbm5lbCAqLyBzdGF0aWMgdm9pZA0KPiA+ICtpZl9tYm94
+X2ZyZWVfY2hhbm5lbCh2b2lkICptYm94X2NoYW4pIHsNCj4gPiArICAgICBtYm94X2ZyZWVfY2hh
+bm5lbChtYm94X2NoYW4pOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICsvKiBpbnRlcmZhY2UgZm9yIG1h
+bmFnZWQgcmVzIHRvIHVucmVnaXN0ZXIgYSBjaGFyIGRldmljZSAqLyBzdGF0aWMNCj4gPiArdm9p
+ZCBpZl9taXNjX2RlcmVnaXN0ZXIodm9pZCAqbWlzY2RldmljZSkgew0KPiA+ICsgICAgIG1pc2Nf
+ZGVyZWdpc3RlcihtaXNjZGV2aWNlKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBl
+bGVfbXVfcmVxdWVzdF9jaGFubmVsKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgc3RydWN0IG1ib3hfY2hhbiAqKmNoYW4sDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBtYm94X2NsaWVudCAqY2wsDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGNoYXIgKm5hbWUpIHsNCj4gPiArICAg
+ICBzdHJ1Y3QgbWJveF9jaGFuICp0X2NoYW47DQo+ID4gKyAgICAgaW50IHJldCA9IDA7DQo+ID4g
+Kw0KPiA+ICsgICAgIHRfY2hhbiA9IG1ib3hfcmVxdWVzdF9jaGFubmVsX2J5bmFtZShjbCwgbmFt
+ZSk7DQo+ID4gKyAgICAgaWYgKElTX0VSUih0X2NoYW4pKSB7DQo+ID4gKyAgICAgICAgICAgICBy
+ZXQgPSBQVFJfRVJSKHRfY2hhbik7DQo+ID4gKyAgICAgICAgICAgICBpZiAocmV0ICE9IC1FUFJP
+QkVfREVGRVIpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGRldl9lcnIoZGV2LA0KPiA+ICsg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICJGYWlsZWQgdG8gcmVxdWVzdCBjaGFuICVzIHJl
+dCAlZFxuIiwgbmFtZSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXQpOw0K
+PiA+ICsgICAgICAgICAgICAgZ290byBleGl0Ow0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAg
+ICAgcmV0ID0gZGV2bV9hZGRfYWN0aW9uKGRldiwgaWZfbWJveF9mcmVlX2NoYW5uZWwsIHRfY2hh
+bik7DQo+ID4gKyAgICAgaWYgKHJldCkgew0KPiA+ICsgICAgICAgICAgICAgZGV2X2VycihkZXYs
+ICJmYWlsZWQgdG8gYWRkIGRldm0gcmVtb3ZhbCBvZiBtYm94ICVzXG4iLCBuYW1lKTsNCj4gPiAr
+ICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICpj
+aGFuID0gdF9jaGFuOw0KPiA+ICsNCj4gPiArZXhpdDoNCj4gPiArICAgICByZXR1cm4gcmV0Ow0K
+PiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGVsZV9wcm9iZV9jbGVhbnVwKHN0cnVjdCBw
+bGF0Zm9ybV9kZXZpY2UgKnBkZXYpIHsNCj4gPiArICAgICBpbnQgcmV0Ow0KPiA+ICsgICAgIGlu
+dCBpOw0KPiA+ICsgICAgIHN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQo+ID4gKyAg
+ICAgc3RydWN0IGVsZV9tdV9wcml2ICpwcml2ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4g
+Kw0KPiA+ICsgICAgIGlmICghcHJpdikgew0KPiA+ICsgICAgICAgICAgICAgcmV0ID0gLUVJTlZB
+TDsNCj4gPiArICAgICAgICAgICAgIGRldl9lcnIoZGV2LCAiSW52YWxpZCBFTEUtTVUgUHJpdiBk
+YXRhIik7DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ICsgICAgIH0NCj4gPiAr
+DQo+ID4gKyAgICAgaWYgKHByaXYtPnR4X2NoYW4pDQo+ID4gKyAgICAgICAgICAgICBtYm94X2Zy
+ZWVfY2hhbm5lbChwcml2LT50eF9jaGFuKTsNCj4gPiArICAgICBpZiAocHJpdi0+cnhfY2hhbikN
+Cj4gPiArICAgICAgICAgICAgIG1ib3hfZnJlZV9jaGFubmVsKHByaXYtPnJ4X2NoYW4pOw0KPiA+
+ICsNCj4gPiArICAgICAvKiBmcmVlIHRoZSBidWZmZXIgaW4gZWxlLW11IHJlbW92ZSwgcHJldmlv
+dXNseSBhbGxvY2F0ZWQNCj4gPiArICAgICAgKiBpbiBlbGUtbXUgcHJvYmUgdG8gc3RvcmUgZW5j
+cnlwdGVkIElNRU0NCj4gPiArICAgICAgKi8NCj4gPiArICAgICBpZiAocHJpdi0+aW1lbS5idWYp
+IHsNCj4gPiArICAgICAgICAgICAgIGRtYW1fZnJlZV9jb2hlcmVudCgmcGRldi0+ZGV2LA0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVMRV9JTUVNX1NJWkUsDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJpdi0+aW1lbS5idWYsDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJpdi0+aW1lbS5waHlhZGRyKTsNCj4gPiArICAg
+ICAgICAgICAgIHByaXYtPmltZW0uYnVmID0gTlVMTDsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+
+ICsgICAgIGlmIChwcml2LT5mbGFncyAmIFJFU0VSVkVEX0RNQV9QT09MKSB7DQo+ID4gKyAgICAg
+ICAgICAgICBvZl9yZXNlcnZlZF9tZW1fZGV2aWNlX3JlbGVhc2UoZGV2KTsNCj4gPiArICAgICAg
+ICAgICAgIHByaXYtPmZsYWdzICY9ICh+UkVTRVJWRURfRE1BX1BPT0wpOw0KPiA+ICsgICAgIH0N
+Cj4gPiArICAgICBpZiAocHJpdi0+Y3R4cykgew0KPiA+ICsgICAgICAgICAgICAgZm9yIChpID0g
+MDsgaSA8IHByaXYtPm1heF9kZXZfY3R4OyBpKyspIHsNCj4gPiArICAgICAgICAgICAgICAgICAg
+ICAgaWYgKHByaXYtPmN0eHNbaV0pDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ZGV2bV9rZnJlZShkZXYsIHByaXYtPmN0eHNbaV0pOw0KPiA+ICsgICAgICAgICAgICAgfQ0KPiA+
+ICsgICAgICAgICAgICAgZGV2bV9rZnJlZShkZXYsIHByaXYtPmN0eHMpOw0KPiA+ICsgICAgIH0N
+Cj4gPiArICAgICBkZXZtX2tmcmVlKGRldiwgcHJpdik7DQo+ID4gKyAgICAgcmV0dXJuIHJldDsN
+Cj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBlbGVfbXVfcHJvYmUoc3RydWN0IHBsYXRm
+b3JtX2RldmljZSAqcGRldikgew0KPiA+ICsgICAgIHN0cnVjdCBlbGVfbXVfZGV2aWNlX2N0eCAq
+ZGV2X2N0eDsNCj4gPiArICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Ow0KPiA+
+ICsgICAgIHN0cnVjdCBlbGVfbXVfcHJpdiAqcHJpdjsNCj4gPiArICAgICBzdHJ1Y3QgZGV2aWNl
+X25vZGUgKm5wOw0KPiA+ICsgICAgIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgKm9mX2lkID0g
+b2ZfbWF0Y2hfZGV2aWNlKGVsZV9tdV9tYXRjaCwNCj4gZGV2KTsNCj4gPiArICAgICBzdHJ1Y3Qg
+aW14X2luZm8gKmluZm8gPSAob2ZfaWQgIT0gTlVMTCkgPyAoc3RydWN0IGlteF9pbmZvICopb2Zf
+aWQtPmRhdGENCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgOiBOVUxMOw0KPiANCj4gVGhhdCdzIHNvbWUgc3BhZ2hldHRpIGNvZGUuIENhbiBvZl9pZCBi
+ZSBOVUxMPw0KW0FjY2VwdGVkXSBDb3JyZWN0ZWQgaXQuDQoNCj4gDQo+ID4gKyAgICAgY2hhciAq
+ZGV2bmFtZTsNCj4gPiArICAgICB1aW50MzJfdCB0bXBfZHRfdmFsdWUgPSAwOw0KPiA+ICsgICAg
+IGludCByZXQ7DQo+ID4gKyAgICAgaW50IGk7DQo+ID4gKw0KPiA+ICsgICAgIGlmICghaW5mbykg
+ew0KPiA+ICsgICAgICAgICAgICAgcmV0ID0gLUVJTlZBTDsNCj4gPiArICAgICAgICAgICAgIGRl
+dl9lcnIoZGV2LCAiJXM6IEluY29tcGF0aWJsZSBEZXZpY2UuXG4iLCBfX2Z1bmNfXyk7DQo+IA0K
+PiBOQUssIGV4cGxhaW4gaG93IHRoaXMgaXMgZXZlbiBwb3NzaWJsZS4NCj4gDQpbQWNjZXB0ZWRd
+IHdpbGwgY29ycmVjdCBpbiBWNS4NCg0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4g
+PiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIHByaXYgPSBkZXZtX2t6YWxsb2MoZGV2LCBzaXpl
+b2YoKnByaXYpLCBHRlBfS0VSTkVMKTsNCj4gPiArICAgICBpZiAoIXByaXYpIHsNCj4gPiArICAg
+ICAgICAgICAgIHJldCA9IC1FTk9NRU07DQo+ID4gKyAgICAgICAgICAgICBkZXZfZXJyKGRldiwg
+IkZhaWwgYWxsb2NhdGUgbWVtIGZvciBwcml2YXRlIGRhdGFcbiIpOw0KPiANCj4gSSBhc2tlZCBh
+Ym91dCBkb2luZyBpbnRlcm5hbCByZXZpZXcuIFRoaXMgaXMgdHJpdmlhbCBtaXN0YWtlLCBzbyBJ
+IGRvdWJ0IHlvdSBkaWQNCj4gYW55IGludGVybmFsIHJldmlldy4gRXZlbiB0b29scyBwb2ludCBp
+dCBvdXQgKGNvY2NpbmVsbGUsIHNtYXRjaCwgc3BhcnNlKS4NCj4gDQpbUGFua2FqXSBXaWxsIGNv
+cnJlY3QgaXQ6DQorICAgICBpZiAoIXByaXYpDQorCXJldHVybiAtRU5PTUVNOw0KDQo+ID4gKyAg
+ICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ICsgICAgIH0NCj4gPiArICAgICBtZW1zZXQocHJp
+diwgMHgwLCBzaXplb2YoKnByaXYpKTsNCj4gPiArICAgICBwcml2LT5kZXYgPSBkZXY7DQo+ID4g
+KyAgICAgZGV2X3NldF9kcnZkYXRhKGRldiwgcHJpdik7DQo+ID4gKw0KPiA+ICsgICAgIC8qDQo+
+ID4gKyAgICAgICogR2V0IHRoZSBhZGRyZXNzIG9mIE1VIHRvIGJlIHVzZWQgZm9yIGNvbW11bmlj
+YXRpb24gd2l0aCB0aGUgU0NVDQo+ID4gKyAgICAgICovDQo+ID4gKyAgICAgbnAgPSBwZGV2LT5k
+ZXYub2Zfbm9kZTsNCj4gPiArICAgICBpZiAoIW5wKSB7DQo+ID4gKyAgICAgICAgICAgICBkZXZf
+ZXJyKGRldiwgIkNhbm5vdCBmaW5kIE1VIFVzZXIgZW50cnkgaW4gZGV2aWNlDQo+ID4gKyB0cmVl
+XG4iKTsNCj4gDQo+IE5vLCBob3cgaXMgdGhpcyBldmVuIHBvc3NpYmxlPyBQbGVhc2UsIGRvIG5v
+dCBhZGQgY29kZSB3aGljaCBjYW5ub3QNCj4gd29yay9oYXBwZW4uDQo+DQpbQWNjZXB0ZWRdIHdp
+bGwgYmUgcmVtb3ZlZCBmcm9tIFY1LiANCj4gPiArICAgICAgICAgICAgIHJldCA9IC1FT1BOT1RT
+VVBQOw0KPiA+ICsgICAgICAgICAgICAgZ290byBleGl0Ow0KPiA+ICsgICAgIH0NCj4gPiArDQo+
+ID4gKyAgICAgLyogSW5pdGlhbGl6ZSB0aGUgbXV0ZXguICovDQo+ID4gKyAgICAgbXV0ZXhfaW5p
+dCgmcHJpdi0+bXVfY21kX2xvY2spOw0KPiA+ICsgICAgIG11dGV4X2luaXQoJnByaXYtPm11X2xv
+Y2spOw0KPiA+ICsNCj4gPiArICAgICBwcml2LT5jbWRfcmVjZWl2ZXJfZGV2ID0gTlVMTDsNCj4g
+PiArICAgICBwcml2LT53YWl0aW5nX3JzcF9kZXYgPSBOVUxMOw0KPiA+ICsNCj4gPiArICAgICBy
+ZXQgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMihucCwgImZzbCxtdS1kaWQiLCAmdG1wX2R0X3ZhbHVl
+KTsNCj4gPiArICAgICBpZiAocmV0KSB7DQo+ID4gKyAgICAgICAgICAgICByZXQgPSAtRUlOVkFM
+Ow0KPiA+ICsgICAgICAgICAgICAgZGV2X2VycihkZXYsICIlczogTm90IGFibGUgdG8gcmVhZCBt
+dS1kaWQiLCBfX2Z1bmNfXyk7DQo+ID4gKyAgICAgICAgICAgICBnb3RvIGV4aXQ7DQo+ID4gKyAg
+ICAgfQ0KPiA+ICsgICAgIHByaXYtPmVsZV9tdV9kaWQgPSB0bXBfZHRfdmFsdWUgJiAweEZGOw0K
+PiA+ICsNCj4gPiArICAgICByZXQgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMihucCwgImZzbCxtdS1p
+ZCIsICZ0bXBfZHRfdmFsdWUpOw0KPiA+ICsgICAgIGlmIChyZXQpIHsNCj4gPiArICAgICAgICAg
+ICAgIHJldCA9IC1FSU5WQUw7DQo+ID4gKyAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIiVzOiBO
+b3QgYWJsZSB0byByZWFkIG11LWlkIiwgX19mdW5jX18pOw0KPiA+ICsgICAgICAgICAgICAgZ290
+byBleGl0Ow0KPiA+ICsgICAgIH0NCj4gPiArICAgICBwcml2LT5lbGVfbXVfaWQgPSB0bXBfZHRf
+dmFsdWUgJiAweEZGOw0KPiA+ICsNCj4gPiArICAgICBwcml2LT5tYXhfZGV2X2N0eCA9IGluZm8t
+Pm1heF9kZXZfY3R4Ow0KPiA+ICsNCj4gPiArICAgICBwcml2LT5jbWRfdGFnID0gaW5mby0+Y21k
+X3RhZzsNCj4gPiArICAgICBwcml2LT5yc3BfdGFnID0gaW5mby0+cnNwX3RhZzsNCj4gPiArDQo+
+ID4gKyAgICAgLyogTWFpbGJveCBjbGllbnQgY29uZmlndXJhdGlvbiAqLw0KPiA+ICsgICAgIHBy
+aXYtPmVsZV9tYl9jbC5kZXYgICAgICAgICAgICAgPSBkZXY7DQo+ID4gKyAgICAgcHJpdi0+ZWxl
+X21iX2NsLnR4X2Jsb2NrICAgICAgICA9IGZhbHNlOw0KPiA+ICsgICAgIHByaXYtPmVsZV9tYl9j
+bC5rbm93c190eGRvbmUgICAgPSB0cnVlOw0KPiA+ICsgICAgIHByaXYtPmVsZV9tYl9jbC5yeF9j
+YWxsYmFjayAgICAgPSBlbGVfbXVfcnhfY2FsbGJhY2s7DQo+ID4gKw0KPiA+ICsgICAgIHJldCA9
+IGVsZV9tdV9yZXF1ZXN0X2NoYW5uZWwoZGV2LCAmcHJpdi0+dHhfY2hhbiwNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICZwcml2LT5lbGVfbWJfY2wsICJ0eCIpOw0KPiA+
+ICsgICAgIGlmIChyZXQpIHsNCj4gPiArICAgICAgICAgICAgIGlmIChyZXQgIT0gLUVQUk9CRV9E
+RUZFUikNCj4gPiArICAgICAgICAgICAgICAgICAgICAgZGV2X2VycihkZXYsICJGYWlsZWQgdG8g
+cmVxdWVzdCB0eCBjaGFubmVsXG4iKTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICBnb3RvIGV4
+aXQ7DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICByZXQgPSBlbGVfbXVfcmVxdWVzdF9j
+aGFubmVsKGRldiwgJnByaXYtPnJ4X2NoYW4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAmcHJpdi0+ZWxlX21iX2NsLCAicngiKTsNCj4gPiArICAgICBpZiAocmV0KSB7
+DQo+ID4gKyAgICAgICAgICAgICBpZiAocmV0ICE9IC1FUFJPQkVfREVGRVIpDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgIGRldl9lcnIoZGV2LCAiRmFpbGVkIHRvIHJlcXVlc3QgcnggY2hhbm5l
+bFxuIik7DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgZ290byBleGl0Ow0KPiA+ICsgICAgIH0N
+Cj4gPiArDQo+ID4gKyAgICAgcHJpdi0+Y3R4cyA9IGRldm1fa3phbGxvYyhkZXYsIHNpemVvZihk
+ZXZfY3R4KSAqIHByaXYtPm1heF9kZXZfY3R4LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgR0ZQX0tFUk5FTCk7DQo+ID4gKw0KPiA+ICsgICAgIGlmICghcHJpdi0+Y3R4cykg
+ew0KPiA+ICsgICAgICAgICAgICAgcmV0ID0gLUVOT01FTTsNCj4gPiArICAgICAgICAgICAgIGRl
+dl9lcnIoZGV2LCAiRmFpbCBhbGxvY2F0ZSBtZW0gZm9yIHByaXZhdGUgZGV2LWN0eHMuXG4iKTsN
+Cj4gPiArICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsg
+ICAgIC8qIENyZWF0ZSB1c2VycyAqLw0KPiA+ICsgICAgIGZvciAoaSA9IDA7IGkgPCBwcml2LT5t
+YXhfZGV2X2N0eDsgaSsrKSB7DQo+ID4gKyAgICAgICAgICAgICBkZXZfY3R4ID0gZGV2bV9remFs
+bG9jKGRldiwgc2l6ZW9mKCpkZXZfY3R4KSwgR0ZQX0tFUk5FTCk7DQo+ID4gKyAgICAgICAgICAg
+ICBpZiAoIWRldl9jdHgpIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgcmV0ID0gLUVOT01F
+TTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgZGV2X2VycihkZXYsDQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIkZhaWwgdG8gYWxsb2NhdGUgbWVtb3J5IGZvciBkZXZpY2Ug
+Y29udGV4dFxuIik7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiAr
+ICAgICAgICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICAgICAgICBkZXZfY3R4LT5kZXYgPSBk
+ZXY7DQo+ID4gKyAgICAgICAgICAgICBkZXZfY3R4LT5zdGF0dXMgPSBNVV9GUkVFOw0KPiA+ICsg
+ICAgICAgICAgICAgZGV2X2N0eC0+cHJpdiA9IHByaXY7DQo+ID4gKw0KPiA+ICsgICAgICAgICAg
+ICAgcHJpdi0+Y3R4c1tpXSA9IGRldl9jdHg7DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgLyog
+RGVmYXVsdCB2YWx1ZSBpbnZhbGlkIGZvciBhbiBoZWFkZXIuICovDQo+ID4gKyAgICAgICAgICAg
+ICBpbml0X3dhaXRxdWV1ZV9oZWFkKCZkZXZfY3R4LT53cSk7DQo+ID4gKw0KPiA+ICsgICAgICAg
+ICAgICAgSU5JVF9MSVNUX0hFQUQoJmRldl9jdHgtPnBlbmRpbmdfb3V0KTsNCj4gPiArICAgICAg
+ICAgICAgIElOSVRfTElTVF9IRUFEKCZkZXZfY3R4LT5wZW5kaW5nX2luKTsNCj4gPiArICAgICAg
+ICAgICAgIHNlbWFfaW5pdCgmZGV2X2N0eC0+Zm9wc19sb2NrLCAxKTsNCj4gPiArDQo+ID4gKyAg
+ICAgICAgICAgICBkZXZuYW1lID0gZGV2bV9rYXNwcmludGYoZGV2LCBHRlBfS0VSTkVMLCAiZWxl
+X211JWRfY2glZCIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+cHJpdi0+ZWxlX211X2lkLCBpKTsNCj4gPiArICAgICAgICAgICAgIGlmICghZGV2bmFtZSkgew0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICByZXQgPSAtRU5PTUVNOw0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICBkZXZfZXJyKGRldiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAiRmFpbCB0byBhbGxvY2F0ZSBtZW1vcnkgZm9yIG1pc2MgZGV2IG5hbWVcbiIpOw0KPiA+ICsg
+ICAgICAgICAgICAgICAgICAgICBnb3RvIGV4aXQ7DQo+ID4gKyAgICAgICAgICAgICB9DQo+ID4g
+Kw0KPiA+ICsgICAgICAgICAgICAgZGV2X2N0eC0+bWlzY2Rldi5uYW1lID0gZGV2bmFtZTsNCj4g
+PiArICAgICAgICAgICAgIGRldl9jdHgtPm1pc2NkZXYubWlub3IgPSBNSVNDX0RZTkFNSUNfTUlO
+T1I7DQo+ID4gKyAgICAgICAgICAgICBkZXZfY3R4LT5taXNjZGV2LmZvcHMgPSAmZWxlX211X2Zv
+cHM7DQo+ID4gKyAgICAgICAgICAgICBkZXZfY3R4LT5taXNjZGV2LnBhcmVudCA9IGRldjsNCj4g
+PiArICAgICAgICAgICAgIHJldCA9IG1pc2NfcmVnaXN0ZXIoJmRldl9jdHgtPm1pc2NkZXYpOw0K
+PiA+ICsgICAgICAgICAgICAgaWYgKHJldCkgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBk
+ZXZfZXJyKGRldiwgImZhaWxlZCB0byByZWdpc3RlciBtaXNjIGRldmljZSAlZFxuIiwNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXQpOw0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICBnb3RvIGV4aXQ7DQo+ID4gKyAgICAgICAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAg
+ICAgICAgcmV0ID0gZGV2bV9hZGRfYWN0aW9uKGRldiwgaWZfbWlzY19kZXJlZ2lzdGVyLA0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZkZXZfY3R4LT5taXNjZGV2KTsN
+Cj4gPiArICAgICAgICAgICAgIGlmIChyZXQpIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ZGV2X2VycihkZXYsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImZhaWxlZFsl
+ZF0gdG8gYWRkIGFjdGlvbiB0byB0aGUgbWlzYy1kZXZcbiIsDQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgcmV0KTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgZ290byBleGl0
+Ow0KPiA+ICsgICAgICAgICAgICAgfQ0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgaW5p
+dF9jb21wbGV0aW9uKCZwcml2LT5kb25lKTsNCj4gPiArICAgICBzcGluX2xvY2tfaW5pdCgmcHJp
+di0+bG9jayk7DQo+ID4gKw0KPiA+ICsgICAgIGVsZV9wcml2X2V4cG9ydCA9IHByaXY7DQo+ID4g
+Kw0KPiA+ICsgICAgIGlmIChpbmZvICYmIGluZm8tPnJlc2VydmVkX2RtYV9yYW5nZXMpIHsNCj4g
+PiArICAgICAgICAgICAgIHJldCA9IG9mX3Jlc2VydmVkX21lbV9kZXZpY2VfaW5pdChkZXYpOw0K
+PiANCj4gWW91IGRvbid0IGhhdmUgcmVzZXJ2ZWQgbWVtb3J5LCBhY2NvcmRpbmcgdG8geW91ciBi
+aW5kaW5ncy4NCltQYW5rYWpdIFRoaXMgd2FzIGFsc28gaGlnaGxpZ2h0ZWQgYXMgcGFydCBEVEIg
+dGVzdGluZy4gTm93LCBJIGhhdmUgYWRkZWQgaXQgaW4gdGhlIGJpbmRpbmcuDQo+IA0KPiA+ICsg
+ICAgICAgICAgICAgaWYgKHJldCkgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBkZXZfZXJy
+KGRldiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiZmFpbGVkIHRvIGluaXQg
+cmVzZXJ2ZWQgbWVtb3J5IHJlZ2lvbiAlZFxuIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICByZXQpOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBwcml2LT5mbGFncyAmPSAo
+flJFU0VSVkVEX0RNQV9QT09MKTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgZ290byBleGl0
+Ow0KPiA+ICsgICAgICAgICAgICAgfQ0KPiA+ICsgICAgICAgICAgICAgcHJpdi0+ZmxhZ3MgfD0g
+UkVTRVJWRURfRE1BX1BPT0w7DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICBpZiAoaW5m
+byAmJiBpbmZvLT5pbml0X2Z3KSB7DQo+ID4gKyAgICAgICAgICAgICAvKiBzdGFydCBpbml0aWFs
+aXppbmcgZWxlIGZ3ICovDQo+ID4gKyAgICAgICAgICAgICByZXQgPSBlbGVfaW5pdF9mdygpOw0K
+PiA+ICsgICAgICAgICAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgICAgICAgICAgZGV2
+X2VycihkZXYsICJGYWlsZWQgdG8gaW5pdGlhbGl6ZSBlbGUgZncuXG4iKTsNCj4gPiArICAgICB9
+DQo+ID4gKw0KPiA+ICsgICAgIGlmIChpbmZvICYmIGluZm8tPnNvY2Rldikgew0KPiA+ICsgICAg
+ICAgICAgICAgcmV0ID0gaW14X3NvY19kZXZpY2VfcmVnaXN0ZXIocGRldiwgaW5mbyk7DQo+IA0K
+PiBJdCdzIG5vdCBhIHNvYyBkZXZpY2UuDQpbUGFua2FqXSBpdCBpcyBub3QgYSBzb2MgZGV2aWNl
+LiBCdXQgdGhlIGluZm9ybWF0aW9uIGNhbiBiZSBmZXRjaGVkIGFib3V0IFNvQywgZnJvbSBGVyBw
+b3N0IHRoaXMgZHJpdmVyIGluaXQuDQoNCj4gDQo+ID4gKyAgICAgICAgICAgICBpZiAocmV0KSB7
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGRldl9lcnIoZGV2LA0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICJmYWlsZWRbJWRdIHRvIHJlZ2lzdGVyIFNvQyBkZXZpY2VcbiIs
+IHJldCk7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiArICAgICAg
+ICAgICAgIH0NCj4gPiArICAgICB9DQo+ID4gKw0KPiA+ICsgICAgIGlmIChpbmZvICYmIGluZm8t
+PmltZW1fbWdtdCkgew0KPiA+ICsgICAgICAgICAgICAgLyogYWxsb2NhdGUgYnVmZmVyIHdoZXJl
+IEVMRSBzdG9yZSBlbmNyeXB0ZWQgSU1FTSAqLw0KPiA+ICsgICAgICAgICAgICAgcHJpdi0+aW1l
+bS5idWYgPSBkbWFtX2FsbG9jX2NvaGVyZW50KGRldiwgRUxFX0lNRU1fU0laRSwNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmcHJpdi0+aW1l
+bS5waHlhZGRyLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIEdGUF9LRVJORUwpOw0KPiA+ICsgICAgICAgICAgICAgaWYgKCFwcml2LT5pbWVt
+LmJ1Zikgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICBkZXZfZXJyKGRldiwNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAiZG1hbS1hbGxvYy1mYWlsZWQ6IFRvIHN0b3JlIGVu
+Y3ItSU1FTS5cbiIpOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICByZXQgPSAtRU5PTUVNOw0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICBnb3RvIGV4aXQ7DQo+ID4gKyAgICAgICAgICAgICB9
+DQo+ID4gKyAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAvKiBzdGFydCBlbGUgcm5nICovDQo+ID4g
+KyAgICAgcmV0ID0gZWxlX2RvX3N0YXJ0X3JuZygpOw0KPiA+ICsgICAgIGlmIChyZXQpDQo+ID4g
+KyAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBzdGFydCBlbGUgcm5nXG4iKTsN
+Cj4gPiArDQo+ID4gKyAgICAgaWYgKCFyZXQgJiYgaW5mbyAmJiBpbmZvLT5lbmFibGVfZWxlX3Ry
+bmcpIHsNCj4gPiArICAgICAgICAgICAgIHJldCA9IGVsZV90cm5nX2luaXQoZGV2KTsNCj4gPiAr
+ICAgICAgICAgICAgIGlmIChyZXQpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGRldl9lcnIo
+ZGV2LCAiRmFpbGVkIHRvIGluaXQgZWxlLXRybmdcbiIpOw0KPiA+ICsgICAgIH0NCj4gPiArDQo+
+ID4gKyAgICAgLyoNCj4gPiArICAgICAgKiBBIEVMRSBwaW5nIHJlcXVlc3QgbXVzdCBiZSBzZW5k
+IGF0IGxlYXN0IG9uY2UgZXZlcnkgZGF5KDI0IGhvdXJzKSwNCj4gPiArICAgICAgKiBzbyBzZXR1
+cCBhIGRlbGF5IHdvcmsgd2l0aCAxIGhvdXIgaW50ZXJ2YWwNCj4gPiArICAgICAgKiB0byBwaW5n
+IEVMRSBwZXJpb2RpY2FsbHkuDQo+ID4gKyAgICAgICovDQo+ID4gKyAgICAgc2NoZWR1bGVfZGVs
+YXllZF93b3JrKCZlbGVfcGluZ193b3JrLCBFTEVfUElOR19JTlRFUlZBTCk7DQo+ID4gKw0KPiA+
+ICsgICAgIGRldl9zZXRfZHJ2ZGF0YShkZXYsIHByaXYpOw0KPiA+ICsNCj4gPiArICAgICBwcl9p
+bmZvKCJNaXNjLWRldmljZXMgb24gaS5NWCBlbmNsYXZlIE1VIGlzIGNvbmZpZ3VyZWQuXG4iKTsN
+Cj4gDQo+IE5vIHNpbGx5IHByb2JlIHN1Y2Nlc3MgbWVzc2FnZXMuDQpbQWNjZXB0ZWRdIFdpbGwg
+cmVtb3ZlZCBpbiBWNS4NCj4gDQo+IA0KPiA+ICsgICAgIHJldHVybiBkZXZtX29mX3BsYXRmb3Jt
+X3BvcHVsYXRlKGRldik7DQo+IA0KPiBOby4gWW91IGRvIG5vdCBoYXZlIGNoaWxkcmVuLiBKdXN0
+IG9wZW4geW91ciBvd24gYmluZGluZyBhbmQgbG9vayB0aGVyZS4NCj4gDQo+IFRoaXMgZHJpdmVy
+IGlzIGluIHRlcnJpYmxlIHNoYXBlIGFuZCBJIGFza2VkIHRvIGRvIHNvbWUgaW50ZXJuYWwgcmV2
+aWV3IGluIE5YUC4NCj4gSW50ZXJuYWwgcmV2aWV3IHNob3VsZCBwb2ludCBzdWNoIHRyaXZpYWwg
+Y29tbWVudHMgYnV0IHlvdXIgY2hhbmdlbG9nIGZyb20NCj4gdjEgdHAgdjQgc2F5cyBub3RoaW5n
+IGFib3V0IGl0Lg0KPiANCj4gU28gaW50ZXJuYWwgcmV2aWV3IGRpZCBub3QgaGFwcGVuLiBEb24n
+dCB1c2UgdXBzdHJlYW0gYXMgY2hlYXAgcmV2aWV3ZXJzIGZvcg0KPiBwb29yIHF1YWxpdHkgY29k
+ZS4gUGxlYXNlIHdvcmsgaW50ZXJuYWxseSB0aWxsIGl0IHN0YXJ0cyBsb29raW5nIGNvcnJlY3Qg
+YW5kIGFsbA0KPiBhdXRvbWF0ZWQgdG9vbHMgcGFzcy4gTlhQIGlzIG5vdCBzb21lIHNtYWxsLCBh
+bWF0ZW91ciBjb21wYW55IHdoaWNoIGNhbiBiZQ0KPiBleGN1c2VkIG9mIHRoaXMuIE9yIGlzIGl0
+Pw0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
