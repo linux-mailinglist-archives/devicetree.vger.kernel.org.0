@@ -2,184 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A37F5773CCF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C47A773E8A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:32:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232023AbjHHQJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32866 "EHLO
+        id S231727AbjHHQcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231831AbjHHQIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:08:22 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C640C769B
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 08:46:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1691509542;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Lr8QH1hJKMAeMGOo0M5b1qGrUuXmYrB7fQhjBLGi+k0=;
-        b=hS8SmJzWdL1TtS4tCBU18Fi8JOWmwixfEOoH8fBeuCastwR9RwVUzpweEJ4CBzm3TjjGpV
-        JgVoR6cARaf4puEcMTwdcNeeAsq/OsbJx1WzfXWgxvcgi3eVxBmMXSS92ytQmNEWrYc8DJ
-        XhYcCiccot6kDlNNrJ49sCvIfF5Nvug=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-656-cKzMkFZnP5CQzbPz2zRTwQ-1; Tue, 08 Aug 2023 10:44:19 -0400
-X-MC-Unique: cKzMkFZnP5CQzbPz2zRTwQ-1
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-40ff829c836so34641381cf.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 07:44:19 -0700 (PDT)
+        with ESMTP id S232921AbjHHQbC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:31:02 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0AA1394C
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 08:51:39 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe216edaf7so8270609e87.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 08:51:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691509891; x=1692114691;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q24TuyQPIV9JKdXRN8c9UpIkwf6u74tQnVD/uWybcPY=;
+        b=ooJUGKed+TqnLoPRl6/ha6jK7wklyRQsI22gMPmHZYx56xz56BLgMjYomwEfLBwhv1
+         NmpP5Sunf+xC99kRlxmp0wygDW4z4ZDN2NBdidVHzjGxTTjt/PF+Kp8hrOicutclfq0j
+         KgwvCfCVzQplkvrZecxbVxyaNcWqsAmd3pbQcdt3h5W/NsWqO2KCwb+7elZtKCL+qfrS
+         UB4RpgWJ+hK2cF0e/mfD6JZrie0SG2ZfVyYt+EoiLGzttAiaPpmob65dvAbMO3jE0z+O
+         5VdNAnFVkrls+BWtVSf2DK0w2mU/gkuprIyHvzPtDpgxPSaggD6qxcFb9WyoMIDyhu8K
+         ailQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691505859; x=1692110659;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20221208; t=1691509891; x=1692114691;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lr8QH1hJKMAeMGOo0M5b1qGrUuXmYrB7fQhjBLGi+k0=;
-        b=bU4ZVoNab0ekNgBi0VOqF8SBzHd0RM0rPGwoCD1D/grKE8OoWbOKZiQZnD/Hk3Z/CU
-         BKpw7O1kB5w8janMzVzRLQkph01FdC3pe8gBp4Rxa2fkDKlKhJvCoeuBVc4N0w/3WhRO
-         ahgD7EKvIpSO44/gnXnhIFIW0qaIsuDFrOBYn5gjC9hKR4ktGQWYxmkw82+i3UEwwhyK
-         kHPC5rn8WWqcUOnauD5Ga55VgH3fNpx5lw2ZbsgB+Q+4lZqv4jcxCINyOmgyVZ73TGZz
-         CgiExsbehOTjueii2d+s5dHygsKRdsrjSVr2aFqNkzjssPDCZuIQNbm4v/SwBdRcdsYJ
-         mM3w==
-X-Gm-Message-State: AOJu0Yx7xindwAZW4CKNbsL6KMwF6Hpicacr4/BBQWZIk0EuvkECvCCy
-        lNjFK3y0SucTcLqJXOhv14+TqkSzvef/Ik/TK2ZdiMxD9BTbUWpvTxaIQoZYIwLJpObylptfXSd
-        4ZRRMx8zhRpTknVXhYdQhZg==
-X-Received: by 2002:ac8:5902:0:b0:40f:f44f:7f79 with SMTP id 2-20020ac85902000000b0040ff44f7f79mr2444qty.16.1691505859183;
-        Tue, 08 Aug 2023 07:44:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG4H/PhZU/WpPuHATF0/xjAxDvtaCGT5yE9Pf+IDINKw6+ypsWmrPVAHe6GEcDu06wD1x60qw==
-X-Received: by 2002:ac8:5902:0:b0:40f:f44f:7f79 with SMTP id 2-20020ac85902000000b0040ff44f7f79mr2428qty.16.1691505858889;
-        Tue, 08 Aug 2023 07:44:18 -0700 (PDT)
-Received: from fedora ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id l5-20020ac84a85000000b0040fdf9a53e6sm3397095qtq.82.2023.08.08.07.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 07:44:18 -0700 (PDT)
-Date:   Tue, 8 Aug 2023 09:44:16 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-Message-ID: <xfme5pgj4eqlgao3vmyg6vazaqk6qz2wq6kitgujtorouogjty@cklyof3xz2zm>
-References: <20230807193102.6374-1-brgl@bgdev.pl>
- <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
- <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
- <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk>
- <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
- <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch>
- <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
+        bh=Q24TuyQPIV9JKdXRN8c9UpIkwf6u74tQnVD/uWybcPY=;
+        b=ROTQilEUUS5oBGpjxrGN5ngOuKxOl1UKe29JpZY1XmOsGvdVLzGQVGlNhZeJ2DGBv6
+         2ILkJxBe3efYbj2V3hZfiPzzu6dLt0gi4LIzGS7/s5B1LUrDuSKB/SIJRcNE0f3t1yTE
+         uUIAV0j4pk1vXttLvHvodOv2a0GFUrmWyEnqdzgyx5fEVAOmR1bW5ouxHdNY8uxNVIDW
+         zVNgdmdYAjtH2F2lKFc8ToF/BZ8Jmm+tWzknUe2BQ/Hq34Es0yhstmOpzyncCzgHXDEo
+         zGJ1OZEUV4tOWi8lr0VuHsx/aFMf7trSM0Vh69qx4G5bT/nGaruw6A0LqrAV1d2rk9af
+         55vg==
+X-Gm-Message-State: AOJu0YxXaCOgQCAZ2E2JsreEZviCqkVj6wMEj03ig677pNaj6xfiedPu
+        yHUCI1nkyFpUbqDosYE7sPn/QlpMbdU5si3jqgg=
+X-Google-Smtp-Source: AGHT+IH+83IRgkTcHHxGdoUT4Se5hAS8eTHNASuvSJa4UvMYgg41Fn4+QsSO9CRbFeCN7dZHSqw6Rg==
+X-Received: by 2002:a17:906:31d2:b0:99b:50ea:2f96 with SMTP id f18-20020a17090631d200b0099b50ea2f96mr68317ejf.12.1691506140661;
+        Tue, 08 Aug 2023 07:49:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id le3-20020a170907170300b0099cf840527csm812527ejc.153.2023.08.08.07.48.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Aug 2023 07:49:00 -0700 (PDT)
+Message-ID: <701ad779-0d1e-e8e6-8eba-294452cfb0bc@linaro.org>
+Date:   Tue, 8 Aug 2023 16:48:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [EXT] Re: [PATCH v4 2/7] arm64: dts: imx8ulp-evk: added nxp
+ secure enclave firmware
+Content-Language: en-US
+To:     Pankaj Gupta <pankaj.gupta@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "clin@suse.com" <clin@suse.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Gaurav Jain <gaurav.jain@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        Sahil Malhotra <sahil.malhotra@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Varun Sethi <V.Sethi@nxp.com>
+References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
+ <20230712121219.2654234-3-pankaj.gupta@nxp.com>
+ <1ac2fb68-02e0-ddfe-87aa-fcd093779009@linaro.org>
+ <DU2PR04MB86306E154C195F69368D3AB8950DA@DU2PR04MB8630.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DU2PR04MB86306E154C195F69368D3AB8950DA@DU2PR04MB8630.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 04:30:05PM +0200, Bartosz Golaszewski wrote:
-> On Tue, Aug 8, 2023 at 4:25 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > > > On Tue, Aug 08, 2023 at 10:13:09AM +0200, Bartosz Golaszewski wrote:
-> > > > > Ok so upon some further investigation, the actual culprit is in stmmac
-> > > > > platform code - it always tries to register an MDIO bus - independent
-> > > > > of whether there is an actual mdio child node - unless the MAC is
-> > > > > marked explicitly as having a fixed-link.
-> > > > >
-> > > > > When I fixed that, MAC1's probe is correctly deferred until MAC0 has
-> > > > > created the MDIO bus.
-> > > > >
-> > > > > Even so, isn't it useful to actually reference the shared MDIO bus in some way?
-> > > > >
-> > > > > If the schematics look something like this:
-> > > > >
-> > > > > --------           -------
-> > > > > | MAC0 |--MDIO-----| PHY |
-> > > > > -------- |     |   -------
-> > > > >          |     |
-> > > > > -------- |     |   -------
-> > > > > | MAC1 |--     ----| PHY |
-> > > > > --------           -------
-> > > > >
-> > > > > Then it would make sense to model it on the device tree?
-> > > >
-> > > > So I think what you're saying is that MAC0 and MAC1's have MDIO bus
-> > > > masters, and the hardware designer decided to tie both together to
-> > > > a single set of clock and data lines, which then go to two PHYs.
-> > >
-> > > The schematics I have are not very clear on that, but now that you
-> > > mention this, it's most likely the case.
-> >
-> > I hope not. That would be very broken. As Russell pointed out, MDIO is
-> > not multi-master. You need to check with the hardware designer if the
-> > schematics are not clear.
+On 08/08/2023 13:07, Pankaj Gupta wrote:
 > 
-> Sorry, it was not very clear. It's the case that two MDIO masters
-> share the MDC and data lines.
-
-I'll make the water muddier (hopefully clearer?). I have access to the
-board schematic (not SIP/SOM stuff though), but that should help here.
-
-MAC0 owns its own MDIO bus (we'll call it MDIO0). It is pinmuxed to
-gpio8/gpio9 for mdc/mdio. MAC1 owns its own bus (MDIO1) which is
-pinmuxed to gpio21/22.
-
-On MDIO0 there are two SGMII ethernet phys. One is connected to MAC0,
-one is connected to MAC1.
-
-MDIO1 is not connected to anything on the board. So there is only one
-MDIO master, MAC0 on MDIO0, and it manages the ethernet phy for both
-MAC0/MAC1.
-
-Does that make sense? I don't think from a hardware design standpoint
-this is violating anything, it isn't a multimaster setup on MDIO.
-
 > 
-> >
-> > > Good point, but it's worse than that: when MAC0 is unbound, it will
-> > > unregister the MDIO bus and destroy all PHY devices. These are not
-> > > refcounted so they will literally go from under MAC1. Not sure how
-> > > this can be dealt with?
-> >
-> > unbinding is not a normal operation. So i would just live with it, and
-> > if root decides to shoot herself in the foot, that is her choice.
-> >
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Thursday, July 13, 2023 12:08 AM
+>> To: Pankaj Gupta <pankaj.gupta@nxp.com>; shawnguo@kernel.org;
+>> s.hauer@pengutronix.de; kernel@pengutronix.de; clin@suse.com;
+>> conor+dt@kernel.org; pierre.gondois@arm.com; Jacky Bai
+>> <ping.bai@nxp.com>; Clark Wang <xiaoning.wang@nxp.com>; Wei Fang
+>> <wei.fang@nxp.com>; Peng Fan <peng.fan@nxp.com>; Bough Chen
+>> <haibo.chen@nxp.com>; festevam@gmail.com; dl-linux-imx <linux-
+>> imx@nxp.com>; davem@davemloft.net; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; linux-arm-kernel@lists.infradead.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Gaurav Jain
+>> <gaurav.jain@nxp.com>; alexander.stein@ew.tq-group.com; Sahil Malhotra
+>> <sahil.malhotra@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>; Varun
+>> Sethi <V.Sethi@nxp.com>
+>> Subject: [EXT] Re: [PATCH v4 2/7] arm64: dts: imx8ulp-evk: added nxp secure
+>> enclave firmware
+>>
+>> Caution: This is an external email. Please take care when clicking links or
+>> opening attachments. When in doubt, report the message using the 'Report
+>> this email' button
+>>
+>>
+>> On 12/07/2023 14:12, Pankaj Gupta wrote:
+>>> Added support for NXP secure enclave called EdgeLock Enclave firmware
+>>> (se-fw) for imx8ulp-evk.
+>>>
+>>> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+>>> ---
+>>>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 12 +++++++++++-
+>>>  1 file changed, 11 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+>>> b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+>>> index 3ddc0f3125b3..10ed31974a6f 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+>>> @@ -114,7 +114,7 @@ sosc: clock-sosc {
+>>>               #clock-cells = <0>;
+>>>       };
+>>>
+>>> -     sram@2201f000 {
+>>> +     sram0: sram@2201f000 {
+>>>               compatible = "mmio-sram";
+>>>               reg = <0x0 0x2201f000 0x0 0x1000>;
+>>>
+>>> @@ -161,6 +161,16 @@ s4muap: mailbox@27020000 {
+>>>                       #mbox-cells = <2>;
+>>>               };
+>>>
+>>> +             ele_fw: se-fw {
+>>> +                     compatible = "fsl,imx-ele";
+>>> +                     mboxes = <&s4muap 0 0 &s4muap 1 0>;
+>>> +                     mbox-names = "tx", "rx";
+>>> +                     fsl,mu-did = <7>;
+>>> +                     fsl,mu-id = <2>;
+>>> +                     sram-pool = <&sram0>;
+>>
+>> It does not look like you tested the DTS against bindings. Please run `make
+>> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.li/
+>> naro.org%2Fblog%2Ftips-and-tricks-for-validating-devicetree-sources-with-
+>> the-devicetree-
+>> schema%2F&data=05%7C01%7Cpankaj.gupta%40nxp.com%7Cd13d0b68d01c
+>> 4d10d8cb08db83070ed2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%
+>> 7C0%7C638247838553225400%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC
+>> 4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7
+>> C%7C%7C&sdata=pO6dnz4aPqVejRNDR0OU4n04hXebyqgrNKg4DPhahI0%3D
+>> &reserved=0
+>> for instructions).
 > 
-> I disagree. Unbinding is very much a normal operation. Less so for
-> platform devices but still, it is there for a reason and should be
-> expected to work correctly. Or at the very least not crash and burn
-> the system.
+> Tested. Before submitting the patch.
+> [Pankaj] Accepted.
+
+You really tested that patch? Before I waste my time on proving it was
+not, are you 100% sure that you tested that patch and no new warnings
+are printed? Or are you just agreeing with me that this time you will test?
 > 
-> On the other hand, I like your approach because I may get away without
-> having to fix it. But if I were to fix it - I would reference the MDIO
-> bus from the secondary mac by phandle and count its references before
-> dropping it. :)
-> 
-> Bartosz
-> 
+
+Best regards,
+Krzysztof
 
