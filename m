@@ -2,263 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C5577494B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6D27774951
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233512AbjHHTvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
+        id S229537AbjHHTvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232992AbjHHTuv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:50:51 -0400
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F6B19421;
-        Tue,  8 Aug 2023 09:57:39 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1qTPCG-0007Zq-0R;
-        Tue, 08 Aug 2023 16:04:36 +0000
-Date:   Tue, 8 Aug 2023 17:04:28 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Golle <daniel@makrotopia.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/8] mtd: ubi: block: use notifier to create ubiblock from
- parameter
-Message-ID: <f127480389cf9168feb7bbb912cf04242c2886a6.1691510312.git.daniel@makrotopia.org>
-References: <cover.1691510312.git.daniel@makrotopia.org>
+        with ESMTP id S233397AbjHHTvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:51:23 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8155319429
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:57:43 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fe0fe622c3so9333001e87.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691513862; x=1692118662;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+95TtRVa7NMKHx76eoSdAamTsOS7iUF0pJWsPf/wsnY=;
+        b=IHpotwcuh6jszx4RcDpinWCHsfXfyvrcAvixu1yGPlGpBmnROhW9ZibHng9j1P3LB9
+         bd21OsZEAxEhILorCZZbJLj8YV3wsH8E5Aa5Jm6TALBnsEOqlRymHswgEX4Z1eTNrPpO
+         kpxiuFMPVUengXWuGtbHmpst8MywDp5yUaF3KuPT/wYQffyQYejPWgik7ileQvipwRSl
+         hymm04IDfQsMzu9dOMvzghMMWLydmbOZmL6DqSH9s0sZ15+ixFsAsKhFdyDvvCqJgZqD
+         nBcJnVuUbTTORq0Zi7zO8pDk6TaBhMcTlcX/Cn92QSkPJlEusfbxji4ZAydpO7lg1MH5
+         Xi1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691513862; x=1692118662;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+95TtRVa7NMKHx76eoSdAamTsOS7iUF0pJWsPf/wsnY=;
+        b=Vojzx/kS7fbT43VkwfSDJU9pz5Ben1koPegTzx6FDi51Oi4ZifPP0CJcm1kJA7fp/t
+         VElHryu0/F2Qn6DK9H9X3ETRhx7YsLmF75c+9S69OoH89lTuAa55ZVJlkJbqGYx2TeRj
+         6jrR3atkVwrWKr+VoEQdph0GoaXeVXrmDkuVMWNj78gbwLolX/2wDOLSwN015YMwdTnv
+         KS69AptqSoCUTjfy2aboQ7YkYLwkykT5WWFgRGZx8gjZJAaJsaOpW3BmGwM7N0Bfb6dQ
+         i/xi102B+St89InRL9Tj1zwivwaJIHS5bcxXXsqvm00cXUIZcJuGStfm0Pf4NPNkl+8v
+         It1g==
+X-Gm-Message-State: AOJu0Yx8NDMHhhbpvuN2cADuIppfVdH/26TRH0DEtomEgjlfGm4ijt/Z
+        +Y+N70bRDJLlv7nhCt8mVxjojhYOdacuX1y3YfQ=
+X-Google-Smtp-Source: AGHT+IE9RVdSnBVCqSMdAuNawk+jk+kg44DyDIpSMpQjU6+I7Pq9c966UbP+ru5Fn1tIIgW2DBUZx9ALGvLSYI3VrfY=
+X-Received: by 2002:a05:6512:348c:b0:4f8:5b23:5287 with SMTP id
+ v12-20020a056512348c00b004f85b235287mr38747lfr.62.1691513861193; Tue, 08 Aug
+ 2023 09:57:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1691510312.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:6f02:2090:b0:54:12f2:b0c2 with HTTP; Tue, 8 Aug 2023
+ 09:57:40 -0700 (PDT)
+Reply-To: otatianaa557@gmail.com
+From:   Tatiana Oligarch <ew.fideliar@gmail.com>
+Date:   Tue, 8 Aug 2023 09:57:40 -0700
+Message-ID: <CACd2tRP6MgFV+RLEixofxuE1R8utOwDUy512N3oSFFO6yj_EcA@mail.gmail.com>
+Subject: Kindly reply me today
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,UNDISC_FREEM,UNDISC_MONEY autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: *  0.0 RCVD_IN_DNSWL_BLOCKED RBL: ADMINISTRATOR NOTICE: The query to
+        *      DNSWL was blocked.  See
+        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+        *      for more information.
+        *      [2a00:1450:4864:20:0:0:0:12d listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [ew.fideliar[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [otatianaa557[at]gmail.com]
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  2.6 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+        *  2.8 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use UBI_VOLUME_ADDED notification to create ubiblock device specified
-on kernel cmdline or module parameter.
-This makes thing more simple and has the advantage that ubiblock devices
-on volumes which are not present at the time the ubi module is probed
-will still be created.
-
-Suggested-by: Zhihao Cheng <chengzhihao1@huawei.com>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- drivers/mtd/ubi/block.c | 152 ++++++++++++++++++++++------------------
- 1 file changed, 84 insertions(+), 68 deletions(-)
-
-diff --git a/drivers/mtd/ubi/block.c b/drivers/mtd/ubi/block.c
-index 69fa6fecb8494..e0618bbde3613 100644
---- a/drivers/mtd/ubi/block.c
-+++ b/drivers/mtd/ubi/block.c
-@@ -33,6 +33,7 @@
- #include <linux/kernel.h>
- #include <linux/list.h>
- #include <linux/mutex.h>
-+#include <linux/namei.h>
- #include <linux/slab.h>
- #include <linux/mtd/ubi.h>
- #include <linux/blkdev.h>
-@@ -65,10 +66,10 @@ struct ubiblock_pdu {
- };
- 
- /* Numbers of elements set in the @ubiblock_param array */
--static int ubiblock_devs __initdata;
-+static int ubiblock_devs;
- 
- /* MTD devices specification parameters */
--static struct ubiblock_param ubiblock_param[UBIBLOCK_MAX_DEVICES] __initdata;
-+static struct ubiblock_param ubiblock_param[UBIBLOCK_MAX_DEVICES];
- 
- struct ubiblock {
- 	struct ubi_volume_desc *desc;
-@@ -532,6 +533,85 @@ static int ubiblock_resize(struct ubi_volume_info *vi)
- 	return 0;
- }
- 
-+static bool
-+match_volume_desc(struct ubi_volume_info *vi, const char *name, int ubi_num, int vol_id)
-+{
-+	int err, len;
-+	struct path path;
-+	struct kstat stat;
-+
-+	if (ubi_num == -1) {
-+		/* No ubi num, name must be a vol device path */
-+		err = kern_path(name, LOOKUP_FOLLOW, &path);
-+		if (err)
-+			return false;
-+
-+		err = vfs_getattr(&path, &stat, STATX_TYPE, AT_STATX_SYNC_AS_STAT);
-+		path_put(&path);
-+		if (err)
-+			return false;
-+
-+		if (!S_ISCHR(stat.mode))
-+			return false;
-+
-+		if (vi->ubi_num != ubi_major2num(MAJOR(stat.rdev)))
-+			return false;
-+
-+		if (vi->vol_id != MINOR(stat.rdev) - 1)
-+			return false;
-+
-+		return true;
-+	}
-+
-+	if (vol_id == -1) {
-+		if (vi->ubi_num != ubi_num)
-+			return false;
-+
-+		len = strnlen(name, UBI_VOL_NAME_MAX + 1);
-+		if (len < 1 || vi->name_len != len)
-+			return false;
-+
-+		if (strcmp(name, vi->name))
-+			return false;
-+
-+		return true;
-+	}
-+
-+	if (vi->ubi_num != ubi_num)
-+		return false;
-+
-+	if (vi->vol_id != vol_id)
-+		return false;
-+
-+	return true;
-+}
-+
-+static void
-+ubiblock_create_from_param(struct ubi_volume_info *vi)
-+{
-+	int i, ret = 0;
-+	struct ubiblock_param *p;
-+
-+	/*
-+	 * Iterate over ubiblock cmdline parameters. If a parameter matches the
-+	 * newly added volume create the ubiblock device for it.
-+	 */
-+	for (i = 0; i < ubiblock_devs; i++) {
-+		p = &ubiblock_param[i];
-+
-+		if (!match_volume_desc(vi, p->name, p->ubi_num, p->vol_id))
-+			continue;
-+
-+		ret = ubiblock_create(vi);
-+		if (ret) {
-+			pr_err(
-+			       "UBI: block: can't add '%s' volume on ubi%d_%d, err=%d\n",
-+			       vi->name, p->ubi_num, p->vol_id, ret);
-+		}
-+		break;
-+	}
-+}
-+
- static int ubiblock_notify(struct notifier_block *nb,
- 			 unsigned long notification_type, void *ns_ptr)
- {
-@@ -539,10 +619,7 @@ static int ubiblock_notify(struct notifier_block *nb,
- 
- 	switch (notification_type) {
- 	case UBI_VOLUME_ADDED:
--		/*
--		 * We want to enforce explicit block device creation for
--		 * volumes, so when a volume is added we do nothing.
--		 */
-+		ubiblock_create_from_param(&nt->vi);
- 		break;
- 	case UBI_VOLUME_REMOVED:
- 		ubiblock_remove(&nt->vi, true);
-@@ -568,56 +645,6 @@ static struct notifier_block ubiblock_notifier = {
- 	.notifier_call = ubiblock_notify,
- };
- 
--static struct ubi_volume_desc * __init
--open_volume_desc(const char *name, int ubi_num, int vol_id)
--{
--	if (ubi_num == -1)
--		/* No ubi num, name must be a vol device path */
--		return ubi_open_volume_path(name, UBI_READONLY);
--	else if (vol_id == -1)
--		/* No vol_id, must be vol_name */
--		return ubi_open_volume_nm(ubi_num, name, UBI_READONLY);
--	else
--		return ubi_open_volume(ubi_num, vol_id, UBI_READONLY);
--}
--
--static void __init ubiblock_create_from_param(void)
--{
--	int i, ret = 0;
--	struct ubiblock_param *p;
--	struct ubi_volume_desc *desc;
--	struct ubi_volume_info vi;
--
--	/*
--	 * If there is an error creating one of the ubiblocks, continue on to
--	 * create the following ubiblocks. This helps in a circumstance where
--	 * the kernel command-line specifies multiple block devices and some
--	 * may be broken, but we still want the working ones to come up.
--	 */
--	for (i = 0; i < ubiblock_devs; i++) {
--		p = &ubiblock_param[i];
--
--		desc = open_volume_desc(p->name, p->ubi_num, p->vol_id);
--		if (IS_ERR(desc)) {
--			pr_err(
--			       "UBI: block: can't open volume on ubi%d_%d, err=%ld\n",
--			       p->ubi_num, p->vol_id, PTR_ERR(desc));
--			continue;
--		}
--
--		ubi_get_volume_info(desc, &vi);
--		ubi_close_volume(desc);
--
--		ret = ubiblock_create(&vi);
--		if (ret) {
--			pr_err(
--			       "UBI: block: can't add '%s' volume on ubi%d_%d, err=%d\n",
--			       vi.name, p->ubi_num, p->vol_id, ret);
--			continue;
--		}
--	}
--}
--
- static void ubiblock_remove_all(void)
- {
- 	struct ubiblock *next;
-@@ -643,18 +670,7 @@ int __init ubiblock_init(void)
- 	if (ubiblock_major < 0)
- 		return ubiblock_major;
- 
--	/*
--	 * Attach block devices from 'block=' module param.
--	 * Even if one block device in the param list fails to come up,
--	 * still allow the module to load and leave any others up.
--	 */
--	ubiblock_create_from_param();
--
--	/*
--	 * Block devices are only created upon user requests, so we ignore
--	 * existing volumes.
--	 */
--	ret = ubi_register_volume_notifier(&ubiblock_notifier, 1);
-+	ret = ubi_register_volume_notifier(&ubiblock_notifier, 0);
- 	if (ret)
- 		goto err_unreg;
- 	return 0;
 -- 
-2.41.0
+My Greetings,
+
+I write you with sadness in my heart because of constant attack to our
+country Ukraine by Russian army which has caused lots of deaths,
+destructions of properties and homes.
+
+I am Mrs Tatiana Oligarch, a citizen of Ukraine currently in Kyiv, I
+am looking for a reliable partner who can help to receive my fund
+deposited in a foreign bank for safe keeping and investment in good
+profiting business. I want you to help and receive my fund in your
+country and I will come over to meet you for foreign investment
+partnership under your care and advice.
+
+Hoping to read from you today and know your sincere opinion in helping
+me genuinely.
+
+Sincerely,
+Mrs,Tatiana Oligarch
