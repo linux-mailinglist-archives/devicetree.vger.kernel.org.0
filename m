@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11FEB774690
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAEA27748F9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:46:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbjHHS6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59928 "EHLO
+        id S233156AbjHHTqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:46:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjHHS6Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:58:25 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B269935A8
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:19:26 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99bdcade7fbso816655366b.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:19:26 -0700 (PDT)
+        with ESMTP id S236313AbjHHTpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:45:54 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5031E4ACEA
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:49:53 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fe5695b180so23953965e9.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:49:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691515164; x=1692119964;
+        d=linaro.org; s=google; t=1691513392; x=1692118192;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VnwG1XAT9SkXgU/6iu0TyJjY/vxrI7XxSfv3j8NwPp8=;
-        b=Ss6rinLYGS+J69oSde8kj8kS9DKC90h4L3dO9Jh/j3UbJ9uoSuZrHF5kRX8tU+K/0W
-         s0W68/+6L4wJT2f+dAwCR1tIsFws7UcVWXStQhW+SLyldm4GhOP+ENIBagJoS3EV+Gii
-         v0A52ejrfzePEHRX22E24nMLzQpXsDg0sgquWMS2NdIg5Udj3iTsH2eerZSCEpZIXUh+
-         K4ZXGS+HQ6YDP6kI7gQVaIPYr4h7PJyL74mnru/bvGpraN8Zfwhta3Cjd8mcsL9G8S0C
-         RNoQEQm3lg/N77s/i77+zarxPDnvfm7M3/EHn1EoanaM7tWOm2aJpH+jnRm5Zp5QoqSw
-         TyRg==
+        bh=Ga9ShVSfRDMx/t8+Pt2uOUsHlvwZxV8rq0HaCpReBAw=;
+        b=i9L5gS8kjbsClQ0oBlQSX8qv3j0VkfJ2BLh1u8Hocuhd5UQOBHby5yjTqnAYHsVNWc
+         l03XGZTmxrkTlZ0uvgE/DlBCQoC4JOAAtRN/Uu3k4h94qbR881VEMdfcu6bDicrj6vjt
+         59F1VIv8WaSR4axcrQNDQUaC93mUDI4Wdfq83B7hgvnfv7txTtkZ6C1DdVoQjgayFhDK
+         Z73cARSF8wRbBXc6ybChXwmG85lt3LC2o7BUHwWx9bSbgyOef362o6uKgPEt8gKcCgZI
+         GDE+FO+zQ1bT94oU76QdqRVAyzCM4yGGvUnTt3MY0j+X81uMj3w8BJyuusuaxqdvc5UA
+         QbLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691515164; x=1692119964;
+        d=1e100.net; s=20221208; t=1691513392; x=1692118192;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VnwG1XAT9SkXgU/6iu0TyJjY/vxrI7XxSfv3j8NwPp8=;
-        b=JLgacHqEnDl9ifKvia3hD3n0u7NjYfT1nPjswDC2eyr/cXeiKBu6npyw1lo0RR6a+c
-         vwta+wzV/cwWqq2SNUEMxX0p/rbeN/STtihh4LlsmRKlarZSOpOIZ4lrfrZLxPPwcT1n
-         8dyEhPj5CIWiPIQZWIuy9GYJwjJlc8vmcB/Nsc5oEb1sKnjbXWkrC+DzeEZgI26U7AD+
-         khG/XTmAOV35SuUIHhNRJ7qS/8AxBFttEkKubA1JflrwwCGcfpIbCz0gGWJSNjFG22TB
-         mrmLiKMV2LWy1XY2Fil2B2Hirez6p/ol7rUzJDjVf9bOLhMPqvbS7Rl+fVMvGxH8jsCc
-         cJrw==
-X-Gm-Message-State: AOJu0YwDH/eckTt6p6Sju58eYyM/olTfKADoOZVdODojL7LJ3Yl+thkL
-        sK5WiYJYhPGISCoNAuFGpgba5CvzZDbYV3SugdY=
-X-Google-Smtp-Source: AGHT+IEOj70uM+AsIp/H+vkXLjUsGWPHj5kubZxF1Zom0bxXV7gwfaOqjFxiAjAVIapHRVYG3RZINw==
-X-Received: by 2002:adf:e9cb:0:b0:317:7af4:5297 with SMTP id l11-20020adfe9cb000000b003177af45297mr8315793wrn.62.1691483279882;
-        Tue, 08 Aug 2023 01:27:59 -0700 (PDT)
+        bh=Ga9ShVSfRDMx/t8+Pt2uOUsHlvwZxV8rq0HaCpReBAw=;
+        b=AuuKLFX2bp7ZdjSvtPYlnD+A2M2bj0W3IIEIlw/3G2Ip2ujZDT4k+LULwj3xcCfNJW
+         RVCbW95Z8ppPip4bb78ZHeA1L2F+ejPENcoRcPbQElN8vsKs45WnsBXAqdrrp/1wlazr
+         l2BjrBJBrSUhYeyBz4DKxeJtAQN3hYrxk+EtKwr7wsAZpiGXg59f43o1mCp/2jzTyHDi
+         770h1g5on3tqiU+tZASUPhT89KKHZI9/bym0Zd4+FCCrg6vllkQRydXPYx/2LUhUcTiQ
+         Ju8s/dcf7NhU0Eh1Oa11jVa35RIOVXaPhLTymumqsw79scm/NkAUqdMbHuwNc8Lw5lAI
+         NwsQ==
+X-Gm-Message-State: AOJu0YwT3K/HHfPPgvg1wh9HArGogrNuxPbmuyHzp4kKkMxCWzsKIJTD
+        1S5Xv/LTnlUrHQZpIm61Bj5hIBbi1UriaEHifMQ=
+X-Google-Smtp-Source: AGHT+IGoYdIOrAk32Xpjqu5lGI0d77DrpYLqBhLO0RsGUXKf+OwfLW2ec1eVNHj/KnbQGKFgnC4TGw==
+X-Received: by 2002:a05:6512:3d8e:b0:4f8:7568:e948 with SMTP id k14-20020a0565123d8e00b004f87568e948mr9356536lfv.51.1691483281731;
+        Tue, 08 Aug 2023 01:28:01 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id s18-20020adfeb12000000b0031779a6b451sm12861246wrn.83.2023.08.08.01.27.58
+        by smtp.gmail.com with ESMTPSA id s18-20020adfeb12000000b0031779a6b451sm12861246wrn.83.2023.08.08.01.28.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 01:27:59 -0700 (PDT)
+        Tue, 08 Aug 2023 01:28:01 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -62,9 +62,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 09/11] clk: samsung: exynos850: do not define number of clocks in bindings
-Date:   Tue,  8 Aug 2023 10:27:36 +0200
-Message-Id: <20230808082738.122804-10-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 10/11] clk: samsung: exynoautov9: do not define number of clocks in bindings
+Date:   Tue,  8 Aug 2023 10:27:37 +0200
+Message-Id: <20230808082738.122804-11-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
 References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
@@ -90,35 +90,33 @@ directly.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/clk/samsung/clk-exynos850.c | 35 ++++++++++++++++++++---------
- 1 file changed, 24 insertions(+), 11 deletions(-)
+ drivers/clk/samsung/clk-exynosautov9.c | 29 ++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-index c32b2e6451a0..bdc1eef7d6e5 100644
---- a/drivers/clk/samsung/clk-exynos850.c
-+++ b/drivers/clk/samsung/clk-exynos850.c
-@@ -16,6 +16,19 @@
+diff --git a/drivers/clk/samsung/clk-exynosautov9.c b/drivers/clk/samsung/clk-exynosautov9.c
+index ddef546be545..e9c06eb93e66 100644
+--- a/drivers/clk/samsung/clk-exynosautov9.c
++++ b/drivers/clk/samsung/clk-exynosautov9.c
+@@ -16,6 +16,17 @@
  #include "clk.h"
  #include "clk-exynos-arm64.h"
  
 +/* NOTE: Must be equal to the last clock ID increased by one */
-+#define CLKS_NR_TOP			(CLK_DOUT_G3D_SWITCH + 1)
-+#define CLKS_NR_APM			(CLK_GOUT_SYSREG_APM_PCLK + 1)
-+#define CLKS_NR_AUD			(CLK_GOUT_AUD_CMU_AUD_PCLK + 1)
-+#define CLKS_NR_CMGP			(CLK_GOUT_SYSREG_CMGP_PCLK + 1)
-+#define CLKS_NR_G3D			(CLK_GOUT_G3D_SYSREG_PCLK + 1)
-+#define CLKS_NR_HSI			(CLK_GOUT_HSI_CMU_HSI_PCLK + 1)
-+#define CLKS_NR_IS			(CLK_GOUT_IS_SYSREG_PCLK + 1)
-+#define CLKS_NR_MFCMSCL			(CLK_GOUT_MFCMSCL_SYSREG_PCLK + 1)
-+#define CLKS_NR_PERI			(CLK_GOUT_WDT1_PCLK + 1)
-+#define CLKS_NR_CORE			(CLK_GOUT_SYSREG_CORE_PCLK + 1)
-+#define CLKS_NR_DPU			(CLK_GOUT_DPU_SYSREG_PCLK + 1)
++#define CLKS_NR_TOP			(GOUT_CLKCMU_PERIS_BUS + 1)
++#define CLKS_NR_BUSMC			(CLK_GOUT_BUSMC_SPDMA_PCLK + 1)
++#define CLKS_NR_CORE			(CLK_GOUT_CORE_CMU_CORE_PCLK + 1)
++#define CLKS_NR_FSYS0			(CLK_GOUT_FSYS0_PCIE_GEN3B_4L_CLK + 1)
++#define CLKS_NR_FSYS1			(CLK_GOUT_FSYS1_USB30_1_ACLK + 1)
++#define CLKS_NR_FSYS2			(CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO + 1)
++#define CLKS_NR_PERIC0			(CLK_GOUT_PERIC0_PCLK_11 + 1)
++#define CLKS_NR_PERIC1			(CLK_GOUT_PERIC1_PCLK_11 + 1)
++#define CLKS_NR_PERIS			(CLK_GOUT_WDT_CLUSTER1 + 1)
 +
- /* ---- CMU_TOP ------------------------------------------------------------- */
+ /* ---- CMU_TOP ------------------------------------------------------------ */
  
- /* Register Offset definitions for CMU_TOP (0x120e0000) */
-@@ -485,7 +498,7 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
- 	.nr_div_clks		= ARRAY_SIZE(top_div_clks),
+ /* Register Offset definitions for CMU_TOP (0x1b240000) */
+@@ -941,7 +952,7 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
+ 	.nr_fixed_factor_clks	= ARRAY_SIZE(top_fixed_factor_clks),
  	.gate_clks		= top_gate_clks,
  	.nr_gate_clks		= ARRAY_SIZE(top_gate_clks),
 -	.nr_clk_ids		= TOP_NR_CLK,
@@ -126,79 +124,16 @@ index c32b2e6451a0..bdc1eef7d6e5 100644
  	.clk_regs		= top_clk_regs,
  	.nr_clk_regs		= ARRAY_SIZE(top_clk_regs),
  };
-@@ -625,7 +638,7 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.nr_gate_clks		= ARRAY_SIZE(apm_gate_clks),
- 	.fixed_clks		= apm_fixed_clks,
- 	.nr_fixed_clks		= ARRAY_SIZE(apm_fixed_clks),
--	.nr_clk_ids		= APM_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_APM,
- 	.clk_regs		= apm_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(apm_clk_regs),
- 	.clk_name		= "dout_clkcmu_apm_bus",
-@@ -908,7 +921,7 @@ static const struct samsung_cmu_info aud_cmu_info __initconst = {
- 	.nr_gate_clks		= ARRAY_SIZE(aud_gate_clks),
- 	.fixed_clks		= aud_fixed_clks,
- 	.nr_fixed_clks		= ARRAY_SIZE(aud_fixed_clks),
--	.nr_clk_ids		= AUD_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_AUD,
- 	.clk_regs		= aud_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(aud_clk_regs),
- 	.clk_name		= "dout_aud",
-@@ -1011,7 +1024,7 @@ static const struct samsung_cmu_info cmgp_cmu_info __initconst = {
- 	.nr_gate_clks		= ARRAY_SIZE(cmgp_gate_clks),
- 	.fixed_clks		= cmgp_fixed_clks,
- 	.nr_fixed_clks		= ARRAY_SIZE(cmgp_fixed_clks),
--	.nr_clk_ids		= CMGP_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_CMGP,
- 	.clk_regs		= cmgp_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmgp_clk_regs),
- 	.clk_name		= "gout_clkcmu_cmgp_bus",
-@@ -1107,7 +1120,7 @@ static const struct samsung_cmu_info g3d_cmu_info __initconst = {
- 	.nr_div_clks		= ARRAY_SIZE(g3d_div_clks),
- 	.gate_clks		= g3d_gate_clks,
- 	.nr_gate_clks		= ARRAY_SIZE(g3d_gate_clks),
--	.nr_clk_ids		= G3D_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_G3D,
- 	.clk_regs		= g3d_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(g3d_clk_regs),
- 	.clk_name		= "dout_g3d_switch",
-@@ -1209,7 +1222,7 @@ static const struct samsung_cmu_info hsi_cmu_info __initconst = {
- 	.nr_mux_clks		= ARRAY_SIZE(hsi_mux_clks),
- 	.gate_clks		= hsi_gate_clks,
- 	.nr_gate_clks		= ARRAY_SIZE(hsi_gate_clks),
--	.nr_clk_ids		= HSI_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_HSI,
- 	.clk_regs		= hsi_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(hsi_clk_regs),
- 	.clk_name		= "dout_hsi_bus",
-@@ -1341,7 +1354,7 @@ static const struct samsung_cmu_info is_cmu_info __initconst = {
- 	.nr_div_clks		= ARRAY_SIZE(is_div_clks),
- 	.gate_clks		= is_gate_clks,
- 	.nr_gate_clks		= ARRAY_SIZE(is_gate_clks),
--	.nr_clk_ids		= IS_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_IS,
- 	.clk_regs		= is_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(is_clk_regs),
- 	.clk_name		= "dout_is_bus",
-@@ -1450,7 +1463,7 @@ static const struct samsung_cmu_info mfcmscl_cmu_info __initconst = {
- 	.nr_div_clks		= ARRAY_SIZE(mfcmscl_div_clks),
- 	.gate_clks		= mfcmscl_gate_clks,
- 	.nr_gate_clks		= ARRAY_SIZE(mfcmscl_gate_clks),
--	.nr_clk_ids		= MFCMSCL_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_MFCMSCL,
- 	.clk_regs		= mfcmscl_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(mfcmscl_clk_regs),
- 	.clk_name		= "dout_mfcmscl_mfc",
-@@ -1625,7 +1638,7 @@ static const struct samsung_cmu_info peri_cmu_info __initconst = {
- 	.nr_div_clks		= ARRAY_SIZE(peri_div_clks),
- 	.gate_clks		= peri_gate_clks,
- 	.nr_gate_clks		= ARRAY_SIZE(peri_gate_clks),
--	.nr_clk_ids		= PERI_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_PERI,
- 	.clk_regs		= peri_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peri_clk_regs),
- 	.clk_name		= "dout_peri_bus",
-@@ -1732,7 +1745,7 @@ static const struct samsung_cmu_info core_cmu_info __initconst = {
+@@ -1001,7 +1012,7 @@ static const struct samsung_cmu_info busmc_cmu_info __initconst = {
+ 	.nr_div_clks		= ARRAY_SIZE(busmc_div_clks),
+ 	.gate_clks		= busmc_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(busmc_gate_clks),
+-	.nr_clk_ids		= BUSMC_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_BUSMC,
+ 	.clk_regs		= busmc_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(busmc_clk_regs),
+ 	.clk_name		= "dout_clkcmu_busmc_bus",
+@@ -1059,7 +1070,7 @@ static const struct samsung_cmu_info core_cmu_info __initconst = {
  	.nr_div_clks		= ARRAY_SIZE(core_div_clks),
  	.gate_clks		= core_gate_clks,
  	.nr_gate_clks		= ARRAY_SIZE(core_gate_clks),
@@ -206,16 +141,61 @@ index c32b2e6451a0..bdc1eef7d6e5 100644
 +	.nr_clk_ids		= CLKS_NR_CORE,
  	.clk_regs		= core_clk_regs,
  	.nr_clk_regs		= ARRAY_SIZE(core_clk_regs),
- 	.clk_name		= "dout_core_bus",
-@@ -1806,7 +1819,7 @@ static const struct samsung_cmu_info dpu_cmu_info __initconst = {
- 	.nr_div_clks		= ARRAY_SIZE(dpu_div_clks),
- 	.gate_clks		= dpu_gate_clks,
- 	.nr_gate_clks		= ARRAY_SIZE(dpu_gate_clks),
--	.nr_clk_ids		= DPU_NR_CLK,
-+	.nr_clk_ids		= CLKS_NR_DPU,
- 	.clk_regs		= dpu_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(dpu_clk_regs),
- 	.clk_name		= "dout_dpu",
+ 	.clk_name		= "dout_clkcmu_core_bus",
+@@ -1299,7 +1310,7 @@ static const struct samsung_cmu_info fsys0_cmu_info __initconst = {
+ 	.nr_mux_clks		= ARRAY_SIZE(fsys0_mux_clks),
+ 	.gate_clks		= fsys0_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(fsys0_gate_clks),
+-	.nr_clk_ids		= FSYS0_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_FSYS0,
+ 	.clk_regs		= fsys0_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(fsys0_clk_regs),
+ 	.clk_name		= "dout_clkcmu_fsys0_bus",
+@@ -1426,7 +1437,7 @@ static const struct samsung_cmu_info fsys1_cmu_info __initconst = {
+ 	.nr_div_clks		= ARRAY_SIZE(fsys1_div_clks),
+ 	.gate_clks		= fsys1_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(fsys1_gate_clks),
+-	.nr_clk_ids		= FSYS1_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_FSYS1,
+ 	.clk_regs		= fsys1_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(fsys1_clk_regs),
+ 	.clk_name		= "dout_clkcmu_fsys1_bus",
+@@ -1493,7 +1504,7 @@ static const struct samsung_cmu_info fsys2_cmu_info __initconst = {
+ 	.nr_mux_clks		= ARRAY_SIZE(fsys2_mux_clks),
+ 	.gate_clks		= fsys2_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(fsys2_gate_clks),
+-	.nr_clk_ids		= FSYS2_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_FSYS2,
+ 	.clk_regs		= fsys2_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(fsys2_clk_regs),
+ 	.clk_name		= "dout_clkcmu_fsys2_bus",
+@@ -1748,7 +1759,7 @@ static const struct samsung_cmu_info peric0_cmu_info __initconst = {
+ 	.nr_div_clks		= ARRAY_SIZE(peric0_div_clks),
+ 	.gate_clks		= peric0_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(peric0_gate_clks),
+-	.nr_clk_ids		= PERIC0_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_PERIC0,
+ 	.clk_regs		= peric0_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(peric0_clk_regs),
+ 	.clk_name		= "dout_clkcmu_peric0_bus",
+@@ -2003,7 +2014,7 @@ static const struct samsung_cmu_info peric1_cmu_info __initconst = {
+ 	.nr_div_clks		= ARRAY_SIZE(peric1_div_clks),
+ 	.gate_clks		= peric1_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(peric1_gate_clks),
+-	.nr_clk_ids		= PERIC1_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_PERIC1,
+ 	.clk_regs		= peric1_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(peric1_clk_regs),
+ 	.clk_name		= "dout_clkcmu_peric1_bus",
+@@ -2050,7 +2061,7 @@ static const struct samsung_cmu_info peris_cmu_info __initconst = {
+ 	.nr_mux_clks		= ARRAY_SIZE(peris_mux_clks),
+ 	.gate_clks		= peris_gate_clks,
+ 	.nr_gate_clks		= ARRAY_SIZE(peris_gate_clks),
+-	.nr_clk_ids		= PERIS_NR_CLK,
++	.nr_clk_ids		= CLKS_NR_PERIS,
+ 	.clk_regs		= peris_clk_regs,
+ 	.nr_clk_regs		= ARRAY_SIZE(peris_clk_regs),
+ 	.clk_name		= "dout_clkcmu_peris_bus",
 -- 
 2.34.1
 
