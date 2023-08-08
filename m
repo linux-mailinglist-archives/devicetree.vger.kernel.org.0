@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45968774C91
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8B4774C94
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:12:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236149AbjHHVLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:11:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54064 "EHLO
+        id S235939AbjHHVL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 17:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235792AbjHHVLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:11:32 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B410049F4
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:09:18 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so96425441fa.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:09:18 -0700 (PDT)
+        with ESMTP id S235579AbjHHVLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:11:40 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A135276
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:09:41 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b9cf2b1309so3324851fa.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:09:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691528957; x=1692133757;
+        d=linaro.org; s=google; t=1691528979; x=1692133779;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BIVqZlvPJ9fgIaaNuTsdRAq85ukf0lxErXcc6/G+RDw=;
-        b=cgKD8XBmozGfOgW54nzq5EcoYV7HcP2vaLw+8iMB+rd3pQjaIs/IY9HMh/6uzJfZJo
-         6jYSi564yHGL2hg0stid4EoXcZfuclprPJgZutgb55YvCYARZlyHa+0MGZzUf+S7/ruV
-         EJETcwMTV7Qi4y5HE3DKawKJCwMQjuPYcoTqFMkIVVjAWl6vRnpcdFYxd8u4/uOqO8wQ
-         B0C/oYXExB07Vl0sDXrvW93AEiNqSUtRUkoQ7KQn1JYG074+ciAPzMwSPXUSukuVcaU9
-         n6vzppf6dwT0yk/bFjTKExjgjZ49TpXmzPJNf8GOVFjJCPQYo+JxhdO+I5O86Z0cp+iT
-         DP/g==
+        bh=RpznDBE2ABYyZHgHDjJJ+bPp9l9aAI0ToUpk26vHhnE=;
+        b=YanZrcqr2i3e1jbl02ADcUyeRbtf9PXXRNJueYGMIhth9211FV1OwAV7yLeg423Cen
+         zLwRhKW4liG02ajsnaOc8yDCN2RjkcJoOp6xQNbFt1PfV1OZfWtmqxE0JjOvI8I/4eR0
+         gQcCCcL/vBynIhzixGf58Ct7gQzQiDj5hpgsoJSNMDfFLd8q3kBAuH9tE/84IXGi81aH
+         LyVNOVD7kBdK+nvmgvBp5/TMF3mFsAs1Xkocjs0uMet6mZN8SWubaoMOC6gAdMsvgaW8
+         lCZ1vN2xHNQO771PBL3eWeU5z2FG+sq7z1w5Xxb1+ASTM1BC5eJbN6+/35gOJi3LI6Bf
+         7mWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691528957; x=1692133757;
+        d=1e100.net; s=20221208; t=1691528979; x=1692133779;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BIVqZlvPJ9fgIaaNuTsdRAq85ukf0lxErXcc6/G+RDw=;
-        b=FmpMQBzWdzjsd8TNbQWQ5B5KSxTLkNKcpmY5HOCfrSYccoj4x4DN4ZxYbPUwe6mqnP
-         AkC/IQzkwJHb4QISAO0Sfbeg+U1oT6FN/3Ibq1DiNkQtIweRky0bo7CdOST7xLQ7xf9Y
-         X20u8ozCwLMe0NCOo2MFw6LIPjlDfoeGd7dIyxvFwTxGTzuTlGMsN7Vaw3OzQyw6Iebb
-         fW5RZC7OG3lkh2TDR/PiVGZ3FWjb49gygUBQ14iighr7W18eu0qJ43/ix3sOrBZLUt4G
-         Pi7HM2pifcEyTwo0+NMV4ph3QAOD1UCkDPGRi/k4B2f1aWLxyi/2HsK4GQMFRWQS18NY
-         UPsw==
-X-Gm-Message-State: AOJu0Yx6Aai8e3D9xzuYfYqrBGaDEaegsjqxVBiIZMPMSeneNEPt2gE0
-        MTZBfkldOHAiyn6kQp/A+rl7SA==
-X-Google-Smtp-Source: AGHT+IEzO5jVRFsFGsfZ03UX1LalSIb1Qb+8s6PoBz0649mQjtw/9h3dPqrZr43hrT4zp5MpyRLpXw==
-X-Received: by 2002:a05:651c:151:b0:2b9:aa4d:3729 with SMTP id c17-20020a05651c015100b002b9aa4d3729mr478671ljd.28.1691528956955;
-        Tue, 08 Aug 2023 14:09:16 -0700 (PDT)
+        bh=RpznDBE2ABYyZHgHDjJJ+bPp9l9aAI0ToUpk26vHhnE=;
+        b=mDkCrTrWZR/3E0V3V7QF7dJO3bZKj+KQgVh8Q9lsN88u/KVNgSG242Ux60sU6TFy+t
+         P3yPBBF/BNz92wBx/rzB2WJFVfJ0W/ltlrDnvBrp8Dj5EF++edU1lry/2Y2SesV3vBcV
+         OeU6Mmfh3THnjksphVEsH1HCwwrBzHvwKHHv5vIK8nhPYOcdNMdMZAFzpWEUatvvEIQP
+         lUlK0MuAt5RAUjcYyCPzTqZ+0/IHdJqOTi47zY4BAddZE89tARNAdLqlEQVTmCu3a70l
+         CIn5JIGBhmFuBt87f67his6cRCj8Y9ePlXK6z0Y0Kd/N1y6BoW0mtOq3p0gWzD2WKu5s
+         0XLA==
+X-Gm-Message-State: AOJu0YyaHs7ITef/nH3/WzNV6aPP9UXfktcqG/do8sAGfj5HYeqkgjKm
+        DmcTDAXrlPMpVXoAr5j0uChL/w==
+X-Google-Smtp-Source: AGHT+IGccXnqbn4KilWAvfnUqXQWZgbLYMnXNk6pR6AnoHEGOtPNNB8Idk8zH/O/gfPBuKBKQV5wXQ==
+X-Received: by 2002:a2e:2e04:0:b0:2b9:601d:2c0 with SMTP id u4-20020a2e2e04000000b002b9601d02c0mr289854lju.25.1691528979312;
+        Tue, 08 Aug 2023 14:09:39 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id l13-20020a2e700d000000b002b9c0822951sm2395753ljc.119.2023.08.08.14.09.15
+        by smtp.gmail.com with ESMTPSA id l13-20020a2e700d000000b002b9c0822951sm2395753ljc.119.2023.08.08.14.09.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Aug 2023 14:09:16 -0700 (PDT)
-Message-ID: <4b9544e0-e947-467b-bc1f-5c5de8490642@linaro.org>
-Date:   Tue, 8 Aug 2023 23:09:14 +0200
+        Tue, 08 Aug 2023 14:09:38 -0700 (PDT)
+Message-ID: <b00740fc-a1bb-483e-86b6-0d2af1e88187@linaro.org>
+Date:   Tue, 8 Aug 2023 23:09:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] arm64: dts: qcom: sa8775p-ride: index the first
- SGMII PHY
+Subject: Re: [PATCH v2 4/8] arm64: dts: qcom: sa8775p-ride: move the
+ reset-gpios property of the PHY
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
@@ -69,7 +69,7 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20230808190144.19999-1-brgl@bgdev.pl>
- <20230808190144.19999-6-brgl@bgdev.pl>
+ <20230808190144.19999-5-brgl@bgdev.pl>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -106,7 +106,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230808190144.19999-6-brgl@bgdev.pl>
+In-Reply-To: <20230808190144.19999-5-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -122,11 +122,24 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 8.08.2023 21:01, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> We'll be adding a second SGMII PHY on the same MDIO bus, so let's index
-> the first one for better readability.
+> Device-tree bindings for MDIO define per-PHY reset-gpios as well as a
+> global reset-gpios property at the MDIO node level which controls all
+> devices on the bus. The latter is most likely a workaround for the
+> chicken-and-egg problem where we cannot read the ID of the PHY before
+> bringing it out of reset but we cannot bring it out of reset until we've
+> read its ID.
 > 
+> I have proposed a comprehensive solution for this problem in 2020 but it
+> never got upstream. We do however have workaround in place which allows
+> us to hard-code the PHY id in the compatible property, thus skipping the
+> ID scanning.
+> 
+> Let's make the device-tree for sa8775p-ride slightly more correct by
+> moving the reset-gpios property to the PHY node with its ID put into the
+> PHY node's compatible.
+> 
+> Link: https://lore.kernel.org/all/20200622093744.13685-1-brgl@bgdev.pl/
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
