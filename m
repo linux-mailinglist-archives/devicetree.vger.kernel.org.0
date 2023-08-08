@@ -2,142 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13D5F773F81
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BE62774271
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233504AbjHHQtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43922 "EHLO
+        id S232045AbjHHRpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232087AbjHHQsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:48:37 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6578CE56;
-        Tue,  8 Aug 2023 08:57:13 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3788jJI3008038;
-        Tue, 8 Aug 2023 11:31:41 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding:content-type; s=
-        selector1; bh=M+IuYoEUiyN+G/GS5dPfHhgm4XbDSRY/d6hoesq7He4=; b=GF
-        gdqTeegucgb8ERKFBUsDKK87BQ/6zrK/DlxOS00ecMz71JY8vlWha2ZrLV1CNUu7
-        gn6e3Od8a+/Q1DSoCm0PAxvT98C9HmpguMJ3BrJeu1BaetHOE6RDLjF3SUXcjyia
-        CKzKRyUGRYrcOZOGhxh4G2f7YCvwswU0WwS0o4I6h85Qlwo0dS6eXt80uTPzPUM9
-        nZ6bblRnyjiuNKjeM88ebg09GWO0mNAAhDPzwnO3e25j4kO7/GzswCWb6feAh63B
-        5i9Z3Vvm7eP1kO/I/el6Hkm88kLr/bwxpw5XBJ5++DZ9yRB47ALqLir+foM+7O0d
-        a/sHjUaHKEF5+oUpnlAg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sbjfn09nr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Aug 2023 11:31:41 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 90EAA100063;
-        Tue,  8 Aug 2023 11:31:40 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 86EE0216850;
-        Tue,  8 Aug 2023 11:31:40 +0200 (CEST)
-Received: from localhost (10.201.20.38) by EQNDAG1NODE4.st.com (10.75.129.133)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 8 Aug
- 2023 11:31:40 +0200
-From:   <patrice.chotard@foss.st.com>
-To:     <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: [PATCH 2/2] ARM: dts: stm32: Add gpio-ranges for stm32f769-pinctrl
-Date:   Tue, 8 Aug 2023 11:31:19 +0200
-Message-ID: <20230808093119.714224-3-patrice.chotard@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230808093119.714224-1-patrice.chotard@foss.st.com>
-References: <20230808093119.714224-1-patrice.chotard@foss.st.com>
+        with ESMTP id S234243AbjHHRpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:45:02 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43BEC25B12
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:20:24 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fe5695b180so23668395e9.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691511580; x=1692116380;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gAg8mzz6tXJyaH1tEofpHQ5TEsFiQj+ho2hy+w4Tmaw=;
+        b=TDkU0E572xKKo82+QQZCoMYyi0b9xe8OQwCrw5ywX67otBr4djppYnqPsU5uP/Q/Nu
+         Fdv+9Na2Iay+1nd5RpmcyefL1psywFffiRjdGFYwK73bhhmBap5qAQcPxKfpk4ADrZ0V
+         aeXTMOiF9Bj1E7yJX41sJYSI0GN6ckTB99A1j3lsorwMVfa/QiakXA/mbCtGEddT8kCs
+         0SapLeiHWvTEpVCCGbMhaliJCXY3cPDJEMvzRR4RqnlSsLXlQr88de9GA9m7tOci4fFj
+         SsRGQpzVP0wNSnOzugBvsgf7ewN1TXl6QWRaABCjrUPyGejoobyCSCb5ym+GEsQKbyNw
+         0/2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691511580; x=1692116380;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gAg8mzz6tXJyaH1tEofpHQ5TEsFiQj+ho2hy+w4Tmaw=;
+        b=PwGCyAXtT/6b7cMK4AEeySs2f0h7nw9AZZxeg/CM3DIJzFuLSgna6J7Sg8guLnvnQU
+         TCefyIFM3DEaCm1BaXybPEFM1MIFKWZlPYlC9+7WxkiLnr90CwCozRKTsjBN14v2Qmpe
+         I1/mNbkSHNbmJD5b1oRhhPgJ626Y+lHShKly3XIjOawDX7h04UWI25u5inmyO9J5DoOW
+         qqbL0iMH8iWyn5voGeOGpROs6ongNXPS5gcJZK3Zdvd7THy1iRmtC7D7Wh5snP7DPzb9
+         A2sLCYUO8ve05rYP1W1pkFn8raJVjPPMO/mJbHGuaJmua2xIb2UT/BDCQSIVuzC246w8
+         BprA==
+X-Gm-Message-State: AOJu0YzsUvOuWdIsQnNYCDL4NIKmHpqif0/NTrAVqq1FGjcjvrMhaeS9
+        GomnenZTKQ+OofCb9bcoE0fJ2JA9DYRvq4bas7Y=
+X-Google-Smtp-Source: AGHT+IHZdXCtug2ljX6dDSj6oQkG8V1UJLNKTYOKnSjmV42sR9+Wv2CCmrrKVl5VAmfJlHe6DhBOLg==
+X-Received: by 2002:a05:6512:2018:b0:4fd:c771:ed86 with SMTP id a24-20020a056512201800b004fdc771ed86mr6615303lfb.67.1691487895251;
+        Tue, 08 Aug 2023 02:44:55 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id i6-20020a056512006600b004fdba93b92asm1818884lfo.252.2023.08.08.02.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 02:44:54 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Date:   Tue, 08 Aug 2023 11:44:44 +0200
+Subject: [PATCH v2 4/6] clk: qcom: mmcc-msm8998: Don't check halt bit on
+ some branch clks
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.38]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To EQNDAG1NODE4.st.com
- (10.75.129.133)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-08_08,2023-08-03_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230531-topic-8998_mmssclk-v2-4-34273e275c51@linaro.org>
+References: <20230531-topic-8998_mmssclk-v2-0-34273e275c51@linaro.org>
+In-Reply-To: <20230531-topic-8998_mmssclk-v2-0-34273e275c51@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Imran Khan <kimran@codeaurora.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Joonwoo Park <joonwoop@codeaurora.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691487885; l=1407;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=haDOFYx+cWB8WYF0AFsxGiNUFhwDHpLSQyDe+vgkap0=;
+ b=ZrMZ0b0kru/BioU+kcPyTGDosiv5UYR3dvjZ97R7NYb1CKIWbtfb6OQL9uoCg1eDGTN2RtwgC
+ KnIylLEWD68BzoXZqSp7GXw9MgJJMQxVOqARg8YLk04oG4zFHl8Kfq8
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrice Chotard <patrice.chotard@foss.st.com>
+Some branch clocks are governed externally and we're only supposed to
+send a request concerning their shutdown, not actually ensure it happens.
 
-Since commit 913a956c4363 ("pinctrl: stm32: use dynamic allocation
-of GPIO base"), it's impossible to retrieve gpios from phandle,
-for example, mmc driver can't retrieve cd-gpios.
-Add missing gpio-ranges properties to fix it.
+Use the BRANCH_HALT_SKIP define to skip checking the halt bit.
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+Fixes: d14b15b5931c ("clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver")
+Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm/boot/dts/st/stm32f769-pinctrl.dtsi | 44 +++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ drivers/clk/qcom/mmcc-msm8998.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/st/stm32f769-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32f769-pinctrl.dtsi
-index c26abc04e2ce..02c2a8b08468 100644
---- a/arch/arm/boot/dts/st/stm32f769-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/st/stm32f769-pinctrl.dtsi
-@@ -8,4 +8,48 @@
+diff --git a/drivers/clk/qcom/mmcc-msm8998.c b/drivers/clk/qcom/mmcc-msm8998.c
+index c62aa270af1c..d0a5440e2291 100644
+--- a/drivers/clk/qcom/mmcc-msm8998.c
++++ b/drivers/clk/qcom/mmcc-msm8998.c
+@@ -2452,6 +2452,7 @@ static struct clk_branch fd_ahb_clk = {
  
- &pinctrl {
- 	compatible = "st,stm32f769-pinctrl";
-+
-+	gpioa: gpio@40020000 {
-+		gpio-ranges = <&pinctrl 0 0 16>;
-+	};
-+
-+	gpiob: gpio@40020400 {
-+		gpio-ranges = <&pinctrl 0 16 16>;
-+	};
-+
-+	gpioc: gpio@40020800 {
-+		gpio-ranges = <&pinctrl 0 32 16>;
-+	};
-+
-+	gpiod: gpio@40020c00 {
-+		gpio-ranges = <&pinctrl 0 48 16>;
-+	};
-+
-+	gpioe: gpio@40021000 {
-+		gpio-ranges = <&pinctrl 0 64 16>;
-+	};
-+
-+	gpiof: gpio@40021400 {
-+		gpio-ranges = <&pinctrl 0 80 16>;
-+	};
-+
-+	gpiog: gpio@40021800 {
-+		gpio-ranges = <&pinctrl 0 96 16>;
-+	};
-+
-+	gpioh: gpio@40021c00 {
-+		gpio-ranges = <&pinctrl 0 112 16>;
-+	};
-+
-+	gpioi: gpio@40022000 {
-+		gpio-ranges = <&pinctrl 0 128 16>;
-+	};
-+
-+	gpioj: gpio@40022400 {
-+		gpio-ranges = <&pinctrl 0 144 16>;
-+	};
-+
-+	gpiok: gpio@40022800 {
-+		gpio-ranges = <&pinctrl 0 160 8>;
-+	};
- };
+ static struct clk_branch mnoc_ahb_clk = {
+ 	.halt_reg = 0x5024,
++	.halt_check = BRANCH_HALT_SKIP,
+ 	.clkr = {
+ 		.enable_reg = 0x5024,
+ 		.enable_mask = BIT(0),
+@@ -2467,6 +2468,7 @@ static struct clk_branch mnoc_ahb_clk = {
+ 
+ static struct clk_branch bimc_smmu_ahb_clk = {
+ 	.halt_reg = 0xe004,
++	.halt_check = BRANCH_HALT_SKIP,
+ 	.hwcg_reg = 0xe004,
+ 	.hwcg_bit = 1,
+ 	.clkr = {
+@@ -2484,6 +2486,7 @@ static struct clk_branch bimc_smmu_ahb_clk = {
+ 
+ static struct clk_branch bimc_smmu_axi_clk = {
+ 	.halt_reg = 0xe008,
++	.halt_check = BRANCH_HALT_SKIP,
+ 	.hwcg_reg = 0xe008,
+ 	.hwcg_bit = 1,
+ 	.clkr = {
+
 -- 
-2.25.1
+2.41.0
 
