@@ -2,60 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF6E2773E91
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6301A7740A9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:08:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232279AbjHHQct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:32:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
+        id S233771AbjHHRIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:08:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbjHHQb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:31:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBAB13968;
-        Tue,  8 Aug 2023 08:51:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B290624AE;
-        Tue,  8 Aug 2023 11:03:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15FDFC433C8;
-        Tue,  8 Aug 2023 11:03:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691492630;
-        bh=A+mqCpN+QuFAcnM1ap+yOp5utSXZlVUNIHG5R4odB6M=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Lik0sr/+SSNBgc79MfJ0720gb9FA9wUR4ajKbE4hlQU6LR65Rua/0DtXWZPnb1DcG
-         O8S9x3mi3rg6f3b/25KTN1yGu+//8gTrvLdJNpL6MBlgN+OL7yD/a5LCCQ7s5wRz+W
-         il/KbU0sOxJm3PI2uS15NacnsFKi4D8/aNvPGNKTSu+f1v7cEoyXzlOm9qUZGjOjBo
-         2XjDDJUpf9x71LBBoQtAEXWcTLpdyF0gxg1ikRhp+ZMePGOLAGme6a9c6PjX0IYCCl
-         sPPm2ZRYpnLlp42kQv2Vr5psLo4DHDAqcZCzE+6CtOX/1phyAG/52byRnUO6ef2GKQ
-         HrZXAh5+GT4WA==
-Message-ID: <4c0dfd1c-2b61-b954-73ad-ac8d4b82487d@kernel.org>
-Date:   Tue, 8 Aug 2023 06:03:47 -0500
+        with ESMTP id S234107AbjHHRHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:07:15 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3575CE7D;
+        Tue,  8 Aug 2023 09:02:58 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3176a439606so4478539f8f.3;
+        Tue, 08 Aug 2023 09:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691510549; x=1692115349;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=N77XCzPazpBok51u5jWouG3TfNUMbwqAhma/4DQhYGI=;
+        b=fIuQVJV7UoBTVdWJIV18mnPWXHYesbhQyN7e1gPr2Z98Zvf+xtUuMZ02EOkHMvwUVS
+         6samL0MKW3KjC9H5VBIyD8L3678pH6Pev7c2xQOs0MsNDPf40E1W2rcvb+oYXcCTZHwS
+         cYdVL4EmpXZ/7NVHFSx76iNrm9VGbTM4TEb6oKiVsokPlGZi/3bE9/1m9aI/tdkulu0S
+         OwawWwWDmyX8sty9mmauYwrSHMgdS5d25gdFB7+NovtwPxo/GaGCujsk9GKPDAT12Z9N
+         jZcft4Ab8C//BQJGzhxg3RWNOXJgoXzQu7kalR3KUcuZ7ZGWpQ8GeYJDZO0q3ze7vP3H
+         aC/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691510549; x=1692115349;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N77XCzPazpBok51u5jWouG3TfNUMbwqAhma/4DQhYGI=;
+        b=btghqHelNexVgaiBE/LvEspyGU0FxMoj4DtZNxw06tgyiFAwUfwWa30+KYf6UMA0XK
+         3TZp0iPCnWnJblRD8uas3LtA2rxxdGKxLJPTw07HfpNL2HWXgfwu6Sjr9kceSCqGLe0G
+         YEPHaGl0g9PetRbIeOOQMqHlIoH2VOxOAxYf77NOoDPUl4SLOrQOLcsX95FfRePMu9L7
+         ocvBEJhTymWLm2RX5jHt+SpFO0mX2szPI1md5I3h/cg2HNjXZDbcREwrN/2rV9pUGoVw
+         QBpB6rsUO926Bsql5RGZRfYWVE/YK+8fmqyRk8TTe6Z4l0nfG5+z2QoxZp4bPA8jktKk
+         Y83g==
+X-Gm-Message-State: AOJu0YwbcPJLWvJbsQd+pe+5fWtMnVcWXpjbk45GxSN+fPMR86uy7oie
+        b9WIhDpogtfK6Vz1YSGAo/iglRHeTisgsDCe
+X-Google-Smtp-Source: AGHT+IHddoIp15tEHXIqOstY3g61YGw6la8f3OjABPjj0xzPIgAjsx0c+Om7KRMWSdIXjcQ3SJUvPw==
+X-Received: by 2002:a05:6512:31d1:b0:4fe:49d:6ae2 with SMTP id j17-20020a05651231d100b004fe049d6ae2mr9290985lfe.0.1691492568213;
+        Tue, 08 Aug 2023 04:02:48 -0700 (PDT)
+Received: from localhost.localdomain (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id q10-20020ac246ea000000b004fbad682ffesm1826587lfo.88.2023.08.08.04.02.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 04:02:47 -0700 (PDT)
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/4] dt-bindings: iio: adc: mcp3911: add support for the whole MCP39xx family
+Date:   Tue,  8 Aug 2023 13:04:29 +0200
+Message-Id: <20230808110432.240773-1-marcus.folkesson@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 4/5] clk: socfpga: agilex: add clock driver for the
- Agilex5
-Content-Language: en-US
-To:     niravkumar.l.rabara@intel.com
-Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, netdev@vger.kernel.org,
-        p.zabel@pengutronix.de, richardcochran@gmail.com,
-        robh+dt@kernel.org, sboyd@kernel.org, wen.ping.teh@intel.com
-References: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-1-niravkumar.l.rabara@intel.com>
- <20230801010234.792557-5-niravkumar.l.rabara@intel.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20230801010234.792557-5-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,23 +84,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen/Mike,
+Microchip does have many similar chips, add those to the compatible
+string as the driver support is extended.
 
-On 7/31/23 20:02, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> 
-> Add support for Intel's SoCFPGA Agilex5 platform. The clock manager
-> driver for the Agilex5 is very similar to the Agilex platform,we can
-> re-use most of the Agilex clock driver.
-> 
-> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
-> Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
->   drivers/clk/socfpga/clk-agilex.c | 433 ++++++++++++++++++++++++++++++-
->   1 file changed, 431 insertions(+), 2 deletions(-)
-> 
+The new supported chips are:
+  - microchip,mcp3910
+  - microchip,mcp3912
+  - microchip,mcp3913
+  - microchip,mcp3914
+  - microchip,mcp3918
+  - microchip,mcp3919
 
-If you're ok with this patch, can I take this through armsoc?
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Dinh
+Notes:
+    v2:
+        - No changes
+    v3:
+        - No changes
+    v4:
+        - No changes
+
+ .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml      | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+index f7b3fde4115a..06951ec5f5da 100644
+--- a/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml
+@@ -18,7 +18,13 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - microchip,mcp3910
+       - microchip,mcp3911
++      - microchip,mcp3912
++      - microchip,mcp3913
++      - microchip,mcp3914
++      - microchip,mcp3918
++      - microchip,mcp3919
+ 
+   reg:
+     maxItems: 1
+-- 
+2.40.1
+
