@@ -2,68 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7423E7745A8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25EB17747A3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbjHHSot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:44:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60528 "EHLO
+        id S233734AbjHHTRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 15:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbjHHSoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:44:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E6DF155BC;
-        Tue,  8 Aug 2023 09:40:49 -0700 (PDT)
+        with ESMTP id S236036AbjHHTRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:17:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFFD1558A;
+        Tue,  8 Aug 2023 09:40:11 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C7F78624A3;
-        Tue,  8 Aug 2023 10:42:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A410EC433C7;
-        Tue,  8 Aug 2023 10:42:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E73CD623FC;
+        Tue,  8 Aug 2023 10:44:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 294EEC433C7;
+        Tue,  8 Aug 2023 10:44:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691491356;
-        bh=JGo7EBuRfvMkPe2azYS3kN7ld2w91JHGAUkojy0rktE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kS/Q6i3nQ9+WnKOSFTu7PB+OQVPot1K2wUD0sTEvdRrNj4jVLKU4NG5mGsGwk2VSY
-         UhUjaaUoswvJqZ/6VjJddcyrwNLSBfB2qmxYgFHInd1f1a4dKiHcyoYRUaq3ht1620
-         yk0aYI6UI+bxzZCd7NPIZVIaDk9UrXOQ0xzx51ZO7Kwn1n4Ui3PFnRWslmawb4ZlnD
-         6noMzGM+9rOUK1DtPdUAAsZ7JOlfDkdkIgapoyzNv3uO8KmpQ9bFArym8hwrLS6ynr
-         T7FFaP8Jg7BJUfNQNa3fc0TS5qoKowHVWTP7c+b1Hw6IEZXXI5F3mpL1x/H4Y4nP/e
-         KZXCcq5rUNuXQ==
-Message-ID: <e98f134a-a57a-3cbc-3cb1-378d6b411406@kernel.org>
-Date:   Tue, 8 Aug 2023 13:42:28 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: net: Add iep property in ICSSG dt
- binding
-Content-Language: en-US
-To:     MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        s=k20201202; t=1691491476;
+        bh=V/umhZTGl3evHtInzC211fdgJQGdc7LiET+/8luRldw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DfFlpldYwSRpM2j1rpKqckV466YsUzwY+XAIqjL4gid3Zgl2JNmmxgeNVToD9nTBt
+         dugoK7A2LEEwRPz0mJtNzvhYSKhigNLrAy9sOIJPi9iY/KOo9Axdw0sUX9j3Y/MJuk
+         8b0ZBH5Nw6LtWQOgJRUvWMOPY8mL+TnkDxRMemgR8zjnDtfZv76rqxyO46XLx3q1FU
+         0Ke9D+42xkd6yBtTMa4subvtzbIKu4m4lJhBHBCend65RpLsbzAFqQ1YiMNsOZ8AL9
+         3aj76VJkpzWOIyK+GyPZEraKxwYRXAL2lKqqj/3M/DhZyJpEbfCwFJ995r/LAqG+o8
+         Dkur1MG63RPKA==
+Date:   Tue, 8 Aug 2023 11:44:31 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     JiaJie Ho <jiajie.ho@starfivetech.com>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     nm@ti.com, srk@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230807110048.2611456-1-danishanwar@ti.com>
- <20230807110048.2611456-3-danishanwar@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230807110048.2611456-3-danishanwar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/2] riscv: dts: starfive - Add crypto and trng node
+Message-ID: <20230808-fiber-stifle-430ab25390be@spud>
+References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
+ <20230808-despair-calm-40ca60de2afb@spud>
+ <6c26992dca244c6eab05b64a16be0d0c@EXMBX068.cuchost.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RgPVqGKbYiebNqo8"
+Content-Disposition: inline
+In-Reply-To: <6c26992dca244c6eab05b64a16be0d0c@EXMBX068.cuchost.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,45 +66,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--RgPVqGKbYiebNqo8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 07/08/2023 14:00, MD Danish Anwar wrote:
-> Add iep node in ICSSG driver dt binding document.
+On Tue, Aug 08, 2023 at 10:17:22AM +0000, JiaJie Ho wrote:
+> > On Tue, Aug 08, 2023 at 02:11:48PM +0800, Jia Jie Ho wrote:
+> > > The following patches add hardware cryptographic and trng module nodes
+> > > to JH7110 dts. Patches have been tested on VisionFive2 board.
+> > >
+> > > Best regards,
+> > > Jia Jie
+> > >
+> > > Jia Jie Ho (2):
+> > >   riscv: dts: starfive - Add crypto and DMA node for JH7110
+> >=20
+> > >   riscv: dts: starfive - Add hwrng node for JH7110 SoC
+> >=20
+> > I only got one patch, where is the other?
+>=20
+> Hi Conor,
+> My mailing server failed to send out the 2nd patch.
+> Do I resend the patch or send it out together with other fixes in v2?
 
-s/iep/IEP here and in subject
-s/dt/DT here and in subject
+A fixed up v2 please.
 
-> 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
->  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> index 8ec30b3eb760..36870238f92f 100644
-> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> @@ -52,6 +52,12 @@ properties:
->      description:
->        phandle to MII_RT module's syscon regmap
->  
-> +  ti,iep:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    maxItems: 2
-> +    description:
-> +      phandle to IEP (Industrial Ethernet Peripheral) for ICSSG driver
-> +
->    interrupts:
->      maxItems: 2
->      description:
-> @@ -155,6 +161,7 @@ examples:
->                      "tx1-0", "tx1-1", "tx1-2", "tx1-3",
->                      "rx0", "rx1";
->          ti,mii-g-rt = <&icssg2_mii_g_rt>;
-> +        ti,iep = <&icssg2_iep0>, <&icssg2_iep1>;
->          interrupt-parent = <&icssg2_intc>;
->          interrupts = <24 0 2>, <25 1 3>;
->          interrupt-names = "tx_ts0", "tx_ts1";
+--RgPVqGKbYiebNqo8
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-cheers,
--roger
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNIcjwAKCRB4tDGHoIJi
+0qjkAQC1Ijbj5bIIJ9R2E2WPDNjZr3nVjnA6RDcKtkWkXI0ATQEAoi1Wsv4j9Qiq
+rV/3HbsbpW1FWrJT7qhMXFwBYWIqjAI=
+=sG6w
+-----END PGP SIGNATURE-----
+
+--RgPVqGKbYiebNqo8--
