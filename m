@@ -2,209 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1B2773FE1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 374D977403E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:01:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233669AbjHHQyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47508 "EHLO
+        id S233852AbjHHRBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbjHHQx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:53:58 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF474FB21
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 08:58:52 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fe48a2801bso9624915e87.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 08:58:52 -0700 (PDT)
+        with ESMTP id S233421AbjHHRAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:00:24 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF396E90
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 09:00:35 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5234f2c6c1dso25375a12.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 09:00:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691510325; x=1692115125;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1691510404; x=1692115204;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vsp33dBf7UhgamzOkYxOzQdC3CHLd9zXwnmRE8U0OWI=;
-        b=tGiVBPIrLdvP+nAOHek8NtRw1pVTfjx0jm2R1bPN8gfpXo2UsTg3GvErn3ZbMNmy++
-         GuaH4eQwliU5sC3FuHqRujNebn6CwB/3adyVQflSS8bwFq9pJg2yC3ptItPkYRUcqdSK
-         e7mODTnEdfn2cOyw5VB9IyRpLVqPFt+LaihlExdKk2bBwfnVM2LDLpTfXMEzno9nWNhR
-         5OF0w+Oq5cHC/M9j4z26Z2GAW4I6f1o2YJaDKeFuRdM450ZUY/lBoKRVwNsHqC6vrId+
-         6RPtMyqSulBZgNzHLmTfc1uKW7lu3LErQN148mtV4rbLaR8AHFC4HWv8rqRihwDlRoeZ
-         c3Hw==
+        bh=q6MY1hiBmbwXLoucjEj2Xi2SFMUgMZzIdibN/5/2L+I=;
+        b=XE3FbJgkdOF/iq2UzkGREAHWzytiQow/a+OkiLcUWzD3afPgXpn4Bkn0q23aepYcPm
+         PlDJUO4h6xktKbUpriRdA9mBfB91M3xhtYS6PKmWp1zCNjrzSKb4JY40Kp23wJR29P6+
+         862U0t0fdoLrXXzKbnSNDzNezGWrLwgSxq+dDqkVyK7MQKzl4yfIFA4hQL4PdOT/gpHu
+         AG6glwy2/ncLWP+i/cffmsO2L4FiA13ohkomBtNmbGVbuQA+iTYuZIiRDUFX3KfGKfF7
+         26JhF0GEUCXbMYdcHbIHTWD/B2I87yHduL0HA1KJ3d1MzlLNkcyG1YoDHWWfBmI9EdSU
+         yU8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691510325; x=1692115125;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1691510404; x=1692115204;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vsp33dBf7UhgamzOkYxOzQdC3CHLd9zXwnmRE8U0OWI=;
-        b=Y9YocQkGD38p+zN9uMtvZEXiGaO1+/nfoyex9joz6uRks8I16kyJuZ+mXDxm6tdhVl
-         BAAMD5OqFV1HqUjh96GQsISW37OGxnniaYnNoAEJOtNhBdbeYDg2BGSKEX+8VUKGEceL
-         fs2AbOG7WagH88QxLWkJNry9UmDmrqTZOH+vMhrbR8lfZEM/02QXGhoVei8d6r5DcKFx
-         ItrYWm99aCBOstLIZDeB0yxCeQLghrBkkN+Ud3fyomhyBc2gOB47e4ZA3xObe+Onqd6S
-         c19mW635CmbAZMfZp+/NQJAO2NmrjgGfRowuHflGEgQ+XV4naAPqJihP9qqjRBZ/c11U
-         o9jQ==
-X-Gm-Message-State: AOJu0YzmKFUTjBFgGfo9KWwgoaMfbpcH535O/ePGMYVMzmDzmxDvCEqZ
-        TuKdcszRs85uBnzSu5eSwoTuNVE1xIuujWlhyGY=
-X-Google-Smtp-Source: AGHT+IHJ3hZ82wubWYBzU8TJVHIOBqyUG04wm6z7DeM5yDPFDtsTGPypfW+gUnZ0OMkFJqxWx8oYeQ==
-X-Received: by 2002:a2e:7e0b:0:b0:2b6:ed80:15d1 with SMTP id z11-20020a2e7e0b000000b002b6ed8015d1mr8862529ljc.24.1691506333010;
-        Tue, 08 Aug 2023 07:52:13 -0700 (PDT)
+        bh=q6MY1hiBmbwXLoucjEj2Xi2SFMUgMZzIdibN/5/2L+I=;
+        b=bUpcPpM0Cp3bYleUGHPNiEj1OXotzIduoaSpgME3kby65GBEUZRv35Jc57+DlrATdl
+         cbSIwufMw9JvyN1LsDdHcMpQR56+THMxuDsp/tz24m5BBKG6gZGC6LTB7NT8zLXzhUxA
+         /j6sB5nZbBoBJWjMzBg81M/ZGrVJhoWc6QAng2VF2Cmpa9HMh3M5GsoO/rjoAFFklKA2
+         oQG4MW+Ij1XPRr2gOz41uhztNmt3cXyidioWXQIRE9UtOQvhdN+mqQU6WNGIebZjUchK
+         JQEG6A8IWcNqnkdFBrjEGyb+yt5omKB7Yq8XDwC20Nw7FF30hudidhyCW+ZbVEuOa2XM
+         XmgA==
+X-Gm-Message-State: AOJu0YzeZx8neaxHLuk5gk1oWmV/hToH1SiOKaHiNSxugcvqW0AMQY07
+        NxPHE8RHTtHlOf9t7WMO7o3Nev76AFPOwHj0e04=
+X-Google-Smtp-Source: AGHT+IEFM3DwvG4gSvRW8WGApgoleljA2c2Cr/zQIjyrhjF0UV2hAUM2hKy+et7OFD1S77hBApF2qg==
+X-Received: by 2002:a17:906:54:b0:999:26d3:b815 with SMTP id 20-20020a170906005400b0099926d3b815mr13144104ejg.64.1691506434441;
+        Tue, 08 Aug 2023 07:53:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id v8-20020a170906180800b009934855d8f1sm6817973eje.34.2023.08.08.07.52.11
+        by smtp.gmail.com with ESMTPSA id rk22-20020a170907215600b00982a92a849asm6796311ejb.91.2023.08.08.07.53.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Aug 2023 07:52:12 -0700 (PDT)
-Message-ID: <65a57225-43d5-fdfa-c12d-3f33f8e535be@linaro.org>
-Date:   Tue, 8 Aug 2023 16:52:10 +0200
+        Tue, 08 Aug 2023 07:53:53 -0700 (PDT)
+Message-ID: <8e7cf088-e206-746d-0360-16479b1a33c3@linaro.org>
+Date:   Tue, 8 Aug 2023 16:53:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [EXT] Re: [PATCH v4 4/7] arm64: dts: imx93-11x11-evk: added nxp
- secure enclave fw
+Subject: Re: [PATCH] dt-bindings: remoteproc: pru: Add Interrupt property
 Content-Language: en-US
-To:     Pankaj Gupta <pankaj.gupta@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "clin@suse.com" <clin@suse.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Bough Chen <haibo.chen@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Gaurav Jain <gaurav.jain@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Varun Sethi <V.Sethi@nxp.com>
-References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
- <20230712121219.2654234-5-pankaj.gupta@nxp.com>
- <29cb4426-a15e-7186-1713-427f749bc187@linaro.org>
- <DU2PR04MB863043CFB54E4CF2C5F34B65950DA@DU2PR04MB8630.eurprd04.prod.outlook.com>
- <DU2PR04MB8630F001B107D331F9F5DE1E950DA@DU2PR04MB8630.eurprd04.prod.outlook.com>
+To:     Md Danish Anwar <a0501179@ti.com>, Conor Dooley <conor@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Cc:     Suman Anna <s-anna@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, srk@ti.com,
+        nm@ti.com
+References: <20230807110836.2612730-1-danishanwar@ti.com>
+ <20230807-euphemism-trailing-ef4130dc7437@spud>
+ <910a4a98-712a-5517-5a5b-ffb962f83463@ti.com>
+ <1ade44f5-b3d1-dcde-6819-9e944f3b115d@linaro.org>
+ <5ca41ad1-4f42-f71a-4b5f-f2b6def42cb1@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU2PR04MB8630F001B107D331F9F5DE1E950DA@DU2PR04MB8630.eurprd04.prod.outlook.com>
+In-Reply-To: <5ca41ad1-4f42-f71a-4b5f-f2b6def42cb1@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2023 13:49, Pankaj Gupta wrote:
-> 
-> 
->> -----Original Message-----
->> From: Pankaj Gupta
->> Sent: Tuesday, August 8, 2023 5:04 PM
->> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
->> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
->> clin@suse.com; conor+dt@kernel.org; pierre.gondois@arm.com; Jacky Bai
->> <ping.bai@nxp.com>; Clark Wang <xiaoning.wang@nxp.com>; Wei Fang
->> <wei.fang@nxp.com>; Peng Fan <peng.fan@nxp.com>; Bough Chen
->> <haibo.chen@nxp.com>; festevam@gmail.com; dl-linux-imx <linux-
->> imx@nxp.com>; davem@davemloft.net; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; linux-arm-kernel@lists.infradead.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Gaurav Jain
->> <gaurav.jain@nxp.com>; alexander.stein@ew.tq-group.com; Sahil Malhotra
->> <sahil.malhotra@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>; Varun
->> Sethi <V.Sethi@nxp.com>
->> Subject: RE: [EXT] Re: [PATCH v4 4/7] arm64: dts: imx93-11x11-evk: added
->> nxp secure enclave fw
->>
->>
->>
->>> -----Original Message-----
->>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Sent: Thursday, July 13, 2023 12:38 AM
->>> To: Pankaj Gupta <pankaj.gupta@nxp.com>; shawnguo@kernel.org;
->>> s.hauer@pengutronix.de; kernel@pengutronix.de; clin@suse.com;
->>> conor+dt@kernel.org; pierre.gondois@arm.com; Jacky Bai
->>> <ping.bai@nxp.com>; Clark Wang <xiaoning.wang@nxp.com>; Wei Fang
->>> <wei.fang@nxp.com>; Peng Fan <peng.fan@nxp.com>; Bough Chen
->>> <haibo.chen@nxp.com>; festevam@gmail.com; dl-linux-imx <linux-
->>> imx@nxp.com>; davem@davemloft.net; robh+dt@kernel.org;
->>> krzysztof.kozlowski+dt@linaro.org;
->>> linux-arm-kernel@lists.infradead.org;
->>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Gaurav Jain
->>> <gaurav.jain@nxp.com>; alexander.stein@ew.tq-group.com; Sahil Malhotra
->>> <sahil.malhotra@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
->> Varun
->>> Sethi <V.Sethi@nxp.com>
->>> Subject: [EXT] Re: [PATCH v4 4/7] arm64: dts: imx93-11x11-evk: added
->>> nxp secure enclave fw
->>>
->>> Caution: This is an external email. Please take care when clicking
->>> links or opening attachments. When in doubt, report the message using
->>> the 'Report this email' button
->>>
->>>
->>> On 12/07/2023 14:12, Pankaj Gupta wrote:
->>>> Added support for NXP secure enclave called EdgeLock Enclave
->>>> firmware
->>>> (se-fw) for imx93-11x11-evk.
+On 08/08/2023 12:57, Md Danish Anwar wrote:
+> On 08/08/23 3:48 pm, Krzysztof Kozlowski wrote:
+>> On 08/08/2023 11:44, Md Danish Anwar wrote:
+>>>>>    properties:
+>>>>>      compatible:
+>>>>> @@ -171,6 +181,9 @@ examples:
+>>>>>                <0x22400 0x100>;
+>>>>>          reg-names = "iram", "control", "debug";
+>>>>>          firmware-name = "am65x-pru0_0-fw";
+>>>>> +        interrupt-parent = <&icssg0_intc>;
+>>>>> +        interrupts = <16 2 2>;
+>>>>> +        interrupt-names = "vring";
+>>>>>        };
 >>>>
->>>> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
->>>> ---
->>>>  arch/arm64/boot/dts/freescale/imx93.dtsi | 11 ++++++++++-
->>>>  1 file changed, 10 insertions(+), 1 deletion(-)
+>>>> These examples would probably be more helpful if they used the
+>>>> appropriate defines, no?
 >>>>
->>>> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
->>>> b/arch/arm64/boot/dts/freescale/imx93.dtsi
->>>> index 8643612ace8c..2b0f901d2709 100644
->>>> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
->>>> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
->>>> @@ -1,6 +1,6 @@
->>>>  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>>  /*
->>>> - * Copyright 2022 NXP
->>>> + * Copyright 2022-2023 NXP
->>>>   */
->>>>
->>>>  #include <dt-bindings/clock/imx93-clock.h> @@ -863,5 +863,14 @@
->>>> ddr-pmu@4e300dc0 {
->>>>                       reg = <0x4e300dc0 0x200>;
->>>>                       interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->>>>               };
->>>> +
->>>> +             ele_fw: se-fw {
->>>> +                     compatible = "fsl,imx93-ele";
->>>> +                     mboxes = <&s4muap 0 0 &s4muap 1 0>;
 >>>
->>> This should be two entries.
+>>> PRUSS Interrupt controller doesn't have any appropriate defines. This doesn't
+>>> use GIC so defines from arm-gic.h can not be used here. These are specific to
+>>> PRUSS INTC.
 >>>
->>>> +                     mbox-names = "tx", "rx";
->>>> +                     fsl,mu-did = <3>;
->>>> +                     fsl,mu-id = <2>;
->>>
->>> Drop both. Since you put it into the DTSI, it means it is compatible specific.
->> [Pankaj] Removed the above three entries.
+>>> I think these example are OK. Please let me know if this is OK to you.
+>>
+>> But isn't "2" type of the interrupt?
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
+> As per the description of interrupts property in ti,pruss-intc.yaml [1]
 > 
-> [Pankaj] Correction: 
-> I missed to note that in our up-coming SoC(s), there will be multiple MU(s):
-> Those can only be identified using mu_id. Hence, following two only, will be removed:
-> +                     mbox-names = "tx", "rx";
-> +                     fsl,mu-did = <3>;
+> Cell 1 is PRU System event number, cell 2 is PRU channel and cell 3 is PRU
+> host_event (target). None of them is type of interrupt. So that's why they all
+> are hardcoded. I don't think we can use IRQ_TYPE macros here.
 
-Which SoC? How the bindings are going to look like for that SoC? What is
-mu-did in such case and how does it relate to different mailboxes? Why
-it cannot be inferred from compatible?
-
-BTW, responding three weeks after my review does not help your case. I
-totally loose the context. Of course you can reply even after 1 year,
-it's your right, but it does not help the discussion.
+OK, thanks for clarifying this.
 
 Best regards,
 Krzysztof
