@@ -2,103 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C903774D1D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE6C774E9E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 00:49:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbjHHVhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:37:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39292 "EHLO
+        id S231459AbjHHWtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 18:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjHHVhB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:37:01 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689FCE0;
-        Tue,  8 Aug 2023 14:36:54 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 378LV7Hj018705;
-        Tue, 8 Aug 2023 21:36:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=Qk6K9+TYy+1m4aEUOdLzo2C2V+e6vt2G0LOr/J3Kpo0=;
- b=AxHaOfdl45f8/pnPxB+2OUJa8sz8CYhD8vcCJqN/x4y+/fkKTUBlN773qlqAHinhNtwR
- 52AS/8nLBDr7aJtfcQ86neEX1Pq6SexveN22cexNb0yRcIfA3ANhmC+/GrNAhtkfyvBF
- ZZQRj2L2PzN10KwfJGOl9DGo9TWw6VsGKQ+AWXj3A8B40VjW6DcfCuO3dIt/2MgOWfsN
- PudvDnTplLXLgVRNCEauduhudSmZnxwULD0joqIc9t5xWZvmbwaNDrN507vGR52ixbUv
- mOJqYeNIPANMOgBxor0/e7WH1g9OIi1Y/GITxQzYqvG15dn/0E9MtObzTRt9uLHq+Z2W PA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sbppch05e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Aug 2023 21:36:49 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 378LamUv010257
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 8 Aug 2023 21:36:48 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 8 Aug 2023 14:36:47 -0700
-Date:   Tue, 8 Aug 2023 14:36:46 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Eric Chanudet <echanude@redhat.com>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8540p-ride: enable rtc
-Message-ID: <20230808213646.GK1428172@hu-bjorande-lv.qualcomm.com>
-References: <20230718145105.3464105-1-echanude@redhat.com>
- <dtussvqzf7x5p633pxt3julkffhzt5rxwp3aghs4ocj5odq4la@ed6jhcv76hbk>
+        with ESMTP id S231374AbjHHWtQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 18:49:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797ECE72;
+        Tue,  8 Aug 2023 15:48:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4FAE262DFE;
+        Tue,  8 Aug 2023 22:48:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24EE7C433C7;
+        Tue,  8 Aug 2023 22:48:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691534934;
+        bh=YiBtVFQUNG8GVyERTFX35x1DFW/bnSp8S24/0nVDADU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=lPUBCFyLunCojxi/KiHqmoqVrukLhYgZEz1ef1kae+KVInb+8aoBjEEhfgHX6ZEFD
+         tdlzNNjwR3zI6oxm0BTfzEumakEFdrLOOeJmHmsyR87kbOcRxykEm50NpXkkfqb/dy
+         FlvLUZKPCyS4REUbO8kgVU2AmFioGmODnnaBrGbjrq+HfJGUuPl8q321x4nSINsQll
+         snAmEd/KDGcmvZqR/gUwN7XNf1HOALUO8NAZmIpV7hRZm5ypX4kZnp6WflGVWJFqm2
+         BnNx0u20xW3J8S1QSS3UNJ4pvK40WlZS+5zb0aM3bGcz01AH0k2iTpUR3Nt8cdm5B3
+         aYh2wWKc/Jj9w==
+Date:   Tue, 8 Aug 2023 15:48:53 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc:     <vkoul@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <michal.simek@amd.com>, <davem@davemloft.net>,
+        <edumazet@google.com>, <pabeni@redhat.com>,
+        <linux@armlinux.org.uk>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <git@amd.com>
+Subject: Re: [PATCH net-next v5 10/10] net: axienet: Introduce dmaengine
+ support
+Message-ID: <20230808154853.0fafa7fc@kernel.org>
+In-Reply-To: <1691387509-2113129-11-git-send-email-radhey.shyam.pandey@amd.com>
+References: <1691387509-2113129-1-git-send-email-radhey.shyam.pandey@amd.com>
+        <1691387509-2113129-11-git-send-email-radhey.shyam.pandey@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <dtussvqzf7x5p633pxt3julkffhzt5rxwp3aghs4ocj5odq4la@ed6jhcv76hbk>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 49BktmncCXWbgiWUX3N8J99I3BA-44fm
-X-Proofpoint-GUID: 49BktmncCXWbgiWUX3N8J99I3BA-44fm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-08_20,2023-08-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- priorityscore=1501 impostorscore=0 mlxscore=0 spamscore=0 adultscore=0
- malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
- mlxlogscore=957 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308080192
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 08:59:30PM -0700, Bjorn Andersson wrote:
-> On Tue, Jul 18, 2023 at 10:46:10AM -0400, Eric Chanudet wrote:
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> [..]
-> > +&pmm8540a_sdam_7 {
-> > +	status = "okay";
-> > +
-> > +	rtc_offset: rtc-offset@ac {
-> > +		reg = <0xac 0x4>;
-> 
-> I'm still trying to get confirmation that this is a good choice.
-> 
+On Mon, 7 Aug 2023 11:21:49 +0530 Radhey Shyam Pandey wrote:
+> +struct axi_skbuff {
+> +	struct scatterlist sgl[MAX_SKB_FRAGS + 1];
+> +	struct dma_async_tx_descriptor *desc;
+> +	dma_addr_t dma_address;
+> +	struct sk_buff *skb;
+> +	struct list_head lh;
+> +	int sg_len;
+> +} __packed;
 
-I'm recommended that you use 0xa0 from SDAM2, "preferably in the second
-PMM8540", instead.
+Why __packed?
 
-Can you please give this a try, Eric?
+> +static netdev_tx_t
+> +axienet_start_xmit_dmaengine(struct sk_buff *skb, struct net_device *ndev)
+> +{
+> +	struct dma_async_tx_descriptor *dma_tx_desc = NULL;
+> +	struct axienet_local *lp = netdev_priv(ndev);
+> +	u32 app[DMA_NUM_APP_WORDS] = {0};
+> +	struct axi_skbuff *axi_skb;
+> +	u32 csum_start_off;
+> +	u32 csum_index_off;
+> +	int sg_len;
+> +	int ret;
+> +
+> +	sg_len = skb_shinfo(skb)->nr_frags + 1;
+> +	axi_skb = kmem_cache_zalloc(lp->skb_cache, GFP_KERNEL);
+> +	if (!axi_skb)
+> +		return NETDEV_TX_BUSY;
 
-Regards,
-Bjorn
+Drop on error, you're not stopping the queue correctly, just drop,
+return OK and avoid bugs.
+
+> +static inline int axienet_init_dmaengine(struct net_device *ndev)
+
+Why inline? Please remove the spurious inline annotations.
+
+> +{
+> +	struct axienet_local *lp = netdev_priv(ndev);
+> +	int i, ret;
+> +
+> +	lp->tx_chan = dma_request_chan(lp->dev, "tx_chan0");
+> +	if (IS_ERR(lp->tx_chan)) {
+> +		ret = PTR_ERR(lp->tx_chan);
+> +		return dev_err_probe(lp->dev, ret, "No Ethernet DMA (TX) channel found\n");
+> +	}
+> +
+> +	lp->rx_chan = dma_request_chan(lp->dev, "rx_chan0");
+> +	if (IS_ERR(lp->rx_chan)) {
+> +		ret = PTR_ERR(lp->rx_chan);
+> +		dev_err_probe(lp->dev, ret, "No Ethernet DMA (RX) channel found\n");
+> +		goto err_dma_request_rx;
+
+name labels after the target, not the source. Makes it a ton easier 
+to maintain sanity when changing the code later.
+
+> +	}
+> +
+> +	lp->skb_cache = kmem_cache_create("ethernet", sizeof(struct axi_skbuff),
+> +					  0, 0, NULL);
+
+Why create a cache ?
+Isn't it cleaner to create a fake ring buffer of sgl? Most packets will
+not have MAX_SKB_FRAGS of memory. On a ring buffer you can use only as
+many sg entries as the packet requires. Also no need to alloc/free.
+
+> +	if (!lp->skb_cache) {
+> +		ret =  -ENOMEM;
+
+double space, please fix everywhere
+
+> +		goto err_kmem;
+
+> @@ -2140,6 +2432,31 @@ static int axienet_probe(struct platform_device *pdev)
+>  		}
+>  		netif_napi_add(ndev, &lp->napi_rx, axienet_rx_poll);
+>  		netif_napi_add(ndev, &lp->napi_tx, axienet_tx_poll);
+> +	} else {
+> +		struct xilinx_vdma_config cfg;
+> +		struct dma_chan *tx_chan;
+> +
+> +		lp->eth_irq = platform_get_irq_optional(pdev, 0);
+
+This can't fail?
+
+> +		tx_chan = dma_request_chan(lp->dev, "tx_chan0");
+> +
+> +		if (IS_ERR(tx_chan)) {
+
+no empty lines between call and its error check, please fix thru out
+
+> +			ret = PTR_ERR(tx_chan);
+> +			dev_err_probe(lp->dev, ret, "No Ethernet DMA (TX) channel found\n");
+> +			goto cleanup_clk;
+> +		}
+-- 
+pw-bot: cr
