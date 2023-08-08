@@ -2,122 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D60CF774043
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54CEA7741C4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:28:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233689AbjHHRBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:01:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49674 "EHLO
+        id S234644AbjHHR2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:28:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233709AbjHHRBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:01:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0191D422A;
-        Tue,  8 Aug 2023 09:00:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B34062526;
-        Tue,  8 Aug 2023 12:22:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAC44C433C8;
-        Tue,  8 Aug 2023 12:22:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691497376;
-        bh=dhLlrUwCQzvrRjQ5imxEgR6Ov8s1gSR9MYGmH4eHroU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=inb2pUnlNEEJgy4+g5toDu6y1uAJzpYq7fGl7Yj5xlru9xEmVuqqiIgunYaYHPZU+
-         mTXTJzGyG32X+d0k4NQAWhwxfMhLY4lxHSGNVN39C1cryrCRDtLExinq9sRWFreoU8
-         Z1fuCZaj5xrM3r+I1Rsr0kiR+PHPeFLJzGQMvnED75JEkphMueQJ2ZXogCRisv/bXU
-         BqtytwaE30LlME+Xoq4BDRh/wq/wydL5Y/MBr5khnGgZR9LjKxNr6xkNAgWcwTkb40
-         Fi6pxDrjA6iYVRzTgzuUdAQd7a6WHwNyuY9eobLIp1kI0QA38nvgyCCipraZrbqPNq
-         L34Q36eKS0Obg==
-Message-ID: <529218f6-2871-79a2-42bb-8f7886ae12c3@kernel.org>
-Date:   Tue, 8 Aug 2023 15:22:49 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [EXTERNAL] Re: [PATCH v2 0/5] Introduce IEP driver and packet
- timestamping support
-Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>, Conor Dooley <conor@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, nm@ti.com, srk@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230807110048.2611456-1-danishanwar@ti.com>
- <20230808-unnerving-press-7b61f9c521dc@spud>
- <1c8e5369-648e-98cb-cb14-08d700a38283@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <1c8e5369-648e-98cb-cb14-08d700a38283@ti.com>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S234580AbjHHR1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:27:42 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE72EBB7;
+        Tue,  8 Aug 2023 09:11:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+        :Date:subject:date:message-id:reply-to;
+        bh=dP3kh+kDx9zElDDDoC7PRVq68biyXb2WGj3LyKhU5Rs=; b=oK5r0qn1HYBL65s1wkMyqZfKO/
+        iRpuXeV0rC2jL8bkDzFW4w36CsFD5Kjy1iDR27NDMB5DLI1OMckuCxwqJXjDWrVKcgj0bf4QwPSIb
+        s2PaB/GZIgfq3/08OsvQhDip/ufHuVE8YnsHFrWvMdpkvOHyjapupfetwCmnGKd6fr80=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:53646 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qTLmH-0004IO-Qo; Tue, 08 Aug 2023 08:25:34 -0400
+Date:   Tue, 8 Aug 2023 08:25:33 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bruno.thomsen@gmail.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230808082533.b608c9a2a4bd922920643c4b@hugovil.com>
+In-Reply-To: <20230808-capsize-deodorize-5776d3dbb192@spud>
+References: <20230802191153.952667-1-hugo@hugovil.com>
+        <20230802191153.952667-2-hugo@hugovil.com>
+        <20230808-capsize-deodorize-5776d3dbb192@spud>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: add properties to set
+ battery-related functions
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 8 Aug 2023 12:21:24 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-
-On 08/08/2023 15:18, Md Danish Anwar wrote:
-> On 08/08/23 5:38 pm, Conor Dooley wrote:
->> On Mon, Aug 07, 2023 at 04:30:43PM +0530, MD Danish Anwar wrote:
->>> This series introduces Industrial Ethernet Peripheral (IEP) driver to
->>> support timestamping of ethernet packets and thus support PTP and PPS
->>> for PRU ICSSG ethernet ports.
->>>
->>> This series also adds 10M full duplex support for ICSSG ethernet driver.
->>>
->>> There are two IEP instances. IEP0 is used for packet timestamping while IEP1
->>> is used for 10M full duplex support.
->>>
->>> This is v2 of the series [v1]. It addresses comments made on [v1].
->>> This series is based on linux-next(#next-20230807). 
->>>
->>> Changes from v1 to v2:
->>> *) Addressed Simon's comment to fix reverse xmas tree declaration. Some APIs
->>>    in patch 3 and 4 were not following reverse xmas tree variable declaration.
->>>    Fixed it in this version.
->>> *) Addressed Conor's comments and removed unsupported SoCs from compatible
->>>    comment in patch 1. 
->>
->> I'm sorry I missed responding there before you sent v2, it was a bank
->> holiday yesterday. I'm curious why you removed them, rather than just
->> added them with a fallback to the ti,am654-icss-iep compatible, given
->> your comment that "the same compatible currently works for all these
->> 3 SoCs".
+> Hey Hugo,
 > 
-> I removed them as currently the driver is being upstreamed only for AM654x,
-> once I start up-streaming the ICSSG driver for AM64 and any other SoC. I will
-> add them here. If at that time we are still using same compatible, then I will
-> modify the comment otherwise add new compatible.
+> On Wed, Aug 02, 2023 at 03:11:52PM -0400, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > These properties can be defined in the board's device tree to set the
+> > default power-on values for battery-related functions.
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  .../devicetree/bindings/rtc/rtc.yaml          | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > index efb66df82782..0217d229e3fa 100644
+> > --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > @@ -26,6 +26,25 @@ properties:
+> >        0: not chargeable
+> >        1: chargeable
+> >  
+> > +  battery-low-detect:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1]
+> > +    description: |
+> > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > +      used to configure the battery low detection reporting function:
+> > +      0: disabled
+> > +      1: enabled
+> > +
+> > +  battery-switch-over:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1]
+> > +    description: |
+> > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > +      used to configure the battery switch over when the main voltage source is
+> > +      turned off:
+> > +      0: disabled
+> > +      1: enabled
 > 
-> As of now, I don't see the need of adding other SoCs in iep binding as IEP
-> driver up-streaming is only planned for AM654x as of now.
+> Why are these implemented as enums? This seems to fall into the category
+> of using DT to determine software policy - why's it not sufficient to
+> have boolean properties that indicate hardware support and let the software
+> decide what to do with them?
 
-But, is there any difference in IEP hardware/driver for the other SoCs?
-AFAIK the same IP is used on all SoCs.
+Hi Conor,
+the reason is that I based the new properties on the existing property
+"aux-voltage-chargeable":
 
-If there is no hardware/code change then we don't need to introduce a new compatible.
-The comment for all SoCs can already be there right from the start.
+-------------------
+ aux-voltage-chargeable:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    enum: [0, 1]
+    description: |
+      Tells whether the battery/supercap of the RTC (if any) is
+      chargeable or not:
+      0: not chargeable
+      1: chargeable
+-------------------
 
--- 
-cheers,
--roger
+I agree with you that a boolean would be more appropriate. Should I
+also submit a (separate) patch to fix the "aux-voltage-chargeable"
+property to a boolean?
+
+Hugo.
+
+
+> Thanks,
+> Conor.
+> 
+> > +
+> >    quartz-load-femtofarads:
+> >      description:
+> >        The capacitive load of the quartz(x-tal), expressed in femto
+> > -- 
+> > 2.30.2
+> > 
