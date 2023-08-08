@@ -2,154 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6970E7748F4
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 21:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5026277437F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236513AbjHHTpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 15:45:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53010 "EHLO
+        id S234151AbjHHSGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:06:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbjHHTpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 15:45:32 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADBDD16AD4;
-        Tue,  8 Aug 2023 09:49:03 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 705692011BA;
-        Tue,  8 Aug 2023 08:09:04 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0A7172011C4;
-        Tue,  8 Aug 2023 08:09:04 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 66E3E1800319;
-        Tue,  8 Aug 2023 14:09:02 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     frank.li@nxp.com, l.stach@pengutronix.de, shawnguo@kernel.org,
-        lpieralisi@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     hongxing.zhu@nxp.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: [PATCH v3 9/9] PCI: imx6: Add i.MX7D PCIe EP support
-Date:   Tue,  8 Aug 2023 13:34:18 +0800
-Message-Id: <1691472858-9383-10-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1691472858-9383-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1691472858-9383-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234321AbjHHSFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:05:52 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F035D22D
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:05:02 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-318015ade49so83200f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:05:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691514300; x=1692119100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aScjTZP/j4eF5nEY5ptSyTPcH9eKHlG6UgnJ/+6xLjo=;
+        b=IjTu9WpW8A7HTOoI6exM7GY9rnjYJ5ukO3t9WdDCocv4C323Fr+F3ViVSSbs1teC3j
+         QDbC0tMqHifu47Xfzac1mMQ2twzzdQYhNMe+iztVr8AAhFUalgkXxbrs0utYK/6uw5Jf
+         ht9dLrzoznCE2TCxDxPxVCj4NA1qieYEj3i+1vUZqscwr1zSWXWt3HZyMQSkMIVnrnIG
+         vg9jSkgtLhptgnqxxhphDNvaKCD+E7h0rX1yVN52AOWhoFXwaJOPl3j+MZjJzLYICARA
+         bvgGUO8E5Hpe8AbhSRsh4ppjtdbvlHNc2BtoDMof3s3OjJ+jrfAtnpcYz1wMrNhZf6tt
+         c8Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691514300; x=1692119100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aScjTZP/j4eF5nEY5ptSyTPcH9eKHlG6UgnJ/+6xLjo=;
+        b=isVb/3FTumDY4O/2YNz4Jt3IA9YoGYIQ+YNyHrh0BscEzbbpQQeFTRAnH+xBzQW75u
+         hhpKZBy+i/iN4KHtfF+j5DFmhXY5rXaRIvUtIgRL+zzbMOh2rhUqes8AhBozkUYyyY+S
+         ppXwxhJkEiBhytcjmGAuyuLoVdP/KNvm7UeKlwrx6/Xz/sTFyipGIUYoDJxpO8BFva5L
+         5lKDe0fHgypOTFJRzfXbOtlLFT4ZWi9HWfeQLTuqd+67PzlxwlaQUisgQY0TuhT/AKjz
+         GXT9zCcDbcnwHnU1REDqiWVyFh2OVDYRGzJf2/lud9YxomibZT8yq1TpyRb6QIv19uTZ
+         7NWw==
+X-Gm-Message-State: AOJu0Yz/K3k3ZYpdbnTyjsO5Wkb7t3V4VCYDkQNxcg9CerraeOlFsDq5
+        NiOVZCg+S3QkJctUZGc/gNkk0g+cr7RNa5s9YtU=
+X-Google-Smtp-Source: AGHT+IFUhtTnBdD3FE71/pNMOY1Y6z9Jbo+5Bg4ogyJrOop4Rz6UyiKZoppLw28xBiaeF1YEdhU0VQ==
+X-Received: by 2002:a17:906:3f4f:b0:99b:5a73:4d09 with SMTP id f15-20020a1709063f4f00b0099b5a734d09mr10065794ejj.43.1691474274417;
+        Mon, 07 Aug 2023 22:57:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id gs10-20020a170906f18a00b0097404f4a124sm6146765ejb.2.2023.08.07.22.57.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Aug 2023 22:57:53 -0700 (PDT)
+Message-ID: <d28cf9c5-b914-053a-76df-c15e191c042d@linaro.org>
+Date:   Tue, 8 Aug 2023 07:57:52 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add NanoPC T6
+Content-Language: en-US
+To:     Thomas McKahan <tmckahan@singleboardsolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
+ <20230802051441.3106-3-tmckahan@singleboardsolutions.com>
+ <f49a803f-9ff4-794e-265b-a98e3711cca8@linaro.org>
+ <20230808002751.00001385@singleboardsolutions.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230808002751.00001385@singleboardsolutions.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the i.MX7D PCIe EP mode support.
+On 08/08/2023 06:32, Thomas McKahan wrote:
+>>> +
+>>> +		regulators {
+>>> +			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
+>>> +				regulator-boot-on;  
+>>
+>> Boolean properties are not first, but last. regulator-name is the first
+>> one. This odd style...
+>>
+> 
+> I agree, however it seems the norm in Rockchip devices. This will
+> become an outlier in Rockchip but fall in line with the general case.
+> I'll put it in V2 with the other mentioned fixes unless a conflicting 
+> opinion is expressed. 
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- drivers/pci/controller/dwc/pci-imx6.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+OK, no need to change then.
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 43c5251f5160..af7659712537 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -52,6 +52,7 @@ enum imx6_pcie_variants {
- 	IMX6QP,
- 	IMX6QP_EP,
- 	IMX7D,
-+	IMX7D_EP,
- 	IMX8MQ,
- 	IMX8MM,
- 	IMX8MP,
-@@ -359,6 +360,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
- 					   0);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL, 0);
- 		break;
-@@ -590,6 +592,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 				   IMX6Q_GPR1_PCIE_REF_CLK_EN, 1 << 16);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		break;
- 	case IMX8MM:
- 	case IMX8MM_EP:
-@@ -638,6 +641,7 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
- 				IMX6Q_GPR1_PCIE_TEST_PD);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL,
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
-@@ -711,6 +715,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- {
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX7D:
-+	case IMX7D_EP:
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 		reset_control_assert(imx6_pcie->pciephy_reset);
-@@ -763,6 +768,7 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
- 
- 		/* Workaround for ERR010728, failure of PCI-e PLL VCO to
-@@ -854,6 +860,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 				   IMX6Q_GPR12_PCIE_CTL_2);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MM:
-@@ -880,6 +887,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
- 				   IMX6Q_GPR12_PCIE_CTL_2, 0);
- 		break;
- 	case IMX7D:
-+	case IMX7D_EP:
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MM:
-@@ -1385,6 +1393,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 					     "pcie_aux clock source missing or invalid\n");
- 		fallthrough;
- 	case IMX7D:
-+	case IMX7D_EP:
- 		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
- 			imx6_pcie->controller_id = 1;
- 
-@@ -1572,6 +1581,12 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
- 		.gpr = "fsl,imx7d-iomuxc-gpr",
- 	},
-+	[IMX7D_EP] = {
-+		.variant = IMX7D_EP,
-+		.mode = DW_PCIE_EP_TYPE,
-+		.gpr = "fsl,imx7d-iomuxc-gpr",
-+		.epc_features = &imx6q_pcie_epc_features,
-+	},
- 	[IMX8MQ] = {
- 		.variant = IMX8MQ,
- 		.gpr = "fsl,imx8mq-iomuxc-gpr",
-@@ -1611,6 +1626,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx6qp-pcie", .data = &drvdata[IMX6QP], },
- 	{ .compatible = "fsl,imx6qp-pcie-ep", .data = &drvdata[IMX6QP_EP], },
- 	{ .compatible = "fsl,imx7d-pcie",  .data = &drvdata[IMX7D],  },
-+	{ .compatible = "fsl,imx7d-pcie-ep", .data = &drvdata[IMX7D_EP], },
- 	{ .compatible = "fsl,imx8mq-pcie", .data = &drvdata[IMX8MQ], },
- 	{ .compatible = "fsl,imx8mm-pcie", .data = &drvdata[IMX8MM], },
- 	{ .compatible = "fsl,imx8mp-pcie", .data = &drvdata[IMX8MP], },
--- 
-2.34.1
+Best regards,
+Krzysztof
 
