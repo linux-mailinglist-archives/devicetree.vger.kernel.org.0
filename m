@@ -2,141 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 643C4773FBD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC2E773F44
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 18:45:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231341AbjHHQw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 12:52:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46660 "EHLO
+        id S230478AbjHHQpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 12:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232706AbjHHQvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:51:23 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE48C2132;
-        Tue,  8 Aug 2023 08:57:58 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6733F827D;
-        Tue,  8 Aug 2023 15:38:52 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
- 2023 15:38:52 +0800
-Received: from [192.168.155.152] (202.188.176.82) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 8 Aug
- 2023 15:38:47 +0800
-Message-ID: <cbc3c9db-6a47-4e4f-5e5d-892d048ef924@starfivetech.com>
-Date:   Tue, 8 Aug 2023 15:38:41 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] riscv: dts: starfive - Add crypto and DMA node for
- JH7110
-To:     Conor Dooley <conor@kernel.org>
-CC:     Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S232505AbjHHQoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 12:44:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3169184;
+        Tue,  8 Aug 2023 08:56:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 649B76241E;
+        Tue,  8 Aug 2023 07:40:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A0AC433C7;
+        Tue,  8 Aug 2023 07:40:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691480403;
+        bh=eeHnU9sbaREHfqMBo/78Xdyc8QmRfoP3LwM2oF3Vyok=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Z+hgCruQm2uu/S7DddPGDxVKQgZvYiSoMBPLPwLN1VBSNtr1u+085A9QUxiiQx+JK
+         ihi46jANzuFJVh09X1hBEsF3bxP2GSt83pj3cuGRAyOe9h6LM9eXBxkutgo1IgrvDL
+         f3yo2TgB2qyRua3/sXAXbwzhVMdhV8sqzKqIYPA1Xj8Or1oo37VODb2bCuePorzrNF
+         34O/jZcESdCYCDASlx6PMDnfLROZAlprRs/E8YvlwqZEn0AIsxOIgA0BRAWg72/yUq
+         jVSwW/JCR38PnZWOuHI+BA/nUboHh4EBAouw3W1ljvmg6T6MCcVWNqxKj3/kHuX5QR
+         g9kS4Mu6EAj8A==
+Date:   Tue, 8 Aug 2023 08:39:58 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230808061150.81491-1-jiajie.ho@starfivetech.com>
- <20230808061150.81491-2-jiajie.ho@starfivetech.com>
- <20230808-cilantro-fondue-21485b78e83e@spud>
-Content-Language: en-US
-From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
-In-Reply-To: <20230808-cilantro-fondue-21485b78e83e@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [202.188.176.82]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v2 09/10] dt-bindings: net: snps,dwmac: add per
+ channel irq support
+Message-ID: <20230808-clapper-corncob-0af7afa65752@spud>
+References: <20230807164151.1130-1-jszhang@kernel.org>
+ <20230807164151.1130-10-jszhang@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="KvLkMguropyELtMw"
+Content-Disposition: inline
+In-Reply-To: <20230807164151.1130-10-jszhang@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/2023 3:16 pm, Conor Dooley wrote:
-> On Tue, Aug 08, 2023 at 02:11:49PM +0800, Jia Jie Ho wrote:
->> Add hardware crypto module and dedicated dma controller node to StarFive
->> JH7110 SoC.
->> 
->> Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
->> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
->> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
->> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
->> ---
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 28 ++++++++++++++++++++++++
->>  1 file changed, 28 insertions(+)
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> index a608433200e8..47cd12ccc988 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -821,6 +821,34 @@ watchdog@13070000 {
->>  				 <&syscrg JH7110_SYSRST_WDT_CORE>;
->>  		};
->>  
->> +		crypto: crypto@16000000 {
->> +			compatible = "starfive,jh7110-crypto";
->> +			reg = <0x0 0x16000000 0x0 0x4000>;
->> +			clocks = <&stgcrg JH7110_STGCLK_SEC_AHB>,
->> +				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
->> +			clock-names = "hclk", "ahb";
->> +			interrupts = <28>;
->> +			resets = <&stgcrg JH7110_STGRST_SEC_AHB>;
->> +			dmas = <&sdma 1 2>, <&sdma 0 2>;
->> +			dma-names = "tx", "rx";
->> +		};
->> +
->> +		sdma: dma@16008000 {
->> +			compatible = "arm,pl080", "arm,primecell";
->> +			arm,primecell-periphid = <0x00041080>;
->> +			reg = <0x0 0x16008000 0x0 0x4000>;
->> +			interrupts = <29>;
->> +			clocks = <&stgcrg JH7110_STGCLK_SEC_AHB>,
->> +				 <&stgcrg JH7110_STGCLK_SEC_MISC_AHB>;
->> +			clock-names = "hclk", "apb_pclk";
->> +			resets = <&stgcrg JH7110_STGRST_SEC_AHB>;
->> +			lli-bus-interface-ahb1;
->> +			mem-bus-interface-ahb1;
->> +			memcpy-burst-size = <256>;
->> +			memcpy-bus-width = <32>;
->> +			#dma-cells = <2>;
->> +		};
->> +
-> 
-> Against linux-next, I get these warnings:
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16008000: $nodename:0: 'dma@16008000' does not match '^dma-controller(@.*)?$'
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16008000: clocks: [[26, 15], [26, 16]] is too long
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16008000: clock-names: ['hclk', 'apb_pclk'] is too long
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: dma@16008000: Unevaluated properties are not allowed ('#dma-cells' was unexpected)
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16008000: $nodename:0: 'dma@16008000' does not match '^dma-controller(@.*)?$'
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16008000: clocks: [[26, 15], [26, 16]] is too long
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16008000: clock-names: ['hclk', 'apb_pclk'] is too long
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: dma@16008000: Unevaluated properties are not allowed ('#dma-cells' was unexpected)
->         from schema $id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> 
-> Please fix these & submit a tested v2.
-> 
 
-Sorry, I missed testing the dma node.
-Will fix this in next version.
+--KvLkMguropyELtMw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-Jia Jie
+On Tue, Aug 08, 2023 at 12:41:50AM +0800, Jisheng Zhang wrote:
+> The IP supports per channel interrupt, add support for this usage case.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
+mentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 5d81042f5634..5a63302ad200 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -109,6 +109,7 @@ properties:
+>        - description: The interrupt that occurs when Rx exits the LPI sta=
+te
+>        - description: The interrupt that occurs when Safety Feature Corre=
+ctible Errors happen
+>        - description: The interrupt that occurs when Safety Feature Uncor=
+rectible Errors happen
+> +      - description: All of the rx/tx per-channel interrupts
+> =20
+>    interrupt-names:
+>      minItems: 1
+> @@ -118,6 +119,38 @@ properties:
+>        - const: eth_lpi
+>        - const: sfty_ce
+>        - const: sfty_ue
+> +      - const: rx0
+> +      - const: rx1
+> +      - const: rx2
+> +      - const: rx3
+> +      - const: rx4
+> +      - const: rx5
+> +      - const: rx6
+> +      - const: rx7
+> +      - const: rx8
+> +      - const: rx9
+> +      - const: rx10
+> +      - const: rx11
+> +      - const: rx12
+> +      - const: rx13
+> +      - const: rx14
+> +      - const: rx15
+> +      - const: tx0
+> +      - const: tx1
+> +      - const: tx2
+> +      - const: tx3
+> +      - const: tx4
+> +      - const: tx5
+> +      - const: tx6
+> +      - const: tx7
+> +      - const: tx8
+> +      - const: tx9
+> +      - const: tx10
+> +      - const: tx11
+> +      - const: tx12
+> +      - const: tx13
+> +      - const: tx14
+> +      - const: tx15
 
+I don't think Rob's comment about having added 2 interrupts but 32
+interrupt names has been resolved.
+Did you actually test putting this many interrupts into a node?
+AFAICT, any more than 6 will cause complaints.
+
+Thanks,
+Conor.
+
+--KvLkMguropyELtMw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNHxTgAKCRB4tDGHoIJi
+0onpAPsG6snh0PH1bQ597oct8Uh4jQLMK5o7U0UogD2+jX8qKQD+Mew24QNaxdd5
+CIffFZC7Y1NgpuTfzG6Dej4xrzYwBAU=
+=WzEI
+-----END PGP SIGNATURE-----
+
+--KvLkMguropyELtMw--
