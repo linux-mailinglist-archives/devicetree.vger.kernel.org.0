@@ -2,101 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5026277437F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E06774613
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 20:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234151AbjHHSGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 14:06:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43910 "EHLO
+        id S233592AbjHHSwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 14:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234321AbjHHSFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:05:52 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F035D22D
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:05:02 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-318015ade49so83200f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:05:02 -0700 (PDT)
+        with ESMTP id S235852AbjHHSwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 14:52:30 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929915FDD7
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 10:06:29 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99bed101b70so845317266b.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 10:06:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691514300; x=1692119100;
+        d=linaro.org; s=google; t=1691514387; x=1692119187;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aScjTZP/j4eF5nEY5ptSyTPcH9eKHlG6UgnJ/+6xLjo=;
-        b=IjTu9WpW8A7HTOoI6exM7GY9rnjYJ5ukO3t9WdDCocv4C323Fr+F3ViVSSbs1teC3j
-         QDbC0tMqHifu47Xfzac1mMQ2twzzdQYhNMe+iztVr8AAhFUalgkXxbrs0utYK/6uw5Jf
-         ht9dLrzoznCE2TCxDxPxVCj4NA1qieYEj3i+1vUZqscwr1zSWXWt3HZyMQSkMIVnrnIG
-         vg9jSkgtLhptgnqxxhphDNvaKCD+E7h0rX1yVN52AOWhoFXwaJOPl3j+MZjJzLYICARA
-         bvgGUO8E5Hpe8AbhSRsh4ppjtdbvlHNc2BtoDMof3s3OjJ+jrfAtnpcYz1wMrNhZf6tt
-         c8Og==
+        bh=U/ENPbWDACTq/gT25pwElyGsToVBQemAbfEgTyGefM8=;
+        b=KiZVYnjUU1vKIHhB5HsmiqD4lZSuz2o74EEUASVHAIt6FBa8QHq14UTb4xONXiKgyM
+         F86eDQowNmcyGmElTbJCo2Si44K684oPoWIRBrFHc36IwKEzawhozW3yw8rSImAxk87X
+         ieMnJ4d5+4FAJMxW/uSvr5SKaeTyf08GPm3KoCUdhoXLIIe3goQfmweiMWK4srN0eJI7
+         i1AQ9gsUm0R/YigTdJ7s2DZHWoqtMOYA59cOX4msvE8oSbvJA1SSgatpm83QIiDwQGwA
+         xJ1onLxoI8AthowtZIc+0sM2eiYST4JzcIqro+hKWcM69zHk+e2PP6ne3HLHjPUW84cc
+         AWGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691514300; x=1692119100;
+        d=1e100.net; s=20221208; t=1691514387; x=1692119187;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aScjTZP/j4eF5nEY5ptSyTPcH9eKHlG6UgnJ/+6xLjo=;
-        b=isVb/3FTumDY4O/2YNz4Jt3IA9YoGYIQ+YNyHrh0BscEzbbpQQeFTRAnH+xBzQW75u
-         hhpKZBy+i/iN4KHtfF+j5DFmhXY5rXaRIvUtIgRL+zzbMOh2rhUqes8AhBozkUYyyY+S
-         ppXwxhJkEiBhytcjmGAuyuLoVdP/KNvm7UeKlwrx6/Xz/sTFyipGIUYoDJxpO8BFva5L
-         5lKDe0fHgypOTFJRzfXbOtlLFT4ZWi9HWfeQLTuqd+67PzlxwlaQUisgQY0TuhT/AKjz
-         GXT9zCcDbcnwHnU1REDqiWVyFh2OVDYRGzJf2/lud9YxomibZT8yq1TpyRb6QIv19uTZ
-         7NWw==
-X-Gm-Message-State: AOJu0Yz/K3k3ZYpdbnTyjsO5Wkb7t3V4VCYDkQNxcg9CerraeOlFsDq5
-        NiOVZCg+S3QkJctUZGc/gNkk0g+cr7RNa5s9YtU=
-X-Google-Smtp-Source: AGHT+IFUhtTnBdD3FE71/pNMOY1Y6z9Jbo+5Bg4ogyJrOop4Rz6UyiKZoppLw28xBiaeF1YEdhU0VQ==
-X-Received: by 2002:a17:906:3f4f:b0:99b:5a73:4d09 with SMTP id f15-20020a1709063f4f00b0099b5a734d09mr10065794ejj.43.1691474274417;
-        Mon, 07 Aug 2023 22:57:54 -0700 (PDT)
+        bh=U/ENPbWDACTq/gT25pwElyGsToVBQemAbfEgTyGefM8=;
+        b=D9MKh20KDYve9ao+hlCZR0Nc3Nw1o9t9d//6yrcBzt3R7zmknW4AdlJbyy+NhIPByT
+         QNthbz4BaSVQyeng3w5yu28Vi0cS8g3DcXcQsvj0JxN9AHV7/tgfFRIexmvvnAkrio/y
+         4ialmilKzLWfPNaRcXw9lWJuxVkAASTShmHOZt8C541e0LjiZj8hfJPc0DtdXOxEJpAp
+         smN390kDiOIlQ5akijoAdqhOHRsCDtT35CmsPH2Ffvbzl7zLHHlFDeMnGCerrnSLR8U/
+         2KxdDWz9TIBtAEEKiI8yP2pcwVwgm+F3w7JaxFHqJxzrDC6m9dEwQ+RWggZYLsQnYGNQ
+         k47A==
+X-Gm-Message-State: AOJu0YxVO+7lUokH6kpZrPKx7UiZ14ndTqHL14xPhHTVw7gQyGv0l98G
+        zX0eHFYwGipNsP7lNBbDEXbNQRNedKvkNM7g7+k=
+X-Google-Smtp-Source: AGHT+IH20o5oXu1MzFaME7Vqm8k1vG/h5IULgofIK8nWT0wfuYK0Ryctno9bzeuLujRtR/SQOzZBWA==
+X-Received: by 2002:a17:906:d8:b0:99b:ca5d:1466 with SMTP id 24-20020a17090600d800b0099bca5d1466mr11379531eji.66.1691474329221;
+        Mon, 07 Aug 2023 22:58:49 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id gs10-20020a170906f18a00b0097404f4a124sm6146765ejb.2.2023.08.07.22.57.52
+        by smtp.gmail.com with ESMTPSA id e4-20020a1709062c0400b00982d0563b11sm3463474ejh.197.2023.08.07.22.58.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Aug 2023 22:57:53 -0700 (PDT)
-Message-ID: <d28cf9c5-b914-053a-76df-c15e191c042d@linaro.org>
-Date:   Tue, 8 Aug 2023 07:57:52 +0200
+        Mon, 07 Aug 2023 22:58:48 -0700 (PDT)
+Message-ID: <9e235de6-972a-84e5-3e09-f0b07b10e28d@linaro.org>
+Date:   Tue, 8 Aug 2023 07:58:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add NanoPC T6
+Subject: Re: [PATCH v4 0/8] Initial Marvell PXA1908 support
 Content-Language: en-US
-To:     Thomas McKahan <tmckahan@singleboardsolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?Q?Duje_Mihanovi=c4=87?= <duje.mihanovic@skole.hr>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230802051441.3106-1-tmckahan@singleboardsolutions.com>
- <20230802051441.3106-3-tmckahan@singleboardsolutions.com>
- <f49a803f-9ff4-794e-265b-a98e3711cca8@linaro.org>
- <20230808002751.00001385@singleboardsolutions.com>
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-hardening@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afaerber@suse.de,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr>
+ <5723818.DvuYhMxLoT@radijator>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230808002751.00001385@singleboardsolutions.com>
+In-Reply-To: <5723818.DvuYhMxLoT@radijator>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2023 06:32, Thomas McKahan wrote:
->>> +
->>> +		regulators {
->>> +			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
->>> +				regulator-boot-on;  
->>
->> Boolean properties are not first, but last. regulator-name is the first
->> one. This odd style...
->>
+On 07/08/2023 23:02, Duje Mihanović wrote:
+> Patch 8/8 is missing because b4 lost connection to my SMTP server while 
+> sending it. Should I resend the whole series?
 > 
-> I agree, however it seems the norm in Rockchip devices. This will
-> become an outlier in Rockchip but fall in line with the general case.
-> I'll put it in V2 with the other mentioned fixes unless a conflicting 
-> opinion is expressed. 
+>
 
-OK, no need to change then.
+Just send patch 8 manually setting in-reply-to= argument to git
+send-email. b4 maybe also has this option, I don't know.
 
 Best regards,
 Krzysztof
