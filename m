@@ -2,61 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64F4D774C82
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBF4774BFE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235945AbjHHVKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
+        id S231804AbjHHVCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 17:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235936AbjHHVKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:10:22 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC368936;
-        Tue,  8 Aug 2023 13:54:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=kugZc95gGx+gT4+czXKHKOoAY3GLr6Xku/WMAGPw3Fk=; b=qksDPq++8sAH+kPljwpqHKKOfm
-        8hVaowMT091tsZwRUs4vx+9cnNbDYHgiiq4thEEL8FkfsLgyjM9X62rP7qMiFV+UQ7dEKsU30VZi7
-        XkcdSzHRaOQRdNodZ54QDgC89ldeNENuoFT4DZgYQZnd3nobOcDPxpkrwkNLbPPWUzHU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qTTj5-003WBH-1N; Tue, 08 Aug 2023 22:54:47 +0200
-Date:   Tue, 8 Aug 2023 22:54:47 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "simon.horman@corigine.com" <simon.horman@corigine.com>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/5] net: hpe: Add GXP UMAC Driver
-Message-ID: <06d1bc6a-0584-4d62-a2f4-61a42f236b3c@lunn.ch>
-References: <20230802201824.3683-1-nick.hawkins@hpe.com>
- <20230802201824.3683-5-nick.hawkins@hpe.com>
- <fb656c31-ecc3-408a-a719-cba65a6aa984@lunn.ch>
- <933D6861-A193-4145-9533-A7EE8E6DD32F@hpe.com>
- <61c541c9-be30-4a43-aa85-53816d5848f9@lunn.ch>
- <DB60B268-85DA-43A2-A20F-52D684473348@hpe.com>
+        with ESMTP id S231444AbjHHVCv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:02:51 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5461B4
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 14:02:50 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9cf2b1309so3263721fa.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 14:02:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691528568; x=1692133368;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3P34b/1ma59FLttG1cQJqYU6A3Cv7kli+dnFU1B7pgw=;
+        b=SvILppwzHI+9Ubi5q64fEItmP2yIkds1QdhCpbBlvFNhQzLstXUavt86288C4GEyBK
+         rn5WmEo5R6YtwM8F+i1Q+qOJkxcMxHmVafcb6//Ztb7vExgr6jtrj9/kL3RfFA9SrVI/
+         veNjg4F9psz1PXD4JGEY67UBuEwQCkNY7c0OHD+IU4hPOw6NfrInszz4s+ZnDkQnAB7I
+         b87442JKlQiyWdH5Zg4q8YgzkUmxUW2gIXX8RGhQ13t5W4llS28E/yvK8X1PGtE7V7Bu
+         CNCd32oYEPdNi/2xTTN3z/FLl9+VsByE3RfN5wlklVBSJoLTF1+pScpVZyxhOzXDtip1
+         9/Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691528568; x=1692133368;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3P34b/1ma59FLttG1cQJqYU6A3Cv7kli+dnFU1B7pgw=;
+        b=jqzHX292NQjDq1VtTuXVMKFiodbhhlFnIVpDmwDmKIUFpYvQaKQVn6UGRLjBs6FALq
+         U1RJ8hzwb817btHSlMZk4lF2o2+yCD8YfXa61RxgRhMFpKuiMUZTzZeCkHOK+0UIgKvI
+         OT0LY/BgBSlrC45gdEswJpapTgo0hb0fkwM3jDd9ryBTs20C1tERernKWAMnTjoMKVJs
+         0/ZZwVQvstZNwUuKEtqBiIBrzrY6lk+6DoiwTRIk1eDss+8C0BSD9cws0wt/J+3PjU7m
+         RLxWW69lgdXLrhXGCnnOahoG17v4mpaS3xGdnqc4Ntzpth55Nk5shiMYjDxJl7DyYcnC
+         jMIA==
+X-Gm-Message-State: AOJu0Yx01vt2EU9QMkBLgE1IujQ7QjH6ZoTEqjxvO/nTQ+XgUaDHZgn0
+        TUfOXxLZ577W4IC/0dOO3AxX2A==
+X-Google-Smtp-Source: AGHT+IGHL7VCZl32wqCp2jnfDoOO0FgloZVtld9xzhtXOZv99HywIwA5QJc20hltfUJx2vGx0SoAhA==
+X-Received: by 2002:a2e:96d6:0:b0:2b6:cb3f:97e2 with SMTP id d22-20020a2e96d6000000b002b6cb3f97e2mr340774ljj.16.1691528568465;
+        Tue, 08 Aug 2023 14:02:48 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id h11-20020a2eb0eb000000b002b6cc17add3sm2431483ljl.25.2023.08.08.14.02.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 14:02:47 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 00/14] A7xx support
+Date:   Tue, 08 Aug 2023 23:02:38 +0200
+Message-Id: <20230628-topic-a7xx_drmmsm-v2-0-1439e1b2343f@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB60B268-85DA-43A2-A20F-52D684473348@hpe.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG6t0mQC/32NQQqDMBAAvyI5NyWJom1P/qNIiXGjC5rIxopF/
+ Hu3PqDHGRhmFwkIIYlHtguCFRPGwGAumXCDDT1I7JiFUSZXpbnJJc7opK227dXRNKVJapP7XHV
+ V6XwluGttAtmSDW7gMrzHkeVM4HE7R8+GecC0RPqc31X/7L/FqqVi4YviXoJy2tQjBkvxGqkXz
+ XEcX/7jt0vIAAAA
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691528566; l=4016;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=28tVoyoZGi5ChYeTjClZPV9YNYzKToRLj0C2cpckT8w=;
+ b=RgpQP0zsl9mFXTKGli673/415ZK5uFGxg3V/njRZPs5d6JltKmhZpln3HGk20bN8dwDnBAlzi
+ E0GHwdH9KFCC0pEWDcBu8GuAaPMvE/TrGIsCvTwVCALH/HsP/+fbPIf
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,37 +93,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 08:39:39PM +0000, Hawkins, Nick wrote:
-> Hi Andrew,
-> 
-> Thank you for your feedback, I have several follow up questions:
-> 
-> > So what you call a PHY is probably a PCS. Please look at the API used
-> > in driver/net/pcs/. The real PHYs are external.
-> 
-> I doubled checked the internal PHY is considered a PHY, but I believe
-> I can represent it as a PCS.
+This series attempts to introduce Adreno 700 support (with A730 and A740
+found on SM8450 and SM8550 respectively), reusing much of the existing
+A6xx code. This submission largely lays the groundwork for expansion and
+more or less gives us feature parity (on the kernel side, that is) with
+existing A6xx parts.
 
-Is there proper documentation somewhere? register set? Is there
-registers to kick off Base1000X/SGMII auto-neg? Somewhere to get the
-results of the auto-neg? Since this is Base1000X/SGMII you want to
-know if the link between it and the external PHY has established. And
-if there is not an external PHY, but an SFP, this auto neg is with the
-link peer, not the PHY. If it follows 802.3 clause 37, there should
-already be a lot of helper code for you. Is this is licensed core?
+On top of introducing a very messy set of three (!) separate and
+obfuscated deivce identifiers for each 7xx part, this generation
+introduces very sophisticated hardware multi-threading and (on some SKUs)
+hardware ray-tracing (not supported yet).
 
-> To confirm: I believe you are suggesting that
-> we create a driver here for the handling of the internal PHY but not the
-> external PHY?
+After this series, a long-overdue cleanup of drm/msm/adreno is planned
+in preparation for adding more features and removing some hardcoding.
 
-The patches seem to suggest your board has an external Marvell PHY. So
-i would expect it to use drivers/net/phy/marvell.c. Other boards,
-using other PHYs, would use other PHY drivers.
+The last patch is a hack that may or may not be necessary depending
+on your board's humour.. eh.. :/
 
-> If so would it be leveraging the MDIO driver already created in this
-> patchset? Or perhaps would it be replacing it for the internal PHY?
+Developed atop (and hence depends on) [1]
 
-Many of the PCS drivers in driver/net/pcs are MDIO devices, so yes, it
-would be layered on top of it.
+The corresponding devicetree patches are initially available at [2] and
+will be posted after this series gets merged. To test it, you'll also need
+firmware that you need to obtain from your board (there's none with a
+redistributable license, sorry..). Most likely it will be in one of
+these directories on your stock android installation:
 
-      Andrew
+* /vendor/firmware
+* /vendor/firmware_mnt
+* /system
+
+..but some vendors make it hard and you have to do some grepping ;)
+
+Requires [3] to work on the userspace side. You'll almost cerainly want
+to test it alongside Zink with a lot of debug flags (early impl), like:
+
+TU_DEBUG=sysmem,nolrz,flushall,noubwc MESA_LOADER_DRIVER_OVERRIDE=zink kmscube
+
+[1] https://lore.kernel.org/linux-arm-msm/20230517-topic-a7xx_prep-v4-0-b16f273a91d4@linaro.org/
+[2] https://github.com/SoMainline/linux/commits/topic/a7xx_dt
+[3] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23217
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Rebase on chipid changes
+- Reuse existing description for qcom,aoss in patch 2
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230628-topic-a7xx_drmmsm-v1-0-a7f4496e0c12@linaro.org
+
+---
+Konrad Dybcio (14):
+      dt-bindings: display/msm/gmu: Add Adreno 7[34]0 GMU
+      dt-bindings: display/msm/gmu: Allow passing QMP handle
+      dt-bindings: display/msm/gpu: Allow A7xx SKUs
+      drm/msm/a6xx: Add missing regs for A7XX
+      drm/msm/a6xx: Introduce a6xx_llc_read
+      drm/msm/a6xx: Move LLC accessors to the common header
+      drm/msm/a6xx: Bail out early if setting GPU OOB fails
+      drm/msm/a6xx: Add skeleton A7xx support
+      drm/msm/a6xx: Send ACD state to QMP at GMU resume
+      drm/msm/a6xx: Mostly implement A7xx gpu_state
+      drm/msm/a6xx: Add A730 support
+      drm/msm/a6xx: Add A740 support
+      drm/msm/a6xx: Vastly increase HFI timeout
+      drm/msm/a6xx: Poll for GBIF unhalt status in hw_init
+
+ .../devicetree/bindings/display/msm/gmu.yaml       |  47 +-
+ .../devicetree/bindings/display/msm/gpu.yaml       |   4 +-
+ drivers/gpu/drm/msm/adreno/a6xx.xml.h              |   9 +
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              | 204 +++++--
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |   3 +
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.xml.h          |   8 +
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c              | 667 ++++++++++++++++++---
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h              |  15 +
+ drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        |  52 +-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        |  61 +-
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.c              |  90 ++-
+ drivers/gpu/drm/msm/adreno/adreno_device.c         |  30 +
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c            |   7 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  28 +-
+ drivers/gpu/drm/msm/msm_ringbuffer.h               |   2 +
+ 15 files changed, 1094 insertions(+), 133 deletions(-)
+---
+base-commit: b30de2c05cf2166f4e2c68850efc8dcea1c89780
+change-id: 20230628-topic-a7xx_drmmsm-123f30d76cf7
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
