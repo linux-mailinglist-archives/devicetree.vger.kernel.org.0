@@ -2,146 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F580774CAE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 23:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A399774A00
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 22:10:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236250AbjHHVOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 17:14:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39032 "EHLO
+        id S233777AbjHHUKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 16:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236256AbjHHVOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 17:14:19 -0400
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51681FE5E
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 11:26:34 -0700 (PDT)
-Received: by mail-ua1-x934.google.com with SMTP id a1e0cc1a2514c-79a2216a22fso1592716241.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 11:26:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691519193; x=1692123993;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NbSuxAH1dmgDI1cFhSw3+FjHgNgeooTpwVKeZW63XUA=;
-        b=omX3M6W7HI4CkdKEejiKetClW4YUWnvCPUq8gKc/AoVUAnqTLGguQDDx/Sp7R778JN
-         J9TSo32CN6hMaWQKcsB0qNqnAfUmpGbESPtgNucK5ozybmP7dGop+fVUtC7USzhv0x20
-         JypPvqhLY7OCKJtBcfnX+96fYG5NsovjpKeVeQyTpMIw8hCNkqz97Nj5+31R97GKArfx
-         FvTCBQ21Dt/3FRicqjABaU4W4VS+jqKz5MgCjjWoW7/8fz5NgBnX8wQtxRvChUJ90vs8
-         M6mrEFvM5V+hgB099+64rLexf3D68SYLB6togDUSjQ9USqOosVkxu49B4wTl+yHLi33a
-         3Kiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691519193; x=1692123993;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NbSuxAH1dmgDI1cFhSw3+FjHgNgeooTpwVKeZW63XUA=;
-        b=dBwYhNn4ejUd1aQWDUvQs/CRQNfj73jhnno4zv5Pb0oo+qKpvSH220/x5dhHCAMg9w
-         OxfR6aaxzrWrBTVqd6TLyn4MHsxycAkerZvKfxhTzYTDCg7sh7Sbhglf259TWI5wAxs5
-         7hXhDsaOHHdPnmTZGr7WCvgjk61SK2974s6kPWUVEQmrdxGyqu/1qg8F0jBH+OB0rnwC
-         hH2ph9wbZPhfskhexNLjZiDr+93paliwH6tV1GkX5AIPkz5xJBG1Qpmo07vm7ykneXVs
-         ahH/dQWe7GNsl+HLTX/uNWpAyP2R/PwHXHdZ0GANWjBuSK0NCHg17MZY3RokXc1NHE3B
-         vR8g==
-X-Gm-Message-State: AOJu0YwI3XgH5cvqfScSEtLloICTO4KiNeUEVUnqmYb3Lc7bfVLh/+YL
-        WNCuBsmAIE0bJmDdGJK8l6p92K/Xyc/oA5+HwhyumQ==
-X-Google-Smtp-Source: AGHT+IG8ilz+lyyZPz/QTN9yYwu4PQ8UFXiUmVfIAYHkY7cO5/Ehx+F7e2EvG0Tpci9f03MzRW/uy/lDk0h8r21yu9I=
-X-Received: by 2002:a67:f905:0:b0:443:677e:246e with SMTP id
- t5-20020a67f905000000b00443677e246emr716156vsq.5.1691519193393; Tue, 08 Aug
- 2023 11:26:33 -0700 (PDT)
+        with ESMTP id S231521AbjHHUJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 16:09:54 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8200527210;
+        Tue,  8 Aug 2023 11:32:21 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378IW6xp062836;
+        Tue, 8 Aug 2023 13:32:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691519526;
+        bh=fX/sNFKyF1sSp1B1BKJh2rtMZvIKLQqD4XqA88vsY9U=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=YJaBGPe2w4HqYMMUmjND+adsatrfKGsYsQOR1riOE7Yy21KL725zdN0KbqQzQM2QL
+         L5jtbtZ79upaz2dSKVFMYGRrA05Pohx/WgOo1zsHbpggmPXPsSUJGgOucvTsX8woCq
+         /QgsVwS5Zq6s6OlQEa/uKCQAjBxOZdGNgzdvQe80=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378IW6pu083697
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Aug 2023 13:32:06 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Aug 2023 13:32:04 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 8 Aug 2023 13:32:05 -0500
+Received: from [10.24.69.34] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378IW11r128141;
+        Tue, 8 Aug 2023 13:32:01 -0500
+Message-ID: <feb5d534-1e1b-2b3d-6eff-22a362df08db@ti.com>
+Date:   Wed, 9 Aug 2023 00:02:00 +0530
 MIME-Version: 1.0
-References: <20230807193102.6374-1-brgl@bgdev.pl> <54421791-75fa-4ed3-8432-e21184556cde@lunn.ch>
- <CAMRc=Mc6COaxM6GExHF2M+=v2TBpz87RciAv=9kHr41HkjQhCg@mail.gmail.com>
- <ZNJChfKPkAuhzDCO@shell.armlinux.org.uk> <CAMRc=MczKgBFvuEanKu=mERYX-6qf7oUO2S4B53sPc+hrkYqxg@mail.gmail.com>
- <65b53003-23cf-40fa-b9d7-f0dbb45a4cb2@lunn.ch> <CAMRc=MecYHi=rPaT44kuX_XMog=uwB9imVZknSjnmTBW+fb5WQ@mail.gmail.com>
- <xfme5pgj4eqlgao3vmyg6vazaqk6qz2wq6kitgujtorouogjty@cklyof3xz2zm> <d021b8ae-a6a3-4697-a683-c9bd45e6c74b@lunn.ch>
-In-Reply-To: <d021b8ae-a6a3-4697-a683-c9bd45e6c74b@lunn.ch>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 8 Aug 2023 20:26:22 +0200
-Message-ID: <CAMRc=MegMdB0LZNRRrCfqFGZQWMFdBhd8o+_NBxwLk0xS99M_w@mail.gmail.com>
-Subject: Re: [PATCH 0/2] net: stmmac: allow sharing MDIO lines
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Andrew Halaney <ahalaney@redhat.com>,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-j784s4-main: Add bootph-pre-ram
+ property for SPL nodes
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>,
+        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>,
+        Tom Rini <trini@konsulko.com>
+References: <20230807185645.128751-1-a-nandan@ti.com>
+ <20230807185645.128751-2-a-nandan@ti.com>
+ <20230807190739.a33f5piskapfphxh@blatantly>
+From:   Apurva Nandan <a-nandan@ti.com>
+In-Reply-To: <20230807190739.a33f5piskapfphxh@blatantly>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 8, 2023 at 5:15=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > I'll make the water muddier (hopefully clearer?). I have access to the
-> > board schematic (not SIP/SOM stuff though), but that should help here.
-> >
-> > MAC0 owns its own MDIO bus (we'll call it MDIO0). It is pinmuxed to
-> > gpio8/gpio9 for mdc/mdio. MAC1 owns its own bus (MDIO1) which is
-> > pinmuxed to gpio21/22.
-> >
-> > On MDIO0 there are two SGMII ethernet phys. One is connected to MAC0,
-> > one is connected to MAC1.
-> >
-> > MDIO1 is not connected to anything on the board. So there is only one
-> > MDIO master, MAC0 on MDIO0, and it manages the ethernet phy for both
-> > MAC0/MAC1.
-> >
-> > Does that make sense? I don't think from a hardware design standpoint
-> > this is violating anything, it isn't a multimaster setup on MDIO.
->
-> Thanks for taking a detailed look at the schematics. This is how i
-> would expect it to be.
->
-> > > > > Good point, but it's worse than that: when MAC0 is unbound, it wi=
-ll
-> > > > > unregister the MDIO bus and destroy all PHY devices. These are no=
-t
-> > > > > refcounted so they will literally go from under MAC1. Not sure ho=
-w
-> > > > > this can be dealt with?
-> > > >
-> > > > unbinding is not a normal operation. So i would just live with it, =
-and
-> > > > if root decides to shoot herself in the foot, that is her choice.
-> > > >
-> > >
-> > > I disagree. Unbinding is very much a normal operation.
->
-> What do you use it for?
->
-> I don't think i've ever manually done it. Maybe as part of a script to
-> unbind the FTDI driver from an FTDI device in order to use user space
-> tools to program the EEPROM? But that is about it.
->
-> I actually expect many unbind operations are broken because it is very
-> rarely used.
->
+Hi Nishanth,
 
-When I say "device unbind", I don't just mean manual unbinding using
-sysfs. I mean any code path (rmmod, unplugging the USB, etc.) that
-leads to the device being detached from its driver. This is a
-perfectly normal situation and should work correctly.
-
-I won't be fixing it for this series but may end up looking into
-establishing some kind of device links between MACs and their "remote"
-PHYs that would allow to safely unbind them.
-
-Bart
+On 08/08/23 00:37, Nishanth Menon wrote:
+> On 00:26-20230808, Apurva Nandan wrote:
+>> Add bootph-pre-ram property for all the nodes used in SPL stage,
+>> for syncing it later to u-boot j784s4 dts.
+>>
+>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+>> ---
+> We need to rework this a little more:
+>
+> The approach taken in this series is enable pre-ram for everything. I am
+> not sure that is the right direction.
+These patches only enable bootph-pre-ram for the nodes, that already had 
+bootph-pre-ram property in u-boot dts
+patches for j784s4. And these are selected after removing unnecessary 
+nodes that had this property, so not added for
+everything. Are there a nodes which seem to have unnecessary 
+bootph-pre-ram property according to you, need to remove?
+> https://github.com/devicetree-org/dt-schema/blob/e87ba2f515392c2a4694642063efb43023331ff6/dtschema/schemas/bootph.yaml#L70
+>
+> patch #1: board generic changes: patch #1
+> patch #2-: board specific change (per board)
+>
+> Make sure you use the correct property and document why this is needed
+> in the section added as well - esp for board generic changes introduced
+> into SoC.dtsi files.
+>
+I am little unclear about what nodes you refer with board generic vs 
+board specific bootph-pre-ram.
+I have currently added bootph-pre-ram in board EVM dts files if the node 
+is disabled in SoC dtsi and enabled
+in EVM dts (no point adding bootph-pre-ram in disabled node), or for 
+pinmuxes, etc. What is the segregation
+you want in the patch, do you want some bootph-pre-ram to be moved from 
+where they are?
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index 2ea0adae6832..aaec569fe91a 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -6,6 +6,7 @@
+>>    */
+>>   
+>>   &cbass_main {
+>> +	bootph-pre-ram;
+> Is this better done where the node is defined?
+Okay, this I will fix.
+>
+>>   	msmc_ram: sram@70000000 {
+>>   		compatible = "mmio-sram";
+>>   		reg = <0x00 0x70000000 0x00 0x800000>;
+>> @@ -670,6 +671,7 @@ main_sdhci1: mmc@4fb0000 {
+>>   	};
+>>   
+>>   	main_navss: bus@30000000 {
+>> +		bootph-pre-ram;
+>>   		compatible = "simple-bus";
+>>   		#address-cells = <2>;
+>>   		#size-cells = <2>;
+>> @@ -705,6 +707,7 @@ main_udmass_inta: msi-controller@33d00000 {
+>>   		};
+>>   
+>>   		secure_proxy_main: mailbox@32c00000 {
+>> +			bootph-pre-ram;
+>>   			compatible = "ti,am654-secure-proxy";
+>>   			#mbox-cells = <1>;
+>>   			reg-names = "target_data", "rt", "scfg";
+>> -- 
+>> 2.34.1
+>>
