@@ -2,113 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F5E77405D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E507741CD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Aug 2023 19:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbjHHRCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 13:02:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47886 "EHLO
+        id S234514AbjHHR2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 13:28:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233670AbjHHRBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:01:34 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64393AAF8;
-        Tue,  8 Aug 2023 09:01:05 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 378DZEq7025855;
-        Tue, 8 Aug 2023 08:35:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691501714;
-        bh=aGljPDdDeXcDz2W28UkV3gl/mQekjNY+A4wIc1EUsM0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CiRXCpBZjQKKY0Rc/eZeDfoAlkFtreMaUMwucyO1dCvRJehYVCiPRyJ8aPrlWZjhY
-         nzE11g+oyYwbdeVC5wFLKxv3Bb0dYmTp2uCT/wzbARor0rbE7xImh/n21S3gTzjZtF
-         sNSk98/Yp4MTHIoiYQTSlnlosi58nqfyZog4Xn38=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 378DZESY004725
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Aug 2023 08:35:14 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Aug 2023 08:35:13 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Aug 2023 08:35:13 -0500
-Received: from fllv0039.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 378DZ4Q5053163;
-        Tue, 8 Aug 2023 08:35:13 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S234537AbjHHR2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 13:28:09 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B08120D31;
+        Tue,  8 Aug 2023 09:12:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1691511129; x=1723047129;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a5Pu3te7+j3RrMvIgzbzB1S8YTDD+wuRl/+kr86b66k=;
+  b=aBP+M7ABiZJCUQs7jUGR34jdzHc+a8fI8LAXlKnMyFWCK8jHEgI+nxf9
+   4aBl9t+Ys7bUSw1soiWAG+s1WO14AuyZWzXwPJQ0vzFLEgIDJxh419uln
+   70Kg+RVEeDwJ9pCXvWuEeOyZfKkBc7MZlIcM+txcwudriZXiFx7FIMc7i
+   z6i/Ymbp17Ym/4OD9rFHA5ZnE01mTytc1SickX0X4oI711noaR9QH5hPc
+   qL8ndxI1W15wYhziU33UQhhGQbtZDe6DEq5af/0ETg0DG8LtGKg++uH5B
+   Hw4LsR49smx0/QDhb3m1k6kv3w9LbpnChpJAaIlpa4YFDmrUN96UYxm+l
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="355767105"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; 
+   d="scan'208";a="355767105"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2023 07:08:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845490938"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; 
+   d="scan'208";a="845490938"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP; 08 Aug 2023 07:08:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qTNNV-00B7YT-1f;
+        Tue, 08 Aug 2023 17:08:05 +0300
+Date:   Tue, 8 Aug 2023 17:08:05 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH v2 13/13] arm64: dts: ti: k3-am64: Enable TSCADC nodes at the board level
-Date:   Tue, 8 Aug 2023 08:34:57 -0500
-Message-ID: <20230808133457.25060-14-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230808133457.25060-1-afd@ti.com>
-References: <20230808133457.25060-1-afd@ti.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] iio: adc: mcp3911: simplify usage of spi->dev in
+ probe function
+Message-ID: <ZNJMReTpBOQ9FA2p@smile.fi.intel.com>
+References: <20230808110432.240773-1-marcus.folkesson@gmail.com>
+ <20230808110432.240773-2-marcus.folkesson@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230808110432.240773-2-marcus.folkesson@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TSCADC nodes defined in the top-level AM64 SoC dtsi files are incomplete
-and may not be functional unless they are extended with pinmux and/or
-device information.
+On Tue, Aug 08, 2023 at 01:04:30PM +0200, Marcus Folkesson wrote:
+> Replace the usage of adc->spi->dev with spi->dev to make the code prettier.
 
-Disable the TSCADC nodes in the dtsi files and only enable the ones that
-are actually pinned out on a given board.
+Suggested-by: ?
 
-Signed-off-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 1 +
- arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 4 ----
- 2 files changed, 1 insertion(+), 4 deletions(-)
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index ed1b63b9c1c5f..0df54a7418247 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -765,6 +765,7 @@ tscadc0: tscadc@28001000 {
- 		assigned-clock-parents = <&k3_clks 0 3>;
- 		assigned-clock-rates = <60000000>;
- 		clock-names = "fck";
-+		status = "disabled";
- 
- 		adc {
- 			#io-channel-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index af06ccd466802..722fd285a34ec 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -513,10 +513,6 @@ cpsw3g_phy1: ethernet-phy@1 {
- 	};
- };
- 
--&tscadc0 {
--	status = "disabled";
--};
--
- &ospi0 {
- 	status = "okay";
- 	pinctrl-names = "default";
+...
+
+> -	adc->vref = devm_regulator_get_optional(&adc->spi->dev, "vref");
+> +	adc->vref = devm_regulator_get_optional(&spi->dev, "vref");
+
+Why not
+
+	struct device *dev = &spi->dev;
+
+and all the rest accordingly?
+
+>  	if (IS_ERR(adc->vref)) {
+>  		if (PTR_ERR(adc->vref) == -ENODEV) {
+>  			adc->vref = NULL;
+>  		} else {
+> -			dev_err(&adc->spi->dev,
+> +			dev_err(&spi->dev,
+>  				"failed to get regulator (%ld)\n",
+>  				PTR_ERR(adc->vref));
+>  			return PTR_ERR(adc->vref);
+
+Actually, you may first to switch to dev_err_probe() with the above introduced
+
+	struct device *dev = &spi->dev;
+	...
+			return dev_err_probe(dev, PTR_ERR(adc->vref),
+					     "failed to get regulator\n",
+
+and in the second patch do what you are doing here.
+
+Will be much less changes and neater code at the end.
+
 -- 
-2.39.2
+With Best Regards,
+Andy Shevchenko
+
 
