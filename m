@@ -2,153 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9AA47765FF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9399D776593
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 18:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232590AbjHIRCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 13:02:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47818 "EHLO
+        id S231455AbjHIQwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 12:52:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232609AbjHIRCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:02:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241DD26AA;
-        Wed,  9 Aug 2023 10:02:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ADF55641F5;
-        Wed,  9 Aug 2023 17:02:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79766C433C9;
-        Wed,  9 Aug 2023 17:02:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691600539;
-        bh=V902vE1qSD2W3x2PVyeCERNpVhnCPf/lW+x8V8GU3+c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WMhObEz5TS7bF/kYtzmy4aPzQwZnwrQiIUPdi+fZLiNzwNXpknALfGhoph6tHbTiG
-         BZMzORKMJsl/ZkjiBKT1hrT9wLy0SxIuNk8kyuQZHCaYuBQaM+QPIwX9RrrcKs1MT4
-         3ZbDQqBlAV9u9UxQD/3W/uRN/mvfPIBKWPZ2etvp5VozRvGepNB4tCXX5aA71VNXDv
-         6hd7C2M/s9dOrNPRciF6y+GRo6sTTkCulpdXObeNmR8ZN9p+eC28ayEkVpnOTJajS8
-         COXV4YcfTMFVTsZr9bXWXU1cVs9ydrLcLPrgJCT9TmuYXD7FviPsaNwwNjnQIi2iQy
-         GHGT5DXoFKqsg==
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231368AbjHIQwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 12:52:35 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE022691
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 09:52:23 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b9b904bb04so481681fa.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 09:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691599939; x=1692204739;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TQJEv5Vw7ZJZLzL74/YFszGSXRtz97IWL9b+9KOEYBk=;
+        b=ZO9GM7kMXDoegIZvjBMStvrp6k0mAqPeeKnZVncyjI7+NV+JiqCs4v1oWOzjGWf5i3
+         jWjFOuQ9uQTMZCKyW4vhy1nIipCY47B5mMkYGIEbldjoVUEFPleKpQEuJK1DlGg2mA9G
+         +oX5pZ4MY+Q7IwuV3YHqwG38AGslp4Xfs0rYVMITikLmthAjz+17AHdkyiYBk1F5Sr32
+         wnS9cOcy0IRxja9nUUeFC31S9eb800X6nntcGCReQQS27uzpd+Mjk9s/e56lWTsfp3nL
+         QSX/GXd7MrzDvYzDji+t/p/ChlJy04GchzD9M3hRWqz8DmP8+kgqElQYr1Smv8rEQ/aB
+         Uksw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691599939; x=1692204739;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TQJEv5Vw7ZJZLzL74/YFszGSXRtz97IWL9b+9KOEYBk=;
+        b=bv+Lo8iGzfvYgJ55I7n+RZEFkhjKc4ilf98if9laDyxFCmeol5rBACoaIyZilIin6T
+         S1PzYMzxrhxlqfGdPW+LxhD9JQjM1wflSjnRxRo+WkHLlnDifFj6dMGbadWXmWsngYnp
+         8IT22KlcyVMzWY/qqVU5gTm+RH2+UcaulgCNEXvoINP5RUb1y9L5BRAyTg+hBnLMGng1
+         HxhT1vS2vUh47GdlGYX1qxe1RqgpdH1xSnsSYTng8HXOOOdqh94x1nKsMGABlL12etxs
+         vtVIufUCUTynyYXasGuJBINJyerZXgqtBrp1n/crK/4/TszD5IL7Gqzpju8RdbzdM26S
+         J/cw==
+X-Gm-Message-State: AOJu0YwJqQaOJEyXA/TiXh1WQtYPbpUgNtZnByb7st9aNcKHxrwKGc6M
+        rYdkvbFJxsjCg2RD9vyhLk6JLQ==
+X-Google-Smtp-Source: AGHT+IHKrr6dngxD5jbf0lI7E9pc6JW/R62gAP8zLLoHL2aQJmFdV+8JZpgmrPwhkyIEldKOTgVLyQ==
+X-Received: by 2002:a2e:b0fc:0:b0:2b9:ee3e:240c with SMTP id h28-20020a2eb0fc000000b002b9ee3e240cmr2392361ljl.24.1691599939431;
+        Wed, 09 Aug 2023 09:52:19 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id x10-20020a2e880a000000b002b9f03729e2sm2787141ljh.36.2023.08.09.09.52.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 09:52:18 -0700 (PDT)
+Message-ID: <cc9e6464-5e47-4044-9785-c57167f0e1c5@linaro.org>
+Date:   Wed, 9 Aug 2023 18:52:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/15] clk: qcom: gcc-sm6375: Unregister critical clocks
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH net-next v3 10/10] net: stmmac: platform: support parsing per channel irq from DT
-Date:   Thu, 10 Aug 2023 00:50:07 +0800
-Message-Id: <20230809165007.1439-11-jszhang@kernel.org>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230809165007.1439-1-jszhang@kernel.org>
-References: <20230809165007.1439-1-jszhang@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v1-3-27784d27a4f4@linaro.org>
+ <ZLaRtrH85v4kpSvb@hovoldconsulting.com>
+ <33a26241-026a-9466-5dd6-e3202b29f57c@linaro.org>
+ <ybugl2m7o5cnzj4lv5ksit2rip6yvths5ieo3xlw6cycto2zax@2jimga475z2t>
+ <ZLeiM6l6tu6XDzrr@hovoldconsulting.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <ZLeiM6l6tu6XDzrr@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The snps dwmac IP may support per channel interrupt. Add support to
-parse the per channel irq from DT.
+On 19.07.2023 10:43, Johan Hovold wrote:
+> On Tue, Jul 18, 2023 at 09:23:52AM -0700, Bjorn Andersson wrote:
+>> On Tue, Jul 18, 2023 at 03:26:51PM +0200, Konrad Dybcio wrote:
+>>> On 18.07.2023 15:20, Johan Hovold wrote:
+>>>> On Mon, Jul 17, 2023 at 05:19:10PM +0200, Konrad Dybcio wrote:
+>>>>> Some clocks need to be always-on, but we don't really do anything
+>>>>> with them, other than calling enable() once and telling Linux they're
+>>>>> enabled.
+>>>>>
+>>>>> Unregister them to save a couple of bytes and, perhaps more
+>>>>> importantly, allow for runtime suspend of the clock controller device,
+>>>>> as CLK_IS_CRITICAL prevents the latter.
+>>>>
+>>>> But this doesn't sound right. How can you disable a controller which
+>>>> still has clocks enabled?
+>>>>
+>>>> Shouldn't instead these clocks be modelled properly so that they are
+>>>> only enabled when actually needed?
+>>> Hm.. We do have clk_branch2_aon_ops, but something still needs to
+>>> toggle these clocks.
+>>>
+>>
+>> Before we started replacing these clocks with static votes, I handled
+>> exactly this problem in the turingcc-qcs404 driver by registering the
+>> ahb clock with a pm_clk_add(). The clock framework will then
+>> automagically keep the clock enabled around operations, but it will also
+>> keep the runtime state active as long as the clock is prepared.
+>>
+>> As mentioned in an earlier reply today, there's no similarity to this in
+>> the reset or gdsc code, so we'd need to add that in order to rely on
+>> such mechanism.
+> 
+> This reminds me of:
+> 
+> 	4cc47e8add63 ("clk: qcom: gdsc: Remove direct runtime PM calls")
+> 
+> which recently removed a broken attempt to implement this for gdscs.
+> 
+> Just stumbled over GENPD_FLAG_PM_CLK which may provide a way forward at
+> least for genpd (but see below).
+> 
+>>> I *think* we could leave a permanent vote in probe() without breaking
+>>> runtime pm! I'll give it a spin bit later..
+>>>
+>>
+>> Modelling the AHB clock in DT and putting a devm_clk_get_enabled() would
+>> properly connect the two, and thereby handle probe order between the two
+>> clock controllers.
+> 
+> Yeah, this dependency really should be described eventually.
+> 
+>> But it would prevent the power-domain of the parent provider to ever
+>> suspending. Using pm_clk_add() this would at least depend on client
+>> votes.
+> 
+> IIUC using pm_clk_add() would also prevent the parent from suspending
+> due to that resume call in clk_prepare().
+> 
+> And this mechanism is also used for GENPD_FLAG_PM_CLK...
+So.. how do we go about solving the issue that this patch tried to
+address?
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- .../net/ethernet/stmicro/stmmac/stmmac_main.c | 10 ++++----
- .../ethernet/stmicro/stmmac/stmmac_platform.c | 23 +++++++++++++++++++
- 2 files changed, 29 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 4ed5c976c7a3..245eeb7d3e83 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -3612,7 +3612,7 @@ static int stmmac_request_irq_multi(struct net_device *dev)
- 	for (i = 0; i < priv->plat->rx_queues_to_use; i++) {
- 		if (i >= MTL_MAX_RX_QUEUES)
- 			break;
--		if (priv->rx_irq[i] == 0)
-+		if (priv->rx_irq[i] <= 0)
- 			continue;
- 
- 		int_name = priv->int_name_rx_irq[i];
-@@ -3637,7 +3637,7 @@ static int stmmac_request_irq_multi(struct net_device *dev)
- 	for (i = 0; i < priv->plat->tx_queues_to_use; i++) {
- 		if (i >= MTL_MAX_TX_QUEUES)
- 			break;
--		if (priv->tx_irq[i] == 0)
-+		if (priv->tx_irq[i] <= 0)
- 			continue;
- 
- 		int_name = priv->int_name_tx_irq[i];
-@@ -7278,8 +7278,10 @@ int stmmac_dvr_probe(struct device *device,
- 	priv->plat = plat_dat;
- 	priv->ioaddr = res->addr;
- 	priv->dev->base_addr = (unsigned long)res->addr;
--	priv->plat->dma_cfg->perch_irq_en =
--		(priv->plat->flags & STMMAC_FLAG_PERCH_IRQ_EN);
-+	if (res->rx_irq[0] > 0 && res->tx_irq[0] > 0) {
-+		priv->plat->flags |= STMMAC_FLAG_PERCH_IRQ_EN;
-+		priv->plat->dma_cfg->perch_irq_en = true;
-+	}
- 
- 	priv->dev->irq = res->irq;
- 	priv->wol_irq = res->wol_irq;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 29145682b57b..9b46775b41ab 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -705,6 +705,9 @@ EXPORT_SYMBOL_GPL(stmmac_remove_config_dt);
- int stmmac_get_platform_resources(struct platform_device *pdev,
- 				  struct stmmac_resources *stmmac_res)
- {
-+	char irq_name[8];
-+	int i;
-+
- 	memset(stmmac_res, 0, sizeof(*stmmac_res));
- 
- 	/* Get IRQ information early to have an ability to ask for deferred
-@@ -738,6 +741,26 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
- 		dev_info(&pdev->dev, "IRQ eth_lpi not found\n");
- 	}
- 
-+	for (i = 0; i < MTL_MAX_RX_QUEUES; i++) {
-+		snprintf(irq_name, sizeof(irq_name), "rx%i", i);
-+		stmmac_res->rx_irq[i] = platform_get_irq_byname_optional(pdev, irq_name);
-+		if (stmmac_res->rx_irq[i] < 0) {
-+			if (stmmac_res->rx_irq[i] == -EPROBE_DEFER)
-+				return -EPROBE_DEFER;
-+			break;
-+		}
-+	}
-+
-+	for (i = 0; i < MTL_MAX_TX_QUEUES; i++) {
-+		snprintf(irq_name, sizeof(irq_name), "tx%i", i);
-+		stmmac_res->tx_irq[i] = platform_get_irq_byname_optional(pdev, irq_name);
-+		if (stmmac_res->tx_irq[i] < 0) {
-+			if (stmmac_res->tx_irq[i] == -EPROBE_DEFER)
-+				return -EPROBE_DEFER;
-+			break;
-+		}
-+	}
-+
- 	stmmac_res->sfty_ce_irq = platform_get_irq_byname_optional(pdev, "sfty_ce");
- 	if (stmmac_res->sfty_ce_irq < 0) {
- 		if (stmmac_res->sfty_ce_irq == -EPROBE_DEFER)
--- 
-2.40.1
-
+Konrad
