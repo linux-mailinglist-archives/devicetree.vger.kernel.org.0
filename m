@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D179775E89
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C52775EA3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbjHIMLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 08:11:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57706 "EHLO
+        id S231181AbjHIMPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 08:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjHIMLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:11:10 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60411982
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:11:09 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe11652b64so10552324e87.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 05:11:09 -0700 (PDT)
+        with ESMTP id S230282AbjHIMPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:15:20 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496571BF0
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:15:19 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b9b50be31aso102990971fa.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 05:15:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691583068; x=1692187868;
+        d=linaro.org; s=google; t=1691583317; x=1692188117;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m7Ry1wvi8+J9JTgKiYPmLWP0JVIew2LaXJPJcmj20s4=;
-        b=jjQGkbpI6JylvrPoA6Hp3df1w6TIn266pQYTbPNOrDViuok5D+/PLfTncfoAbejBZS
-         n0YyPwiTfxNY3WHVApYeEvnzFXncfv0dyJyf84lR6q+NVlpgv999WbcxwtF2bQLZjpOu
-         V5st7vyj8/e8WKFRINzeIcj3XiQIgwtY0Qjfaeko/wRyLQ2KNVUSBmFDYzz+d0Rcg26X
-         SJ4Iq9pBC+uNN4Bd6XSL9vcWbTa8W2qQYEjqiLCEePPBRi2CNjbTs6qUhxGTd5duQcey
-         f7/TG+Ake4I8SoYr9Asloeys/Rm2B7Y8nSKnT/QC9cg7bACH5R04ZrP8Gyp7w8bqrz7M
-         sJpQ==
+        bh=bxw/xaaJV3+Iip8T6jKXtUBlM5YfX4PgIk+tvcp/OHk=;
+        b=mszWcv2iLSFJ0r4IjdINd8g0daJ4ysdCRmK04/kRytVSaUX65tI7NDjdr+6v5zIe+T
+         xALfbDF2m1ZMGnIMC16uPQVXdbkwUEu05G4Vv8ZVZAe/b8pVeVYZsa8x8OiqpZJdHvzl
+         XbX3t4Mv+cUHGxM4ohfT01p6z5IC3PfbBiqM41wNqCr+0tIb/zdjkaODMfcyU3AQEfVz
+         HBgzc1mY2qMaO3V8sfQfqvvyU29Wiisf1K8hyqJ4BpMwoyGC8mI64W+xZzMW+AGAWeQI
+         Zmkfa+6YS11NaWm3A8zQX8ZfrX3W1sl3nsQvvVi3YRtXf5UhXejkQt1lgxnzGY836ZKS
+         7FIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691583068; x=1692187868;
+        d=1e100.net; s=20221208; t=1691583317; x=1692188117;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m7Ry1wvi8+J9JTgKiYPmLWP0JVIew2LaXJPJcmj20s4=;
-        b=YrQMfQknmCDkOGGdlhf1fNftT50M3FJMv+6Inb0uzf4M4WBqioWm8eIpsfgVom8emq
-         Fp8kXJ6qAn7zid5psW6/a1WsAF9UiZLPtde9b4xfvJSkQxoL4pWa7yHq9gafIRdVX0Ht
-         HjV7ZHW32X6nIG26mFMnRU1lj3oimNGXUDIkF6XH300r+4ewdf84f1jOIpZ7KNm+/974
-         K+QDZ5QKlDIY+IIB6SwYYi0dSInu3EFtn7zDi1addf8yiqD0zKAdlsPV8tO9p6KDTx0J
-         9/vEgTvtQ58bkXW1rk8lrASlI4MCVYN27nobcgfhjedQ25DJkNSrQGO5D9yPw8vOtiU1
-         ugDA==
-X-Gm-Message-State: AOJu0YzjSPxx6QPCnr5MwR6jJsQEHolwYhreFz7+D0h92UWPvtFVcGvs
-        irORdhILReI6W/xO3bOHfZNx6w==
-X-Google-Smtp-Source: AGHT+IFsKBycWfaF92XoOSq9ZeNyf2KrueJWYoVM+T7FgyDFCsf+5hrYEOMmJGk0EAf0Q/KD3vIfww==
-X-Received: by 2002:a05:6512:202c:b0:4fd:d538:b97b with SMTP id s12-20020a056512202c00b004fdd538b97bmr1517469lfs.29.1691583067870;
-        Wed, 09 Aug 2023 05:11:07 -0700 (PDT)
+        bh=bxw/xaaJV3+Iip8T6jKXtUBlM5YfX4PgIk+tvcp/OHk=;
+        b=kweE8DZbkKNOE7SD0KErTxPpkMisHzEfr8b47NW6NZ0peTjtnHBF7kaGcKx1VyZdS6
+         xAQYWghhxWZk8XPj7QaFizHXsEgowXGcQQ4/1u65zyDvltzMD5qEs2s27vvkGSVcnhQX
+         uTGTLuUggMVa5zUBtk1/bFSlBZDJmHz7+IrktPdgVPx7Nms0u9eoPfOGJ69YV+Uoc2zT
+         5GyAJCu9ZzpYD0d0QkKzAvUDsFjkVjNSN1L7JddkcyurvxHHZlTkz7ldAWKXiPC+u7Se
+         +D9GkmqXVO17Z60RZbZpKdrV7j6dyMwt6u44DlU5y8yxpZ8HHZbtPijDS3H4nxiRa0I9
+         koCg==
+X-Gm-Message-State: AOJu0YwnDXwcjrw4xJ35L+a6s3RsRGhcVVu1/B5qG77qAhWnjx9M0AOy
+        xEKoV/RfGk2IQdgAWEZVyUKEgA==
+X-Google-Smtp-Source: AGHT+IGf4sBYoS7qaPzoTQs2A+62/45io7Ja4q7AitEu8asjTCMlx/qzuiMy0oGQJpzCNjcoywPIYw==
+X-Received: by 2002:a19:770a:0:b0:4f8:bfb4:e4c4 with SMTP id s10-20020a19770a000000b004f8bfb4e4c4mr1526108lfc.19.1691583317486;
+        Wed, 09 Aug 2023 05:15:17 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id c6-20020ac244a6000000b004fb8603f6e0sm2304491lfm.12.2023.08.09.05.11.06
+        by smtp.gmail.com with ESMTPSA id e6-20020ac25466000000b004f85d247069sm2274348lfn.218.2023.08.09.05.15.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 05:11:07 -0700 (PDT)
-Message-ID: <7f30b5a2-37d1-4b1c-8f8d-4a4782534b2f@linaro.org>
-Date:   Wed, 9 Aug 2023 14:11:06 +0200
+        Wed, 09 Aug 2023 05:15:16 -0700 (PDT)
+Message-ID: <15b545a2-14be-47ba-a665-8ae986a7f9cd@linaro.org>
+Date:   Wed, 9 Aug 2023 14:15:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: apq8016-sbc: Enable camss for
- non-mezzanine cases
+Subject: Re: [PATCH 1/6] media: dt-bindings: Document SC8280XP/SM8350 Venus
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        loic.poulain@linaro.org, rfoss@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230809120432.1036405-1-bryan.odonoghue@linaro.org>
- <20230809120432.1036405-8-bryan.odonoghue@linaro.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
+ <20230731-topic-8280_venus-v1-1-8c8bbe1983a5@linaro.org>
+ <84ab9380-2fb2-76f9-2eb9-71d9202718cc@linaro.org>
+ <659e30a7-80f7-4fd8-af58-45505213a2ef@linaro.org>
+ <ba40de82-b308-67b1-5751-bb2d95f2b8a5@linaro.org>
+ <fa5dc696-6c67-49d0-b158-f1e3398813e2@linaro.org>
+ <816359f7-ad4d-659f-db39-c971e1b1cd9a@linaro.org>
+ <0feda32e-5430-4f35-b18a-7afce63a970c@linaro.org>
+ <d09df249-cc6d-9708-bfa6-ae5cc7929697@linaro.org>
+ <4bd04709-155f-4750-8638-e73b653b1482@linaro.org>
+ <0cba0158-8a9f-68b6-6bb3-dab0272a5ce0@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,30 +116,60 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230809120432.1036405-8-bryan.odonoghue@linaro.org>
+In-Reply-To: <0cba0158-8a9f-68b6-6bb3-dab0272a5ce0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.08.2023 14:04, Bryan O'Donoghue wrote:
-> When we have no camera mezzanine attached it is still possible to run the
-> test-pattern generator of the CSID block.
-Wasn't it broken?
+On 7.08.2023 21:05, Bryan O'Donoghue wrote:
+> On 07/08/2023 19:55, Konrad Dybcio wrote:
+>> On 7.08.2023 20:49, Bryan O'Donoghue wrote:
+>>> On 07/08/2023 19:45, Konrad Dybcio wrote:
+>>>> That can be taken care of with match data.
+>>>>
+>>>> Konrad
+>>>
+>>> Well perhaps.
+>>>
+>>> I'm just sticking my oar in, to elucidate.
+>>>
+>>> The compat sub-nodes aren't just a random choice with no logic. They exist to select between what you assign the blocks to be, encoder, decoder or any admixture thereof.
+>>>
+>>> A functionality we want to maintain.
+>> Surely something like a modparam would be more suitable here?
+>>
+>> Konrad
+> 
+> Hmm.
+> 
+> Well from earlier in the thread the question "why do we have these compat strings" is because we can have any combination of encoder/decoder assigned.
+> 
+> If there's a cogent argument _still_ to be made to transition to some new way of assignment then fine so long as we don't break that basic flexibility.
+> 
+> Though my own €0.02 is that a module parameter is more of a PITA than a compat string.
+> 
+> OTOH I could make the argument, that the high probability is most people - probably all, just instantiate a single encoder and decoder and aren't aware of or using the inbuilt flexibility.
+> 
+> @stan probably has the right idea what to do.
+Actually..
 
-[...]
+Has anybody tested this, ever, with the mainline driver?
 
->  
-> +&camss {
-> +	status = "okay";
-> +	ports {
-Again, please add a newline if there's gonna be a resend.
+Do we have anyone using this?
+
+Is anybody willing to maintain that, test for regressions and
+fix them in a reasonable amount of time?
+
+
+If we don't have at least 2x "yes" here, I don't think it makes sense
+to worry about it..
 
 Konrad
