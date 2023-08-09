@@ -2,199 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62642775396
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 09:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48297753B5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 09:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbjHIHIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 03:08:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54772 "EHLO
+        id S231478AbjHIHKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 03:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbjHIHIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 03:08:21 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155A6E7D;
-        Wed,  9 Aug 2023 00:08:20 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so953193266b.2;
-        Wed, 09 Aug 2023 00:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1691564898; x=1692169698;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=efeZhhVQ7Hgd+Z5RFLNzm6TIjkcq+2KXdvMHgboSY+c=;
-        b=gBizDH7SP+qvPi4NXoWxoAFk8kd8GYsHpwQalZ9/f0yCezaxs5Sh2EoGC9jVPWPDWO
-         kw+QHmPyFcDN9xHUSShEGDzwbp5PVcs4U1wL1s8bAPvWM+S/2r5wePFD3qLUB7YwRCkx
-         xDVK6GMgLZD4kjkl8oG0Nh2j6PZKwy0RZHdjU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691564898; x=1692169698;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=efeZhhVQ7Hgd+Z5RFLNzm6TIjkcq+2KXdvMHgboSY+c=;
-        b=ZH+BCJnwpHMQJoT1nfUPGZuynIHCHGR8Gv03o0iu9cRs9rE99Ev2jJ2df7lBUGzekv
-         jO0aCKvjKD+9KGaSMbzBYiWcaGuCCBkjJN6fgT8Jw33IuInpTls3uyHUECRfgJjo6bSv
-         zcky5tfsHv9pkSRuJXhFwMGSHCrJ4i7D0CduC2H4hq5ncRyXmX3vADSXHUXTgel0nWpq
-         VC6WxL6tvxv6KnU+cwHcdHDkWHHTEn/A071BIfJAvgVhjcMjxRCnSmXbqSR9u2AOweBj
-         xUsun+S35UkB4P02O7JJcFcHqV5wLMCzP/9vzT4bEhqNnfk5LPFRgxp0UOem2qUCE4vn
-         aHsA==
-X-Gm-Message-State: AOJu0Yzch7zpedaycP8hIG+7wvqJzBZ+tNg1LVM1DPa5735SziRVeaky
-        /LWfy3DuGFTJvSc699Fur8I6tp796AuhRju20beU6xmtB88=
-X-Google-Smtp-Source: AGHT+IG9WPtvvPFcs+JZhfNTSkTxgJ3NLyfBKSn18++X0ix38HHI9F/MDy5a5SjBBE0DCSrRFahuOMQ2XpWuMKw6D0k=
-X-Received: by 2002:a17:906:10cb:b0:99b:e6ec:752c with SMTP id
- v11-20020a17090610cb00b0099be6ec752cmr1637690ejv.70.1691564898243; Wed, 09
- Aug 2023 00:08:18 -0700 (PDT)
+        with ESMTP id S230439AbjHIHKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 03:10:40 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162C11FCC
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 00:10:40 -0700 (PDT)
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <m.felsch@pengutronix.de>)
+        id 1qTdKv-0003NV-NZ; Wed, 09 Aug 2023 09:10:29 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 1/4] arm64: dts: imx8mp-debix: remove unused fec pinctrl node
+Date:   Wed,  9 Aug 2023 09:10:23 +0200
+Message-Id: <20230809071026.3546605-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230612195657.245125-1-eajames@linux.ibm.com> <20230612195657.245125-12-eajames@linux.ibm.com>
-In-Reply-To: <20230612195657.245125-12-eajames@linux.ibm.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 9 Aug 2023 07:08:05 +0000
-Message-ID: <CACPK8Xe1OmLtLrONZmqib6BhDyPHzj+HcOd15MXyK0QVHPTOEg@mail.gmail.com>
-Subject: Re: [PATCH 11/14] fsi: Improve master indexing
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     linux-fsi@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        jk@ozlabs.org, alistair@popple.id.au, andrew@aj.id.au,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED,URIBL_CSS autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Jun 2023 at 19:57, Eddie James <eajames@linux.ibm.com> wrote:
->
-> Master indexing is problematic if a hub is rescanned while the
-> root master is being rescanned. Move the IDA free below the device
-> unregistration, lock the scan mutex in the probe function, and
-> request a specific idx in the hub driver.
+The SoM A uses the EQOS ethernet interface and not the FEC, so drop the
+interface pinctrl node from the device tree.
 
-I've applied this series, but taking a closer look at this patch I
-think it can be improved. If you resend, just send this patch.
+Fixes: c86d350aae68 ("arm64: dts: Add device tree for the Debix Model A Board")
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+Changelog:
 
->
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  drivers/fsi/fsi-core.c       | 41 ++++++++++++++++++++++--------------
->  drivers/fsi/fsi-master-hub.c |  2 ++
->  2 files changed, 27 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/fsi/fsi-core.c b/drivers/fsi/fsi-core.c
-> index ec4d02264391..503061a6740b 100644
-> --- a/drivers/fsi/fsi-core.c
-> +++ b/drivers/fsi/fsi-core.c
-> @@ -1327,46 +1327,55 @@ static struct class fsi_master_class = {
->  int fsi_master_register(struct fsi_master *master)
->  {
->         int rc;
-> -       struct device_node *np;
->
->         mutex_init(&master->scan_lock);
-> -       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
-> +
-> +       if (master->idx) {
+v3:
+- add Laurents rb tag
+v2:
+- new patch
 
-Why do we allocate a new idx if there's already one?
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 22 -------------------
+ 1 file changed, 22 deletions(-)
 
-> +               master->idx = ida_alloc_range(&master_ida, master->idx,
-> +                                             master->idx, GFP_KERNEL);
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+index b4409349eb3f..1004ab0abb13 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+@@ -355,28 +355,6 @@ MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
+ 		>;
+ 	};
+ 
+-	pinctrl_fec: fecgrp {
+-		fsl,pins = <
+-			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC				0x3
+-			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO				0x3
+-			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x91
+-			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x91
+-			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x91
+-			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x91
+-			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x91
+-			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x91
+-			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x1f
+-			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x1f
+-			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x1f
+-			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x1f
+-			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x1f
+-			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x1f
+-			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT			0x1f
+-			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN			0x1f
+-			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19				0x19
+-		>;
+-	};
+-
+ 	pinctrl_gpio_led: gpioledgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16				0x19
+-- 
+2.39.2
 
-If we can't get one in the range we want, we ask for any? Should this
-print a warning?
-
-> +               if (master->idx < 0)
-> +                       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
-> +       } else {
-
-If ixd was zero, we create one. This is the "normal" case?
-
-> +               master->idx = ida_alloc(&master_ida, GFP_KERNEL);
-> +       }
-> +
-
-We check the same error condition again.
-
->         if (master->idx < 0)
->                 return master->idx;
-
->
-> -       dev_set_name(&master->dev, "fsi%d", master->idx);
-> +       if (!dev_name(&master->dev))
-> +               dev_set_name(&master->dev, "fsi%d", master->idx);
-> +
->         master->dev.class = &fsi_master_class;
->
-> +       mutex_lock(&master->scan_lock);
->         rc = device_register(&master->dev);
->         if (rc) {
->                 ida_free(&master_ida, master->idx);
-> -               return rc;
-> -       }
-> +       } else {
-> +               struct device_node *np = dev_of_node(&master->dev);
-
-This change looks a bit different to the idx changes. What's happening here?
->
-> -       np = dev_of_node(&master->dev);
-> -       if (!of_property_read_bool(np, "no-scan-on-init")) {
-> -               mutex_lock(&master->scan_lock);
-> -               fsi_master_scan(master);
-> -               mutex_unlock(&master->scan_lock);
-> +               if (!of_property_read_bool(np, "no-scan-on-init"))
-> +                       fsi_master_scan(master);
->         }
->
-> -       return 0;
-> +       mutex_unlock(&master->scan_lock);
-> +       return rc;
->  }
->  EXPORT_SYMBOL_GPL(fsi_master_register);
->
->  void fsi_master_unregister(struct fsi_master *master)
->  {
-> -       trace_fsi_master_unregister(master);
-> +       int idx = master->idx;
->
-> -       if (master->idx >= 0) {
-> -               ida_free(&master_ida, master->idx);
-> -               master->idx = -1;
-> -       }
-> +       trace_fsi_master_unregister(master);
->
->         mutex_lock(&master->scan_lock);
->         fsi_master_unscan(master);
-> +       master->n_links = 0;
->         mutex_unlock(&master->scan_lock);
-> +
->         device_unregister(&master->dev);
-> +       ida_free(&master_ida, idx);
->  }
->  EXPORT_SYMBOL_GPL(fsi_master_unregister);
->
-> diff --git a/drivers/fsi/fsi-master-hub.c b/drivers/fsi/fsi-master-hub.c
-> index 6d8b6e8854e5..36da643b3201 100644
-> --- a/drivers/fsi/fsi-master-hub.c
-> +++ b/drivers/fsi/fsi-master-hub.c
-> @@ -12,6 +12,7 @@
->  #include <linux/slab.h>
->
->  #include "fsi-master.h"
-> +#include "fsi-slave.h"
->
->  #define FSI_ENGID_HUB_MASTER           0x1c
->
-> @@ -229,6 +230,7 @@ static int hub_master_probe(struct device *dev)
->         hub->master.dev.release = hub_master_release;
->         hub->master.dev.of_node = of_node_get(dev_of_node(dev));
->
-> +       hub->master.idx = fsi_dev->slave->link + 1;
->         hub->master.n_links = links;
->         hub->master.read = hub_master_read;
->         hub->master.write = hub_master_write;
-> --
-> 2.31.1
->
