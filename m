@@ -2,101 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B86775EEC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06FF7775F1C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbjHIM2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 08:28:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
+        id S230340AbjHIMdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 08:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232291AbjHIM2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:28:42 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01821FEB
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:28:41 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so104140391fa.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 05:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1691584120; x=1692188920;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QsLyX7zpGoNmiJX8dl6thb9GIjDmEzzddzjEZFA1Qso=;
-        b=Cjd0U2oFb1GobPQLzDCPQXG5BeoEuRTwVIb8fkOBoRfnBfDYBRmUf79JhV9RMk4Lw4
-         kI/9xJckpRWCIMurcyuGLalgMRfbiy42XN/JU7SocIKLNQT5+9MkbhWMJJdoE2MPNIXd
-         CSuCkskSqlTf4iNfEDSApK7h/6+A0w06xcqjU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691584120; x=1692188920;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QsLyX7zpGoNmiJX8dl6thb9GIjDmEzzddzjEZFA1Qso=;
-        b=RtLrZkO5OSnD8XhPJk5yiJohb0fIeIel28zk8SuIP+d7MQtymUW4iS64OlPEKOMaVZ
-         W53OVi+qqbKvVFHt0qHLvPHy1V58kbNJuqQLYFQhWHo4hs1z8Vq+wk6NT4U6hUw94btt
-         TPD/fs3SCPRaIdjNqbMqMgwG4LGT61If+SYuvdlz+2IK6GTqKwMRIk0ErWq6tEfjpBa1
-         RT/RHpYeHr67L0r/0rj3wE0EN0DiPVSMnhP+QFIfJStE1NGnlNRXgGH+f5xTHJV/Xj/B
-         UthidQ773H0xQo9BHOGwBe62y0rsSQejxMHUpHy1E1+yFzJCTMM9PrykELuDzeaaIAYb
-         om3g==
-X-Gm-Message-State: AOJu0Yyr4cQvG8fLL1c5K5zOX0Y/Mx/tfbhvQbAG9JP6YhQrxX+whPsp
-        y2iN8oG981iMkMrZnU9JEEF6EA==
-X-Google-Smtp-Source: AGHT+IFIoENCbS7ckSJPRqpa05I5EQB2dMmW/aNQcjOSGEfuuUz3J0Pp1IcZpn8XpabyAJjiWrtUfQ==
-X-Received: by 2002:a2e:b2d0:0:b0:2b6:e7c7:b039 with SMTP id 16-20020a2eb2d0000000b002b6e7c7b039mr1575109ljz.28.1691584119953;
-        Wed, 09 Aug 2023 05:28:39 -0700 (PDT)
-Received: from [172.21.2.62] ([87.54.42.112])
-        by smtp.gmail.com with ESMTPSA id q24-20020a2e8758000000b002b6fe751b6esm2719978ljj.124.2023.08.09.05.28.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 05:28:39 -0700 (PDT)
-Message-ID: <79572bac-dfdc-ce32-2148-6fa3bf698267@rasmusvillemoes.dk>
-Date:   Wed, 9 Aug 2023 14:28:38 +0200
+        with ESMTP id S231331AbjHIMdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:33:09 -0400
+X-Greylist: delayed 60 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Aug 2023 05:33:08 PDT
+Received: from smtpdh18-1.aruba.it (smtpdh18-1.aruba.it [62.149.155.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D62B1BF7
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:33:08 -0700 (PDT)
+Received: from [192.168.1.56] ([79.0.204.227])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id TiM9qzlPdRGumTiM9qrAiE; Wed, 09 Aug 2023 14:32:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1691584325; bh=oPP7E+kojgmjKyIpQ8sukDlf8aNPe96/5zs01WZNpeE=;
+        h=Date:MIME-Version:Subject:To:From:Content-Type;
+        b=K07229leQiW2t1Mv7TrkQVHftqre1qhEKnPvUs/4BZ5/c4AkBwDO/ZFfTtrijwIpu
+         UJZYNg9Y9j343AUmIyZu5bGwjxX4WzLX1781SClbeIoRPOOOrSaAvGgo1A8jiH5thc
+         IAPqFG3BQExWtQnMR5assSe9URh+ovRW6UXReWMqsGNnhJCY0H33MgcFiI6nicWpDM
+         a0dYG7Iqm4pOU6mLc/tegvS3axmlUfhBPijC3w+mkaekq1Cv3ScTGUzy4mSi9t9Lzu
+         IyBIB/dBb/EfFkVRDUNbTqNunH6UUZKviHJHONi2nYhYMwwrrbNtLxSkIB5adUKUbw
+         NGAwOGhosubcg==
+Message-ID: <525f8fd4-1d1f-ef46-289e-632865d0684b@enneenne.com>
+Date:   Wed, 9 Aug 2023 14:32:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 0/8] rtc: isl12022: battery backup voltage and clock
- support
-Content-Language: en-US, da
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
- <20230615105826.411953-1-linux@rasmusvillemoes.dk>
- <55c19de0-2465-cc4a-6ec7-fd524816fd2b@prevas.dk>
- <739f81db-4ec2-fe07-a6df-5c1f42588653@rasmusvillemoes.dk>
-In-Reply-To: <739f81db-4ec2-fe07-a6df-5c1f42588653@rasmusvillemoes.dk>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH] dt-bindings: pps: pps-gpio: Convert to yaml
+Content-Language: en-US
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20230809110812.2058428-1-festevam@gmail.com>
+From:   Rodolfo Giometti <giometti@enneenne.com>
+In-Reply-To: <20230809110812.2058428-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-CMAE-Envelope: MS4xfCjZ4teLqZjh2U/woo2fkhpxLNIo2foVM9Lz/b8Q0PkwOlmSnjR5PNecuYXJ07JflUfJgt2h2eXMpEcs93R/2Qj6dYgiHANRSMcT8CN2Ko4gFJwHzsrl
+ r/JvQbvdnWIpvt8ovNgEiO/l2YAHMXizVHHDeRD6E2Wj3VTgK3TH8dpeeeiDVQWMUs0gqJ2Lui7ZX2gR7QA00HRBn37dqIBMmW7N8WWlcA57JdaITSq2e3/L
+ FDynGhjekHAv4fnNr7od9kmiZGIqV5kr1bftRB0WSLfQS7LV7fOWQ8gShQ7dNOIMbBiqtedP4qm8xQp8SZuhrCND0a9AmFpp6TrjTCkwIQgZvZ9hcl2QE0H3
+ hERpj8itu1PY+MVI4WtNyYFaKax+FJy2HwwKB+Fcpr3QYfYI8rs=
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2023 08.45, Rasmus Villemoes wrote:
-> On 28/07/2023 16.31, Rasmus Villemoes wrote:
->> On 15/06/2023 12.58, Rasmus Villemoes wrote:
->>> The current handling of the low-battery bits in the status register is
->>> wrong. The first six patches fix that and implement proper support for
->>> RTC_VL_READ.
->>>
->>> The last two patches allow describing the isl12022 as a clock
->>> provider, for now just as a fixed 32kHz clock. They are also
->>> tangentially related to the backup battery, in that when the isl12022
->>> is not used as a clock source, one can save some power consumption in
->>> battery mode by setting the FOx bits to 0.
->>
->> Ping. Any chance these could be picked up so they make it for v6.6?
+On 09/08/23 13:08, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Ping^2.
+> Convert from pps-gpio.txt to pps-gpio.yaml to allow schema validation.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Ping^3.
+Acked-by: Rodolfo Giometti <giometti@enneenne.com>
 
-Rasmus
+> ---
+>   .../devicetree/bindings/pps/pps-gpio.txt      | 30 ------------
+>   .../devicetree/bindings/pps/pps-gpio.yaml     | 46 +++++++++++++++++++
+>   2 files changed, 46 insertions(+), 30 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/pps/pps-gpio.txt
+>   create mode 100644 Documentation/devicetree/bindings/pps/pps-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.txt b/Documentation/devicetree/bindings/pps/pps-gpio.txt
+> deleted file mode 100644
+> index 9012a2a02e14..000000000000
+> --- a/Documentation/devicetree/bindings/pps/pps-gpio.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Device-Tree Bindings for a PPS Signal on GPIO
+> -
+> -These properties describe a PPS (pulse-per-second) signal connected to
+> -a GPIO pin.
+> -
+> -Required properties:
+> -- compatible: should be "pps-gpio"
+> -- gpios: one PPS GPIO in the format described by ../gpio/gpio.txt
+> -
+> -Additional required properties for the PPS ECHO functionality:
+> -- echo-gpios: one PPS ECHO GPIO in the format described by ../gpio/gpio.txt
+> -- echo-active-ms: duration in ms of the active portion of the echo pulse
+> -
+> -Optional properties:
+> -- assert-falling-edge: when present, assert is indicated by a falling edge
+> -                       (instead of by a rising edge)
+> -
+> -Example:
+> -	pps {
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&pinctrl_pps>;
+> -
+> -		gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+> -		assert-falling-edge;
+> -
+> -		echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
+> -		echo-active-ms = <100>;
+> -
+> -		compatible = "pps-gpio";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.yaml b/Documentation/devicetree/bindings/pps/pps-gpio.yaml
+> new file mode 100644
+> index 000000000000..801fd2720080
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pps/pps-gpio.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pps/pps-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PPS Signal via GPIO
+> +
+> +maintainers:
+> +  - Fabio Estevam <festevam@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: pps-gpio
+> +
+> +  gpios:
+> +    description: The GPIO that provides the PPS signal.
+> +
+> +  echo-gpios:
+> +    description: The GPIO that provides the PPS ECHO signal.
+> +
+> +  echo-active-ms:
+> +    description: Duration in ms of the active portion of the echo pulse.
+> +
+> +  assert-falling-edge:
+> +    description: Indicates a falling edge assert, when present. Rising edge if absent.
+> +
+> +required:
+> +  - compatible
+> +  - gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/gpio/gpio.h>
+> +
+> +      pps {
+> +          compatible = "pps-gpio";
+> +          pinctrl-names = "default";
+> +          pinctrl-0 = <&pinctrl_pps>;
+> +          gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+> +          assert-falling-edge;
+> +          echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
+> +          echo-active-ms = <100>;
+> +      };
+
+-- 
+GNU/Linux Solutions                  e-mail: giometti@enneenne.com
+Linux Device Driver                          giometti@linux.it
+Embedded Systems                     phone:  +39 349 2432127
+UNIX programming                     skype:  rodolfo.giometti
 
