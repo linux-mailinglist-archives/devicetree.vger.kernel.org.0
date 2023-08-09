@@ -2,326 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE44677530C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 08:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B7B7752B4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 08:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231221AbjHIGnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 02:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
+        id S230498AbjHIGQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 02:16:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjHIGnG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 02:43:06 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD8E10CF
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 23:43:04 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3177163aa97so5314825f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 23:43:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691563383; x=1692168183;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=kntP8Y9ceRocWIC/OOeyMK71VIkTrXJ3h5YSVFPUDgI=;
-        b=UUuxm641QpLIqcCMKTz1Hhe8xa1cPg319FAwcAqmk9L7jnx6+yB3rE3MUeeUxYeum4
-         4J5jKWAiubpyvNvm0MCZwzhZFZl8Ntf4AipleasPre+WF5jfzcAuFhood316C4kqCu0P
-         tlrIfiOi4mbZUSporDpm+bRLFXNVKbgYl9h+7w961BTT5RgNOs7ddWdvIpj2/FVr4DgM
-         iN/62YbkRBZNhkQ9c7TDvlwvhEZvGi5PtTFaazrdcGeMPMJW1/iKUo3QeDEo8cvO7QMJ
-         KNWGsBGDMAUcEHgpMvShBiTWNzkDLIxvaPrVPUHI0eihl/Kc9l83Z3EBUvAgSpDx6sLs
-         Hafg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691563383; x=1692168183;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kntP8Y9ceRocWIC/OOeyMK71VIkTrXJ3h5YSVFPUDgI=;
-        b=SOh6dJ1sK94ZCM95jPUie17zI1iQDZdrRkIzvsULNbhpxVcJvJ9N/aVceX+mjYGPAe
-         438kWJxQow/BRYRAf5W7JTP2oJDzX05OnUouttug8dtW6sk+OhtraFGmwnwCXhkzyPVl
-         t20NEvN8DOWv1F0H+fakceFnu5TWBlzqMSOg7mum+X5SnIXts7j0IDFl8dslsQk0aq/k
-         dfoO/QabhHOmU1umiPlsGqW2rId4TaHpDi7C4pJpyDom+Fo5M0KZHV+bUZPdbEsHiTDi
-         oC3dOy9Lsw2f/VoZ+X54sSdDjcokr/J5x/L0/jsxywS/YFhpWO7wV7Mk8ppcMNWNCGDu
-         Dx5Q==
-X-Gm-Message-State: AOJu0Yz4f2vQkNZebSetixSpWcee9Bx0OE5Zwj0QLhpifDRiPZMVaLMO
-        KUYqYX7MmcZKaB0l85in/xk5QA==
-X-Google-Smtp-Source: AGHT+IGT/vP5y+MBd+voB+7NqaVgqtJcETYF5AEG6aT8d/1P4nGajbm9pvnGqEei6sC8DXDyRAQw5Q==
-X-Received: by 2002:a05:6000:10f:b0:317:57f0:fae with SMTP id o15-20020a056000010f00b0031757f00faemr1167141wrx.63.1691563383152;
-        Tue, 08 Aug 2023 23:43:03 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:c245:8b53:af5b:96f3])
-        by smtp.gmail.com with ESMTPSA id b11-20020a05600010cb00b003180822cf8fsm385532wrx.1.2023.08.08.23.43.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 23:43:02 -0700 (PDT)
-References: <20230808194811.113087-1-alexander.stein@mailbox.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Alexander Stein <alexander.stein@mailbox.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc
- to YAML format
-Date:   Wed, 09 Aug 2023 08:15:31 +0200
-In-reply-to: <20230808194811.113087-1-alexander.stein@mailbox.org>
-Message-ID: <1ja5v0bts9.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S230391AbjHIGQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 02:16:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36881BF3;
+        Tue,  8 Aug 2023 23:16:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4143F62F86;
+        Wed,  9 Aug 2023 06:16:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BE7AC433C8;
+        Wed,  9 Aug 2023 06:16:14 +0000 (UTC)
+Date:   Wed, 9 Aug 2023 11:46:04 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     helgaas@kernel.org, bhelgaas@google.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        imx@lists.linux.dev, kw@linux.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, mani@kernel.org,
+        minghuan.lian@nxp.com, mingkai.hu@nxp.com, robh+dt@kernel.org,
+        roy.zang@nxp.com, shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v10 resent 3/3] PCI: layerscape: Add power management
+ support for ls1028a
+Message-ID: <20230809061604.GC5348@thinkpad>
+References: <20230807165238.569297-1-Frank.Li@nxp.com>
+ <20230807165238.569297-4-Frank.Li@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230807165238.569297-4-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue 08 Aug 2023 at 21:48, Alexander Stein <alexander.stein@mailbox.org> wrote:
-
-> Convert Amlogic AXG Audio Clock Controller binding to yaml.
->
-> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+On Mon, Aug 07, 2023 at 12:52:38PM -0400, Frank Li wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> Add PME_Turn_off/PME_TO_Ack handshake sequence for ls1028a platform. Call
+> common dwc dw_pcie_suspend(resume)_noirq() function when system enter/exit
+> suspend state.
+> 
+> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> As it is the same directory I picked the same maintainers as 
-> Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml.
->
-> I'm not 100% sure about the optional clocks constraints. As mentioned in
-> the .txt version only pclk is mandatory, others are optional.
->
->  .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 --------
->  .../clock/amlogic,axg-audio-clkc.yaml         | 136 ++++++++++++++++++
->  2 files changed, 136 insertions(+), 59 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
->
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> deleted file mode 100644
-> index 3a8948c04bc9..000000000000
-> --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> +++ /dev/null
-> @@ -1,59 +0,0 @@
-> -* Amlogic AXG Audio Clock Controllers
-> -
-> -The Amlogic AXG audio clock controller generates and supplies clock to the
-> -other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
-> -devices.
-> -
-> -Required Properties:
-> -
-> -- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D,
-> -		  "amlogic,g12a-audio-clkc" for G12A,
-> -		  "amlogic,sm1-audio-clkc" for S905X3.
-> -- reg		: physical base address of the clock controller and length of
-> -		  memory mapped region.
-> -- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
-> -		  in clock-names.
-> -- clock-names	: must contain the following:
-> -		  * "pclk" - Main peripheral bus clock
-> -		  may contain the following:
-> -		  * "mst_in[0-7]" - 8 input plls to generate clock signals
-> -		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
-> -				      components.
-> -		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
-> -				       components.
-> -- resets	: phandle of the internal reset line
-> -- #clock-cells	: should be 1.
-> -- #reset-cells  : should be 1 on the g12a (and following) soc family
-> -
-> -Each clock is assigned an identifier and client nodes can use this identifier
-> -to specify the clock which they consume. All available clocks are defined as
-> -preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
-> -used in device tree sources.
-> -
-> -Example:
-> -
-> -clkc_audio: clock-controller@0 {
-> -	compatible = "amlogic,axg-audio-clkc";
-> -	reg = <0x0 0x0 0x0 0xb4>;
-> -	#clock-cells = <1>;
-> -
-> -	clocks = <&clkc CLKID_AUDIO>,
-> -		 <&clkc CLKID_MPLL0>,
-> -		 <&clkc CLKID_MPLL1>,
-> -		 <&clkc CLKID_MPLL2>,
-> -		 <&clkc CLKID_MPLL3>,
-> -		 <&clkc CLKID_HIFI_PLL>,
-> -		 <&clkc CLKID_FCLK_DIV3>,
-> -		 <&clkc CLKID_FCLK_DIV4>,
-> -		 <&clkc CLKID_GP0_PLL>;
-> -	clock-names = "pclk",
-> -		      "mst_in0",
-> -		      "mst_in1",
-> -		      "mst_in2",
-> -		      "mst_in3",
-> -		      "mst_in4",
-> -		      "mst_in5",
-> -		      "mst_in6",
-> -		      "mst_in7";
-> -	resets = <&reset RESET_AUDIO>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> new file mode 100644
-> index 000000000000..629fa3a81cf7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  drivers/pci/controller/dwc/pci-layerscape.c | 130 ++++++++++++++++++--
+>  1 file changed, 121 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
+> index ed5fb492fe084..7586aece769b2 100644
+> --- a/drivers/pci/controller/dwc/pci-layerscape.c
+> +++ b/drivers/pci/controller/dwc/pci-layerscape.c
+> @@ -8,9 +8,11 @@
+>   * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
+>   */
+>  
+> +#include <linux/delay.h>
+>  #include <linux/kernel.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/init.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/of_address.h>
+> @@ -20,6 +22,7 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/regmap.h>
+>  
+> +#include "../../pci.h"
+>  #include "pcie-designware.h"
+>  
+>  /* PEX Internal Configuration Registers */
+> @@ -27,12 +30,26 @@
+>  #define PCIE_ABSERR		0x8d0 /* Bridge Slave Error Response Register */
+>  #define PCIE_ABSERR_SETTING	0x9401 /* Forward error of non-posted request */
+>  
+> +/* PF Message Command Register */
+> +#define LS_PCIE_PF_MCR		0x2c
+> +#define PF_MCR_PTOMR		BIT(0)
+> +#define PF_MCR_EXL2S		BIT(1)
 > +
-> +title: Amlogic AXG Audio Clock Controller
+>  #define PCIE_IATU_NUM		6
+>  
+> +struct ls_pcie_drvdata {
+> +	const u32 pf_off;
+> +	bool pm_support;
+> +};
 > +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
-> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>  struct ls_pcie {
+>  	struct dw_pcie *pci;
+> +	const struct ls_pcie_drvdata *drvdata;
+> +	void __iomem *pf_base;
+> +	bool big_endian;
+>  };
+>  
+> +#define ls_pcie_pf_readl_addr(addr)	ls_pcie_pf_readl(pcie, addr)
+>  #define to_ls_pcie(x)	dev_get_drvdata((x)->dev)
+>  
+>  static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
+> @@ -73,6 +90,60 @@ static void ls_pcie_fix_error_response(struct ls_pcie *pcie)
+>  	iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
+>  }
+>  
+> +static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
+> +{
+> +	if (pcie->big_endian)
+> +		return ioread32be(pcie->pf_base + off);
 > +
+> +	return ioread32(pcie->pf_base + off);
+> +}
+> +
+> +static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
+> +{
+> +	if (pcie->big_endian)
+> +		iowrite32be(val, pcie->pf_base + off);
+> +	else
+> +		iowrite32(val, pcie->pf_base + off);
+> +}
+> +
+> +static void ls_pcie_send_turnoff_msg(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct ls_pcie *pcie = to_ls_pcie(pci);
+> +	u32 val;
+> +	int ret;
+> +
+> +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
+> +	val |= PF_MCR_PTOMR;
+> +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> +
+> +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
+> +				 val, !(val & PF_MCR_PTOMR),
+> +				 PCIE_PME_TO_L2_TIMEOUT_US/10,
+> +				 PCIE_PME_TO_L2_TIMEOUT_US);
+> +	if (ret)
+> +		dev_err(pcie->pci->dev, "poll turn off message timeout\n");
+> +}
+> +
+> +static void ls_pcie_exit_from_l2(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct ls_pcie *pcie = to_ls_pcie(pci);
+> +	u32 val;
+> +	int ret;
+> +
+> +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
+> +	val |= PF_MCR_EXL2S;
+> +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> +
+> +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
+> +				 val, !(val & PF_MCR_EXL2S),
+> +				 PCIE_PME_TO_L2_TIMEOUT_US/10,
+> +				 PCIE_PME_TO_L2_TIMEOUT_US);
+> +	if (ret)
+> +		dev_err(pcie->pci->dev, "poll exit L2 state timeout\n");
 
-Jian and Dmitry do not maintain this.
+I specifically mentioned that you need to change this error message and the one
+below before adding my Acked-by tag. But you just added the tag without
+incorporating the changes :/
 
-> +description:
-> +  The Amlogic AXG audio clock controller generates and supplies clock to the
-> +  other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
-> +  devices.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,axg-audio-clkc
-> +      - amlogic,g12a-audio-clkc
-> +      - amlogic,sm1-audio-clkc
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 11
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - const: pclk
-> +      - items:
-> +          - const: pclk
-> +          - const: mst_in0
-> +          - const: mst_in1
-> +          - const: mst_in2
-> +          - const: mst_in3
-> +          - const: mst_in4
-> +          - const: mst_in5
-> +          - const: mst_in6
-> +          - const: mst_in7
-> +      - items:
-> +          - const: pclk
-> +          - const: slv_sclk0
-> +          - const: slv_sclk1
-> +          - const: slv_sclk2
-> +          - const: slv_sclk3
-> +          - const: slv_sclk4
-> +          - const: slv_sclk5
-> +          - const: slv_sclk6
-> +          - const: slv_sclk7
-> +          - const: slv_sclk8
-> +          - const: slv_sclk9
-> +      - items:
-> +          - const: pclk
-> +          - const: slv_lrclk0
-> +          - const: slv_lrclk1
-> +          - const: slv_lrclk2
-> +          - const: slv_lrclk3
-> +          - const: slv_lrclk4
-> +          - const: slv_lrclk5
-> +          - const: slv_lrclk6
-> +          - const: slv_lrclk7
-> +          - const: slv_lrclk8
-> +          - const: slv_lrclk9
-> +
+- Mani
 
-IIUC the above, it means
- - pclk
- - OR pclk with all the master clocks
- - OR pclk with all the slave bit clocks
- - OR pclk with all the slave sample clocks.
-
-Correct ?
-
-If that is what it means, it is wrong.
-
-* pclk is required
-* the master and slave clocks are all optional and independent.
-
-Any combination of master and slave clocks is valid from the controller
-perspective. For ex: it is perfectly OK to have master 2 and 4, slave 5
-and 8, and not the others.
-
-> +  resets:
-> +    description: internal reset line
+> +}
 > +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
+>  static int ls_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -91,18 +162,28 @@ static int ls_pcie_host_init(struct dw_pcie_rp *pp)
+>  
+>  static const struct dw_pcie_host_ops ls_pcie_host_ops = {
+>  	.host_init = ls_pcie_host_init,
+> +	.pme_turn_off = ls_pcie_send_turnoff_msg,
+> +	.exit_from_l2 = ls_pcie_exit_from_l2,
+> +};
 > +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,g12a-audio-clkc
-> +              - amlogic,sm1-audio-clkc
-> +    then:
-> +      required:
-> +        - '#reset-cells'
+> +static const struct ls_pcie_drvdata ls1021a_drvdata = {
+> +};
 > +
-> +additionalProperties: false
+> +static const struct ls_pcie_drvdata layerscape_drvdata = {
+> +	.pf_off = 0xc0000,
+> +	.pm_support = true,
+>  };
+>  
+>  static const struct of_device_id ls_pcie_of_match[] = {
+> -	{ .compatible = "fsl,ls1012a-pcie", },
+> -	{ .compatible = "fsl,ls1021a-pcie", },
+> -	{ .compatible = "fsl,ls1028a-pcie", },
+> -	{ .compatible = "fsl,ls1043a-pcie", },
+> -	{ .compatible = "fsl,ls1046a-pcie", },
+> -	{ .compatible = "fsl,ls2080a-pcie", },
+> -	{ .compatible = "fsl,ls2085a-pcie", },
+> -	{ .compatible = "fsl,ls2088a-pcie", },
+> -	{ .compatible = "fsl,ls1088a-pcie", },
+> +	{ .compatible = "fsl,ls1012a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021a_drvdata },
+> +	{ .compatible = "fsl,ls1028a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1021a_drvdata },
+> +	{ .compatible = "fsl,ls1046a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls2080a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls2085a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls2088a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls1088a-pcie", .data = &layerscape_drvdata },
+>  	{ },
+>  };
+>  
+> @@ -121,6 +202,8 @@ static int ls_pcie_probe(struct platform_device *pdev)
+>  	if (!pci)
+>  		return -ENOMEM;
+>  
+> +	pcie->drvdata = of_device_get_match_data(dev);
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/axg-clkc.h>
-> +    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
-> +    apb {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
+>  	pci->dev = dev;
+>  	pci->pp.ops = &ls_pcie_host_ops;
+>  
+> @@ -131,6 +214,10 @@ static int ls_pcie_probe(struct platform_device *pdev)
+>  	if (IS_ERR(pci->dbi_base))
+>  		return PTR_ERR(pci->dbi_base);
+>  
+> +	pcie->big_endian = of_property_read_bool(dev->of_node, "big-endian");
 > +
-> +        clkc_audio: clock-controller@0 {
-> +        compatible = "amlogic,axg-audio-clkc";
-> +        reg = <0x0 0x0 0x0 0xb4>;
-> +        #clock-cells = <1>;
+> +	pcie->pf_base = pci->dbi_base + pcie->drvdata->pf_off;
 > +
-> +        clocks = <&clkc CLKID_AUDIO>,
-> +            <&clkc CLKID_MPLL0>,
-> +            <&clkc CLKID_MPLL1>,
-> +            <&clkc CLKID_MPLL2>,
-> +            <&clkc CLKID_MPLL3>,
-> +            <&clkc CLKID_HIFI_PLL>,
-> +            <&clkc CLKID_FCLK_DIV3>,
-> +            <&clkc CLKID_FCLK_DIV4>,
-> +            <&clkc CLKID_GP0_PLL>;
-> +        clock-names = "pclk",
-> +            "mst_in0",
-> +            "mst_in1",
-> +            "mst_in2",
-> +            "mst_in3",
-> +            "mst_in4",
-> +            "mst_in5",
-> +            "mst_in6",
-> +            "mst_in7";
-> +        resets = <&reset RESET_AUDIO>;
-> +      };
-> +    };
+>  	if (!ls_pcie_is_bridge(pcie))
+>  		return -ENODEV;
+>  
+> @@ -139,12 +226,37 @@ static int ls_pcie_probe(struct platform_device *pdev)
+>  	return dw_pcie_host_init(&pci->pp);
+>  }
+>  
+> +static int ls_pcie_suspend_noirq(struct device *dev)
+> +{
+> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> +
+> +	if (!pcie->drvdata->pm_support)
+> +		return 0;
+> +
+> +	return dw_pcie_suspend_noirq(pcie->pci);
+> +}
+> +
+> +static int ls_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> +
+> +	if (!pcie->drvdata->pm_support)
+> +		return 0;
+> +
+> +	return dw_pcie_resume_noirq(pcie->pci);
+> +}
+> +
+> +static const struct dev_pm_ops ls_pcie_pm_ops = {
+> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq, ls_pcie_resume_noirq)
+> +};
+> +
+>  static struct platform_driver ls_pcie_driver = {
+>  	.probe = ls_pcie_probe,
+>  	.driver = {
+>  		.name = "layerscape-pcie",
+>  		.of_match_table = ls_pcie_of_match,
+>  		.suppress_bind_attrs = true,
+> +		.pm = &ls_pcie_pm_ops,
+>  	},
+>  };
+>  builtin_platform_driver(ls_pcie_driver);
+> -- 
+> 2.34.1
+> 
 
+-- 
+மணிவண்ணன் சதாசிவம்
