@@ -2,138 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 958E5776646
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D4677666C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbjHIRUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 13:20:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41282 "EHLO
+        id S231157AbjHIR1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 13:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232834AbjHIRUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:20:48 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D263D1FEF
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 10:20:47 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fe27849e6aso11458160e87.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 10:20:47 -0700 (PDT)
+        with ESMTP id S231140AbjHIR1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:27:05 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C7F90
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 10:27:03 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99c4923195dso14135166b.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 10:27:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691601646; x=1692206446;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NoJSetQ0sviUvyT9vTPr+TM2mfAvcrXiHSmgOnMYNnk=;
-        b=cUWnuQPQHWRB9Gd6YmIvakjVi5WtBh4+tR9msvJS/bPkt1wxG2oxLMy18t9sRCltbf
-         +N6pi0yiF2C0d1r1iCH0seNjXwX2BzefFF5g6kh9l05Z/2croBQbk8kg9ftFcojSxzT+
-         PdYvKC+mOIUNSMJRUUUvw1uw40csmm6Ww57xGt935m1VmCUhI5q3xpDVhetwdewsKsHU
-         o/UhgZHAkJWIMC6SKO3MK8s8qm8J/X6MAgtxDrVCr+5CQMEop0Z7RE6HOIiAR72xFO5F
-         gXuNb3XLYFqqwWXoHDuGUJtwKbF+qKVoluR5fTygp7TE1NqsTSF0Jz31tZAF3wnHDF3j
-         w1ng==
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1691602022; x=1692206822;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=locXRAZShx/Ip09/WBeCOmXx0r2GGenxopdxoXszxv4=;
+        b=y3JdGKp6XUwqjk5BTCCcWOSzYHLli0AanC7EjSVi+9o0f+WfR+lqztQvdzDIAL9L/e
+         0I0VAp5tOdVvxELYy6mxepOWpK+uSajeU12W2WDZGEX8sVKJcruxVBs/oqNHY5aFewca
+         WO0DcYG524ZrsJiD5IQlU/R+C4JwtWMlzB6NunHWMbHcCRESKtfc+gg4WRVlJgF9SvUB
+         9e6xSq/W+30fyz2Ae4aPIbvi5O/lPTrzk3iTRzDjTcRAh9+Wld7mhzZvEIvJpIOGAB3L
+         69Z41NR4qctOqsuv7VkdtCbSLynNkWqE+byOeGGog+kqYbkpoLWsjFPlwcOvZ/XDWe25
+         CcNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691601646; x=1692206446;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NoJSetQ0sviUvyT9vTPr+TM2mfAvcrXiHSmgOnMYNnk=;
-        b=eaa7oUCzkbBYOGvaSNki3GObIUDHsBqyMUt7tdo63XCrxTjdAsa8iGD2ecIO6TgsI8
-         P7Fnv9/6/aAM/brf5lnXREEo6i0t1/KqyFCjBJBmAa6SBOpKl5QSvHclGRgLPufEw0jQ
-         Yq4RCNOPpPTZCTzKz4+sYdnk0X5Jkup7+xOTJTh3piAWjm5kw8VkV7EX5KACvFlma4y4
-         zVrYioe3smOHLMHyPCSHB96t0IyWETSYagz0JKvAwzYtk7MQfAlX7imWrODgQkSqukjP
-         p7f/qlJ0fmonlEAYDCeSQ+bGD1pots9kX/wf6cYvyTab0MNDMnseJ3kQYRIygaZ/bkND
-         AsBQ==
-X-Gm-Message-State: AOJu0YzsLO68MZaTR3WddqoJa36XNlXJz+4pbdSjjWqNr/s9BsUtJe05
-        NlUK/fwfv5zs/7u+xQspuW2Y9g==
-X-Google-Smtp-Source: AGHT+IEiNIBRZ8BJqEPKkd5kzOu/Dbi2M33GcJJM9FCr4XW2N9zj/HVqtE97g8v0VMMqX+4m34reZw==
-X-Received: by 2002:a05:6512:1116:b0:4fe:1a99:45e3 with SMTP id l22-20020a056512111600b004fe1a9945e3mr2441213lfg.30.1691601645981;
-        Wed, 09 Aug 2023 10:20:45 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id j5-20020ac25505000000b004fba5eb0a64sm2380095lfk.42.2023.08.09.10.20.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 10:20:45 -0700 (PDT)
-Message-ID: <eada6628-c303-4161-8329-7a4a1d130e54@linaro.org>
-Date:   Wed, 9 Aug 2023 19:20:44 +0200
+        d=1e100.net; s=20221208; t=1691602022; x=1692206822;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=locXRAZShx/Ip09/WBeCOmXx0r2GGenxopdxoXszxv4=;
+        b=LQWIZTRaEVnp871xRNerJrm/DYR+C2ulfzSt16AnWHqZINoguAJ44lqYlj9cwLy8me
+         RCdbpp952Pe1c7RD4Pi3O5N5530hUXUwiu8GKfb4pE95ikzrsbZsnV5xhJmD9L1OaMjQ
+         eoWf/0pf+4pxVdPm5zeAukTq201zrVZxwAjHX5XykuldlJUR9auNUFzimV1P+hN/8HXk
+         Ikcz0xBDVSDaMOX6rzoPusLW3VxZtTvd9H6MQ2ekL7xf90L644dOZvt5Ycea/WHgO4BT
+         kdQik/9Bga4nfjr/Jn80jO/aE7Qmw/CORLhRQszpwigr+eIklkMLK2lWbGBJvMk2V3Ri
+         kh/g==
+X-Gm-Message-State: AOJu0Yz+5hw2JH7VhH//7TafpNxh9mqX8qdmGJFcLJ9IOo0iHThB5eMl
+        fTNOzS+ak1/rkCw+asOFR//MAYpVFOYbI71JU0E43w==
+X-Google-Smtp-Source: AGHT+IHtrMogMIA6OZzL5wgc+r5NnSaIuZnZRBEHDfchxWZ56RmJp/KfgGoxAx8j/5a373SPm/bsc/EoQEvJQeZRbI4=
+X-Received: by 2002:a17:906:76d4:b0:99c:581f:7f51 with SMTP id
+ q20-20020a17090676d400b0099c581f7f51mr2651367ejn.54.1691602022140; Wed, 09
+ Aug 2023 10:27:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/15] clk: qcom: gpucc-sm6115: Add runtime PM
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
- <20230717-topic-branch_aon_cleanup-v1-7-27784d27a4f4@linaro.org>
- <ZLaSpFFBzP_Yz5yY@hovoldconsulting.com>
- <febaa3cd-f8c3-c35e-2f1d-403c80c132b8@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <febaa3cd-f8c3-c35e-2f1d-403c80c132b8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230806233333.815702-1-festevam@gmail.com> <CAJ+vNU0cDTGHoqJMDdwea48RSaETyvsg2NXCcEE3FBNr4-ckvg@mail.gmail.com>
+ <3bbd635f-85a6-9031-3264-e5209f8bc44f@linaro.org>
+In-Reply-To: <3bbd635f-85a6-9031-3264-e5209f8bc44f@linaro.org>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Wed, 9 Aug 2023 10:26:50 -0700
+Message-ID: <CAJ+vNU3UERhaODKE_Btzei-HYEkvNK=roBh5i9Z0GQP-9dryBw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8m-venice: Pass "brcm,bcm4329-fmac"
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.07.2023 15:28, Konrad Dybcio wrote:
-> On 18.07.2023 15:24, Johan Hovold wrote:
->> On Mon, Jul 17, 2023 at 05:19:14PM +0200, Konrad Dybcio wrote:
->>> The GPU_CC block on SM6115 is powered by the VDD_CX rail. We need to
->>> ensure that it's enabled to prevent unwanted power collapse.
->>
->> This bit is not correct, the power domain would not have been disabled
->> until you enable runtime PM as part of this very patch.
-> Right, this was a bit of a thought-jump. The part that ensures there's
-> any vote at all is actually the DT commit adding a reference to the
-> genpd.
-Well I read it again and I think my original intention was "it = the power
-domain" and not "it = runtime PM", it makes sense that way..
+On Tue, Aug 8, 2023 at 11:33=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 09/08/2023 01:52, Tim Harvey wrote:
+> > On Sun, Aug 6, 2023 at 4:33=E2=80=AFPM Fabio Estevam <festevam@gmail.co=
+m> wrote:
+> >>
+> >> From: Fabio Estevam <festevam@denx.de>
+> >>
+> >> Pass "brcm,bcm4329-fmac" to fix the following schema warnings:
+> >>
+> >> imx8mp-venice-gw74xx.dtb: wifi@0: compatible: 'oneOf' conditional fail=
+ed, one must be fixed:
+> >>         ['cypress,cyw4373-fmac'] is too short
+> >>         'cypress,cyw4373-fmac' is not one of ['brcm,bcm4329-fmac', 'pc=
+i14e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425', 'pci14e4,4433'=
+]
+> >>         from schema $id: http://devicetree.org/schemas/net/wireless/br=
+cm,bcm4329-fmac.yaml#
+> >>
+> >> imx8mn-venice-gw7902.dtb: wifi@0: compatible: 'oneOf' conditional fail=
+ed, one must be fixed:
+> >>         ['brcm,bcm43455-fmac'] is too short
+> >>         'brcm,bcm43455-fmac' is not one of ['brcm,bcm4329-fmac', 'pci1=
+4e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425', 'pci14e4,4433']
+> >>         from schema $id: http://devicetree.org/schemas/net/wireless/br=
+cm,bcm4329-fmac.yaml#
+> >>
+> >> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> >> ---
+> >>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 2 +-
+> >>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts | 2 +-
+> >>  arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts | 2 +-
+> >>  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 2 +-
+> >>  4 files changed, 4 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/=
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> >> index 21d7b16d6f84..cde29aa1a0a2 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+> >> @@ -801,7 +801,7 @@ &usdhc1 {
+> >>         status =3D "okay";
+> >>
+> >>         wifi@0 {
+> >> -               compatible =3D "brcm,bcm43455-fmac";
+> >> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fma=
+c";
+> >>                 reg =3D <0>;
+> >>         };
+> >>  };
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/=
+arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> >> index 964cc4fc2ddf..0bff7a6fdca6 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+> >> @@ -726,7 +726,7 @@ &usdhc2 {
+> >>         status =3D "okay";
+> >>
+> >>         wifi@0 {
+> >> -               compatible =3D "brcm,bcm43455-fmac";
+> >> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fma=
+c";
+> >>                 reg =3D <0>;
+> >>         };
+> >>  };
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/=
+arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> >> index 3ac011bbc025..9a36edc60394 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> >> @@ -679,7 +679,7 @@ &usdhc2 {
+> >>         status =3D "okay";
+> >>
+> >>         wifi@0 {
+> >> -               compatible =3D "brcm,bcm43455-fmac";
+> >> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fma=
+c";
+> >>                 reg =3D <0>;
+> >>         };
+> >>  };
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/=
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> >> index 3473423ac939..faa370a5885f 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> >> @@ -737,7 +737,7 @@ &usdhc1 {
+> >>         status =3D "okay";
+> >>
+> >>         wifi@0 {
+> >> -               compatible =3D "cypress,cyw4373-fmac";
+> >> +               compatible =3D "cypress,cyw4373-fmac", "brcm,bcm4329-f=
+mac";
+> >>                 reg =3D <0>;
+> >>         };
+> >>  };
+> >> --
+> >> 2.34.1
+> >>
+> >
+> > Fabio,
+> >
+> > Thank you for your continued efforts to squash out all these
+> > dt-binding warnings/issues.
+> >
+> > Can you explain what the difference is in the dt-binding yaml between
+> > compatible/oneOf/items/{enum,const} and compatible/oneOf/enum? The
+>
+> items defines a list. items with enum and const, defines a list of two
+> items, where first is an enum (so oneOf few) and second is fixed.
+>
+> compatible/oneOf/enum is not a list. Or you could look at it as
+> one-element-list.
+>
+>
+> > first list for Documentation/devicetree/bindings/net/wireless/brcm,bcm4=
+329-fmac.yaml
+> > has a much larger set of enums including the bcm43455 on these boards
+> > but the second set of enums has a much more limited set.
+>
+> What's the question here? Both define different things. One defines
+> compatible devices with some model, second defines just some devices.
+>
+>
+> > There is no
+> > driver code to look at for this because it is bound via SDIO device
+> > id's instead of the dt compatible property.
+> >
+> > Best regards,
+> >
+> > Tim
+>
 
-Anyway, I'll rephrase that to make it less ambiguous.
+Krzysztof,
 
-Konrad
+Thanks for the explanation. I see now that if I want to specify
+anything other than the enums in the second item (brcm,bcm4329-fmac,
+and the pci14e4*), per the first item I must follow it with
+'brcm,bcm4329-fmac'.
+
+Acked-by: Tim Harvey <tharvey@gateworks.com>
+
+best regards,
+
+Tim
