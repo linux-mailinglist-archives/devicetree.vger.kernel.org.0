@@ -2,115 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B9177641F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 17:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6B4776424
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 17:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231339AbjHIPjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 11:39:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
+        id S230169AbjHIPkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 11:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234349AbjHIPjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 11:39:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01EEE211C;
-        Wed,  9 Aug 2023 08:39:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BEBA63EE4;
-        Wed,  9 Aug 2023 15:39:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88C72C433C7;
-        Wed,  9 Aug 2023 15:39:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691595570;
-        bh=ZN+Ph02j0blvyY6VRiCcTlHg1lDxH5//uAa9haCbAn8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i0MzQOFzaKje3rSd1sMFSE1kApBZCzLB8I2z0MbQK+v/GUrlpsqiQjqi+xSnExklK
-         hQM+06ieQ+JBEv/MhCR02KZbqQPtc0jNLt+qnangDl1IihkMA4ymCsnS8lE1sia4eX
-         OFBqlgq/O2RGSgpaa8bGA0+pVDpm8wQQzStXZhSu63ZdO4N7OxTYIUajdURgwKXQv2
-         AMXeLFGwS192JLeKX1paG5pWcwrdKCTY50kF9iu9t/WZuc49OOE/eyex/soOi6Hs4D
-         RhtqbijCKALv6khgCE3zzk1D8roP8Mxms7RHmtWAbVu9JMdz69IjKL15wGn99BEDyw
-         84nb+hYMMvFxQ==
-Date:   Wed, 9 Aug 2023 16:39:25 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-Message-ID: <20230809-circus-photo-6911d2e18f96@spud>
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
- <20230807074043.31288-2-zhuyinbo@loongson.cn>
- <20230808-amount-urban-9a6eb09852ca@spud>
- <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
+        with ESMTP id S232817AbjHIPjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 11:39:49 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1372691
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 08:39:47 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5899ed05210so4058697b3.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 08:39:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691595587; x=1692200387;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnxrC9+PjEoCZBhf/tERYc/k39q+k50W9kHBAz7pScw=;
+        b=igsdZD86oYVq4D9544bLx2s8AIJcUqim/Bds9c63d1dcILXkKY8CMIutZo2vbuQvTe
+         NTu51d6llwTQ0R4emSVLZ3Ah3RZ50sOYTpXlX/iJtiGycY545n0P+IbsBw5NKRBtj42b
+         Z0urSvaU64UWrAjRUi79W1pGcryWorysm1b0pYfSRfyMSe8CwDmggcf8nU6ldwbgRqyW
+         S72/6X2YdA6Ub4tAr0XjlJHvhP5rlp4iGHK5XNrJyehmusm8S8P7bQDcGjnbLSJM0xAB
+         /85w3BMZOSVKrmXUubUDv8e2JDXfytjCaNMaPVoNd80u8+Omm+ldTvhaJxaqvpD0+NAH
+         87oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691595587; x=1692200387;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gnxrC9+PjEoCZBhf/tERYc/k39q+k50W9kHBAz7pScw=;
+        b=VSHWQ2LeLfwsgTu8lmhBHNa1+PnSQSqCtCUPwrKlcxEZuQQX6OIYCOz/VIRZ2cPvG2
+         FiT0d5Tn+Q6J+xSVkmE1Y/Zhu2MeWa9cR/PS/71utwvYcExsB976+CLOqRAoNOoiNHkY
+         rqg5qPTG/+RApeirLxQVFus4M9/6FNCBZd4X27vyKeYWB/LOF5SRG6ad3DZFLFAqRq4k
+         Aqg9wwjCTVyDD/zfCuII1xnpE0e7NFEnNiW07FW9/SP/GNB3OGpyofO+bYJqtedSWYJE
+         IG4QJF0M+YL65yrR7Jk6Ls0lMhk9cL1EslCrWw1Q+UmycpWCWRtdsqgkDP4UQtt8oNgx
+         epGA==
+X-Gm-Message-State: AOJu0YwM1AYk1I/Cj0Olvszcpwd/t8IYnIzOttkFQGpi2dmTU33/PEQT
+        8Ey1ZzB7tNVdQrSV9hhK/ZOrleLadU8=
+X-Google-Smtp-Source: AGHT+IF1KZ+ZjwCnbhEUYc9LWs7sjj0Qv5ILjvS1v62hTEBZeYF5GxvOQbgaeeNbEe7FEnVl48CJzg==
+X-Received: by 2002:a0d:e946:0:b0:576:8a5a:87e5 with SMTP id s67-20020a0de946000000b005768a5a87e5mr3013889ywe.26.1691595586892;
+        Wed, 09 Aug 2023 08:39:46 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id u15-20020a81a50f000000b005707fb5110bsm4043969ywg.58.2023.08.09.08.39.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Aug 2023 08:39:46 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     dri-devel@lists.freedesktop.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+        neil.armstrong@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V2 0/2] Support Anbernic RG351V Panel
+Date:   Wed,  9 Aug 2023 10:39:39 -0500
+Message-Id: <20230809153941.1172-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="VXgqk7woHVK+3S1c"
-Content-Disposition: inline
-In-Reply-To: <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
---VXgqk7woHVK+3S1c
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add support for the Anbernic RG351V panel. This panel is mostly
+identical to the one used in the 353 series, except it has a different
+panel ID when queried (0x4000 for the 351V, 0x3052 for the 353 panel)
+and will not work without the inclusion of the
+MIPI_DSI_CLOCK_NON_CONTINUOUS flag.
 
-On Wed, Aug 09, 2023 at 03:47:55PM +0800, Yinbo Zhu wrote:
-> =E5=9C=A8 2023/8/8 =E4=B8=8B=E5=8D=888:05, Conor Dooley =E5=86=99=E9=81=
-=93:
-> > On Mon, Aug 07, 2023 at 03:40:42PM +0800, Yinbo Zhu wrote:
+Updates from V1:
+ - Revised text in devicetree documentation to remove references to
+   specific hardware.
 
-> > > +  loongson,gpio-ctrl-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      This option indicate this GPIO control mode, where '0' represe=
-nts
-> > > +      bit control mode and '1' represents byte control mode.
-> >=20
-> > How is one supposed to know which of these modes to use?
->=20
->=20
-> Byte mode is to access by byte, such as gpio3, the base address of the
-> gpio controller is offset by 3 bytes as the access address of gpio3.
->=20
-> The bit mode is the normal mode that like other platform gpio and it is
-> to access by bit.
->=20
-> If both modes are supported, it is recommended to prioritize using byte
-> mode that according to spec.
+Chris Morgan (2):
+  dt-bindings: display: newvision,nv3051d: Add Anbernic 351V Support
+  drm/panel: nv3051d: Add Support for Anbernic 351V
 
-So, sounds like this property should instead be a boolean that notes
-whether the hardware supports the mode or not, rather than the current
-enum used to determine software policy.
+ .../display/panel/newvision,nv3051d.yaml       | 18 ++++++++++--------
+ .../gpu/drm/panel/panel-newvision-nv3051d.c    | 18 ++++++++++++++++--
+ 2 files changed, 26 insertions(+), 10 deletions(-)
 
-However, from Krzysztof's comments & my own feeling, it really does seem
-like you should drop the do-everything compatible and introduce things
-that are soc-specific.
+-- 
+2.34.1
 
---VXgqk7woHVK+3S1c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNOzLQAKCRB4tDGHoIJi
-0gKZAPwMObBwfQu8x9fheCqfaLGcTVE9kP/GlXm+nZ+WkYpRAAEA/fvnRYxDaHud
-NkKpJyX9yzzr+jgHCWeKNA/w/9hz6QQ=
-=8LUU
------END PGP SIGNATURE-----
-
---VXgqk7woHVK+3S1c--
