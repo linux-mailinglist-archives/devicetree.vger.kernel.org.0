@@ -2,118 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66C4F775610
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 11:03:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 078E77756AF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 11:51:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231508AbjHIJDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 05:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51084 "EHLO
+        id S231852AbjHIJvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 05:51:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231856AbjHIJDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 05:03:35 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 661D81FD8;
-        Wed,  9 Aug 2023 02:03:32 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8A1D360004;
-        Wed,  9 Aug 2023 09:03:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-        t=1691571809;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=TY7idmXtzOR/PC5YeEKZEVA/A054NNzndr9Zg5TyDl4=;
-        b=ge+WpLQZNVsCKJKDx/vwzWayO2FvINhQEq8GhHxjzdo/DfKr/2hRqOPfwtXMG8OMcE2Tg1
-        AuX7PyccTx+wm59x51mOX+H4WcElmKLObWyA00wdHHwvgRPhgPgBMYXerA3hiY8mXKze12
-        X36t7wJRAW8IiHBXp+3dXk0ICC64z2ip93xRDwAipHSE6vmMKhdtg5NqUGuHlZ+HrFiQdJ
-        BUX8OiUlC/1mUmXxDmuGGp6bTyAHV8x2FK8LT7dG8DmHpv4pEAvYc+SaD2s3qV0og9Djp0
-        RMU95gASBhcLH12b/T/WKziGHsTog8GaBVkmRIpbnqoLyDVBLUqmYOti9Hn9YQ==
-Message-ID: <44fde617-1159-4961-84c4-372fe265fbd8@arinc9.com>
-Date:   Wed, 9 Aug 2023 12:03:19 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Subject: Re: [PATCH RESEND net-next 2/2] dt-bindings: net: dsa:
- mediatek,mt7530: document MDIO-bus
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, netdev@vger.kernel.org,
+        with ESMTP id S229498AbjHIJvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 05:51:19 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B8AE1986;
+        Wed,  9 Aug 2023 02:51:19 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-686ba97e4feso6219230b3a.0;
+        Wed, 09 Aug 2023 02:51:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691574679; x=1692179479;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dt9dQKZoqhtasn30KB7Up/m1rU5d0WCMxNZV+DTQ2Ss=;
+        b=LTCfXecnkcHGwZXyR1HuHvU5wzUTY5wu3IXntbMdvBIZw0S6Y4V78XnSb0kwGdSPkN
+         4LpkupfdgmEx0QKEPZXmSPcqyvPkc5EEEWJI7R3PLuzB6uBad/jdkpFSxQ1EA1SSGGOF
+         PGaC6QGR/BDWG0A4uaj1W80pu9u3FqIz3mosLZc6RCt+9MDpVoy6O8f5soyTamTp01E5
+         4K5OD6d0Dxmt8guWI20MdYHpLWumFfuHmNnjh0h9E56yPbk3G6Litg3E9hMxW8f+yixi
+         t7sYJ0j73x7zztge/M7HqjDCGSFvfCbRz2rAQJap9Qjj+uAG+DtqyAXdNIXYTuG2ZtOg
+         mNsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691574679; x=1692179479;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dt9dQKZoqhtasn30KB7Up/m1rU5d0WCMxNZV+DTQ2Ss=;
+        b=eZ8Xg96NCmL2r4zN8sWTrc/uY/V6yRH9LA2X4QjjXBp2QRDCne9LGVcmywGYVlWHbw
+         RhVc9amiGxRbgdCv/PbTI7VWWfmmZ4u3vwczLoiI9jOe9HHLagKoJAnwoIu4QF8UB/3c
+         bIS2Q8tQoYAjhwqWXgTl5+ahgRusS3YrtSFfHzu09zcySRZiJJYWwmSdEcffIuhdxhln
+         z05qxeKjrn1dtgIhXS9FX6KDieEU3YMYHKVfUSWGdAinW5HzfWNfrHA/dFd7MsGO8x/B
+         PsNSgxwyE27YcepC2thDgqWtvlNMxRNSuiE5Zjt+m03X/Mbu5Ol67136PklHbmaXwIGc
+         o0xg==
+X-Gm-Message-State: AOJu0Ywm305ciQAslp9P41LbDdpxJBdHLIk5eifT2olUgx0Ebr/0LwK6
+        ssUR3hdgjiEPAEFNHk0F4oo=
+X-Google-Smtp-Source: AGHT+IGZio4gfn9u9Y7XLZnq7XVmcq9ZF76Kzn3wLjKlRZMQA2enJpEfxlEQb3VsmRK+89eeZtL2lw==
+X-Received: by 2002:a05:6a20:5504:b0:13d:7433:2ebf with SMTP id ko4-20020a056a20550400b0013d74332ebfmr1983829pzb.60.1691574678454;
+        Wed, 09 Aug 2023 02:51:18 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id j21-20020a62b615000000b00687375d9135sm9493822pff.4.2023.08.09.02.51.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Aug 2023 02:51:18 -0700 (PDT)
+From:   Mia Lin <mimi05633@gmail.com>
+To:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFLIN@nuvoton.com, mylin1@nuvoton.com
+Cc:     openbmc@lists.ozlabs.org, linux-rtc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org>
- <9aec0fe0cb676b76132c388bb3ead46f596a6e6e.1691246461.git.daniel@makrotopia.org>
- <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com>
- <20230808121707.chona7hakapp6whe@skbuf>
-Content-Language: en-US
-In-Reply-To: <20230808121707.chona7hakapp6whe@skbuf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Mia Lin <mimi05633@gmail.com>
+Subject: [PATCH v2 0/2] Compatible with NCT3015Y-R and NCT3018Y-R
+Date:   Wed,  9 Aug 2023 17:51:10 +0800
+Message-Id: <20230809095112.2836-1-mimi05633@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8.08.2023 15:17, Vladimir Oltean wrote:
-> On Sat, Aug 05, 2023 at 11:15:15PM +0300, Arınç ÜNAL wrote:
->> I don't see a reason to resubmit this without addressing the requested
->> change.
->>
->>>> Wouldn't we just skip the whole issue by documenting the need for defining all PHYs
->>>> used on the switch when defining the MDIO bus?
->>>
->>> Good idea, please do that.
->>
->> https://lore.kernel.org/netdev/0f501bb6-18a0-1713-b08c-6ad244c022ec@arinc9.com/
->>
->> Arınç
-> 
-> Arınç, where do you see that comment being added? AFAIU, it is a
-> characteristic of the generic __of_mdiobus_register() code to set
-> mdio->phy_mask = ~0, and nothing specific to the mt7530.
+Changes since version 2:
+  Add DT compatible to check the chip matches or not.
 
-What I believe is specific to DSA is, 1:1 mapping of the port reg to the
-PHY reg on the mdio bus is disabled if the mdio bus is defined. Therefore,
-I believe a notice like below fits mediatek,mt7530.yaml.
+Changes since version 1:
+  rtc: nuvoton: Compatible with NCT3015Y-R and NCT3018Y-R
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-index e532c6b795f4..c59d58252cd5 100644
---- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-@@ -128,6 +128,15 @@ properties:
-        See Documentation/devicetree/bindings/regulator/mt6323-regulator.txt for
-        details for the regulator setup on these boards.
-  
-+  mdio:
-+    $ref: /schemas/net/mdio.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Node for the internal MDIO bus connected to the embedded ethernet-PHYs.
-+      For every port defined under the "^(ethernet-)?ports$" node, a PHY must be
-+      defined under here and a phy-handle property must be defined under the
-+      port node to point to the PHY node.
-+
-    mediatek,mcm:
-      type: boolean
-      description:
+Mia Lin (2):
+  dt-bindings: rtc: nuvoton: Add DT compatible
+  rtc: nuvoton: Compatible with NCT3015Y-R and NCT3018Y-R
 
-Arınç
+ .../bindings/rtc/nuvoton,nct3018y.yaml        |  4 +-
+ drivers/rtc/rtc-nct3018y.c                    | 88 ++++++++++++++++---
+ 2 files changed, 81 insertions(+), 11 deletions(-)
+
+-- 
+2.17.1
+
