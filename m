@@ -2,93 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE7967752A6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 08:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE44677530C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 08:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230207AbjHIGOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 02:14:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
+        id S231221AbjHIGnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 02:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230097AbjHIGOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 02:14:46 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E211CE61;
-        Tue,  8 Aug 2023 23:14:45 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3795NlIl022614;
-        Wed, 9 Aug 2023 06:14:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QaLLrT1DxNhi29uidPiOrlv8YgYilIuY2UepnXH9uN0=;
- b=BT0IpvNTm05L8QdfQQna3vIDL2eygpAHIIe65LRZ7MBmWEH5toa2g5BNuvR2lKzty8xJ
- 1c6ob2HSRm7x1y6zRY+wvFBwUuF22A4TSrp0D23LYRXxmR/XY5tLMyjW5/JQtopvg5wi
- UXX6MR4VZlc8oguvnieI8WWGLMOrvEgV1OnRSWTGt2BJ9M0MkfYS7E+7qypnWfKBsc10
- vUH5164uCdmBBtfgolq0P+3oMy6i4ADpMqmqELidnUbZfiaW5mZ/N826u0m6GirGazum
- el3F+VNF9LjQ6jpdvVRNVXKaqJJfk26/xY2WcMmsvJ3Giq/rAHUS0oMI2AKLfUeNnARZ 9g== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sc34h87fb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Aug 2023 06:14:33 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3796EVJZ003347
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 9 Aug 2023 06:14:31 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 8 Aug
- 2023 23:14:27 -0700
-Message-ID: <91c8470e-0f74-d964-37ee-b18ab689cba8@quicinc.com>
-Date:   Wed, 9 Aug 2023 14:14:24 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v7 04/13] coresight-tpda: Add DSB dataset support
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S229487AbjHIGnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 02:43:06 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD8E10CF
+        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 23:43:04 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3177163aa97so5314825f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 23:43:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691563383; x=1692168183;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=kntP8Y9ceRocWIC/OOeyMK71VIkTrXJ3h5YSVFPUDgI=;
+        b=UUuxm641QpLIqcCMKTz1Hhe8xa1cPg319FAwcAqmk9L7jnx6+yB3rE3MUeeUxYeum4
+         4J5jKWAiubpyvNvm0MCZwzhZFZl8Ntf4AipleasPre+WF5jfzcAuFhood316C4kqCu0P
+         tlrIfiOi4mbZUSporDpm+bRLFXNVKbgYl9h+7w961BTT5RgNOs7ddWdvIpj2/FVr4DgM
+         iN/62YbkRBZNhkQ9c7TDvlwvhEZvGi5PtTFaazrdcGeMPMJW1/iKUo3QeDEo8cvO7QMJ
+         KNWGsBGDMAUcEHgpMvShBiTWNzkDLIxvaPrVPUHI0eihl/Kc9l83Z3EBUvAgSpDx6sLs
+         Hafg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691563383; x=1692168183;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kntP8Y9ceRocWIC/OOeyMK71VIkTrXJ3h5YSVFPUDgI=;
+        b=SOh6dJ1sK94ZCM95jPUie17zI1iQDZdrRkIzvsULNbhpxVcJvJ9N/aVceX+mjYGPAe
+         438kWJxQow/BRYRAf5W7JTP2oJDzX05OnUouttug8dtW6sk+OhtraFGmwnwCXhkzyPVl
+         t20NEvN8DOWv1F0H+fakceFnu5TWBlzqMSOg7mum+X5SnIXts7j0IDFl8dslsQk0aq/k
+         dfoO/QabhHOmU1umiPlsGqW2rId4TaHpDi7C4pJpyDom+Fo5M0KZHV+bUZPdbEsHiTDi
+         oC3dOy9Lsw2f/VoZ+X54sSdDjcokr/J5x/L0/jsxywS/YFhpWO7wV7Mk8ppcMNWNCGDu
+         Dx5Q==
+X-Gm-Message-State: AOJu0Yz4f2vQkNZebSetixSpWcee9Bx0OE5Zwj0QLhpifDRiPZMVaLMO
+        KUYqYX7MmcZKaB0l85in/xk5QA==
+X-Google-Smtp-Source: AGHT+IGT/vP5y+MBd+voB+7NqaVgqtJcETYF5AEG6aT8d/1P4nGajbm9pvnGqEei6sC8DXDyRAQw5Q==
+X-Received: by 2002:a05:6000:10f:b0:317:57f0:fae with SMTP id o15-20020a056000010f00b0031757f00faemr1167141wrx.63.1691563383152;
+        Tue, 08 Aug 2023 23:43:03 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:c245:8b53:af5b:96f3])
+        by smtp.gmail.com with ESMTPSA id b11-20020a05600010cb00b003180822cf8fsm385532wrx.1.2023.08.08.23.43.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Aug 2023 23:43:02 -0700 (PDT)
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Alexander Stein <alexander.stein@mailbox.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1690269353-10829-1-git-send-email-quic_taozha@quicinc.com>
- <1690269353-10829-5-git-send-email-quic_taozha@quicinc.com>
- <94b9ae0f-b6ed-1d72-f86a-d33842527681@arm.com>
- <43d94873-53be-d142-9075-a781b9de9f69@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <43d94873-53be-d142-9075-a781b9de9f69@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uqrj080pMJPVAbhQALvuV30TsEDMKjvR
-X-Proofpoint-GUID: uqrj080pMJPVAbhQALvuV30TsEDMKjvR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-09_03,2023-08-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- malwarescore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 adultscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308090054
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc
+ to YAML format
+Date:   Wed, 09 Aug 2023 08:15:31 +0200
+In-reply-to: <20230808194811.113087-1-alexander.stein@mailbox.org>
+Message-ID: <1ja5v0bts9.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,321 +78,250 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 8/7/2023 5:12 PM, Suzuki K Poulose wrote:
-> On 04/08/2023 16:02, Suzuki K Poulose wrote:
->> On 25/07/2023 08:15, Tao Zhang wrote:
->>> Read the DSB element size from the device tree. Set the register
->>> bit that controls the DSB element size of the corresponding port.
->>>
->>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>> ---
->>>   drivers/hwtracing/coresight/coresight-tpda.c | 96 
->>> +++++++++++++++++++++++++---
->>>   drivers/hwtracing/coresight/coresight-tpda.h |  4 ++
->>>   2 files changed, 90 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
->>> b/drivers/hwtracing/coresight/coresight-tpda.c
->>> index 8d2b9d2..7c71342 100644
->>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->>> @@ -21,6 +21,58 @@
->>>   DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
->>> +/* Search and read element data size from the TPDM node in
->>
->> minor nit:
->>
->> /*
->>   * Search ...
->>
->>> + * the devicetree. Each input port of TPDA is connected to
->>> + * a TPDM. Different TPDM supports different types of dataset,
->>> + * and some may support more than one type of dataset.
->>> + * Parameter "inport" is used to pass in the input port number
->>> + * of TPDA, and it is set to 0 in the recursize call.
->>
->>> + * Parameter "parent" is used to pass in the original call.
->>
->> Please remove references to the past and describe "match_inport"
->>
->>> + */
->>> +static int tpda_set_element_size(struct tpda_drvdata *drvdata,
->>> +               struct coresight_device *csdev, int inport, bool 
->>> match_inport)
->>
->> May be we could switch the order of the parameters:
->>
->> match_inport, int port
->>
->> Or even inport < 0, implies, port wont be matched.
->>
->> i.e.,
->>
->> tpda_set_element_size(drvdata, child, inport)
->>
->>> +{
->>> +    static int nr_inport;
->>> +    int i;
->>> +    static bool tpdm_found;
->>> +    struct coresight_device *in_csdev;
->>> +
->>> +    if (inport > (TPDA_MAX_INPORTS - 1))
->>> +        return -EINVAL;
->>> +
->>> +    if (match_inport) {
->>> +        nr_inport = inport;
->>> +        tpdm_found = false;
->>> +    }
->>
->> Could we not avoid the static variables and this dance by making the 
->> function return the dsb_size ? See further down.
->>
->>
->>> +
->>> +    for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->>> +        in_csdev = csdev->pdata->in_conns[i]->src_dev;
->>> +        if (!in_csdev)
->>> +            break;
->>          continue ?
->>> +
->>> +        if (match_inport)
->>> +            if (csdev->pdata->in_conns[i]->dest_port != inport)
->>> +                continue;
->>> +
->>> +        if ((in_csdev->type == CORESIGHT_DEV_TYPE_SOURCE) &&
->>> +                (in_csdev->subtype.source_subtype
->>> +                == CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM)) {
->>
->> Please provide a helper :
->>
->> static bool coresight_device_is_tpdm(csdev) {
->>      return
->>       (csdev->type == CORESIGHT_DEV_TYPE_SOURCE) &&
->>       (in_csdev->subtype.source_subtype ==
->>          CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
->> }
->>
->>
->>
->>> + of_property_read_u8(in_csdev->dev.parent->of_node,
->>> +                    "qcom,dsb-element-size", 
->>> &drvdata->dsb_esize[nr_inport]);
->>
->>
->>
->>> +            if (!tpdm_found)
->>> +                tpdm_found = true;
->>> +            else
->>> +                dev_warn(drvdata->dev,
->>> +                    "More than one TPDM is mapped to the TPDA input 
->>> port %d.\n",
->>> +                    nr_inport);
->>> +            continue;
->>> +        }
->>> +        tpda_set_element_size(drvdata, in_csdev, 0, false);
->>> +    }
->>> +
->>
->> /*
->>   * Read the DSB element size from the TPDM device
->>   * Returns
->>   *    the size read from the firmware if available.
->>   *    0 - Otherwise, with a Warning once.
->>   */
->> static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
->> {
->>      int rc, size = 0;
->>
->>      rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->>                       "qcom,dsb-element-size", &size);
->>      if (rc)
->>          dev_warn_once(&in->dev, "Failed to read TPDM DSB Element 
->> size: %d\n",
->>          rc);
->>      return size;
->> }
->>
->> static int tpda_get_element_size(struct coresight_device *csdev,
->>                   int inport)
->> {
->>      int dsb_size = -ENOENT;
->>
->>      for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->>          in = csdev->pdata->in_conns[i]->src_dev;
->>          if (!in)
->>              continue;
->>          if (coresight_device_is_tpdm(in)) {
->>              /* Ignore the TPDMs that do not match port */
->>              if (inport > 0 &&
->>                  (csdev->pdata->in_conns[i]->dest_port !=
->>                  inport))
->>                  continue;
->>              size = tpdm_read_dsb_element_size(csdev);
->>          } else {
->>              /* Recurse down the path */
->>              size = tpda_set_element_size(in, -1);
->>          }
->>
->>          if (size < 0)
->>              return size;
->>          /* We have found a size, save it. */
->>          if (dsb_size < 0) {
->>              dsb_size = size;
->>          } else {
->>              /* We have duplicate TPDMs */
->>              return -EEXIST;
->>          }
->>      }
->>      return dsb_size;
->> }
->>
->>
->>
->>
->>> +    return 0;
->>> +}
->>> +
->>>   /* Settings pre enabling port control register */
->>>   static void tpda_enable_pre_port(struct tpda_drvdata *drvdata)
->>>   {
->>> @@ -32,26 +84,43 @@ static void tpda_enable_pre_port(struct 
->>> tpda_drvdata *drvdata)
->>>       writel_relaxed(val, drvdata->base + TPDA_CR);
->>>   }
->>> -static void tpda_enable_port(struct tpda_drvdata *drvdata, int port)
->>> +static int tpda_enable_port(struct tpda_drvdata *drvdata, int port)
->>>   {
->>>       u32 val;
->>>       val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
->>> +    /*
->>> +     * Configure aggregator port n DSB data set element size
->>> +     * Set the bit to 0 if the size is 32
->>> +     * Set the bit to 1 if the size is 64
->>> +     */
->>> +    if (drvdata->dsb_esize[port] == 32)
->>> +        val &= ~TPDA_Pn_CR_DSBSIZE;
->>> +    else if (drvdata->dsb_esize[port] == 64)
->>> +        val |= TPDA_Pn_CR_DSBSIZE;
->>
->> Couldn't this be detected via tpda_get_element_size()? see below.
->>
->>> +    else
->>> +        return -EINVAL;
->>> +
->>>       /* Enable the port */
->>>       val |= TPDA_Pn_CR_ENA;
->>>       writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
->>> +
->>> +    return 0;
->>>   }
->>> -static void __tpda_enable(struct tpda_drvdata *drvdata, int port)
->>> +static int __tpda_enable(struct tpda_drvdata *drvdata, int port)
->>>   {
->>> +    int ret;
->>> +
->>>       CS_UNLOCK(drvdata->base);
->>>       if (!drvdata->csdev->enable)
->>>           tpda_enable_pre_port(drvdata);
->>> -    tpda_enable_port(drvdata, port);
->>> -
->>> +    ret = tpda_enable_port(drvdata, port);
->>>       CS_LOCK(drvdata->base);
->>> +
->>> +    return ret;
->>>   }
->>>   static int tpda_enable(struct coresight_device *csdev,
->>> @@ -59,16 +128,23 @@ static int tpda_enable(struct coresight_device 
->>> *csdev,
->>>                  struct coresight_connection *out)
->>>   {
->>>       struct tpda_drvdata *drvdata = 
->>> dev_get_drvdata(csdev->dev.parent);
->>> +    int ret;
->>> +
->>> +    ret = tpda_set_element_size(drvdata, csdev, in->dest_port, true);
->>
->>      size  = tpda_get_element_size(csdev, in->dest_port);
->>      switch (size) {
->>      case 32:
->>      case 64:
->>          break;
->
-> We also need :
->
->     case 0:
->         return -ENOENT;
+On Tue 08 Aug 2023 at 21:48, Alexander Stein <alexander.stein@mailbox.org> wrote:
 
-I will update this in the next patch series.
-
-
-Best,
-
-Tao
-
+> Convert Amlogic AXG Audio Clock Controller binding to yaml.
 >
-> Suzuki
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+> As it is the same directory I picked the same maintainers as 
+> Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml.
 >
+> I'm not 100% sure about the optional clocks constraints. As mentioned in
+> the .txt version only pclk is mandatory, others are optional.
 >
->>      case -EEXIST:
->>          dev_warn_once("Detected multiple TPDMs on port %d", ..)
->>          fallthrough;
->>      default:
->>          return size;
->>      }
->>
->>      drvdata->dsb_esize[in->dest_port] = size;
->>
->> Suzuki
->>
->>
->>
->>> +    if (ret)
->>> +        return ret;
->>>       spin_lock(&drvdata->spinlock);
->>> -    if (atomic_read(&in->dest_refcnt) == 0)
->>> -        __tpda_enable(drvdata, in->dest_port);
->>> +    if (atomic_read(&in->dest_refcnt) == 0) {
->>> +        ret = __tpda_enable(drvdata, in->dest_port);
->>> +        if (!ret) {
->>> +            atomic_inc(&in->dest_refcnt);
->>> +            dev_dbg(drvdata->dev, "TPDA inport %d enabled.\n", 
->>> in->dest_port);
->>> +        }
->>> +    }
->>> -    atomic_inc(&in->dest_refcnt);
->>>       spin_unlock(&drvdata->spinlock);
->>> -
->>> -    dev_dbg(drvdata->dev, "TPDA inport %d enabled.\n", in->dest_port);
->>> -    return 0;
->>> +    return ret;
->>>   }
->>>   static void __tpda_disable(struct tpda_drvdata *drvdata, int port)
->>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.h 
->>> b/drivers/hwtracing/coresight/coresight-tpda.h
->>> index 0399678..12a1472 100644
->>> --- a/drivers/hwtracing/coresight/coresight-tpda.h
->>> +++ b/drivers/hwtracing/coresight/coresight-tpda.h
->>> @@ -10,6 +10,8 @@
->>>   #define TPDA_Pn_CR(n)        (0x004 + (n * 4))
->>>   /* Aggregator port enable bit */
->>>   #define TPDA_Pn_CR_ENA        BIT(0)
->>> +/* Aggregator port DSB data set element size bit */
->>> +#define TPDA_Pn_CR_DSBSIZE        BIT(8)
->>>   #define TPDA_MAX_INPORTS    32
->>> @@ -23,6 +25,7 @@
->>>    * @csdev:      component vitals needed by the framework.
->>>    * @spinlock:   lock for the drvdata value.
->>>    * @enable:     enable status of the component.
->>> + * @dsb_esize:  DSB element size for each inport, it must be 32 or 64.
->>>    */
->>>   struct tpda_drvdata {
->>>       void __iomem        *base;
->>> @@ -30,6 +33,7 @@ struct tpda_drvdata {
->>>       struct coresight_device    *csdev;
->>>       spinlock_t        spinlock;
->>>       u8            atid;
->>> +    u8            dsb_esize[TPDA_MAX_INPORTS];
->>>   };
->>>   #endif  /* _CORESIGHT_CORESIGHT_TPDA_H */
->>
+>  .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 --------
+>  .../clock/amlogic,axg-audio-clkc.yaml         | 136 ++++++++++++++++++
+>  2 files changed, 136 insertions(+), 59 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
 >
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> deleted file mode 100644
+> index 3a8948c04bc9..000000000000
+> --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> +++ /dev/null
+> @@ -1,59 +0,0 @@
+> -* Amlogic AXG Audio Clock Controllers
+> -
+> -The Amlogic AXG audio clock controller generates and supplies clock to the
+> -other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+> -devices.
+> -
+> -Required Properties:
+> -
+> -- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D,
+> -		  "amlogic,g12a-audio-clkc" for G12A,
+> -		  "amlogic,sm1-audio-clkc" for S905X3.
+> -- reg		: physical base address of the clock controller and length of
+> -		  memory mapped region.
+> -- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
+> -		  in clock-names.
+> -- clock-names	: must contain the following:
+> -		  * "pclk" - Main peripheral bus clock
+> -		  may contain the following:
+> -		  * "mst_in[0-7]" - 8 input plls to generate clock signals
+> -		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
+> -				      components.
+> -		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
+> -				       components.
+> -- resets	: phandle of the internal reset line
+> -- #clock-cells	: should be 1.
+> -- #reset-cells  : should be 1 on the g12a (and following) soc family
+> -
+> -Each clock is assigned an identifier and client nodes can use this identifier
+> -to specify the clock which they consume. All available clocks are defined as
+> -preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
+> -used in device tree sources.
+> -
+> -Example:
+> -
+> -clkc_audio: clock-controller@0 {
+> -	compatible = "amlogic,axg-audio-clkc";
+> -	reg = <0x0 0x0 0x0 0xb4>;
+> -	#clock-cells = <1>;
+> -
+> -	clocks = <&clkc CLKID_AUDIO>,
+> -		 <&clkc CLKID_MPLL0>,
+> -		 <&clkc CLKID_MPLL1>,
+> -		 <&clkc CLKID_MPLL2>,
+> -		 <&clkc CLKID_MPLL3>,
+> -		 <&clkc CLKID_HIFI_PLL>,
+> -		 <&clkc CLKID_FCLK_DIV3>,
+> -		 <&clkc CLKID_FCLK_DIV4>,
+> -		 <&clkc CLKID_GP0_PLL>;
+> -	clock-names = "pclk",
+> -		      "mst_in0",
+> -		      "mst_in1",
+> -		      "mst_in2",
+> -		      "mst_in3",
+> -		      "mst_in4",
+> -		      "mst_in5",
+> -		      "mst_in6",
+> -		      "mst_in7";
+> -	resets = <&reset RESET_AUDIO>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> new file mode 100644
+> index 000000000000..629fa3a81cf7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic AXG Audio Clock Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> +
+
+Jian and Dmitry do not maintain this.
+
+> +description:
+> +  The Amlogic AXG audio clock controller generates and supplies clock to the
+> +  other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+> +  devices.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,axg-audio-clkc
+> +      - amlogic,g12a-audio-clkc
+> +      - amlogic,sm1-audio-clkc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 11
+> +
+> +  clock-names:
+> +    oneOf:
+> +      - const: pclk
+> +      - items:
+> +          - const: pclk
+> +          - const: mst_in0
+> +          - const: mst_in1
+> +          - const: mst_in2
+> +          - const: mst_in3
+> +          - const: mst_in4
+> +          - const: mst_in5
+> +          - const: mst_in6
+> +          - const: mst_in7
+> +      - items:
+> +          - const: pclk
+> +          - const: slv_sclk0
+> +          - const: slv_sclk1
+> +          - const: slv_sclk2
+> +          - const: slv_sclk3
+> +          - const: slv_sclk4
+> +          - const: slv_sclk5
+> +          - const: slv_sclk6
+> +          - const: slv_sclk7
+> +          - const: slv_sclk8
+> +          - const: slv_sclk9
+> +      - items:
+> +          - const: pclk
+> +          - const: slv_lrclk0
+> +          - const: slv_lrclk1
+> +          - const: slv_lrclk2
+> +          - const: slv_lrclk3
+> +          - const: slv_lrclk4
+> +          - const: slv_lrclk5
+> +          - const: slv_lrclk6
+> +          - const: slv_lrclk7
+> +          - const: slv_lrclk8
+> +          - const: slv_lrclk9
+> +
+
+IIUC the above, it means
+ - pclk
+ - OR pclk with all the master clocks
+ - OR pclk with all the slave bit clocks
+ - OR pclk with all the slave sample clocks.
+
+Correct ?
+
+If that is what it means, it is wrong.
+
+* pclk is required
+* the master and slave clocks are all optional and independent.
+
+Any combination of master and slave clocks is valid from the controller
+perspective. For ex: it is perfectly OK to have master 2 and 4, slave 5
+and 8, and not the others.
+
+> +  resets:
+> +    description: internal reset line
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,g12a-audio-clkc
+> +              - amlogic,sm1-audio-clkc
+> +    then:
+> +      required:
+> +        - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/axg-clkc.h>
+> +    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clkc_audio: clock-controller@0 {
+> +        compatible = "amlogic,axg-audio-clkc";
+> +        reg = <0x0 0x0 0x0 0xb4>;
+> +        #clock-cells = <1>;
+> +
+> +        clocks = <&clkc CLKID_AUDIO>,
+> +            <&clkc CLKID_MPLL0>,
+> +            <&clkc CLKID_MPLL1>,
+> +            <&clkc CLKID_MPLL2>,
+> +            <&clkc CLKID_MPLL3>,
+> +            <&clkc CLKID_HIFI_PLL>,
+> +            <&clkc CLKID_FCLK_DIV3>,
+> +            <&clkc CLKID_FCLK_DIV4>,
+> +            <&clkc CLKID_GP0_PLL>;
+> +        clock-names = "pclk",
+> +            "mst_in0",
+> +            "mst_in1",
+> +            "mst_in2",
+> +            "mst_in3",
+> +            "mst_in4",
+> +            "mst_in5",
+> +            "mst_in6",
+> +            "mst_in7";
+> +        resets = <&reset RESET_AUDIO>;
+> +      };
+> +    };
+
