@@ -2,110 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3EC775EBC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08B86775EEC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232133AbjHIMTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 08:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36246 "EHLO
+        id S232302AbjHIM2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 08:28:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232113AbjHIMTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:19:31 -0400
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DECA2109;
-        Wed,  9 Aug 2023 05:19:29 -0700 (PDT)
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-        by mx.skole.hr (mx.skole.hr) with ESMTP id 25FAB82603;
-        Wed,  9 Aug 2023 14:19:18 +0200 (CEST)
-From:   =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Date:   Wed, 09 Aug 2023 14:18:22 +0200
-Subject: [PATCH 4/4] clk: pxa910: Move number of clocks to driver source
+        with ESMTP id S232291AbjHIM2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:28:42 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01821FEB
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:28:41 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9bee2d320so104140391fa.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 05:28:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google; t=1691584120; x=1692188920;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QsLyX7zpGoNmiJX8dl6thb9GIjDmEzzddzjEZFA1Qso=;
+        b=Cjd0U2oFb1GobPQLzDCPQXG5BeoEuRTwVIb8fkOBoRfnBfDYBRmUf79JhV9RMk4Lw4
+         kI/9xJckpRWCIMurcyuGLalgMRfbiy42XN/JU7SocIKLNQT5+9MkbhWMJJdoE2MPNIXd
+         CSuCkskSqlTf4iNfEDSApK7h/6+A0w06xcqjU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691584120; x=1692188920;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QsLyX7zpGoNmiJX8dl6thb9GIjDmEzzddzjEZFA1Qso=;
+        b=RtLrZkO5OSnD8XhPJk5yiJohb0fIeIel28zk8SuIP+d7MQtymUW4iS64OlPEKOMaVZ
+         W53OVi+qqbKvVFHt0qHLvPHy1V58kbNJuqQLYFQhWHo4hs1z8Vq+wk6NT4U6hUw94btt
+         TPD/fs3SCPRaIdjNqbMqMgwG4LGT61If+SYuvdlz+2IK6GTqKwMRIk0ErWq6tEfjpBa1
+         RT/RHpYeHr67L0r/0rj3wE0EN0DiPVSMnhP+QFIfJStE1NGnlNRXgGH+f5xTHJV/Xj/B
+         UthidQ773H0xQo9BHOGwBe62y0rsSQejxMHUpHy1E1+yFzJCTMM9PrykELuDzeaaIAYb
+         om3g==
+X-Gm-Message-State: AOJu0Yyr4cQvG8fLL1c5K5zOX0Y/Mx/tfbhvQbAG9JP6YhQrxX+whPsp
+        y2iN8oG981iMkMrZnU9JEEF6EA==
+X-Google-Smtp-Source: AGHT+IFIoENCbS7ckSJPRqpa05I5EQB2dMmW/aNQcjOSGEfuuUz3J0Pp1IcZpn8XpabyAJjiWrtUfQ==
+X-Received: by 2002:a2e:b2d0:0:b0:2b6:e7c7:b039 with SMTP id 16-20020a2eb2d0000000b002b6e7c7b039mr1575109ljz.28.1691584119953;
+        Wed, 09 Aug 2023 05:28:39 -0700 (PDT)
+Received: from [172.21.2.62] ([87.54.42.112])
+        by smtp.gmail.com with ESMTPSA id q24-20020a2e8758000000b002b6fe751b6esm2719978ljj.124.2023.08.09.05.28.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 05:28:39 -0700 (PDT)
+Message-ID: <79572bac-dfdc-ce32-2148-6fa3bf698267@rasmusvillemoes.dk>
+Date:   Wed, 9 Aug 2023 14:28:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230809-mmp-nr-clks-v1-4-5f3cdbbb89b8@skole.hr>
-References: <20230809-mmp-nr-clks-v1-0-5f3cdbbb89b8@skole.hr>
-In-Reply-To: <20230809-mmp-nr-clks-v1-0-5f3cdbbb89b8@skole.hr>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 0/8] rtc: isl12022: battery backup voltage and clock
+ support
+Content-Language: en-US, da
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1446;
- i=duje.mihanovic@skole.hr; h=from:subject:message-id;
- bh=bly1aASdWUJrlcyrZt3WskO9eN5tVF6cUHmmrzJg8UU=;
- b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBk04QNmYDh7YmjSg5s2ALFQwFpva0+VjPXx+Xpu
- UjoAsNRMNCJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZNOEDQAKCRCaEZ6wQi2W
- 4RCDD/4paakr48mXfzlpws91TeOR5Q4WRf+h/9Ca6KwgacTLoAWJYyn+XvZTpSiCqca1ufpvcOc
- b8YKDNsW8sDgdBDqEKBbN54TXz46+EpRSK3Veg0uaRgGGpKjUW1Fw1CprZftn8fXg0HeVw7w9ox
- H5xaje6WWP6IiABVykeCz+GbHMPBJOzoHeneCircT8p/n93lpbkoShDZ+BwI5omQuZS/2TCVpu2
- CccIlM/xH0h3oRIzy0oPRFCkhqxMvkrN9Kb+GJ/wpCT4yhY/iHtpiZMJ6G4JTiPndEdl1iWSwg8
- B+o0FS+DO5LBqrEv3D8ta/9iLf8IycyoiofOLcd1WJ4ybhcIWQ6V/39ESUhd5T72N50CQGtJ6JY
- E7mQgbZ81j89ojslCRatT0NzXrrR4KslwM8du9Y/Rmpn/3ziHVoIlh6igqKm+RzE4o8/4EVLeOj
- mpv+uTxib/fKk0uFXrLUCXbHwce8zQUsLrOrV/yNGitlaxTZGni/n2Ewy0lMC8eUAvFJ3GevBdz
- hcHfwsBZk3rcq2Ow1dK7UTHIw9WU7bVj4YLGZtU+TCF7FwEemY0AxJLXyXKFe5WmbfRL2r+B2wt
- tnB+eVK3NSmI6xdGKJwEGyGlAm20iqtD3dQPxT0MUiy885NSh4xT4JJxRw/GdHwPo2VFzkFv2Rj
- 7sLxBtQlgDYlXfg==
-X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
- fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230615105826.411953-1-linux@rasmusvillemoes.dk>
+ <55c19de0-2465-cc4a-6ec7-fd524816fd2b@prevas.dk>
+ <739f81db-4ec2-fe07-a6df-5c1f42588653@rasmusvillemoes.dk>
+In-Reply-To: <739f81db-4ec2-fe07-a6df-5c1f42588653@rasmusvillemoes.dk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The number of clocks should not be in the dt binding as it is not used
-by the respective device tree and thus needlessly bloats the ABI.
+On 03/08/2023 08.45, Rasmus Villemoes wrote:
+> On 28/07/2023 16.31, Rasmus Villemoes wrote:
+>> On 15/06/2023 12.58, Rasmus Villemoes wrote:
+>>> The current handling of the low-battery bits in the status register is
+>>> wrong. The first six patches fix that and implement proper support for
+>>> RTC_VL_READ.
+>>>
+>>> The last two patches allow describing the isl12022 as a clock
+>>> provider, for now just as a fixed 32kHz clock. They are also
+>>> tangentially related to the backup battery, in that when the isl12022
+>>> is not used as a clock source, one can save some power consumption in
+>>> battery mode by setting the FOx bits to 0.
+>>
+>> Ping. Any chance these could be picked up so they make it for v6.6?
+> 
+> Ping^2.
 
-Move this number of clocks into the driver source.
+Ping^3.
 
-Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
----
- drivers/clk/mmp/clk-of-pxa910.c            | 4 +++-
- include/dt-bindings/clock/marvell,pxa910.h | 1 -
- 2 files changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/mmp/clk-of-pxa910.c b/drivers/clk/mmp/clk-of-pxa910.c
-index 4d15bac987eb..7a38c424782e 100644
---- a/drivers/clk/mmp/clk-of-pxa910.c
-+++ b/drivers/clk/mmp/clk-of-pxa910.c
-@@ -44,6 +44,8 @@
- #define APMU_DFC	0x60
- #define MPMU_UART_PLL	0x14
- 
-+#define NR_CLKS		200
-+
- struct pxa910_clk_unit {
- 	struct mmp_clk_unit unit;
- 	void __iomem *mpmu_base;
-@@ -296,7 +298,7 @@ static void __init pxa910_clk_init(struct device_node *np)
- 		goto unmap_apbc_region;
- 	}
- 
--	mmp_clk_init(np, &pxa_unit->unit, PXA910_NR_CLKS);
-+	mmp_clk_init(np, &pxa_unit->unit, NR_CLKS);
- 
- 	pxa910_pll_init(pxa_unit);
- 
-diff --git a/include/dt-bindings/clock/marvell,pxa910.h b/include/dt-bindings/clock/marvell,pxa910.h
-index c9018ab354d0..6caa231de0c1 100644
---- a/include/dt-bindings/clock/marvell,pxa910.h
-+++ b/include/dt-bindings/clock/marvell,pxa910.h
-@@ -55,5 +55,4 @@
- #define PXA910_CLK_CCIC0_PHY		108
- #define PXA910_CLK_CCIC0_SPHY		109
- 
--#define PXA910_NR_CLKS			200
- #endif
-
--- 
-2.41.0
-
+Rasmus
 
