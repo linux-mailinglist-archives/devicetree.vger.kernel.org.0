@@ -2,114 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0178B77623E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D08877625A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbjHIOU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 10:20:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40590 "EHLO
+        id S232621AbjHIOXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 10:23:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231752AbjHIOU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:20:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8892B1FCC;
-        Wed,  9 Aug 2023 07:20:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2295B6176B;
-        Wed,  9 Aug 2023 14:20:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 71D47C433C8;
-        Wed,  9 Aug 2023 14:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691590823;
-        bh=GYLw4R5ZP8Asgcy8c4U/E68U/BEFVITI0t4kAXKKJyg=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=iKoG6qTXz/QDY3IA7SBUrPMHv1yumYmq9dr1nWznwbiiUREaEEODsonj0tKjJtG26
-         oUeDXJMsUhldhBBOu0tA7hyL014NQKCVk7Xa/bnz9nNKndCybta98L7ERaut4PuRqB
-         A01zbT8H/DzlpnfsRiHWvRI5x+4PAsRy2KpPtHmnRTm9GoRsNIz5DiaaibAgeNcGjO
-         FoFFVnZW7gSHV0XVOcKP93ubOR0+zb3zucOlktFTKqoKa3BpWRHauTWK72xuJU+0T7
-         rxlv8S+oX1TkqUQjk48Iw7aL2bB8UZ989sSs3DRpKiP9EKgwaCzXkZAMuX35Lf3Z3y
-         lG/5t5F0mqEJw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 576A0E3308F;
-        Wed,  9 Aug 2023 14:20:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232477AbjHIOXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:23:40 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2DC7DE
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 07:23:39 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fe4ad22eb0so48523445e9.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 07:23:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691591018; x=1692195818;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Wg6FOxvEEY9L/1IDbso6hZjk5snLMFSLKFKVthCzk70=;
+        b=tzUoWCmu9Yd0MiB1ikHpKNW54D0sQmYgCrtM26sPuY+1bE9OG1zLPZWDtJe44OUiOY
+         3N3AiZMY8lAjF57klVsolAid+GLWZz5rsf8y3rwQhZgwJTiqhGE9Gzoaw82DIxQUa7/N
+         K2ckrJqa1vWs6YBHzfjk5LmFP4N+YMBByWj+Dj01b4UYQhmJaUvQhEsLWhKtvb0BY8JT
+         Yos+eFL4kT5P00uFJLs6im/Boq5aBPl4R7FlKYFs8FolHHPDxkDI70376Ls/P9T2ExDf
+         BZEv9cLu+QhxYMbtKOlAtvaB+MDi9zBFP9w3c+IjYsYyBgA7Hj/IQLV/GBB2iiQBlEdt
+         H6Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691591018; x=1692195818;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wg6FOxvEEY9L/1IDbso6hZjk5snLMFSLKFKVthCzk70=;
+        b=WqGp6HHkgrqShQmZ3j6V6p/XSOiJhCS5apnC3g5QAV8udPmtWCZyulaEG0ZP0s19Ts
+         LJkxrusO5BaXerMSr2t5E5hpFBKF+t1+ok8lTT0Da+rK9K1J2jrJOA9amz1Gb7epMEGP
+         MFzR4q24PpP7Q6yr9I2BI6iRvx2kCl0Ma4Al3sskFjs+6UMUJnGSpF4kZqS8vWnn/cfQ
+         WIMGvlbV0hySqgfrlNlsXvL/PrI9UQ7zSWJy0FM2VXiTOm0HImIrsVu58SANZETYl8W+
+         3nbZucX3Ni/1OBjOOhf/2W4le+ips6KoMhL33YjHI8FuSOAnclfHd4na6s/D35uJ4xcA
+         gNTQ==
+X-Gm-Message-State: AOJu0YzyUMTKM94M1iIfa2XjIUNGmXXU9OOxK4+9k+4PffkEO4CJdYkD
+        g23h/WXedio2OeiFWurlA2ec8A==
+X-Google-Smtp-Source: AGHT+IHSQ27GTB70++fZ9IGftp7XmKQfx3A05O5KmkT0/u9uY06+p8pAZxpcSPRhaQklr8cocB6Cow==
+X-Received: by 2002:a05:600c:22d8:b0:3fd:2e1d:eca1 with SMTP id 24-20020a05600c22d800b003fd2e1deca1mr2376394wmg.4.1691591018130;
+        Wed, 09 Aug 2023 07:23:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003fc04d13242sm2210168wmc.0.2023.08.09.07.23.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 07:23:37 -0700 (PDT)
+Message-ID: <4462f00f-f590-df44-97d0-a657b3da2559@linaro.org>
+Date:   Wed, 9 Aug 2023 16:23:35 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 00/11] RISC-V: Probe DT extension support using
- riscv,isa-extensions & riscv,isa-base
-From:   patchwork-bot+linux-riscv@kernel.org
-Message-Id: <169159082335.5601.13810785902879648545.git-patchwork-notify@kernel.org>
-Date:   Wed, 09 Aug 2023 14:20:23 +0000
-References: <20230713-target-much-8ac624e90df8@wendy>
-In-Reply-To: <20230713-target-much-8ac624e90df8@wendy>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     linux-riscv@lists.infradead.org, palmer@dabbelt.com,
-        devicetree@vger.kernel.org, aou@eecs.berkeley.edu, corbet@lwn.net,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        conor@kernel.org, robh+dt@kernel.org, evan@rivosinc.com,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        heiko.stuebner@vrull.eu, ajones@ventanamicro.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to
+ YAML format
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Alexander Stein <alexander.stein@mailbox.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+ <f4c57e4b-674b-f870-b215-8b2f80a7c9eb@linaro.org>
+ <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
+ <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
+ <1j1qgcba54.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1j1qgcba54.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
-
-On Thu, 13 Jul 2023 13:10:58 +0100 you wrote:
-> Hey,
+On 09/08/2023 15:46, Jerome Brunet wrote:
 > 
-> Based on my latest iteration of deprecating riscv,isa [1], here's an
-> implementation of the new properties for Linux. The first few patches,
-> up to "RISC-V: split riscv_fill_hwcap() in 3", are all prep work that
-> further tames some of the extension related code, on top of my already
-> applied series that cleans up the ISA string parser.
-> Perhaps "RISC-V: shunt isa_ext_arr to cpufeature.c" is a bit gratuitous,
-> but I figured a bit of coalescing of extension related data structures
-> would be a good idea. Note that riscv,isa will still be used in the
-> absence of the new properties. Palmer suggested adding a Kconfig option
-> to turn off the fallback for DT, which I have gone and done. It's locked
-> behind the NONPORTABLE option for good reason.
+> On Wed 09 Aug 2023 at 15:02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> [...]
+>> On 09/08/2023 08:58, Jerome Brunet wrote:
+>>>>> +      required:
+>>>>> +        - '#reset-cells'
+>>>>
+>>>> else:
+>>>>   properties:
+>>>>     '#reset-cells': false
+>>>> ???
+>>>>
+>>>>
+>>>> You need to constrain the clocks per variant. Probably names are also
+>>>> specific to each one, so the list of names can be moved here and you
+>>>> keep just min/maxItems in the top level property.
+>>>>
+>>>
+>>> input clock names and constraints are the same for all 3 variants.
+>>
+>> Then why do you have this huge, apparently unnecessary, oneOf? If it's
+>> the same, then drop the oneOf and make number of clocks fixed.
+>>
+> 
+> As I pointed out, this section is wrong.
 
-Here is the summary with links:
-  - [v5,01/11] RISC-V: Provide a more helpful error message on invalid ISA strings
-    https://git.kernel.org/riscv/c/230598939678
-  - [v5,02/11] RISC-V: don't parse dt/acpi isa string to get rv32/rv64
-    https://git.kernel.org/riscv/c/67270fb388fe
-  - [v5,03/11] RISC-V: drop a needless check in print_isa_ext()
-    https://git.kernel.org/riscv/c/131033689da2
-  - [v5,04/11] RISC-V: shunt isa_ext_arr to cpufeature.c
-    https://git.kernel.org/riscv/c/8135ade32c0d
-  - [v5,05/11] RISC-V: repurpose riscv_isa_ext array in riscv_fill_hwcap()
-    https://git.kernel.org/riscv/c/37f988dcec05
-  - [v5,06/11] RISC-V: add missing single letter extension definitions
-    https://git.kernel.org/riscv/c/c30556e318cc
-  - [v5,07/11] RISC-V: add single letter extensions to riscv_isa_ext
-    https://git.kernel.org/riscv/c/effc122ad176
-  - [v5,08/11] RISC-V: split riscv_fill_hwcap() in 3
-    https://git.kernel.org/riscv/c/4265b0ec5ee7
-  - [v5,09/11] RISC-V: enable extension detection from dedicated properties
-    https://git.kernel.org/riscv/c/90700a4fbfaf
-  - [v5,10/11] RISC-V: try new extension properties in of_early_processor_hartid()
-    https://git.kernel.org/riscv/c/c98f136aedbd
-  - [v5,11/11] RISC-V: provide Kconfig & commandline options to control parsing "riscv,isa"
-    https://git.kernel.org/riscv/c/496ea826d1e1
+Ah, I misunderstood. Looks good, thanks.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Best regards,
+Krzysztof
 
