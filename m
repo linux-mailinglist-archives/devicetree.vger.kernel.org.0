@@ -2,40 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C67F07761D7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 15:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BED57761F8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbjHIN5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 09:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
+        id S233045AbjHIOC4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Aug 2023 10:02:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbjHIN5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 09:57:47 -0400
+        with ESMTP id S230368AbjHIOCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:02:55 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743A798;
-        Wed,  9 Aug 2023 06:57:44 -0700 (PDT)
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B05819A1;
+        Wed,  9 Aug 2023 07:02:53 -0700 (PDT)
+Received: from [194.95.143.137] (helo=phil.localnet)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1qTjgv-0007Qm-02; Wed, 09 Aug 2023 15:57:37 +0200
+        id 1qTjlq-0007Tp-Tt; Wed, 09 Aug 2023 16:02:42 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Thomas McKahan <tmckahan@singleboardsolutions.com>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Jagan Teki <jagan@edgeble.ai>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RESEND PATCH v2 0/2] Add Support for the FriendlyElec NanoPC T6
-Date:   Wed,  9 Aug 2023 15:57:34 +0200
-Message-Id: <169158939223.3288791.10539753296615964681.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230809112120.99-1-tmckahan@singleboardsolutions.com>
-References: <20230809112120.99-1-tmckahan@singleboardsolutions.com>
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 01/13] dt-bindings: pwm: rockchip: Document rv1126-pwm
+Date:   Wed, 09 Aug 2023 16:02:42 +0200
+Message-ID: <5533260.88bMQJbFj6@phil>
+In-Reply-To: <20230731145129.mrrkb6tcuvlpmxan@pengutronix.de>
+References: <20230731103518.2906147-1-jagan@edgeble.ai>
+ <20230731103518.2906147-2-jagan@edgeble.ai>
+ <20230731145129.mrrkb6tcuvlpmxan@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
         T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -44,29 +47,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Aug 2023 07:21:15 -0400, Thomas McKahan wrote:
-> This adds support for the RK3588-based NanoPC T6 single board computer.
-> Note this series is dependent on the PCIe 3 support [0] being
-> upstreamed. The NanoPC T6 uses PCIe3x4 like the Rock 5B and EVB1.
+Am Montag, 31. Juli 2023, 16:51:29 CEST schrieb Uwe Kleine-König:
+> On Mon, Jul 31, 2023 at 04:05:06PM +0530, Jagan Teki wrote:
+> > Document pwm compatible for rv1126 which is fallback compatible
+> > of rk3328-pwm group.
+> > 
+> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 > 
-> [0] https://lore.kernel.org/all/20230717173512.65169-1-sebastian.reichel@collabora.com/
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 > 
-> v2:
->  - remove unnecessary "okay" status from sound
->  - add '-regulator' suffix on 2 regulators that were missing them
->  - use generic node name for rtc
->  - remove extra lines
->  - fix alignment in I2S entry
-> 
-> [...]
+> Should this go in via the pwm tree, or together with the other patches
+> via rockchip?
 
-Applied, thanks!
+I have no clue, sadly. I _can_ pick it up, but I guess that would
+require an Ack from Thierry? Otherwise I guess we'll need to wait
+for him.
 
-[1/2] dt-bindings: arm: rockchip: Add NanoPC T6
-      commit: 99c81c127408e6b2e4725303fc2e0a09616877ce
-[2/2] arm64: dts: rockchip: Add NanoPC T6
-      commit: 893c17716d0cf68f5ff4dc71c90e0c2bd1f7da46
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Heiko
+
+
