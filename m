@@ -2,101 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F171F776790
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 20:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E37776797
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 20:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232628AbjHISoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 14:44:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55884 "EHLO
+        id S232300AbjHISqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 14:46:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjHISoG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 14:44:06 -0400
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050:0:465::101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D423AC9;
-        Wed,  9 Aug 2023 11:44:05 -0700 (PDT)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+        with ESMTP id S229663AbjHISqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 14:46:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904E5E51;
+        Wed,  9 Aug 2023 11:46:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4RLf8y3x59z9ts9;
-        Wed,  9 Aug 2023 20:44:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1691606642;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=OHztLns/SEAN/eWS1xJ1M1QeZedq2Q0tPuXS7nMFpiU=;
-        b=SqBgB3qZoafG5hX/f1pj41bDcLd6yXlIByiI3kOZk6djecEosEMzBt1QsENNCIvCi7L/uC
-        kVxXtTJkBny9323/FS3T0aXZwZbSRSwS+isCLMv5+r3ophqVCG1/nPrnLjkce7q7wOIlA6
-        kTnkD41DMbuTT6Fngsv9QBjsMGMvU0LBKWcouUAurm2pEfoHnbdvIljVVRj3CIH9MrcQmf
-        8YP3mOncx1o0Ru3PHAYEFy2rDX1MDIWq1h1lGfQl6nhcolUcQnD69hSjSMiu7sBEhCWbWa
-        LzgkQBSZnQdarIQzSUB9eMXG1hM7djDB/cglwowgWrGWxSjDyWE3pfqki5wQTA==
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 30122611D5;
+        Wed,  9 Aug 2023 18:46:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04DD8C433C8;
+        Wed,  9 Aug 2023 18:46:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691606792;
+        bh=0PVyUV/LZNkQhPq86fn/3LqQlvLNkh8cxs/e9gDxcnQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=o4wyRVmqY0rfTGXhYrJnCsqNhhXtYJgID8Xj6a+aJ/G0alIjdVNVA+1bW3SJvSuBL
+         i760nXOLnMdTlZFoOW4uoMnQfmBTJZouegrVhbcG7cWa7W6KeEPHWb2HA9UqMYTSgu
+         kfPXCTUoRI0mb78ZJ9dEfG7yp9TZdkK3BlsLbAqRyGoQxTlZFhLCcCZUpyWH18du5g
+         CKKEXaXmgCwvBAKlgOjyQAjfh+Cs3opfevX2tKulWLiEDf6SuvUcsqFiep+WggNH/s
+         Il/phtseAz3k4ASDEeJzySULga3xQhBZnW566Rmd5dPY+uI9EOiZXJ/4Yj8iSEj4n6
+         FHHhfyq9ScPWA==
+From:   Conor Dooley <conor@kernel.org>
+To:     Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML
- format
-Date:   Wed, 09 Aug 2023 20:44:00 +0200
-Message-ID: <8294548.NyiUUSuA9g@kongar>
-In-Reply-To: <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
-References: <20230808194811.113087-1-alexander.stein@mailbox.org>
- <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
- <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] riscv: dts: starfive - Add crypto and trng node
+Date:   Wed,  9 Aug 2023 19:46:24 +0100
+Message-Id: <20230809-boogieman-kiwi-4528c4b925d7@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230808141558.296631-1-jiajie.ho@starfivetech.com>
+References: <20230808141558.296631-1-jiajie.ho@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-MBO-RS-META: o741jirs9h84kpbx6socy3zifu3qzbyf
-X-MBO-RS-ID: de6b6dc4972feb208bc
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=708; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=EoQ2wQ3bzDClK5rpakCInBeyO1//Echy2oc4sehgcho=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmX7/3fvqHJ6c+Z84/mC+w8voOZt6az8/j9ZyLxrkqmy 5p/fJoo0lHKwiDGwSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJTLjB8M/yeMeHuDnrfbKO X0pnjdhnOPPXi5S/D/9aJv6cuiv0bbU6wz8t9jPRd3cGnVRcJ6Z2qul8bQSbofjV3zcVft1Vurq iqIAPAA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Am Mittwoch, 9. August 2023, 15:02:23 CEST schrieb Krzysztof Kozlowski:
-> On 09/08/2023 08:58, Jerome Brunet wrote:
-> >>> +      required:
-> >>> +        - '#reset-cells'
-> >>
-> >> else:
-> >>   properties:
-> >>     '#reset-cells': false
-> >> ???
-> >>
-> >>
-> >> You need to constrain the clocks per variant. Probably names are also
-> >> specific to each one, so the list of names can be moved here and you
-> >> keep just min/maxItems in the top level property.
-> >>
-> > 
-> > input clock names and constraints are the same for all 3 variants.
+On Tue, 08 Aug 2023 22:15:56 +0800, Jia Jie Ho wrote:
+> The following patches add hardware cryptographic and trng module nodes
+> to JH7110 dts. Patches have been tested on VisionFive2 board.
 > 
-> Then why do you have this huge, apparently unnecessary, oneOf? If it's
-> the same, then drop the oneOf and make number of clocks fixed.
+> v2 - Fixed dtbs_check errors on dma node in patch 1. (Conor)
+> 
+> Jia Jie Ho (2):
+>   riscv: dts: starfive - Add crypto and DMA node for JH7110
+>   riscv: dts: starfive - Add hwrng node for JH7110 SoC
+> 
+> [...]
 
-But as far as I understand the number of clocks is not fixed. As Jerome pointed 
-out in the other post, it can have any combination of clocks and range from 1 
-up to 11, where 'pclk' is always 1st clock.
-I currently have no idea how to constraint that, despite limiting the number 
-of clock-names.
+Applied to riscv-dt-for-next, thanks!
 
-Best regards,
-Alexander
+[1/2] riscv: dts: starfive - Add crypto and DMA node for JH7110
+      https://git.kernel.org/conor/c/e2c07765e179
+[2/2] riscv: dts: starfive - Add hwrng node for JH7110 SoC
+      https://git.kernel.org/conor/c/87ddf5b10964
 
-
+Thanks,
+Conor.
