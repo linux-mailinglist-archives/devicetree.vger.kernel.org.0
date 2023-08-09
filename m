@@ -2,183 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C211776B9F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 00:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA830776BEE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 00:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbjHIWBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 18:01:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
+        id S229955AbjHIWId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 18:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbjHIWBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 18:01:07 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23F81FD2;
-        Wed,  9 Aug 2023 15:01:06 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-317b31203c7so285839f8f.2;
-        Wed, 09 Aug 2023 15:01:06 -0700 (PDT)
+        with ESMTP id S229782AbjHIWId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 18:08:33 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D23B9;
+        Wed,  9 Aug 2023 15:08:32 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fe457ec6e7so340252e87.3;
+        Wed, 09 Aug 2023 15:08:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691618465; x=1692223265;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Zd4L1RcNMatQQw5hO4kN0BqebHH8Z7kfM3C1HqnlYUY=;
-        b=IUZ+Ifb4IB0F/S0DIL8t0yC14UqjN1pzQsDj/ddHAUFQHfxzismvpH+yD9UHzen5Na
-         iIxhAMogeV3vcFrg/M+wagnmVH5bMWpS3750ZWpn41b+5/bBs8LKqIs5t6FkOGh0v34T
-         ek5RlZAJkDF0gxSxIpEiWZCU/1Djyk2emKX4OVa189VqzT23J3dfEdV+YGMcCRb2KNMR
-         cXy98+ILJYIzTCrD36KCHUjuNY6iFaoUMqD07kSfLarr1rLP7zfTMO4UZDl6q8sskilf
-         24KW2ligoxC+R7ThIKnXOOkM+NRW4pIolW9EwA1JXBtlvXIiNDKcXzEleLL6kHsrcU6A
-         xSIA==
+        d=gmail.com; s=20221208; t=1691618910; x=1692223710;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GHUgxVkqPfvJcpFnmASPtTtiWfAEUFEf5591PAmgwtU=;
+        b=otZY1vS90mHUsvPz8IrtugIg5QTo1OpPKJNGpraZXaMZ8v82qd9vfoBqfMuq6giujN
+         GjK/PP3fiT3D3rCe45IEhrzQw4jeg7bTHqUvj65o7HfXs6fQaABae/aJ2sGy8g4bAbTf
+         7fFHPnlUoLj5hJAMDkgixaSNq1BrkhXEpIqa3p9toiREAFbpenjcL9y7neXqBlKqt1Tw
+         3xJEpfQFkfCJJNzbOFuw51g9JLJGlyX1Jg/jTbV/EgwA+3/+rhbj30wyRcTfvOYUmgL/
+         qJPovVVU195Crf3dXI4Hm0EtQsS5wl1DbDRVa1YVCIO297S82dvNpr0MWr/NPKbIcfnT
+         4gqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691618465; x=1692223265;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zd4L1RcNMatQQw5hO4kN0BqebHH8Z7kfM3C1HqnlYUY=;
-        b=LHce/ks6b43lmI0zRMzh+4jwlVgS9vxrzaQHW8ZcEok+Txj5/ItGCrOg6+qW48T9WJ
-         tu9X17XEq7HYhye7OP1fo2EFDHwgwrjr1OQoRWpEJiRwa89WqvjYKd62ARnCZEyiYDW4
-         jrwTkMK+0w+aYRZw0SkcNuCxBhjj3K7ZYFcdvszea57e3OmMNM2Wt7b+ina0HX5roc7d
-         jlZLOeHKt/z5MTGE8eMfmEnOmmgVZ9DvwrZM3qifQvgM6djqwPROnCahA0/PiO6yASWz
-         K43/9cVmS+KOBxPpZ/D92bWNTJqxCk2LY/flFz991nbuvUyCE0zGdk8QCdQ4zrvpWYC1
-         jYKA==
-X-Gm-Message-State: AOJu0Yy7RVAt5hj223TyyxPdfpQ/l5zIX/vU9dJDt8dplf9zf12ScrYN
-        9h3v/r85Nik0CXc0KE59kPg=
-X-Google-Smtp-Source: AGHT+IEkVjpEjBs0/DVnPkvkOgz0pDNqvnwAyD9x+MOAlUpcdK4j4QHczbRXIG77r+sexstUochFaw==
-X-Received: by 2002:a05:6000:1090:b0:317:58eb:1e33 with SMTP id y16-20020a056000109000b0031758eb1e33mr495585wrw.8.1691618465110;
-        Wed, 09 Aug 2023 15:01:05 -0700 (PDT)
-Received: from skbuf ([188.27.184.144])
-        by smtp.gmail.com with ESMTPSA id p4-20020a056402074400b005233ec5f16bsm15547edy.79.2023.08.09.15.01.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 15:01:04 -0700 (PDT)
-Date:   Thu, 10 Aug 2023 01:01:02 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=1e100.net; s=20221208; t=1691618910; x=1692223710;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GHUgxVkqPfvJcpFnmASPtTtiWfAEUFEf5591PAmgwtU=;
+        b=bnN0dD6WAbCSTo09O/8AGUuEJAuVfNR9JRhI4HUSLs0PHFIaNBRy/aQ3FMjnv87I/H
+         ZdxGx30KP3gRwB3YQMb7YxhIUKFoCjrSTE6wZ+f1/i3pfBHl+xRJZ+wG3OVtgjyHTbnh
+         FduZ5t/pKGzfgH9Mmq6blbg2sR9UChf3v+2fLjeSNs43jUTpW71Awcr8d5zHNwKXlVNC
+         EzHnI0OVwYQF4u2Oe2aExICEPzBC8ZnH0gEUos0AEGe4EmjhjWiAdSNAVPH+Wj+pvWqU
+         jHDStkbXr8K8vponqPbZO1QO9zW5oexwwn0OdiAvU4ZeHAzRrEbuDGgN1W51P4DeDbnA
+         71UA==
+X-Gm-Message-State: AOJu0YwH/NNe9dOVzQm1smOegfsP7XIJOlhKDLok0rnVoeZo+wd7WBYw
+        0d14R95tNpvRJXr0aaODELIVVOxKt/CRdk+bQug=
+X-Google-Smtp-Source: AGHT+IH2b8kGczwJAoBo0Ln7jT0JTZMlZ2Z6w3uTsJYmieQUqA/VkAOaqXy5yXCemw3g99vGQCU3jel+VmIM5J7Ti+c=
+X-Received: by 2002:ac2:5f5b:0:b0:4fe:5a4b:911d with SMTP id
+ 27-20020ac25f5b000000b004fe5a4b911dmr317491lfz.64.1691618910125; Wed, 09 Aug
+ 2023 15:08:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230628-topic-a7xx_drmmsm-v2-0-1439e1b2343f@linaro.org>
+In-Reply-To: <20230628-topic-a7xx_drmmsm-v2-0-1439e1b2343f@linaro.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Wed, 9 Aug 2023 15:08:18 -0700
+Message-ID: <CAF6AEGuDK7DAu_0_6nDkkv0FNkY6rxrdtp3sJB_WviH-whWuDA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/14] A7xx support
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH RESEND net-next 2/2] dt-bindings: net: dsa:
- mediatek,mt7530: document MDIO-bus
-Message-ID: <20230809220102.t3dqw7iojez5xsq3@skbuf>
-References: <6eb1b7b8dbc3a4b14becad15f0707d4f624ee18b.1691246461.git.daniel@makrotopia.org>
- <9aec0fe0cb676b76132c388bb3ead46f596a6e6e.1691246461.git.daniel@makrotopia.org>
- <dcb981b9-b435-c0e5-8e47-d66add207fdc@arinc9.com>
- <20230808121707.chona7hakapp6whe@skbuf>
- <44fde617-1159-4961-84c4-372fe265fbd8@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <44fde617-1159-4961-84c4-372fe265fbd8@arinc9.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 09, 2023 at 12:03:19PM +0300, Arınç ÜNAL wrote:
-> On 8.08.2023 15:17, Vladimir Oltean wrote:
-> > On Sat, Aug 05, 2023 at 11:15:15PM +0300, Arınç ÜNAL wrote:
-> > > I don't see a reason to resubmit this without addressing the requested
-> > > change.
-> > > 
-> > > > > Wouldn't we just skip the whole issue by documenting the need for defining all PHYs
-> > > > > used on the switch when defining the MDIO bus?
-> > > > 
-> > > > Good idea, please do that.
-> > > 
-> > > https://lore.kernel.org/netdev/0f501bb6-18a0-1713-b08c-6ad244c022ec@arinc9.com/
-> > > 
-> > > Arınç
-> > 
-> > Arınç, where do you see that comment being added? AFAIU, it is a
-> > characteristic of the generic __of_mdiobus_register() code to set
-> > mdio->phy_mask = ~0, and nothing specific to the mt7530.
-> 
-> What I believe is specific to DSA is, 1:1 mapping of the port reg to the
-> PHY reg on the mdio bus is disabled if the mdio bus is defined. Therefore,
-> I believe a notice like below fits mediatek,mt7530.yaml.
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index e532c6b795f4..c59d58252cd5 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -128,6 +128,15 @@ properties:
->        See Documentation/devicetree/bindings/regulator/mt6323-regulator.txt for
->        details for the regulator setup on these boards.
-> +  mdio:
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +    description:
-> +      Node for the internal MDIO bus connected to the embedded ethernet-PHYs.
-> +      For every port defined under the "^(ethernet-)?ports$" node, a PHY must be
-> +      defined under here and a phy-handle property must be defined under the
-> +      port node to point to the PHY node.
-> +
->    mediatek,mcm:
->      type: boolean
->      description:
-> 
-> Arınç
+On Tue, Aug 8, 2023 at 2:02=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro.=
+org> wrote:
+>
+> This series attempts to introduce Adreno 700 support (with A730 and A740
+> found on SM8450 and SM8550 respectively), reusing much of the existing
+> A6xx code. This submission largely lays the groundwork for expansion and
+> more or less gives us feature parity (on the kernel side, that is) with
+> existing A6xx parts.
+>
+> On top of introducing a very messy set of three (!) separate and
+> obfuscated deivce identifiers for each 7xx part, this generation
+> introduces very sophisticated hardware multi-threading and (on some SKUs)
+> hardware ray-tracing (not supported yet).
 
-In that case, putting the comment here would make more sense, no?
-(and maybe enforcing an actual schema, but I've no idea how to do that)
+tbf most of this para above is describing choices kgsl made, and not
+really relevant upstream.. really the only thing that matters for the
+upstream kernel is that chip-id becomes "just a number" ;-)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-index 480120469953..5a415f12f162 100644
---- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-@@ -59,7 +59,14 @@ properties:
-       - rtl8_4t
-       - seville
+If you want to mention why we align chip-id with kgsl, it is (a) mesa
+needs to deal with both upstream and kgsl, and (b) future things we'll
+read this from hw/fw
 
--# CPU and DSA ports must have phylink-compatible link descriptions
-+# CPU and DSA ports must have phylink-compatible link descriptions.
-+# On user ports, these are also supported, but are optional and may be omitted,
-+# meaning that these ports are implicitly connected to a PHY on an internal
-+# MDIO bus of the switch that isn't described in the device tree. If the switch
-+# does have a child node for the internal MDIO bus, the phylink-compatible
-+# bindings are also required (even if this is not enforced here). The detection
-+# of an internal MDIO bus is model-specific and may involve matching on the
-+# "mdio" node name or compatible string.
- if:
-   oneOf:
-     - required: [ ethernet ]
+BR,
+-R
 
-Since commit fe7324b93222 ("net: dsa: OF-ware slave_mii_bus"), DSA as a
-framework also supports auto-creating an internal MDIO bus based on the
-presence of the "mdio" node name, so I guess it makes sense for the
-"mdio" to appear in the generic dsa.yaml if there's nothing else that's
-special about it.
-
-Also, in the earlier patch version you had replied to David Bauer:
-
-| > While i was not aware of this side effect, I don't see how this breaks the ABI.
-| 
-| Your patch doesn't break it, my then-intention of doing PHY muxing by
-| utilising this would. Your first patch is perfectly fine as is.
-
-Could you please clarify what is your valid use case for not having a
-phy-handle to a PHY on an MDIO bus that is otherwise present in OF?
-It doesn't _have_ to be broken. Since DSA knows the addresses of the
-internal PHYs, it can circumvent the lack of auto-scanning by manually
-calling get_phy_device() at the right (port-based) MDIO addresses.
-But any patch would need to have a clear reason before being considered
-for merging.
+> After this series, a long-overdue cleanup of drm/msm/adreno is planned
+> in preparation for adding more features and removing some hardcoding.
+>
+> The last patch is a hack that may or may not be necessary depending
+> on your board's humour.. eh.. :/
+>
+> Developed atop (and hence depends on) [1]
+>
+> The corresponding devicetree patches are initially available at [2] and
+> will be posted after this series gets merged. To test it, you'll also nee=
+d
+> firmware that you need to obtain from your board (there's none with a
+> redistributable license, sorry..). Most likely it will be in one of
+> these directories on your stock android installation:
+>
+> * /vendor/firmware
+> * /vendor/firmware_mnt
+> * /system
+>
+> ..but some vendors make it hard and you have to do some grepping ;)
+>
+> Requires [3] to work on the userspace side. You'll almost cerainly want
+> to test it alongside Zink with a lot of debug flags (early impl), like:
+>
+> TU_DEBUG=3Dsysmem,nolrz,flushall,noubwc MESA_LOADER_DRIVER_OVERRIDE=3Dzin=
+k kmscube
+>
+> [1] https://lore.kernel.org/linux-arm-msm/20230517-topic-a7xx_prep-v4-0-b=
+16f273a91d4@linaro.org/
+> [2] https://github.com/SoMainline/linux/commits/topic/a7xx_dt
+> [3] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23217
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Changes in v2:
+> - Rebase on chipid changes
+> - Reuse existing description for qcom,aoss in patch 2
+> - Pick up tags
+> - Link to v1: https://lore.kernel.org/r/20230628-topic-a7xx_drmmsm-v1-0-a=
+7f4496e0c12@linaro.org
+>
+> ---
+> Konrad Dybcio (14):
+>       dt-bindings: display/msm/gmu: Add Adreno 7[34]0 GMU
+>       dt-bindings: display/msm/gmu: Allow passing QMP handle
+>       dt-bindings: display/msm/gpu: Allow A7xx SKUs
+>       drm/msm/a6xx: Add missing regs for A7XX
+>       drm/msm/a6xx: Introduce a6xx_llc_read
+>       drm/msm/a6xx: Move LLC accessors to the common header
+>       drm/msm/a6xx: Bail out early if setting GPU OOB fails
+>       drm/msm/a6xx: Add skeleton A7xx support
+>       drm/msm/a6xx: Send ACD state to QMP at GMU resume
+>       drm/msm/a6xx: Mostly implement A7xx gpu_state
+>       drm/msm/a6xx: Add A730 support
+>       drm/msm/a6xx: Add A740 support
+>       drm/msm/a6xx: Vastly increase HFI timeout
+>       drm/msm/a6xx: Poll for GBIF unhalt status in hw_init
+>
+>  .../devicetree/bindings/display/msm/gmu.yaml       |  47 +-
+>  .../devicetree/bindings/display/msm/gpu.yaml       |   4 +-
+>  drivers/gpu/drm/msm/adreno/a6xx.xml.h              |   9 +
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c              | 204 +++++--
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |   3 +
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.xml.h          |   8 +
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c              | 667 +++++++++++++++=
++++---
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.h              |  15 +
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        |  52 +-
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        |  61 +-
+>  drivers/gpu/drm/msm/adreno/a6xx_hfi.c              |  90 ++-
+>  drivers/gpu/drm/msm/adreno/adreno_device.c         |  30 +
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.c            |   7 +-
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  28 +-
+>  drivers/gpu/drm/msm/msm_ringbuffer.h               |   2 +
+>  15 files changed, 1094 insertions(+), 133 deletions(-)
+> ---
+> base-commit: b30de2c05cf2166f4e2c68850efc8dcea1c89780
+> change-id: 20230628-topic-a7xx_drmmsm-123f30d76cf7
+>
+> Best regards,
+> --
+> Konrad Dybcio <konrad.dybcio@linaro.org>
+>
