@@ -2,217 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D4677666C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 508B0776686
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:38:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231157AbjHIR1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 13:27:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37534 "EHLO
+        id S230504AbjHIRio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 13:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231140AbjHIR1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:27:05 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C7F90
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 10:27:03 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99c4923195dso14135166b.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 10:27:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1691602022; x=1692206822;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=locXRAZShx/Ip09/WBeCOmXx0r2GGenxopdxoXszxv4=;
-        b=y3JdGKp6XUwqjk5BTCCcWOSzYHLli0AanC7EjSVi+9o0f+WfR+lqztQvdzDIAL9L/e
-         0I0VAp5tOdVvxELYy6mxepOWpK+uSajeU12W2WDZGEX8sVKJcruxVBs/oqNHY5aFewca
-         WO0DcYG524ZrsJiD5IQlU/R+C4JwtWMlzB6NunHWMbHcCRESKtfc+gg4WRVlJgF9SvUB
-         9e6xSq/W+30fyz2Ae4aPIbvi5O/lPTrzk3iTRzDjTcRAh9+Wld7mhzZvEIvJpIOGAB3L
-         69Z41NR4qctOqsuv7VkdtCbSLynNkWqE+byOeGGog+kqYbkpoLWsjFPlwcOvZ/XDWe25
-         CcNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691602022; x=1692206822;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=locXRAZShx/Ip09/WBeCOmXx0r2GGenxopdxoXszxv4=;
-        b=LQWIZTRaEVnp871xRNerJrm/DYR+C2ulfzSt16AnWHqZINoguAJ44lqYlj9cwLy8me
-         RCdbpp952Pe1c7RD4Pi3O5N5530hUXUwiu8GKfb4pE95ikzrsbZsnV5xhJmD9L1OaMjQ
-         eoWf/0pf+4pxVdPm5zeAukTq201zrVZxwAjHX5XykuldlJUR9auNUFzimV1P+hN/8HXk
-         Ikcz0xBDVSDaMOX6rzoPusLW3VxZtTvd9H6MQ2ekL7xf90L644dOZvt5Ycea/WHgO4BT
-         kdQik/9Bga4nfjr/Jn80jO/aE7Qmw/CORLhRQszpwigr+eIklkMLK2lWbGBJvMk2V3Ri
-         kh/g==
-X-Gm-Message-State: AOJu0Yz+5hw2JH7VhH//7TafpNxh9mqX8qdmGJFcLJ9IOo0iHThB5eMl
-        fTNOzS+ak1/rkCw+asOFR//MAYpVFOYbI71JU0E43w==
-X-Google-Smtp-Source: AGHT+IHtrMogMIA6OZzL5wgc+r5NnSaIuZnZRBEHDfchxWZ56RmJp/KfgGoxAx8j/5a373SPm/bsc/EoQEvJQeZRbI4=
-X-Received: by 2002:a17:906:76d4:b0:99c:581f:7f51 with SMTP id
- q20-20020a17090676d400b0099c581f7f51mr2651367ejn.54.1691602022140; Wed, 09
- Aug 2023 10:27:02 -0700 (PDT)
+        with ESMTP id S229829AbjHIRio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:38:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8F7E71;
+        Wed,  9 Aug 2023 10:38:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 43DF264311;
+        Wed,  9 Aug 2023 17:38:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF67C433C7;
+        Wed,  9 Aug 2023 17:38:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691602721;
+        bh=JEJkyDA9mNcPNMW2BuJGF6PgKkgkGalfSfXFkQWZKhM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Tq1eoIkfdHy3ArOqTDn4u16YGaskMie+zV/Px2pdMO+p7mwSk2jIcXc84UbQ3naLy
+         AZL/dX+Xl1TrhwZLNDXZbzjQgkouCcptFeZQlqWaIYf+4HY0hgy0PqKYxONzT3JbvU
+         1YRJbD1aqnZZ/1vN97f7npFMQjU8q4HCvZfeLB38+JHNub2soLcZ+cnTuS0muSkMSA
+         U5zu5gNFUdIx+ghF0n8KC7XLYXAT4xHnKhyFqB8gxeWJl9S/yD8YBTVzj6KGq8p1Xn
+         TXJtNajuj2YmQ2342YfUNUZ/8RFSooDTJImjgBtyd0Z1MVGJEXXHdlZtriKkmMZPDx
+         0j0mY4L9sRysQ==
+Date:   Wed, 9 Aug 2023 18:38:36 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v3 09/10] dt-bindings: net: snps,dwmac: add per
+ channel irq support
+Message-ID: <20230809-scabby-cobweb-bb825dffb309@spud>
+References: <20230809165007.1439-1-jszhang@kernel.org>
+ <20230809165007.1439-10-jszhang@kernel.org>
 MIME-Version: 1.0
-References: <20230806233333.815702-1-festevam@gmail.com> <CAJ+vNU0cDTGHoqJMDdwea48RSaETyvsg2NXCcEE3FBNr4-ckvg@mail.gmail.com>
- <3bbd635f-85a6-9031-3264-e5209f8bc44f@linaro.org>
-In-Reply-To: <3bbd635f-85a6-9031-3264-e5209f8bc44f@linaro.org>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Wed, 9 Aug 2023 10:26:50 -0700
-Message-ID: <CAJ+vNU3UERhaODKE_Btzei-HYEkvNK=roBh5i9Z0GQP-9dryBw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8m-venice: Pass "brcm,bcm4329-fmac"
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="xjvlQWsUfSJ189eD"
+Content-Disposition: inline
+In-Reply-To: <20230809165007.1439-10-jszhang@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 8, 2023 at 11:33=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 09/08/2023 01:52, Tim Harvey wrote:
-> > On Sun, Aug 6, 2023 at 4:33=E2=80=AFPM Fabio Estevam <festevam@gmail.co=
-m> wrote:
-> >>
-> >> From: Fabio Estevam <festevam@denx.de>
-> >>
-> >> Pass "brcm,bcm4329-fmac" to fix the following schema warnings:
-> >>
-> >> imx8mp-venice-gw74xx.dtb: wifi@0: compatible: 'oneOf' conditional fail=
-ed, one must be fixed:
-> >>         ['cypress,cyw4373-fmac'] is too short
-> >>         'cypress,cyw4373-fmac' is not one of ['brcm,bcm4329-fmac', 'pc=
-i14e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425', 'pci14e4,4433'=
-]
-> >>         from schema $id: http://devicetree.org/schemas/net/wireless/br=
-cm,bcm4329-fmac.yaml#
-> >>
-> >> imx8mn-venice-gw7902.dtb: wifi@0: compatible: 'oneOf' conditional fail=
-ed, one must be fixed:
-> >>         ['brcm,bcm43455-fmac'] is too short
-> >>         'brcm,bcm43455-fmac' is not one of ['brcm,bcm4329-fmac', 'pci1=
-4e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425', 'pci14e4,4433']
-> >>         from schema $id: http://devicetree.org/schemas/net/wireless/br=
-cm,bcm4329-fmac.yaml#
-> >>
-> >> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> >> ---
-> >>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 2 +-
-> >>  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts | 2 +-
-> >>  arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts | 2 +-
-> >>  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 2 +-
-> >>  4 files changed, 4 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/=
-arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> >> index 21d7b16d6f84..cde29aa1a0a2 100644
-> >> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> >> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> >> @@ -801,7 +801,7 @@ &usdhc1 {
-> >>         status =3D "okay";
-> >>
-> >>         wifi@0 {
-> >> -               compatible =3D "brcm,bcm43455-fmac";
-> >> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fma=
-c";
-> >>                 reg =3D <0>;
-> >>         };
-> >>  };
-> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/=
-arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> >> index 964cc4fc2ddf..0bff7a6fdca6 100644
-> >> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> >> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> >> @@ -726,7 +726,7 @@ &usdhc2 {
-> >>         status =3D "okay";
-> >>
-> >>         wifi@0 {
-> >> -               compatible =3D "brcm,bcm43455-fmac";
-> >> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fma=
-c";
-> >>                 reg =3D <0>;
-> >>         };
-> >>  };
-> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/=
-arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> >> index 3ac011bbc025..9a36edc60394 100644
-> >> --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> >> +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> >> @@ -679,7 +679,7 @@ &usdhc2 {
-> >>         status =3D "okay";
-> >>
-> >>         wifi@0 {
-> >> -               compatible =3D "brcm,bcm43455-fmac";
-> >> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fma=
-c";
-> >>                 reg =3D <0>;
-> >>         };
-> >>  };
-> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/=
-arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> >> index 3473423ac939..faa370a5885f 100644
-> >> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> >> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> >> @@ -737,7 +737,7 @@ &usdhc1 {
-> >>         status =3D "okay";
-> >>
-> >>         wifi@0 {
-> >> -               compatible =3D "cypress,cyw4373-fmac";
-> >> +               compatible =3D "cypress,cyw4373-fmac", "brcm,bcm4329-f=
-mac";
-> >>                 reg =3D <0>;
-> >>         };
-> >>  };
-> >> --
-> >> 2.34.1
-> >>
-> >
-> > Fabio,
-> >
-> > Thank you for your continued efforts to squash out all these
-> > dt-binding warnings/issues.
-> >
-> > Can you explain what the difference is in the dt-binding yaml between
-> > compatible/oneOf/items/{enum,const} and compatible/oneOf/enum? The
->
-> items defines a list. items with enum and const, defines a list of two
-> items, where first is an enum (so oneOf few) and second is fixed.
->
-> compatible/oneOf/enum is not a list. Or you could look at it as
-> one-element-list.
->
->
-> > first list for Documentation/devicetree/bindings/net/wireless/brcm,bcm4=
-329-fmac.yaml
-> > has a much larger set of enums including the bcm43455 on these boards
-> > but the second set of enums has a much more limited set.
->
-> What's the question here? Both define different things. One defines
-> compatible devices with some model, second defines just some devices.
->
->
-> > There is no
-> > driver code to look at for this because it is bound via SDIO device
-> > id's instead of the dt compatible property.
-> >
-> > Best regards,
-> >
-> > Tim
->
 
-Krzysztof,
+--xjvlQWsUfSJ189eD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the explanation. I see now that if I want to specify
-anything other than the enums in the second item (brcm,bcm4329-fmac,
-and the pci14e4*), per the first item I must follow it with
-'brcm,bcm4329-fmac'.
+On Thu, Aug 10, 2023 at 12:50:06AM +0800, Jisheng Zhang wrote:
+> The IP supports per channel interrupt, add support for this usage case.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 
-Acked-by: Tim Harvey <tharvey@gateworks.com>
+I do not see a response to
+<https://lore.kernel.org/all/20230808-clapper-corncob-0af7afa65752@spud/>
+in my mailbox or on lore, nor is there any changes in v3 on this front.
 
-best regards,
+Thanks,
+Conor.
 
-Tim
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
+mentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 5d81042f5634..5a63302ad200 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -109,6 +109,7 @@ properties:
+>        - description: The interrupt that occurs when Rx exits the LPI sta=
+te
+>        - description: The interrupt that occurs when Safety Feature Corre=
+ctible Errors happen
+>        - description: The interrupt that occurs when Safety Feature Uncor=
+rectible Errors happen
+> +      - description: All of the rx/tx per-channel interrupts
+> =20
+>    interrupt-names:
+>      minItems: 1
+> @@ -118,6 +119,38 @@ properties:
+>        - const: eth_lpi
+>        - const: sfty_ce
+>        - const: sfty_ue
+> +      - const: rx0
+> +      - const: rx1
+> +      - const: rx2
+> +      - const: rx3
+> +      - const: rx4
+> +      - const: rx5
+> +      - const: rx6
+> +      - const: rx7
+> +      - const: rx8
+> +      - const: rx9
+> +      - const: rx10
+> +      - const: rx11
+> +      - const: rx12
+> +      - const: rx13
+> +      - const: rx14
+> +      - const: rx15
+> +      - const: tx0
+> +      - const: tx1
+> +      - const: tx2
+> +      - const: tx3
+> +      - const: tx4
+> +      - const: tx5
+> +      - const: tx6
+> +      - const: tx7
+> +      - const: tx8
+> +      - const: tx9
+> +      - const: tx10
+> +      - const: tx11
+> +      - const: tx12
+> +      - const: tx13
+> +      - const: tx14
+> +      - const: tx15
+> =20
+>    clocks:
+>      minItems: 1
+> --=20
+> 2.40.1
+>=20
+
+--xjvlQWsUfSJ189eD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNPPHAAKCRB4tDGHoIJi
+0uDFAP4qH8Xnk1lWdOwlIW0fWCJyaXgG1F8zPUQ2Gsb4MgpJXAD/aFtaJoIkYfZ/
+21lPuNeab/ZdCafUEILwlmTgvCUFsw0=
+=r6X8
+-----END PGP SIGNATURE-----
+
+--xjvlQWsUfSJ189eD--
