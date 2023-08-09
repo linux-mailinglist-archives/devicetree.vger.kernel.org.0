@@ -2,173 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F422F775A6F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 13:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A55775BD8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 13:21:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233173AbjHILIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 07:08:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
+        id S233559AbjHILVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 07:21:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233166AbjHILIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 07:08:24 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C088DED;
-        Wed,  9 Aug 2023 04:08:23 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-563393b63dbso1026406eaf.1;
-        Wed, 09 Aug 2023 04:08:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691579303; x=1692184103;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TYFU+JWeZ+yWYoi2UmtBxXHBh0Cp9KdbrDyGhS8cH2E=;
-        b=lNwN9wRbMI2UGV0V+vNG+3YiwwqXQbqnUpyOXoKYhHUq8F3xRvZPowLib7vACsz77Y
-         lfyhIYgYZ1XPgzCR4pZx9v7/h47qGNHqLPr5KeMnd9XrGQp4kW3ysC0KzOiIziihM5gD
-         5FlNV+N5d4WO3BKTEJXZgkbCmDaOo/MJ0WRqK3yNm1GBCBSm92We6h8zEWmJBbaewBFI
-         HH1lNvXapxDoSl9kHCVM/CRYELSLYPqdjkjsPHfGit0maoahKXZ6oqk8HiOw1tb/wIVb
-         ENOby2+KeIq90lzBO3T9tVio3q6WeLr8i0OwGbaWPpT6Pg8qbncPhBoabRSAe9WJKdKA
-         oCpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691579303; x=1692184103;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TYFU+JWeZ+yWYoi2UmtBxXHBh0Cp9KdbrDyGhS8cH2E=;
-        b=hF7rc93b5+ZB8RJzcxKaJGRi83ZDT4NCpW4ItYm19R2sOAIAEAkEsxHXaSJjeEoEhI
-         IE6do5kk/PNf75qvuypZZjnHvdh+DoLel6vgmHTO/Nqmf/dXX9qV5H6tpDiBowEDxYGS
-         cT4I8n50s/ra4ox/JKI58mIySUytVdvk/jRwfE5lPL1f/7+HEZ9ORcqzWFLYbkRsmKyr
-         /sM6h/Ag13R+yfzYVkIxM/zWTHJLwj5DyLovE8cj4Zjl0O3h3BsKS237kRHnd6dq3Z+U
-         Q1G0EgpobZZUU0Sq4YaOR0PLoncFw+5JQN6qLKTo9VDQx50Fln5j45HLSA2so1pQoppk
-         gi+Q==
-X-Gm-Message-State: AOJu0YyGhJlIPlTLx+3Q6Kh50pFz/VL6gpRjZrR2OLK2TCObx+R0Kgpo
-        9FvMUmGu1r/S3kpdmgJtrR8=
-X-Google-Smtp-Source: AGHT+IHAEJfAqNRzKyv/6f2BxXsgNN9JO/p92gRF+Ox8iBNkqKuCbX0NHRdNVg0S5CohquPyUOKcRw==
-X-Received: by 2002:a4a:a64a:0:b0:56c:484a:923d with SMTP id j10-20020a4aa64a000000b0056c484a923dmr2209591oom.1.1691579302936;
-        Wed, 09 Aug 2023 04:08:22 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9f74:900a:da2a:e14e])
-        by smtp.gmail.com with ESMTPSA id x17-20020a4a4111000000b0056d2dde4cb7sm6834658ooa.0.2023.08.09.04.08.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 04:08:22 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     giometti@enneenne.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: pps: pps-gpio: Convert to yaml
-Date:   Wed,  9 Aug 2023 08:08:12 -0300
-Message-Id: <20230809110812.2058428-1-festevam@gmail.com>
+        with ESMTP id S233554AbjHILVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 07:21:37 -0400
+Received: from omta040.useast.a.cloudfilter.net (omta040.useast.a.cloudfilter.net [44.202.169.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D1619A1
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 04:21:37 -0700 (PDT)
+Received: from eig-obgw-6002a.ext.cloudfilter.net ([10.0.30.222])
+        by cmsmtp with ESMTP
+        id TSiUqyVBcyYOwThFwqgnDe; Wed, 09 Aug 2023 11:21:36 +0000
+Received: from just2025.justhost.com ([173.254.28.237])
+        by cmsmtp with ESMTPS
+        id ThFvqb5LuaW8pThFvqQ4UB; Wed, 09 Aug 2023 11:21:35 +0000
+X-Authority-Analysis: v=2.4 cv=cIbzD3SN c=1 sm=1 tr=0 ts=64d376bf
+ a=Jt2RHIFfQig1ELqEZVeWfA==:117 a=Jt2RHIFfQig1ELqEZVeWfA==:17
+ a=OWjo9vPv0XrRhIrVQ50Ab3nP57M=:19 a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19
+ a=UttIx32zK-AA:10 a=5SfhNeb3QxAA:10 a=VwQbUJbxAAAA:8 a=QX4gbG5DAAAA:8
+ a=DgXrqYuCAAAA:8 a=LN1DEILRDWMThqYPT54A:9 a=AjGcO6oz07-iQ99wixmX:22
+ a=AbAUZ8qAyYyZVLSsDulk:22 a=NFkmT8Fa3oR8cXbSjPxL:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=singleboardsolutions.com; s=default; h=Content-Transfer-Encoding:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=IRedR4a0UlTeO6ZLpW4sOxZ1W5NZ59F4Kr/32UOhOHI=; b=S90OJCD9XNMVR6z9gcTVHfx0w8
+        NSmikuUCei/ID16IxoqO3sm94eN39kaasf+L0mA7C51j6nyBbdcNY5ORT33HenC3VmEcY7nKqtagA
+        PpdFpg3dEf+F367SbfTYo8FOE712CRKTZ9QsugRLmA6e6fT42R6+07XcBhYYLW0FxSzfpz6wxjlWC
+        T8mqAiCPF+vBz6NQCCEKz4J3Y0NBtQBllx/KUglWYdLiCs7KNcZUcfZmzQ+apFpAPN1TdHVEnwSs8
+        d4I5Czitxc8mMsrqc3SvP41NlAl9lKsZa/CFxygdtOa9qAph2ikzrLFJdPpK12wN8nbLQYxOm/hhu
+        fEIJsb/Q==;
+Received: from 097-084-242-070.res.spectrum.com ([97.84.242.70]:62810 helo=localhost.localdomain)
+        by just2025.justhost.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.96)
+        (envelope-from <tmckahan@singleboardsolutions.com>)
+        id 1qThFu-003Jjq-2K;
+        Wed, 09 Aug 2023 05:21:34 -0600
+From:   Thomas McKahan <tmckahan@singleboardsolutions.com>
+To:     "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Thomas McKahan <tmckahan@singleboardsolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH v2 0/2] Add Support for the FriendlyElec NanoPC T6
+Date:   Wed,  9 Aug 2023 07:21:15 -0400
+Message-Id: <20230809112120.99-1-tmckahan@singleboardsolutions.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - just2025.justhost.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - singleboardsolutions.com
+X-BWhitelist: no
+X-Source-IP: 97.84.242.70
+X-Source-L: No
+X-Exim-ID: 1qThFu-003Jjq-2K
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 097-084-242-070.res.spectrum.com (localhost.localdomain) [97.84.242.70]:62810
+X-Source-Auth: tmckahan@singleboardsolutions.com
+X-Email-Count: 3
+X-Org:  HG=bhshared_jh;ORG=bluehost;
+X-Source-Cap: ZWxlY3RyaTk7ZWxlY3RyaTk7anVzdDIwMjUuanVzdGhvc3QuY29t
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfH+z3gTyNtZwW80pLwohHWNQcnrmp+VfLJikIOKPZbs0lslBdpGeNoCkO4W5SiXAOdHKgcBaWtwNBmVv7VcAF1Y/hJLmLx049Dwle+gX+dyFuhmFWfR4
+ pPGXMglEQsRM6CcwotWtS+SUi4VQQCu1D2HyFYBOJWT9po91Orostv2NuIwZvrIltM3tWqMYqw5ZFUBtRJOUs65j0AsLlp4QWAdiuMNxlNaOk3Put6Z94e7H
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_SOFTFAIL,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+Hello,
 
-Convert from pps-gpio.txt to pps-gpio.yaml to allow schema validation.
+This adds support for the RK3588-based NanoPC T6 single board computer.
+Note this series is dependent on the PCIe 3 support [0] being
+upstreamed. The NanoPC T6 uses PCIe3x4 like the Rock 5B and EVB1.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../devicetree/bindings/pps/pps-gpio.txt      | 30 ------------
- .../devicetree/bindings/pps/pps-gpio.yaml     | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pps/pps-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/pps/pps-gpio.yaml
+[0] https://lore.kernel.org/all/20230717173512.65169-1-sebastian.reichel@collabora.com/
 
-diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.txt b/Documentation/devicetree/bindings/pps/pps-gpio.txt
-deleted file mode 100644
-index 9012a2a02e14..000000000000
---- a/Documentation/devicetree/bindings/pps/pps-gpio.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Device-Tree Bindings for a PPS Signal on GPIO
--
--These properties describe a PPS (pulse-per-second) signal connected to
--a GPIO pin.
--
--Required properties:
--- compatible: should be "pps-gpio"
--- gpios: one PPS GPIO in the format described by ../gpio/gpio.txt
--
--Additional required properties for the PPS ECHO functionality:
--- echo-gpios: one PPS ECHO GPIO in the format described by ../gpio/gpio.txt
--- echo-active-ms: duration in ms of the active portion of the echo pulse
--
--Optional properties:
--- assert-falling-edge: when present, assert is indicated by a falling edge
--                       (instead of by a rising edge)
--
--Example:
--	pps {
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_pps>;
--
--		gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
--		assert-falling-edge;
--
--		echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
--		echo-active-ms = <100>;
--
--		compatible = "pps-gpio";
--	};
-diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.yaml b/Documentation/devicetree/bindings/pps/pps-gpio.yaml
-new file mode 100644
-index 000000000000..801fd2720080
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pps/pps-gpio.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pps/pps-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: PPS Signal via GPIO
-+
-+maintainers:
-+  - Fabio Estevam <festevam@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: pps-gpio
-+
-+  gpios:
-+    description: The GPIO that provides the PPS signal.
-+
-+  echo-gpios:
-+    description: The GPIO that provides the PPS ECHO signal.
-+
-+  echo-active-ms:
-+    description: Duration in ms of the active portion of the echo pulse.
-+
-+  assert-falling-edge:
-+    description: Indicates a falling edge assert, when present. Rising edge if absent.
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/gpio/gpio.h>
-+
-+      pps {
-+          compatible = "pps-gpio";
-+          pinctrl-names = "default";
-+          pinctrl-0 = <&pinctrl_pps>;
-+          gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
-+          assert-falling-edge;
-+          echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-+          echo-active-ms = <100>;
-+      };
+v2:
+ - remove unnecessary "okay" status from sound 
+ - add '-regulator' suffix on 2 regulators that were missing them
+ - use generic node name for rtc
+ - remove extra lines
+ - fix alignment in I2S entry
+ 
+v1: https://lore.kernel.org/all/20230802051441.3106-1-tmckahan@singleboardsolutions.com/
+
+Thomas McKahan (2):
+  dt-bindings: arm: rockchip: Add NanoPC T6
+  arm64: dts: rockchip: Add NanoPC T6
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 842 ++++++++++++++++++
+ 3 files changed, 848 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+
 -- 
 2.34.1
 
