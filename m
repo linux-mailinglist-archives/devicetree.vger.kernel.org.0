@@ -2,238 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C538775365
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 09:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62642775396
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 09:08:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231340AbjHIHCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 03:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
+        id S229638AbjHIHIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 03:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbjHIHCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 03:02:03 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C901BF7
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 00:02:02 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-267fcd6985cso4540740a91.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 00:02:02 -0700 (PDT)
+        with ESMTP id S229785AbjHIHIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 03:08:21 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155A6E7D;
+        Wed,  9 Aug 2023 00:08:20 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so953193266b.2;
+        Wed, 09 Aug 2023 00:08:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1691564522; x=1692169322;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oA4Y4YVJk393hhh41gsTxcc/kNbbX/n08U98oNmh4/w=;
-        b=hZ/72Sv75WYBkFU1n2H+ug8kvhWmdwucgKI4Hmadno8B5LfsJ7dn9ObXfcwz4Fkk+Q
-         fYBDABKRxpSjcPE9PVLt8pJqP1OKPSE1050SpHdv/h2qLni7QWjnBCujCWS5/3wifvAx
-         E0tISjHn5ijK3CCVy0QGAAHFbqAEfDsoDZ9Oz++vFCSS0MMMWxTJnJwz7TSadbBvwtCJ
-         FCVvqcdNIonx8Anp+xXwZK5MnRb/eigUrrAjOEl0/1lTsITyd8QbsR6/agcCojI48z8F
-         BcQNQJeCprAqD5TmGv7yHUV1zIs+sv74Z9NBxqm5JxdgBTRgHw3c6ALqlgFLokt4S+Po
-         N2gQ==
+        d=jms.id.au; s=google; t=1691564898; x=1692169698;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=efeZhhVQ7Hgd+Z5RFLNzm6TIjkcq+2KXdvMHgboSY+c=;
+        b=gBizDH7SP+qvPi4NXoWxoAFk8kd8GYsHpwQalZ9/f0yCezaxs5Sh2EoGC9jVPWPDWO
+         kw+QHmPyFcDN9xHUSShEGDzwbp5PVcs4U1wL1s8bAPvWM+S/2r5wePFD3qLUB7YwRCkx
+         xDVK6GMgLZD4kjkl8oG0Nh2j6PZKwy0RZHdjU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691564522; x=1692169322;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oA4Y4YVJk393hhh41gsTxcc/kNbbX/n08U98oNmh4/w=;
-        b=Q6ZBGOREkZnenY6qOFPj+BsMjpj7RMRfnW065JzGYofeOyMqlRvi2GMbZ0XccLM2xU
-         FOUD9yVEzE2X3v3z7St4Kz7T4E4XEyorQQEBkudxl5QIcyOD+3aSWRmZ7CQllehfbAQE
-         oVVyAbpZYETvMwWH+85DI8Qcrj9qkTrxJXrUt2uXVwF18rDp3+HjSv057o0M9jRUwsWP
-         864VAcZDhBgXPrJfoOPxb6PyUhFV/0eci93aBOfw63EaRrhCBuyybUG9mAeaYQ0iqEVH
-         kQiaDRqzaI479vV7yRc7ZFo5Jql5o5kDwDgl0FArIqfLOwmz8AKvV4Fsag/2Kfptwara
-         RF0w==
-X-Gm-Message-State: AOJu0YxOTYVP4yt7ANwJQd68ONS9trpA9GsDEP3HQhp4c5S8uRCOuzPs
-        3johtv3zYo8tihbIrdwKz5R/nA==
-X-Google-Smtp-Source: AGHT+IHDc6TJVpz+CoOm0i5o93QoNx0hWbKOeM6hYi2/LTLG2MvOxXdCzJdvcy51etkgA9aRu+Y9Ww==
-X-Received: by 2002:a17:90a:ec0c:b0:268:1f0a:9f12 with SMTP id l12-20020a17090aec0c00b002681f0a9f12mr1436168pjy.29.1691564522040;
-        Wed, 09 Aug 2023 00:02:02 -0700 (PDT)
-Received: from [10.0.2.15] ([82.78.167.79])
-        by smtp.gmail.com with ESMTPSA id gq9-20020a17090b104900b002694da8a9cdsm669814pjb.48.2023.08.09.00.01.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 00:02:01 -0700 (PDT)
-Message-ID: <91a5c6e5-eff1-0fcd-32fe-71a081f4e1f6@tuxon.dev>
-Date:   Wed, 9 Aug 2023 10:01:48 +0300
+        d=1e100.net; s=20221208; t=1691564898; x=1692169698;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=efeZhhVQ7Hgd+Z5RFLNzm6TIjkcq+2KXdvMHgboSY+c=;
+        b=ZH+BCJnwpHMQJoT1nfUPGZuynIHCHGR8Gv03o0iu9cRs9rE99Ev2jJ2df7lBUGzekv
+         jO0aCKvjKD+9KGaSMbzBYiWcaGuCCBkjJN6fgT8Jw33IuInpTls3uyHUECRfgJjo6bSv
+         zcky5tfsHv9pkSRuJXhFwMGSHCrJ4i7D0CduC2H4hq5ncRyXmX3vADSXHUXTgel0nWpq
+         VC6WxL6tvxv6KnU+cwHcdHDkWHHTEn/A071BIfJAvgVhjcMjxRCnSmXbqSR9u2AOweBj
+         xUsun+S35UkB4P02O7JJcFcHqV5wLMCzP/9vzT4bEhqNnfk5LPFRgxp0UOem2qUCE4vn
+         aHsA==
+X-Gm-Message-State: AOJu0Yzch7zpedaycP8hIG+7wvqJzBZ+tNg1LVM1DPa5735SziRVeaky
+        /LWfy3DuGFTJvSc699Fur8I6tp796AuhRju20beU6xmtB88=
+X-Google-Smtp-Source: AGHT+IG9WPtvvPFcs+JZhfNTSkTxgJ3NLyfBKSn18++X0ix38HHI9F/MDy5a5SjBBE0DCSrRFahuOMQ2XpWuMKw6D0k=
+X-Received: by 2002:a17:906:10cb:b0:99b:e6ec:752c with SMTP id
+ v11-20020a17090610cb00b0099be6ec752cmr1637690ejv.70.1691564898243; Wed, 09
+ Aug 2023 00:08:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 50/50] ARM: dts: at91: sam9x75_curiosity: add sam9x75
- curiosity board
-Content-Language: en-US
-To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+References: <20230612195657.245125-1-eajames@linux.ibm.com> <20230612195657.245125-12-eajames@linux.ibm.com>
+In-Reply-To: <20230612195657.245125-12-eajames@linux.ibm.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 9 Aug 2023 07:08:05 +0000
+Message-ID: <CACPK8Xe1OmLtLrONZmqib6BhDyPHzj+HcOd15MXyK0QVHPTOEg@mail.gmail.com>
+Subject: Re: [PATCH 11/14] fsi: Improve master indexing
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-fsi@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        jk@ozlabs.org, alistair@popple.id.au, andrew@aj.id.au,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        andre.przywara@arm.com, f.fainelli@gmail.com,
-        romain.perier@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mihai Sain - M19926 <Mihai.Sain@microchip.com>
-References: <20230728103114.267845-1-varshini.rajendran@microchip.com>
-From:   claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20230728103114.267845-1-varshini.rajendran@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_FMBLA_NEWDOM28,
-        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        conor+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED,URIBL_CSS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 12 Jun 2023 at 19:57, Eddie James <eajames@linux.ibm.com> wrote:
+>
+> Master indexing is problematic if a hub is rescanned while the
+> root master is being rescanned. Move the IDA free below the device
+> unregistration, lock the scan mutex in the probe function, and
+> request a specific idx in the hub driver.
 
+I've applied this series, but taking a closer look at this patch I
+think it can be improved. If you resend, just send this patch.
 
-On 28.07.2023 13:31, Varshini Rajendran wrote:
-> Add device tree file for sam9x75 curiosity board.
-> 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->  arch/arm/boot/dts/microchip/Makefile          |   5 +
->  .../dts/microchip/at91-sam9x75_curiosity.dts  | 311 ++++++++++++++++++
->  2 files changed, 316 insertions(+)
->  create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-> 
-> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-> index 0f5193d05a31..f3d604c30325 100644
-> --- a/arch/arm/boot/dts/microchip/Makefile
-> +++ b/arch/arm/boot/dts/microchip/Makefile
-> @@ -10,6 +10,7 @@ DTC_FLAGS_at91-sama5d3_eds := -@
->  DTC_FLAGS_at91-sama5d3_xplained := -@
->  DTC_FLAGS_at91-sama5d4_xplained := -@
->  DTC_FLAGS_at91-sama7g5ek := -@
-> +DTC_FLAGS_at91-sam9x75_curiosity := -@
->  dtb-$(CONFIG_SOC_AT91RM9200) += \
->  	at91rm9200ek.dtb \
->  	mpa1600.dtb
-> @@ -61,6 +62,10 @@ dtb-$(CONFIG_SOC_SAM9X60) += \
->  	at91-sam9x60_curiosity.dtb \
->  	at91-sam9x60ek.dtb
->  # Enables support for device-tree overlays
-> +DTC_FLAGS_at91-sam9x75_curiosity := -@
-> +dtb-$(CONFIG_SOC_SAM9X7) += \
-> +	at91-sam9x75_curiosity.dtb
-> +# Enables support for device-tree overlays
->  DTC_FLAGS_at91-sama5d27_som1_ek := -@
->  DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
->  DTC_FLAGS_at91-sama5d2_icp := -@
-> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-> new file mode 100644
-> index 000000000000..a9ecb02a9f3c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-> @@ -0,0 +1,311 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
-> + *
-> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-> + *
-> + * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
-> + */
-> +/dts-v1/;
-> +#include "sam9x7.dtsi"
-> +#include <dt-bindings/input/input.h>
+>  drivers/fsi/fsi-core.c       | 41 ++++++++++++++++++++++--------------
+>  drivers/fsi/fsi-master-hub.c |  2 ++
+>  2 files changed, 27 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/fsi/fsi-core.c b/drivers/fsi/fsi-core.c
+> index ec4d02264391..503061a6740b 100644
+> --- a/drivers/fsi/fsi-core.c
+> +++ b/drivers/fsi/fsi-core.c
+> @@ -1327,46 +1327,55 @@ static struct class fsi_master_class = {
+>  int fsi_master_register(struct fsi_master *master)
+>  {
+>         int rc;
+> -       struct device_node *np;
+>
+>         mutex_init(&master->scan_lock);
+> -       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
 > +
-> +/ {
-> +	model = "Microchip SAM9X75 Curiosity";
-> +	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
-> +
-> +	aliases {
-> +		i2c0 = &i2c6;
-> +		i2c1 = &i2c7;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	clocks {
-> +		clock-slowxtal {
-> +			clock-frequency = <32768>;
-> +		};
-> +
-> +		clock-mainxtal {
-> +			clock-frequency = <24000000>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
-> +
-> +		button-user {
-> +			label = "USER";
-> +			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_PROG1>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
-> +
-> +		led-0 {
-> +			label = "red";
-> +			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led-1 {
-> +			label = "green";
-> +			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led-2 {
-> +			label = "blue";
-> +			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	memory@20000000 {
-> +		device_type = "memory";
-> +		reg = <0x20000000 0x10000000>;
-> +	};
-> +};
-> +
-> +&dbgu {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_dbgu>;
-> +	status = "okay";
-> +};
-> +
-> +&dma0 {
-> +	status = "okay";
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&flx6 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-> +	status = "okay";
-> +
-> +	i2c6 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_flx6_default>;
-> +		i2c-analog-filter;
-> +		i2c-digital-filter;
-> +		i2c-digital-filter-width-ns = <35>;
-> +		status = "okay";
-> +
-> +		pmic@5b {
-> +			compatible = "microchip,mcp16502";
-> +			reg = <0x5b>;
-> +
-> +			regulators {
-> +				vdd_3v3: VDD-IO {
+> +       if (master->idx) {
 
-Mihai reported that having '-' in node name for this PMIC driver leads to
-failures on probe. Can you also check on your side?
+Why do we allocate a new idx if there's already one?
 
-> +					regulator-name = "VDD_IO";
-> +					regulator-min-microvolt = <3000000>;
+> +               master->idx = ida_alloc_range(&master_ida, master->idx,
+> +                                             master->idx, GFP_KERNEL);
+
+If we can't get one in the range we want, we ask for any? Should this
+print a warning?
+
+> +               if (master->idx < 0)
+> +                       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
+> +       } else {
+
+If ixd was zero, we create one. This is the "normal" case?
+
+> +               master->idx = ida_alloc(&master_ida, GFP_KERNEL);
+> +       }
+> +
+
+We check the same error condition again.
+
+>         if (master->idx < 0)
+>                 return master->idx;
+
+>
+> -       dev_set_name(&master->dev, "fsi%d", master->idx);
+> +       if (!dev_name(&master->dev))
+> +               dev_set_name(&master->dev, "fsi%d", master->idx);
+> +
+>         master->dev.class = &fsi_master_class;
+>
+> +       mutex_lock(&master->scan_lock);
+>         rc = device_register(&master->dev);
+>         if (rc) {
+>                 ida_free(&master_ida, master->idx);
+> -               return rc;
+> -       }
+> +       } else {
+> +               struct device_node *np = dev_of_node(&master->dev);
+
+This change looks a bit different to the idx changes. What's happening here?
+>
+> -       np = dev_of_node(&master->dev);
+> -       if (!of_property_read_bool(np, "no-scan-on-init")) {
+> -               mutex_lock(&master->scan_lock);
+> -               fsi_master_scan(master);
+> -               mutex_unlock(&master->scan_lock);
+> +               if (!of_property_read_bool(np, "no-scan-on-init"))
+> +                       fsi_master_scan(master);
+>         }
+>
+> -       return 0;
+> +       mutex_unlock(&master->scan_lock);
+> +       return rc;
+>  }
+>  EXPORT_SYMBOL_GPL(fsi_master_register);
+>
+>  void fsi_master_unregister(struct fsi_master *master)
+>  {
+> -       trace_fsi_master_unregister(master);
+> +       int idx = master->idx;
+>
+> -       if (master->idx >= 0) {
+> -               ida_free(&master_ida, master->idx);
+> -               master->idx = -1;
+> -       }
+> +       trace_fsi_master_unregister(master);
+>
+>         mutex_lock(&master->scan_lock);
+>         fsi_master_unscan(master);
+> +       master->n_links = 0;
+>         mutex_unlock(&master->scan_lock);
+> +
+>         device_unregister(&master->dev);
+> +       ida_free(&master_ida, idx);
+>  }
+>  EXPORT_SYMBOL_GPL(fsi_master_unregister);
+>
+> diff --git a/drivers/fsi/fsi-master-hub.c b/drivers/fsi/fsi-master-hub.c
+> index 6d8b6e8854e5..36da643b3201 100644
+> --- a/drivers/fsi/fsi-master-hub.c
+> +++ b/drivers/fsi/fsi-master-hub.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/slab.h>
+>
+>  #include "fsi-master.h"
+> +#include "fsi-slave.h"
+>
+>  #define FSI_ENGID_HUB_MASTER           0x1c
+>
+> @@ -229,6 +230,7 @@ static int hub_master_probe(struct device *dev)
+>         hub->master.dev.release = hub_master_release;
+>         hub->master.dev.of_node = of_node_get(dev_of_node(dev));
+>
+> +       hub->master.idx = fsi_dev->slave->link + 1;
+>         hub->master.n_links = links;
+>         hub->master.read = hub_master_read;
+>         hub->master.write = hub_master_write;
+> --
+> 2.31.1
+>
