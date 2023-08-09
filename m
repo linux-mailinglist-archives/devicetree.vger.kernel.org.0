@@ -2,112 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E62AA7750BA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 04:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46C097750E7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 04:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbjHICM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 22:12:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
+        id S229831AbjHICbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 22:31:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjHICM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 22:12:27 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113BCF3;
-        Tue,  8 Aug 2023 19:12:25 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 512ABC0003;
-        Wed,  9 Aug 2023 02:12:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1691547144;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=9rFEnNQwjkEYrsNofQX5zgngbo+/k9VPRl09iaDkgfw=;
-        b=fM1JUYttGO4l1yPqT972IWNuJVhnctqVpdBXINuBxD+8nApZhrNa8mcnHMV4WKIHk8ap9B
-        RqJ5YhliqSkKlnIcVDiysBN9l4D5u1V4IF2F+Y/CYYRRZ6OH1Voaj66uA99yBwWY2zDTHP
-        eABokGOWzkeePett3NFaEAIJj+QFkFqEIATr+CoH8n9FcnIcEUBjlw8UZC28p3aiH0MeL3
-        /uss7CiOLllKYPt3QvzbgHE/9qZnyqW5OSQJcCL6SaBxk+EFqCGtgLNItpnaKOy2xbxKlb
-        KTWsJ3/Amn7Kb1ttZbbpt/+CgSO4TudC/m+A074ZxLdZP1f85mHyUuU9uZo30g==
-Date:   Wed, 9 Aug 2023 04:12:24 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jacky Huang <ychuang570808@gmail.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [RESEND PATCH v2 3/3] rtc: Add driver for Nuvoton ma35d1 rtc
- controller
-Message-ID: <20230809021224ab4f229f@mail.local>
-References: <20230809011542.429945-1-ychuang570808@gmail.com>
- <20230809011542.429945-4-ychuang570808@gmail.com>
- <20230809021025a7c0daec@mail.local>
+        with ESMTP id S229639AbjHICbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 22:31:01 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3C81BD3;
+        Tue,  8 Aug 2023 19:30:59 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3792UkQk048982;
+        Tue, 8 Aug 2023 21:30:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691548246;
+        bh=x9X49Z0FUBzosRXT4VP4CXNHS0X1jBUs00Dwd75B1ps=;
+        h=From:To:CC:Subject:Date;
+        b=nn8r9U81W8lwoisi/+HdJSorO0uab5cN4DR+BcvQIkZuGVeLNQzHKAL25LEZ4YYs9
+         ihIqKIA2jLNGRIiwEKDsaJwhs5lJ/TeLYVJwA5UPXg3i+Vy+nJopjlKV0i/gt4wulK
+         D9Yp3Xh80ZJYnlYLQMbCcf3nBEjfdam/PU+0fOow=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3792Uksm060897
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Aug 2023 21:30:46 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Aug 2023 21:30:46 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 8 Aug 2023 21:30:46 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3792UkVg120103;
+        Tue, 8 Aug 2023 21:30:46 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+CC:     Tony Lindgren <tony@atomide.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Vibhore Vardhan <vibhore@ti.com>, Dhruva Gole <d-gole@ti.com>,
+        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V3 0/2] dt-bindings: opp/cpufreq: Convert ti-cpufreq to json schema
+Date:   Tue, 8 Aug 2023 21:30:43 -0500
+Message-ID: <20230809023045.1870410-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230809021025a7c0daec@mail.local>
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2023 04:10:27+0200, Alexandre Belloni wrote:
-> > +static int ma35d1_rtc_probe(struct platform_device *pdev)
-> > +{
-> > +	struct ma35_rtc *rtc;
-> > +	struct clk *clk;
-> > +	u32 regval;
-> > +	int err;
-> > +
-> > +	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-> > +	if (!rtc)
-> > +		return -ENOMEM;
-> > +
-> > +	rtc->rtc_reg = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(rtc->rtc_reg))
-> > +		return PTR_ERR(rtc->rtc_reg);
-> > +
-> > +	clk = of_clk_get(pdev->dev.of_node, 0);
-> > +	if (IS_ERR(clk))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "failed to find rtc clock\n");
-> > +
-> > +	err = clk_prepare_enable(clk);
-> > +	if (err)
-> > +		return -ENOENT;
-> > +
-> > +	platform_set_drvdata(pdev, rtc);
-> > +
-> > +	rtc->rtcdev = devm_rtc_device_register(&pdev->dev, pdev->name,
-> > +					       &ma35d1_rtc_ops, THIS_MODULE);
-> > +	if (IS_ERR(rtc->rtcdev))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtcdev),
-> > +				     "failed to register rtc device\n");
-> 
-> This MUST be done last in probe, else you open a race with userspace.
-> 
-> 
-> > +
-> > +	err = ma35d1_rtc_init(rtc, RTC_INIT_TIMEOUT);
-> > +	if (err)
-> > +		return err;
-> > +
-> 
-> I don't believe you should do this on every probe but only when this
-> hasn't been done yet.
-> 
+Hi,
 
-Also, if you can know that the time has never been set, don't discard
-this information, this is crucial information and it needs to be
-reported to userspace.
+Convert the long pending free-form text bindings of ti-cpufreq and
+omap5-opp-supply bindings to json-schema.
 
+Changes from V2:
+* Fixed up minor typo in commit message, picked up Dhruva's review
+
+V2: https://lore.kernel.org/all/20230801233341.1416552-1-nm@ti.com/
+V1: https://lore.kernel.org/all/20230724153911.1376830-1-nm@ti.com/
+
+
+Nishanth Menon (2):
+  dt-bindings: opp: Convert ti-omap5-opp-supply to json schema
+  dt-bindings: cpufreq: Convert ti-cpufreq to json schema
+
+ .../bindings/cpufreq/ti-cpufreq.txt           | 132 ------------------
+ .../opp/operating-points-v2-ti-cpu.yaml       |  88 ++++++++++++
+ .../bindings/opp/ti,omap-opp-supply.yaml      | 103 ++++++++++++++
+ .../bindings/opp/ti-omap5-opp-supply.txt      |  63 ---------
+ 4 files changed, 191 insertions(+), 195 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/cpufreq/ti-cpufreq.txt
+ create mode 100644 Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/opp/ti,omap-opp-supply.yaml
+ delete mode 100644 Documentation/devicetree/bindings/opp/ti-omap5-opp-supply.txt
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.40.0
+
