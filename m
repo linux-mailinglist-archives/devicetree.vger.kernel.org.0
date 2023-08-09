@@ -2,115 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 051F577627B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 266D3776283
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233331AbjHIO3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 10:29:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41862 "EHLO
+        id S232408AbjHIOb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 10:31:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233324AbjHIO3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:29:39 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A216F1FF9
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 07:29:38 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fe5c0e57d2so27376585e9.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 07:29:38 -0700 (PDT)
+        with ESMTP id S229827AbjHIOb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:31:27 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278E110F5
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 07:31:26 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso5416242f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 07:31:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691591377; x=1692196177;
+        d=linaro.org; s=google; t=1691591484; x=1692196284;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MNnJWt3Ml/e+CS6gb7T+DN3KuuP7RKuupkwVkLHrzVg=;
-        b=IunFX9+mWaUKoG9jeAXOfPCHo25r5SrUF/iqYKMmj28P0SoMMQPPlOxT5tyXIV5Guh
-         GNZECi3lLcwR8CcpfFE13EmQtbDip8bP6QcLPB9imA/DXNB0wvacylNp3oTVlPY5cf+4
-         qNRek2RHoRPFQ6LlDGv/O2bC0x+Sx8ZBpe7HazRCRdMjmGX80Myner9C0xll12eaaq3v
-         MaCZVBJVSN8De6D3Pea8OayoRkB56hm8jNXN5XUQ0FJvtYhaAt1HosFR0uozZm2huk9x
-         9DSkMG6SqWdDyhKziOfFghhS+RfoJb4024dwi+OOnVaZooqcBVVjUT7aAbuAOt2fpFHI
-         2Tbg==
+        bh=tFjpoWiKrYc/7swWNiDoznRKv0z/2+v/fxMff/HbFKs=;
+        b=MYTFsaKlHMyoX/W9hD4vnmL4WV1ZgMtFu3FpiM9k2RVc0hVapCNWC2xnhYasMZvvRK
+         Bk7j0dekxTmcoPrsIVZj8zVVXaokd5jJ/ThBL+8SZh7rne6m0tU53qc3wmGQSCm+piv6
+         wFCj7WYKEU+1w754sUq2ehVVxUGft/PwNDjP6p169VH2COKSiBSl27k4JnYSRulSclj3
+         73GFX0bR5jQnfTaHvfLMyyFHdDu+15rlgoayAJCdlrU4c0cJutXs7CjY/UFlrJgsSKTl
+         /HmB3o8XYjuypIAy2ZgeaBdfV5Fp4dZB8LNiG3pSxDiIMJnd/w4QhIIQ3p89ba4N2kqH
+         BkOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691591377; x=1692196177;
+        d=1e100.net; s=20221208; t=1691591484; x=1692196284;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MNnJWt3Ml/e+CS6gb7T+DN3KuuP7RKuupkwVkLHrzVg=;
-        b=Zz/0iV/AfPnri9kxDGMBVDI8t+TpStXL5jfQ+l6Ss8wAeyqDXZkxaMdKZ8MF1mFt3e
-         /rm5008NKSe6LVhuo4CMOwiQHfqcLxydUlO7qHrrEFRQ//lOL8TgGtaDFilGR3JEykZy
-         QJ22RimUIGVd9TxEwziQl5RzW+dYxR7z2BvS4t2awYkrWX90ZSQbzIPzWsQ9ViH3r1WG
-         5TObp3TdVFVrhKXDwVVL8wwE2TNxXMrWFiEoJkY3KdabbwguUdX7z8z9pKcuRDoh4oXI
-         xKNIDYAub9Ku+vpkKqb23bMa7JSbLfEYTvwrE5yXlGgO7ID8wqD9Goi3Ozy1ifLZY7pJ
-         u7Gg==
-X-Gm-Message-State: AOJu0Yw6JTc2lAVPM1xiaIl6qRDtEdYV3pE+pwnSbzO8S0FsE490njUG
-        4gQ+nOwvlujP/4Q7dUecFd583g==
-X-Google-Smtp-Source: AGHT+IE+CisNQcAXzJaQITtm7nC1+71FXGVcEiFr3F3ZRxLtNN5kjYxDbxGZYJdIeWGAhLr41pFwCA==
-X-Received: by 2002:a05:600c:143:b0:3fe:1dad:540f with SMTP id w3-20020a05600c014300b003fe1dad540fmr2227915wmm.10.1691591376468;
-        Wed, 09 Aug 2023 07:29:36 -0700 (PDT)
+        bh=tFjpoWiKrYc/7swWNiDoznRKv0z/2+v/fxMff/HbFKs=;
+        b=LdnHlLj0um8LQuyXg/GB2mV++mw3ugIp95lSmOXXEFIuOSRYSk4XjAuE5w9Y/8LXOb
+         z9v2SEP7SYeV31nMhHCn1d34dzToNPm7LMTzxBvamXXAOzSSbL84gRcj7xJOLr2LZW/+
+         DGNxLtmGx5wcbAprYvRW5WgKV2J2NJHXBna6AWpsN74hBXSKyV7Pg5EzV7P5O/rEFUjI
+         OouPgN+veYd82ye3YUZdY5zTv4yasXgJj0ez1G0695nv5+ggnyy69Bj0h9SCBcyXE0c1
+         U/7VVJm14YmEZtG5YlIvyVCAFQ2aTejtXmZrAd/T2t79WlI/8opTV8jq01AUlYF7bk1b
+         KYtw==
+X-Gm-Message-State: AOJu0YxUd1hnYxK3ZO+9PHAXPvVfJsVNRTW1nGun95oAeHwWFo6DiMkM
+        QheT2+UNdI/Rmu4CQ4CCN8hiQg==
+X-Google-Smtp-Source: AGHT+IHY0SyoRhCDAjJpmtQj6Df328GUTUN9z5VZLOgfANwBi/3guZ/uk3CPOMM3JxD0ngYv90AXAA==
+X-Received: by 2002:adf:e80b:0:b0:317:5cc7:794b with SMTP id o11-20020adfe80b000000b003175cc7794bmr2061578wrm.13.1691591484561;
+        Wed, 09 Aug 2023 07:31:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id 14-20020a05600c22ce00b003fba2734f1esm2182688wmg.1.2023.08.09.07.29.34
+        by smtp.gmail.com with ESMTPSA id x12-20020adfec0c000000b0031274a184d5sm16881086wrn.109.2023.08.09.07.31.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 07:29:35 -0700 (PDT)
-Message-ID: <50bedd75-bcd6-d7bc-26c0-b8c00f99779a@linaro.org>
-Date:   Wed, 9 Aug 2023 16:29:33 +0200
+        Wed, 09 Aug 2023 07:31:24 -0700 (PDT)
+Message-ID: <6e16e580-b8bb-d6c2-41ed-bcaa6d407b95@linaro.org>
+Date:   Wed, 9 Aug 2023 16:31:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/2] rtc: nuvoton: Compatible with NCT3015Y-R and
- NCT3018Y-R
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: cirrus,cs40l50: Support for
+ CS40L50
 Content-Language: en-US
-To:     Mia Lin <mimi05633@gmail.com>, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, KFLIN@nuvoton.com,
-        mylin1@nuvoton.com
-Cc:     openbmc@lists.ozlabs.org, linux-rtc@vger.kernel.org,
+To:     James Ogletree <james.ogletree@cirrus.com>,
+        dmitry.torokhov@gmail.com
+Cc:     Fred Treven <fred.treven@cirrus.com>,
+        Ben Bright <ben.bright@cirrus.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Eddie James <eajames@linux.ibm.com>,
+        Jacky Bai <ping.bai@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Jean Delvare <jdelvare@suse.de>, Joel Stanley <joel@jms.id.au>,
+        patches@cirrus.com, linux-input@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230809095112.2836-1-mimi05633@gmail.com>
- <20230809095112.2836-3-mimi05633@gmail.com>
+References: <20230809135313.731706-1-james.ogletree@cirrus.com>
+ <20230809135313.731706-2-james.ogletree@cirrus.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230809095112.2836-3-mimi05633@gmail.com>
+In-Reply-To: <20230809135313.731706-2-james.ogletree@cirrus.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2023 11:51, Mia Lin wrote:
-> -	flags = NCT3018Y_BIT_TWO;
-> -	err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_CTRL, flags);
-> -	if (err < 0) {
-> -		dev_dbg(&client->dev, "Unable to write NCT3018Y_REG_CTRL\n");
-> -		return err;
-> +	flags = i2c_smbus_read_byte_data(client, NCT3018Y_REG_PART);
-> +	if (flags < 0) {
-> +		dev_dbg(&client->dev, "%s: read error\n", __func__);
-> +		return flags;
-> +	} else if (flags & NCT3018Y_REG_PART_NCT3018Y) {
-> +		if (!(flags & data->part_number))
-> +			dev_warn(&client->dev, "%s: part_num=0x%x but NCT3018Y_REG_PART=0x%x\n",
-> +				 __func__, data->part_number, flags);
-> +		flags = NCT3018Y_BIT_HF;
-> +		err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_CTRL, flags);
-> +		if (err < 0) {
-> +			dev_dbg(&client->dev, "Unable to write NCT3018Y_REG_CTRL\n");
-> +			return err;
-> +		}
-> +	} else if (flags & NCT3018Y_REG_PART_NCT3015Y) {
-> +		if (!(flags & data->part_number))
-> +			dev_warn(&client->dev, "%s: part_num=0x%x but NCT3018Y_REG_PART=0x%x\n",
-> +				 __func__, data->part_number, flags);
+On 09/08/2023 15:53, James Ogletree wrote:
+> Introduce device tree bindings for the initial commit
+> of the CS40L50 driver.
+> 
+> Signed-off-by: James Ogletree <james.ogletree@cirrus.com>
+> ---
+>  .../bindings/input/cirrus,cs40l50.yaml        | 77 +++++++++++++++++++
+>  MAINTAINERS                                   |  9 +++
+>  2 files changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml b/Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+> new file mode 100644
+> index 000000000000..5437c6beb1b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/cirrus,cs40l50.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic CS40L50 Advanced Haptic Driver
+> +
+> +maintainers:
+> +  - James Ogletree <james.ogletree@cirrus.com>
+> +
+> +description:
+> +  CS40L50 is a Haptic Driver with Waveform Memory DSP
+> +  and Closed-Loop Algorithms
+> +
+> +properties:
+> +  compatible:
+> +    enum:This is a friendly reminder during the review process.
 
-I don't think this is correct. Kernel's job is not to verify the DT...
-and why would it verify the device based on DT? You have here device
-detection so use it directly without this dance of comparing with
-compatible/match data.
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+> +      - cirrus,cs40l50
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  VA-supply:
+
+No improvements...
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
 
 Best regards,
 Krzysztof
