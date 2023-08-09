@@ -2,179 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91898774F92
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 01:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB6E774FB3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 02:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjHHXxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Aug 2023 19:53:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46778 "EHLO
+        id S230407AbjHIAIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 20:08:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjHHXw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 19:52:59 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8BD2F0
-        for <devicetree@vger.kernel.org>; Tue,  8 Aug 2023 16:52:58 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bc512526cso900277766b.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Aug 2023 16:52:58 -0700 (PDT)
+        with ESMTP id S231395AbjHIAIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 20:08:17 -0400
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D864E10F7;
+        Tue,  8 Aug 2023 17:08:14 -0700 (PDT)
+Received: from pecola.lan (unknown [159.196.93.152])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 44F1A20187;
+        Wed,  9 Aug 2023 08:07:59 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1691538777; x=1692143577;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xNHcxyY8uAbrLOV+yNc02fSgEaBar5i9jaS0vjO2gZ4=;
-        b=qtnKiwyfpFHZFX2PeO+WLRfpHUlPJogeQbaK2WRnjKla4ILCWWPJmnhwqXrNSt701D
-         0XRvT4eDgLhu4zn8GMfIgdxeeEaW0Ca0wcVCVOoCP/oaCtdSyQHHAMHgNoLrmZ4Yj896
-         +fk9yVjSxjRlNNZ9HfdcRDu+hJH/858TnHjqHqYBltQ8aU4XaH4Rd2wIsfJvKe8/LWtq
-         h7UMcsm1pnKdgjD+iu0/qlaKXdsF30+QdIiOHIA5sqqyXtIpEvZDWQVIIH+hjCakaFTP
-         1CczNg/Dlc/WtIBdM0a07wTyY3AYgR6l0y674q2GZr6KpkaZhbAFgwq+FpHA9PLXBHa1
-         +BbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691538777; x=1692143577;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xNHcxyY8uAbrLOV+yNc02fSgEaBar5i9jaS0vjO2gZ4=;
-        b=h5wSiAG/EfbavFla8/M/nnKbElGmVkkJb2+B+hF4P7dMIkeTz94cwpBFTJPUtxoiSa
-         VFcmmoxyMwhf+PsJEhbnTFG9JGd8GJjUIHITvpOTh7mL0vKEzgto3ZTFeKKdKpO7aqe0
-         lrbJ/hMzJSP1sVUaf1jObfvqxMzy1ZDmvhDTrxo+iKJSnuCxKk8phe2gRQJuv5YjgYuH
-         d41uMSWPta5f6lxyvT26mSM8w8lhB9VAsFa1JlAFW70GANOOe8+w6wjg9BLgZzERATib
-         ZiFVShDm2U++wuAt19hw0aHwHzC8yrMywZXxf7VPWj5SvOn+wR/ayTcGgjUBUsJrjsrh
-         5XNQ==
-X-Gm-Message-State: AOJu0YxdtKBfJi0Dxk1UKWMVWq/LnpMluxU6WYb983BlMl/P6z8pkgEd
-        3DQyL+sAkpVNhBG1gTtR1hse6TKcVLrAsPciAXNpH2Um85UMpdVt/uI=
-X-Google-Smtp-Source: AGHT+IEW8MizYSuc7VpLCAaDikyZzCrDO7awOg9MaEWHmlJ66DS9bCDvlNTIK4Hqw81gjT5P83PRiAhThuNbg72LJqI=
-X-Received: by 2002:a17:907:2710:b0:99c:440b:a46a with SMTP id
- w16-20020a170907271000b0099c440ba46amr671473ejk.1.1691538777385; Tue, 08 Aug
- 2023 16:52:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230806233333.815702-1-festevam@gmail.com>
-In-Reply-To: <20230806233333.815702-1-festevam@gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 8 Aug 2023 16:52:45 -0700
-Message-ID: <CAJ+vNU0cDTGHoqJMDdwea48RSaETyvsg2NXCcEE3FBNr4-ckvg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8m-venice: Pass "brcm,bcm4329-fmac"
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        d=codeconstruct.com.au; s=2022a; t=1691539681;
+        bh=6qLqCNRICu2NyTPw0KKNnC7PvvAmPBJh4X1ZTZr4EJg=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=JSjt8XEr7aLccezZ7hz2yq//uMqicALMQqUct/5ULSgUA3i4ObTRVPYDxnZe/5EKl
+         jd6XoDEj7vbaMmHve7uHHPd6Bui58TQCVOB7ccPNDDVQpxECNhtGZe0tQFXgkFnQmU
+         /wiTplEjRbb0MQqlNKhZ2RBFNOvMnp6FJMXq0e3CRQKnjMjvXmwGz6y97+KGORb0c0
+         DWqvqe1SBfZruvFziYTCSpDhc2AAlBIB2G4UeRvCuU4m9o0Qax2gIRrkWK7QaABykD
+         TtLjhK+DxsGRXWTC2nH84pbNII17Xi0TewOULHLnBGZs3YpkgMvlkz9b5Q8qjGo7g2
+         fFBNlMd+JVL7Q==
+Message-ID: <d8d577e91779e045d5a2c7d701f65133a15b5d64.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 0/3] Add Aspeed AST2600 I3C support
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Dylan Hung <dylan_hung@aspeedtech.com>,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+        joel@jms.id.au, andrew@aj.id.au, p.zabel@pengutronix.de,
+        linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     BMC-SW@aspeedtech.com, kobedylan@gmail.com
+Date:   Wed, 09 Aug 2023 08:07:58 +0800
+In-Reply-To: <20230808154241.749641-1-dylan_hung@aspeedtech.com>
+References: <20230808154241.749641-1-dylan_hung@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.46.4-2 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 6, 2023 at 4:33=E2=80=AFPM Fabio Estevam <festevam@gmail.com> w=
-rote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> Pass "brcm,bcm4329-fmac" to fix the following schema warnings:
->
-> imx8mp-venice-gw74xx.dtb: wifi@0: compatible: 'oneOf' conditional failed,=
- one must be fixed:
->         ['cypress,cyw4373-fmac'] is too short
->         'cypress,cyw4373-fmac' is not one of ['brcm,bcm4329-fmac', 'pci14=
-e4,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425', 'pci14e4,4433']
->         from schema $id: http://devicetree.org/schemas/net/wireless/brcm,=
-bcm4329-fmac.yaml#
->
-> imx8mn-venice-gw7902.dtb: wifi@0: compatible: 'oneOf' conditional failed,=
- one must be fixed:
->         ['brcm,bcm43455-fmac'] is too short
->         'brcm,bcm43455-fmac' is not one of ['brcm,bcm4329-fmac', 'pci14e4=
-,43dc', 'pci14e4,4464', 'pci14e4,4488', 'pci14e4,4425', 'pci14e4,4433']
->         from schema $id: http://devicetree.org/schemas/net/wireless/brcm,=
-bcm4329-fmac.yaml#
->
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> index 21d7b16d6f84..cde29aa1a0a2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> @@ -801,7 +801,7 @@ &usdhc1 {
->         status =3D "okay";
->
->         wifi@0 {
-> -               compatible =3D "brcm,bcm43455-fmac";
-> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fmac";
->                 reg =3D <0>;
->         };
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> index 964cc4fc2ddf..0bff7a6fdca6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> @@ -726,7 +726,7 @@ &usdhc2 {
->         status =3D "okay";
->
->         wifi@0 {
-> -               compatible =3D "brcm,bcm43455-fmac";
-> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fmac";
->                 reg =3D <0>;
->         };
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> index 3ac011bbc025..9a36edc60394 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> @@ -679,7 +679,7 @@ &usdhc2 {
->         status =3D "okay";
->
->         wifi@0 {
-> -               compatible =3D "brcm,bcm43455-fmac";
-> +               compatible =3D "brcm,bcm43455-fmac", "brcm,bcm4329-fmac";
->                 reg =3D <0>;
->         };
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> index 3473423ac939..faa370a5885f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> @@ -737,7 +737,7 @@ &usdhc1 {
->         status =3D "okay";
->
->         wifi@0 {
-> -               compatible =3D "cypress,cyw4373-fmac";
-> +               compatible =3D "cypress,cyw4373-fmac", "brcm,bcm4329-fmac=
-";
->                 reg =3D <0>;
->         };
->  };
-> --
-> 2.34.1
->
+Hi Dylan,
 
-Fabio,
+> This patch series introduces the necessary changes to enable I3C
+> support for the Aspeed AST2600 I3C controller. Specifically, it addresses=
+ the
+> missing pinctrl configuration and reset control for the I3C
+> functionality.
 
-Thank you for your continued efforts to squash out all these
-dt-binding warnings/issues.
++1 for the pinctrl changes for the I3C1 and I3C2 controllers (I'll
+review and ack separately). I have been testing on I3C3 and up, but just
+not with the HVI3C on 1 & 2, hence no pinctrl definition there.
 
-Can you explain what the difference is in the dt-binding yaml between
-compatible/oneOf/items/{enum,const} and compatible/oneOf/enum? The
-first list for Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-=
-fmac.yaml
-has a much larger set of enums including the bcm43455 on these boards
-but the second set of enums has a much more limited set. There is no
-driver code to look at for this because it is bound via SDIO device
-id's instead of the dt compatible property.
+However, I don't think the other two are needed.
 
-Best regards,
+For 2/3 and 3/3, you're adding a reset control for the global register
+block within the per-controller driver, but we can already do that on a
+global basis with the existing syscon device. Hence this earlier change:
 
-Tim
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/drivers/mfd/syscon.c?id=3D7d1e3bd94828ad9fc86f55253cd6fec8edd65394
+
+For this, I have:
+
+    &i3c {
+        i3c_global: i3c-global {
+            compatible =3D "aspeed,ast2600-i3c-global", "simple-mfd", "sysc=
+on";
+            resets =3D <&syscon ASPEED_RESET_I3C_DMA>;
+            reg =3D <0x0 0x1000>;
+        };
+
+        i3c2: i3c-master@4000 {
+            compatible =3D "aspeed,ast2600-i3c";
+            reg =3D <0x4000 0x1000>;
+            clocks =3D <&syscon ASPEED_CLK_GATE_I3C2CLK>;
+            pinctrl-names =3D "default";
+            pinctrl-0 =3D <&pinctrl_i3c3_default>;
+            interrupts =3D <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
+            aspeed,global-regs =3D <&i3c_global 2>;
+            status =3D "disabled";
+        };
+
+        /* ... */
+    };
+
+- with no changes needed to any bindings. I haven't needed any other
+resets; are there per-controller resets specified in the HW docs you
+have?
+
+Does that work for you? If you'd like to test, feel free to use my
+sample dts at:
+
+  https://github.com/CodeConstruct/linux/commit/05cac24705fa62d2176ecbbbf15=
+d955cfe86e753
+
+Cheers,
+
+
+Jeremy
