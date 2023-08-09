@@ -2,68 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB987754E3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 10:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE836775560
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 10:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjHIIQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 04:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
+        id S231852AbjHIIb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 04:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbjHIIQJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 04:16:09 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689C41FD0;
-        Wed,  9 Aug 2023 01:16:05 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5217ad95029so8436955a12.2;
-        Wed, 09 Aug 2023 01:16:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1691568964; x=1692173764;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SsMnenAL2XwJ0YGncKUNQOfBNyYjVIIZqLk1J5TzuGA=;
-        b=arzzc1jKJBkATQwIpDm3Kc++X1xrfcvQ2jcjRNyVjP6f9dVhuXoeVZs6RbOynGXlAe
-         bmNe2NN9Aj3IahSgPGllWFZMjNWTsIhmhTCZ3+D+gy0sZ2JU/aqjucK4A0dbp4OvsmEr
-         9eZFqGS2tf1xSdegboD2fgvuXLFwtC5ZrFBDA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691568964; x=1692173764;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SsMnenAL2XwJ0YGncKUNQOfBNyYjVIIZqLk1J5TzuGA=;
-        b=gARTl3XPvIEGLHDfKVGZC1cDQZFY2F4KFLU7c/BylilhJUMdsua4/3CByuIWiEiwuW
-         5gvy8Z+xsAiDzvkhtc4vYwM6ZwMk4KmOhRmbPQss1QolJni7DLxJ42rB4GsH0KVI8e9i
-         SO8HkuR1kxpN3PS79ZFJGybn7L3gokHEHy+rTR96kP8Vp+5ELeCcdYczOB1M4aYqtABE
-         ZPfDHvmGaFWfm2dJL4Z3bSQvdJy0nQHKuR1yuSy1fy5G3hcjd9hDalzk7HAwqteY4DmJ
-         iGvHXDv/nhi4opsYcNGvxliErkk/9cZS1HTbxK8j5EdXucmr8K4FDOj8R3Iaup4jt7VR
-         yruA==
-X-Gm-Message-State: AOJu0Yx+gXjHGVCqWfjFyzmOZ/3+BMN2ymDMptFAgEyPMrsV02FoTGre
-        EplWFySRrMNPtO1rnpomsr2Xs5tBOub+FR0l+hM=
-X-Google-Smtp-Source: AGHT+IGxc7yyRYTXwRGeQCujkNredm8KgAtkyiBFjjjrcfWcnHiAlPtRiEoyNV/Y8OkHrSV6ZAxEvyj4GFpNmfELezs=
-X-Received: by 2002:a17:907:7614:b0:993:d5bd:a757 with SMTP id
- jx20-20020a170907761400b00993d5bda757mr1430906ejc.19.1691568963742; Wed, 09
- Aug 2023 01:16:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230808084248.1415678-1-Delphine_CC_Chiu@wiwynn.com>
- <20230808084248.1415678-3-Delphine_CC_Chiu@wiwynn.com> <CACPK8XfFWC-wxCt4DwNRNctXap5qiZUz-utcbpnp0vj=Z46=9Q@mail.gmail.com>
- <CACPK8XfwcsnrrF9YJ7y-sLRx1OWfrvhNi2G3Tbhww_dXfSOUXw@mail.gmail.com>
-In-Reply-To: <CACPK8XfwcsnrrF9YJ7y-sLRx1OWfrvhNi2G3Tbhww_dXfSOUXw@mail.gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 9 Aug 2023 08:15:51 +0000
-Message-ID: <CACPK8XeUbaMhST73UUT7BZzb2ajVU-M7yfQfEkmX2J=pzk=Tiw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] ARM: dts: aspeed: yosemitev4: add Facebook
- Yosemite 4 BMC
-To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc:     patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S231368AbjHIIb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 04:31:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D432113;
+        Wed,  9 Aug 2023 01:31:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1AF226282D;
+        Wed,  9 Aug 2023 08:30:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B62EC433C8;
+        Wed,  9 Aug 2023 08:30:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1691569857;
+        bh=WpJsh3fyEuGUo6PH6fN0EFyznVrVxs5GaJUXkqK1ArM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tEtX+4ZgnELb90Z3wzkYURRpMcavNaurxTtf1H0wsqKuWr9FpjBFTfOBPd797+mXs
+         UUu5CeiEZjC2pxBqX0pOc68CktJRfmIIDPspwT34GL+Hp4W6tFfMZGnFuskTYX4RVn
+         5IWPDZpBLXMLL4Upkv/fhytmcH4mreh0d6veQcTY=
+Date:   Wed, 9 Aug 2023 10:30:54 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Markus Elfring <Markus.Elfring@web.de>
+Cc:     Kyle Tso <kyletso@google.com>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, kernel-janitors@vger.kernel.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED,URIBL_CSS autolearn=no autolearn_force=no
+        =?iso-8859-1?Q?G=FCnter_R=F6ck?= <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Badhri Jagan Sridharan <badhri@google.com>
+Subject: Re: [PATCH v2 2/2] usb: typec: tcpm: Support multiple capabilities
+Message-ID: <2023080945-goon-snub-295b@gregkh>
+References: <20230807174159.1140957-3-kyletso@google.com>
+ <d193368b-add5-471a-8eaf-2755afea3edf@web.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d193368b-add5-471a-8eaf-2755afea3edf@web.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,56 +59,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Aug 2023 at 08:12, Joel Stanley <joel@jms.id.au> wrote:
->
-> On Wed, 9 Aug 2023 at 08:05, Joel Stanley <joel@jms.id.au> wrote:
-> >
-> > On Tue, 8 Aug 2023 at 08:43, Delphine CC Chiu
-> > <Delphine_CC_Chiu@wiwynn.com> wrote:
-> > >
-> > > Add linux device tree entry related to
-> > > Yosemite 4 specific devices connected to BMC SoC.
->
-> There were also some of these annoying warnings. Please try to fix
-> them up in your next version:
->
-> ../arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts:460.4-14:
-> Warning (reg_format):
-> /ahb/apb/bus@1e78a000/i2c-bus@780/i2c-mux@71/i2c@0:reg: property has
-> invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)@@ -450,6 +450,9 @@ eeprom@51 {
+Hi,
 
-This silenced most of them:
+This is the semi-friendly patch-bot of Greg Kroah-Hartman.
 
-        i2c-mux@71 {
-                compatible = "nxp,pca9846";
-+               #address-cells = <1>;
-+               #size-cells = <0>;
-+
-                idle-state = <0>;
-                i2c-mux-idle-disconnect;
-                reg = <0x71>;
-@@ -557,6 +560,9 @@ gpio@61 {
+Markus, you seem to have sent a nonsensical or otherwise pointless
+review comment to a patch submission on a Linux kernel developer mailing
+list.  I strongly suggest that you not do this anymore.  Please do not
+bother developers who are actively working to produce patches and
+features with comments that, in the end, are a waste of time.
 
-        i2c-mux@73 {
-                compatible = "nxp,pca9544";
-+               #address-cells = <1>;
-+               #size-cells = <0>;
-+
-                idle-state = <0>;
-                i2c-mux-idle-disconnect;
-                reg = <0x73>;
+Patch submitter, please ignore Markus's suggestion; you do not need to
+follow it at all.  The person/bot/AI that sent it is being ignored by
+almost all Linux kernel maintainers for having a persistent pattern of
+behavior of producing distracting and pointless commentary, and
+inability to adapt to feedback.  Please feel free to also ignore emails
+from them.
 
-And then this fixed the remaining one:
+thanks,
 
-@@ -423,7 +423,7 @@ power-sensor@42 {
-                reg = <0x42>;
-        };
-
--       power-sensor@41 {
-+       power-sensor@43 {
-                compatible = "ti,ina230";
-                reg = <0x43>;
-        };
-
-
-Please fold in these changes in your next version.
+greg k-h's patch email bot
