@@ -2,127 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0426B775E1D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 13:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 422F7775E42
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 13:55:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232260AbjHILtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 07:49:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59554 "EHLO
+        id S229658AbjHILzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 07:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbjHILtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 07:49:24 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1436C10C;
-        Wed,  9 Aug 2023 04:49:24 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379BnDox102401;
-        Wed, 9 Aug 2023 06:49:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691581753;
-        bh=NHaMV8AQ458hXfrujPP7b8dUqu4ww4eGJkczmu6Nivg=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=G4Dq5pM+rVVvdmIHaDyd04wFiCgC/U7fP21ZTNxhToV8d+2vHDXSY/Twcr9/DiPMd
-         QRG+6FJVAEXajoyUYtW1eFwrxQOLBvBUVdsDMU3eXnE+Kq84Tn/bXwnjgjU2QOrIAO
-         UDEWJjb4khJ95kPOnKheDsFHfFJwNG495QO5mS58=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379BnDDL014024
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 06:49:13 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 06:49:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 06:49:13 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379BnDAx013045;
-        Wed, 9 Aug 2023 06:49:13 -0500
-Date:   Wed, 9 Aug 2023 06:49:13 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Dhruva Gole <d-gole@ti.com>
-CC:     Tony Lindgren <tony@atomide.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>
-Subject: Re: [PATCH 0/2] pinctrl-single: introduce am654-padconf compatible
-Message-ID: <20230809114913.xr6cvz4h2zsobwou@kobold>
-References: <20230808102207.130177-1-d-gole@ti.com>
+        with ESMTP id S229601AbjHILzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 07:55:31 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E9110FB;
+        Wed,  9 Aug 2023 04:55:29 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bed101b70so956150666b.3;
+        Wed, 09 Aug 2023 04:55:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google; t=1691582128; x=1692186928;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mrc6cmkmGaChKSAYZ8Q3zXcccZpH6vRqxl3OlV6QCs0=;
+        b=RKyeXaNQSjRs8/0e4puwBQr75AUjORRDOVLKRQUzAm5waSeOjA+h0dnNN5BASr7fNz
+         LlGKbAjThmqciVysiNls/c+35MKi1IIGkpgZvH3RsXcWhBKQ7uOD51lpeP1nQXa7alOW
+         P8uPUDq8VophelQAd5+xA+AF7EhXqSX0mPcSw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691582128; x=1692186928;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mrc6cmkmGaChKSAYZ8Q3zXcccZpH6vRqxl3OlV6QCs0=;
+        b=ZI9mU00KW50zpxMfnchLpFg3tCD8EKI4qCrl2aKjUTkZNcmC/+MVTV0/xdjB3JabcY
+         IkjOG/YjaCJkrS+24tx8Bhx+PKzCUiepxLHIHrCfhTLC7WajA5cn7Zo3waOLueuaRIiW
+         8Td2jC7cdJkL99NI7YS/ZZpUMXlw3/vr3R0Jlg1Eia6rsU6zXMPpHvue5EoAx+HuyFQU
+         RLV1l7dlH0x5K27PZ6IN3oImDGigwShcrIJfujxn4x+ojXGFqldBkxmh4cfswu7ixOt2
+         IYJwxSjkzLTxeRK12qDiNTMNrF3UIZlDd5JlpfcNSWDOSH3RCLcn4zxaS+dnj3XbbyFK
+         nrsw==
+X-Gm-Message-State: AOJu0YxaFUjM+6qdEyItSA5J/lN8dtiqbsK8o/DpoId02JHMUQEW9Ip0
+        bCuedCJkG9VYa3xZrd6FwcDyQqONn2f7aVAfhUc=
+X-Google-Smtp-Source: AGHT+IFivghoAwZc8kjVLEGpMxJBD8L+DFrQ1lXYr7vaaa6QvA5tlwYr4PErpIrO6GxXbxiyJssWA8XWiIPs0QfRLeI=
+X-Received: by 2002:a17:907:7841:b0:99b:dd1d:bc58 with SMTP id
+ lb1-20020a170907784100b0099bdd1dbc58mr1916571ejc.41.1691582128028; Wed, 09
+ Aug 2023 04:55:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230808102207.130177-1-d-gole@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230612195657.245125-1-eajames@linux.ibm.com>
+ <20230612195657.245125-12-eajames@linux.ibm.com> <CACPK8Xe1OmLtLrONZmqib6BhDyPHzj+HcOd15MXyK0QVHPTOEg@mail.gmail.com>
+In-Reply-To: <CACPK8Xe1OmLtLrONZmqib6BhDyPHzj+HcOd15MXyK0QVHPTOEg@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 9 Aug 2023 11:55:15 +0000
+Message-ID: <CACPK8XcAeiLRKZJi0ceekwVeDBX2EVw4kmMsvQWT3DfFpxJXng@mail.gmail.com>
+Subject: Re: [PATCH 11/14] fsi: Improve master indexing
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-fsi@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        jk@ozlabs.org, alistair@popple.id.au, andrew@aj.id.au,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED,URIBL_CSS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:52-20230808, Dhruva Gole wrote:
-> The K3 family of SOCs use certain bits of the padconfig registers like
-> WKUP_EVT and WKUP_EN to enable daisychain wakeups.
-> 
-> For example, these bits are described in the AM654 TRM [0] under
-> "Table 5-517. Description Of The Pad Configuration Register Bits"
-> 
-> This series adds the DT binding changes for adding the compatible and
-> also the driver changes which make use of this compatible.
-> 
-> NOTE: Some K3 SoCs may have these bits marked as reserved which means
-> that they don't support IO daisychain. Such SOCs are not expected to use
-> this compatible.
-> 
-> The general expected usage is when the device is in a suspended state like Deep
-> Sleep or Suspend to RAM, and any IO activity on configured pads can
-> trigger a wakeup.
-> 
-> Link to complete series:
-> https://lore.kernel.org/all/20230808102207.130177-1-d-gole@ti.com
-> 
-> Base commit:
-> 71cd4fc492ec (tag: next-20230808, linux-next/master) Add linux-next specific files for 20230808
-> 
-> depends on:
-> https://lore.kernel.org/r/20230721082654.27036-1-tony@atomide.com
-> 
-> which has been picked up by Linus Walleij in his tree here:
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/commit/?h=devel&id=677a62482bd6e584f83d0342e78735e3cd449ba4
-> 
-> However, it hasn't reflected in -next yet so specifying the depends on
-> above.
+On Wed, 9 Aug 2023 at 07:08, Joel Stanley <joel@jms.id.au> wrote:
+>
+> On Mon, 12 Jun 2023 at 19:57, Eddie James <eajames@linux.ibm.com> wrote:
+> >
+> > Master indexing is problematic if a hub is rescanned while the
+> > root master is being rescanned. Move the IDA free below the device
+> > unregistration, lock the scan mutex in the probe function, and
+> > request a specific idx in the hub driver.
+>
+> I've applied this series, but taking a closer look at this patch I
+> think it can be improved. If you resend, just send this patch.
 
-next-20230809 has it today - so just a day or two of sync.. no biggie.
+On hardware, it did this at FSI scan time:
 
-> 
-> [0] https://www.ti.com/lit/pdf/spruid7
-> 
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Conor Dooley <conor.dooley@microchip.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Haojian Zhuang <haojian.zhuang@linaro.org>
+ WARNING: CPU: 0 PID: 761 at /lib/idr.c:525 ida_free+0x140/0x154
+ ida_free called for id=1 which is not allocated.
+ CPU: 0 PID: 761 Comm: openpower-proc- Not tainted 6.1.34-d42f59e #1
+ Hardware name: Generic DT based system
+  unwind_backtrace from show_stack+0x18/0x1c
+  show_stack from dump_stack_lvl+0x24/0x2c
+  dump_stack_lvl from __warn+0x74/0xf0
+  __warn from warn_slowpath_fmt+0x9c/0xd8
+  warn_slowpath_fmt from ida_free+0x140/0x154
+  ida_free from fsi_master_register+0xd0/0xf0
+  fsi_master_register from hub_master_probe+0x11c/0x358
+  hub_master_probe from really_probe+0xd4/0x3f0
+  really_probe from driver_probe_device+0x38/0xd0
+  driver_probe_device from __device_attach_driver+0xc8/0x148
+  __device_attach_driver from bus_for_each_drv+0x90/0xdc
+  bus_for_each_drv from __device_attach+0x114/0x1a4
+  __device_attach from bus_probe_device+0x8c/0x94
+  bus_probe_device from device_add+0x3a8/0x7fc
+  device_add from fsi_master_scan+0x4e0/0x950
+  fsi_master_scan from fsi_master_rescan+0x38/0x88
+  fsi_master_rescan from master_rescan_store+0x14/0x20
+  master_rescan_store from kernfs_fop_write_iter+0x114/0x200
+  kernfs_fop_write_iter from vfs_write+0x1d0/0x374
+  vfs_write from ksys_write+0x78/0x100
+  ksys_write from ret_fast_syscall+0x0/0x54
+ Exception stack(0x9fc51fa8 to 0x9fc51ff0)
+ 1fa0:                   00000001 01a01c78 00000003 01a01c78 00000001 00000001
+ 1fc0: 00000001 01a01c78 00000001 00000004 7eeb4ab0 7eeb4b3c 7eeb4ab4 7eeb499c
+ 1fe0: 76985abc 7eeb4928 76848af8 766f176c
 
-For the series:
 
-Reviewed-by: Nishanth Menon <nm@ti.com>
-
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>
+> >
+> > Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> > ---
+> >  drivers/fsi/fsi-core.c       | 41 ++++++++++++++++++++++--------------
+> >  drivers/fsi/fsi-master-hub.c |  2 ++
+> >  2 files changed, 27 insertions(+), 16 deletions(-)
+> >
+> > diff --git a/drivers/fsi/fsi-core.c b/drivers/fsi/fsi-core.c
+> > index ec4d02264391..503061a6740b 100644
+> > --- a/drivers/fsi/fsi-core.c
+> > +++ b/drivers/fsi/fsi-core.c
+> > @@ -1327,46 +1327,55 @@ static struct class fsi_master_class = {
+> >  int fsi_master_register(struct fsi_master *master)
+> >  {
+> >         int rc;
+> > -       struct device_node *np;
+> >
+> >         mutex_init(&master->scan_lock);
+> > -       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
+> > +
+> > +       if (master->idx) {
+>
+> Why do we allocate a new idx if there's already one?
+>
+> > +               master->idx = ida_alloc_range(&master_ida, master->idx,
+> > +                                             master->idx, GFP_KERNEL);
+>
+> If we can't get one in the range we want, we ask for any? Should this
+> print a warning?
+>
+> > +               if (master->idx < 0)
+> > +                       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
+> > +       } else {
+>
+> If ixd was zero, we create one. This is the "normal" case?
+>
+> > +               master->idx = ida_alloc(&master_ida, GFP_KERNEL);
+> > +       }
+> > +
+>
+> We check the same error condition again.
+>
+> >         if (master->idx < 0)
+> >                 return master->idx;
+>
+> >
+> > -       dev_set_name(&master->dev, "fsi%d", master->idx);
+> > +       if (!dev_name(&master->dev))
+> > +               dev_set_name(&master->dev, "fsi%d", master->idx);
+> > +
+> >         master->dev.class = &fsi_master_class;
+> >
+> > +       mutex_lock(&master->scan_lock);
+> >         rc = device_register(&master->dev);
+> >         if (rc) {
+> >                 ida_free(&master_ida, master->idx);
+> > -               return rc;
+> > -       }
+> > +       } else {
+> > +               struct device_node *np = dev_of_node(&master->dev);
+>
+> This change looks a bit different to the idx changes. What's happening here?
+> >
+> > -       np = dev_of_node(&master->dev);
+> > -       if (!of_property_read_bool(np, "no-scan-on-init")) {
+> > -               mutex_lock(&master->scan_lock);
+> > -               fsi_master_scan(master);
+> > -               mutex_unlock(&master->scan_lock);
+> > +               if (!of_property_read_bool(np, "no-scan-on-init"))
+> > +                       fsi_master_scan(master);
+> >         }
+> >
+> > -       return 0;
+> > +       mutex_unlock(&master->scan_lock);
+> > +       return rc;
+> >  }
+> >  EXPORT_SYMBOL_GPL(fsi_master_register);
+> >
+> >  void fsi_master_unregister(struct fsi_master *master)
+> >  {
+> > -       trace_fsi_master_unregister(master);
+> > +       int idx = master->idx;
+> >
+> > -       if (master->idx >= 0) {
+> > -               ida_free(&master_ida, master->idx);
+> > -               master->idx = -1;
+> > -       }
+> > +       trace_fsi_master_unregister(master);
+> >
+> >         mutex_lock(&master->scan_lock);
+> >         fsi_master_unscan(master);
+> > +       master->n_links = 0;
+> >         mutex_unlock(&master->scan_lock);
+> > +
+> >         device_unregister(&master->dev);
+> > +       ida_free(&master_ida, idx);
+> >  }
+> >  EXPORT_SYMBOL_GPL(fsi_master_unregister);
+> >
+> > diff --git a/drivers/fsi/fsi-master-hub.c b/drivers/fsi/fsi-master-hub.c
+> > index 6d8b6e8854e5..36da643b3201 100644
+> > --- a/drivers/fsi/fsi-master-hub.c
+> > +++ b/drivers/fsi/fsi-master-hub.c
+> > @@ -12,6 +12,7 @@
+> >  #include <linux/slab.h>
+> >
+> >  #include "fsi-master.h"
+> > +#include "fsi-slave.h"
+> >
+> >  #define FSI_ENGID_HUB_MASTER           0x1c
+> >
+> > @@ -229,6 +230,7 @@ static int hub_master_probe(struct device *dev)
+> >         hub->master.dev.release = hub_master_release;
+> >         hub->master.dev.of_node = of_node_get(dev_of_node(dev));
+> >
+> > +       hub->master.idx = fsi_dev->slave->link + 1;
+> >         hub->master.n_links = links;
+> >         hub->master.read = hub_master_read;
+> >         hub->master.write = hub_master_write;
+> > --
+> > 2.31.1
+> >
