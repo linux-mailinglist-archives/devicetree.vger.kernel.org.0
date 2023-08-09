@@ -2,124 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 064F7776289
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 024617762B1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:40:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233372AbjHIOcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 10:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
+        id S233877AbjHIOk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 10:40:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233369AbjHIOcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:32:14 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8070170B
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 07:32:12 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe3b86cec1so10740368e87.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 07:32:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691591531; x=1692196331;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w/OG3bQtj/ll/T2r9Vb1o3dNddjqQUv8KGzg4KrsLv8=;
-        b=VsB2jlDnA/AkMPj8Mjslq1th2E+vn+FFKYjv3ISKBl7lBvUvFSAFliQs8vmKn2N8PY
-         hmhsNaIzZjI+86PsmNUwrRpM0c6scD+N8qxh+424MU9eUr5+r9nWecxRMxT3sFIzPqpD
-         pKQAYxxD/UV61bwNYeMyN6mrGulRZ0MXRKF6nqLAcSLnpBjoQqLF/9YKXh1vyorQP/jB
-         rUs0f4YzoZ8AdDYvYZE4LSVaEKhGrf9fzRGmQb0XRfWKh7ZFLHSR6cx9Suq50PBJ1k3A
-         hMshTUalZK/V6ERY/FTCPxNYp/akRtFHZJ0ugrQx2m758g5+Lm0AyqDQKiM3Kp9jemw1
-         gMLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691591531; x=1692196331;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w/OG3bQtj/ll/T2r9Vb1o3dNddjqQUv8KGzg4KrsLv8=;
-        b=Nm01PX75nw1ZMvVM3FhV/iDHZmXBfT7GjubJppjJFEzY+W46XpiwoMzy0Ef0LfeVf3
-         KG/1u9RK7CLNBxvNbzs7cS59ZOZDyAy1fgAlGMGgMK9ckyYIA5zzRGEet/0pmsrIHY0R
-         9RZLMplH+IzLDVABvUJyqrbTQoqVoJpZXHGJI0r6BTvUOoxXZkrdoB9PQ9dJK5xmFZDN
-         COY8mq3Q98u2lf7S2kAyrCgvz2fNYCOyHilqOB/MexEnuxc8TsFbt2f2JaX98LjXaCVy
-         Mm6FqwwkbppVh2QHru3gRRbb/ASTLx5EzvEfK9LybjhVMn+ZrdLbXMlZGBM0eci4Fhla
-         ntqw==
-X-Gm-Message-State: AOJu0Yxm2EN96L51aCkDWsc45rXotYHI3cUwTKbim3i1bZ+OCuB/K88k
-        ofbEo+YuVSXFxjRuv+djA4EvaQ==
-X-Google-Smtp-Source: AGHT+IGXwAreNMmFrscF59xHDK7lL6L89Vhhpntx/ksib8+sJNO2vJ+FfhPoXfnf/pjW2MCSGUiMwg==
-X-Received: by 2002:a19:675d:0:b0:4fb:8aeb:d9be with SMTP id e29-20020a19675d000000b004fb8aebd9bemr1945026lfj.30.1691591531057;
-        Wed, 09 Aug 2023 07:32:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id 17-20020a05600c231100b003fc01495383sm2211700wmo.6.2023.08.09.07.32.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 07:32:10 -0700 (PDT)
-Message-ID: <5d9ff125-e633-9522-187a-cc61f82caec0@linaro.org>
-Date:   Wed, 9 Aug 2023 16:32:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/2] Input: cs40l50 - Initial support for Cirrus Logic
- CS40L50
-Content-Language: en-US
-To:     James Ogletree <james.ogletree@cirrus.com>,
-        dmitry.torokhov@gmail.com
-Cc:     Fred Treven <fred.treven@cirrus.com>,
-        Ben Bright <ben.bright@cirrus.com>,
+        with ESMTP id S233863AbjHIOk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:40:29 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507A02107;
+        Wed,  9 Aug 2023 07:40:27 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379Ee6DD011384;
+        Wed, 9 Aug 2023 09:40:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691592006;
+        bh=Ht+MQt2z/ktrchacS0VLjAbZCASRyaYR0JilJqDkvdg=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=qq0sGRzta45Xnv+5aVgbMgjbV+iRwayQPw6lTdnLu6vPYMs+aphD6BFxG9uApVr8i
+         C9HOZkADb3OfK/6aD6UEHuenL3J2c2azWgSIeYcVkGiw6HDdrQlU8VA6A92Z0N1Jo5
+         vmHrWtOcnvAWabawhBmI+kxarOOFJw3EFvzzr8tw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379Ee5ic018424
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Aug 2023 09:40:05 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
+ Aug 2023 09:40:05 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 9 Aug 2023 09:40:05 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379Ee5IF023524;
+        Wed, 9 Aug 2023 09:40:05 -0500
+Date:   Wed, 9 Aug 2023 09:40:05 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Jacky Bai <ping.bai@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Eddie James <eajames@linux.ibm.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Jean Delvare <jdelvare@suse.de>, Joel Stanley <joel@jms.id.au>,
-        Peng Fan <peng.fan@nxp.com>, patches@cirrus.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230809135313.731706-1-james.ogletree@cirrus.com>
- <20230809135313.731706-3-james.ogletree@cirrus.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230809135313.731706-3-james.ogletree@cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
+Message-ID: <20230809144005.n3uq5yjusrrtjhqz@churn>
+References: <20230809084559.17322-1-a-bhatia1@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230809084559.17322-1-a-bhatia1@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2023 15:53, James Ogletree wrote:
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptics driver with waveform memory DSP and closed-loop
-> algorithms.
+On 14:15-20230809, Aradhya Bhatia wrote:
+> Hi all,
+> 
+> The patch series adds DT nodes for Display SubSystem (DSS) and other
+> peripherals required to enable the HDMI audio and video on the AM625 SK,
+> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
+> monitor can be connected to the boards for the audio/video outputs.
+> 
+> The series adding the compatible and basic driver support[0] is in the
+> drm-misc-next and linux-next queues and is expected to be in the
+> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
+> that introduces debounce select mux macros. This patch too is not in
+> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
+> linux-next.
+> 
+> Patches 4 and 5 have been picked up from TI's vendor tree[3] based off
+> linux-kernel v6.1.
+> 
+> Regards
+> Aradhya
+> 
+> Change Log:
+> V4 -> V5:
+>   - Cosmetic changes as suggested by Jayesh.
+>   - Fixed the mis-represented DSS VP1 clock, and added a
+>     fixed-factor-clock.
+> 
+> V3 -> V4:
+>   - Added "Fixes" tag for patch 1/6.
+>   - Rebased to linux-next.
+>   - Enabled display at board level and disabled at SoC level.
+>   - Dropped OLDI pinmux configuration as OLDI output comes directly from
+>     the SoC and muxing is not required.
+>   - Squashed DSS pinmux patches into their platform specific HDMI
+>     support patches, because it did not make sense to have only one set
+>     of pinmux config separated in a patch.
+> 
+> V2 -> V3:
+>   - Updated the compatible from "ti,am65x-dss" to "ti,am625-dss".
+>   - Peripheral nodes like HDMI TX, HDMI connector are now added to
+>     k3-am62x-sk-common.dtsi instead of k3-am625-sk.dts, in order to
+>     support AM62-LP SK-EVM as well.
+>   - Dropped the HDMI master clock node as it is not connected on the
+>     EVM, and should not have been added in the first place.
+>   - Re-worded and Re-ordered commits.
+>   - Dropped Rahul Ravikumar's R-bs because of the changes.
+>   - Added AM625 based Beagle-Play for HDMI support.
+>   - Added HDMI audio support as well.
+> 
+> V1 -> V2:
+>  - Removed repetitive data in dss_ports
+> 
+> V4: https://lore.kernel.org/all/20230807153307.22174-1-a-bhatia1@ti.com/
+> V3: https://lore.kernel.org/all/20230728173438.12995-1-a-bhatia1@ti.com/
+> V2: https://lore.kernel.org/all/20220505134303.23208-1-a-bhatia1@ti.com/
+> V1: https://lore.kernel.org/all/20220427090850.32280-1-a-bhatia1@ti.com/
+> 
+> [0]: https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
+> [1]: https://lore.kernel.org/all/20230619131620.3286650-1-nm@ti.com/
+> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git/commit/?id=0bec3d7ecc7493b0e530f6f34539841ef6779006
+> [3]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/log/?h=ti-linux-6.1.y-cicd
+> 
+> 
+> Aradhya Bhatia (4):
+>   arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
+>   arm64: dts: ti: k3-am62-main: Add node for DSS
+>   arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
+>   arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
+> 
+> Jai Luthra (1):
+>   arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
+> 
+> Nishanth Menon (1):
+>   arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
+> 
+>  arch/arm64/boot/dts/ti/Makefile               |   3 +
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  25 +++
+>  arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +
+>  .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 150 ++++++++++++++++++
+>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  93 ++++++++++-
+>  .../boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso   |  40 +++++
+>  arch/arm64/configs/defconfig                  |   1 +
+>  7 files changed, 319 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
+> 
+> 
+> base-commit: 71cd4fc492ec41e4acd85e98bbf7a13753fc1e03
+> -- 
+> 2.40.1
+> 
 
+Can you help cleanup the following before we start introducing new oldi
+and dss support? I am not sure if these were introduced due to yaml
+updates or something pre-existing.
 
-> +static const struct of_device_id cs40l50_of_match[] = {
-> +	{ .compatible = "cirrus,cs40l50" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, cs40l50_of_match);
-> +
-> +static int cs40l50_i2c_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct cs40l50_private *cs40l50;
-> +
-> +	cs40l50 = devm_kzalloc(dev, sizeof(struct cs40l50_private), GFP_KERNEL);
+linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+linux/build/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+linux/build/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+linux/build/arch/arm64/boot/dts/ti/k3-am654-base-board.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
 
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-
-Best regards,
-Krzysztof
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
