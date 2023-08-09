@@ -2,159 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 406A27755F5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 10:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42780775602
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 11:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231225AbjHII5H convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Aug 2023 04:57:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48284 "EHLO
+        id S229743AbjHIJBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 05:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231572AbjHII5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 04:57:04 -0400
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [91.198.224.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9352A10C8
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 01:56:59 -0700 (PDT)
-Received: from [127.0.0.1] (helo=localhost)
-        by relay.expurgate.net with smtp (Exim 4.92)
-        (envelope-from <prvs=659920474f=fe@dev.tdt.de>)
-        id 1qTezt-003ZQi-RZ; Wed, 09 Aug 2023 10:56:53 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-        by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        with ESMTP id S229498AbjHIJBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 05:01:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13294183
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 02:01:06 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1qTezt-00728o-0L; Wed, 09 Aug 2023 10:56:53 +0200
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-        by securemail.tdt.de (Postfix) with ESMTP id 96FD824004B;
-        Wed,  9 Aug 2023 10:56:52 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-        by securemail.tdt.de (Postfix) with ESMTP id E6661240040;
-        Wed,  9 Aug 2023 10:56:51 +0200 (CEST)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-        by mail.dev.tdt.de (Postfix) with ESMTP id 8AA2028A3A;
-        Wed,  9 Aug 2023 10:56:50 +0200 (CEST)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qTf3w-0001AB-Ib; Wed, 09 Aug 2023 11:01:04 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qTf3t-0007CX-0k; Wed, 09 Aug 2023 11:01:01 +0200
+Date:   Wed, 9 Aug 2023 11:01:00 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
+        conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+        netdev@vger.kernel.org, alexandre.torgue@foss.st.com,
+        linux-kernel@vger.kernel.org, edumazet@google.com,
+        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
+        peppe.cavallaro@st.com, kuba@kernel.org, pabeni@redhat.com,
+        davem@davemloft.net, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: snps,dwmac: add
+ phy-supply support
+Message-ID: <20230809090100.pdtdidqk7mhvm4ks@pengutronix.de>
+References: <20230721110345.3925719-1-m.felsch@pengutronix.de>
+ <20230721142433.GA1012219-robh@kernel.org>
+ <20230724093953.h7vs6gzrpk3ieznv@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Date:   Wed, 09 Aug 2023 10:56:50 +0200
-From:   Florian Eckert <fe@dev.tdt.de>
-To:     Yi xin Zhu <yzhu@maxlinear.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        Rahul Tanwar <rtanwar@maxlinear.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Eckert.Florian@googlemail.com
-Subject: Re: [PATCH 2/2] dt-bindings: clock: intel,cgu-lgm: add
- mxl,control-gate option
-In-Reply-To: <1f8e054d-6b7f-4e82-17de-e0df3ddacbff@maxlinear.com>
-References: <20230731100349.184553-1-fe@dev.tdt.de>
- <20230731100349.184553-3-fe@dev.tdt.de>
- <780aa090-3a97-abab-271f-59790df29cc4@linaro.org>
- <11386dd27487075a9a0b1a2aa7794951@dev.tdt.de>
- <1f8e054d-6b7f-4e82-17de-e0df3ddacbff@maxlinear.com>
-Message-ID: <a6a19b15858afcf8d7aa903ccca41d8f@dev.tdt.de>
-X-Sender: fe@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.17
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230724093953.h7vs6gzrpk3ieznv@pengutronix.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-Content-Transfer-Encoding: 8BIT
-X-purgate-ID: 151534::1691571413-B3950B19-9740FF3F/0/0
-X-purgate: clean
-X-purgate-type: clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> I didn't want to always change the source of the driver when it has to
->> take
->> care of the GATE, so I wanted to map this via the dts.
->> 
->> I have a board support package from Maxlinear for the Lightning 
->> Mountain
->> Soc
->> with other drivers that are not upstream now. Some of them use the
->> clock framework some of them does not.
->> 
->> Due to missing documents it is not possible to send these drivers
->> upstream.
->> Strictly speaking, this is about the gptc and the watchdog.
->> 
->> Since it is a buildin_platform driver, it can also not work via
->> module parameters.
+Hi Rob,
+
+On 23-07-24, Marco Felsch wrote:
+> Hi Rob,
 > 
-> Could you please give more details on your target?
+> On 23-07-21, Rob Herring wrote:
+> > On Fri, Jul 21, 2023 at 01:03:43PM +0200, Marco Felsch wrote:
+> > > Document the common phy-supply property to be able to specify a phy
+> > > regulator.
+> > 
+> > What common property? I don't see any such property in 
+> > ethernet-controller.yaml.
+> 
+> Not in ethernet-controller.yaml but there are at least a few user of
+> this binding:
+>  - allwinner,sun4i-a10-mdio.yaml
+>  - allwinner,sun7i-a20-gmac.yaml
+>  - allwinner,sun8i-a83t-emac.yaml
+>  - fsl,fec.yaml
+>  - rockchip-dwmac.yaml
+>  - rockchip,emac.yaml
+> 
+> Also there is no <vendor>,phy-supply nor <ip-vendor>,phy-supply,
+> therefore I thought this is common.
 
-We are currently putting our own board with the new Maxlinear URX85x
-into operation. From Maxlinear we have received a board support
-package BSP named UGW 9.1.45.
+any further comments else I would like to gentle ping this series.
 
-Since we not only have Maxlinear devices, but also other SoC from
-other manufacturers, we cannot use the BSP. We therefore need to use
-OpenWrt vanilla (master, openwrt-23.05) to support all our devices
-with the same software stack.
+Regards,
+  Marco
 
-We have therefore picked all the relevant software components
-from UGW and ported them to the next openwrt-23.05 stable release.
-
-Due to the last rebasing of the kernel by openwrt to 5.15.123 [1],
-this patch [2] has been included. After that change, the gptc and
-watchdog drivers can't find the cgu device tree handlers and
-stopped working!
-
-> In what kind of condition, you want to change the flag?
-
-Since we don't have access to the latest internal MxL code base,
-we don't know what has been changed since then. Therefore we ended
-up with reverting your last change [2] to get the gptc and watchdog
-driver working again.
-
-> In LGM SoC,  some gate clocks can be covered by EPU (power management
-> module).
-
-We have already seen that in your BSP. But this driver is not integrated
-upstream and is unfortunately only maintained in the BSP :-(. So no one
-knows about that.
-
-> that is the reason clock driver introduced the HW/SW flag definition.
-
-Since we don't have a hardware description, but only your drivers, it
-is difficult for us to find out how everything fits together. In 
-addition,
-not all drivers are upstream, which makes it even more confusing for us.
-
-> However gptc and watchdog are not covered by EPU.  it can only be
-> controlled via clock
-> driver.   So I'm not quite sure the target to change the flag for these
-> two clocks.
-
-So only Maxlinear knows the internals, then this is up to you to make
-the right choice.
-
-The major problem is that not all relevant drivers are upstreamed.
-Mixing upstreamed and proprietary drivers definitely leads to 
-regressions.
-
-By the way, up to now the SoC is not selectable. There are patches 
-needed
-from your BSP for the kernel to make the SoC URX85x selectable with
-'make menuconfig'
-
-Can you *please* integrate them upstream, so that the patches do not 
-always have
-to be extracted and rebased from the BSP!
-
-We can discuss this in a separate thread.
-Thanks for your feedback
-
-Best regards
-
-Florian
-
-[1] 
-https://git.openwrt.org/?p=openwrt/openwrt.git;a=commit;h=7efec0acca80b231ab8e69729a4bdaf11ef84541
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/drivers/clk/x86/clk-cgu.c?h=linux-5.15.y&id=a0583edea4fdb7b5b87a077263dddab476e9f138
-
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > ---
+> > > Changelog:
+> > > v4:
+> > > - no changes
+> > > v3:
+> > > - no changes
+> > > v2
+> > > - add ack-by
+> > > 
+> > >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > index ddf9522a5dc23..847ecb82b37ee 100644
+> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > @@ -160,6 +160,9 @@ properties:
+> > >        can be passive (no SW requirement), and requires that the MAC operate
+> > >        in a different mode than the PHY in order to function.
+> > >  
+> > > +  phy-supply:
+> > > +    description: PHY regulator
+> > 
+> > Is this for an serdes, sgmii, etc. type phy or ethernet phy? Either way, 
+> > this property belongs in the PHY's node because it is the PHY that has 
+> > supply connection. I'm guessing you put this here for the latter case 
+> > because ethernet PHYs on MDIO are "discoverable" except for the small 
+> > problem that powering them on is not discoverable. 
+> 
+> All kind of ethernet phys connected to you etherent MAC which need to be
+> power controlled by software. You're right this sould belong to the PHY
+> node (as Krzysztof already mentioned) but this isn't the case yet. As
+> you can see there are at least 6 user of the exact same binding.
+> 
+> Regards,
+>   Marco
+> 
+> 
