@@ -2,248 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CAE776556
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 18:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 698FA776540
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 18:42:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbjHIQqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 12:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37666 "EHLO
+        id S229725AbjHIQmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 12:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbjHIQqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 12:46:09 -0400
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 655A02135;
-        Wed,  9 Aug 2023 09:46:03 -0700 (PDT)
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 379Gg8FQ006981;
-        Wed, 9 Aug 2023 16:45:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=XJybMffimcFGN7eCMAqWauVy/nSvh2D7EsoqGt/F+TE=;
- b=N6YP0UL2/TzeCXhsVrK78L/ezPfq+6IlHaaAKI95T4QB/qRimVORvQ1Jcw//2u+Zo3FT
- Sb/Q4UtqxD1rcMwu13qfhIxIYiZS4d5nVwDlUMeaolO9PfFqvS7JvaOPcFxH1LjyFABO
- s3J27izaJz6Bd/F7e9Go9mlTNGq54WAmgIjRFxQnOsiwQeGWTEhZ+kEyIAsFmM60sqho
- 2duirDy5GxNN/v2yIQF/lwvTezX+aLYi49JY7SM+ejW5DCloPes8+6SjsjWm0nVrwf85
- 6CQVo0oZqEkDOzPw2E+8gt+J/7vRaXfa3SZBL+lbIgt5swobpd7lf1yVPDkFmEJ1qOYs fA== 
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3scebdg6d1-3
+        with ESMTP id S229541AbjHIQmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 12:42:31 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6B21982;
+        Wed,  9 Aug 2023 09:42:31 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 379EvsIQ002928;
+        Wed, 9 Aug 2023 11:42:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+        from:to:cc:subject:date:message-id:references:in-reply-to
+        :content-type:content-id:content-transfer-encoding:mime-version;
+         s=PODMain02222019; bh=RsxAKHSVqUeG/X72iR6erAo0YEGAJsEzg5b5fV+QQ
+        lM=; b=gqIK+lbzwY7srwgVF8UuKukkX840ymnLmayaz1D5GgMWE0QMpyxpK/DhU
+        9k2A8NGq4D8epFKdg0PKnMK/CQDXnZpyFBgp8Rm6DvFZtFCVkC9t19XR+FjvqLFs
+        u0y0xa2RAxlOLJDA2uDCCXyNg+c/Do7W2WH8U2psO1GSN21wGs/Xke7vKfRJkhAp
+        n1Q5DS0khRGRoMf83LwZPP28XgmaK1Lkpae5ujEpzExj0nRWCqL1OLJz/NXa0Deo
+        WApi4dK5H+e2R2oVtF8PhpUPWabW/4nPRUYJZOD4WlDyTiO31I8Sdk8Z9f/pll1K
+        pI3KJVn24RxF5I3fnADTS59gNDNSg==
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2103.outbound.protection.outlook.com [104.47.58.103])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3s9juhuxf9-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Aug 2023 16:45:46 +0000
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-        by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 379EPc4t001802;
-        Wed, 9 Aug 2023 16:21:07 GMT
-Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
-        by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 3sa3f218xy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Aug 2023 16:21:07 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
-        by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 379GL6IQ34996950
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 9 Aug 2023 16:21:06 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 4EE1358054;
-        Wed,  9 Aug 2023 16:21:06 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B83D75803F;
-        Wed,  9 Aug 2023 16:21:05 +0000 (GMT)
-Received: from [9.61.73.158] (unknown [9.61.73.158])
-        by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-        Wed,  9 Aug 2023 16:21:05 +0000 (GMT)
-Message-ID: <23dc749b-5c7a-6f9f-9237-6f32af2d4fa4@linux.ibm.com>
-Date:   Wed, 9 Aug 2023 11:21:05 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 11/14] fsi: Improve master indexing
+        Wed, 09 Aug 2023 11:42:04 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OukE5+XGm0QTfLHJAvs8B0UIFlEl8d1du0yeT4wKJ7B0ceileWBHVoYokFoQZpA0IXtQuybEkcpv0imbrgAfHBckHlrdGlKZ4NkO3FFZxEhCZ0LbSY3W8ThjrjA1PsKVJ4K5UaHCIN6A/Oo2BbxT8qkb2HloM0g1oHAT9/9ndU1ZIm4yR7lBC7HCPbdoJlBxAsPwyiMdwFzO6iVRePPn+dNcM2naLgdvmRyKeUeUqarsfbONsIRyK/CVN3hzcwqeKZ40yYpbvnj4N9nLFwd1DUxmVqCnttADD63ftWyLibtn/HcycVADmDSN2KCGZa6EHgAivdK8dDcW6dxC7UD9ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RsxAKHSVqUeG/X72iR6erAo0YEGAJsEzg5b5fV+QQlM=;
+ b=c+eMRfid+ws0NJHbsNcwIart+R6qWnD5Ka+F0UriFuZy3wIlS1G6HNvmkQR6UqFNjVLjoJdQrMX9js2T/ibVg7dTl7fAXNC6D2qq4tjcnejjmoWvFVTv/4y95eUKPbIAIw9UpLUDV3Yx5VM0ZJlWXTU+Z49GQrq4bYgdUk0q+HfgZGz+C2q2FD/c0HMPK1ReL9v34WOjZOrPmgkLjKi7h0crqJDezRc2t6+gfxao5FlE8gxYDF7ool/6/YIEWdhjjQVf9DYq1LvzhLcI1lc3M1Gtt9HTHJ1u8HSY0RsbY2ckRlivxUmF+dac94lc5FrkGzmP8F18Feh0bPW84N9JNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cirrus.com; dmarc=pass action=none header.from=cirrus.com;
+ dkim=pass header.d=cirrus.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RsxAKHSVqUeG/X72iR6erAo0YEGAJsEzg5b5fV+QQlM=;
+ b=sXFrw2xAPvRpNOmg/U56RsSufw5bxYSKuRLXqqBU4hsY1CdCV0WiVDGGW/ng9F3PbAJOd0CVEx/GqsY0hGMe+zC5xbBTdZHn1j4Hp0ZK+WYdraqJRwUVgbVpjHLr0Xfl0VacuzNDbdCK8Gz/LcVNMetueuG/BTsvA2TioO47DGU=
+Received: from BN8PR19MB3057.namprd19.prod.outlook.com (2603:10b6:408:95::13)
+ by MN2PR19MB3904.namprd19.prod.outlook.com (2603:10b6:208:1ef::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.27; Wed, 9 Aug
+ 2023 16:41:29 +0000
+Received: from BN8PR19MB3057.namprd19.prod.outlook.com
+ ([fe80::7a8e:a98c:421a:c1a8]) by BN8PR19MB3057.namprd19.prod.outlook.com
+ ([fe80::7a8e:a98c:421a:c1a8%6]) with mapi id 15.20.6652.028; Wed, 9 Aug 2023
+ 16:41:28 +0000
+From:   James Ogletree <James.Ogletree@cirrus.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fred Treven <Fred.Treven@cirrus.com>,
+        Ben Bright <Ben.Bright@cirrus.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Jeff LaBundy <jeff@labundy.com>, Peng Fan <peng.fan@nxp.com>,
+        Eddie James <eajames@linux.ibm.com>,
+        Jean Delvare <jdelvare@suse.de>, Arnd Bergmann <arnd@arndb.de>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        "patches@cirrus.com" <patches@cirrus.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: input: cirrus,cs40l50: Support for
+ CS40L50
+Thread-Topic: [PATCH 1/2] dt-bindings: input: cirrus,cs40l50: Support for
+ CS40L50
+Thread-Index: AQHZyh7JXcj7PWZYh0aNSmkcGd15UK/hhUSAgACnIYA=
+Date:   Wed, 9 Aug 2023 16:41:28 +0000
+Message-ID: <2D6A6A19-5EA2-4D2A-A15B-894DA154D616@cirrus.com>
+References: <20230808172511.665787-1-james.ogletree@cirrus.com>
+ <9a85bc7f-8f20-6241-beba-6d705f62e071@linaro.org>
+In-Reply-To: <9a85bc7f-8f20-6241-beba-6d705f62e071@linaro.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     linux-fsi@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        jk@ozlabs.org, alistair@popple.id.au, andrew@aj.id.au,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20230612195657.245125-1-eajames@linux.ibm.com>
- <20230612195657.245125-12-eajames@linux.ibm.com>
- <CACPK8Xe1OmLtLrONZmqib6BhDyPHzj+HcOd15MXyK0QVHPTOEg@mail.gmail.com>
-From:   Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <CACPK8Xe1OmLtLrONZmqib6BhDyPHzj+HcOd15MXyK0QVHPTOEg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 24FHYUMLGZsknN693dmQk5fjxXbGP5Vt
-X-Proofpoint-ORIG-GUID: 24FHYUMLGZsknN693dmQk5fjxXbGP5Vt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-09_13,2023-08-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 impostorscore=0 adultscore=0
- malwarescore=0 bulkscore=0 clxscore=1015 mlxlogscore=999 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308090145
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN8PR19MB3057:EE_|MN2PR19MB3904:EE_
+x-ms-office365-filtering-correlation-id: 470d2b20-7a7a-4237-0f72-08db98f77a68
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2nYh98Jhl0MofowEAI2DLeVolIQZglF+LKA6AldRZJR+ixszu8a97aZIpaUbM+DyAoE59dmPKZ/vvAZX8sEUqo6+c3sWztWsn0ZG/ip2TNYjkGtB/+26hRBcbT5PVt8iq7w5snJRXsbc6QnuI50YiseKb7vepGLRCd2IVXjlHB1vlSUf8TUpcc1z1mB9y6FzTHxuvWKGO4Smsu5pAdo1aFj1+fd2vblcr0MYbAPr+ctQQHwOAVQ2P75VEO5oLZ4acXeljZ2TIP9DzOqM4lc8gWBk5Mi1+FoAORsDCGjoi5nvHIEzdlC3/XIIylfWqauP5YHZeSBCCN+0Gq7vbEUFlb2OIj2tXtBpEkTYdrO26PL4+oH1Gj7YrJ/nObUbS6sktySZYu0C0zEgn5hE6INAyKuvfJtL8lm6XOlbnYVAra8G6RBHsqkSyQj3S+DVqwa0HLZkqzk/KkCIP0ECg9vkbg6HbpBiwNWRZJEMBUbKEe78FPzj1j8KUKqg9GG9dDl0YCxWP7tcL70gd0JgccFjjilG4bhhFioda82MutX6rSnML12pM87ktAWU//aKeQ5C91joQLhwLMXi3PTLy0QnbxSSiiKQThS8H9HtD4CXiBX5KaHCuToUr1gnR3YKYDqsEQkDwL4jhbOBbjLU+TVF1A==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR19MB3057.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(136003)(39850400004)(396003)(346002)(376002)(186006)(451199021)(1800799006)(2616005)(71200400001)(54906003)(6916009)(4326008)(66946007)(7416002)(8936002)(8676002)(5660300002)(316002)(38070700005)(2906002)(66556008)(91956017)(66446008)(66476007)(38100700002)(76116006)(64756008)(86362001)(6512007)(478600001)(122000001)(966005)(6486002)(33656002)(41300700001)(36756003)(53546011)(26005)(6506007)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TkYzM3IrYnFnNmNWMVNtUmJFN0Zlb1BRSkdrVUdhRmtadTRkNXhQbFp4ajVv?=
+ =?utf-8?B?bjdZSlB4ek1qaFJBeldzYWlDYklCV2Y0RVduV3JKcldRVDZLeWRoam5lTCt2?=
+ =?utf-8?B?YnJ3MkJ3cjFlbDdoRkVRU3U1UUJLVmpBdVB4a2JTbk11bENmS1FXeHNwMG1E?=
+ =?utf-8?B?WS9sV3IzUzJjYTVCMk5xRmZzMmdEeTVkN0szdGd2Q2J3bXJhOUpqWEZLS2JL?=
+ =?utf-8?B?aERTQWd4YytnZGZXMVhZZ0x3QmZRRmRQVEpYbEk2YWJKVDlRK0ErNkFFS0Nr?=
+ =?utf-8?B?UlRYUFlHd2NuQjRoM2VPcXQ1bjAwQmxmMGJ4Nnd3VXppMUlUakhJUHd5QWVO?=
+ =?utf-8?B?bEZISVRjTHFuZ29lL0REeUZTZHNRWGhnM2xGUlpOK1RxOEM2K214ZXREdkNS?=
+ =?utf-8?B?cVRON1lQaHZpVDBKa0cxOXpnOHJDQjNmUkpUQnZwcS9aeVBEVExMZnpDdVc5?=
+ =?utf-8?B?L2drVXVZV1RSTTdWZkhjS1JjQVYwVUxLTEpoVFA1UGs2VDdHWEdQcGVzWHVo?=
+ =?utf-8?B?N1pDSm1TY0l4UzNRRDMxZitBd0lSbVk5YzVIbGpTdlV4UFRlWU82VUhQT214?=
+ =?utf-8?B?VDE2NVNvZVM1RmwwTENkajRHUnQ3THJnTkFRRkxFSXhlUkE4dFROWnloTC9p?=
+ =?utf-8?B?Z1NMT0huQkYvakRtVWxzRGVEdEsyYldNdk5qcHd2M1hKRk1vSWJ0WWR0UlNG?=
+ =?utf-8?B?cnZjNk9ONTMvMktFTzdOWjJNaWN1NXRoZU1ZR1krZ2RSNDJNMDJiRXUyT2dP?=
+ =?utf-8?B?UzBWQzhTdUN1a2FCM2RzTzZOMkJZTnBjQzU2azcrN1VMcDFRMXNRNjhHVHFH?=
+ =?utf-8?B?S2M2UGRESmpEWVdwUE5HVTVBSS9zQWZLci9yd09UWjJpOXNQcjl1ck5WL0J4?=
+ =?utf-8?B?anlzQ3Z0Z05OUWdiVGhKQ2tGUmZWVTE4UGZ6eXdlZk91TTAzWkhmdVo0WlpC?=
+ =?utf-8?B?WHQxYW1JQTR6d3FPbDhVakl0TTJpRG5YVkhDMDJNV2N1ZEd4Uzg2eVEzRXBU?=
+ =?utf-8?B?QVEwVTJnQWtBUEFuenkycjFVU1RHMEdxSVdMRWcwQzI3NTZ5UUdVYVllOGJs?=
+ =?utf-8?B?cHB3UjV2NThUTkdzQWRBM0Jsb3UwL3MrTDdaWm12czlLSjFEeXE3NnBkVlFm?=
+ =?utf-8?B?QitqUDlQRUdGbmE0WkFKRFhwRGM5SEpDbU9PbW9NeFVyM0VuYWdRS2wydmhN?=
+ =?utf-8?B?czZiRnRQbnRNNGRMU1JORFFsTjQxRld6YXV4ZjBXNUdsS0FBZkE4UDRlNzhJ?=
+ =?utf-8?B?OHdkbTVCL0xsNjAzWVdOSkJqNWtGWTRlNlZkK0hldzh0MFdyR3RmNFpyL3Ro?=
+ =?utf-8?B?SVpHNWNBTldlVUdVZ0RoeDBsMHJUd3RIRHBTWnVrT1p1NWhqTnRHUWg0NEtX?=
+ =?utf-8?B?L0tlNXo4eXFEcEQvRThHTHRVQ0NmQUV6M2M0TXJ5OG1YcHlSSFFNVFgrSXZT?=
+ =?utf-8?B?VXUrMjdrbTFIYkY2cWV1TjRNVUVnRlhQN1hXQk03N3ExZ1U0VTJCYisvSzMy?=
+ =?utf-8?B?UWhwWm4zQ3poU2UvODB1ZEVLVHdURHo4emUvZy9mbTFzMmdUblpFOHpPYVdu?=
+ =?utf-8?B?eVVYRkh1VmZmdnpxZTBMUmhtT2N4YXZlMlZvbEhOdjZLRmpxL0tNc0dNbUNB?=
+ =?utf-8?B?Zi9aWkZsVHNVbldpWTJhaDNHdi80WFRWckpWNUw3ODJiczlCWUJBa0h6ZWdS?=
+ =?utf-8?B?U0RLb05STnRGOS91WmJIN0xLelUxbWNac1lZVVY1QXRvaHh5ZHFLSGxuZHZ5?=
+ =?utf-8?B?UHNTMTRhN1VrU1QrRGxoQ3hEa01ZTWpaZlRXSm54M20zZHc0N2tyTW85RUlL?=
+ =?utf-8?B?ZjMyQlJ4MnBSc3loODBXZmFUcTBrS0w4eVEwNTl2bE0yYVlwdGdBM1JyLzcy?=
+ =?utf-8?B?ZEhUSjc0U1ViYW5DdXBWeU4xZGhMTHk3Sk9jekpUZjFUQ3MwbEViZC9SRVQr?=
+ =?utf-8?B?dksxekdYd2czam9qYXlQL3RXUzBIVnlXZHB5K0Z5RVZ0cE0xMERvaWtvTVJn?=
+ =?utf-8?B?RDJUNFF5bDVtRVFpekZFaGFBMUxvSkNBL3BjbDBzdDR0R0VCamJENlp1bGh4?=
+ =?utf-8?B?ZUNFNFBaV2YycmN2b2t5LzF3UGljQk5ReG8yNG9zTlNWY0xxYngrWjl5dGNG?=
+ =?utf-8?B?L1ZzSWluSkd2K3NCbWdBMUxjRHQwYXBBbDl5cFNsVTdxZ1FJWjZlRzVicCsz?=
+ =?utf-8?B?Znc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3A64FE3526AE9049B02190ABDBF0A1C5@namprd19.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: cirrus.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR19MB3057.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 470d2b20-7a7a-4237-0f72-08db98f77a68
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2023 16:41:28.0531
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bec09025-e5bc-40d1-a355-8e955c307de8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KtXN0/hVbMaXj8vCBbrAJwFc2N7NSc9aVwLRJF63AgbjZq4W0cf4GqPlC2TWVKBOc8PJysJiBNoDMbIvSTL/B80AK8EPxV6Cv0fldWWB/WA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR19MB3904
+X-Proofpoint-GUID: NVDZmlG5KXZRk6WQbCYelRQlaj0hOGU9
+X-Proofpoint-ORIG-GUID: NVDZmlG5KXZRk6WQbCYelRQlaj0hOGU9
+X-Proofpoint-Spam-Reason: safe
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 8/9/23 02:08, Joel Stanley wrote:
-> On Mon, 12 Jun 2023 at 19:57, Eddie James <eajames@linux.ibm.com> wrote:
->> Master indexing is problematic if a hub is rescanned while the
->> root master is being rescanned. Move the IDA free below the device
->> unregistration, lock the scan mutex in the probe function, and
->> request a specific idx in the hub driver.
-> I've applied this series, but taking a closer look at this patch I
-> think it can be improved. If you resend, just send this patch.
->
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   drivers/fsi/fsi-core.c       | 41 ++++++++++++++++++++++--------------
->>   drivers/fsi/fsi-master-hub.c |  2 ++
->>   2 files changed, 27 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/fsi/fsi-core.c b/drivers/fsi/fsi-core.c
->> index ec4d02264391..503061a6740b 100644
->> --- a/drivers/fsi/fsi-core.c
->> +++ b/drivers/fsi/fsi-core.c
->> @@ -1327,46 +1327,55 @@ static struct class fsi_master_class = {
->>   int fsi_master_register(struct fsi_master *master)
->>   {
->>          int rc;
->> -       struct device_node *np;
->>
->>          mutex_init(&master->scan_lock);
->> -       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
->> +
->> +       if (master->idx) {
-> Why do we allocate a new idx if there's already one?
-
-
-At this point, the master driver (aspeed, hub, i2cr, whatever) might 
-just be requesting a certain index. It's not allocated yet, so it needs 
-to be allocated so that we don't get overlap.
-
-
->
->> +               master->idx = ida_alloc_range(&master_ida, master->idx,
->> +                                             master->idx, GFP_KERNEL);
-> If we can't get one in the range we want, we ask for any? Should this
-> print a warning?
-
-
-Perhaps, we could also return error here if we decide that the requested 
-index is needed and not just wanted.
-
-
->
->> +               if (master->idx < 0)
->> +                       master->idx = ida_alloc(&master_ida, GFP_KERNEL);
->> +       } else {
-> If ixd was zero, we create one. This is the "normal" case?
-
-
-Yes, the assumption is: zero is the default due to zero-alloc'd master 
-structures.
-
-
->
->> +               master->idx = ida_alloc(&master_ida, GFP_KERNEL);
->> +       }
->> +
-> We check the same error condition again.
-
-
-Yes I might be able to make this cleaner...
-
-
->
->>          if (master->idx < 0)
->>                  return master->idx;
->> -       dev_set_name(&master->dev, "fsi%d", master->idx);
->> +       if (!dev_name(&master->dev))
->> +               dev_set_name(&master->dev, "fsi%d", master->idx);
->> +
->>          master->dev.class = &fsi_master_class;
->>
->> +       mutex_lock(&master->scan_lock);
->>          rc = device_register(&master->dev);
->>          if (rc) {
->>                  ida_free(&master_ida, master->idx);
->> -               return rc;
->> -       }
->> +       } else {
->> +               struct device_node *np = dev_of_node(&master->dev);
-> This change looks a bit different to the idx changes. What's happening here?
-
-
-This is just restructuring to get the lock before the scan. It could be 
-a separate commit, yea.
-
-Thanks for the review!
-
-Eddie
-
-
->> -       np = dev_of_node(&master->dev);
->> -       if (!of_property_read_bool(np, "no-scan-on-init")) {
->> -               mutex_lock(&master->scan_lock);
->> -               fsi_master_scan(master);
->> -               mutex_unlock(&master->scan_lock);
->> +               if (!of_property_read_bool(np, "no-scan-on-init"))
->> +                       fsi_master_scan(master);
->>          }
->>
->> -       return 0;
->> +       mutex_unlock(&master->scan_lock);
->> +       return rc;
->>   }
->>   EXPORT_SYMBOL_GPL(fsi_master_register);
->>
->>   void fsi_master_unregister(struct fsi_master *master)
->>   {
->> -       trace_fsi_master_unregister(master);
->> +       int idx = master->idx;
->>
->> -       if (master->idx >= 0) {
->> -               ida_free(&master_ida, master->idx);
->> -               master->idx = -1;
->> -       }
->> +       trace_fsi_master_unregister(master);
->>
->>          mutex_lock(&master->scan_lock);
->>          fsi_master_unscan(master);
->> +       master->n_links = 0;
->>          mutex_unlock(&master->scan_lock);
->> +
->>          device_unregister(&master->dev);
->> +       ida_free(&master_ida, idx);
->>   }
->>   EXPORT_SYMBOL_GPL(fsi_master_unregister);
->>
->> diff --git a/drivers/fsi/fsi-master-hub.c b/drivers/fsi/fsi-master-hub.c
->> index 6d8b6e8854e5..36da643b3201 100644
->> --- a/drivers/fsi/fsi-master-hub.c
->> +++ b/drivers/fsi/fsi-master-hub.c
->> @@ -12,6 +12,7 @@
->>   #include <linux/slab.h>
->>
->>   #include "fsi-master.h"
->> +#include "fsi-slave.h"
->>
->>   #define FSI_ENGID_HUB_MASTER           0x1c
->>
->> @@ -229,6 +230,7 @@ static int hub_master_probe(struct device *dev)
->>          hub->master.dev.release = hub_master_release;
->>          hub->master.dev.of_node = of_node_get(dev_of_node(dev));
->>
->> +       hub->master.idx = fsi_dev->slave->link + 1;
->>          hub->master.n_links = links;
->>          hub->master.read = hub_master_read;
->>          hub->master.write = hub_master_write;
->> --
->> 2.31.1
->>
+DQo+IE9uIEF1ZyA5LCAyMDIzLCBhdCAxOjQzIEFNLCBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5
+c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOg0KPiANCj4gT24gMDgvMDgvMjAyMyAx
+OToyNSwgSmFtZXMgT2dsZXRyZWUgd3JvdGU6DQo+IA0KPj4gU2lnbmVkLW9mZi1ieTogSmFtZXMg
+T2dsZXRyZWUgPGphbWVzLm9nbGV0cmVlQGNpcnJ1cy5jb20+DQo+PiAtLS0NCj4+IC4uLi9iaW5k
+aW5ncy9pbnB1dC9jaXJydXMsY3M0MGw1MC55YW1sICAgICAgICB8IDc3ICsrKysrKysrKysrKysr
+KysrKysNCj4+IE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
+ICA5ICsrKw0KPj4gMiBmaWxlcyBjaGFuZ2VkLCA4NiBpbnNlcnRpb25zKCspDQo+PiBjcmVhdGUg
+bW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L2NpcnJ1
+cyxjczQwbDUwLnlhbWwNCj4+IA0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9pbnB1dC9jaXJydXMsY3M0MGw1MC55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L2NpcnJ1cyxjczQwbDUwLnlhbWwNCj4+IG5ldyBmaWxl
+IG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjU0MzdjNmJlYjFiMw0KPj4gLS0t
+IC9kZXYvbnVsbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lu
+cHV0L2NpcnJ1cyxjczQwbDUwLnlhbWwNCj4+IEBAIC0wLDAgKzEsNzcgQEANCj4+ICsjIFNQRFgt
+TGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlDQo+PiArJVlB
+TUwgMS4yDQo+PiArLS0tDQo+PiArJGlkOiBodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0
+cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvaW5wdXQvY2lycnVzLGNzNDBsNTAueWFtbCpfXztJ
+dyEhRFEzS2Z3SSEyaW9IaEkyaWczYXhWUkQtN01ZcXFUMUxGX2JpdFdlMWwtQi1GUURKZlVYX0Vh
+VExyTG1VbnF0eUR0RVhDVkUyY05vemo3T0RBRjdmMDlKZHdtalM5YXZ5SHMxM0hpdyQgDQo+PiAr
+JHNjaGVtYTogaHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHA6Ly9kZXZpY2V0cmVlLm9y
+Zy9tZXRhLXNjaGVtYXMvY29yZS55YW1sKl9fO0l3ISFEUTNLZndJITJpb0hoSTJpZzNheFZSRC03
+TVlxcVQxTEZfYml0V2UxbC1CLUZRREpmVVhfRWFUTHJMbVVucXR5RHRFWENWRTJjTm96ajdPREFG
+N2YwOUpkd21qUzlhdnllRHhSdW5BJCANCj4+ICsNCj4+ICt0aXRsZTogQ2lycnVzIExvZ2ljIENT
+NDBMNTAgQWR2YW5jZWQgSGFwdGljIERyaXZlcg0KPiANCj4gRHJpdmVyIGFzICJtb3RvciI/IElm
+IHllcywgdGhlbiBvay4gSWYgIkxpbnV4IERyaXZlciIgdGhlbiBub3QuDQoNClRoZSBmb3JtZXIs
+IHNvIGtlZXBpbmcgYXMtaXMuDQoNCj4gDQo+PiArDQo+PiArICBjaXJydXMsZXh0ZXJuYWwtYm9v
+c3Q6DQo+PiArICAgIGRlc2NyaXB0aW9uOg0KPj4gKyAgICAgIEJ5cGFzcyB0aGUgQ1M0MEw1MCBi
+b29zdCBjb252ZXJ0ZXIuDQo+PiArDQo+PiArICAgICAgVGhlIGFtcGxpZmllciBvbiBDUzQwTDUw
+IGNhbiBiZSBwb3dlcmVkIGludGVybmFsbHkgdGhyb3VnaCB0aGUgYm9vc3QNCj4+ICsgICAgICBj
+b252ZXJ0ZXIsIG9yIGVsc2UgY2FuIGJlIHBvd2VyZWQgdXNpbmcgYW4gZXh0ZXJuYWwgc3VwcGx5
+LiBJZiBhbg0KPj4gKyAgICAgIGV4dGVybmFsIFZBIHN1cHBseSBpcyB1c2VkLCB0aGUgYm9vc3Qg
+Y29udmVydGVyIG11c3QgYmUgYnlwYXNzZWQuDQo+PiArICAgIHR5cGU6IGJvb2xlYW4NCj4gDQo+
+IElzbid0IHRoaXMgcHJvcGVydHkgdGhlbiBjb25mbGljdGluZyB3aXRoIHZhLXN1cHBseT8NCg0K
+4oCcVkEiIHdhcyBpbnRlbmRlZCB0byBtZWFuIGFtcGxpZmllciB2b2x0YWdlLCBub3QgYW5hbG9n
+IHZvbHRhZ2UuIEkgd2lsbCByZW1vdmUg4oCcVkEiIHRvIGZpeCB0aGUgYW1iaWd1aXR5LiANCg0K
+QmVzdCwNCg0KSmFtZXMgT2dsZXRyZWUNCg0KDQo=
