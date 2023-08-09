@@ -2,60 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B744C776599
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 18:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 845B77765B6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 18:56:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjHIQxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 12:53:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
+        id S229487AbjHIQ40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 12:56:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjHIQxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 12:53:44 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8142B1FCC
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 09:53:43 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 902AB6607208;
-        Wed,  9 Aug 2023 17:53:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1691600022;
-        bh=V9etpeGuwyUalyxU3LIZfZ5iYT80itsooDf0i2hGx0g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fHeOd8yN5Sw5RVkgVwt0e2eK+yPfq0xjGEp4oEMRDeQk+cFpWXst6+xExD2F1g8fc
-         Vj6LJAcrXavLDAkql0SSSo1nqFYma8w83mDQGbhw5wkK5t+9V1KBegNd7pv0RG3dgl
-         C5O9/oR6ZjbxNMT3JC5TaOWdpKhi0f8r70SxNj2Hb8mmfequ5V7pyZHHE2LtPkyy3c
-         f6AM2PryQZdYBvUbLfYIy/c1zDDgB8KeRi2YqE8TFHuOe7K0dU5z6BrmC0ljzc5kkn
-         IF6zXCH/Yn1wujyIf84qhFMkL2BfNF60lPyO6DcGIULWVvpSUZ67BCQvTnPhyrYPUZ
-         sqM7Pa/cJ7EZg==
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        "Marty E . Plummer" <hanetzer@startmail.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Faith Ekstrand <faith.ekstrand@collabora.com>,
-        Daniel Stone <daniels@collabora.com>,
-        Liviu Dudau <Liviu.Dudau@arm.com>,
-        Steven Price <steven.price@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 14/15] dt-bindings: gpu: mali-valhall-csf: Add initial bindings for panthor driver
-Date:   Wed,  9 Aug 2023 18:53:27 +0200
-Message-ID: <20230809165330.2451699-15-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230809165330.2451699-1-boris.brezillon@collabora.com>
-References: <20230809165330.2451699-1-boris.brezillon@collabora.com>
+        with ESMTP id S231894AbjHIQ4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 12:56:25 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F7602686
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 09:56:21 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fe82ac3ab4so1500830e87.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 09:56:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691600179; x=1692204979;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k3HBBhvAubwIXqCLGeN3G4sW7wh4F3k2098rANL9m5E=;
+        b=xbHKi9qaDFiRfH6p91xW/iuRv05hAEO1yVqI4rkQOC9xaO8p0C3G0nQxomfMyMz9SJ
+         W79T8qUsaynXCsSDGnOeXDVm+N3SZXvTD0H0ETegumhKmGhswcwOcokkMpykkUXcdDPj
+         /94zqv0zdn+JWUBylsW4/m0VfCh5g9VEnXlaUtOqZRFqa765ARQ8vIAX3vUUpgU9xX4p
+         0hkjMIQcQs4trwy5m1rTiRvz4JnjCNynZ1vaEzVp7IcT4bP2Y0AYyDfrE2mPIZ0uvXnl
+         l9fe3DdqFZhdX3QDf0T/gh+gylvLX1iq/3YTCz0AgFkataekqBtt4S0fNjMb3zNVOmrs
+         ebpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691600179; x=1692204979;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k3HBBhvAubwIXqCLGeN3G4sW7wh4F3k2098rANL9m5E=;
+        b=WXUlkSNInqq4VF0NXGul6GRqbzQctkMN6Sr7z9LMGXmko/Mb5TDWvT6AlDHAKB0bBS
+         J0pWUS96l2OZGYLoHELII8yQz137j4sZ6U+2grZUoZcSE9Vt00PyDOdZNPqp9KsOOqui
+         voy1EfP9xghSL8emBsF2lAkd8xBwR7l84HT03rJZNo+Hna4MyRBboaxSeuxTaiHDgK9f
+         EHwn5wihYlRMHSctgzXhKZkBacY8pST8sKtXFSxOvfZ18DikmSSAwqE6h1UHc//Z0ZS7
+         RAATVgDJrCwHlmCiLvgK+9Gf3Gz8l4zj7ZgevXPRrWvtR+W2tgESVok1H12Zm1mtNr3z
+         NjPg==
+X-Gm-Message-State: AOJu0YxHGyHYNS5MmAAnMI7DYuGx0j9gWF3pIDbU99oIJEuCOCisFRH1
+        GVXXNL3nTTP1vSkPBwG/VdlB9g==
+X-Google-Smtp-Source: AGHT+IF+WPSJQqsmhEQlzdm6vzAWXDf4J8DNbAZneDG2ViA2qtZINJQ8eJ7cxzsBloFELqP5SnoOKQ==
+X-Received: by 2002:a05:6512:3da7:b0:4fb:987b:ec3c with SMTP id k39-20020a0565123da700b004fb987bec3cmr2427977lfv.56.1691600178670;
+        Wed, 09 Aug 2023 09:56:18 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id x15-20020ac25dcf000000b004fb12e0c3eesm2353626lfq.193.2023.08.09.09.56.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 09:56:18 -0700 (PDT)
+Message-ID: <7009b7c7-8c53-47b1-9648-6d8fc8c4134a@linaro.org>
+Date:   Wed, 9 Aug 2023 18:56:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/4] clk: qcom: branch: Add clk_branch2_qca8k_ops
+Content-Language: en-US
+To:     Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
+        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_srichara@quicinc.com
+References: <20230809080047.19877-1-quic_luoj@quicinc.com>
+ <20230809080047.19877-2-quic_luoj@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230809080047.19877-2-quic_luoj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -66,185 +114,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liviu Dudau <liviu.dudau@arm.com>
+On 9.08.2023 10:00, Luo Jie wrote:
+> Add the clk_branch2_qca8k_ops for supporting clock controller
+> where the hardware register is accessed by MDIO bus, and the
+> spin clock can't be used because of sleep during the MDIO
+> operation.
+> 
+> The clock is enabled by the .prepare instead of .enable when
+> the clk_branch2_qca8k_ops is used.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+clk_branch2_mdio_ops?
 
-Arm has introduced a new v10 GPU architecture that replaces the Job Manager
-interface with a new Command Stream Frontend. It adds firmware driven
-command stream queues that can be used by kernel and user space to submit
-jobs to the GPU.
-
-Add the initial schema for the device tree that is based on support for
-RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
-platforms they will tend to expose the semi-independent clocks for better
-power management.
-
-v2:
-- New commit
-
-Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- .../bindings/gpu/arm,mali-valhall-csf.yaml    | 148 ++++++++++++++++++
- 1 file changed, 148 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-new file mode 100644
-index 000000000000..2b9f77aa0b7a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-@@ -0,0 +1,148 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM Mali Valhall GPU
-+
-+maintainers:
-+  - Liviu Dudau <liviu.dudau@arm.com>
-+  - Boris Brezillon <boris.brezillon@collabora.com>
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpu@[a-f0-9]+$'
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - rockchip,rk3588-mali
-+          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Job interrupt
-+      - description: MMU interrupt
-+      - description: GPU interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: job
-+      - const: mmu
-+      - const: gpu
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: core
-+      - const: coregroup
-+      - const: stacks
-+
-+  mali-supply: true
-+
-+  sram-supply: true
-+
-+  operating-points-v2: true
-+
-+  power-domains:
-+    minItems: 1
-+    maxItems: 5
-+
-+  power-domain-names:
-+    minItems: 1
-+    maxItems: 5
-+
-+  "#cooling-cells":
-+    const: 2
-+
-+  dynamic-power-coefficient:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      A u32 value that represents the running time dynamic
-+      power coefficient in units of uW/MHz/V^2. The
-+      coefficient can either be calculated from power
-+      measurements or derived by analysis.
-+
-+      The dynamic power consumption of the GPU is
-+      proportional to the square of the Voltage (V) and
-+      the clock frequency (f). The coefficient is used to
-+      calculate the dynamic power as below -
-+
-+      Pdyn = dynamic-power-coefficient * V^2 * f
-+
-+      where voltage is in V, frequency is in MHz.
-+
-+  dma-coherent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - mali-supply
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3588-mali
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          items:
-+            - const: core
-+            - const: coregroup
-+            - const: stacks
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/rk3588-power.h>
-+
-+    gpu: gpu@fb000000 {
-+        compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
-+        reg = <0xfb000000 0x200000>;
-+        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
-+        interrupt-names = "job", "mmu", "gpu";
-+        clock-names = "core", "coregroup", "stacks";
-+        clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
-+                 <&cru CLK_GPU_STACKS>;
-+        power-domains = <&power RK3588_PD_GPU>;
-+        operating-points-v2 = <&gpu_opp_table>;
-+        mali-supply = <&vdd_gpu_s0>;
-+        sram-supply = <&vdd_gpu_mem_s0>;
-+        status = "disabled";
-+    };
-+
-+    gpu_opp_table: opp-table {
-+        compatible = "operating-points-v2";
-+        opp-300000000 {
-+            opp-hz = /bits/ 64 <300000000>;
-+            opp-microvolt = <675000 675000 850000>;
-+        };
-+        opp-400000000 {
-+            opp-hz = /bits/ 64 <400000000>;
-+            opp-microvolt = <675000 675000 850000>;
-+        };
-+    };
-+
-+...
--- 
-2.41.0
-
+Konrad
