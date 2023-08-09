@@ -2,162 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44400776630
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 958E5776646
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbjHIROC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 13:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55196 "EHLO
+        id S232338AbjHIRUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 13:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjHIROC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:14:02 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C171C1FFA;
-        Wed,  9 Aug 2023 10:14:01 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379HDsa4110392;
-        Wed, 9 Aug 2023 12:13:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691601234;
-        bh=w6glHYm10JaDlR9DAR+uL65bVLB/pv8hB6bKGREf9eY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Vi5jnn+8reFP9YuirXyyfEESN5meEhl2EpdS1TcfsRCZVW8wMXPYLt0LDIOrlC+Rz
-         r4bk9AIF9CeJYpqQPh/6Geei1ciUQpO7BJNFC+FUfqLhfMa7hpT7RYdK4YbTAGW9HP
-         rM471TaC/EBqQQ83m0hfUri4jrGQvCvr3ouspb7w=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379HDsJa113751
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 12:13:54 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 12:13:54 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 12:13:54 -0500
-Received: from [10.24.69.141] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379HDosS008249;
-        Wed, 9 Aug 2023 12:13:51 -0500
-Message-ID: <46594a4d-d61f-b374-9ea5-78022d99c3db@ti.com>
-Date:   Wed, 9 Aug 2023 22:43:50 +0530
+        with ESMTP id S232834AbjHIRUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:20:48 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D263D1FEF
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 10:20:47 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fe27849e6aso11458160e87.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 10:20:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691601646; x=1692206446;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NoJSetQ0sviUvyT9vTPr+TM2mfAvcrXiHSmgOnMYNnk=;
+        b=cUWnuQPQHWRB9Gd6YmIvakjVi5WtBh4+tR9msvJS/bPkt1wxG2oxLMy18t9sRCltbf
+         +N6pi0yiF2C0d1r1iCH0seNjXwX2BzefFF5g6kh9l05Z/2croBQbk8kg9ftFcojSxzT+
+         PdYvKC+mOIUNSMJRUUUvw1uw40csmm6Ww57xGt935m1VmCUhI5q3xpDVhetwdewsKsHU
+         o/UhgZHAkJWIMC6SKO3MK8s8qm8J/X6MAgtxDrVCr+5CQMEop0Z7RE6HOIiAR72xFO5F
+         gXuNb3XLYFqqwWXoHDuGUJtwKbF+qKVoluR5fTygp7TE1NqsTSF0Jz31tZAF3wnHDF3j
+         w1ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691601646; x=1692206446;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NoJSetQ0sviUvyT9vTPr+TM2mfAvcrXiHSmgOnMYNnk=;
+        b=eaa7oUCzkbBYOGvaSNki3GObIUDHsBqyMUt7tdo63XCrxTjdAsa8iGD2ecIO6TgsI8
+         P7Fnv9/6/aAM/brf5lnXREEo6i0t1/KqyFCjBJBmAa6SBOpKl5QSvHclGRgLPufEw0jQ
+         Yq4RCNOPpPTZCTzKz4+sYdnk0X5Jkup7+xOTJTh3piAWjm5kw8VkV7EX5KACvFlma4y4
+         zVrYioe3smOHLMHyPCSHB96t0IyWETSYagz0JKvAwzYtk7MQfAlX7imWrODgQkSqukjP
+         p7f/qlJ0fmonlEAYDCeSQ+bGD1pots9kX/wf6cYvyTab0MNDMnseJ3kQYRIygaZ/bkND
+         AsBQ==
+X-Gm-Message-State: AOJu0YzsLO68MZaTR3WddqoJa36XNlXJz+4pbdSjjWqNr/s9BsUtJe05
+        NlUK/fwfv5zs/7u+xQspuW2Y9g==
+X-Google-Smtp-Source: AGHT+IEiNIBRZ8BJqEPKkd5kzOu/Dbi2M33GcJJM9FCr4XW2N9zj/HVqtE97g8v0VMMqX+4m34reZw==
+X-Received: by 2002:a05:6512:1116:b0:4fe:1a99:45e3 with SMTP id l22-20020a056512111600b004fe1a9945e3mr2441213lfg.30.1691601645981;
+        Wed, 09 Aug 2023 10:20:45 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id j5-20020ac25505000000b004fba5eb0a64sm2380095lfk.42.2023.08.09.10.20.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 10:20:45 -0700 (PDT)
+Message-ID: <eada6628-c303-4161-8329-7a4a1d130e54@linaro.org>
+Date:   Wed, 9 Aug 2023 19:20:44 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for
- ADC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/15] clk: qcom: gpucc-sm6115: Add runtime PM
 Content-Language: en-US
-To:     Udit Kumar <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <t-konduru@ti.com>, <b-kapoor@ti.com>
-CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230809050108.751164-1-u-kumar1@ti.com>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20230809050108.751164-1-u-kumar1@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v1-7-27784d27a4f4@linaro.org>
+ <ZLaSpFFBzP_Yz5yY@hovoldconsulting.com>
+ <febaa3cd-f8c3-c35e-2f1d-403c80c132b8@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <febaa3cd-f8c3-c35e-2f1d-403c80c132b8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Udit,
+On 18.07.2023 15:28, Konrad Dybcio wrote:
+> On 18.07.2023 15:24, Johan Hovold wrote:
+>> On Mon, Jul 17, 2023 at 05:19:14PM +0200, Konrad Dybcio wrote:
+>>> The GPU_CC block on SM6115 is powered by the VDD_CX rail. We need to
+>>> ensure that it's enabled to prevent unwanted power collapse.
+>>
+>> This bit is not correct, the power domain would not have been disabled
+>> until you enable runtime PM as part of this very patch.
+> Right, this was a bit of a thought-jump. The part that ensures there's
+> any vote at all is actually the DT commit adding a reference to the
+> genpd.
+Well I read it again and I think my original intention was "it = the power
+domain" and not "it = runtime PM", it makes sense that way..
 
-On 09/08/23 10:31, Udit Kumar wrote:
-> After splitting wkup_pmx pin mux for J784S4 into four regions.
-> Pin mux offset for ADC nodes were not updated to align with new
-> regions, due to this while probing ADC driver out of range
-> error was seen.
-> 
-> Pin mux offsets for ADC nodes are corrected in this patch.
-> 
-> Fixes: 14462bd0b247 ("arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and pinctrl node offsets")
-> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
-> ---
-> Reviewed pin mux for J784S4-EVM, AM69, J721S2-EVM and AM68
-> ADC seems to be last one to be fixed.
-> 
-> In order to test this patch
-> following drivers were built in as part of kernel
-> CONFIG_MFD_TI_AM335X_TSCADC=y
-> CONFIG_TI_AM335X_ADC=y
-> 
-> dtbs_check is done after applying
-> https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/
-> 
-> logs with patch
-> https://gist.github.com/uditkumarti/54db4d5e49467442e1698e5af82d787b#file-with_patch
-> (line 1128 and 1130)
-> 
-> Original logs
-> https://gist.github.com/uditkumarti/54db4d5e49467442e1698e5af82d787b#file-original_logs
-> (line 942 and 946)
-> 
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 32 ++++++++++++------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index edc1009b2d1e..b4ffa720209c 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -340,27 +340,27 @@ J784S4_WKUP_IOPAD(0x030, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
->  
->  	mcu_adc0_pins_default: mcu-adc0-default-pins {
->  		pinctrl-single,pins = <
-> -			J784S4_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (P36) MCU_ADC0_AIN0 */
-> -			J784S4_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (V36) MCU_ADC0_AIN1 */
-> -			J784S4_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (T34) MCU_ADC0_AIN2 */
-> -			J784S4_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (T36) MCU_ADC0_AIN3 */
-> -			J784S4_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (P34) MCU_ADC0_AIN4 */
-> -			J784S4_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (R37) MCU_ADC0_AIN5 */
-> -			J784S4_WKUP_IOPAD(0x14c, PIN_INPUT, 0) /* (R33) MCU_ADC0_AIN6 */
-> -			J784S4_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (V38) MCU_ADC0_AIN7 */
-> +			J784S4_WKUP_IOPAD(0x0cc, PIN_INPUT, 0) /* (P36) MCU_ADC0_AIN0 */
-> +			J784S4_WKUP_IOPAD(0x0d0, PIN_INPUT, 0) /* (V36) MCU_ADC0_AIN1 */
-> +			J784S4_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (T34) MCU_ADC0_AIN2 */
-> +			J784S4_WKUP_IOPAD(0x0d8, PIN_INPUT, 0) /* (T36) MCU_ADC0_AIN3 */
-> +			J784S4_WKUP_IOPAD(0x0dc, PIN_INPUT, 0) /* (P34) MCU_ADC0_AIN4 */
-> +			J784S4_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (R37) MCU_ADC0_AIN5 */
-> +			J784S4_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (R33) MCU_ADC0_AIN6 */
-> +			J784S4_WKUP_IOPAD(0x0e8, PIN_INPUT, 0) /* (V38) MCU_ADC0_AIN7 */
->  		>;
->  	};
->  
->  	mcu_adc1_pins_default: mcu-adc1-default-pins {
->  		pinctrl-single,pins = <
-> -			J784S4_WKUP_IOPAD(0x154, PIN_INPUT, 0) /* (Y38) MCU_ADC1_AIN0 */
-> -			J784S4_WKUP_IOPAD(0x158, PIN_INPUT, 0) /* (Y34) MCU_ADC1_AIN1 */
-> -			J784S4_WKUP_IOPAD(0x15c, PIN_INPUT, 0) /* (V34) MCU_ADC1_AIN2 */
-> -			J784S4_WKUP_IOPAD(0x160, PIN_INPUT, 0) /* (W37) MCU_ADC1_AIN3 */
-> -			J784S4_WKUP_IOPAD(0x164, PIN_INPUT, 0) /* (AA37) MCU_ADC1_AIN4 */
-> -			J784S4_WKUP_IOPAD(0x168, PIN_INPUT, 0) /* (W33) MCU_ADC1_AIN5 */
-> -			J784S4_WKUP_IOPAD(0x16c, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
-> -			J784S4_WKUP_IOPAD(0x170, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
-> +			J784S4_WKUP_IOPAD(0x0ec, PIN_INPUT, 0) /* (Y38) MCU_ADC1_AIN0 */
-> +			J784S4_WKUP_IOPAD(0x0f0, PIN_INPUT, 0) /* (Y34) MCU_ADC1_AIN1 */
-> +			J784S4_WKUP_IOPAD(0x0f4, PIN_INPUT, 0) /* (V34) MCU_ADC1_AIN2 */
-> +			J784S4_WKUP_IOPAD(0x0f8, PIN_INPUT, 0) /* (W37) MCU_ADC1_AIN3 */
-> +			J784S4_WKUP_IOPAD(0x0fc, PIN_INPUT, 0) /* (AA37) MCU_ADC1_AIN4 */
-> +			J784S4_WKUP_IOPAD(0x100, PIN_INPUT, 0) /* (W33) MCU_ADC1_AIN5 */
-> +			J784S4_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
-> +			J784S4_WKUP_IOPAD(0x108, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
+Anyway, I'll rephrase that to make it less ambiguous.
 
-Thank you for the fix,
-
-Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
-
-Thanks and Regards,
-Vaishnav
-
-
->  		>;
->  	};
->  };
+Konrad
