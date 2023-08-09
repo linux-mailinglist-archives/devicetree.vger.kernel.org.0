@@ -2,126 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 799BF7766BC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86DAB7766CE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 20:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjHIR7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 13:59:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
+        id S231878AbjHISAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 14:00:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbjHIR7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:59:17 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAA87171D;
-        Wed,  9 Aug 2023 10:59:15 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379Hx9TO048598;
-        Wed, 9 Aug 2023 12:59:09 -0500
+        with ESMTP id S230418AbjHISAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 14:00:03 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822E61BD9;
+        Wed,  9 Aug 2023 11:00:01 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379HxqdB119432;
+        Wed, 9 Aug 2023 12:59:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691603949;
-        bh=4kqEME0iVmag3gTdJpH4PJ+/IZ2IlwZU1DRPoE3UJcw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=RYY1/wGx8e5uGxs5eBaVq0YmYQBz4EyCIWWVkKraIGqtBE3J186nO+yxJvatc8G8a
-         dQHUgyX4M8yR8D+HUsFRqmDUO1mJaKmXZXg7vjT/Kyx0cNiuGTNzZ4b7C5mtOGOhqB
-         7vURyGhXL+LR3qtjClE+1CZTMWh4AluGieIkUpYM=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379Hx9wP032036
+        s=ti-com-17Q1; t=1691603992;
+        bh=y2SYO516zlr0jAWcRq1XhL154UChJeRiSKyVEmnHyK4=;
+        h=From:To:CC:Subject:Date;
+        b=UtRxHxJ66KILdW8eBAM3lZhxABASRklxfvFvsaXSRVSeezjXo+FOSwiBHQ+7u5EEv
+         Eb6quW6Fa63IcUE0a6sMVL8aO5yNaTTFY7nltkt0TkqPtQGZpJmxlvyUY5jZAdLqUC
+         0RX/W+JXSF46Ot2x/BDoYEz1xndPeXeFSElpecWg=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379Hxqhe010082
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 12:59:09 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Aug 2023 12:59:52 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 12:59:09 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 12:59:52 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 12:59:09 -0500
-Received: from [10.250.38.120] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379Hx8FX096753;
-        Wed, 9 Aug 2023 12:59:08 -0500
-Message-ID: <1ec72d58-de81-d367-3dc6-900a00b6dac4@ti.com>
-Date:   Wed, 9 Aug 2023 12:59:07 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add ti,dss-oldi-io-ctrl
- compatible
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+ Frontend Transport; Wed, 9 Aug 2023 12:59:52 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379Hxm6G098813;
+        Wed, 9 Aug 2023 12:59:49 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Tero Kristo <kristo@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230809165752.46133-1-afd@ti.com>
- <28cf3fa3-c9ea-aba1-2e45-94142a818849@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <28cf3fa3-c9ea-aba1-2e45-94142a818849@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+CC:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 0/2] soc: ti: k3-ringacc: Add additional register regions
+Date:   Wed, 9 Aug 2023 23:29:30 +0530
+Message-ID: <20230809175932.2553156-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/9/23 12:39 PM, Aradhya Bhatia wrote:
-> Hi Andrew,
-> 
-> Thank you for quickly whipping up these patches! =)
-> 
-> On 09-Aug-23 22:27, Andrew Davis wrote:
->> Add TI DSS OLDI-IO control registers compatible. This is a region of 5
->> 32bit registers found in the TI AM65 CTRL_MMR0 register space[0]. They
->> are used to control the characteristics of the OLDI DATA/CLK IO as needed
->> by the DSS display controller node.
-> 
-> As long as the driver takes care of it, we can reuse the same compatible
-> even when OLDI IO Ctrl registers change from SoC to SoC, (in this case,
-> AM65 to AM62), right?
-> 
+Ringacc on TI K3 SoCs have configuration registers region which is
+usually hidden from Linux and configured via Device Manager Firmware
+APIs. But certain early SWs like bootloader which run before Device
+Manager is fully up would need to directly configure these registers and
+thus require to be in DT description.
 
-That depends, is the register space still "compatible" with the AM65
-version of this space? If not then we would want to qualify these
-with their SoC versions.
+This add bindings for the cfg region and also adds them to DT files.
+Backward compatibility is maintained to existing DT by only mandating
+existing regions to be present and this new region as optional.
 
-A quick check of the documentation shows the register space is still
-5 registers, 4 DATA and 1 CLK. The contents are different though, but
-since this compatible string is not used to match with a driver that
-would care (that is handled by the DSS node which does have different
-compatibles for each device), I'm actually not sure. Guess we can leave
-that decision to the DT binding maintainers..
+Nishanth: I am hoping its possible for you to take bindings and DT
+via k3-dts-next once reviewed.
 
-Andrew
+Vignesh Raghavendra (2):
+  dt-bindings: soc: ti: k3-ringacc: Describe cfg reg region
+  arm64: dts: ti: k3: Add cfg reg region to ringacc node
 
-> Regards
-> Aradhya
-> 
->>
->> [0] https://www.ti.com/lit/pdf/spruid7
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> index 8103154bbb529..5029abd6d6411 100644
->> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> @@ -69,6 +69,7 @@ properties:
->>                 - rockchip,rk3588-qos
->>                 - rockchip,rv1126-qos
->>                 - starfive,jh7100-sysmain
->> +              - ti,dss-oldi-io-ctrl
->>   
->>             - const: syscon
->>   
+ Documentation/devicetree/bindings/soc/ti/k3-ringacc.yaml | 9 +++++++--
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi                 | 5 +++--
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi                  | 6 ++++--
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi                | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi          | 6 ++++--
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi                | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi          | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi               | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi         | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi               | 5 +++--
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi         | 5 +++--
+ 11 files changed, 39 insertions(+), 22 deletions(-)
+
+-- 
+2.41.0
+
