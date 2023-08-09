@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E800D776A15
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 22:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE48776A18
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 22:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231354AbjHIUfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 16:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46450 "EHLO
+        id S234480AbjHIUfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 16:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbjHIUfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 16:35:38 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E242109
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 13:35:37 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-313e742a787so107947f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 13:35:37 -0700 (PDT)
+        with ESMTP id S230273AbjHIUfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 16:35:41 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0334A2111
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 13:35:39 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fe1fc8768aso1554045e9.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 13:35:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691613336; x=1692218136;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RfoTq2XW9+R+h/qbUOVt8LKEkXiOZWtHK/uiLQ/IU5A=;
-        b=xliiIduM58I6k9OalL8xzwc4n/BV2j7QIRJSK0rVlaynwN6KWfO4uRF11dzKkb0d3W
-         upmIBo/gtqwMdWwKfLnEf0aBuvNKYhRS9DzAYIKCBf6ioj05pG4TQVJuK7fweTFM9QGp
-         GyOaxkU9sGEZ4a2oeMeE+skCtZ8p+EhwVBlDV+CZzrQfeBTRDNZ5Vn/pm1eN8+Tyv8F8
-         9v/9vgPnYU/A37uBUrj8VuRsjoHMx5MMdWp1IwEANYKKJdLofILugdf2cmTDTFZYOpDl
-         qjyH+G1WU3iEi29+ZcDPvj5gnedV86fp7QvE1KCHazb8kUA5seBBNP1+CFYF9jyyLe0H
-         Tw4g==
+        d=linaro.org; s=google; t=1691613337; x=1692218137;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u2cvjbfix/wPh0u/PHG3ITrkDIPmnvtrUnb/pWLaP6c=;
+        b=jj1+uWLCc+4FcR4qZUoxtzm4+9MlriK4bTUnuOslgEG390QjTtygyyyjXQZEbKBZba
+         mn5IqC10OyupOZI8ITaiuSsvTgcO8Rg9PImx//+wxsDStBoQL0cvAdNbTVOXbIoSZEed
+         nOksH3IrBlsS1SdZw0vPzdv3ARZNnMq/ASjD9iVh9UWhG//5WRTo6YyHTCe0Wgh82npx
+         TyXXq5vLyww7VNVZxhM8Op86z2HruArUZjocnCzIYJYKGATRgkyjIrvpW2p8FCr2sDFz
+         hFSZrQ4wUeq4uJlkqlLZc467tYWByBNRSV1cllmBuPAIcVAQyT8Nm6DPvhm0PtH/aKFv
+         10wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691613336; x=1692218136;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RfoTq2XW9+R+h/qbUOVt8LKEkXiOZWtHK/uiLQ/IU5A=;
-        b=kyekKfMtUF3aEe8CkbVZ5311iIKNo3y5dC0Nt8Eetw61KFrp3eUIZss07cI9jsRI3m
-         rARabVTe1qnKEc2zp0l0ln0mRWNjWkD4+cJr46Ea9Nvp6SqCGXi7AFaAHfse3ik30hkX
-         41TYAHjqPyMAqf+uV95j0dNTkJLK8bHP+OtwgWF/pgJla6TQ44iG51yTSi7GWJY6ybL3
-         yo44dV8csCgPucZTCfY2xCSjNqbXp7yA4CkK+/ZpJq7U48sQE9a5Mujrjik2EXDWz3cJ
-         tuk1TJ5mhJ6vkxMW7wgdOZXo7RrChLwWI7cGRXlZX6Od1tRyQ8DUCMJTUQXiPIC4AtIF
-         PsZA==
-X-Gm-Message-State: AOJu0YwkcvfWiekQJY83avzIK5d9Gr8GOUvCozSEGGe2wvh7s/djG9jO
-        XfB9QB6yI1s40ny+qdRzSdFX5w==
-X-Google-Smtp-Source: AGHT+IEwF64TfCzahjZomc+toRMvunS2U2np7joMbcm77GyNVweE4B9Xr+vlLhy1kN7l5qvJHkXu3A==
-X-Received: by 2002:adf:ffc7:0:b0:317:5d76:1d1a with SMTP id x7-20020adfffc7000000b003175d761d1amr4217wrs.8.1691613336440;
-        Wed, 09 Aug 2023 13:35:36 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691613337; x=1692218137;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=u2cvjbfix/wPh0u/PHG3ITrkDIPmnvtrUnb/pWLaP6c=;
+        b=P8nLa2alZmOGohItkjRPKEe2eM3tD5Ip4BWTEVQzUdL+SeFnajf3aAY+uRfuSYsN7O
+         n8z2HCC27eYirhqCAphQiEzKEkeUOXlH/W90GflZgDxLmaHAYfnfUxc48iGGdMrA7yO7
+         RglujH4TEfF+JU/tgTolNjPznld0jGthgqQQV82daQs89XU09uLDPpLHllMz0Ojz+yq+
+         9qStxkGf9oLnt/xQDiByB1Dz4HvYHC9d7JP+haF8ab4wgmvJHqSqNUzkZJMjB8qyL2r1
+         lXsc++CGI0GMGX9FkvZXPjzmONKX/dyqZ+0kWE3Hm5reFkz1sJRhvf4iBjchdZuPqvjP
+         HwQQ==
+X-Gm-Message-State: AOJu0YwJWMMJ8mLm7S1wZsQ9KvYLrLZ9U5BTfeSni6BkIYyH6VXg6HVL
+        DsDq9p2MJDFBIgH/STt+EuhmtQ==
+X-Google-Smtp-Source: AGHT+IHAofglJPs0oPNqBPoKh/jI6ZbUcFrRC/bkQ/hpY8gz2qEoxH3jaYn97GuGcNiA8pM9QzrsOQ==
+X-Received: by 2002:a5d:522e:0:b0:317:54e2:26ca with SMTP id i14-20020a5d522e000000b0031754e226camr376873wra.50.1691613337493;
+        Wed, 09 Aug 2023 13:35:37 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id x12-20020adfec0c000000b0031274a184d5sm17699490wrn.109.2023.08.09.13.35.35
+        by smtp.gmail.com with ESMTPSA id x12-20020adfec0c000000b0031274a184d5sm17699490wrn.109.2023.08.09.13.35.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 13:35:35 -0700 (PDT)
+        Wed, 09 Aug 2023 13:35:37 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org
-Subject: [PATCH 0/1] Enable CAMSS on non-mezzanine rb3
-Date:   Wed,  9 Aug 2023 21:35:33 +0100
-Message-Id: <20230809203534.1100030-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH 1/1] arm64: dts: qcom: sdm845: Enable CAMSS on the bare rb3 board
+Date:   Wed,  9 Aug 2023 21:35:34 +0100
+Message-Id: <20230809203534.1100030-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230809203534.1100030-1-bryan.odonoghue@linaro.org>
+References: <20230809203534.1100030-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -70,17 +73,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Similar to the apq8016 case we can run the Test Pattern Genrator (TPG) on
-the rb3 absent a mezzanine or connected sensor.
+Enable CAMSS on the standard RB3 as it is possible to run the test pattern
+generator (TPG) without any populated ports/endpoints.
 
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-08-07-db410c-rb3-camss-dts-v2
+media-ctl --reset
+yavta --no-query -w '0x009f0903 9' /dev/v4l-subdev4
+yavta --list /dev/v4l-subdev4
+media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:SGRBG10_1X10/3280x2464]'
+media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:SGRBG10_1X10/3280x2464]'
+media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+media-ctl -d /dev/media0 -p
+yavta -B capture-mplane --capture=5 -n 5 -I -f SGRBG10P -s 3280x2464 --file=TPG-SGRBG10-3280x2464-000-#.bin /dev/video2
 
-Bryan O'Donoghue (1):
-  arm64: dts: qcom: sdm845: Enable CAMSS on the bare rb3 board
-
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 7 +++++++
  1 file changed, 7 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index d6b464cb61d6f..14f9afbd75e54 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -410,6 +410,13 @@ vreg_bob: bob {
+ 	};
+ };
+ 
++&camss {
++	status = "okay";
++
++	vdda-phy-supply = <&vreg_l1a_0p875>;
++	vdda-pll-supply = <&vreg_l26a_1p2>;
++};
++
+ &cdsp_pas {
+ 	status = "okay";
+ 	firmware-name = "qcom/sdm845/cdsp.mbn";
 -- 
 2.39.2
 
