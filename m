@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7056775072
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 03:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 112837750B5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 04:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjHIBj0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Aug 2023 21:39:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40460 "EHLO
+        id S229898AbjHICKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Aug 2023 22:10:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjHIBjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 21:39:25 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D0471982;
-        Tue,  8 Aug 2023 18:39:22 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 8134724E293;
-        Wed,  9 Aug 2023 09:39:20 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 9 Aug
- 2023 09:39:20 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 9 Aug 2023 09:39:19 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-CC:     Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v1 2/2] riscv: dts: starfive: Add mmc nodes on VisionFive 2 board
-Date:   Wed, 9 Aug 2023 09:39:17 +0800
-Message-ID: <20230809013917.81674-3-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230809013917.81674-1-william.qiu@starfivetech.com>
-References: <20230809013917.81674-1-william.qiu@starfivetech.com>
+        with ESMTP id S229484AbjHICKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Aug 2023 22:10:31 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAF6F3;
+        Tue,  8 Aug 2023 19:10:28 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DF770C0003;
+        Wed,  9 Aug 2023 02:10:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1691547027;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=M8vVo7zn3MZSh5a87fGh8ut7jxQkEvXrzgB1bEJiFLQ=;
+        b=fKoDkMbEfUw6jzI6773/0Ik3PxD20GaySU5b2i2dZRAHdLDboyq1MXHTaZBDokI8BzRhz0
+        9QVK3/GlC72fhybxKh1Ngut5pC9jlqcNSnPDJuJi8RsUOLAvcXZDLbGPpbHhpb8/kh9bnV
+        5U6YiTFXtPOKvMJCgWK52Ql6t1v6YOmevhsSGTLpuOp7CaaCexQEFCeAFQ4EXc31+PhN8p
+        pdpPz/PfoVqztZ2VG9qkXp7ExAjHYu3hUSUbzJHdxYQoFxJeFY4UmoWA7FZNQFUKhSjCb1
+        WzsGAp+rrlcgtyEBKOeyaPflaX6Q5BLRM7F5FaKA0fDI9BSf+4tzJhvp8TpZ6A==
+Date:   Wed, 9 Aug 2023 04:10:25 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jacky Huang <ychuang570808@gmail.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [RESEND PATCH v2 3/3] rtc: Add driver for Nuvoton ma35d1 rtc
+ controller
+Message-ID: <20230809021025a7c0daec@mail.local>
+References: <20230809011542.429945-1-ychuang570808@gmail.com>
+ <20230809011542.429945-4-ychuang570808@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230809011542.429945-4-ychuang570808@gmail.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,180 +56,331 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the mmc nodes for the StarFive JH7110 SoC.
-Set mmc0 node to emmc and set mmc1 node to sd.
+Hello,
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 96 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 32 +++++++
- 2 files changed, 128 insertions(+)
+On 09/08/2023 01:15:42+0000, Jacky Huang wrote:
+> +
+> +struct ma35_bcd_time {
+> +	int bcd_sec;
+> +	int bcd_min;
+> +	int bcd_hour;
+> +	int bcd_mday;
+> +	int bcd_mon;
+> +	int bcd_year;
+> +};
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index d67e26b9c791..d79f94432b27 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -17,6 +17,8 @@ aliases {
- 		i2c2 = &i2c2;
- 		i2c5 = &i2c5;
- 		i2c6 = &i2c6;
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
- 		serial0 = &uart0;
- 	};
- 
-@@ -201,6 +203,35 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&mmc0 {
-+	max-frequency = <100000000>;
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	post-power-on-delay-ms = <200>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_pins>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&emmc_vdd>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	max-frequency = <100000000>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	broken-cd;
-+	cap-sd-highspeed;
-+	post-power-on-delay-ms = <200>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	status = "okay";
-+};
-+
- &qspi {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-@@ -306,6 +337,71 @@ GPOEN_SYS_I2C6_DATA,
- 		};
- 	};
- 
-+	mmc0_pins: mmc0-0 {
-+		 rst-pins {
-+			pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <12>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		mmc-pins {
-+			pinmux = <PINMUX(64, 0)>,
-+				 <PINMUX(65, 0)>,
-+				 <PINMUX(66, 0)>,
-+				 <PINMUX(67, 0)>,
-+				 <PINMUX(68, 0)>,
-+				 <PINMUX(69, 0)>,
-+				 <PINMUX(70, 0)>,
-+				 <PINMUX(71, 0)>,
-+				 <PINMUX(72, 0)>,
-+				 <PINMUX(73, 0)>;
-+			bias-pull-up;
-+			drive-strength = <12>;
-+			input-enable;
-+		};
-+	};
-+
-+	mmc1_pins: mmc1-0 {
-+		clk-pins {
-+			pinmux = <GPIOMUX(10, GPOUT_SYS_SDIO1_CLK,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <12>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		mmc-pins {
-+			pinmux = <GPIOMUX(9, GPOUT_SYS_SDIO1_CMD,
-+					     GPOEN_SYS_SDIO1_CMD,
-+					     GPI_SYS_SDIO1_CMD)>,
-+				 <GPIOMUX(11, GPOUT_SYS_SDIO1_DATA0,
-+					      GPOEN_SYS_SDIO1_DATA0,
-+					      GPI_SYS_SDIO1_DATA0)>,
-+				 <GPIOMUX(12, GPOUT_SYS_SDIO1_DATA1,
-+					      GPOEN_SYS_SDIO1_DATA1,
-+					      GPI_SYS_SDIO1_DATA1)>,
-+				 <GPIOMUX(7, GPOUT_SYS_SDIO1_DATA2,
-+					     GPOEN_SYS_SDIO1_DATA2,
-+					     GPI_SYS_SDIO1_DATA2)>,
-+				 <GPIOMUX(8, GPOUT_SYS_SDIO1_DATA3,
-+					     GPOEN_SYS_SDIO1_DATA3,
-+					     GPI_SYS_SDIO1_DATA3)>;
-+			bias-pull-up;
-+			drive-strength = <12>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index a608433200e8..18d4b60a7bbf 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -821,6 +821,38 @@ watchdog@13070000 {
- 				 <&syscrg JH7110_SYSRST_WDT_CORE>;
- 		};
- 
-+		mmc0: mmc@16010000 {
-+			compatible = "starfive,jh7110-mmc";
-+			reg = <0x0 0x16010000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
-+				 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
-+			clock-names = "biu","ciu";
-+			resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
-+			reset-names = "reset";
-+			interrupts = <74>;
-+			fifo-depth = <32>;
-+			fifo-watermark-aligned;
-+			data-addr = <0>;
-+			starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
-+			status = "disabled";
-+		};
-+
-+		mmc1: mmc@16020000 {
-+			compatible = "starfive,jh7110-mmc";
-+			reg = <0x0 0x16020000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
-+				 <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
-+			clock-names = "biu","ciu";
-+			resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
-+			reset-names = "reset";
-+			interrupts = <75>;
-+			fifo-depth = <32>;
-+			fifo-watermark-aligned;
-+			data-addr = <0>;
-+			starfive,sysreg = <&sys_syscon 0x9c 0x1 0x3e>;
-+			status = "disabled";
-+		};
-+
- 		gmac0: ethernet@16030000 {
- 			compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
- 			reg = <0x0 0x16030000 0x0 0x10000>;
+I don't get why this struct is useful.
+
+> +
+> +static irqreturn_t ma35d1_rtc_interrupt(int irq, void *data)
+> +{
+> +	struct ma35_rtc *rtc = (struct ma35_rtc *)data;
+> +	unsigned long events = 0, rtc_irq;
+> +
+> +	rtc_irq = rtc_reg_read(rtc, MA35_REG_RTC_INTSTS);
+> +
+> +	if (rtc_irq & RTC_INTSTS_ALMIF) {
+> +		rtc_reg_write(rtc, MA35_REG_RTC_INTSTS, RTC_INTSTS_ALMIF);
+> +		events |= RTC_AF | RTC_IRQF;
+> +	}
+> +
+> +	if (rtc_irq & RTC_INTSTS_TICKIF) {
+> +		rtc_reg_write(rtc, MA35_REG_RTC_INTSTS, RTC_INTSTS_TICKIF);
+> +		events |= RTC_UF | RTC_IRQF;
+
+How did you test this path?
+
+> +	}
+> +
+> +	rtc_update_irq(rtc->rtcdev, 1, events);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int ma35d1_rtc_init(struct ma35_rtc *rtc, u32 ms_timeout)
+> +{
+> +	const unsigned long timeout = jiffies + msecs_to_jiffies(ms_timeout);
+> +
+> +	do {
+> +		if (rtc_reg_read(rtc, MA35_REG_RTC_INIT) & RTC_INIT_ACTIVE)
+> +			return 0;
+> +
+> +		rtc_reg_write(rtc, MA35_REG_RTC_INIT, RTC_INIT_MAGIC_CODE);
+> +
+> +		mdelay(1);
+> +
+> +	} while (time_before(jiffies, timeout));
+> +
+> +	return -ETIMEDOUT;
+> +}
+> +
+> +static int ma35d1_rtc_bcd2bin(u32 time, u32 cal, u32 wday, struct rtc_time *tm)
+> +{
+> +	tm->tm_mday	= bcd2bin(cal >> 0);
+> +	tm->tm_mon	= bcd2bin(cal >> 8);
+> +	tm->tm_mon	= tm->tm_mon - 1;
+> +	tm->tm_year	= bcd2bin(cal >> 16) + 100;
+> +
+> +	tm->tm_sec	= bcd2bin(time >> 0);
+> +	tm->tm_min	= bcd2bin(time >> 8);
+> +	tm->tm_hour	= bcd2bin(time >> 16);
+> +
+> +	tm->tm_wday = wday;
+> +
+> +	return rtc_valid_tm(tm);
+> +}
+> +
+> +static int ma35d1_rtc_alarm_bcd2bin(u32 talm, u32 calm, struct rtc_time *tm)
+> +{
+> +	tm->tm_mday	= bcd2bin(calm >> 0);
+> +	tm->tm_mon	= bcd2bin(calm >> 8);
+> +	tm->tm_mon	= tm->tm_mon - 1;
+> +	tm->tm_year	= bcd2bin(calm >> 16) + 100;
+> +
+> +	tm->tm_sec	= bcd2bin(talm >> 0);
+> +	tm->tm_min	= bcd2bin(talm >> 8);
+> +	tm->tm_hour	= bcd2bin(talm >> 16);
+> +
+> +	return rtc_valid_tm(tm);
+> +}
+> +
+> +static void ma35d1_rtc_bin2bcd(struct device *dev, struct rtc_time *settm,
+> +			       struct ma35_bcd_time *gettm)
+> +{
+> +	gettm->bcd_mday = bin2bcd(settm->tm_mday) << 0;
+> +	gettm->bcd_mon  = bin2bcd((settm->tm_mon + 1)) << 8;
+> +
+> +	if (settm->tm_year < 100) {
+> +		dev_warn(dev, "The year will be between 1970-1999, right?\n");
+
+No, don't do that, properly set the rtc hardware range and let the user
+choose their time offset/window.
+
+> +		gettm->bcd_year = bin2bcd(settm->tm_year) << 16;
+> +	} else {
+> +		gettm->bcd_year = bin2bcd(settm->tm_year - 100) << 16;
+> +	}
+> +
+> +	gettm->bcd_sec  = bin2bcd(settm->tm_sec) << 0;
+> +	gettm->bcd_min  = bin2bcd(settm->tm_min) << 8;
+> +	gettm->bcd_hour = bin2bcd(settm->tm_hour) << 16;
+> +}
+
+Those functions are only used once, simply put them in their call site.
+
+> +
+> +static int ma35d1_alarm_irq_enable(struct device *dev, u32 enabled)
+> +{
+> +	struct ma35_rtc *rtc = dev_get_drvdata(dev);
+> +	u32 reg_ien;
+> +
+> +	reg_ien = rtc_reg_read(rtc, MA35_REG_RTC_INTEN);
+> +
+> +	if (enabled)
+> +		rtc_reg_write(rtc, MA35_REG_RTC_INTEN, reg_ien | RTC_INTEN_ALMIEN);
+> +	else
+> +		rtc_reg_write(rtc, MA35_REG_RTC_INTEN, reg_ien & ~RTC_INTEN_ALMIEN);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ma35d1_rtc_read_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct ma35_rtc *rtc = dev_get_drvdata(dev);
+> +	u32 time, cal, wday;
+> +
+> +	time = rtc_reg_read(rtc, MA35_REG_RTC_TIME);
+> +	cal  = rtc_reg_read(rtc, MA35_REG_RTC_CAL);
+> +	wday = rtc_reg_read(rtc, MA35_REG_RTC_WEEKDAY);
+
+Are the registers properly latched when reading? How do you ensure that
+MA35_REG_RTC_TIME didn't change before reading MA35_REG_RTC_CAL ?
+
+> +
+> +	return ma35d1_rtc_bcd2bin(time, cal, wday, tm);
+> +}
+> +
+> +static int ma35d1_rtc_set_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct ma35_rtc *rtc = dev_get_drvdata(dev);
+> +	struct ma35_bcd_time gettm;
+> +	u32 val;
+> +
+> +	ma35d1_rtc_bin2bcd(dev, tm, &gettm);
+> +
+> +	val = gettm.bcd_mday | gettm.bcd_mon | gettm.bcd_year;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_CAL, val);
+> +
+> +	val = gettm.bcd_sec | gettm.bcd_min | gettm.bcd_hour;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_TIME, val);
+> +
+
+Same question about latching, shouldn't you stop the rtc while doing
+this?
+
+> +	val = tm->tm_wday;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_WEEKDAY, val);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ma35d1_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
+> +{
+> +	struct ma35_rtc *rtc = dev_get_drvdata(dev);
+> +	struct ma35_bcd_time tm;
+> +	unsigned long val;
+> +
+> +	ma35d1_rtc_bin2bcd(dev, &alrm->time, &tm);
+> +
+> +	val = tm.bcd_mday | tm.bcd_mon | tm.bcd_year;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_CALM, val);
+> +
+> +	val = tm.bcd_sec | tm.bcd_min | tm.bcd_hour;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_TALM, val);
+> +
+
+What about handling alrm.enabled here?
+
+> +	return 0;
+> +}
+> +
+> +static const struct rtc_class_ops ma35d1_rtc_ops = {
+> +	.read_time = ma35d1_rtc_read_time,
+> +	.set_time = ma35d1_rtc_set_time,
+> +	.read_alarm = ma35d1_rtc_read_alarm,
+> +	.set_alarm = ma35d1_rtc_set_alarm,
+> +	.alarm_irq_enable = ma35d1_alarm_irq_enable,
+> +};
+> +
+> +static int ma35d1_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct ma35_rtc *rtc;
+> +	struct clk *clk;
+> +	u32 regval;
+> +	int err;
+> +
+> +	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
+> +	if (!rtc)
+> +		return -ENOMEM;
+> +
+> +	rtc->rtc_reg = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(rtc->rtc_reg))
+> +		return PTR_ERR(rtc->rtc_reg);
+> +
+> +	clk = of_clk_get(pdev->dev.of_node, 0);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "failed to find rtc clock\n");
+> +
+> +	err = clk_prepare_enable(clk);
+> +	if (err)
+> +		return -ENOENT;
+> +
+> +	platform_set_drvdata(pdev, rtc);
+> +
+> +	rtc->rtcdev = devm_rtc_device_register(&pdev->dev, pdev->name,
+> +					       &ma35d1_rtc_ops, THIS_MODULE);
+> +	if (IS_ERR(rtc->rtcdev))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtcdev),
+> +				     "failed to register rtc device\n");
+
+This MUST be done last in probe, else you open a race with userspace.
+
+
+> +
+> +	err = ma35d1_rtc_init(rtc, RTC_INIT_TIMEOUT);
+> +	if (err)
+> +		return err;
+> +
+
+I don't believe you should do this on every probe but only when this
+hasn't been done yet.
+
+> +	regval = rtc_reg_read(rtc, MA35_REG_RTC_CLKFMT);
+> +	regval |= RTC_CLKFMT_24HEN;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_CLKFMT, regval);
+> +
+
+ditto
+
+> +	rtc->irq_num = platform_get_irq(pdev, 0);
+> +
+> +	err = devm_request_irq(&pdev->dev, rtc->irq_num, ma35d1_rtc_interrupt,
+> +			       IRQF_NO_SUSPEND, "ma35d1rtc", rtc);
+> +	if (err)
+> +		return dev_err_probe(&pdev->dev, err, "Failed to request rtc irq\n");
+> +
+> +	regval = rtc_reg_read(rtc, MA35_REG_RTC_INTEN);
+> +	regval |= RTC_INTEN_TICKIEN;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_INTEN, regval);
+> +
+> +	device_init_wakeup(&pdev->dev, true);
+> +
+
+You must set the rtc range here.
+
+> +	return 0;
+> +}
+> +
+> +static int ma35d1_rtc_suspend(struct platform_device *pdev, pm_message_t state)
+> +{
+> +	struct ma35_rtc *rtc = platform_get_drvdata(pdev);
+> +	u32 regval;
+> +
+> +	if (device_may_wakeup(&pdev->dev))
+> +		enable_irq_wake(rtc->irq_num);
+> +
+> +	regval = rtc_reg_read(rtc, MA35_REG_RTC_INTEN);
+> +	regval &= ~RTC_INTEN_TICKIEN;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_INTEN, regval);
+
+This is not what the user is asking, don't do this. Also, how was this
+tested?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int ma35d1_rtc_resume(struct platform_device *pdev)
+> +{
+> +	struct ma35_rtc *rtc = platform_get_drvdata(pdev);
+> +	u32 regval;
+> +
+> +	if (device_may_wakeup(&pdev->dev))
+> +		disable_irq_wake(rtc->irq_num);
+> +
+> +	regval = rtc_reg_read(rtc, MA35_REG_RTC_INTEN);
+> +	regval |= RTC_INTEN_TICKIEN;
+> +	rtc_reg_write(rtc, MA35_REG_RTC_INTEN, regval);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id ma35d1_rtc_of_match[] = {
+> +	{ .compatible = "nuvoton,ma35d1-rtc", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, ma35d1_rtc_of_match);
+> +
+> +static struct platform_driver ma35d1_rtc_driver = {
+> +	.suspend    = ma35d1_rtc_suspend,
+> +	.resume     = ma35d1_rtc_resume,
+> +	.probe      = ma35d1_rtc_probe,
+> +	.driver		= {
+> +		.name	= "rtc-ma35d1",
+> +		.of_match_table = ma35d1_rtc_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(ma35d1_rtc_driver);
+> +
+> +MODULE_AUTHOR("Min-Jen Chen <mjchen@nuvoton.com>");
+> +MODULE_DESCRIPTION("MA35D1 RTC driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.34.1
+> 
+
 -- 
-2.34.1
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
