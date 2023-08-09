@@ -2,86 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B749377690D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 21:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9AE77694C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 21:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233774AbjHITrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 15:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51550 "EHLO
+        id S230428AbjHIT5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 15:57:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232289AbjHITrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 15:47:11 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 809042109;
-        Wed,  9 Aug 2023 12:47:11 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379Jl5Yu082664;
-        Wed, 9 Aug 2023 14:47:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691610425;
-        bh=FbAbSqwRAV98u35zcv0xFNhxf2gVaiT10GEUTg0GYws=;
-        h=From:Date:Subject:References:In-Reply-To:To:CC;
-        b=ZovuTH6TuMLeFOC58Dx5PWbSWe055s2QXfHmtkzggX23S1m9TmeNI/fYn4xzMwgqf
-         7t8ZMJsnAfCN/7962OK1Z/f58DZbAHP9dsLt5la/4k+VulVqESkDrK6Q1/Sn2OvU+t
-         bdkOu7Bc8fyhqxco+SY1BpASgOs7Hxgqc16GSzvY=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379Jl5qL032343
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 14:47:05 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 14:47:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 14:47:05 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379Jl49g051091;
-        Wed, 9 Aug 2023 14:47:05 -0500
-From:   Jai Luthra <j-luthra@ti.com>
-Date:   Thu, 10 Aug 2023 01:16:25 +0530
-Subject: [PATCH v6 7/7] arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+        with ESMTP id S229719AbjHIT5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 15:57:42 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95854E52
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 12:57:41 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe61ae020bso182757e87.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 12:57:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691611060; x=1692215860;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RBodoJrBHAgz/TzgDtibSZ9qk+u2fN1KDY0bxZS/Y3Q=;
+        b=OjW53ClTqhx/xyhNIydqITOGL5K+qYj6dDyIB6iexWUa9VE1g+2Tmq7CAaTl6ykYnT
+         XQc1gvuG4tIxSOQUhn0QHFWOkrVmKTRGz451J35EGRNyM9kRlW7V+N3iqu3MljcQG3+5
+         TQEwqWvMUKQiw73wwvs7lkAGEWEEMBRzx8vSyRgBFoxYT4kG6KNQtfjZh6TSyNb+CMMi
+         PvKt+ychU6PzxxNdZwbF+nJ8vrkMojrQXTe/mFstpsMne876Rshwy2x2z5fgODeKJdTX
+         n1MTmcPFiMLi++8QbVeWE+ByyU8vxEh4ygB6ObwDdMjcwITLtJ7m8XRB4FV77Zw5Q8JU
+         xVAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691611060; x=1692215860;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RBodoJrBHAgz/TzgDtibSZ9qk+u2fN1KDY0bxZS/Y3Q=;
+        b=hme2/gpt7yb9nSB7CEOE3cmyzk5ym9k6rhVUlV/9RsDabzmiQOEc5CZYKcUvohpqxn
+         1+uphN9mIt1JKk9TJ1Jc5FUpI6a2KgFPqFnzt+VGIBKjgirjDH6PD1dpsMWGLNsjF/0D
+         gHENB73vSCmg935ZaV49xD+xt7Sxx4j9LdjQMZUHjgjIdgh2dD+5KgQKx7NSRC30Y5gQ
+         vPo46sPUpmJZ19lD5MUVIL1Kt3GaDQ7BrNu8vcrBPgmVpJX8O+aIlm8mxqCUr7YKCzCH
+         s7RBVcFtsBq2E5yHFkvN8dOGLDxTuPSNy2XRjWjfNsCxGyFJpXffx1ulPwERjORwnr/k
+         vlcg==
+X-Gm-Message-State: AOJu0Yzz/jxGtuWZwGDDKek6MDYuB0ZNdpfQiLWUu92RBj6GuRLN8Rir
+        Gr806WvIvCeWHJQ4l6/pVq4wiw==
+X-Google-Smtp-Source: AGHT+IH0jp+tns6Qhe/MujFD3RwBs+BZQb4A+4Hk24LTkrmL2sjAulAvZW5dkSubYyxJiXZ+d6ILOQ==
+X-Received: by 2002:a19:770f:0:b0:4fb:820a:f87f with SMTP id s15-20020a19770f000000b004fb820af87fmr91778lfc.10.1691611059785;
+        Wed, 09 Aug 2023 12:57:39 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id t12-20020ac243ac000000b004fe0c0235ddsm2445518lfl.143.2023.08.09.12.57.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 12:57:39 -0700 (PDT)
+Message-ID: <98d0632c-7129-4e3a-aba7-e805e3281f91@linaro.org>
+Date:   Wed, 9 Aug 2023 21:57:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230810-tps6594-v6-7-2b2e2399e2ef@ti.com>
-References: <20230810-tps6594-v6-0-2b2e2399e2ef@ti.com>
-In-Reply-To: <20230810-tps6594-v6-0-2b2e2399e2ef@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: qcom: branch: Add mem ops support for branch2
+ clocks
+Content-Language: en-US
+To:     Imran Shaik <quic_imrashai@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Apurva Nandan <a-nandan@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Esteban Blanc <eblanc@baylibre.com>, <jneanne@baylibre.com>,
-        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
-        <j-luthra@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=867; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=hroXKt4UiC2VoiKH6paD4EdlOF8Nc0+Xt9cB4nm60x4=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBk0+00JaLbfPIxMLpqeSZF0hLU3vHBruDLjjEPv
- dNSRY9aJ4WJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZNPtNAAKCRBD3pH5JJpx
- RS3CEACLETmwIr+wlznCO3XXAWR0N+fpcJLXE9Soj2+E6mZ1/Fy4yuc1Jcl2PLIJN/kP0JqQpfP
- 5JeuF3TkHXQDSuvJNeg01B15CSlY/6D6GlI7caJoVbMamHsXucz38zRsngIYoW+p5XLIxIFp9jR
- lXma/sByjD2XJE+Urzfq8LKmfVmimbNT2tg/xbp8ZfFqIEKa7A2sDlG/crpEKrp6CF8c7EMvrdh
- xfDfaktkJ8NfuvPoWM8eypT4GdgPgXu/1U0dV5gNhLhgUOLxpCdrrWQSM+AQwbD8faXdJAiRI8i
- RzECa3qEUr2PN99OxH0kXGqaQ/whgBeZBGNtM1ja00R7nEHHwubgAiuLzdN/T/tKjpmN+DgUNey
- D2D6j28uMKSy5Id4c7kCej3m+h3e2kLKEV6mMESOXljp7AMvXDC+W96aJ4sNUxo/7Yf0c2e7z7T
- oyooX+ueRpK3XUTxIchHDair7NpMc08I1ghC7H5LoCvilQNlEha4+WloMdrZGUo/ql7d6JhfsFK
- ELWYv9+LsNada+k3vJnYGWTRHdlQySVvcXnKcFBjn+kkccVXmSb3XLZO/Vs4JqiZWYAWHjsT5Uz
- CMbHIHfBksoBOyWYoVoV1j20o3DO+GaCrs1OlnrREDRKdTkk8jymIn69g1ML/Bn3Ja2DLpOald0
- b4vF0mEcVf4pIVA==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20230808051407.647395-1-quic_imrashai@quicinc.com>
+ <20230808051407.647395-3-quic_imrashai@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230808051407.647395-3-quic_imrashai@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,33 +120,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SK-AM62A-LP uses TPS6593x PMIC (interfaced over I2C) to power the SoC
-and various other peripherals on the board [1].
+On 8.08.2023 07:14, Imran Shaik wrote:
+> From: Taniya Das <quic_tdas@quicinc.com>
+> 
+> Clock CBCRs with memories need an update for memory before enable/disable
+> of the clock. Add support for the mem ops to handle this sequence.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> ---
+Could you expand the commit message a bit? What does this clock
+memory do?
 
-Specifically, the audio codec (TLV320AIC3106) on the board relies on the
-PMIC for the DVDD (1.8V) supply.
+[..]
 
-[1]: https://www.ti.com/lit/zip/sprr459
+> +static int clk_branch2_mem_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_branch *br = to_clk_branch(hw);
+> +	u32 val;
+> +	int count = 200;
+> +
+> +	regmap_update_bits(br->clkr.regmap, br->mem_enable_reg,
+> +			br->mem_enable_ack_bit, br->mem_enable_ack_bit);
+> +
+> +	regmap_read(br->clkr.regmap, br->mem_ack_reg, &val);
+> +
+> +	while (count-- > 0) {
+> +		if (val & br->mem_enable_ack_bit)
+> +			return clk_branch2_enable(hw);
+> +		udelay(1);
+> +		regmap_read(br->clkr.regmap, br->mem_ack_reg, &val);
+> +	}
+readl_poll_timeout?
 
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bf13d5c46578..9f7697caa5ca 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -719,6 +719,7 @@ CONFIG_MFD_SEC_CORE=y
- CONFIG_MFD_SL28CPLD=y
- CONFIG_RZ_MTU3=y
- CONFIG_MFD_TPS65219=y
-+CONFIG_MFD_TPS6594_I2C=m
- CONFIG_MFD_TI_AM335X_TSCADC=m
- CONFIG_MFD_ROHM_BD718XX=y
- CONFIG_MFD_WCD934X=m
-
--- 
-2.41.0
-
+Konrad
