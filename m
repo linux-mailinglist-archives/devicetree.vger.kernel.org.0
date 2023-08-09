@@ -2,69 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 024617762B1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D29D7762EE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 16:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233877AbjHIOk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 10:40:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34856 "EHLO
+        id S234242AbjHIOsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 10:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233863AbjHIOk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:40:29 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507A02107;
-        Wed,  9 Aug 2023 07:40:27 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379Ee6DD011384;
-        Wed, 9 Aug 2023 09:40:06 -0500
+        with ESMTP id S234225AbjHIOsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 10:48:03 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7C7EE;
+        Wed,  9 Aug 2023 07:48:00 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379Elofg075440;
+        Wed, 9 Aug 2023 09:47:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691592006;
-        bh=Ht+MQt2z/ktrchacS0VLjAbZCASRyaYR0JilJqDkvdg=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=qq0sGRzta45Xnv+5aVgbMgjbV+iRwayQPw6lTdnLu6vPYMs+aphD6BFxG9uApVr8i
-         C9HOZkADb3OfK/6aD6UEHuenL3J2c2azWgSIeYcVkGiw6HDdrQlU8VA6A92Z0N1Jo5
-         vmHrWtOcnvAWabawhBmI+kxarOOFJw3EFvzzr8tw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379Ee5ic018424
+        s=ti-com-17Q1; t=1691592470;
+        bh=+SHZ0VX0A1vTGEOmnxGEV8PwPlcJlstr9CYNQjgVHlo=;
+        h=From:Subject:Date:To:CC;
+        b=KId+FlEVVeda+0iab/4PfYYevYQGcyuF4uRnhNjItVec1i01smFe0jjGIoMyaq7XN
+         Ef6J6NQsLqYxlUvF8KkqgZKkUkHhlZvLVaJ2sHVYqvsWAgKfh+3f5PS6XaFLmwROF1
+         ZCYwSLs9VonDaFXOAc02We2ad87HOjU4nveFbTVE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379ElokO007874
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 09:40:05 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Aug 2023 09:47:50 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 09:40:05 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 09:47:49 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 09:40:05 -0500
+ Frontend Transport; Wed, 9 Aug 2023 09:47:49 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379Ee5IF023524;
-        Wed, 9 Aug 2023 09:40:05 -0500
-Date:   Wed, 9 Aug 2023 09:40:05 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379Elnpq030722;
+        Wed, 9 Aug 2023 09:47:49 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v5 0/6] Add TPS6594 PMIC support on several boards
+Date:   Wed, 9 Aug 2023 20:17:01 +0530
+Message-ID: <20230809-tps6594-v5-0-485fd3d63670@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOWm02QC/0XMywqDMBCF4VeRWTcyUXPRVd+jdJHYsQY0kYmUF
+ vHdG7rp8oP/nAMycaAMQ3UA0yvkkGKBulQwzi4+SYRHMTTYtGixF/uWteo7QZ1Cr0xrSWso9cY
+ 0hffv6XYvnjitYp+Z3H9vGiNb7NHWErXSQgryi4vj1bvPEjxTPaYVzvMLDPXuxpYAAAA=
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
-Message-ID: <20230809144005.n3uq5yjusrrtjhqz@churn>
-References: <20230809084559.17322-1-a-bhatia1@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230809084559.17322-1-a-bhatia1@ti.com>
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Esteban Blanc <eblanc@baylibre.com>, <jneanne@baylibre.com>,
+        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
+        <j-luthra@ti.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3208; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=+yBeGPCgRHTOxvcXV1w59ofL9pfCazzAWDH5U/EyBJg=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBk06cUHzDdNpGGesOZmmc+YMSKrtriwuY+iwprN
+ JZdPFrQEmmJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZNOnFAAKCRBD3pH5JJpx
+ RQkoD/kBqOI8k1ubY4MOTHbqFxe6TN5w+6ZDgk7miguWIbem5eDEhxopCMUCX3GxaE1jt1ME5vD
+ YWATBdOBc4DVV3zzHmvKolC8U3Nxv9VdltoJ1nX1gs+yBH+3i3WM5zpV9EO2a3pOXoNMLrWbPf0
+ olupwzhMTVA/5AgDJ9mnmvnBbNstM00ili3CHdbMlhnL9DyhCjWw+Ksasps+Wf+SvC339Ey5gZb
+ oBmy/Z1wgFn84iZW8Giht97slvZ7tpmEw8nNwwsblzEWynD5hD93K8rG5i85w4/PvE3gvzhP3Av
+ 3r187bD12TqklmumK1M1I34d+2VbgwjspFxW8lUo5/lxOgzpApi9pf8uasGw/TAIkCXhbJmMpb9
+ 1Yki594hOoHPeM4keCQxQgdIx73nqyw/hfCbNv7Q5apvljENNvtINcXLd8hMU+ksjoreVsbWWmb
+ Q2ebVgMCsoP3GOWMzRA/8WqdaRmRX5Bvd00QCBFfgsqed4FDTXNZssQ52DuK2S3l1ssSAVccMIm
+ n1s4UWG1Z6GaZABvjpnxEWg3puIHzCiOhMcwA09d2Ls6ecr6Qz/Glhl0dd3G+JgD4B0OF4U6P1p
+ D5K7r4R1Kv5QpuiKiMYqGeQJs5/0SBcYNfxVSlVbsYMil2u6MznvdcId3B1p4BYLNTXOSUAizrE
+ rygkfOd3rySWbsg==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -76,109 +87,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:15-20230809, Aradhya Bhatia wrote:
-> Hi all,
-> 
-> The patch series adds DT nodes for Display SubSystem (DSS) and other
-> peripherals required to enable the HDMI audio and video on the AM625 SK,
-> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
-> monitor can be connected to the boards for the audio/video outputs.
-> 
-> The series adding the compatible and basic driver support[0] is in the
-> drm-misc-next and linux-next queues and is expected to be in the
-> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
-> that introduces debounce select mux macros. This patch too is not in
-> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
-> linux-next.
-> 
-> Patches 4 and 5 have been picked up from TI's vendor tree[3] based off
-> linux-kernel v6.1.
-> 
-> Regards
-> Aradhya
-> 
-> Change Log:
-> V4 -> V5:
->   - Cosmetic changes as suggested by Jayesh.
->   - Fixed the mis-represented DSS VP1 clock, and added a
->     fixed-factor-clock.
-> 
-> V3 -> V4:
->   - Added "Fixes" tag for patch 1/6.
->   - Rebased to linux-next.
->   - Enabled display at board level and disabled at SoC level.
->   - Dropped OLDI pinmux configuration as OLDI output comes directly from
->     the SoC and muxing is not required.
->   - Squashed DSS pinmux patches into their platform specific HDMI
->     support patches, because it did not make sense to have only one set
->     of pinmux config separated in a patch.
-> 
-> V2 -> V3:
->   - Updated the compatible from "ti,am65x-dss" to "ti,am625-dss".
->   - Peripheral nodes like HDMI TX, HDMI connector are now added to
->     k3-am62x-sk-common.dtsi instead of k3-am625-sk.dts, in order to
->     support AM62-LP SK-EVM as well.
->   - Dropped the HDMI master clock node as it is not connected on the
->     EVM, and should not have been added in the first place.
->   - Re-worded and Re-ordered commits.
->   - Dropped Rahul Ravikumar's R-bs because of the changes.
->   - Added AM625 based Beagle-Play for HDMI support.
->   - Added HDMI audio support as well.
-> 
-> V1 -> V2:
->  - Removed repetitive data in dss_ports
-> 
-> V4: https://lore.kernel.org/all/20230807153307.22174-1-a-bhatia1@ti.com/
-> V3: https://lore.kernel.org/all/20230728173438.12995-1-a-bhatia1@ti.com/
-> V2: https://lore.kernel.org/all/20220505134303.23208-1-a-bhatia1@ti.com/
-> V1: https://lore.kernel.org/all/20220427090850.32280-1-a-bhatia1@ti.com/
-> 
-> [0]: https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
-> [1]: https://lore.kernel.org/all/20230619131620.3286650-1-nm@ti.com/
-> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git/commit/?id=0bec3d7ecc7493b0e530f6f34539841ef6779006
-> [3]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/log/?h=ti-linux-6.1.y-cicd
-> 
-> 
-> Aradhya Bhatia (4):
->   arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
->   arm64: dts: ti: k3-am62-main: Add node for DSS
->   arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
->   arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
-> 
-> Jai Luthra (1):
->   arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
-> 
-> Nishanth Menon (1):
->   arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
-> 
->  arch/arm64/boot/dts/ti/Makefile               |   3 +
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  25 +++
->  arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +
->  .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 150 ++++++++++++++++++
->  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  93 ++++++++++-
->  .../boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso   |  40 +++++
->  arch/arm64/configs/defconfig                  |   1 +
->  7 files changed, 319 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
-> 
-> 
-> base-commit: 71cd4fc492ec41e4acd85e98bbf7a13753fc1e03
-> -- 
-> 2.40.1
-> 
+TPS6594 is a Power Management IC which provides regulators and others
+features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+communicate through the I2C or SPI interfaces.
+TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
 
-Can you help cleanup the following before we start introducing new oldi
-and dss support? I am not sure if these were introduced due to yaml
-updates or something pre-existing.
+This serie adds device tree nodes for TI TPS6594 PMICs found in the
+following boards:
+- J721EXSOMXEVM:
+  Link: https://www.ti.com/tool/J721EXSOMXEVM
+- J721S2XSOMXEVM:
+  Link: https://www.ti.com/tool/J721S2XSOMXEVM
+- J7200XSOMXEVM:
+  Link: https://www.ti.com/tool/J7200XSOMXEVM
+- AM62A-SKEVM:
+  Link: https://www.ti.com/tool/SK-AM62A-LP
+- J784S4XEVM
+  Link: https://www.ti.com/tool/J784S4XEVM
 
-linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-linux/build/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-linux/build/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-linux/build/arch/arm64/boot/dts/ti/k3-am654-base-board.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+Changes from v4:
+https://lore.kernel.org/all/20230727130908.10656-1-eblanc@baylibre.com/
+- Range-diff: https://0x0.st/H_L7.diff
+- Rebased on top of linux-next
+- Fix min voltage on vdd_usb_3v3 regulator (ldo2) on j721e-som
+- Use 3-hex-digit format for pinctrl values
 
+Changes from v3:
+https://lore.kernel.org/all/20230417154832.216774-1-eblanc@baylibre.com/
+- Rebased on top of v6.5-rc1.
+- Change pinctrl number for irq pin as wkup_pmx0 was split on some boards.
+- Use already present wkup_i2c0 node instead of creating a new one.
+
+Changes from v2:
+https://lore.kernel.org/lkml/20230414112843.1358067-1-eblanc@baylibre.com/
+- Change node name as per Krzysztof review.
+- Add a fix for the interrupt range of wakeup gpio used by TPS6594 pmic
+  on J784S4.
+  The interruptions of the PMIC were not working before that.
+- Remove dependencies on other patch series as that was a mistake, see
+  https://lore.kernel.org/lkml/CRYY2V3HJ0CP.96JQ18PLZB3C@burritosblues/
+
+Changes from v1:
+https://lore.kernel.org/lkml/20230329142948.833800-1-eblanc@baylibre.com/
+- Harmonize regulators names across the different boards.
+- Adjust AVS voltage range.
+- Remove some outdated comments.
+- Add PMIC to J784S4 board.
+- Compatible string modified to match dt-bindings.
+- Add gpio-controller and gpio-cells properties.
+
+---
+Apelete Seketeli (1):
+      arm64: dts: ti: k3-j784s4-evm: Fix interrupt ranges for TPS6594 PMIC
+
+Esteban Blanc (2):
+      arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
+      arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
+
+Jerome Neanne (2):
+      arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
+      arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
+
+Julien Panis (1):
+      arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
+
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts          |  95 +++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi      | 157 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi      | 163 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi     | 199 +++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts         | 104 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi |   2 +-
+ 6 files changed, 719 insertions(+), 1 deletion(-)
+---
+base-commit: 21ef7b1e17d039053edaeaf41142423810572741
+change-id: 20230809-tps6594-e450b5738e66
+
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Jai Luthra <j-luthra@ti.com>
+
