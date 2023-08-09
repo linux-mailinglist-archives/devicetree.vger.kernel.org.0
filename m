@@ -2,112 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF29C77618F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 15:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A527761C5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 15:54:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbjHINrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 09:47:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57204 "EHLO
+        id S232559AbjHINyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 09:54:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232398AbjHINrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 09:47:24 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A05DA
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 06:47:22 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31763b2c5a4so5745830f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 06:47:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691588841; x=1692193641;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=PE5cJzvntX1qIl6Z53C3/b2JXH5RY4FZGtDgaWloFqA=;
-        b=fkx/JwZPfS0BAH2aVLs/mI7AhmfMoMPWUzRIZWS1Uri7+pwvP8BjWK7CEkOU/1ggKe
-         9N3uGSMwEPgkSsc4hOkYDgoiDvocZGt0KHArjCjknDPTd1+1Lu7nJWVuw6cvko/gCqQ8
-         xGn2deiABWf7HUPR+q1Rl77LtFJK1RONdiQfp6NBOCwyx2KVp8DGVBKZ5Ma/juCBAR7K
-         RKGYMcnjpyFGO8TRZxiw6tQxELTj8PPW0XUgEcsoZqszU841/7sOpjiVHTvnUH+GyLLO
-         C8B1p91Ohp62Hy27Rv1Kt95MMupD6kcpjX/MTKd8/rr9H4B/ENOokWfZeEdBcDGlYBYj
-         QoEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691588841; x=1692193641;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PE5cJzvntX1qIl6Z53C3/b2JXH5RY4FZGtDgaWloFqA=;
-        b=CGjr9vwMlE404Vw9HT09rWD4zZ2D3R/bFzx1/rT1LszP0/n2IE5kFM0WE+XZRN8vGI
-         Q9GLOvi721ABwf8awlHzXhKOGYL2oX6iMjH0NX6V/GdAOakd1oK87jaIHDjq9vQGViUV
-         om9OU3pMNPE+v67In06LZD7x7mpGQiwdD9llZI+l2bhdkMj/IzfPyeyipGs67PzoUGgO
-         nH6YN/v6fdyl0sKOlG4FilpJ0QmOZT1/XcWi7d5pYam1rnxk9YR1q7+XBN/y4xpnT2Cu
-         Y4St41FOjDSI2Cm/wU3kEyZgKQCXVnhG60LX5jL0VuE2vnj+8OYFaO3oy+20l/IKs0zc
-         1S9A==
-X-Gm-Message-State: AOJu0YyQAXWCPTl3ejlci9vE46oYSPV+UIFy5sd2QS5qSQ8bqGsXLzhF
-        hNeYG2wUqZPxDjBIjxzdkirp7Q==
-X-Google-Smtp-Source: AGHT+IGDoLFaQy+WmBagoOTGH8xLuZ2hKnQLCQUA91JqHrtZq4wtyGXz7CjCYNJSikZpVukGoMVVqw==
-X-Received: by 2002:adf:f8cb:0:b0:317:9537:d741 with SMTP id f11-20020adff8cb000000b003179537d741mr1900502wrq.54.1691588841370;
-        Wed, 09 Aug 2023 06:47:21 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:2a0f:2daa:ffb5:cc02])
-        by smtp.gmail.com with ESMTPSA id i12-20020a5d55cc000000b00314427091a2sm16850870wrw.98.2023.08.09.06.47.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 06:47:20 -0700 (PDT)
-References: <20230808194811.113087-1-alexander.stein@mailbox.org>
- <f4c57e4b-674b-f870-b215-8b2f80a7c9eb@linaro.org>
- <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
- <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexander Stein <alexander.stein@mailbox.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S232367AbjHINyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 09:54:50 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D36598;
+        Wed,  9 Aug 2023 06:54:50 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 379CrDND002197;
+        Wed, 9 Aug 2023 08:54:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding:content-type; s=PODMain02222019; bh=w
+        zv8wFOMXFLMdscI/4R9TEsLJO/SH4e1EZbywwAqkiY=; b=Qb2r/QK///w5qGTi6
+        Id2HEaHfDeLPSe4D+afLoc89c563vVsCeXbO6puUtz5pUHgRLFR1WKiq2e8FHyLZ
+        +XWaoiKzeXI+egKY3LOIrxUp3W5t5TmMGBYZFY1bduLTAkGkVUpXfkveRpUi+Gir
+        jA7XfJ0R487sAMhiBLr8+e9fQ1WGnV+/HZ9fatig24M9UbH+y5GmHo3QX5MNQoXJ
+        40LGWUmTtoPoUr8yAoODTBKD1VLqrGexxCc/fnLGy2nmF9rd5tThKoNA4MWh4Pfj
+        uIdxfHoydjjY4htk9X+6bobOjBiPiq4W3yAb/6dNglaTPvK529RfjjNVXiCfBGtr
+        kqCMA==
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sb7vtag9q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Aug 2023 08:54:05 -0500 (CDT)
+Received: from m0077473.ppops.net (m0077473.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.22/8.17.1.22) with ESMTP id 379Ds5TQ022143;
+        Wed, 9 Aug 2023 08:54:05 -0500
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sb7vtag9n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Aug 2023 08:54:05 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 9 Aug
+ 2023 14:54:02 +0100
+Received: from aus-sw-rshr002.ad.cirrus.com (141.131.215.158) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.30 via Frontend Transport; Wed, 9 Aug 2023 14:54:02 +0100
+Received: by aus-sw-rshr002.ad.cirrus.com (Postfix, from userid 46936)
+        id 54FBC4C0CD1; Wed,  9 Aug 2023 13:54:02 +0000 (UTC)
+From:   James Ogletree <james.ogletree@cirrus.com>
+To:     <dmitry.torokhov@gmail.com>
+CC:     James Ogletree <james.ogletree@cirrus.com>,
+        Fred Treven <fred.treven@cirrus.com>,
+        Ben Bright <ben.bright@cirrus.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc
- to YAML format
-Date:   Wed, 09 Aug 2023 15:46:33 +0200
-In-reply-to: <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org>
-Message-ID: <1j1qgcba54.fsf@starbuckisacylon.baylibre.com>
+        "Lee Jones" <lee@kernel.org>, ChiYuan Huang <cy_huang@richtek.com>,
+        Eddie James <eajames@linux.ibm.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, Jacky Bai <ping.bai@nxp.com>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Joel Stanley <joel@jms.id.au>, <patches@cirrus.com>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add support for CS40L50
+Date:   Wed, 9 Aug 2023 13:53:08 +0000
+Message-ID: <20230809135313.731706-1-james.ogletree@cirrus.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Proofpoint-GUID: dNe8GyaLXQiqb6LoAiPAItEOVdopn_MP
+X-Proofpoint-ORIG-GUID: 2rHXDnGkkNL8M-p7A2J9ujMGHAkL9N0Z
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in V2:
+- Fix checkpatch warnings
 
-On Wed 09 Aug 2023 at 15:02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+James Ogletree (2):
+  dt-bindings: input: cirrus,cs40l50: Support for CS40L50
+  Input: cs40l50 - Initial support for Cirrus Logic CS40L50
 
-> On 09/08/2023 08:58, Jerome Brunet wrote:
->>>> +      required:
->>>> +        - '#reset-cells'
->>>
->>> else:
->>>   properties:
->>>     '#reset-cells': false
->>> ???
->>>
->>>
->>> You need to constrain the clocks per variant. Probably names are also
->>> specific to each one, so the list of names can be moved here and you
->>> keep just min/maxItems in the top level property.
->>>
->> 
->> input clock names and constraints are the same for all 3 variants.
->
-> Then why do you have this huge, apparently unnecessary, oneOf? If it's
-> the same, then drop the oneOf and make number of clocks fixed.
->
+ .../bindings/input/cirrus,cs40l50.yaml        |   77 ++
+ MAINTAINERS                                   |   11 +
+ drivers/input/misc/Kconfig                    |   33 +
+ drivers/input/misc/Makefile                   |    3 +
+ drivers/input/misc/cs40l50-i2c.c              |   67 ++
+ drivers/input/misc/cs40l50-spi.c              |   67 ++
+ drivers/input/misc/cs40l50.c                  | 1013 +++++++++++++++++
+ include/linux/input/cs40l50.h                 |  321 ++++++
+ 8 files changed, 1592 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-i2c.c
+ create mode 100644 drivers/input/misc/cs40l50-spi.c
+ create mode 100644 drivers/input/misc/cs40l50.c
+ create mode 100644 include/linux/input/cs40l50.h
 
-As I pointed out, this section is wrong.
-
->
-> Best regards,
-> Krzysztof
+-- 
+2.25.1
 
