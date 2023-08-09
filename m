@@ -2,72 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0805E7765DA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44400776630
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 19:14:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbjHIRBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 13:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51918 "EHLO
+        id S231233AbjHIROC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 13:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjHIRBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:01:47 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BC01FF5;
-        Wed,  9 Aug 2023 10:01:46 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379H1TWY049907;
-        Wed, 9 Aug 2023 12:01:29 -0500
+        with ESMTP id S229517AbjHIROC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 13:14:02 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C171C1FFA;
+        Wed,  9 Aug 2023 10:14:01 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 379HDsa4110392;
+        Wed, 9 Aug 2023 12:13:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691600489;
-        bh=hrW18xO5OkjdMaVc1gdU03bndSOI85gH6mHuacYnApE=;
+        s=ti-com-17Q1; t=1691601234;
+        bh=w6glHYm10JaDlR9DAR+uL65bVLB/pv8hB6bKGREf9eY=;
         h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=ofM+f0kRpqCiJowEwY61vjZBAEh6oq4/uniCA51fufa3+HrQ4czDJKRMVH2XvTvvj
-         zENQGIVDvY4Y9Ms0sfJgCQB2xqJa0savaYPDq43Nefv0s3xMXOUOWUjR1KsU6N6wm+
-         OLr/EcfmFKAa+1JlD3+msfV6Cpoc/FyWbZiydLts=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379H1Tvl055631
+        b=Vi5jnn+8reFP9YuirXyyfEESN5meEhl2EpdS1TcfsRCZVW8wMXPYLt0LDIOrlC+Rz
+         r4bk9AIF9CeJYpqQPh/6Geei1ciUQpO7BJNFC+FUfqLhfMa7hpT7RYdK4YbTAGW9HP
+         rM471TaC/EBqQQ83m0hfUri4jrGQvCvr3ouspb7w=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 379HDsJa113751
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 12:01:29 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Aug 2023 12:13:54 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 12:01:29 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 12:13:54 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 12:01:29 -0500
-Received: from [10.250.38.120] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379H1R5U028607;
-        Wed, 9 Aug 2023 12:01:28 -0500
-Message-ID: <c0798225-3d99-4c45-5637-55bfbf7b0c8b@ti.com>
-Date:   Wed, 9 Aug 2023 12:01:27 -0500
+ Frontend Transport; Wed, 9 Aug 2023 12:13:54 -0500
+Received: from [10.24.69.141] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 379HDosS008249;
+        Wed, 9 Aug 2023 12:13:51 -0500
+Message-ID: <46594a4d-d61f-b374-9ea5-78022d99c3db@ti.com>
+Date:   Wed, 9 Aug 2023 22:43:50 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for
+ ADC
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230809084559.17322-1-a-bhatia1@ti.com>
- <20230809144005.n3uq5yjusrrtjhqz@churn>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230809144005.n3uq5yjusrrtjhqz@churn>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Udit Kumar <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <t-konduru@ti.com>, <b-kapoor@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230809050108.751164-1-u-kumar1@ti.com>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20230809050108.751164-1-u-kumar1@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -80,118 +69,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/9/23 9:40 AM, Nishanth Menon wrote:
-> On 14:15-20230809, Aradhya Bhatia wrote:
->> Hi all,
->>
->> The patch series adds DT nodes for Display SubSystem (DSS) and other
->> peripherals required to enable the HDMI audio and video on the AM625 SK,
->> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
->> monitor can be connected to the boards for the audio/video outputs.
->>
->> The series adding the compatible and basic driver support[0] is in the
->> drm-misc-next and linux-next queues and is expected to be in the
->> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
->> that introduces debounce select mux macros. This patch too is not in
->> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
->> linux-next.
->>
->> Patches 4 and 5 have been picked up from TI's vendor tree[3] based off
->> linux-kernel v6.1.
->>
->> Regards
->> Aradhya
->>
->> Change Log:
->> V4 -> V5:
->>    - Cosmetic changes as suggested by Jayesh.
->>    - Fixed the mis-represented DSS VP1 clock, and added a
->>      fixed-factor-clock.
->>
->> V3 -> V4:
->>    - Added "Fixes" tag for patch 1/6.
->>    - Rebased to linux-next.
->>    - Enabled display at board level and disabled at SoC level.
->>    - Dropped OLDI pinmux configuration as OLDI output comes directly from
->>      the SoC and muxing is not required.
->>    - Squashed DSS pinmux patches into their platform specific HDMI
->>      support patches, because it did not make sense to have only one set
->>      of pinmux config separated in a patch.
->>
->> V2 -> V3:
->>    - Updated the compatible from "ti,am65x-dss" to "ti,am625-dss".
->>    - Peripheral nodes like HDMI TX, HDMI connector are now added to
->>      k3-am62x-sk-common.dtsi instead of k3-am625-sk.dts, in order to
->>      support AM62-LP SK-EVM as well.
->>    - Dropped the HDMI master clock node as it is not connected on the
->>      EVM, and should not have been added in the first place.
->>    - Re-worded and Re-ordered commits.
->>    - Dropped Rahul Ravikumar's R-bs because of the changes.
->>    - Added AM625 based Beagle-Play for HDMI support.
->>    - Added HDMI audio support as well.
->>
->> V1 -> V2:
->>   - Removed repetitive data in dss_ports
->>
->> V4: https://lore.kernel.org/all/20230807153307.22174-1-a-bhatia1@ti.com/
->> V3: https://lore.kernel.org/all/20230728173438.12995-1-a-bhatia1@ti.com/
->> V2: https://lore.kernel.org/all/20220505134303.23208-1-a-bhatia1@ti.com/
->> V1: https://lore.kernel.org/all/20220427090850.32280-1-a-bhatia1@ti.com/
->>
->> [0]: https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
->> [1]: https://lore.kernel.org/all/20230619131620.3286650-1-nm@ti.com/
->> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git/commit/?id=0bec3d7ecc7493b0e530f6f34539841ef6779006
->> [3]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/log/?h=ti-linux-6.1.y-cicd
->>
->>
->> Aradhya Bhatia (4):
->>    arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
->>    arm64: dts: ti: k3-am62-main: Add node for DSS
->>    arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
->>    arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
->>
->> Jai Luthra (1):
->>    arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
->>
->> Nishanth Menon (1):
->>    arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
->>
->>   arch/arm64/boot/dts/ti/Makefile               |   3 +
->>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  25 +++
->>   arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +
->>   .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 150 ++++++++++++++++++
->>   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  93 ++++++++++-
->>   .../boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso   |  40 +++++
->>   arch/arm64/configs/defconfig                  |   1 +
->>   7 files changed, 319 insertions(+), 1 deletion(-)
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
->>
->>
->> base-commit: 71cd4fc492ec41e4acd85e98bbf7a13753fc1e03
->> -- 
->> 2.40.1
->>
+Hi Udit,
+
+On 09/08/23 10:31, Udit Kumar wrote:
+> After splitting wkup_pmx pin mux for J784S4 into four regions.
+> Pin mux offset for ADC nodes were not updated to align with new
+> regions, due to this while probing ADC driver out of range
+> error was seen.
 > 
-> Can you help cleanup the following before we start introducing new oldi
-> and dss support? I am not sure if these were introduced due to yaml
-> updates or something pre-existing.
-
-This is a pre-existing issue. Lets not fault Aradhya nor hold back this
-series for an issue we caused way back when initially adding AM65 support.
-
-Just to help this along, I've gone and added the fix for these warnings
-here[0][1].
-
-Andrew
-
-[0] https://lkml.org/lkml/2023/8/9/889
-[1] https://lkml.org/lkml/2023/8/9/888
-
+> Pin mux offsets for ADC nodes are corrected in this patch.
 > 
-> linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-> linux/build/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-> linux/build/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-> linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-> linux/build/arch/arm64/boot/dts/ti/k3-am654-base-board.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
-> linux/build/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dtb: dss-oldi-io-ctrl@41e0: compatible: 'anyOf' conditional failed, one must be fixed:
+> Fixes: 14462bd0b247 ("arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and pinctrl node offsets")
+> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+> ---
+> Reviewed pin mux for J784S4-EVM, AM69, J721S2-EVM and AM68
+> ADC seems to be last one to be fixed.
 > 
+> In order to test this patch
+> following drivers were built in as part of kernel
+> CONFIG_MFD_TI_AM335X_TSCADC=y
+> CONFIG_TI_AM335X_ADC=y
+> 
+> dtbs_check is done after applying
+> https://lore.kernel.org/all/20230721082654.27036-1-tony@atomide.com/
+> 
+> logs with patch
+> https://gist.github.com/uditkumarti/54db4d5e49467442e1698e5af82d787b#file-with_patch
+> (line 1128 and 1130)
+> 
+> Original logs
+> https://gist.github.com/uditkumarti/54db4d5e49467442e1698e5af82d787b#file-original_logs
+> (line 942 and 946)
+> 
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 32 ++++++++++++------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index edc1009b2d1e..b4ffa720209c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -340,27 +340,27 @@ J784S4_WKUP_IOPAD(0x030, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
+>  
+>  	mcu_adc0_pins_default: mcu-adc0-default-pins {
+>  		pinctrl-single,pins = <
+> -			J784S4_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (P36) MCU_ADC0_AIN0 */
+> -			J784S4_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (V36) MCU_ADC0_AIN1 */
+> -			J784S4_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (T34) MCU_ADC0_AIN2 */
+> -			J784S4_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (T36) MCU_ADC0_AIN3 */
+> -			J784S4_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (P34) MCU_ADC0_AIN4 */
+> -			J784S4_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (R37) MCU_ADC0_AIN5 */
+> -			J784S4_WKUP_IOPAD(0x14c, PIN_INPUT, 0) /* (R33) MCU_ADC0_AIN6 */
+> -			J784S4_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (V38) MCU_ADC0_AIN7 */
+> +			J784S4_WKUP_IOPAD(0x0cc, PIN_INPUT, 0) /* (P36) MCU_ADC0_AIN0 */
+> +			J784S4_WKUP_IOPAD(0x0d0, PIN_INPUT, 0) /* (V36) MCU_ADC0_AIN1 */
+> +			J784S4_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (T34) MCU_ADC0_AIN2 */
+> +			J784S4_WKUP_IOPAD(0x0d8, PIN_INPUT, 0) /* (T36) MCU_ADC0_AIN3 */
+> +			J784S4_WKUP_IOPAD(0x0dc, PIN_INPUT, 0) /* (P34) MCU_ADC0_AIN4 */
+> +			J784S4_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (R37) MCU_ADC0_AIN5 */
+> +			J784S4_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (R33) MCU_ADC0_AIN6 */
+> +			J784S4_WKUP_IOPAD(0x0e8, PIN_INPUT, 0) /* (V38) MCU_ADC0_AIN7 */
+>  		>;
+>  	};
+>  
+>  	mcu_adc1_pins_default: mcu-adc1-default-pins {
+>  		pinctrl-single,pins = <
+> -			J784S4_WKUP_IOPAD(0x154, PIN_INPUT, 0) /* (Y38) MCU_ADC1_AIN0 */
+> -			J784S4_WKUP_IOPAD(0x158, PIN_INPUT, 0) /* (Y34) MCU_ADC1_AIN1 */
+> -			J784S4_WKUP_IOPAD(0x15c, PIN_INPUT, 0) /* (V34) MCU_ADC1_AIN2 */
+> -			J784S4_WKUP_IOPAD(0x160, PIN_INPUT, 0) /* (W37) MCU_ADC1_AIN3 */
+> -			J784S4_WKUP_IOPAD(0x164, PIN_INPUT, 0) /* (AA37) MCU_ADC1_AIN4 */
+> -			J784S4_WKUP_IOPAD(0x168, PIN_INPUT, 0) /* (W33) MCU_ADC1_AIN5 */
+> -			J784S4_WKUP_IOPAD(0x16c, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
+> -			J784S4_WKUP_IOPAD(0x170, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
+> +			J784S4_WKUP_IOPAD(0x0ec, PIN_INPUT, 0) /* (Y38) MCU_ADC1_AIN0 */
+> +			J784S4_WKUP_IOPAD(0x0f0, PIN_INPUT, 0) /* (Y34) MCU_ADC1_AIN1 */
+> +			J784S4_WKUP_IOPAD(0x0f4, PIN_INPUT, 0) /* (V34) MCU_ADC1_AIN2 */
+> +			J784S4_WKUP_IOPAD(0x0f8, PIN_INPUT, 0) /* (W37) MCU_ADC1_AIN3 */
+> +			J784S4_WKUP_IOPAD(0x0fc, PIN_INPUT, 0) /* (AA37) MCU_ADC1_AIN4 */
+> +			J784S4_WKUP_IOPAD(0x100, PIN_INPUT, 0) /* (W33) MCU_ADC1_AIN5 */
+> +			J784S4_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
+> +			J784S4_WKUP_IOPAD(0x108, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
+
+Thank you for the fix,
+
+Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+
+Thanks and Regards,
+Vaishnav
+
+
+>  		>;
+>  	};
+>  };
