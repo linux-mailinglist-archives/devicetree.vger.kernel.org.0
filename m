@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0234E775E84
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D179775E89
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 14:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231378AbjHIMKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 08:10:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
+        id S230303AbjHIMLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 08:11:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230430AbjHIMKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:10:01 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83DDE1BF7
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:10:00 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fe58faa5cfso8501285e87.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 05:10:00 -0700 (PDT)
+        with ESMTP id S229722AbjHIMLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 08:11:10 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60411982
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 05:11:09 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe11652b64so10552324e87.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 05:11:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691582999; x=1692187799;
+        d=linaro.org; s=google; t=1691583068; x=1692187868;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=luDc3X4iTZXrFD9cxX0UuTHsLxl+/qMB5IyjbjFRUjo=;
-        b=U9pXjZ7bc6SvKv2uYe7r6OazudqrqJWF/SUOuu9CDQiDpg9s51CLO2wy+3KteDyVj6
-         r7ya6OEfb7TlS9MZD8PR+PbCYF29HYPjXRPqPX4O3Ll500RMuy3PLRJd3JAB7YnuTCeC
-         6tHMxS5JGPf1XebNnnNe24hGqMv1Efpt2CjM8sWzxQ6atDaevTvnRat93yueDJTz54eH
-         nwF7sBJSW3cBn+PfIWm9Jt4BHLdb8KlPZfOuCYnnzyZ7dh/j3cDXh14ui7pTjDYEMFCz
-         C+DbZqK/aTPEVfp0V7FfeWtqxvfuEJusT0jliwYW8Mdkpnf/ocXZmEwLzX1Evg9pKdiz
-         OnwQ==
+        bh=m7Ry1wvi8+J9JTgKiYPmLWP0JVIew2LaXJPJcmj20s4=;
+        b=jjQGkbpI6JylvrPoA6Hp3df1w6TIn266pQYTbPNOrDViuok5D+/PLfTncfoAbejBZS
+         n0YyPwiTfxNY3WHVApYeEvnzFXncfv0dyJyf84lR6q+NVlpgv999WbcxwtF2bQLZjpOu
+         V5st7vyj8/e8WKFRINzeIcj3XiQIgwtY0Qjfaeko/wRyLQ2KNVUSBmFDYzz+d0Rcg26X
+         SJ4Iq9pBC+uNN4Bd6XSL9vcWbTa8W2qQYEjqiLCEePPBRi2CNjbTs6qUhxGTd5duQcey
+         f7/TG+Ake4I8SoYr9Asloeys/Rm2B7Y8nSKnT/QC9cg7bACH5R04ZrP8Gyp7w8bqrz7M
+         sJpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691582999; x=1692187799;
+        d=1e100.net; s=20221208; t=1691583068; x=1692187868;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=luDc3X4iTZXrFD9cxX0UuTHsLxl+/qMB5IyjbjFRUjo=;
-        b=OFlXSxsUDLVl7Sde0QuRzXvDd9/JAuo9AAHUQb+Y+D0ihYvRTto60ni66OWRpfdlwj
-         QRxVuM4xXOT7D42fUojr2Sdkgrjcv6w+GxUOJZXDEVMFTZZelBX9rUqKjJjMUNTm3JRW
-         6Rl+bVvfiHPJJ+eQlZOk9pyRgwOsTP+aEl32Kdu27Zp8t9TTbQ2TbcwSAp+ST6o0H8We
-         nNWZCvj8mv+m9rUsJnvBn2o6UflJ4J0sG5wE/xhvkjPD6GBjJixhl6tNqpLgbjGmnMTl
-         LpG2rtvnTN47vbn+ppgrovyvdIdzdrv3b6A6qdsa6N3nzvtiluwzBoWWv6BGtW6oU7O/
-         QB5Q==
-X-Gm-Message-State: AOJu0YwpfBEUPJ7eiWjUj8TtFWSPmR/kHcUES6jI4I86JPNfnxaPFlJ5
-        eYkatlm7aTBLo7fnLAutxsc5Vg==
-X-Google-Smtp-Source: AGHT+IGzN+CwJWErTZsGOaI6liu70JUjJuwESyp2RIH4ZQdhQsWYWY74J0/QtUi+vlKNcHHMxEKhhg==
-X-Received: by 2002:a05:6512:3055:b0:4f8:5604:4b50 with SMTP id b21-20020a056512305500b004f856044b50mr2326526lfb.64.1691582998752;
-        Wed, 09 Aug 2023 05:09:58 -0700 (PDT)
+        bh=m7Ry1wvi8+J9JTgKiYPmLWP0JVIew2LaXJPJcmj20s4=;
+        b=YrQMfQknmCDkOGGdlhf1fNftT50M3FJMv+6Inb0uzf4M4WBqioWm8eIpsfgVom8emq
+         Fp8kXJ6qAn7zid5psW6/a1WsAF9UiZLPtde9b4xfvJSkQxoL4pWa7yHq9gafIRdVX0Ht
+         HjV7ZHW32X6nIG26mFMnRU1lj3oimNGXUDIkF6XH300r+4ewdf84f1jOIpZ7KNm+/974
+         K+QDZ5QKlDIY+IIB6SwYYi0dSInu3EFtn7zDi1addf8yiqD0zKAdlsPV8tO9p6KDTx0J
+         9/vEgTvtQ58bkXW1rk8lrASlI4MCVYN27nobcgfhjedQ25DJkNSrQGO5D9yPw8vOtiU1
+         ugDA==
+X-Gm-Message-State: AOJu0YzjSPxx6QPCnr5MwR6jJsQEHolwYhreFz7+D0h92UWPvtFVcGvs
+        irORdhILReI6W/xO3bOHfZNx6w==
+X-Google-Smtp-Source: AGHT+IFsKBycWfaF92XoOSq9ZeNyf2KrueJWYoVM+T7FgyDFCsf+5hrYEOMmJGk0EAf0Q/KD3vIfww==
+X-Received: by 2002:a05:6512:202c:b0:4fd:d538:b97b with SMTP id s12-20020a056512202c00b004fdd538b97bmr1517469lfs.29.1691583067870;
+        Wed, 09 Aug 2023 05:11:07 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id c6-20020ac244a6000000b004fb8603f6e0sm2304491lfm.12.2023.08.09.05.09.57
+        by smtp.gmail.com with ESMTPSA id c6-20020ac244a6000000b004fb8603f6e0sm2304491lfm.12.2023.08.09.05.11.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 05:09:58 -0700 (PDT)
-Message-ID: <d82e66f4-dcbe-4829-aa43-3ed3a50365ef@linaro.org>
-Date:   Wed, 9 Aug 2023 14:09:57 +0200
+        Wed, 09 Aug 2023 05:11:07 -0700 (PDT)
+Message-ID: <7f30b5a2-37d1-4b1c-8f8d-4a4782534b2f@linaro.org>
+Date:   Wed, 9 Aug 2023 14:11:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: apq8016-sbc-d3-camera-mezzanine:
- Enable the sensor by default
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: apq8016-sbc: Enable camss for
+ non-mezzanine cases
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
@@ -63,7 +63,7 @@ To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230809120432.1036405-1-bryan.odonoghue@linaro.org>
- <20230809120432.1036405-7-bryan.odonoghue@linaro.org>
+ <20230809120432.1036405-8-bryan.odonoghue@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,13 +100,13 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230809120432.1036405-7-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230809120432.1036405-8-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -114,11 +114,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 9.08.2023 14:04, Bryan O'Donoghue wrote:
-> With a standalone mezzanine the sensor ought to be enabled by default.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
-imo this should have been squashed into patch 5, with a mention in
-the commit message
+> When we have no camera mezzanine attached it is still possible to run the
+> test-pattern generator of the CSID block.
+Wasn't it broken?
+
+[...]
+
+>  
+> +&camss {
+> +	status = "okay";
+> +	ports {
+Again, please add a newline if there's gonna be a resend.
 
 Konrad
