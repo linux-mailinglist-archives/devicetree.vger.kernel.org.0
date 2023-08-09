@@ -2,92 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 938FF775358
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 08:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C538775365
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 09:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230498AbjHIG7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 02:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46388 "EHLO
+        id S231340AbjHIHCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 03:02:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjHIG7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 02:59:30 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7B019BC;
-        Tue,  8 Aug 2023 23:59:29 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3795SeCG027257;
-        Wed, 9 Aug 2023 06:59:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1KAZVnnVfcDStYfdro82HDZhSg8f14qqJ8BNvobI0MI=;
- b=NmO4UMS5BE1og9J9/KVjDrglA8BskYsbTW4hGav8OQiyeFSbxmS8Ar5zFabjqWE7gRuB
- /ZL2GrRtSqBpKRyOQnmENfoOz7+aYA8IYG43niI7VSd73/Cuw7OfhiO33fCub3W8YALO
- DrOAo1DbbGiMBO+xz17KuyLS4kOWc4hb9RA1NLfIdoai4VUgrdmdH+3WQFtK7AIv0sA8
- A/qdV1paist9MeTnmE3FBONhI1dpzuS7g4uBb64X/0oBwSEP6CQtN+H1ncRkurIR6pwl
- /MYJNNI8Q+E/4tvFhGItYPzAPDeJTmxxiZjWj5nIE9phJj9j9MidjbHYWGNKrJ3mkAbC qA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sbppchurv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Aug 2023 06:59:17 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3796xGY6030180
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 9 Aug 2023 06:59:16 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 8 Aug
- 2023 23:59:11 -0700
-Message-ID: <59a4ce95-0b9d-b48b-73cb-29ade99b28c3@quicinc.com>
-Date:   Wed, 9 Aug 2023 14:59:08 +0800
+        with ESMTP id S230098AbjHIHCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 03:02:03 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C901BF7
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 00:02:02 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-267fcd6985cso4540740a91.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 00:02:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1691564522; x=1692169322;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oA4Y4YVJk393hhh41gsTxcc/kNbbX/n08U98oNmh4/w=;
+        b=hZ/72Sv75WYBkFU1n2H+ug8kvhWmdwucgKI4Hmadno8B5LfsJ7dn9ObXfcwz4Fkk+Q
+         fYBDABKRxpSjcPE9PVLt8pJqP1OKPSE1050SpHdv/h2qLni7QWjnBCujCWS5/3wifvAx
+         E0tISjHn5ijK3CCVy0QGAAHFbqAEfDsoDZ9Oz++vFCSS0MMMWxTJnJwz7TSadbBvwtCJ
+         FCVvqcdNIonx8Anp+xXwZK5MnRb/eigUrrAjOEl0/1lTsITyd8QbsR6/agcCojI48z8F
+         BcQNQJeCprAqD5TmGv7yHUV1zIs+sv74Z9NBxqm5JxdgBTRgHw3c6ALqlgFLokt4S+Po
+         N2gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691564522; x=1692169322;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oA4Y4YVJk393hhh41gsTxcc/kNbbX/n08U98oNmh4/w=;
+        b=Q6ZBGOREkZnenY6qOFPj+BsMjpj7RMRfnW065JzGYofeOyMqlRvi2GMbZ0XccLM2xU
+         FOUD9yVEzE2X3v3z7St4Kz7T4E4XEyorQQEBkudxl5QIcyOD+3aSWRmZ7CQllehfbAQE
+         oVVyAbpZYETvMwWH+85DI8Qcrj9qkTrxJXrUt2uXVwF18rDp3+HjSv057o0M9jRUwsWP
+         864VAcZDhBgXPrJfoOPxb6PyUhFV/0eci93aBOfw63EaRrhCBuyybUG9mAeaYQ0iqEVH
+         kQiaDRqzaI479vV7yRc7ZFo5Jql5o5kDwDgl0FArIqfLOwmz8AKvV4Fsag/2Kfptwara
+         RF0w==
+X-Gm-Message-State: AOJu0YxOTYVP4yt7ANwJQd68ONS9trpA9GsDEP3HQhp4c5S8uRCOuzPs
+        3johtv3zYo8tihbIrdwKz5R/nA==
+X-Google-Smtp-Source: AGHT+IHDc6TJVpz+CoOm0i5o93QoNx0hWbKOeM6hYi2/LTLG2MvOxXdCzJdvcy51etkgA9aRu+Y9Ww==
+X-Received: by 2002:a17:90a:ec0c:b0:268:1f0a:9f12 with SMTP id l12-20020a17090aec0c00b002681f0a9f12mr1436168pjy.29.1691564522040;
+        Wed, 09 Aug 2023 00:02:02 -0700 (PDT)
+Received: from [10.0.2.15] ([82.78.167.79])
+        by smtp.gmail.com with ESMTPSA id gq9-20020a17090b104900b002694da8a9cdsm669814pjb.48.2023.08.09.00.01.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Aug 2023 00:02:01 -0700 (PDT)
+Message-ID: <91a5c6e5-eff1-0fcd-32fe-71a081f4e1f6@tuxon.dev>
+Date:   Wed, 9 Aug 2023 10:01:48 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v7 09/13] coresight-tpdm: Add nodes for dsb edge control
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 50/50] ARM: dts: at91: sam9x75_curiosity: add sam9x75
+ curiosity board
 Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1690269353-10829-1-git-send-email-quic_taozha@quicinc.com>
- <1690269353-10829-10-git-send-email-quic_taozha@quicinc.com>
- <4cfd50c3-834c-8f8d-187b-8cfe38d7ece0@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <4cfd50c3-834c-8f8d-187b-8cfe38d7ece0@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UGHbLC7AQt45raFVi9WChjgQTJBNgjd3
-X-Proofpoint-GUID: UGHbLC7AQt45raFVi9WChjgQTJBNgjd3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-09_04,2023-08-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 impostorscore=0 mlxscore=0 spamscore=0 adultscore=0
- malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308090061
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        andre.przywara@arm.com, f.fainelli@gmail.com,
+        romain.perier@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mihai Sain - M19926 <Mihai.Sain@microchip.com>
+References: <20230728103114.267845-1-varshini.rajendran@microchip.com>
+From:   claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20230728103114.267845-1-varshini.rajendran@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_FMBLA_NEWDOM28,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,377 +81,159 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 8/7/2023 6:58 PM, Suzuki K Poulose wrote:
-> On 25/07/2023 08:15, Tao Zhang wrote:
->> Add the nodes to set value for DSB edge control and DSB edge
->> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
->> resgisters to configure edge control. DSB edge detection control
->> 00: Rising edge detection
->> 01: Falling edge detection
->> 10: Rising and falling edge detection (toggle detection)
->> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
->> configure mask. Eight 32 bit registers providing DSB interface
->> edge detection mask control.
->>
->> Add the nodes to configure DSB edge control and DSB edge control
->> mask. Each DSB subunit TPDM maximum of 256 edge detections can be
->> configured. The index and value sysfs files need to be paired and
->> written to order. The index sysfs file is to set the index number
->> of the edge detection which needs to be configured. And the value
->> sysfs file is to set the control or mask for the edge detection.
->> DSB edge detection control should be set as the following values.
->> 00: Rising edge detection
->> 01: Falling edge detection
->> 10: Rising and falling edge detection (toggle detection)
->> And DSB edge mask should be set as 0 or 1.
->> Each DSB subunit TPDM has maximum of n(n<16) EDCR resgisters to
->> configure edge control. And each DSB subunit TPDM has maximum of
->> m(m<8) ECDMR registers to configure mask.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  39 +++++
->>   drivers/hwtracing/coresight/coresight-tpdm.c       | 158 
->> ++++++++++++++++++++-
->>   drivers/hwtracing/coresight/coresight-tpdm.h       |  30 +++-
->>   3 files changed, 223 insertions(+), 4 deletions(-)
->>
->> diff --git 
->> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index 2a82cd0..a4550c5 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -60,3 +60,42 @@ Description:
->>           Bit[3] : Set to 0 for low performance mode.
->>                    Set to 1 for high performance mode.
->>           Bit[4:8] : Select byte lane for high performance mode.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl_idx
->> +Date:        March 2023
->> +KernelVersion    6.5
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        Read/Write the index number of the edge detection for the DSB
->> +        subunit TPDM. Since there are at most 256 edge detections, this
->> +        value ranges from 0 to 255.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl_val
->> +Date:        March 2023
->> +KernelVersion    6.5
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        Read a set of the edge control registers of the DSB in TPDM.
->> +        Write a data to control the edge detection corresponding to
->> +        the index number. Before writing data to this sysfs file,
->> +        "dsb_edge_ctrl_idx" should be written first to configure the
->> +        index number of the edge detection which needs to be 
->> controlled.
->> +
->> +        Accepts only one of the following values.
->> +        0 - Rising edge detection
->> +        1 - Falling edge detection
->> +        2 - Rising and falling edge detection (toggle detection)
->> +
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl_mask
->> +Date:        March 2023
->> +KernelVersion    6.5
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        Read a set of the edge control mask registers of the DSB in 
->> TPDM.
->> +        Write a data to mask the edge detection corresponding to the 
->> index
->> +        number. Before writing data to this sysfs file, 
->> "dsb_edge_ctrl_idx"
->> +        should be written first to configure the index number of the 
->> edge
->> +        detection which needs to be masked.
->> +
->> +        Accepts only one of the 2 values -  0 or 1.
->> \ No newline at end of file
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index c38760b..98fd6ab 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -71,7 +71,14 @@ static void set_dsb_perf_mode(struct tpdm_drvdata 
->> *drvdata, u32 *val)
->>     static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->>   {
->> -    u32 val;
->> +    u32 val, i;
->> +
->> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++)
->> +        writel_relaxed(drvdata->dsb->edge_ctrl[i],
->> +               drvdata->base + TPDM_DSB_EDCR(i));
->> +    for (i = 0; i < TPDM_DSB_MAX_EDCMR; i++)
->> +        writel_relaxed(drvdata->dsb->edge_ctrl_mask[i],
->> +               drvdata->base + TPDM_DSB_EDCMR(i));
->>         val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
->>       /* Set trigger timestamp */
->> @@ -302,6 +309,152 @@ static ssize_t dsb_mode_store(struct device *dev,
->>   }
->>   static DEVICE_ATTR_RW(dsb_mode);
->>   +static ssize_t dsb_edge_ctrl_idx_show(struct device *dev,
->> +                       struct device_attribute *attr,
->> +                       char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%u\n",
->> +             (unsigned int)drvdata->dsb->edge_ctrl_idx);
->> +}
->> +
->> +/*
->> + * The EDCR registers can include up to 16 32-bit registers, and each
->> + * one can be configured to control up to 16 edge detections(2 bits
->> + * control one edge detection). So a total 256 edge detections can be
->> + * configured. This function provides a way to set the index number of
->> + * the edge detection which needs to be configured.
->> + */
->> +static ssize_t dsb_edge_ctrl_idx_store(struct device *dev,
->> +                    struct device_attribute *attr,
->> +                    const char *buf,
->> +                    size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || (val >= TPDM_DSB_MAX_LINES))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    drvdata->dsb->edge_ctrl_idx = val;
->> +    spin_unlock(&drvdata->spinlock);
->> +
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_edge_ctrl_idx);
->> +
->> +static ssize_t dsb_edge_ctrl_val_show(struct device *dev,
->> +                       struct device_attribute *attr,
->> +                       char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    ssize_t size = 0;
->> +    unsigned long bytes;
->> +    int i;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
->> +        bytes = sysfs_emit_at(buf, size,
->> +                  "Val:0x%x\n", drvdata->dsb->edge_ctrl[i]);
->
-> This feels a bit odd. edget_ctrl_val allows storing one "edge ctrl"
-> value, while "show"ing all EDCR values. We could split them to :
->
-> Read only sysfs files:
->
-> dsb_edcr0 ... dsb_edcr15
->
-> for each EDCR register (similarly for the mask)
->
-> and may be show the specific edge_ctrl_line for with the above 
-> function for selected index.
-Sure, I will update this in the next patch series.
->
->> +        if (bytes <= 0)
->> +            break;
->> +        size += bytes;
->> +    }
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +
->> +/*
->> + * This function is used to control the edge detection according
->> + * to the index number that has been set.
->> + * "edge_ctrl" should be one of the following values.
->> + * 0 - Rising edge detection
->> + * 1 - Falling edge detection
->> + * 2 - Rising and falling edge detection (toggle detection)
->> + */
->> +static ssize_t dsb_edge_ctrl_val_store(struct device *dev,
->> +                    struct device_attribute *attr,
->> +                    const char *buf,
->> +                    size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val, mask, edge_ctrl;
->> +    int reg;
->> +
->> +    if ((kstrtoul(buf, 0, &edge_ctrl)) || (edge_ctrl > 0x2))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    /*
->> +     * There are 2 bit per DSB Edge Control line.
->> +     * Thus we have 16 lines in a 32bit word.
->> +     */
->> +    reg = EDCR_TO_WORD_IDX(drvdata->dsb->edge_ctrl_idx);
->> +    mask = EDCR_TO_WORD_MASK(drvdata->dsb->edge_ctrl_idx);
->> +    val = drvdata->dsb->edge_ctrl[reg];
->> +    val &= ~EDCR_TO_WORD_MASK(drvdata->dsb->edge_ctrl_idx);
->> +    val |= EDCR_TO_WORD_VAL(edge_ctrl, drvdata->dsb->edge_ctrl_idx);
->> +    drvdata->dsb->edge_ctrl[reg] = val;
->> +    spin_unlock(&drvdata->spinlock);
->> +
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_edge_ctrl_val);
->
-> This can be WO attribute to write to a given line.
-I will update this in the next patch series.
->
->> +
->> +static ssize_t dsb_edge_ctrl_mask_show(struct device *dev,
->> +                        struct device_attribute *attr,
->> +                        char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    ssize_t size = 0;
->> +    unsigned long bytes;
->> +    int i;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    for (i = 0; i < TPDM_DSB_MAX_EDCMR; i++) {
->> +        bytes = sysfs_emit_at(buf, size,
->> +                  "Val:0x%x\n", drvdata->dsb->edge_ctrl_mask[i]);
->
-> As mentioned above, please don't do this. One value per file. Add
->
-> dsb_edcmr0..dsb_edcmr7
->
-> and print only the selected index mask for this function.
-I will update this in the next patch series.
->
->> +        if (bytes <= 0)
->> +            break;
->> +        size += bytes;
->> +    }
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +
->> +static ssize_t dsb_edge_ctrl_mask_store(struct device *dev,
->> +                         struct device_attribute *attr,
->> +                         const char *buf,
->> +                         size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +    u32 set;
->> +    int reg;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    /*
->> +     * There is 1 bit per DSB Edge Control Mark line.
->> +     * Thus we have 32 lines in a 32bit word.
->> +     */
->> +    reg = EDCMR_TO_WORD_IDX(drvdata->dsb->edge_ctrl_idx);
->> +    set = drvdata->dsb->edge_ctrl_mask[reg];
->> +    if (val)
->> +        set |= BIT(EDCMR_TO_WORD_SHIFT(drvdata->dsb->edge_ctrl_idx));
->> +    else
->> +        set &= ~BIT(EDCMR_TO_WORD_SHIFT(drvdata->dsb->edge_ctrl_idx));
->> +        drvdata->dsb->edge_ctrl_mask[reg] = set;
->> +    spin_unlock(&drvdata->spinlock);
->> +
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_edge_ctrl_mask);
->> +
->>   static ssize_t dsb_trig_type_show(struct device *dev,
->>                        struct device_attribute *attr, char *buf)
->>   {
->> @@ -374,6 +527,9 @@ static DEVICE_ATTR_RW(dsb_trig_ts);
->>     static struct attribute *tpdm_dsb_attrs[] = {
->>       &dev_attr_dsb_mode.attr,
->> +    &dev_attr_dsb_edge_ctrl_idx.attr,
->> +    &dev_attr_dsb_edge_ctrl_val.attr,
->> +    &dev_attr_dsb_edge_ctrl_mask.attr,
->>       &dev_attr_dsb_trig_ts.attr,
->>       &dev_attr_dsb_trig_type.attr,
->>       NULL,
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index 49fffb1..4afdb29 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -12,6 +12,8 @@
->>   /* DSB Subunit Registers */
->>   #define TPDM_DSB_CR        (0x780)
->>   #define TPDM_DSB_TIER        (0x784)
->> +#define TPDM_DSB_EDCR(n)    (0x808 + (n * 4))
->> +#define TPDM_DSB_EDCMR(n)    (0x848 + (n * 4))
->>     /* Enable bit for DSB subunit */
->>   #define TPDM_DSB_CR_ENA        BIT(0)
->> @@ -34,6 +36,16 @@
->>   #define TPDM_DSB_TEST_MODE        GENMASK(10, 9)
->>   #define TPDM_DSB_HPSEL        GENMASK(6, 2)
->>   +#define EDCRS_PER_WORD                16
->> +#define EDCR_TO_WORD_IDX(r)            ((r) / EDCRS_PER_WORD)
->> +#define EDCR_TO_WORD_SHIFT(r)        ((r % EDCRS_PER_WORD) * 2)
->> +#define EDCR_TO_WORD_VAL(val, r)    (val << EDCR_TO_WORD_SHIFT(r))
->> +#define EDCR_TO_WORD_MASK(r)        EDCR_TO_WORD_VAL(0x3, r)
->> +
->> +#define EDCMRS_PER_WORD                32
->> +#define EDCMR_TO_WORD_IDX(r)        ((r) / EDCMRS_PER_WORD)
->> +#define EDCMR_TO_WORD_SHIFT(r)        ((r) % EDCMRS_PER_WORD)
->> +
->>   /* TPDM integration test registers */
->>   #define TPDM_ITATBCNTRL        (0xEF0)
->>   #define TPDM_ITCNTRL        (0xF00)
->> @@ -60,14 +72,26 @@
->>   #define TPDM_PIDR0_DS_IMPDEF    BIT(0)
->>   #define TPDM_PIDR0_DS_DSB    BIT(1)
->>   +#define TPDM_DSB_MAX_LINES    256
->> +/* MAX number of EDCR registers */
->> +#define TPDM_DSB_MAX_EDCR    16
->> +/* MAX number of EDCMR registers */
->> +#define TPDM_DSB_MAX_EDCMR    8
->> +
->>   /**
->>    * struct dsb_dataset - specifics associated to dsb dataset
->> - * @mode:             DSB programming mode
->> - * @trig_ts:          Enable/Disable trigger timestamp.
->> - * @trig_type:        Enable/Disable trigger type.
->> + * @mode:               DSB programming mode
->> + * @edge_ctrl_idx       Index number of the edge control
->> + * @edge_ctrl:          Save value for edge control
->> + * @edge_ctrl_mask:     Save value for edge control mask
->> + * @trig_ts:            Enable/Disable trigger timestamp.
->> + * @trig_type:          Enable/Disable trigger type.
->>    */
->>   struct dsb_dataset {
->>       u32                mode;
->> +    u32                edge_ctrl_idx;
->> +    u32                edge_ctrl[TPDM_DSB_MAX_EDCR];
->> +    u32                edge_ctrl_mask[TPDM_DSB_MAX_EDCMR];
->
-> Please keep them aligned with the rest of the fields.
 
-I will update this in the next patch series.
+On 28.07.2023 13:31, Varshini Rajendran wrote:
+> Add device tree file for sam9x75 curiosity board.
+> 
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
+>  arch/arm/boot/dts/microchip/Makefile          |   5 +
+>  .../dts/microchip/at91-sam9x75_curiosity.dts  | 311 ++++++++++++++++++
+>  2 files changed, 316 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+> 
+> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
+> index 0f5193d05a31..f3d604c30325 100644
+> --- a/arch/arm/boot/dts/microchip/Makefile
+> +++ b/arch/arm/boot/dts/microchip/Makefile
+> @@ -10,6 +10,7 @@ DTC_FLAGS_at91-sama5d3_eds := -@
+>  DTC_FLAGS_at91-sama5d3_xplained := -@
+>  DTC_FLAGS_at91-sama5d4_xplained := -@
+>  DTC_FLAGS_at91-sama7g5ek := -@
+> +DTC_FLAGS_at91-sam9x75_curiosity := -@
+>  dtb-$(CONFIG_SOC_AT91RM9200) += \
+>  	at91rm9200ek.dtb \
+>  	mpa1600.dtb
+> @@ -61,6 +62,10 @@ dtb-$(CONFIG_SOC_SAM9X60) += \
+>  	at91-sam9x60_curiosity.dtb \
+>  	at91-sam9x60ek.dtb
+>  # Enables support for device-tree overlays
+> +DTC_FLAGS_at91-sam9x75_curiosity := -@
+> +dtb-$(CONFIG_SOC_SAM9X7) += \
+> +	at91-sam9x75_curiosity.dtb
+> +# Enables support for device-tree overlays
+>  DTC_FLAGS_at91-sama5d27_som1_ek := -@
+>  DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
+>  DTC_FLAGS_at91-sama5d2_icp := -@
+> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+> new file mode 100644
+> index 000000000000..a9ecb02a9f3c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+> @@ -0,0 +1,311 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
+> + *
+> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
+> + *
+> + * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
+> + */
+> +/dts-v1/;
+> +#include "sam9x7.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +	model = "Microchip SAM9X75 Curiosity";
+> +	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
+> +
+> +	aliases {
+> +		i2c0 = &i2c6;
+> +		i2c1 = &i2c7;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	clocks {
+> +		clock-slowxtal {
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		clock-mainxtal {
+> +			clock-frequency = <24000000>;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
+> +
+> +		button-user {
+> +			label = "USER";
+> +			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_PROG1>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
+> +
+> +		led-0 {
+> +			label = "red";
+> +			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led-1 {
+> +			label = "green";
+> +			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led-2 {
+> +			label = "blue";
+> +			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	memory@20000000 {
+> +		device_type = "memory";
+> +		reg = <0x20000000 0x10000000>;
+> +	};
+> +};
+> +
+> +&dbgu {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_dbgu>;
+> +	status = "okay";
+> +};
+> +
+> +&dma0 {
+> +	status = "okay";
+> +};
+> +
+> +&ehci0 {
+> +	status = "okay";
+> +};
+> +
+> +&flx6 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+> +	status = "okay";
+> +
+> +	i2c6 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx6_default>;
+> +		i2c-analog-filter;
+> +		i2c-digital-filter;
+> +		i2c-digital-filter-width-ns = <35>;
+> +		status = "okay";
+> +
+> +		pmic@5b {
+> +			compatible = "microchip,mcp16502";
+> +			reg = <0x5b>;
+> +
+> +			regulators {
+> +				vdd_3v3: VDD-IO {
 
+Mihai reported that having '-' in node name for this PMIC driver leads to
+failures on probe. Can you also check on your side?
 
-Best,
-
-Tao
-
->
->>       bool            trig_ts;
->>       bool            trig_type;
->
-> Suzuki
->
->
->>   };
->
+> +					regulator-name = "VDD_IO";
+> +					regulator-min-microvolt = <3000000>;
