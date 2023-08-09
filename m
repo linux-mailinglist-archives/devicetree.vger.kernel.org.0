@@ -2,190 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C13BD775466
-	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 09:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C02BC77549D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Aug 2023 10:01:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231179AbjHIHsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 03:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49630 "EHLO
+        id S229738AbjHIIBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 04:01:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjHIHsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 03:48:01 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 91B1B172A;
-        Wed,  9 Aug 2023 00:47:58 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8CxNvGsRNNkb6oTAA--.43075S3;
-        Wed, 09 Aug 2023 15:47:56 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxX8+rRNNk6utQAA--.5974S3;
-        Wed, 09 Aug 2023 15:47:55 +0800 (CST)
-Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
- <20230807074043.31288-2-zhuyinbo@loongson.cn>
- <20230808-amount-urban-9a6eb09852ca@spud>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
-Date:   Wed, 9 Aug 2023 15:47:55 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229737AbjHIIBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 04:01:24 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9561736;
+        Wed,  9 Aug 2023 01:01:23 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3794PRGu003898;
+        Wed, 9 Aug 2023 08:01:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=AbOc98dY5ZGro70b02+NKzOFZD0bpyfmPo/r2PE8aMo=;
+ b=TlXh+k43EW0d36/bru5bBRywjMXQlU3ZikClz9+7by0bZDqXlK6pRW/txsxRImVOfZ+u
+ cjHNJQ/vSJEgjuNrt+wNt+f22YWGPo9FdbFDyS29vq4+Ml60gUDszBvPEcSsIjqjGQI3
+ 8FX09lBhvLSKk2FTPYc4TW0TzcMzNOMxTqxjY60iNXk72y8AfYYaYjm/Tj685sWJx6sE
+ 936pX4vXxLvmUyrqnvX1gkUu7msSzfkpc5mc0DYw9K4VQjr9jEBqe93Bf5Ur+ts3sYkc
+ GxmSSBviXyUoApPbIqqxcWeESOk2/yQ1wSz7uEaeTdN5vrEVZ1EXuypq+/jvdk04LlhG Tw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sbcacu52e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Aug 2023 08:01:07 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 379816QI007105
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 9 Aug 2023 08:01:06 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 9 Aug 2023 01:01:01 -0700
+From:   Luo Jie <quic_luoj@quicinc.com>
+To:     <andersson@kernel.org>, <agross@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, Luo Jie <quic_luoj@quicinc.com>
+Subject: [PATCH v1 0/4] add clock controller of qca8386/qca8084
+Date:   Wed, 9 Aug 2023 16:00:43 +0800
+Message-ID: <20230809080047.19877-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20230808-amount-urban-9a6eb09852ca@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxX8+rRNNk6utQAA--.5974S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8xsSeEklYJC-PYnZumnZbOSzDq88anBi
+X-Proofpoint-ORIG-GUID: 8xsSeEklYJC-PYnZumnZbOSzDq88anBi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-09_06,2023-08-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ priorityscore=1501 impostorscore=0 mlxscore=0 adultscore=0 malwarescore=0
+ mlxlogscore=814 bulkscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308090070
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
+
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_qca8k_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
+
+Changes in v1:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
+
+Luo Jie (4):
+  clk: qcom: branch: Add clk_branch2_qca8k_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: add clock controller driver for qca8386/qca8084
+  arm64: defconfig: Enable qca8k nss clock controller
+
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |    8 +
+ drivers/clk/qcom/clk-branch.h                 |    2 +
+ drivers/clk/qcom/nsscc-qca8k.c                | 2195 +++++++++++++++++
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 9 files changed, 2470 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
 
 
-在 2023/8/8 下午8:05, Conor Dooley 写道:
-> Hey,
-> 
-> On Mon, Aug 07, 2023 at 03:40:42PM +0800, Yinbo Zhu wrote:
->> Loongson GPIO controllers come in multiple variants that are compatible
->> except for certain register offset values. Add support in yaml file for
->> device properties allowing to specify them in DT.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../bindings/gpio/loongson,ls-gpio.yaml       | 40 ++++++++++++++++++-
->>   1 file changed, 39 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->> index fb86e8ce6349..fc51cf40fccd 100644
->> --- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->> +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->> @@ -14,6 +14,7 @@ properties:
->>       enum:
->>         - loongson,ls2k-gpio
->>         - loongson,ls7a-gpio
->> +      - loongson,ls2k1000-gpio
-> 
-> If you're adding new compatibles that depend on the new offset
-> properties to function, they could be set up with the existing
-> "ls2k-gpio" as a fallback, so that further driver changes are not
-> required when you add ones for the 2k500 etc.
-
-
-okay, I got it.
-
-> 
->>   
->>     reg:
->>       maxItems: 1
->> @@ -29,6 +30,33 @@ properties:
->>   
->>     gpio-ranges: true
->>   
->> +  loongson,gpio-conf-offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO configuration register offset address.
->> +
->> +  loongson,gpio-out-offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO output register offset address.
->> +
->> +  loongson,gpio-in-offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO input register offset address.
->> +
->> +  loongson,gpio-ctrl-mode:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO control mode, where '0' represents
->> +      bit control mode and '1' represents byte control mode.
-> 
-> How is one supposed to know which of these modes to use?
-
-
-Byte mode is to access by byte, such as gpio3, the base address of the
-gpio controller is offset by 3 bytes as the access address of gpio3.
-
-The bit mode is the normal mode that like other platform gpio and it is
-to access by bit.
-
-If both modes are supported, it is recommended to prioritize using byte
-mode that according to spec.
-
-> 
->> +  loongson,gpio-inten-offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO interrupt enable register offset
->> +      address.
->> +
-> 
-> tbh, I want to leave the final say on this stuff to Krzysztof or Rob.
-> I'm not really sure what the best way to do to support your GPIO
-> controllers is & I don't understand your hardware sufficiently to come
-> up with an approach that I would use had I been in your shoes.
-> 
-
-
-okay, I got it.
-
-Thanks,
-Yinbo
-
-> 
->>     interrupts:
->>       minItems: 1
->>       maxItems: 64
->> @@ -39,6 +67,11 @@ required:
->>     - ngpios
->>     - "#gpio-cells"
->>     - gpio-controller
->> +  - loongson,gpio-conf-offset
->> +  - loongson,gpio-in-offset
->> +  - loongson,gpio-out-offset
->> +  - loongson,gpio-ctrl-mode
->> +  - loongson,gpio-inten-offset
->>     - gpio-ranges
->>     - interrupts
->>   
->> @@ -49,11 +82,16 @@ examples:
->>       #include <dt-bindings/interrupt-controller/irq.h>
->>   
->>       gpio0: gpio@1fe00500 {
->> -      compatible = "loongson,ls2k-gpio";
->> +      compatible = "loongson,ls2k1000-gpio";
->>         reg = <0x1fe00500 0x38>;
->>         ngpios = <64>;
->>         #gpio-cells = <2>;
->>         gpio-controller;
->> +      loongson,gpio-conf-offset = <0>;
->> +      loongson,gpio-in-offset = <0x20>;
->> +      loongson,gpio-out-offset = <0x10>;
->> +      loongson,gpio-ctrl-mode = <0>;
->> +      loongson,gpio-inten-offset = <0x30>;
->>         gpio-ranges = <&pctrl 0 0 15>,
->>                       <&pctrl 16 16 15>,
->>                       <&pctrl 32 32 10>,
->> -- 
->> 2.20.1
->>
+base-commit: 1c2c8c3517b3ba43a964afe1ff7926b13dc51492
+-- 
+2.17.1
 
