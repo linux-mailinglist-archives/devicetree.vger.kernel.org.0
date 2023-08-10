@@ -2,59 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D22EC7776C6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75DBD7776CC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:22:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbjHJLVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 07:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52292 "EHLO
+        id S231809AbjHJLWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 07:22:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230263AbjHJLVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:21:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752C110D;
-        Thu, 10 Aug 2023 04:21:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D4CC365931;
-        Thu, 10 Aug 2023 11:21:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 230AFC433C7;
-        Thu, 10 Aug 2023 11:21:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691666494;
-        bh=7oqbOFzXbh/vqK1FPdNCgosNW6N8CQUMa/xCbP8Mwpc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=BFbpuNXAHyl3NEzENNYsswEB2SmoN+KgODBWHLn9jvjgKexkq92M4bz8XFyqxAyWO
-         dNW3upmsdARUZEriqD6zlzQMTWzGL3t+j+5TyTrxhCwtDV+Lj8l6vIiJERbgNNVr0I
-         /Lqd/3C5nnq3xu6PS8hW28kFywncaQevY+H/NLCFqBDUG3wwMXdSJajV23bc0AscE1
-         qT4cvdUm1j0mmUpPV35VkovZlXWMwXlX5XNYaeAWLZrmlz6Y1uxGINotF8kOzU+E2T
-         zpG/9ApkVbBqfzo0uIUXL4mik8TIZPPYqxnCetXhixrr1HdRognSoR6jsCh/khy2Hk
-         NFQSaRYnwL3xw==
-Received: (nullmailer pid 64579 invoked by uid 1000);
-        Thu, 10 Aug 2023 11:21:32 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S230142AbjHJLWX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:22:23 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4CD2683
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:22:22 -0700 (PDT)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230810112220epoutp044d3aa07434176704a08b1e4afe36d206~6AcGTmhey0746907469epoutp04_
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 11:22:20 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230810112220epoutp044d3aa07434176704a08b1e4afe36d206~6AcGTmhey0746907469epoutp04_
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1691666540;
+        bh=d//B7oykHJa8VCnNOgGBMc54jzNQf7SGuTL3qyiTWTc=;
+        h=From:To:In-Reply-To:Subject:Date:References:From;
+        b=qFBLwiERytB1EwOmnKX4jWIp9BUmkMoltL+hqgpI2HvbyzNqKnyKPOIvwKb2c714Q
+         CQ3XLxqiR+lcXEP9sjRvDVfs3gjB8PuEaATN2rfwztm8MI1ObnE86O+Ulmp95Iob0O
+         /OHHrIhO9YP99/yej1qZ6QSRFABXPQKfBDd2TDNA=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20230810112220epcas5p1ef54a977cab2e4e184e17e3ab7d7cb50~6AcFpiilU1040910409epcas5p1P;
+        Thu, 10 Aug 2023 11:22:20 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.176]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4RM4Jp4VWHz4x9Pr; Thu, 10 Aug
+        2023 11:22:18 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1E.5C.44250.868C4D46; Thu, 10 Aug 2023 20:22:16 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20230810112215epcas5p4a2e02d4f1d0ab5d707754f46378bd1a2~6AcBmVF5M2468924689epcas5p4x;
+        Thu, 10 Aug 2023 11:22:15 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20230810112215epsmtrp10b8685be142ca5491628d907814b97e4~6AcBk9xs10572305723epsmtrp1s;
+        Thu, 10 Aug 2023 11:22:15 +0000 (GMT)
+X-AuditID: b6c32a4a-ec1fd7000000acda-61-64d4c86821b1
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AA.1C.14748.768C4D46; Thu, 10 Aug 2023 20:22:15 +0900 (KST)
+Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20230810112213epsmtip232caf451a61ad5d7a8383f4720d6ea49~6Ab-qm7_J0224502245epsmtip2W;
+        Thu, 10 Aug 2023 11:22:13 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
+        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
+        "'Michael Turquette'" <mturquette@baylibre.com>,
+        "'Stephen Boyd'" <sboyd@kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Conor Dooley'" <conor+dt@kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+In-Reply-To: <20230808082738.122804-4-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 03/11] clk: samsung: exynos5250: do not define number of
+ clocks in bindings
+Date:   Thu, 10 Aug 2023 16:52:12 +0530
+Message-ID: <004601d9cb7c$ea7a7f20$bf6f7d60$@samsung.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     pabeni@redhat.com, netdev@vger.kernel.org, andrew@lunn.ch,
-        davem@davemloft.net, edumazet@google.com, conor+dt@kernel.org,
-        linux@armlinux.org.uk, devicetree@vger.kernel.org,
-        luka.perkov@sartura.hr, hkallweit1@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org
-In-Reply-To: <20230810102309.223183-1-robert.marko@sartura.hr>
-References: <20230810102309.223183-1-robert.marko@sartura.hr>
-Message-Id: <169166649202.64563.6248344012653953343.robh@kernel.org>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: ethernet-controller:
- add PSGMII mode
-Date:   Thu, 10 Aug 2023 05:21:32 -0600
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKdkXeLsq2DobfMxxfuGwY9MCDG5gKES6YOAdKAHWyuOSBg4A==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIJsWRmVeSWpSXmKPExsWy7bCmlm7GiSspBlOOiFms2XuOyeL6l+es
+        FvOPnGO12Pt6K7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytWjde4Td4vCbdlaLf9c2slis
+        2vWH0YHX4/2NVnaPnbPusntsWtXJ5nHn2h42j81L6j36tqxi9Pi8SS6APSrbJiM1MSW1SCE1
+        Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoWCWFssScUqBQQGJxsZK+
+        nU1RfmlJqkJGfnGJrVJqQUpOgUmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsahD59YCmYIVRxt
+        /MvcwDiPv4uRg0NCwETiwpGkLkYuDiGB3YwSq2d/YIJwPjFKTDv2gwXC+cYocXx1M1sXIydY
+        x8HWbYwQib2MEh83f2GHcF4ySrT++8YIUsUmoCuxY3EbG0hCRGAWi8Tvw6vBEpwCrhLLvh8H
+        GyUskChx8t9SdhCbRUBVovX/HrA4r4ClxLLrzVC2oMTJmU9YQGxmAXmJ7W/nMEOcoSDx8+ky
+        VhBbRMBJYtbjf1A14hIvjx4Bu0hC4AiHxNRrPVANLhJP9+6B+kFY4tXxLewQtpTEy/42dkho
+        eEgs+iMFEc6QeLt8PSOEbS9x4MocFpASZgFNifW79CFW8Un0/n7CBNHJK9HRJgRRrSrR/O4q
+        C4QtLTGxu5sVwvaQeNj7BBpwlxklJs28zDaBUWEWki9nIflyFpJvZiFsXsDIsopRMrWgODc9
+        tdi0wCgvtRwe4cn5uZsYwWlZy2sH48MHH/QOMTJxMB5ilOBgVhLhtQ2+lCLEm5JYWZValB9f
+        VJqTWnyI0RQY9BOZpUST84GZIa8k3tDE0sDEzMzMxNLYzFBJnPd169wUIYH0xJLU7NTUgtQi
+        mD4mDk6pBqbCstb5XV9lr80VuhzI7z+janHP8Yzi59bWesytChO1Hk3Pv7z1K3N/2Ya/ZS1P
+        eg8Jlr8s/xDraN/2RDWl+uxfy7DOWa6XltUVVFnvPvfyzcFFJ/OlZkWGPK3t+jV7d3qsrtA7
+        sydNltfnPWW3SNpwqN/P8OXhuUy5e7VqP0zdGWQ12/D2xoW6iwR0PWOdVL0SDv7knigT8SDf
+        iNdwbZjBiugJc5rzJDqNpnw+ELZH6MNauZhKEZ3jpz7MbXu3Z11V7fX5Tr9UZ5zs3/NC8KvQ
+        QpWajXnvNhhavfss+vYgo9HMOvkfbdZcpYo77iZItJk83vX6SP9F+axrK74cEl4gfEHOQfHX
+        xYRl1Ye6WlmUWIozEg21mIuKEwHvyZdeVAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLIsWRmVeSWpSXmKPExsWy7bCSvG76iSspBtcmGVis2XuOyeL6l+es
+        FvOPnGO12Pt6K7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytWjde4Td4vCbdlaLf9c2slis
+        2vWH0YHX4/2NVnaPnbPusntsWtXJ5nHn2h42j81L6j36tqxi9Pi8SS6APYrLJiU1J7MstUjf
+        LoEr49CHTywFM4Qqjjb+ZW5gnMffxcjJISFgInGwdRtjFyMXh5DAbkaJ9s372CES0hLXN06A
+        soUlVv57zg5R9JxRordvJyNIgk1AV2LH4jY2kISIwBIWiXOPtzFDVJ1nlNj76ScLSBWngKvE
+        su/H2UBsYYF4iY2v1oPFWQRUJVr/7wGL8wpYSiy73gxlC0qcnPkEqIaDg1lAT6JtI9gyZgF5
+        ie1v5zBDXKQg8fPpMlYQW0TASWLW438sEDXiEi+PHmGfwCg0C8mkWQiTZiGZNAtJxwJGllWM
+        kqkFxbnpucmGBYZ5qeV6xYm5xaV56XrJ+bmbGMExqKWxg/He/H96hxiZOBgPMUpwMCuJ8NoG
+        X0oR4k1JrKxKLcqPLyrNSS0+xCjNwaIkzms4Y3aKkEB6YklqdmpqQWoRTJaJg1OqgWnyqYdr
+        HXV8pOVKJLdOPB8zMfWW4h2DsGMnHGufffeoCJ1XLyGdMMP+RKCGafTWNXN4S0rcL5c6cU8r
+        qV7+Pmnzwnk7GZ4+3eSxP1E9Kfbuh4PyW54G+G2LWxSbsCZ5Tvru+AP/zTqu/P93VPzEKYGA
+        b/t9xS5sat5v8aXdfQ7P7orTD/0358hvid5+silGzfbsCpmUqL2Mly/mKBi/OlS0ePt/aZkj
+        jz2cHNJ15i2YIc3HpPH28h1R9nOHM2+vPaP6brOljmeGtaKa5tvWJalx7PIzLLTTyhOmHm1M
+        3nPAq1ZUtFm+g/V2W6GefJg/H6fywctnJdM+TRfNuazactA6tp1bZk2eXDDTruMXuZVYijMS
+        DbWYi4oTAc9aP0EwAwAA
+X-CMS-MailID: 20230810112215epcas5p4a2e02d4f1d0ab5d707754f46378bd1a2
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230808082752epcas5p407778033694c59593cdbedabed2d875f
+References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
+        <CGME20230808082752epcas5p407778033694c59593cdbedabed2d875f@epcas5p4.samsung.com>
+        <20230808082738.122804-4-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,40 +128,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 10 Aug 2023 12:22:54 +0200, Robert Marko wrote:
-> Add a new PSGMII mode which is similar to QSGMII with the difference being
-> that it combines 5 SGMII lines into a single link compared to 4 on QSGMII.
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sent: Tuesday, August 8, 2023 1:58 PM
+> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Sylwester
+> Nawrocki <s.nawrocki@samsung.com>; Tomasz Figa
+> <tomasz.figa@gmail.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
+> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob
+> Herring <robh+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+> linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org
+> Subject: [PATCH 03/11] clk: samsung: exynos5250: do not define number of
+> clocks in bindings
 > 
-> It is commonly used by Qualcomm on their QCA807x PHY series.
+> Number of clocks supported by Linux drivers might vary - sometimes we add
+> new clocks, not exposed previously.  Therefore this number of clocks
+should
+> not be in the bindings, because otherwise we should not change it.
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Define number of clocks per each clock controller inside the driver
+directly.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
->  1 file changed, 1 insertion(+)
+
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+
+>  drivers/clk/samsung/clk-exynos5250.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/clk/samsung/clk-exynos5250.c
+b/drivers/clk/samsung/clk-
+> exynos5250.c
+> index 92fb09922f28..8ebe6155d8b7 100644
+> --- a/drivers/clk/samsung/clk-exynos5250.c
+> +++ b/drivers/clk/samsung/clk-exynos5250.c
+> @@ -100,6 +100,9 @@
+>  #define PWR_CTRL2_CORE2_UP_RATIO		(1 << 4)
+>  #define PWR_CTRL2_CORE1_UP_RATIO		(1 << 0)
+> 
+> +/* NOTE: Must be equal to the last clock ID increased by one */
+> +#define CLKS_NR
+> 	(CLK_MOUT_VPLLSRC + 1)
+> +
+>  /* list of PLLs to be registered */
+>  enum exynos5250_plls {
+>  	apll, mpll, cpll, epll, vpll, gpll, bpll, @@ -797,7 +800,7 @@ static
+void
+> __init exynos5250_clk_init(struct device_node *np)
+>  		panic("%s: unable to determine soc\n", __func__);
+>  	}
+> 
+> -	ctx = samsung_clk_init(NULL, reg_base, CLK_NR_CLKS);
+> +	ctx = samsung_clk_init(NULL, reg_base, CLKS_NR);
+>  	hws = ctx->clk_data.hws;
+> 
+>  	samsung_clk_of_register_fixed_ext(ctx,
+> exynos5250_fixed_rate_ext_clks,
+> --
+> 2.34.1
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810102309.223183-1-robert.marko@sartura.hr
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
