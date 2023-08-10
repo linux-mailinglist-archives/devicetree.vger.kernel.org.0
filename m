@@ -2,223 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F3B7774F3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 11:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBBFA7774FC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 11:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234213AbjHJJxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 05:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56418 "EHLO
+        id S234991AbjHJJzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 05:55:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230304AbjHJJxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 05:53:42 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B33110CF;
-        Thu, 10 Aug 2023 02:53:41 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A9rIxN072696;
-        Thu, 10 Aug 2023 04:53:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691661198;
-        bh=jKsz+QezJgKkJLCN1kbDV84OpiUUPkN/WbTbkJt1HdY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=xUm5EL9LUwZFMYXKAEvp6+dtJWq+cUyu58mA4Nzl7c0xNoKd0FwuXZ85/kXCag7I0
-         JP0bty0+TFU0DZhdLK0t6o1Pi5JLA+vqKea6mElYLh9Qp3Tb0ygQY7q0LWqBORc6av
-         syLGxXF+ZFJkiKm3XP9tg2KeATyTIGlw/wOnDKak=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A9rIrZ028007
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 04:53:18 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 04:53:18 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 04:53:18 -0500
-Received: from [172.24.227.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A9rBvY110323;
-        Thu, 10 Aug 2023 04:53:12 -0500
-Message-ID: <0b619ec5-9a86-a449-e8db-b12cca115b93@ti.com>
-Date:   Thu, 10 Aug 2023 15:23:11 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [EXTERNAL] Re: [PATCH v3 1/5] dt-bindings: net: Add ICSS IEP
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S233963AbjHJJzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 05:55:51 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 946542696
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 02:55:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1691661346; x=1723197346;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=61Zch66vbfNj9Y4VGM6rH2mwXaAlTOPD3L/O9eE7Gms=;
+  b=O+BKxQjSy3Xn1JkhOImT16qlzU4vyXUZbNhxyf8tnYvWGKlegG9+SBbA
+   kc1rhPMI5OScRtY07hTJpAjyMCZy6rc5svplJtP5WEtXfzdhKJGKzl4UJ
+   DbZtOqbcKG6g0A24QKDRvkcD2K8rx8/Dcy45F2jqtPaFD+KN3Gzz/rYmp
+   B/IxRiTJGhAOPUQbUCevWtEPMjxsCT30TCgDjyNWJnEaMz8XXZpJtEBHE
+   3xupg1Cb2qYZbCa99cG5WKL3z3dEPwmA90pOiugg9FjDpiKB+CGPXJufS
+   XuWr+6jl1ayKDgl3QUtPV1PCBv4/9TftXgB3qNZNUxfIirMF5tzJQTDHp
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,161,1684792800"; 
+   d="scan'208";a="32389512"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 10 Aug 2023 11:55:44 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1305E28008D;
+        Thu, 10 Aug 2023 11:55:44 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230809114906.21866-1-danishanwar@ti.com>
- <20230809114906.21866-2-danishanwar@ti.com>
- <20230809-cardboard-falsify-6cc9c09d8577@spud>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <20230809-cardboard-falsify-6cc9c09d8577@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] Various TQMa6UL/MBa6ULx fixes
+Date:   Thu, 10 Aug 2023 11:55:38 +0200
+Message-Id: <20230810095541.720489-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Hi,
+while working on tqma6ul device tree I noticed some dtbs_check warnings this
+series is about to fix. The first two are specific to MBa6ULx while the last
+one is a generic one.
 
-On 10/08/23 3:07 am, Conor Dooley wrote:
-> Hey,
-> 
-> On Wed, Aug 09, 2023 at 05:19:02PM +0530, MD Danish Anwar wrote:
->> Add DT binding documentation for ICSS IEP module.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  .../devicetree/bindings/net/ti,icss-iep.yaml  | 37 +++++++++++++++++++
->>  1 file changed, 37 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
->> new file mode 100644
->> index 000000000000..adae240cfd53
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
->> @@ -0,0 +1,37 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/ti,icss-iep.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments ICSS Industrial Ethernet Peripheral (IEP) module
-> 
-> Does the module here refer to the hw component or to the linux kernel
-> module?
-> 
+Best regards,
+Alexander
 
-The module here refers to the hardware component.
+Alexander Stein (3):
+  ARM: dts: imx6ul: mba6ulx: Fix stmpe811 node warnings
+  ARM: dts: imx6ul: mba6ulx: Fix gpio-keys button node names
+  ARM: dts: imx6ul: Fix nand-controller #size-cells
 
->> +
->> +maintainers:
->> +  - Md Danish Anwar <danishanwar@ti.com>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,am654-icss-iep   # for all TI K3 SoCs
-> 
-> *sigh* Please at least give me a chance to reply to the conversation on
-> the previous versions of the series before sending more, that's the
-> second time with this series :/
-
-My bad, I should have waited for your response. I will hold on posting next
-version until your response is received.
-
-> Right now this looks worse to me than what we started with given the
-> comment is even broader. I have not changed my mind re: what I said on
-> the previous version.
-> 
-
-OK, so in the previous version [1] your reply was to have specific compatibles
-as bindings with "ti-am654-icss-iep" as a fall back. I will go with this only.
-
-Does the below looks good to you? Here "ti,am642-icss-iep" and
-"ti,j721e-icss-iep" are different compatibles for different SoCs where as
-"ti,am654-icss-iep" is the fall back. Compatible "ti,am654-icss-iep" will go in
-the driver.
-
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - ti,am642-icss-iep
-              - ti,j721e-icss-iep
-          - const: ti,am654-icss-iep
-
-      - items:
-          - const: ti,am654-icss-iep
-
-examples:
-  - |
-
-    /* AM65x */
-    icssg0_iep0: iep@2e000 {
-        compatible = "ti,am654-icss-iep";
-        reg = <0x2e000 0x1000>;
-        clocks = <&icssg0_iepclk_mux>;
-    };
-
-    /* J721E */
-    icssg0_iep0: iep@2f000 {
-        compatible = "ti,j721e-icss-iep","ti,am654-icss-iep";
-        reg = <0x2e000 0x1000>;
-        clocks = <&icssg0_iepclk_mux>;
-    };
-
-
-    /* AM64x */
-    icssg0_iep0: iep@2b000 {
-        compatible = "ti,am642-icss-iep", "ti,am654-icss-iep";
-        reg = <0x2e000 0x1000>;
-        clocks = <&icssg0_iepclk_mux>;
-    };
-
-
-Please let me know if the compatible property and the example looks OK to you.
-Also please let me know if some other change is required. I will send next
-revision after your confirmation.
-
-> Thanks,
-> Conor.
-> 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description: phandle to the IEP source clock
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    icssg0_iep0: iep@2e000 {
->> +        compatible = "ti,am654-icss-iep";
->> +        reg = <0x2e000 0x1000>;
->> +        clocks = <&icssg0_iepclk_mux>;
->> +    };
->> -- 
->> 2.34.1
->>
-
-[1] https://lore.kernel.org/all/20230808-nutmeg-mashing-543b41e56aa1@spud/
+ arch/arm/boot/dts/nxp/imx/imx6ul.dtsi  | 2 +-
+ arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi | 9 ++++-----
+ 2 files changed, 5 insertions(+), 6 deletions(-)
 
 -- 
-Thanks and Regards,
-Danish.
+2.34.1
+
