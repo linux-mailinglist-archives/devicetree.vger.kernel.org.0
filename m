@@ -2,521 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC7E777AFF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 16:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 099D4777B11
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 16:44:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235862AbjHJOlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 10:41:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
+        id S235901AbjHJOoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 10:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235851AbjHJOlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 10:41:31 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86192684;
-        Thu, 10 Aug 2023 07:41:29 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPA id 42499FF802;
-        Thu, 10 Aug 2023 14:41:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1691678488;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zecAnGqNYL9W689TKu6oPFuP711Ik4h3jwBO02soAIo=;
-        b=Tm4N9DrcYtgUVAPmlBdkOozCUk/y/F9Jo69fmj0W8QeIXTUj8xPUv1qeUviRx/yoeu0xI4
-        OHPYppAOX/JkRn+PV6HWOSy/mhfzbLlaGJ9IwhOyDlnEewN9DD1bQhZrHaGKqNe2155eNa
-        VpG4X4vkbk8MeBl+NOR1h/Eyg7WHX3d3XTVLbmHv1JNUS0FXr1xXGGln7U0BPJPbg8J4kv
-        onVrMX7GOSw/DW6RwOuXQkWjnrPbd6Ei2l56MARPwWb7ADB54TA2YDQ0oRZaudNE7bKBmk
-        T2Wl4HRs9/DFLHINfZzfuF0tnSAanxGzKl31P5akE92YGVo/Ejy2qRc+c4huvw==
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S235890AbjHJOoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 10:44:03 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0BB826B7;
+        Thu, 10 Aug 2023 07:44:01 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37AClMFF009213;
+        Thu, 10 Aug 2023 16:43:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        message-id:date:mime-version:subject:to:cc:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        selector1; bh=lr83yk56r2f+wy5jyGAofD+fwP+vkuyJt43Zjpa5KV4=; b=zl
+        nUVYSEF+5ckaVlq8pYuPA6QMSL2WVai4btRmRySGRPr2T6TDJUN23xPkHRXcOTS4
+        o6zKKACkEAzSCRw6P7tV5PZDqYqDfMItXWOETWJbFijqfehxJhEA0FdU5/xW6wVo
+        aahopf/52rab1U1eZM26eyy1WWTNyU6Kswl+IWNLII8n7liueb/YzGlTYJjouwAv
+        4yUpqUolRcNqsWesICd6vkT5FD+/MMO/J2HfpObZ5ctKmKbrWW4RTYmj9rjpqwgT
+        L/ox5bo47WeEa5ac7/05A6XNhmDAxo7/eEVEPGcXdrPy1EMSFlU8wmPUO6iAOef8
+        P2geTdp/33+fSc1u+0tQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sd0730mgg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 16:43:41 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 37C58100057;
+        Thu, 10 Aug 2023 16:43:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EEAD0222C88;
+        Thu, 10 Aug 2023 16:43:40 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 10 Aug
+ 2023 16:43:40 +0200
+Message-ID: <1c327ece-ce22-1d82-92ef-9db281e93f92@foss.st.com>
+Date:   Thu, 10 Aug 2023 16:43:39 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH net-next v3 04/10] net: stmmac: enlarge max rx/tx queues
+ and channels to 16
+Content-Language: en-US
+To:     Jisheng Zhang <jszhang@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v2 3/3] DRM: panel: add Ilitek ILI9806E driver
-Date:   Thu, 10 Aug 2023 16:41:16 +0200
-Message-Id: <20230810144116.855951-3-luca.ceresoli@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230810144116.855951-1-luca.ceresoli@bootlin.com>
-References: <20230810144116.855951-1-luca.ceresoli@bootlin.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+CC:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230809165007.1439-1-jszhang@kernel.org>
+ <20230809165007.1439-5-jszhang@kernel.org>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230809165007.1439-5-jszhang@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To EQNDAG1NODE4.st.com
+ (10.75.129.133)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_11,2023-08-10_01,2023-05-22_02
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver for the ILITEK ILI9806E 480x864 RGB LCD controller connected
-over SPI, and implement the ShenZhen New Display Co NDS040480800-V3 480x800
-panel.
+On 8/9/23 18:50, Jisheng Zhang wrote:
+> xgmac supports up to 16 rx/tx queues and up to 16 channels.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>   drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c | 5 ++---
+>   include/linux/stmmac.h                              | 6 +++---
+>   2 files changed, 5 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> index a0c2ef8bb0ac..aaae82d3d9dc 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> @@ -202,9 +202,8 @@ static void dwxgmac2_map_mtl_to_dma(struct mac_device_info *hw, u32 queue,
+>   	void __iomem *ioaddr = hw->pcsr;
+>   	u32 value, reg;
+>   
+> -	reg = (queue < 4) ? XGMAC_MTL_RXQ_DMA_MAP0 : XGMAC_MTL_RXQ_DMA_MAP1;
+> -	if (queue >= 4)
+> -		queue -= 4;
+> +	reg = XGMAC_MTL_RXQ_DMA_MAP0 + (queue & ~0x3);
+> +	queue &= 0x3;
+>   
+>   	value = readl(ioaddr + reg);
+>   	value &= ~XGMAC_QxMDMACH(queue);
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index ef67dba775d0..11671fd6adee 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -15,9 +15,9 @@
+>   #include <linux/platform_device.h>
+>   #include <linux/phy.h>
+>   
+> -#define MTL_MAX_RX_QUEUES	8
+> -#define MTL_MAX_TX_QUEUES	8
+> -#define STMMAC_CH_MAX		8
+> +#define MTL_MAX_RX_QUEUES	16
+> +#define MTL_MAX_TX_QUEUES	16
+> +#define STMMAC_CH_MAX		16
+>   
+>   #define STMMAC_RX_COE_NONE	0
+>   #define STMMAC_RX_COE_TYPE1	1
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Acked-by: Alexandre TORGUE <alexandre.torgue@foss.st.com>
 
----
-
-Changes in v2:
- - add ILI9806E_P1_DISCTRL1 bit description
----
- MAINTAINERS                                   |   1 +
- drivers/gpu/drm/panel/Kconfig                 |  13 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 385 ++++++++++++++++++
- 4 files changed, 400 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 085e44a7b5e1..602dc866c2e3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6520,6 +6520,7 @@ DRM DRIVER FOR ILITEK ILI9806E PANELS
- M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-+F:	drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
- 
- DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
- M:	Jagan Teki <jagan@edgeble.ai>
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 203c0ef0bbfd..e3e89d86668a 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -194,6 +194,19 @@ config DRM_PANEL_ILITEK_ILI9341
- 	  QVGA (240x320) RGB panels. support serial & parallel rgb
- 	  interface.
- 
-+config DRM_PANEL_ILITEK_ILI9806E
-+	tristate "Ilitek ILI9806E panel"
-+	depends on OF
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select VIDEOMODE_HELPERS
-+	select DRM_MIPI_DBI
-+	help
-+	  Say Y here if you want to enable support for LCD panels connected
-+	  over SPI and based on the Ilitek ILI9806E controller.
-+
-+	  The ILI9806E is an LCD controller capable of driving 18-bit a-Si
-+	  TFT LCDs up to a resolution of 480x800.
-+
- config DRM_PANEL_ILITEK_ILI9881C
- 	tristate "Ilitek ILI9881C-based panels"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 30cf553c8d1d..f465140ae7df 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_DRM_PANEL_FEIYANG_FY07024DI26A30D) += panel-feiyang-fy07024di26a30d
- obj-$(CONFIG_DRM_PANEL_HIMAX_HX8394) += panel-himax-hx8394.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_IL9322) += panel-ilitek-ili9322.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9341) += panel-ilitek-ili9341.o
-+obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9806E) += panel-ilitek-ili9806e.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9881C) += panel-ilitek-ili9881c.o
- obj-$(CONFIG_DRM_PANEL_INNOLUX_EJ030NA) += panel-innolux-ej030na.o
- obj-$(CONFIG_DRM_PANEL_INNOLUX_P079ZCA) += panel-innolux-p079zca.o
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-new file mode 100644
-index 000000000000..ffc60d924e63
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-@@ -0,0 +1,385 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the Ilitek ILI9806E a-Si TFT LCD controller.
-+ *
-+ * Copyright (c) 2023 Delcon SRL
-+ * Luca Ceresoli <luca.ceresoli@bootlin.com>
-+ */
-+
-+#include <drm/drm_mipi_dbi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/of.h>
-+#include <linux/spi/spi.h>
-+
-+#include <video/mipi_display.h>
-+
-+#define ILI9806E_BUS_FORMAT	MEDIA_BUS_FMT_RGB666_1X18
-+
-+// Page 1 registers
-+#define ILI9806E_P1_IFMODE1	0x08	// Interface Mode Control 1
-+#define             IFMODE1_SEPT_SDIO	BIT(3) // 1 = two data pins
-+#define             IFMODE1_SDO_STATUS	BIT(4) // 0 = SDO has output enable
-+#define ILI9806E_P1_DISCTRL1	0x20	// Display Function Control 1
-+#define             DISCTRL1_SYNC_MODE	BIT(0) // RGB interface mode: 0 = DE mode, 1 = SYNC mode
-+#define ILI9806E_P1_DISCTRL2	0x21	// Display Function Control 2
-+#define             DISCTRL2_EPL	BIT(0) // DE polarity (1 = active high)
-+#define             DISCTRL2_DPL	BIT(1) // PCLK polarity (1 = fetch on falling edge)
-+#define             DISCTRL2_HSPL	BIT(2) // HS polarity (1 = active high)
-+#define             DISCTRL2_VSPL	BIT(3) // VS polarity (1 = active high)
-+#define ILI9806E_P1_RESCTRL	0x30	// Resolution Control
-+#define             RESCTRL_480x864	0x0
-+#define             RESCTRL_480x854	0x1
-+#define             RESCTRL_480x800	0x2
-+#define             RESCTRL_480x640	0x3
-+#define             RESCTRL_480x720	0x4
-+#define ILI9806E_P1_INVTR	0x31	// Display Inversion Control
-+#define             INVTR_NLA_COLUMN	0x0
-+#define             INVTR_NLA_1DOT	0x1
-+#define             INVTR_NLA_2DOT	0x2
-+#define             INVTR_NLA_3DOT	0x3
-+#define             INVTR_NLA_4DOT	0x4
-+#define ILI9806E_P1_PWCTRL1	0x40	// Power Control 1
-+#define ILI9806E_P1_PWCTRL2	0x41	// Power Control 2
-+#define ILI9806E_P1_PWCTRL3	0x42	// Power Control 3
-+#define ILI9806E_P1_PWCTRL4	0x43	// Power Control 4
-+#define ILI9806E_P1_PWCTRL5	0x44	// Power Control 5
-+#define ILI9806E_P1_PWCTRL6	0x45	// Power Control 6
-+#define ILI9806E_P1_PWCTRL7	0x46	// Power Control 7
-+#define ILI9806E_P1_PWCTRL8	0x47	// Power Control 8
-+#define ILI9806E_P1_PWCTRL9	0x50	// Power Control 9
-+#define ILI9806E_P1_PWCTRL10	0x51	// Power Control 10
-+#define ILI9806E_P1_VMCTRL1	0x52	// VCOM Control 1
-+#define ILI9806E_P1_VMCTRL2	0x53	// VCOM Control 1
-+#define ILI9806E_P1_SRCTADJ1	0x60	// Source Timing Adjust 1
-+#define ILI9806E_P1_SRCTADJ2	0x61	// Source Timing Adjust 2
-+#define ILI9806E_P1_SRCTADJ3	0x62	// Source Timing Adjust 3
-+#define ILI9806E_P1_SRCTADJ4	0x63	// Source Timing Adjust 4
-+#define ILI9806E_P1_P_GAMMA(n)	(0xa0 + (n) - 1) // Positive Gamma Control 1~16
-+#define ILI9806E_P1_N_GAMMA(n)	(0xc0 + (n) - 1) // Negative Gamma Correction 1~16
-+
-+// Page 7 registers
-+#define ILI9806E_P7_VGLREGEN	0x17	// VGL_REG EN
-+#define ILI9806E_P7_0x02	0x02	// undocumented
-+#define ILI9806E_P7_0xe1	0xe1	// undocumented
-+
-+// The page-switching register (valid for all pages)
-+#define ILI9806E_Px_ENEXTC	0xff
-+
-+static const struct drm_display_mode nds040480800_v3_mode = {
-+	.width_mm    = 51,
-+	.height_mm   = 85,
-+	.clock       = 30000,
-+	.hdisplay    = 480,
-+	.hsync_start = 480 + 25,
-+	.hsync_end   = 480 + 25 + 54,
-+	.htotal      = 480 + 25 + 54 + 25,
-+	.vdisplay    = 800,
-+	.vsync_start = 800 + 25,
-+	.vsync_end   = 800 + 25 + 14,
-+	.vtotal      = 800 + 25 + 14 + 22,
-+	.flags       = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	.type        = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER,
-+};
-+
-+struct ili9806e {
-+	struct mipi_dbi dbi;
-+	struct drm_panel panel;
-+};
-+
-+static inline struct ili9806e *panel_to_ili9806e(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct ili9806e, panel);
-+}
-+
-+static int ili9806e_switch_page(struct ili9806e *ctx, unsigned int page)
-+{
-+	return mipi_dbi_command(&ctx->dbi, ILI9806E_Px_ENEXTC, 0xff, 0x98, 0x06, 0x04, page);
-+}
-+
-+static int ili9806e_unprepare(struct drm_panel *panel)
-+{
-+	struct ili9806e *ctx = panel_to_ili9806e(panel);
-+	struct mipi_dbi *dbi = &ctx->dbi;
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_OFF, 0x00);
-+	mipi_dbi_command(dbi, MIPI_DCS_ENTER_SLEEP_MODE, 0x00);
-+
-+	return 0;
-+}
-+
-+static int ili9806e_prepare(struct drm_panel *panel)
-+{
-+	struct ili9806e *ctx = panel_to_ili9806e(panel);
-+	struct mipi_dbi *dbi = &ctx->dbi;
-+
-+	/* Reset */
-+
-+	gpiod_set_value(ctx->dbi.reset, 1);
-+	usleep_range(15, 50); // Min 10 us
-+	gpiod_set_value(ctx->dbi.reset, 0);
-+	msleep(125); // Min 5 ms in sleep in mode, 120 ms in sleep out mode
-+
-+	/* Init sequence */
-+
-+	ili9806e_switch_page(ctx, 1);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P1_IFMODE1,  IFMODE1_SDO_STATUS);
-+	mipi_dbi_command(dbi, ILI9806E_P1_DISCTRL2, DISCTRL2_EPL);
-+	mipi_dbi_command(dbi, ILI9806E_P1_RESCTRL,  RESCTRL_480x800);
-+	mipi_dbi_command(dbi, ILI9806E_P1_INVTR,    INVTR_NLA_COLUMN);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL1,  0x10);
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL2,  0x55);
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL3,  0x02);
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL4,  0x09);
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL5,  0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL9,  0x78);
-+	mipi_dbi_command(dbi, ILI9806E_P1_PWCTRL10, 0x78);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P1_VMCTRL1,  0x00);
-+	mipi_dbi_command(dbi, ILI9806E_P1_VMCTRL2,  0x6d);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P1_SRCTADJ1, 0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_SRCTADJ2, 0x00);
-+	mipi_dbi_command(dbi, ILI9806E_P1_SRCTADJ3, 0x08);
-+	mipi_dbi_command(dbi, ILI9806E_P1_SRCTADJ4, 0x00);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(1),  0x00);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(2),  0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(3),  0x0c);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(4),  0x0b);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(5),  0x03);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(6),  0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(7),  0x06);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(8),  0x04);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(9),  0x08);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(10), 0x0c);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(11), 0x13);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(12), 0x06);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(13), 0x0d);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(14), 0x19);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(15), 0x10);
-+	mipi_dbi_command(dbi, ILI9806E_P1_P_GAMMA(16), 0x00);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(1),  0x00);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(2),  0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(3),  0x0c);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(4),  0x0b);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(5),  0x03);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(6),  0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(7),  0x07);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(8),  0x04);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(9),  0x08);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(10), 0x0c);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(11), 0x13);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(12), 0x06);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(13), 0x0d);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(14), 0x18);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(15), 0x10);
-+	mipi_dbi_command(dbi, ILI9806E_P1_N_GAMMA(16), 0x00);
-+
-+	ili9806e_switch_page(ctx, 6);
-+
-+	/* Registers in page 6 are not really documented except for the comments copied below */
-+	mipi_dbi_command(dbi, 0x00, 0x20); // STV_A_Rise[10:8] | GIP_0_SET0
-+	mipi_dbi_command(dbi, 0x01, 0x0a); // STV_A_Rise[7:0]
-+	mipi_dbi_command(dbi, 0x02, 0x00); // GIP_0_SET1
-+	mipi_dbi_command(dbi, 0x03, 0x00); // GIP_0_SET2
-+	mipi_dbi_command(dbi, 0x04, 0x01); // GIP_0_SET3
-+	mipi_dbi_command(dbi, 0x05, 0x01); // GIP_0_SET4
-+	mipi_dbi_command(dbi, 0x06, 0x98); // CLK_A_Rise[10:8] | GIP_0_SET5
-+	mipi_dbi_command(dbi, 0x07, 0x06); // CLK_A_Rise[7:0]
-+	mipi_dbi_command(dbi, 0x08, 0x01); // GIP_0_SET6
-+	mipi_dbi_command(dbi, 0x09, 0x80); // GIP_0_SET7
-+	mipi_dbi_command(dbi, 0x0a, 0x00); // GIP_0_SET8
-+	mipi_dbi_command(dbi, 0x0b, 0x00); // GIP_0_SET9
-+	mipi_dbi_command(dbi, 0x0c, 0x01); // GIP_0_SET10
-+	mipi_dbi_command(dbi, 0x0d, 0x01); // GIP_0_SET11
-+	mipi_dbi_command(dbi, 0x0e, 0x00); // GIP_0_SET12
-+	mipi_dbi_command(dbi, 0x0f, 0x00); // GIP_0_SET13
-+	mipi_dbi_command(dbi, 0x10, 0xf0); // GIP_0_SET14
-+	mipi_dbi_command(dbi, 0x11, 0xf4); // GIP_0_SET15
-+	mipi_dbi_command(dbi, 0x12, 0x01); // GIP_0_SET16
-+	mipi_dbi_command(dbi, 0x13, 0x00); // GIP_0_SET17
-+	mipi_dbi_command(dbi, 0x14, 0x00); // GIP_0_SET18
-+	mipi_dbi_command(dbi, 0x15, 0xc0); // GIP_0_SET19
-+	mipi_dbi_command(dbi, 0x16, 0x08); // GIP_0_SET20
-+	mipi_dbi_command(dbi, 0x17, 0x00); // GIP_0_SET21
-+	mipi_dbi_command(dbi, 0x18, 0x00); // GIP_0_SET22
-+	mipi_dbi_command(dbi, 0x19, 0x00); // GIP_0_SET23
-+	mipi_dbi_command(dbi, 0x1a, 0x00); // GIP_0_SET24
-+	mipi_dbi_command(dbi, 0x1b, 0x00); // GIP_0_SET25
-+	mipi_dbi_command(dbi, 0x1c, 0x00); // GIP_0_SET26
-+	mipi_dbi_command(dbi, 0x1d, 0x00); // GIP_0_SET27
-+	mipi_dbi_command(dbi, 0x20, 0x01); // GIP_1_SET0
-+	mipi_dbi_command(dbi, 0x21, 0x23); // GIP_1_SET1
-+	mipi_dbi_command(dbi, 0x22, 0x45); // GIP_1_SET2
-+	mipi_dbi_command(dbi, 0x23, 0x67); // GIP_1_SET3
-+	mipi_dbi_command(dbi, 0x24, 0x01); // GIP_1_SET4
-+	mipi_dbi_command(dbi, 0x25, 0x23); // GIP_1_SET5
-+	mipi_dbi_command(dbi, 0x26, 0x45); // GIP_1_SET6
-+	mipi_dbi_command(dbi, 0x27, 0x67); // GIP_1_SET7
-+	mipi_dbi_command(dbi, 0x30, 0x11); // GIP_2_SET8
-+	mipi_dbi_command(dbi, 0x31, 0x11); // GIP_2_SET9
-+	mipi_dbi_command(dbi, 0x32, 0x00); // GIP_2_SET10
-+	mipi_dbi_command(dbi, 0x33, 0xee); // GIP_2_SET11
-+	mipi_dbi_command(dbi, 0x34, 0xff); // GIP_2_SET12
-+	mipi_dbi_command(dbi, 0x35, 0xbb); // GIP_2_SET13
-+	mipi_dbi_command(dbi, 0x36, 0xaa); // GIP_2_SET14
-+	mipi_dbi_command(dbi, 0x37, 0xdd); // GIP_2_SET15
-+	mipi_dbi_command(dbi, 0x38, 0xcc); // GIP_2_SET16
-+	mipi_dbi_command(dbi, 0x39, 0x66); // GIP_2_SET17
-+	mipi_dbi_command(dbi, 0x3a, 0x77); // GIP_2_SET18
-+	mipi_dbi_command(dbi, 0x3b, 0x22); // GIP_2_SET19
-+	mipi_dbi_command(dbi, 0x3c, 0x22); // GIP_2_SET20
-+	mipi_dbi_command(dbi, 0x3d, 0x22); // GIP_2_SET21
-+	mipi_dbi_command(dbi, 0x3e, 0x22); // GIP_2_SET22
-+	mipi_dbi_command(dbi, 0x3f, 0x22); // GIP_2_SET23
-+	mipi_dbi_command(dbi, 0x40, 0x22); // GIP_2_SET24
-+	mipi_dbi_command(dbi, 0x52, 0x10); // undocumented
-+	mipi_dbi_command(dbi, 0x53, 0x10); // GOUT_VGLO Control
-+
-+	ili9806e_switch_page(ctx, 7);
-+
-+	mipi_dbi_command(dbi, ILI9806E_P7_VGLREGEN, 0x22);
-+	mipi_dbi_command(dbi, ILI9806E_P7_0x02,     0x77);
-+	mipi_dbi_command(dbi, ILI9806E_P7_0xe1,     0x79);
-+
-+	ili9806e_switch_page(ctx, 0);
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_TEAR_ON);
-+	mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
-+
-+	msleep(120);
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON);
-+
-+	return 0;
-+}
-+
-+static int ili9806e_get_modes(struct drm_panel *panel,
-+			      struct drm_connector *connector)
-+{
-+	const u32 bus_format = ILI9806E_BUS_FORMAT;
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &nds040480800_v3_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_display_info_set_bus_formats(&connector->display_info, &bus_format, 1);
-+
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs ili9806e_drm_funcs = {
-+	.unprepare = ili9806e_unprepare,
-+	.prepare   = ili9806e_prepare,
-+	.get_modes = ili9806e_get_modes,
-+};
-+
-+static int ili9806e_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct ili9806e *ctx;
-+	int err;
-+
-+	ctx = devm_kzalloc(dev, sizeof(struct ili9806e), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	drm_panel_init(&ctx->panel, dev, &ili9806e_drm_funcs, DRM_MODE_CONNECTOR_DPI);
-+
-+	spi_set_drvdata(spi, ctx);
-+
-+	ctx->dbi.reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->dbi.reset))
-+		return dev_err_probe(dev, PTR_ERR(ctx->dbi.reset), "cannot get reset-gpios\n");
-+
-+	err = drm_panel_of_backlight(&ctx->panel);
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to get backlight\n");
-+
-+	err = mipi_dbi_spi_init(spi, &ctx->dbi, NULL);
-+	if (err)
-+		return dev_err_probe(dev, err, "MIPI DBI init failed\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	return 0;
-+}
-+
-+static void ili9806e_remove(struct spi_device *spi)
-+{
-+	struct ili9806e *ctx = spi_get_drvdata(spi);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int ili9806e_suspend(struct device *dev)
-+{
-+	struct ili9806e *ctx = dev_get_drvdata(dev);
-+	struct mipi_dbi *dbi = &ctx->dbi;
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_OFF, 0x00);
-+	mipi_dbi_command(dbi, MIPI_DCS_ENTER_SLEEP_MODE, 0x00);
-+
-+	return 0;
-+}
-+
-+static int ili9806e_resume(struct device *dev)
-+{
-+	struct ili9806e *ctx = dev_get_drvdata(dev);
-+	struct mipi_dbi *dbi = &ctx->dbi;
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE, 0x00);
-+	msleep(120);
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON, 0x00);
-+
-+	return 0;
-+}
-+#endif
-+
-+static const struct dev_pm_ops ili9806e_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(ili9806e_suspend, ili9806e_resume)
-+};
-+
-+static const struct of_device_id ili9806e_of_match[] = {
-+	{ .compatible = "newdisplay,nds040480800-v3" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ili9806e_of_match);
-+
-+static const struct spi_device_id ili9806e_ids[] = {
-+	{ "nds040480800-v3", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(spi, ili9806e_ids);
-+
-+static struct spi_driver ili9806e_driver = {
-+	.probe = ili9806e_probe,
-+	.remove = ili9806e_remove,
-+	.id_table = ili9806e_ids,
-+	.driver = {
-+		.name = "panel-ilitek-ili9806e",
-+		.of_match_table = ili9806e_of_match,
-+		.pm = &ili9806e_pm_ops,
-+	},
-+};
-+module_spi_driver(ili9806e_driver);
-+
-+MODULE_AUTHOR("Luca Ceresoli <luca.ceresoli@bootlin.com>");
-+MODULE_DESCRIPTION("Ilitek ILI9806E LCD Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+Regards
+Alex
 
