@@ -2,88 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE7077702C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:19:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2767277702F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231173AbjHJGTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 02:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51088 "EHLO
+        id S230149AbjHJGUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 02:20:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbjHJGTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:19:36 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88E6E52
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:19:35 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-997c4107d62so80913466b.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:19:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691648374; x=1692253174;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S9BxbZlPw6g9QiuhUYRIHONrtuVwpEGzzLSdFOf9tac=;
-        b=qZk02UVUcidbnsvZu4FwaopDOYbsz1Y+az7raG/mRGT9xxAymWWI43NRVew/y7Cejm
-         Zm+OqwJ/ebA0q6C4Az1/CDrkZ8JNYCpgySbClsuCX8x6rH3dWK/edikEcIVl2dzdg6zU
-         hgRcARfgk7d9Fd1TfL1wOMF5926OPIwQdH8iamTkM8G8yMTyY9UUnZQbI+YDBBsSMSRi
-         WnNeHVFBfLkG5gRGG5Gg/Xl92Hk4rkecq2OV6v3zhNPFgJXrkkCROSXg/H28gMQNBLuW
-         76DIJYVsr8f9BFsd62Iormmx8KUznPPRIB6ttw01sC1ZVvKRkV7dk2GsiHEFIVLSHTio
-         Za3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691648374; x=1692253174;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S9BxbZlPw6g9QiuhUYRIHONrtuVwpEGzzLSdFOf9tac=;
-        b=fP0mGFLExA4NWonq8oS2oC6mZWHIOOz4KDEzoyG7TIcH9bYl9v/sv1znOgEAiku9kT
-         xp2SYHo07OxZoi4glwQBVrcHHpPE+Qu6kna4kYt/Vtu8ofsMcALQMkRQA8fDkUCU2Nvx
-         oAMiT1y4BnUwIFtmoWazQmuDcmb2ZR9XgyZ+UywU4rQgkwQj6OLtvzb45pNUO9sHBHjv
-         CfDoto+AKBx6aAVUOQ/0l700xAijc3eFm1S/tADPrVu28XdyxDd8VL+TjfXRX0yqHQA/
-         GN5JuW02uwZbi0ZuklBaziwzVH3T4hrJgdwTjR9yvkPnxTv908MSDTLzk9MG1A75lYJv
-         2WLA==
-X-Gm-Message-State: AOJu0YwSNCyISAvvYOa73ifF0zDbyQoT3vwwHHZL5UTF+RdnSuvd7oJj
-        HrPIIUnyWFpJ+qEGJuNAbHiZBA==
-X-Google-Smtp-Source: AGHT+IHs00+xRRgfgIDgsyiI7JGjl2BYKVJTGy6qiwakL3haOHUzxmRH83in5dFAGmXxbFXzgAVQtQ==
-X-Received: by 2002:a17:906:3019:b0:99b:4aa3:6480 with SMTP id 25-20020a170906301900b0099b4aa36480mr1262649ejz.40.1691648374153;
-        Wed, 09 Aug 2023 23:19:34 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id m22-20020a1709060d9600b00992a8a54f32sm463065eji.139.2023.08.09.23.19.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 23:19:33 -0700 (PDT)
-Message-ID: <86010807-d6e3-745f-ab39-b58f7f64815d@linaro.org>
-Date:   Thu, 10 Aug 2023 08:19:31 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: input: cirrus,cs40l50: Support for
- CS40L50
-Content-Language: en-US
-To:     James Ogletree <james.ogletree@cirrus.com>,
-        dmitry.torokhov@gmail.com
-Cc:     Fred Treven <fred.treven@cirrus.com>,
-        Ben Bright <ben.bright@cirrus.com>,
+        with ESMTP id S232593AbjHJGT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:19:59 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A88A9E52;
+        Wed,  9 Aug 2023 23:19:56 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8DxxPCLgdRkC3AUAA--.44963S3;
+        Thu, 10 Aug 2023 14:19:55 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxWM2JgdRkdZlSAA--.11579S3;
+        Thu, 10 Aug 2023 14:19:54 +0800 (CST)
+Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio
+ offset
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Jean Delvare <jdelvare@suse.de>, Arnd Bergmann <arnd@arndb.de>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Eddie James <eajames@linux.ibm.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Jerome Neanne <jneanne@baylibre.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        patches@cirrus.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230809191032.820271-1-james.ogletree@cirrus.com>
- <20230809191032.820271-2-james.ogletree@cirrus.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230809191032.820271-2-james.ogletree@cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
+ <20230807074043.31288-2-zhuyinbo@loongson.cn>
+ <20230808-amount-urban-9a6eb09852ca@spud>
+ <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
+ <20230809-circus-photo-6911d2e18f96@spud>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <d4e16768-bed0-beda-42c3-f0a01b7e96cc@loongson.cn>
+Date:   Thu, 10 Aug 2023 14:19:53 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <20230809-circus-photo-6911d2e18f96@spud>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxWM2JgdRkdZlSAA--.11579S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -92,41 +60,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2023 21:10, James Ogletree wrote:
-> Introduce device tree bindings for the initial commit
-> of the CS40L50 driver.
->
-
-> +  va-supply:
-> +    description: Regulator for analog voltage
-> +
-> +  vp-supply:
-> +    description: Regulator for peak voltage
-> +
-> +  vio-supply:
-> +    description: Regulator for digital IO voltage
-> +
-> +  cirrus,external-boost:
-> +    description:
-> +      Bypass the CS40L50 boost converter.
-> +
-> +      The amplifier on CS40L50 can be powered internally through the boost
-> +      converter, or else can be powered using an external supply. If an
-> +      external supply is used, the boost converter must be bypassed.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - reset-gpios
-
-I would expect at least some supplies/regulators to be required. This
-should match what the datasheet says. The rest looks good.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
-Best regards,
-Krzysztof
+在 2023/8/9 下午11:39, Conor Dooley 写道:
+> On Wed, Aug 09, 2023 at 03:47:55PM +0800, Yinbo Zhu wrote:
+>> 在 2023/8/8 下午8:05, Conor Dooley 写道:
+>>> On Mon, Aug 07, 2023 at 03:40:42PM +0800, Yinbo Zhu wrote:
+> 
+>>>> +  loongson,gpio-ctrl-mode:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description:
+>>>> +      This option indicate this GPIO control mode, where '0' represents
+>>>> +      bit control mode and '1' represents byte control mode.
+>>>
+>>> How is one supposed to know which of these modes to use?
+>>
+>>
+>> Byte mode is to access by byte, such as gpio3, the base address of the
+>> gpio controller is offset by 3 bytes as the access address of gpio3.
+>>
+>> The bit mode is the normal mode that like other platform gpio and it is
+>> to access by bit.
+>>
+>> If both modes are supported, it is recommended to prioritize using byte
+>> mode that according to spec.
+> 
+> So, sounds like this property should instead be a boolean that notes
+> whether the hardware supports the mode or not, rather than the current
+> enum used to determine software policy.
+
+
+okay, I got it, I will use boolean,
+
+Thanks,
+Yinbo.
+
+
 
