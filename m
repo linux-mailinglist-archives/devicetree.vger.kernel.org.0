@@ -2,128 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9C087781A4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ED397781AD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236233AbjHJTa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 15:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45560 "EHLO
+        id S234149AbjHJTh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 15:37:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236641AbjHJTal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:30:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2139E3AB2;
-        Thu, 10 Aug 2023 12:30:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AC94C60E9C;
-        Thu, 10 Aug 2023 19:30:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EABBAC433CB;
-        Thu, 10 Aug 2023 19:30:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691695827;
-        bh=d4mQBWjLbcx61H9YHtMpK3a+gUbbTesFof4Bts3umRM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NRW7TH8PRNpQmj9Ac3TqlrJ3tWZLVjbp9UDGLNq5AcBE+MB4tkEZtTQOTbdWqU43Y
-         XLlsCgfBMUvoEPNoTUiuRr/wVXpaB9rh0pqV0a3qwDlvc5pb2Q/fwRuJkJOBEXMEuo
-         0sKIFEzExMs8D1Vt/a1fPagAeeSC9SzGRVPPBStVkxxS8Scjf/gmpHoXSymR55uB0q
-         LFr2umbfkFxVZziTbS9DHQImk4qS58tt+BTj5RpSy3gY63SMf+rk/bTAilUwxr9P7S
-         6QMtNoAnvtgKlhKrTtsAVfNp4QpqEhuTDBlQV7xNsUVg2Rv0HEBnvToNYiCH5NLAF4
-         AJG0/gp4Wb98Q==
-Date:   Thu, 10 Aug 2023 20:30:21 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-Cc:     David Heidelberg <david@ixit.cz>, Marek Vasut <marex@denx.de>,
-        Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S233486AbjHJTh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:37:26 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A2213B;
+        Thu, 10 Aug 2023 12:37:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1691696245; x=1723232245;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xx83EKLu+vN9CXT+mV65pORzjTdIyb9PiTLDHfY8Y3Y=;
+  b=fPNZTXEjZNZbw66LIy8UFogYcWw7wEU6TNArkvYvhMUxcKaWZ3OEIUHP
+   PtWN3ABVXLUomUblgeRpi9ln4ps6TEJSIAkhuxdQBP6FCgxCal9foGoYT
+   vgGWOZJkP6HBsTI+EWv0H7ANBWsUb8E/nxDXKpvJ//cHyEU//O2ikmuF0
+   lKYP98rmEJvO5qsO4KA8RYTa5tKJdjHGkYrZRf+9HC4xa2xr0NUlABqyH
+   ZdF+9P18OaOsi1X2fqC22dqejYqTGOdzECqsmu/Vd3Wz4bMMKzll8owG8
+   yNgWN3Zh+RYJcAQ1w9ug79kU1pQNOF7S8RV7oT/1XAflzHgPpp+x1nQ0w
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="351825314"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; 
+   d="scan'208";a="351825314"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2023 12:37:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="906175689"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; 
+   d="scan'208";a="906175689"
+Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 10 Aug 2023 12:37:18 -0700
+Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qUBTB-0007DA-2s;
+        Thu, 10 Aug 2023 19:37:17 +0000
+Date:   Fri, 11 Aug 2023 03:36:21 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liu Ying <victor.liu@nxp.com>, kernel@puri.sm,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mxsfb: Exclude i.MX8MQ from power-domains
- requirement
-Message-ID: <20230810-embroider-seduce-ee4506e7608b@spud>
-References: <20230730184120.94984-1-david@ixit.cz>
- <ZMonFSqutQRqs61n@qwark.sigxcpu.org>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Okan Sahin <okan.sahin@analog.com>,
+        Niklas Schnelle <schnelle@linux.ibm.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Lee Jones <lee@kernel.org>, Haibo Chen <haibo.chen@nxp.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+        Ceclan Dumitru <dumitru.ceclan@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: adc: ad717x: add AD717X driver
+Message-ID: <202308110347.LseABMWN-lkp@intel.com>
+References: <20230810093322.593259-2-mitrutzceclan@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yVk3JZ7fl+mjKj73"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZMonFSqutQRqs61n@qwark.sigxcpu.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230810093322.593259-2-mitrutzceclan@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dumitru,
 
---yVk3JZ7fl+mjKj73
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build errors:
 
-On Wed, Aug 02, 2023 at 11:51:17AM +0200, Guido G=FCnther wrote:
-> Hi,
-> On Sun, Jul 30, 2023 at 09:41:20PM +0300, David Heidelberg wrote:
-> > i.MX8MQ uses as secondary compatible fsl,imx6sx-lcdif, which triggers
-> > requirement of power-domains, thou it's not required.
-> >=20
-> > Fixes: f62678a77d58 ("dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6=
-SL power-domains property")
-> >=20
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > ---
-> >  .../devicetree/bindings/display/fsl,lcdif.yaml        | 11 +++++++++--
-> >  1 file changed, 9 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b=
-/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> > index fc11ab5fc465..2d868276b0f9 100644
-> > --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> > +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> > @@ -129,8 +129,15 @@ allOf:
-> >                - fsl,imx8mp-lcdif
-> >                - fsl,imx93-lcdif
-> >      then:
-> > -      required:
-> > -        - power-domains
-> > +      if:
-> > +        properties:
-> > +          compatible:
-> > +            not:
-> > +              contains:
-> > +                const: fsl,imx8mq-lcdif
-> > +      then:
-> > +        required:
-> > +          - power-domains
->=20
-> We currently enable the mipi power domain for the mipi dphy and nwl
-> bridge only but not for LCDIF itself assuming it's not needed (as there's
-> other outputs LCDIF can drive). I *think* this is correct but maybe
-> Marek or Liu can confirm?
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on linus/master v6.5-rc5 next-20230809]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I'm happy to Ack this, but I've been sitting on it waiting to see if
-Marek or Liu popped up..
+url:    https://github.com/intel-lab-lkp/linux/commits/Dumitru-Ceclan/iio-adc-ad717x-add-AD717X-driver/20230810-173526
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20230810093322.593259-2-mitrutzceclan%40gmail.com
+patch subject: [PATCH 2/2] iio: adc: ad717x: add AD717X driver
+config: xtensa-randconfig-m041-20230811 (https://download.01.org/0day-ci/archive/20230811/202308110347.LseABMWN-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230811/202308110347.LseABMWN-lkp@intel.com/reproduce)
 
---yVk3JZ7fl+mjKj73
-Content-Type: application/pgp-signature; name="signature.asc"
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308110347.LseABMWN-lkp@intel.com/
 
------BEGIN PGP SIGNATURE-----
+All errors (new ones prefixed by >>):
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNU6zQAKCRB4tDGHoIJi
-0s2nAP9Dmws9nUO7FWU2dnCYapILH8BgEDhPZlOjfqFaw+mE+QD/atHR0u47ijBF
-egbmUZYBYV2cDqiKmos4DpMp6XI4WAY=
-=OYJ6
------END PGP SIGNATURE-----
+   In file included from include/linux/device/driver.h:21,
+                    from include/linux/device.h:32,
+                    from drivers/iio/adc/ad717x.c:9:
+>> include/linux/module.h:244:1: error: expected ',' or ';' before 'extern'
+     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
+         | ^~~~~~
+   drivers/iio/adc/ad717x.c:974:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
+     974 | MODULE_DEVICE_TABLE(of, ad717x_of_match);
+         | ^~~~~~~~~~~~~~~~~~~
 
---yVk3JZ7fl+mjKj73--
+
+vim +244 include/linux/module.h
+
+^1da177e4c3f41 Linus Torvalds    2005-04-16  240  
+cff26a51da5d20 Rusty Russell     2014-02-03  241  #ifdef MODULE
+cff26a51da5d20 Rusty Russell     2014-02-03  242  /* Creates an alias so file2alias.c can find device table. */
+^1da177e4c3f41 Linus Torvalds    2005-04-16  243  #define MODULE_DEVICE_TABLE(type, name)					\
+0bf8bf50eddc75 Matthias Kaehlcke 2017-07-24 @244  extern typeof(name) __mod_##type##__##name##_device_table		\
+cff26a51da5d20 Rusty Russell     2014-02-03  245    __attribute__ ((unused, alias(__stringify(name))))
+cff26a51da5d20 Rusty Russell     2014-02-03  246  #else  /* !MODULE */
+cff26a51da5d20 Rusty Russell     2014-02-03  247  #define MODULE_DEVICE_TABLE(type, name)
+cff26a51da5d20 Rusty Russell     2014-02-03  248  #endif
+^1da177e4c3f41 Linus Torvalds    2005-04-16  249  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
