@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B67377705F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 460E9777060
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233599AbjHJGdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 02:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43414 "EHLO
+        id S232713AbjHJGdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 02:33:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232196AbjHJGdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:33:10 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E94CDE4D
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:33:07 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fe4a89e7efso4357315e9.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:33:07 -0700 (PDT)
+        with ESMTP id S233600AbjHJGdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:33:11 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C0AE6B
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:33:10 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe7e1ef45dso775785e87.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:33:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691649186; x=1692253986;
+        d=linaro.org; s=google; t=1691649188; x=1692253988;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xRK4u/u6GjShtJ9g8bcUM1XPaEOsUKZUUqbfqiifYIs=;
-        b=EKOLsf+ykA5qIQjzzOus1wbbzFq81JXaJvdLkG0mm3Ei/C2xTDE/Wu8pEO3Adhv1sB
-         a8fYpYw1hxGihI1MFUifamdPmJH45ZV8HDggIKT3v396ZMr2JyDRdg4/D9PmrKPpCvPL
-         8EA8uAJyzKgvFa/yGogo535vvEIkekTvq5q7u0arTD8e0FY1RGFxH2bC/gCqRI9mbS9Z
-         aXWnnIogjDkXyOz9T65Ds170m+XMLrSZ4mQOUEJGTsXUZGNMpMsdTEyBALGWponNQ0nj
-         a+D3erhbaW+s3A1Ll/jbyvpMMzlDhOPzMTwzJf18WEgJkTn53cmJNV7nVbKISH4GEA3+
-         zMvA==
+        bh=V+hlC8d67YmntwV4mHtT3ZdGF2DLfbF3GgSUytsMD/g=;
+        b=xU/RO30vWACYxqjtnyOxfTI3eJXujWzw/tOzIRF0AjoT3K3pqKUkKXyMg1cLZOOP3v
+         /yaW305bxyPasG0lRF7V+44ce5JFDRMIfoTnxZeZfjcNWGkAAKBJfCMWWE/BxgFqkryh
+         CHaNdvUeOra1W8UrXNDmgWCY+EkAOo/gHYitQwjbXaGsOJlE6ybXURT/L0xRlFZFceNp
+         ZSBm7qtK88v0UuRLyz+nXh8MVuaPxzEq0FcRHmHV7R7OPfUFaYxJh0dsEzGQsK2PHSZD
+         3lCkvhEqO/1yjUXL7T9lSyfklQFQW5cIKHgx1X8AI7lcbVQblucLHS3P12I/vKLtHG6Z
+         no9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691649186; x=1692253986;
+        d=1e100.net; s=20221208; t=1691649188; x=1692253988;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xRK4u/u6GjShtJ9g8bcUM1XPaEOsUKZUUqbfqiifYIs=;
-        b=RSYhL/u4wH7fUedq6RtB+S9ATxZYJPL5F0u+gKq/wjoHX7DX/LFXeBDN0WfVGFq0nG
-         isysy9hsrfMrwrcBJxW4n7eDx1arUGfQ849NJw07kxd3FMk7bilng03rBoShBr5hM+33
-         eb2i/Q2oU+OEqhp95l9MJja8ECotvqRdQH5U0edRuh+FizXIgBMO9hbnZyzmyg1P4DPY
-         dS4s9Xd8IIbJGFOf3pGuXyGMBbnOavHxhoBLnbTnf79eUOWC4/2DyBa9GLFofSWLgKuB
-         jhduNkaBUcNk7tGy+Dx3txvjLuFnw/Y89symiL8Jfp+5R2eOJLw6d8QPtBGVLAGq9vmL
-         q/mw==
-X-Gm-Message-State: AOJu0YwgyqoQjC6zrUjWPtiXWrGT9LLWQHow/b0BFKDUsa4WZuc2JxKA
-        mTTvVduAEXfa1S/pN6FAESIEEg==
-X-Google-Smtp-Source: AGHT+IF3jK0RC64l2dE7mBJal346hXqt7G4hF0HjJMrFLuF9HMUsWWO06rStb8U1TvYEIzfEW6pMQQ==
-X-Received: by 2002:a1c:4b0a:0:b0:3fe:212c:f790 with SMTP id y10-20020a1c4b0a000000b003fe212cf790mr962281wma.36.1691649186466;
-        Wed, 09 Aug 2023 23:33:06 -0700 (PDT)
+        bh=V+hlC8d67YmntwV4mHtT3ZdGF2DLfbF3GgSUytsMD/g=;
+        b=UuNHBziZV7QJMkkyot0NyD8bYYK40CBt7vPqXch7HkrKk/px8HpGPCOsaC6Hc2TPT3
+         KpGiNhZD6TRspPB8sG9M1ZNPr/1/2HNUnJ5wGGF2/+7ovPoIfX0RVYY4ejpBg+0t3pyK
+         IkHooz6alqgDZdXgNbcyUyadL13AUVg+1zJVw4sQSTFiZ2naqpERQvs5r68Mb1nOV6Ya
+         wMwP9Fw5tYKhU25pmH1xUwpfUkjjfkd7Xi4JomLE0e9RtlTbMUqqL1DjS7AfLC4jAVuq
+         TG9l1gJFwun0yQckfUmqEoNAlffC7ujXVTG10lT96ocdClP4XcN3c+VdjMwAExNfYht+
+         BJPw==
+X-Gm-Message-State: AOJu0Yxqeqnoem+Lz8BP3OYSXbgeCVSBTE6CJ9lvie7UAQZABLsXdVLo
+        lDDEhkWf5YBnrOG7l2piheJCog==
+X-Google-Smtp-Source: AGHT+IErGy790Xkb6/KzdX9Bvv40e18+/V59YRvZrbqtUlAQog8GWO8fIcwIyb/Yl5HGLGY7G2ICtw==
+X-Received: by 2002:a05:6512:3483:b0:4fe:347c:874b with SMTP id v3-20020a056512348300b004fe347c874bmr907453lfr.8.1691649188761;
+        Wed, 09 Aug 2023 23:33:08 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id o10-20020a1c750a000000b003fe2b6d64c8sm4020018wmc.21.2023.08.09.23.33.04
+        by smtp.gmail.com with ESMTPSA id o10-20020a1c750a000000b003fe2b6d64c8sm4020018wmc.21.2023.08.09.23.33.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 23:33:05 -0700 (PDT)
+        Wed, 09 Aug 2023 23:33:08 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -79,9 +79,9 @@ To:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-mediatek@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 02/11] ASoC: dt-bindings: mediatek,mt8188-mt6359: use common sound card
-Date:   Thu, 10 Aug 2023 08:32:50 +0200
-Message-Id: <20230810063300.20151-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 03/11] ASoC: dt-bindings: samsung,aries-wm8994: use common sound card
+Date:   Thu, 10 Aug 2023 08:32:51 +0200
+Message-Id: <20230810063300.20151-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230810063300.20151-1-krzysztof.kozlowski@linaro.org>
 References: <20230810063300.20151-1-krzysztof.kozlowski@linaro.org>
@@ -96,26 +96,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mediatek,mt8188-mt6359 Linux sound machine driver requires the
-"model" property, so binding was incomplete.  Reference the common sound
-card properties to fix that which also allows to remove duplicated
-property definitions.  Leave the relevant parts of "audio-routing"
-description.
+Reference the common sound card properties and deprecate the
+custom "samsung,audio-routing" in favor of generic one.  This allows to
+remove "model" property and make the binding closer to other sounds
+cards.
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/sound/mediatek,mt8188-mt6359.yaml  | 17 +++++++----------
- 1 file changed, 7 insertions(+), 10 deletions(-)
+ .../bindings/sound/samsung,aries-wm8994.yaml     | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-index 05e532b5d50a..43b3b67bdf3b 100644
---- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-@@ -9,23 +9,19 @@ title: MediaTek MT8188 ASoC sound card
+diff --git a/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml b/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml
+index 447e013f6e17..5ea0819a261a 100644
+--- a/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml
++++ b/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml
+@@ -9,6 +9,9 @@ title: Samsung Aries audio complex with WM8994 codec
  maintainers:
-   - Trevor Wu <trevor.wu@mediatek.com>
+   - Jonathan Bakker <xc-racer2@live.ca>
  
 +allOf:
 +  - $ref: sound-card-common.yaml#
@@ -123,42 +121,63 @@ index 05e532b5d50a..43b3b67bdf3b 100644
  properties:
    compatible:
      enum:
-       - mediatek,mt8188-mt6359-evb
-       - mediatek,mt8188-nau8825
+@@ -17,10 +20,6 @@ properties:
+       # Without FM radio and modem slave
+       - samsung,fascinate4g-wm8994
  
 -  model:
 -    $ref: /schemas/types.yaml#/definitions/string
--    description: User specified audio sound card name
+-    description: The user-visible name of this sound complex.
 -
-   audio-routing:
--    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-     description:
--      A list of the connections between audio components. Each entry is a
--      sink/source pair of strings. Valid names could be the input or output
--      widgets of audio components, power supplies, MicBias of codec and the
--      software switch.
-+      Valid names could be the input or output widgets of audio components,
-+      power supplies, MicBias of codec and the software switch.
+   cpu:
+     type: object
+     additionalProperties: false
+@@ -46,6 +45,7 @@ properties:
  
-   mediatek,platform:
-     $ref: /schemas/types.yaml#/definitions/phandle
-@@ -86,7 +82,7 @@ patternProperties:
-     required:
-       - link-name
+   samsung,audio-routing:
+     $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    deprecated: true
+     description: |
+       List of the connections between audio
+       components;  each entry is a pair of strings, the first being the
+@@ -56,6 +56,7 @@ properties:
+       or FM In
+       For samsung,fascinate4g-wm8994: HP, SPK, RCV, LINE, Main Mic,
+       or HeadsetMic
++      Deprecated, use audio-routing.
+ 
+   extcon:
+     description: Extcon phandle for dock detection
+@@ -87,10 +88,9 @@ properties:
+ 
+ required:
+   - compatible
+-  - model
+   - cpu
+   - codec
+-  - samsung,audio-routing
++  - audio-routing
+   - extcon
+   - main-micbias-supply
+   - headset-micbias-supply
+@@ -98,7 +98,7 @@ required:
+   - headset-detect-gpios
+   - headset-key-gpios
  
 -additionalProperties: false
 +unevaluatedProperties: false
  
- required:
-   - compatible
-@@ -96,6 +92,7 @@ examples:
+ examples:
    - |
-     sound {
-         compatible = "mediatek,mt8188-mt6359-evb";
-+        model = "MT6359-EVB";
-         mediatek,platform = <&afe>;
-         pinctrl-names = "default";
-         pinctrl-0 = <&aud_pins_default>;
+@@ -121,7 +121,7 @@ examples:
+         headset-detect-gpios = <&gph0 6 GPIO_ACTIVE_HIGH>;
+         headset-key-gpios = <&gph3 6 GPIO_ACTIVE_HIGH>;
+ 
+-        samsung,audio-routing =
++        audio-routing =
+             "HP", "HPOUT1L",
+             "HP", "HPOUT1R",
+ 
 -- 
 2.34.1
 
