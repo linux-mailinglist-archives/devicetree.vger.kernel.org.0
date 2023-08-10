@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E453077764C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 12:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09838777655
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 12:56:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233222AbjHJKzA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Aug 2023 06:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41678 "EHLO
+        id S234529AbjHJK43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 06:56:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbjHJKy7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 06:54:59 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63A81703;
-        Thu, 10 Aug 2023 03:54:57 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 4960E24E31A;
-        Thu, 10 Aug 2023 18:54:41 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 10 Aug
- 2023 18:54:41 +0800
-Received: from [192.168.120.43] (171.223.208.138) by EXMBX062.cuchost.com
- (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 10 Aug
- 2023 18:54:40 +0800
-Message-ID: <37f5c947-5bba-0add-4805-1ce800f99aff@starfivetech.com>
-Date:   Thu, 10 Aug 2023 18:54:39 +0800
+        with ESMTP id S234444AbjHJK43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 06:56:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3531703;
+        Thu, 10 Aug 2023 03:56:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B9CE60AD1;
+        Thu, 10 Aug 2023 10:56:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B46C7C433C9;
+        Thu, 10 Aug 2023 10:56:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691664988;
+        bh=VNB7J0sNStEzCd8cGx8BrhaRIe5VtMJrq9LUHaC2pkM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ikvI6GdYlwWwP/8GJbRw77QRHRO56Btg9nX8tmPKOFjCcPaWTvk5Xsii9p+xrOklm
+         DnV8Hf2pc6TEolos3MzpZD/Mb3WzpTohxN0y5Ngotqt9UWUEJOjVBKRUYhkWJo2XK3
+         z1cw3Yee57W+AYSKY8h4B5Pj5briru7DJKqdWj2hIjA4cERSCwZwLJ2hqMG7rdXSUH
+         VUoLOfHHyNp+rETLPrBfslIZvdvZnbVjW5nxOBcy5w1wa2rlAt339D/3lmXvMSj89s
+         gprIC1pZWuwbRoHGWbS9DCqRbZaxHlu98PoIsmFsIdwSuf8mRdfZOkA9aU86rGEyq+
+         8bilumKeR7zQQ==
+Message-ID: <beb378c1-cba4-26a0-0737-90243ec226c1@kernel.org>
+Date:   Thu, 10 Aug 2023 05:56:25 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [-next v1 1/1] riscv: dts: starfive: jh7110: Fix GMAC
- configuration
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>
-References: <20230810074646.19076-1-samin.guo@starfivetech.com>
- <20230810074646.19076-2-samin.guo@starfivetech.com>
- <20230810-suitable-truffle-eac5d7f93377@wendy>
+Subject: Re: [PATCH v2 4/5] clk: socfpga: agilex: add clock driver for the
+ Agilex5
 Content-Language: en-US
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <20230810-suitable-truffle-eac5d7f93377@wendy>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
- (172.16.6.62)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+To:     Stephen Boyd <sboyd@kernel.org>, niravkumar.l.rabara@intel.com
+Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, netdev@vger.kernel.org,
+        p.zabel@pengutronix.de, richardcochran@gmail.com,
+        robh+dt@kernel.org, wen.ping.teh@intel.com
+References: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
+ <20230801010234.792557-1-niravkumar.l.rabara@intel.com>
+ <20230801010234.792557-5-niravkumar.l.rabara@intel.com>
+ <4c0dfd1c-2b61-b954-73ad-ac8d4b82487d@kernel.org>
+ <677706de77d5d5b799d25c855a723b2c.sboyd@kernel.org>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <677706de77d5d5b799d25c855a723b2c.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,65 +68,32 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-on 2023/8/10 18:48:38, Conor Dooley wrote:
-> On Thu, Aug 10, 2023 at 03:46:46PM +0800, Samin Guo wrote:
->> Fixed configuration to improve the speed of TCP RX.
+On 8/9/23 16:28, Stephen Boyd wrote:
+> Quoting Dinh Nguyen (2023-08-08 04:03:47)
+>> Hi Stephen/Mike,
 >>
->> Before:
->>   # iperf3 -s
->>   -----------------------------------------------------------
->>   Server listening on 5201 (test #1)
->>   -----------------------------------------------------------
->>   Accepted connection from 192.168.1.4, port 47604
->>   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
->>   [ ID] Interval           Transfer     Bitrate
->>   [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
->>   [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
->>   [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
->>   [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
->>   [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
->>   [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
->>   [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
->>   [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
->>   [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
->>   [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
->>   - - - - - - - - - - - - - - - - - - - - - - - - -
->>   [ ID] Interval           Transfer     Bitrate
->>   [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
+>> On 7/31/23 20:02, niravkumar.l.rabara@intel.com wrote:
+>>> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>>>
+>>> Add support for Intel's SoCFPGA Agilex5 platform. The clock manager
+>>> driver for the Agilex5 is very similar to the Agilex platform,we can
+>>> re-use most of the Agilex clock driver.
+>>>
+>>> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+>>> Reviewed-by: Dinh Nguyen <dinguyen@kernel.org>
+>>> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>>> ---
+>>>    drivers/clk/socfpga/clk-agilex.c | 433 ++++++++++++++++++++++++++++++-
+>>>    1 file changed, 431 insertions(+), 2 deletions(-)
+>>>
 >>
->> After:
->>   # iperf3 -s
->>   -----------------------------------------------------------
->>   Server listening on 5201 (test #1)
->>   -----------------------------------------------------------
->>   Accepted connection from 192.168.1.4, port 47710
->>   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47720
->>   [ ID] Interval           Transfer     Bitrate
->>   [  5]   0.00-1.00   sec   111 MBytes   932 Mbits/sec
->>   [  5]   1.00-2.00   sec   111 MBytes   934 Mbits/sec
->>   [  5]   2.00-3.00   sec   111 MBytes   934 Mbits/sec
->>   [  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec
->>   [  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec
->>   [  5]   5.00-6.00   sec   111 MBytes   935 Mbits/sec
->>   [  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec
->>   [  5]   7.00-8.00   sec   111 MBytes   935 Mbits/sec
->>   [  5]   8.00-9.00   sec   111 MBytes   934 Mbits/sec
->>   [  5]   9.00-10.00  sec   111 MBytes   934 Mbits/sec
->>   [  5]  10.00-10.00  sec   167 KBytes   933 Mbits/sec
->>   - - - - - - - - - - - - - - - - - - - - - - - - -
->>   [ ID] Interval           Transfer     Bitrate
->>   [  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec        receiver
+>> If you're ok with this patch, can I take this through armsoc?
 >>
->> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 > 
-> This is
-> Fixes: 1ff166c97972 ("riscv: dts: starfive: jh7110: Add ethernet device nodes")
-> right?
+> Usually any binding files go through arm-soc and clk tree but the driver
+> only goes through clk tree via a PR. Is that possible here?
 
-Hi Conor，
+Ok. Should be fine in this case.
 
-Yes. There is an issue with the configuration of the 1ff166c97972 that affects the speed of the GMAC TCP RX.
-
-Best regards,
-Samin
+Thanks,
+Dinh
