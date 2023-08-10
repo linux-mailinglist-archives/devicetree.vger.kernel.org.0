@@ -2,52 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D3077765E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 12:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E453077764C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 12:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234091AbjHJK6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 06:58:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
+        id S233222AbjHJKzA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Aug 2023 06:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233017AbjHJK6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 06:58:01 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0730E26AE;
-        Thu, 10 Aug 2023 03:49:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1691664561; x=1723200561;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FDXq+aX/afVuVzyBcXeGCcLoxEtW/3tSfHqYvuf2Kfw=;
-  b=fQWXvcKIFu6i+7u9Cb0OKTfD1EmsOr+qtPo12jJm4qzqo/34r0tzyY5g
-   qNycnYyn+/XfYKpPxKPFp1LM7FP4sh46aTftgmXXJCGU3PRzRMBIGLtbN
-   958xkLtFXWI3EzjtHWxmBRP4feBH74RB6HQroStIavUzbf8W0yxaCrHNt
-   nSdAuyQgT5eq4VQLzKy2u/XdeftmFWyj9Ue1GXEoYJ2QV6uZzh2XoHhNx
-   h9Gcb58hX46bigqzeomj3UlXe0CypeCtOA/iqWMoab+qfawfPj5iDGfzG
-   g4lFtK/b3//QR2URqla4vMtAKq7RnaOSqq9lxXTcY2OfoBf8vCH9nk2hY
-   A==;
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
-   d="asc'?scan'208";a="228216734"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2023 03:49:20 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 10 Aug 2023 03:49:18 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 10 Aug 2023 03:49:16 -0700
-Date:   Thu, 10 Aug 2023 11:48:38 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Samin Guo <samin.guo@starfivetech.com>
+        with ESMTP id S230230AbjHJKy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 06:54:59 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63A81703;
+        Thu, 10 Aug 2023 03:54:57 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4960E24E31A;
+        Thu, 10 Aug 2023 18:54:41 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 10 Aug
+ 2023 18:54:41 +0800
+Received: from [192.168.120.43] (171.223.208.138) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 10 Aug
+ 2023 18:54:40 +0800
+Message-ID: <37f5c947-5bba-0add-4805-1ce800f99aff@starfivetech.com>
+Date:   Thu, 10 Aug 2023 18:54:39 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [-next v1 1/1] riscv: dts: starfive: jh7110: Fix GMAC
+ configuration
+To:     Conor Dooley <conor.dooley@microchip.com>
 CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
         <devicetree@vger.kernel.org>,
         Emil Renner Berthing <kernel@esmil.dk>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
         Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -55,96 +44,88 @@ CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         Hal Feng <hal.feng@starfivetech.com>
-Subject: Re: [-next v1 1/1] riscv: dts: starfive: jh7110: Fix GMAC
- configuration
-Message-ID: <20230810-suitable-truffle-eac5d7f93377@wendy>
 References: <20230810074646.19076-1-samin.guo@starfivetech.com>
  <20230810074646.19076-2-samin.guo@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cBYCaHNShJUTrmWz"
-Content-Disposition: inline
-In-Reply-To: <20230810074646.19076-2-samin.guo@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+ <20230810-suitable-truffle-eac5d7f93377@wendy>
+Content-Language: en-US
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <20230810-suitable-truffle-eac5d7f93377@wendy>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---cBYCaHNShJUTrmWz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 10, 2023 at 03:46:46PM +0800, Samin Guo wrote:
-> Fixed configuration to improve the speed of TCP RX.
->=20
-> Before:
->   # iperf3 -s
->   -----------------------------------------------------------
->   Server listening on 5201 (test #1)
->   -----------------------------------------------------------
->   Accepted connection from 192.168.1.4, port 47604
->   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
->   [ ID] Interval           Transfer     Bitrate
->   [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
->   [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
->   [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
->   [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
->   [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
->   [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
->   [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
->   [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
->   [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
->   [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
->   - - - - - - - - - - - - - - - - - - - - - - - - -
->   [ ID] Interval           Transfer     Bitrate
->   [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
->=20
-> After:
->   # iperf3 -s
->   -----------------------------------------------------------
->   Server listening on 5201 (test #1)
->   -----------------------------------------------------------
->   Accepted connection from 192.168.1.4, port 47710
->   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47720
->   [ ID] Interval           Transfer     Bitrate
->   [  5]   0.00-1.00   sec   111 MBytes   932 Mbits/sec
->   [  5]   1.00-2.00   sec   111 MBytes   934 Mbits/sec
->   [  5]   2.00-3.00   sec   111 MBytes   934 Mbits/sec
->   [  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec
->   [  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec
->   [  5]   5.00-6.00   sec   111 MBytes   935 Mbits/sec
->   [  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec
->   [  5]   7.00-8.00   sec   111 MBytes   935 Mbits/sec
->   [  5]   8.00-9.00   sec   111 MBytes   934 Mbits/sec
->   [  5]   9.00-10.00  sec   111 MBytes   934 Mbits/sec
->   [  5]  10.00-10.00  sec   167 KBytes   933 Mbits/sec
->   - - - - - - - - - - - - - - - - - - - - - - - - -
->   [ ID] Interval           Transfer     Bitrate
->   [  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec        receiver
->=20
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 
-This is
-Fixes: 1ff166c97972 ("riscv: dts: starfive: jh7110: Add ethernet device nod=
-es")
-right?
+on 2023/8/10 18:48:38, Conor Dooley wrote:
+> On Thu, Aug 10, 2023 at 03:46:46PM +0800, Samin Guo wrote:
+>> Fixed configuration to improve the speed of TCP RX.
+>>
+>> Before:
+>>   # iperf3 -s
+>>   -----------------------------------------------------------
+>>   Server listening on 5201 (test #1)
+>>   -----------------------------------------------------------
+>>   Accepted connection from 192.168.1.4, port 47604
+>>   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
+>>   [ ID] Interval           Transfer     Bitrate
+>>   [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
+>>   [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
+>>   [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
+>>   [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
+>>   [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
+>>   [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
+>>   [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
+>>   [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
+>>   [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
+>>   [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
+>>   - - - - - - - - - - - - - - - - - - - - - - - - -
+>>   [ ID] Interval           Transfer     Bitrate
+>>   [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
+>>
+>> After:
+>>   # iperf3 -s
+>>   -----------------------------------------------------------
+>>   Server listening on 5201 (test #1)
+>>   -----------------------------------------------------------
+>>   Accepted connection from 192.168.1.4, port 47710
+>>   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47720
+>>   [ ID] Interval           Transfer     Bitrate
+>>   [  5]   0.00-1.00   sec   111 MBytes   932 Mbits/sec
+>>   [  5]   1.00-2.00   sec   111 MBytes   934 Mbits/sec
+>>   [  5]   2.00-3.00   sec   111 MBytes   934 Mbits/sec
+>>   [  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec
+>>   [  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec
+>>   [  5]   5.00-6.00   sec   111 MBytes   935 Mbits/sec
+>>   [  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec
+>>   [  5]   7.00-8.00   sec   111 MBytes   935 Mbits/sec
+>>   [  5]   8.00-9.00   sec   111 MBytes   934 Mbits/sec
+>>   [  5]   9.00-10.00  sec   111 MBytes   934 Mbits/sec
+>>   [  5]  10.00-10.00  sec   167 KBytes   933 Mbits/sec
+>>   - - - - - - - - - - - - - - - - - - - - - - - - -
+>>   [ ID] Interval           Transfer     Bitrate
+>>   [  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec        receiver
+>>
+>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+> 
+> This is
+> Fixes: 1ff166c97972 ("riscv: dts: starfive: jh7110: Add ethernet device nodes")
+> right?
 
---cBYCaHNShJUTrmWz
-Content-Type: application/pgp-signature; name="signature.asc"
+Hi Conor，
 
------BEGIN PGP SIGNATURE-----
+Yes. There is an issue with the configuration of the 1ff166c97972 that affects the speed of the GMAC TCP RX.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNTAhgAKCRB4tDGHoIJi
-0oyRAQCGxq1Ij9YjDmvVTz5NImFOCOe35i94DWSGC+fLqZ8T+AD+PU0pBDtyiAVB
-izIiCjD2XZAeqAG13zoGlo9xravjiwY=
-=0jis
------END PGP SIGNATURE-----
-
---cBYCaHNShJUTrmWz--
+Best regards,
+Samin
