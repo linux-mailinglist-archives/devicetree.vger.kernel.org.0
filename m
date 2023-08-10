@@ -2,144 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA13778188
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E08177818D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbjHJT2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 15:28:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41736 "EHLO
+        id S234041AbjHJT3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 15:29:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbjHJT2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:28:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 270D01728
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 12:28:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B0534667E5
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 19:28:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23F6C433C7;
-        Thu, 10 Aug 2023 19:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691695732;
-        bh=IEzU2DKKPUYeJ2z2QsiU9Rp2PhhCyyWQFd1ITrF1zUU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l5LLl2rsvkRG17mG6WMeOcShoItFHlO0zl6abEQcJpbIjgoEXoXpszP4cfX8C5Hjs
-         0+TYU7GCRf4PoAUOeYSedzKZZ/3FocmtbiHSC2B7rMApA8omTiaHNi5iz1orMwlNRg
-         bEOfiPKjRNNWnbGRK8R7LZL5/LurlI4KhdGEJ12z+VQI+o22Kqino2EichPTlWaUkS
-         ToN9u4EMRCQX/EW/mMdDE7FdBIajaOd9ptHz13bgpYjwOgR6R+Q334zrGeuEEsbNFL
-         BEq2FhsVZZ1kBdnUzNgjrg9k9Ydsq2wGsgJrkvi5UgnzVa3ZOb8JOy48R010wMh59R
-         uD+lBCRD5pzMQ==
-Date:   Thu, 10 Aug 2023 20:28:47 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
-        sam@ravnborg.org, neil.armstrong@linaro.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: display: newvision,nv3051d: Add
- Anbernic 351V Support
-Message-ID: <20230810-settling-greyhound-cb9ef7048a2b@spud>
-References: <20230809153941.1172-1-macroalpha82@gmail.com>
- <20230809153941.1172-2-macroalpha82@gmail.com>
+        with ESMTP id S233486AbjHJT3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:29:50 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284871728;
+        Thu, 10 Aug 2023 12:29:50 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AJTTZ2001573;
+        Thu, 10 Aug 2023 14:29:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691695769;
+        bh=z+/O/oJEzBl6XJbUbJ5i2E5EgCmgXxI/5YsPmBtngIE=;
+        h=From:Subject:Date:To:CC;
+        b=ykTkuXWCaxSY2N8vzYZyxhnQJzwRdH9+VStVZWpLYPv/ei6KDvtqL45AZ+6lG95pf
+         Vwwc7IAbge4NzkEfgSKAYAt7CBWi6ByQL8CG6qkoXSJrXvWxejY9+q7CFfgkF9g2wZ
+         y0e81aUAt8J9RtAGBgYT0f7ePvVokgTGYJ1wfs1A=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AJTTVO027942
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 14:29:29 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 14:29:29 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 14:29:29 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AJTSeW002155;
+        Thu, 10 Aug 2023 14:29:28 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+Subject: [PATCH v2 0/6] Add support for Texas Instruments MCRC64 engine
+Date:   Fri, 11 Aug 2023 00:58:47 +0530
+Message-ID: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="MzyQSsnUd6NUiXUc"
-Content-Disposition: inline
-In-Reply-To: <20230809153941.1172-2-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG861WQC/3WNMQ6DMAxFr4Iy1xUEqkAn7lExGOOWDAFkp6gV4
+ u4N7B3f/3p6m1EWz2ru2WaEV69+nhLYS2ZoxOnF4IfExua2zF3RQCAheC8ahTGAQ27Q3Qj70pn
+ k9KgMveBE42EF1MhyHIvw03/O0KNLPHqNs3zP7loc67/EWkAOA9WuqdFWVLk2+ivNwXT7vv8Ad
+ 3v6JMAAAAA=
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Kamlesh Gurudasani <kamlesh@ti.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691695767; l=3032;
+ i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
+ bh=LWqG7WYZ/paBwbFSp816khIcJHbId0/YeHLEz1IDBiU=;
+ b=iYk5pAb85XLs5Klt2bkUeSJNIOB7CmIuI1EPgQsM7rZfDSZVI0F/OW7/m/KAgIXAqx5AQZaLb
+ sKT2A/5OJpEDjQvuVCREMZkbRlshuk4cDCvPNLN5LjE3igJThAj3ycJ
+X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
+ pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for MCRC64 engine to calculate 64-bit CRC in Full-CPU mode
 
---MzyQSsnUd6NUiXUc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
+according to the ISO 3309 standard.
 
-On Wed, Aug 09, 2023 at 10:39:40AM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> Document the Anbernic RG351V panel, which appears to be identical to
-> the panel used in their 353 series except for in inclusion of an
-> additional DSI format flag.
+The ISO 3309 64-bit CRC model parameters are as follows:
+    Generator Polynomial: x^64 + x^4 + x^3 + x + 1
+    Polynomial Value: 0x000000000000001B
+    Initial value: 0x0000000000000000
+    Reflected Input: False
+    Reflected Output: False
+    Xor Final: 0x0000000000000000
 
-Sure?
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Tested with
+CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
 
-Thanks,
-Conor.
+and tcrypt,
+sudo modprobe tcrypt mode=329 sec=1
 
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../display/panel/newvision,nv3051d.yaml       | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv=
-3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv30=
-51d.yaml
-> index 116c1b6030a2..576f3640cb33 100644
-> --- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.y=
-aml
-> @@ -7,9 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: NewVision NV3051D based LCD panel
-> =20
->  description: |
-> -  The NewVision NV3051D is a driver chip used to drive DSI panels. For n=
-ow,
-> -  this driver only supports the 640x480 panels found in the Anbernic RG3=
-53
-> -  based devices.
-> +  The NewVision NV3051D is a driver chip used to drive DSI panels.
-> =20
->  maintainers:
->    - Chris Morgan <macromorgan@hotmail.com>
-> @@ -19,11 +17,15 @@ allOf:
-> =20
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - anbernic,rg353p-panel
-> -          - anbernic,rg353v-panel
-> -      - const: newvision,nv3051d
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - anbernic,rg353p-panel
-> +              - anbernic,rg353v-panel
-> +          - const: newvision,nv3051d
-> +
-> +      - items:
-> +          - const: anbernic,rg351v-panel
-> =20
->    reg: true
->    backlight: true
-> --=20
-> 2.34.1
->=20
+User space application implemented using algif_hash,
+https://gist.github.com/ti-kamlesh/73abfcc1a33318bb3b199d36b6209e59
 
---MzyQSsnUd6NUiXUc
-Content-Type: application/pgp-signature; name="signature.asc"
+Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+---
+Changes in v2:
+- Add generic implementation of crc64-iso
+- Fixes according to review comments
+- Link to v1: https://lore.kernel.org/r/20230719-mcrc-upstream-v1-0-dc8798a24c47@ti.com
 
------BEGIN PGP SIGNATURE-----
+---
+Kamlesh Gurudasani (6):
+      lib: add ISO 3309 model crc64
+      crypto: crc64 - add crc64-iso framework
+      dt-bindings: crypto: Add Texas Instruments MCRC64
+      crypto: ti - add driver for MCRC64 engine
+      arm64: dts: ti: k3-am62: Add dt node, cbass_main ranges for MCRC64
+      arm64: defconfig: enable TI MCRC64 module
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNU6bwAKCRB4tDGHoIJi
-0kd7AQD8CIJknzMrEg/5OOgz+XcfwEtfPq/RrBpHSWThntRYvwD/W08epyTcTLlc
-p6rlrgGoUFiBQAOQJtNmc/AOAppGFQk=
-=X2WQ
------END PGP SIGNATURE-----
+ Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml |  47 ++++++++
+ MAINTAINERS                                             |   7 ++
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi                |   7 ++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi                     |   1 +
+ arch/arm64/configs/defconfig                            |   2 +
+ crypto/Kconfig                                          |  11 ++
+ crypto/Makefile                                         |   1 +
+ crypto/crc64_iso_generic.c                              | 119 ++++++++++++++++++
+ crypto/tcrypt.c                                         |   5 +
+ crypto/testmgr.c                                        |   7 ++
+ crypto/testmgr.h                                        | 404 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/crypto/Kconfig                                  |   1 +
+ drivers/crypto/Makefile                                 |   1 +
+ drivers/crypto/ti/Kconfig                               |  10 ++
+ drivers/crypto/ti/Makefile                              |   2 +
+ drivers/crypto/ti/mcrc64.c                              | 442 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/crc64.h                                   |   5 +
+ lib/crc64-iso.c                                         | 126 +++++++++++++++++++
+ lib/crc64.c                                             |  27 +++++
+ lib/gen_crc64table.c                                    |   6 +
+ 20 files changed, 1231 insertions(+)
+---
+base-commit: 21ef7b1e17d039053edaeaf41142423810572741
+change-id: 20230719-mcrc-upstream-7ae9a75cab37
 
---MzyQSsnUd6NUiXUc--
+Best regards,
+-- 
+Kamlesh Gurudasani <kamlesh@ti.com>
+
