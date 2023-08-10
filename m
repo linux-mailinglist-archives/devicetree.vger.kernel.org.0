@@ -2,115 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB3777798B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 15:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6521F777998
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 15:29:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235208AbjHJN0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 09:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52344 "EHLO
+        id S235296AbjHJN3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 09:29:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234050AbjHJN0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 09:26:45 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B3A26AB
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:26:44 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe15bfb1adso1401836e87.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:26:44 -0700 (PDT)
+        with ESMTP id S234177AbjHJN3N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 09:29:13 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C56C12108
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:29:10 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso14027251fa.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:29:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691674003; x=1692278803;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6wb5HdAy3B1A4DS1S7ptcBX1i942zjCRrK4D+1uBmbM=;
-        b=b/of1N1zxw+wNkhyMEvsz160aiNNM//6pFFIzoF5iDr6XcXNPnp9qIRyDPL7AjfAZu
-         9ziw39B2TodaGYePjsLTR25HG0RCoqjrwkZlEqivzmEagkheVserPi48rjbOuduk7+Mw
-         7j2naGRYmHfj4rrM/W+tz73GIahh4APT47olsUleGpZ0x+gbCGd57BkZj4T2VJZ/+FaD
-         y9ApG5cdWwvOpBgOxAeraSxiRUuHZhAreobGyaju7168TjaXrquAT6cg3fsxq0o2usfu
-         WljF84LDJMIVxkDJlxUFJzp72s9vNgxQO/ayvMM4LzAQ/4U+XCi0t3w1tPCA7CGVkEsC
-         a17A==
+        d=sartura.hr; s=sartura; t=1691674149; x=1692278949;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ggdZ4XY1iyuyGYCuXDSqEBNlGtJDtI1zfdyeI7JfU4g=;
+        b=weriFHGUujpIhTpjbDqe5WHkhcuVt23H8ey84ziXNWkddK61gwpUT83eV+crojnsqY
+         YaAh/K4HXCPKHvmGzXS2uE61WYqYhoRMQsxAmPJnX7MXnrwgiNE0/fzJYVnlA0ycVAm+
+         onARqzviG0px4STv9Wu8P6JSZ6ho1ZbGsPa2y/ZVzsmpW8Agk2Qg9oGoUF2UtpG0zHuU
+         8cEfYUMOHF5eZHbrVQ+uFWa+wSHqSx+bpu2dUMddyfxASUkkCrn9d+D2mst7G4DuDCKw
+         MYk/a78CgZTz3rnONokhwR5i9IxPtlVjSyQ4xVU62Fg6a3iwfPmKtmv5LHRab+faaFRX
+         JyBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691674003; x=1692278803;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6wb5HdAy3B1A4DS1S7ptcBX1i942zjCRrK4D+1uBmbM=;
-        b=YcWIbkhKvkE5WyvCn7pM8piewD3NvWe3JgIONuWjj6OcdMJ3voi+On9xTYR4ztxI+n
-         LgUYSVJUTIdwKrmATwPO9+vwL7AnI8iRgZO8a2+MC6C5DnogwCH+qtEYDG7zEe1wHTKs
-         +a3puAa8Jk2fFzbeK+tm188rYsrtx03LmPHFfe/6RWspsDm23mzQZ1O0vKQeBvcuAK/S
-         e0eVQsXHux9axFaD4i0dLCdmPfxrNY/x/0ahs4ctb/VeEr1Ac39i6KGADxUeF9emQs30
-         1ceBKoR7qUzIpJAH8VveqpRU9+zT8N7qQy5x9eTYCHbRfhBhdRLu8M6h3bVBhZj6K8Sh
-         OeXA==
-X-Gm-Message-State: AOJu0YyhapX84Dcx0ntLWfu8vU4I+M73kxPo+8ADeYb92PBOg9TSfI/u
-        +nnKQxOqmdHnxFxME8UjmaPtYA==
-X-Google-Smtp-Source: AGHT+IFLYlOzxWGLHVSCOn8/VI4OXXnRJ6DyJbr7mR4GINIrSdeU4OnzS3BRpBwOIifmsZEb2+lzSQ==
-X-Received: by 2002:a05:6512:3995:b0:4fb:893a:d322 with SMTP id j21-20020a056512399500b004fb893ad322mr1965704lfu.68.1691674003052;
-        Thu, 10 Aug 2023 06:26:43 -0700 (PDT)
-Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id c27-20020ac244bb000000b004fb85ffc82csm286637lfm.10.2023.08.10.06.26.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 06:26:42 -0700 (PDT)
-Message-ID: <ad4c10fd-2a71-4c83-91ef-3fba1a0bae0e@linaro.org>
-Date:   Thu, 10 Aug 2023 15:26:41 +0200
+        d=1e100.net; s=20221208; t=1691674149; x=1692278949;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ggdZ4XY1iyuyGYCuXDSqEBNlGtJDtI1zfdyeI7JfU4g=;
+        b=htFGC/NXqm+0enpGs78B8ClGAM7sCcMxXVnxA4K8F+754+3YrgjBsx5DQOkFvPa2Fr
+         b8VGO+BsRpdAwJZ4BfRTu8+cItcJtyMllP/PHpMCQf516KGzl+lM/NopQwduxkfqc7ep
+         gttNP92Ov//2rEmVPI6164tIeduijXak+KB7i9e5a4wGtRebmXCCgUI1DjtDeJQe4YZ7
+         EYQ68kJCynF9mpSvy9GFNbNAXaTKjPtsVMo/YGPceTIbVSc6f9Qbh4HeJ1iuLxCxGXlu
+         ZfmHhiVbW6LxFSwT/TPnUXqwwb6rmdx2F9cy+sVFCqdxDspIl7EmvepeXkp3pyYy/7YU
+         iMxA==
+X-Gm-Message-State: AOJu0YwArQ6QyDxhaL9igo3tRI/Ynem1mFzDRy7QSk1P1M7YpOr3MyV9
+        o2nhsjFF1ooTUgkerI5cEsSKOg==
+X-Google-Smtp-Source: AGHT+IFyQLSVI1PI8OdHmd9Bwhh8DppcsoZdi218UWEQJXLxuZZTWyG2nLaCRRSUsUciLeTkIqpSuQ==
+X-Received: by 2002:a2e:8756:0:b0:2b6:fa3e:f2fa with SMTP id q22-20020a2e8756000000b002b6fa3ef2famr1935253ljj.32.1691674148887;
+        Thu, 10 Aug 2023 06:29:08 -0700 (PDT)
+Received: from fedora.. ([88.207.97.255])
+        by smtp.googlemail.com with ESMTPSA id l1-20020a170906938100b0099b76c3041csm948654ejx.7.2023.08.10.06.29.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Aug 2023 06:29:08 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH] ARM: dts: qcom: ipq4019: correct SDHCI XO clock
+Date:   Thu, 10 Aug 2023 15:28:21 +0200
+Message-ID: <20230810132904.367418-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/9] arm64: dts: qcom: sa8775p-ride: add an alias for
- ethernet0
-Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230810080909.6259-1-brgl@bgdev.pl>
- <20230810080909.6259-9-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230810080909.6259-9-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -118,14 +69,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.08.2023 10:09, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Once we add a second ethernet node, the MDIO bus names will conflict
-> unless we provide aliases. Add one for the existing ethernet node.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Using GCC_DCD_XO_CLK as the XO clock for SDHCI controller is not correct,
+it seems that I somehow made a mistake of passing it instead of the fixed
+XO clock.
 
-Konrad
+Fixes: 04b3b72b5b8f ("ARM: dts: qcom: ipq4019: Add SDHCI controller node")
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
+index 5492aeed14a5..450179fbed32 100644
+--- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
+@@ -231,8 +231,7 @@ sdhci: mmc@7824900 {
+ 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 			bus-width = <8>;
+-			clocks = <&gcc GCC_SDCC1_AHB_CLK>, <&gcc GCC_SDCC1_APPS_CLK>,
+-				 <&gcc GCC_DCD_XO_CLK>;
++			clocks = <&gcc GCC_SDCC1_AHB_CLK>, <&gcc GCC_SDCC1_APPS_CLK>, <&xo>;
+ 			clock-names = "iface", "core", "xo";
+ 			status = "disabled";
+ 		};
+-- 
+2.41.0
+
