@@ -2,66 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F555777269
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB06777729E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233301AbjHJILz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 04:11:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53482 "EHLO
+        id S232456AbjHJIQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 04:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232996AbjHJILy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:11:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C40D8212E;
-        Thu, 10 Aug 2023 01:11:49 -0700 (PDT)
-X-UUID: 8a2283d0375511ee9cb5633481061a41-20230810
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=LEy2cM8iqgdTUwWNrRY9ne2NFOosBkhxNhWOh9wSVco=;
-        b=Z0zqq1Ba0rrEdAHt0rXT+ixUfQJ+LpyOaqXB/Dj+bY797IPENrDWDJ2uav2TumQwPjwEMSM9B0Cg17HZfDHWnTVP5RebbaL9PIzyX+zLbVrHZZhG9vS6xgQ7422GMzw+cv5kSZdSUWRejYVExglDVhsDZsk7JKlepQH5YVKI0vU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:40436190-cfc7-4839-89e2-02eaacc72c81,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:0ad78a4,CLOUDID:bafd5eee-9a6e-4c39-b73e-f2bc08ca3dc5,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 8a2283d0375511ee9cb5633481061a41-20230810
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 94896436; Thu, 10 Aug 2023 16:11:42 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 10 Aug 2023 16:11:41 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 10 Aug 2023 16:11:41 +0800
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
-        <perex@perex.cz>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <angelogioacchino.delregno@collabora.com>
-CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3 3/3] ASoC: mediatek: mt8188-mt6359: add SOF support
-Date:   Thu, 10 Aug 2023 16:11:39 +0800
-Message-ID: <20230810081139.27957-4-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230810081139.27957-1-trevor.wu@mediatek.com>
-References: <20230810081139.27957-1-trevor.wu@mediatek.com>
+        with ESMTP id S234073AbjHJIQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:16:35 -0400
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0EBE1BCF;
+        Thu, 10 Aug 2023 01:16:32 -0700 (PDT)
+Received: from [192.168.0.2] (unknown [95.91.208.105])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: pmenzel)
+        by mx.molgen.mpg.de (Postfix) with ESMTPSA id EFEC061E5FE04;
+        Thu, 10 Aug 2023 10:15:57 +0200 (CEST)
+Message-ID: <72507232-d6df-40b3-8e23-40af05b85c14@molgen.mpg.de>
+Date:   Thu, 10 Aug 2023 10:15:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] rtc: nuvoton: Compatible with NCT3015Y-R and
+ NCT3018Y-R
+Content-Language: en-US
+To:     Mia Lin <mimi05633@gmail.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFLIN@nuvoton.com, mylin1@nuvoton.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20230809095112.2836-1-mimi05633@gmail.com>
+ <20230809095112.2836-3-mimi05633@gmail.com>
+From:   Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20230809095112.2836-3-mimi05633@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,378 +52,215 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SOF is enabled when adsp phandle is assigned to "mediatek,adsp".
-The required callback will be assigned when SOF is enabled.
+Dear Mia,
 
-Additionally, "mediatek,dai-link" is introduced to decide the supported
-dai links for a project, so user can reuse the machine driver regardless
-of dai link combination.
 
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- sound/soc/mediatek/mt8188/mt8188-mt6359.c | 218 ++++++++++++++++++++--
- 1 file changed, 205 insertions(+), 13 deletions(-)
+Thank you for your patch.
 
-diff --git a/sound/soc/mediatek/mt8188/mt8188-mt6359.c b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
-index e7ac2b6671d3..40d0a7265c19 100644
---- a/sound/soc/mediatek/mt8188/mt8188-mt6359.c
-+++ b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
-@@ -19,6 +19,8 @@
- #include "../../codecs/mt6359.h"
- #include "../common/mtk-afe-platform-driver.h"
- #include "../common/mtk-soundcard-driver.h"
-+#include "../common/mtk-dsp-sof-common.h"
-+#include "../common/mtk-soc-card.h"
- 
- #define CKSYS_AUD_TOP_CFG	0x032c
-  #define RG_TEST_ON		BIT(0)
-@@ -45,6 +47,11 @@
-  */
- #define NAU8825_CODEC_DAI  "nau8825-hifi"
- 
-+#define SOF_DMA_DL2 "SOF_DMA_DL2"
-+#define SOF_DMA_DL3 "SOF_DMA_DL3"
-+#define SOF_DMA_UL4 "SOF_DMA_UL4"
-+#define SOF_DMA_UL5 "SOF_DMA_UL5"
-+
- /* FE */
- SND_SOC_DAILINK_DEFS(playback2,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("DL2")),
-@@ -176,6 +183,49 @@ SND_SOC_DAILINK_DEFS(ul_src,
- 						   "dmic-hifi")),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
-+SND_SOC_DAILINK_DEFS(AFE_SOF_DL2,
-+		     DAILINK_COMP_ARRAY(COMP_CPU("SOF_DL2")),
-+		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
-+SND_SOC_DAILINK_DEFS(AFE_SOF_DL3,
-+		     DAILINK_COMP_ARRAY(COMP_CPU("SOF_DL3")),
-+		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
-+SND_SOC_DAILINK_DEFS(AFE_SOF_UL4,
-+		     DAILINK_COMP_ARRAY(COMP_CPU("SOF_UL4")),
-+		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
-+SND_SOC_DAILINK_DEFS(AFE_SOF_UL5,
-+		     DAILINK_COMP_ARRAY(COMP_CPU("SOF_UL5")),
-+		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
-+static const struct sof_conn_stream g_sof_conn_streams[] = {
-+	{
-+		.sof_link = "AFE_SOF_DL2",
-+		.sof_dma = SOF_DMA_DL2,
-+		.stream_dir = SNDRV_PCM_STREAM_PLAYBACK
-+	},
-+	{
-+		.sof_link = "AFE_SOF_DL3",
-+		.sof_dma = SOF_DMA_DL3,
-+		.stream_dir = SNDRV_PCM_STREAM_PLAYBACK
-+	},
-+	{
-+		.sof_link = "AFE_SOF_UL4",
-+		.sof_dma = SOF_DMA_UL4,
-+		.stream_dir = SNDRV_PCM_STREAM_CAPTURE
-+	},
-+	{
-+		.sof_link = "AFE_SOF_UL5",
-+		.sof_dma = SOF_DMA_UL5,
-+		.stream_dir = SNDRV_PCM_STREAM_CAPTURE
-+	},
-+};
-+
- struct mt8188_mt6359_priv {
- 	struct snd_soc_jack dp_jack;
- 	struct snd_soc_jack hdmi_jack;
-@@ -246,6 +296,10 @@ static const struct snd_soc_dapm_widget mt8188_mt6359_widgets[] = {
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- 	SND_SOC_DAPM_SINK("HDMI"),
- 	SND_SOC_DAPM_SINK("DP"),
-+	SND_SOC_DAPM_MIXER(SOF_DMA_DL2, SND_SOC_NOPM, 0, 0, NULL, 0),
-+	SND_SOC_DAPM_MIXER(SOF_DMA_DL3, SND_SOC_NOPM, 0, 0, NULL, 0),
-+	SND_SOC_DAPM_MIXER(SOF_DMA_UL4, SND_SOC_NOPM, 0, 0, NULL, 0),
-+	SND_SOC_DAPM_MIXER(SOF_DMA_UL5, SND_SOC_NOPM, 0, 0, NULL, 0),
- 
- 	/* dynamic pinctrl */
- 	SND_SOC_DAPM_PINCTRL("ETDM_SPK_PIN", "aud_etdm_spk_on", "aud_etdm_spk_off"),
-@@ -266,6 +320,19 @@ static const struct snd_kcontrol_new mt8188_nau8825_controls[] = {
- 	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
- };
- 
-+static const struct snd_soc_dapm_route mt8188_mt6359_routes[] = {
-+	/* SOF Uplink */
-+	{SOF_DMA_UL4, NULL, "O034"},
-+	{SOF_DMA_UL4, NULL, "O035"},
-+	{SOF_DMA_UL5, NULL, "O036"},
-+	{SOF_DMA_UL5, NULL, "O037"},
-+	/* SOF Downlink */
-+	{"I070", NULL, SOF_DMA_DL2},
-+	{"I071", NULL, SOF_DMA_DL2},
-+	{"I020", NULL, SOF_DMA_DL3},
-+	{"I021", NULL, SOF_DMA_DL3},
-+};
-+
- static int mt8188_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct snd_soc_component *cmpnt_afe =
-@@ -471,8 +538,17 @@ enum {
- 	DAI_LINK_ETDM3_OUT_BE,
- 	DAI_LINK_PCM1_BE,
- 	DAI_LINK_UL_SRC_BE,
-+	DAI_LINK_REGULAR_LAST = DAI_LINK_UL_SRC_BE,
-+	DAI_LINK_SOF_START,
-+	DAI_LINK_SOF_DL2_BE = DAI_LINK_SOF_START,
-+	DAI_LINK_SOF_DL3_BE,
-+	DAI_LINK_SOF_UL4_BE,
-+	DAI_LINK_SOF_UL5_BE,
-+	DAI_LINK_SOF_END = DAI_LINK_SOF_UL5_BE,
- };
- 
-+#define	DAI_LINK_REGULAR_NUM	(DAI_LINK_REGULAR_LAST + 1)
-+
- static int mt8188_dptx_hw_params(struct snd_pcm_substream *substream,
- 				 struct snd_pcm_hw_params *params)
- {
-@@ -503,7 +579,8 @@ static int mt8188_dptx_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
- 
- static int mt8188_hdmi_codec_init(struct snd_soc_pcm_runtime *rtd)
- {
--	struct mt8188_mt6359_priv *priv = snd_soc_card_get_drvdata(rtd->card);
-+	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(rtd->card);
-+	struct mt8188_mt6359_priv *priv = soc_card_data->mach_priv;
- 	struct snd_soc_component *component = asoc_rtd_to_codec(rtd, 0)->component;
- 	int ret = 0;
- 
-@@ -528,7 +605,8 @@ static int mt8188_hdmi_codec_init(struct snd_soc_pcm_runtime *rtd)
- 
- static int mt8188_dptx_codec_init(struct snd_soc_pcm_runtime *rtd)
- {
--	struct mt8188_mt6359_priv *priv = snd_soc_card_get_drvdata(rtd->card);
-+	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(rtd->card);
-+	struct mt8188_mt6359_priv *priv = soc_card_data->mach_priv;
- 	struct snd_soc_component *component = asoc_rtd_to_codec(rtd, 0)->component;
- 	int ret = 0;
- 
-@@ -648,7 +726,8 @@ static int mt8188_max98390_codec_init(struct snd_soc_pcm_runtime *rtd)
- static int mt8188_nau8825_codec_init(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct snd_soc_card *card = rtd->card;
--	struct mt8188_mt6359_priv *priv = snd_soc_card_get_drvdata(card);
-+	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(card);
-+	struct mt8188_mt6359_priv *priv = soc_card_data->mach_priv;
- 	struct snd_soc_component *component = asoc_rtd_to_codec(rtd, 0)->component;
- 	struct snd_soc_jack *jack = &priv->headset_jack;
- 	int ret;
-@@ -733,6 +812,33 @@ static int mt8188_nau8825_hw_params(struct snd_pcm_substream *substream,
- static const struct snd_soc_ops mt8188_nau8825_ops = {
- 	.hw_params = mt8188_nau8825_hw_params,
- };
-+
-+static int mt8188_sof_be_hw_params(struct snd_pcm_substream *substream,
-+				   struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
-+	struct snd_soc_component *cmpnt_afe = NULL;
-+	struct snd_soc_pcm_runtime *runtime;
-+
-+	/* find afe component */
-+	for_each_card_rtds(rtd->card, runtime) {
-+		cmpnt_afe = snd_soc_rtdcom_lookup(runtime, AFE_PCM_NAME);
-+		if (cmpnt_afe)
-+			break;
-+	}
-+
-+	if (cmpnt_afe && !pm_runtime_active(cmpnt_afe->dev)) {
-+		dev_err(rtd->dev, "afe pm runtime is not active!!\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_ops mt8188_sof_be_ops = {
-+	.hw_params = mt8188_sof_be_hw_params,
-+};
-+
- static struct snd_soc_dai_link mt8188_mt6359_dai_links[] = {
- 	/* FE */
- 	[DAI_LINK_DL2_FE] = {
-@@ -1003,6 +1109,36 @@ static struct snd_soc_dai_link mt8188_mt6359_dai_links[] = {
- 		.dpcm_capture = 1,
- 		SND_SOC_DAILINK_REG(ul_src),
- 	},
-+
-+	/* SOF BE */
-+	[DAI_LINK_SOF_DL2_BE] = {
-+		.name = "AFE_SOF_DL2",
-+		.no_pcm = 1,
-+		.dpcm_playback = 1,
-+		.ops = &mt8188_sof_be_ops,
-+		SND_SOC_DAILINK_REG(AFE_SOF_DL2),
-+	},
-+	[DAI_LINK_SOF_DL3_BE] = {
-+		.name = "AFE_SOF_DL3",
-+		.no_pcm = 1,
-+		.dpcm_playback = 1,
-+		.ops = &mt8188_sof_be_ops,
-+		SND_SOC_DAILINK_REG(AFE_SOF_DL3),
-+	},
-+	[DAI_LINK_SOF_UL4_BE] = {
-+		.name = "AFE_SOF_UL4",
-+		.no_pcm = 1,
-+		.dpcm_capture = 1,
-+		.ops = &mt8188_sof_be_ops,
-+		SND_SOC_DAILINK_REG(AFE_SOF_UL4),
-+	},
-+	[DAI_LINK_SOF_UL5_BE] = {
-+		.name = "AFE_SOF_UL5",
-+		.no_pcm = 1,
-+		.dpcm_capture = 1,
-+		.ops = &mt8188_sof_be_ops,
-+		SND_SOC_DAILINK_REG(AFE_SOF_UL5),
-+	},
- };
- 
- static struct snd_kcontrol *ctl_find(struct snd_card *card, const char *name)
-@@ -1017,7 +1153,8 @@ static struct snd_kcontrol *ctl_find(struct snd_card *card, const char *name)
- 
- static void mt8188_fixup_controls(struct snd_soc_card *card)
- {
--	struct mt8188_mt6359_priv *priv = snd_soc_card_get_drvdata(card);
-+	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(card);
-+	struct mt8188_mt6359_priv *priv = soc_card_data->mach_priv;
- 	struct mt8188_card_data *card_data = (struct mt8188_card_data *)priv->private_data;
- 	struct snd_kcontrol *kctl;
- 
-@@ -1045,6 +1182,8 @@ static struct snd_soc_card mt8188_mt6359_soc_card = {
- 	.num_links = ARRAY_SIZE(mt8188_mt6359_dai_links),
- 	.dapm_widgets = mt8188_mt6359_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(mt8188_mt6359_widgets),
-+	.dapm_routes = mt8188_mt6359_routes,
-+	.num_dapm_routes = ARRAY_SIZE(mt8188_mt6359_routes),
- 	.controls = mt8188_mt6359_controls,
- 	.num_controls = ARRAY_SIZE(mt8188_mt6359_controls),
- 	.fixup_controls = mt8188_fixup_controls,
-@@ -1054,6 +1193,8 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card = &mt8188_mt6359_soc_card;
- 	struct device_node *platform_node;
-+	struct device_node *adsp_node;
-+	struct mtk_soc_card_data *soc_card_data;
- 	struct mt8188_mt6359_priv *priv;
- 	struct mt8188_card_data *card_data;
- 	struct snd_soc_dai_link *dai_link;
-@@ -1074,21 +1215,64 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
- 	if (!card->name)
- 		card->name = card_data->name;
- 
--	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return  -ENOMEM;
--
- 	if (of_property_read_bool(pdev->dev.of_node, "audio-routing")) {
- 		ret = snd_soc_of_parse_audio_routing(card, "audio-routing");
- 		if (ret)
- 			return ret;
- 	}
- 
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	soc_card_data = devm_kzalloc(&pdev->dev, sizeof(*card_data), GFP_KERNEL);
-+	if (!soc_card_data)
-+		return -ENOMEM;
-+
-+	soc_card_data->mach_priv = priv;
-+
-+	adsp_node = of_parse_phandle(pdev->dev.of_node, "mediatek,adsp", 0);
-+	if (adsp_node) {
-+		struct mtk_sof_priv *sof_priv;
-+
-+		sof_priv = devm_kzalloc(&pdev->dev, sizeof(*sof_priv), GFP_KERNEL);
-+		if (!sof_priv) {
-+			ret = -ENOMEM;
-+			goto err_adsp_node;
-+		}
-+		sof_priv->conn_streams = g_sof_conn_streams;
-+		sof_priv->num_streams = ARRAY_SIZE(g_sof_conn_streams);
-+		soc_card_data->sof_priv = sof_priv;
-+		card->probe = mtk_sof_card_probe;
-+		card->late_probe = mtk_sof_card_late_probe;
-+		if (!card->topology_shortname_created) {
-+			snprintf(card->topology_shortname, 32, "sof-%s", card->name);
-+			card->topology_shortname_created = true;
-+		}
-+		card->name = card->topology_shortname;
-+	}
-+
-+	if (of_property_read_bool(pdev->dev.of_node, "mediatek,dai-link")) {
-+		ret = mtk_sof_dailink_parse_of(card, pdev->dev.of_node,
-+					       "mediatek,dai-link",
-+					       mt8188_mt6359_dai_links,
-+					       ARRAY_SIZE(mt8188_mt6359_dai_links));
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "Parse dai-link fail\n");
-+			goto err_adsp_node;
-+		}
-+	} else {
-+		if (!adsp_node)
-+			card->num_links = DAI_LINK_REGULAR_NUM;
-+	}
-+
- 	platform_node = of_parse_phandle(pdev->dev.of_node,
- 					 "mediatek,platform", 0);
- 	if (!platform_node) {
--		ret = -EINVAL;
--		return dev_err_probe(&pdev->dev, ret, "Property 'platform' missing or invalid\n");
-+		ret = dev_err_probe(&pdev->dev, -EINVAL,
-+				    "Property 'platform' missing or invalid\n");
-+		goto err_adsp_node;
-+
- 	}
- 
- 	ret = parse_dai_link_info(card);
-@@ -1096,8 +1280,12 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
- 		goto err;
- 
- 	for_each_card_prelinks(card, i, dai_link) {
--		if (!dai_link->platforms->name)
--			dai_link->platforms->of_node = platform_node;
-+		if (!dai_link->platforms->name) {
-+			if (!strncmp(dai_link->name, "AFE_SOF", strlen("AFE_SOF")) && adsp_node)
-+				dai_link->platforms->of_node = adsp_node;
-+			else
-+				dai_link->platforms->of_node = platform_node;
-+		}
- 
- 		if (strcmp(dai_link->name, "DPTX_BE") == 0) {
- 			if (strcmp(dai_link->codecs->dai_name, "snd-soc-dummy-dai"))
-@@ -1140,7 +1328,7 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
- 	}
- 
- 	priv->private_data = card_data;
--	snd_soc_card_set_drvdata(card, priv);
-+	snd_soc_card_set_drvdata(card, soc_card_data);
- 
- 	ret = devm_snd_soc_register_card(&pdev->dev, card);
- 	if (ret)
-@@ -1149,6 +1337,10 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
- err:
- 	of_node_put(platform_node);
- 	clean_card_reference(card);
-+
-+err_adsp_node:
-+	of_node_put(adsp_node);
-+
- 	return ret;
- }
- 
--- 
-2.18.0
+It’d be great if you made the commit message summary/title more 
+specific. Maybe:
 
+Add support for NCT3015Y-R
+
+Am 09.08.23 um 11:51 schrieb Mia Lin:
+
+An introduction what the NCT3015Y-R is and listing the differences to 
+NCT3018Y-R would be nice.
+
+> - In probe,
+>    If part number is NCT3018Y-R, only set HF bit to 24-Hour format.
+>    Else, do nothing
+> - In set_time,
+>    If part number is NCT3018Y-R && TWO bit is 0,
+>      change TWO bit to 1, and restore TWO bit after updating time.
+
+Why? This also looks unrelated to the NCT3015Y-R support. Could you 
+factor it out into separate patch?
+
+> - Use DT compatible to check the chip matches or not.
+
+Could you please add the datasheet name and revision?
+
+> Signed-off-by: Mia Lin <mimi05633@gmail.com>
+> ---
+>   drivers/rtc/rtc-nct3018y.c | 88 +++++++++++++++++++++++++++++++++-----
+>   1 file changed, 78 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-nct3018y.c b/drivers/rtc/rtc-nct3018y.c
+> index a4e3f924837e..edc73be3ab59 100644
+> --- a/drivers/rtc/rtc-nct3018y.c
+> +++ b/drivers/rtc/rtc-nct3018y.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/i2c.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> +#include <linux/of_device.h>
+>   #include <linux/rtc.h>
+>   #include <linux/slab.h>
+>   
+> @@ -23,6 +24,7 @@
+>   #define NCT3018Y_REG_CTRL	0x0A /* timer control */
+>   #define NCT3018Y_REG_ST		0x0B /* status */
+>   #define NCT3018Y_REG_CLKO	0x0C /* clock out */
+> +#define NCT3018Y_REG_PART	0x21 /* part info */
+>   
+>   #define NCT3018Y_BIT_AF		BIT(7)
+>   #define NCT3018Y_BIT_ST		BIT(7)
+> @@ -37,6 +39,20 @@
+>   #define NCT3018Y_REG_BAT_MASK		0x07
+>   #define NCT3018Y_REG_CLKO_F_MASK	0x03 /* frequenc mask */
+>   #define NCT3018Y_REG_CLKO_CKE		0x80 /* clock out enabled */
+> +#define NCT3018Y_REG_PART_NCT3015Y	0x01
+> +#define NCT3018Y_REG_PART_NCT3018Y	0x02
+> +
+> +struct rtc_data {
+> +	u8 part_number;
+> +};
+> +
+> +static const struct rtc_data nct3015y_rtc_data = {
+> +	.part_number = NCT3018Y_REG_PART_NCT3015Y,
+> +};
+> +
+> +static const struct rtc_data nct3018y_rtc_data = {
+> +	.part_number = NCT3018Y_REG_PART_NCT3018Y,
+> +};
+>   
+>   struct nct3018y {
+>   	struct rtc_device *rtc;
+> @@ -52,7 +68,7 @@ static int nct3018y_set_alarm_mode(struct i2c_client *client, bool on)
+>   
+>   	dev_dbg(&client->dev, "%s:on:%d\n", __func__, on);
+>   
+> -	flags =  i2c_smbus_read_byte_data(client, NCT3018Y_REG_CTRL);
+> +	flags = i2c_smbus_read_byte_data(client, NCT3018Y_REG_CTRL);
+>   	if (flags < 0) {
+>   		dev_dbg(&client->dev,
+>   			"Failed to read NCT3018Y_REG_CTRL\n");
+> @@ -109,8 +125,10 @@ static int nct3018y_get_alarm_mode(struct i2c_client *client, unsigned char *ala
+>   		*alarm_flag = flags & NCT3018Y_BIT_AF;
+>   	}
+>   
+> -	dev_dbg(&client->dev, "%s:alarm_enable:%x alarm_flag:%x\n",
+> -		__func__, *alarm_enable, *alarm_flag);
+> +	if (alarm_enable && alarm_flag) {
+> +		dev_dbg(&client->dev, "%s:alarm_enable:%x alarm_flag:%x\n",
+> +			__func__, *alarm_enable, *alarm_flag);
+> +	}
+
+The two hunks look like unrelated fixes. It’d be great, if you factored 
+those out into a separate patch.
+
+>   
+>   	return 0;
+>   }
+> @@ -178,7 +196,30 @@ static int nct3018y_rtc_set_time(struct device *dev, struct rtc_time *tm)
+>   {
+>   	struct i2c_client *client = to_i2c_client(dev);
+>   	unsigned char buf[4] = {0};
+> -	int err;
+> +	int err, part_num, flags, restore_flags = 0;
+
+Why is err now initialized to 0?
+
+> +	part_num = i2c_smbus_read_byte_data(client, NCT3018Y_REG_PART);
+> +	if (part_num < 0) {
+> +		dev_dbg(&client->dev, "%s: read error\n", __func__);
+> +		return part_num;
+> +	}
+> +
+> +	flags = i2c_smbus_read_byte_data(client, NCT3018Y_REG_CTRL);
+> +	if (flags < 0) {
+> +		dev_dbg(&client->dev, "%s: read error\n", __func__);
+
+Could you make these distinct error messages, so users are able to 
+pinpoint the correct location right away? (Or does `dev_dbg` already 
+provide that information? Maybe the line? (Also more cases below.)
+
+> +		return flags;
+> +	}
+> +
+> +	/* Check and set TWO bit */
+> +	if ((part_num & NCT3018Y_REG_PART_NCT3018Y) && !(flags & NCT3018Y_BIT_TWO)) {
+> +		restore_flags = 1;
+> +		flags |= NCT3018Y_BIT_TWO;
+> +		err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_CTRL, flags);
+> +		if (err < 0) {
+> +			dev_dbg(&client->dev, "Unable to write NCT3018Y_REG_CTRL\n");
+> +			return err;
+> +		}
+> +	}
+>   
+>   	buf[0] = bin2bcd(tm->tm_sec);
+>   	err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_SC, buf[0]);
+> @@ -212,6 +253,18 @@ static int nct3018y_rtc_set_time(struct device *dev, struct rtc_time *tm)
+>   		return -EIO;
+>   	}
+>   
+> +	/* Restore TWO bit */
+> +	if (restore_flags) {
+> +		if (part_num & NCT3018Y_REG_PART_NCT3018Y)
+> +			flags &= ~NCT3018Y_BIT_TWO;
+> +
+> +		err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_CTRL, flags);
+> +		if (err < 0) {
+> +			dev_dbg(&client->dev, "Unable to write NCT3018Y_REG_CTRL\n");
+> +			return err;
+> +		}
+> +	}
+> +
+>   	return err;
+>   }
+>   
+> @@ -456,6 +509,7 @@ static int nct3018y_probe(struct i2c_client *client)
+>   {
+>   	struct nct3018y *nct3018y;
+>   	int err, flags;
+> +	const struct rtc_data *data = of_device_get_match_data(&client->dev);
+>   
+>   	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+>   				     I2C_FUNC_SMBUS_BYTE |
+> @@ -479,11 +533,24 @@ static int nct3018y_probe(struct i2c_client *client)
+>   		dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is set\n", __func__);
+>   	}
+>   
+> -	flags = NCT3018Y_BIT_TWO;
+> -	err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_CTRL, flags);
+> -	if (err < 0) {
+> -		dev_dbg(&client->dev, "Unable to write NCT3018Y_REG_CTRL\n");
+> -		return err;
+> +	flags = i2c_smbus_read_byte_data(client, NCT3018Y_REG_PART);
+> +	if (flags < 0) {
+> +		dev_dbg(&client->dev, "%s: read error\n", __func__);
+> +		return flags;
+> +	} else if (flags & NCT3018Y_REG_PART_NCT3018Y) {
+> +		if (!(flags & data->part_number))
+> +			dev_warn(&client->dev, "%s: part_num=0x%x but NCT3018Y_REG_PART=0x%x\n",
+> +				 __func__, data->part_number, flags);
+> +		flags = NCT3018Y_BIT_HF;
+> +		err = i2c_smbus_write_byte_data(client, NCT3018Y_REG_CTRL, flags);
+> +		if (err < 0) {
+> +			dev_dbg(&client->dev, "Unable to write NCT3018Y_REG_CTRL\n");
+> +			return err;
+> +		}
+> +	} else if (flags & NCT3018Y_REG_PART_NCT3015Y) {
+> +		if (!(flags & data->part_number))
+> +			dev_warn(&client->dev, "%s: part_num=0x%x but NCT3018Y_REG_PART=0x%x\n",
+> +				 __func__, data->part_number, flags);
+>   	}
+>   
+>   	flags = 0;
+> @@ -530,7 +597,8 @@ static const struct i2c_device_id nct3018y_id[] = {
+>   MODULE_DEVICE_TABLE(i2c, nct3018y_id);
+>   
+>   static const struct of_device_id nct3018y_of_match[] = {
+> -	{ .compatible = "nuvoton,nct3018y" },
+> +	{ .compatible = "nuvoton,nct3015y", .data = &nct3015y_rtc_data },
+> +	{ .compatible = "nuvoton,nct3018y", .data = &nct3018y_rtc_data },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, nct3018y_of_match);
+
+
+Kind regards,
+
+Paul
