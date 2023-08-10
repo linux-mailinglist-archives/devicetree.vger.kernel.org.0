@@ -2,98 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39771777340
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D15F7777354
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232071AbjHJIp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 04:45:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55472 "EHLO
+        id S234353AbjHJIu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 04:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjHJIp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:45:29 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9866310DC
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:45:28 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-583d63ca1e9so8752337b3.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:45:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691657128; x=1692261928;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3Sobyis6t/R9sKnFYmx7TDgwyuIiNudrJSBXTDXZMwo=;
-        b=VlZuVlbUmONl2nkJGvkahoLFEwSHucZ7BnipcqcOmM4JqUT9j+0kxaoyxQypkb+CQv
-         eR/J7+BNoab/L0FjYtSTd0l5XtJO3LY9J0HBgN4xMg0nuBKJ3zqmt68qbyql95NgP84t
-         dFhQJ1Wa7KxdzjlSqUkt8EaGH4ZJEKTFD+UPZyBTc36BZncX7n7yqfYD3+Mq4DWHK+kg
-         h10v6R4UEdvLXOivR+kcov0UFC+HaKdFhJSu5rAWlzPAzP1nBRptSZ5z/ciK6ZaTjOKU
-         ujvPl5ImgIkLo774dRDRh25HsCksDGQKCxPUJVgi9TNYhhShpACTwGuIN5rVshdzt8Ha
-         TKCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691657128; x=1692261928;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3Sobyis6t/R9sKnFYmx7TDgwyuIiNudrJSBXTDXZMwo=;
-        b=THjJ3Huu712aHb6APlsLfgFefqCdXYddtGP+qvj4yfFF5U8bvvD8MiMAE8rQJybYzM
-         KueMmY5VqP2kL1XDLmauhTCaKg4Zm6d3obu0+/fiktCkXkPmRA8wLI/UraVlyEfzENOB
-         /fTotzYaR2rXYCCZcHR1R7ylJObehOm3KPyGRzNI7T8u2nb/j/XxEiitT7MVqOMjj4Wg
-         dq7kwmjnu58Vw9bhGo7VEdRw+xiT2hUW7hYHcpeJotjPK4hjstbo1bJwHgr58oBt+2gZ
-         jQXBWQSHAJytwjdaqLqTi96Og90NQAv6CFgX2whT3LFW8Olszi3krRTvL9W2SEOq8J5a
-         qYyQ==
-X-Gm-Message-State: AOJu0YyTgNrb8KvD9SsW9YS4jBg6WxGw6uTg+YeBkkug2NPODgv+qQmN
-        YqOugHouaQ3z3hvxPr0M0ZiLz1divnu1OtJNTFI+KQ==
-X-Google-Smtp-Source: AGHT+IHQ1unvxDGigiQbvzdOZNWO1ksYbPirN6hLyDuLLbiH/nFAkQfiYa6HvqP4XciYPDM6NdMAgbOt4WeJSWmCYog=
-X-Received: by 2002:a5b:646:0:b0:d62:b8f5:1041 with SMTP id
- o6-20020a5b0646000000b00d62b8f51041mr1686017ybq.18.1691657127829; Thu, 10 Aug
- 2023 01:45:27 -0700 (PDT)
+        with ESMTP id S234362AbjHJIu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:50:56 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD6C1BFA;
+        Thu, 10 Aug 2023 01:50:53 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A8ok8G128275;
+        Thu, 10 Aug 2023 03:50:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691657446;
+        bh=AzLw+SP4ZFWnoyRGCB0Quzt/PCUuPmKW8aZqzcIQz4o=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=SJ3yJh8QuasnBXs0qgwSD++x6s+Nn8ybYdqO60+4VBv70rcmIJKO0rmy/H5uYQqGH
+         QoE+3Uoly5GfqeZhEMCH2ISdrobAcxI2XxZjk2S+wJlFmDXyl36sWQRi8Jw/I3nTcp
+         5O0/oObTjtuePHsbewLV+6CF2TecQSS/kHU7XlLw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A8okvO015544
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 03:50:46 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 03:50:45 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 03:50:45 -0500
+Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A8oeeM028140;
+        Thu, 10 Aug 2023 03:50:41 -0500
+Message-ID: <5ec8b817-e63f-3d76-894d-8af4f4e880db@ti.com>
+Date:   Thu, 10 Aug 2023 14:20:37 +0530
 MIME-Version: 1.0
-References: <CACRpkdY02BbfkxSbyb5U+B29CYyNrhxtSADinYmYJ+ZCM04bjQ@mail.gmail.com>
- <20230809071738.2359532-1-mwalle@kernel.org>
-In-Reply-To: <20230809071738.2359532-1-mwalle@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 10 Aug 2023 10:45:16 +0200
-Message-ID: <CACRpkdbYZRG-KrURmzxrU4j6iPUkSZ=zTkuvMounGF3XqvQ1mw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] gpio: ds4520: Add ADI DS4520 GPIO Expander Support
-To:     Michael Walle <mwalle@kernel.org>
-Cc:     brgl@bgdev.pl, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, okan.sahin@analog.com,
-        robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j721e: Enable C7x DSP nodes at the
+ board level
+To:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230809180145.53158-1-afd@ti.com>
+Content-Language: en-US
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230809180145.53158-1-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 9, 2023 at 9:19=E2=80=AFAM Michael Walle <mwalle@kernel.org> wr=
-ote:
-> > On Thu, Jul 27, 2023 at 11:55=3DE2=3D80=3DAFAM Okan Sahin <okan.sahin@a=
-nalog.com>=3D
-> >  wrote:
-> >
-> >> The DS4520 is a 9-bit nonvolatile (NV) I/O expander.
-> >> It offers users a digitally programmable alternative
-> >> to hardware jumpers and mechanical switches that are
-> >> being used to control digital logic node.
-> >>
-> >> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> >
-> > Too late to add review tags but just pointing out what a beauty
-> > this driver is when using regmap GPIO. Total success!
->
-> Mh somehow I'm always missing consumers of regmap GPIO.
->
-> Linus, Bartosz, what do you think about the patch below?
-(...)
-> +K:     (devm_)?gpio_regmap_(un)?register
+Thanks Andrew
 
-I never saw that globbing trick before, but makes perfect sense so:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+On 8/9/2023 11:31 PM, Andrew Davis wrote:
+> C7x DSP nodes defined in the top-level J721e SoC dtsi files are incomplete
+> and will not be functional unless they are extended with both mboxes and
+> memory-region information.
+>
+> As theses only known about at the board integration level, these nodes
+> should only be enabled when provided with this information.
+>
+> Disable the C7x DSP nodes in the dtsi files and only enable the ones that
+> are given the required mboxes and memory-region on a given board.
+>
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 1 +
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 1 +
+>   arch/arm64/boot/dts/ti/k3-j721e-sk.dts             | 1 +
+>   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi        | 1 +
+>   4 files changed, 4 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> index 66aac145e7530..d1235e7c786d6 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> @@ -1024,6 +1024,7 @@ &c66_1 {
+>   };
+>   
+>   &c71_0 {
+> +	status = "okay";
+>   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
+>   	memory-region = <&c71_0_dma_memory_region>,
+>   			<&c71_0_memory_region>;
 
-Yours,
-Linus Walleij
+Series tested on J721E, J784S4 platforms
+
+However I need to apply 
+https://lore.kernel.org/linux-iommu/0-v2-d2762acaf50a+16d-iommu_group_locking2_jgg@nvidia.com/ 
+patch
+
+
+Tested-by: Udit Kumar <u-kumar1@ti.com>
+
+https://gist.github.com/uditkumarti/b6320a06fadaaaf174fc0431949f11e1
+
+
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 3acd55ffd4ffc..1aeb97b42b34b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -2134,6 +2134,7 @@ c71_0: dsp@64800000 {
+>   		ti,sci-proc-ids = <0x30 0xff>;
+>   		resets = <&k3_reset 15 1>;
+>   		firmware-name = "j7-c71_0-fw";
+> +		status = "disabled";
+>   	};
+>   
+>   	icssg0: icssg@b000000 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> index 0ee4f38ec8f03..377588ba30998 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> @@ -1110,6 +1110,7 @@ &c66_1 {
+>   };
+>   
+>   &c71_0 {
+> +	status = "okay";
+>   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
+>   	memory-region = <&c71_0_dma_memory_region>,
+>   			<&c71_0_memory_region>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> index e90e43202546e..3c31ab57e959c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -436,6 +436,7 @@ &c66_1 {
+>   };
+>   
+>   &c71_0 {
+> +	status = "okay";
+>   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
+>   	memory-region = <&c71_0_dma_memory_region>,
+>   			<&c71_0_memory_region>;
