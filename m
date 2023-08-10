@@ -2,111 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB16C777FE5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 20:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1394A778023
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 20:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232289AbjHJSDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 14:03:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
+        id S234788AbjHJSVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 14:21:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235314AbjHJSDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 14:03:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117B02724;
-        Thu, 10 Aug 2023 11:02:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A3A5C6659D;
-        Thu, 10 Aug 2023 18:02:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EE7C433C7;
-        Thu, 10 Aug 2023 18:02:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691690577;
-        bh=Y5NbfTzNtvATG9GxZM1Qw0F5nvZfv1HtLDJ4xkBt2hQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A/YtgsbUK1wEI/m3j+lbTimnm7LKRJA1RywxB47qQiteMKMuxx3i5Hxz5wtM7hmBq
-         gQWNrwf4B/Z3ZTRm6ZdGvpAAHWJuaXjOCXa7N55mL0wtFPvP/ylhqrvMtkqUIMM/JV
-         zgJ30nRuhI4FS9CyjrmqcotVV6h78rgZPOlvHBAGXY41sG42h1oPf7apyqzwbd/rW2
-         2DxJ/u6e3Yu352ECVCo6etxNwrv9NevlS4G0Vl+in1lmuYoXwsSn104EnGHeM4NYM/
-         qrrmX/A1z0Ldu57/+cFQMKtZrQcnYCql4+G+6tmwkWM9V/LrtDLM93ewblFGf3R6NI
-         eb/pN+7Q+2OGQ==
-Date:   Thu, 10 Aug 2023 19:02:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S232062AbjHJSVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 14:21:47 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430E52123;
+        Thu, 10 Aug 2023 11:21:47 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37AI93Eh026442;
+        Thu, 10 Aug 2023 18:20:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ukrqfV2YUvYfMWjhzsjdbKVW5b+Mds/+5rEtr/ovKWY=;
+ b=bhb/Je+mXjgiLM7esjYip9LGHiYRTLsn8dpM2C/Tk4XL0I6P5INhr/dIqi9qhS9/jULe
+ Oo8WXng8vYQZv8dtA4Sd9pJu+p7vLDEzcPnz4xQaBoid9VF9n48197DIU5b2DG+kIUMh
+ VpRcyoaUeFu5foCgbSnErBjfD41rMwYgIMkAqvZb4YNetdLKvETJsjFtynb5hfgNgK/x
+ Aq9Enk69dFP0LWNIquFAF3kaKG99LywiiSTDmNR5dhcP4t23MyY/Up+mmLpEaXYowkjq
+ 0yYU1uAAUnMxXCBcZKGV9GJzKSaymbOcwoaokXB1QiEaNG8i91DAftTt9/DGTKeq2Bci mA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sd4wer0td-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 18:20:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37AIKkal025174
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 18:20:46 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 10 Aug
+ 2023 11:20:44 -0700
+Message-ID: <23575f97-332b-0392-fc20-0a52775d03b9@quicinc.com>
+Date:   Thu, 10 Aug 2023 12:20:43 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v3 5/6] clk: qcom: mmcc-msm8998: Fix the SMMU GDSC
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        kernel@puri.sm, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        David Heidelberg <david@ixit.cz>,
-        Sherry Sun <sherry.sun@nxp.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: sound: gtm601: Add description
-Message-ID: <582be994-d3c8-4edf-9028-99b18505e378@sirena.org.uk>
-References: <cover.1691684726.git.agx@sigxcpu.org>
- <6904cc6d877d28d92e9f9fa9f1bdc404614d9734.1691684726.git.agx@sigxcpu.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="GODGWzgiFfPQfLkj"
-Content-Disposition: inline
-In-Reply-To: <6904cc6d877d28d92e9f9fa9f1bdc404614d9734.1691684726.git.agx@sigxcpu.org>
-X-Cookie: Reunite Gondwondaland!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Imran Khan <kimran@codeaurora.org>,
+        "Rajendra Nayak" <quic_rjendra@quicinc.com>,
+        Joonwoo Park <joonwoop@codeaurora.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "Joerg Roedel" <joro@8bytes.org>
+CC:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>
+References: <20230531-topic-8998_mmssclk-v3-0-ba1b1fd9ee75@linaro.org>
+ <20230531-topic-8998_mmssclk-v3-5-ba1b1fd9ee75@linaro.org>
+From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20230531-topic-8998_mmssclk-v3-5-ba1b1fd9ee75@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: mMM1gaGwCQBYLNlAqVSkrpOzJ6YJuJ3q
+X-Proofpoint-GUID: mMM1gaGwCQBYLNlAqVSkrpOzJ6YJuJ3q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_14,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ lowpriorityscore=0 mlxlogscore=867 phishscore=0 bulkscore=0 mlxscore=0
+ spamscore=0 suspectscore=0 adultscore=0 priorityscore=1501 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308100158
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 8/9/2023 1:20 PM, Konrad Dybcio wrote:
+> The SMMU GDSC doesn't have to be ALWAYS-ON and shouldn't feature the
+> HW_CTRL flag (it's separate from hw_ctrl_addr).  In addition to that,
+> it should feature a cxc entry for bimc_smmu_axi_clk and be marked as
+> votable.
 
---GODGWzgiFfPQfLkj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I appear to have confused HW_CTRL with hw_ctrl_addr.  Thanks for fixing 
+that.
 
-On Thu, Aug 10, 2023 at 07:59:49PM +0200, Guido G=FCnther wrote:
-> This allows to us to document the channel and sampling
-> rate requirements.
+I recall I made it always-on for display handoff.  The bootloader on the 
+laptops will enable the display, which means the MDP is active and using 
+the SMMU.  The SMMU is powered by the GDSC as you know.  The MDP is 
+going to be polling a framebuffer in DDR, which EFI services (efifb) is 
+going to be updating.  All of this is active during linux boot, which is 
+how the kernel bootlog gets printed on screen.
 
-Please do not submit new versions of already applied patches, please
-submit incremental updates to the existing code.  Modifying existing
-commits creates problems for other users building on top of those
-commits so it's best practice to only change pubished git commits if
-absolutely essential.
+If I remember right, the GDSC will be registered.  When it is done 
+probing, there will be no consumers.  So the Linux framework will step 
+in and turn it off before the consumers come up.  This kills power to 
+the SMMU.  If the SMMU doesn't come back on before the MDP polls DDR 
+again, you get a bus hang and a crash.
 
---GODGWzgiFfPQfLkj
-Content-Type: application/pgp-signature; name="signature.asc"
+I assumed that any msm8998 device would be using the MDP/GPU and thus 
+the SMMU would pretty much always be powered on.
 
------BEGIN PGP SIGNATURE-----
+I expected this patch to break the laptop.  It does not in my testing. 
+However, I see that I disabled the MMCC node in DT with a todo about the 
+display.  So the GDSC is never registered, and then never gets turned 
+off.  I believe that todo is pending some updates I need to make to the 
+TI DSI/eDP bridge because the I2C port on the bridge is not wired up.  I 
+should really dust that off and complete it.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTVJkcACgkQJNaLcl1U
-h9CWgQf9E1fK+h8U4tglO2QBYdincfV5U+VibIuT+X3R6d04Ld31bt4zcsOebMv6
-fsAbpoGJOrIqB63vKIGaOO3UvhUzmzR3IjzgzHf6J9a2oQm8G59+qayWuwpx8VZ3
-ttWsCsjjJU7ZILOFmfZf2zIBnipw8Ze+dlyT9qzm7W9B0CPW1FEnD6jiklT/o6YP
-ekdGU7vZA2Yap/nLhfDlLFQN5dh1UC0kuSOx/uScsanGSMtYN/WqsQHdCNsPCX0s
-v4BwnIIX+KJcOwFIJ7Ye3YaOUBWanxVI2iWXZCZ0xX1bFOeUVyZRKtKDNGyUSb4p
-jPICdMQVJ1M1b/QOehMvuvGkkbGTJg==
-=ie9k
------END PGP SIGNATURE-----
+Regardless, even with the todo addressed, I think removing always-on 
+will still break the laptops unless the bootloader handoff of display 
+was solved and I missed it.
 
---GODGWzgiFfPQfLkj--
+I get that for your usecase, a phone where the bootloader does not init 
+the display, always-on has the potential to burn extra power.  I'm not 
+sure how to make both of us happy through.
+
+Do you have any suggestions?
+
+> 
+> Fix all of these issues.
+> 
+> Fixes: d14b15b5931c ("clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/clk/qcom/mmcc-msm8998.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/qcom/mmcc-msm8998.c b/drivers/clk/qcom/mmcc-msm8998.c
+> index d0a5440e2291..4fdc41e7d2a8 100644
+> --- a/drivers/clk/qcom/mmcc-msm8998.c
+> +++ b/drivers/clk/qcom/mmcc-msm8998.c
+> @@ -2627,11 +2627,13 @@ static struct gdsc camss_cpp_gdsc = {
+>   static struct gdsc bimc_smmu_gdsc = {
+>   	.gdscr = 0xe020,
+>   	.gds_hw_ctrl = 0xe024,
+> +	.cxcs = (unsigned int []){ 0xe008 },
+> +	.cxc_count = 1,
+>   	.pd = {
+>   		.name = "bimc_smmu",
+>   	},
+>   	.pwrsts = PWRSTS_OFF_ON,
+> -	.flags = HW_CTRL | ALWAYS_ON,
+> +	.flags = VOTABLE,
+>   };
+>   
+>   static struct clk_regmap *mmcc_msm8998_clocks[] = {
+> 
+
