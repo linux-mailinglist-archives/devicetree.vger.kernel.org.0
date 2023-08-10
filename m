@@ -2,104 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA99777978
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 15:22:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59833777985
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 15:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234123AbjHJNWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 09:22:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57322 "EHLO
+        id S234305AbjHJN0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 09:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235244AbjHJNWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 09:22:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6F71703;
-        Thu, 10 Aug 2023 06:21:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 12F8664A2A;
-        Thu, 10 Aug 2023 13:21:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69963C433C7;
-        Thu, 10 Aug 2023 13:21:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691673715;
-        bh=3FGd5iLaspzTip2vzsXav1OxSBEUVMbyCh2/1tfzB58=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=C1gP2ldUyUalJN2465Mi+R5Rj/LgCKExYE2+Q49pwsj6qOB012wORn9+raXk7CFiU
-         58kYWysUcun2+oshKP+r6XJ8SQRKkkiPrC3ZRtsvU8G2RydUjVz7wV4MSfhqQ08/+1
-         jwBSeraasrqpNfZSzx3ct7l/yYrnGEIN0LIqpGlfTXanb0jmwQGXZ3kY/8QdJk1aTF
-         ad6w6s8e9z5OIHiSvixgTH8CIJCBQ71fqhpkHOkVDK6CgQ563L0bnB9UFxwqNyEQvN
-         2zcTTI4tMBfyCQvR/6DqR/DoO5iodfiEmZPsNz9/6g7wvhr4HkzsFgpm1hH8L+st4x
-         +Ol1+y8cCuhiw==
-Received: (nullmailer pid 249906 invoked by uid 1000);
-        Thu, 10 Aug 2023 13:21:53 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S233560AbjHJN0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 09:26:36 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B1F26A9
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:26:36 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fe389d6f19so1344458e87.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:26:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691673994; x=1692278794;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rh3ntjuJiL8gvbIjeXRIgcdbsWhGebp7qL5EIN/PMCc=;
+        b=dYLOJegwFRiYldA191vTjts56o+UbbryeM6fx7R1IazqZnQZm4tdAU+5CRfUGvHnNE
+         J/Ffms2AU2AR7qiXumDknLPzghQJTMauLajJkjPbLvjWq7OYre8Es5rU6lc+UcvT64bH
+         o0W/oIbzddH4HEccF2/jXsEF80DSYXjbOiqllSXxnrBTK0FdByHofkY6UcgupwzupZ54
+         jwbOEFSDDUoajA7p0KRj6ifDujz43XW3K2DIOiuCqjS+Pg+L52f+1cOt0AA/IERKRAdV
+         WP1koT9/OmWa8XyGEeH7h3FobB6qpA33bceGiFNgta+PU6zCaFeKzGcMcphtBsAP45/i
+         jS2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691673994; x=1692278794;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rh3ntjuJiL8gvbIjeXRIgcdbsWhGebp7qL5EIN/PMCc=;
+        b=PRvitaNgCut/wmFxU4eyq43fCn1519s8wNHi72hVnO3gQoMswom1Xccpg9g9AOqsh/
+         mcnETrGEwj1+7Vgxo4tn2UbmO/O5e1Nz7T5akI1uMLV23o9/gNCc7i3UaXBEqPEFKSVG
+         NfgmLJ2zZ2ED5UeAlaPsst0jHjkFNQxp4CAcoB85UOyqG3Qn0ijkCErH29kp5LqOQElj
+         3/vZXgSyAzM3ty/0lWzON7w/bBsiuDGkZAK1oH2G6tKrSdNjgkcdbkiYUGkeIaIuobF+
+         mRJjBMkzskeFSWhELuPp42Yk5krNik82oey6EsfV6e6If27lSTIGuVI+LCppphJD4Z3n
+         V79w==
+X-Gm-Message-State: AOJu0YxTqDzlV2VYttWVhLV8gOePQ5zn01TP2OIuDrAk1Chz+CMusd5l
+        OuzZWwY+hyho9DiNyk4tVA+7+w==
+X-Google-Smtp-Source: AGHT+IHD1nJireRnw86bmmFeRAJKPt+F4pAvg1U1FkLD9w0LKXU50J/4cyFfLT4joHK2r41fuNDMEw==
+X-Received: by 2002:a05:6512:20c6:b0:4f8:74b5:b4ec with SMTP id u6-20020a05651220c600b004f874b5b4ecmr2067339lfr.41.1691673994352;
+        Thu, 10 Aug 2023 06:26:34 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id c27-20020ac244bb000000b004fb85ffc82csm286637lfm.10.2023.08.10.06.26.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 06:26:33 -0700 (PDT)
+Message-ID: <b5b0dafe-7864-4b00-ba2a-9a82de04f44b@linaro.org>
+Date:   Thu, 10 Aug 2023 15:26:27 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-        lpieralisi@kernel.org, michal.simek@amd.com,
-        linux-pci@vger.kernel.org, bharat.kumar.gogada@amd.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        bhelgaas@google.com, devicetree@vger.kernel.org,
-        conor+dt@kernel.org
-In-Reply-To: <20230810122002.133531-3-thippeswamy.havalige@amd.com>
-References: <20230810122002.133531-1-thippeswamy.havalige@amd.com>
- <20230810122002.133531-3-thippeswamy.havalige@amd.com>
-Message-Id: <169167371324.249877.9344349772495865636.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: xilinx-nwl: Modify ECAM size
- in example
-Date:   Thu, 10 Aug 2023 07:21:53 -0600
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/9] arm64: dts: qcom: sa8775p-ride: sort aliases
+ alphabetically
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andrew Halaney <ahalaney@redhat.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230810080909.6259-1-brgl@bgdev.pl>
+ <20230810080909.6259-8-brgl@bgdev.pl>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230810080909.6259-8-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 10 Aug 2023 17:50:01 +0530, Thippeswamy Havalige wrote:
-> Update ECAM size in example to discover up to 256 buses.
+On 10.08.2023 10:09, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
-> ---
-> changes in v2:
-> None.
-> changes in v1:
-> None.
-> ---
->  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> For improved readability order the aliases alphabetically for
+> sa8775p-ride.
 > 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810122002.133531-3-thippeswamy.havalige@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Konrad
