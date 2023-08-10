@@ -2,188 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A5E37778D7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 410EE7778DB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235392AbjHJMx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 08:53:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55098 "EHLO
+        id S234269AbjHJMxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 08:53:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233199AbjHJMx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:53:27 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6748026A8;
-        Thu, 10 Aug 2023 05:53:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1691672006; x=1723208006;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mJ+/b00F9kPexO4v/gdgxth24IwvwYtglje3VG8O1nU=;
-  b=ycsRBXovdMOTzEo334IVqLnJ9Z9f8t9kPKsD0boEGnm2ZeihMr1y9OaX
-   381MolbPiH8q3S8xZh7pNzuVwVaFziSjWmUH0G5FQJALXiSg+GJLfi+wN
-   3kIJSiV7Aob5uh0nfJyiOkSX1p9TMR0XgBuWhrdXgCY/vGn32NLNWz6jE
-   4WnjEXNhtrUr8dNuCBb+2lE8yS6NC0LVBEwVT27DpJylmzYEfGtH/nyyN
-   3vU/8Im9KxY8P12CQxWxAlD7N6oFtNP1TuOHh9swcB1ATgnMOZii8PQYE
-   5pnL99tvYIFpNEZ/ZwkiByUqdZo/3VJBqbwk4VMK9FvDAtQHN72I6gRj5
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
-   d="asc'?scan'208";a="229166856"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2023 05:53:24 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 10 Aug 2023 05:52:53 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 10 Aug 2023 05:52:49 -0700
-Date:   Thu, 10 Aug 2023 13:52:11 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Md Danish Anwar <a0501179@ti.com>
-CC:     Conor Dooley <conor@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
+        with ESMTP id S233199AbjHJMxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:53:51 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB6F2698;
+        Thu, 10 Aug 2023 05:53:49 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37ACrRub048755;
+        Thu, 10 Aug 2023 07:53:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691672007;
+        bh=uYZTDKeU4rsKqk+u8ek7UbQLVm8hR2nUi3uxOCTh2hk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=kX7GRbrD+5zRm5zUc3Yi0QiZgUVjtXylr+atGu4O2uN0uj3Y03YFgAjKg7gRdPUjN
+         Tp1PbcqNQ62lHkts5PN9B4Qjwijow8KO59kkhAS9kC22YNE9lkngf7CHxuISNH3vLG
+         KVv/cWTCTAtDandZVhcX6zrAx9yNjonEjgLpWyAs=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37ACrRC3129971
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 07:53:27 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 07:53:27 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 07:53:27 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37ACrR3l130327;
+        Thu, 10 Aug 2023 07:53:27 -0500
+Date:   Thu, 10 Aug 2023 07:53:27 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     "Kumar, Udit" <u-kumar1@ti.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXTERNAL] Re: [PATCH v3 1/5] dt-bindings: net: Add ICSS IEP
-Message-ID: <20230810-drippy-draw-8e8a63164e46@wendy>
-References: <20230809114906.21866-1-danishanwar@ti.com>
- <20230809114906.21866-2-danishanwar@ti.com>
- <20230809-cardboard-falsify-6cc9c09d8577@spud>
- <0b619ec5-9a86-a449-e8db-b12cca115b93@ti.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rafael J Wysocki <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, Keerthy J <j-keerthy@ti.com>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j7200: Add the supported
+ frequencies for A72
+Message-ID: <20230810125327.pq2fxda7dpv2qf7t@seizing>
+References: <20230809173905.1844132-1-a-nandan@ti.com>
+ <20230809173905.1844132-3-a-nandan@ti.com>
+ <20230809190943.unpcbrinyn5ppei7@hydrated>
+ <ab69c4df-708f-8fff-a58b-a6531e15627b@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="diS/Ua0hOZdswhas"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <0b619ec5-9a86-a449-e8db-b12cca115b93@ti.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ab69c4df-708f-8fff-a58b-a6531e15627b@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---diS/Ua0hOZdswhas
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 17:23-20230810, Kumar, Udit wrote:
+[..]
+> > > +		opp1-750000000 {
+> > > +			opp-hz = /bits/ 64 <750000000>;
+> > >   		};
+> > >   	};
+> > > -- 
+> > > 2.34.1
+> > > 
+> > Are you sure this is correct to enable all OPPs without efuse bit checks?
+> > 
+> > https://www.ti.com/lit/ds/symlink/dra821u-q1.pdf
+> > 7.5 Operating Performance Points
+> > DRA821xC operates only upto 750MHz
+> > DRA821xE at 1GHz
+> > DRA821xL upto 1.5GHz and
+> > DRA821xT upto 2GHz
+> 
+> Looks, top SKUs is considered here .
+> 
+> After detecting which SKU we are running (I hope TRM should have this
+> information- through efuse or some other register)
+> 
+> I think, we can follow two approaches.
 
-On Thu, Aug 10, 2023 at 03:23:11PM +0530, Md Danish Anwar wrote:
-> On 10/08/23 3:07 am, Conor Dooley wrote:
-> > On Wed, Aug 09, 2023 at 05:19:02PM +0530, MD Danish Anwar wrote:
-> >> Add DT binding documentation for ICSS IEP module.
-> >>
-> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> >> ---
-> >>  .../devicetree/bindings/net/ti,icss-iep.yaml  | 37 +++++++++++++++++++
-> >>  1 file changed, 37 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.=
-yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/=
-Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> >> new file mode 100644
-> >> index 000000000000..adae240cfd53
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> >> @@ -0,0 +1,37 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/net/ti,icss-iep.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Texas Instruments ICSS Industrial Ethernet Peripheral (IEP) mo=
-dule
-> >=20
-> > Does the module here refer to the hw component or to the linux kernel
-> > module?
-> >=20
->=20
-> The module here refers to the hardware component.
+Both of these are wrong approaches.
 
-Sweet, thanks.
+> 
+> 1) have OPP table for each SKU and select based SKUs type or
 
-> >> +
-> >> +maintainers:
-> >> +  - Md Danish Anwar <danishanwar@ti.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - ti,am654-icss-iep   # for all TI K3 SoCs
-> >=20
-> > *sigh* Please at least give me a chance to reply to the conversation on
-> > the previous versions of the series before sending more, that's the
-> > second time with this series :/
->=20
-> My bad, I should have waited for your response. I will hold on posting ne=
-xt
-> version until your response is received.
->=20
-> > Right now this looks worse to me than what we started with given the
-> > comment is even broader. I have not changed my mind re: what I said on
-> > the previous version.
-> >=20
->=20
-> OK, so in the previous version [1] your reply was to have specific compat=
-ibles
-> as bindings with "ti-am654-icss-iep" as a fall back. I will go with this =
-only.
->=20
-> Does the below looks good to you? Here "ti,am642-icss-iep" and
-> "ti,j721e-icss-iep" are different compatibles for different SoCs where as
-> "ti,am654-icss-iep" is the fall back. Compatible "ti,am654-icss-iep" will=
- go in
-> the driver.
->=20
-> properties:
->   compatible:
->     oneOf:
->       - items:
->           - enum:
->               - ti,am642-icss-iep
->               - ti,j721e-icss-iep
->           - const: ti,am654-icss-iep
->=20
->       - items:
->           - const: ti,am654-icss-iep
+This proliferates cpu dtsi to make it hard to manage
 
-This one doesn't need to be an items list, since there is only one item.
-It should be able to just be const:. I much prefer this approach.
+> 
+> 2) Do run time fixup by u-boot based upon SKU type
 
-Thanks,
-Conor.
+This wont work:
 
---diS/Ua0hOZdswhas
-Content-Type: application/pgp-signature; name="signature.asc"
+a) in u-boot's falcon boot mode and puts unrelated responsibility to
+bootloader (u-boot is not the only bootloader in the party here).
+b) Further, the reason for doing the opp detection in the kernel is
+due to the severity of consequence of attempting to run a lower rated
+chip at higher frequency - PoH (Power on Hours) or physical damage can
+result.
+c) Finally, in a virtualized environment: TISCI will get DM (Device
+Manager) to arbitrate between the each of the VM's request, but if
+the VM's are'nt self sufficient, we will have DM making wrong choices
+resulting in (b) condition again.
 
------BEGIN PGP SIGNATURE-----
+This is the reason why drivers/cpufreq/ti-cpufreq.c exists and all SoCs
+that have OPPs from TI is handled in the kernel itself.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNTdewAKCRB4tDGHoIJi
-0iMoAQCDOBl0Qa9rDfRGu4AnjpAIUepfbUnc63ThpYDzbWaJ+wD/e5Y5S1Ae5ZBa
-5xbzDkOAnzsbPwqtnhkcByShucEghg4=
-=yxL7
------END PGP SIGNATURE-----
-
---diS/Ua0hOZdswhas--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
