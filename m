@@ -2,94 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 330B07771F6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E97777205
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233136AbjHJH4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 03:56:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39948 "EHLO
+        id S231608AbjHJICQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 04:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjHJH4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:56:18 -0400
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D48AE4D;
-        Thu, 10 Aug 2023 00:56:17 -0700 (PDT)
-Received: from [192.168.0.2] (unknown [95.91.208.105])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 028F961E5FE04;
-        Thu, 10 Aug 2023 09:55:30 +0200 (CEST)
-Message-ID: <d23de35f-8d55-4f80-a6ce-281f83fd4243@molgen.mpg.de>
-Date:   Thu, 10 Aug 2023 09:55:29 +0200
+        with ESMTP id S231470AbjHJICP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:02:15 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D39E6B
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:02:15 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id 5614622812f47-3a412653335so471794b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:02:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691654534; x=1692259334;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RMKiJP9PwsAWvDuO6MkUcwKguB3RiOk5A4iPaJAWueQ=;
+        b=qEL5eGpx3R1tGDnwFwbzoOd17uJ974M4YHJNL9ecktLrW7gE2xzpRITpGmyw+K7r0h
+         X5jHgyLRc+kyZpRtNyJ/GK0opTjPFd/R6GdtXjXHz3xe+9y1hyUtDdIYGsJPaKphQJ2p
+         3fNLGBdEYV6jDXBo3a6rG7D9I04puqMP4IwsFr34BWWh2yMSlRFEKkvLjAx52FHxmRbW
+         OzUvkynWacCeFIi8URjbXP6xk7/JAQV9Wd/cClpwCMTHuHI6zBSSVlhieWObku/7Xaip
+         V41FUMA6V/c31pMaJabmUXHrZFZ4FflNWHNRW08+K2964Wxnt/Ha1STq6oucnJ7jIJRG
+         Xgxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691654534; x=1692259334;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RMKiJP9PwsAWvDuO6MkUcwKguB3RiOk5A4iPaJAWueQ=;
+        b=UANHvYuxEpLpXOOOvzgsyXJfbu+ccwuzJqVeb2Q/YHQjkeYJPLAzZOHH3X4Mt40Zad
+         SCxaG7wwTbbrc2KFbTO5TKMzQwwLKP7Ke1VL25n+ckc9UccNc1HQNFahA2ZRpJm/jWWW
+         59X51zQKVTFKbfR6d1BzMkY38Mwea3+mj/v82KfeGh60NRu5dSOST5SW/cDoObKzrlLK
+         wOyCYcB0KfrCCXPsZO/mD6A10kXmIv0XCsMqhDn2BQPuf5A8ZgxtPN6mk0WGTjMd1rO2
+         gvOoY2sxBOD5F2twp5Nis5/9TcX3kK10h3xopA2dC3HEymd2CVilqpUX+EgsIbSqh33g
+         XXNQ==
+X-Gm-Message-State: AOJu0Yxe4ltlea47FlCLQI9jlr+yIc9DDODs2DOg+frJxLJbEPj8L4tI
+        tsuIcZW9Q5W77Si21idyv0w1k5ouoejBKsztakcxEw==
+X-Google-Smtp-Source: AGHT+IG7LOqODLO4XzzBQe6xjH9VCYPGuG47m7VY+spU3s+lQHTx7nqOVDrJK/EgUZKq9lp5grUSW9v+4kD1trQ+qgI=
+X-Received: by 2002:a05:6808:4389:b0:3a7:1d15:28fe with SMTP id
+ dz9-20020a056808438900b003a71d1528femr1706802oib.56.1691654534562; Thu, 10
+ Aug 2023 01:02:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: nuvoton: Add DT compatible
-To:     Mia Lin <mimi05633@gmail.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        KFLIN@nuvoton.com, mylin1@nuvoton.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-References: <20230809095112.2836-1-mimi05633@gmail.com>
- <20230809095112.2836-2-mimi05633@gmail.com>
-Content-Language: en-US
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20230809095112.2836-2-mimi05633@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230726070353.103989-1-krzysztof.kozlowski@linaro.org> <20230726070353.103989-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230726070353.103989-3-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 10 Aug 2023 10:02:03 +0200
+Message-ID: <CACRpkdZXUEh2cCyWaNyMnBot40DHQa0O8LPHOB14hpk8sXRM9w@mail.gmail.com>
+Subject: Re: [PATCH 3/4] AMR: dts: st: ste: switch to enable-gpios
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Mia,
+On Wed, Jul 26, 2023 at 9:03=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
+> The recommended name for enable GPIOs property in regulator-gpio is
+> "enable-gpios".  This is also required by bindings:
+>
+>   ste-hrefv60plus-stuib.dtb: regulator-gpio: Unevaluated properties are n=
+ot allowed ('enable-gpio' was unexpected)
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thank you for your patch. It’d be great if you mentioned nct3015y in the 
-commit message summary/title. Maybe:
+Hm if the subject start turning ARM: dts: st: ste: on these I might
+need to consider
+to move the ste(ricsson) stuff out of dts/st, this series mixes up the Ux50=
+0 and
+st maintainers. I can deal with this one but if it confuses the scripts tha=
+t's
+not good.
 
-dt-bindings: rtc: Add compatible nct3015y to nuvoton,nct3018y
+Anyways, patch applied! (With subject fixed.)
 
-Am 09.08.23 um 11:51 schrieb Mia Lin:
-> Add DT compatible "nuvoton,nct3015y" to select
-
-What do you mean by “to select”?
-
-Also, maybe add how you tested this.
-
-> Signed-off-by: Mia Lin <mimi05633@gmail.com>
-> ---
->   Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml b/Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
-> index 4f9b5604acd9..67fc60fd395c 100644
-> --- a/Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
-> @@ -15,7 +15,9 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    const: nuvoton,nct3018y
-> +    enum:
-> +      - nuvoton,nct3018y
-> +      - nuvoton,nct3015y
-
-Would sorting the list be useful?
-
->     reg:
->       maxItems: 1
-
-
-Kind regards,
-
-Paul
+Yours,
+Linus Walleij
