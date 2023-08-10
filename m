@@ -2,169 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02088777000
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E80F5777006
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232895AbjHJGIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 02:08:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60310 "EHLO
+        id S233390AbjHJGMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 02:12:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbjHJGIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:08:36 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 626171736
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:08:35 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fe426b86a8so4746835e9.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:08:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691647714; x=1692252514;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p0e0j+mOVNXfmgbebLeeHV/YeTp0gFm+U8YnF+fvMcc=;
-        b=RmNLmcP1GXD4c6VBEl85jNdQDQy8g543rQHclmVF3pauFoY5RKczoniWQV8LzImfl0
-         b/OaZviYVCajRSZO44BklswKOLpq4veNGoD2XNz79qf8sTX6bSJr4wxany3Z/UGEWWfk
-         EhPzvdsD2onMx1c7k1egxXJBtqtOdI46+BCnIukHA0ZYHzjb6r7Gj+yBPl9O/T4/IlAg
-         7B+6UO8dTYG9dvPrBYo2cNRpPLnx9+RKCrvgv+luaH0D8ehJhvAOH2dIoyN+gRf8UXkv
-         hCAJIBAw8vIu2AVSSoH+iDCmSndMi8P2O4raDUsiFQnA3HsIL48rmjT/KRSpgQCfUbPr
-         gNRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691647714; x=1692252514;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p0e0j+mOVNXfmgbebLeeHV/YeTp0gFm+U8YnF+fvMcc=;
-        b=gr3RLxcjJeCPhlz1XBsA2n672WRL1SuUPTXeddTuw0uuXxylhsKN3Pmea/k0hqTkuZ
-         xQpNosoK7naHZdSczxifIVKbVc/l1ckM5dUeuqi69KBCtQrM68Jsi3gtCAQwLyG7RVZG
-         w9GwpdexsmRno0wYCHN87tUbBHY99SmmVx2xfi+kfxQbCGEu3iHjnoVRF2Gyd16VtE38
-         4J2Y2OM6alRPK1fDAwaNoL5ca8eE+x0vMANgH3W1vZcSTNmxSxQ4A8glHvDbt3fy/ayi
-         rTQxiTPYQAkC/wKBFNgj7R5gRuvD0nrODZYth2u1JMFapj+MARC/dQAd7pspb7TQ4LrS
-         e60w==
-X-Gm-Message-State: AOJu0Yz5rLWB85Lr6JVZCZF+0xHK8rMCrCyE51oK4XMLVLytmSj44rje
-        B6Tb6W+jKvqR/CfQtv4GeC4UZQ==
-X-Google-Smtp-Source: AGHT+IGuRbxtkVF5rtRNwLubFWM/KXOrLd15vCyh0rHGtTQ7U5FWocQviGG/mZJFNC9IOMvuay0evQ==
-X-Received: by 2002:a05:600c:25a:b0:3fb:e1d5:7f48 with SMTP id 26-20020a05600c025a00b003fbe1d57f48mr1018328wmj.5.1691647713872;
-        Wed, 09 Aug 2023 23:08:33 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id e7-20020a05600c218700b003fe3674bb39sm1016170wme.2.2023.08.09.23.08.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 23:08:33 -0700 (PDT)
-Message-ID: <2d5b0f37-ac1e-c22a-9389-959fcfa74668@linaro.org>
-Date:   Thu, 10 Aug 2023 08:08:31 +0200
+        with ESMTP id S233386AbjHJGMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:12:09 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19BAA1704;
+        Wed,  9 Aug 2023 23:12:08 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37A5RghO018215;
+        Thu, 10 Aug 2023 06:12:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=ivjs0RgVDCAq46FdFyRRuW6DlopFL5lGEQGZdoxAPrc=;
+ b=VO3rK8KlII2NJSXct0HKksQ+3xZMfNAwd/J6AXQH2HHLfzDggOkql24A3BKxkmVUBohp
+ I1+Zjr5A1WJNRwKqWvAPS1Jbe9cA0dk8P8NhpGfWxnhYFUreJK8J08xGpJ86Zq5yltJY
+ IkfL0nSv1HoiJv6YcmiOnqsudvQ0vh0WYD3G9zXx5p8S7PUBBtAIKZ3pmEetHAvhbU0Y
+ gSHCSLa1Q77A5SOXF8e2dw3VAiNJajGsbhwsWT9LOFtge+GFCNI4cZPBmh27TJ1eROyj
+ EI/x5yepaZqLPnU9dMjG5bAl2X+4RASYOjpucO+GPpVczNv3g3hu7KiEy0XpIHewbT3F mg== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sc1ny2yne-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 06:12:00 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37A6C03g022037
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 06:12:00 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 9 Aug 2023 23:11:56 -0700
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH 0/6] soc: qcom: llcc: Add support for QDU1000/QRU1000
+Date:   Thu, 10 Aug 2023 11:41:34 +0530
+Message-ID: <20230810061140.15608-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
- <20230807074043.31288-2-zhuyinbo@loongson.cn>
- <91f57b0d-a6e9-c039-40b6-0a1a9af5f7a0@linaro.org>
- <78c5a043-3e2a-48d6-88bd-2f91cc6d1347@loongson.cn>
- <f9a8897e-301e-9d69-be59-a5aa9290f01b@linaro.org>
- <36dd6038-933d-1513-1426-9c1283f3cbf8@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <36dd6038-933d-1513-1426-9c1283f3cbf8@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QwbCeHzHojJljBtO7uqoqUQjzbjZYlWS
+X-Proofpoint-ORIG-GUID: QwbCeHzHojJljBtO7uqoqUQjzbjZYlWS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_05,2023-08-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ spamscore=0 bulkscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 mlxlogscore=999 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308100051
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2023 05:35, Yinbo Zhu wrote:
-> 
-> 
-> 在 2023/8/9 下午9:00, Krzysztof Kozlowski 写道:
->> On 09/08/2023 09:28, Yinbo Zhu wrote:
->>>>
->>>>>      - gpio-ranges
->>>>>      - interrupts
->>>>>    
->>>>> @@ -49,11 +82,16 @@ examples:
->>>>>        #include <dt-bindings/interrupt-controller/irq.h>
->>>>>    
->>>>>        gpio0: gpio@1fe00500 {
->>>>> -      compatible = "loongson,ls2k-gpio";
->>>>> +      compatible = "loongson,ls2k1000-gpio";
->>>>>          reg = <0x1fe00500 0x38>;
->>>>>          ngpios = <64>;
->>>>>          #gpio-cells = <2>;
->>>>>          gpio-controller;
->>>>> +      loongson,gpio-conf-offset = <0>;
->>>>> +      loongson,gpio-in-offset = <0x20>;
->>>>> +      loongson,gpio-out-offset = <0x10>;
->>>>> +      loongson,gpio-ctrl-mode = <0>;
->>>>> +      loongson,gpio-inten-offset = <0x30>;
->>>>
->>>> I still think that you just embed the programming model into properties,
->>>> instead of using dedicated compatible for different blocks. It could be
->>>> fine, although I would prefer to check it with your DTS
->>>
->>> Okay, I got it,  and if I understand correctly, you seem to agree with
->>> me adding attributes like this.
->>>
->>> And, if using this method that programming model into dts properites,
->>> then when adding a new platform's GPIO,  there is no longer a need to
->>> modify the driver because gpio controller is compatible and different
->>> platform can use a same compatible.
->>
->> Uhu, so there we are. You use this method now to avoid new compatibles.
->> No, therefore I do not agree.
-> 
-> 
-> I don't seem to got it, if the GPIO controllers of two platforms are
-> compatible, shouldn't they use the same compatible?
+This patch series does the following -
+ * Refactor LLCC driver to support multiple configuration
+ * Add stub function for nvmem_cell_read_u8
+ * Add support for multi channel DDR configuration in LLCC
+ * Add LLCC support for the Qualcomm QDU1000 and QRU1000 SoCs
 
-They can use the same fallback compatible, but you should have specific
-compatible anyway. However they are not compatible, because programming
-model is different.-
+Changes in v7 -
+ - Changed the macro name as suggested by Mukesh.
+ - Added NULL check for llcc cfgs as suggested by Mukesh.
+ - Updated the num_config for qdu1000 to use ARRAY_SIZE().
+ - Link to v6: https://lore.kernel.org/lkml/20230802091429.20892-1-quic_kbajaj@quicinc.com/
 
-> 
->>
->>>
->>>>
->>>> Where is your DTS?
->>>
->>>
->>> Sorry, the dts containing gpio nodes are only available in the product
->>> code and have not been sent to the community yet.
->>
->> Does not help to convince us, but it is your right. With this and above
->> explanation, my answer is no - NAK.
-> 
-> 
-> The community work for DTS on the 2K platform is still ongoing. Do I
-> need to add a GPIO DTS node based on the following DTS to request your
-> review?  so that you can more conveniently review whether my patch is
-> suitable.
-> 
-> 2k1000
-> https://lore.kernel.org/all/99bdbfc66604b4700e3e22e28c3d27ef7c9c9af7.1686882123.git.zhoubinbin@loongson.cn/
-> 
-> 2k500
-> https://lore.kernel.org/all/c7087046a725e7a2cfde788185112c150e216f1b.1686882123.git.zhoubinbin@loongson.cn/
-> 
-> 2k2000
-> https://lore.kernel.org/all/977009099c38177c384fca5a0ee77ebbe50e3ea2.1686882123.git.zhoubinbin@loongson.cn/
+Changes in v6 -
+ - Changed variable name from num_cfgs to num_config as suggested by Mukesh.
+ - Added a check for default llcc configuration as per suggestion from Mukesh.
+ - Updated the commit summary for the third and fifth patch.
+ - Fixed alignment in the fourth patch.
+ - Used ARRAY_SIZE() to calculate the num_config as per suggested by Konrad.
+ - Link to v5: https://lore.kernel.org/lkml/20230724084155.8682-1-quic_kbajaj@quicinc.com/
 
-If you want to convince us that your properties makes sense, adding GPIO
-nodes there would be helpful.
+Changes in v5 -
+ - Separated out the secure qfprom driver changes to a separate series [1].
+ - Created a wrapper struct with a pointer to qcom_llcc_config and
+   length of array qcom_llcc_config.
+ - Added stub function for nvmem_cell_read_u8.
+ - Split commit 6/6 in the previous series into two commits.
+ - Link to v4: https://lore.kernel.org/lkml/20230623141806.13388-1-quic_kbajaj@quicinc.com/
 
-Best regards,
-Krzysztof
+Changes in v4 -
+ - Created a separate driver for reading from secure fuse region as suggested.
+ - Added patch for dt-bindings of secure qfprom driver accordingly.
+ - Added new properties in the dt-bindings for LLCC.
+ - Implemented new logic to read the nvmem cell as suggested by Bjorn.
+ - Separating the DT patches from this series as per suggestion.
+ - Link to v3: https://lore.kernel.org/lkml/20230512122134.24339-1-quic_kbajaj@quicinc.com/
+
+Changes in v3 -
+ - Addressed comments from Krzysztof and Mani.
+ - Using qfprom to read DDR configuration from feature register.
+ - Link to v2: https://lore.kernel.org/lkml/20230313124040.9463-1-quic_kbajaj@quicinc.com/
+
+Changes in v2:
+  - Addressing comments from Konrad.
+  - Link to v1: https://lore.kernel.org/lkml/20230313071325.21605-1-quic_kbajaj@quicinc.com/
+
+[1] https://lore.kernel.org/linux-arm-msm/20230724082946.7441-1-quic_kbajaj@quicinc.com/
+
+Komal Bajaj (6):
+  dt-bindings: cache: qcom,llcc: Add LLCC compatible for QDU1000/QRU1000
+  soc: qcom: llcc: Refactor llcc driver to support multiple
+    configuration
+  nvmem: core: Add stub for nvmem_cell_read_u8
+  soc: qcom: Add LLCC support for multi channel DDR
+  soc: qcom: llcc: Updating the macro name
+  soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
+
+ .../devicetree/bindings/cache/qcom,llcc.yaml  |  10 +
+ drivers/soc/qcom/llcc-qcom.c                  | 363 +++++++++++++-----
+ include/linux/nvmem-consumer.h                |   6 +
+ include/linux/soc/qcom/llcc-qcom.h            |   2 +-
+ 4 files changed, 293 insertions(+), 88 deletions(-)
+
+--
+2.41.0
 
