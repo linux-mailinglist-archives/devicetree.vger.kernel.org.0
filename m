@@ -2,109 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C42C777AF0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 16:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E116E777AFA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 16:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235151AbjHJOkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 10:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60738 "EHLO
+        id S235738AbjHJOl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 10:41:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235636AbjHJOkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 10:40:05 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98D3C2694
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 07:40:04 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-318015ade49so990954f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 07:40:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691678403; x=1692283203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zhJgOHXr9u4cT9bMh5OumonW9DdlyOpHtBgpXdY3cnI=;
-        b=k1i2iONaOJ8JVWaKYYek0M89amcw7INit0zDpR+EDa5KEBFQ4QCH1lmxcjGSyEsMsc
-         48G144Ib1hDrtOSxfOtdehvM89CXF9J5EwTbMSI0GzHTz2p1NMffYqF1kR911XGvI2FX
-         qaobvX4KKvEespPCSvl7grCiu30GerdbchmmEUfWrtEVAosNqV8DKfqLXSoDl3B0E1cl
-         0soc8nHuV2EICv9+Y9cgxaYHAES8qWoiOlEJ3X1TD7/gXSRF14XC1iGtaT01HlTjosei
-         vVQI8LFstYq1fDKs5TyZt508gQGrKDcELEsO5FTIEvDZQjZwKpwYT6Uvo8oR0aGQpuv6
-         GOSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691678403; x=1692283203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zhJgOHXr9u4cT9bMh5OumonW9DdlyOpHtBgpXdY3cnI=;
-        b=RksOFHU6KuWZByDtft+5T+W7CCf47j+udJXaTcMpSTQAH0oxVaZK36lSCGVrYE7vtZ
-         oWCHYVjwxSmXEETJGLyx1faE+iOY49YA35gOsU39L9k0MtPIqL3IvimJ45T2K+zTnofy
-         o6/w1Td43ltrrk8IaLsEOwfOVftJfONKkpMYiqCqC9zOtzIkRTRIfWgnhUYnCt7gbyfG
-         +/j/fWaWiJBMzgTsXlB6AgkQXReQXbKxElpxFUplvUGdcmIBmvDkMfBfg9NH9hqqFb71
-         XWuZEjO63A0DC0Kip80KAtoKHRP/uhPPSgnFxs6rLWheARYK2LbLtp1m3EqgE1DjM4FA
-         w8DA==
-X-Gm-Message-State: AOJu0YyF+mUOIywBHL6fIaOEl2bF9TikKnk07iZTxxWYxzYQ5KT/qjAR
-        qiVMvgK0iNE5XWMIcx7Rum3MIw==
-X-Google-Smtp-Source: AGHT+IGFBELzieu6i7eE2I9R2gAe9/VJH8JFT6vuKadapRNp/5Wl7OvgykHlgiXgUxbuzPo0gQ55ew==
-X-Received: by 2002:a05:6000:110d:b0:317:f714:3be6 with SMTP id z13-20020a056000110d00b00317f7143be6mr1877289wrw.61.1691678403058;
-        Thu, 10 Aug 2023 07:40:03 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id h16-20020a5d6e10000000b003176bd661fasm2351062wrz.116.2023.08.10.07.40.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 07:40:02 -0700 (PDT)
-Message-ID: <e0131bc4-72ff-a801-8397-6d7d1a736210@linaro.org>
-Date:   Thu, 10 Aug 2023 15:40:01 +0100
+        with ESMTP id S233066AbjHJOl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 10:41:27 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 209C7D7;
+        Thu, 10 Aug 2023 07:41:26 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPA id E806AFF803;
+        Thu, 10 Aug 2023 14:41:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1691678485;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=IyUXDREdoK5KpDJLjt4F6V+kTmb3e3jKUO9hAJV9buU=;
+        b=ZgLU/UZ/OL7yBVxcfBH1xx7n+TJz4FIl8iltYgWqaAbmmkVE/41YRFMp+FPBkYeIu9k6Ez
+        oRsKvAJno8tFLB4ykSuflOaLZf0GB+mpatdZHXl8ztIWkQTkjFHj4c87uUiLNodvy0z8Rn
+        syEXlTdUw52bxhIDi35AtwEneFHwNGQXjNa7gK9eeVeLcWGrQEWCgZSZyBsY2y+MQdBF4b
+        Y65dPOzdskTjPyJ20YrvGCO/OaKBv8mwyGGEdsEmZIDtwJyUvMdlD086bbz8clRd01LA3b
+        B4NvKq25S7CLwBGBssD713B9P9fQ1piNf3KVK6lYJd+yQQx7ngV1XOFBt3Ogjw==
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add ShenZhen New Display Co.
+Date:   Thu, 10 Aug 2023 16:41:14 +0200
+Message-Id: <20230810144116.855951-1-luca.ceresoli@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: apq8016-sbc: Enable camss for
- non-mezzanine cases
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        loic.poulain@linaro.org, rfoss@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230809202343.1098425-1-bryan.odonoghue@linaro.org>
- <20230809202343.1098425-7-bryan.odonoghue@linaro.org>
- <a23417f0-54e6-4a97-8981-dd7546e2981a@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <a23417f0-54e6-4a97-8981-dd7546e2981a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2023 14:32, Konrad Dybcio wrote:
-> On 9.08.2023 22:23, Bryan O'Donoghue wrote:
->> When we have no camera mezzanine attached it is still possible to run the
->> test-pattern generator of the CSID block.
->>
->> As an example:
->>
->> media-ctl --reset
->>
->> yavta --no-query -w '0x009f0903 1' /dev/v4l-subdev2
->> yavta --list /dev/v4l-subdev2
->>
->> media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:UYVY8_1X16/1920x1080 field:none]'
->> media-ctl -l '"msm_csid0":1->"msm_ispif0":0[1]'
->> media-ctl -d /dev/media0 -V '"msm_ispif0":0[fmt:UYVY8_1X16/1920x1080 field:none]'
->> media-ctl -l '"msm_ispif0":1->"msm_vfe0_rdi0":0[1]'
->> media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:UYVY8_1X16/1920x1080]'
->> media-ctl -d /dev/media0 -p
->>
->> yavta -B capture-mplane --capture=5 -n 5 -I -f UYVY -s 1920x1080 --file=TPG-UYVU-1920x1080-000-#.bin /dev/video0
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
-> Hm.. perhaps the ports could be just defined in soc dtsi?
-> 
-> Konrad
+ShenZhen New Display Co., Limited is the manufacturer of the
+NDS040480800-V3 LCD panel according the datasheet.
 
-yeah they should be.
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
+---
+
+Changes in v2: none
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index af60bf1a6664..f73d6d4eabbe 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -929,6 +929,8 @@ patternProperties:
+     description: Netronix, Inc.
+   "^netxeon,.*":
+     description: Shenzhen Netxeon Technology CO., LTD
++  "^newdisplay,.*":
++    description: ShenZhen New Display Co., Limited
+   "^neweast,.*":
+     description: Guangdong Neweast Optoelectronics CO., LTD
+   "^newhaven,.*":
+-- 
+2.34.1
+
