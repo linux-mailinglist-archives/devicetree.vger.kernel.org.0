@@ -2,81 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40779777E5E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 18:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A09777F9E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 19:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234918AbjHJQfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 12:35:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51974 "EHLO
+        id S235484AbjHJRwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 13:52:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235008AbjHJQfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 12:35:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76C72698;
-        Thu, 10 Aug 2023 09:35:44 -0700 (PDT)
+        with ESMTP id S236131AbjHJQhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 12:37:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFC9273E;
+        Thu, 10 Aug 2023 09:36:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E7D866239;
-        Thu, 10 Aug 2023 16:35:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF0D1C433CB;
-        Thu, 10 Aug 2023 16:35:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BDD866424;
+        Thu, 10 Aug 2023 16:36:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF3EDC433CA;
+        Thu, 10 Aug 2023 16:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691685343;
-        bh=tAd8cGqWXnMp+MhyA+QN6jDgfWonWi3hyrZySG4ENN8=;
+        s=k20201202; t=1691685406;
+        bh=BSii6h7dQ0AiVaEnC/x7rXj9az+FG25BK/9BAQs3xlA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JXB07tmP1/SRRe6/WnKUKx+EHTRS4Y+3pwfbddMMxRPcFQgijA8lk9u7PsqrzAkcb
-         kP3L1o8hmC2780WNQmMuCB98OLnqSNHNpst0XbcQN4U+D0MqFxhb1++CSDuDDSlYsx
-         zEvn5o1aiaKfFVqGZ2mlqpuw/FZRIzikDM+Lerc99HGS/COF6NHA4bWhPk2XiZ/tll
-         vaAH7atcMxYLNbmf9yylYAkTRcpYaSZWddJelDqvyW6JheiuC95U0ElFUlouJ1DYda
-         r747Yp2U8Ikh2VPT4HapI39XQUSd9GoQ5JOmBvFGHPyH9P/X2RQ/VqUhFY8A+PPNVN
-         tL5YcKIQnCRgg==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2b9d3dacb33so17202611fa.1;
-        Thu, 10 Aug 2023 09:35:43 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yx190o8ay6zWaIjwADPq+RUNcgM9Irxm2d+4Kmb/4K7kA/KBjtK
-        UVbdtTY/9h2GDCEzswTbVhV3oscGIVf3f2A/NQ==
-X-Google-Smtp-Source: AGHT+IGMhThSGcH6iK3+zXMwVeXv9qRB2ftg4Knvd20JgbzEnsxMFjNJQ8haNG3+I9TXP94jb4Whom2WJEFxRHLe5Aw=
-X-Received: by 2002:a2e:3c11:0:b0:2b6:a804:4cc with SMTP id
- j17-20020a2e3c11000000b002b6a80404ccmr2488397lja.53.1691685341671; Thu, 10
- Aug 2023 09:35:41 -0700 (PDT)
+        b=oMpc8QrKes1v6+WUjszY/FrTspe/682xgAiwNfn4sPSDNlHpcbqU9fHJfnt8jy1rj
+         QIraMIt9fXEhHOQTfnAx+hXMM3zv6RSIO35cYJqFpBgHwi3ZXPqS7Mi4atRVBJUGGV
+         rp1W5mjNRXxxySZ0t7JpX6u9I1+CrsJ+JlQFosmXALjq3iDHb7qBcyHIcd+Us7HTj6
+         jE/s0QAJDGmpJPv57mPlPa+a7HKU9iTAgRCBlsHS1JFRF5WugyDHpzwFX30Hia+hbL
+         A3aMmWa+n+btqItwLqbCSu2TlyCRmH+/h0wgFY2r50IU6Qwzs6h5qs5Z4GGSIqt1zz
+         W1RWH+hetDzLw==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2b9ab1725bbso17578881fa.0;
+        Thu, 10 Aug 2023 09:36:46 -0700 (PDT)
+X-Gm-Message-State: AOJu0Ywcqgjsn4fLiYMi6b2jbnTAvBsyAFbfDloeogwC/MRe8Ujh619s
+        HuwwLOzv+s3VamivSCnUHTRyNc9h4pHK5milFw==
+X-Google-Smtp-Source: AGHT+IGvZg0aYNog8ttUlumgymSsNd7CaDsdwH7Z+984SGykjIn7WXZ3vZr7n5jdJOw8bGCBGpJqFveTkp+/OQRjjKk=
+X-Received: by 2002:a2e:700c:0:b0:2b9:4492:1226 with SMTP id
+ l12-20020a2e700c000000b002b944921226mr2427865ljc.11.1691685404667; Thu, 10
+ Aug 2023 09:36:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230810063300.20151-1-krzysztof.kozlowski@linaro.org>
- <20230810063300.20151-2-krzysztof.kozlowski@linaro.org> <169165201641.3911557.18445521260746432395.robh@kernel.org>
- <137a734e-0e5a-5fcb-f0d3-1fdbb5e8da34@linaro.org>
-In-Reply-To: <137a734e-0e5a-5fcb-f0d3-1fdbb5e8da34@linaro.org>
+References: <20230810061140.15608-1-quic_kbajaj@quicinc.com>
+ <20230810061140.15608-2-quic_kbajaj@quicinc.com> <169165201539.3911513.11768504895031523847.robh@kernel.org>
+ <8636b916-749e-2bf7-8ec6-202aff4ab872@quicinc.com>
+In-Reply-To: <8636b916-749e-2bf7-8ec6-202aff4ab872@quicinc.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 10 Aug 2023 10:35:28 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL-x5V2mJOCgDC8xoHuvu6A1enQh-idmxGJjy80A9fdow@mail.gmail.com>
-Message-ID: <CAL_JsqL-x5V2mJOCgDC8xoHuvu6A1enQh-idmxGJjy80A9fdow@mail.gmail.com>
-Subject: Re: [PATCH v2 02/11] ASoC: dt-bindings: mediatek,mt8188-mt6359: use
- common sound card
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Rao Mandadapu <srivasam@codeaurora.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-mediatek@lists.infradead.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rohit kumar <quic_rohkumar@quicinc.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
+Date:   Thu, 10 Aug 2023 10:36:31 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+U3T2nqoNLnKcGjd7NXYxth6-CzBHbOyxSjfhGqaErAA@mail.gmail.com>
+Message-ID: <CAL_Jsq+U3T2nqoNLnKcGjd7NXYxth6-CzBHbOyxSjfhGqaErAA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: cache: qcom,llcc: Add LLCC compatible
+ for QDU1000/QRU1000
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     agross@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@linaro.org, srinivas.kandagatla@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        andersson@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -89,29 +70,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 10, 2023 at 1:47=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, Aug 10, 2023 at 4:27=E2=80=AFAM Komal Bajaj <quic_kbajaj@quicinc.co=
+m> wrote:
 >
-> On 10/08/2023 09:20, Rob Herring wrote:
-> >
-> > On Thu, 10 Aug 2023 08:32:50 +0200, Krzysztof Kozlowski wrote:
-> >> The mediatek,mt8188-mt6359 Linux sound machine driver requires the
-> >> "model" property, so binding was incomplete.  Reference the common sou=
-nd
-> >> card properties to fix that which also allows to remove duplicated
-> >> property definitions.  Leave the relevant parts of "audio-routing"
-> >> description.
+>
+>
+> On 8/10/2023 12:50 PM, Rob Herring wrote:
+> > On Thu, 10 Aug 2023 11:41:35 +0530, Komal Bajaj wrote:
+> >> Add LLCC compatible for QDU1000/QRU1000 SoCs and add optional
+> >> nvmem-cells and nvmem-cell-names properties to support multiple
+> >> configurations for multi channel DDR.
 > >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@col=
-labora.com>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > >> ---
-> >>  .../bindings/sound/mediatek,mt8188-mt6359.yaml  | 17 +++++++---------=
--
-> >>  1 file changed, 7 insertions(+), 10 deletions(-)
+> >>   Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 10 ++++++++=
+++
+> >>   1 file changed, 10 insertions(+)
 > >>
-> >
 > > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
 k'
 > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
@@ -120,16 +96,35 @@ k'
 > >
 > > dtschema/dtc warnings/errors:
 > >
+> >
+> > doc reference errors (make refcheckdocs):
+> >
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2023=
+0810061140.15608-2-quic_kbajaj@quicinc.com
+> >
+> > The base for the series is generally the latest rc1. A different depend=
+ency
+> > should be noted in *this* patch.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >
+> > pip3 install dtschema --upgrade
+> >
+> > Please check and re-submit after running the above command yourself. No=
+te
+> > that DT_SCHEMA_FILES can be set to your schema file to speed up checkin=
+g
+> > your schema. However, it must be unset to test all examples with your s=
+chema.
 >
-> I think the bot responds like this if the patch could not be applied.
-> Probably we can ignore it.
+> Hi Rob,
+> I did run the same steps locally after upgrading dtschema too, but it
+> didn't reported any kind of error.
+> Here also, error is not mentioned, can you please state what's the error
+> reported with this patch?
 
-It's because I converted dtschema to use pyproject.toml (the newest
-and 3rd way to do python packaging). I started getting deprecation
-warnings on debian testing due to using setup.py. Converting breaks on
-ubuntu 22.04. Seems to be this bug[1]. The CI job should now be fixed
-by installing the latest pip version.
+No error. It's a problem with the bot's CI job.
 
 Rob
-
-[1] https://bugs.launchpad.net/ubuntu/+source/python-pip/+bug/2018288
