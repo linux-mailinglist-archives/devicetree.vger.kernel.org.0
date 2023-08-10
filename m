@@ -2,84 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A74C7777C9E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 17:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00712777CBA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 17:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234722AbjHJPsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 11:48:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54346 "EHLO
+        id S235474AbjHJPwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 11:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236239AbjHJPsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 11:48:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 001D41BF7;
-        Thu, 10 Aug 2023 08:48:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A48E660C5;
-        Thu, 10 Aug 2023 15:48:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05C91C433C7;
-        Thu, 10 Aug 2023 15:47:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691682480;
-        bh=IhSS+Gzq9OcK1ql5cyEbAn3ygO8llggcsc2KQLqvMkQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HKVJBPVILtGjaC3mXfV61EVcGPf6DXaqle9TFghct4pX5yjDFaMFifWcgHnrtNkZX
-         uu4crxxP79VILE2yvP8vZF1+6OnXPjZh+P03ynl7KcwkhiIK4A0GGfNpJuHWMClxEM
-         gF1EhHXmuYlAoiqNfthZPiWy6pTBeDKmoayE0/7uIin6fDsKDxEYodpYlustac55bi
-         kTAgiWH6fJRR/Emv6fJkjLX9krk9TbhSzrZDyL917VRz1CcFgJD0KqnS8BYI8Kj+7n
-         BII24XVDFE5B3Y/CpH1l5HWyBVYR6TeXUIqucIVz4+3EJuMsvoSoyvW0/3OodMlpsM
-         OgjGTfouHcUlw==
-Date:   Thu, 10 Aug 2023 08:47:58 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 00/28] Add support for QMC HDLC, framer infrastruture
- and PEF2256 framer
-Message-ID: <20230810084758.2adbfeb8@kernel.org>
-In-Reply-To: <20230809132757.2470544-1-herve.codina@bootlin.com>
-References: <20230809132757.2470544-1-herve.codina@bootlin.com>
+        with ESMTP id S236271AbjHJPwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 11:52:00 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E353C1AA;
+        Thu, 10 Aug 2023 08:51:59 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37AClMPY009213;
+        Thu, 10 Aug 2023 17:51:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        message-id:date:mime-version:subject:to:cc:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        selector1; bh=g+8JhM5SSBXnEGBoDoQhWJziQ4ZCSrXrnm9iiuLxIDk=; b=Fp
+        GQg3BnYhfEf9QARcqXnmN7GIWJ9LN4rj2fv9mXskpBbHFjF0lhIge+MUd2SrDB/g
+        5h8ZB/RhFE58kIj0jFzFQKAX0Kqd/ONBO4+ks+L/faH+9sGjYjy1sAkhMFr9i5wX
+        oP6CmZU4XH+stxhokKvrdSyUgS6je6OGBv7F52oNh9m/saZjvsOja8Ojopu1WT2z
+        vdbnv/EgSrBagecSYRvq3pImjqDw9bhkl015knbPjnPqBZCpmtGSytTs4d9Fn0BT
+        2ODeFbqlssEuMqdej8GjZPqUiOG2KtNUUIYKOPOoJiM3wO6XCVzy+dqXurtE5wSD
+        jwk8XUVejmMwBjjgQQHQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sd0730yba-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 17:51:50 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AF8F6100053;
+        Thu, 10 Aug 2023 17:51:48 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A8313227EF6;
+        Thu, 10 Aug 2023 17:51:48 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 10 Aug
+ 2023 17:51:48 +0200
+Message-ID: <6098f24e-c2fa-b74f-76e3-5a3718e887da@foss.st.com>
+Date:   Thu, 10 Aug 2023 17:51:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 0/2] Add gpio_ranges property for stm32f7
+Content-Language: en-US
+To:     <patrice.chotard@foss.st.com>, <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230808093119.714224-1-patrice.chotard@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230808093119.714224-1-patrice.chotard@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To EQNDAG1NODE4.st.com
+ (10.75.129.133)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_13,2023-08-10_01,2023-05-22_02
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  9 Aug 2023 15:27:27 +0200 Herve Codina wrote:
-> The series contains the full story and detailed modifications.
-> If needed, the series can be split and/or commmits can be squashed.
-> Let me know.
+On 8/8/23 11:31, patrice.chotard@foss.st.com wrote:
+> From: Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> Add missing gpio-ranges property for stm32f7 based boards.
+> 
+> Patrice Chotard (2):
+>    ARM: dts: stm32: Add gpio-ranges for stm32f746-pinctrl
+>    ARM: dts: stm32: Add gpio-ranges for stm32f769-pinctrl
+> 
+>   arch/arm/boot/dts/st/stm32f746-pinctrl.dtsi | 44 +++++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32f769-pinctrl.dtsi | 44 +++++++++++++++++++++
+>   2 files changed, 88 insertions(+)
+> 
 
-Are there any dependencies in one of the -next trees?
-As it the series doesn't seem to build on top of net-next 
-with allmodconfig.
+Series applied on stm32-next.
+
+Cheers
+Alex
