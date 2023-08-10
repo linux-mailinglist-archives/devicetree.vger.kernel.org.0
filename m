@@ -2,155 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D15F7777354
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE8A77735D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:53:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234353AbjHJIu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 04:50:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52112 "EHLO
+        id S234405AbjHJIxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 04:53:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234362AbjHJIu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:50:56 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD6C1BFA;
-        Thu, 10 Aug 2023 01:50:53 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A8ok8G128275;
-        Thu, 10 Aug 2023 03:50:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691657446;
-        bh=AzLw+SP4ZFWnoyRGCB0Quzt/PCUuPmKW8aZqzcIQz4o=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=SJ3yJh8QuasnBXs0qgwSD++x6s+Nn8ybYdqO60+4VBv70rcmIJKO0rmy/H5uYQqGH
-         QoE+3Uoly5GfqeZhEMCH2ISdrobAcxI2XxZjk2S+wJlFmDXyl36sWQRi8Jw/I3nTcp
-         5O0/oObTjtuePHsbewLV+6CF2TecQSS/kHU7XlLw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A8okvO015544
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 03:50:46 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 03:50:45 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 03:50:45 -0500
-Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A8oeeM028140;
-        Thu, 10 Aug 2023 03:50:41 -0500
-Message-ID: <5ec8b817-e63f-3d76-894d-8af4f4e880db@ti.com>
-Date:   Thu, 10 Aug 2023 14:20:37 +0530
+        with ESMTP id S234399AbjHJIxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:53:17 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4652F211E
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:53:16 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-583c48a9aa1so8757967b3.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:53:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691657595; x=1692262395;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ISTwavJo5QNRA0ml/ZYkxWD9JkMB48oJk0Oc/hedKZY=;
+        b=cSx8JAyGkOmdsAHLDtARFe5E+bmkrOnNzYHajkz/Im644aeTTP5xiTIfbcqyJUfyjM
+         BWgv30uk2EgU3NPHpdPaFDcXp2dzkL5bmF7NQmKV/xk5hAbfSYA57I9FdoiPX6WTL5If
+         h8yELZgSUyiI3o+78nsOuxVjK4znn77Cp/xnizFqIcinv/C96+9SADDtYu+wfKZEfO+c
+         SqPxyPVMe1oUATXZyDVrBSxCsWaPgJv7fXDcSfajqF2J1NY6VnqOYeDWrWZNxrkG5oMc
+         N+HtOZtTumcoJfYCMGjZR0FJqXZUsdejxxhXhj932VOqQMh7f/xkPB2IVDQbVJYtd2yb
+         kJEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691657595; x=1692262395;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ISTwavJo5QNRA0ml/ZYkxWD9JkMB48oJk0Oc/hedKZY=;
+        b=IW69Ki0GQfpQFe1lAldSnsn0cqUmpsqB8+fzGU6qeDyCCJ4igyc2OlWsbxZdKa2zoQ
+         HnbrFtTvXAt0zXtmewepdGFyRpLIEeFezuCC4Wc7qF+9oWI95TbVqti9WRvX1Y+Jr1Sa
+         TeIRNmtt/Oylw8Sh9vplGXVw5Tv+Pc4/fl3qtQ5HavSzdZmi9bcrk0jimBOmtjrmteTr
+         pC5B1NxQbje8qrJm1/NCXmX9BC9TMpTRm7UXp8WfRZnQngNPomJT3/fi7hlx8xGakwET
+         bUUz9i/KBqwZRHH+PblIOSm0NroUC6gYYdn2XmLd5dmcCYa8KpY3atnLpOzUbOi9UET0
+         H5Pw==
+X-Gm-Message-State: AOJu0YwWC+WK1kdyi8k4z30ItjKhi/nSCkx7jhhWdwCP5tgHThcgdquR
+        FflaZPJTVmRlmpHY0xMRzvtdd+I6/bwN2g5eWzRNTA==
+X-Google-Smtp-Source: AGHT+IHR3OcxJgk9HIqvUQ98dw3GrFDpfjo2OZ3Zn5ukK1Ej8qavilwui19M8MLrNbXgTNYPBDiu1AU0FMOIqqB8uTs=
+X-Received: by 2002:a25:6993:0:b0:d63:5e7:4e1b with SMTP id
+ e141-20020a256993000000b00d6305e74e1bmr2168294ybc.26.1691657595551; Thu, 10
+ Aug 2023 01:53:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j721e: Enable C7x DSP nodes at the
- board level
-To:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
+References: <20230809132757.2470544-1-herve.codina@bootlin.com> <20230809132757.2470544-23-herve.codina@bootlin.com>
+In-Reply-To: <20230809132757.2470544-23-herve.codina@bootlin.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 10 Aug 2023 10:53:04 +0200
+Message-ID: <CACRpkdZWHw7sL6EKe0EP0hX5TEsdhzgkPSdVtPPYhS3LqJRHFg@mail.gmail.com>
+Subject: Re: [PATCH v3 22/28] dt-bindings: net: Add the Lantiq PEF2256
+ E1/T1/J1 framer
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230809180145.53158-1-afd@ti.com>
-Content-Language: en-US
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230809180145.53158-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Andrew
+Hi Herve,
 
-On 8/9/2023 11:31 PM, Andrew Davis wrote:
-> C7x DSP nodes defined in the top-level J721e SoC dtsi files are incomplete
-> and will not be functional unless they are extended with both mboxes and
-> memory-region information.
+thanks for your patch!
+
+On Wed, Aug 9, 2023 at 3:28=E2=80=AFPM Herve Codina <herve.codina@bootlin.c=
+om> wrote:
+
+> The Lantiq PEF2256 is a framer and line interface component designed to
+> fulfill all required interfacing between an analog E1/T1/J1 line and the
+> digital PCM system highway/H.100 bus.
 >
-> As theses only known about at the board integration level, these nodes
-> should only be enabled when provided with this information.
->
-> Disable the C7x DSP nodes in the dtsi files and only enable the ones that
-> are given the required mboxes and memory-region on a given board.
->
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 1 +
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 1 +
->   arch/arm64/boot/dts/ti/k3-j721e-sk.dts             | 1 +
->   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi        | 1 +
->   4 files changed, 4 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> index 66aac145e7530..d1235e7c786d6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> @@ -1024,6 +1024,7 @@ &c66_1 {
->   };
->   
->   &c71_0 {
-> +	status = "okay";
->   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
->   	memory-region = <&c71_0_dma_memory_region>,
->   			<&c71_0_memory_region>;
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+(...)
+> +    patternProperties:
+> +      '-pins$':
+> +        type: object
+> +        $ref: /schemas/pinctrl/pincfg-node.yaml#
 
-Series tested on J721E, J784S4 platforms
+Shouldn't that be pinmux-node.yaml?
 
-However I need to apply 
-https://lore.kernel.org/linux-iommu/0-v2-d2762acaf50a+16d-iommu_group_locking2_jgg@nvidia.com/ 
-patch
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          pins:
+> +            enum: [ RPA, RPB, RPC, RPD, XPA, XPB, XPC, XPD ]
+> +
+> +          function:
+> +            enum: [ SYPR, RFM, RFMB, RSIGM, RSIG, DLR, FREEZE, RFSP, LOS=
+,
+> +                    SYPX, XFMS, XSIG, TCLK, XMFB, XSIGM, DLX, XCLK, XLT,
+> +                    GPI, GPOH, GPOL ]
+> +
+> +        required:
+> +          - pins
+> +          - function
 
+Because those are certainly defined in that file.
 
-Tested-by: Udit Kumar <u-kumar1@ti.com>
-
-https://gist.github.com/uditkumarti/b6320a06fadaaaf174fc0431949f11e1
-
-
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index 3acd55ffd4ffc..1aeb97b42b34b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -2134,6 +2134,7 @@ c71_0: dsp@64800000 {
->   		ti,sci-proc-ids = <0x30 0xff>;
->   		resets = <&k3_reset 15 1>;
->   		firmware-name = "j7-c71_0-fw";
-> +		status = "disabled";
->   	};
->   
->   	icssg0: icssg@b000000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> index 0ee4f38ec8f03..377588ba30998 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> @@ -1110,6 +1110,7 @@ &c66_1 {
->   };
->   
->   &c71_0 {
-> +	status = "okay";
->   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
->   	memory-region = <&c71_0_dma_memory_region>,
->   			<&c71_0_memory_region>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-> index e90e43202546e..3c31ab57e959c 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-> @@ -436,6 +436,7 @@ &c66_1 {
->   };
->   
->   &c71_0 {
-> +	status = "okay";
->   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
->   	memory-region = <&c71_0_dma_memory_region>,
->   			<&c71_0_memory_region>;
+Yours,
+Linus Walleij
