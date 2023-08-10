@@ -2,71 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF8F77739E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 11:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A809777457
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 11:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231629AbjHJJDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 05:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51512 "EHLO
+        id S234833AbjHJJVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 05:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232533AbjHJJDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 05:03:02 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF632123
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 02:03:00 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b9b9f0387dso10122661fa.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 02:03:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691658178; x=1692262978;
-        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Iol3jaxrzuORdJBb2/hbufIyhmncgMYWqRL3cinA+2A=;
-        b=WwxE4LmDpHQOrcGdJGXxWk39zrqsGRxYc7nTKhPhGRfMglurefRR1ELhvq0a3bcxVN
-         aq5UWeITkhL5Rvmr4n21fNuJtChS7TqWYu2+yQ1YRvgRd4hNWUrt8D+iHqlX86rqW5YQ
-         dH+vQoTSHwA8ryWGS2PgyMOEj27Af7TtZcz/hkkmMyBUML1k7bR79pB0a26PIO6Jw27I
-         Ge+hXwE/J78g4+O9kfR57Du4qWed3oAWcPA3wdyMDiJOcZrOSkjmeA+V2S2gcr6GNmaQ
-         6fP7ke4l9QW0NyYO4s3mD0lQnFOTjM1/O0sN9pS1vTEbnwPEoSu5FuIhqA8uSAmvsJ5P
-         6TTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691658178; x=1692262978;
-        h=to:subject:message-id:date:from:sender:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iol3jaxrzuORdJBb2/hbufIyhmncgMYWqRL3cinA+2A=;
-        b=Z7SdczeHSMsRVte39e2EVVQAoGX/ZonhpqJ6lNe5qsNQ/hsMY3fBkSS6tsuP/M/tXe
-         V541HrlmNkk3rsMIr51M1V/20PBhm3+PVU5Wl6fP3xeOs1SY1wS+og0xXxgkL5JyrHnM
-         m/+pdk4m1vjvTwi7zWaKFFWKsywGdgFs76dlArEYuawZctu1vhEXUTd+agvDhnlhRveG
-         qMZRugZIpbKhPrnWdwHMJUsY7/e1cf+BDeWNsO3tQH6whSWvIV3LDL6ImNJkzWR0qfHY
-         QkHaWZ7/L1XjXz/gvcRFAZDeZMqkAYiJyKV2mNxI/FRR4U8w079F1xysjYvv7q+6W1a4
-         iPEA==
-X-Gm-Message-State: AOJu0Yy2AOTEcqc0zsMv6OH8qH4jCjzJA258HbnItMDhZpNbSKrJ6b1e
-        YCjAGIDsHFAgLClF9LPndFuKY/oOSYdIPKsPVl0=
-X-Google-Smtp-Source: AGHT+IEw/DjNFJ37xedT4ASIvVDrro14zdhiOBhQwowOpPa762f2PoyTLL75fV6Mpkx51SiWAXGbWcxNh4k+cw9M85Y=
-X-Received: by 2002:a2e:7a02:0:b0:2b9:da28:c508 with SMTP id
- v2-20020a2e7a02000000b002b9da28c508mr1341243ljc.31.1691658178249; Thu, 10 Aug
- 2023 02:02:58 -0700 (PDT)
-MIME-Version: 1.0
-Sender: haralinda549@gmail.com
-Received: by 2002:a05:6022:a2c2:b0:44:8037:281 with HTTP; Thu, 10 Aug 2023
- 02:02:57 -0700 (PDT)
-From:   "Mrs. Angela Juanni Marcus" <juanniangela@gmail.com>
-Date:   Thu, 10 Aug 2023 02:02:57 -0700
-X-Google-Sender-Auth: C72gNtKwOGFrIKSy-SSxEpSgLxA
-Message-ID: <CALqZD=1fqC5BURb__PSn1sG4uODGSViPLD1=wckSgSAJD2b5Og@mail.gmail.com>
-Subject: RESPOND FOR MORE INFORMATION....
-To:     undisclosed-recipients:;
+        with ESMTP id S234838AbjHJJVi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 05:21:38 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 414545273;
+        Thu, 10 Aug 2023 02:20:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1691659207;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Cxvgd7KEPdRFvLppPHwdt3/66MA1MYdo2I92LCsqcJw=;
+        b=yJmYb7pXHr2AwACbS3+BVJGdag/qTfZ+8AVnC3mjDxldrx/mxTJMwP9jwvGwnjNAGJE1XX
+        o/MxaYG4zJh2olZ/32e48x5Z17uWbu2GxftPPa4qsFBuC33pmmE+Ro1WRLORwcOTeIKmhp
+        iAadRqo8Aka0JuPQBlCq7e5Rc90c5ZM=
+Message-ID: <a4c76fa5f119fcc93c3b87a11dd6de973387e72e.camel@crapouillou.net>
+Subject: Re: [PATCH] ARM: dts: exynos/i9100: Unconditionally enable LDO12
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Date:   Thu, 10 Aug 2023 11:20:05 +0200
+In-Reply-To: <a1545e38-62fc-b5a1-e4c2-9f32b28e40f1@linaro.org>
+References: <20230808110341.57891-1-paul@crapouillou.net>
+         <a1545e38-62fc-b5a1-e4c2-9f32b28e40f1@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        SUBJ_ALL_CAPS,T_HK_NAME_FM_MR_MRS autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, good good morning from here, my name is Mrs. Angela Juanni Marcus,
-can i have a private discussion with you? it is very important to me,
-please respond for more details.
+Le jeudi 10 ao=C3=BBt 2023 =C3=A0 08:21 +0200, Krzysztof Kozlowski a =C3=A9=
+crit=C2=A0:
+> On 08/08/2023 13:03, Paul Cercueil wrote:
+> > The kernel hangs for a good 12 seconds without any info being
+> > printed to
+> > dmesg, very early in the boot process, if this regulator is not
+> > enabled.
+> >=20
+> > Force-enable it to work around this issue, until we know more about
+> > the
+> > underlying problem.
+> >=20
+> > Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> > Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the
+> > Galaxy S2")
+> > Cc: <stable@vger.kernel.org> # v5.8+
+> > ---
+> > =C2=A0arch/arm/boot/dts/exynos4210-i9100.dts | 8 ++++++++
+>=20
+> The path changed long time ago. Really, please do not work on some
+> outdated pmOS or whatever downstream drivers.
+
+That was on v6.4.2 yes. I simply forgot to rebase on the latest RC,
+sorry about that.
+
+I'll send a V2, and I now have some more patches touching that file
+that I can bundle with.
+
+-Paul
