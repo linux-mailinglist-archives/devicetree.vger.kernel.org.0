@@ -2,69 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F1307782A6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 23:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D457782CA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 23:43:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjHJVU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 17:20:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
+        id S229677AbjHJVnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 17:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjHJVU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 17:20:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19AE22112;
-        Thu, 10 Aug 2023 14:20:58 -0700 (PDT)
+        with ESMTP id S230344AbjHJVnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 17:43:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF112D44;
+        Thu, 10 Aug 2023 14:43:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A466C62FDF;
-        Thu, 10 Aug 2023 21:20:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64306C433C8;
-        Thu, 10 Aug 2023 21:20:55 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6DB6463AB5;
+        Thu, 10 Aug 2023 21:43:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0062C433C8;
+        Thu, 10 Aug 2023 21:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691702457;
-        bh=aTpruaCrN8EvcNDHyPLrwo7LwRpHf6ghS06t2onmua0=;
+        s=k20201202; t=1691703791;
+        bh=5gfooN1WBDgyvFXuZxSLOiq5g3Z7icCet3KI5PB9gbU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YQBd3jojma44HVwAccg4LRHTT/59zulJtym26IzwXS1wlOY//9ssSpzDcUfpyZ9lr
-         ZuSQq56O7bKVoeXphfT6MWxcVQx//hCENtHI57ioJsOX52Bbswox6NSKwv23nzKri1
-         qGQp7wRtMVDK+565w5ISpAs/P75YXUEr/47nuFN6Ftx3lrmYpYbnSFrdJROIyDfSP3
-         LvqQDMli1mTrRgbde6+BpzecSMaFFG9CnjyV5yTojbNs2aDSDG+lNRIdMTABANTCaR
-         PeXnmiwmFFprXvxR/oO3RWlxwxbNTIeZX9UkXdK5RMqwgLwFcsKwfRxAA7jHSM/mQo
-         fX+FkfK3Kxfgg==
-Received: (nullmailer pid 1209197 invoked by uid 1000);
-        Thu, 10 Aug 2023 21:20:54 -0000
-Date:   Thu, 10 Aug 2023 15:20:54 -0600
+        b=ARaBNIhiB1lhQbxYjA0c8e78hYWMIBh9PTQ2W9BcCA/xx55IcPgYYcDuusRbrqkZD
+         sLbpUho0+zjdh6E9dKlsebhS1r6ESCLfaqbrUpH8zbEo+eGoVqryQPDnYz97ka/wiu
+         teuz9FVTJRC50QZK9J5iP3tuQEtyT4+BWwkMbIVcDZUb6tiQCNqVFEdjj7VK0OrBys
+         gJBSL9Sg9NOSBq3MkaYrSy9ann6LW+Jx70SKyKwoQ6CtcjKJWw5pViRs7zNwmHHAtk
+         +AVEB/7o4rTor3ooIyJzSrwS7a5S/+HG3jrwbNLB/uXWdPv3uu4fDo/eOeoVjKwwGB
+         uLDDU6Sv2jqjw==
+Received: (nullmailer pid 1316675 invoked by uid 1000);
+        Thu, 10 Aug 2023 21:43:09 -0000
+Date:   Thu, 10 Aug 2023 15:43:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Aleksandr Shubin <privatesub2@gmail.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Albert Ou <aou@eecs.berkeley.edu>, linux-sunxi@lists.linux.dev,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        linux-kernel@vger.kernel.org,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v4 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-Message-ID: <20230810212054.GA1207489-robh@kernel.org>
-References: <20230810145443.1053387-1-privatesub2@gmail.com>
- <20230810145443.1053387-2-privatesub2@gmail.com>
- <169168449014.480213.11243622755862466051.robh@kernel.org>
+To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Shuah Khan <shuah@kernel.org>, cocci@inria.fr,
+        Mark Brown <broonie@kernel.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        kernelci@lists.linux.dev, Julia Lawall <Julia.Lawall@inria.fr>,
+        Bjorn Andersson <andersson@kernel.org>, kernel@collabora.com,
+        Guenter Roeck <groeck@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org
+Subject: Re: [RFC PATCH 0/2] Add a test to catch unprobed Devicetree devices
+Message-ID: <20230810214309.GA1226583-robh@kernel.org>
+References: <20230810202413.1780286-1-nfraprado@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <169168449014.480213.11243622755862466051.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230810202413.1780286-1-nfraprado@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -75,45 +65,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 10, 2023 at 10:21:30AM -0600, Rob Herring wrote:
+On Thu, Aug 10, 2023 at 04:23:49PM -0400, Nícolas F. R. A. Prado wrote:
 > 
-> On Thu, 10 Aug 2023 17:54:26 +0300, Aleksandr Shubin wrote:
-> > Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
-> > controller witch is different from the previous pwm-sun4i.
-> > 
-> > The D1 and T113 are identical in terms of peripherals,
-> > they differ only in the architecture of the CPU core, and
-> > even share the majority of their DT. Because of that,
-> > using the same compatible makes sense.
-> > The R329 is a different SoC though, and should have
-> > a different compatible string added, especially as there
-> > is a difference in the number of channels.
-> > 
-> > D1 and T113s SoCs have one PWM controller with 8 channels.
-> > R329 SoC has two PWM controllers in both power domains, one of
-> > them has 9 channels (CPUX one) and the other has 6 (CPUS one).
-> > 
-> > Add a device tree binding for them.
-> > 
-> > Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
-> > ---
-> >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 86 +++++++++++++++++++
-> >  1 file changed, 86 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > 
+> Regressions that cause a device to no longer be probed by a driver can
+> have a big impact on the platform's functionality, and despite being
+> relatively common there isn't currently any generic test to detect them.
+> As an example, bootrr [1] does test for device probe, but it requires
+> defining the expected probed devices for each platform.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Given that the Devicetree already provides a static description of
+> devices on the system, it is a good basis for building such a test on
+> top.
 > 
-> yamllint warnings/errors:
+> This series introduces a test to catch regressions that prevent devices
+> from probing.
 > 
-> dtschema/dtc warnings/errors:
+> Patch 1 introduces a script to parse the kernel source using Coccinelle
+> and extract all compatibles that can be matched by a Devicetree node to
+> a driver. Patch 2 adds a kselftest that walks over the Devicetree nodes
+> on the current platform and compares the compatibles to the ones on the
+> list, and on an ignore list, to point out devices that failed to be
+> probed.
 > 
+> A compatible list is needed because not all compatibles that can show up
+> in a Devicetree node can be used to match to a driver, for example the
+> code for that compatible might use "OF_DECLARE" type macros and avoid
+> the driver framework, or the node might be controlled by a driver that
+> was bound to a different node.
 > 
-> doc reference errors (make refcheckdocs):
+> An ignore list is needed for the few cases where it's common for a
+> driver to match a device but not probe, like for the "simple-mfd"
+> compatible, where the driver only probes if that compatible is the
+> node's first compatible.
 > 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810145443.1053387-2-privatesub2@gmail.com
+> Even though there's already scripts/dtc/dt-extract-compatibles that does
+> a similar job, it didn't seem to find all compatibles, returning ~3k,
+> while Coccinelle found ~11k. Besides that, Coccinelle actually parses
+> the C files, so it should be a more robust solution than relying on
+> regexes.
 
-The bot was having an issue. This can be ignored.
+I just sent a patch[1] last week fixing missing a bunch. I only looked 
+at the change in count of undocumented (by schema) though.
+
+In any case, I'm happy if we have a better solution, but really we 
+should only have 1. So your script would need to replace the existing 
+one.
+
+I'd be interested in a performance comparison. IME, coccinelle is 
+fairly slow. Slower is okay to a point though.
+
+> 
+> The reason for parsing the kernel source instead of relying on
+> information exposed by the kernel at runtime (say, looking at modaliases
+> or introducing some other mechanism), is to be able to catch issues
+> where a config was renamed or a driver moved across configs, and the
+> .config used by the kernel not updated accordingly. We need to parse the
+> source to find all compatibles present in the kernel independent of the
+> current config being run.
+
+I've been down this route. I had another implementation using gdb to 
+extract all of_device_id objects from a built kernel, but besides the 
+build time, it was really slow.
 
 Rob
+
+[1] https://lore.kernel.org/all/20230804190130.1936566-1-robh@kernel.org/
