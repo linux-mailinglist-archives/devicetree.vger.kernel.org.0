@@ -2,58 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4592E7771C1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 829F57771D2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231872AbjHJHnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 03:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59994 "EHLO
+        id S232549AbjHJHqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 03:46:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231187AbjHJHnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:43:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B9530D2
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:42:31 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qU0JQ-0005Wq-Rg; Thu, 10 Aug 2023 09:42:28 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qU0JP-000776-Mb; Thu, 10 Aug 2023 09:42:27 +0200
-Date:   Thu, 10 Aug 2023 09:42:27 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Adam Ford <aford173@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts: imx8mp: Improve VPU clock configuration
-Message-ID: <20230810074227.i62ybnbpcavsijum@pengutronix.de>
-References: <20230810001320.626744-1-marex@denx.de>
+        with ESMTP id S229904AbjHJHqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:46:15 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31DE211B
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:46:14 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99cdb0fd093so94813466b.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:46:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691653573; x=1692258373;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=19pO42zYtVAjIJUNvAKR95B6FHPWJULLL//o6iFt8Lw=;
+        b=NT9iYuJadAEBUURMezxlAJABIJG7XHwHSsk4A4nByjjLXwTUWcI+/vhUd9ttXiLSUI
+         3skPu8zUdkHMr+RlsoNvNmlxvhlVszbPgmozoVkInrFQJz1T2nQdHPXfdQfStNX4W2zc
+         vEvkNPgd3BmmPvcbeyb7G/dV1djZsu33fa3QXMq3gcCUz8ywbp+wKuCXqAjPsaSXs65a
+         xEm0YfhCCulxzeNH1T6wDayhUGvIOvHh6qQKKPec+i3ncPhP1kpa5jl7TOIT2ub1sZSH
+         CWjC/r0ZnZY59BwkR4yjf9EDqQEN6HaiZNzRbdHueUBOHf21UeVmrtlY6OdP9HkPC2+l
+         IS8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691653573; x=1692258373;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=19pO42zYtVAjIJUNvAKR95B6FHPWJULLL//o6iFt8Lw=;
+        b=T5v/jK4OcUc2E3G78c9e9CClbTdHA4z3cl5uGXtnFA42Q7L27OfcDO1NHNmAx7VEmN
+         k+ER0JdWYbXBqLxVlwW56fS7W0PLXRd0P+IrUZ17W6JU5/q03UFBAMlq9H2TKex92DTO
+         oncmobWuJet4feGXW1POC0E+uaTE7nmPViGWgN41br/0Ksjvgq7orxTuULU+nxfPigI4
+         Y5gxG1kMUcF/5C0vrbRMMvKa22BHMA1Tdxh7RKOWtw+DQRTErbnRHLZOIA8+aLwu6gSG
+         BjSkyBUWkVrGGj5Y7u7b8a20SeL4fd4BlvIdKetDTFnU4fmV8bBEHrfOSZakSUG6zBV6
+         xFSg==
+X-Gm-Message-State: AOJu0YwSGBS/eX6ZtfTV4txSWrpDurRSQ7Zu6+hCHS/kk7FCzCGZl+Y7
+        UhP2vUtyoA71DD8I3savwBgXFg==
+X-Google-Smtp-Source: AGHT+IHxCguYXiIXhyg9LIXORLa+jUyQIhnuWBFeMuRAxNn6NP1VOhTge75PznDcNXFAiuucGcCHOg==
+X-Received: by 2002:a17:907:7709:b0:99b:c949:5ef8 with SMTP id kw9-20020a170907770900b0099bc9495ef8mr1294530ejc.54.1691653573089;
+        Thu, 10 Aug 2023 00:46:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id ke10-20020a17090798ea00b00982a352f078sm548321ejc.124.2023.08.10.00.46.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 00:46:12 -0700 (PDT)
+Message-ID: <d2225b8a-a622-3936-1e43-d5a9801c2cd7@linaro.org>
+Date:   Thu, 10 Aug 2023 09:46:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230810001320.626744-1-marex@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to
+ YAML format
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Alexander Stein <alexander.stein@mailbox.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230808194811.113087-1-alexander.stein@mailbox.org>
+ <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
+ <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org> <8294548.NyiUUSuA9g@kongar>
+ <5c852193-9298-af2e-2b7d-dbba29768fec@linaro.org>
+ <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,96 +87,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On 10/08/2023 09:32, Jerome Brunet wrote:
+>>>> Then why do you have this huge, apparently unnecessary, oneOf? If it's
+>>>> the same, then drop the oneOf and make number of clocks fixed.
+>>>
+>>> But as far as I understand the number of clocks is not fixed. As Jerome pointed 
+>>> out in the other post, it can have any combination of clocks and range from 1 
+>>> up to 11, where 'pclk' is always 1st clock.
+>>> I currently have no idea how to constraint that, despite limiting the number 
+>>> of clock-names.
+>>
+>> The same as in all other clock controllers (was also present on my list
+>> of useful patterns - Variable length arrays (per variant)):
+>> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+> 
+> In the example provided, the number and list of clocks required by each
+> controller variant is fixed, if I'm reading it correctly
+> 
+> Here the controller (regardless of the variant) accepts a maximum 29
+> clock inputs. Only pclk is required. It is valid to have any of 28
+> optional clocks at index 2, 3, etc ...
 
-On 23-08-10, Marek Vasut wrote:
-> Update VPU clock according to reference manual to improve performance.
-> i.MX 8M Plus Applications Processor Reference Manual, Rev. 1, 06/2021
-> 
-> Table 5-1. Clock Root Table (continued) reads as follows:
-> Clock Root ............... Max Freq (MHz)
-> VPU_BUS_CLK_ROOT ......... 800
-> VPU_G1_CLK_ROOT .......... 800
-> VPU_G2_CLK_ROOT .......... 700
-> 
-> 5.1.5.1 Input Clocks
-> Input Clock .............. Frequency (MHz)
-> VPU_PLL_CLK .............. 800
+I actually doubt that it is optional. These are valid clock inputs. I
+could imagine they are optional depending on the use-case, like some
+block being turned off or on... but then still the clock is there, just
+not actively used.
 
-Acoording the datasheet not the reference manual, this would be the
-overdrive mode now. Can we ensure that VDD_SOC is in overdrive state?
+Aren't you now describing existing Linux driver?
 
-Regards,
-  Marco
+> I guess the question is how do you recommend to model that ?
+> I can think of 'Anyof' with all the optional clocks repeated 28 times
+> but that would be fairly ugly.
 
-> The VPU G1 and VPU bus is now supplied from PLL1 which provides 800 MHz
-> on one of its outputs, the VPU G2 is supplied from VPU PLL with 700 MHz
-> which is a perfect fit for this setup. This also matches the NXP kernel
-> fork configuration.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Adam Ford <aford173@gmail.com>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Frank Li <Frank.Li@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 6f2f50e1639c3..77974bd6da63a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1928,8 +1928,8 @@ vpu_g1: video-codec@38300000 {
->  			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
->  			assigned-clocks = <&clk IMX8MP_CLK_VPU_G1>;
-> -			assigned-clock-parents = <&clk IMX8MP_VPU_PLL_OUT>;
-> -			assigned-clock-rates = <600000000>;
-> +			assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
-> +			assigned-clock-rates = <800000000>;
->  			power-domains = <&vpumix_blk_ctrl IMX8MP_VPUBLK_PD_G1>;
->  		};
->  
-> @@ -1939,8 +1939,8 @@ vpu_g2: video-codec@38310000 {
->  			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
->  			assigned-clocks = <&clk IMX8MP_CLK_VPU_G2>;
-> -			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> -			assigned-clock-rates = <500000000>;
-> +			assigned-clock-parents = <&clk IMX8MP_VPU_PLL_OUT>;
-> +			assigned-clock-rates = <700000000>;
->  			power-domains = <&vpumix_blk_ctrl IMX8MP_VPUBLK_PD_G2>;
->  		};
->  
-> @@ -1956,8 +1956,8 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
->  				 <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
->  			clock-names = "g1", "g2", "vc8000e";
->  			assigned-clocks = <&clk IMX8MP_CLK_VPU_BUS>, <&clk IMX8MP_VPU_PLL>;
-> -			assigned-clock-parents = <&clk IMX8MP_VPU_PLL_OUT>;
-> -			assigned-clock-rates = <600000000>, <600000000>;
-> +			assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
-> +			assigned-clock-rates = <800000000>, <700000000>;
->  			interconnects = <&noc IMX8MP_ICM_VPU_G1 &noc IMX8MP_ICN_VIDEO>,
->  					<&noc IMX8MP_ICM_VPU_G2 &noc IMX8MP_ICN_VIDEO>,
->  					<&noc IMX8MP_ICM_VPU_H1 &noc IMX8MP_ICN_VIDEO>;
-> -- 
-> 2.40.1
-> 
-> 
-> 
+
+Best regards,
+Krzysztof
+
