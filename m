@@ -2,122 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1088777685
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 885F97776AE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231317AbjHJLJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 07:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
+        id S232936AbjHJLRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 07:17:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232779AbjHJLJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:09:41 -0400
+        with ESMTP id S230363AbjHJLRW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:17:22 -0400
 Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D94213B
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:09:40 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-d4b74a4a6daso720964276.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:09:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE032683
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:17:22 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-bcb6dbc477eso699543276.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:17:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691665779; x=1692270579;
+        d=linaro.org; s=google; t=1691666241; x=1692271041;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nrCDrSaxkOnoskPLNX6of9fGrq30kSTTjPQNs9alzXw=;
-        b=mqLUcZGAdm5yKSkxr9BjWFd3B/wUgzQDxpBtajmOQByxwqT23HnyN/9GslCSZdK1fl
-         XPRSPd86ZfFgTeyzaFb+TWwfQvH/OcUU3cOb8JJxV0aszhV6F+Gygl3giB9wR7/22vQd
-         fr96lqsvFYBLfMFQj74BJc8X+ujWkyxK3+IT6vhsagBTakO1UTJBPLQ6pwlqp+29R80Y
-         +7P9PmZVTXiu2+pjGX0M8OzvxA+EGEtXmt740D8gvDJmHbs4fxAfV4rgABNkOha3fB0j
-         JFdZEXCtBXJj3rmY3JLWWBCdyQoJsa5OrLis8hsudww1mKFZVGQ4+l3g2MByzHJphERJ
-         Eorw==
+        bh=ADRnTf+HtriZ7mqwDU3wWvmXrT7FB+Ztxvgw7H2KXeU=;
+        b=QFhKu9tkFZ+fkU1lcY4zVfF0dk/FWoUgZD0eH36Sz7H5E6vylleVAxrx4pnTaXqwhk
+         0+gy/gZj3JZk12Km6iz/EZoWzKbi128l5ProuMk6rD8PXzxfQdAWHaHfYFH+hT3tRM5T
+         JhuEe8IlHx2uTiKvZWsgQrv6fkFqrBx0+2vETEZCqjNX/pWDMRwL/0BRd5MvDHtFVvKa
+         BM/Lp+D9Uqm7WCUrVCer3WiE1OLLbVSPYEz4lyAydeXxxun5B/2ka3EMFk7a+ErH42db
+         gw2/aA6IBStBu2S2LDjrdyts3q5jk/zxoySCSTATECPSlKOeat6hCKBGV6ZorzoWY9HV
+         DN/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691665779; x=1692270579;
+        d=1e100.net; s=20221208; t=1691666241; x=1692271041;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nrCDrSaxkOnoskPLNX6of9fGrq30kSTTjPQNs9alzXw=;
-        b=HowVx0ltVjugB0XvtCy4VmpSt13tEFY4WJ2dArAD5XYJmiDo/rtcy5dsoqDNIGEFy1
-         ATKsInT23ZziZzotSV9PJuELs2kr727Hykuq0k2ZG9kWAmGoQwLwFL7De4xnImWgsAGl
-         ryvSOPwwghB9wazjZWXQJ364mHvDzZO2Vm/ZDhhVEkUdOm1vbY+B2skEchxhtfVtDGoR
-         a6CLXKaKTC+GiG8il+5xEGtykfqRyE6hcZDM37xVaAe2RtRjmNxAYbLIsELaYh5ERW7x
-         WTsNY1qcM2izFAPXVoPgwliwPZ0wrI74mn21N+VARybtWvh5D17agB1tfNDhUawm0gnk
-         snAg==
-X-Gm-Message-State: AOJu0YzeSk7okYyJ+9MULCpzDR/KzUHTtH2750PbBddzLTTnhbZRTG55
-        Q5Z1nZWZZ9rmR3l7ZFjwNPAyetpfW6gjoL0N8htu/g==
-X-Google-Smtp-Source: AGHT+IHZFiJvDdRFwWsv0IC08dq5P2mWN3KmjsdIo4AKS3FUz9cw2DydAD6qCbnSHw/Inw5OMg6uQe9d0pHzlI0Agpc=
-X-Received: by 2002:a25:734b:0:b0:d4e:f64d:97bd with SMTP id
- o72-20020a25734b000000b00d4ef64d97bdmr2277019ybc.63.1691665779441; Thu, 10
- Aug 2023 04:09:39 -0700 (PDT)
+        bh=ADRnTf+HtriZ7mqwDU3wWvmXrT7FB+Ztxvgw7H2KXeU=;
+        b=AA3uvIaGX1J5AXdxE0N/h3TPe1Q4qB/+QOzSiXzmruTCGsUomvehWnNMLFRPc/AGsq
+         km9tTSaO1LDQyjinZK3IAHgxj6d4u6UARtWlrK7eYAFyBBMO9e6UjMI93pMRc+RfS34C
+         5CnpBK++x5GM18rmZKhBY1XRmxr0SYsJoNEPv2t7qInfM8rn3+wh8fv+UPlqypiFGR/J
+         1rrUcqNiT+5RuN7gWBy2hRn/lhQm8bUBwkdj1VmSTSTjNujFrw6Bd7APho0lwpsTuWlt
+         SVNhZsmF8g5vUIZDqzprEJQ3F5favPk1bzuqkcpizKkczrvAvxncWB5NXdM+TmaLGVgB
+         RSpA==
+X-Gm-Message-State: AOJu0YyLDDWWZbE7r/3uM2byAF46UBUYGfMRkwZq//r2VbfM2iVBW0vO
+        ShNdgeCfBhuw4joEo+Ei/+TaUaSaMgRAtog1H1nGrQ==
+X-Google-Smtp-Source: AGHT+IG0cc60EKwg6aO/Vl/FWx+h3xKBM7qpk0WTUOrKZYJlTlQ3xEW/05G+n7KdFt0H+qP3lFIXHa3H2q7KcJby2j8=
+X-Received: by 2002:a25:250f:0:b0:cea:6760:d2c6 with SMTP id
+ l15-20020a25250f000000b00cea6760d2c6mr2046852ybl.41.1691666241474; Thu, 10
+ Aug 2023 04:17:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1691606520.git.agx@sigxcpu.org> <d7a0be6a2688a9829077cc21ca4a5bf9528f9eb1.1691606520.git.agx@sigxcpu.org>
-In-Reply-To: <d7a0be6a2688a9829077cc21ca4a5bf9528f9eb1.1691606520.git.agx@sigxcpu.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 10 Aug 2023 13:09:03 +0200
-Message-ID: <CAPDyKFrhBqvkqnJngSBSx+nqnNwo9BXjfiUjt2uk_TbCsd95Ug@mail.gmail.com>
-Subject: Re: [PATCH v1 2/5] dt-bindings: mmc: Fix reference to pwr-seq-simple
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20230809132757.2470544-1-herve.codina@bootlin.com> <20230809132757.2470544-22-herve.codina@bootlin.com>
+In-Reply-To: <20230809132757.2470544-22-herve.codina@bootlin.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 10 Aug 2023 13:17:09 +0200
+Message-ID: <CACRpkdZQ9_f6+9CseV1L_wGphHujFPAYXMjJfjUrzSZRakOBzg@mail.gmail.com>
+Subject: Re: [PATCH v3 21/28] net: wan: Add framer framework support
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        kernel@puri.sm, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        David Heidelberg <david@ixit.cz>
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Aug 2023 at 20:50, Guido G=C3=BCnther <agx@sigxcpu.org> wrote:
->
-> It's a YAML file nowadays.
->
-> Signed-off-by: Guido G=C3=BCnther <agx@sigxcpu.org>
+Hi Herve,
 
-Applied for next, thanks!
+On Wed, Aug 9, 2023 at 3:28=E2=80=AFPM Herve Codina <herve.codina@bootlin.c=
+om> wrote:
 
-Kind regards
-Uffe
+> A framer is a component in charge of an E1/T1 line interface.
+> Connected usually to a TDM bus, it converts TDM frames to/from E1/T1
+> frames. It also provides information related to the E1/T1 line.
+>
+> The framer framework provides a set of APIs for the framer drivers
+> (framer provider) to create/destroy a framer and APIs for the framer
+> users (framer consumer) to obtain a reference to the framer, and
+> use the framer.
+>
+> This basic implementation provides a framer abstraction for:
+>  - power on/off the framer
+>  - get the framer status (line state)
+>  - be notified on framer status changes
+>  - get/set the framer configuration
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/=
-Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 86c73fd825fd..58ae298cd2fc 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -269,7 +269,7 @@ properties:
->    post-power-on-delay-ms:
->      description:
->        It was invented for MMC pwrseq-simple which could be referred to
-> -      mmc-pwrseq-simple.txt. But now it\'s reused as a tunable delay
-> +      mmc-pwrseq-simple.yaml. But now it\'s reused as a tunable delay
->        waiting for I/O signalling and card power supply to be stable,
->        regardless of whether pwrseq-simple is used. Default to 10ms if
->        no available.
-> --
-> 2.40.1
->
+I love it, very clear commit message telling us what it is all
+about.
+
+The placement in the WAN subsystem also hints that this has
+something to do with long distance links (relative to something)
+so maybe mention that?
+
+> +menu "Framer Subsystem"
+> +
+> +config GENERIC_FRAMER
+> +       bool "Framer Core"
+> +       help
+> +         Generic Framer support.
+> +
+> +         This framework is designed to provide a generic interface for f=
+ramer
+> +         devices present in the kernel. This layer will have the generic
+> +         API by which framer drivers can create framer using the framer
+> +         framework and framer users can obtain reference to the framer.
+> +         All the users of this framework should select this config.
+
+But this description just says this is a framing framer that frames frames =
+;)
+
+So please copy some of the nice description from the commit message
+into this Kconfig helptext.
+
+Is "long distance link time division multiplexing (TDM) framer" more
+to the point for example? Or is the ambition to frame other multiplexing
+techniques as well with this subsystem? Such as FDM? Then mention
+that.
+
+Yours,
+Linus Walleij
