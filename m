@@ -2,102 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC258776D62
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 03:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A58F776D75
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 03:19:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229851AbjHJBMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 21:12:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47670 "EHLO
+        id S231673AbjHJBTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 21:19:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjHJBMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 21:12:13 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EDCC1982;
-        Wed,  9 Aug 2023 18:12:13 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A1C8cV022013;
-        Wed, 9 Aug 2023 20:12:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691629928;
-        bh=uxxGT65fRGlsGnQ0NdE7ItHanqicRg4wNo8X6hdp2RA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=WFB+sBhyiF/Nti1kBzIGIkOSAglcjm9ae2u2XeyaReDTPr7EIqhNr/NEvVooZRuYz
-         jXP6GfbQ237FGM6vRuTmtxblZ7vS9Pb7L7F9aqcnuR6+TGaqq1FPOeVbgWmjcwb1aC
-         sXzEze3ymf1VDYd6C4Ew+owqsofTtQv8Tp7U5udE=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A1C75T086386
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 20:12:07 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 20:12:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 20:12:07 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A1C7dP068901;
-        Wed, 9 Aug 2023 20:12:07 -0500
-Date:   Wed, 9 Aug 2023 20:12:07 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Hari Nagalla <hnagalla@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/5] Add R5F and C7x DSP nodes for AM62a SoC
-Message-ID: <20230810011207.ltlzresx5hwiwlgo@shawl>
-References: <20230810005850.21998-1-hnagalla@ti.com>
-MIME-Version: 1.0
+        with ESMTP id S231196AbjHJBTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 21:19:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1E010E6;
+        Wed,  9 Aug 2023 18:19:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CBDD64D2F;
+        Thu, 10 Aug 2023 01:19:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B74DC433C7;
+        Thu, 10 Aug 2023 01:19:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691630358;
+        bh=TB3ObTSE7LxprxKyIdCMl0H38M73hC+gEJTl1bWWpAc=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=UjtsVNARulJIuPJR2PiHBg8u1sSMi/GgztJCUIAMWtOCKCEkjTSLhZ7t/CPRGrp1P
+         ZNAh3trNVsWdvje9GaWu3uCVesPwig8vM1TZhgH31x37v+7MuUqd4IPYNlz5fV4ziK
+         WRoDLdcheSSDtZl2jeZ3kOTr/pFf4uJiqvvuW+6hO4nT1t0kSgEmqZAC/0kucBGDm5
+         ahyxQl0XFfxY7My0n0J7SPYYex+ymk3OUM84myRl2pm3PRjKi8Coa+t7iEojbSFsQL
+         Nv/D4sVM0oO2VhuWejZN9lZoyHpgTgUWh+w46J6R9jADI7yp5DIji/GFJY5GykqNJi
+         SWrKG1bRRZJxA==
+Received: (nullmailer pid 3365153 invoked by uid 1000);
+        Thu, 10 Aug 2023 01:19:16 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230810005850.21998-1-hnagalla@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Hari Nagalla <hnagalla@ti.com>
+Cc:     linux-kernel@vger.kernel.org, nm@ti.com, conor+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        kristo@kernel.org, robh+dt@kernel.org
+In-Reply-To: <20230810005850.21998-2-hnagalla@ti.com>
+References: <20230810005850.21998-1-hnagalla@ti.com>
+ <20230810005850.21998-2-hnagalla@ti.com>
+Message-Id: <169163035646.3365117.5068119107443331919.robh@kernel.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: k3-dsp: correct
+ optional sram properties for AM62A SoCs
+Date:   Wed, 09 Aug 2023 19:19:16 -0600
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:58-20230809, Hari Nagalla wrote:
-> This patch series adds R5F and C7x dsp processor nodes for AM62A SoC.
-> The first patch amends the dsp node binding doc file and the remaining
-> patches configure the remote processor device nodes.
-> 
-> v1: https://lore.kernel.org/all/20230502141416.9924-1-hnagalla@ti.com/ 
-> 
-> Devarsh Thakkar (2):
->   arm64: dts: k3-am62a-wakeup: Add R5F device node
->   arm64: dts: ti: k3-am62a7-sk: Enable ipc with remote proc nodes
-> 
-> Hari Nagalla (2):
->   dt-bindings: remoteproc: k3-dsp: correct optional sram properties for
->     AM62A SoCs
->   arm64: dts: k3-am62a-mcu: Add R5F remote proc node
-> 
-> Jai Luthra (1):
->   arm64: dts: k3-am62a-main: Add C7xv device node
 
-	please send the binding fix to the remoteproc maintainer, SoC TI
-	can pick the dts fixes in the next kernel rc1 rev.
+On Wed, 09 Aug 2023 19:58:46 -0500, Hari Nagalla wrote:
+> The C7xv-dsp on AM62A have 32KB L1 I-cache and a 64KB L1 D-cache. It
+> does not have an addressable l1dram . So, remove this optional sram
+> property from the bindings to fix device tree build warnings.
 > 
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 16 ++++-
->  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 11 +++
->  arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi      | 35 ++++++++++
->  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   | 23 +++++++
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 68 +++++++++++++++++++
->  5 files changed, 151 insertions(+), 2 deletions(-)
+> Also set the 'memory-regions' property as optional. This is because
+> the remote processors can function without carveout regions.
 > 
-> -- 
-> 2.34.1
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+> Changes since v1:
+>  - Corrected dsp node binding doc file to fix yamllint warnings for am62a.
+> 
+>  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810005850.21998-2-hnagalla@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
