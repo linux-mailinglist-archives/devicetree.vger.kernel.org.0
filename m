@@ -2,104 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09AB0777C4F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 17:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D038777C62
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 17:39:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235306AbjHJPhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 11:37:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34376 "EHLO
+        id S232422AbjHJPjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 11:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233241AbjHJPhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 11:37:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94F4326B7;
-        Thu, 10 Aug 2023 08:37:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 349DA65EF0;
-        Thu, 10 Aug 2023 15:37:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE06AC433C8;
-        Thu, 10 Aug 2023 15:37:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691681852;
-        bh=L0JsfUS8p25f+d3PZHsFgozKJuVZBca+0cwe9Igyejg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DA4t/dbhdtsbR6tiYTlI71TTFx7W8xv6Q0CUs8rU0/+v+I1azT3SQneIY8X3s5nJ1
-         dMlqsF4RdDvx2NPGykU7egEiFdF5lhIIHCpiUbL260pbLhxqsHzOc67Ytj8JbGKVL0
-         Dp606sCLyjkVnJMEDeykJXEINtIneHJcCtBNQ3/ILnPnNfEIMWCcTfjPvIeSd25NPw
-         Zh7Aj1dHT2M0tDXWYqnax3wdh0DPJYNFEW3crdqQdd2FvYNs82iaQaOhkq2uGygskm
-         RgDygbU8jDkDoFKUGSv71WfjV16mAT2degv+HCzvRcwh64v1LbAd+/5J9ktdC6IHl8
-         O596pSd4L/OFw==
-From:   Conor Dooley <conor@kernel.org>
-To:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, Samin Guo <samin.guo@starfivetech.com>
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>
-Subject: Re: [-next v1 0/1] Fix StarFive JH7110 gmac TCP RX speed issue
-Date:   Thu, 10 Aug 2023 16:37:13 +0100
-Message-Id: <20230810-cresting-talon-51a6c31da4f8@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230810074646.19076-1-samin.guo@starfivetech.com>
-References: <20230810074646.19076-1-samin.guo@starfivetech.com>
+        with ESMTP id S234282AbjHJPjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 11:39:04 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D05C926BC;
+        Thu, 10 Aug 2023 08:39:01 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AFcoMd017351;
+        Thu, 10 Aug 2023 10:38:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691681930;
+        bh=zA5ZpN1MjFwOd0rQ7K2vMV1GizDYUyuPvUbuu66UOjs=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=PYLRFMhG4jaMYJ+lf0yNtoqbdwXudDiXwuhSFnqbonZVKs8RaUiYOeGgX62X1+ZQ6
+         uCu2vLGXI0e97pQ+g8LZTOGOKqdknaXvyyAd9AdxdXG3NuZu5zDlB3sr+aXR6gHIv4
+         LmtruE27Bl1RfQl3N7NnkNL75gsYo3CR6vq7CC3o=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AFcoIA129278
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 10:38:50 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 10:38:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 10:38:50 -0500
+Received: from [10.249.48.175] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AFcohM033637;
+        Thu, 10 Aug 2023 10:38:50 -0500
+Message-ID: <2f0e9dde-0c6c-b808-02a0-c4ec659fc622@ti.com>
+Date:   Thu, 10 Aug 2023 10:38:50 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1619; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=0Tr68Xd8hSRu8rUov59X+oljjBng5+GIs9HgXSz7jKs=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDClXWdQNNupuq1t+dKJetmZ0PX/MGqcnYVu+Pw0/Jtx+R pc5JOJwRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACbyoJzhr6i3XkV+T9+uLnm3 ksh1KWoiWZan3+Xvdp08a8Fbhe6XRxkZDnr42Mjpldm1GRrV5tRt2O1aKBbx7knz18hzwezcDw2 ZAQ==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: disable remote proc nodes
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20230810005629.21738-1-hnagalla@ti.com>
+ <20230810011046.ta3qapj3oj2oqs7o@value>
+From:   Hari Nagalla <hnagalla@ti.com>
+In-Reply-To: <20230810011046.ta3qapj3oj2oqs7o@value>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On 8/9/23 20:10, Nishanth Menon wrote:
+>> Disable the dsp and r5f subsystem nodes by default. Proper functioning
+>> of remote processors with ipc need mailbox configurations which can
+>> vary between board configurations and applications. Hence move enabling
+>> the remote processor device nodes to where the required configurations
+>> are complete.
+>>
+>> Signed-off-by: Hari Nagalla<hnagalla@ti.com>
+>> ---
+>> This patch fixes the remote proc yamllint errors for am69-sk board
+> Fixes tag?
+As such this yamllint errors for am69-sk.dtb were present in several 
+earlier tags of linux-next. Checked with latest tag: next-20230809.
 
-On Thu, 10 Aug 2023 15:46:45 +0800, Samin Guo wrote:
-> This patch fixes the StarFive JH7110 gmac TCP RX slow issue. And it has been
-> tested on VisionFive 2.
-> 
-> Here is the result of the test (iperf3):
-> 
->   Before:
->       # iperf3 -s
->       -----------------------------------------------------------
->       Server listening on 5201 (test #1)
->       -----------------------------------------------------------
->       Accepted connection from 192.168.1.4, port 47604
->       [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
->       [ ID] Interval           Transfer     Bitrate
->       [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
->       [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
->       [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
->       [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
->       [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
->       [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
->       [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
->       [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
->       [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
->       [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
->       - - - - - - - - - - - - - - - - - - - - - - - - -
->       [ ID] Interval           Transfer     Bitrate
->       [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
-> 
-> [...]
+Please let me know if you would need v2 with the tag specified in comments.
 
-Applied to riscv-dt-for-next with the conversion to decimal, thanks!
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@64800000: 'mboxes' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@64800000: 'memory-region' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@65800000: 'mboxes' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@65800000: 'memory-region' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@66800000: 'mboxes' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@66800000: 'memory-region' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@67800000: 'mboxes' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+/home/a0868345/git/upstream/linux-next/arch/arm64/boot/dts/ti/k3-am69-sk.dtb: 
+dsp@67800000: 'memory-region' is a required property
+	from schema $id: 
+http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
 
-[1/1] riscv: dts: starfive: jh7110: Fix GMAC configuration
-      https://git.kernel.org/conor/c/1273f7e96a70
-
-Thanks,
-Conor.
