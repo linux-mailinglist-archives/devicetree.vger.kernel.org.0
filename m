@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B487778C7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A5E37778D7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:53:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbjHJMrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 08:47:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50966 "EHLO
+        id S235392AbjHJMx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 08:53:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231739AbjHJMrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:47:06 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE9B1B4
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 05:47:03 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-2681223aaacso638792a91.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 05:47:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691671623; x=1692276423;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oAqgGliX8VlYgEpX7PIDwcc/HDEHTBFrEfVMkI5mjRQ=;
-        b=m7jJdl2o8CKem63Wfw9aLd3iGFUB+NNgzn7ir2lhFm+IlJC4lHNs+tSaBxROpCFnau
-         2hqCDAV3JhjE5EiKjc6zEjnEbEea1NftJmsTpMMj74So1yLLCYyApWrqmOYZGiF/5mGZ
-         3kd1v1itCpxOxj9zxcX/I77+EwdqkcJcKWhxBHgfimJKN0talDXbfb6qleORwn8o72ce
-         BJI6GC4C6rXTpAihSluZom+lAjY+SvlJEKnS+NyM2PkMetzQL+xOkjZNA1+YHQQq7N5G
-         59DXpK+zHc5wT812SIjQYmD4kieKYKmpm+gpE37s+01Gv/BgrLyHQVO33habWMZZyrtc
-         lhRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691671623; x=1692276423;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oAqgGliX8VlYgEpX7PIDwcc/HDEHTBFrEfVMkI5mjRQ=;
-        b=eiQOow0fDWR/U441OoDju6wVxic0LoscEO1jz8gZ0tKsKZFJiel6XtLTC3dswtJndP
-         doGhqNHUEnfB+CSJKIPUcRIX4LqoRhU6vagQzB3OWg8mXleL4O6XK3MInGQ9kLUSOLsW
-         oftJVaoafSZMiuze4dxf/G1N2H5lXjZ6TmhrUKWoLR01UIKwoMdLc6SdbEgk4X3ZPdDD
-         49OTfAVLVkcAzASc36BbjgWCzEpaK1og9QKGaigTvB02EaGXEoLRQ46eTTw7RbwAOzBD
-         Rhmd6THDwL7W0iRdb7VXqnZGA6AmeGG1856Met7oLthXXwKOgdmtjyLzRG8G+1f/2pOY
-         1GzQ==
-X-Gm-Message-State: AOJu0Yyejh5HvoT0KTgKyP/hU5ABjeMbgiGlSXkgcpHZSJUJv+BYMHMr
-        nVnz40/thhn3Ec5nGKYL+nsnLNqmrh8etDbxGFovMGQj
-X-Google-Smtp-Source: AGHT+IEbQSX9JP4pL0gzwLBn80+5RCwSDiE9MyOAWMwovL6rGS7fmwhiLSJPrgRmfYYuJrVctj1152FxaOcBsSc+L68=
-X-Received: by 2002:a17:90b:154e:b0:263:161c:9e9c with SMTP id
- ig14-20020a17090b154e00b00263161c9e9cmr2764958pjb.12.1691671622457; Thu, 10
- Aug 2023 05:47:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230810001320.626744-1-marex@denx.de> <20230810074227.i62ybnbpcavsijum@pengutronix.de>
-In-Reply-To: <20230810074227.i62ybnbpcavsijum@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 10 Aug 2023 07:46:51 -0500
-Message-ID: <CAHCN7xKaYS_=jSxuEVNkieMe65KaJrBr+DOFWGa+8hukO8xpmQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: Improve VPU clock configuration
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S233199AbjHJMx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:53:27 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6748026A8;
+        Thu, 10 Aug 2023 05:53:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1691672006; x=1723208006;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mJ+/b00F9kPexO4v/gdgxth24IwvwYtglje3VG8O1nU=;
+  b=ycsRBXovdMOTzEo334IVqLnJ9Z9f8t9kPKsD0boEGnm2ZeihMr1y9OaX
+   381MolbPiH8q3S8xZh7pNzuVwVaFziSjWmUH0G5FQJALXiSg+GJLfi+wN
+   3kIJSiV7Aob5uh0nfJyiOkSX1p9TMR0XgBuWhrdXgCY/vGn32NLNWz6jE
+   4WnjEXNhtrUr8dNuCBb+2lE8yS6NC0LVBEwVT27DpJylmzYEfGtH/nyyN
+   3vU/8Im9KxY8P12CQxWxAlD7N6oFtNP1TuOHh9swcB1ATgnMOZii8PQYE
+   5pnL99tvYIFpNEZ/ZwkiByUqdZo/3VJBqbwk4VMK9FvDAtQHN72I6gRj5
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
+   d="asc'?scan'208";a="229166856"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2023 05:53:24 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 10 Aug 2023 05:52:53 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 10 Aug 2023 05:52:49 -0700
+Date:   Thu, 10 Aug 2023 13:52:11 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Md Danish Anwar <a0501179@ti.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         Richard Cochran <richardcochran@gmail.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXTERNAL] Re: [PATCH v3 1/5] dt-bindings: net: Add ICSS IEP
+Message-ID: <20230810-drippy-draw-8e8a63164e46@wendy>
+References: <20230809114906.21866-1-danishanwar@ti.com>
+ <20230809114906.21866-2-danishanwar@ti.com>
+ <20230809-cardboard-falsify-6cc9c09d8577@spud>
+ <0b619ec5-9a86-a449-e8db-b12cca115b93@ti.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="diS/Ua0hOZdswhas"
+Content-Disposition: inline
+In-Reply-To: <0b619ec5-9a86-a449-e8db-b12cca115b93@ti.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,125 +83,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 10, 2023 at 2:42=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
->
-> Hi Marek,
->
-> On 23-08-10, Marek Vasut wrote:
-> > Update VPU clock according to reference manual to improve performance.
-> > i.MX 8M Plus Applications Processor Reference Manual, Rev. 1, 06/2021
-> >
-> > Table 5-1. Clock Root Table (continued) reads as follows:
-> > Clock Root ............... Max Freq (MHz)
-> > VPU_BUS_CLK_ROOT ......... 800
-> > VPU_G1_CLK_ROOT .......... 800
-> > VPU_G2_CLK_ROOT .......... 700
-> >
-> > 5.1.5.1 Input Clocks
-> > Input Clock .............. Frequency (MHz)
-> > VPU_PLL_CLK .............. 800
->
-> Acoording the datasheet not the reference manual, this would be the
-> overdrive mode now. Can we ensure that VDD_SOC is in overdrive state?
+--diS/Ua0hOZdswhas
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Shoot, I explicitly searched the TRM for overdrive, because I remember
-this coming before with either the 8MQ or 8MM, but I couldn't
-remember.  I forgot all about the actual datasheet.
+On Thu, Aug 10, 2023 at 03:23:11PM +0530, Md Danish Anwar wrote:
+> On 10/08/23 3:07 am, Conor Dooley wrote:
+> > On Wed, Aug 09, 2023 at 05:19:02PM +0530, MD Danish Anwar wrote:
+> >> Add DT binding documentation for ICSS IEP module.
+> >>
+> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> >> ---
+> >>  .../devicetree/bindings/net/ti,icss-iep.yaml  | 37 +++++++++++++++++++
+> >>  1 file changed, 37 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.=
+yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/=
+Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+> >> new file mode 100644
+> >> index 000000000000..adae240cfd53
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+> >> @@ -0,0 +1,37 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/net/ti,icss-iep.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Texas Instruments ICSS Industrial Ethernet Peripheral (IEP) mo=
+dule
+> >=20
+> > Does the module here refer to the hw component or to the linux kernel
+> > module?
+> >=20
+>=20
+> The module here refers to the hardware component.
 
-The operating-points for the various voltage rails would have to
-increase to get this into overdrive mode.  I think this would have to
-be done on a per-board basis if memory serves when this came up
-before.  :-(
+Sweet, thanks.
 
-adam
->
-> Regards,
->   Marco
->
-> > The VPU G1 and VPU bus is now supplied from PLL1 which provides 800 MHz
-> > on one of its outputs, the VPU G2 is supplied from VPU PLL with 700 MHz
-> > which is a perfect fit for this setup. This also matches the NXP kernel
-> > fork configuration.
-> >
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > ---
-> > Cc: Adam Ford <aford173@gmail.com>
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Fabio Estevam <festevam@gmail.com>
-> > Cc: Frank Li <Frank.Li@nxp.com>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > Cc: Marek Vasut <marex@denx.de>
-> > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > Cc: Peng Fan <peng.fan@nxp.com>
-> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > Cc: Richard Cochran <richardcochran@gmail.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> > Cc: Shawn Guo <shawnguo@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
-t/dts/freescale/imx8mp.dtsi
-> > index 6f2f50e1639c3..77974bd6da63a 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -1928,8 +1928,8 @@ vpu_g1: video-codec@38300000 {
-> >                       interrupts =3D <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> >                       clocks =3D <&clk IMX8MP_CLK_VPU_G1_ROOT>;
-> >                       assigned-clocks =3D <&clk IMX8MP_CLK_VPU_G1>;
-> > -                     assigned-clock-parents =3D <&clk IMX8MP_VPU_PLL_O=
-UT>;
-> > -                     assigned-clock-rates =3D <600000000>;
-> > +                     assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL1_=
-800M>;
-> > +                     assigned-clock-rates =3D <800000000>;
-> >                       power-domains =3D <&vpumix_blk_ctrl IMX8MP_VPUBLK=
-_PD_G1>;
-> >               };
-> >
-> > @@ -1939,8 +1939,8 @@ vpu_g2: video-codec@38310000 {
-> >                       interrupts =3D <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> >                       clocks =3D <&clk IMX8MP_CLK_VPU_G2_ROOT>;
-> >                       assigned-clocks =3D <&clk IMX8MP_CLK_VPU_G2>;
-> > -                     assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_=
-1000M>;
-> > -                     assigned-clock-rates =3D <500000000>;
-> > +                     assigned-clock-parents =3D <&clk IMX8MP_VPU_PLL_O=
-UT>;
-> > +                     assigned-clock-rates =3D <700000000>;
-> >                       power-domains =3D <&vpumix_blk_ctrl IMX8MP_VPUBLK=
-_PD_G2>;
-> >               };
-> >
-> > @@ -1956,8 +1956,8 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
-> >                                <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
-> >                       clock-names =3D "g1", "g2", "vc8000e";
-> >                       assigned-clocks =3D <&clk IMX8MP_CLK_VPU_BUS>, <&=
-clk IMX8MP_VPU_PLL>;
-> > -                     assigned-clock-parents =3D <&clk IMX8MP_VPU_PLL_O=
-UT>;
-> > -                     assigned-clock-rates =3D <600000000>, <600000000>=
-;
-> > +                     assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL1_=
-800M>;
-> > +                     assigned-clock-rates =3D <800000000>, <700000000>=
-;
-> >                       interconnects =3D <&noc IMX8MP_ICM_VPU_G1 &noc IM=
-X8MP_ICN_VIDEO>,
-> >                                       <&noc IMX8MP_ICM_VPU_G2 &noc IMX8=
-MP_ICN_VIDEO>,
-> >                                       <&noc IMX8MP_ICM_VPU_H1 &noc IMX8=
-MP_ICN_VIDEO>;
-> > --
-> > 2.40.1
-> >
-> >
-> >
+> >> +
+> >> +maintainers:
+> >> +  - Md Danish Anwar <danishanwar@ti.com>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - ti,am654-icss-iep   # for all TI K3 SoCs
+> >=20
+> > *sigh* Please at least give me a chance to reply to the conversation on
+> > the previous versions of the series before sending more, that's the
+> > second time with this series :/
+>=20
+> My bad, I should have waited for your response. I will hold on posting ne=
+xt
+> version until your response is received.
+>=20
+> > Right now this looks worse to me than what we started with given the
+> > comment is even broader. I have not changed my mind re: what I said on
+> > the previous version.
+> >=20
+>=20
+> OK, so in the previous version [1] your reply was to have specific compat=
+ibles
+> as bindings with "ti-am654-icss-iep" as a fall back. I will go with this =
+only.
+>=20
+> Does the below looks good to you? Here "ti,am642-icss-iep" and
+> "ti,j721e-icss-iep" are different compatibles for different SoCs where as
+> "ti,am654-icss-iep" is the fall back. Compatible "ti,am654-icss-iep" will=
+ go in
+> the driver.
+>=20
+> properties:
+>   compatible:
+>     oneOf:
+>       - items:
+>           - enum:
+>               - ti,am642-icss-iep
+>               - ti,j721e-icss-iep
+>           - const: ti,am654-icss-iep
+>=20
+>       - items:
+>           - const: ti,am654-icss-iep
+
+This one doesn't need to be an items list, since there is only one item.
+It should be able to just be const:. I much prefer this approach.
+
+Thanks,
+Conor.
+
+--diS/Ua0hOZdswhas
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNTdewAKCRB4tDGHoIJi
+0iMoAQCDOBl0Qa9rDfRGu4AnjpAIUepfbUnc63ThpYDzbWaJ+wD/e5Y5S1Ae5ZBa
+5xbzDkOAnzsbPwqtnhkcByShucEghg4=
+=yxL7
+-----END PGP SIGNATURE-----
+
+--diS/Ua0hOZdswhas--
