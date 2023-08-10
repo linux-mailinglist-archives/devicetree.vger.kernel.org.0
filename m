@@ -2,185 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5FC47778E5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DF957778EB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:59:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbjHJM5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 08:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
+        id S235157AbjHJM7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 08:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbjHJM5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:57:50 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24242C5;
-        Thu, 10 Aug 2023 05:57:50 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37ACvTcK049535;
-        Thu, 10 Aug 2023 07:57:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691672249;
-        bh=SRjRe34ehad5M7YRy/nqD3E5u+nolVOaUEPJlquRXus=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=T33uo7GyZVN3KQ9oPUdDikxNHd9TLkmpRr3i6Hk2A0B6i5oLbAgBsVJat0mcDWvvv
-         L4G3TuwScjbhOtK065v67tGaJo9bybobDDMnrV2yNLHILqM13sBMJ8BkkFrBZE8kP9
-         uwC6Zhc/CvdQwPjWEHcaG+q1j5o8owVIq7RpOg5U=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37ACvTKT109279
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 07:57:29 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 07:57:29 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 07:57:29 -0500
-Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37ACvMRd013085;
-        Thu, 10 Aug 2023 07:57:23 -0500
-Message-ID: <593b3505-9c1e-47e6-e856-f299fc257fa8@ti.com>
-Date:   Thu, 10 Aug 2023 18:27:22 +0530
+        with ESMTP id S234008AbjHJM7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:59:30 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D082698
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 05:59:28 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b9f48b6796so13582891fa.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 05:59:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691672367; x=1692277167;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wk+zm0d06jLEAReFRShjOq87rLOotXXr0iiPkZag8v8=;
+        b=B2ZGQfi0E7+mq4GCi8OBMFKMDMOjt4TrHm+hgbNq8F3Aqm3MAL3Jobc9Ha3MZWhOZy
+         111TJ7gn1uN2vB+eBX9mEtn05EE2WByZLoAvvsJPMqpTEYHLcmBNiZbub125LZQNEDPB
+         sSO97uANHNKYP2Mpxlsz6iZx/Q/X5hprkwqopbO+RJShvrATMHCY1C/GV56njdtl452a
+         46bBueehDI1O8D6ITJ1JJJoyTp/PFCTeGx7MFvFyUh1dTYZR0ZIW41VOyIJHIu/JBlLf
+         +2cfGm48gvtSDhQfggumQebIM6yzy9tVxKhw51JUz2pvCfE8/PLjkaVWYmuupsMi+6GM
+         t4mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691672367; x=1692277167;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wk+zm0d06jLEAReFRShjOq87rLOotXXr0iiPkZag8v8=;
+        b=bvP+dZc7OryKKjq2lAIckUPkD9NvC5/AZolKAU/EYLDL6EpWAmxBcjRtwAhLIvdtyz
+         bLeCmmJbUbBc4rlOzWaAh7OUwEokPdcoIIPyklWGLNatXCSnpKDXufJECIfGrwFARb4s
+         pktUrb0g1hTL/iQBnRRzv+biB0xGxfd0Y5INwIA01dyAqeGV2zgezRQccKMIV5poggzH
+         QjSb9N0RcDcHDlsWL3bUhD+mzAqoLbWKWvlbf+cBchZhWtAspzqyLG8GIPGDs/d2jBGn
+         Cbe59iGwwwejzoKWfwxaQ4NPcHtagEwS6Hkhq3jm+1LRD6YqUiysKXPvsVR8p7teoBHl
+         q2/w==
+X-Gm-Message-State: AOJu0Yym9m+SraqPpsuWtU9mic2q1YUjrTTcIrTgYDwuN0cz//qtOw8D
+        /p6W0FldlUasJjjO5R6zxrXq5w==
+X-Google-Smtp-Source: AGHT+IHTsZWeX9PLzv0ARPxF/b9bUQFJCXF2d4FgPRJaPHGroko/PDHFHw8TSdTAoBpe9wcNjgif0A==
+X-Received: by 2002:a2e:8555:0:b0:2b6:ad79:a4fb with SMTP id u21-20020a2e8555000000b002b6ad79a4fbmr1937417ljj.1.1691672366726;
+        Thu, 10 Aug 2023 05:59:26 -0700 (PDT)
+Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
+        by smtp.gmail.com with ESMTPSA id n12-20020a2e720c000000b002b9fdfdab75sm354562ljc.12.2023.08.10.05.59.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 05:59:26 -0700 (PDT)
+Message-ID: <9dec09fa-a5a3-416c-9b4d-4b4c4e10320b@linaro.org>
+Date:   Thu, 10 Aug 2023 14:59:24 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: net: Add ICSS IEP
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] clk: qcom: add clock controller driver for
+ qca8386/qca8084
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Conor Dooley <conor@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230809114906.21866-1-danishanwar@ti.com>
- <20230809114906.21866-2-danishanwar@ti.com>
- <20230809-cardboard-falsify-6cc9c09d8577@spud>
- <0b619ec5-9a86-a449-e8db-b12cca115b93@ti.com>
- <20230810-drippy-draw-8e8a63164e46@wendy>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <20230810-drippy-draw-8e8a63164e46@wendy>
-Content-Type: text/plain; charset="UTF-8"
+To:     Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
+        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_srichara@quicinc.com
+References: <20230810115419.25539-1-quic_luoj@quicinc.com>
+ <20230810115419.25539-4-quic_luoj@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230810115419.25539-4-quic_luoj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/23 6:22 pm, Conor Dooley wrote:
-> On Thu, Aug 10, 2023 at 03:23:11PM +0530, Md Danish Anwar wrote:
->> On 10/08/23 3:07 am, Conor Dooley wrote:
->>> On Wed, Aug 09, 2023 at 05:19:02PM +0530, MD Danish Anwar wrote:
->>>> Add DT binding documentation for ICSS IEP module.
->>>>
->>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>> ---
->>>>  .../devicetree/bindings/net/ti,icss-iep.yaml  | 37 +++++++++++++++++++
->>>>  1 file changed, 37 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
->>>> new file mode 100644
->>>> index 000000000000..adae240cfd53
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
->>>> @@ -0,0 +1,37 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/net/ti,icss-iep.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Texas Instruments ICSS Industrial Ethernet Peripheral (IEP) module
->>>
->>> Does the module here refer to the hw component or to the linux kernel
->>> module?
->>>
->>
->> The module here refers to the hardware component.
+On 10.08.2023 13:54, Luo Jie wrote:
+> Add clock & reset controller driver for qca8386/qca8084.
 > 
-> Sweet, thanks.
-> 
->>>> +
->>>> +maintainers:
->>>> +  - Md Danish Anwar <danishanwar@ti.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - ti,am654-icss-iep   # for all TI K3 SoCs
->>>
->>> *sigh* Please at least give me a chance to reply to the conversation on
->>> the previous versions of the series before sending more, that's the
->>> second time with this series :/
->>
->> My bad, I should have waited for your response. I will hold on posting next
->> version until your response is received.
->>
->>> Right now this looks worse to me than what we started with given the
->>> comment is even broader. I have not changed my mind re: what I said on
->>> the previous version.
->>>
->>
->> OK, so in the previous version [1] your reply was to have specific compatibles
->> as bindings with "ti-am654-icss-iep" as a fall back. I will go with this only.
->>
->> Does the below looks good to you? Here "ti,am642-icss-iep" and
->> "ti,j721e-icss-iep" are different compatibles for different SoCs where as
->> "ti,am654-icss-iep" is the fall back. Compatible "ti,am654-icss-iep" will go in
->> the driver.
->>
->> properties:
->>   compatible:
->>     oneOf:
->>       - items:
->>           - enum:
->>               - ti,am642-icss-iep
->>               - ti,j721e-icss-iep
->>           - const: ti,am654-icss-iep
->>
->>       - items:
->>           - const: ti,am654-icss-iep
-> 
-> This one doesn't need to be an items list, since there is only one item.
-> It should be able to just be const:. I much prefer this approach.
-> 
-> Thanks,
-> Conor.
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
 
-Sure Conor, I will remove items from the last one and make it just const like
-below. Please let me know if this is ok.
+> +struct qcom_cc {
+> +	struct qcom_reset_controller reset;
+> +	struct clk_regmap **rclks;
+> +	size_t num_rclks;
+> +};
+This all, including the probe func, is required because of the MDIO dance,
+I assume?
 
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - ti,am642-icss-iep
-              - ti,j721e-icss-iep
-          - const: ti,am654-icss-iep
+Commonizing that would make more sense should more clocks like this appear
+in the future.
 
-      - const: ti,am654-icss-iep
+[...]
 
--- 
-Thanks and Regards,
-Danish.
+> +static struct clk_branch nss_cc_switch_core_clk = {
+> +	.halt_reg = 0x8,
+> +	.clkr = {
+> +		.enable_reg = 0x8,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "nss_cc_switch_core_clk",
+> +			.parent_hws = (const struct clk_hw *[]) {
+> +				&nss_cc_switch_core_clk_src.clkr.hw,
+> +			},
+> +			.num_parents = 1,
+> +			/* Can be disabled in PHY mode for power saving */
+Well it clearly cannot be disabled if it has the CLK_IS_CRITICAL flag :D
+
+What's the "PHY mode" you're talking about?
+
+> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> +			.ops = &clk_branch2_mdio_ops,
+> +		},
+> +	},
+> +};
+I see a whole bunch of CRITICAL clocks.. please make sure these clocks
+are actually necessary for Linux to know about (i.e. if we don't need
+to call any operations on them, we might just skip registering them
+with the driver).
+
+Konrad
+
