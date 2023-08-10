@@ -2,80 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D843077819E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9C087781A4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236558AbjHJTaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 15:30:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43654 "EHLO
+        id S236233AbjHJTa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 15:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236528AbjHJT37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:29:59 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0099F273C;
-        Thu, 10 Aug 2023 12:29:56 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AJTbd1069591;
-        Thu, 10 Aug 2023 14:29:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691695778;
-        bh=5opL1COw+xqOW651vD1GsM3Ndd3OlOKC652w906qw+M=;
-        h=From:Date:Subject:References:In-Reply-To:To:CC;
-        b=KwAW6pHc3fMvXm2H2njAARJ+KUIfktA24OmJnDow5Q9+pCq7kp5DkYBl+BNI7hGg+
-         DX7rOcH88PzRvTQ+O92n0z3rh547XWdR3ICXh0eHK59FJsaBbggROVeRe+IE1oCBHa
-         Y1AD/iyefabWQnLFQH1nZGf+u7kuy077Jc59P54A=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AJTbNp027980
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 14:29:37 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 14:29:37 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 14:29:37 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AJTaqu047114;
-        Thu, 10 Aug 2023 14:29:37 -0500
-From:   Kamlesh Gurudasani <kamlesh@ti.com>
-Date:   Fri, 11 Aug 2023 00:58:53 +0530
-Subject: [PATCH v2 6/6] arm64: defconfig: enable TI MCRC64 module
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230719-mcrc-upstream-v2-6-4152b987e4c2@ti.com>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
-In-Reply-To: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S236641AbjHJTal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:30:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2139E3AB2;
+        Thu, 10 Aug 2023 12:30:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC94C60E9C;
+        Thu, 10 Aug 2023 19:30:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EABBAC433CB;
+        Thu, 10 Aug 2023 19:30:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691695827;
+        bh=d4mQBWjLbcx61H9YHtMpK3a+gUbbTesFof4Bts3umRM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NRW7TH8PRNpQmj9Ac3TqlrJ3tWZLVjbp9UDGLNq5AcBE+MB4tkEZtTQOTbdWqU43Y
+         XLlsCgfBMUvoEPNoTUiuRr/wVXpaB9rh0pqV0a3qwDlvc5pb2Q/fwRuJkJOBEXMEuo
+         0sKIFEzExMs8D1Vt/a1fPagAeeSC9SzGRVPPBStVkxxS8Scjf/gmpHoXSymR55uB0q
+         LFr2umbfkFxVZziTbS9DHQImk4qS58tt+BTj5RpSy3gY63SMf+rk/bTAilUwxr9P7S
+         6QMtNoAnvtgKlhKrTtsAVfNp4QpqEhuTDBlQV7xNsUVg2Rv0HEBnvToNYiCH5NLAF4
+         AJG0/gp4Wb98Q==
+Date:   Thu, 10 Aug 2023 20:30:21 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
+Cc:     David Heidelberg <david@ixit.cz>, Marek Vasut <marex@denx.de>,
+        Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Kamlesh Gurudasani <kamlesh@ti.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691695767; l=1042;
- i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
- bh=7uIuxXRdX0Xq9f5vC0DhHJyhVex1q6PeQY1Wg6Rhzr4=;
- b=eQ9evn4II8cLmgLlFRsi0O/oYFCdMPuR+t2xvhyNiE4ww/Bm0khIjWER/OK4HpOYKgh/ImBy0
- vqE4gvzkpg9DKok5GE/ScOLB5im8s7mHSbp5lGV1h1IV74JbSdFnuhk
-X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
- pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        Conor Dooley <conor+dt@kernel.org>,
+        Liu Ying <victor.liu@nxp.com>, kernel@puri.sm,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mxsfb: Exclude i.MX8MQ from power-domains
+ requirement
+Message-ID: <20230810-embroider-seduce-ee4506e7608b@spud>
+References: <20230730184120.94984-1-david@ixit.cz>
+ <ZMonFSqutQRqs61n@qwark.sigxcpu.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yVk3JZ7fl+mjKj73"
+Content-Disposition: inline
+In-Reply-To: <ZMonFSqutQRqs61n@qwark.sigxcpu.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,38 +66,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-K3 devices include MCRC64 engine for crc64 calculation.
-Enable module to be built for K3 devices.
 
-Also enable algif_hash module, which is needed to access MCRC64 module
-from userspace.
+--yVk3JZ7fl+mjKj73
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+On Wed, Aug 02, 2023 at 11:51:17AM +0200, Guido G=FCnther wrote:
+> Hi,
+> On Sun, Jul 30, 2023 at 09:41:20PM +0300, David Heidelberg wrote:
+> > i.MX8MQ uses as secondary compatible fsl,imx6sx-lcdif, which triggers
+> > requirement of power-domains, thou it's not required.
+> >=20
+> > Fixes: f62678a77d58 ("dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6=
+SL power-domains property")
+> >=20
+> > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > ---
+> >  .../devicetree/bindings/display/fsl,lcdif.yaml        | 11 +++++++++--
+> >  1 file changed, 9 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b=
+/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > index fc11ab5fc465..2d868276b0f9 100644
+> > --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > @@ -129,8 +129,15 @@ allOf:
+> >                - fsl,imx8mp-lcdif
+> >                - fsl,imx93-lcdif
+> >      then:
+> > -      required:
+> > -        - power-domains
+> > +      if:
+> > +        properties:
+> > +          compatible:
+> > +            not:
+> > +              contains:
+> > +                const: fsl,imx8mq-lcdif
+> > +      then:
+> > +        required:
+> > +          - power-domains
+>=20
+> We currently enable the mipi power domain for the mipi dphy and nwl
+> bridge only but not for LCDIF itself assuming it's not needed (as there's
+> other outputs LCDIF can drive). I *think* this is correct but maybe
+> Marek or Liu can confirm?
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bf13d5c46578..4d555a125315 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1535,6 +1535,7 @@ CONFIG_CRYPTO_TEST=m
- CONFIG_CRYPTO_ECHAINIV=y
- CONFIG_CRYPTO_MICHAEL_MIC=m
- CONFIG_CRYPTO_ANSI_CPRNG=y
-+CONFIG_CRYPTO_USER_API_HASH=m
- CONFIG_CRYPTO_USER_API_RNG=m
- CONFIG_CRYPTO_CHACHA20_NEON=m
- CONFIG_CRYPTO_GHASH_ARM64_CE=y
-@@ -1558,6 +1559,7 @@ CONFIG_CRYPTO_DEV_HISI_ZIP=m
- CONFIG_CRYPTO_DEV_HISI_HPRE=m
- CONFIG_CRYPTO_DEV_HISI_TRNG=m
- CONFIG_CRYPTO_DEV_SA2UL=m
-+CONFIG_CRYPTO_DEV_TI_MCRC64=m
- CONFIG_DMA_RESTRICTED_POOL=y
- CONFIG_CMA_SIZE_MBYTES=32
- CONFIG_PRINTK_TIME=y
+I'm happy to Ack this, but I've been sitting on it waiting to see if
+Marek or Liu popped up..
 
--- 
-2.34.1
+--yVk3JZ7fl+mjKj73
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNU6zQAKCRB4tDGHoIJi
+0s2nAP9Dmws9nUO7FWU2dnCYapILH8BgEDhPZlOjfqFaw+mE+QD/atHR0u47ijBF
+egbmUZYBYV2cDqiKmos4DpMp6XI4WAY=
+=OYJ6
+-----END PGP SIGNATURE-----
+
+--yVk3JZ7fl+mjKj73--
