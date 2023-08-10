@@ -2,64 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 023AE7770CF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 423B67770D9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjHJG4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 02:56:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58280 "EHLO
+        id S229889AbjHJHAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 03:00:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231371AbjHJG4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:56:52 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1ABC310C0;
-        Wed,  9 Aug 2023 23:56:49 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.109.245])
-        by gateway (Coremail) with SMTP id _____8BxIvAwitRk1nIUAA--.43492S3;
-        Thu, 10 Aug 2023 14:56:48 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.245])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxxswpitRklaZSAA--.52445S4;
-        Thu, 10 Aug 2023 14:56:47 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        with ESMTP id S233147AbjHJHAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:00:41 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2086.outbound.protection.outlook.com [40.107.215.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4AD81724;
+        Thu, 10 Aug 2023 00:00:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V87fNJQsSG1OYWYR4OFOx5tWQE2P4j4rtELNAzBy/d1lVKc51HiAyxWlWWXPChmzMCobBPn846Md8eAzx/dZDxvTJII9E96jM7zkmwXHQdz7VvYtJgXqHFCCi2rBVG3XH4/WlH1o+LQw5AXTZ4lFaYBrnvmr+/dTpkVLaXrZSZiZU/POes6w4HDi816nHy1qYjAJCJ/SrSPPpO6hTi7rQK74M+j4g3Tr/LYzVOtZr4Gxv3Zqj1E/pbLICyViUzEFt1ywbQOm9BtgA24P2f2ZOSnqPeyyHAn1DDyDxMg7p6XqF7p8WuauoJW7RzZTfpKi6jzrMgbZX5VGdHJ8JnkYrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TgHhB2kLoKNBTemUKbgNJmhf58+RFof0G4IFpPmSkcI=;
+ b=Es5dGoDAF+/CNpRvqybUyY1zS+cRlvIY84Lm0kShfBgOMPq5Kxsl5s0lidACYzGOQ0LIXaP5Wry777LP26FVhf3vI+IitFS4H4iww0WcHO3MJ8zwm0g0x387QrphxJjrlcg007Tc9l3l7PhXuCWQb4MJDU00LdmvGkp+FdnJEHF4KuMHXoPiYLDSueu4Sc9w0djZ22ow+Y/+G4uvwffPAcsWtSLYxNXdsZ/V41uO5IQUFGJZ625yRwnDI8LNVdeFfJqy+6ZZ2GShNgUqN97TMx6frKSa+ThGetdFyM1oH8/V2MNwGHs8go5d4DQ9p5gIPw+AlmJtZ/TgNDcT2HUAiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TgHhB2kLoKNBTemUKbgNJmhf58+RFof0G4IFpPmSkcI=;
+ b=r7DedyxsC0NtT9BPQVC2ukgRXHoPW8yrwxu3/nNqDpks/14gLpY5VO0la0/vrYxRIeIugDYoL4gydkF3b9lUawyz8B4Wgdm4uXGnBLkvWdy2TFn7gGtI2weBJK2sHOFcQC01/cw3xHdKQpaA4BBBlyP/t7UObwfDIXdtrTD9xY7a4F8HJEaS1HQrQ1oIb8GFbBPWytCyiSw8E+iARnAvxnEZOi8gUT7Ilwv2ySgfdpmhUXAM3lAs5NvPStLvPRg6WugkvX+pluGBtFXWuHMYg/NgGjXOz3SE5whnEbe2X/MPNfN9neX0nozNB+q3hTMMSkhkVG553v6zQoE+qMvhdw==
+Received: from PSBPR02CA0012.apcprd02.prod.outlook.com (2603:1096:301::22) by
+ TY0PR04MB6422.apcprd04.prod.outlook.com (2603:1096:400:27a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.30; Thu, 10 Aug
+ 2023 07:00:35 +0000
+Received: from HK2PEPF00006FB2.apcprd02.prod.outlook.com
+ (2603:1096:301:0:cafe::f2) by PSBPR02CA0012.outlook.office365.com
+ (2603:1096:301::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.30 via Frontend
+ Transport; Thu, 10 Aug 2023 07:00:35 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB2.mail.protection.outlook.com (10.167.8.8) with Microsoft SMTP
+ Server id 15.20.6652.19 via Frontend Transport; Thu, 10 Aug 2023 07:00:34
+ +0000
+From:   Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To:     patrick@stwcx.xyz
+Cc:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v4 2/2] dmaengine: ls2x-apb: new driver for the Loongson LS2X APB DMA controller
-Date:   Thu, 10 Aug 2023 14:56:39 +0800
-Message-Id: <0a811934f185256c8fb6c36032b3ac2035e16fe2.1691647870.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <cover.1691647870.git.zhoubinbin@loongson.cn>
-References: <cover.1691647870.git.zhoubinbin@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/2] ARM: dts: Facebook Yosemite 4 platform
+Date:   Thu, 10 Aug 2023 15:00:28 +0800
+Message-Id: <20230810070032.335161-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxxswpitRklaZSAA--.52445S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj9fXoWfXFy3WryfXw4UJryxCr1Dtwc_yoW8KFy5Wo
-        Z3ursxur4rJw1UXrWIgr1DKFW7ZF1I9wn5AryrJrs09a1DZF1Yka4UCrn8Wa4ftr13KayU
-        C3saqwnruF4xZF4rl-sFpf9Il3svdjkaLaAFLSUrUUUU8b8apTn2vfkv8UJUUUU8wcxFpf
-        9Il3svdxBIdaVrn0xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3
-        UjIYCTnIWjp_UUUYC7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI
-        8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xG
-        Y2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14
-        v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-        wI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-        xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-        Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-        0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-        bVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-        80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
-        I7IYx2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04
-        k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
-        xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j2MKZUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB2:EE_|TY0PR04MB6422:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: c2ccfd60-778c-4345-28bf-08db996f7e93
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GTJaN53PzUieN3DD7cpA1yFcuZbG/ouQwhlKfDdsH17yK7h3mxTUFIDS2SPJT3tjwk2bAMNWqJM1QrEQ5IpdCahXUMF1a4g0rfvNoK4poDVHertA3srxg+QHsr2zTEb/fTu9epFizShtmFTxK6KDpoRBmh12R/TUeKmouvjxmRBtTTSPJQjZx6g9kd02pjR35fMhIIMdV5CjDeDVgYQOvVi4CoXh23+ja21UPFoX16Ey0ngSD41E6nBGP29TB59QlFzyk4GE5CYJkm58NVEvWyQDXrGb1GVfsVnf4OMIaGM9XxWWo28PkffFErL/j4nzPNrNAWzYmU3eBvohUHey6Y5SFAPsPOGU3W3LZloA30F6CbDnNpX91TNqR+iTUVw4F9GKfLOwz8CVZ12YbjjwoRLi3kLIiA9kR/K1kPEuoJpG6G3pfq289qd1BVcZv390fkf9r1GwRShMGceSTFOakFzlPAF5BBiBiLhzFzhiJtmxfzweaQpl+f7rrcCdOCDleJ/tqgcbJ6bZj98/ZZfCxgdEskmR6Rt3/QpWz563s8zpBYi0jhQu9m86Bmoftq93+GQvrw5FprK6sMNjMNfHUJLKHURW6pCoHh+rj5+mGK243uzBsMsrY+xwNpTSZ0NifD1gS22DjUiWvLGDZzx7u3Gq/lzckXL18TFv8Uy/gPEg2Wcs4HGUwMyu33CoTVKzokWEOIFa77Qww5gBP8FUSA==
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230028)(6069001)(4636009)(136003)(376002)(396003)(346002)(39860400002)(47680400002)(1800799006)(186006)(451199021)(82310400008)(36840700001)(46966006)(7416002)(70206006)(70586007)(41300700001)(6512007)(6486002)(36756003)(6666004)(6916009)(4326008)(5660300002)(36736006)(8676002)(8936002)(316002)(54906003)(478600001)(40480700001)(2906002)(36860700001)(82740400003)(356005)(81166007)(83380400001)(47076005)(9316004)(26005)(1076003)(2616005)(956004)(86362001)(6506007)(336012);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2023 07:00:34.4706
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2ccfd60-778c-4345-28bf-08db996f7e93
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: HK2PEPF00006FB2.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6422
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,788 +97,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
+Add linux device tree entry related to
+Yosemite 4 specific devices connected to BMC SoC.
 
-It is a single-channel, configurable DMA controller IP core based on the
-AXI bus, whose main function is to integrate DMA functionality on a chip
-dedicated to carrying data between memory and peripherals in APB bus
-(e.g. nand).
+Changelog:
+v9 - Remove mac2/mac3 duplicated setting about no-hw-checksum
+v8 - Add description of Yosemite 4
+   - Remove unsupported ncsi config
+   - Revise i2c-mux config
+   - Correct power sensor i2c address
+   - Restore i2c 11 bus-frequency to default
+v7 - Revise changelog format
+v6 - Change project name from yosemitev4 to yosemite4
+v5 - Revise rtc setting
+   - Remove duplicated multi-master setting
+v4 - Resend with cover letter
+v3 - Revise the bootargs to stdout-path
+   - Revise i2c devices
+v2 - Revise the DTS node name
+v1 - Add binding document
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Signed-off-by: Yingkun Meng <mengyingkun@loongson.cn>
----
- MAINTAINERS                |   1 +
- drivers/dma/Kconfig        |  14 +
- drivers/dma/Makefile       |   1 +
- drivers/dma/ls2x-apb-dma.c | 710 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 726 insertions(+)
- create mode 100644 drivers/dma/ls2x-apb-dma.c
+Delphine CC Chiu (2):
+  dt-bindings: arm: aspeed: add Facebook Yosemite 4 board
+  ARM: dts: aspeed: yosemite4: add Facebook Yosemite 4 BMC
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index af4485949d9f..df69c5bc5435 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12261,6 +12261,7 @@ M:	Binbin Zhou <zhoubinbin@loongson.cn>
- L:	dmaengine@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
-+F:	drivers/dma/ls2x-apb-dma.c
- 
- LOONGSON LS2X I2C DRIVER
- M:	Binbin Zhou <zhoubinbin@loongson.cn>
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 644c188d6a11..9b41b59ba2b4 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -376,6 +376,20 @@ config LPC18XX_DMAMUX
- 	  Enable support for DMA on NXP LPC18xx/43xx platforms
- 	  with PL080 and multiplexed DMA request lines.
- 
-+config LS2X_APB_DMA
-+	tristate "Loongson LS2X APB DMA support"
-+	depends on LOONGARCH || COMPILE_TEST
-+	select DMA_ENGINE
-+	select DMA_VIRTUAL_CHANNELS
-+	help
-+	  Support for the Loongson LS2X APB DMA controller driver. The
-+	  DMA controller is having single DMA channel which can be
-+	  configured for different peripherals like audio, nand, sdio
-+	  etc which is in APB bus.
-+
-+	  This DMA controller transfers data from memory to peripheral fifo.
-+	  It does not support memory to memory data transfer.
-+
- config MCF_EDMA
- 	tristate "Freescale eDMA engine support, ColdFire mcf5441x SoCs"
- 	depends on M5441x || COMPILE_TEST
-diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index a4fd1ce29510..9b28ddb1ea3b 100644
---- a/drivers/dma/Makefile
-+++ b/drivers/dma/Makefile
-@@ -46,6 +46,7 @@ obj-$(CONFIG_INTEL_IOATDMA) += ioat/
- obj-y += idxd/
- obj-$(CONFIG_K3_DMA) += k3dma.o
- obj-$(CONFIG_LPC18XX_DMAMUX) += lpc18xx-dmamux.o
-+obj-$(CONFIG_LS2X_APB_DMA) += ls2x-apb-dma.o
- obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
- obj-$(CONFIG_MILBEAUT_XDMAC) += milbeaut-xdmac.o
- obj-$(CONFIG_MMP_PDMA) += mmp_pdma.o
-diff --git a/drivers/dma/ls2x-apb-dma.c b/drivers/dma/ls2x-apb-dma.c
-new file mode 100644
-index 000000000000..6baba94524a6
---- /dev/null
-+++ b/drivers/dma/ls2x-apb-dma.c
-@@ -0,0 +1,710 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for the Loongson LS2X APB DMA Controller
-+ *
-+ * Copyright (C) 2017-2023 Loongson Corporation
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/dmapool.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_dma.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include "dmaengine.h"
-+#include "virt-dma.h"
-+
-+/* Global Configuration Register */
-+#define LDMA_ORDER_ERG		0x0
-+
-+/* Bitfield definitions */
-+
-+/* Bitfields in Global Configuration Register */
-+#define LDMA_64BIT_EN		BIT(0) /* 1: 64 bit support */
-+#define LDMA_UNCOHERENT_EN	BIT(1) /* 0: cache, 1: uncache */
-+#define LDMA_ASK_VALID		BIT(2)
-+#define LDMA_START		BIT(3) /* DMA start operation */
-+#define LDMA_STOP		BIT(4) /* DMA stop operation */
-+#define LDMA_CONFIG_MASK	GENMASK(4, 0) /* DMA controller config bits mask */
-+
-+/* Bitfields in ndesc_addr field of HW decriptor */
-+#define LDMA_DESC_EN		BIT(0) /*1: The next descriptor is valid */
-+#define LDMA_DESC_ADDR_LOW	GENMASK(31, 1)
-+
-+/* Bitfields in cmd field of HW decriptor */
-+#define LDMA_INT		BIT(1) /* Enable DMA interrupts */
-+#define LDMA_DATA_DIRECTION	BIT(12) /* 1: write to device, 0: read from device */
-+
-+#define LDMA_SLAVE_BUSWIDTHS	(BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) | \
-+				 BIT(DMA_SLAVE_BUSWIDTH_8_BYTES))
-+
-+#define LDMA_MAX_TRANS_LEN	U32_MAX
-+
-+/*--  descriptors  -----------------------------------------------------*/
-+
-+/*
-+ * struct ls2x_dma_hw_desc - DMA HW descriptor
-+ * @ndesc_addr: the next descriptor low address.
-+ * @mem_addr: memory low address.
-+ * @apb_addr: device buffer address.
-+ * @len: length of a piece of carried content, in words.
-+ * @step_len: length between two moved memory data blocks.
-+ * @step_times: number of blocks to be carried in a single DMA operation.
-+ * @cmd: descriptor command or state.
-+ * @stats: DMA status.
-+ * @high_ndesc_addr: the next descriptor high address.
-+ * @high_mem_addr: memory high address.
-+ * @reserved: reserved
-+ */
-+struct ls2x_dma_hw_desc {
-+	u32 ndesc_addr;
-+	u32 mem_addr;
-+	u32 apb_addr;
-+	u32 len;
-+	u32 step_len;
-+	u32 step_times;
-+	u32 cmd;
-+	u32 stats;
-+	u32 high_ndesc_addr;
-+	u32 high_mem_addr;
-+	u32 reserved[2];
-+} __packed;
-+
-+/*
-+ * struct ls2x_dma_sg - ls2x dma scatter gather entry
-+ * @hw: the pointer to DMA HW descriptor.
-+ * @llp: physical address of the DMA HW descriptor.
-+ * @phys: destination or source address(mem).
-+ * @len: number of Bytes to read.
-+ */
-+struct ls2x_dma_sg {
-+	struct ls2x_dma_hw_desc	*hw;
-+	dma_addr_t		llp;
-+	dma_addr_t		phys;
-+	u32			len;
-+};
-+
-+/*
-+ * struct ls2x_dma_desc - software descriptor
-+ * @vdesc: pointer to the virtual dma descriptor.
-+ * @cyclic: flag to dma cyclic
-+ * @burst_size: burst size of transaction, in words.
-+ * @desc_num: number of sg entries.
-+ * @direction: transfer direction, to or from device.
-+ * @status: dma controller status.
-+ * @sg: array of sgs.
-+ */
-+struct ls2x_dma_desc {
-+	struct virt_dma_desc		vdesc;
-+	bool				cyclic;
-+	size_t				burst_size;
-+	u32				desc_num;
-+	enum dma_transfer_direction	direction;
-+	enum dma_status			status;
-+	struct ls2x_dma_sg		sg[];
-+};
-+
-+/*--  Channels  --------------------------------------------------------*/
-+
-+/*
-+ * struct ls2x_dma_chan - internal representation of an LS2X APB DMA channel
-+ * @vchan: virtual dma channel entry.
-+ * @desc: pointer to the ls2x sw dma descriptor.
-+ * @pool: hw desc table
-+ * @irq: irq line
-+ * @sconfig: configuration for slave transfers, passed via .device_config
-+ */
-+struct ls2x_dma_chan {
-+	struct virt_dma_chan	vchan;
-+	struct ls2x_dma_desc	*desc;
-+	void			*pool;
-+	int			irq;
-+	struct dma_slave_config	sconfig;
-+};
-+
-+/*--  Controller  ------------------------------------------------------*/
-+
-+/*
-+ * struct ls2x_dma_priv - LS2X APB DMAC specific information
-+ * @ddev: dmaengine dma_device object members
-+ * @dma_clk: DMAC clock source
-+ * @regs: memory mapped register base
-+ * @lchan: channel to store ls2x_dma_chan structures
-+ */
-+struct ls2x_dma_priv {
-+	struct dma_device	ddev;
-+	struct clk		*dma_clk;
-+	void __iomem		*regs;
-+	struct ls2x_dma_chan	lchan;
-+};
-+
-+/*--  Helper functions  ------------------------------------------------*/
-+
-+static inline struct ls2x_dma_desc *to_ldma_desc(struct virt_dma_desc *vdesc)
-+{
-+	return container_of(vdesc, struct ls2x_dma_desc, vdesc);
-+}
-+
-+static inline struct ls2x_dma_chan *to_ldma_chan(struct dma_chan *chan)
-+{
-+	return container_of(chan, struct ls2x_dma_chan, vchan.chan);
-+}
-+
-+static inline struct ls2x_dma_priv *to_ldma_priv(struct dma_device *ddev)
-+{
-+	return container_of(ddev, struct ls2x_dma_priv, ddev);
-+}
-+
-+static struct device *chan2dev(struct dma_chan *chan)
-+{
-+	return &chan->dev->device;
-+}
-+
-+static void ls2x_dma_desc_free(struct virt_dma_desc *vdesc)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(vdesc->tx.chan);
-+	struct ls2x_dma_desc *desc = to_ldma_desc(vdesc);
-+	int i;
-+
-+	for (i = 0; i < desc->desc_num; i++) {
-+		if (desc->sg[i].hw)
-+			dma_pool_free(lchan->pool, desc->sg[i].hw,
-+				      desc->sg[i].llp);
-+	}
-+
-+	kfree(desc);
-+}
-+
-+static void ls2x_dma_write_cmd(struct ls2x_dma_chan *lchan, bool cmd)
-+{
-+	u64 val = 0;
-+	struct ls2x_dma_priv *priv = to_ldma_priv(lchan->vchan.chan.device);
-+
-+	val = lo_hi_readq(priv->regs + LDMA_ORDER_ERG) & ~LDMA_CONFIG_MASK;
-+	val |= LDMA_64BIT_EN | cmd;
-+	lo_hi_writeq(val, priv->regs + LDMA_ORDER_ERG);
-+}
-+
-+static void ls2x_dma_start_transfer(struct ls2x_dma_chan *lchan)
-+{
-+	struct ls2x_dma_priv *priv = to_ldma_priv(lchan->vchan.chan.device);
-+	struct ls2x_dma_sg *ldma_sg;
-+	struct virt_dma_desc *vdesc;
-+	u64 val;
-+
-+	/* Get the next descriptor */
-+	vdesc = vchan_next_desc(&lchan->vchan);
-+	if (!vdesc) {
-+		lchan->desc = NULL;
-+		return;
-+	}
-+
-+	list_del(&vdesc->node);
-+	lchan->desc = to_ldma_desc(vdesc);
-+	ldma_sg = &lchan->desc->sg[0];
-+
-+	/* Start DMA */
-+	lo_hi_writeq(0, priv->regs + LDMA_ORDER_ERG);
-+	val = (ldma_sg->llp & ~LDMA_CONFIG_MASK) | LDMA_64BIT_EN | LDMA_START;
-+	lo_hi_writeq(val, priv->regs + LDMA_ORDER_ERG);
-+}
-+
-+static size_t ls2x_dmac_detect_burst(struct ls2x_dma_chan *lchan)
-+{
-+	u32 maxburst, buswidth;
-+
-+	/* Reject definitely invalid configurations */
-+	if ((lchan->sconfig.src_addr_width & LDMA_SLAVE_BUSWIDTHS) &&
-+	    (lchan->sconfig.dst_addr_width & LDMA_SLAVE_BUSWIDTHS))
-+		return 0;
-+
-+	if (lchan->sconfig.direction == DMA_MEM_TO_DEV) {
-+		maxburst = lchan->sconfig.dst_maxburst;
-+		buswidth = lchan->sconfig.dst_addr_width;
-+	} else {
-+		maxburst = lchan->sconfig.src_maxburst;
-+		buswidth = lchan->sconfig.src_addr_width;
-+	}
-+
-+	/* If maxburst is zero, fallback to LDMA_MAX_TRANS_LEN */
-+	return maxburst ? (maxburst * buswidth) >> 2 : LDMA_MAX_TRANS_LEN;
-+}
-+
-+static void ls2x_dma_fill_desc(struct ls2x_dma_chan *lchan, u32 sg_index,
-+			       struct ls2x_dma_desc *desc)
-+{
-+	struct ls2x_dma_sg *ldma_sg = &desc->sg[sg_index];
-+	u32 num_segments, segment_size;
-+
-+	if (desc->direction == DMA_MEM_TO_DEV) {
-+		ldma_sg->hw->cmd = LDMA_INT | LDMA_DATA_DIRECTION;
-+		ldma_sg->hw->apb_addr = lchan->sconfig.dst_addr;
-+	} else {
-+		ldma_sg->hw->cmd = LDMA_INT;
-+		ldma_sg->hw->apb_addr = lchan->sconfig.src_addr;
-+	}
-+
-+	ldma_sg->hw->mem_addr = lower_32_bits(ldma_sg->phys);
-+	ldma_sg->hw->high_mem_addr = upper_32_bits(ldma_sg->phys);
-+
-+	/* Split into multiple equally sized segments if necessary */
-+	num_segments = DIV_ROUND_UP((ldma_sg->len + 3) >> 2, desc->burst_size);
-+	segment_size = DIV_ROUND_UP((ldma_sg->len + 3) >> 2, num_segments);
-+
-+	/* Word count register takes input in words */
-+	ldma_sg->hw->len = segment_size;
-+	ldma_sg->hw->step_times = num_segments;
-+	ldma_sg->hw->step_len = 0;
-+
-+	/* lets make a link list */
-+	if (sg_index) {
-+		desc->sg[sg_index - 1].hw->ndesc_addr = ldma_sg->llp | LDMA_DESC_EN;
-+		desc->sg[sg_index - 1].hw->high_ndesc_addr = upper_32_bits(ldma_sg->llp);
-+	}
-+}
-+
-+/*--  DMA Engine API  --------------------------------------------------*/
-+
-+/*
-+ * ls2x_dma_alloc_chan_resources - allocate resources for DMA channel
-+ * @chan: allocate descriptor resources for this channel
-+ *
-+ * return - the number of allocated descriptors
-+ */
-+static int ls2x_dma_alloc_chan_resources(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+
-+	/* Create a pool of consistent memory blocks for hardware descriptors */
-+	lchan->pool = dma_pool_create(dev_name(chan2dev(chan)),
-+				      chan->device->dev, PAGE_SIZE,
-+				      __alignof__(struct ls2x_dma_hw_desc), 0);
-+	if (!lchan->pool) {
-+		dev_err(chan2dev(chan), "No memory for descriptors\n");
-+		return -ENOMEM;
-+	}
-+
-+	return 1;
-+}
-+
-+/*
-+ * ls2x_dma_free_chan_resources - free all channel resources
-+ * @chan: DMA channel
-+ */
-+static void ls2x_dma_free_chan_resources(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+
-+	vchan_free_chan_resources(to_virt_chan(chan));
-+	dma_pool_destroy(lchan->pool);
-+	lchan->pool = NULL;
-+}
-+
-+/*
-+ * ls2x_dma_prep_slave_sg - prepare descriptors for a DMA_SLAVE transaction
-+ * @chan: DMA channel
-+ * @sgl: scatterlist to transfer to/from
-+ * @sg_len: number of entries in @scatterlist
-+ * @direction: DMA direction
-+ * @flags: tx descriptor status flags
-+ * @context: transaction context (ignored)
-+ *
-+ * Return: Async transaction descriptor on success and NULL on failure
-+ */
-+static struct dma_async_tx_descriptor *
-+ls2x_dma_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
-+		       u32 sg_len, enum dma_transfer_direction direction,
-+		       unsigned long flags, void *context)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+	struct ls2x_dma_desc *desc;
-+	struct scatterlist *sg;
-+	size_t burst_size;
-+	int i;
-+
-+	if (unlikely(!sg_len || !is_slave_direction(direction)))
-+		return NULL;
-+
-+	burst_size = ls2x_dmac_detect_burst(lchan);
-+	if (!burst_size)
-+		return NULL;
-+
-+	desc = kzalloc(struct_size(desc, sg, sg_len), GFP_ATOMIC);
-+	if (!desc)
-+		return NULL;
-+
-+	desc->desc_num = sg_len;
-+	desc->direction = direction;
-+	desc->burst_size = burst_size;
-+
-+	for_each_sg(sgl, sg, sg_len, i) {
-+		struct ls2x_dma_sg *ldma_sg = &desc->sg[i];
-+
-+		/* Allocate DMA capable memory for hardware descriptor */
-+		ldma_sg->hw = dma_pool_alloc(lchan->pool, GFP_NOWAIT, &ldma_sg->llp);
-+		if (!ldma_sg->hw) {
-+			desc->desc_num = i;
-+			ls2x_dma_desc_free(&desc->vdesc);
-+			return NULL;
-+		}
-+
-+		ldma_sg->phys = sg_dma_address(sg);
-+		ldma_sg->len = sg_dma_len(sg);
-+
-+		ls2x_dma_fill_desc(lchan, i, desc);
-+	}
-+
-+	/* Setting the last descriptor enable bit */
-+	desc->sg[sg_len - 1].hw->ndesc_addr &= ~LDMA_DESC_EN;
-+	desc->status = DMA_IN_PROGRESS;
-+
-+	return vchan_tx_prep(&lchan->vchan, &desc->vdesc, flags);
-+}
-+
-+/*
-+ * ls2x_dma_prep_dma_cyclic - prepare the cyclic DMA transfer
-+ * @chan: the DMA channel to prepare
-+ * @buf_addr: physical DMA address where the buffer starts
-+ * @buf_len: total number of bytes for the entire buffer
-+ * @period_len: number of bytes for each period
-+ * @direction: transfer direction, to or from device
-+ * @flags: tx descriptor status flags
-+ *
-+ * Return: Async transaction descriptor on success and NULL on failure
-+ */
-+static struct dma_async_tx_descriptor *
-+ls2x_dma_prep_dma_cyclic(struct dma_chan *chan, dma_addr_t buf_addr, size_t buf_len,
-+			 size_t period_len, enum dma_transfer_direction direction,
-+			 unsigned long flags)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+	struct ls2x_dma_desc *desc;
-+	u32 num_periods;
-+	size_t burst_size;
-+	int i;
-+
-+	if (unlikely(!buf_len || !period_len))
-+		return NULL;
-+
-+	if (unlikely(!is_slave_direction(direction)))
-+		return NULL;
-+
-+	burst_size = ls2x_dmac_detect_burst(lchan);
-+	if (!burst_size)
-+		return NULL;
-+
-+	num_periods = buf_len / period_len;
-+	desc = kzalloc(struct_size(desc, sg, num_periods), GFP_ATOMIC);
-+	if (!desc)
-+		return NULL;
-+
-+	desc->desc_num = num_periods;
-+	desc->direction = direction;
-+	desc->burst_size = burst_size;
-+
-+	/* Build cyclic linked list */
-+	for (i = 0; i < num_periods; i++) {
-+		struct ls2x_dma_sg *ldma_sg = &desc->sg[i];
-+
-+		/* Allocate DMA capable memory for hardware descriptor */
-+		ldma_sg->hw = dma_pool_alloc(lchan->pool, GFP_NOWAIT, &ldma_sg->llp);
-+		if (!ldma_sg->hw) {
-+			desc->desc_num = i;
-+			ls2x_dma_desc_free(&desc->vdesc);
-+			return NULL;
-+		}
-+
-+		ldma_sg->phys = buf_addr + period_len * i;
-+		ldma_sg->len = period_len;
-+
-+		ls2x_dma_fill_desc(lchan, i, desc);
-+	}
-+
-+	/* Lets make a cyclic list */
-+	desc->sg[num_periods - 1].hw->ndesc_addr = desc->sg[0].llp | LDMA_DESC_EN;
-+	desc->sg[num_periods - 1].hw->high_ndesc_addr = upper_32_bits(desc->sg[0].llp);
-+	desc->cyclic = true;
-+	desc->status = DMA_IN_PROGRESS;
-+
-+	return vchan_tx_prep(&lchan->vchan, &desc->vdesc, flags);
-+}
-+
-+/*
-+ * ls2x_slave_config - set slave configuration for channel
-+ * @chan: dma channel
-+ * @cfg: slave configuration
-+ *
-+ * Sets slave configuration for channel
-+ */
-+static int ls2x_dma_slave_config(struct dma_chan *chan,
-+				 struct dma_slave_config *config)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+
-+	memcpy(&lchan->sconfig, config, sizeof(*config));
-+	return 0;
-+}
-+
-+/*
-+ * ls2x_dma_issue_pending - push pending transactions to the hardware
-+ * @chan: channel
-+ *
-+ * When this function is called, all pending transactions are pushed to the
-+ * hardware and executed.
-+ */
-+static void ls2x_dma_issue_pending(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&lchan->vchan.lock, flags);
-+	if (vchan_issue_pending(&lchan->vchan) && !lchan->desc)
-+		ls2x_dma_start_transfer(lchan);
-+	spin_unlock_irqrestore(&lchan->vchan.lock, flags);
-+}
-+
-+/*
-+ * ls2x_dma_terminate_all - terminate all transactions
-+ * @chan: channel
-+ *
-+ * Stops all DMA transactions.
-+ */
-+static int ls2x_dma_terminate_all(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+	unsigned long flags;
-+	LIST_HEAD(head);
-+
-+	spin_lock_irqsave(&lchan->vchan.lock, flags);
-+	/* Setting stop cmd */
-+	ls2x_dma_write_cmd(lchan, LDMA_STOP);
-+	if (lchan->desc) {
-+		vchan_terminate_vdesc(&lchan->desc->vdesc);
-+		lchan->desc = NULL;
-+	}
-+
-+	vchan_get_all_descriptors(&lchan->vchan, &head);
-+	spin_unlock_irqrestore(&lchan->vchan.lock, flags);
-+
-+	vchan_dma_desc_free_list(&lchan->vchan, &head);
-+	return 0;
-+}
-+
-+/*
-+ * ls2x_dma_synchronize - Synchronizes the termination of transfers to the
-+ * current context.
-+ * @chan: channel
-+ */
-+static void ls2x_dma_synchronize(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+
-+	vchan_synchronize(&lchan->vchan);
-+}
-+
-+static int ls2x_dma_pause(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&lchan->vchan.lock, flags);
-+	if (lchan->desc && lchan->desc->status == DMA_IN_PROGRESS) {
-+		ls2x_dma_write_cmd(lchan, LDMA_STOP);
-+		lchan->desc->status = DMA_PAUSED;
-+	}
-+	spin_unlock_irqrestore(&lchan->vchan.lock, flags);
-+
-+	return 0;
-+}
-+
-+static int ls2x_dma_resume(struct dma_chan *chan)
-+{
-+	struct ls2x_dma_chan *lchan = to_ldma_chan(chan);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&lchan->vchan.lock, flags);
-+	if (lchan->desc && lchan->desc->status == DMA_PAUSED) {
-+		lchan->desc->status = DMA_IN_PROGRESS;
-+		ls2x_dma_write_cmd(lchan, LDMA_START);
-+	}
-+	spin_unlock_irqrestore(&lchan->vchan.lock, flags);
-+
-+	return 0;
-+}
-+
-+/*
-+ * ls2x_dma_isr - LS2X DMA Interrupt handler
-+ * @irq: IRQ number
-+ * @dev_id: Pointer to ls2x_dma_chan
-+ *
-+ * Return: IRQ_HANDLED/IRQ_NONE
-+ */
-+static irqreturn_t ls2x_dma_isr(int irq, void *dev_id)
-+{
-+	struct ls2x_dma_chan *lchan = dev_id;
-+	struct ls2x_dma_desc *desc;
-+
-+	spin_lock(&lchan->vchan.lock);
-+	desc = lchan->desc;
-+	if (desc) {
-+		if (desc->cyclic) {
-+			vchan_cyclic_callback(&desc->vdesc);
-+		} else {
-+			desc->status = DMA_COMPLETE;
-+			vchan_cookie_complete(&desc->vdesc);
-+			ls2x_dma_start_transfer(lchan);
-+		}
-+
-+		/* ls2x_dma_start_transfer() updates lchan->desc */
-+		if (!lchan->desc)
-+			ls2x_dma_write_cmd(lchan, LDMA_STOP);
-+	}
-+	spin_unlock(&lchan->vchan.lock);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ls2x_dma_chan_init(struct platform_device *pdev,
-+			      struct ls2x_dma_priv *priv)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct ls2x_dma_chan *lchan = &priv->lchan;
-+	int ret;
-+
-+	lchan->irq = platform_get_irq(pdev, 0);
-+	if (lchan->irq < 0)
-+		return lchan->irq;
-+
-+	ret = devm_request_irq(dev, lchan->irq, ls2x_dma_isr, IRQF_TRIGGER_RISING,
-+			       dev_name(&pdev->dev), lchan);
-+	if (ret)
-+		return ret;
-+
-+	/* Initialize channels related values */
-+	INIT_LIST_HEAD(&priv->ddev.channels);
-+	lchan = &priv->lchan;
-+	lchan->vchan.desc_free = ls2x_dma_desc_free;
-+	vchan_init(&lchan->vchan, &priv->ddev);
-+
-+	return 0;
-+}
-+
-+/*
-+ * ls2x_dma_probe - Driver probe function
-+ * @pdev: Pointer to the platform_device structure
-+ *
-+ * Return: '0' on success and failure value on error
-+ */
-+static int ls2x_dma_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct dma_device *ddev;
-+	struct ls2x_dma_priv *priv;
-+	struct device *dev = &pdev->dev;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->regs))
-+		return dev_err_probe(dev, PTR_ERR(priv->regs),
-+				     "devm_platform_ioremap_resource failed.\n");
-+
-+	priv->dma_clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(priv->dma_clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->dma_clk), "devm_clk_get failed.\n");
-+
-+	ret = clk_prepare_enable(priv->dma_clk);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "clk_prepare_enable failed.\n");
-+
-+	ret = ls2x_dma_chan_init(pdev, priv);
-+	if (ret)
-+		goto disable_clk;
-+
-+	ddev = &priv->ddev;
-+	ddev->dev = dev;
-+	dma_cap_zero(ddev->cap_mask);
-+	dma_cap_set(DMA_SLAVE, ddev->cap_mask);
-+	dma_cap_set(DMA_CYCLIC, ddev->cap_mask);
-+
-+	ddev->device_alloc_chan_resources = ls2x_dma_alloc_chan_resources;
-+	ddev->device_free_chan_resources = ls2x_dma_free_chan_resources;
-+	ddev->device_tx_status = dma_cookie_status;
-+	ddev->device_issue_pending = ls2x_dma_issue_pending;
-+	ddev->device_prep_slave_sg = ls2x_dma_prep_slave_sg;
-+	ddev->device_prep_dma_cyclic = ls2x_dma_prep_dma_cyclic;
-+	ddev->device_config = ls2x_dma_slave_config;
-+	ddev->device_terminate_all = ls2x_dma_terminate_all;
-+	ddev->device_synchronize = ls2x_dma_synchronize;
-+	ddev->device_pause = ls2x_dma_pause;
-+	ddev->device_resume = ls2x_dma_resume;
-+
-+	ddev->src_addr_widths = LDMA_SLAVE_BUSWIDTHS;
-+	ddev->dst_addr_widths = LDMA_SLAVE_BUSWIDTHS;
-+	ddev->directions = BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV);
-+
-+	ret = dma_async_device_register(&priv->ddev);
-+	if (ret < 0)
-+		goto disable_clk;
-+
-+	ret = of_dma_controller_register(dev->of_node, of_dma_xlate_by_chan_id, priv);
-+	if (ret < 0)
-+		goto unregister_dmac;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	dev_info(dev, "Loongson LS2X APB DMA driver registered successfully.\n");
-+	return 0;
-+
-+unregister_dmac:
-+	dma_async_device_unregister(&priv->ddev);
-+disable_clk:
-+	clk_disable_unprepare(priv->dma_clk);
-+
-+	return ret;
-+}
-+
-+/*
-+ * ls2x_dma_remove - Driver remove function
-+ * @pdev: Pointer to the platform_device structure
-+ *
-+ * Return: Always '0'
-+ */
-+static int ls2x_dma_remove(struct platform_device *pdev)
-+{
-+	struct ls2x_dma_priv *priv = platform_get_drvdata(pdev);
-+
-+	of_dma_controller_free(pdev->dev.of_node);
-+	dma_async_device_unregister(&priv->ddev);
-+	clk_disable_unprepare(priv->dma_clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ls2x_dma_of_match_table[] = {
-+	{ .compatible = "loongson,ls2k1000-apbdma" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ls2x_dma_of_match_table);
-+
-+static struct platform_driver ls2x_dmac_driver = {
-+	.probe		= ls2x_dma_probe,
-+	.remove		= ls2x_dma_remove,
-+	.driver = {
-+		.name	= "ls2x-apbdma",
-+		.of_match_table	= ls2x_dma_of_match_table,
-+	},
-+};
-+module_platform_driver(ls2x_dmac_driver);
-+
-+MODULE_DESCRIPTION("Loongson LS2X APB DMA Controller driver");
-+MODULE_AUTHOR("Loongson Technology Corporation Limited");
-+MODULE_LICENSE("GPL");
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 624 ++++++++++++++++++
+ 3 files changed, 626 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+
 -- 
-2.39.3
+2.25.1
 
