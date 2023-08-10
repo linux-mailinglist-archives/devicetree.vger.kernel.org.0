@@ -2,59 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F69577804D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 20:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E202277807B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 20:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233814AbjHJSf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 14:35:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47188 "EHLO
+        id S235935AbjHJSkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 14:40:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjHJSf1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 14:35:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2605D2712;
-        Thu, 10 Aug 2023 11:35:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7697B65995;
-        Thu, 10 Aug 2023 18:35:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFA41C433C7;
-        Thu, 10 Aug 2023 18:35:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691692524;
-        bh=xfjlfRaVHyNDxaHERql/K3X32fbh27hAOake+ptYZtk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PRUXEURoDnrQd5HHCHEg5XvLTan1NlCqYygvEFGt28td5BeCZMuvF+wOG0JZ9b3Ou
-         YQKkS0ikkyLHecHlViA059WbPzNvh8LisUMpybBBx8joViZV7Tf1b3N/TcXXAdjEMX
-         wknA+NtG+UQKxj69wDDYvePCdbgsB52oeEATnrIyJNMrCbtQmruDuIE6gtkufoTeSq
-         oUoq+acwwW/oX7kZjLtGTpypouVEXEcjSTqoLkPw/PoH7j66ESbDM4JuX8K7lc3BLe
-         jr4qDXbi8sUVR/hzoqf4iiXZVWmpU16lZz1MCuT2pEhKfQ+AoopeGVkcxHiNq0qB6x
-         LvsqGfF4lgd1w==
-Date:   Thu, 10 Aug 2023 19:35:20 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: dma: ti: k3-bcdma: Describe cfg
- register regions
-Message-ID: <20230810-prelaw-payback-9388222dd6d3@spud>
-References: <20230810174356.3322583-1-vigneshr@ti.com>
- <20230810174356.3322583-2-vigneshr@ti.com>
+        with ESMTP id S235932AbjHJSkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 14:40:03 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AA930F8;
+        Thu, 10 Aug 2023 11:39:10 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AIcQdt058130;
+        Thu, 10 Aug 2023 13:38:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691692706;
+        bh=hRZmdsTWeuInrXsDWuDx+n88pGGV2SKD+bTU4SvORAo=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=kYxZDMpitOXoaCOQfjBlLT0OvfF+WcBDnsloMclcG6jtYGC+1z49u3gMXGxXyeDch
+         A/jPPXjKjw1lpYpaNsm/GBD2AMSm8JYV5iN2dBP2Tyh/FSJVNaP6yoIVOk8l68xLLG
+         TepXCg2qah0hbstm/RE3v9p1tr3K+U8wsivJOET0=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AIcQrI107503
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 13:38:26 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 13:38:25 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 13:38:26 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AIcPDm107716;
+        Thu, 10 Aug 2023 13:38:25 -0500
+Date:   Thu, 10 Aug 2023 13:38:25 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Hari Nagalla <hnagalla@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: disable remote proc nodes
+Message-ID: <20230810183825.2qtfno7ggdredpsu@glucose>
+References: <20230810005629.21738-1-hnagalla@ti.com>
+ <20230810011046.ta3qapj3oj2oqs7o@value>
+ <2f0e9dde-0c6c-b808-02a0-c4ec659fc622@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hy+rd1947X41UhRn"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230810174356.3322583-2-vigneshr@ti.com>
+In-Reply-To: <2f0e9dde-0c6c-b808-02a0-c4ec659fc622@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,114 +67,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10:38-20230810, Hari Nagalla wrote:
+> On 8/9/23 20:10, Nishanth Menon wrote:
+> > > Disable the dsp and r5f subsystem nodes by default. Proper functioning
+> > > of remote processors with ipc need mailbox configurations which can
+> > > vary between board configurations and applications. Hence move enabling
+> > > the remote processor device nodes to where the required configurations
+> > > are complete.
+> > > 
+> > > Signed-off-by: Hari Nagalla<hnagalla@ti.com>
+> > > ---
+> > > This patch fixes the remote proc yamllint errors for am69-sk board
+> > Fixes tag?
+> As such this yamllint errors for am69-sk.dtb were present in several earlier
+> tags of linux-next. Checked with latest tag: next-20230809.
+> 
+> Please let me know if you would need v2 with the tag specified in comments.
+> 
 
---hy+rd1947X41UhRn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Aug 10, 2023 at 11:13:53PM +0530, Vignesh Raghavendra wrote:
-> Block copy DMA(BCDMA)module on K3 SoCs have ring cfg, TX and RX
-> channel cfg register regions which are usually configured by a Device
-> Management firmware. But certain entities such as bootloader (like
-> U-Boot) may have to access them directly. Describe this region in the
-> binding documentation for completeness of module description.
->=20
-> Keep the binding compatible with existing DTS files by requiring first
-> five regions to be present at least.
->=20
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
->  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 25 +++++++++++++------
->  1 file changed, 17 insertions(+), 8 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Doc=
-umentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> index 4ca300a42a99..d166e284532b 100644
-> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> @@ -37,11 +37,11 @@ properties:
-> =20
->    reg:
->      minItems: 3
-> -    maxItems: 5
-> +    maxItems: 8
-
-How come none of these reg entries have a description? What
-differentiates a "gcfg" from a "cfg" for example?
-
-> =20
->    reg-names:
->      minItems: 3
-> -    maxItems: 5
-> +    maxItems: 8
-> =20
->    "#dma-cells":
->      const: 3
-> @@ -161,14 +161,19 @@ allOf:
->        properties:
->          reg:
->            minItems: 5
-> +          maxItems: 8
-> =20
->          reg-names:
-> +          minItems: 5
->            items:
->              - const: gcfg
->              - const: bchanrt
->              - const: rchanrt
->              - const: tchanrt
->              - const: ringrt
-> +            - const: cfg
-> +            - const: tchan
-> +            - const: rchan
-> =20
->        required:
->          - ti,sci-rm-range-bchan
-> @@ -216,12 +221,16 @@ examples:
->              main_bcdma: dma-controller@485c0100 {
->                  compatible =3D "ti,am64-dmss-bcdma";
-> =20
-> -                reg =3D <0x0 0x485c0100 0x0 0x100>,
-> -                      <0x0 0x4c000000 0x0 0x20000>,
-> -                      <0x0 0x4a820000 0x0 0x20000>,
-> -                      <0x0 0x4aa40000 0x0 0x20000>,
-> -                      <0x0 0x4bc00000 0x0 0x100000>;
-> -                reg-names =3D "gcfg", "bchanrt", "rchanrt", "tchanrt", "=
-ringrt";
-> +                reg =3D <0x00 0x485c0100 0x00 0x100>,
-
-Why have you added extra zeros? (0x00)
-
-Thanks,
-Conor.
-
-> +                      <0x00 0x4c000000 0x00 0x20000>,
-> +                      <0x00 0x4a820000 0x00 0x20000>,
-> +                      <0x00 0x4aa40000 0x00 0x20000>,
-> +                      <0x00 0x4bc00000 0x00 0x100000>,
-> +                      <0x00 0x48600000 0x00 0x8000>,
-> +                      <0x00 0x484a4000 0x00 0x2000>,
-> +                      <0x00 0x484c2000 0x00 0x2000>;
-> +                reg-names =3D "gcfg", "bchanrt", "rchanrt", "tchanrt", "=
-ringrt",
-> +                            "cfg", "tchan", "rchan";
->                  msi-parent =3D <&inta_main_dmss>;
->                  #dma-cells =3D <3>;
-> =20
-> --=20
-> 2.41.0
->=20
-
---hy+rd1947X41UhRn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNUt6AAKCRB4tDGHoIJi
-0s88AP9ckxn/7qNPWkQ0s/NJZZQvBPDQh/iTfduUH9NmovrdigD/S+xmMkFsCX2w
-YXPFIUnSv9qL4bpWzkUCGGmOXW8bOg0=
-=pc+/
------END PGP SIGNATURE-----
-
---hy+rd1947X41UhRn--
+Please rebase on
+https://lore.kernel.org/all/5ec8b817-e63f-3d76-894d-8af4f4e880db@ti.com/
+series.
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
