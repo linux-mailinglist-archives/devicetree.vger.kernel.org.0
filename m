@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE29776F40
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 06:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1EEF776F6D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 07:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232778AbjHJEyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 00:54:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33170 "EHLO
+        id S231250AbjHJFQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 01:16:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232754AbjHJEyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 00:54:07 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6081BCF;
-        Wed,  9 Aug 2023 21:54:06 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A4rtBb062694;
-        Wed, 9 Aug 2023 23:53:56 -0500
+        with ESMTP id S229447AbjHJFQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 01:16:47 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0311B4;
+        Wed,  9 Aug 2023 22:16:47 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A5GfuQ007456;
+        Thu, 10 Aug 2023 00:16:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691643236;
-        bh=JGl6dzMpYY2nyy9SYBWqCT8CMjtq9mc1Hd1NlneIwtM=;
+        s=ti-com-17Q1; t=1691644601;
+        bh=P0mCIdF6RxPEHWxWTdVUUWcCcocUUqY8KF4vrLlurJg=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yiFaeSFszIXf6C6iwC/JfGQ6dAfnz/ej4PPvhLlDn2V5ywUpNuCMF5UmygxixvmBq
-         4iZE+gaMU0mSauRZkEZKmmiHj2ezgcd48JObv5nWXWBAMfTkdtlizK8XFzVPkWLj2G
-         P71ATuXkH1vVVIvsvfqeTKkVCr/luMt0vYspvzUY=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A4rt0u001558
+        b=uC/JdyeuP43TC79u3sGXcjmwdNMruntHGnxPC9gl3tjY9fREJOX2j9J4e+1JcNBHs
+         Z+/lNBKlYhosj/K2XhyOMt7Us2GYgzKfppwr+idTu+8sRJbcqGfoF1SHbvepG8r3iZ
+         Mg5pS5SmmakxyV889pobi/uYCS2VKmrR7VJH3foA=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A5GfHg118794
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 23:53:55 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 23:53:55 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 10 Aug 2023 00:16:41 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 00:16:40 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 23:53:55 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A4ricn118558;
-        Wed, 9 Aug 2023 23:53:53 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] arm64: dts: ti: Add support for the AM62P5-SK
-Date:   Thu, 10 Aug 2023 10:23:14 +0530
-Message-ID: <20230810045314.2676833-4-vigneshr@ti.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230810045314.2676833-1-vigneshr@ti.com>
-References: <20230810045314.2676833-1-vigneshr@ti.com>
+ Frontend Transport; Thu, 10 Aug 2023 00:16:40 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A5GetJ025677;
+        Thu, 10 Aug 2023 00:16:40 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <u-kumar1@ti.com>, <vaishnav.a@ti.com>, <b-kapoor@ti.com>,
+        <t-konduru@ti.com>, <vigneshr@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kristo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for ADC
+Date:   Thu, 10 Aug 2023 00:16:39 -0500
+Message-ID: <169164450277.18903.14062639232346038938.b4-ty@ti.com>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230809050108.751164-1-u-kumar1@ti.com>
+References: <20230809050108.751164-1-u-kumar1@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -66,210 +66,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bryan Brattlof <bb@ti.com>
+Hi Udit Kumar,
 
-Add basic support for the AM62P5-SK platform with UART and ramdisk as
-rootfs.
+On Wed, 9 Aug 2023 10:31:08 +0530, Udit Kumar wrote:
+> After splitting wkup_pmx pin mux for J784S4 into four regions.
+> Pin mux offset for ADC nodes were not updated to align with new
+> regions, due to this while probing ADC driver out of range
+> error was seen.
+> 
+> Pin mux offsets for ADC nodes are corrected in this patch.
+> 
+> [...]
 
-Schematics is at https://www.ti.com/lit/zip/sprr487
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Signed-off-by: Bryan Brattlof <bb@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile         |   3 +
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 169 ++++++++++++++++++++++++
- 2 files changed, 172 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+[1/1] arm64: dts: ti: k3-j784s4-evm: Correct Pin mux offset for ADC
+      commit: 8be3ac2d8bd77bb9cb9ddbb7a545decf9f5e4181
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 437a3d7e8e3a..5a09cad74c44 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -23,6 +23,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- # Boards with AM62Ax SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
- 
-+# Boards with AM62Px SoC
-+dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
-+
- # Boards with AM64x SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-new file mode 100644
-index 000000000000..b0882211448e
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -0,0 +1,169 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for the AM62P5-SK
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Schematics: https://www.ti.com/lit/zip/sprr487
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am62p5.dtsi"
-+
-+/ {
-+	compatible = "ti,am62p5-sk", "ti,am62p5";
-+	model = "Texas Instruments AM62P5 SK";
-+
-+	aliases {
-+		serial0 = &wkup_uart0;
-+		serial2 = &main_uart0;
-+		serial3 = &main_uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		/* 8G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000001 0x80000000>;
-+		device_type = "memory";
-+		bootph-pre-ram;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_tfa_ddr: tfa@9e780000 {
-+			reg = <0x00 0x9e780000 0x00 0x80000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9c900000 0x00 0x01e00000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&cbass_main {
-+	bootph-pre-ram;
-+};
-+
-+&main_pmx0 {
-+	status = "okay";
-+	bootph-pre-ram;
-+
-+	main_uart0_pins_default: main-uart0-default-pins {
-+		bootph-pre-ram;
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-+			AM62PX_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
-+			AM62PX_IOPAD(0x1d0, PIN_INPUT, 0)	/* (A23) UART0_CTSn */
-+			AM62PX_IOPAD(0x1d4, PIN_OUTPUT, 0)	/* (C22) UART0_RTSn */
-+		>;
-+	};
-+
-+	main_uart1_pins_default: main-uart1-default-pins {
-+		bootph-pre-ram;
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x194, PIN_INPUT, 2)	/* (D25) MCASP0_AXR3 */
-+			AM62PX_IOPAD(0x198, PIN_OUTPUT, 2)	/* (E25) MCASP0_AXR2 */
-+			AM62PX_IOPAD(0x1ac, PIN_INPUT, 2)	/* (G23) MCASP0_AFSR */
-+			AM62PX_IOPAD(0x1b0, PIN_OUTPUT, 2)	/* (G20) MCASP0_ACLKR */
-+		>;
-+	};
-+};
-+
-+&main_timer0 {
-+	bootph-pre-ram;
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	status = "okay";
-+	bootph-pre-ram;
-+};
-+
-+&main_uart1 {
-+	/* Main UART1 is used by TIFS firmware */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart1_pins_default>;
-+	status = "reserved";
-+	bootph-pre-ram;
-+};
-+
-+&cbass_mcu {
-+	bootph-pre-ram;
-+};
-+
-+&mcu_pmx0 {
-+	status = "okay";
-+	bootph-pre-ram;
-+
-+	wkup_uart0_pins_default: wkup-uart0-default-pins {
-+		bootph-pre-ram;
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-+			AM62PX_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
-+			AM62PX_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
-+			AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
-+		>;
-+	};
-+};
-+
-+&cbass_wakeup {
-+	bootph-pre-ram;
-+};
-+
-+&wkup_uart0 {
-+	/* WKUP UART0 is used by DM firmware */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	status = "reserved";
-+	bootph-pre-ram;
-+};
-+
-+&wkup_conf {
-+	bootph-pre-ram;
-+};
-+
-+&chipid {
-+	bootph-pre-ram;
-+};
-+
-+&dmss {
-+	bootph-pre-ram;
-+};
-+
-+&dmsc {
-+	bootph-pre-ram;
-+};
-+
-+&k3_pds {
-+	bootph-pre-ram;
-+};
-+
-+&k3_clks {
-+	bootph-pre-ram;
-+};
-+
-+&k3_reset {
-+	bootph-pre-ram;
-+};
-+
-+&secure_proxy_main {
-+	bootph-pre-ram;
-+};
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.41.0
+
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
