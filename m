@@ -2,109 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36AD6777514
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 11:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3F657775A4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 12:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235127AbjHJJ5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 05:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41458 "EHLO
+        id S234446AbjHJKVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 06:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235081AbjHJJ5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 05:57:35 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9734F26BA;
-        Thu, 10 Aug 2023 02:57:25 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37A6RXiu020773;
-        Thu, 10 Aug 2023 09:56:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=i62uhHykeo0dVzCMO8QhNLNMVqEDeRoKE1YJQDPMeQk=;
- b=E+J6zMn2IHEYlnb1N4l53tGsZUFhXCh1w6xlViKazO1GC1q5RQ/gmHuxl9SEzHnxXr1O
- 4TBTeAJuDs2LhodNFjzT/f401yBmayYovdlaEO4mGw51SMWywbHnYyKqpE5+NhCdUcui
- UojyMaxFhoNNg/wsk7fjvwpBkhl9yF+sgQVk0Qqpy6qVSvU2tg9WK5xEbon+OYkMts0Q
- RsqFo4tXR0B2vI2OzwDfjScmyaa1OIoyDcIXqyd3SGp8pB04zS9qlRtfduqWFwt2j28l
- HB3TOtJgnifw0rMTrfIL4NN60BC6ogs5jyHbVVdoGQ7aecKg6NYXVv32DcdQNGBsJXCd tQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3scsurrgh1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Aug 2023 09:56:56 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37A9utTX001405
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Aug 2023 09:56:55 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 10 Aug 2023 02:56:49 -0700
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
-        <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v7 5/5] arm64: defconfig: Enable M31 USB phy driver
-Date:   Thu, 10 Aug 2023 15:26:08 +0530
-Message-ID: <5f7de161a730f89f0773d99fbfd08e15291dadc6.1691660905.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1691660905.git.quic_varada@quicinc.com>
-References: <cover.1691660905.git.quic_varada@quicinc.com>
+        with ESMTP id S234310AbjHJKVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 06:21:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A14B8;
+        Thu, 10 Aug 2023 03:21:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07A7360C7C;
+        Thu, 10 Aug 2023 10:21:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C2BC433C7;
+        Thu, 10 Aug 2023 10:21:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691662888;
+        bh=oybIrBf8qc1EyJx3sCeJKlPY87KvRgQCcYV+qZ6Gkvk=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=BAodO7MMr7OOuyeY+GfD75beCBGOJnyVTnbJeNJwsOwDTzZxBa9rODobwq4npIZba
+         S5qJL1Rw7Qz43b3dj1R3q2M32SjaE9F27AxVZZYksNufFMPsUpsgWrT7hUrB1wxYs2
+         aYFzJse8FIpeTPyg4pAicuO168duOaphCp0pXKGD+mfhX6KDDUKK6DBXRfEPe1tq3Y
+         iAo8DQ2rKpOTBrLL+Txc+8FAZXXTGy9dZoerA8qBrWjLYfsUuArE2qyoixU+trRX1i
+         oIHnPgzxjQZDRXaxM2kSbiWq8a2NsS0Qzmv6harh1rwBpAK3ECbYXRBhLT+a7T7RWy
+         kmEqtiSa+65SQ==
+Received: (nullmailer pid 4166374 invoked by uid 1000);
+        Thu, 10 Aug 2023 10:21:23 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: olOuXENs6_2lyrVawm1Rtg_wOdkftkEG
-X-Proofpoint-GUID: olOuXENs6_2lyrVawm1Rtg_wOdkftkEG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-10_09,2023-08-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- spamscore=0 adultscore=0 clxscore=1015 mlxlogscore=562 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308100085
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, peng.fan@nxp.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, vkoul@kernel.org, rafal@milecki.pl,
+        quic_srichara@quicinc.com, konrad.dybcio@linaro.org,
+        devicetree@vger.kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, kishon@kernel.org,
+        agross@kernel.org, conor+dt@kernel.org, will@kernel.org,
+        catalin.marinas@arm.com, arnd@arndb.de,
+        linux-kernel@vger.kernel.org, nfraprado@collabora.com,
+        geert+renesas@glider.be
+In-Reply-To: <0d42f556ab28123b2b508521a0c79c7597b8b0fd.1691660905.git.quic_varada@quicinc.com>
+References: <cover.1691660905.git.quic_varada@quicinc.com>
+ <0d42f556ab28123b2b508521a0c79c7597b8b0fd.1691660905.git.quic_varada@quicinc.com>
+Message-Id: <169166288301.4166332.13436758125497162213.robh@kernel.org>
+Subject: Re: [PATCH v7 1/5] dt-bindings: phy: qcom,m31: Document qcom,m31
+ USB phy
+Date:   Thu, 10 Aug 2023 04:21:23 -0600
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable M31 USB phy driver present in IPQ5332.
 
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
-v2:
-	Add full stop to commit log.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Thu, 10 Aug 2023 15:26:04 +0530, Varadarajan Narayanan wrote:
+> Document the M31 USB2 phy present in IPQ5332.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v7:
+> 	Move 'compatible' to be the first entry
+> 	In the example have 'usb-phy' instead of 'usb2-phy'
+> 	Add 'Reviewed-by: Krzysztof Kozlowski'
+> 	'make dt_binding_check DT_SCHEMA_FILES=qcom,ipq5332-usb-hsphy.yaml' passed
+> 	'make CHECK_DTBS=y DT_SCHEMA_FILES=qcom,ipq5332-usb-hsphy.yaml dtbs_check' passed
+> v6:
+> 	Add 'Co-developed-by: Sricharan'
+> 	Add 'const' to compatible, vdd-supply
+> 	Remove label and use usb2-phy for nodename in the example
+> v5:
+> 	Add '#phy-cells', to be able to use generic phy
+> 	Remove 'Reviewed-by: Krzysztof Kozlowski' due to above change
+> v4:
+> 	Move M31 URL to description
+> 	Remove maxItems and relevant content from clock-names
+> 	Change node name to generic name
+> 	'make dt_binding_check DT_SCHEMA_FILES=qcom' passed
+> v3:
+> 	Incorporate review comments. Will bring in ipq5018 compatible
+> 	string while posting ipq5018 usb patchset.
+> 
+> v1:
+> 	Rename qcom,m31.yaml -> qcom,ipq5332-usb-hsphy.yaml
+> 	Drop default binding "m31,usb-hsphy"
+> 	Add clock
+> 	Remove 'oneOf' from compatible
+> 	Remove 'qscratch' region from register space as it is not needed
+> 	Remove reset-names
+> 	Fix the example definition
+> ---
+>  .../bindings/phy/qcom,ipq5332-usb-hsphy.yaml       | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bf13d5c..04daaac 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1416,6 +1416,7 @@ CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
- CONFIG_PHY_QCOM_USB_HS_28NM=m
- CONFIG_PHY_QCOM_USB_SS=m
- CONFIG_PHY_QCOM_SGMII_ETH=m
-+CONFIG_PHY_QCOM_M31_USB=m
- CONFIG_PHY_R8A779F0_ETHERNET_SERDES=y
- CONFIG_PHY_RCAR_GEN3_PCIE=y
- CONFIG_PHY_RCAR_GEN3_USB2=y
--- 
-2.7.4
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/0d42f556ab28123b2b508521a0c79c7597b8b0fd.1691660905.git.quic_varada@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
