@@ -2,164 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51A2D777794
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F76B77779B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233981AbjHJLyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 07:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
+        id S234580AbjHJLyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 07:54:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232925AbjHJLyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:54:09 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE6E91;
-        Thu, 10 Aug 2023 04:54:08 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37ABrk8c028316;
-        Thu, 10 Aug 2023 06:53:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691668426;
-        bh=2x5vUfJ+hzoSv36AHHqY1x0GU0dc6lOs8jv6cI6xFzs=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=gr6vhGLaxPoyfXC+8xcWtbewhvCWx+HrKgS36YsrqyrQyRyveS/Tgnaf3gv9ADWzJ
-         No8noWxvJ+QS0gnvP7N/1O1yDQbI/0+A6sRXgtNlqpZ+R8kTacJ4DSb3UDKCm1eJgJ
-         JJxG7XUNVX9TjflK8ILvFS1/oWkT5iAZUigPNZ8k=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37ABrkYs031658
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 06:53:46 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 06:53:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 06:53:45 -0500
-Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37ABrdbi089170;
-        Thu, 10 Aug 2023 06:53:40 -0500
-Message-ID: <ab69c4df-708f-8fff-a58b-a6531e15627b@ti.com>
-Date:   Thu, 10 Aug 2023 17:23:39 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j7200: Add the supported
- frequencies for A72
-To:     Nishanth Menon <nm@ti.com>, Apurva Nandan <a-nandan@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rafael J Wysocki <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        <linux-arm-kernel@lists.infradead.org>,
+        with ESMTP id S229848AbjHJLyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:54:46 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2941136;
+        Thu, 10 Aug 2023 04:54:45 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37AALjkF021976;
+        Thu, 10 Aug 2023 11:54:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=RnPMVJ0E3kytxu+Z1p+pHlrHkeIXYvpU/cENA2V4ecs=;
+ b=cCxdTu9JxbbXJNlRGTYmiMl45mz3yem+NBt1f1YqO7fUwAQDln1qDMQSPh/49dPFArAv
+ 7llJwT2m8lKYxdPljHkcUTMZUG5O0bIEVZczVxs+cg8Jz7uDhFhR8jmo8nZm5UMGNJ0l
+ TrKT0IeDJkO0h8QKz2R4Fb6IhXRrSQFbYP/ShG7CqrfZ2tozWqXIPkgxOt8e1Rg+8/Fy
+ jLRxm42jutNoW6Gi3205vBGi8Q+HmJMiAvMC2SqEFt6gQqnRVr3R7dArfbhVZ909zKJh
+ Q/afBW49IzFlTKF6b9NO5nHqdomLfHzseryP7p7jppjlf6cyjfMwJkBTSMNmgr7CScNd 3g== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3scr39gxv5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 11:54:35 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37ABsYlc024761
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 11:54:34 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 10 Aug 2023 04:54:30 -0700
+From:   Luo Jie <quic_luoj@quicinc.com>
+To:     <andersson@kernel.org>, <agross@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, Keerthy J <j-keerthy@ti.com>,
-        <u-kumar1@ti.com>
-References: <20230809173905.1844132-1-a-nandan@ti.com>
- <20230809173905.1844132-3-a-nandan@ti.com>
- <20230809190943.unpcbrinyn5ppei7@hydrated>
-Content-Language: en-US
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230809190943.unpcbrinyn5ppei7@hydrated>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        <quic_srichara@quicinc.com>, Luo Jie <quic_luoj@quicinc.com>
+Subject: [PATCH v3 0/3] add clock controller of qca8386/qca8084
+Date:   Thu, 10 Aug 2023 19:54:16 +0800
+Message-ID: <20230810115419.25539-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7HeM7SEYPDYkp1_j0BltRtqUPohzB1ZF
+X-Proofpoint-ORIG-GUID: 7HeM7SEYPDYkp1_j0BltRtqUPohzB1ZF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_10,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 spamscore=0 phishscore=0
+ adultscore=0 mlxlogscore=999 clxscore=1015 mlxscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308100100
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
 
-On 8/10/2023 12:39 AM, Nishanth Menon wrote:
-> On 23:09-20230809, Apurva Nandan wrote:
->> From: Keerthy <j-keerthy@ti.com>
->>
->> Add 750M, 1G, 1.5G & 2G as the supported frequencies for A72.
->> This enables support for Dynamic Frequency Scaling(DFS)
->>
->> Signed-off-by: Keerthy <j-keerthy@ti.com>
->> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j7200.dtsi | 28 ++++++++++++++++++++++++++++
->>   1 file changed, 28 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
->> index ef73e6d7e858..7222c453096f 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
->> @@ -48,6 +48,10 @@ cpu0: cpu@0 {
->>   			d-cache-line-size = <64>;
->>   			d-cache-sets = <256>;
->>   			next-level-cache = <&L2_0>;
->> +			clocks = <&k3_clks 202 2>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu0_opp_table>;
->> +			#cooling-cells = <2>; /* min followed by max */
->>   		};
->>   
->>   		cpu1: cpu@1 {
->> @@ -62,6 +66,30 @@ cpu1: cpu@1 {
->>   			d-cache-line-size = <64>;
->>   			d-cache-sets = <256>;
->>   			next-level-cache = <&L2_0>;
->> +			clocks = <&k3_clks 203 0>;
->> +			clock-names = "cpu";
->> +			operating-points-v2 = <&cpu0_opp_table>;
->> +			#cooling-cells = <2>; /* min followed by max */
->> +		};
->> +	};
->> +
->> +	cpu0_opp_table: opp-table {
->> +		compatible = "operating-points-v2";
->> +
->> +		opp4-2000000000 {
->> +			opp-hz = /bits/ 64 <2000000000>;
->> +		};
->> +
->> +		opp3-1500000000 {
->> +			opp-hz = /bits/ 64 <1500000000>;
->> +		};
->> +
->> +		opp2-1000000000 {
->> +			opp-hz = /bits/ 64 <1000000000>;
->> +		};
->> +
->> +		opp1-750000000 {
->> +			opp-hz = /bits/ 64 <750000000>;
->>   		};
->>   	};
->>   
->> -- 
->> 2.34.1
->>
-> Are you sure this is correct to enable all OPPs without efuse bit checks?
->
-> https://www.ti.com/lit/ds/symlink/dra821u-q1.pdf
-> 7.5 Operating Performance Points
-> DRA821xC operates only upto 750MHz
-> DRA821xE at 1GHz
-> DRA821xL upto 1.5GHz and
-> DRA821xT upto 2GHz
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_mdio_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
 
-Looks, top SKUs is considered here .
+Changes in v2:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
 
-After detecting which SKU we are running (I hope TRM should have this 
-information- through efuse or some other register)
+Changes in v3:
+	* rename clk_branch2_qca8k_ops to clk_branch2_mdio_ops.
+	* fix review comments on yaml file.
+	* use dev_err_probe on driver probe error.
+	* only use the compatible "qcom,qca8084-nsscc".
+	* remove enable clock controller driver patch.
 
-I think, we can follow two approaches.
+Luo Jie (3):
+  clk: qcom: branch: Add clk_branch2_mdio_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: add clock controller driver for qca8386/qca8084
 
-1) have OPP table for each SKU and select based SKUs type or
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |    8 +
+ drivers/clk/qcom/clk-branch.h                 |    2 +
+ drivers/clk/qcom/nsscc-qca8k.c                | 2180 +++++++++++++++++
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 8 files changed, 2454 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
 
-2) Do run time fixup by u-boot based upon SKU type
 
+base-commit: 29afcd69672a4e3d8604d17206d42004540d6d5c
+-- 
+2.17.1
 
