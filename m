@@ -2,76 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 816E5777038
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 806DC77704B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbjHJGVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 02:21:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51240 "EHLO
+        id S230466AbjHJG1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 02:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229996AbjHJGVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:21:38 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5002BD2
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:21:37 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so611105a12.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:21:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691648496; x=1692253296;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5KGBV5nb6p4yPHUwdCPzMc/o3J23+nmIfdlWDVvQhtE=;
-        b=dtR16Eu+ffBLTlPzjZEiufh3uLvlptbLi+dN5pZd6XTR3dCgfkkUQms9MBcUi2sq3l
-         BggBI51u1RVPYVVYimgaVugYO0pjmF+zF+UZKxBwGGZwLDFf+7kOtrpYU6gWr+Gm62mv
-         0H+GJrXjuz9Eweo3UkytVDZKWG3kMvTXQ9IVi2hWDhG+58euJ1wpwg23iHsq7iNlcG2S
-         mz0bVsf6pliUaDvm27zJd619eUm7+GIJIZBVrM8ookFl9M+mljn75xdBq090qkYHWvnc
-         U2M2X0aUNcDCktqnoaKj79CAHsqNgssSpcDdqyMAnm4UNx1HYdAJjB4E6Sw2KifVUbiM
-         Hs6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691648496; x=1692253296;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5KGBV5nb6p4yPHUwdCPzMc/o3J23+nmIfdlWDVvQhtE=;
-        b=Dck0AjDgAF9Fv6lAQFRRqiuSpAvsko1yEjnTywV4kmJ/nHnpNzoob9xU+7uGvUaUVt
-         11CIuCGgmWbR88j5F/Z1A0rc91I92b4DTqwCEptpX+c51nFHWX6kSFaOcREvlHXm86qh
-         u71SgR42NisM2BUSIZH+8yyEvpc1BjHve42m9CVPA+pkynR8BzDUcSFNKdIPxgGU0zKq
-         of/EQ/Mr9QkiHN7QVAgUqquPUCCaLmvCFhdyAn8+MeDAgo78qIcPtauhLpg06RZphWmn
-         9GlpLegELgiVTDhPCR367sANJvg7BhFF53/yVaHkqogAKrJWphLm8dBxXS73/qIekc2i
-         2mUQ==
-X-Gm-Message-State: AOJu0Yw8PMaNXMdVF5UZmYOpDlC+Jgsoo9sUtEDIPtQVfhP3eUrZVqET
-        IBu4RAl4BxSzjcc9iIF7c6vJJA==
-X-Google-Smtp-Source: AGHT+IGP2gOp/IwE3JkY3x07NPNLX11aABuD7Bquej0WMUPMvXxR5A87VXfKZVNYOdFGRa1TKYiPdg==
-X-Received: by 2002:a05:6402:57:b0:523:3f1e:68c4 with SMTP id f23-20020a056402005700b005233f1e68c4mr1169796edu.34.1691648495834;
-        Wed, 09 Aug 2023 23:21:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id t9-20020aa7d709000000b0051df54c6a27sm369321edq.56.2023.08.09.23.21.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 23:21:35 -0700 (PDT)
-Message-ID: <a1545e38-62fc-b5a1-e4c2-9f32b28e40f1@linaro.org>
-Date:   Thu, 10 Aug 2023 08:21:33 +0200
+        with ESMTP id S229765AbjHJG1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:27:20 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD7D8E3;
+        Wed,  9 Aug 2023 23:27:19 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 35FC98105;
+        Thu, 10 Aug 2023 06:27:19 +0000 (UTC)
+Date:   Thu, 10 Aug 2023 09:27:17 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Shengyu Qu <wiagn233@outlook.com>
+Cc:     bcousson@baylibre.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Robert Nelson <robertcnelson@gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: am335x-bone-common: Add GPIO PHY reset
+ on revision C3 board
+Message-ID: <20230810062717.GI11676@atomide.com>
+References: <20230806085044.1917-1-wiagn233@outlook.com>
+ <TY3P286MB26113797A3B2EC7E0348BBB2980FA@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+ <20230809072846.GD11676@atomide.com>
+ <TY3P286MB2611D8048AC78466459C47759812A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH] ARM: dts: exynos/i9100: Unconditionally enable LDO12
-Content-Language: en-US
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-References: <20230808110341.57891-1-paul@crapouillou.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230808110341.57891-1-paul@crapouillou.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY3P286MB2611D8048AC78466459C47759812A@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,22 +45,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2023 13:03, Paul Cercueil wrote:
-> The kernel hangs for a good 12 seconds without any info being printed to
-> dmesg, very early in the boot process, if this regulator is not enabled.
-> 
-> Force-enable it to work around this issue, until we know more about the
-> underlying problem.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the Galaxy S2")
-> Cc: <stable@vger.kernel.org> # v5.8+
-> ---
->  arch/arm/boot/dts/exynos4210-i9100.dts | 8 ++++++++
+* Shengyu Qu <wiagn233@outlook.com> [230809 11:33]:
+> I think that's OK. What should I do?
 
-The path changed long time ago. Really, please do not work on some
-outdated pmOS or whatever downstream drivers.
+Can you check if there is maybe some earlier Linux kernel commit
+that this fixes?
 
-Best regards,
-Krzysztof
+If so we can have a Fixes tag and it will be applied automatically
+to the stable kernels.
 
+If it's adding new feature and no Fixes tag can be set, I can just
+add Cc: stable for it.
+
+Regards,
+
+Tony
