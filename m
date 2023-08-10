@@ -2,72 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A530477716E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65848777162
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbjHJHiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 03:38:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
+        id S229597AbjHJHaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 03:30:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjHJHiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:38:10 -0400
-X-Greylist: delayed 377 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Aug 2023 00:38:09 PDT
-Received: from mail.artskigs.pl (mail.artskigs.pl [217.61.97.244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A56910FF
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:38:09 -0700 (PDT)
-Received: by mail.artskigs.pl (Postfix, from userid 1001)
-        id 7A229832AB; Thu, 10 Aug 2023 08:31:52 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=artskigs.pl; s=mail;
-        t=1691652722; bh=0DnDcjJl846YrSvLcp0W7cMkWp4Lfhp/OZAq4oBoaY8=;
-        h=Date:From:To:Subject:From;
-        b=ftqP57YfJdJ6psQADFn0EwCYGiZB1P7kbgoL4dyb5cl021uEWikGAU7jyuULXu8Wn
-         l9coVLQv/Ju4ZRnN0WRZ0MMPk9aVSX0CUWuDoS9RXNF+F7+H15C8aBGxk5SRFnwhaR
-         6koOXlKd1OAxEb5Y/Q4/RX07x8Z0Im5cIyMaGrAX4DHPjfNeoHqkTOWSq62qmdvZ21
-         XNFpD4Tfru4WBuen4vbUcXevF/WcD2Gaw9amLh/9lu6znFEvO/0YOZBVjtmWTFGulG
-         EM+UHC71QMV/YWPOZfSGwmdapCJcJetGS7iCsCEoZE2FzlqYLdyGaIWbFqhBRHJOCe
-         EOyQ/fKEAGSHg==
-Received: by mail.artskigs.pl for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 07:30:08 GMT
-Message-ID: <20230810074502-0.1.5m.rwxt.0.kh6173tbc2@artskigs.pl>
-Date:   Thu, 10 Aug 2023 07:30:08 GMT
-From:   "Krzysztof Maj" <krzysztof.maj@artskigs.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: biznesowy angielski
-X-Mailer: mail.artskigs.pl
+        with ESMTP id S229518AbjHJHaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:30:19 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB15A3;
+        Thu, 10 Aug 2023 00:30:17 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3E8A3C000C;
+        Thu, 10 Aug 2023 07:30:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1691652616;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=iuypy1p6ook3tCaKkFtNgD/qaSVZXlKQHOWGSdH8/vs=;
+        b=O8+LzBWAp0Cie7swpzb3xVJSTCbbwdVDbCDyoIuO62ahqPrcNZfg9CD2+MRXGXF1u5ku3x
+        sC+GxVNAkSZex6QwVABp0u6reTfOB+OKgUfqEAC7JXfvrKgeSw/sRyXT4AioYJG0Yn9WId
+        vKZPoKQELeD68eQJpAaKfpY0iq3pXjesTqgJrlXRxlKnZVKLqBBwYT4p6zNjQ9hzmxuquU
+        Ye3LE3ozc1xr8xZrrgTJkyEPSbPL2V4POcKLD5cfFBgME2wyIKtPZIMbqsT7UeGnld0TTS
+        1D8X/fQ6W28aO615atqWv2kgdELriff5TnE852M/5gnfBfEZn0R4GKP4eTgBug==
+Date:   Thu, 10 Aug 2023 09:30:15 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jacky Huang <ychuang570808@gmail.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [RESEND PATCH v2 3/3] rtc: Add driver for Nuvoton ma35d1 rtc
+ controller
+Message-ID: <20230810073015d5545903@mail.local>
+References: <20230809011542.429945-1-ychuang570808@gmail.com>
+ <20230809011542.429945-4-ychuang570808@gmail.com>
+ <20230809021025a7c0daec@mail.local>
+ <426130f6-7b8a-91f9-559b-afc5afdc656e@gmail.com>
+ <2023080922515326db190e@mail.local>
+ <347cf148-bda8-852b-768c-fa2b57ce5bcb@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <347cf148-bda8-852b-768c-fa2b57ce5bcb@gmail.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,=20
+On 10/08/2023 15:21:47+0800, Jacky Huang wrote:
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int ma35d1_rtc_suspend(struct platform_device *pdev, pm_message_t state)
+> > > > > +{
+> > > > > +	struct ma35_rtc *rtc = platform_get_drvdata(pdev);
+> > > > > +	u32 regval;
+> > > > > +
+> > > > > +	if (device_may_wakeup(&pdev->dev))
+> > > > > +		enable_irq_wake(rtc->irq_num);
+> > > > > +
+> > > > > +	regval = rtc_reg_read(rtc, MA35_REG_RTC_INTEN);
+> > > > > +	regval &= ~RTC_INTEN_TICKIEN;
+> > > > > +	rtc_reg_write(rtc, MA35_REG_RTC_INTEN, regval);
+> > > > This is not what the user is asking, don't do this. Also, how was this
+> > > > tested?
+> > > Sure, I will remove these three lines of code.
+> > > 
+> > > We test it with "echo mem > /sys/power/state".
+> > > 
+> > Yes, my point is that if UIE is enabled, then the user wants to be woken
+> > up every second. If this is not what is wanted, then UIE has to be
+> > disabled before going to suspend.
+> > 
+> > My question is why are you enabling RTC_INTEN_TICKIEN in probe? I don't
+> > expect anyone to use an actual hardware tick interrupt, unless the alarm
+> > is broken and can't be set every second. This is why I questioned the
+> > RTC_UF path because I don't expect it to be taken at all.
+> 
+> Yes, we will remove TICKIEN from probe and modify ma35d1_alarm_irq_enable().
+> TICKIEN will be enabled only if UIE is enabled.
+> 
+> static int ma35d1_alarm_irq_enable(struct device *dev, unsigned int enabled)
+> {
+>     struct ma35d1_rtc *rtc = dev_get_drvdata(dev);
+> 
+>     if (enabled) {
+>         if (rtc->rtc->uie_rtctimer.enabled)
+>             rtc_reg_write(rtc, NVT_RTC_INTEN,
+>                       (rtc_reg_read(rtc,
+> NVT_RTC_INTEN)|(RTC_INTEN_TICKIEN)));
 
-czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
-swoich pracownik=C3=B3w?
 
-Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
-w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
-ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
-=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
+Don't do that unless the regular alarm can't be set every second. Simply
+always use ALMIEN, then check rtctest is passing properly.
 
-Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
-=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
-re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
-o=C5=BCliwo=C5=9Bci biznesowe.=20
+>         if (rtc->rtc->aie_timer.enabled)
+>             rtc_reg_write(rtc, NVT_RTC_INTEN,
+>                       (rtc_reg_read(rtc,
+> NVT_RTC_INTEN)|(RTC_INTEN_ALMIEN)));
+>     } else {
+>         if (rtc->rtc->uie_rtctimer.enabled)
+>             rtc_reg_write(rtc, NVT_RTC_INTEN,
+>                       (rtc_reg_read(rtc, NVT_RTC_INTEN) &
+> (~RTC_INTEN_TICKIEN)));
+>         if (rtc->rtc->aie_timer.enabled)
+>             rtc_reg_write(rtc, NVT_RTC_INTEN,
+>                       (rtc_reg_read(rtc, NVT_RTC_INTEN) &
+> (~RTC_INTEN_ALMIEN)));
+>     }
+>     return 0;
+> }
+> 
 
-Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
- kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
-za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
-=2E
-
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
-w i opowiedzie=C4=87 jak dzia=C5=82amy?
-
-
-Pozdrawiam
-Krzysztof Maj
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
