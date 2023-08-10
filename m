@@ -2,103 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB3DF777871
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C401C777894
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 14:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234928AbjHJMcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 08:32:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55754 "EHLO
+        id S233975AbjHJMgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 08:36:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjHJMcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:32:45 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA8C212B
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 05:32:44 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fe12baec61so7217495e9.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 05:32:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691670763; x=1692275563;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j5O6S5cTT7TzSxKaal4vevEeC0NclQJzrHwGKjOFl6s=;
-        b=BfIaee3Lcj8qYJHLQu8XtdrtrkK3iy4IT5y/zneaauAP6nRE4NQ3ljlm5dEgwgM4Cz
-         Q69slVoxUeOAIExRX5jtO+kunnNQwf0n11zwaQxbibFC/+eyvS+eTPNES9LON6oJzsOO
-         YgNHModAJ45O+eZo5Lwjd9xQK2m1AXxInA8MeCrfU9wgv80pR010odgZANa+uowCRYe0
-         a1WGPveqeUHKU9/GRRrOxWj/GQUcXiKhJrpfNJitxgAObCyVVvcX3isPeFbT30VRz2eJ
-         cCN/qUrcQywvK++8UWA/Km5sHIBEtl23HdBBEnIBLdyVOikxXiuKYh3ZlZzjkBOLPaF3
-         FURQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691670763; x=1692275563;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j5O6S5cTT7TzSxKaal4vevEeC0NclQJzrHwGKjOFl6s=;
-        b=QpWpLTEp0ElgYMPJRhhCOfts3x6x95//6hku2xwvjA+yG7tFTXW7lBEZY2JF19DaZq
-         4L9NxlUDdHtUf58i9BK9rVF39KMPL4Xs0TC60Orx8t50GlxcqVSlvc59gGIculwJN+GR
-         MiA3OhQJMI+QwvAl6B+IPvQF256cncUxzSb2F5ij5ROmewjsqFar044nI2ecirzTvMfn
-         k9lbNIIT2apwyGvwtnhKZVG5rmseo3YXOVpyiIBttBrMtth25wLuLOoLDYwNnSwNjfRd
-         WUkZt+8zLGTmN/HbeyuWDZYywLh2wNPqcOBxvXqkZJTaNBJ38oITgASdTp9ScNdnuAsu
-         42Tw==
-X-Gm-Message-State: AOJu0YwIekAprFnbvStL3bBQ4cKCTq9IMnhBGIIgAlo8CgcqDyYiqBYh
-        JrVXtHq9cEBD64G0Y5wkK0M3cg==
-X-Google-Smtp-Source: AGHT+IFuVneGQIDaMr1RkNoAw4cn27A2/NQxJ9hWSiXS8vP+8EUUVB+CTE3oAfBIMeLmNV3l9MA9Hg==
-X-Received: by 2002:a1c:6a07:0:b0:3fb:e4ce:cc65 with SMTP id f7-20020a1c6a07000000b003fbe4cecc65mr1776219wmc.25.1691670762723;
-        Thu, 10 Aug 2023 05:32:42 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id b15-20020a05600c11cf00b003fd2e898aa3sm3827836wmi.0.2023.08.10.05.32.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 05:32:42 -0700 (PDT)
-Message-ID: <a663ea2c-4724-20b3-628e-8831b6989655@linaro.org>
-Date:   Thu, 10 Aug 2023 13:32:41 +0100
+        with ESMTP id S233488AbjHJMgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 08:36:13 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928A21B4;
+        Thu, 10 Aug 2023 05:36:12 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37ACFZBp017767;
+        Thu, 10 Aug 2023 14:35:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        message-id:date:mime-version:subject:to:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        selector1; bh=0T7Rg2lU27wBJcvPApX+ZRcZnKoy8Ze8aqeV+poDlHY=; b=j0
+        6NU18S0325zaon9+rfW7FxRZfYjtk9zPfqUM6I5HXMfAbpqaHotlFcB4PZ7rHLxo
+        TneY88iXFZQI5IO15l6PG/+waGNrd36IzYjArdRU46gC8VgLQ/qk8CsWu+8VL9BL
+        U1SHNL4Z8lrwdDxVtzKpjdZFwxYlwmIYM8NCvvplmA2xo+JZjEhHLKYjUi7WdQ77
+        3h160UPCMU57/Cvl2ixEalxYyvnp5bKAWUbBiW/uNVqMB0ZyMT8L6i9iVwh7sRrD
+        ABiw3x7dQ3C0nIANzbVDPjCW4SSdLFrIdoDAxqC99CTjoGfSQ86DnLtZmM/SPByb
+        5Ya4i6R8VOiheJ+xPhxw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3scdvdp3bj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 14:35:58 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BA25E100057;
+        Thu, 10 Aug 2023 14:35:57 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AFFCE2194E6;
+        Thu, 10 Aug 2023 14:35:57 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 10 Aug
+ 2023 14:35:57 +0200
+Message-ID: <4da65f77-c170-f82d-efa7-1727a470bc9f@foss.st.com>
+Date:   Thu, 10 Aug 2023 14:35:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 4/6] soc: qcom: Add LLCC support for multi channel DDR
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ARM: dts: stm32: fix dts check warnings on stm32mp15-scmi
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        srinivas.kandagatla@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230810061140.15608-1-quic_kbajaj@quicinc.com>
- <20230810061140.15608-5-quic_kbajaj@quicinc.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230810061140.15608-5-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     <p.paillet@foss.st.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230717134627.2064553-1-p.paillet@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230717134627.2064553-1-p.paillet@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To EQNDAG1NODE4.st.com
+ (10.75.129.133)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_10,2023-08-10_01,2023-05-22_02
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2023 07:11, Komal Bajaj wrote:
-> +	ret = nvmem_cell_read_u8(&pdev->dev, "multi-chan-ddr", cfg_index);
-> +	if (ret == -ENOENT || ret == -EOPNOTSUPP) {
-> +		if (num_config != DEF_NUM_CFG)
-> +			return -EINVAL;
+On 7/17/23 15:46, p.paillet@foss.st.com wrote:
+> From: Pascal Paillet <p.paillet@foss.st.com>
+> 
+> Fix dts check warnings on stm32mp15-scmi reported by
+> arm,scmi.yaml.
+> 
+> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
+> ---
 
-In other words if multi-chan-ddr is not present in the dts and the 
-num_config != 1 return -EINVAL
+No more YAML issue on ST SCMI boards. Thanks!
 
-You can just as easily say if (num_config > 1) and drop the define from 
-this code.
+Applied on stm32-next.
 
-> +		*cfg_index = DEF_NUM_CFG - 1;
-> +		return 0;
+Thanks.
+Alex
 
-*cfg_index = 0;
 
-For example if #define DEF_NUM_CFG 0x20 then taking the last index of it 
-would be 100% wrong.
+>   arch/arm/boot/dts/st/stm32mp15-scmi.dtsi | 7 +++----
+>   1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi b/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi
+> index ad2584213d99..dc3b09f2f2af 100644
+> --- a/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi
+> @@ -34,22 +34,21 @@ scmi_reguls: regulators {
+>   					#address-cells = <1>;
+>   					#size-cells = <0>;
+>   
+> -					scmi_reg11: reg11@0 {
+> +					scmi_reg11: regulator@0 {
+>   						reg = <0>;
+>   						regulator-name = "reg11";
+>   						regulator-min-microvolt = <1100000>;
+>   						regulator-max-microvolt = <1100000>;
+>   					};
+>   
+> -					scmi_reg18: reg18@1 {
+> -						voltd-name = "reg18";
+> +					scmi_reg18: regulator@1 {
+>   						reg = <1>;
+>   						regulator-name = "reg18";
+>   						regulator-min-microvolt = <1800000>;
+>   						regulator-max-microvolt = <1800000>;
+>   					};
+>   
+> -					scmi_usb33: usb33@2 {
+> +					scmi_usb33: regulator@2 {
+>   						reg = <2>;
+>   						regulator-name = "usb33";
+>   						regulator-min-microvolt = <3300000>;
 
-Please kill that define.
-
----
-bod
