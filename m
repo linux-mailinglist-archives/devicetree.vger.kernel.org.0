@@ -2,114 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE37A7782F2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 23:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2E377837B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 00:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231435AbjHJVzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 17:55:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S231435AbjHJWMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 18:12:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjHJVy6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 17:54:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243462D4F;
-        Thu, 10 Aug 2023 14:54:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S231338AbjHJWMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 18:12:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35AC82713;
+        Thu, 10 Aug 2023 15:12:21 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A19DB66966;
-        Thu, 10 Aug 2023 21:54:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A17CC433C7;
-        Thu, 10 Aug 2023 21:54:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691704496;
-        bh=LKd+4Ea4HCc6qzOyCezsC0/UcrPbS4S07GBHDZkZ1oY=;
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2329D6607234;
+        Thu, 10 Aug 2023 23:12:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1691705540;
+        bh=Cjoy1Kbx7vl3aNLQHQODSus0OKCsku5K0lb8+lPAifw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pifn18Yu5ypIOo15CTwZwrMGt2/uGXQeVBRDuy7SXkmxTJ2DXc9M5Qc9Awv1/Oo+r
-         NLZKWHWNSh33/MU1zynCRI7cRh0cW4ZWTDyYUHihzDS3O8DEnh+1XMB9+4ndA/DY0w
-         t15aacXpbNRvVNqbuTd6K8jF9uJunzunn74PApf01w47FcJBJkUhTIcuM03uHoTvqX
-         2vN/nxeOwBpClcEbiJE48E6/DuY5pctgzOOvfCSk1zPsij3aYYJP8AekO9HUsHebfB
-         NwXcTCQpkFpKXaxO5xe05r5pCTH7l5ife1Rjthj4kDcNPJrly03fUUcErsKRyKtJOs
-         ccyh4ngx4R58Q==
-Received: (nullmailer pid 1346033 invoked by uid 1000);
-        Thu, 10 Aug 2023 21:54:53 -0000
-Date:   Thu, 10 Aug 2023 15:54:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        b=anIuDNjv1Qfh8KjqWhnIaiSGJECftLfLAvKsOBzHvwM9TAWBDKk/3bSlkyLSd7f2i
+         rYt14YwiwykTWFYcPwR9/RcOJKEf9OYHLxFi70cCDnwf2VJu2SN1a/0QHl16m1nTue
+         QC4QoJejcfBjpaZVJ5E5W6SuE6T5lwz31SVOOwPpu1aNP2Q2FCCR233jNKhrgIEQhq
+         83NktOkjTFDYO25yhTXOSyD2UL0Tmd2Q07pWFKEkNDGds94MBSSBu+hTz9aePVAqAz
+         Bf9hD8y7yU7Kgc/geWObBPHah+Rn9tovRJ/PnqJQ4Xh+rLAsF7sTIHs2oXjeOswuyE
+         Y8nC4GDeJP6/w==
+Date:   Thu, 10 Aug 2023 18:12:14 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
         <nfraprado@collabora.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Shuah Khan <shuah@kernel.org>, cocci@inria.fr,
-        Mark Brown <broonie@kernel.org>,
-        Nicolas Palix <nicolas.palix@imag.fr>,
-        kernelci@lists.linux.dev, Julia Lawall <Julia.Lawall@inria.fr>,
-        Bjorn Andersson <andersson@kernel.org>, kernel@collabora.com,
-        Guenter Roeck <groeck@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org
-Subject: Re: [RFC PATCH 0/2] Add a test to catch unprobed Devicetree devices
-Message-ID: <20230810215453.GA1341305-robh@kernel.org>
-References: <20230810202413.1780286-1-nfraprado@collabora.com>
- <20230810214309.GA1226583-robh@kernel.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Set DSU PMU status to fail
+Message-ID: <e053e9fe-5d88-44f1-bb24-280113665185@notapiano>
+References: <20230720200753.322133-1-nfraprado@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230810214309.GA1226583-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230720200753.322133-1-nfraprado@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 10, 2023 at 03:43:09PM -0600, Rob Herring wrote:
-> On Thu, Aug 10, 2023 at 04:23:49PM -0400, Nícolas F. R. A. Prado wrote:
-> > 
-> > Regressions that cause a device to no longer be probed by a driver can
-> > have a big impact on the platform's functionality, and despite being
-> > relatively common there isn't currently any generic test to detect them.
-> > As an example, bootrr [1] does test for device probe, but it requires
-> > defining the expected probed devices for each platform.
-> > 
-> > Given that the Devicetree already provides a static description of
-> > devices on the system, it is a good basis for building such a test on
-> > top.
-> > 
-> > This series introduces a test to catch regressions that prevent devices
-> > from probing.
-> > 
-> > Patch 1 introduces a script to parse the kernel source using Coccinelle
-> > and extract all compatibles that can be matched by a Devicetree node to
-> > a driver. Patch 2 adds a kselftest that walks over the Devicetree nodes
-> > on the current platform and compares the compatibles to the ones on the
-> > list, and on an ignore list, to point out devices that failed to be
-> > probed.
-> > 
-> > A compatible list is needed because not all compatibles that can show up
-> > in a Devicetree node can be used to match to a driver, for example the
-> > code for that compatible might use "OF_DECLARE" type macros and avoid
-> > the driver framework, or the node might be controlled by a driver that
-> > was bound to a different node.
-> > 
-> > An ignore list is needed for the few cases where it's common for a
-> > driver to match a device but not probe, like for the "simple-mfd"
-> > compatible, where the driver only probes if that compatible is the
-> > node's first compatible.
-> > 
-> > Even though there's already scripts/dtc/dt-extract-compatibles that does
-> > a similar job, it didn't seem to find all compatibles, returning ~3k,
-> > while Coccinelle found ~11k. Besides that, Coccinelle actually parses
-> > the C files, so it should be a more robust solution than relying on
-> > regexes.
+On Thu, Jul 20, 2023 at 04:07:51PM -0400, Nícolas F. R. A. Prado wrote:
+> The DSU PMU allows monitoring performance events in the DSU cluster,
+> which is done by configuring and reading back values from the DSU PMU
+> system registers. However, for write-access to be allowed by ELs lower
+> than EL3, the EL3 firmware needs to update the setting on the ACTLR3_EL3
+> register, as it is disallowed by default.
 > 
-> I just sent a patch[1] last week fixing missing a bunch. I only looked 
-> at the change in count of undocumented (by schema) though.
+> That configuration is not done on the firmware used by the MT8195 SoC,
+> as a consequence, booting a MT8195-based machine like
+> mt8195-cherry-tomato-r2 with CONFIG_ARM_DSU_PMU enabled hangs the kernel
+> just as it writes to the CLUSTERPMOVSCLR_EL1 register, since the
+> instruction faults to EL3, and BL31 apparently just re-runs the
+> instruction over and over.
+> 
+> Mark the DSU PMU node in the Devicetree with status "fail", as the
+> machine doesn't have a suitable firmware to make use of it from the
+> kernel, and allowing its driver to probe would hang the kernel.
+> 
+> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-With the existing script, I get 11761 compatibles and 12916 with my fix. 
-So how are you getting only 3k?
+Hi Matthias,
 
-Rob
+gentle ping on this patch, as it's not possible to boot MT8195 Chromebooks with
+the mainline defconfig without this fix.
+
+Thanks,
+Nícolas
