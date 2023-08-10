@@ -2,783 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E62777750
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE5D77777D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235374AbjHJLj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 07:39:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33066 "EHLO
+        id S230248AbjHJLup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 07:50:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234949AbjHJLjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:39:25 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E137191
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:39:23 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230810113922epoutp044b992675530e2a6f8a0465b39d03e357~6Aq9qF5Hb2346623466epoutp04r
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 11:39:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230810113922epoutp044b992675530e2a6f8a0465b39d03e357~6Aq9qF5Hb2346623466epoutp04r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1691667562;
-        bh=/ifOoLIBspuEnq1OaHTIKEchMOOHi4vhSBG5LLZwPP4=;
-        h=From:To:In-Reply-To:Subject:Date:References:From;
-        b=ZMCEupE5GIh6bX94AjR7Mk3jXtvPVsYtvcuhU3ya28zliG6rfjxKKlNm7nrISsF76
-         pcX9RvMMaqPVd1oNICD3oJhalCP7KwVqGS7Ip0Z+KAtPZtaNkRa5dVFbBSfwGr1p72
-         cAPeMBT0n2BOBaTIRFgaKLLwNTDdpjmni57B0hTQ=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20230810113922epcas5p21f64ad584befe593b5acbef2c72bbd03~6Aq9PNl050438104381epcas5p2p;
-        Thu, 10 Aug 2023 11:39:22 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.181]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4RM4hS2wrBz4x9Pp; Thu, 10 Aug
-        2023 11:39:20 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A2.1C.57354.86CC4D46; Thu, 10 Aug 2023 20:39:20 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20230810113919epcas5p45e026740ac47d1f42ddd2886b76fc13f~6Aq7IvPON1362013620epcas5p4d;
-        Thu, 10 Aug 2023 11:39:19 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230810113919epsmtrp1d67a931b847e3b15bf5219d9d402dfae~6Aq7H2pwd1618316183epsmtrp1k;
-        Thu, 10 Aug 2023 11:39:19 +0000 (GMT)
-X-AuditID: b6c32a44-269fb7000001e00a-1c-64d4cc68329d
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B9.8E.64355.76CC4D46; Thu, 10 Aug 2023 20:39:19 +0900 (KST)
-Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230810113917epsmtip1bdfab514b907008ff2341a301554a7ab~6Aq5PMSm80668306683epsmtip1j;
-        Thu, 10 Aug 2023 11:39:17 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
-        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
-        "'Michael Turquette'" <mturquette@baylibre.com>,
-        "'Stephen Boyd'" <sboyd@kernel.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Conor Dooley'" <conor+dt@kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-In-Reply-To: <20230808082738.122804-12-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 11/11] dt-bindings: clock: samsung: remove define with
- number of clocks
-Date:   Thu, 10 Aug 2023 17:09:16 +0530
-Message-ID: <004e01d9cb7f$4cbf2260$e63d6720$@samsung.com>
+        with ESMTP id S230205AbjHJLuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:50:44 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9146D125;
+        Thu, 10 Aug 2023 04:50:43 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37ABoHk9040014;
+        Thu, 10 Aug 2023 06:50:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691668217;
+        bh=FE7E5AGWhpz4jXEjj/FP6DfavRJUIthZ9J1868D/XLo=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=WUA0ne0xjbd4zm2nlNRoOZz9h4rVcuBu5XCzQ5NGfIKcMRG1HYb49XyweGNmJHZ2H
+         9y5zdrbnHETbnAHsoJGROZlY4bXFWKLbAGE0VkqeHPzErHASqYmFC7rszEt/YWoPMx
+         jzqZb8B4DfIBAFL7ItV4k9AFuoSrR90z1uSz7cPE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37ABoHlQ072490
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 06:50:17 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 06:50:17 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 06:50:17 -0500
+Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37ABoBqe076317;
+        Thu, 10 Aug 2023 06:50:11 -0500
+Message-ID: <c7ddb12d-ae18-5fc2-9729-c88ea73b21d7@ti.com>
+Date:   Thu, 10 Aug 2023 17:20:10 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKdkXeLsq2DobfMxxfuGwY9MCDG5gKSE5zkAZulyOeuOm1UwA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrEJsWRmVeSWpSXmKPExsWy7bCmlm7GmSspBhuP8Vis2XuOyeL6l+es
-        FvOPnGO12Pt6K7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytWjde4Td4vCbdlaLf9c2slis
-        2vWH0YHX4/2NVnaPnbPusntsWtXJ5nHn2h42j81L6j36tqxi9Pi8SS6APSrbJiM1MSW1SCE1
-        Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoWCWFssScUqBQQGJxsZK+
-        nU1RfmlJqkJGfnGJrVJqQUpOgUmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsbU5qcsBZcmMVZM
-        PPSGrYHxSlEXIyeHhICJxPp1N1m6GLk4hAR2M0r8PvcZyvnEKHG7ZxcbnDPv7Ap2mJYJn+6x
-        QiR2Mkr031jNDOG8ZJSYuLOJEaSKTUBXYsfiNrB2EYFZLBK/D68GS3AKuElsWfoLaBQHh7BA
-        rMTWd8ogYRYBVYk1i3Yzg9i8ApYSm7avYYSwBSVOznzCAmIzC8hLbH87hxniCgWJn0+XsYLY
-        IgJOEj33dzJC1IhLvDx6hB1kr4TAEQ6JnoMTmSAaXCQmrW9ghLCFJV4d3wL1jpTEy/42sHsk
-        BDwkFv2RgghnSLxdvh6q3F7iwJU5LCAlzAKaEut36UOs4pPo/f2ECaKTV6KjTQiiWlWi+d1V
-        FghbWmJidzcrhO0hMa99DhMkqK4wSix8tYNtAqPCLCRfzkLy5Swk38xC2LyAkWUVo2RqQXFu
-        emqyaYFhXmo5PMaT83M3MYITs5bLDsYb8//pHWJk4mA8xCjBwawkwmsbfClFiDclsbIqtSg/
-        vqg0J7X4EKMpMOgnMkuJJucDc0NeSbyhiaWBiZmZmYmlsZmhkjjv69a5KUIC6YklqdmpqQWp
-        RTB9TBycUg1M24NMW/viJYwempi5XGlv42ja9+LGDxGNEG17h5QJYs6bGVf+mnU6eELuE1/5
-        YrsonnIL5RBV3TJDucdSsx9UPX8ozJio5uW/eMbuz3WPN23KWpW769amwprg0hL+IxZLltg9
-        /9h4/1GJefS/qu19E5I6On4Fxa5PceI6/E9HfcKPmqCtjBpB7kJBGx8Y3Zfa9tEs++oOtm2S
-        TL2O/7beqRX5ydvsLy6cabHWYOrjncu6Qz5zXpLiUH63wPfjwYJln3ld6hoMZdZPFzqs+3Dd
-        R5N9hv5VjFHGE6cfeT5xrt6ciin/ohd9zFo6r+DGfO57N6dFs24LPd+ZvVbUx1Ti0eGz+QdC
-        PIJbrhi9quZTYinOSDTUYi4qTgQAIxVtAVUEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsWy7bCSnG76mSspBgf3q1qs2XuOyeL6l+es
-        FvOPnGO12Pt6K7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytWjde4Td4vCbdlaLf9c2slis
-        2vWH0YHX4/2NVnaPnbPusntsWtXJ5nHn2h42j81L6j36tqxi9Pi8SS6APYrLJiU1J7MstUjf
-        LoErY2rzU5aCS5MYKyYeesPWwHilqIuRk0NCwERiwqd7rF2MXBxCAtsZJU6cPMYOkZCWuL5x
-        ApQtLLHy33N2iKLnjBK/Gj+zgCTYBHQldixuYwNJiAgsYZE493gbM0TVBUaJ+Z+mMINUcQq4
-        SWxZ+guonYNDWCBaYv5eT5Awi4CqxJpFu8FKeAUsJTZtX8MIYQtKnJz5hAWknFlAT6JtI1iY
-        WUBeYvvbOcwQBylI/Hy6jBXEFhFwkui5vxOqRlzi5dEj7BMYhWYhmTQLYdIsJJNmIelYwMiy
-        ilE0taA4Nz03ucBQrzgxt7g0L10vOT93EyM49rSCdjAuW/9X7xAjEwfjIUYJDmYlEV7b4Esp
-        QrwpiZVVqUX58UWlOanFhxilOViUxHmVczpThATSE0tSs1NTC1KLYLJMHJxSDUyBu7Y/lvQO
-        27Bm569D+59/zrV6ae/LM9X94/a92c/1fNK3TPtpvorRnmnWtkYd1fNxoUfLzzG/2+CxJ+nR
-        0jN+6xpWF3EslbEqM/3x6rO7+s9ZmQEx7x8tWupsd6zxPuOEydvOvpx1LuBOacJG+zu8q/Lf
-        +uxf3BA/36WYcXnCEf3ZXHz/hZUV11yXWfXIsCvsLFtE+aZ2PlO+xznemqePRnxVjj6wTNw7
-        tVf/9L4N75UeC5a5L9QVeLjSsPljGD/vJ5+9/BbaC9qbrGwDxMUYphhJdR3r/e/F43ZZn3Od
-        1MaN12fNFYk5vz5aRlNEqHd5q51nro7H2RnN9Q96ph6zuKReqW620UFBfPq/t9eUWIozEg21
-        mIuKEwHIYHhNLAMAAA==
-X-CMS-MailID: 20230810113919epcas5p45e026740ac47d1f42ddd2886b76fc13f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230808082806epcas5p1abcab8550ceb2722e9ce70015c033bc0
-References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
-        <CGME20230808082806epcas5p1abcab8550ceb2722e9ce70015c033bc0@epcas5p1.samsung.com>
-        <20230808082738.122804-12-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 3/5] net: ti: icss-iep: Add IEP driver
+Content-Language: en-US
+To:     Andrew Davis <afd@ti.com>, MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230809114906.21866-1-danishanwar@ti.com>
+ <20230809114906.21866-4-danishanwar@ti.com>
+ <b43ee5ca-2aab-445a-e24b-cbc95f9186ea@ti.com>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <b43ee5ca-2aab-445a-e24b-cbc95f9186ea@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andrew,
+
+On 09/08/23 8:30 pm, Andrew Davis wrote:
+> On 8/9/23 6:49 AM, MD Danish Anwar wrote:
+>> From: Roger Quadros <rogerq@ti.com>
+>>
+>> Add a driver for Industrial Ethernet Peripheral (IEP) block of PRUSS to
+>> support timestamping of ethernet packets and thus support PTP and PPS
+>> for PRU ethernet ports.
+>>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+>> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>   drivers/net/ethernet/ti/Kconfig          |  12 +
+>>   drivers/net/ethernet/ti/Makefile         |   1 +
+>>   drivers/net/ethernet/ti/icssg/icss_iep.c | 935 +++++++++++++++++++++++
+>>   drivers/net/ethernet/ti/icssg/icss_iep.h |  38 +
+>>   4 files changed, 986 insertions(+)
+>>   create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.c
+>>   create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.h
+>>
+>> diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
+>> index 63e510b6860f..88b5b1b47779 100644
+>> --- a/drivers/net/ethernet/ti/Kconfig
+>> +++ b/drivers/net/ethernet/ti/Kconfig
+>> @@ -186,6 +186,7 @@ config CPMAC
+>>   config TI_ICSSG_PRUETH
+>>       tristate "TI Gigabit PRU Ethernet driver"
+>>       select PHYLIB
+>> +    select TI_ICSS_IEP
+> 
+> Why not save selecting this until you add its use in the ICSSG_PRUETH driver in
+> the next patch.
+> 
+
+The next patch is only adding changes to icssg-prueth .c /.h files. This patch
+is adding changes to Kconfig and the Makefile. To keep it that way selecting
+this is added in this patch. No worries, I will move this to next patch.
+
+> [...]
+> 
+>> +
+>> +static u32 icss_iep_readl(struct icss_iep *iep, int reg)
+>> +{
+>> +    return readl(iep->base + iep->plat_data->reg_offs[reg]);
+>> +}
+> 
+> Do these one line functions really add anything? Actually why
+> not use the regmap you have here.
+
+These one line functions are not really adding anything but they are acting as
+a wrapper around readl /writel and providing some sort of encapsulation as
+directly calling readl will result in a little complicated code.
+
+/* WIth One line function */
+ts_lo = icss_iep_readl(iep, ICSS_IEP_COUNT_REG0);
+
+/* Without one line function */
+ts_lo = readl(iep->base, iep->plat_data->reg_offs[ICSS_IEP_COUNT_REG0]);
+
+Previously regmap was used in this driver. But in older commit [1] in
+5.10-ti-linux-kernel (Before I picked the driver for upstream) it got changed
+to readl / writel stating that regmap_read / write is too slow. IEP is time
+sensitive and needs faster read and write, probably because of this they
+changed it.
+
+> 
+> [...]
+> 
+>> +static void icss_iep_enable(struct icss_iep *iep)
+>> +{
+>> +    regmap_update_bits(iep->map, ICSS_IEP_GLOBAL_CFG_REG,
+>> +               IEP_GLOBAL_CFG_CNT_ENABLE,
+>> +               IEP_GLOBAL_CFG_CNT_ENABLE);
+> 
+> Have you looked into regmap_fields?
+> 
+
+No I hadn't. But now I looked into regmap_fields, seems to be another way to
+update the bits, instead of passing mask and value, regmap_filed_read / write
+only takes the value. But for that we will need to create a regmap field. If
+you want me to switch to regmap_fields instead of regmap_update_bits I can make
+the changes. But I am fine with regmap_update_bits().
+
+> [...]
+> 
+>> +
+>> +    if (!!(iep->latch_enable & BIT(index)) == !!on)
+>> +        goto exit;
+>> +
+> 
+> There has to be a better way to write this logic..
+> 
+> [...]
+> 
+>> +
+>> +static const struct of_device_id icss_iep_of_match[];
+>> +
+> 
+> Why the forward declaration?
+
+I will remove this, I don't see any reason for this.
+
+> 
+>> +static int icss_iep_probe(struct platform_device *pdev)
+>> +{
+>> +    struct device *dev = &pdev->dev;
+>> +    struct icss_iep *iep;
+>> +    struct clk *iep_clk;
+>> +
+>> +    iep = devm_kzalloc(dev, sizeof(*iep), GFP_KERNEL);
+>> +    if (!iep)
+>> +        return -ENOMEM;
+>> +
+>> +    iep->dev = dev;
+>> +    iep->base = devm_platform_ioremap_resource(pdev, 0);
+>> +    if (IS_ERR(iep->base))
+>> +        return -ENODEV;
+>> +
+>> +    iep_clk = devm_clk_get(dev, NULL);
+>> +    if (IS_ERR(iep_clk))
+>> +        return PTR_ERR(iep_clk);
+>> +
+>> +    iep->refclk_freq = clk_get_rate(iep_clk);
+>> +
+>> +    iep->def_inc = NSEC_PER_SEC / iep->refclk_freq;    /* ns per clock tick */
+>> +    if (iep->def_inc > IEP_MAX_DEF_INC) {
+>> +        dev_err(dev, "Failed to set def_inc %d.  IEP_clock is too slow to be
+>> supported\n",
+>> +            iep->def_inc);
+>> +        return -EINVAL;
+>> +    }
+>> +
+>> +    iep->plat_data = of_device_get_match_data(dev);
+> 
+> Directly using of_*() functions is often wrong, try just device_get_match_data().
+> 
+
+Sure. I will change to device_get_match_data().
+
+> [...]
+> 
+>> +static struct platform_driver icss_iep_driver = {
+>> +    .driver = {
+>> +        .name = "icss-iep",
+>> +        .of_match_table = of_match_ptr(icss_iep_of_match),
+> 
+> This driver cannot work without OF, using of_match_ptr() is not needed.
+> 
+
+Sure, I will drop of_match_ptr().
+
+> Andrew
 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Tuesday, August 8, 2023 1:58 PM
-> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Sylwester
-> Nawrocki <s.nawrocki@samsung.com>; Tomasz Figa
-> <tomasz.figa@gmail.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
-> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob
-> Herring <robh+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
-> linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org
-> Subject: [PATCH 11/11] dt-bindings: clock: samsung: remove define with
-> number of clocks
-> 
-> Number of clocks supported by Linux drivers might vary - sometimes we add
-> new clocks, not exposed previously.  Therefore this number of clocks
-should
-> not be in the bindings, because otherwise we should not change it.  Remove
-> it entirely from the bindings, once Linux drivers stopped using them.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+For reading and updating registers, we can have
+	1. icss_iep_readl / writel and regmap_update_bits() OR
+	2. regmap_read / write and regmap_update_bits() OR
+	3. icss_iep_readl / writel and regmap_fields OR
+	4. regmap_read / write and regmap_fields
+	
 
->  include/dt-bindings/clock/exynos3250.h        | 18 --------
->  include/dt-bindings/clock/exynos4.h           |  5 ---
->  include/dt-bindings/clock/exynos5250.h        |  3 --
->  include/dt-bindings/clock/exynos5260-clk.h    | 25 -----------
->  include/dt-bindings/clock/exynos5410.h        |  2 -
->  include/dt-bindings/clock/exynos5420.h        |  3 --
->  include/dt-bindings/clock/exynos5433.h        | 42 -------------------
->  include/dt-bindings/clock/exynos7885.h        |  4 --
->  include/dt-bindings/clock/exynos850.h         | 10 -----
->  .../dt-bindings/clock/samsung,exynosautov9.h  | 18 --------
->  10 files changed, 130 deletions(-)
-> 
-> diff --git a/include/dt-bindings/clock/exynos3250.h b/include/dt-
-> bindings/clock/exynos3250.h
-> index fe8214017b46..cc7268151843 100644
-> --- a/include/dt-bindings/clock/exynos3250.h
-> +++ b/include/dt-bindings/clock/exynos3250.h
-> @@ -256,12 +256,6 @@
->  #define CLK_SCLK_UART2			248
->  #define CLK_SCLK_MMC2			249
-> 
-> -/*
-> - * Total number of clocks of main CMU.
-> - * NOTE: Must be equal to last clock ID increased by one.
-> - */
-> -#define CLK_NR_CLKS			250
-> -
->  /*
->   * CMU DMC
->   */
-> @@ -283,12 +277,6 @@
->  #define CLK_DIV_DMCP			19
->  #define CLK_DIV_DMCD			20
-> 
-> -/*
-> - * Total number of clocks of main CMU.
-> - * NOTE: Must be equal to last clock ID increased by one.
-> - */
-> -#define NR_CLKS_DMC			21
-> -
->  /*
->   * CMU ISP
->   */
-> @@ -344,10 +332,4 @@
->  #define CLK_ASYNCAXIM			46
->  #define CLK_SCLK_MPWM_ISP		47
-> 
-> -/*
-> - * Total number of clocks of CMU_ISP.
-> - * NOTE: Must be equal to last clock ID increased by one.
-> - */
-> -#define NR_CLKS_ISP			48
-> -
->  #endif /* _DT_BINDINGS_CLOCK_SAMSUNG_EXYNOS3250_CLOCK_H */ diff
-> --git a/include/dt-bindings/clock/exynos4.h b/include/dt-
-> bindings/clock/exynos4.h
-> index acbfbab875ec..4ebff79ed9e2 100644
-> --- a/include/dt-bindings/clock/exynos4.h
-> +++ b/include/dt-bindings/clock/exynos4.h
-> @@ -239,9 +239,6 @@
->  #define CLK_DIV_GDR		460
->  #define CLK_DIV_CORE2		461
-> 
-> -/* must be greater than maximal clock id */
-> -#define CLK_NR_CLKS		462
-> -
->  /* Exynos4x12 ISP clocks */
->  #define CLK_ISP_FIMC_ISP		 1
->  #define CLK_ISP_FIMC_DRC		 2
-> @@ -275,6 +272,4 @@
->  #define CLK_ISP_DIV_MCUISP0		29
->  #define CLK_ISP_DIV_MCUISP1		30
-> 
-> -#define CLK_NR_ISP_CLKS			31
-> -
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS_4_H */ diff --git a/include/dt-
-> bindings/clock/exynos5250.h b/include/dt-bindings/clock/exynos5250.h
-> index 4680da7357d3..2337c028bbe1 100644
-> --- a/include/dt-bindings/clock/exynos5250.h
-> +++ b/include/dt-bindings/clock/exynos5250.h
-> @@ -177,7 +177,4 @@
->  #define CLK_MOUT_MPLL		1029
->  #define CLK_MOUT_VPLLSRC	1030
-> 
-> -/* must be greater than maximal clock id */
-> -#define CLK_NR_CLKS		1031
-> -
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS_5250_H */ diff --git a/include/dt-
-> bindings/clock/exynos5260-clk.h b/include/dt-bindings/clock/exynos5260-
-> clk.h
-> index 98a58cbd81b2..dfde40ea40f0 100644
-> --- a/include/dt-bindings/clock/exynos5260-clk.h
-> +++ b/include/dt-bindings/clock/exynos5260-clk.h
-> @@ -137,8 +137,6 @@
->  #define PHYCLK_USBHOST20_PHY_CLK48MOHCI			122
->  #define PHYCLK_USBDRD30_UDRD30_PIPE_PCLK		123
->  #define PHYCLK_USBDRD30_UDRD30_PHYCLOCK			124
-> -#define TOP_NR_CLK					125
-> -
-> 
->  /* List Of Clocks For CMU_EGL */
-> 
-> @@ -153,8 +151,6 @@
->  #define EGL_DOUT_ACLK_EGL				9
->  #define EGL_DOUT_EGL2					10
->  #define EGL_DOUT_EGL1					11
-> -#define EGL_NR_CLK					12
-> -
-> 
->  /* List Of Clocks For CMU_KFC */
-> 
-> @@ -168,8 +164,6 @@
->  #define KFC_DOUT_KFC_ATCLK				8
->  #define KFC_DOUT_KFC2					9
->  #define KFC_DOUT_KFC1					10
-> -#define KFC_NR_CLK					11
-> -
-> 
->  /* List Of Clocks For CMU_MIF */
-> 
-> @@ -200,8 +194,6 @@
->  #define MIF_CLK_INTMEM					25
->  #define MIF_SCLK_LPDDR3PHY_WRAP_U1			26
->  #define MIF_SCLK_LPDDR3PHY_WRAP_U0			27
-> -#define MIF_NR_CLK					28
-> -
-> 
->  /* List Of Clocks For CMU_G3D */
-> 
-> @@ -211,8 +203,6 @@
->  #define G3D_DOUT_ACLK_G3D				4
->  #define G3D_CLK_G3D_HPM					5
->  #define G3D_CLK_G3D					6
-> -#define G3D_NR_CLK					7
-> -
-> 
->  /* List Of Clocks For CMU_AUD */
-> 
-> @@ -231,8 +221,6 @@
->  #define AUD_SCLK_AUD_UART				13
->  #define AUD_SCLK_PCM					14
->  #define AUD_SCLK_I2S					15
-> -#define AUD_NR_CLK					16
-> -
-> 
->  /* List Of Clocks For CMU_MFC */
-> 
-> @@ -241,8 +229,6 @@
->  #define MFC_CLK_MFC					3
->  #define MFC_CLK_SMMU2_MFCM1				4
->  #define MFC_CLK_SMMU2_MFCM0				5
-> -#define MFC_NR_CLK					6
-> -
-> 
->  /* List Of Clocks For CMU_GSCL */
-> 
-> @@ -272,8 +258,6 @@
->  #define GSCL_CLK_SMMU3_MSCL1				24
->  #define GSCL_SCLK_CSIS1_WRAP				25
->  #define GSCL_SCLK_CSIS0_WRAP				26
-> -#define GSCL_NR_CLK					27
-> -
-> 
->  /* List Of Clocks For CMU_FSYS */
-> 
-> @@ -295,8 +279,6 @@
->  #define FSYS_CLK_SMMU_RTIC				16
->  #define FSYS_PHYCLK_USBDRD30				17
->  #define FSYS_PHYCLK_USBHOST20				18
-> -#define FSYS_NR_CLK					19
-> -
-> 
->  /* List Of Clocks For CMU_PERI */
-> 
-> @@ -366,8 +348,6 @@
->  #define PERI_SCLK_SPDIF					64
->  #define PERI_SCLK_I2S					65
->  #define PERI_SCLK_PCM1					66
-> -#define PERI_NR_CLK					67
-> -
-> 
->  /* List Of Clocks For CMU_DISP */
-> 
-> @@ -406,8 +386,6 @@
->  #define DISP_CLK_DP					33
->  #define DISP_SCLK_PIXEL					34
->  #define DISP_MOUT_HDMI_PHY_PIXEL_USER			35
-> -#define DISP_NR_CLK					36
-> -
-> 
->  /* List Of Clocks For CMU_G2D */
-> 
-> @@ -423,8 +401,6 @@
->  #define G2D_CLK_SMMU_SSS				10
->  #define G2D_CLK_SMMU_MDMA				11
->  #define G2D_CLK_SMMU3_G2D				12
-> -#define G2D_NR_CLK					13
-> -
-> 
->  /* List Of Clocks For CMU_ISP */
-> 
-> @@ -461,6 +437,5 @@
->  #define ISP_SCLK_SPI0_EXT				31
->  #define ISP_SCLK_SPI1_EXT				32
->  #define ISP_SCLK_UART_EXT				33
-> -#define ISP_NR_CLK					34
-> 
->  #endif
-> diff --git a/include/dt-bindings/clock/exynos5410.h b/include/dt-
-> bindings/clock/exynos5410.h
-> index 86c2ad56c5ef..7a1a93f8df6c 100644
-> --- a/include/dt-bindings/clock/exynos5410.h
-> +++ b/include/dt-bindings/clock/exynos5410.h
-> @@ -61,6 +61,4 @@
->  #define CLK_USBD301		367
->  #define CLK_SSS			471
-> 
-> -#define CLK_NR_CLKS		512
-> -
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS_5410_H */ diff --git a/include/dt-
-> bindings/clock/exynos5420.h b/include/dt-bindings/clock/exynos5420.h
-> index 9fffc6ceaadd..73e82527a9e9 100644
-> --- a/include/dt-bindings/clock/exynos5420.h
-> +++ b/include/dt-bindings/clock/exynos5420.h
-> @@ -271,7 +271,4 @@
->  #define CLK_DOUT_PCLK_DREX0	798
->  #define CLK_DOUT_PCLK_DREX1	799
-> 
-> -/* must be greater than maximal clock id */
-> -#define CLK_NR_CLKS		800
-> -
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS_5420_H */ diff --git a/include/dt-
-> bindings/clock/exynos5433.h b/include/dt-bindings/clock/exynos5433.h
-> index 25ffa53573a5..d12c1a963fa1 100644
-> --- a/include/dt-bindings/clock/exynos5433.h
-> +++ b/include/dt-bindings/clock/exynos5433.h
-> @@ -188,8 +188,6 @@
->  #define CLK_SCLK_ISP_SPI0_CAM1		252
->  #define CLK_SCLK_HDMI_SPDIF_DISP	253
-> 
-> -#define TOP_NR_CLK			254
-> -
->  /* CMU_CPIF */
->  #define CLK_FOUT_MPHY_PLL		1
-> 
-> @@ -200,8 +198,6 @@
->  #define CLK_SCLK_MPHY_PLL		11
->  #define CLK_SCLK_UFS_MPHY		11
-> 
-> -#define CPIF_NR_CLK			12
-> -
->  /* CMU_MIF */
->  #define CLK_FOUT_MEM0_PLL		1
->  #define CLK_FOUT_MEM1_PLL		2
-> @@ -396,8 +392,6 @@
->  #define CLK_SCLK_BUS_PLL_APOLLO		199
->  #define CLK_SCLK_BUS_PLL_ATLAS		200
-> 
-> -#define MIF_NR_CLK			201
-> -
->  /* CMU_PERIC */
->  #define CLK_PCLK_SPI2			1
->  #define CLK_PCLK_SPI1			2
-> @@ -468,8 +462,6 @@
->  #define CLK_DIV_SCLK_SCI		70
->  #define CLK_DIV_SCLK_SC_IN		71
-> 
-> -#define PERIC_NR_CLK			72
-> -
->  /* CMU_PERIS */
->  #define CLK_PCLK_HPM_APBIF		1
->  #define CLK_PCLK_TMU1_APBIF		2
-> @@ -513,8 +505,6 @@
->  #define CLK_SCLK_ANTIRBK_CNT		40
->  #define CLK_SCLK_OTP_CON		41
-> 
-> -#define PERIS_NR_CLK			42
-> -
->  /* CMU_FSYS */
->  #define CLK_MOUT_ACLK_FSYS_200_USER	1
->  #define CLK_MOUT_SCLK_MMC2_USER		2
-> @@ -621,8 +611,6 @@
->  #define CLK_SCLK_USBDRD30		114
->  #define CLK_PCIE			115
-> 
-> -#define FSYS_NR_CLK			116
-> -
->  /* CMU_G2D */
->  #define CLK_MUX_ACLK_G2D_266_USER	1
->  #define CLK_MUX_ACLK_G2D_400_USER	2
-> @@ -653,8 +641,6 @@
->  #define CLK_PCLK_G2D			25
->  #define CLK_PCLK_SMMU_G2D		26
-> 
-> -#define G2D_NR_CLK			27
-> -
->  /* CMU_DISP */
->  #define CLK_FOUT_DISP_PLL				1
-> 
-> @@ -771,8 +757,6 @@
->  #define CLK_PHYCLK_MIPIDPHY0_BITCLKDIV8_PHY		114
->  #define CLK_PHYCLK_MIPIDPHY0_RXCLKESC0_PHY		115
-> 
-> -#define DISP_NR_CLK					116
-> -
->  /* CMU_AUD */
->  #define CLK_MOUT_AUD_PLL_USER				1
->  #define CLK_MOUT_SCLK_AUD_PCM				2
-> @@ -824,8 +808,6 @@
->  #define CLK_SCLK_I2S_BCLK				46
->  #define CLK_SCLK_AUD_I2S				47
-> 
-> -#define AUD_NR_CLK					48
-> -
->  /* CMU_BUS{0|1|2} */
->  #define CLK_DIV_PCLK_BUS_133				1
-> 
-> @@ -840,8 +822,6 @@
->  #define CLK_ACLK_BUS2BEND_400				9  /* Only
-> CMU_BUS2 */
->  #define CLK_ACLK_BUS2RTND_400				10 /* Only
-> CMU_BUS2 */
-> 
-> -#define BUSx_NR_CLK					11
-> -
->  /* CMU_G3D */
->  #define CLK_FOUT_G3D_PLL				1
-> 
-> @@ -865,8 +845,6 @@
->  #define CLK_PCLK_SYSREG_G3D				18
->  #define CLK_SCLK_HPM_G3D				19
-> 
-> -#define G3D_NR_CLK					20
-> -
->  /* CMU_GSCL */
->  #define CLK_MOUT_ACLK_GSCL_111_USER			1
->  #define CLK_MOUT_ACLK_GSCL_333_USER			2
-> @@ -898,8 +876,6 @@
->  #define CLK_PCLK_SMMU_GSCL1				27
->  #define CLK_PCLK_SMMU_GSCL2				28
-> 
-> -#define GSCL_NR_CLK					29
-> -
->  /* CMU_APOLLO */
->  #define CLK_FOUT_APOLLO_PLL				1
-> 
-> @@ -935,8 +911,6 @@
->  #define CLK_SCLK_HPM_APOLLO				29
->  #define CLK_SCLK_APOLLO					30
-> 
-> -#define APOLLO_NR_CLK					31
-> -
->  /* CMU_ATLAS */
->  #define CLK_FOUT_ATLAS_PLL				1
-> 
-> @@ -981,8 +955,6 @@
->  #define CLK_ATCLK					38
->  #define CLK_SCLK_ATLAS					39
-> 
-> -#define ATLAS_NR_CLK					40
-> -
->  /* CMU_MSCL */
->  #define CLK_MOUT_SCLK_JPEG_USER				1
->  #define CLK_MOUT_ACLK_MSCL_400_USER			2
-> @@ -1016,8 +988,6 @@
->  #define CLK_PCLK_SMMU_JPEG				28
->  #define CLK_SCLK_JPEG					29
-> 
-> -#define MSCL_NR_CLK					30
-> -
->  /* CMU_MFC */
->  #define CLK_MOUT_ACLK_MFC_400_USER			1
-> 
-> @@ -1040,8 +1010,6 @@
->  #define CLK_PCLK_SMMU_MFC_1				17
->  #define CLK_PCLK_SMMU_MFC_0				18
-> 
-> -#define MFC_NR_CLK					19
-> -
->  /* CMU_HEVC */
->  #define CLK_MOUT_ACLK_HEVC_400_USER			1
-> 
-> @@ -1064,8 +1032,6 @@
->  #define CLK_PCLK_SMMU_HEVC_1				17
->  #define CLK_PCLK_SMMU_HEVC_0				18
-> 
-> -#define HEVC_NR_CLK					19
-> -
->  /* CMU_ISP */
->  #define CLK_MOUT_ACLK_ISP_DIS_400_USER			1
->  #define CLK_MOUT_ACLK_ISP_400_USER			2
-> @@ -1147,8 +1113,6 @@
->  #define CLK_SCLK_PIXELASYNCS_ISPC			76
->  #define CLK_SCLK_PIXELASYNCM_ISPC			77
-> 
-> -#define ISP_NR_CLK					78
-> -
->  /* CMU_CAM0 */
->  #define CLK_PHYCLK_RXBYTEECLKHS0_S4_PHY			1
->  #define CLK_PHYCLK_RXBYTEECLKHS0_S2A_PHY		2
-> @@ -1285,8 +1249,6 @@
->  #define CLK_SCLK_PIXELASYNCM_LITE_C_INIT		132
->  #define CLK_SCLK_PIXELASYNCS_LITE_C_INIT		133
-> 
-> -#define CAM0_NR_CLK					134
-> -
->  /* CMU_CAM1 */
->  #define CLK_PHYCLK_RXBYTEECLKHS0_S2B			1
-> 
-> @@ -1404,12 +1366,8 @@
->  #define CLK_ATCLK_ISP					111
->  #define CLK_SCLK_ISP_CA5				112
-> 
-> -#define CAM1_NR_CLK					113
-> -
->  /* CMU_IMEM */
->  #define CLK_ACLK_SLIMSSS		2
->  #define CLK_PCLK_SLIMSSS		35
-> 
-> -#define IMEM_NR_CLK			36
-> -
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS5433_H */ diff --git a/include/dt-
-> bindings/clock/exynos7885.h b/include/dt-bindings/clock/exynos7885.h
-> index 8256e7430b63..255e3aa94323 100644
-> --- a/include/dt-bindings/clock/exynos7885.h
-> +++ b/include/dt-bindings/clock/exynos7885.h
-> @@ -69,7 +69,6 @@
->  #define CLK_GOUT_FSYS_MMC_EMBD		58
->  #define CLK_GOUT_FSYS_MMC_SDIO		59
->  #define CLK_GOUT_FSYS_USB30DRD		60
-> -#define TOP_NR_CLK			61
-> 
->  /* CMU_CORE */
->  #define CLK_MOUT_CORE_BUS_USER			1
-> @@ -86,7 +85,6 @@
->  #define CLK_GOUT_TREX_P_CORE_CCLK_P_CORE	12
->  #define CLK_GOUT_TREX_P_CORE_PCLK		13
->  #define CLK_GOUT_TREX_P_CORE_PCLK_P_CORE	14
-> -#define CORE_NR_CLK				15
-> 
->  /* CMU_PERI */
->  #define CLK_MOUT_PERI_BUS_USER		1
-> @@ -132,7 +130,6 @@
->  #define CLK_GOUT_SYSREG_PERI_PCLK	41
->  #define CLK_GOUT_WDT0_PCLK		42
->  #define CLK_GOUT_WDT1_PCLK		43
-> -#define PERI_NR_CLK			44
-> 
->  /* CMU_FSYS */
->  #define CLK_MOUT_FSYS_BUS_USER		1
-> @@ -146,6 +143,5 @@
->  #define CLK_GOUT_MMC_EMBD_SDCLKIN	8
->  #define CLK_GOUT_MMC_SDIO_ACLK		9
->  #define CLK_GOUT_MMC_SDIO_SDCLKIN	10
-> -#define FSYS_NR_CLK			11
-> 
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS_7885_H */ diff --git a/include/dt-
-> bindings/clock/exynos850.h b/include/dt-bindings/clock/exynos850.h
-> index afacba338c91..3090e09c9a55 100644
-> --- a/include/dt-bindings/clock/exynos850.h
-> +++ b/include/dt-bindings/clock/exynos850.h
-> @@ -88,7 +88,6 @@
->  #define CLK_MOUT_G3D_SWITCH		76
->  #define CLK_GOUT_G3D_SWITCH		77
->  #define CLK_DOUT_G3D_SWITCH		78
-> -#define TOP_NR_CLK			79
-> 
->  /* CMU_APM */
->  #define CLK_RCO_I3C_PMIC		1
-> @@ -115,7 +114,6 @@
->  #define CLK_GOUT_GPIO_ALIVE_PCLK	22
->  #define CLK_GOUT_PMU_ALIVE_PCLK		23
->  #define CLK_GOUT_SYSREG_APM_PCLK	24
-> -#define APM_NR_CLK			25
-> 
->  /* CMU_AUD */
->  #define CLK_DOUT_AUD_AUDIF		1
-> @@ -179,7 +177,6 @@
->  #define IOCLK_AUDIOCDCLK6		59
->  #define TICK_USB			60
->  #define CLK_GOUT_AUD_CMU_AUD_PCLK	61
-> -#define AUD_NR_CLK			62
-> 
->  /* CMU_CMGP */
->  #define CLK_RCO_CMGP			1
-> @@ -197,7 +194,6 @@
->  #define CLK_GOUT_CMGP_USI1_IPCLK	13
->  #define CLK_GOUT_CMGP_USI1_PCLK		14
->  #define CLK_GOUT_SYSREG_CMGP_PCLK	15
-> -#define CMGP_NR_CLK			16
-> 
->  /* CMU_G3D */
->  #define CLK_FOUT_G3D_PLL		1
-> @@ -212,7 +208,6 @@
->  #define CLK_GOUT_G3D_BUSD_CLK		10
->  #define CLK_GOUT_G3D_BUSP_CLK		11
->  #define CLK_GOUT_G3D_SYSREG_PCLK	12
-> -#define G3D_NR_CLK			13
-> 
->  /* CMU_HSI */
->  #define CLK_MOUT_HSI_BUS_USER		1
-> @@ -231,7 +226,6 @@
->  #define CLK_GOUT_HSI_PPMU_ACLK		14
->  #define CLK_GOUT_HSI_PPMU_PCLK		15
->  #define CLK_GOUT_HSI_CMU_HSI_PCLK	16
-> -#define HSI_NR_CLK			17
-> 
->  /* CMU_IS */
->  #define CLK_MOUT_IS_BUS_USER		1
-> @@ -257,7 +251,6 @@
->  #define CLK_GOUT_IS_SYSMMU_IS0_CLK	21
->  #define CLK_GOUT_IS_SYSMMU_IS1_CLK	22
->  #define CLK_GOUT_IS_SYSREG_PCLK		23
-> -#define IS_NR_CLK			24
-> 
->  /* CMU_MFCMSCL */
->  #define CLK_MOUT_MFCMSCL_MFC_USER		1
-> @@ -275,7 +268,6 @@
->  #define CLK_GOUT_MFCMSCL_PPMU_PCLK		13
->  #define CLK_GOUT_MFCMSCL_SYSMMU_CLK		14
->  #define CLK_GOUT_MFCMSCL_SYSREG_PCLK		15
-> -#define MFCMSCL_NR_CLK				16
-> 
->  /* CMU_PERI */
->  #define CLK_MOUT_PERI_BUS_USER		1
-> @@ -312,7 +304,6 @@
->  #define CLK_GOUT_UART_PCLK		32
->  #define CLK_GOUT_WDT0_PCLK		33
->  #define CLK_GOUT_WDT1_PCLK		34
-> -#define PERI_NR_CLK			35
-> 
->  /* CMU_CORE */
->  #define CLK_MOUT_CORE_BUS_USER		1
-> @@ -329,7 +320,6 @@
->  #define CLK_GOUT_SSS_PCLK		12
->  #define CLK_GOUT_GPIO_CORE_PCLK		13
->  #define CLK_GOUT_SYSREG_CORE_PCLK	14
-> -#define CORE_NR_CLK			15
-> 
->  /* CMU_DPU */
->  #define CLK_MOUT_DPU_USER		1
-> diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h
-b/include/dt-
-> bindings/clock/samsung,exynosautov9.h
-> index 42133af6d6b9..3065375c2d8b 100644
-> --- a/include/dt-bindings/clock/samsung,exynosautov9.h
-> +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
-> @@ -166,16 +166,12 @@
->  #define GOUT_CLKCMU_PERIC1_IP		248
->  #define GOUT_CLKCMU_PERIS_BUS		249
-> 
-> -#define TOP_NR_CLK			250
-> -
->  /* CMU_BUSMC */
->  #define CLK_MOUT_BUSMC_BUS_USER		1
->  #define CLK_DOUT_BUSMC_BUSP		2
->  #define CLK_GOUT_BUSMC_PDMA0_PCLK	3
->  #define CLK_GOUT_BUSMC_SPDMA_PCLK	4
-> 
-> -#define BUSMC_NR_CLK			5
-> -
->  /* CMU_CORE */
->  #define CLK_MOUT_CORE_BUS_USER		1
->  #define CLK_DOUT_CORE_BUSP		2
-> @@ -183,8 +179,6 @@
->  #define CLK_GOUT_CORE_CCI_PCLK		4
->  #define CLK_GOUT_CORE_CMU_CORE_PCLK	5
-> 
-> -#define CORE_NR_CLK			6
-> -
->  /* CMU_FSYS0 */
->  #define CLK_MOUT_FSYS0_BUS_USER		1
->  #define CLK_MOUT_FSYS0_PCIE_USER	2
-> @@ -226,8 +220,6 @@
->  #define CLK_GOUT_FSYS0_PCIE_GEN3A_4L_CLK		35
->  #define CLK_GOUT_FSYS0_PCIE_GEN3B_4L_CLK		36
-> 
-> -#define FSYS0_NR_CLK			37
-> -
->  /* CMU_FSYS1 */
->  #define FOUT_MMC_PLL				1
-> 
-> @@ -251,8 +243,6 @@
->  #define CLK_GOUT_FSYS1_USB30_0_ACLK		17
->  #define CLK_GOUT_FSYS1_USB30_1_ACLK		18
-> 
-> -#define FSYS1_NR_CLK				19
-> -
->  /* CMU_FSYS2 */
->  #define CLK_MOUT_FSYS2_BUS_USER		1
->  #define CLK_MOUT_FSYS2_UFS_EMBD_USER	2
-> @@ -262,8 +252,6 @@
->  #define CLK_GOUT_FSYS2_UFS_EMBD1_ACLK	6
->  #define CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO	7
-> 
-> -#define FSYS2_NR_CLK			8
-> -
->  /* CMU_PERIC0 */
->  #define CLK_MOUT_PERIC0_BUS_USER	1
->  #define CLK_MOUT_PERIC0_IP_USER		2
-> @@ -308,8 +296,6 @@
->  #define CLK_GOUT_PERIC0_PCLK_10		42
->  #define CLK_GOUT_PERIC0_PCLK_11		43
-> 
-> -#define PERIC0_NR_CLK			44
-> -
->  /* CMU_PERIC1 */
->  #define CLK_MOUT_PERIC1_BUS_USER	1
->  #define CLK_MOUT_PERIC1_IP_USER		2
-> @@ -354,14 +340,10 @@
->  #define CLK_GOUT_PERIC1_PCLK_10		42
->  #define CLK_GOUT_PERIC1_PCLK_11		43
-> 
-> -#define PERIC1_NR_CLK			44
-> -
->  /* CMU_PERIS */
->  #define CLK_MOUT_PERIS_BUS_USER		1
->  #define CLK_GOUT_SYSREG_PERIS_PCLK	2
->  #define CLK_GOUT_WDT_CLUSTER0		3
->  #define CLK_GOUT_WDT_CLUSTER1		4
-> 
-> -#define PERIS_NR_CLK			5
-> -
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOSAUTOV9_H */
-> --
-> 2.34.1
+Currently we are using 1. Please let me know if you are fine with this and I
+can continue using 1. If not, please let me know your recommendation out of this 4.
 
+[1]
+https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=linux-5.10.y&id=f4f45bf71cad5be232536d63a0557d13a7eed162
 
+-- 
+Thanks and Regards,
+Danish.
