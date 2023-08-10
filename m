@@ -2,132 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE778778222
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 22:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A703778235
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 22:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234603AbjHJUZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 16:25:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36554 "EHLO
+        id S233106AbjHJUgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 16:36:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235758AbjHJUZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 16:25:21 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34A12735;
-        Thu, 10 Aug 2023 13:25:20 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AKP4hU027029;
-        Thu, 10 Aug 2023 15:25:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691699104;
-        bh=LlM4ebmHJM3OSNZTcjpf5OxbeJgDHb88khhaM1SpUmk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=W7rrHvPZ6yLGXjVOAjztdXjjgJIPcYxSE7MuWdtGiJ7LM+Aqty4PiPEpDUupWSPUv
-         hoX3fkShO6po+Kics77kcBhOEKqtovu5KmlNnY9/FRAiWWi/QhoR1AE2xtW1hLkrub
-         4Jh9LeLoKF9Tq4WmJkwop8k5BRl/hEv/lACkcjoI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AKP4I4012077
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 15:25:04 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 15:25:04 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 15:25:04 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AKP4HT021038;
-        Thu, 10 Aug 2023 15:25:04 -0500
-Date:   Thu, 10 Aug 2023 15:25:04 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kamlesh Gurudasani <kamlesh@ti.com>
-CC:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230459AbjHJUgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 16:36:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E7A2735;
+        Thu, 10 Aug 2023 13:36:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E4FAA649D8;
+        Thu, 10 Aug 2023 20:36:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9907FC433C7;
+        Thu, 10 Aug 2023 20:36:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691699795;
+        bh=HLJOnK0rH2cvb7EsLtRxErU2VHJz6XAwt8dHUse6DKM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YyM5XDF2DqDCiwlhNnxzBAT3zndoLjRw0OPRa2DXJli2uuvt80VkabDTadz6BQ1uq
+         zFLg1kCd1aj/ogBJO98YbSFnIuHKZxvibVyAHYGyci87df4K3JkfE8Qll+j36W57Cm
+         u8iXCGlTEM1r1r5hQSyAhoptS5X+ubF76dMZTKNrLOquf6PH2g+nPqrkToInf+CgEH
+         a4khDadQl7wGQFxqEClwliKhphgz4H4pvteGcmNggTCGt9Uznyq0TkezqM5EgYu8IR
+         xEif6xlSHOlI3tbGZOGKH4Iq1b6AeTKdz9UAEeetN8CbCOZk5cPYscv7Y2mLXNIZdY
+         3j8Icc9O5WVnQ==
+Received: (nullmailer pid 1127760 invoked by uid 1000);
+        Thu, 10 Aug 2023 20:36:33 -0000
+Date:   Thu, 10 Aug 2023 14:36:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stanley Chang <stanley_chang@realtek.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH v2 6/6] arm64: defconfig: enable TI MCRC64 module
-Message-ID: <20230810202504.ujmjaqos5tfqlmna@plentiful>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230719-mcrc-upstream-v2-6-4152b987e4c2@ti.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: usb: dwc3: Add Realtek DHC RTD SoC
+ DWC3 USB
+Message-ID: <20230810203633.GA1121702-robh@kernel.org>
+References: <20230810055440.3534-1-stanley_chang@realtek.com>
+ <20230810055440.3534-2-stanley_chang@realtek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230719-mcrc-upstream-v2-6-4152b987e4c2@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230810055440.3534-2-stanley_chang@realtek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 00:58-20230811, Kamlesh Gurudasani wrote:
-> K3 devices include MCRC64 engine for crc64 calculation.
-> Enable module to be built for K3 devices.
+On Thu, Aug 10, 2023 at 01:54:35PM +0800, Stanley Chang wrote:
+> Document the DWC3 USB bindings for Realtek SoCs.
 > 
-> Also enable algif_hash module, which is needed to access MCRC64 module
-> from userspace.
-> 
-> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
 > ---
-
-There are few things to improve in this series, but we can discuss this
-as part of defconfig merge
-
-See thread: https://lore.kernel.org/linux-arm-kernel/ae2ad056-96de-41b7-8df4-1d9c0f5c469b@app.fastmail.com/
-for additional info.
-
-K3 devices is too broad, you want to specify specific boards that will
-benefit out of this.
-
-I suggest to keep this as "DONOTMERGE" to indicate this should'nt go via
-subsystem maintainer tree (most maintainers are  aware of it, but
-explicitly calling it out helps keep things sane)
-
-
->  arch/arm64/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
+> v2 to v3 change:
+>     Add description for reg
+>     Remove property for realtek,unlink-usb3-port.
+>     Remove property for realtek,disable-usb3-phy.
+>     Use the maximum-speed instead of the above two properties.
+> v1 to v2 change:
+>     Revise the subject.
+>     Rename the file.
+>     Fix dtschema warnings.
+>     Remove the property realtek,enable-l4icg.
+>     Drop status.
+> ---
+>  .../bindings/usb/realtek,rtd-dwc3.yaml        | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
 > 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index bf13d5c46578..4d555a125315 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1535,6 +1535,7 @@ CONFIG_CRYPTO_TEST=m
->  CONFIG_CRYPTO_ECHAINIV=y
->  CONFIG_CRYPTO_MICHAEL_MIC=m
->  CONFIG_CRYPTO_ANSI_CPRNG=y
-> +CONFIG_CRYPTO_USER_API_HASH=m
->  CONFIG_CRYPTO_USER_API_RNG=m
->  CONFIG_CRYPTO_CHACHA20_NEON=m
->  CONFIG_CRYPTO_GHASH_ARM64_CE=y
-> @@ -1558,6 +1559,7 @@ CONFIG_CRYPTO_DEV_HISI_ZIP=m
->  CONFIG_CRYPTO_DEV_HISI_HPRE=m
->  CONFIG_CRYPTO_DEV_HISI_TRNG=m
->  CONFIG_CRYPTO_DEV_SA2UL=m
-> +CONFIG_CRYPTO_DEV_TI_MCRC64=m
->  CONFIG_DMA_RESTRICTED_POOL=y
->  CONFIG_CMA_SIZE_MBYTES=32
->  CONFIG_PRINTK_TIME=y
-> 
+> diff --git a/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml b/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
+> new file mode 100644
+> index 000000000000..cc66adc4b9da
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Realtek Semiconductor Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/realtek,rtd-dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek DWC3 USB SoC Controller Glue
+> +
+> +maintainers:
+> +  - Stanley Chang <stanley_chang@realtek.com>
+> +
+> +description:
+> +  The Realtek DHC SoC embeds a DWC3 USB IP Core configured for USB 2.0
+> +  and USB 3.0 in host or dual-role mode.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - realtek,rtd1295-dwc3
+> +          - realtek,rtd1315e-dwc3
+> +          - realtek,rtd1319-dwc3
+> +          - realtek,rtd1319d-dwc3
+> +          - realtek,rtd1395-dwc3
+> +          - realtek,rtd1619-dwc3
+> +          - realtek,rtd1619b-dwc3
+> +      - const: realtek,rtd-dwc3
+> +
+> +  reg:
+> +    description: Offset and length of register set for wrapper of dwc3 core.
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^usb@[0-9a-f]+$":
+> +    $ref: snps,dwc3.yaml#
+> +    description: Required child node
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    usb@98013e00 {
+> +        compatible = "realtek,rtd1319d-dwc3", "realtek,rtd-dwc3";
+> +        reg = <0x98013e00 0x200>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges;
+> +        maximum-speed = "high-speed";
+
+This should be a warning (the bot was having problems) as it is not 
+defined for this node. It belongs in the child node as you also have, so 
+drop it.
+
+> +
+> +        usb@98050000 {
+> +            compatible = "snps,dwc3";
+> +            reg = <0x98050000 0x9000>;
+> +            interrupts = <0 94 4>;
+> +            phys = <&usb2phy &usb3phy>;
+> +            phy-names = "usb2-phy", "usb3-phy";
+> +            dr_mode = "otg";
+> +            usb-role-switch;
+> +            role-switch-default-mode = "host";
+> +            snps,dis_u2_susphy_quirk;
+> +            snps,parkmode-disable-ss-quirk;
+> +            snps,parkmode-disable-hs-quirk;
+> +            maximum-speed = "high-speed";
+> +        };
+> +    };
 > -- 
 > 2.34.1
 > 
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
