@@ -2,62 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 083F6778240
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 22:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F033778241
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 22:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbjHJUk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 16:40:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47988 "EHLO
+        id S234232AbjHJUkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 16:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235712AbjHJUkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 16:40:23 -0400
+        with ESMTP id S234509AbjHJUkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 16:40:45 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C9E2D68;
-        Thu, 10 Aug 2023 13:40:21 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C4092733;
+        Thu, 10 Aug 2023 13:40:44 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 421DA60B59;
-        Thu, 10 Aug 2023 20:40:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 695BBC433C8;
-        Thu, 10 Aug 2023 20:40:19 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE674649C3;
+        Thu, 10 Aug 2023 20:40:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71169C433C7;
+        Thu, 10 Aug 2023 20:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691700020;
-        bh=/ucuze0js3jaTTWYHvsRV/AOIKKGj3EBCPrAPiZmOG8=;
+        s=k20201202; t=1691700043;
+        bh=rSop7mtUo0fVzOHPGZwCTWk0QCEHsqpxokmcv5oQRik=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PNBN5xISXH7rAHNiMxcftXCUMxuMvvEMEtOr9EglKDljaggrL6KSiHl+SQnAxmrS8
-         Pj/e5yHTQIQR8KgtG5tbQCjlDDs1PLZpBgcs75xZgSO4KQTqhO+UisROKnzkaZ3Mpv
-         ZtegivcWncn6NGNgqLl/GsRyt+JdfeU2dBMK6WMAMRJr1AQo9gWk5QQY1KZ9881Fpd
-         nc715iaJxAF4cS+d2xpM3reOz0GE8T9HEI0RUyxGsczfK1Kz1mmvIgD5hRGn+Otfqm
-         OeJJ/GiVDe687SqPsOaeyClAmuai6ApfuaEuft4/jCfwTnTzDygRP4nzaTfoYizAlA
-         u81CONZZvEpfQ==
-Received: (nullmailer pid 1135487 invoked by uid 1000);
-        Thu, 10 Aug 2023 20:40:18 -0000
-Date:   Thu, 10 Aug 2023 14:40:18 -0600
+        b=Ihaai8JMGBeEaVhKzZgO1THthNuHwjwNz5ayoQWfDv9qBcUAs4+jYjHimYtPrdp/V
+         jNkYz8WWtJau6tL0NXJf2xDX6Ohvj51I7lJX9QFsRf+porZP876As9/YDvyTOKC3xi
+         HhgM8dUEQSh3AZGAqnHRwq+Jd0Ie8t8eDK+qGfhYcOw7ATCzm9DEJjmQdF3isaOICM
+         6Q/7g2PuydUAtoRDpp4rOe3bkFbARIZGWSlbhbIERPC0HFhvfrFBwSeDfA3bmz2tMt
+         hV74dAdmBX8IgKyg3/Zv9OPUx577a2YSX8djziRBjSCAyvmF8xqVqgMfXjVHdg7pZA
+         Sc9g8NNdoyZLw==
+Received: (nullmailer pid 1136259 invoked by uid 1000);
+        Thu, 10 Aug 2023 20:40:41 -0000
+Date:   Thu, 10 Aug 2023 14:40:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev,
-        Conor Dooley <conor.dooley@microchip.com>,
-        loongson-kernel@lists.loongnix.cn, Vinod Koul <vkoul@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Yingkun Meng <mengyingkun@loongson.cn>,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: dmaengine: Add Loongson LS2X APB DMA
- controller
-Message-ID: <20230810204018.GA1132140-robh@kernel.org>
-References: <cover.1691647870.git.zhoubinbin@loongson.cn>
- <1f921395f61d305e0d05cdb1937bdbadf479e025.1691647870.git.zhoubinbin@loongson.cn>
- <169165202097.3911766.12811830439842145796.robh@kernel.org>
+To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org,
+        patrick@stwcx.xyz, devicetree@vger.kernel.org,
+        Andrew Jeffery <andrew@aj.id.au>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite 4
+ board
+Message-ID: <20230810204041.GA1135827-robh@kernel.org>
+References: <20230810070032.335161-1-Delphine_CC_Chiu@wiwynn.com>
+ <20230810070032.335161-2-Delphine_CC_Chiu@wiwynn.com>
+ <169165202180.3911788.1110313008758620193.robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <169165202097.3911766.12811830439842145796.robh@kernel.org>
+In-Reply-To: <169165202180.3911788.1110313008758620193.robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -70,17 +66,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Aug 10, 2023 at 01:20:21AM -0600, Rob Herring wrote:
 > 
-> On Thu, 10 Aug 2023 14:56:38 +0800, Binbin Zhou wrote:
-> > Add Loongson LS2X APB DMA controller binding with DT schema
-> > format using json-schema.
+> On Thu, 10 Aug 2023 15:00:29 +0800, Delphine CC Chiu wrote:
+> > Document the new compatibles used on Facebook Yosemite 4.
 > > 
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > > ---
-> >  .../bindings/dma/loongson,ls2x-apbdma.yaml    | 62 +++++++++++++++++++
-> >  MAINTAINERS                                   |  6 ++
-> >  2 files changed, 68 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> > Changelog:
+> > v7 - Revise changelog format
+> > v6 - Change project name from yosemitev4 to yosemite4
+> > ---
+> >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
 > 
 > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -93,7 +90,7 @@ On Thu, Aug 10, 2023 at 01:20:21AM -0600, Rob Herring wrote:
 > 
 > doc reference errors (make refcheckdocs):
 > 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1f921395f61d305e0d05cdb1937bdbadf479e025.1691647870.git.zhoubinbin@loongson.cn
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810070032.335161-2-Delphine_CC_Chiu@wiwynn.com
 
 The bot was having an issue. This can be ignored.
 
