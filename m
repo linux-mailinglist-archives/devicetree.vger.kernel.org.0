@@ -2,202 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F680776EC6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 05:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C13776ED2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 05:59:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbjHJDx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 23:53:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39522 "EHLO
+        id S229482AbjHJD7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 23:59:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbjHJDxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 23:53:25 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98DED18E
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 20:53:24 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-7658430eb5dso43300385a.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 20:53:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691639604; x=1692244404;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fO3snZ0j+ZerYThE6XXcjk368nRvCkMCzZgkN4oW5Sg=;
-        b=Cn+TXqk26iOqHjHmgHF2M4tqX+T6/j8m5eaPQlcjyGLWXfFWVF5u7+7CADX6ijuL8s
-         32ggVl/P6qwg6u2XPiYeKJfbwmf++B00FLnUx/2nKd1Pb3KxhpiZl1s993oL/pgZ4N35
-         YvUuiyzzqR4fOpylbc5v+hE7O31eEwRUaPS27yfPUItP4/zJr1TQpdxnrwu80WZ9hx9D
-         izPeS5sDOen+R6rTOBEZHz4aZ6043I9klndRHJi+xrFYwku73AIf7tFOm3QAUEe5e+PH
-         FfY+/SJEdRQZiDNArtMiUfaaoUAzt7OOs8sFJet2mizf1i7xAuvtaU9F+Snf/KQlNZEV
-         ifcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691639604; x=1692244404;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fO3snZ0j+ZerYThE6XXcjk368nRvCkMCzZgkN4oW5Sg=;
-        b=eSXkf0rWL8OvOvX2Ra2Sc3j6yJGGNxybxBJWESDkTaGKTEDLWQXOO7YeMQLrNOZtM2
-         75KWHLIcRZAZhy4YfoblocbKMgWJ1jb+8tmHzaA6OCHp9YP5elX5lieO9eP5PzEIo3WW
-         aw7fI/ygw0evcDg/fQzQN2NoFgRTfrjyl68r9Idtwxz0BS3kNS3cLEnNm9Om/fbW4dfd
-         KVYG/R5sEiUvpX5+j00gMiSdb2pOVm7FDfNOmHAXNPb41g6BOzGEnMhVrcaUTz1Qgq3g
-         ZyA4l3w+K8sZI9/j56yj25sO42jWGBBHaYaQk+9wEF040tFk2UfMJJjg312M97VvNBaG
-         mKpg==
-X-Gm-Message-State: AOJu0YwQeQT3NuaqZpQr7rrJEBp6bDG8/gaxPBYwf7UEKbFbnAD2KNnr
-        OU08hib/hhC8XZa4CHzvYT0/
-X-Google-Smtp-Source: AGHT+IE9i7rsJcbWS+SePYteL7ORhxk57VuJI7b1mvod/4YNXMo/lJCWGcUTjoHKjgbxh4xMu13IZg==
-X-Received: by 2002:a05:620a:913:b0:76c:6f89:fea7 with SMTP id v19-20020a05620a091300b0076c6f89fea7mr1035742qkv.23.1691639603720;
-        Wed, 09 Aug 2023 20:53:23 -0700 (PDT)
-Received: from thinkpad ([117.193.214.179])
-        by smtp.gmail.com with ESMTPSA id q24-20020a62e118000000b006873aa079aasm394319pfh.171.2023.08.09.20.53.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Aug 2023 20:53:23 -0700 (PDT)
-Date:   Thu, 10 Aug 2023 09:23:14 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     frank.li@nxp.com, l.stach@pengutronix.de, shawnguo@kernel.org,
-        lpieralisi@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v3 8/9] PCI: imx6: Add i.MX6SX PCIe EP support
-Message-ID: <20230810035314.GB4860@thinkpad>
-References: <1691472858-9383-1-git-send-email-hongxing.zhu@nxp.com>
- <1691472858-9383-9-git-send-email-hongxing.zhu@nxp.com>
+        with ESMTP id S229472AbjHJD7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 23:59:21 -0400
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C58E71;
+        Wed,  9 Aug 2023 20:59:19 -0700 (PDT)
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 769F4162092;
+        Thu, 10 Aug 2023 05:59:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1691639956;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+        bh=VrmnuGFEUnzV9WM/GBsQUqSpGPmNcQXNdCQoNYlUXXI=;
+        b=ULxMn5kueOQUqZF4F1UJqjlvXgGlMAmxldYqwW1fUQqTUeQuwx8xXjXr/lh7mS5LtxBEFD
+        t6cmONGPJHjuOTDUTC/Or3dILZrqPc8CXt/96MbhxVLkEjdXAs4dJCI2jf3+c+nYDPzBd8
+        pcqaQ/xrBFYianfODVeTk7jiF/wVaAo=
+Message-ID: <cc95106b-b6df-4c89-8ae4-332747242b9d@ixit.cz>
+Date:   Thu, 10 Aug 2023 05:59:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/5] dt-bindings: sound: gtm601: Add description
+To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        kernel@puri.sm, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1691606520.git.agx@sigxcpu.org>
+ <b6e85fdfaa87d7684a120ccedc1e07d8fe87957f.1691606520.git.agx@sigxcpu.org>
+Content-Language: en-US
+From:   David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <b6e85fdfaa87d7684a120ccedc1e07d8fe87957f.1691606520.git.agx@sigxcpu.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1691472858-9383-9-git-send-email-hongxing.zhu@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_RDNS_DYNAMIC_FP,
+        RCVD_IN_DNSWL_BLOCKED,RDNS_DYNAMIC,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 01:34:17PM +0800, Richard Zhu wrote:
-> Add the i.MX6SX PCIe EP support.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On 09/08/2023 20:50, Guido Günther wrote:
+> This allows to us to document the channel and sampling
+> rate requirements.
+>
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
 
-- Mani
+Thank you!
+
+Reviewed-by: David Heidelberg <david@ixit.cz>
 
 > ---
->  drivers/pci/controller/dwc/pci-imx6.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 9a6531ddfef2..43c5251f5160 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -48,6 +48,7 @@ enum imx6_pcie_variants {
->  	IMX6Q,
->  	IMX6Q_EP,
->  	IMX6SX,
-> +	IMX6SX_EP,
->  	IMX6QP,
->  	IMX6QP_EP,
->  	IMX7D,
-> @@ -362,6 +363,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
->  				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL, 0);
->  		break;
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
->  				   IMX6SX_GPR12_PCIE_RX_EQ_MASK,
->  				   IMX6SX_GPR12_PCIE_RX_EQ_2);
-> @@ -560,6 +562,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
->  
->  	switch (imx6_pcie->drvdata->variant) {
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  		ret = clk_prepare_enable(imx6_pcie->pcie_inbound_axi);
->  		if (ret) {
->  			dev_err(dev, "unable to enable pcie_axi clock\n");
-> @@ -621,6 +624,7 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
->  {
->  	switch (imx6_pcie->drvdata->variant) {
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  		clk_disable_unprepare(imx6_pcie->pcie_inbound_axi);
->  		break;
->  	case IMX6QP:
-> @@ -718,6 +722,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
->  		reset_control_assert(imx6_pcie->apps_reset);
->  		break;
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
->  				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN,
->  				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN);
-> @@ -782,6 +787,7 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
->  		imx7d_pcie_wait_for_phy_pll_lock(imx6_pcie);
->  		break;
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR5,
->  				   IMX6SX_GPR5_PCIE_BTNRST_RESET, 0);
->  		break;
-> @@ -840,6 +846,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
->  	case IMX6Q:
->  	case IMX6Q_EP:
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  	case IMX6QP:
->  	case IMX6QP_EP:
->  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> @@ -866,6 +873,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
->  	case IMX6Q:
->  	case IMX6Q_EP:
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  	case IMX6QP:
->  	case IMX6QP_EP:
->  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> @@ -1198,6 +1206,7 @@ static void imx6_pcie_pm_turnoff(struct imx6_pcie *imx6_pcie)
->  	/* Others poke directly at IOMUXC registers */
->  	switch (imx6_pcie->drvdata->variant) {
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  	case IMX6QP:
->  	case IMX6QP_EP:
->  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> @@ -1361,6 +1370,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
->  
->  	switch (imx6_pcie->drvdata->variant) {
->  	case IMX6SX:
-> +	case IMX6SX_EP:
->  		imx6_pcie->pcie_inbound_axi = devm_clk_get(dev,
->  							   "pcie_inbound_axi");
->  		if (IS_ERR(imx6_pcie->pcie_inbound_axi))
-> @@ -1535,6 +1545,13 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
->  		.gpr = "fsl,imx6q-iomuxc-gpr",
->  	},
-> +	[IMX6SX_EP] = {
-> +		.variant = IMX6SX_EP,
-> +		.mode = DW_PCIE_EP_TYPE,
-> +		.flags = IMX6_PCIE_FLAG_IMX6_PHY,
-> +		.gpr = "fsl,imx6q-iomuxc-gpr",
-> +		.epc_features = &imx6q_pcie_epc_features,
-> +	},
->  	[IMX6QP] = {
->  		.variant = IMX6QP,
->  		.flags = IMX6_PCIE_FLAG_IMX6_PHY |
-> @@ -1590,6 +1607,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
->  	{ .compatible = "fsl,imx6q-pcie",  .data = &drvdata[IMX6Q],  },
->  	{ .compatible = "fsl,imx6q-pcie-ep", .data = &drvdata[IMX6Q_EP], },
->  	{ .compatible = "fsl,imx6sx-pcie", .data = &drvdata[IMX6SX], },
-> +	{ .compatible = "fsl,imx6sx-pcie-ep", .data = &drvdata[IMX6SX_EP], },
->  	{ .compatible = "fsl,imx6qp-pcie", .data = &drvdata[IMX6QP], },
->  	{ .compatible = "fsl,imx6qp-pcie-ep", .data = &drvdata[IMX6QP_EP], },
->  	{ .compatible = "fsl,imx7d-pcie",  .data = &drvdata[IMX7D],  },
-> -- 
-> 2.34.1
-> 
+>   Documentation/devicetree/bindings/sound/option,gtm601.yaml | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+David Heidelberg
+Certified Linux Magician
+
