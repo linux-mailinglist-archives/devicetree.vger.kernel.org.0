@@ -2,84 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 829F57771D2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D647771D7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbjHJHqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 03:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
+        id S231910AbjHJHrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 03:47:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjHJHqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:46:15 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31DE211B
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:46:14 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99cdb0fd093so94813466b.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691653573; x=1692258373;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=19pO42zYtVAjIJUNvAKR95B6FHPWJULLL//o6iFt8Lw=;
-        b=NT9iYuJadAEBUURMezxlAJABIJG7XHwHSsk4A4nByjjLXwTUWcI+/vhUd9ttXiLSUI
-         3skPu8zUdkHMr+RlsoNvNmlxvhlVszbPgmozoVkInrFQJz1T2nQdHPXfdQfStNX4W2zc
-         vEvkNPgd3BmmPvcbeyb7G/dV1djZsu33fa3QXMq3gcCUz8ywbp+wKuCXqAjPsaSXs65a
-         xEm0YfhCCulxzeNH1T6wDayhUGvIOvHh6qQKKPec+i3ncPhP1kpa5jl7TOIT2ub1sZSH
-         CWjC/r0ZnZY59BwkR4yjf9EDqQEN6HaiZNzRbdHueUBOHf21UeVmrtlY6OdP9HkPC2+l
-         IS8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691653573; x=1692258373;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=19pO42zYtVAjIJUNvAKR95B6FHPWJULLL//o6iFt8Lw=;
-        b=T5v/jK4OcUc2E3G78c9e9CClbTdHA4z3cl5uGXtnFA42Q7L27OfcDO1NHNmAx7VEmN
-         k+ER0JdWYbXBqLxVlwW56fS7W0PLXRd0P+IrUZ17W6JU5/q03UFBAMlq9H2TKex92DTO
-         oncmobWuJet4feGXW1POC0E+uaTE7nmPViGWgN41br/0Ksjvgq7orxTuULU+nxfPigI4
-         Y5gxG1kMUcF/5C0vrbRMMvKa22BHMA1Tdxh7RKOWtw+DQRTErbnRHLZOIA8+aLwu6gSG
-         BjSkyBUWkVrGGj5Y7u7b8a20SeL4fd4BlvIdKetDTFnU4fmV8bBEHrfOSZakSUG6zBV6
-         xFSg==
-X-Gm-Message-State: AOJu0YwSGBS/eX6ZtfTV4txSWrpDurRSQ7Zu6+hCHS/kk7FCzCGZl+Y7
-        UhP2vUtyoA71DD8I3savwBgXFg==
-X-Google-Smtp-Source: AGHT+IHxCguYXiIXhyg9LIXORLa+jUyQIhnuWBFeMuRAxNn6NP1VOhTge75PznDcNXFAiuucGcCHOg==
-X-Received: by 2002:a17:907:7709:b0:99b:c949:5ef8 with SMTP id kw9-20020a170907770900b0099bc9495ef8mr1294530ejc.54.1691653573089;
-        Thu, 10 Aug 2023 00:46:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id ke10-20020a17090798ea00b00982a352f078sm548321ejc.124.2023.08.10.00.46.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 00:46:12 -0700 (PDT)
-Message-ID: <d2225b8a-a622-3936-1e43-d5a9801c2cd7@linaro.org>
-Date:   Thu, 10 Aug 2023 09:46:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to
- YAML format
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Alexander Stein <alexander.stein@mailbox.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233094AbjHJHq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:46:57 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66FA31702;
+        Thu, 10 Aug 2023 00:46:54 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DEBE78565;
+        Thu, 10 Aug 2023 15:46:47 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 10 Aug
+ 2023 15:46:47 +0800
+Received: from starfive-sdk.starfivetech.com (171.223.208.138) by
+ EXMBX062.cuchost.com (172.16.6.62) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Thu, 10 Aug 2023 15:46:46 +0800
+From:   Samin Guo <samin.guo@starfivetech.com>
+To:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC:     Emil Renner Berthing <kernel@esmil.dk>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230808194811.113087-1-alexander.stein@mailbox.org>
- <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
- <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org> <8294548.NyiUUSuA9g@kongar>
- <5c852193-9298-af2e-2b7d-dbba29768fec@linaro.org>
- <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1jwmy39wfs.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>
+Subject: [-next v1 0/1] Fix StarFive JH7110 gmac TCP RX speed issue
+Date:   Thu, 10 Aug 2023 15:46:45 +0800
+Message-ID: <20230810074646.19076-1-samin.guo@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,39 +57,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2023 09:32, Jerome Brunet wrote:
->>>> Then why do you have this huge, apparently unnecessary, oneOf? If it's
->>>> the same, then drop the oneOf and make number of clocks fixed.
->>>
->>> But as far as I understand the number of clocks is not fixed. As Jerome pointed 
->>> out in the other post, it can have any combination of clocks and range from 1 
->>> up to 11, where 'pclk' is always 1st clock.
->>> I currently have no idea how to constraint that, despite limiting the number 
->>> of clock-names.
->>
->> The same as in all other clock controllers (was also present on my list
->> of useful patterns - Variable length arrays (per variant)):
->> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
-> 
-> In the example provided, the number and list of clocks required by each
-> controller variant is fixed, if I'm reading it correctly
-> 
-> Here the controller (regardless of the variant) accepts a maximum 29
-> clock inputs. Only pclk is required. It is valid to have any of 28
-> optional clocks at index 2, 3, etc ...
+This patch fixes the StarFive JH7110 gmac TCP RX slow issue. And it has been
+tested on VisionFive 2.
 
-I actually doubt that it is optional. These are valid clock inputs. I
-could imagine they are optional depending on the use-case, like some
-block being turned off or on... but then still the clock is there, just
-not actively used.
+Here is the result of the test (iperf3):
 
-Aren't you now describing existing Linux driver?
+  Before:
+      # iperf3 -s
+      -----------------------------------------------------------
+      Server listening on 5201 (test #1)
+      -----------------------------------------------------------
+      Accepted connection from 192.168.1.4, port 47604
+      [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
+      [ ID] Interval           Transfer     Bitrate
+      [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
+      [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
+      [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
+      [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
+      [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
+      [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
+      [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
+      [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
+      [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
+      [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
+      - - - - - - - - - - - - - - - - - - - - - - - - -
+      [ ID] Interval           Transfer     Bitrate
+      [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
 
-> I guess the question is how do you recommend to model that ?
-> I can think of 'Anyof' with all the optional clocks repeated 28 times
-> but that would be fairly ugly.
+  After:
+      # iperf3 -s
+      -----------------------------------------------------------
+      Server listening on 5201 (test #1)
+      -----------------------------------------------------------
+      Accepted connection from 192.168.1.4, port 47710
+      [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47720
+      [ ID] Interval           Transfer     Bitrate
+      [  5]   0.00-1.00   sec   111 MBytes   932 Mbits/sec
+      [  5]   1.00-2.00   sec   111 MBytes   934 Mbits/sec
+      [  5]   2.00-3.00   sec   111 MBytes   934 Mbits/sec
+      [  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec
+      [  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec
+      [  5]   5.00-6.00   sec   111 MBytes   935 Mbits/sec
+      [  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec
+      [  5]   7.00-8.00   sec   111 MBytes   935 Mbits/sec
+      [  5]   8.00-9.00   sec   111 MBytes   934 Mbits/sec
+      [  5]   9.00-10.00  sec   111 MBytes   934 Mbits/sec
+      [  5]  10.00-10.00  sec   167 KBytes   933 Mbits/sec
+      - - - - - - - - - - - - - - - - - - - - - - - - -
+      [ ID] Interval           Transfer     Bitrate
+      [  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec        receiver
 
 
-Best regards,
-Krzysztof
+For more information and support, you can visit RVspace wiki[1].
+
+[1]: https://wiki.rvspace.org/
+
+Samin Guo (1):
+  riscv: starfive: jh7110: Fix GMAC configuration
+
+ arch/riscv/boot/dts/starfive/jh7110.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--
+2.17.1
 
