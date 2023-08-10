@@ -2,136 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFFD0776E2C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 04:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57019776E9A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 05:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjHJCrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 22:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42092 "EHLO
+        id S230206AbjHJDf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 23:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjHJCrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 22:47:11 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2581AA;
-        Wed,  9 Aug 2023 19:47:10 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37A2l1bf044537;
-        Wed, 9 Aug 2023 21:47:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691635621;
-        bh=rDh6665dXNHeRBZwmrnk1n1jLZUO7624dMT3vj10fBM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ShAnQBMohpfbaYBuAZYJi53HSSbdZxPFayOO0ej8GUX4G+pOSXAEbL0g/IVXBLnv9
-         52YYC+WNV20b9vIjiwyVI7fKzBSBYKZPAakDlvfZt2NPtTwZ7oUvKv78/YCQr+gaBh
-         VlgDOziUNDpu4F4La2qXJmEgl2gmY/ABeviq16K8=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37A2l1T9030196
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Aug 2023 21:47:01 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Aug 2023 21:47:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Aug 2023 21:47:00 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37A2l0K2029561;
-        Wed, 9 Aug 2023 21:47:00 -0500
-Date:   Wed, 9 Aug 2023 21:47:00 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jai Luthra <j-luthra@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229871AbjHJDf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 23:35:27 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 863F71FF7;
+        Wed,  9 Aug 2023 20:35:24 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8BxpPD6WtRkbVgUAA--.43993S3;
+        Thu, 10 Aug 2023 11:35:22 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxPCP5WtRkr2NSAA--.56418S3;
+        Thu, 10 Aug 2023 11:35:21 +0800 (CST)
+Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio
+ offset
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Apurva Nandan <a-nandan@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Esteban Blanc <eblanc@baylibre.com>, <jneanne@baylibre.com>,
-        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>
-Subject: Re: [PATCH v6 0/7] Add TPS6594 PMIC support on several boards
-Message-ID: <20230810024700.4qhgygd6mma4sw2u@kobold>
-References: <20230810-tps6594-v6-0-2b2e2399e2ef@ti.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
+ <20230807074043.31288-2-zhuyinbo@loongson.cn>
+ <91f57b0d-a6e9-c039-40b6-0a1a9af5f7a0@linaro.org>
+ <78c5a043-3e2a-48d6-88bd-2f91cc6d1347@loongson.cn>
+ <f9a8897e-301e-9d69-be59-a5aa9290f01b@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <36dd6038-933d-1513-1426-9c1283f3cbf8@loongson.cn>
+Date:   Thu, 10 Aug 2023 11:35:21 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230810-tps6594-v6-0-2b2e2399e2ef@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <f9a8897e-301e-9d69-be59-a5aa9290f01b@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxPCP5WtRkr2NSAA--.56418S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01:16-20230810, Jai Luthra wrote:
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts          |  95 +++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi      | 157 ++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi      | 163 +++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi     | 199 +++++++++++++++++++++++
 
-Sigh.. Thanks Jai for stepping and trying to make this work, but I think
-this series is a lot out of whack. Apparently somewhere in this series
-is a patch for j721s2 that breaks proper boot. I spent quite a while
-bisecting across boards to find it, So, I am just going to skip this
-series for this release (and dependencies)
 
-Next time for this series: I recommend submitter provide test
-logs for every single platform touched.
-
-https://gist.github.com/nmenon/72e5f9b344e9207863d93491f5bf4f8e
-
-I have'nt debugged, but typically that looks like some one decided to
-pull the voltage low on a key rail.
-
-Let me see if I can pick the interrupt range fix at least since
-should'nt be dependent on this.
-
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts         | 104 ++++++++++++
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |   2 +-
->  arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi |   2 +-
->  arch/arm64/configs/defconfig                     |   1 +
->  8 files changed, 721 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 21ef7b1e17d039053edaeaf41142423810572741
-> change-id: 20230809-tps6594-e450b5738e66
+在 2023/8/9 下午9:00, Krzysztof Kozlowski 写道:
+> On 09/08/2023 09:28, Yinbo Zhu wrote:
+>>>
+>>>>      - gpio-ranges
+>>>>      - interrupts
+>>>>    
+>>>> @@ -49,11 +82,16 @@ examples:
+>>>>        #include <dt-bindings/interrupt-controller/irq.h>
+>>>>    
+>>>>        gpio0: gpio@1fe00500 {
+>>>> -      compatible = "loongson,ls2k-gpio";
+>>>> +      compatible = "loongson,ls2k1000-gpio";
+>>>>          reg = <0x1fe00500 0x38>;
+>>>>          ngpios = <64>;
+>>>>          #gpio-cells = <2>;
+>>>>          gpio-controller;
+>>>> +      loongson,gpio-conf-offset = <0>;
+>>>> +      loongson,gpio-in-offset = <0x20>;
+>>>> +      loongson,gpio-out-offset = <0x10>;
+>>>> +      loongson,gpio-ctrl-mode = <0>;
+>>>> +      loongson,gpio-inten-offset = <0x30>;
+>>>
+>>> I still think that you just embed the programming model into properties,
+>>> instead of using dedicated compatible for different blocks. It could be
+>>> fine, although I would prefer to check it with your DTS
+>>
+>> Okay, I got it,  and if I understand correctly, you seem to agree with
+>> me adding attributes like this.
+>>
+>> And, if using this method that programming model into dts properites,
+>> then when adding a new platform's GPIO,  there is no longer a need to
+>> modify the driver because gpio controller is compatible and different
+>> platform can use a same compatible.
 > 
-> Best regards,
-> -- 
-> Jai Luthra <j-luthra@ti.com>
+> Uhu, so there we are. You use this method now to avoid new compatibles.
+> No, therefore I do not agree.
+
+
+I don't seem to got it, if the GPIO controllers of two platforms are
+compatible, shouldn't they use the same compatible?
+
 > 
+>>
+>>>
+>>> Where is your DTS?
+>>
+>>
+>> Sorry, the dts containing gpio nodes are only available in the product
+>> code and have not been sent to the community yet.
+> 
+> Does not help to convince us, but it is your right. With this and above
+> explanation, my answer is no - NAK.
 
 
-bisect log: (commit sha's dont mean a thing.. but anyways..)
-git bisect start
-# good: [f2e72716f089d6fcc4bf7b8cb7ac874b79ed05b1] iommu: dev->iommu->iommu_dev must be set before ops->device_group()
-git bisect good f2e72716f089d6fcc4bf7b8cb7ac874b79ed05b1
-# bad: [31f83ee5e42290c39e0bce42118ad1267eaf2790] arm64: dts: ti: k3-am64: Enable TSCADC nodes at the board level
-git bisect bad 31f83ee5e42290c39e0bce42118ad1267eaf2790
-# bad: [f51a52fc98cddb7b99ecb19d86c40845f7e8d91e] arm64: dts: ti: k3-am62a7-sk: Split vcc_3v3 regulators
-git bisect bad f51a52fc98cddb7b99ecb19d86c40845f7e8d91e
-# good: [0cc1aecdc1024eced6914f015dbc43c28f5ac6aa] arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
-git bisect good 0cc1aecdc1024eced6914f015dbc43c28f5ac6aa
-# good: [8b4e4f23f60df9c8aadb0e26cb86b13735ed810b] arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
-git bisect good 8b4e4f23f60df9c8aadb0e26cb86b13735ed810b
-# bad: [38ff20140c2cf09ba140234732dd03a9743ebd32] arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
-git bisect bad 38ff20140c2cf09ba140234732dd03a9743ebd32
-# good: [3e98e865a6135bef7d801b5c5236a42a0ef1bff2] arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
-git bisect good 3e98e865a6135bef7d801b5c5236a42a0ef1bff2
-# first bad commit: [38ff20140c2cf09ba140234732dd03a9743ebd32] arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+The community work for DTS on the 2K platform is still ongoing. Do I
+need to add a GPIO DTS node based on the following DTS to request your
+review?  so that you can more conveniently review whether my patch is
+suitable.
+
+2k1000
+https://lore.kernel.org/all/99bdbfc66604b4700e3e22e28c3d27ef7c9c9af7.1686882123.git.zhoubinbin@loongson.cn/
+
+2k500
+https://lore.kernel.org/all/c7087046a725e7a2cfde788185112c150e216f1b.1686882123.git.zhoubinbin@loongson.cn/
+
+2k2000
+https://lore.kernel.org/all/977009099c38177c384fca5a0ee77ebbe50e3ea2.1686882123.git.zhoubinbin@loongson.cn/
 
 
--- 
+Thanks,
+Yinbo
 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
