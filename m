@@ -2,55 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4897783E0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 00:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 445F27783EA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 01:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjHJW7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 18:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48146 "EHLO
+        id S232671AbjHJXDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 19:03:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjHJW7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 18:59:39 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF18271B;
-        Thu, 10 Aug 2023 15:59:38 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AMxUfl115273;
-        Thu, 10 Aug 2023 17:59:30 -0500
+        with ESMTP id S229503AbjHJXDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 19:03:10 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C0C5272C;
+        Thu, 10 Aug 2023 16:03:08 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AN31Yj057055;
+        Thu, 10 Aug 2023 18:03:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691708370;
-        bh=CTPquXOf41UfsM5ACbdutBuedzCU6UzFQXU581Y0mp4=;
+        s=ti-com-17Q1; t=1691708581;
+        bh=+kLM1UzR4fH3ODACFz9Th3FY/JzVSzSBYJtEkhtd5fk=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=bKGNoUXBtO200MRYGjmgjxOeZfepIkfjh/ZZXcinCduxEYjNZMA/iD72RNVCqcw0r
-         Lta4mzfva4LCGGJJX7m70/nBg0MuGwluC729sEN8PRXWmx/iYF9uy+kysWtcsLOPac
-         y+F5WLP+aMwKCP+2RD1pESfEQD50Vf1ifkvS6fog=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AMxUOI083135
+        b=UfE3vN+6gGoO36hwrMGyF7yT5q5JCR03VaU86EHJjl5fRaH03wN/AnLzG4ja/GYiV
+         V+N4O7WMV5ecX3YPODgR858e5L36hvLQuDwf9caD1XPOGMKWgXbwdLpnwnfABsA1j/
+         kU8bG7h+QUlWqi3ym3sFXNjBDiERU1DvakrPRq5k=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AN30iN010495
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 17:59:30 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 10 Aug 2023 18:03:01 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 17:59:29 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 18:03:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 17:59:29 -0500
+ Frontend Transport; Thu, 10 Aug 2023 18:03:00 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AMxTCm060832;
-        Thu, 10 Aug 2023 17:59:29 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AN30uK107599;
+        Thu, 10 Aug 2023 18:03:00 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Dhruva Gole <d-gole@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Udit Kumar <u-kumar1@ti.com>,
         Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-*: fix fss node dtbs check warnings
-Date:   Thu, 10 Aug 2023 17:59:29 -0500
-Message-ID: <169170834698.689382.9748150799228085818.b4-ty@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j721e: Enable C7x DSP nodes at the board level
+Date:   Thu, 10 Aug 2023 18:02:59 -0500
+Message-ID: <169170856188.691570.10924319644191966142.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230810081847.277094-1-d-gole@ti.com>
-References: <20230810081847.277094-1-d-gole@ti.com>
+In-Reply-To: <20230809180145.53158-1-afd@ti.com>
+References: <20230809180145.53158-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -65,23 +69,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dhruva Gole,
+Hi Andrew Davis,
 
-On Thu, 10 Aug 2023 13:48:47 +0530, Dhruva Gole wrote:
-> Fix these fss node warnings that dtbs_check throws:
+On Wed, 09 Aug 2023 13:01:43 -0500, Andrew Davis wrote:
+> C7x DSP nodes defined in the top-level J721e SoC dtsi files are incomplete
+> and will not be functional unless they are extended with both mboxes and
+> memory-region information.
 > 
-> fss@47000000: $nodename:0: 'fss@47000000' does not match
-> '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-> 
-> By renaming fss to bus.
+> As theses only known about at the board integration level, these nodes
+> should only be enabled when provided with this information.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
-Thank you for volunteering and doing the cleanup!
+Thank you for doing the cleanups!
 
-[1/1] arm64: dts: ti: k3-*: fix fss node dtbs check warnings
-      commit: 8ea3fc2bea6bccaa18e21febdcd311566a078612
+[1/3] arm64: dts: ti: k3-j721e: Enable C7x DSP nodes at the board level
+      commit: 35dba715971733d5fdfd98f4772ccc679d4989c2
+[2/3] arm64: dts: ti: k3-j784s4: Enable C7x DSP nodes at the board level
+      commit: c23b203b929f22fb22f2b07c1e5d658a7d455263
+[3/3] arm64: dts: ti: k3-j721e: Enable C6x DSP nodes at the board level
+      commit: 00ae4c39cd16ef8b1662c5915dda08eb28eed762
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
