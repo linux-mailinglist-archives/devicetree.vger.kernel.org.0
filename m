@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C37B7779A1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 15:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E72C7779A5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 15:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234559AbjHJNbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 09:31:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
+        id S231610AbjHJNc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 09:32:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231708AbjHJNbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 09:31:33 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AFE2106
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:31:32 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fe15bfb1adso1410688e87.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:31:32 -0700 (PDT)
+        with ESMTP id S234311AbjHJNc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 09:32:26 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25558196
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:32:25 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fe3b86cec1so1333639e87.2
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 06:32:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691674290; x=1692279090;
+        d=linaro.org; s=google; t=1691674343; x=1692279143;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jyF59jb7XIhUgJDXmFS2OOFcx7NZkIFgG/Rqxn0RT0o=;
-        b=kVn/I5IYPahUdK5sFIGoSWbKZ3MukmI322WHISGghjcCX3c9AE07TIOqCS7OPf86OX
-         dQ/+HhKCxMoWBKJRqi37sZCmvoJiodCtSw7v8KAm3ZQPzvT8VvloCDS8SIv+KSg89/Rd
-         CXEXQj+wuIog3OQIjc2bpWSZgxUUR9SklIkG4PhDxwxcSi+AV2cZEaHUjH0QEo/16n12
-         JtekHD4Bpxe/4HjiTyVCTXJsD8EoYC+o1P1VwlRQxE9hl4R0ZCz2lXsymcjirmHVmAIX
-         Vd2X/zpaMdvJcTMAltlE8EHAXb9AXPlMJx09/GbsAd9sdzgpWc8JYDyR3Ctnz4h31nhD
-         /n/w==
+        bh=r2hvzc0/1aBrNqzZzTGyqyJTlVDNyjsVWwE019TYziQ=;
+        b=zuR5ty9b7hzdDBnzOhT0iWoAVt8msYi3U+McoO3FzxCFK8WhPx86M0Yns1GW1/6iQv
+         IcFp8K9zPu2rlCDwspluWTCHnqyzlzvaNEq5lBwNN0pcOX6bRUVyCc5xJL0yeOr+wK3a
+         t2dHxUYfYyYUAlirC4QwxSTeKyuvO8CMHn6PKS3Lr9TyJfBbSuOOMqumPNQWPbg9Fvfp
+         zdbRAyNfnDZjoxBeqH6Li8mgmSu1o8EEuO8PE6rUtJ1wgR7gbNj3khzQTkU62OGazc2i
+         8mwn75QRd31ERCAgsewZZZmbpbfdfMpSdtNtZi2vp13xGDL7KpDO6lccJHQxNopkKCHI
+         GeoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691674290; x=1692279090;
+        d=1e100.net; s=20221208; t=1691674343; x=1692279143;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jyF59jb7XIhUgJDXmFS2OOFcx7NZkIFgG/Rqxn0RT0o=;
-        b=RopErlS46tkt25uE4fi8cANQAIXKwOZBLzJy0CixPmSkTnX9NL8MB18tvXzonSXZIz
-         Sk8Ym/+BOLDdq5gIOtGcyj/4w4YRKSezXoLZtXgxBT55F06QsYckjxW25Ql2QnI+zBkt
-         xGyqadT+N6cno8OY9radIH17gTiG/61f7zdn/+QClVecdyrVrTd04+8OInAPF6MLcpDz
-         BkzAMMWtCduOdquAyM2yPaPgA7Olz44ro8L3JW1Y9xAJrO+vmaVLeqVBItGQFPCmaWxw
-         /ceb/FWaZwOpcVCjLt72/jSgPp+R99Lk1qSTHpnmqFeUX5BvrBG0KfmifSMEfOwfcm/6
-         b68A==
-X-Gm-Message-State: AOJu0Yy2UVoHUCdGXhfMDGbR3Eiq5oj7VdA/aJGrmiKZ4uyfdgNCmJgk
-        5d4KjHkXjiBWl7rpwEZw9Tw7Ww==
-X-Google-Smtp-Source: AGHT+IEf/EEK46S0pJMntYoPn+2rk2vVmqiwXGt8nK/cC2gclTl0hGi7P54L2LQEhX6Q/wSdk7YADQ==
-X-Received: by 2002:ac2:4db2:0:b0:4f3:93d6:f969 with SMTP id h18-20020ac24db2000000b004f393d6f969mr1668114lfe.59.1691674290444;
-        Thu, 10 Aug 2023 06:31:30 -0700 (PDT)
+        bh=r2hvzc0/1aBrNqzZzTGyqyJTlVDNyjsVWwE019TYziQ=;
+        b=FvNGneoKgsasJFYl4MP++tj8LqK0qqnJFGYMSNUBs0H8cuZecpkFZIGoR+WtHevk/O
+         mBdHCnTfP/JrTtub1FXdXL51nRJMh9x1tsyfI+ijQIQm+EO2godtg8/Uavi+GmthJbgW
+         MnW98z1WuhVf6Z2gt7ghOlRXHPUsl0ewITg5Ue5YS0b4NnvLfrb7u08sN5kSbn1SyUwP
+         Duh/cnoAGvuibCbX0UXagZFNcTjvFN5A9SDoOSIDPlCebgTgPPLaGseLORMTj13FPWNM
+         6iR9LBszaTyx1otUc0oqVPMdAOeOeuof+2qqck05pT2J+FfMfOrslMZO2kjtF2V/zVHO
+         bEEA==
+X-Gm-Message-State: AOJu0Yxoaymnvlz5OFFpBvr8h7dUmnwUF2S8CT7CPJS1Iu7wLH44rUt3
+        kZu5wYd6m21d65rXsux1o1zrkw==
+X-Google-Smtp-Source: AGHT+IHdy+ShWXUqf2tdiaideD3enD7YtLaHQHB6RYmfX5YEf7YmGPbaSfZ/zHNFZnUDlQY8lyKFlQ==
+X-Received: by 2002:a05:6512:3248:b0:4fd:d0d5:8771 with SMTP id c8-20020a056512324800b004fdd0d58771mr1515803lfr.18.1691674343412;
+        Thu, 10 Aug 2023 06:32:23 -0700 (PDT)
 Received: from [192.168.1.101] (abxi185.neoplus.adsl.tpnet.pl. [83.9.2.185])
-        by smtp.gmail.com with ESMTPSA id k22-20020ac24576000000b004fe8424c750sm292664lfm.47.2023.08.10.06.31.29
+        by smtp.gmail.com with ESMTPSA id k22-20020ac24576000000b004fe8424c750sm292664lfm.47.2023.08.10.06.32.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 06:31:29 -0700 (PDT)
-Message-ID: <697f72b0-e274-4bfa-be7e-8a0f2c5859a8@linaro.org>
-Date:   Thu, 10 Aug 2023 15:31:28 +0200
+        Thu, 10 Aug 2023 06:32:23 -0700 (PDT)
+Message-ID: <a23417f0-54e6-4a97-8981-dd7546e2981a@linaro.org>
+Date:   Thu, 10 Aug 2023 15:32:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: apq8016-sbc: Set ov5640
- assigned-clock
+Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: apq8016-sbc: Enable camss for
+ non-mezzanine cases
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
@@ -63,7 +63,7 @@ To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230809202343.1098425-1-bryan.odonoghue@linaro.org>
- <20230809202343.1098425-4-bryan.odonoghue@linaro.org>
+ <20230809202343.1098425-7-bryan.odonoghue@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,11 +100,11 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230809202343.1098425-4-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230809202343.1098425-7-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -113,14 +113,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 9.08.2023 22:23, Bryan O'Donoghue wrote:
-> The driver for the ov5640 doesn't do a set-rate, instead it expects the
-> clock to already be set at an appropriate rate.
+> When we have no camera mezzanine attached it is still possible to run the
+> test-pattern generator of the CSID block.
 > 
-> Similarly the yaml for ov5640 doesn't understand clock-frequency. Convert
-> from clock-rate to assigned-clock and assigned-clock-rate to remediate.
+> As an example:
+> 
+> media-ctl --reset
+> 
+> yavta --no-query -w '0x009f0903 1' /dev/v4l-subdev2
+> yavta --list /dev/v4l-subdev2
+> 
+> media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:UYVY8_1X16/1920x1080 field:none]'
+> media-ctl -l '"msm_csid0":1->"msm_ispif0":0[1]'
+> media-ctl -d /dev/media0 -V '"msm_ispif0":0[fmt:UYVY8_1X16/1920x1080 field:none]'
+> media-ctl -l '"msm_ispif0":1->"msm_vfe0_rdi0":0[1]'
+> media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:UYVY8_1X16/1920x1080]'
+> media-ctl -d /dev/media0 -p
+> 
+> yavta -B capture-mplane --capture=5 -n 5 -I -f UYVY -s 1920x1080 --file=TPG-UYVU-1920x1080-000-#.bin /dev/video0
 > 
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hm.. perhaps the ports could be just defined in soc dtsi?
 
 Konrad
