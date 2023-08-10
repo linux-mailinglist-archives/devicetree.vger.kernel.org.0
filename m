@@ -2,103 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A58F776D75
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 03:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF718776DA9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 03:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231673AbjHJBTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Aug 2023 21:19:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57980 "EHLO
+        id S229639AbjHJByy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Aug 2023 21:54:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjHJBTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 21:19:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1E010E6;
-        Wed,  9 Aug 2023 18:19:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CBDD64D2F;
-        Thu, 10 Aug 2023 01:19:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B74DC433C7;
-        Thu, 10 Aug 2023 01:19:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691630358;
-        bh=TB3ObTSE7LxprxKyIdCMl0H38M73hC+gEJTl1bWWpAc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=UjtsVNARulJIuPJR2PiHBg8u1sSMi/GgztJCUIAMWtOCKCEkjTSLhZ7t/CPRGrp1P
-         ZNAh3trNVsWdvje9GaWu3uCVesPwig8vM1TZhgH31x37v+7MuUqd4IPYNlz5fV4ziK
-         WRoDLdcheSSDtZl2jeZ3kOTr/pFf4uJiqvvuW+6hO4nT1t0kSgEmqZAC/0kucBGDm5
-         ahyxQl0XFfxY7My0n0J7SPYYex+ymk3OUM84myRl2pm3PRjKi8Coa+t7iEojbSFsQL
-         Nv/D4sVM0oO2VhuWejZN9lZoyHpgTgUWh+w46J6R9jADI7yp5DIji/GFJY5GykqNJi
-         SWrKG1bRRZJxA==
-Received: (nullmailer pid 3365153 invoked by uid 1000);
-        Thu, 10 Aug 2023 01:19:16 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S229514AbjHJByx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Aug 2023 21:54:53 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A8BAC;
+        Wed,  9 Aug 2023 18:54:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=+Uvpko4AXQ3Dc2fSBgpFtDF7WOkjn07EwVSIhk49kcQ=; b=aYrRf6uncyZQNqPf3SFA08CC4W
+        /hum2tGKxT5u4jIs3PpuWL6UeHaJg5zF7Al2MKIaOy7IQS8xOlM6/3d0+hZaxihDUQ35+I4Tfs6T7
+        BpZ4xBHNoM3UJF6Xaf9zqSH+4VMPrvBhAE86P8ymUaeGBs0mbeKnkIDmdLFA0aAjU42g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qTusm-003dTR-4l; Thu, 10 Aug 2023 03:54:36 +0200
+Date:   Thu, 10 Aug 2023 03:54:36 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
+        "simon.horman@corigine.com" <simon.horman@corigine.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/5] net: hpe: Add GXP UMAC Driver
+Message-ID: <e50fe51e-5a81-4aa2-9f77-4314dc578f84@lunn.ch>
+References: <20230802201824.3683-1-nick.hawkins@hpe.com>
+ <20230802201824.3683-5-nick.hawkins@hpe.com>
+ <fb656c31-ecc3-408a-a719-cba65a6aa984@lunn.ch>
+ <933D6861-A193-4145-9533-A7EE8E6DD32F@hpe.com>
+ <61c541c9-be30-4a43-aa85-53816d5848f9@lunn.ch>
+ <DB60B268-85DA-43A2-A20F-52D684473348@hpe.com>
+ <06d1bc6a-0584-4d62-a2f4-61a42f236b3c@lunn.ch>
+ <DM4PR84MB19277DFEB543CF29AB3D58608812A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Hari Nagalla <hnagalla@ti.com>
-Cc:     linux-kernel@vger.kernel.org, nm@ti.com, conor+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, vigneshr@ti.com,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        kristo@kernel.org, robh+dt@kernel.org
-In-Reply-To: <20230810005850.21998-2-hnagalla@ti.com>
-References: <20230810005850.21998-1-hnagalla@ti.com>
- <20230810005850.21998-2-hnagalla@ti.com>
-Message-Id: <169163035646.3365117.5068119107443331919.robh@kernel.org>
-Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: k3-dsp: correct
- optional sram properties for AM62A SoCs
-Date:   Wed, 09 Aug 2023 19:19:16 -0600
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM4PR84MB19277DFEB543CF29AB3D58608812A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> After discussing with the ASIC team:
+> The vendor IP in our ASIC performs a parallel GMII to serial SGMII
 
-On Wed, 09 Aug 2023 19:58:46 -0500, Hari Nagalla wrote:
-> The C7xv-dsp on AM62A have 32KB L1 I-cache and a 64KB L1 D-cache. It
-> does not have an addressable l1dram . So, remove this optional sram
-> property from the bindings to fix device tree build warnings.
-> 
-> Also set the 'memory-regions' property as optional. This is because
-> the remote processors can function without carveout regions.
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> ---
-> Changes since v1:
->  - Corrected dsp node binding doc file to fix yamllint warnings for am62a.
-> 
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
-> 
+Which vendor ? Is it the Synopsys DesignWare XPCS? If so, take a look
+at drivers/net/pcs/pcs-xpcs.c. You will want to use that code.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+If it is a different vendor, you can probably still use bits of that
+code to implement a driver for the vendor IP.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810005850.21998-2-hnagalla@ti.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+	Andrew
