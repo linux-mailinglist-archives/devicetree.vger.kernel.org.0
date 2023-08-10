@@ -2,56 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DFA37771D8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CE367771DC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjHJHrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 03:47:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        id S233604AbjHJHrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 03:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232960AbjHJHq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:46:57 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15B12127;
-        Thu, 10 Aug 2023 00:46:51 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A31FA8567;
-        Thu, 10 Aug 2023 15:46:48 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 10 Aug
- 2023 15:46:48 +0800
-Received: from starfive-sdk.starfivetech.com (171.223.208.138) by
- EXMBX062.cuchost.com (172.16.6.62) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Thu, 10 Aug 2023 15:46:47 +0800
-From:   Samin Guo <samin.guo@starfivetech.com>
-To:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-CC:     Emil Renner Berthing <kernel@esmil.dk>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-Subject: [-next v1 1/1] riscv: dts: starfive: jh7110: Fix GMAC configuration
-Date:   Thu, 10 Aug 2023 15:46:46 +0800
-Message-ID: <20230810074646.19076-2-samin.guo@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230810074646.19076-1-samin.guo@starfivetech.com>
-References: <20230810074646.19076-1-samin.guo@starfivetech.com>
+        with ESMTP id S232960AbjHJHra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:47:30 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE1E1702
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:47:29 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9923833737eso86630966b.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:47:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691653647; x=1692258447;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dhpGgdbtPxtlzBnzGvNtLx/+CntVAPL8Getc9S/EtvE=;
+        b=TCouXo8hPM/jVxiHx4HiCypCk6rJQPbI9AuhBPVcn/DeoHQoGs0K/qmCBg/fXBxrnm
+         x9ndiKsg6ceAeVt7oq4Ax2tf5qYsxftiA8FXg4oYaev50pnzZ0Ndp7Q5YOHJqxUNhVod
+         qyQi4hFrls3IYYHvBlt23AoWpVRhRZnIhEm6+jfNyVfgIKcmJD7VmucVkf172J7NdzpT
+         U497GQCzvnuf6QEpie6uMYEQDyvoVDoisfnAMpwkqdfcq6xl+xKIgUtw8M/p2sM5uLkM
+         WTcUgemTcfTqlK7Yij1gZunpx3csb95oeh96TtGz7ByTAQRAZNyRkHay/kkaLS5hAU4N
+         jkwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691653647; x=1692258447;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dhpGgdbtPxtlzBnzGvNtLx/+CntVAPL8Getc9S/EtvE=;
+        b=OAT1ZVSyCNV8HLO8zg7RS0oyI0n2VzUMzFAy7L9Z9PrD7B7p9Yn79pn6Hco4IxtL5F
+         yV+O3Cl9mm3hGZG93FkxMoFxuNBx0i0MjorNjr0pr2xqro3dgRKFH2BNJUFweiwrRo+X
+         HQrO4IWKnmutUhGYejh1vQDMybTNW8H4gaILHcHswHsc8GZxhi1N6lJ0EpUs3v8Dgd14
+         F3HA0WVNFG6bbExFd2EcUIhP4wnDWt7JqVnk+YboZtkpmMr7onOCqLMkf0r2f3oCNxGz
+         ZH8ISFC8SISrqGZBvfZp4nCwT9obz5FJQishzWEpEQwik3KPEg3RsO/EprsTwIR6vXsm
+         w51w==
+X-Gm-Message-State: AOJu0Yw37zD7yfk922R0qQUgKr3fjQ4ko9uYA3q5JEv5Z8rGZF37+KZ2
+        Jej7Jgf6firF7b0VEp92b6yGkQ==
+X-Google-Smtp-Source: AGHT+IF9zsTmioOuHxTFGoxEizbPFEc/AaHn3qyFS7Ire5UldEq2+XXEFPOCEZP4aWihn4A+p0JOyg==
+X-Received: by 2002:a17:906:2189:b0:99b:cf0c:2cb1 with SMTP id 9-20020a170906218900b0099bcf0c2cb1mr1357849eju.66.1691653647608;
+        Thu, 10 Aug 2023 00:47:27 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.113])
+        by smtp.gmail.com with ESMTPSA id w20-20020a170906385400b0097404f4a124sm560321ejc.2.2023.08.10.00.47.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 00:47:27 -0700 (PDT)
+Message-ID: <137a734e-0e5a-5fcb-f0d3-1fdbb5e8da34@linaro.org>
+Date:   Thu, 10 Aug 2023 09:47:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
- (172.16.6.62)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 02/11] ASoC: dt-bindings: mediatek,mt8188-mt6359: use
+ common sound card
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rao Mandadapu <srivasam@codeaurora.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-mediatek@lists.infradead.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rohit kumar <quic_rohkumar@quicinc.com>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20230810063300.20151-1-krzysztof.kozlowski@linaro.org>
+ <20230810063300.20151-2-krzysztof.kozlowski@linaro.org>
+ <169165201641.3911557.18445521260746432395.robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <169165201641.3911557.18445521260746432395.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,92 +101,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixed configuration to improve the speed of TCP RX.
+On 10/08/2023 09:20, Rob Herring wrote:
+> 
+> On Thu, 10 Aug 2023 08:32:50 +0200, Krzysztof Kozlowski wrote:
+>> The mediatek,mt8188-mt6359 Linux sound machine driver requires the
+>> "model" property, so binding was incomplete.  Reference the common sound
+>> card properties to fix that which also allows to remove duplicated
+>> property definitions.  Leave the relevant parts of "audio-routing"
+>> description.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/sound/mediatek,mt8188-mt6359.yaml  | 17 +++++++----------
+>>  1 file changed, 7 insertions(+), 10 deletions(-)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> 
 
-Before:
-  # iperf3 -s
-  -----------------------------------------------------------
-  Server listening on 5201 (test #1)
-  -----------------------------------------------------------
-  Accepted connection from 192.168.1.4, port 47604
-  [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
-  [ ID] Interval           Transfer     Bitrate
-  [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
-  [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
-  [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
-  [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
-  [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
-  [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
-  [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
-  [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
-  [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
-  [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
-  - - - - - - - - - - - - - - - - - - - - - - - - -
-  [ ID] Interval           Transfer     Bitrate
-  [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
+I think the bot responds like this if the patch could not be applied.
+Probably we can ignore it.
 
-After:
-  # iperf3 -s
-  -----------------------------------------------------------
-  Server listening on 5201 (test #1)
-  -----------------------------------------------------------
-  Accepted connection from 192.168.1.4, port 47710
-  [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47720
-  [ ID] Interval           Transfer     Bitrate
-  [  5]   0.00-1.00   sec   111 MBytes   932 Mbits/sec
-  [  5]   1.00-2.00   sec   111 MBytes   934 Mbits/sec
-  [  5]   2.00-3.00   sec   111 MBytes   934 Mbits/sec
-  [  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec
-  [  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec
-  [  5]   5.00-6.00   sec   111 MBytes   935 Mbits/sec
-  [  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec
-  [  5]   7.00-8.00   sec   111 MBytes   935 Mbits/sec
-  [  5]   8.00-9.00   sec   111 MBytes   934 Mbits/sec
-  [  5]   9.00-10.00  sec   111 MBytes   934 Mbits/sec
-  [  5]  10.00-10.00  sec   167 KBytes   933 Mbits/sec
-  - - - - - - - - - - - - - - - - - - - - - - - - -
-  [ ID] Interval           Transfer     Bitrate
-  [  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec        receiver
-
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index a608433200e8..76884cf373bf 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -318,8 +318,8 @@
-
- 	stmmac_axi_setup: stmmac-axi-config {
- 		snps,lpi_en;
--		snps,wr_osr_lmt = <4>;
--		snps,rd_osr_lmt = <4>;
-+		snps,wr_osr_lmt = <0xf>;
-+		snps,rd_osr_lmt = <0xf>;
- 		snps,blen = <256 128 64 32 0 0 0>;
- 	};
-
-@@ -839,7 +839,7 @@
- 			rx-fifo-depth = <2048>;
- 			tx-fifo-depth = <2048>;
- 			snps,multicast-filter-bins = <64>;
--			snps,perfect-filter-entries = <8>;
-+			snps,perfect-filter-entries = <256>;
- 			snps,fixed-burst;
- 			snps,no-pbl-x8;
- 			snps,force_thresh_dma_mode;
-@@ -870,7 +870,7 @@
- 			rx-fifo-depth = <2048>;
- 			tx-fifo-depth = <2048>;
- 			snps,multicast-filter-bins = <64>;
--			snps,perfect-filter-entries = <8>;
-+			snps,perfect-filter-entries = <256>;
- 			snps,fixed-burst;
- 			snps,no-pbl-x8;
- 			snps,force_thresh_dma_mode;
---
-2.17.1
+Best regards,
+Krzysztof
 
