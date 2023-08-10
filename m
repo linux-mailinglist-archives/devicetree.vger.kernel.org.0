@@ -2,113 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9F5B7772E2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8279E7772F1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233528AbjHJI2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 04:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56432 "EHLO
+        id S234203AbjHJIdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 04:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233210AbjHJI1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:27:54 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E661DF3
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:27:52 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-584243f84eeso8578017b3.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:27:52 -0700 (PDT)
+        with ESMTP id S234202AbjHJIdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:33:08 -0400
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E72E64
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:33:08 -0700 (PDT)
+Received: by mail-vs1-xe2d.google.com with SMTP id ada2fe7eead31-4474c7fce20so277428137.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691656072; x=1692260872;
+        d=linaro.org; s=google; t=1691656387; x=1692261187;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=j5CdkAgc0fdEPUHj9O82k/kTQ6xmErn6XcPLACwJvd4=;
-        b=mmI5rBV7acGNfMX6damE4Hc4jPx7mptZ5eZ8BGglfS1X1ka42HS87UoWx9srEaNoGB
-         e9po/52U3cUphRowfFlI8/YN01DNCqQ6h7JZUXPTmB/N/H7lp9X9Z58o+xmccQKdKp68
-         wELs5YiObeLXvwGHohzfT4SxFVBuFigbj4dc/oOUwntm5pyi965C5j1STdSZBb0oqWsl
-         odkoFYbpX0AspgsAwNQ2Gx/z2Eh7jQBrApkByPf5j2OefI1FN4GkYZK7KLjlXHkClTrb
-         Q467PZrDkk6OYv8eiENREdRNzHxYPdQfDoKMrfOU+YU4A7uM3XKBp9Xtsk2L02TZR1HR
-         qcaA==
+        bh=uXViNTriJbQzpB1eP2cfF6Hulct7qRDowcDtQ5M2ukQ=;
+        b=rUWfM9QkccGSNUMQrlb3tH/3yezOZ4WC6McRRuBmi1Gi9fY3YQ+uZWD5iSgUbEzM6b
+         HzVX1peABlc1hTKDnBF1DnzIi4Ad2wjjTSH2BSovx76dQrORrOpuyt76MbFUXOgiA17F
+         Hy+p0gwg3fZsMVfrwZBpZ3b4mLORDI808G0xfW7035hqTFEfO2ygHv8Cdh3wol0D/gyE
+         MX47za3VNvCPzewvxqNqDhG+3bdUB3VGjV4xWyxSm+DQYtcq60Qu+sO3F+BoSII0jt/Z
+         abcD4+r8eq3sWzFfQcJaKMtx8v0CdoBsWbcSYumOL2L6191e83TBRRMgweVvnph69+g6
+         G8Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691656072; x=1692260872;
+        d=1e100.net; s=20221208; t=1691656387; x=1692261187;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=j5CdkAgc0fdEPUHj9O82k/kTQ6xmErn6XcPLACwJvd4=;
-        b=bHBoH6Emc8nXq+Uxpkrmjglr7LCCda+KrylhP6avPbVMBs0WHtsmroRHUURaX3WbDg
-         Ivp2fMXPXMF+V3LTwdlSrOW3VMJnDuBCw9Kfpo+xcf100p9ISB9wfU9c8VqG7B3zWShS
-         awgMF+uKADq/B8BQzcpkyyS0/ixLFhC/CUH4mB5MbR3C1Gc1ndYEsdyuRQKCOE2QZyvE
-         t+eEChsCy0Go0WBsf53aTazsyU5dHgT84mGPfIGFCD/u4E8iItwpW2kUycyxSRVTlw/u
-         /VoF7ecEEFkiV0UXfCLcauLDg5TgIMe7ce3WFmVSiU+ZwDOSyRxvhGQnU8GVDJTUUcal
-         8bww==
-X-Gm-Message-State: AOJu0YyOoufRMTea3nEFguHTIgPQ7CO9z5pHa+zpeGSr/QNheeXMb+C3
-        OgIctKNK1ZzUHXcpKBYEgt5bqzyvt3Uu1KWvUSzU86NCS7cr5j5u
-X-Google-Smtp-Source: AGHT+IGb9UJIoov1f30J/u3KKnaNNAQbNHH+aUmb7Z0YBojux5Quco+Ug31NqtZsglrRU6A7eGu0x1R8NPq+CXS8ZWE=
-X-Received: by 2002:a0d:d4d0:0:b0:589:8b55:f8cf with SMTP id
- w199-20020a0dd4d0000000b005898b55f8cfmr1680900ywd.50.1691656072168; Thu, 10
- Aug 2023 01:27:52 -0700 (PDT)
+        bh=uXViNTriJbQzpB1eP2cfF6Hulct7qRDowcDtQ5M2ukQ=;
+        b=aAmoyW+HJgPxKY0tDx+DPSW9DMr4ftXOS40Ria4D6c6DSxPp04/Z+lFOginufD0Wr8
+         c9QIoIHpXmM7ytrKittDovszikNPK2upDKAAra8uKQO1HetfyQQcpY2X2UIUCtROb1r2
+         LG/ucI8z0LMO03r6fIZgkS9dmySuwekNCWFUAfCT61AZNNrChLxC2XPKJHLzTJfh2gWy
+         kSLvCl+NdaiEI4XxI3qAc5L5phHXyPOpWHX+VNlC4cbaAnb5ucIX/GHiV2GE+yFzajFX
+         1JNRm6GkqjDGWAbPgY1PljbjfSd/KLCrLaB7m0j2p0z8i1Rz6C4kIsGGPwPaZz4KLi80
+         yHeg==
+X-Gm-Message-State: AOJu0YzfC3KopuNS0p4ILSRS9hc5JcjnJY7HxvW3puZ5+m/yIDclER70
+        M8qar/2xXdYxydflg8WylJUeBP7Z6zDSUeE8y2ySJChTPSiguJMQ
+X-Google-Smtp-Source: AGHT+IEvUhINzf+chFJudzkFhzeM8jsFYRpWbdSpmlcuOd9Pf+evwEQKhmXJGfqfPQx/9pmfJRwxiQyXhrA7nwsXOwc=
+X-Received: by 2002:a67:fa56:0:b0:443:51a7:b63d with SMTP id
+ j22-20020a67fa56000000b0044351a7b63dmr1050238vsq.23.1691656387130; Thu, 10
+ Aug 2023 01:33:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn> <20230807074043.31288-3-zhuyinbo@loongson.cn>
-In-Reply-To: <20230807074043.31288-3-zhuyinbo@loongson.cn>
+References: <20230808090942.3109000-1-linyujun809@huawei.com>
+In-Reply-To: <20230808090942.3109000-1-linyujun809@huawei.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 10 Aug 2023 10:27:41 +0200
-Message-ID: <CACRpkdZfx8BGHxj4OyS7HG9=mq5DrVHzHKhehxV1nfKwyMHpwQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] gpio: loongson: add firmware offset parse support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
+Date:   Thu, 10 Aug 2023 10:32:56 +0200
+Message-ID: <CACRpkdYgtw5nMGRrzLw1hCKDB00E3vfA3VS9kjym+RYMjQNoaA@mail.gmail.com>
+Subject: Re: [PATCH -next v2] ARM: dts: integrator: fix PCI bus dtc warnings
+To:     Lin Yujun <linyujun809@huawei.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, arnd@arndb.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yinbo,
+On Tue, Aug 8, 2023 at 11:12=E2=80=AFAM Lin Yujun <linyujun809@huawei.com> =
+wrote:
 
-thanks for your patch!
-
-On Mon, Aug 7, 2023 at 9:41=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wro=
-te:
-
-> Loongson GPIO controllers come in multiple variants that are compatible
-> except for certain register offset values.  Add support for device
-> properties allowing to specify them in ACPI or DT.
+> An warning is reported when allmodconfig is used to compile the kernel of=
+ the ARM architecture:
 >
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> arch/arm/boot/dts/arm/integratorap.dts:161.22-206.4: Warning (pci_bridge)=
+: /pciv3@62000000: node name is not "pci" or "pcie"
+>
+> Change the node name to pci to clear the build warning.
+>
+> Signed-off-by: Lin Yujun <linyujun809@huawei.com>
 
-(...)
-> @@ -26,6 +26,7 @@ struct loongson_gpio_chip_data {
->         unsigned int            conf_offset;
->         unsigned int            out_offset;
->         unsigned int            in_offset;
-> +       unsigned int            inten_offset;
-
-Consider just changing all of these from unsigned int to u32.
-
-(...)
-> +       if (device_property_read_u32(dev, "loongson,gpio-conf-offset", (u=
-32 *)&d->conf_offset)
-> +           || device_property_read_u32(dev, "loongson,gpio-in-offset", (=
-u32 *)&d->in_offset)
-> +           || device_property_read_u32(dev, "loongson,gpio-out-offset", =
-(u32 *)&d->out_offset)
-> +           || device_property_read_u32(dev, "loongson,gpio-ctrl-mode", (=
-u32 *)&d->mode))
-
-Because then you can get rid of this annoying forest of cast.
-
-I'm fine with doing this change in this patch without a need for a separate
-refactoring, as it's just a contained driver and clearly just about typing.
+Patch applied!
 
 Yours,
 Linus Walleij
