@@ -2,82 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 940F8777005
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC9EF77701D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 08:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233394AbjHJGL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 02:11:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46184 "EHLO
+        id S233570AbjHJGM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 02:12:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233390AbjHJGL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:11:56 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B301704
-        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:11:55 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31757edd9edso486211f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:11:55 -0700 (PDT)
+        with ESMTP id S233542AbjHJGMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 02:12:55 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3B126BE
+        for <devicetree@vger.kernel.org>; Wed,  9 Aug 2023 23:12:46 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fe490c05c9so9278825e9.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Aug 2023 23:12:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691647914; x=1692252714;
+        d=linaro.org; s=google; t=1691647964; x=1692252764;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N48Tz5uXzvaHN9/qN3JfX8I4/w7VgPsbV3qQP+qe1tQ=;
-        b=NiaZ9rdNmufbECzZZ87B+yprLA3NRl/R2PzxygOJHcFGcy2WzIj3IcU4zInyho5e0/
-         c854lCFAyfPNxCY0Kt5FZOaF5CygOipP27pHXY3POE5Rm1jg3DB0Bqi7I/qk4L5DGk0r
-         QU/3x7skzZ4VIhjfIyqoLo+doKDiCpB9RlVfMj/pdUNerajvb6RuUoYpiThmHfBMiXtO
-         Eva5Zktvomy1Y3u1V2miFUaFd9j4gIqSLHPm/2D7A9tToV3ioY2wJACouLNeVZ2DZ9gJ
-         OjCSNhpc4rkqitywFihe7PizS9deLQVVoSO4A0oEdM4cU8Wb4KQx/zFCoVGYrqLn2BP4
-         nfXw==
+        bh=gIUNorVMN1a5Kjk18rDX2dlY8vZOfHJwA9074Dh4RkA=;
+        b=Iz7K98AK6RA6reuG2y36cdi9LQOAqe70GN7oaLr/RWyqH7xWTUj9vSDSOgAEwOZMvM
+         zUT0ncvm+ea/rYaWIsXWEVE+4MMTNmdjCvzKt43O6rJvmNui61Npf7UGBU0hsHm4gknk
+         LFZzHM+ySAy0Yc8H85xeGMRxM6ts9DBkx+jJ1prvfnSTK5k/ofp+lvZh661lhbLyPL2i
+         IRaetO0DfyPGLK1+Z5PLuSTewHy4I4mx4qAOvmzF7lvuro7ao5HEmv1Sc7kq85vahp5Y
+         UboaVnSuemveXgSFrgMqq78hS8vdsI5t6M1rb7BjnlX0qHTfeklWj00DZTmfLNHdHaHs
+         BN5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691647914; x=1692252714;
+        d=1e100.net; s=20221208; t=1691647964; x=1692252764;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N48Tz5uXzvaHN9/qN3JfX8I4/w7VgPsbV3qQP+qe1tQ=;
-        b=RowtljrQ0E+k7YJr+iuXkZ+cIRyWOtuZJXiaIUi0rHNkRRYmTf61eIzdLj3o1Ao/88
-         EwFfE9z6v0Odn6L3XLjHuKZj5k0pDFoGWTUXtHyWvIo3KL4mjKHxNdjzbQQltPt8yWez
-         4IyGORmVsjV2Ev4IlC/uEjYEwWwyCkQ7TGsJz03epXtBZ2CcM3j6uNiD5nBH7mHvS+N/
-         13BexAxr7PaIZQnN/6uBzEuE0ZMGfQKUSahSsmoc8K/dhvgqjMTYqulwwqyEGrlcrEPH
-         gVjPR4C+Cg2YuBAL5Wr/Z/Xr4Uibz7rouzfbhwp5HEDKy8vvQufeLwaLIyBHSHPJcTbu
-         BQRg==
-X-Gm-Message-State: AOJu0YwSRhfXF8CzMrrTVk//nddt0PlSwzBihPrF5yv8nRMKuHx3TOfV
-        FQnkPpmbqi1e6/7j5kK3HemdyQ==
-X-Google-Smtp-Source: AGHT+IEBBWdm106nH7ySkZ0gAbbGmz1kcDFv16EgML6LFboSZyVkgvF7ZYZlHBKZKyVm845g2SGOUg==
-X-Received: by 2002:a05:6000:12ce:b0:317:15f5:a1ca with SMTP id l14-20020a05600012ce00b0031715f5a1camr1282078wrx.10.1691647914293;
-        Wed, 09 Aug 2023 23:11:54 -0700 (PDT)
+        bh=gIUNorVMN1a5Kjk18rDX2dlY8vZOfHJwA9074Dh4RkA=;
+        b=Uu4bbVrSZpe+aOLrlqKzsOmmSP7KvR7ZivfUxFcu+tOl37t36f+uwqTs0OsXfHTv2y
+         Frq5UPdpyaYya4JJg/wXy8/4awRoXkI873T9OAbjCuQ8YTN6pLuUgjloEurGgkQuL2W5
+         QYX/7FtCf4+WSVyGu9LVV+MRT1zAKOoxzv096bO2CMnzV+YRslPkMgqf9IPwHhsATvfX
+         p0/JYHLe/8dlQ+adIHAOpnYKilIYQXuiyetQZ22xNvnHDq0cgs9a+YVt5TmaY98Bynsf
+         f2uyKnNCsDchUqHct1qm7+HJc90QIOCsFNzTDRHsV1yIDEcVzBich0gOCAzzuWIvdlEw
+         Osmw==
+X-Gm-Message-State: AOJu0YyEc8IQU5cpxrY3qp57g5UA/TjesUY4Ir+FmLqqEuHTgabaI/pi
+        432iPM1icI8Tqe3r0o9S4yE5aw==
+X-Google-Smtp-Source: AGHT+IGJhqHGTHepD56LNgHXHfifxm3sVB1HuAJ1GydORfbnVv7dNMtrxIC1AtXlKVZv95v+qm+bSQ==
+X-Received: by 2002:a5d:658f:0:b0:313:f38d:555f with SMTP id q15-20020a5d658f000000b00313f38d555fmr631890wru.24.1691647964791;
+        Wed, 09 Aug 2023 23:12:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.113])
-        by smtp.gmail.com with ESMTPSA id y7-20020a5d6147000000b00317e77106dbsm967610wrt.48.2023.08.09.23.11.52
+        by smtp.gmail.com with ESMTPSA id k7-20020adfe3c7000000b003176c6e87b1sm954397wrm.81.2023.08.09.23.12.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Aug 2023 23:11:53 -0700 (PDT)
-Message-ID: <5c852193-9298-af2e-2b7d-dbba29768fec@linaro.org>
-Date:   Thu, 10 Aug 2023 08:11:51 +0200
+        Wed, 09 Aug 2023 23:12:44 -0700 (PDT)
+Message-ID: <3f406442-d46e-7f9e-426d-22a96f893103@linaro.org>
+Date:   Thu, 10 Aug 2023 08:12:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to
- YAML format
+Subject: Re: [PATCH 2/2] Input: cs40l50 - Initial support for Cirrus Logic
+ CS40L50
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@mailbox.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     James Ogletree <James.Ogletree@cirrus.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fred Treven <Fred.Treven@cirrus.com>,
+        Ben Bright <Ben.Bright@cirrus.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230808194811.113087-1-alexander.stein@mailbox.org>
- <1j5y5obt0u.fsf@starbuckisacylon.baylibre.com>
- <a48b1a97-2286-d2f9-742e-d718adcf1eed@linaro.org> <8294548.NyiUUSuA9g@kongar>
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Peng Fan <peng.fan@nxp.com>, Jean Delvare <jdelvare@suse.de>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Eddie James <eajames@linux.ibm.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Jerome Neanne <jneanne@baylibre.com>,
+        "patches@cirrus.com" <patches@cirrus.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230808172511.665787-1-james.ogletree@cirrus.com>
+ <20230808172511.665787-2-james.ogletree@cirrus.com>
+ <065fbe51-928c-4728-efc2-bde87cd48cb3@linaro.org>
+ <ADCCD2C5-B79B-4C50-B3CE-007B1FBF5A5E@cirrus.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8294548.NyiUUSuA9g@kongar>
+In-Reply-To: <ADCCD2C5-B79B-4C50-B3CE-007B1FBF5A5E@cirrus.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,39 +95,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2023 20:44, Alexander Stein wrote:
-> Hi,
-> 
-> Am Mittwoch, 9. August 2023, 15:02:23 CEST schrieb Krzysztof Kozlowski:
->> On 09/08/2023 08:58, Jerome Brunet wrote:
->>>>> +      required:
->>>>> +        - '#reset-cells'
->>>>
->>>> else:
->>>>   properties:
->>>>     '#reset-cells': false
->>>> ???
->>>>
->>>>
->>>> You need to constrain the clocks per variant. Probably names are also
->>>> specific to each one, so the list of names can be moved here and you
->>>> keep just min/maxItems in the top level property.
->>>>
->>>
->>> input clock names and constraints are the same for all 3 variants.
+On 09/08/2023 20:02, James Ogletree wrote:
+>>> + if (cs40l50->vibe_workqueue) {
+>>> + flush_workqueue(cs40l50->vibe_workqueue);
+>>> + destroy_workqueue(cs40l50->vibe_workqueue);
+>>> + }
+>>> +
+>>> + gpiod_set_value_cansleep(cs40l50->reset_gpio, 1);
+>>> + regulator_bulk_disable(ARRAY_SIZE(cs40l50_supplies), cs40l50_supplies);
+>>> +
+>>> + return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(cs40l50_remove);
+>>> +
+>>> +MODULE_DESCRIPTION("CS40L50 Advanced Haptic Driver");
+>>> +MODULE_AUTHOR("James Ogletree, Cirrus Logic Inc. <james.ogletree@cirrus.com>");
+>>> +MODULE_LICENSE("GPL");
 >>
->> Then why do you have this huge, apparently unnecessary, oneOf? If it's
->> the same, then drop the oneOf and make number of clocks fixed.
+>> I don't think this is a module.
 > 
-> But as far as I understand the number of clocks is not fixed. As Jerome pointed 
-> out in the other post, it can have any combination of clocks and range from 1 
-> up to 11, where 'pclk' is always 1st clock.
-> I currently have no idea how to constraint that, despite limiting the number 
-> of clock-names.
+> It can be compiled as a module with CONFIG_INPUT_CS40L50=m. However, there is a
+> typo in the Kconfig entry description: the module will be called “cs40l50” not “cs40l50-core”.
+> That will be fixed. 
 
-The same as in all other clock controllers (was also present on my list
-of useful patterns - Variable length arrays (per variant)):
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+Really, *this* unit file can be compiled as module? Where is the
+module_xxx_driver() then?
 
 Best regards,
 Krzysztof
