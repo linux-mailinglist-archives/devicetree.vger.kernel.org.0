@@ -2,158 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A51E0777B25
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 16:45:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D135C777B34
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 16:46:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235245AbjHJOpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 10:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45204 "EHLO
+        id S233466AbjHJOqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 10:46:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234199AbjHJOpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 10:45:05 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7AF8211C;
-        Thu, 10 Aug 2023 07:45:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1691678703; x=1723214703;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=w0UAbxXWAQNdssPmXVzrxzDw2c7hP+0NfZiyE8xtXXA=;
-  b=Zn7LNtlp+aiXRDitP+q8mny+2RZRb7oZ3QQUKdFQhAGjP0apEQZEYbaT
-   JV0JsYp2yZVGGvxLp7eZdgcqUVRFFdUTojakyxxCnRRuSd4z3dzWQ4MGA
-   NcpPpstdIiC8mU0btkALAApZtAY73h6P00tJQ5Y4g9jo7TJN0RLVM2ppy
-   +1AOJgyvqsKeeQHS6kjsKu8OQ3s4PHzR1rkhj83AjG38KpleluvLMboCP
-   GM10aE2oZhe0scf4N7/Uh/Mo0ZYpdF8fBzol5M9sX/JX3mZ0chWPujNzY
-   zPjCfGTiRDDPIwJAyhNgUTJQtFMlmXhfP6XKQtXL25VentgstiHbXMV8L
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,162,1684792800"; 
-   d="scan'208";a="32396725"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 10 Aug 2023 16:44:59 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6140928008D;
-        Thu, 10 Aug 2023 16:44:59 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: [PATCH 6/6] dt-bindings: timer: fsl,imxgpt: Add optional osc_per clock
-Date:   Thu, 10 Aug 2023 16:44:51 +0200
-Message-Id: <20230810144451.1459985-7-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com>
-References: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S233979AbjHJOqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 10:46:10 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987DA211C;
+        Thu, 10 Aug 2023 07:46:09 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37ACw3eC003346;
+        Thu, 10 Aug 2023 14:46:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5hAeCYRL/Wp9RdpbrzG061TkVG2kWkKxGH2spZL25is=;
+ b=GxNI7/9EbsVjeF0+UfR4TmScsagNBfxtlBihGFf/fKfU+VJV/v0is9OQ3ZpCiAS2ZGAp
+ yDXQai/dmIDX1lF4aP/2sg+Mt7LfT31svattvsBcc0BYct9AVDf7b4fIy5PguG8IwXyF
+ Fv+ufxtLPgLAy26mFMAdGkkfK0FmJ66LoX4B0ziLodspvQvKE3bKucSkNET2VyNp9Ixq
+ ejb9WiYmPXWtpzDulEFTeEv0gZaHR8/cS+Yd3JZFDeFwNE2h/gY7G6kOS2xqr9TMmM9j
+ enLAIpL8lfv6jv8T+MmIptFLLwa0bxFBiQo15lB3Bj8QHUP1sg5crShOcDGnwzzTUOY7 yw== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sc5ffbpbr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 14:46:01 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37AEk0Ka006823
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Aug 2023 14:46:00 GMT
+Received: from [10.216.45.127] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 10 Aug
+ 2023 07:45:56 -0700
+Message-ID: <c79f578f-74eb-c6ed-ead6-3058483f9982@quicinc.com>
+Date:   Thu, 10 Aug 2023 20:15:47 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 0/6] soc: qcom: llcc: Add support for QDU1000/QRU1000
+Content-Language: en-US
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <srinivas.kandagatla@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230810061140.15608-1-quic_kbajaj@quicinc.com>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <20230810061140.15608-1-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pOuLgfQnWFOZI532CYak2ln3IieVsxaB
+X-Proofpoint-GUID: pOuLgfQnWFOZI532CYak2ln3IieVsxaB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-10_11,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 spamscore=0 impostorscore=0 mlxlogscore=999
+ mlxscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308100126
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit bad3db104f89 ("ARM: imx: source gpt per clk from OSC for
-system timer") osc_per can be used for clocking the GPT which is not
-scaled when entering low bus mode.
-This clock source is available only on i.MX6Q (incl. i.MX6QP) and i.MX6DL.
+nit: Version v7 missed in subject..
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
+-Mukesh
 
-Notes:
-    osc_per is only used in arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi, so I assume
-    this is the only platform supporting this source.
-    
-    I had to use minItem:2 and maxItems:3 in the constraints as fsl,imx6sx-gpt
-    and fsl,imx6sl-gpt are also compatible to fsl,imx6dl-gpt, but only provide
-    two clocks. Maybe this the compatible list needs some cleanup, but I do
-    not know which hardware is compatible to what. The driver
-    drivers/clocksource/timer-imx-gpt.c also gives no clues because it's totally
-    mixed.
-
- .../devicetree/bindings/timer/fsl,imxgpt.yaml | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-index c5d3be8c1d68..e2607377cbae 100644
---- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-+++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-@@ -48,14 +48,18 @@ properties:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 2
-     items:
-       - description: SoC GPT ipg clock
-       - description: SoC GPT per clock
-+      - description: SoC GPT osc per clock
- 
-   clock-names:
-+    minItems: 2
-     items:
-       - const: ipg
-       - const: per
-+      - const: osc_per
- 
- required:
-   - compatible
-@@ -64,6 +68,29 @@ required:
-   - clocks
-   - clock-names
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6dl-gpt
-+              - fsl,imx6q-gpt
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+          maxItems: 3
-+        clock-names:
-+          minItems: 2
-+          maxItems: 3
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          maxItems: 2
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
-
+On 8/10/2023 11:41 AM, Komal Bajaj wrote:
+> This patch series does the following -
+>   * Refactor LLCC driver to support multiple configuration
+>   * Add stub function for nvmem_cell_read_u8
+>   * Add support for multi channel DDR configuration in LLCC
+>   * Add LLCC support for the Qualcomm QDU1000 and QRU1000 SoCs
+> 
+> Changes in v7 -
+>   - Changed the macro name as suggested by Mukesh.
+>   - Added NULL check for llcc cfgs as suggested by Mukesh.
+>   - Updated the num_config for qdu1000 to use ARRAY_SIZE().
+>   - Link to v6: https://lore.kernel.org/lkml/20230802091429.20892-1-quic_kbajaj@quicinc.com/
+> 
+> Changes in v6 -
+>   - Changed variable name from num_cfgs to num_config as suggested by Mukesh.
+>   - Added a check for default llcc configuration as per suggestion from Mukesh.
+>   - Updated the commit summary for the third and fifth patch.
+>   - Fixed alignment in the fourth patch.
+>   - Used ARRAY_SIZE() to calculate the num_config as per suggested by Konrad.
+>   - Link to v5: https://lore.kernel.org/lkml/20230724084155.8682-1-quic_kbajaj@quicinc.com/
+> 
+> Changes in v5 -
+>   - Separated out the secure qfprom driver changes to a separate series [1].
+>   - Created a wrapper struct with a pointer to qcom_llcc_config and
+>     length of array qcom_llcc_config.
+>   - Added stub function for nvmem_cell_read_u8.
+>   - Split commit 6/6 in the previous series into two commits.
+>   - Link to v4: https://lore.kernel.org/lkml/20230623141806.13388-1-quic_kbajaj@quicinc.com/
+> 
+> Changes in v4 -
+>   - Created a separate driver for reading from secure fuse region as suggested.
+>   - Added patch for dt-bindings of secure qfprom driver accordingly.
+>   - Added new properties in the dt-bindings for LLCC.
+>   - Implemented new logic to read the nvmem cell as suggested by Bjorn.
+>   - Separating the DT patches from this series as per suggestion.
+>   - Link to v3: https://lore.kernel.org/lkml/20230512122134.24339-1-quic_kbajaj@quicinc.com/
+> 
+> Changes in v3 -
+>   - Addressed comments from Krzysztof and Mani.
+>   - Using qfprom to read DDR configuration from feature register.
+>   - Link to v2: https://lore.kernel.org/lkml/20230313124040.9463-1-quic_kbajaj@quicinc.com/
+> 
+> Changes in v2:
+>    - Addressing comments from Konrad.
+>    - Link to v1: https://lore.kernel.org/lkml/20230313071325.21605-1-quic_kbajaj@quicinc.com/
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20230724082946.7441-1-quic_kbajaj@quicinc.com/
+> 
+> Komal Bajaj (6):
+>    dt-bindings: cache: qcom,llcc: Add LLCC compatible for QDU1000/QRU1000
+>    soc: qcom: llcc: Refactor llcc driver to support multiple
+>      configuration
+>    nvmem: core: Add stub for nvmem_cell_read_u8
+>    soc: qcom: Add LLCC support for multi channel DDR
+>    soc: qcom: llcc: Updating the macro name
+>    soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
+> 
+>   .../devicetree/bindings/cache/qcom,llcc.yaml  |  10 +
+>   drivers/soc/qcom/llcc-qcom.c                  | 363 +++++++++++++-----
+>   include/linux/nvmem-consumer.h                |   6 +
+>   include/linux/soc/qcom/llcc-qcom.h            |   2 +-
+>   4 files changed, 293 insertions(+), 88 deletions(-)
+> 
+> --
+> 2.41.0
+> 
