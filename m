@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E93D778182
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA13778188
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 21:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232997AbjHJT0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 15:26:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39724 "EHLO
+        id S231426AbjHJT2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 15:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236302AbjHJT0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:26:50 -0400
+        with ESMTP id S230327AbjHJT2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 15:28:53 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F95C7;
-        Thu, 10 Aug 2023 12:26:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 270D01728
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 12:28:53 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D125864018;
-        Thu, 10 Aug 2023 19:26:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DEDEC433C7;
-        Thu, 10 Aug 2023 19:26:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B0534667E5
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 19:28:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23F6C433C7;
+        Thu, 10 Aug 2023 19:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691695609;
-        bh=h2DqxVG13dnsEkNHhyxyTR+mtl+zHvJP4CblhcYkRrM=;
+        s=k20201202; t=1691695732;
+        bh=IEzU2DKKPUYeJ2z2QsiU9Rp2PhhCyyWQFd1ITrF1zUU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I73IqMyUiqgFtxCIB5FADS0X1Inn8xBcqvIWpl+naTeOatdDjd73eqoXSctboPtMD
-         hu3H0UUbqRNw+ExRvLmGPZkgid5SLmr4zEd+rbHP/mX7Jy9vZAtqZVe6WXJg1A3pmY
-         Oa8lutgbqB+Pft+fQqenG0odXyAmgAcZY87dDoYc75S/9kayrpA5X85mpPznGdjcO1
-         XKbpafIl4J7sPNhHe4907D3hr35bHWMYflkWZmzXF1962zkDl2pKPh6yVdJfyFMEcc
-         4oMAxiCWLHmtklNrCsBUvi+Yc3ogfSif46rqJOCkzfCYecdp1fW7WyIpjxaKMD4zcS
-         M8BwK/qwBhEbQ==
-Date:   Thu, 10 Aug 2023 20:26:44 +0100
+        b=l5LLl2rsvkRG17mG6WMeOcShoItFHlO0zl6abEQcJpbIjgoEXoXpszP4cfX8C5Hjs
+         0+TYU7GCRf4PoAUOeYSedzKZZ/3FocmtbiHSC2B7rMApA8omTiaHNi5iz1orMwlNRg
+         bEOfiPKjRNNWnbGRK8R7LZL5/LurlI4KhdGEJ12z+VQI+o22Kqino2EichPTlWaUkS
+         ToN9u4EMRCQX/EW/mMdDE7FdBIajaOd9ptHz13bgpYjwOgR6R+Q334zrGeuEEsbNFL
+         BEq2FhsVZZ1kBdnUzNgjrg9k9Ydsq2wGsgJrkvi5UgnzVa3ZOb8JOy48R010wMh59R
+         uD+lBCRD5pzMQ==
+Date:   Thu, 10 Aug 2023 20:28:47 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Hari Nagalla <hnagalla@ti.com>
-Cc:     andersson@kernel.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, s-anna@ti.com,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: k3-dsp: correct optional sram
- properties for AM62A SoCs
-Message-ID: <20230810-dramatic-disregard-c254d763e1fe@spud>
-References: <20230810110545.11644-1-hnagalla@ti.com>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
+        sam@ravnborg.org, neil.armstrong@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: display: newvision,nv3051d: Add
+ Anbernic 351V Support
+Message-ID: <20230810-settling-greyhound-cb9ef7048a2b@spud>
+References: <20230809153941.1172-1-macroalpha82@gmail.com>
+ <20230809153941.1172-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pXtfXRWhPXTRbs8a"
+        protocol="application/pgp-signature"; boundary="MzyQSsnUd6NUiXUc"
 Content-Disposition: inline
-In-Reply-To: <20230810110545.11644-1-hnagalla@ti.com>
+In-Reply-To: <20230809153941.1172-2-macroalpha82@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -60,85 +61,85 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pXtfXRWhPXTRbs8a
+--MzyQSsnUd6NUiXUc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 10, 2023 at 06:05:45AM -0500, Hari Nagalla wrote:
-> The C7xv-dsp on AM62A have 32KB L1 I-cache and a 64KB L1 D-cache. It
-> does not have an addressable l1dram . So, remove this optional sram
-> property from the bindings to fix device tree build warnings.
+On Wed, Aug 09, 2023 at 10:39:40AM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 >=20
-> Also set the 'memory-regions' property as optional. This is because
-> the remote processors can function without carveout regions.
+> Document the Anbernic RG351V panel, which appears to be identical to
+> the panel used in their 353 series except for in inclusion of an
+> additional DSI format flag.
 
-I thought I already said this today, but must be hallucinating - this
-second part here seems like it in an unrelated change that should go in
-its own patch..
+Sure?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
 
 >=20
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
+>  .../display/panel/newvision,nv3051d.yaml       | 18 ++++++++++--------
+>  1 file changed, 10 insertions(+), 8 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc=
-=2Eyaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> index f16e90380df1..8dd22c57e22d 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> @@ -111,7 +111,6 @@ else:
->      properties:
->        compatible:
->          enum:
-> -          - ti,am62a-c7xv-dsp
->            - ti,j721e-c71-dsp
->            - ti,j721s2-c71-dsp
->    then:
-> @@ -124,6 +123,20 @@ else:
->          items:
->            - const: l2sram
->            - const: l1dram
-> +  else:
-> +    if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - ti,am62a-c7xv-dsp
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: Address and Size of the L2 SRAM internal memo=
-ry region
-> +        reg-names:
-> +          items:
-> +            - const: l2sram
+> diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv=
+3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv30=
+51d.yaml
+> index 116c1b6030a2..576f3640cb33 100644
+> --- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.y=
+aml
+> @@ -7,9 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: NewVision NV3051D based LCD panel
 > =20
->  required:
->    - compatible
-> @@ -135,7 +148,6 @@ required:
->    - resets
->    - firmware-name
->    - mboxes
-> -  - memory-region
+>  description: |
+> -  The NewVision NV3051D is a driver chip used to drive DSI panels. For n=
+ow,
+> -  this driver only supports the 640x480 panels found in the Anbernic RG3=
+53
+> -  based devices.
+> +  The NewVision NV3051D is a driver chip used to drive DSI panels.
 > =20
->  unevaluatedProperties: false
+>  maintainers:
+>    - Chris Morgan <macromorgan@hotmail.com>
+> @@ -19,11 +17,15 @@ allOf:
 > =20
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - anbernic,rg353p-panel
+> -          - anbernic,rg353v-panel
+> -      - const: newvision,nv3051d
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - anbernic,rg353p-panel
+> +              - anbernic,rg353v-panel
+> +          - const: newvision,nv3051d
+> +
+> +      - items:
+> +          - const: anbernic,rg351v-panel
+> =20
+>    reg: true
+>    backlight: true
 > --=20
 > 2.34.1
 >=20
 
---pXtfXRWhPXTRbs8a
+--MzyQSsnUd6NUiXUc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNU59AAKCRB4tDGHoIJi
-0ujdAP9/gwpeMbJnjqYnN0kVayzEgItu2KClO+kgQ81UuQw4NgEA5Y6J+VbZyben
-m5NLRRbeqxk7L2omT+VGx0b9piUZ5AM=
-=czQE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNU6bwAKCRB4tDGHoIJi
+0kd7AQD8CIJknzMrEg/5OOgz+XcfwEtfPq/RrBpHSWThntRYvwD/W08epyTcTLlc
+p6rlrgGoUFiBQAOQJtNmc/AOAppGFQk=
+=X2WQ
 -----END PGP SIGNATURE-----
 
---pXtfXRWhPXTRbs8a--
+--MzyQSsnUd6NUiXUc--
