@@ -2,53 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE083778384
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 00:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0C1877839A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 00:26:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbjHJWPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 18:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45428 "EHLO
+        id S230323AbjHJW0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 18:26:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjHJWPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 18:15:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8652E2717
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 15:15:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 22CA463ACA
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 22:15:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2947BC433C8;
-        Thu, 10 Aug 2023 22:15:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691705746;
-        bh=sNiuq58w/afqnKYuniF/wZ1u3RIkBMwmBMx1abxGOxM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uQRGVNfXSeMT7iyeTHaf7FFhYnxAzWDRyHyyGaGV90C0YHhgBkJ5iLHVOszBJcGVV
-         sok6s/Da6x1RlF5ydSKSY8cToW8PQhDNbL2i/vVt7MT2ZCxojoeDRnZjIv+UX7T3jd
-         CuLTnPpFeOqWepFcPBdCRabnfDgO0hxJjfQ2odn2soinmsPyGDWo2PDrlPOggteRqy
-         9gLMN3Wzxg6xERao4VKlpBJIjryYzmV1fQ6J5vj5Uv3zqxlldJ41UPu9iD5+cozgwY
-         Z+JSwcFWAA4L+EzJJaPZVl7ukoc1eU9SUK1ZHsjVMF6DH1gW+OUQopRZwNz1u3b2Gb
-         XFpP1uUqxed7A==
-Received: (nullmailer pid 1433850 invoked by uid 1000);
-        Thu, 10 Aug 2023 22:15:45 -0000
-Date:   Thu, 10 Aug 2023 16:15:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ruan Jinjie <ruanjinjie@huawei.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH -next] of: unittest: Remove redundant of_match_ptr()
-Message-ID: <169170574224.1433744.15892664705938110621.robh@kernel.org>
-References: <20230808094043.2732158-1-ruanjinjie@huawei.com>
+        with ESMTP id S229485AbjHJW0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 18:26:11 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF3E2722;
+        Thu, 10 Aug 2023 15:26:10 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37AMQ1mP040458;
+        Thu, 10 Aug 2023 17:26:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691706361;
+        bh=55HUxK7PVIfiLmrhpTERa00CrfmbFh3I93FoUoUOH48=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=TGP4/I3V3+rHHDSv9OEKkbn4xCvI1dWLIehXlOR0iOyicj1aAZI/aQEg0oCp9fstC
+         P/FaNNR3CceQYERmI/pbrHD/k4lRDvjxONmZM785yqROEedmVevQT980x9Sv2mtTZ5
+         QsGUGV5weGAaNk/xdJqoRSraBtZcT+fQUztetmRQ=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37AMQ1dd061677
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 17:26:01 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 17:26:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 17:26:01 -0500
+Received: from [10.249.48.175] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37AMQ0Da071966;
+        Thu, 10 Aug 2023 17:26:00 -0500
+Message-ID: <750740fb-b6a4-f45e-b8b5-d3400060220d@ti.com>
+Date:   Thu, 10 Aug 2023 17:26:00 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230808094043.2732158-1-ruanjinjie@huawei.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j721e: Enable C7x DSP nodes at the
+ board level
+Content-Language: en-US
+To:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Udit Kumar <u-kumar1@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230809180145.53158-1-afd@ti.com>
+From:   Hari Nagalla <hnagalla@ti.com>
+In-Reply-To: <20230809180145.53158-1-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,16 +71,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 8/9/23 13:01, Andrew Davis wrote:
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -436,6 +436,7 @@ &c66_1 {
+>   };
+>   
+>   &c71_0 {
+> +	status = "okay";
+>   	mboxes = <&mailbox0_cluster4>, <&mbox_c71_0>;
+>   	memory-region = <&c71_0_dma_memory_region>,
+>   			<&c71_0_memory_region>;
+> -- 
 
-On Tue, 08 Aug 2023 17:40:43 +0800, Ruan Jinjie wrote:
-> The driver depends on CONFIG_OF, it is not necessary to use
-> of_match_ptr() here.
-> 
-> Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
-> ---
->  drivers/of/unittest.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
+series acked.
 
-Applied, thanks!
-
+Acked-by: Hari Nagalla <hnagalla@ti.com>
