@@ -2,104 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFE8E77713A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A530477716E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 09:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbjHJHWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 03:22:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
+        id S229896AbjHJHiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 03:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233733AbjHJHWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:22:18 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70DD1994
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:22:16 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-31771a876b5so545578f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:22:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691652135; x=1692256935;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LA29pBHV1Plxnsd8NqiQKipDkaYhRzIouuDaqGKhnGM=;
-        b=rrBWnFHloXMv4UNOZW/QhGD2TAKRq+23t09I9dV4qooy4aTUpBtHCvXgZtTyM2UJzj
-         dEXpa7kpjb4jbvnacTWnhd5eLfwfJthVCw88z8Q4MEbKWYyS/C+m6Vi+hrSg71+lfjd9
-         pP1B21qkuq+4jtQaQG5gpQRGdP4WHsPKm4aLORwKpkQxjr/uQ0V/JMQjQlPgbwhFK2uS
-         NSGWgFXKC6RDd5jR9HpwZhW4lDsCq1cQfaGMkEj6RBaIRMQwJtGnKAFQ3oOjOgnS92W+
-         a1Vovdd+6JIfQEj1iP2XRb+YG7gOmKd+dt1g374N3O7DNXvQmHKhA5YwvUxWppUVHaZo
-         GOUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691652135; x=1692256935;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LA29pBHV1Plxnsd8NqiQKipDkaYhRzIouuDaqGKhnGM=;
-        b=RJBTouHWcvaSc1hUGcXskoB0S3Vy/mZTdxJ4GS2oEbJqgowTHBzCWKR4lEzgv2Sxw0
-         xkFouh3hkQxtMNgohuEtCoZmL5ZtMhfc/j+v56j0L0iI4eywIbYoj7aSKsKPTttiXxpO
-         FC5i2LHjBeX7tUeTqel5JNgMDgdlBZbZ9ss0pQIpzUtUung4B7cdm3nJTjP2OAUyUxCZ
-         wX4GCQjc3uF9ZxkFVsYtjcGdG5RPrI2TH77UEWnmu1DIzyfdcPqQg0lAFhPP6T1lNqaW
-         9dzMyekg7KVpeeLxTj4S2iBQIIMD5+9/A3nu+HGa3bMz5WoLbbsGvLJ1dwF/aXJ07j5e
-         GrGw==
-X-Gm-Message-State: AOJu0YxdUN2UJT4ETk0+TdIMC50n9WWZI3343WDFCcUcCTyFaT/r3SVn
-        OUBqcTBbJ8DAJWpXTt3qx8jitFpRLfchYMKPIk8=
-X-Google-Smtp-Source: AGHT+IFd/KI6g3Jhzci+c9hqE2/m4cUSLCnDUEV2fFbzVcanPSBk+dXkAxPC3mWqzHtojMoFsejfEA==
-X-Received: by 2002:adf:e70d:0:b0:317:568d:d69a with SMTP id c13-20020adfe70d000000b00317568dd69amr1596273wrm.11.1691652135294;
-        Thu, 10 Aug 2023 00:22:15 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.126])
-        by smtp.gmail.com with ESMTPSA id s7-20020adfecc7000000b0031912c0ffebsm403135wro.23.2023.08.10.00.22.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 00:22:14 -0700 (PDT)
-Message-ID: <37782447-43c7-50f9-b9b4-5fbca94ce8c6@linaro.org>
-Date:   Thu, 10 Aug 2023 08:22:13 +0100
+        with ESMTP id S229518AbjHJHiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 03:38:10 -0400
+X-Greylist: delayed 377 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Aug 2023 00:38:09 PDT
+Received: from mail.artskigs.pl (mail.artskigs.pl [217.61.97.244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A56910FF
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 00:38:09 -0700 (PDT)
+Received: by mail.artskigs.pl (Postfix, from userid 1001)
+        id 7A229832AB; Thu, 10 Aug 2023 08:31:52 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=artskigs.pl; s=mail;
+        t=1691652722; bh=0DnDcjJl846YrSvLcp0W7cMkWp4Lfhp/OZAq4oBoaY8=;
+        h=Date:From:To:Subject:From;
+        b=ftqP57YfJdJ6psQADFn0EwCYGiZB1P7kbgoL4dyb5cl021uEWikGAU7jyuULXu8Wn
+         l9coVLQv/Ju4ZRnN0WRZ0MMPk9aVSX0CUWuDoS9RXNF+F7+H15C8aBGxk5SRFnwhaR
+         6koOXlKd1OAxEb5Y/Q4/RX07x8Z0Im5cIyMaGrAX4DHPjfNeoHqkTOWSq62qmdvZ21
+         XNFpD4Tfru4WBuen4vbUcXevF/WcD2Gaw9amLh/9lu6znFEvO/0YOZBVjtmWTFGulG
+         EM+UHC71QMV/YWPOZfSGwmdapCJcJetGS7iCsCEoZE2FzlqYLdyGaIWbFqhBRHJOCe
+         EOyQ/fKEAGSHg==
+Received: by mail.artskigs.pl for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 07:30:08 GMT
+Message-ID: <20230810074502-0.1.5m.rwxt.0.kh6173tbc2@artskigs.pl>
+Date:   Thu, 10 Aug 2023 07:30:08 GMT
+From:   "Krzysztof Maj" <krzysztof.maj@artskigs.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: biznesowy angielski
+X-Mailer: mail.artskigs.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH v3 11/50] dt-bindings: crypto: add sam9x7 in Atmel TDES
-Content-Language: en-US
-To:     Varshini.Rajendran@microchip.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230728102442.265820-1-varshini.rajendran@microchip.com>
- <09bd1388-02aa-32c7-319e-d7150a0f3e9c@linaro.org>
- <1ec901d0-44c2-1d28-5976-d93abfffee67@microchip.com>
-From:   Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <1ec901d0-44c2-1d28-5976-d93abfffee67@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dzie=C5=84 dobry,=20
+
+czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
+swoich pracownik=C3=B3w?
+
+Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
+w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
+ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
+=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
+
+Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
+=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
+re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
+o=C5=BCliwo=C5=9Bci biznesowe.=20
+
+Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
+ kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
+za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
+=2E
+
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
+w i opowiedzie=C4=87 jak dzia=C5=82amy?
 
 
-On 8/10/23 06:38, Varshini.Rajendran@microchip.com wrote:
->> On 7/28/23 11:24, Varshini Rajendran wrote:
->>> Add DT bindings for atmel TDES.
->> NACK. The atmel crypto drivers check the version at runtime and
->> fill a capabilities structure based on the version identified.
->> There's a single compatible regardless of the version of the IP
->> used until now, why do you want to change it?
->>
-> Hi Tudor,
-
-Hi,
-
-> 
-> I am aware that there is no change in the crypto IP used. This patch is 
-> to add a SoC specific compatible as expected by writing-bindings 
-> guideline. Maybe a bit more explanation in the commit description might 
-> do the trick.
-> 
-
-So you add a compatible that will never be used just to comply with
-the writing bindings guideline?
+Pozdrawiam
+Krzysztof Maj
