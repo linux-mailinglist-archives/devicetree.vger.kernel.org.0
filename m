@@ -2,258 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEE5D77777D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3359F77778C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:52:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbjHJLup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 07:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
+        id S234623AbjHJLwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 07:52:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230205AbjHJLuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:50:44 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9146D125;
-        Thu, 10 Aug 2023 04:50:43 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37ABoHk9040014;
-        Thu, 10 Aug 2023 06:50:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691668217;
-        bh=FE7E5AGWhpz4jXEjj/FP6DfavRJUIthZ9J1868D/XLo=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=WUA0ne0xjbd4zm2nlNRoOZz9h4rVcuBu5XCzQ5NGfIKcMRG1HYb49XyweGNmJHZ2H
-         9y5zdrbnHETbnAHsoJGROZlY4bXFWKLbAGE0VkqeHPzErHASqYmFC7rszEt/YWoPMx
-         jzqZb8B4DfIBAFL7ItV4k9AFuoSrR90z1uSz7cPE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37ABoHlQ072490
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Aug 2023 06:50:17 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Aug 2023 06:50:17 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Aug 2023 06:50:17 -0500
-Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37ABoBqe076317;
-        Thu, 10 Aug 2023 06:50:11 -0500
-Message-ID: <c7ddb12d-ae18-5fc2-9729-c88ea73b21d7@ti.com>
-Date:   Thu, 10 Aug 2023 17:20:10 +0530
+        with ESMTP id S230304AbjHJLwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:52:38 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB99591
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:52:37 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fbea147034so7019475e9.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1691668356; x=1692273156;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LzeCdbBciwn7kH7WZmbFrdgE1gfhiupvQ81rtSDk07c=;
+        b=118qziD2W+rfwz0DpuQFBmynEfBXPsFJSqJJ4k6Lxr2K620u++rUm3BYhCybqgaT/B
+         GWgi8pRP4OAKAKKD6DQ19lRlZfn3tRQ4O7o6eKMZaCxj17D/ZU30A6t0gn1pwh/ptlfh
+         xKMOZXhSqnl8AF0mCuOIIJ2zcAuFI+RjR9eHfEkaMz+G5y8jZSuoxjzrNk3JG40QgfFd
+         d56Ug28KkYd8IVXyyGl7u0bbPkuBgqMtR7tkNqoxXVVWQKJNUJc2yPsDFGNhfs57Xq/5
+         Y8CRtwMOgBJlgeabA/WyT7uigmRWUe1l2rwJjbYLg9g+SjpCQ/JzGVY5JSIqF62ioHdg
+         wCJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691668356; x=1692273156;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LzeCdbBciwn7kH7WZmbFrdgE1gfhiupvQ81rtSDk07c=;
+        b=gmo4CxNCyAkSKKTAzPoptEuBA4dXOEvReciPhhYLsCWRmRxd7EHAzwcnbpS+foePLG
+         AukIKAho1guhTe88PpvlYSgqlXmAqc1DKRAilAmd5Nv6H9ML/lO3oXDckR52eLUfH2jC
+         ZGW+am6bFbNJVGHM9lz1Uj+bP8D7SGH+exTY3ZxTWS2904Hfiwxh43TeXao2Ve9OPREo
+         zx6VUugg9zbkQBs4gOpXsOUHI+y9RiGIUbGE3bX8lHfQAPNS/Xgh3D3npD76Vk/vi99Z
+         K2QXKDhcSxDzdV68TRZMNCtsuoY1gazgYxHfyZ580xtW0V4b0f57DZgHTWEFQ+zJKEKg
+         K3FA==
+X-Gm-Message-State: AOJu0Yy5kjFbHlQbgLhYmFhYqgKU3cb5lKWLbEeOL04PSBS0vD03r//1
+        DHuAXxufDeagzGI7peOYcW3tSA==
+X-Google-Smtp-Source: AGHT+IFpMuAhv3k//+OE0f3WJUydfC1p15CKoDeiqUpsdDCYRM24s+94jA9tJ2Y94hDl1IjZzGG/gQ==
+X-Received: by 2002:a05:600c:2210:b0:3fb:d1c1:9b79 with SMTP id z16-20020a05600c221000b003fbd1c19b79mr1598472wml.30.1691668356070;
+        Thu, 10 Aug 2023 04:52:36 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t18-20020adff612000000b00317b0155502sm1967652wrp.8.2023.08.10.04.52.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 04:52:35 -0700 (PDT)
+Message-ID: <d7bf9370-ac5a-8d5a-f0f7-06b6a97092c8@nexus-software.ie>
+Date:   Thu, 10 Aug 2023 12:52:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 3/5] net: ti: icss-iep: Add IEP driver
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 4/6] soc: qcom: Add LLCC support for multi channel DDR
 Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230809114906.21866-1-danishanwar@ti.com>
- <20230809114906.21866-4-danishanwar@ti.com>
- <b43ee5ca-2aab-445a-e24b-cbc95f9186ea@ti.com>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <b43ee5ca-2aab-445a-e24b-cbc95f9186ea@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        srinivas.kandagatla@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230810061140.15608-1-quic_kbajaj@quicinc.com>
+ <20230810061140.15608-5-quic_kbajaj@quicinc.com>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <20230810061140.15608-5-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
-
-On 09/08/23 8:30 pm, Andrew Davis wrote:
-> On 8/9/23 6:49 AM, MD Danish Anwar wrote:
->> From: Roger Quadros <rogerq@ti.com>
->>
->> Add a driver for Industrial Ethernet Peripheral (IEP) block of PRUSS to
->> support timestamping of ethernet packets and thus support PTP and PPS
->> for PRU ethernet ports.
->>
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
->> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>   drivers/net/ethernet/ti/Kconfig          |  12 +
->>   drivers/net/ethernet/ti/Makefile         |   1 +
->>   drivers/net/ethernet/ti/icssg/icss_iep.c | 935 +++++++++++++++++++++++
->>   drivers/net/ethernet/ti/icssg/icss_iep.h |  38 +
->>   4 files changed, 986 insertions(+)
->>   create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.c
->>   create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.h
->>
->> diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
->> index 63e510b6860f..88b5b1b47779 100644
->> --- a/drivers/net/ethernet/ti/Kconfig
->> +++ b/drivers/net/ethernet/ti/Kconfig
->> @@ -186,6 +186,7 @@ config CPMAC
->>   config TI_ICSSG_PRUETH
->>       tristate "TI Gigabit PRU Ethernet driver"
->>       select PHYLIB
->> +    select TI_ICSS_IEP
+On 10/08/2023 07:11, Komal Bajaj wrote:
+> Add LLCC support for multi channel DDR configuration
+> based on a feature register.
 > 
-> Why not save selecting this until you add its use in the ICSSG_PRUETH driver in
-> the next patch.
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>   drivers/soc/qcom/llcc-qcom.c | 27 +++++++++++++++++++++++++--
+>   1 file changed, 25 insertions(+), 2 deletions(-)
 > 
-
-The next patch is only adding changes to icssg-prueth .c /.h files. This patch
-is adding changes to Kconfig and the Makefile. To keep it that way selecting
-this is added in this patch. No worries, I will move this to next patch.
-
-> [...]
+> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+> index 76e8083d053d..4fad2cff5e1e 100644
+> --- a/drivers/soc/qcom/llcc-qcom.c
+> +++ b/drivers/soc/qcom/llcc-qcom.c
+> @@ -12,6 +12,7 @@
+>   #include <linux/kernel.h>
+>   #include <linux/module.h>
+>   #include <linux/mutex.h>
+> +#include <linux/nvmem-consumer.h>
+>   #include <linux/of.h>
+>   #include <linux/of_device.h>
+>   #include <linux/regmap.h>
+> @@ -998,6 +999,24 @@ static int qcom_llcc_cfg_program(struct platform_device *pdev,
+>   	return ret;
+>   }
 > 
->> +
->> +static u32 icss_iep_readl(struct icss_iep *iep, int reg)
->> +{
->> +    return readl(iep->base + iep->plat_data->reg_offs[reg]);
->> +}
+> +static int qcom_llcc_get_cfg_index(struct platform_device *pdev, u8 *cfg_index, int num_config)
+> +{
+> +	int ret;
+> +
+> +	ret = nvmem_cell_read_u8(&pdev->dev, "multi-chan-ddr", cfg_index);
+> +	if (ret == -ENOENT || ret == -EOPNOTSUPP) {
+> +		if (num_config != DEF_NUM_CFG)
+> +			return -EINVAL;
+> +		*cfg_index = DEF_NUM_CFG - 1;
+> +		return 0;
+> +	}
+> +
+> +	if (!ret && *cfg_index >= num_config)
+> +		ret = -EINVAL;
+> +
+> +	return ret;
+> +}
+> +
+>   static int qcom_llcc_remove(struct platform_device *pdev)
+>   {
+>   	/* Set the global pointer to a error code to avoid referencing it */
+> @@ -1034,6 +1053,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>   	const struct qcom_llcc_config *cfg;
+>   	const struct llcc_slice_config *llcc_cfg;
+>   	u32 sz;
+> +	u8 cfg_index;
+>   	u32 version;
+>   	struct regmap *regmap;
 > 
-> Do these one line functions really add anything? Actually why
-> not use the regmap you have here.
-
-These one line functions are not really adding anything but they are acting as
-a wrapper around readl /writel and providing some sort of encapsulation as
-directly calling readl will result in a little complicated code.
-
-/* WIth One line function */
-ts_lo = icss_iep_readl(iep, ICSS_IEP_COUNT_REG0);
-
-/* Without one line function */
-ts_lo = readl(iep->base, iep->plat_data->reg_offs[ICSS_IEP_COUNT_REG0]);
-
-Previously regmap was used in this driver. But in older commit [1] in
-5.10-ti-linux-kernel (Before I picked the driver for upstream) it got changed
-to readl / writel stating that regmap_read / write is too slow. IEP is time
-sensitive and needs faster read and write, probably because of this they
-changed it.
-
+> @@ -1051,11 +1071,14 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>   	}
 > 
-> [...]
+>   	cfgs = of_device_get_match_data(&pdev->dev);
+> -	if (!cfgs || cfgs->num_config != DEF_NUM_CFG) {
+> +	if (!cfgs) {
+>   		ret = -EINVAL;
+>   		goto err;
+>   	}
+> -	cfg = &cfgs->llcc_config[DEF_NUM_CFG - 1];
+> +	ret = qcom_llcc_get_cfg_index(pdev, &cfg_index, cfgs->num_config);
+> +	if (ret)
+> +		goto err;
+> +	cfg = &cfgs->llcc_config[cfg_index];
 > 
->> +static void icss_iep_enable(struct icss_iep *iep)
->> +{
->> +    regmap_update_bits(iep->map, ICSS_IEP_GLOBAL_CFG_REG,
->> +               IEP_GLOBAL_CFG_CNT_ENABLE,
->> +               IEP_GLOBAL_CFG_CNT_ENABLE);
-> 
-> Have you looked into regmap_fields?
+>   	ret = regmap_read(regmap, cfg->reg_offset[LLCC_COMMON_STATUS0], &num_banks);
+>   	if (ret)
+> --
+> 2.41.0
 > 
 
-No I hadn't. But now I looked into regmap_fields, seems to be another way to
-update the bits, instead of passing mask and value, regmap_filed_read / write
-only takes the value. But for that we will need to create a regmap field. If
-you want me to switch to regmap_fields instead of regmap_update_bits I can make
-the changes. But I am fine with regmap_update_bits().
+This patch doesn't apply to -next
 
-> [...]
-> 
->> +
->> +    if (!!(iep->latch_enable & BIT(index)) == !!on)
->> +        goto exit;
->> +
-> 
-> There has to be a better way to write this logic..
-> 
-> [...]
-> 
->> +
->> +static const struct of_device_id icss_iep_of_match[];
->> +
-> 
-> Why the forward declaration?
+deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git checkout -b 
+llc-review-v0 linux-next/master
+branch 'llc-review-v0' set up to track 'linux-next/master'.
+Switched to a new branch 'llc-review-v0'
+deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am < 
+../patches/linux/lllc-review/v0/\[PATCH\ 1_6\]\ dt-bindings\:\ cache\:\ 
+qcom\,llcc\:\ Add\ LLCC\ compatible\ for\ QDU1000_QRU1000\ -\ Komal\ 
+Bajaj\ \<quic_kbajaj@quicinc.com\>\ -\ 2023-08-10\ 0711.eml
+Applying: dt-bindings: cache: qcom,llcc: Add LLCC compatible for 
+QDU1000/QRU1000
+deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am < 
+../patches/linux/lllc-review/v0/\[PATCH\ 2_6\]\ soc\:\ qcom\:\ llcc\:\ 
+Refactor\ llcc\ driver\ to\ support\ multiple\ configuration\ -\ Komal\ 
+Bajaj\ \<quic_kbajaj@quicinc.com\>\ -\ 2023-08-10\ 0711.eml
+Applying: soc: qcom: llcc: Refactor llcc driver to support multiple 
+configuration
+deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am < 
+../patches/linux/lllc-review/v0/\[PATCH\ 3_6\]\ nvmem\:\ core\:\ Add\ 
+stub\ for\ nvmem_cell_read_u8\ -\ Komal\ Bajaj\ 
+\<quic_kbajaj@quicinc.com\>\ -\ 2023-08-10\ 0711.eml
+Applying: nvmem: core: Add stub for nvmem_cell_read_u8
+deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am < 
+../patches/linux/lllc-review/v0/\[PATCH\ 4_6\]\ soc\:\ qcom\:\ Add\ 
+LLCC\ support\ for\ multi\ channel\ DDR\ -\ Komal\ Bajaj\ 
+\<quic_kbajaj@quicinc.com\>\ -\ 2023-08-10\ 0711.eml
+Applying: soc: qcom: Add LLCC support for multi channel DDR
+error: patch failed: drivers/soc/qcom/llcc-qcom.c:12
+error: drivers/soc/qcom/llcc-qcom.c: patch does not apply
+Patch failed at 0001 soc: qcom: Add LLCC support for multi channel DDR
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
 
-I will remove this, I don't see any reason for this.
+6f48f84d73ab5 (HEAD -> llc-review-v0) HEAD@{0}: am --abort
+6f48f84d73ab5 (HEAD -> llc-review-v0) HEAD@{1}: am: nvmem: core: Add 
+stub for nvmem_cell_read_u8
+7e5adcab05af4 HEAD@{2}: am: soc: qcom: llcc: Refactor llcc driver to 
+support multiple configuration
+0990c31774948 HEAD@{3}: am: dt-bindings: cache: qcom,llcc: Add LLCC 
+compatible for QDU1000/QRU1000
+21ef7b1e17d03 (tag: next-20230809, linux-next/master) HEAD@{4}: 
+checkout: moving from linux-next-23-08-07-db410c-rb3-camss-dts-v2 to 
+llc-review-v0
 
-> 
->> +static int icss_iep_probe(struct platform_device *pdev)
->> +{
->> +    struct device *dev = &pdev->dev;
->> +    struct icss_iep *iep;
->> +    struct clk *iep_clk;
->> +
->> +    iep = devm_kzalloc(dev, sizeof(*iep), GFP_KERNEL);
->> +    if (!iep)
->> +        return -ENOMEM;
->> +
->> +    iep->dev = dev;
->> +    iep->base = devm_platform_ioremap_resource(pdev, 0);
->> +    if (IS_ERR(iep->base))
->> +        return -ENODEV;
->> +
->> +    iep_clk = devm_clk_get(dev, NULL);
->> +    if (IS_ERR(iep_clk))
->> +        return PTR_ERR(iep_clk);
->> +
->> +    iep->refclk_freq = clk_get_rate(iep_clk);
->> +
->> +    iep->def_inc = NSEC_PER_SEC / iep->refclk_freq;    /* ns per clock tick */
->> +    if (iep->def_inc > IEP_MAX_DEF_INC) {
->> +        dev_err(dev, "Failed to set def_inc %d.  IEP_clock is too slow to be
->> supported\n",
->> +            iep->def_inc);
->> +        return -EINVAL;
->> +    }
->> +
->> +    iep->plat_data = of_device_get_match_data(dev);
-> 
-> Directly using of_*() functions is often wrong, try just device_get_match_data().
-> 
-
-Sure. I will change to device_get_match_data().
-
-> [...]
-> 
->> +static struct platform_driver icss_iep_driver = {
->> +    .driver = {
->> +        .name = "icss-iep",
->> +        .of_match_table = of_match_ptr(icss_iep_of_match),
-> 
-> This driver cannot work without OF, using of_match_ptr() is not needed.
-> 
-
-Sure, I will drop of_match_ptr().
-
-> Andrew
-
-
-For reading and updating registers, we can have
-	1. icss_iep_readl / writel and regmap_update_bits() OR
-	2. regmap_read / write and regmap_update_bits() OR
-	3. icss_iep_readl / writel and regmap_fields OR
-	4. regmap_read / write and regmap_fields
-	
-
-Currently we are using 1. Please let me know if you are fine with this and I
-can continue using 1. If not, please let me know your recommendation out of this 4.
-
-[1]
-https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=linux-5.10.y&id=f4f45bf71cad5be232536d63a0557d13a7eed162
-
--- 
-Thanks and Regards,
-Danish.
+---
+bod
