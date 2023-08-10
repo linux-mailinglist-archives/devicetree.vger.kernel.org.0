@@ -2,86 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8F5777C28
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 17:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48DDC777C47
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 17:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233288AbjHJP1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 11:27:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34708 "EHLO
+        id S233698AbjHJPgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 11:36:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235813AbjHJP1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 11:27:44 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4A326B9
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 08:27:43 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fe2ba3e260so9249175e9.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 08:27:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691681262; x=1692286062;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ab5XjXMrLMf6LEqqqdrujtFLjlUS/mjFj+sFiq7n94I=;
-        b=YmfJ79QBAcJsDXL9tH2gXu8kzw09ThG3Q3Lvwah0J8/H8rXEVv90r0vgEE89q9HCGy
-         RGVagtCqIGjYZEbXAHjLxeflMDp6skizdITnuPvwAgIpmVXEI60uCJ8GUY8seiN2o+h7
-         nmWsBO0UC09VQkBqbc7NqNgixxhlx8hBTe7++GuBlgFHfVjg06LrlMMeQzLXl5Me/xQn
-         ZhSS1XbkepQxyuESSIsyY7EhkCOQq1Nt48My1irkEl/qbhRxd/p+ykieQT00fQIJbaEG
-         N75CfHVKYH8sSs5PXf/uYnSmvM1OLWaIsHaR/AYa8I4Q1P9ZEgGbU631NQRhWGeTT+Gq
-         JPDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691681262; x=1692286062;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ab5XjXMrLMf6LEqqqdrujtFLjlUS/mjFj+sFiq7n94I=;
-        b=aFM5GUqJVfbO2z1qiFdoOXUsZiiSrlB0hEOTMBbPr5Zqqhmam9IxXP4D6wcWR2zLdZ
-         57zqozoxKAeYexzlfTdZ9MppDes7dYwQiudbWlxI1JRtK94oAACRP+3QgKfM+LT0RBZr
-         wJgbBVxSsl2eT1T7N53PCAXNrQp1NZdLBSyIQua/0167AjjoRafhSJwo/Pd53MlaleQP
-         Ttnb8jGXgdRRlPU/1ZhG/RbYHJIKuDriVFB8oAuwjb1fpETHC9hGjgyPZry8l2IeT+9O
-         FAysENMuntP+Q2DDmPxvj2SZU95ytf4ZhPuB/7og2qvUyi6wBSRvpgxv3T9RGzRdsnJt
-         QMAw==
-X-Gm-Message-State: AOJu0Yx/W8TC9YsQTvo5EjQYoURk5aykn4MAVUkd4k+Jy4iYmoOj8bim
-        O4OxgFCDBpa5KsvfyDVHvr0YM7lh4cbU8a97i7k=
-X-Google-Smtp-Source: AGHT+IGJTs9iCT+ZKzq9qboSSVelpmldObteUz4SoY7k3uQ1SHUelg98UZCy7PnfjLqmvuu5Iw9i3w==
-X-Received: by 2002:a7b:c7cc:0:b0:3fb:b3aa:1c8a with SMTP id z12-20020a7bc7cc000000b003fbb3aa1c8amr2264904wmk.16.1691681261773;
-        Thu, 10 Aug 2023 08:27:41 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id fk3-20020a05600c0cc300b003fc05b89e5bsm2474249wmb.34.2023.08.10.08.27.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 08:27:41 -0700 (PDT)
-Message-ID: <2fa7e5d8-1aa5-0a07-7533-c54cc55de66d@linaro.org>
-Date:   Thu, 10 Aug 2023 16:27:40 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: apq8016-sbc-d3-camera-mezzanine:
- Move default ov5640 to a standalone dts
-Content-Language: en-US
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, loic.poulain@linaro.org, rfoss@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S233241AbjHJPgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 11:36:51 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABD5526B6;
+        Thu, 10 Aug 2023 08:36:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1691681810; x=1723217810;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=NTbuf4AyYKmPslKaW6cwFEVLhlsLUMNyTDrHunTksbU=;
+  b=ZyuunNgI9aQM6CTyHwawW5DXskTwB5GHO43oqwp0gbPQJZc18iJeMDoo
+   Y2a6xda8bAGZORIN/WMnaMUmIDqwXhALzqaToU8rElG9SYnhTR8B0+TQr
+   GpfY9iD4PdAoUECJxuovS7A8jjDvgEbd6f89H8CBhHo4bXiFzjG4s0AQP
+   DeWT/ytpTIhH7t4jFoOngx4YgbZ+OO+iblzNSS7CdxFqO2CPC9HBRMTlD
+   TYg8d2QflWK+fwOz+V2uNRX4tneNt1KvZ0QgfrmIiEWo0eSoO3ce3jLhx
+   WwicXzNtT5T4W1BX/p5ePeTqA7gTWAn7NZXAMeseiqKCnDgv26BR38DSw
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="375149709"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
+   d="scan'208";a="375149709"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2023 08:36:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="761819428"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
+   d="scan'208";a="761819428"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga008.jf.intel.com with ESMTP; 10 Aug 2023 08:36:39 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qU7iH-0079nW-0e;
+        Thu, 10 Aug 2023 18:36:37 +0300
+Date:   Thu, 10 Aug 2023 18:36:36 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc:     Dumitru Ceclan <mitrutzceclan@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Okan Sahin <okan.sahin@analog.com>,
+        Niklas Schnelle <schnelle@linux.ibm.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Lee Jones <lee@kernel.org>, Haibo Chen <haibo.chen@nxp.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+        Ceclan Dumitru <dumitru.ceclan@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230809202343.1098425-1-bryan.odonoghue@linaro.org>
- <20230809202343.1098425-6-bryan.odonoghue@linaro.org>
- <ZNT9nLaSBZvm1HNe@gerhold.net>
- <d839ef44-3427-88b8-513e-a84b24cc6929@linaro.org>
-In-Reply-To: <d839ef44-3427-88b8-513e-a84b24cc6929@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 2/2] iio: adc: ad717x: add AD717X driver
+Message-ID: <ZNUEBDsMg6UfeOtl@smile.fi.intel.com>
+References: <20230810093322.593259-1-mitrutzceclan@gmail.com>
+ <20230810093322.593259-2-mitrutzceclan@gmail.com>
+ <34f5e2118a4714048231e6ee9a8f244248616bd0.camel@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <34f5e2118a4714048231e6ee9a8f244248616bd0.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2023 16:26, Bryan O'Donoghue wrote:
-> probably good in LK
+On Thu, Aug 10, 2023 at 01:57:02PM +0200, Nuno Sá wrote:
+> On Thu, 2023-08-10 at 12:33 +0300, Dumitru Ceclan wrote:
 
-lk2nd obvs !
+...
+
+> Is ad717x_gpio_cleanup() being used anywhere? Moreover I would maybe just get rid of
+> the #ifdef wrapper and just select GPIOLIB. How often will it be disabled anyways?
+
+The agreement is that users are depend on and not selecting GPIOLIB.
+Any news in these agreement terms?
+
+...
+
+> > +       id &= AD717X_ID_MASK;
+> > +       if (id != st->info->id)
+> > +               dev_warn(&st->sd.spi->dev, "Unexpected device id: %x, expected:
+> > %x\n",
+> > +                                           id, st->info->id);
+> > +
+> 
+> Shouldn't we error out?
+
+It seems a new way of thinking about unsupported CHIP ID. Dunno if hw vendors
+won't ever do a dirty trick that new ID must be programmed differently and
+otherwise burn hardware to a smoke...
+
+I'm with you here, unknown chips mustn't be supported.
+
+...
+
+> > +                               *val = -(1 << (chan->scan_type.realbits - 1));
+> 
+> nit: I don't expect the driver to really be updated with more devices (it's
+> like this for a long time) but the above is not very extensible... Imagine we
+> add a device with 32bit channels? We would enter shady waters If I'm not
+> missing anything.
+
+Also 1 << 31 is UB in accordance with C standard.
+
+...
+
+> > +       st->info = device_get_match_data(&spi->dev);
+> > +       if (!st->info)
+> > +               return -ENODEV;
+> > +
+> 
+> spi_get_device_match_data() (not really sure if this is still applicable
+> since some work related to this is being done for i2c - and eventually in spi
+> I guess).
+
+Still applicable.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
