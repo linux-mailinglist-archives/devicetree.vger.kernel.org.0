@@ -2,164 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A1A7772D6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F5B7772E2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 10:28:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231430AbjHJI0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 04:26:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53342 "EHLO
+        id S233528AbjHJI2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 04:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbjHJI0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:26:22 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84DE4DC;
-        Thu, 10 Aug 2023 01:26:21 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1bc73a2b0easo5355955ad.0;
-        Thu, 10 Aug 2023 01:26:21 -0700 (PDT)
+        with ESMTP id S233210AbjHJI1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 04:27:54 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E661DF3
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:27:52 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-584243f84eeso8578017b3.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 01:27:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691655981; x=1692260781;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YyYLtAiSPm/jR0Yq/J8XmIODN3EVvM9jc+bkni7Ghjg=;
-        b=NcpclQmFc674BU9xqAEWd/Z9vv/QSngKSmt48UMEkeI+EUgaRrDHiYr3+PN7NFxmMI
-         C1Z9B4OiWQL43DpFVoOEufXz5IgGx3avNFjyi7uOiQTOhhrpeNfCP1yVYX0QMLaBh/Bv
-         gwu6T9KjIqFuolYw4GGP7ZINz3flI6rG3fFmdn/yU0IUh/ri98FDyVf1RCVaS9s7KDHe
-         L7AIP2NwQvpG/ZIe2CUVsacr39zul3HOTo87EPFLyjenf+waoPsZo9UZ/zicR4/MrUjy
-         R+d2H6U9NugqUvHbsQF2E1xvq10QmG7bjF/dpTaaSZ9gJcn2uWByMz0K29FxyU19Ub3A
-         Po1g==
+        d=linaro.org; s=google; t=1691656072; x=1692260872;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j5CdkAgc0fdEPUHj9O82k/kTQ6xmErn6XcPLACwJvd4=;
+        b=mmI5rBV7acGNfMX6damE4Hc4jPx7mptZ5eZ8BGglfS1X1ka42HS87UoWx9srEaNoGB
+         e9po/52U3cUphRowfFlI8/YN01DNCqQ6h7JZUXPTmB/N/H7lp9X9Z58o+xmccQKdKp68
+         wELs5YiObeLXvwGHohzfT4SxFVBuFigbj4dc/oOUwntm5pyi965C5j1STdSZBb0oqWsl
+         odkoFYbpX0AspgsAwNQ2Gx/z2Eh7jQBrApkByPf5j2OefI1FN4GkYZK7KLjlXHkClTrb
+         Q467PZrDkk6OYv8eiENREdRNzHxYPdQfDoKMrfOU+YU4A7uM3XKBp9Xtsk2L02TZR1HR
+         qcaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691655981; x=1692260781;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YyYLtAiSPm/jR0Yq/J8XmIODN3EVvM9jc+bkni7Ghjg=;
-        b=LIhyTSckaeN9okGuJkmpuVqlWgoXltGP/SOcX9SFHkGeZFyPs9wAAT968Z+d5DgZ+E
-         IAZdKi6R0Yi7f/n3arvI29UNAmQ215rwVevODCszFoyD2Z6ADxP6JTm4DvrqsNadCgbD
-         3qdbSuiBs5YsTPENXGXJhhhnUghT9WxjIFmAErfmYnr7Nr8PatcVG7rtK6Ry2bkZyroh
-         IlT2bFrVXglZEsb04xMms2NS2j7p4DqEkei90TDPkul03PvF0Cs4dvUm2ZBmocO6jOg2
-         ro8Vw2gKgcHmAf821egvXBErWUAGAlFe+6fT9wvB4Twlx55Et6uZCJBiAdeuUC8akqhr
-         OvCg==
-X-Gm-Message-State: AOJu0YwSsnfiORgk5YJuDQaaKEjoBDnLzjHrizNh70NXwoGM7cnYblLs
-        tiZQEMQ4wqoBNIDL/TVA1z8=
-X-Google-Smtp-Source: AGHT+IFEOBb7J2YylGCtStfggHdcYQr2dmrb4aRn5BcqslpwODeGItvSG6+rqAUioEWA5RCqAKGXVw==
-X-Received: by 2002:a17:902:ecc1:b0:1bb:a367:a77 with SMTP id a1-20020a170902ecc100b001bba3670a77mr1735345plh.31.1691655980854;
-        Thu, 10 Aug 2023 01:26:20 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id jc3-20020a17090325c300b001b86492d724sm1053650plb.223.2023.08.10.01.26.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Aug 2023 01:26:20 -0700 (PDT)
-Message-ID: <fe38eff9-dff6-3128-3110-33739d8c1280@gmail.com>
-Date:   Thu, 10 Aug 2023 16:26:16 +0800
+        d=1e100.net; s=20221208; t=1691656072; x=1692260872;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j5CdkAgc0fdEPUHj9O82k/kTQ6xmErn6XcPLACwJvd4=;
+        b=bHBoH6Emc8nXq+Uxpkrmjglr7LCCda+KrylhP6avPbVMBs0WHtsmroRHUURaX3WbDg
+         Ivp2fMXPXMF+V3LTwdlSrOW3VMJnDuBCw9Kfpo+xcf100p9ISB9wfU9c8VqG7B3zWShS
+         awgMF+uKADq/B8BQzcpkyyS0/ixLFhC/CUH4mB5MbR3C1Gc1ndYEsdyuRQKCOE2QZyvE
+         t+eEChsCy0Go0WBsf53aTazsyU5dHgT84mGPfIGFCD/u4E8iItwpW2kUycyxSRVTlw/u
+         /VoF7ecEEFkiV0UXfCLcauLDg5TgIMe7ce3WFmVSiU+ZwDOSyRxvhGQnU8GVDJTUUcal
+         8bww==
+X-Gm-Message-State: AOJu0YyOoufRMTea3nEFguHTIgPQ7CO9z5pHa+zpeGSr/QNheeXMb+C3
+        OgIctKNK1ZzUHXcpKBYEgt5bqzyvt3Uu1KWvUSzU86NCS7cr5j5u
+X-Google-Smtp-Source: AGHT+IGb9UJIoov1f30J/u3KKnaNNAQbNHH+aUmb7Z0YBojux5Quco+Ug31NqtZsglrRU6A7eGu0x1R8NPq+CXS8ZWE=
+X-Received: by 2002:a0d:d4d0:0:b0:589:8b55:f8cf with SMTP id
+ w199-20020a0dd4d0000000b005898b55f8cfmr1680900ywd.50.1691656072168; Thu, 10
+ Aug 2023 01:27:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [RESEND PATCH v2 3/3] rtc: Add driver for Nuvoton ma35d1 rtc
- controller
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230809011542.429945-1-ychuang570808@gmail.com>
- <20230809011542.429945-4-ychuang570808@gmail.com>
- <20230809021025a7c0daec@mail.local>
- <426130f6-7b8a-91f9-559b-afc5afdc656e@gmail.com>
- <2023080922515326db190e@mail.local>
- <347cf148-bda8-852b-768c-fa2b57ce5bcb@gmail.com>
- <20230810073015d5545903@mail.local>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <20230810073015d5545903@mail.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230807074043.31288-1-zhuyinbo@loongson.cn> <20230807074043.31288-3-zhuyinbo@loongson.cn>
+In-Reply-To: <20230807074043.31288-3-zhuyinbo@loongson.cn>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 10 Aug 2023 10:27:41 +0200
+Message-ID: <CACRpkdZfx8BGHxj4OyS7HG9=mq5DrVHzHKhehxV1nfKwyMHpwQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] gpio: loongson: add firmware offset parse support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Yinbo,
 
+thanks for your patch!
 
-On 2023/8/10 下午 03:30, Alexandre Belloni wrote:
-> On 10/08/2023 15:21:47+0800, Jacky Huang wrote:
->>>>>> +	return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static int ma35d1_rtc_suspend(struct platform_device *pdev, pm_message_t state)
->>>>>> +{
->>>>>> +	struct ma35_rtc *rtc = platform_get_drvdata(pdev);
->>>>>> +	u32 regval;
->>>>>> +
->>>>>> +	if (device_may_wakeup(&pdev->dev))
->>>>>> +		enable_irq_wake(rtc->irq_num);
->>>>>> +
->>>>>> +	regval = rtc_reg_read(rtc, MA35_REG_RTC_INTEN);
->>>>>> +	regval &= ~RTC_INTEN_TICKIEN;
->>>>>> +	rtc_reg_write(rtc, MA35_REG_RTC_INTEN, regval);
->>>>> This is not what the user is asking, don't do this. Also, how was this
->>>>> tested?
->>>> Sure, I will remove these three lines of code.
->>>>
->>>> We test it with "echo mem > /sys/power/state".
->>>>
->>> Yes, my point is that if UIE is enabled, then the user wants to be woken
->>> up every second. If this is not what is wanted, then UIE has to be
->>> disabled before going to suspend.
->>>
->>> My question is why are you enabling RTC_INTEN_TICKIEN in probe? I don't
->>> expect anyone to use an actual hardware tick interrupt, unless the alarm
->>> is broken and can't be set every second. This is why I questioned the
->>> RTC_UF path because I don't expect it to be taken at all.
->> Yes, we will remove TICKIEN from probe and modify ma35d1_alarm_irq_enable().
->> TICKIEN will be enabled only if UIE is enabled.
->>
->> static int ma35d1_alarm_irq_enable(struct device *dev, unsigned int enabled)
->> {
->>      struct ma35d1_rtc *rtc = dev_get_drvdata(dev);
->>
->>      if (enabled) {
->>          if (rtc->rtc->uie_rtctimer.enabled)
->>              rtc_reg_write(rtc, NVT_RTC_INTEN,
->>                        (rtc_reg_read(rtc,
->> NVT_RTC_INTEN)|(RTC_INTEN_TICKIEN)));
+On Mon, Aug 7, 2023 at 9:41=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wro=
+te:
+
+> Loongson GPIO controllers come in multiple variants that are compatible
+> except for certain register offset values.  Add support for device
+> properties allowing to specify them in ACPI or DT.
 >
-> Don't do that unless the regular alarm can't be set every second. Simply
-> always use ALMIEN, then check rtctest is passing properly.
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
-OK, I got it. I will drop the TICKINT and use ALMIEN only.
+(...)
+> @@ -26,6 +26,7 @@ struct loongson_gpio_chip_data {
+>         unsigned int            conf_offset;
+>         unsigned int            out_offset;
+>         unsigned int            in_offset;
+> +       unsigned int            inten_offset;
 
-MA35D1 RTC has an alarm mask register which supports alarm mask for 
-seconds, minutes, and hours.
-We will use the alarm mask to have RTC generate an alarm interrupt per 
-second, and make sure
-the driver can pass rtctest.
+Consider just changing all of these from unsigned int to u32.
 
->>          if (rtc->rtc->aie_timer.enabled)
->>              rtc_reg_write(rtc, NVT_RTC_INTEN,
->>                        (rtc_reg_read(rtc,
->> NVT_RTC_INTEN)|(RTC_INTEN_ALMIEN)));
->>      } else {
->>          if (rtc->rtc->uie_rtctimer.enabled)
->>              rtc_reg_write(rtc, NVT_RTC_INTEN,
->>                        (rtc_reg_read(rtc, NVT_RTC_INTEN) &
->> (~RTC_INTEN_TICKIEN)));
->>          if (rtc->rtc->aie_timer.enabled)
->>              rtc_reg_write(rtc, NVT_RTC_INTEN,
->>                        (rtc_reg_read(rtc, NVT_RTC_INTEN) &
->> (~RTC_INTEN_ALMIEN)));
->>      }
->>      return 0;
->> }
->>
+(...)
+> +       if (device_property_read_u32(dev, "loongson,gpio-conf-offset", (u=
+32 *)&d->conf_offset)
+> +           || device_property_read_u32(dev, "loongson,gpio-in-offset", (=
+u32 *)&d->in_offset)
+> +           || device_property_read_u32(dev, "loongson,gpio-out-offset", =
+(u32 *)&d->out_offset)
+> +           || device_property_read_u32(dev, "loongson,gpio-ctrl-mode", (=
+u32 *)&d->mode))
 
+Because then you can get rid of this annoying forest of cast.
 
-Best Regards,
-Jacky Huang
+I'm fine with doing this change in this patch without a need for a separate
+refactoring, as it's just a contained driver and clearly just about typing.
 
+Yours,
+Linus Walleij
