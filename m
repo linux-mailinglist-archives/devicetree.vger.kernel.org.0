@@ -2,193 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C893C7776F3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B3ED7776FB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Aug 2023 13:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234592AbjHJL1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 07:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55906 "EHLO
+        id S234567AbjHJL2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 07:28:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234752AbjHJL1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:27:38 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC3F26A0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:27:37 -0700 (PDT)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20230810112735epoutp019e9676f352a1ee94446e5998e531db2f~6Agrf-8Pn2701227012epoutp01S
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 11:27:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20230810112735epoutp019e9676f352a1ee94446e5998e531db2f~6Agrf-8Pn2701227012epoutp01S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1691666855;
-        bh=LbKSAH+guAP5EthZFGEfFquTdSJw7F8vhoo2LgrcSks=;
-        h=From:To:In-Reply-To:Subject:Date:References:From;
-        b=RHmS68j/Ky80qCywI/E8oM6ZR0Vp6PLTXHEpm373Xjq8CRepj/17g2SvAxCNVPuJL
-         ds3Xfcm4hYZtFc8qADVzRZgJwLBlhJl5zfupYIY+yp5syAnKWE2DEjixTUAe6y+IPF
-         DqNoeK5u/hLFJxKDBXY5pV5ZYZl1JpZLpt7Ve6dA=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20230810112735epcas5p2b15d366ee8874682ae06e67100fe97dd~6AgrJtSPp3115831158epcas5p2U;
-        Thu, 10 Aug 2023 11:27:35 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.178]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4RM4Qt1VGlz4x9Pq; Thu, 10 Aug
-        2023 11:27:34 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D2.3A.57354.6A9C4D46; Thu, 10 Aug 2023 20:27:34 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-        20230810112733epcas5p3e0b2fe83a73c96d4f9189014db83c5c2~6AgpqSa5M0904009040epcas5p3e;
-        Thu, 10 Aug 2023 11:27:33 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230810112733epsmtrp2e9cddcfc09844055d8c77bd71405b012~6AgppdS260553505535epsmtrp2C;
-        Thu, 10 Aug 2023 11:27:33 +0000 (GMT)
-X-AuditID: b6c32a44-269fb7000001e00a-31-64d4c9a63bd2
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        CF.4C.14748.5A9C4D46; Thu, 10 Aug 2023 20:27:33 +0900 (KST)
-Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230810112731epsmtip2dac60f8350dc2f24bedb1d708d10ba77~6Agn4JqfT0234702347epsmtip28;
-        Thu, 10 Aug 2023 11:27:31 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
-        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
-        "'Michael Turquette'" <mturquette@baylibre.com>,
-        "'Stephen Boyd'" <sboyd@kernel.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Conor Dooley'" <conor+dt@kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-In-Reply-To: <20230808082738.122804-7-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 06/11] clk: samsung: exynos5420: do not define number of
- clocks in bindings
-Date:   Thu, 10 Aug 2023 16:57:30 +0530
-Message-ID: <004901d9cb7d$a8006910$f8013b30$@samsung.com>
+        with ESMTP id S234187AbjHJL2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 07:28:43 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C678268A
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:28:41 -0700 (PDT)
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E6EB641BF0
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 11:28:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1691666919;
+        bh=TRU6tUd9wDUUaUwwFM5Bjzb7u7hecXj9L7oTyXsIeCA=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=gahCg0U//OpH467uyTYbpPwW+xT21/XeXApKwcAzDb7l2nYk57GAjXMih8fumWoxn
+         244tXaiBhWbf5HGCLd3W4vV+52aay/QqHxqzCPTBttUUwn7uJKtTAE2VT9TNE6UJgD
+         lqTnciBtpup+jVt8f19VnqsOOSkhJLIXzLhjsntD2rOljzOsW3i+H5u2r5NW898w7S
+         T4zK8NAyDxBmM5Vfi2BPKXl5gZ97Vo0ERot+srGE+LrR8gnvkdcTOFBD9EcMdJMC40
+         95lB1Ug7pZ8+p2nxloem8y7Z1K5WPE3VihO6BiXNsOcTXBOZaE3bERDQLXjqUC1gAI
+         DQH6uFElw5P1Q==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-40a91222d8fso11028701cf.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 04:28:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691666919; x=1692271719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TRU6tUd9wDUUaUwwFM5Bjzb7u7hecXj9L7oTyXsIeCA=;
+        b=i+EZ0SJTuI3Yao+XFPhzCFwdLEkTj3sfr/6Ij8/2hVmeq79uxA5D7IAdQyiLtJcD08
+         6GRbbzQkdaKcQ+9uqKOMgZOQihMB4ZQE1BnxM2RZccGFGvf+NAUMj+j2KalRKsZjR2Tu
+         w73W8Ci0VdmWU0TFqNM+Ar3jNP2DmLR0rTIkX9EgqLnbbi9NwDB/0lAvWH7tizZIo2Y7
+         oBFlYSkFGXMEMbu5NFcsPtoYGrOfA7gBtQV7m8B9ycbHsAf6PszCUiS02cdSg31LQGWt
+         oavdKJM5jlJBpLe4Cf5RhzT6VhJ/Gs0iNp756cHoEvYyP8NgVLN13aX2azpXsf7PutSZ
+         Bbpg==
+X-Gm-Message-State: AOJu0YzsefFAircilqkqkSojiyTFI3L6x+xYTT9Ho4ZLxXiwHG321QIt
+        WVgBqwR/++PZVqf1xlMICWw7ndOY0Jel7eh8OjeT0qSkjEGUC6jfeZPRQHUOgrt+r79VUSWHMnX
+        3a+qnGpgC6XsTEXFKHZ7RqRxrth/Wx+PgTsPhw8gpmrdXIALAnh2gkpw=
+X-Received: by 2002:a05:622a:2c1:b0:40f:c669:a130 with SMTP id a1-20020a05622a02c100b0040fc669a130mr2947878qtx.36.1691666919030;
+        Thu, 10 Aug 2023 04:28:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGnvFC2HPaIsW8TudoAo6get1aLdMx0txncY0jSPizTM4n+QIRlX7JcQnvFJl+u+M8NbZE3G+EzISNoXnySSB8=
+X-Received: by 2002:a05:622a:2c1:b0:40f:c669:a130 with SMTP id
+ a1-20020a05622a02c100b0040fc669a130mr2947865qtx.36.1691666918799; Thu, 10 Aug
+ 2023 04:28:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKdkXeLsq2DobfMxxfuGwY9MCDG5gHua++GAfu2rheuPIdAEA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPJsWRmVeSWpSXmKPExsWy7bCmhu6yk1dSDNY2s1ms2XuOyeL6l+es
-        FvOPnGO12Pt6K7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytWjde4Td4vCbdlaLf9c2slis
-        2vWH0YHX4/2NVnaPnbPusntsWtXJ5nHn2h42j81L6j36tqxi9Pi8SS6APSrbJiM1MSW1SCE1
-        Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoWCWFssScUqBQQGJxsZK+
-        nU1RfmlJqkJGfnGJrVJqQUpOgUmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsaKJQIFqwQrHrVf
-        YWxgPMDXxcjJISFgItH3/iNrFyMXh5DAbkaJX6evsEE4nxgl9m9eywjhfGOUWL7yHwtMy8a3
-        fewQib2MEn/2PmSBcF4ySvyc2ARWxSagK7FjcRvYLBGBWSwSvw+vZgRJcAq4SpxfBjFKWCBR
-        ovPOESYQm0VAVWLJ9DlANRwcvAKWEi+++4KEeQUEJU7OfAJWziwgL7H97RxmiCsUJH4+XcYK
-        YosIOElcW30JqkZc4uXRI+wQNSc4JD7/84awXSQm7XvCBGELS7w6vgWqRkri87u9bCBrJQQ8
-        JBb9kYIIZ0i8Xb6eEcK2lzhwZQ4LSAmzgKbE+l36EJv4JHp/g0wE6eSV6GgTgqhWlWh+dxUa
-        VNISE7u7WSFsD4nL085CA/cyo8TaOxeZJzAqzELy5CwkT85C8swshM0LGFlWMUqmFhTnpqcm
-        mxYY5qWWw6M7OT93EyM4JWu57GC8Mf+f3iFGJg7GQ4wSHMxKIry2wZdShHhTEiurUovy44tK
-        c1KLDzGaAgN+IrOUaHI+MCvklcQbmlgamJiZmZlYGpsZKonzvm6dmyIkkJ5YkpqdmlqQWgTT
-        x8TBKdXA5JL626z3ybSZIunbtjrz+5z+fjjM2JJJ8YyLcuEpJUVZ5sSXE3OCNiowyxfO+DlT
-        3/+5+4/1V/6/PuH2W2N9TMvEaweehjz76/Jw/6P6C2o26m+mGE2ceH17aKrvxDWzFH89nbW1
-        qfHpPBaTlf2CbSvu2x4K2OR+6dDK43mLbt0ylzuQ93RW+M+TTM/K7nAI6rDeFmjsjp3wqP2a
-        zQHLlJRczinaJkcX3eSJ21QccK4g5L/4NluuQIF/ZRqS4qe2f7I68XPy9ab2i7fTc5bcnZ2/
-        TtKcxf2tW6P0ep/SxXMmzz16VuqJUv5yhS0Ml86+2bnwl2+1W0fd09pT3/68KZ3wIzjR/86K
-        FwzrNatSl6YrsRRnJBpqMRcVJwIASMgPPFIEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFIsWRmVeSWpSXmKPExsWy7bCSvO7Sk1dSDJ4/17JYs/cck8X1L89Z
-        LeYfOcdqsff1VnaLTY+vsVp87LnHanF51xw2ixnn9zFZXDzlatG69wi7xeE37awW/65tZLFY
-        tesPowOvx/sbreweO2fdZffYtKqTzePOtT1sHpuX1Hv0bVnF6PF5k1wAexSXTUpqTmZZapG+
-        XQJXxoolAgWrBCsetV9hbGA8wNfFyMkhIWAisfFtH3sXIxeHkMBuRomVO4+wQCSkJa5vnMAO
-        YQtLrPz3HKroOaPEl4dvwRJsAroSOxa3sYEkRASWsEice7yNGSQhJHCeUaJ/qzWIzSngKnF+
-        2T+wqcIC8RKfXrWA2SwCqhJLps9h7GLk4OAVsJR48d0XJMwrIChxcuYTFpAws4CeRNtGRpAw
-        s4C8xPa3c5gh7lGQ+Pl0GSuILSLgJHFt9SUWiBpxiZdHj7BPYBSahWTSLIRJs5BMmoWkYwEj
-        yypGydSC4tz03GTDAsO81HK94sTc4tK8dL3k/NxNjODo09LYwXhv/j+9Q4xMHIyHGCU4mJVE
-        eG2DL6UI8aYkVlalFuXHF5XmpBYfYpTmYFES5zWcMTtFSCA9sSQ1OzW1ILUIJsvEwSnVwKRT
-        cjHDzi5ELsqe9f7y5S/fLXt95oaxT1rGg5YN4uXLDGrVeJa8e/KVafnfLscDM7SeORu2GPFY
-        RG/13pDW987+nezrDWHXuj/aLG4r/5q3oVVa4bds7cIVfyMzi8tP2m789CNCaNrex9kVZ+y+
-        HjErTD2uLrroRP49gc8/LPLvzYvIT8wKVxAvN7b828eZkJdvHaqaXLp6/e38P6fn7/34RUrq
-        leJSEYuPv1OWHZ3gsu3jAd6w1ezrW19lGbLsFKpasju2PzUsas+l/WXhuyfONdPs/B13NH8K
-        n15KVXdvzlLTl0o7p+d2a37trX25481CnsNrpfzEbs7eom3detfJK7Wmd8cDe/Wdki385kos
-        xRmJhlrMRcWJAM1o3agtAwAA
-X-CMS-MailID: 20230810112733epcas5p3e0b2fe83a73c96d4f9189014db83c5c2
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230808082756epcas5p3b233061078a2406aa63119531228c6a7
-References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
-        <CGME20230808082756epcas5p3b233061078a2406aa63119531228c6a7@epcas5p3.samsung.com>
-        <20230808082738.122804-7-krzysztof.kozlowski@linaro.org>
+References: <20230810074646.19076-1-samin.guo@starfivetech.com> <20230810074646.19076-2-samin.guo@starfivetech.com>
+In-Reply-To: <20230810074646.19076-2-samin.guo@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 10 Aug 2023 13:28:23 +0200
+Message-ID: <CAJM55Z_AKXa-cKy8kS4-8XPcqgFb4ts2ywhcWwL7Nf3wMBCWJA@mail.gmail.com>
+Subject: Re: [-next v1 1/1] riscv: dts: starfive: jh7110: Fix GMAC configuration
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Tuesday, August 8, 2023 1:58 PM
-> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Sylwester
-> Nawrocki <s.nawrocki@samsung.com>; Tomasz Figa
-> <tomasz.figa@gmail.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
-> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob
-> Herring <robh+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
-> linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org
-> Subject: [PATCH 06/11] clk: samsung: exynos5420: do not define number of
-> clocks in bindings
-> 
-> Number of clocks supported by Linux drivers might vary - sometimes we add
-> new clocks, not exposed previously.  Therefore this number of clocks
-should
-> not be in the bindings, because otherwise we should not change it.
-> 
-> Define number of clocks per each clock controller inside the driver
-directly.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Thu, 10 Aug 2023 at 09:46, Samin Guo <samin.guo@starfivetech.com> wrote:
+>
+> Fixed configuration to improve the speed of TCP RX.
+>
+> Before:
+>   # iperf3 -s
+>   -----------------------------------------------------------
+>   Server listening on 5201 (test #1)
+>   -----------------------------------------------------------
+>   Accepted connection from 192.168.1.4, port 47604
+>   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47612
+>   [ ID] Interval           Transfer     Bitrate
+>   [  5]   0.00-1.00   sec  36.3 MBytes   305 Mbits/sec
+>   [  5]   1.00-2.00   sec  35.6 MBytes   299 Mbits/sec
+>   [  5]   2.00-3.00   sec  36.5 MBytes   306 Mbits/sec
+>   [  5]   3.00-4.00   sec  36.5 MBytes   306 Mbits/sec
+>   [  5]   4.00-5.00   sec  35.7 MBytes   300 Mbits/sec
+>   [  5]   5.00-6.00   sec  35.4 MBytes   297 Mbits/sec
+>   [  5]   6.00-7.00   sec  37.1 MBytes   311 Mbits/sec
+>   [  5]   7.00-8.00   sec  35.6 MBytes   298 Mbits/sec
+>   [  5]   8.00-9.00   sec  36.4 MBytes   305 Mbits/sec
+>   [  5]   9.00-10.00  sec  36.3 MBytes   304 Mbits/sec
+>   - - - - - - - - - - - - - - - - - - - - - - - - -
+>   [ ID] Interval           Transfer     Bitrate
+>   [  5]   0.00-10.00  sec   361 MBytes   303 Mbits/sec        receiver
+>
+> After:
+>   # iperf3 -s
+>   -----------------------------------------------------------
+>   Server listening on 5201 (test #1)
+>   -----------------------------------------------------------
+>   Accepted connection from 192.168.1.4, port 47710
+>   [  5] local 192.168.1.3 port 5201 connected to 192.168.1.4 port 47720
+>   [ ID] Interval           Transfer     Bitrate
+>   [  5]   0.00-1.00   sec   111 MBytes   932 Mbits/sec
+>   [  5]   1.00-2.00   sec   111 MBytes   934 Mbits/sec
+>   [  5]   2.00-3.00   sec   111 MBytes   934 Mbits/sec
+>   [  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec
+>   [  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec
+>   [  5]   5.00-6.00   sec   111 MBytes   935 Mbits/sec
+>   [  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec
+>   [  5]   7.00-8.00   sec   111 MBytes   935 Mbits/sec
+>   [  5]   8.00-9.00   sec   111 MBytes   934 Mbits/sec
+>   [  5]   9.00-10.00  sec   111 MBytes   934 Mbits/sec
+>   [  5]  10.00-10.00  sec   167 KBytes   933 Mbits/sec
+>   - - - - - - - - - - - - - - - - - - - - - - - - -
+>   [ ID] Interval           Transfer     Bitrate
+>   [  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec        receiver
+>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 > ---
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index a608433200e8..76884cf373bf 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -318,8 +318,8 @@
+>
+>         stmmac_axi_setup: stmmac-axi-config {
+>                 snps,lpi_en;
+> -               snps,wr_osr_lmt = <4>;
+> -               snps,rd_osr_lmt = <4>;
+> +               snps,wr_osr_lmt = <0xf>;
+> +               snps,rd_osr_lmt = <0xf>;
 
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+nit: this is a limit, so presumably counting things and not an address
+or bitmask, so I'd prefer decimal numbers here, eg <15>.
 
+It works fine either way, so
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
->  drivers/clk/samsung/clk-exynos5420.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/samsung/clk-exynos5420.c
-b/drivers/clk/samsung/clk-
-> exynos5420.c
-> index 1e0cbf762408..199843f12ae5 100644
-> --- a/drivers/clk/samsung/clk-exynos5420.c
-> +++ b/drivers/clk/samsung/clk-exynos5420.c
-> @@ -139,6 +139,9 @@
->  #define SRC_KFC			0x28200
->  #define DIV_KFC0		0x28500
-> 
-> +/* NOTE: Must be equal to the last clock ID increased by one */
-> +#define CLKS_NR			(CLK_DOUT_PCLK_DREX1 + 1)
-> +
->  /* Exynos5x SoC type */
->  enum exynos5x_soc {
->  	EXYNOS5420,
-> @@ -1587,7 +1590,7 @@ static void __init exynos5x_clk_init(struct
-> device_node *np,
-> 
->  	exynos5x_soc = soc;
-> 
-> -	ctx = samsung_clk_init(NULL, reg_base, CLK_NR_CLKS);
-> +	ctx = samsung_clk_init(NULL, reg_base, CLKS_NR);
->  	hws = ctx->clk_data.hws;
-> 
->  	samsung_clk_of_register_fixed_ext(ctx,
-> exynos5x_fixed_rate_ext_clks,
+>                 snps,blen = <256 128 64 32 0 0 0>;
+>         };
+>
+> @@ -839,7 +839,7 @@
+>                         rx-fifo-depth = <2048>;
+>                         tx-fifo-depth = <2048>;
+>                         snps,multicast-filter-bins = <64>;
+> -                       snps,perfect-filter-entries = <8>;
+> +                       snps,perfect-filter-entries = <256>;
+>                         snps,fixed-burst;
+>                         snps,no-pbl-x8;
+>                         snps,force_thresh_dma_mode;
+> @@ -870,7 +870,7 @@
+>                         rx-fifo-depth = <2048>;
+>                         tx-fifo-depth = <2048>;
+>                         snps,multicast-filter-bins = <64>;
+> -                       snps,perfect-filter-entries = <8>;
+> +                       snps,perfect-filter-entries = <256>;
+>                         snps,fixed-burst;
+>                         snps,no-pbl-x8;
+>                         snps,force_thresh_dma_mode;
 > --
-> 2.34.1
-
-
+> 2.17.1
+>
