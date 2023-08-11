@@ -2,267 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D977E779A69
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 00:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1624C779ABB
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 00:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232779AbjHKWIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 18:08:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48590 "EHLO
+        id S234935AbjHKWdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 18:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234066AbjHKWIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 18:08:18 -0400
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFC512D61
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 15:08:17 -0700 (PDT)
-Received: by mail-il1-x134.google.com with SMTP id e9e14a558f8ab-349a94f3d69so556625ab.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 15:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1691791697; x=1692396497;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aSpw/w7F7Q0jeXezzYKYe8R0mGOG0S0vw4WAjp2H2B8=;
-        b=jDBBcPL7zYu54VUj9j74vfV6E2osmLM+sTL+fZsrkcRBJraO6x2sjRMvQ/dRWOEmh4
-         I/l15klbtAMarX1vNZq6xgRHlXFHF80QWOq5gRvJqWkgWa3EZVkPrcTpLFwWnBiKSB4R
-         pdReXi6Ff892oIQEco8h4h16eean2HSeLU4Hc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691791697; x=1692396497;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aSpw/w7F7Q0jeXezzYKYe8R0mGOG0S0vw4WAjp2H2B8=;
-        b=Kv4vG8m6uj9Zuvxuv9tT3fBJF3pr05ivS1hcwTr7ElAfPrUp6qB66c2rordSonFPeY
-         tt1he8eE8YrCQggnC3i751a3tL5uIri5hCQ0veLS7u/EUaq3fc7+n+Ffs5i6fy7rUjgS
-         qgh1FIGBZohgNfJXZMfwe2mS2idEDOvjvowTBVUhKZ8W/0msebGuCUECNsr1yLHkDsoJ
-         11Ax9K3kBg8HEBP4lHYeDIltzBWAaPPkAnNVW7euRUWYd2+5K3zxs2hiDw5GpXVb7WTd
-         /a3frLm1b3xOa8xoE45no0LYEiR5lXgZt3ZFdy+4lwMVdligDY6O3LtNnEAJVKAHcQEq
-         EZTQ==
-X-Gm-Message-State: AOJu0YyCboVPKv4HVa2ne53uAT00OZOMxobINk0cY9IIvmbDg9JmJ8EO
-        uLnZp9Qph9n1TRLKikOi9Ii60iynL63Q01RmmTE=
-X-Google-Smtp-Source: AGHT+IHHFrOoyShqHvMP5rnXNQK2mKcIrpjoW0aCsvw9tZxcYfrGVhOK9Lv+lKIY8J3gmphxrsQHfg==
-X-Received: by 2002:a05:6e02:1d87:b0:349:345b:6580 with SMTP id h7-20020a056e021d8700b00349345b6580mr4403156ila.10.1691791696964;
-        Fri, 11 Aug 2023 15:08:16 -0700 (PDT)
-Received: from kea.bld.corp.google.com ([2620:15c:183:200:653a:2ace:5c03:a67d])
-        by smtp.gmail.com with ESMTPSA id d4-20020a92d784000000b003492dfb8a02sm1404471iln.8.2023.08.11.15.08.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 15:08:16 -0700 (PDT)
-From:   Simon Glass <sjg@chromium.org>
-To:     devicetree@vger.kernel.org
-Cc:     Tom Rini <trini@konsulko.com>, Rob Herring <robh@kernel.org>,
-        Alper Nebi Yasak <alpernebiyasak@gmail.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Stefan Herbrechtsmeier <stefan.herbrechtsmeier@weidmueller.com>,
-        Philippe Reynes <philippe.reynes@softathome.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Simon Glass <sjg@chromium.org>
-Subject: [PATCH v3 2/2] schemas: Add a schema for binman
-Date:   Fri, 11 Aug 2023 16:08:04 -0600
-Message-ID: <20230811220811.3130954-2-sjg@chromium.org>
-X-Mailer: git-send-email 2.41.0.694.ge786442a9b-goog
-In-Reply-To: <20230811220811.3130954-1-sjg@chromium.org>
-References: <20230811220811.3130954-1-sjg@chromium.org>
+        with ESMTP id S234007AbjHKWdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 18:33:00 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0297F19AE;
+        Fri, 11 Aug 2023 15:32:59 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BMWYuA116871;
+        Fri, 11 Aug 2023 17:32:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691793154;
+        bh=bLmbpGstIfooH4D7eoLNz0oRh87B0x3sFuCo6JlGWss=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=LIxvU1ESi5zxVWoMhRztsnWvK7ealOLN/QmfLKSv7alZWUwWEgaKie54jhYoJ/nwT
+         iGdhZfyaP5cvVDVyf4vcVK/YGd6af24BNrWl/jShrH6tK7nSKtHqSGOyFdwxGI8mRM
+         iAjt7jq7/N3T9m7o5mbNpXhYifw8v+ae+cXwQvbc=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BMWXs1000609
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 17:32:33 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 17:32:33 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 17:32:33 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BMWXi4105431;
+        Fri, 11 Aug 2023 17:32:33 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+CC:     Nishanth Menon <nm@ti.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
+Date:   Fri, 11 Aug 2023 17:32:32 -0500
+Message-ID: <169179274928.1340235.2380026214492639228.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230809084559.17322-1-a-bhatia1@ti.com>
+References: <20230809084559.17322-1-a-bhatia1@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With this version I have done with a generic name, in this case 'data',
-as suggested by Alper Nebi Yasak. This may be controversial, but we may
-as well have the dicussion now. I assume that there are no other
-ongoing attempts to define the layout of firmware in devicetree.
+Hi Aradhya Bhatia,
 
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
+On Wed, 09 Aug 2023 14:15:53 +0530, Aradhya Bhatia wrote:
+> The patch series adds DT nodes for Display SubSystem (DSS) and other
+> peripherals required to enable the HDMI audio and video on the AM625 SK,
+> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
+> monitor can be connected to the boards for the audio/video outputs.
+> 
+> The series adding the compatible and basic driver support[0] is in the
+> drm-misc-next and linux-next queues and is expected to be in the
+> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
+> that introduces debounce select mux macros. This patch too is not in
+> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
+> linux-next.
+> 
+> [...]
 
-Changes in v3:
-Use data,layout for the layout property
+NOTE: This series creates checkpatch warnings against v6.5-rc1 and
+complains that it cannot find ti,am625-dss which has been merged in
+drm tree for next. This is clean in linux-next for a few weeks now.
+Given the number of people who would really like to see it in v6.6-rc1
+to keep the display support working in the tree without carried
+patches and work on next set of features on display and graphics, and
+given the real low risk of this NOT making to linus-master, we are
+making an specific exception here for this time around. So, please
+keep a watch on drm-next and if for any reason the support is dropped
+going to linus's tre in the merge window or before, let this chain
+know with appropriate maintainers so that we can take corrective
+actions. PS: Thanks Arnd for taking time to give me some private
+guidance. Fingers crossed that this will go through smooth.
 
-Changes in v2:
-- Reworked significantly based on Alper's comments
+Thank you!
 
- dtschema/schemas/firmware/binman/entry.yaml | 80 +++++++++++++++++++++
- dtschema/schemas/firmware/image.yaml        | 77 ++++++++++++++++++++
- 2 files changed, 157 insertions(+)
- create mode 100644 dtschema/schemas/firmware/binman/entry.yaml
- create mode 100644 dtschema/schemas/firmware/image.yaml
+I have applied the following to branch ti-k3-dts-next on [1]:
 
-diff --git a/dtschema/schemas/firmware/binman/entry.yaml b/dtschema/schemas/firmware/binman/entry.yaml
-new file mode 100644
-index 0000000..d50f96d
---- /dev/null
-+++ b/dtschema/schemas/firmware/binman/entry.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2023 Google LLC
-+
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/image/entry.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Image entry
-+
-+maintainers:
-+  - Simon Glass <sjg@chromium.org>
-+
-+description: |
-+  The entry node specifies a single entry in the firmware image.
-+
-+  Entries have a specific type, such as "u-boot" or "atf-bl31". This is provided
-+  using compatible = "data,<type>".
-+
-+  Note: This definition is intended to be hierarchical, so that entries can
-+  appear in other entries. Schema for that is TBD.
-+
-+properties:
-+  $nodename:
-+    pattern: "^[-a-z]+(-[0-9]+)?$"
-+
-+  compatible:
-+    $ref: /schemas/types.yaml#/definitions/string
-+
-+  offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Provides the offset of this entry from the start of its parent section.
-+
-+      This may be omitted in the description provided by Binman, in which case
-+      the value is calculated as part of image packing.
-+
-+  size:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Provides the size of this entry in bytes.
-+
-+      This may be omitted in the description provided by Binman, in which case
-+      the value is calculated as part of image packing.
-+
-+  reg:
-+    description: |
-+      Defines the offset and size of this entry, with reference to its parent
-+      image / section.
-+
-+      Note This is typically omitted in the description provided to Binman,
-+      since the value is calculated as part of image packing. Separate
-+      properties are provided for the size and offset of an entry, so that it is
-+      easy to specify none, one or both. The `reg` property is the only one that
-+      needs to be looked at once the image has been built.
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+      image {
-+        compatible = "data,image";
-+        #address-cells = <1>;
-+        $size-cells = <1>;
-+
-+        u-boot@0 {
-+          compatible = "data,u-boot";
-+          reg = <0 0xa0000>;
-+        };
-+
-+        atf-bl31@0x100000 {
-+          compatible = "data,atf-bl31";
-+          reg = <0x100000 0x20000>;
-+        };
-+      };
-+    };
-diff --git a/dtschema/schemas/firmware/image.yaml b/dtschema/schemas/firmware/image.yaml
-new file mode 100644
-index 0000000..f342fa2
---- /dev/null
-+++ b/dtschema/schemas/firmware/image.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2023 Google LLC
-+
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/image.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Binman firmware layout
-+
-+maintainers:
-+  - Simon Glass <sjg@chromium.org>
-+
-+description: |
-+  The image node provides a layout for firmware, used when packaging firmware
-+  from multiple projects. For now it just supports a very simple set of
-+  features, as a starting point for discussion.
-+
-+  The Binman tool processes this node to produce a final image which can be
-+  loaded into suitable storage device. Documentation is at:
-+
-+  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
-+
-+  The current image-description format is here:
-+
-+  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
-+
-+  It is desirable to reference the image from the storage-device node, perhaps
-+  using an image-desc property:
-+
-+    spiflash@0 {
-+      compatible = "spidev", "jedec,spi-nor";
-+      data,layout = <&image>;
-+    };
-+
-+  Note that the intention is to change Binman to use whatever schema is agreed
-+  here.
-+
-+properties:
-+  $nodename:
-+    pattern: "^[-a-z]+(-[0-9]+)?$"
-+
-+  compatible:
-+    const: data,image
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - "#address-cell"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+      image {
-+        compatible = "data,image";
-+        #address-cells = <1>;
-+        $size-cells = <1>;
-+
-+        u-boot@0 {
-+          compatible = "data,u-boot";
-+          reg = <0 0xa0000>;
-+        };
-+
-+        atf-bl31@0x100000 {
-+          compatible = "data,atf-bl31";
-+          reg = <0x100000 0x20000>;
-+        };
-+      };
-+    };
+[1/6] arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
+      commit: 73387da70f9c26b6fba4f62371d013cce14663d9
+[2/6] arm64: dts: ti: k3-am62-main: Add node for DSS
+      commit: 8ccc1073c7bb2ae9654529a75f85ef23b7215c9b
+[3/6] arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
+      commit: db6e8237cf5435e972ea47632e5d8ac3e356f210
+[4/6] arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
+      commit: b50ccab9e07ca19d49a0d629dfbe184e6975be22
+[5/6] arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
+      commit: 1f7226a5e52cb8b90771cefc29077f9ce13a3c90
+
+I have applied the following to branch ti-k3-config-next on [1]:
+
+[6/6] arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
+      commit: d5c988b43746de250bed33c17116e879f032ff12
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.41.0.694.ge786442a9b-goog
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
