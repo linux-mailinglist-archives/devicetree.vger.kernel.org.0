@@ -2,73 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9211C7796A1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 20:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C95A47796C2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 20:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235264AbjHKSFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 14:05:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45896 "EHLO
+        id S236863AbjHKSHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 14:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235181AbjHKSFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 14:05:40 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5B930D0;
-        Fri, 11 Aug 2023 11:05:40 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BI5UZ4055481;
-        Fri, 11 Aug 2023 13:05:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691777130;
-        bh=0ip2uvqMwMwA+IpTP06n3f3fb7xVBAnrvfzUfhX/ezA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=OwHo5a/B1JrS6ez8MtMOHabWjZVix0lajc0BjxIlCmtEKzxq7G2Gi5F8U45Mtm7CL
-         HGAw9mjHQNHaQP3rzeNOBZC2e91B2P7omYOwwXhcJKLOkct4iBCuV6ZzheK90yV+GB
-         opRV9EmUMIAn9I+VgqOjKBR5GBcS6ypS/riccoKg=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BI5UAx018256
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 13:05:30 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 13:05:30 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 13:05:30 -0500
-Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BI5QSE008841;
-        Fri, 11 Aug 2023 13:05:27 -0500
-Message-ID: <f41102bb-134a-50cc-bb98-7950260c7aa6@ti.com>
-Date:   Fri, 11 Aug 2023 23:35:26 +0530
+        with ESMTP id S236968AbjHKSHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 14:07:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E576F30DA;
+        Fri, 11 Aug 2023 11:06:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CDA5D678B5;
+        Fri, 11 Aug 2023 18:06:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 863B8C433C9;
+        Fri, 11 Aug 2023 18:06:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691777212;
+        bh=RgqWs8uUCZmleYis5opY5915nzwoQ4uuD3Ubl+gzSdA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WeG6ZCZhrrHrRi5HwRf6Y6IoPnuoKFrifypi9lrLc5JfM2/cpkt9feTTW/nwScUI0
+         S8bn2bmwRkOTlO3i7WH3CQz36Hb+duN0D+mj438VDd2F2WZfGuLU5wF43ZmWEcvpw+
+         PbLsXm/9dtaYuXQ8fpC4fsaLL+SwuMW0lNOGNjwkgrJDw0ZCgUnvT3LdoL3fcgMxdb
+         fN5i+CjHdsRcXYTf1pU+ImRAYUixxPMdK2sZp7XEFJJwTgXJpwEqmOYRP4FHxfUGE4
+         EiKn/3RieA2vqWCeaY0/x+40zi+seFYKrB0oegBvCy5xCNLzUsNRKeV4Qvrljz6cYL
+         aJLxWMEwoDVEQ==
+Received: (nullmailer pid 3701663 invoked by uid 1000);
+        Fri, 11 Aug 2023 18:06:50 -0000
+Date:   Fri, 11 Aug 2023 12:06:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Nikita Travkin <nikita@trvn.ru>
+Cc:     Sebastian Reichel <sre@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: power: supply: Add pm8916 VM-BMS
+Message-ID: <169177720998.3701432.1284637500689752288.robh@kernel.org>
+References: <20230731-pm8916-bms-lbc-v2-0-82a4ebb39c16@trvn.ru>
+ <20230731-pm8916-bms-lbc-v2-1-82a4ebb39c16@trvn.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-am69-sk: Add phase tags marking
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Apurva Nandan <a-nandan@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Hari Nagalla <hnagalla@ti.com>,
-        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>
-References: <20230811151644.3216621-1-a-nandan@ti.com>
- <20230811151644.3216621-4-a-nandan@ti.com>
- <638d5883-5b95-403e-ecb9-8122d8774675@ti.com>
- <20230811175459.nxi65bu4bbjki5xe@duller>
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230811175459.nxi65bu4bbjki5xe@duller>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230731-pm8916-bms-lbc-v2-1-82a4ebb39c16@trvn.ru>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,54 +61,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 8/11/2023 11:24 PM, Nishanth Menon wrote:
-> On 23:05-20230811, Kumar, Udit wrote:
->> Hi Apurva
->>
->> On 8/11/2023 8:46 PM, Apurva Nandan wrote:
->>> bootph-all as phase tag was added to dt-schema
->>> (dtschema/schemas/bootph.yaml) to cover U-Boot challenges with DT.
->>> That's why add it also to Linux to be aligned with bootloader requirement.
->>>
->>> wkup_uart0, wkup_i2c0, mcu_uart0, main_uart8, main_sdhci0 and main_sdhci1
->>> are required for bootloader operation on TI K3 AM69-SK EVM. These IPs
->>> along with pinmuxes need to be marked for all bootloader phases, hence add
->>> bootph-all to these nodes in kernel dts.
->>>
->>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
->>> ---
->>> [...]
->>>    &wkup_uart0 {
->>> +	bootph-all;
->>>    	/* Firmware usage */
->>>    	status = "reserved";
->>>    	pinctrl-names = "default";
->> I am not sure, if you want to treat wkup_uart in same way as you are
->> treating secure_proxy_mcu in patch 1 of this series.
-> You should'nt. wkup_uart0 or what ever peripherals are specifically
-> board dependent. This patch does it the right way. I do have other
-> platforms on other K3 SoCs where the TIFS uart logs are actually
-> disabled.
+On Mon, 31 Jul 2023 22:06:24 +0500, Nikita Travkin wrote:
+> Qualcomm Voltage Mode BMS is a battery monitoring block in PM8916 PMIC.
+> Document it's DT binding.
+> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> ---
+> v2: Describe all interrupts. (Conor)
+> ---
+>  .../bindings/power/supply/qcom,pm8916-bms-vm.yaml  | 83 ++++++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+> 
 
-Sorry, if i was not clear in my previous response.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-This node is marked as reserved, adding bootph is not adding any value.
-
-We can drop bootph from this node here.
-
->> IMO, where we are making this node status is okay, mark booth-all at that
->> place only.
->>
->> Otherwise for rest of series
->>
->> LGTM
-> Do i take that as a Reviewed-by: for the series?
-
-
-With above change,
-
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
->>
-> [...]
->
