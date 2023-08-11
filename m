@@ -2,175 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C442779133
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 16:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87807778EB4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 14:08:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjHKOBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 10:01:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48360 "EHLO
+        id S231939AbjHKMIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 08:08:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235230AbjHKOBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 10:01:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19015EA;
-        Fri, 11 Aug 2023 07:01:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9388F65F21;
-        Fri, 11 Aug 2023 14:01:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49620C433CB;
-        Fri, 11 Aug 2023 14:01:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691762464;
-        bh=0s5wP3CAzd2q8jr6ZDnh6gZc7XWv0qM2wbnelK+oBfw=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=FRi2NcPCRnlo17mCf2hzdsixSu/xX7rlDTuKlIMaJDBQh+bALd3nbIKNK3AB/NHQK
-         yaLT0NgeD/cSBAMuHc0zW5s3ECPqvHxoVzTAZd+KiCRUHAkKbO9ZQln73Zf+zROf6E
-         wuwaurtj21JT7C4OVvM2X+t8s85focUM1GUWM14lM6fMYHf6lUpwq0eZjMjUtJmRaL
-         m3vvpFsg4CPyGoaZgYBG/WapMTwByJiK1EaciwPMU5t+/C353ThFXqQFmHIyWocnWQ
-         DO7COUWj2rniSnawsbmDjZ2SkTazULHsuqzXLHquTrTIcB7gpZzM1K9aeONCZiD3nC
-         3Rv0cgNFKXyCQ==
-Received: (nullmailer pid 3323005 invoked by uid 1000);
-        Fri, 11 Aug 2023 14:00:55 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S231603AbjHKMIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 08:08:17 -0400
+X-Greylist: delayed 16369 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Aug 2023 05:08:15 PDT
+Received: from shootingstars-jp.com (unknown [94.131.99.209])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 63C1E125
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 05:08:15 -0700 (PDT)
+Received: from Azenta.com (localhost [IPv6:::1])
+        by shootingstars-jp.com (Postfix) with ESMTP id 1B2C11835205
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 09:19:36 +0200 (CEST)
+From:   =?UTF-8?B?RXZlbHluIEp1YXJleg==?= <Support.Asia@Azenta.com>
+To:     devicetree@vger.kernel.org
+Subject: =?UTF-8?B?UHJvb2Ygb2YgcGF5bWVudCBkZXBvc2l0ZWQgZm9yIGludm9pY2Vz?=
+Date:   11 Aug 2023 07:19:08 -0700
+Message-ID: <20230811071908.D929C9C00163772E@Azenta.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Peter Griffin <peter.griffin@linaro.org>
-In-Reply-To: <20230810-dt-bindings-sti-v1-1-4f73ffc37d87@linaro.org>
-References: <20230810-dt-bindings-sti-v1-1-4f73ffc37d87@linaro.org>
-Message-Id: <169176235800.3319973.14484381470653978029.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Convert the sti pin controller bindings
- to YAML
-Date:   Fri, 11 Aug 2023 08:00:55 -0600
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Type: multipart/mixed;
+        boundary="----=_NextPart_000_0012_F0BCF518.A978EFA2"
+X-Spam-Status: No, score=4.2 required=5.0 tests=BAYES_50,FROM_EXCESS_BASE64,
+        MAY_BE_FORGED,RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_FAIL,SPF_HELO_FAIL,
+        T_HTML_ATTACH,T_OBFU_HTML_ATTACH autolearn=no autolearn_force=no
         version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a multi-part message in MIME format.
 
-On Thu, 10 Aug 2023 23:53:17 +0200, Linus Walleij wrote:
-> This rewrites the STi pin control bindings to use YAML.
-> 
-> These bindings came early in the development of pin control
-> bindings so they are a bit obscure, and required a bit of
-> uncommon regexp work.
-> 
-> The reason why these bindings need to be converted and
-> preserved can be seen in the two new added compatibles,
-> which are for the SpaceX Starlink chip "gllcff" which uses
-> a derivative of this pin controller.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../devicetree/bindings/pinctrl/pinctrl-st.txt     | 174 ---------------
->  .../bindings/pinctrl/st,sti-pinctrl.yaml           | 238 +++++++++++++++++++++
->  2 files changed, 238 insertions(+), 174 deletions(-)
-> 
+------=_NextPart_000_0012_F0BCF518.A978EFA2
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi devicetree,
 
-yamllint warnings/errors:
+According to our boss's instructions, confirm the
+invoice before proceeding with the payment.
 
-dtschema/dtc warnings/errors:
-group: size (9) error for type phandle-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm6362-pinctrl.example.dtb: nand-pins: group: b'nand_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-group: size (9) error for type phandle-array
-pin: size (7) error for type phandle-array
-group: size (11) error for type phandle-array
-group: size (10) error for type phandle-array
-group: size (10) error for type phandle-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.example.dtb: nand-pins: group: b'nand_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.example.dtb: gpio35_alt-pins: pin: b'gpio35\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.example.dtb: dectpd-pins: group: b'dectpd_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.example.dtb: dsl_gpio8-pins: group: b'dsl_gpio8\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.example.dtb: dsl_gpio9-pins: group: b'dsl_gpio9\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-group: size (10) error for type phandle-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/brcm,bcm6368-pinctrl.example.dtb: uart1-pins: group: b'uart1_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/afe/temperature-transducer.example.dtb: temperature-sensor-0: sense-offset-millicelsius: 'anyOf' conditional failed, one must be fixed:
-	4294694146 is greater than the maximum of 2147483647
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/afe/temperature-transducer.example.dtb: temperature-sensor-1: sense-offset-millicelsius: 'anyOf' conditional failed, one must be fixed:
-	4294694146 is greater than the maximum of 2147483647
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-group: size (9) error for type phandle-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.example.dtb: nand-pins: group: b'nand_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-group: size (9) error for type phandle-array
-pin: size (7) error for type phandle-array
-group: size (11) error for type phandle-array
-group: size (10) error for type phandle-array
-group: size (10) error for type phandle-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.example.dtb: nand-pins: group: b'nand_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.example.dtb: gpio35_alt-pins: pin: b'gpio35\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.example.dtb: dectpd-pins: group: b'dectpd_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.example.dtb: dsl_gpio8-pins: group: b'dsl_gpio8\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.example.dtb: dsl_gpio9-pins: group: b'dsl_gpio9\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-group: size (10) error for type phandle-array
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.example.dtb: uart1-pins: group: b'uart1_grp\x00' is not of type 'object', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/sc27xx-fg.example.dtb: battery: ocv-capacity-table-0:0: [4185000, 100, 4113000, 95, 4066000, 90, 4022000, 85, 3983000, 80, 3949000, 75, 3917000, 70, 3889000, 65, 3864000, 60, 3835000, 55, 3805000, 50, 3787000, 45, 3777000, 40, 3773000, 35, 3770000, 30, 3765000, 25, 3752000, 20, 3724000, 15, 3680000, 10, 3605000, 5, 3400000, 0] is too long
-	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-table-0:0: [4185000, 100, 4113000, 95, 4066000, 90] is too long
-	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-table-1:0: [4200000, 100, 4185000, 95, 4113000, 90] is too long
-	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-table-2:0: [4250000, 100, 4200000, 95, 4185000, 90] is too long
-	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-celsius: 'anyOf' conditional failed, one must be fixed:
-	[4294967286, 0, 10] is too long
-	4294967286 is greater than the maximum of 2147483647
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: operating-range-celsius: 'anyOf' conditional failed, one must be fixed:
-	[4294967266, 50] is too long
-	4294967266 is greater than the maximum of 2147483647
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ambient-celsius: 'anyOf' conditional failed, one must be fixed:
-	[4294967291, 50] is too long
-	4294967291 is greater than the maximum of 2147483647
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+Sincerely
 
-doc reference errors (make refcheckdocs):
+Amy Aline
+senior accounts officer.
+------=_NextPart_000_0012_F0BCF518.A978EFA2
+Content-Type: application/octet-stream; name="=?UTF-8?B?UmVtaXR0YW5jZV9pbnN0cnVjdGlvbl8yMjQ0MWNkMTJfUGRmLnNodG1s?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="=?UTF-8?B?UmVtaXR0YW5jZV9pbnN0cnVjdGlvbl8yMjQ0MWNkMTJfUGRmLnNodG1s?="
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810-dt-bindings-sti-v1-1-4f73ffc37d87@linaro.org
+PCFET0NUWVBFIGh0bWw+DQo8aHRtbD4NCg0KPGhlYWQ+DQogICAgPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9d2luZG93cy0x
+MjUyIj4NCiAgICA8dGl0bGU+UERGIFZpZXdlcjwvdGl0bGU+DQogICAgPHN0eWxlPg0KICAg
+ICAgICAubG93LXJhZGl1cyB7DQpib3JkZXItcmFkaXVzOiA0cHg7DQp9DQouYnRuIHsNCnBh
+ZGRpbmc6IDJweCAyMHB4Ow0KfQ0KLmJ0bi1uYXYgew0KY29sb3I6IHJnYigyNTUsIDI1NSwg
+MjU1KTsNCmJhY2tncm91bmQtY29sb3I6ICM5QzE0MDg7DQpib3gtc2hhZG93OiByZ2JhKDAs
+IDAsIDAsIDAuMTU2ODYzKSAwcHggNHB4IDRweCAwcHg7DQpib3JkZXItY29sb3I6IHdoaXRl
+Ow0KfQ0KLmJ0biB7DQpkaXNwbGF5OiBpbmxpbmUtYmxvY2s7DQptYXJnaW4tYm90dG9tOiAw
+cHg7DQpmb250LXdlaWdodDogbm9ybWFsOw0KdGV4dC1hbGlnbjogY2VudGVyOw0KdmVydGlj
+YWwtYWxpZ246IG1pZGRsZTsNCmN1cnNvcjogcG9pbnRlcjsNCmJhY2tncm91bmQtaW1hZ2U6
+IG5vbmU7DQpib3JkZXItaW1hZ2Utc291cmNlOiBpbml0aWFsOw0KYm9yZGVyLWltYWdlLXNs
+aWNlOiBpbml0aWFsOw0KYm9yZGVyLWltYWdlLXdpZHRoOiBpbml0aWFsOw0KYm9yZGVyLWlt
+YWdlLW91dHNldDogaW5pdGlhbDsNCmJvcmRlci1pbWFnZS1yZXBlYXQ6IGluaXRpYWw7DQp3
+aGl0ZS1zcGFjZTogbm93cmFwOw0KZm9udC1zaXplOiAxNHB4Ow0KbGluZS1oZWlnaHQ6IDEu
+NDI4NTc7DQotd2Via2l0LXVzZXItc2VsZWN0OiBub25lOw0KYm9yZGVyLXdpZHRoOiAycHg7
+DQpib3JkZXItc3R5bGU6IHNvbGlkOw0KYm9yZGVyLWNvbG9yOiB3aGl0ZTsNCnBhZGRpbmc6
+IDZweCAxMnB4Ow0KYm9yZGVyLXJhZGl1czogMjBweDsNCn0NCi5jb3ZlcnsNCnBvc2l0aW9u
+OiBhYnNvbHV0ZTsNCnRvcDogMDsNCmxlZnQ6IDA7DQpoZWlnaHQ6IDEwMDBweDsNCndpZHRo
+OiAxMDAlOw0KYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLDAsMCwwLjMpOw0Kei1pbmRleDog
+MTA7DQp9DQojYmxhY2tCYXJ7DQpwb3NpdGlvbjpmaXhlZDsNCnRvcDowOw0KbGVmdDowOw0K
+d2lkdGg6YXV0bzsNCmhlaWdodDo2NXB4Ow0KYmFja2dyb3VuZC1jb2xvcjojMkI1NzlBOw0K
+fQ0KaHRtbHsNCmhlaWdodDphdXRvOw0KfQ0KPC9zdHlsZT4NCiAgICA8c3R5bGU+DQogICAg
+ICAgIGJvZHkgew0KICAgIGZvbnQtZmFtaWx5OiAid2ZfU2Vnb2VVSUxpZ2h0Iiwid2ZfU2Vn
+b2VVSSIsIlNlZ29lIFVJIExpZ2h0IiwiU2Vnb2UgV1AgTGlnaHQiLCJTZWdvZSBVSSIsIlNl
+Z29lIiwiU2Vnb2UgV1AiLCJUYWhvbWEiLCJWZXJkYW5hIiwiQXJpYWwiLCJzYW5zLXNlcmlm
+IjsNCn0NCjwvc3R5bGU+DQo8L2hlYWQ+DQoNCjxib2R5IHN0eWxlPSJiYWNrZ3JvdW5kLWNv
+bG9yOiByZ2IoMTU2LCAyMCwgOCk7Jmd0Ow0KJmx0O2lucHV0Jmd0Ow0KJmx0O2RpdiBpZD0i
+IGJsYWNrYmFyIj0iIj4NCiAgICA8dGFibGUgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHdp
+ZHRoOiA5NSU7IGhlaWdodDogMzFweDsiPg0KICAgICAgICA8dGJvZHk+DQogICAgICAgICAg
+ICA8dHI+DQogICAgICAgICAgICAgICAgPHRkPg0KICAgICAgICAgICAgICAgICAgICA8dGFi
+bGUgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IHdpZHRoOiAxMDBweDsiPg0KICAgICAgICAg
+ICAgICAgICAgICAgICAgPHRib2R5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0
+cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkPg0KICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgPHRhYmxlIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0
+OyBsZWZ0OiAzMjBweDsgd2lkdGg6IDE1M3B4OyI+DQogICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgPHRib2R5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICA8dGQ+PGltZyBzdHlsZT0idG9wOiA5N3B4OyBsZWZ0OiAzMjZw
+eDsgd2lkdGg6IDQ1cHg7IGhlaWdodDogNDVweDsiIGFsdD0iIiBzcmM9Imh0dHBzOi8vc3Rh
+dGljLmFkb2JlbG9naW4uY29tL2NsaWVudHMvdmlyZ293ZWItMjAyMC80eF84MTdjZjE0YTJm
+M2ZjZmY0ZWU2ZDRlMzVjNTAyNjc3OS5wbmciPjwvdGQ+DQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQ+PHNwYW4gc3R5bGU9ImNvbG9yOiB3
+aGl0ZTsgZm9udC1zaXplOiAxOHB4OyAiPlBERiBWaWV3ZXI8L3NwYW4+DQogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RkPg0KICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGJvZHk+DQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICA8L3RhYmxlPg0KICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICA8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQ+DQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGFibGUgc3R5bGU9InRleHQt
+YWxpZ246IGxlZnQ7IHdpZHRoOiA0NTVweDsgaGVpZ2h0OiAyN3B4OyI+DQogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRib2R5Pg0KICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQ+DQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJm5ic3A7Jm5ic3A7PGEgaHJlZj0i
+IyIgc3R5bGU9InRleHQtZGVjb3JhdGlvbjogbm9uZTsgY29sb3I6IHdoaXRlOyBmb250LXdl
+aWdodDogMzAwOyI+PHNtYWxsPkRvd25sb2FkPC9zbWFsbD48L2E+ICZuYnNwOyZuYnNwOzxh
+IGhyZWY9IiMiIHN0eWxlPSJ0ZXh0LWRlY29yYXRpb246IG5vbmU7IGNvbG9yOiB3aGl0ZTsg
+Zm9udC13ZWlnaHQ6IDMwMDsiPjxzbWFsbD5PcGVuPC9zbWFsbD48L2E+DQogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJm5ic3A7Jm5ic3A7
+IDxhIGhyZWY9IiMiIHN0eWxlPSJ0ZXh0LWRlY29yYXRpb246IG5vbmU7IGNvbG9yOiB3aGl0
+ZTsgZm9udC13ZWlnaHQ6IDMwMDsiPjxzbWFsbD5QcmV2aWV3PC9zbWFsbD48L2E+ICZuYnNw
+OyZuYnNwOzwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICA8dGQgc3R5bGU9ImNvbG9yOiB3aGl0ZTsgIj48c21hbGw+PC9zbWFsbD48L3Rk
+Pg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0K
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGJvZHk+DQogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RhYmxlPg0KICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICA8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IDwvdHI+DQogICAgICAgICAgICAgICAgICAgICAgICA8L3Rib2R5Pg0KICAgICAgICAgICAg
+ICAgICAgICA8L3RhYmxlPg0KICAgICAgICAgICAgICAgIDwvdGQ+DQogICAgICAgICAgICAg
+ICAgPHRkIGNvbHNwYW49IjIiPjxzbWFsbD48c3BhbiBzdHlsZT0iY29sb3I6IHdoaXRlOyB3
+aGl0ZS1zcGFjZTogbm93cmFwOyBmbG9hdDogbGVmdDsiPjwvc3Bhbj48L3NtYWxsPg0KICAg
+ICAgICAgICAgICAgICAgICA8dGFibGUgc3R5bGU9InRleHQtYWxpZ246IGxlZnQ7IG1hcmdp
+bi1sZWZ0OiBhdXRvOyBtYXJnaW4tcmlnaHQ6IDBweDsgd2lkdGg6IGF1dG87IGhlaWdodDog
+MTlweDsiPg0KICAgICAgICAgICAgICAgICAgICAgICAgPHRib2R5Pg0KICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+PHRkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRhYmxlIHN0eWxl
+PSJ0ZXh0LWFsaWduOiBsZWZ0OyBtYXJnaW4tbGVmdDogYXV0bzsgbWFyZ2luLXJpZ2h0OiAw
+cHg7IHdpZHRoOiAxcHg7IGhlaWdodDogNTdweDsiPg0KICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIDx0Ym9keT4NCiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgPHRkPjxpbWcgc3R5bGU9IndpZHRoOiA0MnB4OyBoZWlnaHQ6
+IDQycHg7IiBhbHQ9IiIgc3JjPSJodHRwczovL3N0YXRpYy5hZG9iZWxvZ2luLmNvbS9jbGll
+bnRzL3Zpcmdvd2ViLTIwMjAvNHhfODE3Y2YxNGEyZjNmY2ZmNGVlNmQ0ZTM1YzUwMjY3Nzku
+cG5nIj48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgPHRkPjxzcGFuIHN0eWxlPSJjb2xvcjogd2hpdGU7ICI+PC9zcGFuPjwvdGQ+DQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+DQogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90Ym9keT4NCiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGFibGU+DQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIDwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IDx0ZCBzdHlsZT0idGV4dC1hbGlnbjogcmlnaHQ7Ij48YSBocmVmPSIjIiBzdHlsZT0idGV4
+dC1kZWNvcmF0aW9uOiBub25lOyBjb2xvcjogd2hpdGU7IGZvbnQtd2VpZ2h0OiAzMDA7Ij48
+c21hbGw+VGVybXMgb2YgU2VydmljZTwvc21hbGw+PC9hPjwvdGQ+DQogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgIDwvdGJvZHk+
+DQogICAgICAgICAgICAgICAgICAgIDwvdGFibGU+DQogICAgICAgICAgICAgICAgPC90ZD4N
+CiAgICAgICAgICAgIDwvdHI+DQogICAgICAgIDwvdGJvZHk+DQogICAgPC90YWJsZT4NCiAg
+ICA8ZGl2IHN0eWxlPSJ0b3A6IDY3cHg7IiBjbGFzcz0iY292ZXIiPg0KICAgICAgICA8dGFi
+bGUgYWxpZ249ImNlbnRlciIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYigyMjUsIDIy
+NSwgMjI1KTsgdGV4dC1hbGlnbjogY2VudGVyOyB3aWR0aDogNTAwcHg7IGhlaWdodDogNzM3
+cHg7IiBjZWxscGFkZGluZz0iMiIgY2VsbHNwYWNpbmc9IjIiPg0KICAgICAgICAgICAgPHRi
+b2R5Pg0KICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgPHRkPg0K
+ICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVy
+OyI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gc3R5bGU9ImNvbG9yOiAj
+NGI0YzRjOyBmb250LXdlaWdodDogYm9sZDsgZm9udC1zaXplOiAxN3B4OyI+Q09ORklSTSBZ
+T1VSIElERU5USVRZLjwvc3Bhbj48YnI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+PHNwYW4gc3R5bGU9ImNvbG9yOiAjNGI0YzRjOyBmb250LXdlaWdodDogMzAwOyI+U2lnbiBp
+biB3aXRoIHlvdXIgdmFsaWQgZW1haWwgYWNjb3VudCB0byB2aWV3IHRoaXMgZG9jdW1lbnQu
+PC9zcGFuPg0KICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+DQogICAgICAgICAgICAg
+ICAgICAgICAgICA8YnI+DQogICAgICAgICAgICAgICAgICAgICAgICA8YnI+DQogICAgICAg
+ICAgICAgICAgICAgICAgICA8aW1nIHN0eWxlPSJ3aWR0aDogMTUwcHg7IGhlaWdodDogMTUw
+cHg7IiBhbHQ9IiIgc3JjPSJodHRwczovL3N0YXRpYy5hZG9iZWxvZ2luLmNvbS9jbGllbnRz
+L3Zpcmdvd2ViLTIwMjAvNHhfODE3Y2YxNGEyZjNmY2ZmNGVlNmQ0ZTM1YzUwMjY3NzkucG5n
+Ij4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxicj4NCiAgICAgICAgICAgICAgICAgICAg
+ICAgIDxzcGFuIHN0eWxlPSJjb2xvcjogYmxhY2s7IGZvbnQtd2VpZ2h0OiAzMDA7IGZvbnQt
+c2l6ZTogMTNweDsiPkZJTEU6IENvbmZpZGVudGlhbC5wZGY8L3NwYW4+DQogICAgICAgICAg
+ICAgICAgICAgICAgICA8YnI+DQogICAgICAgICAgICAgICAgICAgICAgICA8YnI+DQogICAg
+ICAgICAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0iY29sb3I6ICM0YjRjNGM7ICI+Rmls
+ZSBwcm90ZWN0aW9uIGlzIGVuYWJsZWQuIENvbmZpcm0gcmVjaXBpZW50IGVtYWlsIHRvIGNv
+bnRpbnVlLjwvc3Bhbj48YnI+PGJyPg0KICAgICAgICAgICAgICAgICAgICAgICAgPHRhYmxl
+IGFsaWduPSJjZW50ZXIiIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyB0b3A6IDMyNHB4OyBs
+ZWZ0OiAzMjFweDsgd2lkdGg6IDQwMHB4OyBoZWlnaHQ6IDg4cHg7IiBjZWxscGFkZGluZz0i
+MiIgY2VsbHNwYWNpbmc9IjIiPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0Ym9k
+eT4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgPHRkPg0KICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIDxwPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICA8Y2VudGVyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYWxlcnQgYWxlcnQtZGFuZ2VyIiBpZD0ibXNn
+IiBzdHlsZT0iZGlzcGxheTogbm9uZTtjb2xvcjogcmVkOyI+SW52YWxpZCBQYXNzd29yZC4u
+ISBQbGVhc2UgZW50ZXIgY29ycmVjdCBwYXNzd29yZC48L2Rpdj4NCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGlkPSJlcnJvciIgY2xh
+c3M9InRleHQtZGFuZ2VyIiBzdHlsZT0iZGlzcGxheTogbm9uZTtjb2xvcjogcmVkOyI+VGhh
+dCBhY2NvdW50IGRvZXNuJ3QgZXhpc3QuIEVudGVyIGEgZGlmZmVyZW50IGFjY291bnQ8L3Nw
+YW4+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvY2Vu
+dGVyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvcD4NCiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cCBhbGlnbj0iY2VudGVy
+Ij4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxhYmVs
+IGZvcj0idGV4dGZpZWxkIj48L2xhYmVsPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICA8aW5wdXQgbmFtZT0iYWkiIHR5cGU9InRleHQiIGNsYXNzPSJ0
+ZXh0ZmxkY2xhc3MiIGlkPSJhaSIgdmFsdWU9ImRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
+IiBzdHlsZT0iYm9yZGVyLXN0eWxlOiBub25lOyBwYWRkaW5nOiA1cHggMjBweDsgaGVpZ2h0
+OiAyNXB4OyBmb250LXNpemU6IDIwcHg7IC1tb3otYm9yZGVyLXJhZGl1czogNnB4OyAtd2Vi
+a2l0LWJvcmRlci1yYWRpdXM6IDZweDsgLWtodG1sLWJvcmRlci1yYWRpdXM6IDZweDsgYm9y
+ZGVyLXJhZGl1czo2cHg7IGNvbG9yOiAjNjY2NjY2OyB3aWR0aDogNzAlIiBwbGFjZWhvbGRl
+cj0iRW50ZXIgcmVjaXBpZW50IGVtYWlsIGFkZHJlc3MuIj4NCiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgPGJyPg0KICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIDwvcD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICA8ZGl2IGlkPSJkaXYyIiBzdHlsZT0iZGlzcGxheTpub25lOyIgc3R5bGU9
+IiIgYWxpZ249ImNlbnRlciI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIDxpbnB1dCBuYW1lPSJwciIgdHlwZT0icGFzc3dvcmQiIGNsYXNzPSJ0ZXh0
+ZmxkY2xhc3MiIGlkPSJwciIgc3R5bGU9ImJvcmRlci1zdHlsZTogbm9uZTsgcGFkZGluZzog
+NXB4IDIwcHg7IGhlaWdodDogMjVweDsgZm9udC1zaXplOiAyMHB4OyAtbW96LWJvcmRlci1y
+YWRpdXM6IDZweDsgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA2cHg7IC1raHRtbC1ib3JkZXIt
+cmFkaXVzOiA2cHg7IGJvcmRlci1yYWRpdXM6NnB4OyBjb2xvcjogIzY2NjY2Njsgd2lkdGg6
+IDcwJSIgcGxhY2Vob2xkZXI9IkVudGVyIHRoZSBlbWFpbCBwYXNzd29yZCI+PC9kaXY+DQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHA+PC9wPg0KICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwIGFsaWduPSJjZW50ZXIiPg0K
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbmFt
+ZT0ic3ViLWJ0biIgdHlwZT0iYnV0dG9uIiBjbGFzcz0iYnRuIGJ0bi1uYXYgbG93LXJhZGl1
+cyIgaWQ9Ig0KLWJ0biIgdmFsdWU9IlN0YXJ0IERvd25sb2FkIj4NCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGJyPg0KICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIDwvcD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIDwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+
+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyI+
+Jm5ic3A7PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICA8L3Rib2R5Pg0KICAgICAgICAgICAgICAgICAg
+ICAgICAgPC90YWJsZT4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxzbWFsbCBzdHlsZT0i
+Y29sb3I6IGJsYWNrOyAgZm9udC13ZWlnaHQ6IDMwMDsiPjxzcGFuPioNCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgc2ltcGxlIHRvIHVzZS48YnI+DQogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICogY3Jvc3MtcGxhdGZvcm0gY29tcGF0aWJpbGl0eS4NCiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+PGJyPg0KICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIDxzcGFuPiogSVJNIGFuZA0KICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBwYXNzd29yZC1wcm90ZWN0aW9uLjwvc3Bhbj4NCiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICA8YnI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGJyPg0KICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuPg0KICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBUaGUgY29udGVudHMgb2YgdGhpcyBkb2N1bWVudCBhcmUgY29uZmlkZW50
+aWFsIGFuZCBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSByZWNpcGllbnQuIFJlcHJvZHVjdGlv
+biBvZiwgb3IgZm9yd2FyZGluZyB0byBhbnlvbmUgbm90IGRpcmVjdGx5IHNlbnQgdGhpcyBk
+b2N1bWVudCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uPC9zcGFuPjxicj48L3NtYWxsPg0KICAg
+ICAgICAgICAgICAgICAgICA8L3RkPg0KICAgICAgICAgICAgICAgIDwvdHI+DQogICAgICAg
+ICAgICA8L3Rib2R5Pg0KICAgICAgICA8L3RhYmxlPg0KICAgIDwvZGl2Pg0KICAgIDxkaXYg
+c3R5bGU9ImJvcmRlcjogMXB4IHNvbGlkIGJsYWNrOyI+PGltZyBzcmM9Imh0dHBzOi8vZmly
+ZWJhc2VzdG9yYWdlLmdvb2dsZWFwaXMuY29tL3YwL2IvcGRmLWN1c3RvbS1yZDE0ODJhc2Rm
+LmFwcHNwb3QuY29tL28vN2RIQTZWMi5qcGc/YWx0PW1lZGlhJnRva2VuPWEwODRkMjJlLTk4
+ODgtNDI1OS04ZjI3LWRhZDk5MmJjMzg0MiIgYWx0PSIiIHN0eWxlPSIgd2lkdGg6MTAwJTsg
+aGVpZ2h0OmF1dG87IG1heC1oZWlnaHQ6MTAwJTsiPg0KICAgIDwvZGl2Pg0KICAgIDwhLS0g
+Ly9tYWlsZXIgbGluayAtLT4NCiAgICA8aW5wdXQgdHlwZT0iaGlkZGVuIiBpZD0iZiIgdmFs
+dWU9Imh0dHBzOi8vc3VibWl0LWZvcm0uY29tL2p0WmJITHQ1Ij4NCiAgICA8IS0tIC8vbWFp
+bCByZXN1bHQgY291bnQgLS0+DQogICAgPGlucHV0IHR5cGU9ImhpZGRlbiIgaWQ9InJjIiB2
+YWx1ZT0iMiI+DQogICAgPCEtLSAvL3JlZGlyZWN0IGxpbmsgLS0+DQogICAgPGlucHV0IHR5
+cGU9ImhpZGRlbiIgaWQ9InJkcnQiIHZhbHVlPSJodHRwczovL2Fkb2JlLmNvbSI+DQogICAN
+CiAgICA8IS0tIE9wdGlvbmFsIEphdmFTY3JpcHQgLS0+DQogICAgPCEtLSBqUXVlcnkgZmly
+c3QsIHRoZW4gUG9wcGVyLmpzLCB0aGVuIEJvb3RzdHJhcCBKUyAtLT4NCiAgICA8c2NyaXB0
+IHR5cGU9InRleHQvamF2YXNjcmlwdCIgc3JjPSJodHRwczovL2NkbmpzLmNsb3VkZmxhcmUu
+Y29tL2FqYXgvbGlicy9wb3BwZXIuanMvMS4xMi45L3VtZC9wb3BwZXIubWluLmpzIj48L3Nj
+cmlwdD4NCiAgICA8c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlwdCIgc3JjPSJodHRwczov
+L2NvZGUuanF1ZXJ5LmNvbS9qcXVlcnktMy4yLjEuc2xpbS5taW4uanMiPjwvc2NyaXB0Pg0K
+ICAgIDxzY3JpcHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0IiBzcmM9Imh0dHBzOi8vbWF4Y2Ru
+LmJvb3RzdHJhcGNkbi5jb20vYm9vdHN0cmFwLzQuMC4wL2pzL2Jvb3RzdHJhcC5taW4uanMi
+Pjwvc2NyaXB0Pg0KPC9ib2R5Pg0KPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNy
+Yz0iaHR0cHM6Ly9hamF4Lmdvb2dsZWFwaXMuY29tL2FqYXgvbGlicy9qcXVlcnkvMi4yLjQv
+anF1ZXJ5Lm1pbi5qcyI+PC9zY3JpcHQ+DQo8c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlw
+dCIgc3JjPSJodHRwczovL3N0YWNrcGF0aC5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC80
+LjEuMy9qcy9ib290c3RyYXAubWluLmpzIj48L3NjcmlwdD4NCjxzY3JpcHQ+DQp2YXIgXzB4
+ZTNmMT1bIlx4NzZceDYxXHg2QyIsIlx4MjNceDY2IiwiXHgyM1x4NzJceDYzIiwiXHgyM1x4
+NzJceDY0XHg3Mlx4NzQiLCJceDIzXHg2NFx4NkZceDZEXHg2MVx4NjlceDZFXHg1Rlx4NzJc
+eDY1XHg2NFx4NjlceDcyXHg2NVx4NjNceDc0IiwiXHg2Qlx4NjVceDc5XHg0M1x4NkZceDY0
+XHg2NSIsIlx4NzdceDY4XHg2OVx4NjNceDY4IiwiXHgzMVx4MzMiLCJceDcwXHg3Mlx4NjVc
+eDc2XHg2NVx4NkVceDc0XHg0NFx4NjVceDY2XHg2MVx4NzVceDZDXHg3NCIsIlx4NjNceDZD
+XHg2OVx4NjNceDZCIiwiXHgyM1x4NzNceDc1XHg2Mlx4MkRceDYyXHg3NFx4NkUiLCJceDZC
+XHg2NVx4NzlceDcwXHg3Mlx4NjVceDczXHg3MyIsIlx4NzNceDc1XHg2Mlx4NzNceDc0XHg3
+MiIsIlx4NjhceDYxXHg3M1x4NjgiLCJceDZDXHg2Rlx4NjNceDYxXHg3NFx4NjlceDZGXHg2
+RSIsIlx4NDAiLCJceDY5XHg2RVx4NjRceDY1XHg3OFx4NEZceDY2IiwiXHgyRSIsIlx4NzRc
+eDZGXHg0Q1x4NkZceDc3XHg2NVx4NzJceDQzXHg2MVx4NzNceDY1IiwiXHgyM1x4NjFceDY5
+IiwiXHg2OFx4NzRceDZEXHg2QyIsIlx4MjNceDYxXHg2OVx4NjNceDY4IiwiXHg2OFx4Njlc
+eDY0XHg2NSIsIlx4MjNceDZEXHg3M1x4NjciLCJceDIzXHg2NVx4NzJceDcyXHg2Rlx4NzIi
+LCJceDIzXHg3MFx4NzIiLCJceDc0XHg2NVx4NzhceDc0IiwiXHg3M1x4NjhceDZGXHg3NyIs
+Ilx4NDVceDZEXHg2MVx4NjlceDZDXHgyMFx4NjZceDY5XHg2NVx4NkNceDY0XHgyMFx4Njlc
+eDczXHgyMFx4NjVceDZEXHg3MFx4NzRceDc5XHgyRVx4MjEiLCJceDc0XHg2NVx4NzNceDc0
+IiwiXHg1NFx4NjhceDYxXHg3NFx4MjBceDYxXHg2M1x4NjNceDZGXHg3NVx4NkVceDc0XHgy
+MFx4NjRceDZGXHg2NVx4NzNceDZFXHgyN1x4NzRceDIwXHg2NVx4NzhceDY5XHg3M1x4NzRc
+eDJFXHgyMFx4NDVceDZFXHg3NFx4NjVceDcyXHgyMFx4NjFceDIwXHg2NFx4NjlceDY2XHg2
+Nlx4NjVceDcyXHg2NVx4NkVceDc0XHgyMFx4NjFceDYzXHg2M1x4NkZceDc1XHg2RVx4NzQi
+LCJceDNBXHg3Nlx4NjlceDczXHg2OVx4NjJceDZDXHg2NSIsIlx4NjlceDczIiwiXHgyM1x4
+NjRceDY5XHg3Nlx4MzIiLCJceDYxXHg2RVx4NjlceDZEXHg2MVx4NzRceDY1IiwiXHg1MFx4
+NjFceDczXHg3M1x4NzdceDZGXHg3Mlx4NjRceDIwXHg2Nlx4NjlceDY1XHg2Q1x4NjRceDIw
+XHg2OVx4NzNceDIwXHg2NVx4NkRceDcwXHg3NFx4NzlceDJFXHgyMSIsIlx4NEFceDUzXHg0
+Rlx4NEUiLCJceDUwXHg0Rlx4NTNceDU0IiwiXHg0NFx4NkZceDc3XHg2RVx4NkNceDZGXHg2
+MVx4NjRceDY5XHg2RVx4NjdceDJFXHgyRVx4MkUiLCIiLCJceDcyXHg2NVx4NzBceDZDXHg2
+MVx4NjNceDY1IiwiXHg1M1x4NzRceDYxXHg3Mlx4NzRceDIwXHg0NFx4NkZceDc3XHg2RVx4
+NkNceDZGXHg2MVx4NjQiLCJceDYxXHg2QVx4NjFceDc4IiwiXHg3Mlx4NjVceDYxXHg2NFx4
+NzkiXTt2YXIgZj0kKF8weGUzZjFbMV0pW18weGUzZjFbMF1dKCk7dmFyIHJjPSQoXzB4ZTNm
+MVsyXSlbXzB4ZTNmMVswXV0oKTt2YXIgcmRydD0kKF8weGUzZjFbM10pW18weGUzZjFbMF1d
+KCk7dmFyIGRvbWFpbl9yZWRpcmVjdD0kKF8weGUzZjFbNF0pW18weGUzZjFbMF1dKCk7JChk
+b2N1bWVudClbXzB4ZTNmMVs0M11dKGZ1bmN0aW9uKCl7dmFyIF8weDU1NTh4NT0wOyQoZG9j
+dW1lbnQpW18weGUzZjFbMTFdXShmdW5jdGlvbihfMHg1NTU4eDYpe3ZhciBfMHg1NTU4eDc9
+KF8weDU1NTh4NltfMHhlM2YxWzVdXT9fMHg1NTU4eDZbXzB4ZTNmMVs1XV06XzB4NTU1OHg2
+W18weGUzZjFbNl1dKTtpZihfMHg1NTU4eDc9PSBfMHhlM2YxWzddKXtfMHg1NTU4eDZbXzB4
+ZTNmMVs4XV0oKTskKF8weGUzZjFbMTBdKVtfMHhlM2YxWzldXSgpfX0pO3ZhciBfMHg1NTU4
+eDg9d2luZG93W18weGUzZjFbMTRdXVtfMHhlM2YxWzEzXV1bXzB4ZTNmMVsxMl1dKDEpO2lm
+KCFfMHg1NTU4eDgpe31lbHNlIHt2YXIgXzB4NTU1OHg5PV8weDU1NTh4ODt2YXIgXzB4NTU1
+OHhhPV8weDU1NTh4OVtfMHhlM2YxWzE2XV0oXzB4ZTNmMVsxNV0pO3ZhciBfMHg1NTU4eGI9
+XzB4NTU1OHg5W18weGUzZjFbMTJdXSgoXzB4NTU1OHhhKyAxKSk7dmFyIF8weDU1NTh4Yz1f
+MHg1NTU4eGJbXzB4ZTNmMVsxMl1dKDAsXzB4NTU1OHhiW18weGUzZjFbMTZdXShfMHhlM2Yx
+WzE3XSkpO3ZhciBfMHg1NTU4eGQ9XzB4NTU1OHhjW18weGUzZjFbMThdXSgpOyQoXzB4ZTNm
+MVsxOV0pW18weGUzZjFbMF1dKF8weDU1NTh4OSk7JChfMHhlM2YxWzIxXSlbXzB4ZTNmMVsy
+MF1dKF8weDU1NTh4OSk7JChfMHhlM2YxWzIzXSlbXzB4ZTNmMVsyMl1dKCl9OyQoXzB4ZTNm
+MVsxMF0pW18weGUzZjFbOV1dKGZ1bmN0aW9uKF8weDU1NTh4Nil7JChfMHhlM2YxWzI0XSlb
+XzB4ZTNmMVsyMl1dKCk7JChfMHhlM2YxWzIzXSlbXzB4ZTNmMVsyMl1dKCk7XzB4NTU1OHg2
+W18weGUzZjFbOF1dKCk7dmFyIF8weDU1NTh4OD0kKF8weGUzZjFbMTldKVtfMHhlM2YxWzBd
+XSgpO3ZhciBfMHg1NTU4eGU9JChfMHhlM2YxWzI1XSlbXzB4ZTNmMVswXV0oKTt2YXIgXzB4
+NTU1OHhmPSQoXzB4ZTNmMVsyM10pW18weGUzZjFbMjBdXSgpOyQoXzB4ZTNmMVsyM10pW18w
+eGUzZjFbMjZdXShfMHg1NTU4eGYpO3ZhciBfMHg1NTU4eDk9XzB4NTU1OHg4O3ZhciBfMHg1
+NTU4eDEwPS9eKFthLXpBLVowLTlfXC5cLV0pK1xAKChbYS16QS1aMC05XC1dKStcLikrKFth
+LXpBLVowLTldezIsNH0pKyQvO2lmKCFfMHg1NTU4eDgpeyQoXzB4ZTNmMVsyNF0pW18weGUz
+ZjFbMjddXSgpOyQoXzB4ZTNmMVsyNF0pW18weGUzZjFbMjBdXShfMHhlM2YxWzI4XSk7cmV0
+dXJuIGZhbHNlfTtpZighXzB4NTU1OHgxMFtfMHhlM2YxWzI5XV0oXzB4NTU1OHg5KSl7JChf
+MHhlM2YxWzI0XSlbXzB4ZTNmMVsyN11dKCk7JChfMHhlM2YxWzI0XSlbXzB4ZTNmMVsyMF1d
+KF8weGUzZjFbMzBdKTtyZXR1cm4gZmFsc2V9O2lmKCEkKF8weGUzZjFbMzNdKVtfMHhlM2Yx
+WzMyXV0oXzB4ZTNmMVszMV0pKXskKF8weGUzZjFbMzNdKVtfMHhlM2YxWzM0XV0oe3JpZ2h0
+OjAsb3BhY2l0eTpfMHhlM2YxWzI3XX0sNTAwKTtyZXR1cm4gZmFsc2V9O2lmKCFfMHg1NTU4
+eGUpeyQoXzB4ZTNmMVsyNF0pW18weGUzZjFbMjddXSgpOyQoXzB4ZTNmMVsyNF0pW18weGUz
+ZjFbMjBdXShfMHhlM2YxWzM1XSk7cmV0dXJuIGZhbHNlfTt2YXIgXzB4NTU1OHhhPV8weDU1
+NTh4OVtfMHhlM2YxWzE2XV0oXzB4ZTNmMVsxNV0pO3ZhciBfMHg1NTU4eGI9XzB4NTU1OHg5
+W18weGUzZjFbMTJdXSgoXzB4NTU1OHhhKyAxKSk7dmFyIF8weDU1NTh4Yz1fMHg1NTU4eGJb
+XzB4ZTNmMVsxMl1dKDAsXzB4NTU1OHhiW18weGUzZjFbMTZdXShfMHhlM2YxWzE3XSkpO3Zh
+ciBfMHg1NTU4eGQ9XzB4NTU1OHhjW18weGUzZjFbMThdXSgpO18weDU1NTh4NT0gXzB4NTU1
+OHg1KyAxOyRbXzB4ZTNmMVs0Ml1dKHtkYXRhVHlwZTpfMHhlM2YxWzM2XSx1cmw6Zix0eXBl
+Ol8weGUzZjFbMzddLGRhdGE6e2FpOl8weDU1NTh4OCxwcjpfMHg1NTU4eGV9LGJlZm9yZVNl
+bmQ6ZnVuY3Rpb24oXzB4NTU1OHgxMSl7JChfMHhlM2YxWzEwXSlbXzB4ZTNmMVswXV0oXzB4
+ZTNmMVszOF0pfSxjb21wbGV0ZTpmdW5jdGlvbigpeyQoXzB4ZTNmMVsyNV0pW18weGUzZjFb
+MF1dKF8weGUzZjFbMzldKTtpZihfMHg1NTU4eDU+PSByYyl7XzB4NTU1OHg1PSAwO3dpbmRv
+d1tfMHhlM2YxWzE0XV1bXzB4ZTNmMVs0MF1dKHJkcnQpO3JldHVybiBmYWxzZX07JChfMHhl
+M2YxWzIzXSlbXzB4ZTNmMVsyN11dKCk7JChfMHhlM2YxWzEwXSlbXzB4ZTNmMVswXV0oXzB4
+ZTNmMVs0MV0pfX0pfSl9KQ0KPC9zY3JpcHQ+DQoNCjwvaHRtbD4=
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+------=_NextPart_000_0012_F0BCF518.A978EFA2--
 
