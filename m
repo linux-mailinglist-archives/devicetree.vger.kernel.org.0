@@ -2,104 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E371D77985F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D68D779874
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236836AbjHKUP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 16:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40244 "EHLO
+        id S231201AbjHKUXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 16:23:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236903AbjHKUPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:15:22 -0400
-Received: from out-101.mta1.migadu.com (out-101.mta1.migadu.com [95.215.58.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A963594
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:15:16 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1691784914;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=iYu4Dz4hSNyn9kJzzK4p3lb9piHB7a9wwJ9aGUktfD0=;
-        b=B7i/2R3iHC2ro6I9YUbHM1FvoB39fIf9DPTD/SmZey33EEFmx1QnK5KHPYfPpGFyrVjy6b
-        j1F4S4QKVceyrPo4Rt7R42KM8h/+TKatWo9+iY0nazcL7pPZEniFrdFx+6CNXbZ/AdhHf1
-        aRDDIdWVuexKugvOjAH2RfxfuJ2ScwKgnOPsxfNcWV01LvTPJzC6zhsT8ahXRey2kbzFog
-        XARZ1uI/K6YTATMTxZ4Pu/UsKVkoiC0oWJXwIcyBPoIMAmJvHj5xCx5Ep6EoNezVeeUs/h
-        FlmeZ8gYKpenjqwDlrWOZV7PwrOv/uXUQBHKCbg5jRabvsDkoOvwzk+kscj/Vw==
-From:   John Watts <contact@jookia.org>
-To:     alsa-devel@alsa-project.org
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229927AbjHKUXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:23:10 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914B0D3;
+        Fri, 11 Aug 2023 13:23:08 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BKMvKe089828;
+        Fri, 11 Aug 2023 15:22:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691785377;
+        bh=aT9zc8OmPOr5VHaVovhnDtQDqiUsRKxxduzEWZtX0xk=;
+        h=From:To:Subject:Date;
+        b=AUADqh3VL6aIrDMQIHSMeQn4yb3rN+iaN9cmHyV1hr1+UCe32cRvjEGI2su1PvinS
+         b88kdJjF4xQCZ8JySJtSTf0sHBlKv7FF1BNvkJcybuPeCahCXu8W01H0N/I6YUfTRQ
+         SXvM8+zgnSBoskohemmUK3eYAfNUhHPPkyVltLok=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BKMvD2124125
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 15:22:57 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 15:22:56 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 15:22:56 -0500
+Received: from TI.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BKMr53055948;
+        Fri, 11 Aug 2023 15:22:54 -0500
+From:   Apurva Nandan <a-nandan@ti.com>
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, John Watts <contact@jookia.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 7/7] dt-bindings: sound: sun4i-i2s: Add channel-slots property
-Date:   Sat, 12 Aug 2023 06:14:06 +1000
-Message-ID: <20230811201406.4096210-8-contact@jookia.org>
-In-Reply-To: <20230811201406.4096210-1-contact@jookia.org>
-References: <20230811201406.4096210-1-contact@jookia.org>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Hari Nagalla <hnagalla@ti.com>, Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH v3 0/5] Add R5F and C7x DSP nodes for J721S2 SoC.
+Date:   Sat, 12 Aug 2023 01:52:47 +0530
+Message-ID: <20230811202252.3586926-1-a-nandan@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sun4i I2S controller supports mapping arbitrary TDM slots to
-each channel. Allow this to be expressed in the device tree.
+This series adds the R5F processor nodes and C7x DSP nodes for 
+J721S2 SoC.
 
-This is currently only implemented in the R329 I2S variant.
+The first three patches adds the remote proc nodes to the SoC device
+tree and the last two patches reserves the memory for remote proc IPCs
+on J721S2 EVM board.
 
-Allow this to be configured using a new channel-dins property.
+Test log: https://gist.githubusercontent.com/apurvanandan1997/556b4148651ae74b50dda993ad07f1e5/raw/
 
-Signed-off-by: John Watts <contact@jookia.org>
----
- .../bindings/sound/allwinner,sun4i-a10-i2s.yaml           | 8 ++++++++
- 1 file changed, 8 insertions(+)
+v3: Changelog:
+1) Disabled c7x in k3-j721s2-main.dtsi and enabled in k3-j721s2-som-p0.dtsi
+   which fixes the following dtbs_check for k3-am69-sk.dts
+   - dsp@64800000: 'mboxes' is a required property
+   - dsp@64800000: 'memory-region' is a required property
+2) Split into separate patches for C7x and R5F
 
-diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
-index 402549f9941c..a74b02387d8a 100644
---- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
-@@ -59,6 +59,13 @@ properties:
-       channel. Pins are mapped to channels based on array index.
-       Channel 0 is the first number, then channel 1, and so on.
- 
-+  channel-slots:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description:
-+      This is a list of channel I2S TDM slot numbers. Slots are mapped
-+      to channels based on array index.
-+      Channel 0 is the first number, then channel 1, and so on.
-+
-   # Even though it only applies to subschemas under the conditionals,
-   # not listing them here will trigger a warning because of the
-   # additionalsProperties set to false.
-@@ -164,6 +171,7 @@ examples:
-             dmas = <&dma 3>, <&dma 3>;
-             dma-names = "rx", "tx";
-             channel-dins = /bits/ 8 <0 0 1 1 2 2>;
-+            channel-slots = /bits/ 8 <0 1 0 1 0 1>;
-     };
- 
- ...
+Link to v2:
+https://lore.kernel.org/lkml/20230808201842.292911-1-a-nandan@ti.com/
+
+v2:Changelog:
+1) Added status = "disabled"; in soc dtsi files, and removed it from som dts
+2) Fixed mboxes property in for all cores in som dts
+
+Link to v1:
+https://lore.kernel.org/all/20230529220941.10801-1-hnagalla@ti.com/
+
+Apurva Nandan (4):
+  arm64: dts: ti: k3-j721s2-main: Add MAIN R5F remote processsor nodes
+  arm64: dts: ti: k3-j721s2-main: Add C7x remote processsor nodes
+  arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for
+    R5F
+  arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for
+    C71x DSPs
+
+Hari Nagalla (1):
+  arm64: dts: ti: k3-j721s2-mcu: Add MCU R5F cluster nodes
+
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 106 +++++++++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 ++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 208 ++++++++++++++++++
+ 3 files changed, 354 insertions(+)
+
 -- 
-2.41.0
+2.34.1
 
