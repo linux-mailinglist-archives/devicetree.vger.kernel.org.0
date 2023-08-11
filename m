@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA50779139
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 16:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 754BF779131
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 16:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233953AbjHKOBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 10:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
+        id S234838AbjHKOBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 10:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjHKOBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 10:01:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B33D7;
-        Fri, 11 Aug 2023 07:00:59 -0700 (PDT)
+        with ESMTP id S229535AbjHKOBD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 10:01:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33075E65;
+        Fri, 11 Aug 2023 07:01:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 78B7F631B1;
-        Fri, 11 Aug 2023 14:00:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C24B3C433C7;
-        Fri, 11 Aug 2023 14:00:56 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B866163D14;
+        Fri, 11 Aug 2023 14:01:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38F87C433C8;
+        Fri, 11 Aug 2023 14:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691762458;
-        bh=C4cXeWQX/r0IzEoOEZ08WLIpkcXhN7kt7P6JcA2SsfA=;
+        s=k20201202; t=1691762462;
+        bh=s7rE3dzzOGAM390g7BAwTOib8togvtN0niC7DTYEqAU=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=rjOirqlUfvyMrYGK2PVWBJ5zUsGe2FKOjHY1dp1jcP9Za9VNrHnzeLPV7j1s1GKa1
-         pnp1TVUnexW5wXbSCI3Uk3aG2vO8T4NzWCjTg3lJK8GOE2Ino+Ns0Y/bKJM3NavB2d
-         3iUhkptkfGP3N80QGn989MfZaaFKYrBXKHxS/3AgluHVulS8sMU19qP0/juWN2eCCY
-         DRFczAh/0LRrjffN/6Wp78U0yrotycsm4dPQ5UJL878xSXCDzRFY+d6EZFHZXMjbS9
-         cuExJx9o92mxn5k/NIJeQDrfDBE/26mqajanE/DM4vYlIGsPLyiz2hHJqA/dR5sOLK
-         H24h7Nxq2gFqQ==
-Received: (nullmailer pid 3322998 invoked by uid 1000);
+        b=ZbIZLm4+gnD2Ywx7qwfpRZA1D6FjHUdw0CSnBok7w/IE3EErNE6ZMUveAi1m1oyKf
+         lW3vBix/+Cm5eH87JagjiBnreZRTMXk3J3UzZvON0M3QBmDlIjxodXrroWhjWcTYuJ
+         vMs3+K8hK3PEQY/hhDbcHcWT58Fcf+CSV3PJSHxTAeVdHcl0ff7rw3uJrwmvKLULhN
+         S5ZjTkOLkDfZJQqzIxQcQrWYIS0vWWpPjAXBWljxswmGfAh//yyd7RCGvQp+/WMwiT
+         XXYHdlslpe24+jpt3e19SgXRrl5eEPrMnreYck3j4POkoZ1uhQYT0MQm7cqzBJS/26
+         pYqaSyTlbsojg==
+Received: (nullmailer pid 3323007 invoked by uid 1000);
         Fri, 11 Aug 2023 14:00:55 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
+To:     Jai Luthra <j-luthra@ti.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Thomas Gleixner <tglx@linutronix.de>, linux-pm@vger.kernel.org,
-        Zhang Rui <rui.zhang@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        David Airlie <airlied@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        nm@ti.com, Martyn Welch <martyn.welch@collabora.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, Vaishnav Achath <vaishnav.a@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        a-bhatia1@ti.com,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Julien Massot <julien.massot@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        netdev@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-In-Reply-To: <20230810144451.1459985-3-alexander.stein@ew.tq-group.com>
-References: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com>
- <20230810144451.1459985-3-alexander.stein@ew.tq-group.com>
-Message-Id: <169176235704.3319932.12605780111430379869.robh@kernel.org>
-Subject: Re: [PATCH 2/6] dt-bindings: imx-thermal: Add
- #thermal-sensor-cells property
+        niklas.soderlund+renesas@ragnatech.se, linux-media@vger.kernel.org,
+        Benoit Parrot <bparrot@ti.com>, devarsht@ti.com
+In-Reply-To: <20230811-upstream_csi-v9-12-8943f7a68a81@ti.com>
+References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
+ <20230811-upstream_csi-v9-12-8943f7a68a81@ti.com>
+Message-Id: <169176235886.3320008.7630750130843547331.robh@kernel.org>
+Subject: Re: [PATCH v9 12/13] media: dt-bindings: Add TI J721E CSI2RX
 Date:   Fri, 11 Aug 2023 08:00:55 -0600
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,18 +73,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 10 Aug 2023 16:44:47 +0200, Alexander Stein wrote:
-> This property is defined in thermal-sensor.yaml. Reference this file and
-> constraint '#thermal-sensor-cells' to 0 for imx-thermal.
-> Fixes the warning:
-> arch/arm/boot/dts/nxp/imx/imx6q-mba6a.dtb: tempmon:
->  '#thermal-sensor-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
->  From schema: Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+On Fri, 11 Aug 2023 16:17:34 +0530, Jai Luthra wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+> capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
+> parts together.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
 > ---
->  Documentation/devicetree/bindings/thermal/imx-thermal.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> NOTE:
+> 
+> This patch depends on
+> 9536cc949235 ("media: dt-bindings: cadence-csi2rx: Convert to DT schema")
+> which is part of linux-next.
+> 
+>  .../bindings/media/ti,j721e-csi2rx-shim.yaml       | 100 +++++++++++++++++++++
+>  1 file changed, 100 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -98,12 +101,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/imx-thermal.example.dtb: tempmon: '#thermal-sensor-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/thermal/imx-thermal.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: ticsi2rx@4500000: csi-bridge@4504000: False schema does not allow {'compatible': ['ti,j721e-csi2rx', 'cdns,csi2rx'], 'reg': [[72368128, 4096]], 'clocks': [[4294967295, 26, 2], [4294967295, 26, 0], [4294967295, 26, 2], [4294967295, 26, 2], [4294967295, 26, 3], [4294967295, 26, 3]], 'clock-names': ['sys_clk', 'p_clk', 'pixel_if0_clk', 'pixel_if1_clk', 'pixel_if2_clk', 'pixel_if3_clk'], 'phys': [[4294967295]], 'phy-names': ['dphy'], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]], 'bus-type': [[4]], 'clock-lanes': [[0]], 'data-lanes': [[1, 2]]}}}}
+	from schema $id: http://devicetree.org/schemas/media/ti,j721e-csi2rx-shim.yaml#
+Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['ti,j721e-csi2rx', 'cdns,csi2rx']
+Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['ti,j721e-csi2rx', 'cdns,csi2rx']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230810144451.1459985-3-alexander.stein@ew.tq-group.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230811-upstream_csi-v9-12-8943f7a68a81@ti.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
