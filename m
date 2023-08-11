@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C34C7778539
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 04:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A84E778549
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 04:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjHKCFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 22:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
+        id S229666AbjHKCRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 22:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjHKCFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 22:05:42 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 799EC2D55
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 19:05:41 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fe5c0e57d2so13196405e9.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Aug 2023 19:05:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1691719540; x=1692324340;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IeMoZmyYJ0xhnIiJ4EQ1sjQ6QJfBR5vuYK+GqyiFIBE=;
-        b=LpTN3GyHYzjuqKzBZFsy/WZVT75e7WCMtJFFPjKkhg/nH70X31Resnk5OeUye9/eMk
-         Avc6M4idI4fNY2QejR9XtkVC39WzNx/RkzG4R1PGTHiWtq0KP1QrRffwY11y4O9Hbq++
-         hxQw9N7FRmdH6t+VEeJ5K5O3i6q6BPsf+E4kiMSzgCMF27l0FAhXjgM6Lt0HNZJVdyP7
-         tYr8c00ASY5oPW+5AGr8kvjtfIya0+DJ6EsBHnkY+971RhQraRPNy4EiiKG/G0jEljyZ
-         fkg7sO0bvQeb1YR+CfnVhshkXlLyM4Ga1dIsibR7Odyy9Hu3nkedbiGnCV0y8eECULN4
-         ERWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691719540; x=1692324340;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IeMoZmyYJ0xhnIiJ4EQ1sjQ6QJfBR5vuYK+GqyiFIBE=;
-        b=FviBTDCf69jjmNNcHmpjDeQRgopabd3VChzFgoHcEBNZXVeefMKrW74x2Mf4W+Dyuy
-         Tmb3PHLmj3ocp/jjZn3slzP84EWD3T+oAIhq1XvNH4A9Jt8Vb9ilemE0ethCh+x4nwhN
-         aRUD/suZjDy7mKbDFsQD+2JlZqXkpkSgGbzCphLVpyls8aNqQ+LxmyJfv5JhQUodpk8n
-         Kh443c2dJd1c8Nl6pqMm6lfqb4CAHTA6ifDKigKHpfb8RZ8S/NG7oqicNdkxh1gcntc8
-         RMgNNc9hNU2Sa8SpI9F5KHSgr7yURBcqUULobKkFJ5E5U7KQO3tQ0vrDOqvqbru4rDwE
-         KfgQ==
-X-Gm-Message-State: AOJu0Yw3hDtFU3SULkEmFQteHN/B+y9MOcyQl9qF4EOh1gFnwbYnBXh/
-        284tM4ikD/p/GcBuUlw+OLmN7w==
-X-Google-Smtp-Source: AGHT+IHWsr8jO4sosbNQCyncYxVU+zxH4R3wi+b3Phc7AKVFrYg97zxpdR9GIaOshWgfN+mpMIDN1A==
-X-Received: by 2002:adf:ce91:0:b0:316:d887:624a with SMTP id r17-20020adfce91000000b00316d887624amr266515wrn.15.1691719539830;
-        Thu, 10 Aug 2023 19:05:39 -0700 (PDT)
-Received: from smtpclient.apple ([131.111.5.246])
-        by smtp.gmail.com with ESMTPSA id t1-20020a5d5341000000b0031763fd36c4sm3768330wrv.104.2023.08.10.19.05.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 10 Aug 2023 19:05:39 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
-Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <CAJF2gTQhH2ju1kjaS5hgygQAhTFBKLFvJ1j7626hyE00HZTRow@mail.gmail.com>
-Date:   Fri, 11 Aug 2023 03:05:28 +0100
-Cc:     Jisheng Zhang <jszhang@kernel.org>, wefu@redhat.com,
-        Conor Dooley <conor@kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Samuel Holland <samuel@sholland.org>, bmeng.cn@gmail.com,
-        opensbi <opensbi@lists.infradead.org>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FD240B24-B8F8-4D7B-9036-EFFE70D68BA8@jrtc27.com>
-References: <20230808132958.1097873-1-guoren@kernel.org>
- <ZNURXBKkYdiWLanf@xhacker> <0783057A-9D05-4ED9-8246-135A6641565D@jrtc27.com>
- <CAJF2gTQhH2ju1kjaS5hgygQAhTFBKLFvJ1j7626hyE00HZTRow@mail.gmail.com>
-To:     Guo Ren <guoren@kernel.org>
-X-Mailer: Apple Mail (2.3731.600.7)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        with ESMTP id S229475AbjHKCRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 22:17:33 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F43A26A0;
+        Thu, 10 Aug 2023 19:17:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1691720252; x=1723256252;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0THyFkSnK1p9RVFPp9ADMVWBCe9AiR93iSgzIjVkqpo=;
+  b=nU5NhOPyUVJjRK2ex90AvSEmc/6/CWwX2nAaCOVfUoYTGr/JV3ODlHaO
+   ew7yWOU7JifSj2GKTDDC4t9Bn2SrSE4ts/KvudAHQYVZ4F77Fg5CPc87/
+   S8xWCc7H50CizRC7hCWs/WDTeN6PsHHq5thuD8glfdSgg2sJUwFaCCyln
+   p++0joNM87zCXkSNKL93devyl9p2tqBdEuXpZbEcnqoy0t1fHLe2/HoZT
+   9A1TSrrdsfty3B0kYZs1XUhua4l4Pa4cmcsJ6cMJOsLcCe5Wg5Ii2iCN7
+   fTwwe0p/TK8yG/YH5ZxH6MdK/s7BFSGDI18I1GIlLp2Q7o1gOPIltdt1y
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="369045307"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; 
+   d="scan'208";a="369045307"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2023 19:17:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="846625134"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; 
+   d="scan'208";a="846625134"
+Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 10 Aug 2023 19:17:26 -0700
+Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qUHiQ-0007QS-0U;
+        Fri, 11 Aug 2023 02:17:26 +0000
+Date:   Fri, 11 Aug 2023 10:17:22 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Subject: Re: [PATCH 1/4] clk: mmp2: Move number of clocks into driver source
+Message-ID: <202308110800.KkX1CemC-lkp@intel.com>
+References: <20230809-mmp-nr-clks-v1-1-5f3cdbbb89b8@skole.hr>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230809-mmp-nr-clks-v1-1-5f3cdbbb89b8@skole.hr>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,118 +70,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11 Aug 2023, at 03:01, Guo Ren <guoren@kernel.org> wrote:
->=20
-> On Fri, Aug 11, 2023 at 8:42=E2=80=AFAM Jessica Clarke =
-<jrtc27@jrtc27.com> wrote:
->>=20
->> On 10 Aug 2023, at 17:33, Jisheng Zhang <jszhang@kernel.org> wrote:
->>>=20
->>> On Tue, Aug 08, 2023 at 09:29:58AM -0400, guoren@kernel.org wrote:
->>>> From: Guo Ren <guoren@linux.alibaba.com>
->>>>=20
->>>> Add detailed information about thead,reset-sample driver, and =
-improve
->>>> usage documentation.
->>>>=20
->>>> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
->>>> Signed-off-by: Guo Ren <guoren@kernel.org>
->>>> ---
->>>> docs/platform/thead-c9xx.md | 87 =
-++++++++++++++++++++++++++++---------
->>>> 1 file changed, 67 insertions(+), 20 deletions(-)
->>>>=20
->>>> diff --git a/docs/platform/thead-c9xx.md =
-b/docs/platform/thead-c9xx.md
->>>> index 8bb9e91f1a9b..fe05fc5bb85a 100644
->>>> --- a/docs/platform/thead-c9xx.md
->>>> +++ b/docs/platform/thead-c9xx.md
->>>> @@ -1,8 +1,8 @@
->>>> -T-HEAD C9xx Series Processors
->>>> -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
->>>> +T-HEAD Processors
->>>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->>>>=20
->>>> -The **C9xx** series processors are high-performance RISC-V =
-architecture
->>>> -multi-core processors with AI vector acceleration engine.
->>>> +T-HEAD provides high-performance RISC-V architecture multi-core
->>>> +processors with AI vector acceleration engine.
->>>>=20
->>>> For more details, refer [T-HEAD.CN](https://www.t-head.cn/)
->>>>=20
->>>> @@ -12,15 +12,75 @@ To build the platform-specific library and =
-firmware images, provide the
->>>> Platform Options
->>>> ----------------
->>>>=20
->>>> -The *T-HEAD C9xx* does not have any platform-specific compile =
-options
->>>> +The *T-HEAD CPU* does not have any platform-specific compile =
-options
->>>> because it uses generic platform.
->>>>=20
->>>> ```
->>>> CROSS_COMPILE=3Driscv64-linux-gnu- PLATFORM=3Dgeneric /usr/bin/make
->>>> ```
->>>>=20
->>>> -The *T-HEAD C9xx* DTB provided to OpenSBI generic firmwares will =
-usually have
->>>> -"riscv,clint0", "riscv,plic0", "thead,reset-sample" compatible =
-strings.
->>>> +The *T-HEAD CPU* DTB provided to OpenSBI generic firmwares will =
-usually have
->>>> +"thead,reset-sample" compatible strings. The "thead,reset-sample" =
-is a T-HEAD
->>>> +custom driver for the SMP system bootup; the single-core system =
-doesn't need
->>>> +it.
->>>> +
->>>> +T-HEAD Fdt Reset Driver Introduction
->>>> +------------------------------------
->>>> +
->>>> +Every T-HEAD CPU provides a reset control signal and reset address =
-signals.
->>>> + - Reset address signal determines CPU where to start up.
->>>> + - Reset control signal releases CPU from reset state and begins =
-to execute
->>>> +   at reset address.
->>>> +
->>>> +Many vendors would gather these signals into SoC control =
-registers. These
->>>> +register designs are similar but with different base addresses and =
-bits
->>>> +definitions. We only provide standard opensbi, Linux binaries, and =
-jtag gdbinit
->>>> +script to simplify Linux booting at the FPGA stage. The fdt reset =
-driver helps
->>>> +users bring up their SMP system quickly with the below settings:
->>>=20
->>> +DT maintainers and DT list.
->>>=20
->>> I can submit a dt-binding for this if DT maintainers agree with =
-below
->>> properties. Could you please help review?
->>=20
->> I thought this was already discussed on the OpenSBI list 2 months =
-ago,
->> and received pretty negative feedback.
-> Yes, we want to correct all DT grammar & compile problems, and make it
-> legal first and try again. I thought every vendor has their own choice
-> of how to deliver their hardware support. The motivation of this
-> driver is to ease the delivery of T-HEAD CPU cores on different
-> platforms; people only need three things: jtag_init_script & opensbi &
-> linux_Image, then they could boot on their own FPGA prototype
-> platform, and they needn't prepare any software stuff, all the generic
-> binaries could be directly used. The th1520 could be a good example
-> for them. That's why we consistently push this thing.
+Hi Duje,
 
-What=E2=80=99s changed to make people say yes rather than no this time?
+kernel test robot noticed the following build errors:
 
-I for one will not give positive feedback for self-modifying code in my
-firmware (outside of the necessary self-relocation at startup before
-the PMP is enabled).
+[auto build test ERROR on 52a93d39b17dc7eb98b6aa3edb93943248e03b2f]
 
-Jess
+url:    https://github.com/intel-lab-lkp/linux/commits/Duje-Mihanovi/clk-mmp2-Move-number-of-clocks-into-driver-source/20230809-202111
+base:   52a93d39b17dc7eb98b6aa3edb93943248e03b2f
+patch link:    https://lore.kernel.org/r/20230809-mmp-nr-clks-v1-1-5f3cdbbb89b8%40skole.hr
+patch subject: [PATCH 1/4] clk: mmp2: Move number of clocks into driver source
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20230811/202308110800.KkX1CemC-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230811/202308110800.KkX1CemC-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308110800.KkX1CemC-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/bits.h:5,
+                    from include/linux/bitops.h:6,
+                    from include/linux/of.h:15,
+                    from include/linux/clk-provider.h:9,
+                    from drivers/clk/mmp/clk-audio.c:8:
+   drivers/clk/mmp/clk-audio.c: In function 'mmp2_audio_clk_probe':
+>> drivers/clk/mmp/clk-audio.c:354:41: error: 'MMP2_CLK_AUDIO_NR_CLKS' undeclared (first use in this function); did you mean 'MMP2_CLK_AUDIO_SYSCLK'?
+     354 |                                         MMP2_CLK_AUDIO_NR_CLKS),
+         |                                         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/const.h:12:55: note: in definition of macro '__is_constexpr'
+      12 |         (sizeof(int) == sizeof(*(8 ? ((void *)((long)(x) * 0l)) : (int *)8)))
+         |                                                       ^
+   drivers/clk/mmp/clk-audio.c:353:29: note: in expansion of macro 'struct_size'
+     353 |                             struct_size(priv, clk_data.hws,
+         |                             ^~~~~~~~~~~
+   drivers/clk/mmp/clk-audio.c:354:41: note: each undeclared identifier is reported only once for each function it appears in
+     354 |                                         MMP2_CLK_AUDIO_NR_CLKS),
+         |                                         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/const.h:12:55: note: in definition of macro '__is_constexpr'
+      12 |         (sizeof(int) == sizeof(*(8 ? ((void *)((long)(x) * 0l)) : (int *)8)))
+         |                                                       ^
+   drivers/clk/mmp/clk-audio.c:353:29: note: in expansion of macro 'struct_size'
+     353 |                             struct_size(priv, clk_data.hws,
+         |                             ^~~~~~~~~~~
+   In file included from include/linux/vmalloc.h:11,
+                    from include/asm-generic/io.h:994,
+                    from arch/arm/include/asm/io.h:416,
+                    from include/linux/io.h:13,
+                    from drivers/clk/mmp/clk-audio.c:9:
+>> include/linux/overflow.h:276:9: error: first argument to '__builtin_choose_expr' not a constant
+     276 |         __builtin_choose_expr(__is_constexpr(count),                    \
+         |         ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/overflow.h:293:32: note: in expansion of macro 'flex_array_size'
+     293 |                 sizeof(*(p)) + flex_array_size(p, member, count),       \
+         |                                ^~~~~~~~~~~~~~~
+   drivers/clk/mmp/clk-audio.c:353:29: note: in expansion of macro 'struct_size'
+     353 |                             struct_size(priv, clk_data.hws,
+         |                             ^~~~~~~~~~~
+>> include/linux/overflow.h:276:9: error: first argument to '__builtin_choose_expr' not a constant
+     276 |         __builtin_choose_expr(__is_constexpr(count),                    \
+         |         ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/overflow.h:294:40: note: in expansion of macro 'flex_array_size'
+     294 |                 size_add(sizeof(*(p)), flex_array_size(p, member, count)))
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/clk/mmp/clk-audio.c:353:29: note: in expansion of macro 'struct_size'
+     353 |                             struct_size(priv, clk_data.hws,
+         |                             ^~~~~~~~~~~
+   include/linux/overflow.h:292:9: error: first argument to '__builtin_choose_expr' not a constant
+     292 |         __builtin_choose_expr(__is_constexpr(count),                    \
+         |         ^~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/mmp/clk-audio.c:353:29: note: in expansion of macro 'struct_size'
+     353 |                             struct_size(priv, clk_data.hws,
+         |                             ^~~~~~~~~~~
+
+
+vim +354 drivers/clk/mmp/clk-audio.c
+
+725262d29139cc Lubomir Rintel 2020-05-20  346  
+725262d29139cc Lubomir Rintel 2020-05-20  347  static int mmp2_audio_clk_probe(struct platform_device *pdev)
+725262d29139cc Lubomir Rintel 2020-05-20  348  {
+725262d29139cc Lubomir Rintel 2020-05-20  349  	struct mmp2_audio_clk *priv;
+725262d29139cc Lubomir Rintel 2020-05-20  350  	int ret;
+725262d29139cc Lubomir Rintel 2020-05-20  351  
+725262d29139cc Lubomir Rintel 2020-05-20  352  	priv = devm_kzalloc(&pdev->dev,
+725262d29139cc Lubomir Rintel 2020-05-20  353  			    struct_size(priv, clk_data.hws,
+725262d29139cc Lubomir Rintel 2020-05-20 @354  					MMP2_CLK_AUDIO_NR_CLKS),
+725262d29139cc Lubomir Rintel 2020-05-20  355  			    GFP_KERNEL);
+725262d29139cc Lubomir Rintel 2020-05-20  356  	if (!priv)
+725262d29139cc Lubomir Rintel 2020-05-20  357  		return -ENOMEM;
+725262d29139cc Lubomir Rintel 2020-05-20  358  
+725262d29139cc Lubomir Rintel 2020-05-20  359  	spin_lock_init(&priv->lock);
+725262d29139cc Lubomir Rintel 2020-05-20  360  	platform_set_drvdata(pdev, priv);
+725262d29139cc Lubomir Rintel 2020-05-20  361  
+725262d29139cc Lubomir Rintel 2020-05-20  362  	priv->mmio_base = devm_platform_ioremap_resource(pdev, 0);
+725262d29139cc Lubomir Rintel 2020-05-20  363  	if (IS_ERR(priv->mmio_base))
+725262d29139cc Lubomir Rintel 2020-05-20  364  		return PTR_ERR(priv->mmio_base);
+725262d29139cc Lubomir Rintel 2020-05-20  365  
+725262d29139cc Lubomir Rintel 2020-05-20  366  	pm_runtime_enable(&pdev->dev);
+725262d29139cc Lubomir Rintel 2020-05-20  367  	ret = pm_clk_create(&pdev->dev);
+725262d29139cc Lubomir Rintel 2020-05-20  368  	if (ret)
+725262d29139cc Lubomir Rintel 2020-05-20  369  		goto disable_pm_runtime;
+725262d29139cc Lubomir Rintel 2020-05-20  370  
+725262d29139cc Lubomir Rintel 2020-05-20  371  	ret = pm_clk_add(&pdev->dev, "audio");
+725262d29139cc Lubomir Rintel 2020-05-20  372  	if (ret)
+725262d29139cc Lubomir Rintel 2020-05-20  373  		goto destroy_pm_clk;
+725262d29139cc Lubomir Rintel 2020-05-20  374  
+725262d29139cc Lubomir Rintel 2020-05-20  375  	ret = register_clocks(priv, &pdev->dev);
+725262d29139cc Lubomir Rintel 2020-05-20  376  	if (ret)
+725262d29139cc Lubomir Rintel 2020-05-20  377  		goto destroy_pm_clk;
+725262d29139cc Lubomir Rintel 2020-05-20  378  
+725262d29139cc Lubomir Rintel 2020-05-20  379  	return 0;
+725262d29139cc Lubomir Rintel 2020-05-20  380  
+725262d29139cc Lubomir Rintel 2020-05-20  381  destroy_pm_clk:
+725262d29139cc Lubomir Rintel 2020-05-20  382  	pm_clk_destroy(&pdev->dev);
+725262d29139cc Lubomir Rintel 2020-05-20  383  disable_pm_runtime:
+725262d29139cc Lubomir Rintel 2020-05-20  384  	pm_runtime_disable(&pdev->dev);
+725262d29139cc Lubomir Rintel 2020-05-20  385  
+725262d29139cc Lubomir Rintel 2020-05-20  386  	return ret;
+725262d29139cc Lubomir Rintel 2020-05-20  387  }
+725262d29139cc Lubomir Rintel 2020-05-20  388  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
