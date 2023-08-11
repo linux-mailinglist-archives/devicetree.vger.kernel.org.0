@@ -2,67 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ACE17791B5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 16:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC5B7791C5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 16:26:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235280AbjHKOWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 10:22:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
+        id S229544AbjHKO0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 10:26:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235169AbjHKOWT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 10:22:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B53C10E4;
-        Fri, 11 Aug 2023 07:22:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A368965E66;
-        Fri, 11 Aug 2023 14:22:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20307C433C7;
-        Fri, 11 Aug 2023 14:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691763738;
-        bh=Iror0DkK6V6ibqchZbAfsiBt2VvvDldfmk9oKu7PAlo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nTsKZPJ2wxsRFCE4DNbxiEz/oVi6pGsicd2EPrZt+pk0F7HV03J4W8Janex5KPtZ+
-         0WVo4pxDjHcLMKrhWqG8F5OvRWlE1QOa2lmaW37rxGiJ3HNHvVrXcXxrTapNEYwRLm
-         SIRytOOyg2cgXa8SPKlwMCDYVBxURSP5VeGJOZPF6BPKdNXislWKX10NVyXhoC3aTg
-         HNLL0nEvUHSngOn/TpnPqvLf2FBu5i5RoynqUbfQWVk3qDmOrrVsjMdORb7+59oDYM
-         9pZ0zcmmbVi0o/tywjZoFUQmnJr9mr9ob79iyY9YQz7MnaaLc2jVSTx63Dx5NqvpEX
-         pNnHi4FhAwBlA==
-Date:   Fri, 11 Aug 2023 22:22:06 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        dan.scally@ideasonboard.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] arm64: dts: imx8mp-debix: remove unused fec
- pinctrl node
-Message-ID: <20230811142206.GZ151430@dragon>
-References: <20230809071026.3546605-1-m.felsch@pengutronix.de>
+        with ESMTP id S235315AbjHKO0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 10:26:00 -0400
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBBD32712
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 07:25:59 -0700 (PDT)
+Received: by mail-ua1-x934.google.com with SMTP id a1e0cc1a2514c-79d8edd6d99so685129241.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 07:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691763959; x=1692368759;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y8Z6jYUUE4XSqtFocIF3XavaecNmFuBcBwCtSkrLy4Y=;
+        b=N3rdtuMNz7bD3/zJfqF6WGQ6DoJQi560eG5AIFeqdw7VdkcP7FFuW2JqyffSoXwZpc
+         2K8/eOCYmLXXgamZR98wHvSr2BV8BtBykU21lHaT8sAlOvzBd8rxdxs8cQ9v64P+OGvS
+         TNRdXqNiUNe0i07hY20CYSdu8gIKqkbgwaax9jzVw6Ssq0u0sgQQ7TuSPx07OK0NiDBR
+         nLKwdOlY3HBHfXxCMUFmQ9Wb5ehiyqfplZkbfP/j7Z/MiQmXbcijrNhyi+/Ozst9wOFh
+         oYmgu/hRk9J3dz4DDFfXgCVxrD75cmazN30/MPi08gHDyoGZkT2kqw8ietfMIIDfE7x5
+         sunA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691763959; x=1692368759;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y8Z6jYUUE4XSqtFocIF3XavaecNmFuBcBwCtSkrLy4Y=;
+        b=j1VkV6s1rU0IksFXtLWuTv6yjx9HIKT3RQdMxA47QfR9Nt5768KTSx/tiegXoTVui7
+         F0JDBn/OnalMCZ7s5dpe5ZJmRpNZpPzGga9dUTOKWBP5ncNyDSwOUsqwW8qewI4/xA8f
+         E0W4bkUxuCwZxW4iM4LNXBP15jXol236UZSjvzJnb9+TuSL4xbwI/dS8hB+5pdXgZTzQ
+         XzKOhXnuWRbkeJSYcKtBu54qOIjJvW6KFMZlDftL5stCEEQTJj6/Y+PNl5qP9aOWcQl2
+         6BOddvZ2SPC7vpLnKjE4rinzn4+G7mjXO9Wkhs1wFV0VCKM1aEex/eBhpYtN9TL0ZXeS
+         QNlQ==
+X-Gm-Message-State: AOJu0YzRJu5tmcBEyJ9SNSjGA32B6xkvdD/gpk+VTICuD5vILMqNpJ86
+        hdsPHjiEO1v6l9+QCd01bNu6LDVp6Iz1jeEtpm+yYA==
+X-Google-Smtp-Source: AGHT+IGkTIlQGSaflTKp9yzn3Fx3nTqJGVchCm0k0+ohA33iQIeq7KFPW/dUVjUKYBm0OArLwRPPoSX3szmmzy3LVKQ=
+X-Received: by 2002:a05:6102:34c2:b0:447:46e7:1343 with SMTP id
+ a2-20020a05610234c200b0044746e71343mr1803546vst.23.1691763958783; Fri, 11 Aug
+ 2023 07:25:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230809071026.3546605-1-m.felsch@pengutronix.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230807074043.31288-1-zhuyinbo@loongson.cn> <20230807074043.31288-2-zhuyinbo@loongson.cn>
+ <20230808-amount-urban-9a6eb09852ca@spud> <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
+ <20230809-circus-photo-6911d2e18f96@spud> <d4e16768-bed0-beda-42c3-f0a01b7e96cc@loongson.cn>
+In-Reply-To: <d4e16768-bed0-beda-42c3-f0a01b7e96cc@loongson.cn>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 11 Aug 2023 16:25:47 +0200
+Message-ID: <CAMRc=Mc00yy6DxdEos_w7HAkAwH7j0HBvkbQbaQiA_wTXiwFUg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio offset
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 09, 2023 at 09:10:23AM +0200, Marco Felsch wrote:
-> The SoM A uses the EQOS ethernet interface and not the FEC, so drop the
-> interface pinctrl node from the device tree.
-> 
-> Fixes: c86d350aae68 ("arm64: dts: Add device tree for the Debix Model A Board")
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+On Thu, Aug 10, 2023 at 8:19=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wr=
+ote:
+>
+>
+>
+> =E5=9C=A8 2023/8/9 =E4=B8=8B=E5=8D=8811:39, Conor Dooley =E5=86=99=E9=81=
+=93:
+> > On Wed, Aug 09, 2023 at 03:47:55PM +0800, Yinbo Zhu wrote:
+> >> =E5=9C=A8 2023/8/8 =E4=B8=8B=E5=8D=888:05, Conor Dooley =E5=86=99=E9=
+=81=93:
+> >>> On Mon, Aug 07, 2023 at 03:40:42PM +0800, Yinbo Zhu wrote:
+> >
+> >>>> +  loongson,gpio-ctrl-mode:
+> >>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>>> +    description:
+> >>>> +      This option indicate this GPIO control mode, where '0' repres=
+ents
+> >>>> +      bit control mode and '1' represents byte control mode.
+> >>>
+> >>> How is one supposed to know which of these modes to use?
+> >>
+> >>
+> >> Byte mode is to access by byte, such as gpio3, the base address of the
+> >> gpio controller is offset by 3 bytes as the access address of gpio3.
+> >>
+> >> The bit mode is the normal mode that like other platform gpio and it i=
+s
+> >> to access by bit.
+> >>
+> >> If both modes are supported, it is recommended to prioritize using byt=
+e
+> >> mode that according to spec.
+> >
+> > So, sounds like this property should instead be a boolean that notes
+> > whether the hardware supports the mode or not, rather than the current
+> > enum used to determine software policy.
+>
+>
+> okay, I got it, I will use boolean,
+>
 
-Applied all, thanks!
+Why do you want to put it into device-tree so badly? This is not the
+first driver that would have of_match_data for different variants
+where you can have a structure that would keep offsets for different
+models. It's not like you will have hundreds of "compatible" chips
+anyway, most likely just a few?
+
+Bart
