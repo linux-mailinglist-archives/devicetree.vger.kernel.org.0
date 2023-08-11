@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF8987797C0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B17B7797C8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231928AbjHKT1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 15:27:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54486 "EHLO
+        id S236829AbjHKT3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 15:29:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236088AbjHKT1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:27:50 -0400
+        with ESMTP id S236820AbjHKT3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:29:49 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D0330DB;
-        Fri, 11 Aug 2023 12:27:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDE23580;
+        Fri, 11 Aug 2023 12:29:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A4F3567963;
-        Fri, 11 Aug 2023 19:27:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A385C433C8;
-        Fri, 11 Aug 2023 19:27:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 15A066797B;
+        Fri, 11 Aug 2023 19:29:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD39DC433C7;
+        Fri, 11 Aug 2023 19:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691782069;
-        bh=DobAbm1IHae1StSaGpB4TPZBLLSgCPyIvioYYdeqsmU=;
+        s=k20201202; t=1691782180;
+        bh=C3b8Pt48FA8HS2uxnTsnGzXHudg/cGiI78XFQzwaeM4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VpwXSIe7nulyV9vgDfTveSjjWq2qTS0ZtuZ/N1hA2TEiXx0bAPBWvKm6At3Iy4PVC
-         WnmhTBqNo6ittuaRwmcBriqG8eUTPMng2xDoYwYKO17NCphwFLHVjlU67HvoQufPJy
-         OxYYpCHj1bNQWT2eFZBu1Nq0pDY00uI+snsKZHhQWGKbcHxzPmUBSSClXjMj/82ubN
-         CUOjckWF+rNK16TEOXNeZxngfxM6UrA1ocymhZlo6qDLpeusQFekt1eKzfD6Kiegyh
-         n7+0oIhDqc6GxhASIj150LhCeu6ALNk6Du4F2EDLJl/ElPM6PcY0g+MN53v67+rQQE
-         6EqmuqNfAmu2Q==
-Received: (nullmailer pid 3990588 invoked by uid 1000);
-        Fri, 11 Aug 2023 19:27:47 -0000
-Date:   Fri, 11 Aug 2023 13:27:47 -0600
+        b=KAddTeAfG/R6O6bJmcsFRrSW3LAtKFDFanW6OTR8/MQtYcdGIizSJnz6d8S+5a5m6
+         E8+qkuXUzOk6YeopDMTAu/UwR0Fc6Ivv3O/Bt1dO44dLqM0ZsMqk+cI1SR+Ad8zW4U
+         lDBhZTcXl3OEzNopgRbgMm9cTDa2/3I2m/JcQu1/EsWkOg8F1uqxaaC7SarZhMHaGY
+         Yhf5NKJDNsjfZeQP8JjxN/SsWWX2yj/TIfp2gafQHXtrE0RW3FeZOSPq1tixiqR2xq
+         LNRbJ8qf6prUqkcat3iK7zDHgtuVDcHYS/6SU65oM0QGSqhQIRXfbzyNTAiyD0KWB4
+         WpQ/qTE8g/Rpg==
+Received: (nullmailer pid 3992613 invoked by uid 1000);
+        Fri, 11 Aug 2023 19:29:38 -0000
+Date:   Fri, 11 Aug 2023 13:29:38 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Raphael Gallais-Pou <rgallaispou@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?iso-8859-1?Q?Rapha=EBl?= Gallais-Pou 
-        <raphael.gallais.pou@gmail.com>
-Subject: Re: [PATCH] dt-bindings: phy: st: convert phy-stih407-usb to DT
- schema
-Message-ID: <20230811192747.GA3978164-robh@kernel.org>
-References: <20230801205510.15713-1-rgallaispou@gmail.com>
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: st: convert sti-pwm to DT schema
+Message-ID: <20230811192938.GA3990758-robh@kernel.org>
+References: <20230801220559.32530-1-rgallaispou@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230801205510.15713-1-rgallaispou@gmail.com>
+In-Reply-To: <20230801220559.32530-1-rgallaispou@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
@@ -64,134 +62,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 01, 2023 at 10:55:10PM +0200, Raphael Gallais-Pou wrote:
-> From: Raphaël Gallais-Pou <raphael.gallais.pou@gmail.com>
+On Wed, Aug 02, 2023 at 12:05:59AM +0200, Raphael Gallais-Pou wrote:
+> Converts st,sti-pwm binding to DT schema format
 > 
-> Convert the st,stih407-usb2-phy binding to DT schema format.
-> 
-> Signed-off-by: Raphaël Gallais-Pou <raphael.gallais.pou@gmail.com>
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 > ---
->  .../bindings/phy/phy-stih407-usb.txt          | 24 -------
->  .../bindings/phy/st,stih407-usb2-phy.yaml     | 63 +++++++++++++++++++
->  2 files changed, 63 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
->  create mode 100644 Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+>  .../devicetree/bindings/pwm/pwm-st.txt        | 43 -----------
+>  .../devicetree/bindings/pwm/st,sti-pwm.yaml   | 74 +++++++++++++++++++
+>  2 files changed, 74 insertions(+), 43 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-st.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt b/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-st.txt b/Documentation/devicetree/bindings/pwm/pwm-st.txt
 > deleted file mode 100644
-> index 35f03df00130..000000000000
-> --- a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+> index 19fce774cafa..000000000000
+> --- a/Documentation/devicetree/bindings/pwm/pwm-st.txt
 > +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -ST STiH407 USB PHY controller
+> @@ -1,43 +0,0 @@
+> -STMicroelectronics PWM driver bindings
+> ---------------------------------------
 > -
-> -This file documents the dt bindings for the usb picoPHY driver which is the PHY for both USB2 and USB3
-> -host controllers (when controlling usb2/1.1 devices) available on STiH407 SoC family from STMicroelectronics.
+> -Required parameters:
+> -- compatible :		"st,pwm"
+> -- #pwm-cells : 		Number of cells used to specify a PWM. First cell
+> -			specifies the per-chip index of the PWM to use and the
+> -			second cell is the period in nanoseconds - fixed to 2
+> -			for STiH41x.
+> -- reg :			Physical base address and length of the controller's
+> -			registers.
+> -- pinctrl-names: 	Set to "default".
+> -- pinctrl-0: 		List of phandles pointing to pin configuration nodes
+> -			for PWM module.
+> -			For Pinctrl properties, please refer to [1].
+> -- clock-names: 		Valid entries are "pwm" and/or "capture".
+> -- clocks: 		phandle of the clock used by the PWM module.
+> -			For Clk properties, please refer to [2].
+> -- interrupts:		IRQ for the Capture device
 > -
-> -Required properties:
-> -- compatible		: should be "st,stih407-usb2-phy"
-> -- st,syscfg		: phandle of sysconfig bank plus integer array containing phyparam and phyctrl register offsets
-> -- resets		: list of phandle and reset specifier pairs. There should be two entries, one
-> -			  for the whole phy and one for the port
-> -- reset-names		: list of reset signal names. Should be "global" and "port"
-> -See: Documentation/devicetree/bindings/reset/st,stih407-powerdown.yaml
-> -See: Documentation/devicetree/bindings/reset/reset.txt
+> -Optional properties:
+> -- st,pwm-num-chan:	Number of available PWM channels.  Default is 0.
+> -- st,capture-num-chan:	Number of available Capture channels.  Default is 0.
+> -
+> -[1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> -[2] Documentation/devicetree/bindings/clock/clock-bindings.txt
 > -
 > -Example:
 > -
-> -usb2_picophy0: usbpicophy@f8 {
-> -	compatible	= "st,stih407-usb2-phy";
-> -	#phy-cells	= <0>;
-> -	st,syscfg	= <&syscfg_core 0x100 0xf4>;
-> -	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
-> -			  <&picophyreset STIH407_PICOPHY0_RESET>;
-> -	reset-names	= "global", "port";
+> -pwm1: pwm@fe510000 {
+> -	compatible = "st,pwm";
+> -	reg = <0xfe510000 0x68>;
+> -	#pwm-cells = <2>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_pwm1_chan0_default
+> -		     &pinctrl_pwm1_chan1_default
+> -		     &pinctrl_pwm1_chan2_default
+> -		     &pinctrl_pwm1_chan3_default>;
+> -	clocks = <&clk_sysin>;
+> -	clock-names = "pwm";
+> -	st,pwm-num-chan = <4>;
+> -	st,capture-num-chan = <2>;
 > -};
-> diff --git a/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+> diff --git a/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
 > new file mode 100644
-> index 000000000000..1f66ceddbf81
+> index 000000000000..8a7833e9c10c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
-> @@ -0,0 +1,63 @@
+> +++ b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+> @@ -0,0 +1,74 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/phy/st,stih407-usb2-phy.yaml#
+> +$id: http://devicetree.org/schemas/pwm/st,sti-pwm.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: STMicroelectronics STiH407 USB PHY controller
+> +title: STMicroelectronics STi PWM controller
 > +
 > +maintainers:
 > +  - Patrice Chotard <patrice.chotard@foss.st.com>
 > +
-> +description:
-> +  The USB picoPHY driver is the PHY for both USB2 and USB3 host controllers
-> +  (when controlling usb2/1.1 devices) available on STiH407 SoC family from
-> +  STMicroelectronics.
+> +allOf:
+> +  - $ref: pwm.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: st,stih407-usb2-phy
+> +    const: st,sti-pwm
 > +
-> +  st,syscfg:
-> +    description: Phandle to the syscfg bank
-> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-
-Drop quotes
-
-The correct type is 'phandle-array' which is really a matrix, so you 
-need:
-
-items:
-  - items: 
-      - description: ...
-      - description: ...
-      - description: ...
-
-> +    items:
-> +      - description: phandle to syscfg
-> +      - description: phyparam register offset
-> +      - description: phyctrl register offset
+> +  reg:
+> +    maxItems: 1
 > +
-> +  resets:
-> +    items:
-> +      - description: Phandle and reset specifier pair for the whole phy.
-> +      - description: Phandle and reset specifier pair for the port.
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +  reset-names:
-> +    description: List of reset signal names.
-> +    items:
-> +      - const: "global"
-> +      - const: "port"
+> +  pinctrl-names:
+> +    const: default
+> +
+> +  pinctrl-0:
+> +    description: Configuration for the default state.
+> +
+> +  clock-names:
+> +    const: pwm
+> +
+> +  clocks:
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
 
 Drop quotes
 
 > +
-> +  "#phy-cells":
-> +    const: 0
+> +  st,pwm-num-chan:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: Number of available PWM channels.
+
+Constraints?
+
+> +
+> +  st,capture-num-chan:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: Number of available Capture channels.
+
+Constraints?
+
+> +
+> +  "#pwm-cells":
+> +    const: 2
 > +
 > +required:
 > +  - compatible
-> +  - st,syscfg
-> +  - resets
-> +  - reset-names
-> +  - "#phy-cells"
+> +  - reg
+> +  - interrupts
+> +  - clock-names
+> +  - clocks
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/reset/stih407-resets.h>
-> +    usb2_picophy0: usbpicophy {
-> +    	compatible	= "st,stih407-usb2-phy";
-> +    	#phy-cells	= <0>;
-> +    	st,syscfg	= <&syscfg_core 0x100 0xf4>;
-> +    	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
-> +    			  <&picophyreset STIH407_PICOPHY0_RESET>;
-> +    	reset-names	= "global", "port";
-
-Mixed spaces and tabs.
-
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    pwm1: pwm@9510000 {
+> +        compatible = "st,sti-pwm";
+> +        #pwm-cells = <2>;
+> +        reg = <0x9510000 0x68>;
+> +        interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_pwm1_chan0_default
+> +                 &pinctrl_pwm1_chan1_default
+> +                 &pinctrl_pwm1_chan2_default
+> +                 &pinctrl_pwm1_chan3_default>;
+> +        clock-names = "pwm";
+> +        clocks = <&clk_sysin>;
+> +        st,pwm-num-chan = <4>;
 > +    };
 > +...
 > -- 
