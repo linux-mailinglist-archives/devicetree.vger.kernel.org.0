@@ -2,242 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A2C9779258
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20244779271
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:08:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233157AbjHKPDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 11:03:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
+        id S230419AbjHKPIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 11:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232608AbjHKPDn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:03:43 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2425530D0;
-        Fri, 11 Aug 2023 08:03:41 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BF3PAF019291;
-        Fri, 11 Aug 2023 10:03:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691766206;
-        bh=bs8kMfudO9pdC5cA2qEDdp/+bpDxYybryr8W5ipx/hM=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=osTbtUMThp1YGzif4+2tw6WP5rRakG4OJf3KOrxdw/aaskfP7M69VbbrA5XlQWwze
-         rGX87IrgeJYXxlg5jLhZL7ig6UxU72pk9S3+LWshOmsrc+jSetpZ9N3QB5o6OJMMvi
-         gFkOVOJgzRbgiV0PwjyBnsfNfMDfLcfnHtSlylcM=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BF3PjI035028
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 10:03:25 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 10:03:24 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 10:03:24 -0500
-Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BF3NiN099499;
-        Fri, 11 Aug 2023 10:03:24 -0500
-Message-ID: <8f3c2172-8fc7-c90d-bd8f-ea2f0ab9dcc9@ti.com>
-Date:   Fri, 11 Aug 2023 10:03:23 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: k3-j721s2-main: Add R5F and C7x
- remote processsor nodes
-Content-Language: en-US
-To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229610AbjHKPIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:08:34 -0400
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2085.outbound.protection.outlook.com [40.107.249.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2B1171F;
+        Fri, 11 Aug 2023 08:08:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j1GlsYQe+BQNlR5hjFovYtIvkpnhgDZH2g5zUYE1BEpLTu3qKUgKsNHNJH28yMYPI0GmN6drl9wfnXVqVMCPCjgrXi50LOlc6IbrcHjM79c7oq7SCfexL2UtYHbqxAnO+pBgLDrt/lyZZldoNOb3dtq0gTj3RSTdefy8tNQYVl6jbYtcr3fiqKQydwZgd9Bp7mzfmGROvcGtGfGkjT6JEaSWB6Y4PxYa559pm2DcJMeq4ERsfP/HCu9EoZ9VnAZBkF9+H2GwsjEPSR2E2Ap+RZPXsdQ7+vpFV9EShAgZHgVWmfilYYet6ZtO/HbcWSaBM2H9YZ9KH68D2SGiHNtI9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wdw11V7+ukn5xb0vqDPbVlMWFT2k6U4Os7pG0f4KL6Y=;
+ b=VOMOaGp86NsCjvHaV8ig9dpputv2KuCcdQMBOT15wKcJ97ZsCznz9kpcVnID+4F4fm6PjaKLwNq8qYPbA/w57JTGM5HilaxXqZheiUhZ5vpgJWCHKax+Ud0ieQHz6LKi+1FLu9jgruUiza3mSTqI4fFdn0zkkEM6oGuNaXhta0mIbGSapVRYzx+o0Tu1qqGchpEYimejCpFSiOITuI3QBUf4W0uriGajYwMiSF0Z6vI6K288/ZouXvhF93/xWJqkxR/o7GYLIwN0JrmJamqQ7f8hQUxMZNRI14BjDwWq4BS1hu5/XmcOMSNHsuIjE9OQsLcEP07Q1QE93OgL2MHbDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wdw11V7+ukn5xb0vqDPbVlMWFT2k6U4Os7pG0f4KL6Y=;
+ b=exgV0vdsvoTQmqGO8yA4tyYAhrEgGk6yVS6jipwgsEEGUm/wh8v0d/yEX935nJVwsERpSg0CC8R/GrtYNYN3VnWV3pSfVKFd7ShKLnSTJBjCmjPj/xG1crQU/LT2J9dqrDtQNmm+pr52PP+hk5iMtXAbI5rFTEJw2jXDdFkjKig=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by PR3PR04MB7307.eurprd04.prod.outlook.com (2603:10a6:102:84::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.20; Fri, 11 Aug
+ 2023 15:08:31 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::d4ed:20a0:8c0a:d9cf]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::d4ed:20a0:8c0a:d9cf%7]) with mapi id 15.20.6678.019; Fri, 11 Aug 2023
+ 15:08:31 +0000
+Date:   Fri, 11 Aug 2023 18:08:26 +0300
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>
-References: <20230808201842.292911-1-a-nandan@ti.com>
- <20230808201842.292911-3-a-nandan@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230808201842.292911-3-a-nandan@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?utf-8?B?RmVybuKUnMOtbmRleg==?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
+Message-ID: <20230811150826.urp2hzl3tahesrjx@skbuf>
+References: <20230429172422.vc35tnwkekfieoru@skbuf>
+ <c81d23b6-ed22-0b37-d71b-ddce9d5d58eb@seco.com>
+ <c2f928d2-25f6-0e31-9ab3-9d585968df1b@seco.com>
+ <20230522150010.q5zndfwcuvrb6pg2@skbuf>
+ <22a28a6f-2c84-a6b1-bb57-a269af34c993@seco.com>
+ <20230610222123.mzmfjx7zfw4nh2lo@skbuf>
+ <c702e2b6-cb0f-4ac9-86fe-a220284d45aa@seco.com>
+ <20230612163353.dwouatvqbuo6h4ea@skbuf>
+ <1dd01fe2-08a8-ec2f-1184-a58b2f55ba85@seco.com>
+ <20230613142754.wr5njtjo4tbloqwu@skbuf>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230613142754.wr5njtjo4tbloqwu@skbuf>
+X-ClientProxiedBy: AM9P250CA0026.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21c::31) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|PR3PR04MB7307:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a5e9824-54b7-4660-efd7-08db9a7cd2dd
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kWCYsvn7NyIMh9t154Af8sWdP+IOj/20zYtbX6C+xQ5r5ddwlClJIgDk+SydZZJB+WwuIM4dXId6nFG/Pf8Ww/rbO3P9a2EFwrck7NocjGsAzToW26cMj2eh/SosAXcRMdL6XPHTkvajGEmN+oa1P/MRbBDh5P8Yi8N2wnSOgQDeITMYRb9k2ZsIFh85Zts1aHVARfa8QC2AgTFKTrMoflscn4anRkBjppgwEkWTQtO5mi3HkSXA3KpBpM9sXuOjMArlfCPQA2e8LhSnAz+xAZIGEW4BjGrPkPdMmrNw6Gs++N+b+XNR1DiMEVHhaDcKcwXS6tslB5RkztP+XlPxBkohny0up6ucw0EzkvPdLw2Sp5oAhyG6EOjHvL9EmeHaonchqipHNzpeSqZyGI5yz3z74s2x/9nN97bh7/W0RR1oVFBt5UOVApawo6O6+HBTwpLLHy9O9tqtVFiyw1oQ+EZL0j1XvqozmSZ2Tn6zGH44FkZNPI3AS50KlYAQ4oTTu9mqxJ5J6GU/GhdhxCogi3uRVU94uwZfFyTcn9+UWvB3auGwefK5NSUhd5mWKAnU
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(376002)(396003)(136003)(39860400002)(366004)(346002)(451199021)(1800799006)(186006)(9686003)(6512007)(478600001)(6666004)(6486002)(54906003)(1076003)(6506007)(26005)(83380400001)(7416002)(33716001)(44832011)(66476007)(5660300002)(66946007)(66556008)(4326008)(6916009)(2906002)(8936002)(8676002)(316002)(41300700001)(86362001)(38100700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JJefCEk82fH8JUL1Dhs43S6X20whSNqRrqMfBvKItcSkmUzIs/G4T5igEjok?=
+ =?us-ascii?Q?tU7AiKmMY2jmyEGMdU3Gv6r1JeACs2WXlSQG9e9MiUL3xlpWNrAs8glT5AKL?=
+ =?us-ascii?Q?L/u6ZtSJxMkN3yfHGGFWN53nVx28ef5S+n2CdntV15xSC6Nb8XBDjD9bIh/k?=
+ =?us-ascii?Q?JhdjCYmDLibD4Inri2pXaL8MBQMkObRcdcZm/tvQnAH64fxe87eiH5WEGgm6?=
+ =?us-ascii?Q?cTZRBOCWhJ3NftKhgvXMh2TUuQDhyDtnQNzk8Bpfcta24KoD7Jd0aLIqNwod?=
+ =?us-ascii?Q?FNFFNMfLAEU5Ig4Edo7q4GcVflNjuKT6WKJzFcYX7GCxUbJc7MgU3kpJwbf5?=
+ =?us-ascii?Q?UlIPjoKM3AOOB6zVA3EdCCEa67IP75I9TWEvI8tKpAfL3AHzEHP2eWBzNWt1?=
+ =?us-ascii?Q?EqDpjUNfWYZQ4NTZm1Qj/JYnuT0dkYrBwSZQNHTiSgepmfCvh8ZY7MfH5AVz?=
+ =?us-ascii?Q?ESWdCHMiDlxgrGFn70sHrtSTvVi4egEogIYPd5eFWwMFPpqcF8AqHf0SU+Li?=
+ =?us-ascii?Q?5CLyknNT+Px5lygHVWhJ1lUWnZh5lMQWlrEH4ZuwGNq9doE0X63SzuClKseZ?=
+ =?us-ascii?Q?cfbpB2AkcgEDBZAuWvyhc+t/I0VlO9l1kNdFdJGWcuVFG7uyxvG8zGv1CHPo?=
+ =?us-ascii?Q?adKb2af73mQJKq1Vpa7MYicsMMgBmyZ6a/t5QgvIFHz7XygZKSOrzb6/gLKw?=
+ =?us-ascii?Q?iykUsgdSgnS7bcBkV0ZGpOb7eetlWSLsMcvUPSr6pfP6CPs9VqNWpXyhmf3U?=
+ =?us-ascii?Q?D+kKxAd16JYp1al5kZW1zq0er4GSR+d5lgCdVEfevkHVBwroq1UGwpDrvj3X?=
+ =?us-ascii?Q?HpudwknC1GUb8IcT1uQTEIrQp/OJL0PnRIUp14uK89PVHyjkdjXpqK4Dc9AM?=
+ =?us-ascii?Q?XEmwpWoljzLeSqzZ/SqvNuiK/S9KH8Jy2w2xLGWpiF0mhjAIbxNTIQXj1h2i?=
+ =?us-ascii?Q?iYd38AqlAnrpLfwqlDS2cAuGUrmapNQ1MBzVTvxfDriA2kreAIlb3Y4kJsII?=
+ =?us-ascii?Q?9kNnVUX9QmIijWAueBCct+hTqDyloev+b4iUy+bJukWeUgaRkmRTw3M4Lf56?=
+ =?us-ascii?Q?hHWzVx2eWxsVr375hPfWfmhUxm3o10h1TConZeyzW2J21io0dAN1Vmf223N9?=
+ =?us-ascii?Q?dijKvt5doYmK5haUDv+FvxPdQ3jf6+XhFeS/vwEpbAPxfzG1cUmCrTw15j5f?=
+ =?us-ascii?Q?uGkJf7fy7hhNUqQ2Vx1TMpydXVLKjnF7SRGjgrp5kRCdErU63/bKX0td/stA?=
+ =?us-ascii?Q?p06d4IbPWpfT79M9xcuRzAVc1Mq3aNYqj0c5CtFDSXXEAxeN1/ZrY3a7KB9C?=
+ =?us-ascii?Q?8AbeH0tPeTFDp11LjHTgoEhPqsxyERrYuIwz6xsD/8XQLmDPvw5brTpIMy0s?=
+ =?us-ascii?Q?gqfRlgZ/2sT03Hwi0mXsUoprJbDZqXXNDS0bn/b6mmR7FMQTsu93l5bRUaiP?=
+ =?us-ascii?Q?K9l3A3aI186KdGo7CxTimN9tefHHrVYlw91pp+ATEfD3Uj5HpeK/RqL81YrA?=
+ =?us-ascii?Q?LZF7xnkAL9SY1L9GcvJoCASMcu6NdvMNfjVlolLbMu0gxaBOyzEfGPZWc/Qq?=
+ =?us-ascii?Q?bfrSU8mCo0/1wgLzyYHbtX3vZ72QtWMX0jNp5MiyczaPd5sXu2nMb8itaLER?=
+ =?us-ascii?Q?wg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a5e9824-54b7-4660-efd7-08db9a7cd2dd
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 15:08:31.0822
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: esgMkMeOCbPWyQk8yuCyCRhqwJK4I/wKiPcpiqF9nbXIaBF5zWi9h2Xr57+unDoHbCInjKUoq/V413rz0JNKnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7307
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/23 3:18 PM, Apurva Nandan wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
-> The J721S2 SoCs have 2 dual-core Arm Cortex-R5F processor (R5FSS)
-> subsystems/clusters in MAIN voltage domain. Each of these can be
-> configured at boot time to be either run in a LockStep mode or in an
-> Asymmetric Multi Processing (AMP) fashion in Split-mode. These
-> subsystems have 64 KB each Tightly-Coupled Memory (TCM) internal
-> memories for each core split between two banks - ATCM and BTCM
-> (further interleaved into two banks). The TCMs of both Cores are
-> combined in LockStep-mode to provide a larger 128 KB of memory, but
-> otherwise are functionally similar to those on J721E SoCs.
-> 
-> Add the DT nodes for the MAIN domain R5F cluster/subsystems, the two
-> R5F cores are added as child nodes to each of the R5F cluster nodes.
-> The clusters are configured to run in LockStep mode by default, with
-> the ATCMs enabled to allow the R5 cores to execute code from DDR
-> with boot-strapping code from ATCM. The inter-processor communication
-> between the main A72 cores and these processors is achieved through
-> shared memory and Mailboxes.
-> 
-> The following firmware names are used by default for these cores, and
-> can be overridden in a board dts file if desired:
->          MAIN R5FSS0 Core0: j721s2-main-r5f0_0-fw (both in LockStep & Split modes)
->          MAIN R5FSS0 Core1: j721s2-main-r5f0_1-fw (needed only in Split mode)
->          MAIN R5FSS1 Core0: j721s2-main-r5f1_0-fw (both in LockStep & Split modes)
->          MAIN R5FSS1 Core1: j721s2-main-r5f1_1-fw (needed only in Split mode)
-> 
-> The K3 J721S2 SoCs have two C71x DSP subsystems in MAIN voltage domain. The
-> C71x DSPs are 64 bit machine with fixed and floating point DSP operations.
-> Similar to the R5F remote cores, the inter-processor communication
-> between the main A72 cores and these DSP cores is achieved through
-> shared memory and Mailboxes.
-> 
-> The following firmware names are used by default for these DSP cores,
-> and can be overridden in a board dts file if desired:
->          MAIN C71_0 : j721s2-c71_0-fw
->          MAIN C71_1 : j721s2-c71_1-fw
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 104 +++++++++++++++++++++
->   1 file changed, 104 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index dc7920a35237..c428a2b624fb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -1688,4 +1688,108 @@ dss: dss@4a00000 {
->   		dss_ports: ports {
->   		};
->   	};
-> +
-> +	main_r5fss0: r5fss@5c00000 {
-> +		compatible = "ti,j721s2-r5fss";
-> +		ti,cluster-mode = <1>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
-> +			 <0x5d00000 0x00 0x5d00000 0x20000>;
-> +		power-domains = <&k3_pds 277 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		main_r5fss0_core0: r5f@5c00000 {
-> +			compatible = "ti,j721s2-r5f";
-> +			reg = <0x5c00000 0x00010000>,
-> +			      <0x5c10000 0x00010000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&sms>;
-> +			ti,sci-dev-id = <279>;
-> +			ti,sci-proc-ids = <0x06 0xff>;
-> +			resets = <&k3_reset 279 1>;
-> +			firmware-name = "j721s2-main-r5f0_0-fw";
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +
-> +		main_r5fss0_core1: r5f@5d00000 {
-> +			compatible = "ti,j721s2-r5f";
-> +			reg = <0x5d00000 0x00010000>,
-> +			      <0x5d10000 0x00010000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&sms>;
-> +			ti,sci-dev-id = <280>;
-> +			ti,sci-proc-ids = <0x07 0xff>;
-> +			resets = <&k3_reset 280 1>;
-> +			firmware-name = "j721s2-main-r5f0_1-fw";
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +	};
-> +
-> +	main_r5fss1: r5fss@5e00000 {
-> +		compatible = "ti,j721s2-r5fss";
-> +		ti,cluster-mode = <1>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x5e00000 0x00 0x5e00000 0x20000>,
-> +			 <0x5f00000 0x00 0x5f00000 0x20000>;
-> +		power-domains = <&k3_pds 278 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		main_r5fss1_core0: r5f@5e00000 {
-> +			compatible = "ti,j721s2-r5f";
-> +			reg = <0x5e00000 0x00010000>,
-> +			      <0x5e10000 0x00010000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&sms>;
-> +			ti,sci-dev-id = <281>;
-> +			ti,sci-proc-ids = <0x08 0xff>;
-> +			resets = <&k3_reset 281 1>;
-> +			firmware-name = "j721s2-main-r5f1_0-fw";
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +
-> +		main_r5fss1_core1: r5f@5f00000 {
-> +			compatible = "ti,j721s2-r5f";
-> +			reg = <0x5f00000 0x00010000>,
-> +			      <0x5f10000 0x00010000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&sms>;
-> +			ti,sci-dev-id = <282>;
-> +			ti,sci-proc-ids = <0x09 0xff>;
-> +			resets = <&k3_reset 282 1>;
-> +			firmware-name = "j721s2-main-r5f1_1-fw";
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +	};
-> +
-> +	c71_0: dsp@64800000 {
-> +		compatible = "ti,j721s2-c71-dsp";
-> +		reg = <0x00 0x64800000 0x00 0x00080000>,
-> +		      <0x00 0x64e00000 0x00 0x0000c000>;
-> +		reg-names = "l2sram", "l1dram";
-> +		ti,sci = <&sms>;
-> +		ti,sci-dev-id = <8>;
-> +		ti,sci-proc-ids = <0x30 0xff>;
-> +		resets = <&k3_reset 8 1>;
-> +		firmware-name = "j721s2-c71_0-fw";
+Hi Sean,
 
-We are moving to disabled by default for these nodes, see:
+On Tue, Jun 13, 2023 at 05:27:54PM +0300, Vladimir Oltean wrote:
+> > > At first sight you might appear to have a point related to the fact that
+> > > PLL register writes are necessary, and thus this whole shebang is necessary.
+> > > But this can all be done using PBI commands, with the added benefit that
+> > > U-Boot can also use those SERDES networking ports, and not just Linux.
+> > > You can use the RCW+PBL specific to your board to inform the SoC that
+> > > your platform's refclk 1 is 156 MHz (something which the reset state
+> > > machine seems unable to learn, with protocol 0x3333). You don't have to
+> > > put that in the device tree. You don't have to push code to any open
+> > > source project to expose your platform specific details. Then, just like
+> > > in the case of the Lynx 28G driver on LX2160, the SERDES driver could
+> > > just treat the PLL configuration as read-only, which would greatly
+> > > simplify things and eliminate the need for a clk driver.
+> > > 
+> > > Here is an illustrative example (sorry, I don't have a board with the
+> > > right refclk on that PLL, to verify all the way):
+> > > 
+> > > ... snip ...
+> > 
+> > (which of course complicates the process of building the PBIs...)
+> 
+> Maybe this is the language barrier, but what are you trying to say here?
 
-https://lore.kernel.org/lkml/20230809180145.53158-2-afd@ti.com/
-
-The C7x stuff should be split out from the R5 stuff, each
-should have a patch.
-
-Andrew
-
-> +	};
-> +
-> +	c71_1: dsp@65800000 {
-> +		compatible = "ti,j721s2-c71-dsp";
-> +		reg = <0x00 0x65800000 0x00 0x00080000>,
-> +		      <0x00 0x65e00000 0x00 0x0000c000>;
-> +		reg-names = "l2sram", "l1dram";
-> +		ti,sci = <&sms>;
-> +		ti,sci-dev-id = <11>;
-> +		ti,sci-proc-ids = <0x31 0xff>;
-> +		resets = <&k3_reset 11 1>;
-> +		firmware-name = "j721s2-c71_1-fw";
-> +	};
->   };
+I said that I don't understand. Can you please clarify what you were
+trying to transmit with this comment?
