@@ -2,135 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26227779B89
+	by mail.lfdr.de (Postfix) with ESMTP id C34B5779B8B
 	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 01:47:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237269AbjHKXrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 19:47:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43510 "EHLO
+        id S237281AbjHKXrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 19:47:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234385AbjHKXrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 19:47:43 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AFD91703
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:47:42 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fe501e0b4cso22732525e9.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:47:42 -0700 (PDT)
+        with ESMTP id S237154AbjHKXro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 19:47:44 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06831718
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:47:43 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3180fd48489so1931044f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:47:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691797661; x=1692402461;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vmPpz4LCaDoZPw2B7U3w5DHuzdPqZsglckegaLGREXw=;
-        b=nrbCXe3zevFVHfSYLQN9e4arPs5g4ge+ZXcfTza7FzlO6eOPxvkGmLg2wMb8SyAhIe
-         OJeLVuz0ZzI8BzdK/tvVG+mDQ0+JMnCi2Jv+DQdEYFZ8hd4fJFjsQtzX+okbgrryZX0a
-         JbACNpEg5xs8zU6u6Tbv9RNf44ouYRe4fzMPGzhGHX3e5T/L4VvFdlTg4kMcd+WaF+mz
-         aW04dyGkX3lBQvH/ElmgdL+oM5ruU+rD8ADjHE+CJyVeR/jC0qi4jC1blGJAmtqTIJng
-         LnGt8rgQ3v4kmbzM7Okk6ja5MTo225hXHaEWAyzJEVTGvQcq83XGUS1z4+ZTiSQmHMYf
-         i7/Q==
+        d=linaro.org; s=google; t=1691797662; x=1692402462;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EHGfWV+9QYz1ZluMg0KwkQmO1VYdRcir3I0219Nt63M=;
+        b=R77oOfmaOVMc5ZRwiM0cJjeD2l8Qx7gtK334KQBTcKFdG593s/a9D9ibwztciCDgAf
+         rZ5xK8v7zHOb61rTnxTfPi9+WAD4aQq9DZdE7oOE+NZATAS7DNWXptbKksypB/6g2Enl
+         K6CFF6K/Ktt7OdMrE1S696j9fVni9yNmOXP/u8KgLArNpjOQ4DpHjT2bzliAbO86WhHW
+         Jabd2y9/e3Rr/LJNAVUOeMTHfPT2xrDteUgf/rECyBE83wp0+QxvXAUVmlUrJVBFZ2/d
+         dYz+CMVEv1+YFEmrmpHZyOdhbs7I5wa/WHUnXs5ingANTFamZyZuwrp0pFGxhKamMAXi
+         UTgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691797661; x=1692402461;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vmPpz4LCaDoZPw2B7U3w5DHuzdPqZsglckegaLGREXw=;
-        b=MlpI3uzhUBnxQwrj0F4blpy0vX1YZw24QRUx00u59YitpUTfVzKR4t4Wg8BM3ViSsG
-         aReaP71BsnSUYTrGvuRUwW3LNg0wf1gmtGF4YTCCBohbgaBhP0OiWtlsEW7+4RyiK5TO
-         HSDiH+B6E1zoRvGaKNmPFEOJMabpc1xG2zCdeGGkTygPitSw2v9Wf1S8icClJhzeQqB0
-         re8izbvneL3zVdMA/bp7+EcNm+Da4Vs6Zom7beuW7KXGS/0cRHtvbU2/7w7Mzt2KIJr5
-         kJ3VZm1U1tE1JS0uDomazL7UdT+mT4Ox1OAo3QhmpVkj1FdTMQ4MwPUL5/uBy6tLQ9g0
-         gvUw==
-X-Gm-Message-State: AOJu0YxVBWNETss0i1fyCZXX2607NEWqe0RIEvMXhU2opGjfSedPk0or
-        Oq7cq7Wl2VMVVB4B4mQilPOcUQ==
-X-Google-Smtp-Source: AGHT+IEvXO89Wf7pxRGeb83+ECbk4RBaAtG85EAFkCsiLHriYQSSF52CWl6GM4T7QWu8r8Ex2ufS6g==
-X-Received: by 2002:a05:600c:3787:b0:3fe:89be:cd3 with SMTP id o7-20020a05600c378700b003fe89be0cd3mr2111753wmr.22.1691797660968;
-        Fri, 11 Aug 2023 16:47:40 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691797662; x=1692402462;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EHGfWV+9QYz1ZluMg0KwkQmO1VYdRcir3I0219Nt63M=;
+        b=ig8ppzgp/atAPUM5mFdkS2HxKAHMehO44Y4G3cMeLX4f0Sr5dMnElEixXUazM2uqJt
+         RmU2pY4wVdptg9532mTWT4LrWsUGm0aha+jcEfN04C7ZnHicLcem7O6lm8AT5NrsfnIJ
+         k5mFu6E3RRgNu/HubwSlg8xfCEHJ6LGIB646RuITdevQwWf126PKU6LnGAOnWBzO/J2q
+         9DykuGVcr3oQNrp4Jy0REsgCG2J1NF8KPORzvFYvaSvAmFMZNXrC8wGvfRFyOpQez69m
+         XsePXiwbJ73GsfNA7ooLAvHsFn/mVWv+BCgdRFPqMlnyTBM9IVqrBIA7+oohP246x3Fd
+         bWIQ==
+X-Gm-Message-State: AOJu0YymifjZqgMgQ+BOxBQzOhpBO/G3TNDrUK6pydT2s7dQtoYn63Lk
+        HLTBBT/xweGHboQ0vFENOCkW2A==
+X-Google-Smtp-Source: AGHT+IGGCWLhIYOfsIThIV2XDkcdi70+uuHtqYkWhHnDBt21Lm8hszEDqfr/OEamHCT+znTnY4l47A==
+X-Received: by 2002:adf:fcce:0:b0:316:fc63:dfed with SMTP id f14-20020adffcce000000b00316fc63dfedmr2368442wrs.39.1691797662158;
+        Fri, 11 Aug 2023 16:47:42 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id 20-20020a05600c025400b003fa98908014sm9599051wmj.8.2023.08.11.16.47.39
+        by smtp.gmail.com with ESMTPSA id 20-20020a05600c025400b003fa98908014sm9599051wmj.8.2023.08.11.16.47.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 16:47:40 -0700 (PDT)
+        Fri, 11 Aug 2023 16:47:41 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org
-Subject: [PATCH v3 0/7] apq8016: camss: Update dts with various fixes
-Date:   Sat, 12 Aug 2023 00:47:31 +0100
-Message-ID: <20230811234738.2859417-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 1/7] arm64: dts: qcom: msm8916: Define CAMSS ports in core dtsi
+Date:   Sat, 12 Aug 2023 00:47:32 +0100
+Message-ID: <20230811234738.2859417-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230811234738.2859417-1-bryan.odonoghue@linaro.org>
+References: <20230811234738.2859417-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-V3:
-- Fixes licensing boilerplate error in d3 mezzanine - Stephan
-- Moves regulators into d3 mezzanine - Stephan
-- Drops redundant enable of camss in d3 mezzanine - Stephan
-- Declares ports in core dtsi - Konrad
-- Adds R/B for assigned-clocks - Konrad
+Each CSIPHY in CAMMS maps to a port here in the dtsi, since the number of
+CSIPHYs is fixed per SoC define the 8916 ports for both available PHYs.
 
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-08-07-db410c-rb3-camss-dts-v3
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-V2:
-- Adds R/B - Konrad
-- Adds newline as flagged - Konrad
-- Squashes patch#6 into patch#5 ammends commit log
-- Following up on TPG comentary:
-  The CAMSS would not have populated device nodes prior to this series
-  save for the case a user had a D3 Engineering board.
-  Splitting out the sensor from the core board is correct w/r/t the
-  hardware/dts since few db410c have the mezzanine.
-  Once split we can enable the basic camss node by default and thus get the
-  TPG going for both the mezzanine and non-mezzanine cases.
-
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-08-07-db410c-rb3-camss-dts-v2
-
-V1:
-This is a series which updates the apq8016-sbc to fixup CAMSS support.
-
-The first four patches fixup the current state of the ov5640 bindings for
-the apq8016.
-
-Following on from that we move the ov5640 sensor from the main apq8016-sbc
-into a standalone mezzanine dts with an accompanying patch to enable the
-sensor by default in the mezzaine. This makes sense since the D3
-Engineering camera mezzanine is but one of a slew of camera mezzanines we
-can attach here.
-
-The final patch switches on CAMSS in the core apq8016-sbc allowing us to use
-the test-pattern-generator TPG on apq8016-sbc with or without a camera mezzaine
-attached. This to me is a good idea since it means we can test out and
-verify the CAMSS on this board absent a camera mezzaine on the main apq8016
-board.
-
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-08-07-db410c-rb3-camss-dts
-
-Bryan O'Donoghue (7):
-  arm64: dts: qcom: msm8916: Define CAMSS ports in core dtsi
-  arm64: dts: qcom: apq8016-sbc: Fix ov5640 regulator supply names
-  arm64: dts: qcom: apq8016-sbc: Fix ov5640 data-lanes declaration
-  arm64: dts: qcom: apq8016-sbc: Set ov5640 assigned-clock
-  arm64: dts: qcom: apq8016-sbc: Rename ov5640 enable-gpios to
-    powerdown-gpios
-  arm64: dts: qcom: apq8016-sbc-d3-camera-mezzanine: Move default ov5640
-    to a standalone dts
-  arm64: dts: qcom: apq8016-sbc: Enable camss for non-mezzanine cases
-
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../qcom/apq8016-sbc-d3-camera-mezzanine.dts  | 81 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/apq8016-sbc.dts      | 68 ----------------
- arch/arm64/boot/dts/qcom/msm8916.dtsi         |  8 ++
- 4 files changed, 90 insertions(+), 68 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/apq8016-sbc-d3-camera-mezzanine.dts
-
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index c4d6739046989..33fb65d731046 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1712,6 +1712,14 @@ camss: camss@1b0ac00 {
+ 			ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++				};
++
++				port@1 {
++					reg = <1>;
++				};
+ 			};
+ 		};
+ 
 -- 
 2.41.0
 
