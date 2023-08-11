@@ -2,101 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F917795F9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD7B5779637
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:35:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236622AbjHKRRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:17:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33370 "EHLO
+        id S236889AbjHKRfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:35:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236767AbjHKRRO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:17:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE2EA30CB;
-        Fri, 11 Aug 2023 10:17:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C76865335;
-        Fri, 11 Aug 2023 17:17:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D24CDC433C7;
-        Fri, 11 Aug 2023 17:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691774233;
-        bh=/X84N0YLDdeGGTp1lt/zOvmBkBfG/I8HFDeJyLNqGvo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JMWRgxe3FscJMCJZSLZXARJfuxtf9PgD66G5pnYiOx6DcRFY09X5qBjci6WAdC5ri
-         rzG9FJYqPBlq2lRA92DKYbV65P38V3EBf290DUX0WKWm7l0FsmQZjPxJrN0VlvfvoO
-         FRmAnTrx1SN+ckodYOANM8x8XqEZVJ5ZKNVVIqv9CuQOEZ1NlTxpaymqlsT26+5wAQ
-         6csKDzSJZuRBhHEQfldJjXZRb4A0ZF+EzjWj5eyQI6mwrMO09jvhJSyHp2O0J53gZY
-         Z1GTSFBoJ9BKEbhLL0LNyWhdaX8iDuMu4wdzfsf5BCRcGnK49wxKluQxP4BDyB7OJc
-         zq87mDXw1rQFw==
-Received: (nullmailer pid 3630525 invoked by uid 1000);
-        Fri, 11 Aug 2023 17:17:10 -0000
-Date:   Fri, 11 Aug 2023 11:17:10 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Jason A. Donenfeld" <Jason@zx2c4.com>,
-        linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        devicetree@vger.kernel.org,
-        Vincent Huang <vincent.huang@tw.synaptics.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: input: convert syna,rmi4 to DT schema
-Message-ID: <169177423000.3630455.11413514940694318141.robh@kernel.org>
-References: <20230728165054.88678-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S236857AbjHKRfo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:35:44 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C1B30FF;
+        Fri, 11 Aug 2023 10:35:41 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BHZTdV038029;
+        Fri, 11 Aug 2023 12:35:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691775329;
+        bh=J8gCdb7j7JEFdE1hObpcr+I3xfxjndyGgJ/m6d25uyQ=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=wGgTRoa2wraMbNcP28cz2wAqgdxSFPUxXsy7faUKyZVp2zXKtXYukWSD9rIPyQOsz
+         3aoDN7kNhgZ2e3nHEBLmjC8eWYELZZ0ly4PIJY5Pq3/Knu474BYmhQXXENK6jtuxd2
+         Ngz1DC2MCqE1Poxg3s/jAl0ppCjRw9IXjqT9MBrE=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BHZTPf128789
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 12:35:29 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 12:35:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 12:35:29 -0500
+Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BHZPMC040910;
+        Fri, 11 Aug 2023 12:35:26 -0500
+Message-ID: <638d5883-5b95-403e-ecb9-8122d8774675@ti.com>
+Date:   Fri, 11 Aug 2023 23:05:24 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230728165054.88678-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-am69-sk: Add phase tags marking
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Hari Nagalla <hnagalla@ti.com>,
+        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>
+References: <20230811151644.3216621-1-a-nandan@ti.com>
+ <20230811151644.3216621-4-a-nandan@ti.com>
+Content-Language: en-US
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230811151644.3216621-4-a-nandan@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Apurva
 
-On Fri, 28 Jul 2023 18:50:54 +0200, Krzysztof Kozlowski wrote:
-> Convert the bindings for Synaptics RMI4 bus and devices to DT schema.
-> Changes during conversion:
-> 1. Add reset-gpios already used in DTS and mentioned by RMI4
->    specification.
-> 2. Do not require address/size cells, because without functions
->    (children) they aren't really needed.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+On 8/11/2023 8:46 PM, Apurva Nandan wrote:
+> bootph-all as phase tag was added to dt-schema
+> (dtschema/schemas/bootph.yaml) to cover U-Boot challenges with DT.
+> That's why add it also to Linux to be aligned with bootloader requirement.
+>
+> wkup_uart0, wkup_i2c0, mcu_uart0, main_uart8, main_sdhci0 and main_sdhci1
+> are required for bootloader operation on TI K3 AM69-SK EVM. These IPs
+> along with pinmuxes need to be marked for all bootloader phases, hence add
+> bootph-all to these nodes in kernel dts.
+>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
 > ---
-> 
-> Changes in v2:
-> 1. Correct [0-9a-z] to [0-9a-f] (Rob).
-> 
-> Jason, Matthias, Vincent,
-> I put your names as maintainers, because moderately recently you were
-> changing the driver. Let me know if this is okay or you prefer not to
-> maintain the hardware.
-> ---
->  .../bindings/input/rmi4/rmi_2d_sensor.txt     |  56 ----
->  .../bindings/input/rmi4/rmi_f01.txt           |  39 ---
->  .../bindings/input/rmi4/rmi_i2c.txt           |  61 ----
->  .../bindings/input/rmi4/rmi_spi.txt           |  56 ----
->  .../devicetree/bindings/input/syna,rmi4.yaml  | 271 ++++++++++++++++++
->  5 files changed, 271 insertions(+), 212 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/rmi4/rmi_2d_sensor.txt
->  delete mode 100644 Documentation/devicetree/bindings/input/rmi4/rmi_f01.txt
->  delete mode 100644 Documentation/devicetree/bindings/input/rmi4/rmi_i2c.txt
->  delete mode 100644 Documentation/devicetree/bindings/input/rmi4/rmi_spi.txt
->  create mode 100644 Documentation/devicetree/bindings/input/syna,rmi4.yaml
-> 
+> [...]
+>   &wkup_uart0 {
+> +	bootph-all;
+>   	/* Firmware usage */
+>   	status = "reserved";
+>   	pinctrl-names = "default";
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I am not sure, if you want to treat wkup_uart in same way as you are 
+treating secure_proxy_mcu in patch 1 of this series.
 
+IMO, where we are making this node status is okay, mark booth-all at 
+that place only.
+
+Otherwise for rest of series
+
+LGTM
+
+
+> @@ -249,6 +257,7 @@ &wkup_uart0 {
+>   };
+>   
+>   &wkup_i2c0 {
+> +	bootph-all;
+>   	status = "okay";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&wkup_i2c0_pins_default>;
+> @@ -268,6 +277,7 @@ &wkup_gpio0 {
+>   };
+>   
+>   &mcu_uart0 {
+> +	bootph-all;
+>   	status = "okay";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_uart0_pins_default>;
+> @@ -281,6 +291,7 @@ &mcu_i2c0 {
+>   };
+>   
+>   &main_uart8 {
+> +	bootph-all;
+>   	status = "okay";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&main_uart8_pins_default>;
+> @@ -307,6 +318,7 @@ exp1: gpio@21 {
+>   };
+>   
+>   &main_sdhci0 {
+> +	bootph-all;
+>   	/* eMMC */
+>   	status = "okay";
+>   	non-removable;
+> @@ -315,6 +327,7 @@ &main_sdhci0 {
+>   };
+>   
+>   &main_sdhci1 {
+> +	bootph-all;
+>   	/* SD card */
+>   	status = "okay";
+>   	pinctrl-0 = <&main_mmc1_pins_default>;
