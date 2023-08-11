@@ -2,163 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A1A877963E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A0E779646
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234550AbjHKRh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:37:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53348 "EHLO
+        id S236675AbjHKRjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjHKRhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:37:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DACCA8;
-        Fri, 11 Aug 2023 10:37:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AE6F9611EB;
-        Fri, 11 Aug 2023 17:37:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F55EC433C7;
-        Fri, 11 Aug 2023 17:37:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691775474;
-        bh=fnj+2igSaTtuFkgijJ96vki2+pGJltBRBYpvInfk97U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZnTMmvNg5V0yMddC6Wn6RNvjkRX6rs+smIAuezkxOPUQx85gXEmFSLmqoh4d0p4DI
-         cHWwLf5IGAW7YdBWOi5AWsBMHcQqok4vppM1wqmxwCHhs0ws11Qg3QOaIp31Yt26Vd
-         GydsI2oNHnyXofopNkmk9hCzQ2CJ0FIhx1zew308C+/z3rognPceo/l9ORkuDYQ2cJ
-         PgqlLJUr5+RoNddFKbXEXqpREShXUSZt7Tt4DhDLJMO8nZ2O4j8ZpPFmsUo5j2naUj
-         4Ljoz/lwhxCwAGMSUVYP0nCYRH+1xeWhk+mqR7//bw5YbOLANgfzru8z8BaYQzsqEx
-         69DUQl6ruUajw==
-Received: (nullmailer pid 3652961 invoked by uid 1000);
-        Fri, 11 Aug 2023 17:37:52 -0000
-Date:   Fri, 11 Aug 2023 11:37:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Andi Shyti <andi.shyti@kernel.org>,
+        with ESMTP id S234924AbjHKRjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:39:07 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FEA30DC
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:39:05 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-686efa1804eso1658206b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691775545; x=1692380345;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=z+ShFNdSFVR21QLlnvolclztaU/XrR69W28hugrsBGg=;
+        b=lRRmYJGIe/7kIapJAZLe0Wi2gygQ/5cSk0bAuJHIKyAeUL+6Am2QUMqEmW3kBonPG+
+         9oMdo+3aOy6NM2HmcY69SkFOAPgB24R5xDEbqQm1klQZsjwEByzFmi6DoBTUSigtEG1h
+         sREFrOHPCTmkJ0d035ZGJTLc8A2nglbEeAHB1bfQi+aeELTMldn1+miRo9o6YrsUVgln
+         3OAQb/HuRpMR0lTkUHsY6PQ6cvXRgLBSDOcgL6fg5P3373RjWyR9tsLeDwNps8qUJjat
+         0Ni2EeS6cAQa6nn02FKmjeQrVb+/KmSF+RgWXB3jrGkAkH2UoXyDptC9lx3wPY4a2OrV
+         0sew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691775545; x=1692380345;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z+ShFNdSFVR21QLlnvolclztaU/XrR69W28hugrsBGg=;
+        b=VeWfD0LavB8ARC84htFI6Q41oQLpSh5iLnVOXH9gKyCxmfmOoMRkA6EwYSfIDELJ9n
+         pNuf/DtrS7JpLYEe1NR2YgUOed4LTtBPyWk0LruOfBlfLw7uqlkXG2N5rH3NcYMtJpLq
+         EFBkZ93OgXH4f453pgMpU9yzBqtQDlDpCzmCm/FIKwdUEeSl9gx/jSGnnuineberzeDg
+         kDPvX7RgPhK4O+JvUcbl3QkdWM/pucRRYJm2O+n4vlLNlyb83FxBSKJMPJ1hjxbFRtt7
+         44JNNGWI38wo4J0R1bPvomxPxxysncWEvQh9OF3E5e18gdScymvUzAFZ0W19khsI7JFK
+         fEMQ==
+X-Gm-Message-State: AOJu0YxCOrJ6gJEqVRo19waBI6izut58cCKAvaNYm5X50Gr9p32D+ZuC
+        1ZWy48dWbH7VJ3Tm+XGVYaGv8A==
+X-Google-Smtp-Source: AGHT+IGYyZOh7G4Z/0Cx1ClUmw6Rc7am59y/FzYhsjgC95YBAR1CPevol7CBsiKpsbsJ/c8HFbIgUg==
+X-Received: by 2002:a05:6a20:102:b0:13b:9ff3:f52e with SMTP id 2-20020a056a20010200b0013b9ff3f52emr1984874pzr.56.1691775545137;
+        Fri, 11 Aug 2023 10:39:05 -0700 (PDT)
+Received: from x1 ([2601:1c2:1800:f680:42e5:c1a1:995:5aef])
+        by smtp.gmail.com with ESMTPSA id w9-20020a63af09000000b00563deb296bbsm3586241pge.22.2023.08.11.10.39.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Aug 2023 10:39:04 -0700 (PDT)
+Date:   Fri, 11 Aug 2023 10:39:02 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: add binding for i2c-hotplug-gpio
-Message-ID: <20230811173752.GA3639776-robh@kernel.org>
-References: <20230729160857.6332-1-clamor95@gmail.com>
- <20230729160857.6332-2-clamor95@gmail.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Message-ID: <ZNZyNjjekd2SW/mn@x1>
+References: <20230617161529.2092-1-jszhang@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230729160857.6332-2-clamor95@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230617161529.2092-1-jszhang@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 29, 2023 at 07:08:56PM +0300, Svyatoslav Ryhel wrote:
-> Document device tree schema which describes hot-pluggable via GPIO
-> i2c bus.
-
-What's that? 'hot-pluggable via GPIO i2c bus' is not coherent.
-
+On Sun, Jun 18, 2023 at 12:15:21AM +0800, Jisheng Zhang wrote:
+> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+> module which is powered by T-HEAD's TH1520 SoC. Add minimal device
+> tree files for the core module and the development board.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../bindings/i2c/i2c-hotplug-gpio.yaml        | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> Support basic uart/gpio/dmac drivers, so supports booting to a basic
+> shell.
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
-> new file mode 100644
-> index 000000000000..21f2b74ca6c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/i2c-hotplug-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO detected hot-plugged I2C bus
-> +
-> +maintainers:
-> +  - Michał Mirosław <mirq-linux@rere.qmqm.pl>
-> +
-> +description:
-> +  Driver for hot-plugged I2C busses, where some devices on a bus
+> NOTE: the thead cpu reset dt-binding and DT node are removed in v3. This
+> makes secondary CPUs unable to be online. However, minimal th1520
+> support is better than nothing. And the community has been working on
+> and will work on the cpu reset dt-binding, for example, Conor, Guo and
+> Jessica are discussing about it, I have seen valuable comments and
+> inputs from them. I believe we can add back cpu reset in next
+> development window.
 
-Bindings are for h/w, not a driver.
+I'm interested in starting the secondary cpus on mainline. It seems that
+that "thead,reset-sample" is already implemented in upstream OpenSBI in
+lib/utils/reset/fdt_reset_thead.c and the issue is getting the
+dt-binding accepted. Is that correct?
 
-> +  are hot-pluggable and their presence is indicated by GPIO line.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: i2c-hotplug-gpio
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
+It looks like you've tried to restart the discussion on the DT list [1]
+so I hope that the DT maintainers will give their perspective.
 
-What are these for? You don't have any child nodes.
+Thank you,
+Drew
 
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +
-> +  detect-gpios:
-> +    maxItems: 1
-> +
-> +  i2c-parent:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - interrupts-extended
-> +  - detect-gpios
-> +  - i2c-parent
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    /*
-> +     * Asus Transformers use I2C hotplug for attachable dock keyboard
-> +     */
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c-dock {
-> +        compatible = "i2c-hotplug-gpio";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        interrupts-extended = <&gpio 164 IRQ_TYPE_EDGE_BOTH>;
-> +        detect-gpios = <&gpio 164 GPIO_ACTIVE_LOW>;
-
-Looks like the same signal. You should only need one of them. Probably 
-'detect-gpios' as I guess you need to read the state of the line.
-
-> +
-> +        i2c-parent = <&gen2_i2c>;
-
-Couldn't you just add 'detect-gpios' to the existing bus node? It's 
-really part of that bus and there's not a separate bus. That would be a 
-lot simpler. I suppose you want to instantiate a driver, but that's not 
-DT's problem.
-
-Rob
+[1] https://lore.kernel.org/all/ZNURXBKkYdiWLanf@xhacker/
