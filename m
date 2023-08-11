@@ -2,119 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B361E779635
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1A877963E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236869AbjHKRff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34698 "EHLO
+        id S234550AbjHKRh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:37:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236843AbjHKRfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:35:33 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F85530DE
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:35:30 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe0d5f719dso3677106e87.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691775328; x=1692380128;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=j6x+/lLfRdrdDeapOVJjNUZr/qrt9jnkjTgOGO97QVY=;
-        b=vAyMT44jwL4gyaRdxQeziRX5takgcAELg1X/sOBj/Mbh3xdd/4POwfNplt53bxFTSp
-         2YDajg7g6vNyy3mYgd0/sNsa3K7IjlU6IKNrd25Xv5w/QST4dPcx3FpJ20Ent3OkNKNk
-         UnHa10/NTKJ6AJHIvcNhfDnRrG0QnIC6l9v15ETGrVPgjF/nGv0AksFUHiwZUKSxDbQJ
-         5p1OapV6EuAj7aRortVBbdhEO2V3XYi6HOPjn6Njgo6EM6+tVQk4pT4OiAwddl61Hxe6
-         3bTkWxB9c1Gs8kGuZY3uU5/uy5Za6WFn4HHqYDJW0I2xtoWnHY3pa7KZ39TVuyh/PyGt
-         jxBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691775328; x=1692380128;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j6x+/lLfRdrdDeapOVJjNUZr/qrt9jnkjTgOGO97QVY=;
-        b=k+TiRT83b4W6oRXZVZuPNPjdzXn5c2tbrBmHHHtZCaJ2vnA7Mp7yxdeLhzJk68ZbSo
-         k3Jx4cITIPWJkAa8n37PpSoVhQViKwh5aqzJGJXi8viSFt3BNvAcLB0ebJPJJmAiqRED
-         3S0GbBlwtEChfw40FWG0s021rUTIBpsDs08+wWuaPVCjLX1F7r4/ohxTh6j+X7SIv+XP
-         W7DtomEHMMCNfnG0l9izlsmWtSYcdAiAOC6r6BY50UrkyCkKHUS08JT/pFW1+lfRmzVx
-         ndgg5ZB31E8RRHftJnrCBWWnWoumJ5FUAMo7g7RUDr7+Xp8Xh96q8w2WR4X+xp2DehDh
-         4Y3Q==
-X-Gm-Message-State: AOJu0Yzxfr4FOcW41Fos6CSsnZDceWimvESWf8sMcptmATFv+XbHH8fq
-        8USQIQYbYF09Cs21GISGS5KgNw==
-X-Google-Smtp-Source: AGHT+IEopb6B/9NeZ249d/UrX0///BY/2QX30Rpgh/pcm5l3HFlO5tNCEs40hppuG3GkJwCjRQ8pqg==
-X-Received: by 2002:a05:6512:3d0d:b0:4fe:1f27:8856 with SMTP id d13-20020a0565123d0d00b004fe1f278856mr2305536lfv.7.1691775328126;
-        Fri, 11 Aug 2023 10:35:28 -0700 (PDT)
-Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
-        by smtp.gmail.com with ESMTPSA id j14-20020ac2550e000000b004fbb011c9bcsm791551lfk.161.2023.08.11.10.35.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 10:35:27 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 11 Aug 2023 19:35:27 +0200
-Subject: [PATCH] arm64: dts: qcom: sm8450: Add RPMh stats
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230811-topic-8450_stats-v1-1-f26ae3fdf2cf@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAF5x1mQC/x2N0QrCMAwAf2Xk2UBTtQx/RUSyLnOB0Y2mijD27
- wYf7+C4HUyqisGt26HKR03X4kCnDvLM5SWoozPEEM+hJ8K2bpqxv1zD0xo3w5gCpTGRRJ7As4F
- NcKhc8uxheS+Ly63KpN//5/44jh8j6QtgdwAAAA==
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229457AbjHKRhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:37:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DACCA8;
+        Fri, 11 Aug 2023 10:37:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE6F9611EB;
+        Fri, 11 Aug 2023 17:37:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F55EC433C7;
+        Fri, 11 Aug 2023 17:37:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691775474;
+        bh=fnj+2igSaTtuFkgijJ96vki2+pGJltBRBYpvInfk97U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZnTMmvNg5V0yMddC6Wn6RNvjkRX6rs+smIAuezkxOPUQx85gXEmFSLmqoh4d0p4DI
+         cHWwLf5IGAW7YdBWOi5AWsBMHcQqok4vppM1wqmxwCHhs0ws11Qg3QOaIp31Yt26Vd
+         GydsI2oNHnyXofopNkmk9hCzQ2CJ0FIhx1zew308C+/z3rognPceo/l9ORkuDYQ2cJ
+         PgqlLJUr5+RoNddFKbXEXqpREShXUSZt7Tt4DhDLJMO8nZ2O4j8ZpPFmsUo5j2naUj
+         4Ljoz/lwhxCwAGMSUVYP0nCYRH+1xeWhk+mqR7//bw5YbOLANgfzru8z8BaYQzsqEx
+         69DUQl6ruUajw==
+Received: (nullmailer pid 3652961 invoked by uid 1000);
+        Fri, 11 Aug 2023 17:37:52 -0000
+Date:   Fri, 11 Aug 2023 11:37:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Andi Shyti <andi.shyti@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691775327; l=930;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=/FwfVYZjCAaU2UDf89MXxIqgCTPBoyrxmnyx+Hm98O4=;
- b=0WnDW5pULZifNk2Ae6/l6ymSQp/4/n3FG066Q+JXJWvtTAvGEYuXEaltxJNmPBV198og6qv4l
- AwPAhLCAzLlAVygen8RCtfPG4x3O8a9VTMYR+IDdqXxTU9QJ6Oz940J
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: add binding for i2c-hotplug-gpio
+Message-ID: <20230811173752.GA3639776-robh@kernel.org>
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-2-clamor95@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230729160857.6332-2-clamor95@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM8450 also exposes RPMh stats, hook them up for low power state
-monitoring.
+On Sat, Jul 29, 2023 at 07:08:56PM +0300, Svyatoslav Ryhel wrote:
+> Document device tree schema which describes hot-pluggable via GPIO
+> i2c bus.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+What's that? 'hot-pluggable via GPIO i2c bus' is not coherent.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 4bc1c46a5f44..6ae64059cea5 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -3141,6 +3141,11 @@ aoss_qmp: power-management@c300000 {
- 			#clock-cells = <0>;
- 		};
- 
-+		sram@c3f0000 {
-+			compatible = "qcom,rpmh-stats";
-+			reg = <0 0x0c3f0000 0 0x400>;
-+		};
-+
- 		spmi_bus: spmi@c400000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0 0x0c400000 0 0x00003000>,
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../bindings/i2c/i2c-hotplug-gpio.yaml        | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> new file mode 100644
+> index 000000000000..21f2b74ca6c1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/i2c-hotplug-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO detected hot-plugged I2C bus
+> +
+> +maintainers:
+> +  - Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> +
+> +description:
+> +  Driver for hot-plugged I2C busses, where some devices on a bus
 
----
-base-commit: 21ef7b1e17d039053edaeaf41142423810572741
-change-id: 20230811-topic-8450_stats-26016d61e2af
+Bindings are for h/w, not a driver.
 
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+> +  are hot-pluggable and their presence is indicated by GPIO line.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: i2c-hotplug-gpio
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
 
+What are these for? You don't have any child nodes.
+
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +
+> +  detect-gpios:
+> +    maxItems: 1
+> +
+> +  i2c-parent:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - interrupts-extended
+> +  - detect-gpios
+> +  - i2c-parent
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    /*
+> +     * Asus Transformers use I2C hotplug for attachable dock keyboard
+> +     */
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c-dock {
+> +        compatible = "i2c-hotplug-gpio";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        interrupts-extended = <&gpio 164 IRQ_TYPE_EDGE_BOTH>;
+> +        detect-gpios = <&gpio 164 GPIO_ACTIVE_LOW>;
+
+Looks like the same signal. You should only need one of them. Probably 
+'detect-gpios' as I guess you need to read the state of the line.
+
+> +
+> +        i2c-parent = <&gen2_i2c>;
+
+Couldn't you just add 'detect-gpios' to the existing bus node? It's 
+really part of that bus and there's not a separate bus. That would be a 
+lot simpler. I suppose you want to instantiate a driver, but that's not 
+DT's problem.
+
+Rob
