@@ -2,52 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B287792B5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC077792BC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:18:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236244AbjHKPSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 11:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38978 "EHLO
+        id S236338AbjHKPSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 11:18:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236209AbjHKPSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:18:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1912530C4;
-        Fri, 11 Aug 2023 08:17:54 -0700 (PDT)
+        with ESMTP id S236052AbjHKPSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:18:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2766030F3;
+        Fri, 11 Aug 2023 08:17:56 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A4C2267489;
-        Fri, 11 Aug 2023 15:17:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52BA7C433C9;
-        Fri, 11 Aug 2023 15:17:52 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BB9896744C;
+        Fri, 11 Aug 2023 15:17:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 676C5C433C8;
+        Fri, 11 Aug 2023 15:17:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691767073;
-        bh=G82+yTsJCBhOpWsx9f3grwSqceli0aNSpPZReeQbCOs=;
+        s=k20201202; t=1691767075;
+        bh=gOsUT1D5lnLLx3YHPKZqVTrCZZ4+7bFlcFZkl/kjykc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dA3CEUX3ZkYGWcgG8v84yJe2O24jNHjapJKrk/yS11VhIwnTmvhdbx3WKixwcmQSc
-         o5/sSVKIa+nS8ij3jyTEiwW/TUC2ZGRkjJFbmSsptTFRGESDNY6yp4Nn7RVxo6kp1F
-         tEEPROab7KiWYVIG/41KxNQdlkTR9FeF5rgPcLRPYRVCJmWgXm7HSJIAoR0gSnYXP8
-         A8LBe7k4k6e/cmzHArx+dblRvPquLLtVW7KhpyGVub4kYcv7ejmQ6ac8Q8hL4OLI89
-         ar/XDu2QYPIWdQx0osuRuIsLzJaAqEv5Ao4wclKZoIUVRln11nWjceDY/ac9PVGIAy
-         tKMAWYcaykQYw==
+        b=CGAFI9ZBNvqX70Z8RGmqSZFnX61GuNBj0335PXKQ/a6jAHLa9xDAmYfWzwurS3nuA
+         uW/0uIiFVnfdKLLxubm6kR192KwYmn15+cdZTMCzgQpfxIXIEiICVn817gKKroaBYW
+         Z4xrEKvm4LXee+6V6RKrmhPL5RMC5xYC1Is1FwXqJgRZ4w7mCwbiAtyW+oP+P9Mjq7
+         T7JT8S36MKavkpg7isEkHqUEmuOi4R+6F/VmjES6EHbAtM10Zs9rtqtJs1HJXka3fO
+         CLtKG+dx7wZLpdELOzHq+dQNFpHcxRMcty4fvMyzE6w9zPThrW/xTkq0/NvzBW3GkD
+         WouAfaTTGW5dg==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Eric Chanudet <echanude@redhat.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sa8540p-ride: enable rtc
-Date:   Fri, 11 Aug 2023 08:20:40 -0700
-Message-ID: <169176724023.691796.11632685615217512319.b4-ty@kernel.org>
+        Robert Marko <robert.marko@sartura.hr>
+Cc:     luka.perkov@sartura.hr
+Subject: Re: [PATCH] ARM: dts: qcom: ipq4019: correct SDHCI XO clock
+Date:   Fri, 11 Aug 2023 08:20:42 -0700
+Message-ID: <169176724024.691796.7369934702328451965.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230809203506.1833205-1-echanude@redhat.com>
-References: <20230809203506.1833205-1-echanude@redhat.com>
+In-Reply-To: <20230810132904.367418-1-robert.marko@sartura.hr>
+References: <20230810132904.367418-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -62,23 +59,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 09 Aug 2023 16:32:33 -0400, Eric Chanudet wrote:
-> SA8540P-ride is one of the Qualcomm platforms that does not have access
-> to UEFI runtime services and on which the RTC registers are read-only,
-> as described in:
-> https://lore.kernel.org/all/20230202155448.6715-1-johan+linaro@kernel.org/
+On Thu, 10 Aug 2023 15:28:21 +0200, Robert Marko wrote:
+> Using GCC_DCD_XO_CLK as the XO clock for SDHCI controller is not correct,
+> it seems that I somehow made a mistake of passing it instead of the fixed
+> XO clock.
 > 
-> Reserve four bytes in one of the PMIC registers to hold the RTC offset
-> the same way as it was done for sc8280xp-crd which has similar
-> limitations:
->     commit e67b45582c5e ("arm64: dts: qcom: sc8280xp-crd: enable rtc")
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sa8540p-ride: enable rtc
-      commit: e85cbb34f3eabc27d6e77cfde6c9afbab3d70b4b
+[1/1] ARM: dts: qcom: ipq4019: correct SDHCI XO clock
+      commit: 43a0ce827528bdc7f4d38d48d13987db24a4e7b1
 
 Best regards,
 -- 
