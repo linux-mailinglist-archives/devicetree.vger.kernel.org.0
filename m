@@ -2,179 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF87779510
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 18:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D18779526
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 18:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234470AbjHKQsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 12:48:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51692 "EHLO
+        id S234373AbjHKQv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 12:51:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231984AbjHKQsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 12:48:22 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E86A2D7F
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 09:48:21 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe8c16c1b4so3410389e87.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 09:48:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691772499; x=1692377299;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D3Gp+IMxKZDgNVcIGMPfvwovFcia/kmOZd2YqdHgfkQ=;
-        b=cocZxpQ4GuklgdXgwDuYn/2XPc8o51powTaZwkhviGPsGcBQrvhxfVG5OAhXxd5hr2
-         0/m8MF0H643+5Sm0Ptg5cIh8RWGp+5Gh4Cm2v0Nic4S8rP+BgInMTspc+lu9eQtk27iG
-         Prs1DoIdO3kekxKplftc7KUaoJveaN79I//OdMNoxQaFhzxjti9BAoxCnTfytCQLIj2w
-         oZ5+HN0YoRiZIKumZdBcLEreu/4PIJ1jfVFEvloLWFU1uDBiaDvZLNu1RTQmanyASwof
-         BbbTL239CmLGGWrFPq/lAqcznHOlkF+Lp/7B3awUJrDKNdDou5Y8Kg1DcK0OA3pCv3bR
-         Qw6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691772499; x=1692377299;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D3Gp+IMxKZDgNVcIGMPfvwovFcia/kmOZd2YqdHgfkQ=;
-        b=jAsF81Lr62NV8Huky5t4OW9hcIk5iQuSVui25O2qI84rUsuVLS96jkaz3DZOxODxzo
-         TKKKz3f4YJb4Bhv2fAP/YUcpauBFAJgzstOMQXlJxyuVmLG6Ut2QY49vjT65c0gd5Z2x
-         RtSWnv5zH3HWMlZOtX2Mvnn4fI1goAMU8l8HrfNcdOfgPT7+z5wNxA5ldYBXwZNl3sBf
-         Z3xXAF9GTO1vOK9uMlQMeEuPUXDckt3WfqAImiyDGZXhHMCdqYuBOfyZsucM03KpRFSO
-         iwALDYRc671ezMCtws/ZtQWjZnbdXAbGlpes/Io+g1TF9QKnPCUp5O/AeUs1sxaTA7Ou
-         AjxA==
-X-Gm-Message-State: AOJu0Yx6MlvO6zzrhBZOjC8DEBe4mtS10kP2xEav+vFFZUiA56FNPmeE
-        farG2m/uDARvoNx8WDz6enKuyA==
-X-Google-Smtp-Source: AGHT+IGH2uzw8VedMkVo75Wd7GgWQupm8Avjro4P9SAFfZJx7T3LbTdKsdhgX+qbuJU+Oolz6QLRgQ==
-X-Received: by 2002:ac2:4e08:0:b0:4fe:551:3d3c with SMTP id e8-20020ac24e08000000b004fe05513d3cmr2620732lfr.36.1691772499423;
-        Fri, 11 Aug 2023 09:48:19 -0700 (PDT)
-Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
-        by smtp.gmail.com with ESMTPSA id o2-20020ac24942000000b004fe27212a6asm785748lfi.308.2023.08.11.09.48.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Aug 2023 09:48:18 -0700 (PDT)
-Message-ID: <dd622171-a4d3-4143-9e8a-f5a47d3e7916@linaro.org>
-Date:   Fri, 11 Aug 2023 18:48:16 +0200
+        with ESMTP id S231659AbjHKQv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 12:51:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B427D2D78;
+        Fri, 11 Aug 2023 09:51:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 53E5A66D06;
+        Fri, 11 Aug 2023 16:51:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74C6BC433C8;
+        Fri, 11 Aug 2023 16:51:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691772686;
+        bh=YSX5UobIdU8VrcDfUp1Fm8UQla0lNaAdeT7xjx65AcQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=hL4zqPol8Fqt4WWp08foT18yup+VTVYBBmviYvTxvkwrH6xbLzjdAOuyScf9cath8
+         +HKXyLKcWbKk5CFF77kD2yUQCAezllrfsxLnaL/OXuZNXZv/0sRB3i2o8zs4emaERi
+         3ML/PX0+k7A2KM79lJXxWS1xG+y++bNeUWCwNZ/ANd2hQS78x2f0Z5UKSXyRYfxwc8
+         CORmrGc1OnesvNlAg+1SUtc+uDZF9jRC5bXsTych2uXF3ZITDOH/c2AdtNEwP3gs6U
+         smr3E+ppKgggnPIyhktTKVYm/PjcRSdoF+E1Jza2izpCGlW0i/6y06EWUtFiVROjt8
+         gobNWw3X/6Lig==
+Date:   Fri, 11 Aug 2023 11:51:24 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 2/2] PCI: xilinx-nwl: Increase ECAM size to
+ accommodate 256 buses
+Message-ID: <20230811165124.GA76405@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
- for qcom wrapper
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Jack Pham <quic_jackp@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, ahalaney@redhat.com
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-7-quic_kriskura@quicinc.com>
- <ZIB1JEmLCw41v_4e@hovoldconsulting.com>
- <ZJsDpqttBYtbQ0yg@hovoldconsulting.com>
- <26ae15d1-4e13-3ab7-6844-3a7d3ed03af4@quicinc.com>
- <ZLEOk-9VImJNHYHa@hovoldconsulting.com>
- <f02104c0-d177-0e4e-dcb0-ffca589c8b00@quicinc.com>
- <ZLppB67LyWk1kD8w@hovoldconsulting.com>
- <ea41e06c-bd2a-e375-4e7c-8cff85d29627@linaro.org>
- <ZLqAHyD5HH6Ka5pl@hovoldconsulting.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <ZLqAHyD5HH6Ka5pl@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN7PR12MB7201F56A30348C2E861C72D58B10A@SN7PR12MB7201.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.07.2023 14:54, Johan Hovold wrote:
-> On Fri, Jul 21, 2023 at 02:10:07PM +0200, Konrad Dybcio wrote:
->> On 21.07.2023 13:16, Johan Hovold wrote:
->>> On Fri, Jul 14, 2023 at 04:08:45PM +0530, Krishna Kurapati PSSNV wrote:
->>>> On 7/14/2023 2:30 PM, Johan Hovold wrote:
->>>>> On Mon, Jul 03, 2023 at 12:35:48AM +0530, Krishna Kurapati PSSNV wrote:
->>>>>> On 6/27/2023 9:13 PM, Johan Hovold wrote:
->>>>>>> On Wed, Jun 07, 2023 at 02:16:37PM +0200, Johan Hovold wrote:
->>>>>>>> On Sun, May 14, 2023 at 11:19:14AM +0530, Krishna Kurapati wrote:
->>>>>
->>>>>>>>> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
->>>>>>>>> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
->>>>>>>>> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
->>>>>>>>> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
->>>>>>>>> +		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
->>>>>>>>> +		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
->>>>>>>>> +			dev_err(qcom->dev, "HS-PHY%d not in L2\n", i);
->>>>>>>>> +	}
->>>>>>>
->>>>>>>> When testing this on the X13s I get:
->>>>>>>>
->>>>>>>> 	dwc3-qcom a4f8800.usb: HS-PHY2 not in L2
+On Fri, Aug 11, 2023 at 05:07:09AM +0000, Havalige, Thippeswamy wrote:
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > On Thu, Aug 10, 2023 at 05:50:02PM +0530, Thippeswamy Havalige wrote:
+> > > Our controller is expecting ECAM size to be programmed by software. By
+> > > programming "NWL_ECAM_VALUE_DEFAULT  12" controller can access up to
+> > > 16MB ECAM region which is used to detect 16 buses, so by updating
+> > > "NWL_ECAM_VALUE_DEFAULT" to 16 so that controller can access up to
+> > > 256MB ECAM region to detect 256 buses.
+> > 
+> > What happens when your DT has the smaller size and the kernel configures
+> > the larger size? Seems like you could have an ABI issue.
+>
+> - Here we are enabling hardware to support maximum buses. In this
+> case kernel can enumerate up to device tree exposed ECAM size.  We
+> will not face any issue.
+
+So IIUC, if you have a DT with the smaller size and you boot a kernel
+that includes this change, nothing will break, but the kernel will
+only be able to use 16 buses.
+
+Conversely, if you have a DT with the larger size and boot a kernel
+that does not include change, nothing will break, but the kernel will
+still only be able to use 16 buses.
+
+Probably worth capturing this in the commit log somehow, especially
+the first case.
+
+> > > Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> > > Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+> > > ---
+> > > changes in v3:
+> > > - Remove unnecessary period at end of subject line.
+> > > changes in v2:
+> > > - Update this changes in a seperate patch.
+> > > ---
+> > >  drivers/pci/controller/pcie-xilinx-nwl.c | 6 ++----
+> > >  1 file changed, 2 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/pcie-xilinx-nwl.c
+> > > b/drivers/pci/controller/pcie-xilinx-nwl.c
+> > > index d8a3a08be1d5..b51501921d3b 100644
+> > > --- a/drivers/pci/controller/pcie-xilinx-nwl.c
+> > > +++ b/drivers/pci/controller/pcie-xilinx-nwl.c
+> > > @@ -126,7 +126,7 @@
+> > >  #define E_ECAM_CR_ENABLE		BIT(0)
+> > >  #define E_ECAM_SIZE_LOC			GENMASK(20, 16)
+> > >  #define E_ECAM_SIZE_SHIFT		16
+> > > -#define NWL_ECAM_VALUE_DEFAULT		12
+> > > +#define NWL_ECAM_VALUE_DEFAULT		16
+>  - Agreed, ll fix it in next patch.
+> > Not really a meaningful name. It doesn't explain what '16' means.
+> > 
+> > >  #define CFG_DMA_REG_BAR			GENMASK(2, 0)
+> > >  #define CFG_PCIE_CACHE			GENMASK(7, 0)
+> > > @@ -165,7 +165,6 @@ struct nwl_pcie {
+> > >  	u32 ecam_size;
+> > >  	int irq_intx;
+> > >  	int irq_misc;
+> > > -	u32 ecam_value;
+> > >  	struct nwl_msi msi;
+> > >  	struct irq_domain *legacy_irq_domain;
+> > >  	struct clk *clk;
+> > > @@ -674,7 +673,7 @@ static int nwl_pcie_bridge_init(struct nwl_pcie *pcie)
+> > >  			  E_ECAM_CR_ENABLE, E_ECAM_CONTROL);
+> > >
+> > >  	nwl_bridge_writel(pcie, nwl_bridge_readl(pcie, E_ECAM_CONTROL) |
+> > > -			  (pcie->ecam_value << E_ECAM_SIZE_SHIFT),
+> > > +			  (NWL_ECAM_VALUE_DEFAULT <<
+> > E_ECAM_SIZE_SHIFT),
+> > >  			  E_ECAM_CONTROL);
+> > >
+> > >  	nwl_bridge_writel(pcie, lower_32_bits(pcie->phys_ecam_base),
+> > > @@ -782,7 +781,6 @@ static int nwl_pcie_probe(struct platform_device
+> > *pdev)
+> > >  	pcie = pci_host_bridge_priv(bridge);
+> > >
+> > >  	pcie->dev = dev;
+> > > -	pcie->ecam_value = NWL_ECAM_VALUE_DEFAULT;
+> > >
+> > >  	err = nwl_pcie_parse_dt(pcie, pdev);
+> > >  	if (err) {
+> > > --
+> > > 2.17.1
+> > >
 > 
->> Sidenote, I get this on any Qcom device on any platform I try
->> to enter suspend on, without these MP patches.
-> 
-> Ok, that might provide some hint. But on sc8280xp (X13s) we only get it
-> on one of the four MP ports (i.e. on one out of six ports in total).
-> 
-> While on sa8295p-adp there are no such errors on any port.
-I've been playing with 8450 and it looks like snps,dis_u2_susphy_quirk
-causes this error.
-
-The downstream tree contains this property and I'm inclined to believe
-it means that this platforms should define it (as the devicetrees are
-machine-generated to a degree, AFAIK), especially since this quirk does
-the exact same thing on a known-working downstream, namely unsetting
-DWC3_GUSB2PHYCFG_SUSPHY.
-
-Digging a bit deeper, dwc3-msm-core [1], the downstream version of dwc3-qcom
-performs a bit of a dance in a couple of places.. Look for that register name.
-
-Unfortunately I have little idea what the "USB2 suspend phy" is.. is it a PHY
-used in suspend? Is it the suspension of the USB2 PHY? No clue.
-
-[1] https://git.codelinaro.org/clo/la/kernel/msm-5.10/-/blob/KERNEL.PLATFORM.1.0.r2-08800-WAIPIOLE.0/drivers/usb/dwc3/dwc3-msm-core.c
-
-Konrad
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
