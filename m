@@ -2,120 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA08E77989B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 881847798BA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236268AbjHKUbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 16:31:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34920 "EHLO
+        id S234470AbjHKUsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 16:48:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236496AbjHKUbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:31:45 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F861AA;
-        Fri, 11 Aug 2023 13:31:44 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BKVZ96012376;
-        Fri, 11 Aug 2023 15:31:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691785895;
-        bh=Hw6THVNdTS2IzS4mI52C7J40avF8EqNjo2uhaWNQgxU=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=xPz7mFdlHHNj1s0CvP0FSgTuxz3gmfSwDbre3N4+lKuLWE+UFj3fj6Mscpx75OfAO
-         TNq1Ca4vK9WlZSetHzQZwvbZVJnxrGQOkHI/8Ro5GQFmST273u56PrvmjyBljmbqlE
-         RA4+7tk8iJKyEOHULd/qr4G5yiQZ0MA2stVu2GNk=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BKVZlT129771
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 15:31:35 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 15:31:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 15:31:35 -0500
-Received: from [10.250.38.120] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BKVYT6009410;
-        Fri, 11 Aug 2023 15:31:34 -0500
-Message-ID: <a5731a6b-f97b-a1c7-4322-a50c538ad11b@ti.com>
-Date:   Fri, 11 Aug 2023 15:31:34 -0500
+        with ESMTP id S236597AbjHKUsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:48:42 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C902D5B
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:48:41 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe8c16c1b4so3724739e87.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:48:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691786920; x=1692391720;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I5TPOEsfFCSpiqVwGkRqEltiUJSr99Y9mXi/siq2ftI=;
+        b=GFhm2MAx+1kKc2pRbgWkaOtekCI6A76FsUWMFpywmyuvzy1q8FlICaYYMm37i/TwmE
+         z6ZgTPxlyPzARk/kHs9CROagJHsJ6P5CMgOTTA5UsmU/BjiElUvCkrVF+tUkBYhTSw1+
+         XzQ6kN/mRUnhL3KQUJ9HI9Vu0bJ+R3LDNwZs3wErYCzy5/vCI4ecQWSdWvZ9MbBZYapr
+         BUZt9GXkm1QGvgr4lHzTvuUWnYMi+/nB2MytfpSKNpert6BUr3fIK5g1gXk4krU/Wamm
+         hzZ92IKeut8YbPPIayyTf01PIDm3Mtt1Qrl5qXMOdzlbJd6WdrQjyMIi+98iM6OWgfz5
+         oCKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691786920; x=1692391720;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I5TPOEsfFCSpiqVwGkRqEltiUJSr99Y9mXi/siq2ftI=;
+        b=AkMGcGRr7c4v4z25uE2WPGRHDtUa8Jmu0cje8Y7dODNTCCKn3JKxmC38ozIEwMl8RT
+         w0xIBe3b8H7fhyUB5dVjRi/xoSwQtHRgTJq0WSulvc5lrGs2tDlpGhQhc5LSm4ukzsK6
+         tlr6E73qh9ZmQCTK+8aBGCwuGOB2jhLxD2pwWRpJuMIENPlO8B4mgL9UI4nRkDC64+Y0
+         gFmGKS6Px2bLivffr0JnW+yYXGKYjfOKt475V5DL4A5L5Vao5MzRLtVf7HshPbNtdd7r
+         7aCYrmh2XiXFQfAPNanA0YmpAvw+uyEVP6JxqQr66Zeg9i3x4WWOV8QgHeLFAYwI0Elr
+         XFnw==
+X-Gm-Message-State: AOJu0YwYbNcnIa9Id5gyJtequTm0MAjzUzovbMVol/Fh6WSX6ipgQWcK
+        kPEq7SnNVLpchWOEpo9AhgX30Q==
+X-Google-Smtp-Source: AGHT+IGnwyortsfYOQzQO7Zei8frL+xb8cL3tzUtPlW3b94eb06Zen7O6v6vUzM+9WQ24bI8LP/aYA==
+X-Received: by 2002:ac2:489b:0:b0:4fd:c0dd:d54b with SMTP id x27-20020ac2489b000000b004fdc0ddd54bmr1896767lfc.65.1691786920098;
+        Fri, 11 Aug 2023 13:48:40 -0700 (PDT)
+Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
+        by smtp.gmail.com with ESMTPSA id w1-20020ac24421000000b004fe8d684172sm843603lfl.234.2023.08.11.13.48.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Aug 2023 13:48:39 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/6] Add missing wakeup-parent to TLMM
+Date:   Fri, 11 Aug 2023 22:48:33 +0200
+Message-Id: <20230811-topic-tlmm_wakeup-v1-0-5616a7da1fff@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 0/5] Add R5F and C7x DSP nodes for J721S2 SoC.
-Content-Language: en-US
-To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKGe1mQC/x2NQQqDMBAAvyJ77kKiqMWvSClJXHVpjCHRKoh/7
+ 9LjDAxzQabElKErLkj05cxrENCPAtxswkTIgzCUqqzUU2vc1sgON78s78N8aI9IbV01Q90o1Vq
+ QzppMaJMJbpYy7N6LjIlGPv+j/nXfP4W7uCN4AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Hari Nagalla <hnagalla@ti.com>, Udit Kumar <u-kumar1@ti.com>
-References: <20230811202252.3586926-1-a-nandan@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230811202252.3586926-1-a-nandan@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691786918; l=1351;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=2CeVul6akyOZYYHElLa9VXIasUqtIOe+mOACljBs9AA=;
+ b=2WrImQ3CbRPCdZuhhDZXc5yDApLDnTkafPK26hLizc0LPxetDxGur376mcWiuXEiZqbISvyQd
+ rqKapqqNU9MD4DT3pJIXJ04QE+tp5l7ikjBvXxeAuI5NQVeycTgRXDC
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/11/23 3:22 PM, Apurva Nandan wrote:
-> This series adds the R5F processor nodes and C7x DSP nodes for
-> J721S2 SoC.
-> 
-> The first three patches adds the remote proc nodes to the SoC device
-> tree and the last two patches reserves the memory for remote proc IPCs
-> on J721S2 EVM board.
-> 
-> Test log: https://gist.githubusercontent.com/apurvanandan1997/556b4148651ae74b50dda993ad07f1e5/raw/
-> 
-> v3: Changelog:
-> 1) Disabled c7x in k3-j721s2-main.dtsi and enabled in k3-j721s2-som-p0.dtsi
->     which fixes the following dtbs_check for k3-am69-sk.dts
->     - dsp@64800000: 'mboxes' is a required property
->     - dsp@64800000: 'memory-region' is a required property
-> 2) Split into separate patches for C7x and R5F
+Some TLMM pins are wakeup-capable, but not all platforms described that.
 
-Thanks for taking care of these details, series LGTM,
+While MPM is not yet hooked up, PDC platforms can and should utilize this
+functionality. This series attempts to do so. As part of it, I had to add
+PDC support to SDM670, as it apparently hasn't been introduced yet.
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (6):
+      dt-bindings: interrupt-controller: qcom,pdc: Add SDM670
+      [RFT] arm64: dts: qcom: sdm670: Add PDC
+      arm64: dts: qcom: sc8280xp: Hook up PDC as wakeup-parent of TLMM
+      arm64: dts: qcom: sa8775p: Hook up PDC as wakeup-parent of TLMM
+      arm64: dts: qcom: sdm670: Hook up PDC as wakeup-parent of TLMM
+      arm64: dts: qcom: sm6350: Hook up PDC as wakeup-parent of TLMM
 
-> 
-> Link to v2:
-> https://lore.kernel.org/lkml/20230808201842.292911-1-a-nandan@ti.com/
-> 
-> v2:Changelog:
-> 1) Added status = "disabled"; in soc dtsi files, and removed it from som dts
-> 2) Fixed mboxes property in for all cores in som dts
-> 
-> Link to v1:
-> https://lore.kernel.org/all/20230529220941.10801-1-hnagalla@ti.com/
-> 
-> Apurva Nandan (4):
->    arm64: dts: ti: k3-j721s2-main: Add MAIN R5F remote processsor nodes
->    arm64: dts: ti: k3-j721s2-main: Add C7x remote processsor nodes
->    arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for
->      R5F
->    arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for
->      C71x DSPs
-> 
-> Hari Nagalla (1):
->    arm64: dts: ti: k3-j721s2-mcu: Add MCU R5F cluster nodes
-> 
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 106 +++++++++
->   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 ++++
->   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 208 ++++++++++++++++++
->   3 files changed, 354 insertions(+)
-> 
+ .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml    |  1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi                         |  1 +
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi                        |  1 +
+ arch/arm64/boot/dts/qcom/sdm670.dtsi                          | 11 +++++++++++
+ arch/arm64/boot/dts/qcom/sm6350.dtsi                          |  1 +
+ 5 files changed, 15 insertions(+)
+---
+base-commit: 21ef7b1e17d039053edaeaf41142423810572741
+change-id: 20230811-topic-tlmm_wakeup-e7536d56007b
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
