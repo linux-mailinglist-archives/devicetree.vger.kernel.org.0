@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C937577957C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56EF779594
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235950AbjHKRA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55908 "EHLO
+        id S231126AbjHKREV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235977AbjHKRA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:00:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7484B30C1;
-        Fri, 11 Aug 2023 10:00:58 -0700 (PDT)
+        with ESMTP id S229544AbjHKREV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:04:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCBDE54;
+        Fri, 11 Aug 2023 10:04:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 09EC160B79;
-        Fri, 11 Aug 2023 17:00:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 691AFC433C9;
-        Fri, 11 Aug 2023 17:00:55 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4D77F677A4;
+        Fri, 11 Aug 2023 17:04:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA2EC433C7;
+        Fri, 11 Aug 2023 17:04:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691773257;
-        bh=l1aOISgHLyF1tS0E6wyiBR8uld1+gi5jofN8WS08bZI=;
+        s=k20201202; t=1691773459;
+        bh=LZGP/air+2wvae6xLeGOfYYOENdL4ySCVIGxTfx1yy4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bIZh4+l26+bumdjG+bZVToiZ3djsVl+GVTghFsSnjne6ExjsxrYrltO5Q9rsFIMfd
-         YeEVvJjZ7VWTWcFvjz5ZWsXfWmyZwO9/S2Cos7G1qdSmXXfUXr4ezYXmclymHemksB
-         5RFlZYC17AaJ2AokgHCtO+4iWICrLv85UxAsiDY+VMnBlMn7JdtD8KyceES26UHWtB
-         3rycLa8T0et++fte67RueG4SLZA1Sy7pwfaRsRPopgKwSgl9vdhlKBP+mh+LoGmPNR
-         0Ng37vhFG53uXvjrDeO0XHuxojFC+5AOpF4IWCoOJU6YnkDHvmVCN7s8T4TeaCiaFz
-         UEc566dSW2TyQ==
-Received: (nullmailer pid 3606791 invoked by uid 1000);
-        Fri, 11 Aug 2023 17:00:54 -0000
-Date:   Fri, 11 Aug 2023 11:00:54 -0600
+        b=dr/ZSU50g1LCjI6n2lyl8KXz0mUjPN6XnyorDImTEWlmWDuwEEBggyyouPT8GNF/8
+         1c3ahRjhkbq2gYdjbiOGY+F6omPh4oVHOEwcgtoCx8c18GCKsajv5Mj8pKS+PMYYcE
+         JplN7eBwHy/k7jN4SMhAQB2Fnzs8iSP1oyQhgA9eXo5MpJ55s10JQKjqJOHD1/KdvV
+         SKo/NS4vYn/e6Xzqr3PhSq+nwwdimr/HnfxodbXmn2Bh3GNByPFg5dXjZ2XD+FlvVK
+         y26ZhggKZc1/sPkc0+RIH9vr2LQcAdq1x+Ife+5zxtHV2qZj7GQUg1wZ15ViDiEieL
+         on627zLQkfy4g==
+Received: (nullmailer pid 3614707 invoked by uid 1000);
+        Fri, 11 Aug 2023 17:04:15 -0000
+Date:   Fri, 11 Aug 2023 11:04:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yi-De Wu <yi-de.wu@mediatek.com>
-Cc:     Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arch@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        David Bradil <dbrazdil@google.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Ivan Tseng <ivan.tseng@mediatek.com>,
-        Jade Shih <jades.shih@mediatek.com>,
-        My Chuang <my.chuang@mediatek.com>,
-        Shawn Hsiao <shawn.hsiao@mediatek.com>,
-        PeiLun Suei <peilun.suei@mediatek.com>,
-        Liju Chen <liju-clr.chen@mediatek.com>,
-        Willix Yeh <chi-shen.yeh@mediatek.com>
-Subject: Re: [PATCH v5 04/12] virt: geniezone: Add vcpu support
-Message-ID: <20230811170054.GB3593414-robh@kernel.org>
-References: <20230727080005.14474-1-yi-de.wu@mediatek.com>
- <20230727080005.14474-5-yi-de.wu@mediatek.com>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, ulf.hansson@linaro.org,
+        stanimir.k.varbanov@gmail.com, airlied@gmail.com,
+        dmitry.baryshkov@linaro.org, robdclark@gmail.com, sean@poorly.run,
+        quic_tdas@quicinc.com, linux-remoteproc@vger.kernel.org,
+        agross@kernel.org, linux-clk@vger.kernel.org, rfoss@kernel.org,
+        daniel@ffwll.ch, andersson@kernel.org, bhupesh.sharma@linaro.org,
+        mani@kernel.org, mturquette@baylibre.com,
+        quic_abhinavk@quicinc.com, sboyd@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, mchehab@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_vgarodia@quicinc.com,
+        conor+dt@kernel.org, linux-media@vger.kernel.org,
+        vladimir.zapolskiy@linaro.org, neil.armstrong@linaro.org,
+        konrad.dybcio@linaro.org, mathieu.poirier@linaro.org,
+        jonathan@marek.ca, marijn.suijten@somainline.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2] dt-bindings: qcom: Update RPMHPD entries for some SoCs
+Message-ID: <169177345491.3614642.17326420788227805482.robh@kernel.org>
+References: <1690461813-22564-1-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230727080005.14474-5-yi-de.wu@mediatek.com>
+In-Reply-To: <1690461813-22564-1-git-send-email-quic_rohiagar@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -77,36 +71,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 03:59:57PM +0800, Yi-De Wu wrote:
-> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+
+On Thu, 27 Jul 2023 18:13:33 +0530, Rohit Agarwal wrote:
+> Update the RPMHPD references with new bindings defined in rpmhpd.h
+> for Qualcomm SoCs SM8[2345]50.
 > 
-> VMM use this interface to create vcpu instance which is a fd, and this
-> fd will be for any vcpu operations, such as setting vcpu registers and
-> accepts the most important ioctl GZVM_VCPU_RUN which requests GenieZone
-> hypervisor to do context switch to execute VM's vcpu context.
-> 
-> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
-> Signed-off-by: Jerry Wang <ze-yu.wang@mediatek.com>
-> Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
-> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
->  arch/arm64/geniezone/Makefile           |   2 +-
->  arch/arm64/geniezone/gzvm_arch_common.h |  20 ++
->  arch/arm64/geniezone/vcpu.c             |  88 +++++++++
->  arch/arm64/geniezone/vm.c               |  11 ++
->  arch/arm64/include/uapi/asm/gzvm_arch.h |  30 +++
+> 
+> Changes in v2:
+>  - Removed the unnecessary inclusion of header rpmpd.h.
+> 
+> This patch is dependent on the series that includes the new rpmhpd.h header
+> https://lore.kernel.org/all/1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com/
+> 
+>  Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,videocc.yaml         | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml         | 8 ++++----
+>  .../devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml         | 6 +++---
+>  .../devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml         | 8 ++++----
+>  .../devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml         | 8 ++++----
+>  Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml              | 4 ++--
+>  Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml | 6 +++---
+>  18 files changed, 44 insertions(+), 44 deletions(-)
+> 
 
-I'm almost certain that the arm64 maintainers will reject putting this 
-here. What is the purpose of the split with drivers/virt/? Do you plan 
-to support another arch in the near future?
+Acked-by: Rob Herring <robh@kernel.org>
 
-Yes, there's KVM stuff in arch/arm64, but that is multi-arch.
-
->  drivers/virt/geniezone/Makefile         |   3 +-
->  drivers/virt/geniezone/gzvm_vcpu.c      | 250 ++++++++++++++++++++++++
->  drivers/virt/geniezone/gzvm_vm.c        |   5 +
->  include/linux/gzvm_drv.h                |  21 ++
->  include/uapi/linux/gzvm.h               | 136 +++++++++++++
->  10 files changed, 564 insertions(+), 2 deletions(-)
->  create mode 100644 arch/arm64/geniezone/vcpu.c
->  create mode 100644 drivers/virt/geniezone/gzvm_vcpu.c
