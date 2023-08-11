@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B45417798C9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2267798D3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:51:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235716AbjHKUtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 16:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57090 "EHLO
+        id S234522AbjHKUvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 16:51:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236776AbjHKUsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:48:52 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19223581
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:48:49 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe82ac3ab4so3667890e87.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:48:49 -0700 (PDT)
+        with ESMTP id S231285AbjHKUvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:51:00 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2DC2D5B
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:51:00 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe15bfb1adso3882329e87.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 13:50:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691786928; x=1692391728;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=41db47u7JHTIc6RPU/e4KhJFc+aEEEb2g0bni/VxnHI=;
-        b=iuG5EnRjn4wf/FfUMxoRIIVkx8u96UH7ijRuXf249vq+Ze5DqZsJFa/PEzAhWQQk7W
-         RC7evFziFC268XMTZ7uQuq/n2JzVGItEN+ayK1mpW6V7qsDVApUyDUCerzdJc5hIEYQi
-         jlmvwXhBBcBHuGwLPLxfd88PgCogCK3Nls7OBVnSyclmRW6odViSdZKluVA3tPCm7PX6
-         zkx7sU8H1VxsiKgcLaNjoMIm0dlh6qLiMO+zn+eNdnllksTOALWCE5jlZ87EU19Wnlyw
-         ObRvt3aG9NVxosZ8KyRvqiiD6Klog8NNd/DpLpB16e0dCmeVe6Ub+tcqx7/ZB9oXF2vZ
-         DZ0A==
+        d=linaro.org; s=google; t=1691787058; x=1692391858;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3jqJojQwGIq+MbCn3Pj9qfGFrLvfGPKUQcVkXP9fboM=;
+        b=FoBWDVFKaSuMp8L5zWplC149YlqCLDO46D2o+bG3qHyrOIrUyanu9nfaBq5Z9u6OX+
+         Bu8wIpp27FYsMOBb/aNtjx3k120YqgfNF8w4wqV7nWka7och4jugEJP9w1WqK9AdjxlT
+         /hOifF0TchdYcSXU4NdE1of49eaK2HxwUF4V7WZhrt+nhHPk6Nb5NzEPR6BZ39JJMt7R
+         lY0PR/Ypkr8qmXT7glrlNwnDSuTNwODJ1smlmjYwW24+gW1VKRJBl/GvyGG7RvEXwnpj
+         PofHeCdPETrCIXVBFyM6CRGFxfHWdcGypLFq+aUI+r5HJwt6BxqGQr/NkbR11YZaexbe
+         BIbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691786928; x=1692391728;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=41db47u7JHTIc6RPU/e4KhJFc+aEEEb2g0bni/VxnHI=;
-        b=gsJn1ewWrq7yTtphsIuibZoZiBMULwhH+ao/jSACgrcWG8CyhvN5FKW+610R+iakMm
-         GWykTc7wcT6jtcaV1o5uliR2q31s6vbybnUyLnKgAHiuE7cChZNG4TnyY3/ZBBAsg4xD
-         imZ4WOCsxmQG7ObwYoWbbKQWgIjsldNly5hGJVYYvQE02jgD0P91xMDFwdlYj7K5TjbS
-         y8GWSKan/Amz9P0eM4K4h8PfNGAViplnQgfqIdxS6wz1NdKUgIVv7pDknwDNSYS4veaq
-         TK1rM/ypVgzZXnSu5zotKO3ZVgpDiRET7D/jN2Yp3T1eXhO8qhymbkGYZR+M19symw7s
-         NowQ==
-X-Gm-Message-State: AOJu0Yy+MI6z+ihaRA9zmeaNuSb4tvHpWrS12giaKhjaG7dAw4XCgjpY
-        v7Voet3zs5kP3ndWORP0rfrP9A==
-X-Google-Smtp-Source: AGHT+IE3eXyaLZfdB0YyUF2jD4w4MqT4UPe9Xkuhm58JAx7vw8VapOpaxrRbW3TONye93gf77iTKjg==
-X-Received: by 2002:a05:6512:1156:b0:4fb:89b3:3374 with SMTP id m22-20020a056512115600b004fb89b33374mr2325742lfg.54.1691786928108;
-        Fri, 11 Aug 2023 13:48:48 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1691787058; x=1692391858;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3jqJojQwGIq+MbCn3Pj9qfGFrLvfGPKUQcVkXP9fboM=;
+        b=SElrsQSMKOrcJMqYrCvnXyZVqTINKOBcCND8Sovf4owYnqJj4Ggxw/1P8VCU22EC44
+         hUWCQTEcaZXCrb5oAzOsg4CYAxDknGvOt0n0xWAq+aac3HNef7r/jBHs0Rpcod4FWmVZ
+         O9Fu7TilMbUP4eDpk8rqQgz3Y9jCDYN6lDGc9VUPZwCB5BNVGFoeIU7Vs70IQ+iF/1dX
+         qfwS8f3TiKBpcF5Yc+qaq8gpzqvFBd111YP7f6SrhC3XgSQ11+GLsGOylpTneUszE/7H
+         qN5CKfqyZCH+wAwSxTsAV7YqSldcmGHr99iCgmwcCuN35RT//4t7wLsF2k/9CmGY/ixW
+         gY1A==
+X-Gm-Message-State: AOJu0Yw0DLeq3Xz0jhMadV7Nu8KgOGu7lDooR6EgsUM0oc8EWmx3LdBr
+        4B3pPOxx+PK8LAn+NbkhWati9w==
+X-Google-Smtp-Source: AGHT+IH0hhbtty9vT+TeG2QntORrbeXlcZhcz/Q6BxEU88bKOnfFh8w4K3jurXe77Op8sXmuYkKT0Q==
+X-Received: by 2002:a05:6512:3452:b0:4fe:15b5:a5f9 with SMTP id j18-20020a056512345200b004fe15b5a5f9mr2048837lfr.54.1691787058307;
+        Fri, 11 Aug 2023 13:50:58 -0700 (PDT)
 Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
-        by smtp.gmail.com with ESMTPSA id w1-20020ac24421000000b004fe8d684172sm843603lfl.234.2023.08.11.13.48.46
+        by smtp.gmail.com with ESMTPSA id w26-20020a19c51a000000b004fb964d48e6sm858285lfe.95.2023.08.11.13.50.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 13:48:47 -0700 (PDT)
+        Fri, 11 Aug 2023 13:50:57 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 11 Aug 2023 22:48:39 +0200
-Subject: [PATCH 6/6] arm64: dts: qcom: sm6350: Hook up PDC as wakeup-parent
- of TLMM
+Subject: [PATCH 0/3] Introduce PRNG on SM8450
+Date:   Fri, 11 Aug 2023 22:50:55 +0200
+Message-Id: <20230811-topic-8450_prng-v1-0-01becceeb1ee@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230811-topic-tlmm_wakeup-v1-6-5616a7da1fff@linaro.org>
-References: <20230811-topic-tlmm_wakeup-v1-0-5616a7da1fff@linaro.org>
-In-Reply-To: <20230811-topic-tlmm_wakeup-v1-0-5616a7da1fff@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAC+f1mQC/x2NWwrCQAwAr1LybSDbVl28iojsI20DJV2yKkLp3
+ V38nIFhdqhswhVu3Q7GH6myaQN36iAtQWdGyY2hp34g7xy+tiIJ/XimZzGd8RImIn8dchwztCq
+ GyhgtaFpap+91bbIYT/L9b+6P4/gBWBV7FnYAAAA=
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
+        Vinod Koul <vkoul@kernel.org>
 Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691786918; l=745;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691787056; l=888;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=HKF79DZaKKdLAHbzWWQPNMbkJmaE2nmAXM+wQx1rJmc=;
- b=XvEvrh7n9Kd1E3uLl7yaB9gSQUaJbS+cbJsYbM4vKgoskHSbdLHC/AAapyTgdx2zQCfwt3NUS
- BmRPAZWOjZYAg1CHKeBkZbZePkDxJ5cwnK3VsbuvyADfhT+/uJsMhE6
+ bh=achINi13s2oBouycijFvJmTS8jFnC3XtwNFEu/25/9I=;
+ b=TsC/xrTi+lazROIHVs6x9cO4a9GqYA13OfLaqe0W1JMsaPXXxGezBGPM3CTF2/X4nRy1nnK3z
+ YIZ4j8k9kj1CGBz8wPh0gQjRphAFSgXMOlp99Vur885oeRRtRbzjxEF
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,27 +88,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some TLMM pins are wakeup-capable. Describe the relationship between
-these two peripherals to enable this functionality.
+SM8450's PRNG seems to be the same good ol' IP, except without a core
+clock.
+
+For a lack of a better idea on how to test it, /proc/crypto reports that
+the selftest has gone through..
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Konrad Dybcio (3):
+      dt-bindings: crypto: qcom,prng: Add SM8450
+      crypto: qcom-rng: Make the core clock optional regardless of ACPI presence
+      arm64: dts: qcom: sm8450: Add PRNG
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 8f66306d1de3..8fd6f4d03490 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -2261,6 +2261,7 @@ tlmm: pinctrl@f100000 {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 			gpio-ranges = <&tlmm 0 0 157>;
-+			wakeup-parent = <&pdc>;
- 
- 			cci0_default: cci0-default-state {
- 				pins = "gpio39", "gpio40";
+ .../devicetree/bindings/crypto/qcom,prng.yaml      | 24 +++++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               |  5 +++++
+ drivers/crypto/qcom-rng.c                          | 10 +++------
+ 3 files changed, 27 insertions(+), 12 deletions(-)
+---
+base-commit: 21ef7b1e17d039053edaeaf41142423810572741
+change-id: 20230811-topic-8450_prng-6af00873db4d
 
+Best regards,
 -- 
-2.41.0
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
