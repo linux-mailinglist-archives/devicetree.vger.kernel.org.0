@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E94779AF8
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 01:07:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F04779AFA
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 01:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237131AbjHKXG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 19:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51188 "EHLO
+        id S234615AbjHKXHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 19:07:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237149AbjHKXFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 19:05:34 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C9503C3F
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:03:30 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe55d70973so2872277e87.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:03:30 -0700 (PDT)
+        with ESMTP id S237156AbjHKXFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 19:05:43 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA76B35A2
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:03:45 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe82ac3ab4so3796304e87.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 16:03:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691795009; x=1692399809;
+        d=linaro.org; s=google; t=1691795024; x=1692399824;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yj7oaHpXwh479N4Y6p16rKJm60zlRBSJwdQmnVwtn9M=;
-        b=Hiz0sP4c4LR2nhNLprspXe0P9ubQPt/pIjnlXm2l2QD/g2eUUaP20hPTVI0xwm/fX0
-         Ym08A3B7Fi/4y/3zGuFQPER2IfTvuLHx4URwoGc7oUNtyuh3gU6vNDgLAhglh3kJ382L
-         aIlPl7Wr/SAsZOumCCCZVqD8utn+jTC1G5XYo8xyNQHEjejRe7ClZGKrIRIKVo7HlJdr
-         ta7jWhfBxmbgLnG9X3uiCBubcEOjajzeBA1KkK1NG3RGwaI0OBMKDwdOY9Pjel9ZBqJF
-         ubm7M/IC278BrNtOHqLxVAtMYYRUxeSKdpbjVfa0u+zJt6VjvMk8lvdkAkws2WfL/L/c
-         kaxA==
+        bh=beJOc48W84DpZOhPuOnYyGosq2C8NsHmHG8pcvDQ60U=;
+        b=pZ8sQNF3CeCRgcOLnh/BPiCa1E4y8J93+RB+NJd/smH3DxuV1u7WRH93FHgn5uOdQX
+         YNOJZRydm46QAlEd7PKYa1heaK6inpaN7SJaTQlzuUJJtGMlvmXYutMZD6DOoaRCIrFk
+         cAXPqgYvWWQ3XbZrvibuTfJlSpvvSyPwH0P65HrOdN2EUBePHibdeET0KMawaWIVN+In
+         dF63OerIc3uxsFjFxg/LNF6uVknGB4QCpsp2MhjBe4lRuCNSH2ZouwZBem6zS5TbNSvE
+         CdtGTCqT3vQTzqwQonJffjW3lcxksfVJ6J9UUseGUPaFVML+RjW/PVKK1pxBn2BeykYU
+         7NWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691795009; x=1692399809;
+        d=1e100.net; s=20221208; t=1691795024; x=1692399824;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yj7oaHpXwh479N4Y6p16rKJm60zlRBSJwdQmnVwtn9M=;
-        b=dl54XwF+VFVAR4MfXbj8CkLD/ERTelcQk1fmKKpsJcfiUNHFXFPtOc6VA4WZ/Y4ALq
-         IDCK2Vs1vjkSmBTRzPMzu+BoKnOWdQcuTM20n3eBe7j0ecrlpbL+85jC/2ZtkA0afPL/
-         vKPHOdW0BJmyWweKkjVurWiwaAswG41aL7oxXsoPeRQO67h54e1ClhLNb/b4Al8I1h1E
-         PO1voZN6CZP7lM0IDvdh49RJUptjDivFkvyA6DRtQeAmlMTnj0VoRqvr3EIQQWxWNKHF
-         2PQRpXum95Z+AwweUbENH0zr8bz5PDIV7FLABv+P4bbWgMgQHQOZfUoc6T9kA0WumOI3
-         Swhg==
-X-Gm-Message-State: AOJu0YyMQYaQ/KkthDYkxPiudxojdHLCFo1kid4Ind50okwxcG9ZZ8Sj
-        7eiWpsElfusG2wQ8cC2OytMghw==
-X-Google-Smtp-Source: AGHT+IHZODB2dai5ui2vnNkodArJwET+ZX8mOaRrRlOypQwRVOZ+BATch4OwdjCaidtLDxODSZJUQQ==
-X-Received: by 2002:a05:6512:b85:b0:4eb:4258:bf62 with SMTP id b5-20020a0565120b8500b004eb4258bf62mr2517717lfv.8.1691795008762;
-        Fri, 11 Aug 2023 16:03:28 -0700 (PDT)
+        bh=beJOc48W84DpZOhPuOnYyGosq2C8NsHmHG8pcvDQ60U=;
+        b=T2wogRqZL6TPL9I7ERUYkKDq690HHintEMBUOZ/Z6ynyIsnHcNp7f+/4REz+8uooqH
+         rBC0TzYgy7Gg/IPuDq/A3lSG5sAAb4gmRKOH+y0eQfsCbuX3YljGccl7yuJO5JvRS77d
+         5gbsx6Wdq/TJqk+vfoF6JCj/u+I1BKxVqbQJO4kpIz42mQ9ATtkkfg9kNbS0Ay0Lxb2p
+         WthxuTRtPOLssqHIMEr3NpdbJbvsywxIaihaBR2s+2NoQ4aXGuEWb8+OjLjD+5kFjPC7
+         xMElSsnRA9PgYQ7HkeyvdBTTt6wBxaz2G9kayjNNNnrXpCFBttWKksaTnBT8HP7IAVMW
+         uVRw==
+X-Gm-Message-State: AOJu0YwnCsv1chQIGIy/IPOjmT0wp0PLKEcRxxJGZ4GONmmxXz3BfUKz
+        PITgYuJZZ77xQa/CwB7LaWpCEQ==
+X-Google-Smtp-Source: AGHT+IFp1hwE/Qqp7Btb/fgaONzB9bq2qLrwBrY3m5Wetq7WQFMjKpOI2vIB0uP/ZGMJ0UqJa0iYSw==
+X-Received: by 2002:a05:6512:692:b0:4f8:5cde:a44f with SMTP id t18-20020a056512069200b004f85cdea44fmr3067371lfe.10.1691795024122;
+        Fri, 11 Aug 2023 16:03:44 -0700 (PDT)
 Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
-        by smtp.gmail.com with ESMTPSA id c26-20020a19761a000000b004fe3512e26dsm884105lff.291.2023.08.11.16.03.27
+        by smtp.gmail.com with ESMTPSA id c26-20020a19761a000000b004fe3512e26dsm884105lff.291.2023.08.11.16.03.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Aug 2023 16:03:28 -0700 (PDT)
-Message-ID: <a7913a32-d417-4782-b52e-304ac7324caf@linaro.org>
-Date:   Sat, 12 Aug 2023 01:03:27 +0200
+        Fri, 11 Aug 2023 16:03:43 -0700 (PDT)
+Message-ID: <c57b6b36-e5c3-4693-b6c5-45f9752f9ddd@linaro.org>
+Date:   Sat, 12 Aug 2023 01:03:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] ARM: dts: qcom: add device tree for Microsoft Lumia
- 640
+Subject: Re: [PATCH 5/7] ARM: dts: qcom: add device tree for Microsoft Lumia
+ 640 XL
 Content-Language: en-US
 To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
@@ -67,7 +67,7 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
 References: <20230811213728.23726-1-rayyan@ansari.sh>
- <20230811213728.23726-5-rayyan@ansari.sh>
+ <20230811213728.23726-6-rayyan@ansari.sh>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -104,13 +104,13 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230811213728.23726-5-rayyan@ansari.sh>
+In-Reply-To: <20230811213728.23726-6-rayyan@ansari.sh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -118,8 +118,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11.08.2023 23:35, Rayyan Ansari wrote:
-> Add an initial device tree for the Microsoft Lumia 640, codenamed
-> "dempsey".
+> Add an initial device tree for the Microsoft Lumia 640 XL, codenamed
+> "makepeace".
 > 
 > Co-authored-by: Dominik Kobinski <dominikkobinski314@gmail.com>
 > Co-authored-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
