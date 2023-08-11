@@ -2,104 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E09B1778730
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 07:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77044778790
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 08:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233311AbjHKF6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 01:58:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57030 "EHLO
+        id S230254AbjHKGkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 02:40:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjHKF6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 01:58:45 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 16BF22722;
-        Thu, 10 Aug 2023 22:58:41 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37B5w8igD004213, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37B5w8igD004213
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 13:58:08 +0800
-Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Fri, 11 Aug 2023 13:58:26 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Fri, 11 Aug 2023 13:58:26 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Fri, 11 Aug 2023 13:58:26 +0800
-From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 2/2] dt-bindings: usb: dwc3: Add Realtek DHC RTD SoC DWC3 USB
-Thread-Topic: [PATCH v3 2/2] dt-bindings: usb: dwc3: Add Realtek DHC RTD SoC
- DWC3 USB
-Thread-Index: AQHZy08oIzVQuCZ6R0a3+HSHmsv8hK/jd/iAgAEgh5A=
-Date:   Fri, 11 Aug 2023 05:58:25 +0000
-Message-ID: <31c4716cd3df41418e91dd77347f8dc8@realtek.com>
-References: <20230810055440.3534-1-stanley_chang@realtek.com>
- <20230810055440.3534-2-stanley_chang@realtek.com>
- <20230810203633.GA1121702-robh@kernel.org>
-In-Reply-To: <20230810203633.GA1121702-robh@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229459AbjHKGkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 02:40:35 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C9D2694;
+        Thu, 10 Aug 2023 23:40:34 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37B6eBOd021185;
+        Fri, 11 Aug 2023 01:40:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691736011;
+        bh=jF7veAJCg7xxofNq8kFXr6on39XUtII8DDbN01UPOg8=;
+        h=From:To:CC:Subject:In-Reply-To:References:Date;
+        b=MhHDCWrW7h5mBgJXO24FHVkVesCB2J1yMupcXIKgKUUEhjv0ANFaSIFdhoq1W+EBh
+         riNtETxC2Mrr0SMFPYC2wRJZR0jNszh/ZCbWKD1aapk+XXLq+7HX0+ZOjm0EVuJyBb
+         LqskMROLcAzz3aYAD+h86I8WyRXq65Engmxb/tMA=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37B6eBpO122620
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 01:40:11 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 01:40:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 01:40:10 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37B6e914007531;
+        Fri, 11 Aug 2023 01:40:09 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+To:     Eric Biggers <ebiggers@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v2 2/6] crypto: crc64 - add crc64-iso
+ framework
+In-Reply-To: <20230811042423.GA1295@sol.localdomain>
+References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
+ <20230719-mcrc-upstream-v2-2-4152b987e4c2@ti.com>
+ <20230811042423.GA1295@sol.localdomain>
+Date:   Fri, 11 Aug 2023 12:10:09 +0530
+Message-ID: <87r0oadquu.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgIHVz
-YkA5ODAxM2UwMCB7DQo+ID4gKyAgICAgICAgY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0ZDEzMTlk
-LWR3YzMiLCAicmVhbHRlayxydGQtZHdjMyI7DQo+ID4gKyAgICAgICAgcmVnID0gPDB4OTgwMTNl
-MDAgMHgyMDA+Ow0KPiA+ICsgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiA+ICsgICAg
-ICAgICNzaXplLWNlbGxzID0gPDE+Ow0KPiA+ICsgICAgICAgIHJhbmdlczsNCj4gPiArICAgICAg
-ICBtYXhpbXVtLXNwZWVkID0gImhpZ2gtc3BlZWQiOw0KPiANCj4gVGhpcyBzaG91bGQgYmUgYSB3
-YXJuaW5nICh0aGUgYm90IHdhcyBoYXZpbmcgcHJvYmxlbXMpIGFzIGl0IGlzIG5vdCBkZWZpbmVk
-IGZvcg0KPiB0aGlzIG5vZGUuIEl0IGJlbG9uZ3MgaW4gdGhlIGNoaWxkIG5vZGUgYXMgeW91IGFs
-c28gaGF2ZSwgc28gZHJvcCBpdC4NCg0KQXMgSSBtZW50aW9uZWQgaW4gdGhlIHYxIHBhdGNoLCBJ
-IGhhdmUgYSBwcm9ibGVtLg0KVGhpcyBwcm9wZXJ0eSBtYXhpbXVtLXNwZWVkIGJlbG9uZ3MgdG8g
-ZHdjMy4NCldoZW4gdGhlIGR3YzMtcnRrIHNldHRpbmcgZGlzYWJsZXMgVVNCIDMuMCBwaHksIGR3
-YzMgaXMgbm90IHByb2JlZC4NClNvIEkgY2FuJ3QgdXNlIGFwaSB1c2JfZ2V0X21heGltdW1fc3Bl
-ZWQoZGV2KSB0byBnZXQgbWF4aW11bS1zcGVlZC4NCg0KSSBhZGRlZCB0aGlzIHByb3BlcnR5ICJt
-YXhpbXVtLXNwZWVkIiB0byB0aGUgZHdjMy1ydGsgbm9kZSwgd2hpY2ggaXMgdGhlIHNhbWUgYXMg
-dGhlIGR3YzMgY29yZSBub2RlLg0KSXMgdGhpcyBjb25maWd1cmF0aW9uIGFwcHJvcHJpYXRlPw0K
-T3IgZG8geW91IGhhdmUgYW55IHN1Z2dlc3Rpb24/DQoNCj4gPiArDQo+ID4gKyAgICAgICAgdXNi
-QDk4MDUwMDAwIHsNCj4gPiArICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJzbnBzLGR3YzMiOw0K
-PiA+ICsgICAgICAgICAgICByZWcgPSA8MHg5ODA1MDAwMCAweDkwMDA+Ow0KPiA+ICsgICAgICAg
-ICAgICBpbnRlcnJ1cHRzID0gPDAgOTQgND47DQo+ID4gKyAgICAgICAgICAgIHBoeXMgPSA8JnVz
-YjJwaHkgJnVzYjNwaHk+Ow0KPiA+ICsgICAgICAgICAgICBwaHktbmFtZXMgPSAidXNiMi1waHki
-LCAidXNiMy1waHkiOw0KPiA+ICsgICAgICAgICAgICBkcl9tb2RlID0gIm90ZyI7DQo+ID4gKyAg
-ICAgICAgICAgIHVzYi1yb2xlLXN3aXRjaDsNCj4gPiArICAgICAgICAgICAgcm9sZS1zd2l0Y2gt
-ZGVmYXVsdC1tb2RlID0gImhvc3QiOw0KPiA+ICsgICAgICAgICAgICBzbnBzLGRpc191Ml9zdXNw
-aHlfcXVpcms7DQo+ID4gKyAgICAgICAgICAgIHNucHMscGFya21vZGUtZGlzYWJsZS1zcy1xdWly
-azsNCj4gPiArICAgICAgICAgICAgc25wcyxwYXJrbW9kZS1kaXNhYmxlLWhzLXF1aXJrOw0KPiA+
-ICsgICAgICAgICAgICBtYXhpbXVtLXNwZWVkID0gImhpZ2gtc3BlZWQiOw0KPiA+ICsgICAgICAg
-IH07DQo+ID4gKyAgICB9Ow0KPiA+IC0tDQo+ID4gMi4zNC4xDQo+ID4NCg0KVGhhbmtzLA0KU3Rh
-bmxleQ0K
+Eric Biggers <ebiggers@kernel.org> writes:
+
+> On Fri, Aug 11, 2023 at 12:58:49AM +0530, Kamlesh Gurudasani wrote:
+>> diff --git a/lib/crc64-iso.c b/lib/crc64-iso.c
+>> new file mode 100644
+>> index 000000000000..d6e803124fa0
+> [...]
+>> +u64 crc64_iso_update(u64 crc, const unsigned char *buffer, size_t len)
+>> +{
+>> +	struct {
+>> +		struct shash_desc shash;
+>> +		u64 crc;
+>> +	} desc;
+>> +	int err;
+>> +
+>> +	if (static_branch_unlikely(&crc64_iso_fallback))
+>> +		return crc64_iso_generic(crc, buffer, len);
+>> +
+>> +	rcu_read_lock();
+>> +	desc.shash.tfm = rcu_dereference(crc64_iso_tfm);
+>> +	desc.crc = crc;
+>> +	err = crypto_shash_update(&desc.shash, buffer, len);
+>> +	rcu_read_unlock();
+>> +
+>> +	WARN_ON_ONCE(err);
+>> +
+>> +	return desc.crc;
+>> +}
+>> +EXPORT_SYMBOL_GPL(crc64_iso_update);
+>> +
+>> +u64 crc64_iso(const unsigned char *buffer, size_t len)
+>> +{
+>> +	return crc64_iso_update(0, buffer, len);
+>> +}
+>> +EXPORT_SYMBOL_GPL(crc64_iso);
+>
+> These functions are never called.
+>
+> Why are you trying to add unused code to the kernel?
+>
+> - Eric
+Thanks for the review, Eric.
+
+Will remove this in next revision.
+
+Regards,
+Kamlesh
