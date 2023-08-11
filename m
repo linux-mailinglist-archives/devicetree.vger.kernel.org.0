@@ -2,107 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EABFE778C98
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 13:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD53F778C9E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 13:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233677AbjHKLCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 07:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38638 "EHLO
+        id S234637AbjHKLC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 07:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235335AbjHKLB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 07:01:58 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D75A9C3
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 04:01:54 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99bc512526cso253946266b.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 04:01:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1691751713; x=1692356513;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fveq6PGN3gWXEUx4KXNg92eNPtqGmETUjIV8dFbBH3I=;
-        b=XXX8cav2N5IOf9GHsIcdv3FF/7SnG6Vtz/X7exfj9Pa1kNMGk1iUg+FA3lrIFPnw3A
-         DBEPJVqzmeTz/xgzCm7yXb84Jifh+mAYtZYM+Eqmufn8jfAUHJeIgKsRzyM+ZKVIhH10
-         8W3Ohao0qjEc5tbxQtQWcMWIdu7//F8InZIqW3MYl+vkI6bQvufiSvrrQ87U8RrANVQ+
-         a91ARyEcWWstSHRfFwH07IXhH6aJvfk6OKTHPUfWbm7v/INgEX8PveMu1Ft7q2gtJwbW
-         96Dlt33miooM6YfQyp+eIKPe4VrbrBOgjRlKYDw9vtU288kKbvWeBLc1zHYBD6nsF3O9
-         Tapg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691751713; x=1692356513;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fveq6PGN3gWXEUx4KXNg92eNPtqGmETUjIV8dFbBH3I=;
-        b=QiCHtcu55c3KpLOVJ3hEekGovW8RONz7XIiRPLFmwcYV7ltGrGi305psNR3YikwaRn
-         ChRyvWaSCEl6KICvNVzDotcAja3YMYkVbQ9N39iLgaLeEhmptUXDzIv417jQGYfpBdD7
-         GxqPXfgZWGxm6Tm9vPg4Ek6eHXmy09yhQm4TWnTRIGBkaRebPXpgGYdoKBwU2ogyTBzh
-         M4YcZNsmaBILpUf/WAdlsvMkwT1cxxjd3/VJukEThc/BKVUJGWxhl+v6tnRdwFoCvQFn
-         nBTsjZM0vR9MDMU2aPOX5wCgv7SLPW0oqpsox3y1IwMitYjVJzgPr/j47uLjGLrt/5Ex
-         xBuQ==
-X-Gm-Message-State: AOJu0YzWCxcSRQj4ujKGjIFuIfV49Ht0FKptNusQ3a2vQrhVC/9iySAJ
-        MsMgGscBGQLzIXUZ0jXcHaT9KQ==
-X-Google-Smtp-Source: AGHT+IHL1RcjnuUMBLw6U+H9UcMBTxfxIdpZPuC3pS3RxmU9ZEnu6dNClTxIAvFRA/VlJIp21KRVIA==
-X-Received: by 2002:a17:906:318d:b0:99b:f645:224 with SMTP id 13-20020a170906318d00b0099bf6450224mr1392297ejy.9.1691751713272;
-        Fri, 11 Aug 2023 04:01:53 -0700 (PDT)
-Received: from fedora.. ([188.252.220.253])
-        by smtp.googlemail.com with ESMTPSA id i18-20020a1709061cd200b0098e422d6758sm2088179ejh.219.2023.08.11.04.01.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 04:01:52 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v2] ARM: dts: qcom: ipq4019: correct SDHCI XO clock
-Date:   Fri, 11 Aug 2023 13:01:16 +0200
-Message-ID: <20230811110150.229966-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S233288AbjHKLC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 07:02:59 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32845E5D;
+        Fri, 11 Aug 2023 04:02:57 -0700 (PDT)
+Received: from [127.0.0.1] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4168E1F554;
+        Fri, 11 Aug 2023 13:02:51 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: [PATCH 0/3] Enable Security ID for H616
+Date:   Fri, 11 Aug 2023 13:02:33 +0200
+Message-Id: <20230811-sid-h616-v1-0-d1dfc9f47b19@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEkV1mQC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDC0ND3eLMFN0MM0MzXWPzJHNz41RTS1NzQyWg8oKi1LTMCrBR0bG1tQB
+ FWm5MWgAAAA==
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Alan Ma <tech@biqu3d.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1691751771; l=1045;
+ i=martin.botka@somainline.org; s=20230811; h=from:subject:message-id;
+ bh=6xJkidVHp8SgP6L0h5BYyWYG+hDj5KF//REwfLnI3r0=;
+ b=5jqqhjU/LGVi1nZGPfxt81TytjWNxhZABFvjXNfDFjo8ngJD4m7jdeye6PsNREejwOEY3tT0E
+ uQ09mTTF3a7B1BfJIUZwY3ULYPuZAnPN1VJuYPrGcos4j4IEWYoDzbR
+X-Developer-Key: i=martin.botka@somainline.org; a=ed25519;
+ pk=aTCd3jmwU8GrJidWg3DSKLpdVMcpFzXzCSLXLR6NtWU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using GCC_DCD_XO_CLK as the XO clock for SDHCI controller is not correct,
-it seems that I somehow made a mistake of passing it instead of the fixed
-XO clock.
+Hello,
 
-Fixes: 04b3b72b5b8f ("ARM: dts: qcom: ipq4019: Add SDHCI controller node")
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
-Changes in v2:
-* Make clocks and clock-names one-per-line
----
- arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+This patch series enables Security ID (SID) support for AllWinner H616.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-index 5492aeed14a5..80c04915f0e8 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-@@ -231,9 +231,12 @@ sdhci: mmc@7824900 {
- 			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "hc_irq", "pwr_irq";
- 			bus-width = <8>;
--			clocks = <&gcc GCC_SDCC1_AHB_CLK>, <&gcc GCC_SDCC1_APPS_CLK>,
--				 <&gcc GCC_DCD_XO_CLK>;
--			clock-names = "iface", "core", "xo";
-+			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-+				 <&gcc GCC_SDCC1_APPS_CLK>,
-+				 <&xo>;
-+			clock-names = "iface",
-+				      "core",
-+				      "xo";
- 			status = "disabled";
- 		};
- 
+SID support is an requirement for few things:
+    - Thermal sensors
+    - CPU Binning ID (cpufreq will use this)
+    - EPhy
+
+This patch series doesn't add support for the consumers.
+Those will come in the future via their own series.
+
+Cheers,
+Martin
+
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Martin Botka (3):
+      dt-bindings: nvmem: SID: Add binding for H616 SID controller
+      nvmem: sunxi_sid: Add support for H616 SID
+      arm64: dts: allwinner: h616: Add SID controller node
+
+ .../devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml         | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi                     | 7 +++++++
+ drivers/nvmem/sunxi_sid.c                                          | 1 +
+ 3 files changed, 9 insertions(+)
+---
+base-commit: 52a93d39b17dc7eb98b6aa3edb93943248e03b2f
+change-id: 20230811-sid-h616-37b773e59571
+
+Best regards,
 -- 
-2.41.0
+Martin Botka <martin.botka@somainline.org>
 
