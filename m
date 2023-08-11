@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A628A779241
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 16:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2C9779258
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjHKOyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 10:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
+        id S233157AbjHKPDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 11:03:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232651AbjHKOyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 10:54:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EAD22D69;
-        Fri, 11 Aug 2023 07:54:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 24F0D673EC;
-        Fri, 11 Aug 2023 14:54:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D78C433C9;
-        Fri, 11 Aug 2023 14:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691765670;
-        bh=foe2c5qeLBZfF9kPLzo5bA1hDk2swX/qOQZkOg+VLwk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QxHEjJf1QZUAwPTs48D7L5QlxyMb8Aj/uu98hV+zg1+i9ofxJjmxNJ3lBBu52KjHD
-         V+UgQzevJb4qI3755N8rSJGoIIcTiMh0WkZbfBLa0qBtvpQmc+ARbyVtUrSH1Ir2v3
-         VfPfLqPIJW7dGyciJElqFhVhvhVtXxtysxIxEsuBNzBQLLrGdDAoXlKCrHIw84QLhE
-         8CkOgapqIsvB9o1QV1EgH7MBwo+gAamMOw/SKfMzYgQk2mhaB+uaKKe7tFoo1WcwEy
-         eIqVKzGMTtY2kcMajxPMOuWXYzEbAYy3mSczPLfAuHbbXIi+CCz4PO4Wn40ppFY7Nf
-         hgIaBxyAsTSUg==
-Received: (nullmailer pid 3452681 invoked by uid 1000);
-        Fri, 11 Aug 2023 14:54:27 -0000
-Date:   Fri, 11 Aug 2023 08:54:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jai Luthra <j-luthra@ti.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        nm@ti.com, Martyn Welch <martyn.welch@collabora.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, Vaishnav Achath <vaishnav.a@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, a-bhatia1@ti.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        niklas.soderlund+renesas@ragnatech.se, linux-media@vger.kernel.org,
-        Benoit Parrot <bparrot@ti.com>, devarsht@ti.com
-Subject: Re: [PATCH v9 12/13] media: dt-bindings: Add TI J721E CSI2RX
-Message-ID: <20230811145427.GA3452223-robh@kernel.org>
-References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
- <20230811-upstream_csi-v9-12-8943f7a68a81@ti.com>
- <169176235886.3320008.7630750130843547331.robh@kernel.org>
+        with ESMTP id S232608AbjHKPDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:03:43 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2425530D0;
+        Fri, 11 Aug 2023 08:03:41 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BF3PAF019291;
+        Fri, 11 Aug 2023 10:03:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691766206;
+        bh=bs8kMfudO9pdC5cA2qEDdp/+bpDxYybryr8W5ipx/hM=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=osTbtUMThp1YGzif4+2tw6WP5rRakG4OJf3KOrxdw/aaskfP7M69VbbrA5XlQWwze
+         rGX87IrgeJYXxlg5jLhZL7ig6UxU72pk9S3+LWshOmsrc+jSetpZ9N3QB5o6OJMMvi
+         gFkOVOJgzRbgiV0PwjyBnsfNfMDfLcfnHtSlylcM=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BF3PjI035028
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 10:03:25 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 10:03:24 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 10:03:24 -0500
+Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BF3NiN099499;
+        Fri, 11 Aug 2023 10:03:24 -0500
+Message-ID: <8f3c2172-8fc7-c90d-bd8f-ea2f0ab9dcc9@ti.com>
+Date:   Fri, 11 Aug 2023 10:03:23 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <169176235886.3320008.7630750130843547331.robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti: k3-j721s2-main: Add R5F and C7x
+ remote processsor nodes
+Content-Language: en-US
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>
+References: <20230808201842.292911-1-a-nandan@ti.com>
+ <20230808201842.292911-3-a-nandan@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230808201842.292911-3-a-nandan@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,43 +73,171 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 11, 2023 at 08:00:55AM -0600, Rob Herring wrote:
+On 8/8/23 3:18 PM, Apurva Nandan wrote:
+> From: Hari Nagalla <hnagalla@ti.com>
 > 
-> On Fri, 11 Aug 2023 16:17:34 +0530, Jai Luthra wrote:
-> > From: Pratyush Yadav <p.yadav@ti.com>
-> > 
-> > TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
-> > capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
-> > parts together.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > ---
-> > NOTE:
-> > 
-> > This patch depends on
-> > 9536cc949235 ("media: dt-bindings: cadence-csi2rx: Convert to DT schema")
-> > which is part of linux-next.
-> > 
-> >  .../bindings/media/ti,j721e-csi2rx-shim.yaml       | 100 +++++++++++++++++++++
-> >  1 file changed, 100 insertions(+)
-> > 
+> The J721S2 SoCs have 2 dual-core Arm Cortex-R5F processor (R5FSS)
+> subsystems/clusters in MAIN voltage domain. Each of these can be
+> configured at boot time to be either run in a LockStep mode or in an
+> Asymmetric Multi Processing (AMP) fashion in Split-mode. These
+> subsystems have 64 KB each Tightly-Coupled Memory (TCM) internal
+> memories for each core split between two banks - ATCM and BTCM
+> (further interleaved into two banks). The TCMs of both Cores are
+> combined in LockStep-mode to provide a larger 128 KB of memory, but
+> otherwise are functionally similar to those on J721E SoCs.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Add the DT nodes for the MAIN domain R5F cluster/subsystems, the two
+> R5F cores are added as child nodes to each of the R5F cluster nodes.
+> The clusters are configured to run in LockStep mode by default, with
+> the ATCMs enabled to allow the R5 cores to execute code from DDR
+> with boot-strapping code from ATCM. The inter-processor communication
+> between the main A72 cores and these processors is achieved through
+> shared memory and Mailboxes.
 > 
-> yamllint warnings/errors:
+> The following firmware names are used by default for these cores, and
+> can be overridden in a board dts file if desired:
+>          MAIN R5FSS0 Core0: j721s2-main-r5f0_0-fw (both in LockStep & Split modes)
+>          MAIN R5FSS0 Core1: j721s2-main-r5f0_1-fw (needed only in Split mode)
+>          MAIN R5FSS1 Core0: j721s2-main-r5f1_0-fw (both in LockStep & Split modes)
+>          MAIN R5FSS1 Core1: j721s2-main-r5f1_1-fw (needed only in Split mode)
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.yaml:
-> Error in referenced schema matching $id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: ticsi2rx@4500000: csi-bridge@4504000: False schema does not allow {'compatible': ['ti,j721e-csi2rx', 'cdns,csi2rx'], 'reg': [[72368128, 4096]], 'clocks': [[4294967295, 26, 2], [4294967295, 26, 0], [4294967295, 26, 2], [4294967295, 26, 2], [4294967295, 26, 3], [4294967295, 26, 3]], 'clock-names': ['sys_clk', 'p_clk', 'pixel_if0_clk', 'pixel_if1_clk', 'pixel_if2_clk', 'pixel_if3_clk'], 'phys': [[4294967295]], 'phy-names': ['dphy'], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]], 'bus-type': [[4]], 'clock-lanes': [[0]], 'data-lanes': [[1, 2]]}}}}
-> 	from schema $id: http://devicetree.org/schemas/media/ti,j721e-csi2rx-shim.yaml#
-> Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['ti,j721e-csi2rx', 'cdns,csi2rx']
-> Documentation/devicetree/bindings/media/ti,j721e-csi2rx-shim.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['ti,j721e-csi2rx', 'cdns,csi2rx']
+> The K3 J721S2 SoCs have two C71x DSP subsystems in MAIN voltage domain. The
+> C71x DSPs are 64 bit machine with fixed and floating point DSP operations.
+> Similar to the R5F remote cores, the inter-processor communication
+> between the main A72 cores and these DSP cores is achieved through
+> shared memory and Mailboxes.
+> 
+> The following firmware names are used by default for these DSP cores,
+> and can be overridden in a board dts file if desired:
+>          MAIN C71_0 : j721s2-c71_0-fw
+>          MAIN C71_1 : j721s2-c71_1-fw
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 104 +++++++++++++++++++++
+>   1 file changed, 104 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index dc7920a35237..c428a2b624fb 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -1688,4 +1688,108 @@ dss: dss@4a00000 {
+>   		dss_ports: ports {
+>   		};
+>   	};
+> +
+> +	main_r5fss0: r5fss@5c00000 {
+> +		compatible = "ti,j721s2-r5fss";
+> +		ti,cluster-mode = <1>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
+> +			 <0x5d00000 0x00 0x5d00000 0x20000>;
+> +		power-domains = <&k3_pds 277 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		main_r5fss0_core0: r5f@5c00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5c00000 0x00010000>,
+> +			      <0x5c10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <279>;
+> +			ti,sci-proc-ids = <0x06 0xff>;
+> +			resets = <&k3_reset 279 1>;
+> +			firmware-name = "j721s2-main-r5f0_0-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +
+> +		main_r5fss0_core1: r5f@5d00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5d00000 0x00010000>,
+> +			      <0x5d10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <280>;
+> +			ti,sci-proc-ids = <0x07 0xff>;
+> +			resets = <&k3_reset 280 1>;
+> +			firmware-name = "j721s2-main-r5f0_1-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +	};
+> +
+> +	main_r5fss1: r5fss@5e00000 {
+> +		compatible = "ti,j721s2-r5fss";
+> +		ti,cluster-mode = <1>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x5e00000 0x00 0x5e00000 0x20000>,
+> +			 <0x5f00000 0x00 0x5f00000 0x20000>;
+> +		power-domains = <&k3_pds 278 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		main_r5fss1_core0: r5f@5e00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5e00000 0x00010000>,
+> +			      <0x5e10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <281>;
+> +			ti,sci-proc-ids = <0x08 0xff>;
+> +			resets = <&k3_reset 281 1>;
+> +			firmware-name = "j721s2-main-r5f1_0-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +
+> +		main_r5fss1_core1: r5f@5f00000 {
+> +			compatible = "ti,j721s2-r5f";
+> +			reg = <0x5f00000 0x00010000>,
+> +			      <0x5f10000 0x00010000>;
+> +			reg-names = "atcm", "btcm";
+> +			ti,sci = <&sms>;
+> +			ti,sci-dev-id = <282>;
+> +			ti,sci-proc-ids = <0x09 0xff>;
+> +			resets = <&k3_reset 282 1>;
+> +			firmware-name = "j721s2-main-r5f1_1-fw";
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +	};
+> +
+> +	c71_0: dsp@64800000 {
+> +		compatible = "ti,j721s2-c71-dsp";
+> +		reg = <0x00 0x64800000 0x00 0x00080000>,
+> +		      <0x00 0x64e00000 0x00 0x0000c000>;
+> +		reg-names = "l2sram", "l1dram";
+> +		ti,sci = <&sms>;
+> +		ti,sci-dev-id = <8>;
+> +		ti,sci-proc-ids = <0x30 0xff>;
+> +		resets = <&k3_reset 8 1>;
+> +		firmware-name = "j721s2-c71_0-fw";
 
-As noted, this can be ignored.
+We are moving to disabled by default for these nodes, see:
 
-Rob
+https://lore.kernel.org/lkml/20230809180145.53158-2-afd@ti.com/
+
+The C7x stuff should be split out from the R5 stuff, each
+should have a patch.
+
+Andrew
+
+> +	};
+> +
+> +	c71_1: dsp@65800000 {
+> +		compatible = "ti,j721s2-c71-dsp";
+> +		reg = <0x00 0x65800000 0x00 0x00080000>,
+> +		      <0x00 0x65e00000 0x00 0x0000c000>;
+> +		reg-names = "l2sram", "l1dram";
+> +		ti,sci = <&sms>;
+> +		ti,sci-dev-id = <11>;
+> +		ti,sci-proc-ids = <0x31 0xff>;
+> +		resets = <&k3_reset 11 1>;
+> +		firmware-name = "j721s2-c71_1-fw";
+> +	};
+>   };
