@@ -2,227 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE3E77959C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DED3D7795DC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:10:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234373AbjHKRFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:05:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59242 "EHLO
+        id S236266AbjHKRKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:10:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233953AbjHKRFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:05:12 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246ED2123
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:05:11 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b9f0b7af65so33849931fa.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:05:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691773509; x=1692378309;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KmYvyZJ/MZJ7qF+caJh0dxeZFJ+UOhFluzJhEvu+/8A=;
-        b=PNSuWfY6HccIFUxWRmD+aYcX9N29vq+/UkLf5Y6n8qHgWdRYYqbfigUuPzOEwas3us
-         11KeQh9XXkTE3kC45V3NVehq8a06CQcSK8p/BemAganwznRCG8GofImL3yKWC1APeKmt
-         +nfc4fvsXlRhXTN/d4OyfCw4WNkVZ5OwrkxB/fHNXKrXqMAbq0QNXJ9LMYv7pZVETlaS
-         Yrls/qzbChAvxVhNkmhBvJk0KLW2n29ci3KS3yLEBOVDwslZJ+Fb2JCZdvRrg3+0r9X2
-         JYR7wigTQkbDuyvCtFdM63Duy+EZHdIPyHpMGMMkbdz32fQqJFfH+tznkE0xUT6ly3bQ
-         Xmyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691773509; x=1692378309;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KmYvyZJ/MZJ7qF+caJh0dxeZFJ+UOhFluzJhEvu+/8A=;
-        b=Z5pxtwfAGpqRZ1+txHANCUcFmCkJ9OotOHWmpLdOvCO/cb4Pbs2YoQHJhBp/0laIhB
-         YiS08omL3kEkTKGo9+hLooPPK5ARvnNshKa/0qftLVumRGpwH8x8jQaBlaHqYQRNl3nU
-         1E+MuoMjVPJE/wNrD0ufcV0Q1DiD4tWvKIuoVx/e24KfNXHEDIWaKgBjipDOzWGjhPrf
-         lhZF8b1xNyEAUuAlvmevcMK/yVLaIHnlLuzyxOiNKUPc6wJpJj23dSga/ezR5eEkVZry
-         +XBDcAFLlHobDWlT6eGXjJUHzq0LGmP1liEl+m7Yq6mRGgkK2WQefg7LtZ7JlBHWyHgA
-         vOzQ==
-X-Gm-Message-State: AOJu0Yw5jZ8vg/Y3rSGEIzjAyRJqo4urjLFl0vehiepFn0Czt/8QO/D5
-        W1NeP6M35Nt4LKhO/vuPoWUFCA==
-X-Google-Smtp-Source: AGHT+IFISNeODcY6NT/CCJDKCZhNtDLcz1zasMXh2CR/m9kSG5BB0vgDr/qYP3QAK2ZPJtWA8Wf2Mg==
-X-Received: by 2002:a2e:80c3:0:b0:2b9:bcac:7ba6 with SMTP id r3-20020a2e80c3000000b002b9bcac7ba6mr1961728ljg.46.1691773509299;
-        Fri, 11 Aug 2023 10:05:09 -0700 (PDT)
-Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
-        by smtp.gmail.com with ESMTPSA id y15-20020a05651c020f00b002b6ed0067c9sm944492ljn.116.2023.08.11.10.05.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Aug 2023 10:05:08 -0700 (PDT)
-Message-ID: <c8d77d4f-6696-4dc9-8030-daf1d10b114b@linaro.org>
-Date:   Fri, 11 Aug 2023 19:05:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 06/11] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Content-Language: en-US
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Johan Hovold <johan@kernel.org>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236290AbjHKRKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:10:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41B8230FB;
+        Fri, 11 Aug 2023 10:10:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2724D677C0;
+        Fri, 11 Aug 2023 17:10:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6671BC433C7;
+        Fri, 11 Aug 2023 17:10:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691773813;
+        bh=UdEqF3pGPTwVExsOaFfOCqMxAjBH843Ugv8NaoMyVwk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KJ3NFlDcFjDpk1FuN54RAdpfWhRoISGqyl5eUZm2e3WsGQuNOme5lQFSu4XhuE5Gq
+         MEog3qPjSUzn77qziQ0HAQZpAyJTDskSZq4vd104RLovJiaveLDamut4I1HVrk4CTq
+         PgjZEecxM4pXTnEXb8tNTwsocMV5Pk9q5vO68FW8mlX0hjEF6O+8b4PnKMqiVnSVIZ
+         5GHdJY/UA4I3zw45RmUz1C0biG+utvEVlxyELz8/HXKTH3KEY01yEhI7GqfBUiXEpe
+         N8U1pZ0qVSzU1NsK/s+oNRi3alFikMaZOYFT48ZB+aYRTGbNvU16fyxI4Sxem7AoMI
+         JP2Xvru9GJyng==
+Received: (nullmailer pid 3621153 invoked by uid 1000);
+        Fri, 11 Aug 2023 17:10:11 -0000
+Date:   Fri, 11 Aug 2023 11:10:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Olivier Moysan <olivier.moysan@foss.st.com>
+Cc:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, ahalaney@redhat.com,
-        quic_shazhuss@quicinc.com
-References: <20230727223307.8096-1-quic_kriskura@quicinc.com>
- <20230727223307.8096-7-quic_kriskura@quicinc.com>
- <pyxerd3lirbh2p43m74ohwocjjb7uh56xxmaxbrkay3svossik@ksd3yojw5wgr>
- <dc800b15-e35d-207b-73a8-9a3d2261f4f5@quicinc.com>
- <30b1fe67-bab5-4add-8d89-cc8e06cd8c7f@linaro.org>
- <3c8dff80-eec8-1721-8ab0-3cf12d4c1df4@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <3c8dff80-eec8-1721-8ab0-3cf12d4c1df4@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        alsa-devel@alsa-project.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC v2 03/11] dt-bindings: iio: stm32-dfsdm-adc: add scaling
+ support
+Message-ID: <20230811171011.GA3618531-robh@kernel.org>
+References: <20230727150324.1157933-1-olivier.moysan@foss.st.com>
+ <20230727150324.1157933-4-olivier.moysan@foss.st.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230727150324.1157933-4-olivier.moysan@foss.st.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.08.2023 08:06, Krishna Kurapati PSSNV wrote:
+On Thu, Jul 27, 2023 at 05:03:14PM +0200, Olivier Moysan wrote:
+> Add scaling support to STM32 DFSDM.
 > 
+> This introduces the following changes:
+
+Why?
+
+> - Add ADC generic channel binding and remove support of deprecated
+> channel bindings.
+
+When was it deprecated?
+
+> - DFSDM is now implemented as a channel provider, so remove io-channels
+> properties.
+> - Add iio-backend property to connect DFSDM to an SD modulator.
+
+io-backends
+
+All sorts of ABI issues with this change. Please explain why you don't 
+care.
+
 > 
-> On 8/8/2023 5:20 PM, Konrad Dybcio wrote:
->> On 8.08.2023 10:32, Krishna Kurapati PSSNV wrote:
->>>   +
->>>>> +enum dwc3_qcom_phy_irq_identifier {
->>>>> +    HS_PHY_IRQ = 0,
->>>>> +    DP_HS_PHY_IRQ,
->>>>> +    DM_HS_PHY_IRQ,
->>>>> +    SS_PHY_IRQ,
->>>>>    };
->>>>
->>>> This enum is unused.
->>>>
->>>
->>> Hi Bjorn,
->>>
->>>   I didn't use the enum directly, but used its members in the get_port_irq call below.
->>>
->>>> [..]
->>>>> +static int dwc3_get_acpi_index(const struct dwc3_acpi_pdata *pdata, int irq_index)
->>>>> +{
->>>>> +    int acpi_index = -1;
->>>>> +
->>>>> +    if (!pdata)
->>>>> +        return -1;
->>>>> +
->>>>> +    if (irq_index == DP_HS_PHY_IRQ)
->>>>> +        acpi_index = pdata->dp_hs_phy_irq_index;
->>>>> +    else if (irq_index == DM_HS_PHY_IRQ)
->>>>> +        acpi_index = pdata->dm_hs_phy_irq_index;
->>>>> +    else if (irq_index == SS_PHY_IRQ)
->>>>> +        acpi_index = pdata->ss_phy_irq_index;
->>>>
->>>> It looks favourable to put these in an array, instead of having to pull
->>>> them out of 4 different variables conditionally.
->>>>
->>>>> +
->>>>> +    return acpi_index;
->>>>> +}
->>>>> +
->>>>> +static int dwc3_get_port_irq(struct platform_device *pdev, u8 port_index)
->>>>> +{
->>>>> +    struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
->>>>> +    bool is_mp_supported = (qcom->data->num_ports > 1) ? true : false;
->>>>> +    const struct dwc3_acpi_pdata *pdata = qcom->acpi_pdata;
->>>>> +    char *disp_name;
->>>>> +    int acpi_index;
->>>>> +    char *dt_name;
->>>>> +    int ret;
->>>>> +    int irq;
->>>>> +    int i;
->>>>> +
->>>>> +    /*
->>>>> +     * We need to read only DP/DM/SS IRQ's here.
->>>>> +     * So loop over from 1->3 and accordingly modify respective phy_irq[].
->>>>> +     */
->>>>> +    for (i = 1; i < MAX_PHY_IRQ; i++) {
->>>>> +
->>>>> +        if (!is_mp_supported && (port_index == 0)) {
->>>>> +            if (i == DP_HS_PHY_IRQ) {
->>>>> +                dt_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
->>>>> +                    "dp_hs_phy_irq");
->>>>> +                disp_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
->>>>> +                    "qcom_dwc3 DP_HS");
->>>>> +            } else if (i == DM_HS_PHY_IRQ) {
->>>>> +                dt_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
->>>>> +                    "dm_hs_phy_irq");
->>>>> +                disp_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
->>>>> +                    "qcom_dwc3 DM_HS");
->>>>> +            } else if (i == SS_PHY_IRQ) {
->>>>> +                dt_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
->>>>> +                    "ss_phy_irq");
->>>>> +                disp_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
->>>>> +                    "qcom_dwc3 SS");
->>> Bjorn, Konrad,
->>>
->>> If we are to remove this repetitive loops, we might need to make a 2D array for all of Dp/Dm/Ss interrutps and make a global array of names to be used for irq lookup and use them to reduce the if-else-if stuff here. If that is fine, I can make those changes, else I would like to stick to this approach for now because if we don't add the global array of names, prepping them seperately for dp/dm/ss would again lead us to making if-else loops like above.
->>>
->>> Please let me know your thoughts on this.
->> Can we not just reuse the associated interrupt-names from the devicetree
->> if present?
->>
-> Hi Konrad,
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>  .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  | 189 ++++++------------
+>  1 file changed, 63 insertions(+), 126 deletions(-)
 > 
->  Thanks for the comments but one more confirmation.
-> We can read the interrupts from DT but I believe the compatible would still need to stay. We need the num_ports information not just for registering interrupts but for modifying the pwr_event_irq registers during suspend/resume. If we rely on the interrupts to find the number of ports, the user is free to remove any IRQ and we might end up in a situation where glue and core are not having same view of how many number of ports present. So I believe its best to keep the compatible and get num_ports info from there and rely on reading interrupt-names to get interrupts cleanly. Can you let me know your view on the same.
-So is "is it okay to add SoC-specific compatibles and add the port number in
-match data" what you're asking?
-
-If so, that doesn't seem right.
-
-The user should not "feel free to remove any IRQ", modifying the devicetree to
-depict a subset of the hardware is not something we want to support. The driver
-has to work with the "full" description in accordance with the bindings.
-
-Konrad
+> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> index 1970503389aa..128545cedc7f 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> @@ -85,22 +85,14 @@ patternProperties:
+>          description: Specifies the DFSDM filter instance used.
+>          maxItems: 1
+>  
+> -      interrupts:
+> -        maxItems: 1
+> +      '#address-cells':
+> +        const: 1
+>  
+> -      st,adc-channels:
+> -        description: |
+> -          List of single-ended channels muxed for this ADC.
+> -          On stm32h7 and stm32mp1:
+> -          - For st,stm32-dfsdm-adc: up to 8 channels numbered from 0 to 7.
+> -          - For st,stm32-dfsdm-dmic: 1 channel numbered from 0 to 7.
+> -        $ref: /schemas/types.yaml#/definitions/uint32-array
+> -        items:
+> -          minimum: 0
+> -          maximum: 7
+> +      '#size-cells':
+> +        const: 0
+>  
+> -      st,adc-channel-names:
+> -        description: List of single-ended channel names.
+> +      interrupts:
+> +        maxItems: 1
+>  
+>        st,filter-order:
+>          description: |
+> @@ -111,39 +103,6 @@ patternProperties:
+>          $ref: /schemas/types.yaml#/definitions/uint32
+>          maximum: 5
+>  
+> -      "#io-channel-cells":
+> -        const: 1
+> -
+> -      st,adc-channel-types:
+> -        description: |
+> -          Single-ended channel input type.
+> -          - "SPI_R": SPI with data on rising edge (default)
+> -          - "SPI_F": SPI with data on falling edge
+> -          - "MANCH_R": manchester codec, rising edge = logic 0, falling edge = logic 1
+> -          - "MANCH_F": manchester codec, rising edge = logic 1, falling edge = logic 0
+> -        items:
+> -          enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
+> -        $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> -
+> -      st,adc-channel-clk-src:
+> -        description: |
+> -          Conversion clock source.
+> -          - "CLKIN": external SPI clock (CLKIN x)
+> -          - "CLKOUT": internal SPI clock (CLKOUT) (default)
+> -          - "CLKOUT_F": internal SPI clock divided by 2 (falling edge).
+> -          - "CLKOUT_R": internal SPI clock divided by 2 (rising edge).
+> -        items:
+> -          enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
+> -        $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> -
+> -      st,adc-alt-channel:
+> -        description:
+> -          Must be defined if two sigma delta modulators are
+> -          connected on same SPI input.
+> -          If not set, channel n is connected to SPI input n.
+> -          If set, channel n is connected to SPI input n + 1.
+> -        type: boolean
+> -
+>        st,filter0-sync:
+>          description:
+>            Set to 1 to synchronize with DFSDM filter instance 0.
+> @@ -157,14 +116,68 @@ patternProperties:
+>          items:
+>            - const: rx
+>  
+> +    patternProperties:
+> +      "^channel@([0-9]|1[0-9])$":
+> +        type: object
+> +        $ref: "adc.yaml"
+> +        description: Represents the external channels which are connected to the DFSDM.
+> +
+> +        properties:
+> +          reg:
+> +            items:
+> +              minimum: 0
+> +              maximum: 19
+> +
+> +          label:
+> +            description: |
+> +              Unique name to identify channel.
+> +
+> +          st,adc-channel-types:
+> +            description: |
+> +              Single-ended channel input type.
+> +              - "SPI_R": SPI with data on rising edge (default)
+> +              - "SPI_F": SPI with data on falling edge
+> +              - "MANCH_R": manchester codec, rising edge = logic 0, falling edge = logic 1
+> +              - "MANCH_F": manchester codec, rising edge = logic 1, falling edge = logic 0
+> +            items:
+> +              enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
+> +            $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +
+> +          st,adc-channel-clk-src:
+> +            description: |
+> +              Conversion clock source.
+> +              - "CLKIN": external SPI clock (CLKIN x)
+> +              - "CLKOUT": internal SPI clock (CLKOUT) (default)
+> +              - "CLKOUT_F": internal SPI clock divided by 2 (falling edge).
+> +              - "CLKOUT_R": internal SPI clock divided by 2 (rising edge).
+> +            items:
+> +              enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
+> +            $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +
+> +          st,adc-alt-channel:
+> +            description:
+> +              Must be defined if two sigma delta modulators are
+> +              connected on same SPI input.
+> +              If not set, channel n is connected to SPI input n.
+> +              If set, channel n is connected to SPI input n + 1.
+> +            type: boolean
+> +
+> +          io-backends:
+> +            description: |
+> +              phandle to an external sigma delta modulator or internal ADC output.
+> +            $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +        required:
+> +          - reg
+> +          - io-backends
+> +
+> +        additionalProperties: false
+> +
+>      required:
+>        - compatible
+>        - reg
+>        - interrupts
+> -      - st,adc-channels
+> -      - st,adc-channel-names
+>        - st,filter-order
+> -      - "#io-channel-cells"
+>  
+>      allOf:
+>        - if:
+> @@ -175,14 +188,6 @@ patternProperties:
+>  
+>          then:
+>            properties:
+> -            st,adc-channels:
+> -              minItems: 1
+> -              maxItems: 8
+> -
+> -            st,adc-channel-names:
+> -              minItems: 1
+> -              maxItems: 8
+> -
+>              st,adc-channel-types:
+>                minItems: 1
+>                maxItems: 8
+> @@ -191,14 +196,6 @@ patternProperties:
+>                minItems: 1
+>                maxItems: 8
+>  
+> -            io-channels:
+> -              description:
+> -                From common IIO binding. Used to pipe external sigma delta
+> -                modulator or internal ADC output to DFSDM channel.
+> -
+> -          required:
+> -            - io-channels
+> -
+>        - if:
+>            properties:
+>              compatible:
+> @@ -207,12 +204,6 @@ patternProperties:
+>  
+>          then:
+>            properties:
+> -            st,adc-channels:
+> -              maxItems: 1
+> -
+> -            st,adc-channel-names:
+> -              maxItems: 1
+> -
+>              st,adc-channel-types:
+>                maxItems: 1
+>  
+> @@ -237,15 +228,9 @@ patternProperties:
+>                  "#sound-dai-cells":
+>                    const: 0
+>  
+> -                io-channels:
+> -                  description:
+> -                    From common IIO binding. Used to pipe external sigma delta
+> -                    modulator or internal ADC output to DFSDM channel.
+> -
+>                required:
+>                  - compatible
+>                  - "#sound-dai-cells"
+> -                - io-channels
+>  
+>  allOf:
+>    - if:
+> @@ -278,52 +263,4 @@ allOf:
+>                  minimum: 0
+>                  maximum: 5
+>  
+> -examples:
+> -  - |
+> -    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> -    #include <dt-bindings/clock/stm32mp1-clks.h>
+> -    dfsdm: dfsdm@4400d000 {
+> -      compatible = "st,stm32mp1-dfsdm";
+> -      reg = <0x4400d000 0x800>;
+> -      clocks = <&rcc DFSDM_K>, <&rcc ADFSDM_K>;
+> -      clock-names = "dfsdm", "audio";
+> -      #address-cells = <1>;
+> -      #size-cells = <0>;
+> -
+> -      dfsdm0: filter@0 {
+> -        compatible = "st,stm32-dfsdm-dmic";
+> -        reg = <0>;
+> -        interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> -        dmas = <&dmamux1 101 0x400 0x01>;
+> -        dma-names = "rx";
+> -        #io-channel-cells = <1>;
+> -        st,adc-channels = <1>;
+> -        st,adc-channel-names = "dmic0";
+> -        st,adc-channel-types = "SPI_R";
+> -        st,adc-channel-clk-src = "CLKOUT";
+> -        st,filter-order = <5>;
+> -
+> -        asoc_pdm0: dfsdm-dai {
+> -          compatible = "st,stm32h7-dfsdm-dai";
+> -          #sound-dai-cells = <0>;
+> -          io-channels = <&dfsdm0 0>;
+> -        };
+> -      };
+> -
+> -      dfsdm_pdm1: filter@1 {
+> -        compatible = "st,stm32-dfsdm-adc";
+> -        reg = <1>;
+> -        interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+> -        dmas = <&dmamux1 102 0x400 0x01>;
+> -        dma-names = "rx";
+> -        #io-channel-cells = <1>;
+> -        st,adc-channels = <2 3>;
+> -        st,adc-channel-names = "in2", "in3";
+> -        st,adc-channel-types = "SPI_R", "SPI_R";
+> -        st,adc-channel-clk-src = "CLKOUT_F", "CLKOUT_F";
+> -        io-channels = <&sd_adc2 &sd_adc3>;
+> -        st,filter-order = <1>;
+> -      };
+> -    };
+> -
+>  ...
+> -- 
+> 2.25.1
+> 
