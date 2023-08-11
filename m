@@ -2,206 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 522B277934F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:37:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DAC779367
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:43:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbjHKPhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 11:37:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37742 "EHLO
+        id S234676AbjHKPnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 11:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230419AbjHKPhB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:37:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F1BB127;
-        Fri, 11 Aug 2023 08:37:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E9F3E6119C;
-        Fri, 11 Aug 2023 15:37:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D04ACC433C8;
-        Fri, 11 Aug 2023 15:36:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691768220;
-        bh=IwOupUYX4uwoK+O9WEdepYooynfek5GkO6Od3LDdjAc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BI6tLwYsm/mibN4q/5jKOlxwgQh6m0Wn8lC4eZwJZ4nvEIHRHLsvQieg8qZcfWMDe
-         tSD7XyPgEtXeUsVZbxWOlJHpXStb5D4LK7/QFTsks9LyCXkaKWjxgntIKJO714QKg8
-         XYqKupscCU+jdlz1FQh5pr9X+ke75OJl6FA27MguxGkQjxpXUWpAWC9hryXOsLN0ms
-         96/Piq6UBnaO9hqIrE2ECj2l2jZXkSC0Pm855wpUQMovvdeSMInxFdubciIaGPY4Sh
-         U5AhvmwaL2l32Z4bS3dXTdvBE99hv+qyAtHiyEwgIUO+yCLfzbqxHZoUjfSAYQQd6o
-         ztQAQQ+zxVuyw==
-Date:   Fri, 11 Aug 2023 16:36:54 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Kamlesh Gurudasani <kamlesh@ti.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233265AbjHKPnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:43:17 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04hn2224.outbound.protection.outlook.com [52.100.17.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD8918E;
+        Fri, 11 Aug 2023 08:43:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TxwwTIN3XUd+cebiGAu6zsxXxD+mfcUOmp2YX+RjkuQ=;
+ b=VvJTJ++t/s0ZPjSvZjw5An8hFC555Zjd2irjCRAO+haHXFcmK9LA/dvCiFTKY9MIt93UA1kWjdKP1iFf873LCrqAzuIGdPYNf1xo5UQplmQuRSDnkPY0L+wSxWNcUw5TZYRB0ur3BoHRffSvAvbmnqHkUfeAtz9hid2I6ROedWnpDfhMPfXCCvjZF1BtQLGw7/DZmjKAvWpyBFtehohYIsRCvKnGHRV85+p5QaTSuXdVInEUSPqfLlABBzd8xXU9J6c111+9m6ornT3E0KXODPVZQL5R4Ox2Sd1bJ/icefPW2xcPS6nypPNhHtBww+mrWXKdmwm/O0UO79ECX9Cd1A==
+Received: from DU2P250CA0002.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:231::7) by
+ DU0PR03MB9255.eurprd03.prod.outlook.com (2603:10a6:10:470::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6652.30; Fri, 11 Aug 2023 15:43:12 +0000
+Received: from DB8EUR05FT043.eop-eur05.prod.protection.outlook.com
+ (2603:10a6:10:231:cafe::76) by DU2P250CA0002.outlook.office365.com
+ (2603:10a6:10:231::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.31 via Frontend
+ Transport; Fri, 11 Aug 2023 15:43:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.87)
+ smtp.mailfrom=seco.com; dkim=pass (signature was verified)
+ header.d=seco.com;dmarc=pass action=none header.from=seco.com;
+Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
+ 20.160.56.87 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.160.56.87; helo=inpost-eu.tmcas.trendmicro.com; pr=C
+Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.87) by
+ DB8EUR05FT043.mail.protection.outlook.com (10.233.239.63) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6699.9 via Frontend Transport; Fri, 11 Aug 2023 15:43:12 +0000
+Received: from outmta (unknown [192.168.82.132])
+        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id C81D4200813A4;
+        Fri, 11 Aug 2023 15:43:11 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (unknown [104.47.14.50])
+        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id A95C42008006E;
+        Fri, 11 Aug 2023 15:43:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ja5y6HzEagaRyCoSYSjTdjzEfILZSEmq/ZCpmeE3MIh/HlJ2Wm5jflO+zFIH/LGyuZkUi7H2CcAw4AtJ8dLSxNgVz0lF00OXHqMVrPpGDfcCqxesUpmGX8n7ApwirE/mq5f8tyf0eLGM23dyGi+BiXlpecnPEiWu8ISrr4fUCMx/9T0UjTUds/a77HiY/9ORUxCG8FAvFnkGCbZ6T1IXU03XwWgXQSqJm0AzzDLsPnLPQqq7i4L9paidScYRxVCQctDVReaHFu7CZClWKw4gVgG8cSgWFbbbEAbvhh+S8NBSdTZhK9pnvK4h9xy4L14mLi15uvVhe7ArylGBzg4lMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TxwwTIN3XUd+cebiGAu6zsxXxD+mfcUOmp2YX+RjkuQ=;
+ b=em1cWTaWmPqfREITtkSRockcrb0xVztJFUhTDXd4ZLuHf9kkZxjOlp/49j5CkSwbjTGJ9681h0mJiwPW4i1GI8MSh4p0VL9QCbcnu4aKYwpuMKIO6bRJTbIjwGN9YnWeIa3Ua6pTTek6W69Q5oRKOwXFFfnTf/y3qKrhc04qDfDP5aLQlQTEwu3Q/f8PngaGFvekHxFb2gyl6RtLhmlXaV8LtV5cguRuY21okaQfHfBQfk54zZVL6oznJVOr4vhfUeNkhdb0KJP/evGNS4kmgDT78vs/Yn/KIjMq8Ci4Rk4JcWnSvGYEUF4d9/2lp656JfUxrZ31RQvh2EHWH8kRVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TxwwTIN3XUd+cebiGAu6zsxXxD+mfcUOmp2YX+RjkuQ=;
+ b=VvJTJ++t/s0ZPjSvZjw5An8hFC555Zjd2irjCRAO+haHXFcmK9LA/dvCiFTKY9MIt93UA1kWjdKP1iFf873LCrqAzuIGdPYNf1xo5UQplmQuRSDnkPY0L+wSxWNcUw5TZYRB0ur3BoHRffSvAvbmnqHkUfeAtz9hid2I6ROedWnpDfhMPfXCCvjZF1BtQLGw7/DZmjKAvWpyBFtehohYIsRCvKnGHRV85+p5QaTSuXdVInEUSPqfLlABBzd8xXU9J6c111+9m6ornT3E0KXODPVZQL5R4Ox2Sd1bJ/icefPW2xcPS6nypPNhHtBww+mrWXKdmwm/O0UO79ECX9Cd1A==
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+ by PR3PR03MB6396.eurprd03.prod.outlook.com (2603:10a6:102:75::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.20; Fri, 11 Aug
+ 2023 15:43:07 +0000
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::21bd:6579:b3d1:e5f7]) by DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::21bd:6579:b3d1:e5f7%4]) with mapi id 15.20.6652.029; Fri, 11 Aug 2023
+ 15:43:07 +0000
+Message-ID: <26623d0c-8a5a-614b-7df7-69214aaec524@seco.com>
+Date:   Fri, 11 Aug 2023 11:43:01 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.1
+Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
+Content-Language: en-US
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 3/6] dt-bindings: crypto: Add Texas Instruments MCRC64
-Message-ID: <20230811-imminent-fancied-89663c373ab5@spud>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230719-mcrc-upstream-v2-3-4152b987e4c2@ti.com>
- <20230811-crestless-gratify-21c9bb422375@spud>
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?B?RmVybuKUnMOtbmRleiBSb2phcw==?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20230429172422.vc35tnwkekfieoru@skbuf>
+ <c81d23b6-ed22-0b37-d71b-ddce9d5d58eb@seco.com>
+ <c2f928d2-25f6-0e31-9ab3-9d585968df1b@seco.com>
+ <20230522150010.q5zndfwcuvrb6pg2@skbuf>
+ <22a28a6f-2c84-a6b1-bb57-a269af34c993@seco.com>
+ <20230610222123.mzmfjx7zfw4nh2lo@skbuf>
+ <c702e2b6-cb0f-4ac9-86fe-a220284d45aa@seco.com>
+ <20230612163353.dwouatvqbuo6h4ea@skbuf>
+ <1dd01fe2-08a8-ec2f-1184-a58b2f55ba85@seco.com>
+ <20230613142754.wr5njtjo4tbloqwu@skbuf>
+ <20230811150826.urp2hzl3tahesrjx@skbuf>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <20230811150826.urp2hzl3tahesrjx@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BLAPR05CA0047.namprd05.prod.outlook.com
+ (2603:10b6:208:335::28) To DB9PR03MB8847.eurprd03.prod.outlook.com
+ (2603:10a6:10:3dd::13)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yk7Io+ad3L2jbO+M"
-Content-Disposition: inline
-In-Reply-To: <20230811-crestless-gratify-21c9bb422375@spud>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|PR3PR03MB6396:EE_|DB8EUR05FT043:EE_|DU0PR03MB9255:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f8d5f6a-55c5-4150-067b-08db9a81ab82
+X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: HRl4wAm3rbY3bQzux+49YFZafPjYD54zZKdIaiT3Z9fa0l0N8xMQJz4IeH1uWMvrjk+uYKmpoBYhJUdImt0ISFEMeH54DU9Bx+TICt2housmJ5ORI2zVJCy7SE12IEPbFMivnbyFGEmxQBxekaNzyQkAAHRkY7+KPwgtfGXs9SnMTbQIbcCj9Q0Uat38hWBqLcFCYlSm737nzZufl9B/Q3WrWONjWFWQzLtWFbyIkj+K1OodPG990WhbWrZ0UMnUBVfaD60m1IBLD2VtSRmLyZSlKOKR7MzHMO2qOGNn/q2KmHM/FPiFP+aemVp1r5Nozslj4HTlYG9SEPhZSW60PWjamxQEMe/P9R85Esa0WR3seC3Ud2mIK4GBsNWkXNXpW9gtpmIiHj043daCIsvbqG666FreHpdgxs/DEvMB01ZOcaVJ/mSSJj8nE0vxVKh2ICV4koIgzr6C9cYGFBM9dlv/EnRuAnnevGAP3mbMMoCpgSw6b8e3fXWB7A7kz/lPqFbhmA1viRwnaYyFQhVP1O2YMkePsO+J1Dw9wfg99sWiy5wVtL63Dy4rIux+/re3BrZeljDZFCSaIg1/AW+VGbSBD3+2azDYQCGihDswMkvtWyCQTIHBnaHnCU4Mvn6BNmGrP6PHJAGBK+ogxj7+YRGKHQe6x10BtDlH4beJ0tRTxtcXG9d6/35iL0rRsk+z
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(366004)(136003)(396003)(39850400004)(376002)(186006)(1800799006)(451199021)(31686004)(6512007)(52116002)(36756003)(31696002)(86362001)(38100700002)(38350700002)(53546011)(26005)(83380400001)(6506007)(2616005)(478600001)(6486002)(54906003)(6666004)(4326008)(6916009)(316002)(41300700001)(8936002)(8676002)(66476007)(44832011)(7416002)(2906002)(5660300002)(66946007)(66556008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR03MB6396
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB8EUR05FT043.eop-eur05.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: e9122305-3195-4875-930e-08db9a81a893
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hQX0fMC1pqlF90SIP3440DtFtCGbvJYOxZflOTGqJH3hknMfnKFCGeBFLS7mmH0Nt0arnfjLi23u03RVa9U1hwjsxD691bpAX8zf8doaBmhMb0Zek/db7KhuoAVjkRLegGkEh8eo3T36kgk7Lhvk7Fl1h1g+Ih77IkmqqvZVNQOhOjG/x5YRVgT1PPOZGu2g0VeV4nAWMGRrYwOVAR9wk2d3i1jXwiPuc9hoLowrbpX+HLsPNN94dHhT9O22wIN7qo7YeyF6MGwCBlux7QoACuP9KwXYt67p95sTV0U0M0leS6pZqh56SZPPKEyXZSwpG+PoYGn9A8I4wBE8fjUYwSA7yvJNSZeTYspQu8w4q/GAEIQSmK0ZEuy9V3EioDWqkkKX4MLUiqaJXbJZpYL9/BN7pUkFnuO/7zdR4USj3IyVrUEuxBeMwagjc1pQCoDTsTGClr5kc6BirpjapLKuFzcqXw85dk+lP3rflndymPgVuzUKO3EejxNi+oYHC0cFcxrwJ6TAjWSwVcwolMKKIbNe3k5pVKzj9yMJeGxl2j0lsnemNrPx59DigCUw9AnJHmbyyCD8wKAJhoIZbs4WrA3HQP8YHVfxTW5auGgtrg4KW7mUbG8TnIFqNNQQB9zZMkJ6RbTF8Rrl7pJ2hmA1mlAmlX9sMpVPgEo/5A8bz8AHgk2782S7nSBQnKimOaGi23QguJ8t7CGJaq/sXywNyqWAFLTr1zYRNhJDolABCEVAsHje1cCSmLrs6A1lUC1U8Cv3KNmd/IcZ7oXiT18c1ampE+Kk74vuQIxMo2CLU5FBPv5FA5ii+FWW5cglyoYrBFTS9St4+Rl5phteoYo3Jw==
+X-Forefront-Antispam-Report: CIP:20.160.56.87;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230028)(39850400004)(346002)(136003)(396003)(376002)(451199021)(1800799006)(5400799015)(82310400008)(186006)(36840700001)(40470700004)(46966006)(316002)(478600001)(6512007)(36860700001)(7416002)(31696002)(2616005)(6666004)(5660300002)(44832011)(6486002)(47076005)(70206006)(70586007)(86362001)(31686004)(41300700001)(8676002)(8936002)(6916009)(4326008)(83380400001)(36756003)(2906002)(34020700004)(53546011)(6506007)(40460700003)(82740400003)(26005)(54906003)(40480700001)(7596003)(336012)(356005)(7636003)(43740500002)(12100799036);DIR:OUT;SFP:1501;
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 15:43:12.1003
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f8d5f6a-55c5-4150-067b-08db9a81ab82
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.87];Helo=[inpost-eu.tmcas.trendmicro.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB8EUR05FT043.eop-eur05.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB9255
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 8/11/23 11:08, Vladimir Oltean wrote:
+> Hi Sean,
+> 
+> On Tue, Jun 13, 2023 at 05:27:54PM +0300, Vladimir Oltean wrote:
+>> > > At first sight you might appear to have a point related to the fact that
+>> > > PLL register writes are necessary, and thus this whole shebang is necessary.
+>> > > But this can all be done using PBI commands, with the added benefit that
+>> > > U-Boot can also use those SERDES networking ports, and not just Linux.
+>> > > You can use the RCW+PBL specific to your board to inform the SoC that
+>> > > your platform's refclk 1 is 156 MHz (something which the reset state
+>> > > machine seems unable to learn, with protocol 0x3333). You don't have to
+>> > > put that in the device tree. You don't have to push code to any open
+>> > > source project to expose your platform specific details. Then, just like
+>> > > in the case of the Lynx 28G driver on LX2160, the SERDES driver could
+>> > > just treat the PLL configuration as read-only, which would greatly
+>> > > simplify things and eliminate the need for a clk driver.
+>> > > 
+>> > > Here is an illustrative example (sorry, I don't have a board with the
+>> > > right refclk on that PLL, to verify all the way):
+>> > > 
+>> > > ... snip ...
+>> > 
+>> > (which of course complicates the process of building the PBIs...)
+>> 
+>> Maybe this is the language barrier, but what are you trying to say here?
+> 
+> I said that I don't understand. Can you please clarify what you were
+> trying to transmit with this comment?
 
---yk7Io+ad3L2jbO+M
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Well, right now I produce my RCWs by generating a second RCW with e.g.
+1133 replaced by 3333. But doing this is a more involved change. Just a
+minor issue, really. That said, I don't think this is the best approach
+moving forward. Much like many other platforms, users should be able to
+plug in an SFP module and Linux should configure things appropriately.
+An RCW approach requires some kind of configuration tool to swap out the
+bootloaders, which isn't as good of a user experience.
 
-On Fri, Aug 11, 2023 at 04:34:33PM +0100, Conor Dooley wrote:
-> On Fri, Aug 11, 2023 at 12:58:50AM +0530, Kamlesh Gurudasani wrote:
-> > Add binding for Texas Instruments MCRC64
-> >=20
-> > MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
-> > according to the ISO 3309 standard.
-> >=20
-> > The ISO 3309 64-bit CRC model parameters are as follows:
-> >     Generator Polynomial: x^64 + x^4 + x^3 + x + 1
-> >     Polynomial Value: 0x000000000000001B
-> >     Initial value: 0x0000000000000000
-> >     Reflected Input: False
-> >     Reflected Output: False
-> >     Xor Final: 0x0000000000000000
-> >=20
-> > Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
-> > ---
-> >  Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml | 47 +++++++++=
-++++++++++++++++++++++++++++++++++++++
-> >  MAINTAINERS                                             |  5 +++++
-> >  2 files changed, 52 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml b/=
-Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
-> > new file mode 100644
-> > index 000000000000..38bc7efebd68
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
-> > @@ -0,0 +1,47 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/crypto/ti,mcrc64.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Texas Instruments MCRC64
-> > +
-> > +description: The MCRC64 engine calculates 64-bit cyclic redundancy che=
-cks
->=20
-> A newline after "description" please.
->=20
-> > +  (CRC) according to the ISO 3309 standard.
-> > +
-> > +maintainers:
-> > +  - Kamlesh Gurudasani <kamlesh@ti.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,am62-mcrc64
->=20
-> Is the am62 an SoC or a family of SoCs? I googled a wee bit for am62 &
-> there seems to be an am625 and an am623?
-
-Or is it an am62p5, in which case the compatible should contain
-ti,am62p5 I suppose. Sorry for my confusion here, its not really clear
-me too since I've been seeing many different-but-similar product names
-the last few days.
-
-Thanks,
-Conor.
-
->=20
-> Otherwise, this looks good to me.
->=20
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - power-domains
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> > +
-> > +    crc@30300000 {
-> > +      compatible =3D "ti,am62-mcrc64";
-> > +      reg =3D <0x30300000 0x1000>;
-> > +      clocks =3D <&k3_clks 116 0>;
-> > +      power-domains =3D <&k3_pds 116 TI_SCI_PD_EXCLUSIVE>;
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 02a3192195af..66b51f43d196 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -21481,6 +21481,11 @@ S:	Maintained
-> >  F:	Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
-> >  F:	drivers/iio/adc/ti-lmp92064.c
-> > =20
-> > +TI MEMORY CYCLIC REDUNDANCY CHECK (MCRC64) DRIVER
-> > +M:	Kamlesh Gurudasani <kamlesh@ti.com>
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
-> > +
-> >  TI PCM3060 ASoC CODEC DRIVER
-> >  M:	Kirill Marinushkin <kmarinushkin@birdec.com>
-> >  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-> >=20
-> > --=20
-> > 2.34.1
-> >=20
-
-
-
---yk7Io+ad3L2jbO+M
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNZVlgAKCRB4tDGHoIJi
-0uHpAP4hfYrFNPj0CkA40P9EKD3r/FKiAc6X2K23ePY3vww/XAEA6WukF13gDiEn
-uOcZZtE+v9yuqJykNIKHzEe9ishk3gI=
-=Qk3W
------END PGP SIGNATURE-----
-
---yk7Io+ad3L2jbO+M--
+--Sean
