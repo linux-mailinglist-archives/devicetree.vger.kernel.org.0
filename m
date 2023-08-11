@@ -2,180 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 307D4778C2B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 12:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0842778C5F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 12:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234385AbjHKKm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 06:42:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40326 "EHLO
+        id S236030AbjHKKst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 06:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232614AbjHKKm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 06:42:29 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B72110
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 03:42:28 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-564b8ea94c1so1229793a12.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 03:42:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1691750548; x=1692355348;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qYA1iNOdZVJpj3OPfnwO45/gsMVIQDNWbkZ3zGXB3GI=;
-        b=JiepBe3WMoCqwCRY18Uu3PFgmiY5SXx/aLVlXzjYYHTCVh+Towp8JcI+0/Qwc6jSzi
-         v8j7X41vkHKLwJPv+LGET0Y163CMJd/03vaUUJUs7khw6wjN/w5qNvlNeBpfj7tJeDZL
-         Kzolt7uyEDghagAKuB6rbpvDCOxmslAEgu4eFH0EFQY82cPfAvDjCW8lzrj0TKbOOmUc
-         WCBTXfWt4xYeN8DOMb+Gue2/h33Kg5PQa0smV5phrMIychRglNhK0Nv5REfG3dOUpUNL
-         CPob/j+UYtt7E0lrDxyX16VvqSHs8hEvBPUrlRWO+rfWj+DRFi6fnmJ3iGakYeff7uCu
-         L6AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691750548; x=1692355348;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qYA1iNOdZVJpj3OPfnwO45/gsMVIQDNWbkZ3zGXB3GI=;
-        b=goIi4DCKaBsl2nY2rS1JMQeF973V6EI8wdS6/cEwpxekUN/rgZfQpymLZAkX3PFLbe
-         Nmsp/hT3jDanaO2t7vs9ViNUiR+9d5zxZOZCqTqAyDq5p2zaiOly3TukzciVZ8GTqh1Q
-         tyHEsyFYjRKIegmMaVCWufoz3uqPEOgrs/WqeVZQ0YGo7Jse0aqgnzrtwAEvZBbO9RjB
-         rfDvO2VBMr5GNUF2xVYhTFegO75G83ukMI+0V9Mgt8lAxps5SZofuWN9Eka+WxmN6x04
-         pPANbYyPfRN5GgUj2XhsK7dj4BMMQBFxtdyu5BcKXMw5/fKPv3QK4TaNFMxOq7GejbDp
-         x/pw==
-X-Gm-Message-State: AOJu0YyMXtDoNPrIS86NHMBfmwy1vZfCgwTyPfzbS+2kXep3/ThmVpLB
-        zLeoRNlpmxwRLHIp2X3v6Wbw9toquTY6FGiq4D89Fg==
-X-Google-Smtp-Source: AGHT+IGOnefdVaHW0OP86gn8IWJab70m3Ff9dUcKRomfTG1N5U2HOK6fszRhsfwloDKXmrXTLIg6gAqvgES+w8qyhxs=
-X-Received: by 2002:a17:90a:db55:b0:268:36a2:bd0 with SMTP id
- u21-20020a17090adb5500b0026836a20bd0mr774080pjx.8.1691750547480; Fri, 11 Aug
- 2023 03:42:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230803144401.1151065-1-Naresh.Solanki@9elements.com>
- <20230804-tamper-numbness-0117bb53a921@spud> <3f947ad6-eed6-59ff-e4e6-8b21d90eb803@roeck-us.net>
- <20230810231142.GA1506309-robh@kernel.org>
-In-Reply-To: <20230810231142.GA1506309-robh@kernel.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Fri, 11 Aug 2023 16:12:18 +0530
-Message-ID: <CABqG17hzvyVLFkNRHSs2ye5k2+dp7XkLk0MC3OmwSguz1uG0rg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add MAX6639
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Conor Dooley <conor@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Jean Delvare <jdelvare@suse.com>,
+        with ESMTP id S235812AbjHKKsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 06:48:22 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26B1E52;
+        Fri, 11 Aug 2023 03:48:18 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BAlecL078804;
+        Fri, 11 Aug 2023 05:47:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691750860;
+        bh=gWdzohStJakm8fkiUaFNT/N6HgY5M+Mg9KxrYsNgKY8=;
+        h=From:To:CC:Subject:Date;
+        b=ygugaX7yJsQQiIP4bowxk+kvPZQbYVW2ZMiYsiwV8GNGwHD8FrUYeWf153qzay7LE
+         mlFvCuf3dPYS7S1WNDd3kMLNQNu0J/VOTcQ9B8b4znNr4irT5lAmy0ktGFWmHBbj42
+         13WlC4rKBWOo30ORm05sFEq2VOrw3pQChY2ozAxo=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BAleKb110647
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 05:47:40 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 05:47:39 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 05:47:39 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BAlcMs008153;
+        Fri, 11 Aug 2023 05:47:39 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Benoit Parrot <bparrot@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <nm@ti.com>,
+        <devarsht@ti.com>, <j-luthra@ti.com>, <a-bhatia1@ti.com>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH v9 00/13] CSI2RX support on J721E and AM62
+Date:   Fri, 11 Aug 2023 16:17:22 +0530
+Message-ID: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4066; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=A6DGSRxxAnDtk2gp8ks/OfUKwbpzv+G2XLoFgp2gxyI=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBk1g7xHLBPfJIO1L8TK4tpV5NjpwwsaVKRe8JWN
+ ZbAmAyw+DeJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZNYO8QAKCRBD3pH5JJpx
+ RXnPD/9tEogxFv/j/ywArVFE09Tgdm+i1/dt6g9UiNoLvTNy/VUOg8EUurtnzzyXYblMcvRrNxY
+ oF38LMa9YeiPyfEKQz46BW3bcAGl4XnV/wymPc6X7Vd2KIsmyLNKi8LRQZryKJ7eqVW/bpOp75q
+ 6iaYTnvxuJa+rXla8z0AQb59Y4uku31NjjuJxIzXq+Gtu7mtBndeNud2+ZCxMlj/56RHzEYJHYr
+ Ux8zdpDazhI5aA02r2n7bbWwnuKzdUQf6us2j7yU/cblebSOPsZutF1Taqo/5PnPLidQLudBjNe
+ kjcuXYANVl4wrkGqBOWv5UVeuO7q0yp/VqM2+4ovZkfEwySr6VwkLKNmznx7pOBQmWxbzvPYcX5
+ a/vbiTq79MJde1PlJwW0bGrId9ViNv6iJMcOJQbLR82cK+gnJak5B0GhTGJXjyrU4yMPY7bpEWj
+ cmA2wbOPZMQUYfJ9hSuOJoFBWddr0YF+tBIMKr3061WVPjJ6sckw7TaUFPqCPqU0QV1EVhFx7GE
+ 63+idltGqnnGEeS7RcS92OIypi69JUTrxKVdknHsWQSNLEAvsZwNwwM4iJR8//KzqTvDh+UsOQ9
+ 0akxBXW2Rdiz8mIarZ/k+6mC4JFypXNM2mqc9RU+njXp+4qgyzCYPvpSmsg+yf9FcgUh9zQi3AP
+ 2Xu45WN4tvWdX9Q==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp; fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Pratyush Yadav <p.yadav@ti.com>
 
+Hi,
 
-On Fri, 11 Aug 2023 at 04:41, Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Aug 04, 2023 at 09:10:37AM -0700, Guenter Roeck wrote:
-> > On 8/4/23 08:48, Conor Dooley wrote:
-> > > On Thu, Aug 03, 2023 at 04:43:59PM +0200, Naresh Solanki wrote:
-> > > > From: Marcello Sylvester Bauer <sylv@sylv.io>
-> > > >
-> > > > Add binding documentation for Maxim MAX6639 fan-speed controller.
-> > > >
-> > > > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> > > > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > > > ---
-> > > > Changes in V3:
-> > > > - Update title
-> > > > - Add pulses-per-revolution, supplies & interrupts
-> > > > Changes in V2:
-> > > > - Update subject
-> > > > - Drop blank lines
-> > > > ---
-> > > >   .../bindings/hwmon/maxim,max6639.yaml         | 60 +++++++++++++++++++
-> > > >   1 file changed, 60 insertions(+)
-> > > >   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..b3292061ca58
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > > > @@ -0,0 +1,60 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Maxim MAX6639 Fan Controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Naresh Solanki <Naresh.Solanki@9elements.com>
-> > > > +
-> > > > +description: |
-> > > > +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-> > > > +  fan-speed controller.  It monitors its own temperature and one external
-> > > > +  diode-connected transistor or the temperatures of two external diode-connected
-> > > > +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> > >
-> > > > +  fan-supply:
-> > > > +    description: Phandle to the regulator that provides power to the fan.
-> > >
-> > > > +  pulses-per-revolution:
-> > > > +    description:
-> > > > +      Define the number of pulses per fan revolution for each tachometer
-> > > > +      input as an integer.
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    enum: [1, 2, 3, 4]
-> > > > +    default: 2
-> > >
-> > > Apologies if I am digging up old wounds here, since there was quite a
-> > > bit of back and forth on the last version, but these two newly added
-> > > properties look to be common with the "pwm-fan" and with
-> > > "adi,axi-fan-control". At what point should these live in a common
-> > > schema instead?
-> > >
-> > > Otherwise, this looks okay to me, although I'll leave things to
-> > > Krzysztof since he had a lot to say about the previous version.
-> > >
-> >
-> > Rob has said that he won't accept any fan controller bindings without a generic
-> > schema. At the same time he has said that he expects properties such as the
-> > number of pulses per revolution to be attached to a 'fan' description, and he
-> > wants pwm related properties of fan controllers to be modeled as pwm controllers.
-> > And now we have a notion of a regulator providing power to the fan (which again
-> > would be the fan controller, at least in cases where the fan controller
-> > provides direct voltage to the fan). On top of that, this fan-supply property
-> > should presumably, again, be part of a fan description and not be part of the
-> > controller description. I don't think anyone knows how to make this all work
-> > (I for sure don't), so it is very unlikely we'll see a generic fan controller
-> > schema anytime soon.
->
-> I thought what was done earlier in this series was somewhat close. And
-> there are some bindings that already look pretty close to what a common
-> binding should. But it seems no one wants to worry about more than their
-> 1 device.
+This series adds support for CSI2 capture on J721E. It includes some
+fixes to the Cadence CSI2RX driver, and adds the TI CSI2RX wrapper driver.
 
-The DT binding for common fan properties is:
-https://lore.kernel.org/lkml/20221130144626.GA2647609@roeck-us.net/t/#m15ce07c3c43c46506acc389bf24d616646e05653
+This is the v9 of the below v8 series,
+https://lore.kernel.org/r/20230731-upstream_csi-v8-0-fb7d3661c2c9@ti.com
 
-I wasn't sure on how to address properties for DC controlled fans.
+Testing logs: https://gist.github.com/jailuthra/eaeb3af3c65b67e1bc0d5db28180131d
 
-Regards,
-Naresh
->
-> In case it's not clear, as-is, this binding is a NAK for me.
->
-> > Given that neither fan-supply nor pulses-per-revolution is implemented in the
-> > driver, and given that I am not aware of any fans which would have a value for
-> > pulses-per-revolution other than 2, my personal suggestion would be to add the
-> > chip to trivial devices and be done with it for the time being.
->
-> I'm fine with that too. Just keep kicking that can...
->
-> Rob
+J721E CSI2RX driver can also be extended to support multi-stream
+capture, filtering different CSI Virtual Channels (VC) or Data Types
+(DT) to different DMA channels. A WIP series based on v7 is available
+for reference at https://github.com/jailuthra/linux/commits/csi_multi_wip
+
+I will rebase the multi-stream patches on the current series (v9) and
+post them as RFC in the coming weeks.
+
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+
+Changelog from v8
+=================
+
+Range-diff: https://0x0.st/H_xh.diff
+
+Dropped the following patches:
+[v8 01/16] media: subdev: Export get_format helper for link validation
+	- Using subdev's get_fmt directly instead
+[v8 04/16] media: cadence: Add support for TI SoCs
+	- Don't add a compatible if we are not using it in the driver
+[v8 14/16] media: cadence: csi2rx: Support RAW8 and RAW10 formats
+	- Squashed into a previous patch [v8 07/16]
+
+For [05/13] media: cadence: csi2rx: Add get_fmt and set_fmt pad ops:
+- Squash the patch adding RAW8 and RAW10 formats within this one
+- Single line struct entries in formats[] array
+- Skip specifiying redundant format.which entry in init_cfg()
+
+For [06/13] media: cadence: csi2rx: Configure DPHY using link freq:
+- Don't specify stream while calling .get_fmt()
+
+For [07/13] media: cadence: csi2rx: Soft reset the streams before starting capture:
+- Simplify reset sequence, minimizing delays
+
+For [08/13] media: cadence: csi2rx: Set the STOP bit when stopping a stream:
+- Better log message to avoid confusion between cadence streams and v4l2
+  streams
+
+For [13/13] media: ti: Add CSI2RX support for J721E:
+- Allocate drain buffer at start of stream instead of doing it in the
+  middle, and document why it is needed in comments
+- Call subdev's get_fmt directly for link_validation()
+- Cleanup height/width clamping and rounding code, document it in comments
+- Return and check errors from setup_shim()
+- s/subdev/source for cadence csi2rx's v4l2_subdev
+- s/ti_csi2rx_init_subdev/ti_csi2rx_notifier_register
+- Change copyright year/author list
+
+---
+Jai Luthra (1):
+      media: dt-bindings: cadence-csi2rx: Add TI compatible string
+
+Pratyush Yadav (12):
+      media: dt-bindings: Make sure items in data-lanes are unique
+      media: cadence: csi2rx: Unregister v4l2 async notifier
+      media: cadence: csi2rx: Cleanup media entity properly
+      media: cadence: csi2rx: Add get_fmt and set_fmt pad ops
+      media: cadence: csi2rx: Configure DPHY using link freq
+      media: cadence: csi2rx: Soft reset the streams before starting capture
+      media: cadence: csi2rx: Set the STOP bit when stopping a stream
+      media: cadence: csi2rx: Fix stream data configuration
+      media: cadence: csi2rx: Populate subdev devnode
+      media: cadence: csi2rx: Add link validation
+      media: dt-bindings: Add TI J721E CSI2RX
+      media: ti: Add CSI2RX support for J721E
+
+ .../devicetree/bindings/media/cdns,csi2rx.yaml     |    1 +
+ .../bindings/media/ti,j721e-csi2rx-shim.yaml       |  100 ++
+ .../bindings/media/video-interfaces.yaml           |    1 +
+ MAINTAINERS                                        |    7 +
+ drivers/media/platform/cadence/cdns-csi2rx.c       |  181 ++-
+ drivers/media/platform/ti/Kconfig                  |   12 +
+ drivers/media/platform/ti/Makefile                 |    1 +
+ drivers/media/platform/ti/j721e-csi2rx/Makefile    |    2 +
+ .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 1150 ++++++++++++++++++++
+ 9 files changed, 1448 insertions(+), 7 deletions(-)
+---
+base-commit: 21ef7b1e17d039053edaeaf41142423810572741
+change-id: 20230727-upstream_csi-acbeabe038d8
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
