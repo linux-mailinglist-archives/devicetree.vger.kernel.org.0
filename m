@@ -2,121 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9C0677907F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 15:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E7D779099
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 15:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233991AbjHKNMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 09:12:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53418 "EHLO
+        id S230423AbjHKNRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 09:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjHKNMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 09:12:46 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89CD18B
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 06:12:44 -0700 (PDT)
-Received: from [192.168.2.144] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
+        with ESMTP id S230001AbjHKNRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 09:17:48 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E869F26A0;
+        Fri, 11 Aug 2023 06:17:47 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D6FF33ECF7;
-        Fri, 11 Aug 2023 15:12:40 +0200 (CEST)
-Date:   Fri, 11 Aug 2023 15:12:34 +0200
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH 2/3] nvmem: sunxi_sid: Add support for H616 SID
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, Alan Ma <tech@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-Id: <Y0A8ZR.WOK201QL3WRP1@somainline.org>
-In-Reply-To: <20230811121754.3a4dc270@donnerap.manchester.arm.com>
-References: <20230811-sid-h616-v1-0-d1dfc9f47b19@somainline.org>
-        <20230811-sid-h616-v1-2-d1dfc9f47b19@somainline.org>
-        <20230811121754.3a4dc270@donnerap.manchester.arm.com>
-X-Mailer: geary/43.0
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BAECC6607247;
+        Fri, 11 Aug 2023 14:17:44 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1691759866;
+        bh=L9YasLlSzK5k+C3DoxCi9Qs1i1/Jfe91wWSnXZpz0PE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l4gr2y6+v6uvPxZoRsge8aKFNhLdLxOvlD+Nyb0Owsm+ZmjXzxtJng++00GSR5n9V
+         /m/PLS6ePwLcciNzJ5wpB3S2uswrBqqGL/4pDvU9X93VY/ycDYBNV0SsAolwuzPIGw
+         EQ68F86OpAxnVwNn8BSTadCBTnSbKssPYSJNrmPbWsTgfuQoE2Dy35Epxuk0q81R+3
+         uetDCzkip61SSNIRcqNlqz/p+S7P/ad0LPIloe/2yCQGZWMRmQ1ONdE8YLQtbK4kh+
+         /iKdm0VQsSaaIZDaN0rKQLkICv6ACqAyS7yLbTxpblm0xO3xBpaKWurorPfF7ILOTt
+         Aas1zU6hflC5g==
+Date:   Fri, 11 Aug 2023 09:17:40 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Shuah Khan <shuah@kernel.org>, cocci@inria.fr,
+        Mark Brown <broonie@kernel.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        kernelci@lists.linux.dev, Julia Lawall <Julia.Lawall@inria.fr>,
+        Bjorn Andersson <andersson@kernel.org>, kernel@collabora.com,
+        Guenter Roeck <groeck@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org
+Subject: Re: [RFC PATCH 0/2] Add a test to catch unprobed Devicetree devices
+Message-ID: <7e915b52-c356-4a39-b286-27b31fa1abf9@notapiano>
+References: <20230810202413.1780286-1-nfraprado@collabora.com>
+ <20230810214309.GA1226583-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230810214309.GA1226583-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Aug 10, 2023 at 03:43:09PM -0600, Rob Herring wrote:
+> On Thu, Aug 10, 2023 at 04:23:49PM -0400, Nícolas F. R. A. Prado wrote:
+> > 
+> > Regressions that cause a device to no longer be probed by a driver can
+> > have a big impact on the platform's functionality, and despite being
+> > relatively common there isn't currently any generic test to detect them.
+> > As an example, bootrr [1] does test for device probe, but it requires
+> > defining the expected probed devices for each platform.
+> > 
+> > Given that the Devicetree already provides a static description of
+> > devices on the system, it is a good basis for building such a test on
+> > top.
+> > 
+> > This series introduces a test to catch regressions that prevent devices
+> > from probing.
+> > 
+> > Patch 1 introduces a script to parse the kernel source using Coccinelle
+> > and extract all compatibles that can be matched by a Devicetree node to
+> > a driver. Patch 2 adds a kselftest that walks over the Devicetree nodes
+> > on the current platform and compares the compatibles to the ones on the
+> > list, and on an ignore list, to point out devices that failed to be
+> > probed.
+> > 
+> > A compatible list is needed because not all compatibles that can show up
+> > in a Devicetree node can be used to match to a driver, for example the
+> > code for that compatible might use "OF_DECLARE" type macros and avoid
+> > the driver framework, or the node might be controlled by a driver that
+> > was bound to a different node.
+> > 
+> > An ignore list is needed for the few cases where it's common for a
+> > driver to match a device but not probe, like for the "simple-mfd"
+> > compatible, where the driver only probes if that compatible is the
+> > node's first compatible.
+> > 
+> > Even though there's already scripts/dtc/dt-extract-compatibles that does
+> > a similar job, it didn't seem to find all compatibles, returning ~3k,
+> > while Coccinelle found ~11k. Besides that, Coccinelle actually parses
+> > the C files, so it should be a more robust solution than relying on
+> > regexes.
+> 
+> I just sent a patch[1] last week fixing missing a bunch. I only looked 
+> at the change in count of undocumented (by schema) though.
 
+Ah, looks like I mixed up the output from the dt-extract-compatibles script and
+the output from the make dt_compatible_check. The python script does list
+practically (*) all compatibles that Coccinelle found. So I'll look into
+extending it for the purposes of this test next.
 
-On Fri, Aug 11 2023 at 12:17:54 PM +01:00:00, Andre Przywara 
-<andre.przywara@arm.com> wrote:
-> On Fri, 11 Aug 2023 13:02:35 +0200
-> Martin Botka <martin.botka@somainline.org> wrote:
-> 
-> Hi Martin,
-> 
->>  Add support for the H616 SID controller.
-> 
-> thanks for upstreaming this!
-> 
->> 
->>  The config can be reused from A64.
->> 
->>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
->>  ---
->>   drivers/nvmem/sunxi_sid.c | 1 +
->>   1 file changed, 1 insertion(+)
->> 
->>  diff --git a/drivers/nvmem/sunxi_sid.c b/drivers/nvmem/sunxi_sid.c
->>  index a970f1741cc6..df6fb5e0b724 100644
->>  --- a/drivers/nvmem/sunxi_sid.c
->>  +++ b/drivers/nvmem/sunxi_sid.c
->>  @@ -216,6 +216,7 @@ static const struct of_device_id 
->> sunxi_sid_of_match[] = {
->>   	{ .compatible = "allwinner,sun50i-a64-sid", .data = 
->> &sun50i_a64_cfg },
->>   	{ .compatible = "allwinner,sun50i-h5-sid", .data = 
->> &sun50i_a64_cfg },
->>   	{ .compatible = "allwinner,sun50i-h6-sid", .data = &sun50i_h6_cfg 
->> },
->>  +	{ .compatible = "allwinner,sun50i-h616-sid", .data = 
->> &sun50i_a64_cfg },
-> 
-> You don't need a new compatible string, then.
-> Just use
->   compatible = "allwinner,sun50i-h616-sid", 
-> "allwinner,sun50i-a64-sid";
-> in the DT, and add that combo to the binding, then you don't need any
-> driver patches at all - with the added benefit of that already working
-> with existing kernels.
-I added it cause H5 and A83T were added after their DT binding was in 
-and they also use A64 config.
-But I will drop this patch and use a64 compatible if that is the 
-prefered way :)
-> 
-> Though I wonder if that has really only 256 bytes of fuses? Do we 
-> have any
-> evidence of that?
-Datasheet has 0 info regarding this. The way i got the size and offset 
-was to check the vendor code.
-The values matched A64.
-> 
-> Cheers,
-> Andre
-> 
->>   	{/* sentinel */},
->>   };
->>   MODULE_DEVICE_TABLE(of, sunxi_sid_of_match);
->> 
-> 
+(*) it misses 3 compatibles in .h files, and fsl,mpc5200-gpt-gpio because the
+comment above it has ';'. Those are easy to fix though, either on the regex or
+on the driver's code.
 
+> 
+> In any case, I'm happy if we have a better solution, but really we 
+> should only have 1. So your script would need to replace the existing 
+> one.
 
+Agreed.
+
+> 
+> I'd be interested in a performance comparison. IME, coccinelle is 
+> fairly slow. Slower is okay to a point though.
+
+Yes, Coccinelle seems to be quite a bit slower. I can provide a comparison after
+I've tweaked the python script to get the same matches as Coccinelle so it is a
+fair comparison.
+
+> 
+> > 
+> > The reason for parsing the kernel source instead of relying on
+> > information exposed by the kernel at runtime (say, looking at modaliases
+> > or introducing some other mechanism), is to be able to catch issues
+> > where a config was renamed or a driver moved across configs, and the
+> > .config used by the kernel not updated accordingly. We need to parse the
+> > source to find all compatibles present in the kernel independent of the
+> > current config being run.
+> 
+> I've been down this route. I had another implementation using gdb to 
+> extract all of_device_id objects from a built kernel, but besides the 
+> build time, it was really slow.
+
+Interesting to know, that's another option that I'd considered.
+
+Thanks,
+Nícolas
