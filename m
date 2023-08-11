@@ -2,53 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9B0477968C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5857A779699
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236580AbjHKR5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:57:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36744 "EHLO
+        id S236931AbjHKR6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:58:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230423AbjHKR5i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:57:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D2D2709
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:57:37 -0700 (PDT)
+        with ESMTP id S233860AbjHKR6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:58:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C2D119;
+        Fri, 11 Aug 2023 10:58:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C00286393E
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:57:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C295AC433C7;
-        Fri, 11 Aug 2023 17:57:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A45A76789B;
+        Fri, 11 Aug 2023 17:58:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3F3FC433C8;
+        Fri, 11 Aug 2023 17:58:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691776656;
-        bh=i8BSI+DMxOadGKfniyJeRSvJCGV22ou8keycGF+M3ss=;
+        s=k20201202; t=1691776689;
+        bh=nLzY07It2/L5hHCx41whVV+ODXNcVQnzlxtOkz/n7m8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pHCV1V4F6hbbXZma7CzioNcTZF7LTpPg76UH9bbLyFXq02HQs/wkFEwYz1Daj1G6+
-         H+yfhRh5/9xcg15ON76DcLdb2W94DPUmfMUtU4OXzZoaH3OThEhgDq5WX0v7iysuVi
-         jTQz0ZG7gRcPUtAdvSJE+JpJ3eDwYoxR2XGAoZhW73tQEzFLYRsEnPbA4O8vjkadmg
-         k6VC9FLZtrxFEhfzMYXNaYuY9JyCowvADYTPyaPXfN06TRhkghq5HPF0Sz4ZEzBMy4
-         PPuwOW8RFN0ijDzw568/04rToGou4TRM3+CTiDAzzpQiRsnMdgwcvPKxMtW5ewGfw3
-         uH9S9T0so9kCQ==
-Date:   Fri, 11 Aug 2023 18:57:31 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     guoren@kernel.org, wefu@redhat.com, jrtc27@jrtc27.com,
-        anup@brainfault.org, samuel@sholland.org, bmeng.cn@gmail.com,
-        opensbi@lists.infradead.org, Guo Ren <guoren@linux.alibaba.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
-Message-ID: <20230811-cardiac-platter-8b50b3b764d3@spud>
-References: <20230808132958.1097873-1-guoren@kernel.org>
- <ZNURXBKkYdiWLanf@xhacker>
+        b=Q8gBM9leo6Iow0ssUe+4nwbH6367NYk0Qs+HO3i+gO+GvDE2b2koFYRQ2MHARHtXt
+         fAb+q7P/V4G+Nt36zevEfZoVl0RQTQnDzyqLP/lbsneHnfKSXoX2O24AFiApRycuxZ
+         NV42fXZU25BYDskmvvSIETxSsR0OnMn1ZI/arDpnyKSKl2/cP+SEOFbCc3oDt2gJ3c
+         9/7RM9Eoaxf4TzTwAkkaKw8ph9C9pcCcK2ePCdlq9GQ6KnNcybANVmN5ou9EBQ6E84
+         SbQDriIu9BYbI9+2NmmiJTB2WoTj+PMYuSH8sjc7ZkTsprZiw1DlI8iHXofVpYydgI
+         fEVTR+jxhZ0XA==
+Received: (nullmailer pid 3676099 invoked by uid 1000);
+        Fri, 11 Aug 2023 17:58:06 -0000
+Date:   Fri, 11 Aug 2023 11:58:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v4 0/5] RK3588 PCIe2 support
+Message-ID: <20230811175806.GA3674934-robh@kernel.org>
+References: <20230731165723.53069-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="48B+/lHDbe1U8SHm"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZNURXBKkYdiWLanf@xhacker>
+In-Reply-To: <20230731165723.53069-1-sebastian.reichel@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -59,85 +68,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 31, 2023 at 06:57:18PM +0200, Sebastian Reichel wrote:
+> Hi,
+> 
+> This adds PCIe v2 support for RK3588. The series has been tested with
+> the onboard RTL8125 network card on Rockchip RK3588 EVB1 (&pcie2x1l1)
+> and Radxa Rock 5B (&pcie2x1l2).
+> 
+> Changes since v3:
+>  * https://lore.kernel.org/all/20230717172651.64324-1-sebastian.reichel@collabora.com/
+>  * Remove unneeded quotes in patch 1 (msi handling)
+>  * Update patch description of patch 2 (interrupt names) adding information
+>    about Rockchip specific parts
+> 
+> Changes since v2:
+>  * https://lore.kernel.org/all/20230713171851.73052-1-sebastian.reichel@collabora.com/
+>  * Removed num-ib-windows/num-ob-windows/num-viewport from DT
+>  * Added patch making 'msi' irq optional, if 'msi-map' property is available
+>  * Updated binding according two discussion with Serge Semin, I provided two
+>    options by adding one extra patch that should be squashed into the main
+>    one or dropped depending on preferences from DT binding  maintainers.
+>  * Collected Reviewed-by/Tested-by from Jagan Teki
+> 
+> Changes since v1:
+>  * https://lore.kernel.org/all/20230616170022.76107-1-sebastian.reichel@collabora.com/
+>  * Dropped patch adding 'RK3588' (queued by Rob)
+>  * Updated patch adding legacy-interrupt-controller according to comments
+>    from Rob and Serge
+>     - added missing additionalProperties: false
+>     - added all properties to new required property
+>     - removed useless quotes around interrupt-controller
+>     - added Rob's Reviewed-by
+>  * Updated patch adding the missing RK356x/RK3588 interrupt names, so that it
+>    provides more details about the interrupts
+>  * Updated the DT patch according to the comment from Jonas Karlman, so that
+>    the addresses are in 32 bit address space starting at 0x40000000
+> 
+> [0] https://lore.kernel.org/all/20230612171337.74576-1-sebastian.reichel@collabora.com/
+> 
+> Thanks,
+> 
+> -- Sebastian
+> 
+> Sebastian Reichel (5):
+>   dt-bindings: PCI: dwc: improve msi handling
+>   dt-bindings: PCI: dwc: rockchip: Fix interrupt-names issue
+>   dt-bindings: PCI: dwc: rockchip: Use generic binding
+>   dt-bindings: PCI: dwc: rockchip: Add missing
+>     legacy-interrupt-controller
+>   arm64: dts: rockchip: rk3588: add PCIe2 support
 
---48B+/lHDbe1U8SHm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patches 1-4 applied.
 
-On Fri, Aug 11, 2023 at 12:33:32AM +0800, Jisheng Zhang wrote:
-> On Tue, Aug 08, 2023 at 09:29:58AM -0400, guoren@kernel.org wrote:
-> > From: Guo Ren <guoren@linux.alibaba.com>
-
-> > +T-HEAD Fdt Reset Driver Introduction
-> > +------------------------------------
-> > +
-> > +Every T-HEAD CPU provides a reset control signal and reset address sig=
-nals.
-> > + - Reset address signal determines CPU where to start up.
-> > + - Reset control signal releases CPU from reset state and begins to ex=
-ecute
-> > +   at reset address.
-> > +
-> > +Many vendors would gather these signals into SoC control registers. Th=
-ese
-> > +register designs are similar but with different base addresses and bits
-> > +definitions. We only provide standard opensbi, Linux binaries, and jta=
-g gdbinit
-> > +script to simplify Linux booting at the FPGA stage. The fdt reset driv=
-er helps
-> > +users bring up their SMP system quickly with the below settings:
->=20
-> +DT maintainers and DT list.
->=20
-> I can submit a dt-binding for this if DT maintainers agree with below
-> properties. Could you please help review?
-
-I already reviewed this once & nothing has improved.
-In fact, things have gotten worse IMO with this "using-csr-reset" that I
-don't think existed in the original iteration that I saw.
-I did see things getting better with the use of standard stuff like
-"reg" in our earlier discussion which I don't see here.
-What is the point in carrying out any further review if things will be
-flat out ignored?
-
-Thanks,
-Conor.
-
-> > +
-> > + - entry-reg:
-> > +	The base address to store reset address value
-> > +
-> > + - entry-cnt:
-> > +	The numbers of entry-reg, all of them set the same reset address
-> > +
-> > + - control-reg:
-> > +	The base address to reset the controller
-> > +
-> > + - control-val:
-> > +	Write which bits of control-reg for booting
-> > +
-> > + - csr-copy:
-> > +	This array determines which csrs to copy from primary hart to the
-> > +	secondary harts, which are set in sequence from left to right. The
-> > +	secondary harts should keep the same setting as the primary hart.
-> > +	These settings are also the first part of the bootup instructions
-> > +	for secondary harts.
-> > +
-> > + - using-csr-reset:
-> > +	A legacy reset controller for the SMP system, but abandoned in the
-> > +	latest T-HEAD processors.
-
-
---48B+/lHDbe1U8SHm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNZ2iwAKCRB4tDGHoIJi
-0tIBAQCD46HF6ssDnduxBujenmfIKHkCJ2G/6AqhqP+C5wG+7AD/VN6rgDdFS218
-PMErE/hJpT4EdfODduputnBxgctXew0=
-=TaRL
------END PGP SIGNATURE-----
-
---48B+/lHDbe1U8SHm--
+Rob
