@@ -2,125 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77044778790
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 08:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E36BC7787AD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 08:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbjHKGkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 02:40:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43680 "EHLO
+        id S230419AbjHKGym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 02:54:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjHKGkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 02:40:35 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C9D2694;
-        Thu, 10 Aug 2023 23:40:34 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37B6eBOd021185;
-        Fri, 11 Aug 2023 01:40:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691736011;
-        bh=jF7veAJCg7xxofNq8kFXr6on39XUtII8DDbN01UPOg8=;
-        h=From:To:CC:Subject:In-Reply-To:References:Date;
-        b=MhHDCWrW7h5mBgJXO24FHVkVesCB2J1yMupcXIKgKUUEhjv0ANFaSIFdhoq1W+EBh
-         riNtETxC2Mrr0SMFPYC2wRJZR0jNszh/ZCbWKD1aapk+XXLq+7HX0+ZOjm0EVuJyBb
-         LqskMROLcAzz3aYAD+h86I8WyRXq65Engmxb/tMA=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37B6eBpO122620
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 01:40:11 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 01:40:10 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 01:40:10 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37B6e914007531;
-        Fri, 11 Aug 2023 01:40:09 -0500
-From:   Kamlesh Gurudasani <kamlesh@ti.com>
-To:     Eric Biggers <ebiggers@kernel.org>
-CC:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S229669AbjHKGyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 02:54:41 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A5DE7E;
+        Thu, 10 Aug 2023 23:54:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1691736881; x=1723272881;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BsK4TCop8Tvvq64YuM67VXvxRYKw44rbaUJs8CrYGWQ=;
+  b=fLjyw5GGuHSjFOWRNJql3ZJET3VIgVxm78JLDlElLrfUSyRGdF4uB5EX
+   W/Jd4yUaTog9iaH4c3JyTTBiDeUZOGAqFAyMudJdVrwYaxVGocZUyRuWf
+   VPPWvDqX+EXn452JV3o+PSPhNfnG8W2bwXn15SmG8WI/wWSwN3ja0+A6p
+   nH4Oyi3g5S4ZUJqTXM9GRbgEZlV1xdx7/VyPGRclUUyVLXhc1vLe6j7M+
+   VBY5tGDWQjOwjt+wSbxCFrbWoM66zjvL3qvrgcKqYb3wHS3Rc6zAB6Ej/
+   0Gtu3HmNof9162xmMv9nYEl+9BsOqT8udrbJDLHjjHOdxspTO7TeCqPdH
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; 
+   d="asc'?scan'208";a="229270610"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2023 23:54:40 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 10 Aug 2023 23:54:32 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 10 Aug 2023 23:54:29 -0700
+Date:   Fri, 11 Aug 2023 07:53:52 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>,
+        David Heidelberg <david@ixit.cz>, Marek Vasut <marex@denx.de>,
+        Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [EXTERNAL] Re: [PATCH v2 2/6] crypto: crc64 - add crc64-iso
- framework
-In-Reply-To: <20230811042423.GA1295@sol.localdomain>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230719-mcrc-upstream-v2-2-4152b987e4c2@ti.com>
- <20230811042423.GA1295@sol.localdomain>
-Date:   Fri, 11 Aug 2023 12:10:09 +0530
-Message-ID: <87r0oadquu.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liu Ying <victor.liu@nxp.com>, <kernel@puri.sm>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: mxsfb: Exclude i.MX8MQ from power-domains
+ requirement
+Message-ID: <20230811-purgatory-obliged-1f0755ac88d2@wendy>
+References: <20230730184120.94984-1-david@ixit.cz>
+ <ZMonFSqutQRqs61n@qwark.sigxcpu.org>
+ <20230810-embroider-seduce-ee4506e7608b@spud>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ItxO9H8fCtDVgFN+"
+Content-Disposition: inline
+In-Reply-To: <20230810-embroider-seduce-ee4506e7608b@spud>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eric Biggers <ebiggers@kernel.org> writes:
+--ItxO9H8fCtDVgFN+
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Fri, Aug 11, 2023 at 12:58:49AM +0530, Kamlesh Gurudasani wrote:
->> diff --git a/lib/crc64-iso.c b/lib/crc64-iso.c
->> new file mode 100644
->> index 000000000000..d6e803124fa0
-> [...]
->> +u64 crc64_iso_update(u64 crc, const unsigned char *buffer, size_t len)
->> +{
->> +	struct {
->> +		struct shash_desc shash;
->> +		u64 crc;
->> +	} desc;
->> +	int err;
->> +
->> +	if (static_branch_unlikely(&crc64_iso_fallback))
->> +		return crc64_iso_generic(crc, buffer, len);
->> +
->> +	rcu_read_lock();
->> +	desc.shash.tfm = rcu_dereference(crc64_iso_tfm);
->> +	desc.crc = crc;
->> +	err = crypto_shash_update(&desc.shash, buffer, len);
->> +	rcu_read_unlock();
->> +
->> +	WARN_ON_ONCE(err);
->> +
->> +	return desc.crc;
->> +}
->> +EXPORT_SYMBOL_GPL(crc64_iso_update);
->> +
->> +u64 crc64_iso(const unsigned char *buffer, size_t len)
->> +{
->> +	return crc64_iso_update(0, buffer, len);
->> +}
->> +EXPORT_SYMBOL_GPL(crc64_iso);
->
-> These functions are never called.
->
-> Why are you trying to add unused code to the kernel?
->
-> - Eric
-Thanks for the review, Eric.
+On Thu, Aug 10, 2023 at 08:30:21PM +0100, Conor Dooley wrote:
+> On Wed, Aug 02, 2023 at 11:51:17AM +0200, Guido G=FCnther wrote:
+> > Hi,
+> > On Sun, Jul 30, 2023 at 09:41:20PM +0300, David Heidelberg wrote:
+> > > i.MX8MQ uses as secondary compatible fsl,imx6sx-lcdif, which triggers
+> > > requirement of power-domains, thou it's not required.
+> > >=20
+> > > Fixes: f62678a77d58 ("dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.M=
+X6SL power-domains property")
+> > >=20
+> > > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > > ---
+> > >  .../devicetree/bindings/display/fsl,lcdif.yaml        | 11 +++++++++=
+--
+> > >  1 file changed, 9 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml=
+ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > > index fc11ab5fc465..2d868276b0f9 100644
+> > > --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> > > @@ -129,8 +129,15 @@ allOf:
+> > >                - fsl,imx8mp-lcdif
+> > >                - fsl,imx93-lcdif
+> > >      then:
+> > > -      required:
+> > > -        - power-domains
+> > > +      if:
+> > > +        properties:
+> > > +          compatible:
+> > > +            not:
+> > > +              contains:
+> > > +                const: fsl,imx8mq-lcdif
+> > > +      then:
+> > > +        required:
+> > > +          - power-domains
+> >=20
+> > We currently enable the mipi power domain for the mipi dphy and nwl
+> > bridge only but not for LCDIF itself assuming it's not needed (as there=
+'s
+> > other outputs LCDIF can drive). I *think* this is correct but maybe
+> > Marek or Liu can confirm?
+>=20
+> I'm happy to Ack this, but I've been sitting on it waiting to see if
+> Marek or Liu popped up..
 
-Will remove this in next revision.
+Well, I got two positive responses, so
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Regards,
-Kamlesh
+Thanks,
+Conor.
+
+
+
+--ItxO9H8fCtDVgFN+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNXbAAAKCRB4tDGHoIJi
+0ivxAQCX4HLM88F3C85q+xIpWfw/hZxtiBMY3aKnSvpKM2M+nAEAtRYGseVn9VrH
+EcVfsRku0eySutPtAoQsqd9peXJm/g8=
+=jTU0
+-----END PGP SIGNATURE-----
+
+--ItxO9H8fCtDVgFN+--
