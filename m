@@ -2,140 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8317A779296
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:14:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B825779298
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231285AbjHKPOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 11:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45746 "EHLO
+        id S235700AbjHKPOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 11:14:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjHKPOe (ORCPT
+        with ESMTP id S234049AbjHKPOe (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:14:34 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3107230C1;
-        Fri, 11 Aug 2023 08:14:22 -0700 (PDT)
-Received: from fabians-envy.localnet ([185.104.138.32]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mq2Wi-1pzI0N2Vog-00nCYG; Fri, 11 Aug 2023 17:14:00 +0200
-From:   Fabian Vogt <fabian@ritter-vogt.de>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Tang <dt.tangr@gmail.com>, Andrew Davis <afd@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH v8 0/9] TI-Nspire cleanups
-Date:   Fri, 11 Aug 2023 17:13:48 +0200
-Message-ID: <4849173.31r3eYUQgx@fabians-envy>
-In-Reply-To: <20230802153333.55546-1-afd@ti.com>
-References: <20230802153333.55546-1-afd@ti.com>
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2AB42D7F;
+        Fri, 11 Aug 2023 08:14:32 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ba1e9b1fa9so32316451fa.3;
+        Fri, 11 Aug 2023 08:14:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691766871; x=1692371671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8HEPWhA2VFoQ4uBlBvITXD8tz5ZjNlreK6TIWbiY9hY=;
+        b=eOSP3CB75p+aBgmtnbZuEHZiEA6hDUnjUfIz2jJZ+8CCTDOqMbaa4n/Kz90jmoDq85
+         beuNMj+HdQvWcNGnInY8mtNYCGWK6WdRJc0WdJh0Yj8jfpKx4NvjRYgzfrLAf/L2dQ2L
+         c8aMZuEaBWH5HSJygNn0U/QSLEjEjKEsyh0lzbagv3L9NxlkhkUbP1j8d+1Akw9AoCNT
+         KuOneodUo3mmv8kRpqzxPDJlVCPIGjFJ9ZPNFjwSYCjuEM1MGVmf/4huwMxd/+3f8Tf6
+         cZ984GUuBAUqjj5fSK5eQCPYRDfkcax/Q3cj0hXl6oYlPm3SyvX7F7OAbfnIRpUpYYZe
+         E3NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691766871; x=1692371671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8HEPWhA2VFoQ4uBlBvITXD8tz5ZjNlreK6TIWbiY9hY=;
+        b=VpfakMPQJaLQeGLBTrCi9N2EzVmFk2szrTXnBdw8rp5xS4s/91JpAaOUEIQYPoHYFs
+         TME6gty/k0+zIYVX6E0xLDYjC8aVufDaOQ/lXw2lgCNRO8YgAE7OYNQc3r6p9r/2kWu4
+         hCZ5NbuMuKKJlePHoMmSmUDEYvF/V+MIB1OG9Y/H9ecJvsbuoShWL/BkprHN9UcJe9Yv
+         k6IjJwvMInNkz2JIKlR11rX3rcl20HEoL4X5OfYIfBvM1EIrdX6dDeaPp1yGc1/P506O
+         RSA8cMg8iP3c+ho2ew9vov4od3vmROSkVdShcy7FSTg5iO6om0L2Q5C8aQN6O6UWpRFG
+         1UUw==
+X-Gm-Message-State: AOJu0YxR76mKdevFgLVqykQ9pVZofCGTsWeWjm4X1Ykb5EsDLk1nzPzp
+        uL2tyltam8zxJQIG+btdg6g=
+X-Google-Smtp-Source: AGHT+IF6rX+dw1n3aIgd8ioDHNxv3r8ReDYAli/Nqo/blfsDbM5/rWX+ZJpN2HvNGzTh6ccH2xXzTQ==
+X-Received: by 2002:a2e:7412:0:b0:2b9:4418:b46e with SMTP id p18-20020a2e7412000000b002b94418b46emr1773162ljc.21.1691766870495;
+        Fri, 11 Aug 2023 08:14:30 -0700 (PDT)
+Received: from [10.0.0.100] (host-85-29-92-32.kaisa-laajakaista.fi. [85.29.92.32])
+        by smtp.gmail.com with ESMTPSA id l13-20020a2e908d000000b002b70a8478ddsm912305ljg.44.2023.08.11.08.14.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Aug 2023 08:14:30 -0700 (PDT)
+Message-ID: <9a8f06e0-b986-4434-a194-9679c82035ca@gmail.com>
+Date:   Fri, 11 Aug 2023 18:16:32 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:P2pXAH7kPYmWtTIH2fkzRYX6gsX20W7/i0QIFNuGyf9z1P4Eh0V
- YUFfY++WWNbKSNjJ8m31/C00aUemShz0oq0+xdHd4WbnP0vJ6glzl/TOfbOnCZUgQ0hKJNc
- tH0MlyEuLJS/OVgJqXA8gJSMQTYbVduiJRi8Djza+kiJg2CWGkulmFqDMVBrPhV/fVOnCXu
- LaQJnPB+sz7+67o3H2hGA==
-UI-OutboundReport: notjunk:1;M01:P0:p66Z/dOwumo=;FdRa5CmPlIsJU+zOAJdicpUAWR3
- ePJA3HztcY5Bb+m68Kos6w0apZukNhgjqZa2jujmcnKyH/RORj1/aSu8fetZvGs35NW7fOIcd
- Tzhkj7JegMBhyeoo1YKxWL3aj88wAIF2267ndJSjH+dxx/tKBg0P4W1vw55riJJwQ/XI+sVnd
- Q4cQteOW9eA+NiwghvkButrpbNWNjg+7if2Eys1o7zxAluM5svuBjoO7ASDLNasGc58wWDgL6
- W8Rx0aXpxz4g6VYfwV3UBVwDL+ciDQY3bh3yLFWJG09c3sUnV0NmxY5FjajROFo8G6MMnMLdw
- 0H2tVo5d+UXzwNPXzlzp2xww2jHi6nGzO1W6Sgeu0O1sI29oTAljA+O4L6apnVygJQRDh9ogN
- CPFJpzm9YIeoDGF20jtlWty70+QGpmbT9iISc2Ab6GvAD7E3ww6Iddzp/P0qoOP4/pSOJNKWr
- 1gScMcTZ6vS+io7P2EnW6N/Ig4Y0hdBarHrh2P6goI115/I8IrcNuiOznPGcsBBLy5JHsYE+m
- s8H7aZVwPJZhmdzac3HNPk4bdxGJVrr2Cd1wOpks4HIYohIPjK8uTWOQfCpwVUTq0Ogxpysd6
- gfE8Nah1wA8JrQ9s2lwKxgJLY0rq/DoVmC1eZABO1S4Ex/GHp2gJhcHKK3/ntBB3pObmN0CfN
- xyEdSlDvtjQ1P3bN+LhGZ38WPw6xTaMtUBx85ZoAjVPGRXIchDB7DNLwcue6QQ1Q+5SbV9rna
- t93q6ywqDI2i/60ZcpErYqEOxmlKCdDdjlwG/dozY14DXvwAYwfs+wr5ArSw3AwdahBBKLDuR
- wQKyTapg7MN2HzEH9/GDSY6Kkvnhx2A+pqJyCoPU1oonpciXTgMHqujrXWi8N2K/fjYvMCmbv
- TdkMcDUe4uLd9FQ==
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,NO_DNS_FOR_FROM,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=no
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] dt-bindings: dma: ti: k3* : Update optional reg
+ regions
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230810174356.3322583-1-vigneshr@ti.com>
+From:   =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20230810174356.3322583-1-vigneshr@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Vignesh,
 
-Am Mittwoch, 2. August 2023, 17:33:24 CEST schrieb Andrew Davis:
-> Hello all,
+On 10/08/2023 20:43, Vignesh Raghavendra wrote:
+> DMAs on TI K3 SoCs have channel configuration registers region which are
+> usually hidden from Linux and configured via Device Manager Firmware
+> APIs. But certain early SWs like bootloader which run before Device
+> Manager is fully up would need to directly configure these registers and
+> thus require to be in DT description.
 > 
-> This series is an extended version of the series started here[0]
-> and here[1].
-> 
-> We break out what was the first patch into one for DTS change and
-> one for code changes as suggested by Krzysztof. Those are now patches
-> 1 and 8 of this series (I kept the ACKs, hope that is okay).
-> 
-> While I was adding that, I noticed some other dtbs_check issues,
-> so while here fixed some of those up too (patches 2-6).
+> This add bindings for such configuration regions.  Backward
+> compatibility is maintained to existing DT by only mandating existing
+> regions to be present and this new region as optional.
 
-Whole series applied on top of cacc6e22932f and confirmed to work:
+These regions were 'hidden' from Linux or other open coded access for a 
+reason.
+If I recall the main reason is security and the need to make sure that 
+the allocation of the channels not been violated.
 
-Tested-by: Fabian Vogt <fabian@ritter-vogt.de>
+IMho the boot loader should be no exception and it should be using the 
+DM firmware to configure the DMAs.
 
-Thanks,
-Fabian
+Or has the security concern been dropped and SW can do whatever it wants?
 
-> Thanks,
-> Andrew
 > 
-> [0] https://lore.kernel.org/lkml/20221026161302.5319-1-afd@ti.com/
-> [1] https://lore.kernel.org/linux-arm-kernel/20221027181337.8651-1-afd@ti.com/
+> Vignesh Raghavendra (3):
+>    dt-bindings: dma: ti: k3-bcdma: Describe cfg register regions
+>    dt-bindings: dma: ti: k3-pktdma: Describe cfg register regions
+>    dt-bindings: dma: ti: k3-udma: Describe cfg register regions
 > 
-> Changes from v7:
->  - Rebase on latest with new dts dirs
+>   .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 25 +++++++++++++------
+>   .../devicetree/bindings/dma/ti/k3-pktdma.yaml | 18 ++++++++++---
+>   .../devicetree/bindings/dma/ti/k3-udma.yaml   | 14 ++++++++---
+>   3 files changed, 43 insertions(+), 14 deletions(-)
 > 
-> Changes from v6:
->  - Old first patch was taken, remove from series
->  - Add new patch 7/9, should be trivial enough
-> 
-> Changes from v5:
->  - Rebase on latest master
->  - Fix DT binding comments from Rob and add ACK
-> 
-> Changes from v4:
->  - Rebase on latest master
-> 
-> Changes from v3:
->  - Add Reviewed-by
->  - Make new binding for patch #1
-> 
-> Changes from v2:
->  - See cover letter message
-> 
-> Changes from v1:
->  - Add ACKs
->  - Rebase on latest
-> 
-> Andrew Davis (9):
->   ARM: dts: nspire: Use syscon-reboot to handle restart
->   ARM: dts: nspire: Fix cpu node to conform with DT binding
->   ARM: dts: nspire: Fix sram node to conform with DT binding
->   ARM: dts: nspire: Fix vbus_reg node to conform with DT binding
->   ARM: dts: nspire: Fix uart node to conform with DT binding
->   ARM: dts: nspire: Use MATRIX_KEY macro for linux,keymap
->   ARM: dts: nspire: Remove file name from the files themselves
->   ARM: nspire: Use syscon-reboot to handle restart
->   ARM: nspire: Remove unused header file mmio.h
-> 
->  arch/arm/boot/dts/nspire/nspire-classic.dtsi |  2 -
->  arch/arm/boot/dts/nspire/nspire-clp.dts      | 93 ++++++++++++++-----
->  arch/arm/boot/dts/nspire/nspire-cx.dts       | 95 ++++++++++++++------
->  arch/arm/boot/dts/nspire/nspire-tp.dts       | 93 ++++++++++++++-----
->  arch/arm/boot/dts/nspire/nspire.dtsi         | 26 ++++--
->  arch/arm/mach-nspire/Kconfig                 |  2 +
->  arch/arm/mach-nspire/mmio.h                  | 16 ----
->  arch/arm/mach-nspire/nspire.c                | 24 -----
->  8 files changed, 231 insertions(+), 120 deletions(-)
->  delete mode 100644 arch/arm/mach-nspire/mmio.h
 
-
+-- 
+Péter
