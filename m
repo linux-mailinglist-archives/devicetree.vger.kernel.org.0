@@ -2,138 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6C097793CF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 18:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B81177940C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 18:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232759AbjHKQFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 12:05:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
+        id S234977AbjHKQND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 12:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234001AbjHKQFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 12:05:01 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 042D42712;
-        Fri, 11 Aug 2023 09:04:59 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BG4nFn033373;
-        Fri, 11 Aug 2023 11:04:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691769889;
-        bh=ohphlfsgYaSZ2qfIAR5SpTVy0Hgx6YRY680MGsCtasA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=SuOaSxqYvugQ1A7OAETNdg3uuiaGf2SIkaA3WCqVIdr/yiptQdPoDBG14gmZHYp83
-         TTowp4gM2ik/9vPIPgHZXyDS27Jd5mtPLeYExC5F8iBdGY1cHEr7g6uvq0XEkjNN0j
-         JGUWPs2jKM38OFL289pBXVZZyI83Nj3MX9WhiwG0=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BG4nFN005182
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 11:04:49 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 11:04:49 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 11:04:49 -0500
-Received: from [172.24.227.94] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BG4km6030070;
-        Fri, 11 Aug 2023 11:04:46 -0500
-Message-ID: <1d2ab22e-9bbc-f876-f059-980f543551d4@ti.com>
-Date:   Fri, 11 Aug 2023 21:34:45 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 0/3] dt-bindings: dma: ti: k3* : Update optional reg
- regions
-Content-Language: en-US
-To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233860AbjHKQNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 12:13:02 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2054.outbound.protection.outlook.com [40.107.15.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45FA8A3;
+        Fri, 11 Aug 2023 09:13:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Zni3qrFZFWkDVyW4zV8hJkAEcT4Fu9lYgSY/D7KGb3F9jVg7/5vw4M/eupywVcW7Z/7iCScfaNnOqoe6VsbUmeYVKZ6bhsZvTuL85bZ0W4chxlIiTBQ8scB7utn2LK2OK7gND9e2nktV5qNjSqZPWB0mDieYJP4CsT9TqzIg/HtmzWJHVdflky/NgR5E4JwW4BjGGnCT1MfXnzGk517oVWyQ6xZTiQ6oy3uA2omYQEGpY5zPK1fzSJ5VSO8fjlPm+1ud1KfwvuGX6WgCG+VB+OCVxSO3z7mxcX3d5xNygly1duFk3dD65l2CF3w9OVwMuKUgkXLdzH7c5oothpcziA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/zyraIzlVVjUxIwXTpq11nPlcUyxnYxp7v5L8xh5zMI=;
+ b=QKcpiEJ+7Xk7t2oLFOeKvwK1CSjoQ2zQft7A/VLOMX6gk8ZQdVQ8IMr3U6Hy4sxYPy8wJsiKU9Y7+Kr+wrdp6vF6hknCeGvycquDQn5IzqfZhHnKHraYpvm7uX3ORH1pWxZoUmQtf6F9odffnANN2chWQ8xw+zZamExSjuyME4hTnZogz3wPPeQxh7m0K5c7jQrin7f3RoNkz5Q7v5aTMmoGsAkunK9JxNVARGvliPj+nN2hXNOxU66jMQth3n38bHOtYoP3fYe0oIZJbqp+2rJlX2VSrANO0LIN1VUQqfAcQSkBZ+Jupo6aoCiCXEYWyuy1JiTuYrcrZjdByHPb4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/zyraIzlVVjUxIwXTpq11nPlcUyxnYxp7v5L8xh5zMI=;
+ b=RdjQe4iFHUIhRlz+RDlBuiCtGR2WdY5CnnHs4y6d7MdUIhYG//p5X47bXf23HxqqBtG0HqTi34I9lf0vxOxvZ5DsE6aBmaK5a4/eoJ1nH4LMw1u+JdNluxSs8QEqtVCQ43R0GLepriSEliruxeEq7TeXKatax8V4zbyaq8Z7FZ0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by DB9PR04MB8137.eurprd04.prod.outlook.com (2603:10a6:10:244::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.30; Fri, 11 Aug
+ 2023 16:12:57 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::d4ed:20a0:8c0a:d9cf]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::d4ed:20a0:8c0a:d9cf%7]) with mapi id 15.20.6678.019; Fri, 11 Aug 2023
+ 16:12:57 +0000
+Date:   Fri, 11 Aug 2023 19:12:52 +0300
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230810174356.3322583-1-vigneshr@ti.com>
- <9a8f06e0-b986-4434-a194-9679c82035ca@gmail.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <9a8f06e0-b986-4434-a194-9679c82035ca@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?utf-8?B?RmVybuKUnMOtbmRleg==?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
+Message-ID: <20230811161252.qjicg2l6sbndtgy2@skbuf>
+References: <c2f928d2-25f6-0e31-9ab3-9d585968df1b@seco.com>
+ <20230522150010.q5zndfwcuvrb6pg2@skbuf>
+ <22a28a6f-2c84-a6b1-bb57-a269af34c993@seco.com>
+ <20230610222123.mzmfjx7zfw4nh2lo@skbuf>
+ <c702e2b6-cb0f-4ac9-86fe-a220284d45aa@seco.com>
+ <20230612163353.dwouatvqbuo6h4ea@skbuf>
+ <1dd01fe2-08a8-ec2f-1184-a58b2f55ba85@seco.com>
+ <20230613142754.wr5njtjo4tbloqwu@skbuf>
+ <20230810102631.bvozjer3t67r67iy@skbuf>
+ <b1df425f-1ea4-0465-674c-25f3ed9b73d4@seco.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b1df425f-1ea4-0465-674c-25f3ed9b73d4@seco.com>
+X-ClientProxiedBy: AS4P190CA0005.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5de::17) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|DB9PR04MB8137:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8af7bfce-601d-4346-9cb1-08db9a85d356
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0ZdRbOGNYWL8KEWvF0VQg3k//X9tDirUzZj+jb5LZs0fkQFFZvIbucUr1PQmJP/MOtr+/52w9JCuRTemoDtzT/NhmIsNMWz3b27FkdnKzhP19A8zO0PbTgZz5fLqMm+yItXNJcaLVy/6wnK9D7PKpx1GuElSIgBMCugobcQVHNpuACntCh8eqhVgNCcn86Zb52T+gRxVyj96wQjQqOtOcOOLdXFAnKsLcLyY50K9SJd9YVDOO8EsNB0Zab9AwvD+AnkpWn+T16QTcFqlwuxe3YAHrw/aiR9ix+kFNQyAK3a5rJ4VTM0Z4lF4ynl6CsLe+TYBCHaSDGsTKPsfvm+5P088B57jzGqZZXndPdHv6UuNedEtoy+U1A7VCRgA04wov0YXjQhDXo5N4OLlmCqcPU6mQcZ9VEtIuhUUxlxSHbzmRyvSlDQBVS5QETTshHgPLkOGPAgTSbs3vjsXKdfD3S8UolXUm2a9YODSjw0pkoOC53P9jAdafEvxCQA4wmk8sWlHS6+Muw8Ll68UE3FE3X87owJkeEMXHd1KNB79iG8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(396003)(366004)(376002)(346002)(39860400002)(136003)(451199021)(1800799006)(186006)(83380400001)(2906002)(54906003)(38100700002)(478600001)(86362001)(316002)(6506007)(41300700001)(26005)(1076003)(33716001)(6666004)(5660300002)(8936002)(6486002)(8676002)(44832011)(7416002)(6512007)(966005)(9686003)(66476007)(6916009)(66556008)(66946007)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?R8aQJPlThnSHIzFMyDhoJneWx4Kz9BsMaeNFa1mGsqS5QPJj9ND1iUaOOYt+?=
+ =?us-ascii?Q?2Z4guXzVHbR3P9xBaBDaItDvv8okOc+3bYkfzTEWSYQrFr0RUSljBZBX+W+K?=
+ =?us-ascii?Q?nx8D1u0EXrQGvgdhJYL/quce6Qw5fkUECrEdt1/3i+KQW+Rd+hBYZXdzKD2z?=
+ =?us-ascii?Q?CmUeugCNPBuE3VBV1MxVhLeterAUk07DswPmAiNcAQSNejcgQ4qTGoGi8GrT?=
+ =?us-ascii?Q?KjtcBvbHo6dFMAefEoIzOS4xQpmuE7bGH/knHoUULQsEHksdF+l0glO9l4ka?=
+ =?us-ascii?Q?m+9HFby/5jA8oCvbwlWhDwOTmGsAwU9W6/35+KXepqeMYY3w196gdCLYY9mO?=
+ =?us-ascii?Q?4hviel4F3e5l/Xwo5Qj98NYUVvWYNp+IWXZ/rkma5vOVwIRtQQqylpZo1w8i?=
+ =?us-ascii?Q?lMnIIaScCmWRZhWFPQVZVwNeoD2aojawOlyv3didgS1VW6TOB1LMsIzhFrhT?=
+ =?us-ascii?Q?hKyOeKwI+e9iDr0namo36U58SWfKWkwmzlyMVNg+lxCh36MUDaW9Xj6CI0mV?=
+ =?us-ascii?Q?f9J1H68EskW5Mg2R7AlbYCbpJZ/TrcFaovxWyO8YWn9YUSXRae3YzO8yLxCi?=
+ =?us-ascii?Q?RNyJ3WzUGj8x16GWARBL6xYDQ8T/kt1CEEwErNfw5mhMKWSy4VIQ2N0tlH26?=
+ =?us-ascii?Q?MZCV7octteUJ5KopF51OkaWxQQ2y+Lo8nktIBueOd3+MxqH4tAzExquy0TKS?=
+ =?us-ascii?Q?zSfYmaapLadPvs/ddWRQtC5Ek0Sfh5vxstutYwHZF1082ivL4k2XeM+f+sS7?=
+ =?us-ascii?Q?RclJTRcYI/+GQbQA8RKVkmcalXT/W+gtBimzJRleRNxQ4RwwQIgJJb8e5hCw?=
+ =?us-ascii?Q?tjq2H6jzhm9OpME6wNcFSfbdU40gk6tBoANpRYmwIfIA6QpsBELWWgHU85uh?=
+ =?us-ascii?Q?bEavCJk2u9WLN0nv9+gC/Cc/5fNpgSXRxviy1vz6vmmcPuJRYPZnDOAAdMj/?=
+ =?us-ascii?Q?GKKCOiYYZDtd21XRmmxAbGlHSPpVO5nhRSFRti0cQtZGo9tvkoRbBLxBSyf1?=
+ =?us-ascii?Q?9AqlJJF2FxZF/pCAzm0dE/IWrXlmGVELI4hqWSMpJ6OOyKoxboyJY3yw0AqF?=
+ =?us-ascii?Q?zCquscYmeoTgwfxmOpDrZbyQPbJtc/5td4ZMNqr8NFxiPRtIKypBRf3tfmDE?=
+ =?us-ascii?Q?xi4qwAQhhIB8bFPIvOOy8rPnMIBYsX6fn+jiWHp0CXsg3x4HitMskyjvSV/C?=
+ =?us-ascii?Q?5/fM2lK01DAQYBrXZ27jPI4057s+qdyYVgiOGyEgnDAeeSbn1bu9ATJoYsAE?=
+ =?us-ascii?Q?dJfEo59VW8fLoMszHn/pUmwMyglocTYQnDMKsHzcHnbKx9M4Y9FfzB3G+hHx?=
+ =?us-ascii?Q?VYfzbGj2V+DjrHTOGgsDRmXHhlNo00w22b9jNjmap1nbRcXE25pgK0Wjs7Tw?=
+ =?us-ascii?Q?J/Y8C8paIQYwIAGLsd+nwXMSEehJN8rKWTl/JyTEt+mF1Dg6kQEJMLJUP9Kk?=
+ =?us-ascii?Q?j+NtkXvccfKjrM00WC/nNyYLIuYdBOLv5TD4Qj93uBG64rJ2YW5ZumZLF/9J?=
+ =?us-ascii?Q?Xf7Fwl6y50780mrqZ+qvoj4IlJvTLfVOlUnd/zHcJh81y+JGbZQnvN3YOA4m?=
+ =?us-ascii?Q?yiNTTcfvc3mJe/WcqsmI3AZ3Fr03wm3NBwK7vK3bl0ZqgDOvFKViCCdXo1uQ?=
+ =?us-ascii?Q?iw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8af7bfce-601d-4346-9cb1-08db9a85d356
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 16:12:57.1822
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WEy4p3h1J1b1O+F05dRfl9kHxuAkqf7XRskNeXzOfhZhJDcxDjMdAn9rX3k0iL4+z6Gzhi5C8KWa2cIpop+s6Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8137
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+Hi Sean,
 
-On 11/08/23 20:46, Péter Ujfalusi wrote:
-> Vignesh,
+On Thu, Aug 10, 2023 at 03:58:36PM -0400, Sean Anderson wrote:
+> As explained previously (and noted by yourself below) 1G and 10G RCWs
+> have mutally-incompatible clocking requirements. Now that you have
+> documented an alternate solution, it is possible to boot up with one RCW
+> and switch to another. But without that it was not possible to have one
+> board support both RCWs (without e.g. a microcontroller or FPGA to
+> configure the clock generator before releasing the processor reset). I
+> do not think that the silicon should assert the reset request line if
+> the serdes doesn't lock, but it does and it can't really be disabled.
 > 
-> On 10/08/2023 20:43, Vignesh Raghavendra wrote:
->> DMAs on TI K3 SoCs have channel configuration registers region which are
->> usually hidden from Linux and configured via Device Manager Firmware
->> APIs. But certain early SWs like bootloader which run before Device
->> Manager is fully up would need to directly configure these registers and
->> thus require to be in DT description.
->>
->> This add bindings for such configuration regions.  Backward
->> compatibility is maintained to existing DT by only mandating existing
->> regions to be present and this new region as optional.
+> As it happens, our board is set up so that the reference clocks are
+> configured for 10G by default. During this boot, reset request is never
+> requested. If we did not have to support software configuration of the
+> serdes speed (to support 1G SFPs) we would not have to disconnect reset
+> request.
 > 
-> These regions were 'hidden' from Linux or other open coded access for a
-> reason.
-> If I recall the main reason is security and the need to make sure that
-> the allocation of the channels not been violated.
+> That said, I have evaluated the various reasons that reset request can
+> be asserted, and I have determined that for our product they are not
+> necessary. The only major limitation is the lack of a watchdog, but that
+> was not a requirement for us. Because of this, using a GPIO for reset is
+> sufficient and neatly avoids the issue.
+
+I would like to pause here and highlight the existence of the so-called
+XY problem: https://en.wikipedia.org/wiki/XY_problem
+
+| The XY problem is a communication problem encountered in help desk,
+| technical support, software engineering, or customer service situations
+| where the question is about an end user's attempted solution (Y) rather
+| than the root problem itself (X).
+
+You admitted that you needed to solve problem X (software reconfiguration
+of the SerDes speed between 1G and 10G), and that has led you to problem
+Y (giving the PLLs some refclk frequencies which aren't supported at
+power-on reset, and thus, are also not validated by NXP). You've presented
+to the Linux mailing lists a driver which solves problem Y, but not X.
+
+I gave you a solution to problem X which doesn't even trigger problem Y.
+
+Furthermore, I gave you a solution to problem Y which is much simpler
+than yours. On the 12th of June, in Message-ID: 20230612163353.dwouatvqbuo6h4ea@skbuf,
+I explained that if you absolutely insist to use the unsupported PLL
+refclks, you can use PBL commands to change the PLL settings (so that
+they lock) at power-on reset time. The advantage is that both U-Boot and
+Linux will work without having to make any modification to the PLLs,
+just treat them as read-only.
+
+As it happens, at NXP we also want to solve problem X in a generic way
+(aka we need a procedure that works for all customers, and not just for
+your board), and we want to do so in a way that the hardware validation
+team agrees with. Thus, the SoC needs to accept the PLL refclks at
+power-on reset time. The solution we came up with is the one presented
+to you yesterday. It makes your PLL clk driver unnecessary. No one will
+come after you if you keep it in your Linux tree and use it, but it is
+unnecessary.
+
+> > Nonetheless, below is a functional example of how NXP would recommend
+> > you to achieve the desired PLL mapping for any RCW-based SerDes protocol.
+> > My testing platform was the LS1046A-QDS with PLL1 at 100 MHz and PLL2 at
+> > 156.25 MHz. I believe that this should eliminate the need for a clk
+> > driver for the PLLs, and should make your Ethernet lanes usable much
+> > earlier than Linux. That being said, our position at NXP is that you
+> > don't need a clk driver for the PLLs, and I would like to see the clk
+> > portion removed from future patch revisions.
 > 
-> IMho the boot loader should be no exception and it should be using the
-> DM firmware to configure the DMAs.
+> I have not had any issues with clocking. This is actually one of the
+> areas where the reference manual is sufficient to create a working
+> driver. Adding flexibility here is very useful, because we can solve
+> hardware problems in software. This can reduce e.g. board respins, and
+> allow for more interesting clocking solutions (such as allowing clock
+> generators which must be configured before use).
+
+I am waiting for someone to come up with a real life use case that
+justifies those "more interesting clocking solutions".
+
+Please correct me if you think I am wrong, but as things stand, the
+SerDes PLL clk driver is now a solution waiting for a problem. It can
+wait for that problem out of tree.
+
+> > There is also the previous observation from Ioana that you should not
+> > delete PHY interrupts without finding out why they don't work.
 > 
-> Or has the security concern been dropped and SW can do whatever it wants?
-
-There is been a relook at the arch post this driver was upstreamed. 
-System firmware (SYSFW) is now two separate components:  TI Foundational 
-Security (TIFS) running in a secure island and Device Management (DM) 
-firmware (runs on boot R5 core) [0] shows boot flow diagram for AM62x.
-
-Security critical items such as PSIL pairing, channel firewalls and 
-credential configurations are under TIFS and is handled via TI SCI calls 
-at all times.
-
-But, things related to resource configuration (to ensure different cores 
-dont step on each other) is under DM. Linux still needs to talk to DM 
-for configuring these regions. But, when primary bootloader (R5 SPL) is 
-running, there isn't a DM firmware (as it runs on the same core after R5 
-SPL), it would need to configure DMA resources on its own. 
-
-This update is mainly to aid R5 SPL to reuse kernel DT as is. 
-Hope that helps
-
-
-[0] https://u-boot.readthedocs.io/en/latest/board/ti/am62x_sk.html?highlight=am62#boot-flow
-(Similar boot flow for rest of K3 devices barring am65 and am64)
-
+> Well, if you have a better solution, please let me know. The interrupt
+> does not work in real hardware.
 > 
->>
->> Vignesh Raghavendra (3):
->>    dt-bindings: dma: ti: k3-bcdma: Describe cfg register regions
->>    dt-bindings: dma: ti: k3-pktdma: Describe cfg register regions
->>    dt-bindings: dma: ti: k3-udma: Describe cfg register regions
->>
->>   .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 25 +++++++++++++------
->>   .../devicetree/bindings/dma/ti/k3-pktdma.yaml | 18 ++++++++++---
->>   .../devicetree/bindings/dma/ti/k3-udma.yaml   | 14 ++++++++---
->>   3 files changed, 43 insertions(+), 14 deletions(-)
->>
-> 
+> I was hampered in my efforts to determine the cause because the interrupt
+> passes through an FPGA to which I lack the HDL. So far, I have not seen
+> any argument against polling except that we do not understand the
+> problem yet. However, I have not seen any other analysis of the problem
+> either.
 
--- 
-Regards
-Vignesh
+Out of respect for the topic at hand, ask for help in a separate thread,
+open an NXP support ticket - do something to split it from the SerDes
+work which it is unrelated with. You were told that part of the reason
+for the NACK is the fact that you are grouping unrelated things together,
+and you did nothing about it.
+
+> > +SRDS_PRTCL_S1=4403
+> > +SRDS_PRTCL_S2=21849
+> 
+> I know it is not typical for NXP RCWs, but your rcw tool supports using
+> hex/binary prefixes. Thus, you could rewrite the above lines as
+> 
+> SRDS_PRTCL_S1=0x1133
+> SRDS_PRTCL_S2=0x5559
+> 
+> IMO this is much easier to read, since it matches the documentation.
+
+Ok, thanks.
