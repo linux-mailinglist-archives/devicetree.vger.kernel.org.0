@@ -2,76 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A0E779646
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59AC2779650
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 19:40:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236675AbjHKRjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 13:39:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54830 "EHLO
+        id S236180AbjHKRkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 13:40:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234924AbjHKRjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:39:07 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FEA30DC
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:39:05 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-686efa1804eso1658206b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 10:39:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691775545; x=1692380345;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z+ShFNdSFVR21QLlnvolclztaU/XrR69W28hugrsBGg=;
-        b=lRRmYJGIe/7kIapJAZLe0Wi2gygQ/5cSk0bAuJHIKyAeUL+6Am2QUMqEmW3kBonPG+
-         9oMdo+3aOy6NM2HmcY69SkFOAPgB24R5xDEbqQm1klQZsjwEByzFmi6DoBTUSigtEG1h
-         sREFrOHPCTmkJ0d035ZGJTLc8A2nglbEeAHB1bfQi+aeELTMldn1+miRo9o6YrsUVgln
-         3OAQb/HuRpMR0lTkUHsY6PQ6cvXRgLBSDOcgL6fg5P3373RjWyR9tsLeDwNps8qUJjat
-         0Ni2EeS6cAQa6nn02FKmjeQrVb+/KmSF+RgWXB3jrGkAkH2UoXyDptC9lx3wPY4a2OrV
-         0sew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691775545; x=1692380345;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z+ShFNdSFVR21QLlnvolclztaU/XrR69W28hugrsBGg=;
-        b=VeWfD0LavB8ARC84htFI6Q41oQLpSh5iLnVOXH9gKyCxmfmOoMRkA6EwYSfIDELJ9n
-         pNuf/DtrS7JpLYEe1NR2YgUOed4LTtBPyWk0LruOfBlfLw7uqlkXG2N5rH3NcYMtJpLq
-         EFBkZ93OgXH4f453pgMpU9yzBqtQDlDpCzmCm/FIKwdUEeSl9gx/jSGnnuineberzeDg
-         kDPvX7RgPhK4O+JvUcbl3QkdWM/pucRRYJm2O+n4vlLNlyb83FxBSKJMPJ1hjxbFRtt7
-         44JNNGWI38wo4J0R1bPvomxPxxysncWEvQh9OF3E5e18gdScymvUzAFZ0W19khsI7JFK
-         fEMQ==
-X-Gm-Message-State: AOJu0YxCOrJ6gJEqVRo19waBI6izut58cCKAvaNYm5X50Gr9p32D+ZuC
-        1ZWy48dWbH7VJ3Tm+XGVYaGv8A==
-X-Google-Smtp-Source: AGHT+IGYyZOh7G4Z/0Cx1ClUmw6Rc7am59y/FzYhsjgC95YBAR1CPevol7CBsiKpsbsJ/c8HFbIgUg==
-X-Received: by 2002:a05:6a20:102:b0:13b:9ff3:f52e with SMTP id 2-20020a056a20010200b0013b9ff3f52emr1984874pzr.56.1691775545137;
-        Fri, 11 Aug 2023 10:39:05 -0700 (PDT)
-Received: from x1 ([2601:1c2:1800:f680:42e5:c1a1:995:5aef])
-        by smtp.gmail.com with ESMTPSA id w9-20020a63af09000000b00563deb296bbsm3586241pge.22.2023.08.11.10.39.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 10:39:04 -0700 (PDT)
-Date:   Fri, 11 Aug 2023 10:39:02 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S236037AbjHKRkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 13:40:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA3630CF;
+        Fri, 11 Aug 2023 10:40:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8828865056;
+        Fri, 11 Aug 2023 17:40:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FEB5C433C8;
+        Fri, 11 Aug 2023 17:40:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691775650;
+        bh=/0yQzRJWzPnTkw/Ozyf0///5Fid1qKSWbxjgwcq0t/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W7SM1BS5kp50Q+d5w1JZJ1IvIkpqUwL2wbS6/Mk2scnn5tZsk7/XxHOrGpmyzbdvh
+         92LtoNClaVEOyJESmKQOBrBqdO0iftjVZGwv142LU/gwo7BiU8wwDqbnmyPvY58IGf
+         arlWGOiT3xXg0H7h3u50Gz1XQxpwP+HK3YL4kolslxjodzdG4JtNW5ENllk3Vhsb/J
+         IR9p1FGgqBDO+t2aMk18XosqT8wqnDew7TszKD9LnqmUjdKVTFrMIRDAx3hJwhgFgm
+         FQskdExDWN+p4Q2hliNeKdmMns6/VjYGwOn4hUrVTLd6xpgabiw81nLrVZFTXEc/Dy
+         L9rBLbv6oI9Ug==
+Received: (nullmailer pid 3656168 invoked by uid 1000);
+        Fri, 11 Aug 2023 17:40:47 -0000
+Date:   Fri, 11 Aug 2023 11:40:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
-Message-ID: <ZNZyNjjekd2SW/mn@x1>
-References: <20230617161529.2092-1-jszhang@kernel.org>
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ray Jui <rjui@broadcom.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: brcm,bcm11351-pinctrl: Convert to
+ YAML
+Message-ID: <169177564713.3656110.3836867056727165782.robh@kernel.org>
+References: <ZMZ3aEnrrZRDNdO+@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230617161529.2092-1-jszhang@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <ZMZ3aEnrrZRDNdO+@standask-GA-A55M-S2HP>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,31 +65,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 18, 2023 at 12:15:21AM +0800, Jisheng Zhang wrote:
-> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
-> module which is powered by T-HEAD's TH1520 SoC. Add minimal device
-> tree files for the core module and the development board.
+
+On Sun, 30 Jul 2023 16:44:56 +0200, Stanislav Jakubek wrote:
+> Convert Broadcom BCM281xx pin controller bindings to DT schema.
 > 
-> Support basic uart/gpio/dmac drivers, so supports booting to a basic
-> shell.
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+>  .../pinctrl/brcm,bcm11351-pinctrl.txt         | 461 ------------------
+>  .../pinctrl/brcm,bcm11351-pinctrl.yaml        | 259 ++++++++++
+>  2 files changed, 259 insertions(+), 461 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm11351-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm11351-pinctrl.yaml
 > 
-> NOTE: the thead cpu reset dt-binding and DT node are removed in v3. This
-> makes secondary CPUs unable to be online. However, minimal th1520
-> support is better than nothing. And the community has been working on
-> and will work on the cpu reset dt-binding, for example, Conor, Guo and
-> Jessica are discussing about it, I have seen valuable comments and
-> inputs from them. I believe we can add back cpu reset in next
-> development window.
 
-I'm interested in starting the secondary cpus on mainline. It seems that
-that "thead,reset-sample" is already implemented in upstream OpenSBI in
-lib/utils/reset/fdt_reset_thead.c and the issue is getting the
-dt-binding accepted. Is that correct?
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-It looks like you've tried to restart the discussion on the DT list [1]
-so I hope that the DT maintainers will give their perspective.
-
-Thank you,
-Drew
-
-[1] https://lore.kernel.org/all/ZNURXBKkYdiWLanf@xhacker/
