@@ -2,104 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA51477991B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 23:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF08977993F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 23:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235814AbjHKVBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 17:01:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
+        id S232295AbjHKVPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 17:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234465AbjHKVBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 17:01:50 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9608BE7E;
-        Fri, 11 Aug 2023 14:01:49 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c1d03e124so309364566b.2;
-        Fri, 11 Aug 2023 14:01:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691787708; x=1692392508;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+DYyGWbRtCO4yoK4SpfLbt8Gh2hUExhG65bK4fLynWs=;
-        b=FMXr7eZGhmfYRJY0IK5IWx2P9eQ3rVyjUhTYxy0OXQoePLMH7Yti5dzRE2Jn3l6r0b
-         kW9yjCgwIxuRHM8X4R35Y+TbWL4dNJtMY/f3YPV0yvLXvuWjhdfAKli6aqZXCgxairZJ
-         HB5Yd8+3UWRjnPQ/4hOQgIhZNFttgvoNJm/vJ5NnSMM3nFJbmmBSvZUJOHnxX0fNbNed
-         MHd7IBI6UWEBM6TxYe3PNgsMWuVw/vEn7nWWc+g4o7KZDscmf/RqkgZhH02uMp3k1Arb
-         9nBuGOW1vovPpcVOWZCSIdhdyP9epr5+UpS+4ek7V9yMVU4OZ7Ab3GeMYhSe0W8GvgBA
-         OkQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691787708; x=1692392508;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+DYyGWbRtCO4yoK4SpfLbt8Gh2hUExhG65bK4fLynWs=;
-        b=c/FlY7pKmHizVHo7qECcuYnbhr4mqJkZILIO4s5n8TxD2VrBKvTu1UDGUf12GJqkGj
-         IF6O54qemx1St7SR5lxM9hFCZuiGVqxuGZVnr2yaVyP+xYNGrO11F3ZJeaxcuDmEnlLj
-         4nIobjtV3bcCOjriy0VasafduEVI29EqL0SqWZTHnJoJLOufkqSS1lRF5Aghd/YhsYTT
-         OViq4i5fLTjK8nlkWTDLUbdnMF5XN0+uLEsai77h/dSDHibtrLM1ajc7pGsgMTEzT2R2
-         hPM4wsEg1j/7WxSVS+QdTHhm/f9wW0SdO0sMDhtgv3kL/7UEogivfE8H+4YOEkeRpo19
-         qH3A==
-X-Gm-Message-State: AOJu0YwceViE4GbcdH2Y8niVzv7mO+MX7h1QomvbRkgUstqwOOP4Qm2n
-        LTll2Vuf8ekkBTjHzdccVm8=
-X-Google-Smtp-Source: AGHT+IFb7wDhNodcMalFrwvQqlCnFZSqMr/l8ySqyls/nBvv3xEJCy0Z65gDeSPpPeu0UJZ2H8jdyw==
-X-Received: by 2002:a17:907:2beb:b0:993:f9d4:eab3 with SMTP id gv43-20020a1709072beb00b00993f9d4eab3mr2724971ejc.18.1691787707834;
-        Fri, 11 Aug 2023 14:01:47 -0700 (PDT)
-Received: from fedora.. ([188.252.220.253])
-        by smtp.googlemail.com with ESMTPSA id d3-20020a1709063ec300b0099bcb44493fsm2694907ejj.147.2023.08.11.14.01.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 14:01:46 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: qcom: ipq4019-ap.dk01.1: align flash node with bindings
-Date:   Fri, 11 Aug 2023 23:01:03 +0200
-Message-ID: <20230811210142.403160-2-robimarko@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230811210142.403160-1-robimarko@gmail.com>
-References: <20230811210142.403160-1-robimarko@gmail.com>
+        with ESMTP id S229503AbjHKVPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 17:15:01 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1AD171F;
+        Fri, 11 Aug 2023 14:15:00 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BLEo4j086332;
+        Fri, 11 Aug 2023 16:14:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691788490;
+        bh=3FiBFHExBQrDVeeYuHKo+/tmEj7jNIisdfEiRNPw2Lo=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=jh1T2uHU1Sde8pmv7BxksOhE/uEHsEuPga7q3q+6tyCOFjbgGiVSi8pJKehDGQGmg
+         b7TtpWadME3zUQp+TCy0UJLAS0VQphb1dO1973gNdSniv4ZNY/2LDQySdZVNZfnHNE
+         oUW1gMoi5QI+hDaNHovbSFW1F+gO8/prDnPU/bSs=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BLEohd088187
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 16:14:50 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 16:14:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 16:14:50 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BLEoCe031975;
+        Fri, 11 Aug 2023 16:14:50 -0500
+Date:   Fri, 11 Aug 2023 16:14:50 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Hari Nagalla <hnagalla@ti.com>, Udit Kumar <u-kumar1@ti.com>
+Subject: Re: [PATCH v3 0/5] Add R5F and C7x DSP nodes for J721S2 SoC.
+Message-ID: <20230811211450.psoe6wjvncwxoqe2@enlarged>
+References: <20230811202252.3586926-1-a-nandan@ti.com>
+ <a5731a6b-f97b-a1c7-4322-a50c538ad11b@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <a5731a6b-f97b-a1c7-4322-a50c538ad11b@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename the SPI-NOR node to flash@0, remove #address-cells and #size-cells
-as they should be under the partitions subnode and use the generic
-jedec,spi-nor compatible.
+On 15:31-20230811, Andrew Davis wrote:
+> On 8/11/23 3:22 PM, Apurva Nandan wrote:
+> > This series adds the R5F processor nodes and C7x DSP nodes for
+> > J721S2 SoC.
+> > 
+> > The first three patches adds the remote proc nodes to the SoC device
+> > tree and the last two patches reserves the memory for remote proc IPCs
+> > on J721S2 EVM board.
+> > 
+> > Test log: https://gist.githubusercontent.com/apurvanandan1997/556b4148651ae74b50dda993ad07f1e5/raw/
+> > 
+> > v3: Changelog:
+> > 1) Disabled c7x in k3-j721s2-main.dtsi and enabled in k3-j721s2-som-p0.dtsi
+> >     which fixes the following dtbs_check for k3-am69-sk.dts
+> >     - dsp@64800000: 'mboxes' is a required property
+> >     - dsp@64800000: 'memory-region' is a required property
+> > 2) Split into separate patches for C7x and R5F
+> 
+> Thanks for taking care of these details, series LGTM,
+> 
+> Reviewed-by: Andrew Davis <afd@ti.com>
+> 
+> > 
+> > Link to v2:
+> > https://lore.kernel.org/lkml/20230808201842.292911-1-a-nandan@ti.com/
+> > 
+> > v2:Changelog:
+> > 1) Added status = "disabled"; in soc dtsi files, and removed it from som dts
+> > 2) Fixed mboxes property in for all cores in som dts
+> > 
+> > Link to v1:
+> > https://lore.kernel.org/all/20230529220941.10801-1-hnagalla@ti.com/
+> > 
+> > Apurva Nandan (4):
+> >    arm64: dts: ti: k3-j721s2-main: Add MAIN R5F remote processsor nodes
+> >    arm64: dts: ti: k3-j721s2-main: Add C7x remote processsor nodes
+> >    arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for
+> >      R5F
+> >    arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for
+> >      C71x DSPs
+> > 
+> > Hari Nagalla (1):
+> >    arm64: dts: ti: k3-j721s2-mcu: Add MCU R5F cluster nodes
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk01.1.dtsi | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+We are still missing arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi which is
+a TI product.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk01.1.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk01.1.dtsi
-index 0714616c9e45..f7ac8f9d0b6f 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk01.1.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk01.1.dtsi
-@@ -75,11 +75,9 @@ &blsp1_spi1 {
- 	status = "okay";
- 	cs-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
- 
--	mx25l25635e@0 {
--		#address-cells = <1>;
--		#size-cells = <1>;
-+	flash@0 {
- 		reg = <0>;
--		compatible = "mx25l25635e";
-+		compatible = "jedec,spi-nor";
- 		spi-max-frequency = <24000000>;
- 	};
- };
+So, lets hold this series off from the immediate merge set at least.
+
+> > 
+> >   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 106 +++++++++
+> >   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 ++++
+> >   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 208 ++++++++++++++++++
+> >   3 files changed, 354 insertions(+)
+> > 
+
 -- 
-2.41.0
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
