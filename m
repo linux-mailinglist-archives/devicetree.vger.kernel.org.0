@@ -2,88 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F982779797
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85747797A1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234224AbjHKTPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 15:15:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39754 "EHLO
+        id S232462AbjHKTUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 15:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234007AbjHKTPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:15:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6112709;
-        Fri, 11 Aug 2023 12:15:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 97BE26793A;
-        Fri, 11 Aug 2023 19:15:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2D4AC433C7;
-        Fri, 11 Aug 2023 19:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691781313;
-        bh=6QtAcXtlXNSXcw0j6uPr4ISWAtSh7YhKaEmvIEovYFY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NtvgsK2oBsjxKjlRfUdQNOXkkC6UK7QpuOaWBsfjynl4qg0reI10lYjwMujfiNrPi
-         ewVwrB/2Vef0kxFGnYloj9Gh3SAqUGC1L8L+29yyTy29VwfUmOEQv3UZmuLgJN4vcu
-         Skl5XABvqBcdo8mJvOWbLHKKyxl33hCaIbQkp+Fm9IPCocGvnt1v5F/Qh0Gviil9E4
-         sZxTcrKomAPOctg/WBe3j7kul1VVH1uw+5U6mBIsx/d8/gbmP9nG6noMJcMNHtjyU7
-         5LpxTCBG6x7y9XJ3wdDWoJ+oXfQNBY5rBaDzzdXjLjy+BbA1ISlaPhfMkEl7gUULlU
-         4qQS8QNym39Ug==
-Received: (nullmailer pid 3977273 invoked by uid 1000);
-        Fri, 11 Aug 2023 19:15:10 -0000
-Date:   Fri, 11 Aug 2023 13:15:10 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
+        with ESMTP id S230315AbjHKTUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:20:47 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96002709;
+        Fri, 11 Aug 2023 12:20:46 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BJKZru127921;
+        Fri, 11 Aug 2023 14:20:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691781635;
+        bh=kVW0D06/ZosFHEDLsV7SlHnJWgRbYJaaA7E+yDWUq98=;
+        h=From:To:Subject:Date;
+        b=h33kevHC80Pzd1R7Ps76uDYwAAd7OSHmQBBpArh5BLUIJkI9QVKrnvUj7FzvBRB/o
+         +P9ouGnO3S81JHx27WpPk1R0/gb9odTSumiHZZBrl68nRF5Br4PDyjyn2rf75ICTTH
+         RyYRPnEoVHwvhUT5zqhj+jjOW9MQP1l21D7oIdzE=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BJKZ19002181
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Aug 2023 14:20:35 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 14:20:34 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Aug 2023 14:20:34 -0500
+Received: from TI.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BJKUFv017018;
+        Fri, 11 Aug 2023 14:20:31 -0500
+From:   Apurva Nandan <a-nandan@ti.com>
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: qcom: Document new msm8916-samsung
- devices
-Message-ID: <169178130995.3977197.15210802721346708253.robh@kernel.org>
-References: <20230801111745.4629-1-linmengbo0689@protonmail.com>
- <20230801112113.4659-1-linmengbo0689@protonmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>,
+        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>
+Subject: [PATCH v5 0/3] arm64: dts: ti: k3-j784s4: Add phase tags marking
+Date:   Sat, 12 Aug 2023 00:50:27 +0530
+Message-ID: <20230811192030.3480616-1-a-nandan@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230801112113.4659-1-linmengbo0689@protonmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+bootph-all as phase tag was added to dt-schema
+(dtschema/schemas/bootph.yaml) to cover U-Boot challenges with DT.
+This series adds it to Linux to be aligned with bootloader requirement
+for TI K3 J784S4 EVM and TI K3 AM69-SK EVM.
 
-On Tue, 01 Aug 2023 11:22:30 +0000, Lin, Meng-Bo wrote:
-> Document the new following device tree bindings used in their
-> device trees:
-> 
-> - samsung,fortuna3g
-> - samsung,fortunaltezt
-> - samsung,gprimeltecan
-> - samsung,grandprimelte
-> - samsung,heatqlte
-> - samsung,rossa
-> 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+This series will be ported to the k3-j784s4 u-boot support patch
+series for syncing, and was requested in its review process:
+https://lore.kernel.org/u-boot/20230321155227.GV8135@bill-the-cat/
 
-Acked-by: Rob Herring <robh@kernel.org>
+Bootlog:
+https://gist.githubusercontent.com/apurvanandan1997/fe793a7d03e3375af698b20b5bf1c36d/raw/
+
+v5: Changelog:
+1) Removed bootph-all from reserved status dts nodes (wkup_uart0)
+
+Link to v4:
+https://lore.kernel.org/all/20230811151644.3216621-1-a-nandan@ti.com/
+
+v4: Changelog:
+1) Reworked commit title and description
+
+Link to v3:
+https://lore.kernel.org/lkml/20230810184302.3097829-1-a-nandan@ti.com/
+
+v3: Changelog:
+1) Changed all the bootph-pre-ram to bootph-all, as only
+   secure_proxy_mcu and secure_proxy_sa3 are exclusively used by R5 SPL.
+   Rest of the nodes are also used by later boot stages.
+2) Merged SoC dtsi changes in single patch.
+3) Moved cbass_main and cbass_mcu_wkup bootph-all to k3-j784s4.dtsi
+
+Link to v2: 
+https://lore.kernel.org/lkml/20230807185645.128751-1-a-nandan@ti.com/#t
+
+v2: Changelog:
+1) Added k3-am69-sk.dts bootph-pre-ram patch
+2) Added bootph-pre-ram for wkup_pmx0 and ospi0
+3) Added bootph-pre-ram for mcu_timer1
+
+Link to v1:
+https://lore.kernel.org/linux-arm-kernel/20230806164838.18088-1-a-nandan@ti.com/
+
+
+Apurva Nandan (3):
+  arm64: dts: ti: k3-j784s4: Add phase tags marking
+  arm64: dts: ti: k3-j784s4-evm: Add phase tags marking
+  arm64: dts: ti: k3-am69-sk: Add phase tags marking
+
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts         | 12 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 24 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    |  2 ++
+ .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  9 +++++++
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi         |  2 ++
+ 5 files changed, 49 insertions(+)
+
+-- 
+2.34.1
 
