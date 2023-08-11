@@ -2,60 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4740B778C9F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 13:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7A5778CAA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 13:04:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231588AbjHKLDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 07:03:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
+        id S233672AbjHKLEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 07:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233897AbjHKLC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 07:02:59 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A0AC3
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 04:02:57 -0700 (PDT)
-Received: from [127.0.0.1] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0919A1F8A3;
-        Fri, 11 Aug 2023 13:02:53 +0200 (CEST)
-From:   Martin Botka <martin.botka@somainline.org>
-Date:   Fri, 11 Aug 2023 13:02:36 +0200
-Subject: [PATCH 3/3] arm64: dts: allwinner: h616: Add SID controller node
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230811-sid-h616-v1-3-d1dfc9f47b19@somainline.org>
-References: <20230811-sid-h616-v1-0-d1dfc9f47b19@somainline.org>
-In-Reply-To: <20230811-sid-h616-v1-0-d1dfc9f47b19@somainline.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233288AbjHKLEj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 07:04:39 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EF35DE54;
+        Fri, 11 Aug 2023 04:04:38 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 4EBC980F1;
+        Fri, 11 Aug 2023 11:04:37 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Alan Ma <tech@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691751771; l=836;
- i=martin.botka@somainline.org; s=20230811; h=from:subject:message-id;
- bh=zF5rOJQQd+tRiwfWA9ycZ6InOOycJBFvTb9NwPa7BIU=;
- b=sQUhdXKlxgSjRX3ISVrvQAUxVIaFJV3/Fc8b5pXne7PTvcxtU9aR6zu3wX5PHc0AVQR34iEE/
- cxMuuAnm3czCzylbVqHuGkztObZ8KaNJrttrZUk2JHCqD/f8poJhxDD
-X-Developer-Key: i=martin.botka@somainline.org; a=ed25519;
- pk=aTCd3jmwU8GrJidWg3DSKLpdVMcpFzXzCSLXLR6NtWU=
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: input: gpio-keys: Allow optional dedicated wakeirq
+Date:   Fri, 11 Aug 2023 14:04:31 +0300
+Message-ID: <20230811110432.3968-1-tony@atomide.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,32 +39,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node for the H616 SID controller
+Allow configuring optional dedicated wakeirq that some SoCs have.
+Let's use the interrupt naming "irq" and "wakeup" that we already have
+in use for some drivers and subsystems like i2c.
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ .../devicetree/bindings/input/gpio-keys.yaml      | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 74aed0d232a9..5c5187a22537 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -133,6 +133,13 @@ ccu: clock@3001000 {
- 			#reset-cells = <1>;
- 		};
+diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+--- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
++++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+@@ -31,7 +31,17 @@ patternProperties:
+         maxItems: 1
  
-+		sid: efuse@3006000 {
-+			compatible = "allwinner,sun50i-h616-sid";
-+			reg = <0x03006000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
+       interrupts:
+-        maxItems: 1
++        description:
++          Optional interrupts if different from the gpio interrupt
++        maxItems: 2
 +
- 		watchdog: watchdog@30090a0 {
- 			compatible = "allwinner,sun50i-h616-wdt",
- 				     "allwinner,sun6i-a31-wdt";
-
++      interrupt-names:
++        description:
++	  Optional interrupt names, can be used to specify a separate
++	  dedicated wake-up interrupt
++        items:
++          -const: irq
++          -const: wakeup
+ 
+       label:
+         description: Descriptive name of the key.
+@@ -130,6 +140,9 @@ examples:
+             label = "GPIO Key UP";
+             linux,code = <103>;
+             gpios = <&gpio1 0 1>;
++            interrupts-extended = <&intc_wakeup 0 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "wakeup";
++            wakeup-source;
+         };
+ 
+         key-down {
 -- 
 2.41.0
-
