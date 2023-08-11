@@ -2,39 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90313778CAD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 13:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8395D778D26
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 13:10:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbjHKLEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 07:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41494 "EHLO
+        id S234400AbjHKLKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 07:10:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234530AbjHKLEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 07:04:43 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA2F1FD;
-        Fri, 11 Aug 2023 04:04:42 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id CAAA0820B;
-        Fri, 11 Aug 2023 11:04:40 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dhruva Gole <d-gole@ti.com>
-Subject: [PATCH 2/2] Input: gpio-keys - Add system suspend support for dedicated wakeirqs
-Date:   Fri, 11 Aug 2023 14:04:32 +0300
-Message-ID: <20230811110432.3968-2-tony@atomide.com>
+        with ESMTP id S231948AbjHKLKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 07:10:37 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92279E4C
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 04:10:36 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bf91956cdso247258066b.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 04:10:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1691752235; x=1692357035;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2yEmCh/4b+BWU9qDJvKWWcz5lhDGo7JYaO71Xt3Zntc=;
+        b=rg3CpeIsizpP9cBrlygwF2tUMFYSdrRv01Bg7USlIfM5InOzVVsRFV/3k/6fh0w0Ux
+         Z2V2LSMPKfKnoWARS8WDruUN8/YbaU0/hf0oKTnskaVhRb32QBflqXo+inHhCuG6GTcd
+         y34/f/DdkuRSSJkUdYGRD2XaWBBOCIEQb1WR0r7qaC+3BLbZju9THJ/H3rccNBvLEVDA
+         sRUhjUrex8Jfh3Pw6DfSgjSdHe7FooS16yIl5iVUv6TbpVJZejZIlFJ1GS25grrER9Qc
+         h9Di7j2MovGQz/oaBCqUI8TI5Y0kLxUmmJSpnGBWaI0Lq5dH9QjdK72/qu0cTvKnkZ1n
+         Pyvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691752235; x=1692357035;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2yEmCh/4b+BWU9qDJvKWWcz5lhDGo7JYaO71Xt3Zntc=;
+        b=D+O4Weyizw2cXItDEVEXgv3TwP2rjpRHbyCDE92SaQWezVMFdHDO7JbEqTJoZAVEz2
+         eGnVJF6QJ4P5AMy9ufaT37cgH1Igoo250c2/0twaN9v3ppBN4a59+pEXXAAa5QiZpRfh
+         nG0JyIH79sxDPUK3ISt7Blhvi9mRZ7Ol1ytT7CwNxnvMBr2vtr5TY5FkbM20cGG9ZNYM
+         c9D7CVqxiVd1G53IAgnWv2lmgQcI3WHN6nXjyfcI5Wl0H9GZ6Hyny6z6sbz58zbLPjQ8
+         TIP/lSSZihWTsIozPKy427x7fuSRkgO+M73turi7eh0SlE2Q02TjJTOh20ThWNq5aEI9
+         JgGQ==
+X-Gm-Message-State: AOJu0YypTPojVKfbrf6nIUd/VKtxgcY68pYNjm99Tq2ZWsy6WLltyDDX
+        Xs7J+XLDrKl8y716DR1VdnqWYQ==
+X-Google-Smtp-Source: AGHT+IGOQB3GS+GbS6NxtqEmWT4mAjfyb2PiaIhDxlWAEMe0UmEc4sr4429o9g1VTydUfdkgXRm3GA==
+X-Received: by 2002:a17:906:cc4f:b0:99b:cb7a:c164 with SMTP id mm15-20020a170906cc4f00b0099bcb7ac164mr1321450ejb.62.1691752234917;
+        Fri, 11 Aug 2023 04:10:34 -0700 (PDT)
+Received: from fedora.. ([188.252.220.253])
+        by smtp.googlemail.com with ESMTPSA id gg15-20020a170906e28f00b00982b204678fsm2103206ejb.207.2023.08.11.04.10.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Aug 2023 04:10:34 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        corbet@lwn.net, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next v2 1/2] dt-bindings: net: ethernet-controller: add PSGMII mode
+Date:   Fri, 11 Aug 2023 13:10:06 +0200
+Message-ID: <20230811111032.231308-1-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230811110432.3968-1-tony@atomide.com>
-References: <20230811110432.3968-1-tony@atomide.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -42,181 +73,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some SoCs have a separate dedicated wake-up interrupt controller that can
-be used to wake up the system from deeper idle states. We already support
-configuring a separate interrupt for a gpio-keys button to be used with a
-gpio line. However, we are lacking support system suspend for cases where
-a separate interrupt needs to be used in deeper sleep modes.
+Add a new PSGMII mode which is similar to QSGMII with the difference being
+that it combines 5 SGMII lines into a single link compared to 4 on QSGMII.
 
-Because of it's nature, gpio-keys does not know about the runtime PM state
-of the button gpios, and may have several gpio buttons configured for each
-gpio-keys device instance. Implementing runtime PM support for gpio-keys
-does not help, and we cannot use drivers/base/power/wakeirq.c support. We
-need to implement custom wakeirq support for gpio-keys.
+It is commonly used by Qualcomm on their QCA807x PHY series.
 
-For handling a dedicated wakeirq for system suspend, we enable and disable
-it with gpio_keys_enable_wakeup() and gpio_keys_disable_wakeup() that we
-already use based on device_may_wakeup().
-
-Some systems may have a dedicated wakeirq that can also be used as the
-main interrupt, this is already working for gpio-keys. Let's add some
-wakeirq related comments while at it as the usage with a gpio line and
-separate interrupt line may not be obvious.
-
-Tested-by: Dhruva Gole <d-gole@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- drivers/input/keyboard/gpio_keys.c | 69 ++++++++++++++++++++++++++++--
- include/linux/gpio_keys.h          |  2 +
- 2 files changed, 67 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/input/keyboard/gpio_keys.c b/drivers/input/keyboard/gpio_keys.c
---- a/drivers/input/keyboard/gpio_keys.c
-+++ b/drivers/input/keyboard/gpio_keys.c
-@@ -45,7 +45,9 @@ struct gpio_button_data {
- 	unsigned int software_debounce;	/* in msecs, for GPIO-driven buttons */
- 
- 	unsigned int irq;
-+	unsigned int wakeirq;
- 	unsigned int wakeup_trigger_type;
-+
- 	spinlock_t lock;
- 	bool disabled;
- 	bool key_pressed;
-@@ -511,6 +513,7 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
- 	struct gpio_button_data *bdata = &ddata->data[idx];
- 	irq_handler_t isr;
- 	unsigned long irqflags;
-+	const char *wakedesc;
- 	int irq;
- 	int error;
- 
-@@ -575,6 +578,14 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
- 					!gpiod_cansleep(bdata->gpiod);
- 		}
- 
-+		/*
-+		 * If an interrupt was specified, use it instead of the gpio
-+		 * interrupt and use the gpio for reading the state. A separate
-+		 * interrupt may be used as the main button interrupt for
-+		 * runtime PM to detect events also in deeper idle states. If a
-+		 * dedicated wakeirq is used for system suspend only, see below
-+		 * for bdata->wakeirq setup.
-+		 */
- 		if (button->irq) {
- 			bdata->irq = button->irq;
- 		} else {
-@@ -672,6 +683,36 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
- 		return error;
- 	}
- 
-+	if (!button->wakeirq)
-+		return 0;
-+
-+	/* Use :wakeup suffix like drivers/base/power/wakeirq.c does */
-+	wakedesc = devm_kasprintf(dev, GFP_KERNEL, "%s:wakeup", desc);
-+	if (!wakedesc)
-+		return -ENOMEM;
-+
-+	bdata->wakeirq = button->wakeirq;
-+	irqflags |= IRQF_NO_SUSPEND;
-+
-+	/*
-+	 * Wakeirq shares the handler with the main interrupt, it's only
-+	 * active during system suspend. See gpio_keys_button_enable_wakeup()
-+	 * and gpio_keys_button_disable_wakeup().
-+	 */
-+	error = devm_request_any_context_irq(dev, bdata->wakeirq, isr,
-+					     irqflags, wakedesc, bdata);
-+	if (error < 0) {
-+		dev_err(dev, "Unable to claim wakeirq %d; error %d\n",
-+			bdata->irq, error);
-+		return error;
-+	}
-+
-+	/*
-+	 * Disable wakeirq until suspend. IRQF_NO_AUTOEN won't work if
-+	 * IRQF_SHARED was set based on !button->can_disable.
-+	 */
-+	disable_irq_nosync(bdata->wakeirq);
-+
- 	return 0;
- }
- 
-@@ -728,7 +769,7 @@ gpio_keys_get_devtree_pdata(struct device *dev)
- 	struct gpio_keys_platform_data *pdata;
- 	struct gpio_keys_button *button;
- 	struct fwnode_handle *child;
--	int nbuttons;
-+	int nbuttons, irq;
- 
- 	nbuttons = device_get_child_node_count(dev);
- 	if (nbuttons == 0)
-@@ -750,9 +791,19 @@ gpio_keys_get_devtree_pdata(struct device *dev)
- 	device_property_read_string(dev, "label", &pdata->name);
- 
- 	device_for_each_child_node(dev, child) {
--		if (is_of_node(child))
--			button->irq =
--				irq_of_parse_and_map(to_of_node(child), 0);
-+		if (is_of_node(child)) {
-+			irq = of_irq_get_byname(to_of_node(child), "irq");
-+			if (irq > 0)
-+				button->irq = irq;
-+
-+			irq = of_irq_get_byname(to_of_node(child), "wakeup");
-+			if (irq > 0)
-+				button->wakeirq = irq;
-+
-+			if (!button->irq && !button->wakeirq)
-+				button->irq =
-+					irq_of_parse_and_map(to_of_node(child), 0);
-+		}
- 
- 		if (fwnode_property_read_u32(child, "linux,code",
- 					     &button->code)) {
-@@ -921,6 +972,11 @@ gpio_keys_button_enable_wakeup(struct gpio_button_data *bdata)
- 		}
- 	}
- 
-+	if (bdata->wakeirq) {
-+		enable_irq(bdata->wakeirq);
-+		disable_irq_nosync(bdata->irq);
-+	}
-+
- 	return 0;
- }
- 
-@@ -929,6 +985,11 @@ gpio_keys_button_disable_wakeup(struct gpio_button_data *bdata)
- {
- 	int error;
- 
-+	if (bdata->wakeirq) {
-+		enable_irq(bdata->irq);
-+		disable_irq_nosync(bdata->wakeirq);
-+	}
-+
- 	/*
- 	 * The trigger type is always both edges for gpio-based keys and we do
- 	 * not support changing wakeup trigger for interrupt-based keys.
-diff --git a/include/linux/gpio_keys.h b/include/linux/gpio_keys.h
---- a/include/linux/gpio_keys.h
-+++ b/include/linux/gpio_keys.h
-@@ -21,6 +21,7 @@ struct device;
-  *			disable button via sysfs
-  * @value:		axis value for %EV_ABS
-  * @irq:		Irq number in case of interrupt keys
-+ * @wakeirq:		Optional dedicated wake-up interrupt
-  */
- struct gpio_keys_button {
- 	unsigned int code;
-@@ -34,6 +35,7 @@ struct gpio_keys_button {
- 	bool can_disable;
- 	int value;
- 	unsigned int irq;
-+	unsigned int wakeirq;
- };
- 
- /**
+diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+index 6b0d359367da..9f6a5ccbcefe 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+@@ -66,6 +66,7 @@ properties:
+       - mii
+       - gmii
+       - sgmii
++      - psgmii
+       - qsgmii
+       - qusgmii
+       - tbi
 -- 
 2.41.0
+
