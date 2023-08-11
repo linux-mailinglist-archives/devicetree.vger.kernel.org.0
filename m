@@ -2,141 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC9BA7797DE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6897798B5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 22:46:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233814AbjHKTj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 15:39:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43432 "EHLO
+        id S234361AbjHKUqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 16:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231201AbjHKTj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:39:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEDD30EC;
-        Fri, 11 Aug 2023 12:39:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D1D5467963;
-        Fri, 11 Aug 2023 19:39:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC39FC433C7;
-        Fri, 11 Aug 2023 19:39:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691782767;
-        bh=KlwAT+8owcpMdnQoWuulieq8nFxzS2oyPEO3DiXeFW0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z3nihHLjbHFVoqzDHPMTR4ppsDou+K/fjjJuT5oZdZMs/DYOIS1/IwrEUdK5EoDrN
-         JeHk9ib8CYs5KMnBmxm51fYJAZKclwJqM5Lx90sZk0+LY+h/dzVZe78pBRPAPoAOLB
-         3vOc2yoXidHXB0O/tDsEFbgijkGn5nAbzqJwmpAEUAM/TUBKfR+HAQGycUJbcsZWWP
-         5I/chqhcVJFEXjX6EdiUT0OppW+ZkTmOzYpxR32+5gm0B/+9lf3tuYxS6E2Fkp7ZaH
-         CNr98EKkPM4glQLedBrXXxlgprlRTUnrsdCa8Ia6/NWMg/MTkgKcr9ITk34gxMEK+D
-         8M6XHbiI449Rw==
-Received: (nullmailer pid 4003553 invoked by uid 1000);
-        Fri, 11 Aug 2023 19:39:24 -0000
-Date:   Fri, 11 Aug 2023 13:39:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 02/15] of: property: Add fw_devlink support for
- msi-parent
-Message-ID: <20230811193924.GA3997669-robh@kernel.org>
-References: <20230802150018.327079-1-apatel@ventanamicro.com>
- <20230802150018.327079-3-apatel@ventanamicro.com>
+        with ESMTP id S230423AbjHKUqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 16:46:13 -0400
+X-Greylist: delayed 2078 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Aug 2023 13:46:11 PDT
+Received: from uvw.ixypsilon.net (uvw.ixypsilon.net [81.223.58.118])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB5B32706;
+        Fri, 11 Aug 2023 13:46:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=ixypsilon.net; s=20210903; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=uqx6rDb8lMrAoJhRENG6RTKx5+D5I6ScWaggeCDeSQA=; b=o1m9ZC1XiE7aZ9IizgMJJlCLJx
+        YsgqpnbKq+aODX69GmvhCq1GDXjHu5b+raVOUwG7ee38mYiGadquBPk+dI1PntkGMftMIraw+zxdg
+        i7Q1lNrxQpiei8Pfy8uZl7AwCQydaVs+9UBFD7NIf1mjn2uVrIWWErLN3RxR883d/ypB24BlgDGUO
+        9gkkxcixFc1bxWmsLAD7NIL9TRtk2DmtIHaXkE5tG2HdvXT4QUzxbJFtXljjSVuZtkkKNODg2IHzA
+        dfx4+Fr3BdD0Le40fO7Gq+gY7Y0M6mGihFVcTD/4afYvxLhY44POyWCD/54E0ez4dOUBeXSh5a68H
+        oSYhRFbQ==;
+Received: from [192.168.0.1] (helo=librem14.Hitronhub.home)
+        by uvw.ixypsilon.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <stefan.nagy@ixypsilon.net>)
+        id 1qUYTn-0000uL-GC; Fri, 11 Aug 2023 22:11:27 +0200
+From:   Stefan Nagy <stefan.nagy@ixypsilon.net>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Enable internal SPI flash for ROCK Pi 4A/B/C
+Date:   Fri, 11 Aug 2023 22:11:18 +0200
+Message-Id: <20230811201118.15066-1-stefan.nagy@ixypsilon.net>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230802150018.327079-3-apatel@ventanamicro.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam_score: -1.0
+X-Spam_bar: -
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 02, 2023 at 08:30:05PM +0530, Anup Patel wrote:
-> This allows fw_devlink to create device links between consumers of
-> a MSI and the supplier of the MSI.
-> 
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  drivers/of/property.c | 32 ++++++++++++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index ddc75cd50825..bc20535deed7 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1325,6 +1325,37 @@ static struct device_node *parse_interrupts(struct device_node *np,
->  	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
->  }
->  
-> +static struct device_node *parse_msi_parent(struct device_node *np,
-> +					    const char *prop_name, int index)
-> +{
-> +	struct of_phandle_args sup_args;
-> +	struct device_node *msi_np;
-> +
-> +	if (IS_ENABLED(CONFIG_SPARC))
-> +		return NULL;
-> +
-> +	if (strcmp(prop_name, "msi-parent"))
-> +		return NULL;
-> +
-> +	msi_np = of_parse_phandle(np, prop_name, 0);
-> +	if (msi_np) {
-> +		if (!of_property_read_bool(msi_np, "#msi-cells")) {
+The ROCK Pi 4A, ROCK Pi 4B and ROCK Pi 4C boards contain a nor-flash chip
+connected to spi1. Enable spi1 and add the device node.
 
-Use of_property_present() to check presence.
+This patch has been tested on ROCK Pi 4A.
 
-However, this check is wrong. #msi-cells is optional and assumed to be 0 
-if not present. There's another flavor of of_parse_phandle_with_args() 
-that allows specifying a default cell count, so I think you can get rid 
-of all this checking.
+Signed-off-by: Stefan Nagy <stefan.nagy@ixypsilon.net>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts | 10 ++++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts | 10 ++++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts | 10 ++++++++++
+ 3 files changed, 30 insertions(+)
 
-> +			if (index) {
-> +				of_node_put(msi_np);
-> +				return NULL;
-> +			}
-> +			return msi_np;
-> +		}
-> +		of_node_put(msi_np);
-> +	}
-> +
-> +	if (of_parse_phandle_with_args(np, prop_name, "#msi-cells", index,
-> +				       &sup_args))
-> +		return NULL;
-> +
-> +	return sup_args.np;
-> +}
-> +
->  static const struct supplier_bindings of_supplier_bindings[] = {
->  	{ .parse_prop = parse_clocks, },
->  	{ .parse_prop = parse_interconnects, },
-> @@ -1359,6 +1390,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
->  	{ .parse_prop = parse_regulators, },
->  	{ .parse_prop = parse_gpio, },
->  	{ .parse_prop = parse_gpios, },
-> +	{ .parse_prop = parse_msi_parent, },
->  	{}
->  };
->  
-> -- 
-> 2.34.1
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
+index 89f2af5e1..4ea4bec95 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
+@@ -11,3 +11,13 @@ / {
+ 	model = "Radxa ROCK Pi 4A";
+ 	compatible = "radxa,rockpi4a", "radxa,rockpi4", "rockchip,rk3399";
+ };
++
++&spi1 {
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+index 080654592..84b9d8b3d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+@@ -30,6 +30,16 @@ brcmf: wifi@1 {
+ 	};
+ };
+ 
++&spi1 {
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++	};
++};
++
+ &uart0 {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+index 4053ba726..39917f987 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+@@ -42,6 +42,16 @@ &sound {
+ 	hp-det-gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
+ };
+ 
++&spi1 {
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++	};
++};
++
+ &uart0 {
+ 	status = "okay";
+ 
+-- 
+2.30.2
+
