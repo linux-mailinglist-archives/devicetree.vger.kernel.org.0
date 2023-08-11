@@ -2,97 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 865B677937E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 17:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 616337793B2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 18:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236293AbjHKPtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 11:49:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48172 "EHLO
+        id S229835AbjHKQBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 12:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236596AbjHKPtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 11:49:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1972123;
-        Fri, 11 Aug 2023 08:49:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 25F4B67570;
-        Fri, 11 Aug 2023 15:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0EAEC433C7;
-        Fri, 11 Aug 2023 15:49:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691768947;
-        bh=HFSuChC49w6nabt+nxfBzErUssKeJ9LDoQh9jdgPbEU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DvzH50v1+E7Uu4vImDoYHqvF+GAWEChbMQhofNG0xvVf3y7feiK0o9efQclKPdEey
-         almszqXw7hvmZsgz+ZOtBZExFisKp0MAPqJ8FQsusxhEyIjM+1nLqde3odEW8TSX1A
-         VTN5O8bjvziywxBtBtB8lrQA0zx0+2WNZEXey5sLHOekckUjwaaMBllkURznGeKBkn
-         ri4rQcZtq9X1eA8Z6rSRKeqNWvJ3u2/r5UJzewAgbnXxphoIbGKPogfRZBnQvFFPvs
-         r5I523qPywsYbmUBG9vBdwVWmJ+aUcUMhjPdPocBiGbwWaYx8ZuWakX7jjxcTPCsxd
-         uHg2cbyxhShgQ==
-Received: (nullmailer pid 3520409 invoked by uid 1000);
-        Fri, 11 Aug 2023 15:49:03 -0000
-Date:   Fri, 11 Aug 2023 09:49:03 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        dri-devel@lists.freedesktop.org, netdev@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Eric Dumazet <edumazet@google.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-pm@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/6] dt-bindings: trivial-devices: Remove national,lm75
-Message-ID: <169176894187.3520330.14434038424194995552.robh@kernel.org>
-References: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com>
- <20230810144451.1459985-2-alexander.stein@ew.tq-group.com>
+        with ESMTP id S231371AbjHKQBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 12:01:06 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822C230F4
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 09:01:01 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-686f1240a22so2045089b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 09:01:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1691769661; x=1692374461;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=azPy6ZE0EPshKUByccxzWY+NkMutj3Uc2kXD5MseRzw=;
+        b=JuQ6m7Y8nAVgczhi1UvWAm+TPe3kk8ie5lRjYsI/q2Jb2Nq4ifnzGEX/hTF0nVNWVb
+         Ap7N1ZjuK/a+NEmuiSkUmB9q31FCS2dgptPexRVqog4JVngESZL3Bcqtv4TyKglIEIhJ
+         jCqtHLcWs/+uSdpTk6MeqIabpVBhMPnjZq6Nq0mzQ9jVM1EuTOYcZjm2zAI2M/q0Xnuk
+         V3ebh+APEUopa4+OYpId94SEujZ9QQJpJ/j+I6XpFWpz6x+a2CP2fUlaByKHM8lRVzQK
+         E9RXthYKLuorN/hrPHGlTbtJClEdShjKSBr0ct4jiuYacYL5frzRBYi5bi9bIpJGHMdH
+         hA6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691769661; x=1692374461;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=azPy6ZE0EPshKUByccxzWY+NkMutj3Uc2kXD5MseRzw=;
+        b=JyTMEHp+NvyLQOqTAop6a04x/l89Y9wMs0PfT1Rw5bTIHeChvtBRKakcejHuYuw/tr
+         j+GLKviiuMPYE9EsXRyRBhPKInfRmZ3fOB38iWHH/c1DbaUDJsYGkoC4Kw5Ex7RCNi3j
+         iyBOjECtC8ql9QYaGg5bWem6UmgrU35A5ZjG5kp7MgyDLWxJuwtzCoBidC71VOXEGZ0z
+         YrM3uQSPPp06hFJH8bRKF3X7PMA21YWW4tUWMh9b5E1nBbQ2COki98Y5Y/DStxLcIKu+
+         /IWwUZLfLKa2hefdPCPihyyZGcOPbz0OZb5lbTj4A+Q3xvwQ5wwPQdUUkWRPSblktKgc
+         +nbQ==
+X-Gm-Message-State: AOJu0Yy8hcLBi86mPgeqxMEHR3YHvF6KdNIEh9cHWfRUIKtUQhRq98zO
+        OGkB/BACm5RrDzAzxBba6oGWR/GZVlI5efVnL6HhrQ==
+X-Google-Smtp-Source: AGHT+IGmpjakQwuxG3fPOOeGkL/maZOE7MU7pvjEkW+cTOrpXMnuWaNo5Zr8qO5qAj4lnlG4tJCdT6j+uzhfrPKHP8U=
+X-Received: by 2002:a17:90a:f310:b0:268:300b:ee82 with SMTP id
+ ca16-20020a17090af31000b00268300bee82mr1900784pjb.19.1691769660873; Fri, 11
+ Aug 2023 09:01:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230810144451.1459985-2-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
+ <20230808-stand-cheddar-b76b0b7509a0@spud> <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
+ <20230808-esquire-epidemic-f9bd74ffde25@spud>
+In-Reply-To: <20230808-esquire-epidemic-f9bd74ffde25@spud>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+Date:   Fri, 11 Aug 2023 21:30:52 +0530
+Message-ID: <CABqG17jm938MaEeqS03WeryVWSRBS7Bqq2Vwq9SL4QOGqXU43A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On Thu, 10 Aug 2023 16:44:46 +0200, Alexander Stein wrote:
-> Starting with commit 3e37c9d48f7a ("dt-bindings: hwmon: Convert lm75
-> bindings to yaml") 'national,lm75' has it's own dedicated (YAML) binding.
-> If kept in this file device specific properties as 'vs-supply' are
-> considered excessive. Remove compatible here so it can be checked with
-> more specific binding.
-> arch/arm/boot/dts/nxp/imx/imx6q-mba6a.dtb: sensor@48: 'vs-supply' does not
-> match any of the regexes: 'pinctrl-[0-9]+'
->   From schema: Documentation/devicetree/bindings/trivial-devices.yaml
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 --
->  1 file changed, 2 deletions(-)
-> 
+On Tue, 8 Aug 2023 at 19:58, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
+> > On 8/8/23 04:46, Conor Dooley wrote:
+> > > On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
+> > > > From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> > > >
+> > > > The TDA38640 chip has different output control mechanisms depending on
+> > > > its mode of operation. When the chip is in SVID mode, only
+> > > > hardware-based output control is supported via ENABLE pin. However, when
+> > > > it operates in PMBus mode, software control works perfectly.
+> > > >
+> > > > To enable software control as a workaround in SVID mode, add the DT
+> > > > property 'infineon,en-svid-control'. This property will enable the
+> > > > workaround, which utilizes ENABLE pin polarity flipping for output when
+> > > > the chip is in SVID mode.
+> > >
+> > > Why do you need a custom property for this? How come it is not possible
+> > > to determine what bus you are on?
+> > >
+> >
+> > That is not the point. Yes, it can be detected if the control method is
+> > PMBus or SVID. However, in SVID mode, SVID is supposed to control the
+> > output, not PMBUs. This is bypassed by controlling the polarity of the
+> > (physical) output enable signal. We do _not_ want this enabled automatically
+> > in SVID mode. Its side effects on random boards using this chip are unknown.
+> > Thus, this needs a property which specifically enables this functionality
+> > for users who _really_ need to use it and (hopefully) know what they are
+> > doing.
+>
+> Hmm, reading this it makes a lot more sense why this is a property - I
+> guess I just struggled to understand the commit message here,
+> particularly what the benefit of using the workaround is. I'm still
+> having difficulty parsing the commit & property text though - its
+> unclear to me when you would need to use it - so I will stay out
+> of the way & let Rob or Krzysztof handle things.
 
-Applied, thanks!
+To provide context, my system employs a unique power sequence
+strategy utilizing a BMC (Baseboard Management Controller),
+rendering the reliance on the ENABLE pin unnecessary.
+In this configuration, the ENABLE pin is grounded in the hardware.
+While most regulators facilitate PMBus Operation for output control,
+the TDA38640 chip, when in SVID mode, is constrained by the
+ENABLE pin to align with Intel specifications.
+My communication with Infineon confirmed that the recommended
+approach is to invert the Enable Pin for my use case.
 
+Since this is not typically the use case for most setup & hence DT property
+is must for enabling the special case.
+
+For further insight into my setup's power sequence strategy, you can
+refer to the following link: https://github.com/9elements/pwrseqd
+
+I trust this clarifies any questions or uncertainties you may have had.
+
+Best Regards,
+Naresh
