@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C97778A49
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 11:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47777778A50
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 11:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbjHKJqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 05:46:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
+        id S231643AbjHKJte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 05:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233345AbjHKJqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 05:46:25 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBC12728;
-        Fri, 11 Aug 2023 02:46:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1691747184; x=1723283184;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GfM6LFRnkm8QU2AlvTqOJ4q6NoQlTqqbu9cz4ujRsCY=;
-  b=FpeTja50Wb8B9n9sghwl09hGSiRz8DiSVaTn0noE2VT+ZqcGFBCMs0KQ
-   9yhInJfgcq6fy3wXAOqwaZYrRx6IWchzUSka4l4dVtnOgPqnvy80Zi2Rq
-   MWxDqnmQKcXDeVpUKKQwqz7jswn/dycxGcF6PlHdEFHX5HryqvWY1+Tgb
-   U74qOWQ/DktElCGX6Qd3Ns3SFJR4VCWSDQBRiwaW3fXsYR6HmyWgNjOYZ
-   np54sZSq/VZmkh6hcjBAqn/8q8HyVRVHAESVVu1azhxwasfKfsqkhztPY
-   MySdrAGC7St8bzxFUBeb+fPdu4iK4UnmLtdcV267nPzq5udIxJE0GzPr9
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="369111748"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; 
-   d="scan'208";a="369111748"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2023 02:46:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="979184854"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; 
-   d="scan'208";a="979184854"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006.fm.intel.com with ESMTP; 11 Aug 2023 02:46:21 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qUOip-009A3Y-35;
-        Fri, 11 Aug 2023 12:46:19 +0300
-Date:   Fri, 11 Aug 2023 12:46:19 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc:     jic23@kernel.org, mazziesaccount@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 5/7] iio: accel: kionix-kx022a: Refactor driver and
- add chip_info structure
-Message-ID: <ZNYDa+Un5bl5y9vT@smile.fi.intel.com>
-References: <cover.1691607526.git.mehdi.djait.k@gmail.com>
- <8fb74f21bda4949a862bcb4bb1ed4f0acb135948.1691607526.git.mehdi.djait.k@gmail.com>
+        with ESMTP id S229657AbjHKJte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 05:49:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2421D272D;
+        Fri, 11 Aug 2023 02:49:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A886566DA3;
+        Fri, 11 Aug 2023 09:49:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1991C433C8;
+        Fri, 11 Aug 2023 09:49:29 +0000 (UTC)
+Message-ID: <9520cdcb-5262-f429-b7bc-35c4cda08c12@xs4all.nl>
+Date:   Fri, 11 Aug 2023 11:49:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8fb74f21bda4949a862bcb4bb1ed4f0acb135948.1691607526.git.mehdi.djait.k@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 3/3] media: exynos4-is: fimc-is: replace duplicate pmu
+ node with phandle
+Content-Language: en-US, nl
+To:     Andi Shyti <andi.shyti@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230807131256.254243-1-krzysztof.kozlowski@linaro.org>
+ <20230807131256.254243-3-krzysztof.kozlowski@linaro.org>
+ <20230807231320.svssge6uymw3jiho@intel.intel>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20230807231320.svssge6uymw3jiho@intel.intel>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 09, 2023 at 09:11:36PM +0200, Mehdi Djait wrote:
-> Add the chip_info structure to the driver's private data to hold all
-> the device specific infos.
-> Refactor the kx022a driver implementation to make it more generic and
-> extensible.
+Hi Krzysztof,
 
-...
+On 08/08/2023 01:13, Andi Shyti wrote:
+> Hi Krzysztof,
+> 
+> [...]
+> 
+>> +static void __iomem *fimc_is_get_pmu_regs(struct device *dev)
+>> +{
+>> +	struct device_node *node;
+>> +	void __iomem *regs;
+>> +
+>> +	node = of_parse_phandle(dev->of_node, "samsung,pmu-syscon", 0);
+>> +	if (!node) {
+>> +		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
+>> +		node = of_get_child_by_name(dev->of_node, "pmu");
+>> +		if (!node)
+>> +			return IOMEM_ERR_PTR(-ENODEV);
+> 
+> in my opinion this should be:
+> 
+> 		...
+> 		if (!node)
+> 			return IOMEM_ERR_PTR(-ENODEV);
+> 
+> 		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
+> 
+> Because if you don't have both "samsung,pmu-syscon and "pmu" then
+> the warning should not be printed and you need to return -ENODEV.
 
-> +	chip_info = device_get_match_data(&i2c->dev);
-> +	if (!chip_info) {
-> +		const struct i2c_device_id *id = i2c_client_get_device_id(i2c);
+I agree with Andi for this part.
 
-Missing blank line.
+The only time you want to see this message is if samsung,pmu-syscon is
+missing AND pmu is present. If both are missing, then just return ENODEV as
+it was before.
 
-> +		chip_info = (const struct kx022a_chip_info *)id->driver_data;
-> +		if (!chip_info)
-> +			return -EINVAL;
-> +	}
+> 
+> ... and... "*please* update your DTB", the user might get upset
+> and out of sheer spite, decides not to do it – just because! :)
 
-...
+I don't care about this bit. I guess it doesn't hurt to add 'please', but
+I accept it either way.
 
-> -	if (val > KX022A_FIFO_LENGTH)
-> -		val = KX022A_FIFO_LENGTH;
-> +	val = min_t(unsigned int, data->chip_info->fifo_length, val);
+Regards,
 
-min_t() is a beast. Please, use min() if no special requirement for
-min_t() here, otherwise explain why.
+	Hans
 
-...
-
-> +	data->fifo_buffer = kmalloc(data->chip_info->fifo_length *
-> +				    KX022A_FIFO_SAMPLES_SIZE_BYTES, GFP_KERNEL);
-
-kmalloc_array()
-
-> +	if (!data->fifo_buffer)
-> +		return -ENOMEM;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> 
+> Andi
+> 
+>> +	}
 
