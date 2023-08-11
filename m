@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4055C778637
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 05:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4228C77867C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 06:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbjHKDui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 23:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
+        id S229806AbjHKE0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 00:26:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbjHKDug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 23:50:36 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DE7082D70;
-        Thu, 10 Aug 2023 20:50:34 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8AxFvEIsNVkJ0YVAA--.45296S3;
-        Fri, 11 Aug 2023 11:50:32 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxniMGsNVkDExUAA--.38354S3;
-        Fri, 11 Aug 2023 11:50:32 +0800 (CST)
-Subject: Re: [PATCH v3 2/2] gpio: loongson: add firmware offset parse support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229568AbjHKE0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 00:26:09 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DDF2130;
+        Thu, 10 Aug 2023 21:26:03 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 0311B86053;
+        Fri, 11 Aug 2023 06:26:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1691727962;
+        bh=ySINd7zgYrKScIbj7DoBdQXuf/WKPQV09FEZXu774rA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kg4QZh7hM1+otYZOBZ/Nls6iQX//uxzFtYjO6SFk7J+614uAChgqN0rD0XOI8VTlT
+         1+4K/NVEmByhgf2Vx2V7pPK25tEwQJMv239l9Ngga1j2lPeyS/WWdXgMlQ30nWt1fd
+         GCKoxnGm2Bk+SiKGRv9KeGWEclkIbxhe4Xo4iaXONX95o5MF0nIVVUd/8YQWQl9Ny4
+         nCVkYVmMRx75nRlxKdzErLC6SMaJ9w8SMG9cD7w6190MQlV+PKKmLJsJ7P9pDH3qLT
+         TjShVYTlUM37Yr9I682yXwQ03TdL8c02g8N3M4TMLMQFQzqYQujRC1ZCKltct1ea9d
+         RUsdnPVVet06A==
+Message-ID: <120ca0a9-0e2f-bd87-8266-2a03e2865015@denx.de>
+Date:   Fri, 11 Aug 2023 05:47:03 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH] dt-bindings: mxsfb: Exclude i.MX8MQ from power-domains
+ requirement
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <guido.gunther@puri.sm>
+Cc:     David Heidelberg <david@ixit.cz>, Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
- <20230807074043.31288-3-zhuyinbo@loongson.cn>
- <CACRpkdZfx8BGHxj4OyS7HG9=mq5DrVHzHKhehxV1nfKwyMHpwQ@mail.gmail.com>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <768426b7-7192-8902-1d93-189a7fd64214@loongson.cn>
-Date:   Fri, 11 Aug 2023 11:50:30 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <CACRpkdZfx8BGHxj4OyS7HG9=mq5DrVHzHKhehxV1nfKwyMHpwQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+        Conor Dooley <conor+dt@kernel.org>,
+        Liu Ying <victor.liu@nxp.com>, kernel@puri.sm,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230730184120.94984-1-david@ixit.cz>
+ <ZMonFSqutQRqs61n@qwark.sigxcpu.org>
+ <20230810-embroider-seduce-ee4506e7608b@spud>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230810-embroider-seduce-ee4506e7608b@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxniMGsNVkDExUAA--.38354S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2023/8/10 下午4:27, Linus Walleij 写道:
-> Hi Yinbo,
-> 
-> thanks for your patch!
-> 
-> On Mon, Aug 7, 2023 at 9:41 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
-> 
->> Loongson GPIO controllers come in multiple variants that are compatible
->> except for certain register offset values.  Add support for device
->> properties allowing to specify them in ACPI or DT.
+On 8/10/23 21:30, Conor Dooley wrote:
+> On Wed, Aug 02, 2023 at 11:51:17AM +0200, Guido Günther wrote:
+>> Hi,
+>> On Sun, Jul 30, 2023 at 09:41:20PM +0300, David Heidelberg wrote:
+>>> i.MX8MQ uses as secondary compatible fsl,imx6sx-lcdif, which triggers
+>>> requirement of power-domains, thou it's not required.
+>>>
+>>> Fixes: f62678a77d58 ("dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL power-domains property")
+>>>
+>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>> ---
+>>>   .../devicetree/bindings/display/fsl,lcdif.yaml        | 11 +++++++++--
+>>>   1 file changed, 9 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> index fc11ab5fc465..2d868276b0f9 100644
+>>> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> @@ -129,8 +129,15 @@ allOf:
+>>>                 - fsl,imx8mp-lcdif
+>>>                 - fsl,imx93-lcdif
+>>>       then:
+>>> -      required:
+>>> -        - power-domains
+>>> +      if:
+>>> +        properties:
+>>> +          compatible:
+>>> +            not:
+>>> +              contains:
+>>> +                const: fsl,imx8mq-lcdif
+>>> +      then:
+>>> +        required:
+>>> +          - power-domains
 >>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> We currently enable the mipi power domain for the mipi dphy and nwl
+>> bridge only but not for LCDIF itself assuming it's not needed (as there's
+>> other outputs LCDIF can drive). I *think* this is correct but maybe
+>> Marek or Liu can confirm?
 > 
-> (...)
->> @@ -26,6 +26,7 @@ struct loongson_gpio_chip_data {
->>          unsigned int            conf_offset;
->>          unsigned int            out_offset;
->>          unsigned int            in_offset;
->> +       unsigned int            inten_offset;
-> 
-> Consider just changing all of these from unsigned int to u32.
+> I'm happy to Ack this, but I've been sitting on it waiting to see if
+> Marek or Liu popped up..
 
+I don't see anything which would resemble power domains like on 
+MX8MM/N/P on the MQ MXSFB, there are such domains for the VPU and DCSS, 
+but not MXSFB. So
 
-okay, I got it.
-
-> 
-> (...)
->> +       if (device_property_read_u32(dev, "loongson,gpio-conf-offset", (u32 *)&d->conf_offset)
->> +           || device_property_read_u32(dev, "loongson,gpio-in-offset", (u32 *)&d->in_offset)
->> +           || device_property_read_u32(dev, "loongson,gpio-out-offset", (u32 *)&d->out_offset)
->> +           || device_property_read_u32(dev, "loongson,gpio-ctrl-mode", (u32 *)&d->mode))
-> 
-> Because then you can get rid of this annoying forest of cast.
-
-
-Change offset to u32 and here still need use a (u32 *) cast, because the
-chip_data is const type so &chip_data->offset will be (const u32 *) type
-and need a (u32 *) cast.
-
-> 
-> I'm fine with doing this change in this patch without a need for a separate
-> refactoring, as it's just a contained driver and clearly just about typing.
-
-
-okay, I got it.
-
-Thanks,
-Yinbo.
-
-
+Reviewed-by: Marek Vasut <marex@denx.de>
