@@ -2,107 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26A56778677
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 06:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39A43778695
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 06:38:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbjHKEY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 00:24:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57980 "EHLO
+        id S229793AbjHKEin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 00:38:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbjHKEY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 00:24:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E983213B;
-        Thu, 10 Aug 2023 21:24:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E5D9762C26;
-        Fri, 11 Aug 2023 04:24:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2C27C433C7;
-        Fri, 11 Aug 2023 04:24:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691727865;
-        bh=tFTch+Vt3hmXVV5W6NxEILrRRxKFsve4GjiYPL3bFxI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tDwSTMykeWxpIGLeOu3IiYkMhslf3W0y9Wd7xmQudpL+OJX6C2GX3kZkJzcIPO0AQ
-         Bh9FzaJP6YfG6qeTg3ulmo0/+YSn8TQ4CJSlv44kV7jKQVjZnpxZoEbawJ83Ns+sD+
-         s+eSVrjCTmW+8Ais4F+9lsn1QSbgeRvh9HMLNdNXu3osjyDo2T4OPY7GMsIFmNE9V6
-         OBaHWJ6EEBKvhFqyHprATLQeyixBG6wAYb8j9pnQvm2UOhjiUGH519JqOlBKseeRjm
-         tpu7AufenVwScWolHFut7isQfj5tTE2TGkA7Bj4iwJ4gQoufZ5ZFcX1NnKnxJYoH50
-         zk8bxUwLkhfbQ==
-Date:   Thu, 10 Aug 2023 21:24:23 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Kamlesh Gurudasani <kamlesh@ti.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S229697AbjHKEim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 00:38:42 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423F8271B;
+        Thu, 10 Aug 2023 21:38:42 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37B4cKS3123986;
+        Thu, 10 Aug 2023 23:38:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691728701;
+        bh=QQm0EQ6zFCgMMob+YHHeBHIl+YEMa/25PBKmi4nAeDk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=hu3dMsbXcXPtC6CNQtTWv9ym/Xpm5Imh4r55PpJRd4qLr9AJkdPXUU/NnySMzsZtu
+         Kf6IdNrErgwYuMYw0u2L1yVnzXO8jPAQe6a8KF5yFyVdBDm6KyFjSlE9tjM5R/0GMc
+         YvwiFErbTCvWw90Hwffngw7UZ1NtVIuYlqoZ2bbs=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37B4cKK2075718
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Aug 2023 23:38:20 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Aug 2023 23:38:20 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Aug 2023 23:38:20 -0500
+Received: from [172.24.227.94] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37B4cHjr091629;
+        Thu, 10 Aug 2023 23:38:18 -0500
+Message-ID: <20f77050-dc12-5240-0105-f27c97e5ed0a@ti.com>
+Date:   Fri, 11 Aug 2023 10:08:17 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] dt-bindings: dma: ti: k3-bcdma: Describe cfg register
+ regions
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 2/6] crypto: crc64 - add crc64-iso framework
-Message-ID: <20230811042423.GA1295@sol.localdomain>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230719-mcrc-upstream-v2-2-4152b987e4c2@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230719-mcrc-upstream-v2-2-4152b987e4c2@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230810174356.3322583-1-vigneshr@ti.com>
+ <20230810174356.3322583-2-vigneshr@ti.com>
+ <20230810-prelaw-payback-9388222dd6d3@spud>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20230810-prelaw-payback-9388222dd6d3@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 11, 2023 at 12:58:49AM +0530, Kamlesh Gurudasani wrote:
-> diff --git a/lib/crc64-iso.c b/lib/crc64-iso.c
-> new file mode 100644
-> index 000000000000..d6e803124fa0
-[...]
-> +u64 crc64_iso_update(u64 crc, const unsigned char *buffer, size_t len)
-> +{
-> +	struct {
-> +		struct shash_desc shash;
-> +		u64 crc;
-> +	} desc;
-> +	int err;
-> +
-> +	if (static_branch_unlikely(&crc64_iso_fallback))
-> +		return crc64_iso_generic(crc, buffer, len);
-> +
-> +	rcu_read_lock();
-> +	desc.shash.tfm = rcu_dereference(crc64_iso_tfm);
-> +	desc.crc = crc;
-> +	err = crypto_shash_update(&desc.shash, buffer, len);
-> +	rcu_read_unlock();
-> +
-> +	WARN_ON_ONCE(err);
-> +
-> +	return desc.crc;
-> +}
-> +EXPORT_SYMBOL_GPL(crc64_iso_update);
-> +
-> +u64 crc64_iso(const unsigned char *buffer, size_t len)
-> +{
-> +	return crc64_iso_update(0, buffer, len);
-> +}
-> +EXPORT_SYMBOL_GPL(crc64_iso);
 
-These functions are never called.
 
-Why are you trying to add unused code to the kernel?
+On 11/08/23 00:05, Conor Dooley wrote:
+> On Thu, Aug 10, 2023 at 11:13:53PM +0530, Vignesh Raghavendra wrote:
+>> Block copy DMA(BCDMA)module on K3 SoCs have ring cfg, TX and RX
+>> channel cfg register regions which are usually configured by a Device
+>> Management firmware. But certain entities such as bootloader (like
+>> U-Boot) may have to access them directly. Describe this region in the
+>> binding documentation for completeness of module description.
+>>
+>> Keep the binding compatible with existing DTS files by requiring first
+>> five regions to be present at least.
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 25 +++++++++++++------
+>>  1 file changed, 17 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> index 4ca300a42a99..d166e284532b 100644
+>> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> @@ -37,11 +37,11 @@ properties:
+>>  
+>>    reg:
+>>      minItems: 3
+>> -    maxItems: 5
+>> +    maxItems: 8
+> 
+> How come none of these reg entries have a description? What
+> differentiates a "gcfg" from a "cfg" for example?
+> 
 
-- Eric
+Ok, I will a patch to describe the regions first before adding new ones.
+
+>>  
+>>    reg-names:
+>>      minItems: 3
+>> -    maxItems: 5
+>> +    maxItems: 8
+>>  
+>>    "#dma-cells":
+>>      const: 3
+>> @@ -161,14 +161,19 @@ allOf:
+>>        properties:
+>>          reg:
+>>            minItems: 5
+>> +          maxItems: 8
+>>  
+>>          reg-names:
+>> +          minItems: 5
+>>            items:
+>>              - const: gcfg
+>>              - const: bchanrt
+>>              - const: rchanrt
+>>              - const: tchanrt
+>>              - const: ringrt
+>> +            - const: cfg
+>> +            - const: tchan
+>> +            - const: rchan
+>>  
+>>        required:
+>>          - ti,sci-rm-range-bchan
+>> @@ -216,12 +221,16 @@ examples:
+>>              main_bcdma: dma-controller@485c0100 {
+>>                  compatible = "ti,am64-dmss-bcdma";
+>>  
+>> -                reg = <0x0 0x485c0100 0x0 0x100>,
+>> -                      <0x0 0x4c000000 0x0 0x20000>,
+>> -                      <0x0 0x4a820000 0x0 0x20000>,
+>> -                      <0x0 0x4aa40000 0x0 0x20000>,
+>> -                      <0x0 0x4bc00000 0x0 0x100000>;
+>> -                reg-names = "gcfg", "bchanrt", "rchanrt", "tchanrt", "ringrt";
+>> +                reg = <0x00 0x485c0100 0x00 0x100>,
+> 
+> Why have you added extra zeros? (0x00)
+
+Sorry, copy paste error, was trying to copy example from real DT that
+use 0x00. Will fix. Thanks!
+
+> 
+> Thanks,
+> Conor.
+> 
+>> +                      <0x00 0x4c000000 0x00 0x20000>,
+>> +                      <0x00 0x4a820000 0x00 0x20000>,
+>> +                      <0x00 0x4aa40000 0x00 0x20000>,
+>> +                      <0x00 0x4bc00000 0x00 0x100000>,
+>> +                      <0x00 0x48600000 0x00 0x8000>,
+>> +                      <0x00 0x484a4000 0x00 0x2000>,
+>> +                      <0x00 0x484c2000 0x00 0x2000>;
+>> +                reg-names = "gcfg", "bchanrt", "rchanrt", "tchanrt", "ringrt",
+>> +                            "cfg", "tchan", "rchan";
+>>                  msi-parent = <&inta_main_dmss>;
+>>                  #dma-cells = <3>;
+>>  
+>> -- 
+>> 2.41.0
+>>
+
+-- 
+Regards
+Vignesh
