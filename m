@@ -2,176 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 098887797A7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8987797C0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236535AbjHKTVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 15:21:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
+        id S231928AbjHKT1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 15:27:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236356AbjHKTU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:20:57 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B6030F5;
-        Fri, 11 Aug 2023 12:20:54 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BJKkdl076713;
-        Fri, 11 Aug 2023 14:20:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691781646;
-        bh=NMZJFqRptjOGyYxfyMicO73PRliWXF8UGL1ScHO5ztg=;
-        h=From:To:Subject:Date:In-Reply-To:References;
-        b=wl8j6LkkSvqbDMgGkJaSrMeETyrRm7OFTl1VdeDKKungKNADXFLoZ8DwfFZddmKfv
-         3uHwtQU7w5aaRq/cO+RQsewa1uL4RmriSHKxvpC4DnA1+hSVQza/0PGy5QUNyYas1t
-         2H2AVfwHGPYGK5f0AdovlaXHAK4wxk214aaEBc2A=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BJKkpm088342
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 14:20:46 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 14:20:46 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 14:20:45 -0500
-Received: from TI.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BJKUG0017018;
-        Fri, 11 Aug 2023 14:20:42 -0500
-From:   Apurva Nandan <a-nandan@ti.com>
-To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236088AbjHKT1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:27:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D0330DB;
+        Fri, 11 Aug 2023 12:27:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A4F3567963;
+        Fri, 11 Aug 2023 19:27:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A385C433C8;
+        Fri, 11 Aug 2023 19:27:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691782069;
+        bh=DobAbm1IHae1StSaGpB4TPZBLLSgCPyIvioYYdeqsmU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VpwXSIe7nulyV9vgDfTveSjjWq2qTS0ZtuZ/N1hA2TEiXx0bAPBWvKm6At3Iy4PVC
+         WnmhTBqNo6ittuaRwmcBriqG8eUTPMng2xDoYwYKO17NCphwFLHVjlU67HvoQufPJy
+         OxYYpCHj1bNQWT2eFZBu1Nq0pDY00uI+snsKZHhQWGKbcHxzPmUBSSClXjMj/82ubN
+         CUOjckWF+rNK16TEOXNeZxngfxM6UrA1ocymhZlo6qDLpeusQFekt1eKzfD6Kiegyh
+         n7+0oIhDqc6GxhASIj150LhCeu6ALNk6Du4F2EDLJl/ElPM6PcY0g+MN53v67+rQQE
+         6EqmuqNfAmu2Q==
+Received: (nullmailer pid 3990588 invoked by uid 1000);
+        Fri, 11 Aug 2023 19:27:47 -0000
+Date:   Fri, 11 Aug 2023 13:27:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Raphael Gallais-Pou <rgallaispou@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>,
-        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>
-Subject: [PATCH v5 3/3] arm64: dts: ti: k3-am69-sk: Add phase tags marking
-Date:   Sat, 12 Aug 2023 00:50:30 +0530
-Message-ID: <20230811192030.3480616-4-a-nandan@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230811192030.3480616-1-a-nandan@ti.com>
-References: <20230811192030.3480616-1-a-nandan@ti.com>
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?iso-8859-1?Q?Rapha=EBl?= Gallais-Pou 
+        <raphael.gallais.pou@gmail.com>
+Subject: Re: [PATCH] dt-bindings: phy: st: convert phy-stih407-usb to DT
+ schema
+Message-ID: <20230811192747.GA3978164-robh@kernel.org>
+References: <20230801205510.15713-1-rgallaispou@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230801205510.15713-1-rgallaispou@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-bootph-all as phase tag was added to dt-schema
-(dtschema/schemas/bootph.yaml) to cover U-Boot challenges with DT.
-That's why add it also to Linux to be aligned with bootloader requirement.
+On Tue, Aug 01, 2023 at 10:55:10PM +0200, Raphael Gallais-Pou wrote:
+> From: Raphaël Gallais-Pou <raphael.gallais.pou@gmail.com>
+> 
+> Convert the st,stih407-usb2-phy binding to DT schema format.
+> 
+> Signed-off-by: Raphaël Gallais-Pou <raphael.gallais.pou@gmail.com>
+> ---
+>  .../bindings/phy/phy-stih407-usb.txt          | 24 -------
+>  .../bindings/phy/st,stih407-usb2-phy.yaml     | 63 +++++++++++++++++++
+>  2 files changed, 63 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt b/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+> deleted file mode 100644
+> index 35f03df00130..000000000000
+> --- a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -ST STiH407 USB PHY controller
+> -
+> -This file documents the dt bindings for the usb picoPHY driver which is the PHY for both USB2 and USB3
+> -host controllers (when controlling usb2/1.1 devices) available on STiH407 SoC family from STMicroelectronics.
+> -
+> -Required properties:
+> -- compatible		: should be "st,stih407-usb2-phy"
+> -- st,syscfg		: phandle of sysconfig bank plus integer array containing phyparam and phyctrl register offsets
+> -- resets		: list of phandle and reset specifier pairs. There should be two entries, one
+> -			  for the whole phy and one for the port
+> -- reset-names		: list of reset signal names. Should be "global" and "port"
+> -See: Documentation/devicetree/bindings/reset/st,stih407-powerdown.yaml
+> -See: Documentation/devicetree/bindings/reset/reset.txt
+> -
+> -Example:
+> -
+> -usb2_picophy0: usbpicophy@f8 {
+> -	compatible	= "st,stih407-usb2-phy";
+> -	#phy-cells	= <0>;
+> -	st,syscfg	= <&syscfg_core 0x100 0xf4>;
+> -	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
+> -			  <&picophyreset STIH407_PICOPHY0_RESET>;
+> -	reset-names	= "global", "port";
+> -};
+> diff --git a/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+> new file mode 100644
+> index 000000000000..1f66ceddbf81
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/st,stih407-usb2-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STiH407 USB PHY controller
+> +
+> +maintainers:
+> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+> +
+> +description:
+> +  The USB picoPHY driver is the PHY for both USB2 and USB3 host controllers
+> +  (when controlling usb2/1.1 devices) available on STiH407 SoC family from
+> +  STMicroelectronics.
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stih407-usb2-phy
+> +
+> +  st,syscfg:
+> +    description: Phandle to the syscfg bank
+> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
 
-wkup_i2c0, mcu_uart0, main_uart8, main_sdhci0 and main_sdhci1 are required
-for bootloader operation on TI K3 AM69-SK EVM. These IPs along with
-pinmuxes need to be marked for all bootloader phases, hence add bootph-all
-to these nodes in kernel dts.
+Drop quotes
 
-Signed-off-by: Apurva Nandan <a-nandan@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+The correct type is 'phandle-array' which is really a matrix, so you 
+need:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index d282c2c633c1..06993709111e 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -110,7 +110,9 @@ vdd_sd_dv: regulator-tlv71033 {
- };
- 
- &main_pmx0 {
-+	bootph-all;
- 	main_uart8_pins_default: main-uart8-default-pins {
-+		bootph-all;
- 		pinctrl-single,pins = <
- 			J784S4_IOPAD(0x0d0, PIN_INPUT, 11) /* (AP38) SPI0_CS1.UART8_RXD */
- 			J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
-@@ -125,6 +127,7 @@ J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
- 	};
- 
- 	main_mmc1_pins_default: main-mmc1-default-pins {
-+		bootph-all;
- 		pinctrl-single,pins = <
- 			J784S4_IOPAD(0x104, PIN_INPUT, 0) /* (AB38) MMC1_CLK */
- 			J784S4_IOPAD(0x108, PIN_INPUT, 0) /* (AB36) MMC1_CMD */
-@@ -164,7 +167,9 @@ J784S4_IOPAD(0x004, PIN_INPUT, 7) /* (AG36) MCAN12_TX.GPIO0_1 */
- };
- 
- &wkup_pmx2 {
-+	bootph-all;
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
-+		bootph-all;
- 		pinctrl-single,pins = <
- 			J721S2_WKUP_IOPAD(0x070, PIN_INPUT, 0) /* (L37) WKUP_GPIO0_6.WKUP_UART0_CTSn */
- 			J721S2_WKUP_IOPAD(0x074, PIN_INPUT, 0) /* (L36) WKUP_GPIO0_7.WKUP_UART0_RTSn */
-@@ -174,6 +179,7 @@ J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (K34) WKUP_UART0_TXD */
- 	};
- 
- 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		bootph-all;
- 		pinctrl-single,pins = <
- 			J721S2_WKUP_IOPAD(0x98, PIN_INPUT, 0) /* (N33) WKUP_I2C0_SCL */
- 			J721S2_WKUP_IOPAD(0x9c, PIN_INPUT, 0) /* (N35) WKUP_I2C0_SDA */
-@@ -181,6 +187,7 @@ J721S2_WKUP_IOPAD(0x9c, PIN_INPUT, 0) /* (N35) WKUP_I2C0_SDA */
- 	};
- 
- 	mcu_uart0_pins_default: mcu-uart0-default-pins {
-+		bootph-all;
- 		pinctrl-single,pins = <
- 			J784S4_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (K38) WKUP_GPIO0_13.MCU_UART0_RXD */
- 			J784S4_WKUP_IOPAD(0x088, PIN_OUTPUT, 0) /* (J37) WKUP_GPIO0_12.MCU_UART0_TXD */
-@@ -249,6 +256,7 @@ &wkup_uart0 {
- };
- 
- &wkup_i2c0 {
-+	bootph-all;
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_i2c0_pins_default>;
-@@ -268,6 +276,7 @@ &wkup_gpio0 {
- };
- 
- &mcu_uart0 {
-+	bootph-all;
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_uart0_pins_default>;
-@@ -281,6 +290,7 @@ &mcu_i2c0 {
- };
- 
- &main_uart8 {
-+	bootph-all;
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_uart8_pins_default>;
-@@ -307,6 +317,7 @@ exp1: gpio@21 {
- };
- 
- &main_sdhci0 {
-+	bootph-all;
- 	/* eMMC */
- 	status = "okay";
- 	non-removable;
-@@ -315,6 +326,7 @@ &main_sdhci0 {
- };
- 
- &main_sdhci1 {
-+	bootph-all;
- 	/* SD card */
- 	status = "okay";
- 	pinctrl-0 = <&main_mmc1_pins_default>;
--- 
-2.34.1
+items:
+  - items: 
+      - description: ...
+      - description: ...
+      - description: ...
 
+> +    items:
+> +      - description: phandle to syscfg
+> +      - description: phyparam register offset
+> +      - description: phyctrl register offset
+> +
+> +  resets:
+> +    items:
+> +      - description: Phandle and reset specifier pair for the whole phy.
+> +      - description: Phandle and reset specifier pair for the port.
+> +
+> +  reset-names:
+> +    description: List of reset signal names.
+> +    items:
+> +      - const: "global"
+> +      - const: "port"
+
+Drop quotes
+
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - st,syscfg
+> +  - resets
+> +  - reset-names
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/reset/stih407-resets.h>
+> +    usb2_picophy0: usbpicophy {
+> +    	compatible	= "st,stih407-usb2-phy";
+> +    	#phy-cells	= <0>;
+> +    	st,syscfg	= <&syscfg_core 0x100 0xf4>;
+> +    	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
+> +    			  <&picophyreset STIH407_PICOPHY0_RESET>;
+> +    	reset-names	= "global", "port";
+
+Mixed spaces and tabs.
+
+> +    };
+> +...
+> -- 
+> 2.41.0
+> 
