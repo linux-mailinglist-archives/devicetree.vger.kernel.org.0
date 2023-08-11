@@ -2,132 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1624C779ABB
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 00:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F994779AC6
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 00:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234935AbjHKWdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 18:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46930 "EHLO
+        id S236131AbjHKWlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 18:41:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234007AbjHKWdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 18:33:00 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0297F19AE;
-        Fri, 11 Aug 2023 15:32:59 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BMWYuA116871;
-        Fri, 11 Aug 2023 17:32:34 -0500
+        with ESMTP id S236082AbjHKWk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 18:40:59 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 055D91FED;
+        Fri, 11 Aug 2023 15:40:58 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BMenRS112913;
+        Fri, 11 Aug 2023 17:40:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691793154;
-        bh=bLmbpGstIfooH4D7eoLNz0oRh87B0x3sFuCo6JlGWss=;
+        s=ti-com-17Q1; t=1691793649;
+        bh=E+li038v80M5x83ozknZ/GExvphowmHPkqb5PSWrtHI=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=LIxvU1ESi5zxVWoMhRztsnWvK7ealOLN/QmfLKSv7alZWUwWEgaKie54jhYoJ/nwT
-         iGdhZfyaP5cvVDVyf4vcVK/YGd6af24BNrWl/jShrH6tK7nSKtHqSGOyFdwxGI8mRM
-         iAjt7jq7/N3T9m7o5mbNpXhYifw8v+ae+cXwQvbc=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BMWXs1000609
+        b=zEdVXk59iw/Dp4XsctwdDaj8RXC33co+RuvXoU65qBbXOYoZGS8VhEbepOHF7LCGv
+         Me4MZwSoWJlHtiGd9RUxod5k+Q4uimxK/g/SfQRw3KAbYcImJadBOGixosL7C0FAzM
+         2pgKw3jySMDWeKePbPPMsENWpY6eWkHzd0O1SQjs=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BMenMW044370
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 17:32:33 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 17:32:33 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+        Fri, 11 Aug 2023 17:40:49 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
  (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Aug 2023 17:40:47 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 17:32:33 -0500
+ Frontend Transport; Fri, 11 Aug 2023 17:40:47 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BMWXi4105431;
-        Fri, 11 Aug 2023 17:32:33 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BMelCt101044;
+        Fri, 11 Aug 2023 17:40:47 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Vignesh Raghavendra <vigneshr@ti.com>,
         Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>,
-        Aradhya Bhatia <a-bhatia1@ti.com>
-CC:     Nishanth Menon <nm@ti.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
-Date:   Fri, 11 Aug 2023 17:32:32 -0500
-Message-ID: <169179274928.1340235.2380026214492639228.b4-ty@ti.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Udit Kumar <u-kumar1@ti.com>, Hari Nagalla <hnagalla@ti.com>,
+        Dasnavis Sabiya <sabiya.d@mistralsolutions.com>,
+        Apurva Nandan <a-nandan@ti.com>
+CC:     Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH v5 0/3] arm64: dts: ti: k3-j784s4: Add phase tags marking
+Date:   Fri, 11 Aug 2023 17:40:44 -0500
+Message-ID: <169179345464.1343033.3077217105589722982.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230809084559.17322-1-a-bhatia1@ti.com>
-References: <20230809084559.17322-1-a-bhatia1@ti.com>
+In-Reply-To: <20230811192030.3480616-1-a-nandan@ti.com>
+References: <20230811192030.3480616-1-a-nandan@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aradhya Bhatia,
+Hi Apurva Nandan,
 
-On Wed, 09 Aug 2023 14:15:53 +0530, Aradhya Bhatia wrote:
-> The patch series adds DT nodes for Display SubSystem (DSS) and other
-> peripherals required to enable the HDMI audio and video on the AM625 SK,
-> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
-> monitor can be connected to the boards for the audio/video outputs.
+On Sat, 12 Aug 2023 00:50:27 +0530, Apurva Nandan wrote:
+> bootph-all as phase tag was added to dt-schema
+> (dtschema/schemas/bootph.yaml) to cover U-Boot challenges with DT.
+> This series adds it to Linux to be aligned with bootloader requirement
+> for TI K3 J784S4 EVM and TI K3 AM69-SK EVM.
 > 
-> The series adding the compatible and basic driver support[0] is in the
-> drm-misc-next and linux-next queues and is expected to be in the
-> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
-> that introduces debounce select mux macros. This patch too is not in
-> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
-> linux-next.
+> This series will be ported to the k3-j784s4 u-boot support patch
+> series for syncing, and was requested in its review process:
+> https://lore.kernel.org/u-boot/20230321155227.GV8135@bill-the-cat/
 > 
 > [...]
 
-NOTE: This series creates checkpatch warnings against v6.5-rc1 and
-complains that it cannot find ti,am625-dss which has been merged in
-drm tree for next. This is clean in linux-next for a few weeks now.
-Given the number of people who would really like to see it in v6.6-rc1
-to keep the display support working in the tree without carried
-patches and work on next set of features on display and graphics, and
-given the real low risk of this NOT making to linus-master, we are
-making an specific exception here for this time around. So, please
-keep a watch on drm-next and if for any reason the support is dropped
-going to linus's tre in the merge window or before, let this chain
-know with appropriate maintainers so that we can take corrective
-actions. PS: Thanks Arnd for taking time to give me some private
-guidance. Fingers crossed that this will go through smooth.
+Btw, Udit had given his reviewed by Reviewed-by for the series [2] and
+I see that you have incorporated the requested change. I have applied
+his Reviewed-by as a result (just a reminder for the developer to be
+responsible for carrying tags from previous versions as appropriate).
 
+I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-I have applied the following to branch ti-k3-dts-next on [1]:
-
-[1/6] arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
-      commit: 73387da70f9c26b6fba4f62371d013cce14663d9
-[2/6] arm64: dts: ti: k3-am62-main: Add node for DSS
-      commit: 8ccc1073c7bb2ae9654529a75f85ef23b7215c9b
-[3/6] arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
-      commit: db6e8237cf5435e972ea47632e5d8ac3e356f210
-[4/6] arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
-      commit: b50ccab9e07ca19d49a0d629dfbe184e6975be22
-[5/6] arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
-      commit: 1f7226a5e52cb8b90771cefc29077f9ce13a3c90
-
-I have applied the following to branch ti-k3-config-next on [1]:
-
-[6/6] arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
-      commit: d5c988b43746de250bed33c17116e879f032ff12
+[1/3] arm64: dts: ti: k3-j784s4: Add phase tags marking
+      commit: 3a4086985696295577c20ae558f99d974067e316
+[2/3] arm64: dts: ti: k3-j784s4-evm: Add phase tags marking
+      commit: c74d8de338a553da7b0084bab2554b042375625e
+[3/3] arm64: dts: ti: k3-am69-sk: Add phase tags marking
+      commit: 68501d3cc16a7828b05ee24bdb037f697e207854
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
@@ -146,6 +117,7 @@ Please add any relevant lists and maintainers to the CCs when replying
 to this mail.
 
 [1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+[2] https://lore.kernel.org/all/f41102bb-134a-50cc-bb98-7950260c7aa6@ti.com/
 -- 
 Regards,
 Nishanth Menon
