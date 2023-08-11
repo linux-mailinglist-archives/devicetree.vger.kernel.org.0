@@ -2,148 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AC2F77864C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 05:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4055C778637
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 05:50:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233325AbjHKD4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Aug 2023 23:56:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47180 "EHLO
+        id S229576AbjHKDui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Aug 2023 23:50:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjHKD4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 23:56:44 -0400
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD8410DE;
-        Thu, 10 Aug 2023 20:56:43 -0700 (PDT)
-Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.57])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4RMVLl3L7Qz1L91w;
-        Fri, 11 Aug 2023 11:55:27 +0800 (CST)
-Received: from huawei.com (10.175.112.208) by kwepemm600013.china.huawei.com
- (7.193.23.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 11 Aug
- 2023 11:56:40 +0800
-From:   Guo Mengqi <guomengqi3@huawei.com>
-To:     <vkoul@kernel.org>, <dmaengine@vger.kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <guomengqi3@huawei.com>, <xuqiang36@huawei.com>
-Subject: [PATCH 2/2] dt-bindings: dma: hisi: Add bindings for Hisi Ascend sdma
-Date:   Fri, 11 Aug 2023 11:48:22 +0800
-Message-ID: <20230811034822.107229-3-guomengqi3@huawei.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230811034822.107229-1-guomengqi3@huawei.com>
-References: <20230811034822.107229-1-guomengqi3@huawei.com>
+        with ESMTP id S229592AbjHKDug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Aug 2023 23:50:36 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DE7082D70;
+        Thu, 10 Aug 2023 20:50:34 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8AxFvEIsNVkJ0YVAA--.45296S3;
+        Fri, 11 Aug 2023 11:50:32 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxniMGsNVkDExUAA--.38354S3;
+        Fri, 11 Aug 2023 11:50:32 +0800 (CST)
+Subject: Re: [PATCH v3 2/2] gpio: loongson: add firmware offset parse support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
+ <20230807074043.31288-3-zhuyinbo@loongson.cn>
+ <CACRpkdZfx8BGHxj4OyS7HG9=mq5DrVHzHKhehxV1nfKwyMHpwQ@mail.gmail.com>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <768426b7-7192-8902-1d93-189a7fd64214@loongson.cn>
+Date:   Fri, 11 Aug 2023 11:50:30 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.175.112.208]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- kwepemm600013.china.huawei.com (7.193.23.68)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CACRpkdZfx8BGHxj4OyS7HG9=mq5DrVHzHKhehxV1nfKwyMHpwQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxniMGsNVkDExUAA--.38354S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device-tree binding documentation for the Hisi Ascend sdma
-controller.
 
-Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
----
- .../bindings/dma/hisi,ascend-sdma.yaml        | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
 
-diff --git a/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
-new file mode 100644
-index 000000000000..beb2b3597f4d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/hisi,ascend-sdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HISI Ascend System DMA (SDMA) controller
-+
-+description: |
-+  The Ascend SDMA controller is used for transferring data
-+  in system memory. It utilizes IOMMU SVA feature and accepts
-+  virtual address from user process.
-+
-+maintainers:
-+  - Guo Mengqi <guomengqi3@huawei.com>
-+
-+allOf:
-+  - $ref: dma-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,sdma
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    const: 1
-+    description:
-+      Clients specify a single cell with channel number.
-+
-+  ascend_sdma_channel_map:
-+    description: |
-+      bitmap, each bit stands for a channel that is allowed to
-+      use by this system. Maximum 32 bits.
-+    maximum: 0xffffffff
-+
-+  ascend_sdma_channel_iomem_size:
-+    description: |
-+      depends on different platforms to be released. There are
-+      currently two possible values. A default value is used if
-+      the property is not set.
-+      - enum:
-+        - 0x400
-+        - 0x1000
-+
-+  iommus:
-+    maxItems: 1
-+
-+  pasid-num-bits:
-+    description: |
-+      sdma utilizes iommu sva feature to transfer user space data.
-+      It act as a basic dma controller if not bound to user space.
-+    const: 0x10
-+
-+  dma-coherent: true
-+
-+  dma-can-stall: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - ascend_sdma_channel_map
-+  - '#dma-cells'
-+  - iommus
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sdma: dma-controller@880E0000 {
-+      compatible = "hisilicon,sdma";
-+        reg = <0x880e0000 0x10000>;
-+        ascend_sdma_channel_map = <0xff00>;
-+        iommus = <&smmu 0x7f46>;
-+        pasid-num-bits = <0x10>;
-+        dma-coherent;
-+        dma-can-stall;
-+        #dma-cells = <1>;
-+    };
-+
-+...
--- 
-2.17.1
+在 2023/8/10 下午4:27, Linus Walleij 写道:
+> Hi Yinbo,
+> 
+> thanks for your patch!
+> 
+> On Mon, Aug 7, 2023 at 9:41 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+> 
+>> Loongson GPIO controllers come in multiple variants that are compatible
+>> except for certain register offset values.  Add support for device
+>> properties allowing to specify them in ACPI or DT.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> 
+> (...)
+>> @@ -26,6 +26,7 @@ struct loongson_gpio_chip_data {
+>>          unsigned int            conf_offset;
+>>          unsigned int            out_offset;
+>>          unsigned int            in_offset;
+>> +       unsigned int            inten_offset;
+> 
+> Consider just changing all of these from unsigned int to u32.
+
+
+okay, I got it.
+
+> 
+> (...)
+>> +       if (device_property_read_u32(dev, "loongson,gpio-conf-offset", (u32 *)&d->conf_offset)
+>> +           || device_property_read_u32(dev, "loongson,gpio-in-offset", (u32 *)&d->in_offset)
+>> +           || device_property_read_u32(dev, "loongson,gpio-out-offset", (u32 *)&d->out_offset)
+>> +           || device_property_read_u32(dev, "loongson,gpio-ctrl-mode", (u32 *)&d->mode))
+> 
+> Because then you can get rid of this annoying forest of cast.
+
+
+Change offset to u32 and here still need use a (u32 *) cast, because the
+chip_data is const type so &chip_data->offset will be (const u32 *) type
+and need a (u32 *) cast.
+
+> 
+> I'm fine with doing this change in this patch without a need for a separate
+> refactoring, as it's just a contained driver and clearly just about typing.
+
+
+okay, I got it.
+
+Thanks,
+Yinbo.
+
 
