@@ -2,112 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14C0C7787C3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 09:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B27778807
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 09:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbjHKHAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 03:00:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41442 "EHLO
+        id S229576AbjHKHUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 03:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjHKHAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 03:00:13 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CB01FCF
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 00:00:12 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fe55d70973so1950576e87.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 00:00:12 -0700 (PDT)
+        with ESMTP id S229379AbjHKHUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 03:20:22 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253F22738;
+        Fri, 11 Aug 2023 00:20:19 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-3492905f546so6056845ab.0;
+        Fri, 11 Aug 2023 00:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691737210; x=1692342010;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZO+0t0pyCEILeWF9yOM0xEMb/3t8jNC2CHSy3xR9ZNo=;
-        b=k213CQ0AdKd3A0ljiBUC9tNyrWo9vEYG/IWew7Gnux21rG8xC+JddPm5FESpiDar3d
-         B/nUU7K4ldKuDYgGAnbK128kwozH7aBil+0ccmI7Kjc1YLSQcUJjte0PQ8LdLkEZujSK
-         pTAScrsTnC7SelelxKPs6KoM7UHsXU+x20lW/d0cPme+QwDyT6uyj33Wby4Y7WFo83NS
-         1S5t3Ezs9ahLy5Fxo1uo+r/jtFRD45l9ktweGmDohzdtZTncnMMDDFmZE8fqI9m99yPw
-         Hnr+V9sbez0WhuWFeS9XLOu3swF0Q+JhN/qTvbnQY1YnMomvYjzskbRaMspSBHgWvjod
-         rf9A==
+        d=gmail.com; s=20221208; t=1691738418; x=1692343218;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Op8n5tYGZGAKjH7wmFMz/XsPjY6Yr8dG1AahxEINqXE=;
+        b=H0yGAhQIWcgJ9jrdjJj6Qix2tecdQKSC3aITuxLiz2Dlne433Ca06RhDFAUJBDUo14
+         e6QJem0qoyIDfTZtgpy47sZDRMDJGmJNFt0Soof0/bf/CTTtHgL05IWhuAEzi20tADP0
+         q0coh0G8csU6999bFy747k9e4Uo5iR0vtTVFQdGkgqnvgalbkMCqVYixZZ8R6jlxfHLk
+         PsSTFRWqAD9lqJ+N9QAHD3+0evahnEHczfSmYoDPH94x/tv+Xb96F63b2ctHZZbkl1AK
+         bhPtd6nO6zFRr8i5/VjfIPFFnmAXwWHpynNyTXg0YSTQdSZGTFB1p7p5wBw6i9h+bgOV
+         ev2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691737210; x=1692342010;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1691738418; x=1692343218;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZO+0t0pyCEILeWF9yOM0xEMb/3t8jNC2CHSy3xR9ZNo=;
-        b=WZaIsP21mtpieJTwZCmgXgF83popn8gWFs/nZkjBWXSJMOU2+YDcgCKpDDIBv4jjm7
-         HlId05wCzXkjWPacpBgyO65NJJU4yoOHBoSObnpixMtnreW7vzzNnJaK42neeiuZav4v
-         oi6Va3gA7UezRzxR4YzSq0MHPa3arafs+JV4uUagkN8hlozYW5p8nZC+EYvvNxOznk8t
-         rh5cDVKCeOssZNKBEJ/TSDs2floQTfDxpHDqHN9TGPfF4YnfeAew2hd75OJOC/zEuc1q
-         HampKXmoiTrpTgFtk39EI9m/T3r+Yblw2gNqA7P4bt+9hcFpIuQ2u5YCVVxcU8vsCy73
-         q85A==
-X-Gm-Message-State: AOJu0Yx1K1x9vg9MI0p2HR6es7QnyVTCkhS/PAoHBE6B6o1H/OctiHFg
-        qvUnm6uydve18EoZP3SUKDsdnqaTSfC4zBbEULU=
-X-Google-Smtp-Source: AGHT+IHL7DVVZChwcnoi9LN1Ihztgw830qsj9gy9QaJ8sihKBISU2+VNNcGWnfTCtaBezwfbYbVH3Q==
-X-Received: by 2002:a05:6512:3111:b0:4fb:8938:48ab with SMTP id n17-20020a056512311100b004fb893848abmr379814lfb.16.1691737210600;
-        Fri, 11 Aug 2023 00:00:10 -0700 (PDT)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id c27-20020ac244bb000000b004fb85ffc82csm606425lfm.10.2023.08.11.00.00.09
+        bh=Op8n5tYGZGAKjH7wmFMz/XsPjY6Yr8dG1AahxEINqXE=;
+        b=IXHy23UbznvHXOWRSrWwckkVGPRYKgyTRWBJSSBPIVIuSIwZN/kG8RtIqDz5eM6z+2
+         wYDqW3v7iAtNSAkgpq2F9Azt4DI2wF30E1P+baTDcriNz5K7PS3E5JYwYMzS+j/4NaQW
+         uG6ErUQB0pYm92hMVIoDheotG3+Zsl99hQv3gtxxj97EpclgHCnFAMdMfNEm4zIpezhh
+         wHfT5OlOt+gj0Onh7siv1i+UsdwwCr6HzFJo9TMdP6UJ4OGiZoNnMM24OIkeHrVsVGme
+         YHOqy8R1o/jfHCJRXfvioJKK9K5pKU7RSuyi/PIRCYaYFiwKgAfNQajwRSDDI+k9i5fr
+         s80w==
+X-Gm-Message-State: AOJu0Yxo8wDAQKwaq5Hail1PCl3baLCsVqiZQpqGrRCL61PUs7uc/ZTQ
+        RotZUL7lWg+7smG/ew3fNwQSKoXoIExFBQ==
+X-Google-Smtp-Source: AGHT+IH2URz41hz5xivldvevIpXAzBoTDXzcAShhukr0olyyEMqvAPctM8ZBI7+Md1znQW9te6Zang==
+X-Received: by 2002:a92:c543:0:b0:349:650c:7226 with SMTP id a3-20020a92c543000000b00349650c7226mr1380049ilj.25.1691738418013;
+        Fri, 11 Aug 2023 00:20:18 -0700 (PDT)
+Received: from james-x399.localdomain (71-218-110-92.hlrn.qwest.net. [71.218.110.92])
+        by smtp.gmail.com with ESMTPSA id t24-20020a028798000000b00423240c7296sm912435jai.69.2023.08.11.00.20.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 00:00:09 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 11 Aug 2023 09:00:06 +0200
-Subject: [PATCH] ARM: dts: integrator: fix PCI bus dtc warnings
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230811-versatile-dts-v6-6-v1-1-d8cb9d1947ed@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAHXc1WQC/x3MQQqAIBBA0avErBvQoqyuEi0sxxqICkckiO6et
- HyL/x8QCkwCQ/FAoMTC55GhywKWzR4rIbtsqFRVq05rTBTERt4JXRRMLbborFlmr2zfOAM5vAJ
- 5vv/pOL3vBy7XghBkAAAA
-To:     arm@kernel.org, soc@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Lin Yujun <linyujun809@huawei.com>,
+        Fri, 11 Aug 2023 00:20:16 -0700 (PDT)
+From:   James Hilliard <james.hilliard1@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     James Hilliard <james.hilliard1@gmail.com>,
+        Pierluigi Passaro <pierluigi.p@variscite.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v8 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6 SoM with Custom Board
+Date:   Fri, 11 Aug 2023 01:20:04 -0600
+Message-Id: <20230811072009.55400-1-james.hilliard1@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lin Yujun <linyujun809@huawei.com>
+Add support for Variscite i.MX6Q VAR-SOM-MX6 SoM with Custom Board.
 
-An warning is reported when allmodconfig is used to compile the kernel of the ARM architecture:
-
-arch/arm/boot/dts/arm/integratorap.dts:161.22-206.4: Warning (pci_bridge): /pciv3@62000000: node name is not "pci" or "pcie"
-
-Change the node name to pci to clear the build warning.
-
-Signed-off-by: Lin Yujun <linyujun809@huawei.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Cc: Pierluigi Passaro <pierluigi.p@variscite.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- arch/arm/boot/dts/arm/integratorap.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm/boot/dts/arm/integratorap.dts b/arch/arm/boot/dts/arm/integratorap.dts
-index 5b52d75bc6be..d9927d3181dc 100644
---- a/arch/arm/boot/dts/arm/integratorap.dts
-+++ b/arch/arm/boot/dts/arm/integratorap.dts
-@@ -158,7 +158,7 @@ pic: pic@14000000 {
- 		valid-mask = <0x003fffff>;
- 	};
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 2510eaa8906d..76bb098605e7 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -385,6 +385,12 @@ properties:
+           - const: toradex,apalis_imx6q
+           - const: fsl,imx6q
  
--	pci: pciv3@62000000 {
-+	pci: pci@62000000 {
- 		compatible = "arm,integrator-ap-pci", "v3,v360epc-pci";
- 		device_type = "pci";
- 		#interrupt-cells = <1>;
-
----
-base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
-change-id: 20230811-versatile-dts-v6-6-da7cbf0a95d7
-
-Best regards,
++      - description: i.MX6Q Variscite VAR-SOM-MX6 Boards
++        items:
++          - const: variscite,mx6customboard
++          - const: variscite,var-som-imx6q
++          - const: fsl,imx6q
++
+       - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
+         items:
+           - const: tq,imx6q-mba6x-a
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.34.1
 
