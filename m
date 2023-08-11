@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E033477975D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 20:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA9E77978B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Aug 2023 21:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbjHKSx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 14:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37782 "EHLO
+        id S231783AbjHKTJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 15:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235786AbjHKSxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 14:53:55 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC0C30CF;
-        Fri, 11 Aug 2023 11:53:54 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37BIrmxE065414;
-        Fri, 11 Aug 2023 13:53:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1691780028;
-        bh=0Kbn1B2zFXUmjFUo0phstva0zA9oqrpvYQUTPwkFrb4=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=PQvEhpmscWPcd+85VRE4V+hN4MBq4HtfphBKutTG4ORmBX/6TRxj7FdwK3cnA26L2
-         1n5nTTRapWIofftr7DEyb8q6A7M3WXut9ayuJTWDC9YkHZrecjkcwqFFApoS2hr7jU
-         a7SbpbRHZkhOKK0NnK4u26kt/GAN4FCAAIRuWAu8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37BIrmmY044317
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Aug 2023 13:53:48 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Aug 2023 13:53:48 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Aug 2023 13:53:48 -0500
-Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37BIrlE2046718;
-        Fri, 11 Aug 2023 13:53:47 -0500
-Message-ID: <a9e3946b-7c77-c820-3671-5da80fa55e9f@ti.com>
-Date:   Fri, 11 Aug 2023 13:53:47 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for the AM62P5 Starter
- Kit
-Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229479AbjHKTJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 15:09:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466242709;
+        Fri, 11 Aug 2023 12:09:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D52B0676D0;
+        Fri, 11 Aug 2023 19:09:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98760C433C7;
+        Fri, 11 Aug 2023 19:09:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691780987;
+        bh=VfmfHOv6xko6YT4HOZzOKBhoBWltWaprWd7FnqJLdbk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=taCcphmE1F9dHFapXEZ5XHEpRt26FV/M7dylMddLm0+jKLD9w0TeDKaZzhogexxsz
+         OVscaYm6Itm2domY51J5SML9b6dhHc9BzU26ehqEpGSD2fjOxfD3wMrU0d3NDeRLGs
+         t4mwBGIS/h7BwXEFKO4ztKUFgyNPEoE6ZhRlki25UEX0+bFiqHNhGJybLe3ZdbLhfu
+         9fuj+MWou2o2jsb7jCyyxx7fcmzlxUkIS0Hp9paw3NonL1wYsXBUZzXGgHXFnheF2O
+         M75l7mkRTAc08Dr39YAi45QMYJfXWJ0pbkQ2/wROS6KRDGGQaiJrQAirOYw7pxZG5L
+         3FyvWFeqQzRrg==
+Received: (nullmailer pid 3934074 invoked by uid 1000);
+        Fri, 11 Aug 2023 19:09:44 -0000
+Date:   Fri, 11 Aug 2023 13:09:44 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Felix Fietkau <nbd@nbd.name>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230811184432.732215-1-vigneshr@ti.com>
- <20230811184432.732215-4-vigneshr@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230811184432.732215-4-vigneshr@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: mt76: support setting
+ per-band MAC address
+Message-ID: <20230811190944.GA3730441-robh@kernel.org>
+References: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,165 +74,145 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/11/23 1:44 PM, Vignesh Raghavendra wrote:
-> From: Bryan Brattlof <bb@ti.com>
+On Mon, Jul 31, 2023 at 11:23:16PM +0100, Daniel Golle wrote:
+> Introduce support for setting individual per-band MAC addresses using
+> NVMEM cells by adding a 'bands' object with enumerated child nodes
+> representing the 2.4 GHz, 5 GHz and 6 GHz bands.
 > 
-> Add basic support for the AM62P5 SK with UART console and
-> ramdisk as rootfs.
+> In case it is defined, call of_get_mac_address for the per-band child
+> node, otherwise try with of_get_mac_address on the main device node and
+> fall back to a random address like it used to be.
 > 
-> Schematics is at https://www.ti.com/lit/zip/sprr487
+> While at it, add MAC address related properties also for the main node.
 > 
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> Reviewed-by: Dhruva Gole <d-gole@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->   arch/arm64/boot/dts/ti/Makefile         |   3 +
->   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 117 ++++++++++++++++++++++++
->   2 files changed, 120 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> Changes since v2:
+>  * drop items list with only a single item
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 437a3d7e8e3a..5a09cad74c44 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -23,6 +23,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
->   # Boards with AM62Ax SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
->   
-> +# Boards with AM62Px SoC
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
+> Changes since v1:
+>  * add dt-bindings
+> 
+>  .../bindings/net/wireless/mediatek,mt76.yaml  | 58 ++++++++++++++++++-
+>  1 file changed, 57 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> index 252207adbc54c..7eafed53da1de 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> @@ -37,6 +37,12 @@ properties:
+>      description:
+>        MT7986 should contain 3 regions consys, dcm, and sku, in this order.
+>  
+> +  '#address-cells':
+> +    const: 1
 > +
->   # Boards with AM64x SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> new file mode 100644
-> index 000000000000..17edfb19e819
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> @@ -0,0 +1,117 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for the AM62P5-SK
-> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Schematics: https://www.ti.com/lit/zip/sprr487
-> + */
+> +  '#size-cells':
+> +    const: 0
 > +
-> +/dts-v1/;
-> +
-> +#include "k3-am62p5.dtsi"
-> +
-> +/ {
-> +	compatible = "ti,am62p5-sk", "ti,am62p5";
-> +	model = "Texas Instruments AM62P5 SK";
-> +
-> +	aliases {
-> +		serial0 = &wkup_uart0;
-> +		serial2 = &main_uart0;
-> +		serial3 = &main_uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &main_uart0;
-> +	};
-> +
-> +	memory@80000000 {
-> +		/* 8G RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-> +		      <0x00000008 0x80000000 0x00000001 0x80000000>;
-> +		device_type = "memory";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		secure_tfa_ddr: tfa@9e780000 {
-> +			reg = <0x00 0x9e780000 0x00 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		secure_ddr: optee@9e800000 {
-> +			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9c900000 0x00 0x01e00000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	main_uart0_pins_default: main-uart0-default-pins {
-> +		bootph-all;
-> +		pinctrl-single,pins = <
-> +			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-> +			AM62PX_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
-> +			AM62PX_IOPAD(0x1d0, PIN_INPUT, 0)	/* (A23) UART0_CTSn */
-> +			AM62PX_IOPAD(0x1d4, PIN_OUTPUT, 0)	/* (C22) UART0_RTSn */
-> +		>;
-> +	};
-> +
-> +	main_uart1_pins_default: main-uart1-default-pins {
-> +		bootph-all;
-> +		pinctrl-single,pins = <
-> +			AM62PX_IOPAD(0x194, PIN_INPUT, 2)	/* (D25) MCASP0_AXR3 */
-> +			AM62PX_IOPAD(0x198, PIN_OUTPUT, 2)	/* (E25) MCASP0_AXR2 */
-> +			AM62PX_IOPAD(0x1ac, PIN_INPUT, 2)	/* (G23) MCASP0_AFSR */
-> +			AM62PX_IOPAD(0x1b0, PIN_OUTPUT, 2)	/* (G20) MCASP0_ACLKR */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_uart0 {
-> +	bootph-all;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart0_pins_default>;
-> +	status = "okay";
-> +};
-> +
-> +&main_uart1 {
-> +	/* Main UART1 is used by TIFS firmware */
+>    interrupts:
+>      maxItems: 1
+>  
+> @@ -72,13 +78,23 @@ properties:
+>  
+>    ieee80211-freq-limit: true
+>  
+> +  address: true
 
-These comments really belong right before the "status" line to
-explain why we set it to "reserved".
+What's this? Not a documented property.
 
-Otherwise,
 
-Acked-by: Andrew Davis <afd@ti.com>
+> +
+> +  local-mac-address: true
+> +
+> +  mac-address: true
 
-> +	bootph-all;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart1_pins_default>;
-> +	status = "reserved";
-> +};
+You really need a ref to the schema defining these. But first we need to 
+split them out from ethernet-controller.yaml. Which I think there were 
+patches for, but it stalled out.
+
+Anyways, it's fine for now if you're not up for that.
+
 > +
-> +&cbass_mcu {
-> +	bootph-all;
-> +};
+>    nvmem-cells:
+> +    minItems: 1
+>      items:
+>        - description: NVMEM cell with EEPROM
+> +      - description: NVMEM cell with the MAC address
+>  
+>    nvmem-cell-names:
+> +    minItems: 1
+>      items:
+>        - const: eeprom
+> +      - const: mac-address
+>  
+>    mediatek,eeprom-data:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> @@ -213,6 +229,29 @@ properties:
+>                      description:
+>                        Half-dBm power delta for different numbers of antennas
+>  
+> +patternProperties:
+> +  '^band@[0-2]+$':
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      reg:
+> +        maxItems: 1
 > +
-> +&mcu_pmx0 {
-> +	bootph-all;
-> +	wkup_uart0_pins_default: wkup-uart0-default-pins {
-> +		bootph-all;
-> +		pinctrl-single,pins = <
-> +			AM62PX_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-> +			AM62PX_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
-> +			AM62PX_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
-> +			AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
-> +		>;
-> +	};
-> +};
+> +      address: true
+> +      local-mac-address: true
+> +      mac-address: true
 > +
-> +&wkup_uart0 {
-> +	/* WKUP UART0 is used by DM firmware */
-> +	bootph-all;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_uart0_pins_default>;
-> +	status = "reserved";
-> +};
+> +      nvmem-cells:
+> +        description: NVMEM cell with the MAC address
+> +
+> +      nvmem-cell-names:
+> +        const: mac-address
+> +
+> +    required:
+> +      - reg
+> +
+> +    unevaluatedProperties: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -225,10 +264,13 @@ examples:
+>        #address-cells = <3>;
+>        #size-cells = <2>;
+>        wifi@0,0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+>          compatible = "mediatek,mt76";
+>          reg = <0x0000 0 0 0 0>;
+>          ieee80211-freq-limit = <5000000 6000000>;
+> -        mediatek,mtd-eeprom = <&factory 0x8000>;
+> +        nvmem-cells = <&factory_eeprom>;
+> +        nvmem-cell-names = "eeprom";
+>          big-endian;
+>  
+>          led {
+> @@ -257,6 +299,20 @@ examples:
+>               };
+>            };
+>          };
+> +
+> +        band@0 {
+> +          /* 2.4 GHz */
+> +          reg = <0>;
+> +          nvmem-cells = <&macaddr 0x4>;
+> +          nvmem-cell-names = "mac-address";
+> +        };
+> +
+> +        band@1 {
+> +          /* 5 GHz */
+> +          reg = <1>;
+> +          nvmem-cells = <&macaddr 0xa>;
+> +          nvmem-cell-names = "mac-address";
+> +        };
+>        };
+>      };
+>  
+> -- 
+> 2.41.0
