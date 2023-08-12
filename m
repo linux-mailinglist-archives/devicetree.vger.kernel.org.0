@@ -2,123 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2915F779EB3
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 11:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 225B6779EB8
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 11:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjHLJxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Aug 2023 05:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
+        id S236779AbjHLJ4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Aug 2023 05:56:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjHLJxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 05:53:23 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2287DA3;
-        Sat, 12 Aug 2023 02:53:26 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8D3EB5C00AF;
-        Sat, 12 Aug 2023 05:53:25 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Sat, 12 Aug 2023 05:53:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1691834005; x=1691920405; bh=mY
-        UqS16hIoXcMat3fBevhpVqH1JCvKdTqNUMSDYLzVs=; b=bhdJjeoakVCe31JB0Q
-        dReZBwF+Yizzu0IMk5j0PU38mM28wCWB1O8M6CpkOg0OOnEwGyfRKH8HQhxoy+Ru
-        oUugmINlBgg70VtkoRv9SD6fvRkFhMReOEhoi6lEdlP2uwKDz6HB/ziyWPsTArRs
-        upZxKt6yrNjQG2xY6xVPKJ9sW1+2lOqiAo7vpIEWRLXAwOpjcNmtnG5Ps0KZPO5a
-        Z+qQjL12VjBGdvqC5cz804+ZtsVfJSMkD6J5plLHjD8WJc5ln3gFMSONKP3cKD06
-        6OjIQ91aNuHVp4WfG6mb/nn34YSBh/yBiL3QpQmDDJVBd9y3plMSmOCV60RxhQiK
-        6IuQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1691834005; x=1691920405; bh=mYUqS16hIoXcM
-        at3fBevhpVqH1JCvKdTqNUMSDYLzVs=; b=dcfEauSy9r5QC/5WskQe2aa+K2aCO
-        Mt6XtaiqK09a+txh6nbqcMwifLiMFgEkK2sGLIyOm9subRaKZGr3efGMn21Gcegv
-        GLeLOPOgEpz5c1IEp/XA3iqsSPNew4qDpIi5rCXEkoNlymULQ5eRHHiBIjc0a72/
-        OieTCoa85TJBX2LPNF9c+iL/O2tuYRK1EicB0EyCr1g58UQX0H+2Lf+K1K5UhX06
-        cX6xnThztkatMkVAtYCLdwTkP2CoaIRGhk4h7zVXI4PLpwzCyKFsYHELmA4PoB4v
-        50BLY1AWKIqZp+LG6Jij0k2xS64tGg6uCA7UTHueMcScIfuGN22fPYeNQ==
-X-ME-Sender: <xms:lFbXZNrSx4nor6nW6gYMLo6ZDsSDA8VErPlu4fCnOy85ZRkcvoa7XQ>
-    <xme:lFbXZPq-cubSM6YK9VC3SOkH3z0DQO0L2cagwJYHYAgTSNPmBCVKfEcm6sJHCV64J
-    M6qfmG3gjzRhxPbpgU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedruddttddgvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:lFbXZKNESAicxU8b9w7dhPqWCGViZTgPsbsQRw6NRSv5HNsOJANZIg>
-    <xmx:lFbXZI4Xl1kPif8oGrFAEMJ2lgCPQqkIvR5FQmJMbtnYpIP2tLlStw>
-    <xmx:lFbXZM5fqvvWLkP0SemkjzF7FXBXwrP9V2JzL7fbErc1060KThh37w>
-    <xmx:lVbXZOubbRxoZAdJytVkIDCVeXwaPsh-Nk9CMJQAzN7Kp1UeFKevYA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id B9F8AB60089; Sat, 12 Aug 2023 05:53:24 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-624-g7714e4406d-fm-20230801.001-g7714e440
-Mime-Version: 1.0
-Message-Id: <484a1fb8-cba3-4fa8-9f37-21caf8ba6fc3@app.fastmail.com>
-In-Reply-To: <4849173.31r3eYUQgx@fabians-envy>
-References: <20230802153333.55546-1-afd@ti.com>
- <4849173.31r3eYUQgx@fabians-envy>
-Date:   Sat, 12 Aug 2023 11:53:04 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Fabian Vogt" <fabian@ritter-vogt.de>,
-        "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        "Daniel Tang" <dt.tangr@gmail.com>, "Andrew Davis" <afd@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S229499AbjHLJ4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 05:56:03 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F76D100;
+        Sat, 12 Aug 2023 02:56:07 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-56c74961e0cso2243975eaf.3;
+        Sat, 12 Aug 2023 02:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691834166; x=1692438966;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=U8wjaQXSLMzRwh0cRitdikC2z6aQUD+mqTclR1K6a5M=;
+        b=flFkz6QkLIfqczqvD5zVuAarSOCtSsACYOuyvURalMYE11GpQE7pGasz9SsWJDUW/Y
+         uqw6/EFyK58IHMbs6GV5pVtkdh7bWLig+dyV7dJ0EX/4/SgMc+lDRv/CVM/yLtv5435U
+         RJLZTrbNgVzr/2YrcmNB98HzhFF+B5a5X39WQlaejo8KJNZHrzXqh/H28JC7PTl0se9N
+         rKZdYvsnAAsFPr+pgXd9xVPRNopg7V9anRl3pobqDaDcJQiSOQu9T2AOkW8HDPaxR/wc
+         GZndQ3NuNJzE2mS/KHFI3pml3ThWUFNXKMD3Eg/MxgeHRfIHS/nYX+R3nDNLmqfYY2it
+         z5HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691834166; x=1692438966;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U8wjaQXSLMzRwh0cRitdikC2z6aQUD+mqTclR1K6a5M=;
+        b=G62zSSfi+Q2xJo0WjqCinwfVt50R7QR8peMduKiOYMjuJ6fBrHy4nnumz95x4KloZv
+         Xtgz73TrpYwNMh2HPH5zFcoZlaDqquuEvxrc/+tIgk91z+j/2aSBWubs1XAg6fl8HuGj
+         B0DsM1Q7FadLdi9XbutGzkrOiFQnwYYYmVKo6GlMLd6ffaiA0iygouKTNM2UmEPSjeyK
+         KyYtoP0fLO9gHt6V/sssGQMW5LAFNgmCJV/iOK4zsQYYfrOYizV3qWeA5UMISfXzXsh4
+         mLU5N6MupH4lBY8B+cWgBHtl+Y/1PkMU28EbxNF9NjuBycMqTuOFo+cNNkgW5gbPv92m
+         iLnw==
+X-Gm-Message-State: AOJu0YyXE6Zy4aoO6aktH4XIPDC46lwianLubv1k346nf9esL2IBX0Jt
+        FZ6v/HpmjoftnUCfXJZuAlS+8+YLmAV9PSHW+pTbWrCW
+X-Google-Smtp-Source: AGHT+IFPkv3F2BAgtU0mz7BhUPJx9bjS9SnrspuiRZr04lLjBdoBf66zikjRMd5dtb5tc9QAUZLGqq6jDryDMQlZiPw=
+X-Received: by 2002:a05:6870:8301:b0:18b:1936:30ee with SMTP id
+ p1-20020a056870830100b0018b193630eemr5165190oae.56.1691834166433; Sat, 12 Aug
+ 2023 02:56:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230811210142.403160-1-robimarko@gmail.com> <20230811210142.403160-2-robimarko@gmail.com>
+ <4c96210b-4567-4cb5-80bb-7adca6c5f124@linaro.org> <CAOX2RU6X0Tww4UkTKVfc=PLY=RKVJdsm+gomytT0vOydTF+Hnw@mail.gmail.com>
+ <7116b473-7f22-43df-af39-81e5f6db4507@linaro.org>
+In-Reply-To: <7116b473-7f22-43df-af39-81e5f6db4507@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Sat, 12 Aug 2023 11:55:55 +0200
+Message-ID: <CAOX2RU6nMvpTkGdwBoLJrES5v0qARnDDT6nCVd-DZid7p3pg6Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: ipq4019-ap.dk01.1: align flash node
+ with bindings
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 0/9] TI-Nspire cleanups
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 11, 2023, at 17:13, Fabian Vogt wrote:
-> Hi,
+On Sat, 12 Aug 2023 at 00:56, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> Am Mittwoch, 2. August 2023, 17:33:24 CEST schrieb Andrew Davis:
->> Hello all,
->> 
->> This series is an extended version of the series started here[0]
->> and here[1].
->> 
->> We break out what was the first patch into one for DTS change and
->> one for code changes as suggested by Krzysztof. Those are now patches
->> 1 and 8 of this series (I kept the ACKs, hope that is okay).
->> 
->> While I was adding that, I noticed some other dtbs_check issues,
->> so while here fixed some of those up too (patches 2-6).
+> On 11.08.2023 23:35, Robert Marko wrote:
+> > On Fri, 11 Aug 2023 at 23:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >> On 11.08.2023 23:01, Robert Marko wrote:
+> >>> Rename the SPI-NOR node to flash@0, remove #address-cells and #size-cells
+> >>> as they should be under the partitions subnode and use the generic
+> >>> jedec,spi-nor compatible.
+> >>>
+> >>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> >>> ---
+> >> You can also do "nandmanufacturer,mx25l25635e", "jedec,spi-nor"
+> >
+> > Hi,
+> > I grepped the vendor U-Boot to make sure it's not being triggered off
+> > the mx25l25635e
+> > compatible but the only hit is the IC support itself.
+> > MX25L25635 was just the original NOR IC Qualcomm used on the board so
+> > to me it made
+> > most sense to just use the JEDEC compatible as NOR itself is JEDEC NOR
+> > compatible.
+> OK if dynamic identification works fine
+
+It should work fine, datasheet is clear that its JEDEC compatible.
+That being said, I dont actually have the board, just figured it was
+time for a cleanup as
+OpenWrt has been patching DK01 and DK04 for ages.
+
+Regards,
+Robert
 >
-> Whole series applied on top of cacc6e22932f and confirmed to work:
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 >
-> Tested-by: Fabian Vogt <fabian@ritter-vogt.de>
-
-I've added all 9 patches to the soc tree now, the first seven
-in the soc/dt branch, the other two in the soc/arm branch.
-
-This does mean that the soc/arm branch has a minor regression
-when tested by itself, as it won't be able to restart the
-system, which is a regression we'd still get with old dtb
-files, but I think this is acceptable here since it does not
-impact normal operation, and there is a very small user base
-that is affected by this.
-
-Thanks,
-
-       Arnd
+> Konrad
