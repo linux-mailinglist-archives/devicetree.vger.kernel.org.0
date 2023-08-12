@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C71CB779F23
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 12:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7F0779F64
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 12:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236992AbjHLKsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Aug 2023 06:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46408 "EHLO
+        id S236285AbjHLK4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Aug 2023 06:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236936AbjHLKr6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 06:47:58 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55142D52
-        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 03:47:59 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fe82ac3ab4so4192396e87.1
-        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 03:47:59 -0700 (PDT)
+        with ESMTP id S236703AbjHLK4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 06:56:08 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B45BE3
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 03:56:10 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ba1e9b1fa9so42588751fa.3
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 03:56:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1691837278; x=1692442078;
+        d=linaro.org; s=google; t=1691837769; x=1692442569;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nGcrVf003yK2erEWEoiIkw0tjzg3iatGlyB30FwyTjw=;
-        b=Xobh+OykBF6XBlMT3nEpKT52NjlOvlbQuCzXw9dSJq1LCsStcp8V/jMkVABlrvq1EL
-         BSZvnLKdZfvjjMgOgXmtUaL+O5CN+A9RrJkCkmfzsF+vXN/jnLNMmLKGjUjEiIL1nA9O
-         APeM6ft6yYrp1X3JF5Ug9sLNBRRQiaXMfxyDB4LwasBZnDIds9UsfsUQ3hmaEzPH6m2S
-         t72u+kJg+FnH5cGgzzlFArZ49ymjLWzAkya/a+PHRXAUcbVGFh6Svedp0aV2+EDa9sEb
-         3cN+DaTelz9YQ0oQPf7j0vohxTvfoeDjh60/VyBJVVgQaYIzzMdWvCIw2awtIxzt5kZQ
-         yJxQ==
+        bh=bsDkru9Cd+QMTZjL2vgJUI/oZABtMlJwLOLZa2FBIZQ=;
+        b=EJT6/mzyqQ+CKZcR2kelRqxT0uENV3F00mPCB/UsYdG5YU0KYPHnEa/gBLovhF16Nc
+         gVJ65wg7LoldMKfPbBdBd67ypgY12njXFp4x/gtlwTuLNvNxxyAxrmYaQbkXZyl/XFZM
+         nH0J1se8jdOoahAnmJcM9Ky2Wuf2dNoF1z0iaeaPX+cnFRcEE5q4dEE+faXrAwKDCM6m
+         xIQ4hSNM2JZaw4NSmmr2tk0SbwKIs+P8Zj2ts+WHNqC5at629LYK3um1y5bz8kLw0olO
+         PazfDJDwywrYCtXVYMDc3MEi3ZREqx0NU47ykbN/dheL3CWEBD42yU8bMci99GBRAjIp
+         0iFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691837278; x=1692442078;
+        d=1e100.net; s=20221208; t=1691837769; x=1692442569;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nGcrVf003yK2erEWEoiIkw0tjzg3iatGlyB30FwyTjw=;
-        b=fnj6klsz2Fkz/64ykY6p9wciJ1E7qf2ii9a+ANgGUmuNC6HIsWEGEIQT3kPVO3h9oy
-         wLSBpwMHvlBR2aNknIl+f+Eu8rbY5pZED7lDB6NOSieUvgZhPsDPt0EfkZ7KreekRkpK
-         gvjEMYHyEfeJlLmkVM37A5Eod3OXqW2hjEYSAWvI0As966B5H93bIoxUdLcDV6VTFmsV
-         3dXUYDMGTYlZajy9KTunfAFXBCcCAQh5OPQ4iuAScUXEzaxsRI1imY61fXLy3/iogJ7j
-         C7pmJwp44CcLeXihKId76pCzBWzyD0+Ltf//bQfWhIXSi7xYngXa7Zmqkz3Rr/xgN+xv
-         CgDQ==
-X-Gm-Message-State: AOJu0Yy2rH79I4KGpt+ATSRmuQ6XISU2jHWwF2Kq/ouaDRC2RruzPv+8
-        +CEadeJhWXxujX8kihpcK4EJ4t7HCpmYAcc4fdM=
-X-Google-Smtp-Source: AGHT+IF+TI4Q250JYkV7gz7PaIqFFpXovCnn6y2ru/ac9wJEvLFdV3dA7igEiIMqIrdc9Cx1Z+/QhQ==
-X-Received: by 2002:a05:6512:2202:b0:4f8:72b6:eae with SMTP id h2-20020a056512220200b004f872b60eaemr3998046lfu.40.1691837277677;
-        Sat, 12 Aug 2023 03:47:57 -0700 (PDT)
+        bh=bsDkru9Cd+QMTZjL2vgJUI/oZABtMlJwLOLZa2FBIZQ=;
+        b=hm51SMhkd9kliLZwR4bFkJzi6bL849CSHsCG+zmEqfssLNuaLcVcNpmuEEKA5MD2sw
+         SxwrwtsmHhWE0sUbW4k1NOucj042moOTEyr5l3rjH7zC3gYtCTMkIsQcpr8Ij9i7U80O
+         P7wXm3H/zpmoA34bpDmAOoAFPzd2yDGgvLQFM/H81UEgXusMdPuBmBYhClN3gt/+Kqks
+         fa3JCwFdpJ7R/rf/x+O+5MkkCr9PY6fWtMs1K+pTFBVgnF9j59i2R16BQUiOp8l8Eiam
+         qddyrdrhx7z+0PRnI/0IUzAF5OnqiYdi9FTb9/dwD7PPzWrW4TloYgq3W/ZgWiYUqBAQ
+         9Udw==
+X-Gm-Message-State: AOJu0Yx0YjsBjGW+woeJj7n+Dc5h4IzCkAiuveux45W1SEpF5NVNNmqs
+        W6mSKyLqKvh9iuQFuaPsk/C26A==
+X-Google-Smtp-Source: AGHT+IHaRMtZA8KV8vXFuM5ViYSywNipf5JO30re//r254mA78KVIzZ+yN58RLe7xg8AazfEEXYGuA==
+X-Received: by 2002:a2e:7412:0:b0:2b9:4418:b46e with SMTP id p18-20020a2e7412000000b002b94418b46emr3127642ljc.21.1691837768724;
+        Sat, 12 Aug 2023 03:56:08 -0700 (PDT)
 Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
-        by smtp.gmail.com with ESMTPSA id h9-20020a197009000000b004fdd6c37e9asm1076108lfc.112.2023.08.12.03.47.56
+        by smtp.gmail.com with ESMTPSA id j21-20020a2e8015000000b002b83dbc71c9sm1335439ljg.54.2023.08.12.03.56.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Aug 2023 03:47:57 -0700 (PDT)
-Message-ID: <e784f70f-3232-42e6-bf4c-67075abd210a@linaro.org>
-Date:   Sat, 12 Aug 2023 12:47:56 +0200
+        Sat, 12 Aug 2023 03:56:08 -0700 (PDT)
+Message-ID: <631d5a82-7d24-49cd-9868-74c7b3c08bcd@linaro.org>
+Date:   Sat, 12 Aug 2023 12:56:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: ipq4019-ap.dk01.1: align flash node
- with bindings
+Subject: Re: [PATCH v3 3/3] clk: qcom: add clock controller driver for
+ qca8386/qca8084
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230811210142.403160-1-robimarko@gmail.com>
- <20230811210142.403160-2-robimarko@gmail.com>
- <4c96210b-4567-4cb5-80bb-7adca6c5f124@linaro.org>
- <CAOX2RU6X0Tww4UkTKVfc=PLY=RKVJdsm+gomytT0vOydTF+Hnw@mail.gmail.com>
- <7116b473-7f22-43df-af39-81e5f6db4507@linaro.org>
- <CAOX2RU6nMvpTkGdwBoLJrES5v0qARnDDT6nCVd-DZid7p3pg6Q@mail.gmail.com>
+To:     Jie Luo <quic_luoj@quicinc.com>, andersson@kernel.org,
+        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_srichara@quicinc.com
+References: <20230810115419.25539-1-quic_luoj@quicinc.com>
+ <20230810115419.25539-4-quic_luoj@quicinc.com>
+ <9dec09fa-a5a3-416c-9b4d-4b4c4e10320b@linaro.org>
+ <9a55016f-0049-f185-f2be-d138fe33384b@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -103,11 +104,11 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <CAOX2RU6nMvpTkGdwBoLJrES5v0qARnDDT6nCVd-DZid7p3pg6Q@mail.gmail.com>
+In-Reply-To: <9a55016f-0049-f185-f2be-d138fe33384b@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -116,35 +117,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.08.2023 11:55, Robert Marko wrote:
-> On Sat, 12 Aug 2023 at 00:56, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 11.08.2023 23:35, Robert Marko wrote:
->>> On Fri, 11 Aug 2023 at 23:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>>
->>>> On 11.08.2023 23:01, Robert Marko wrote:
->>>>> Rename the SPI-NOR node to flash@0, remove #address-cells and #size-cells
->>>>> as they should be under the partitions subnode and use the generic
->>>>> jedec,spi-nor compatible.
->>>>>
->>>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
->>>>> ---
->>>> You can also do "nandmanufacturer,mx25l25635e", "jedec,spi-nor"
->>>
->>> Hi,
->>> I grepped the vendor U-Boot to make sure it's not being triggered off
->>> the mx25l25635e
->>> compatible but the only hit is the IC support itself.
->>> MX25L25635 was just the original NOR IC Qualcomm used on the board so
->>> to me it made
->>> most sense to just use the JEDEC compatible as NOR itself is JEDEC NOR
->>> compatible.
->> OK if dynamic identification works fine
+On 11.08.2023 13:49, Jie Luo wrote:
 > 
-> It should work fine, datasheet is clear that its JEDEC compatible.
-> That being said, I dont actually have the board, just figured it was
-> time for a cleanup as
-> OpenWrt has been patching DK01 and DK04 for ages.
-Hm. Do we know whether there are still users of this boards?
+> 
+> On 8/10/2023 8:59 PM, Konrad Dybcio wrote:
+>> On 10.08.2023 13:54, Luo Jie wrote:
+>>> Add clock & reset controller driver for qca8386/qca8084.
+>>>
+>>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+>>> ---
+>>
+>>> +struct qcom_cc {
+>>> +    struct qcom_reset_controller reset;
+>>> +    struct clk_regmap **rclks;
+>>> +    size_t num_rclks;
+>>> +};
+>> This all, including the probe func, is required because of the MDIO dance,
+>> I assume?
+>>
+>> Commonizing that would make more sense should more clocks like this appear
+>> in the future.
+>>
+> Hi Konrad,
+> Thanks for the review.
+> the structure qcom_cc is not because of MDIO dance, this is the common structure used by other qcom clock drivers such as gcc-ipq9574 in the probe function.
+> 
+> seems that we can't make any more commonization on this, please let me know if there is any idea on this.
+My main point is, why can't you use qcom_cc_really_probe?
+
+> 
+>> [...]
+>>
+>>> +static struct clk_branch nss_cc_switch_core_clk = {
+>>> +    .halt_reg = 0x8,
+>>> +    .clkr = {
+>>> +        .enable_reg = 0x8,
+>>> +        .enable_mask = BIT(0),
+>>> +        .hw.init = &(const struct clk_init_data) {
+>>> +            .name = "nss_cc_switch_core_clk",
+>>> +            .parent_hws = (const struct clk_hw *[]) {
+>>> +                &nss_cc_switch_core_clk_src.clkr.hw,
+>>> +            },
+>>> +            .num_parents = 1,
+>>> +            /* Can be disabled in PHY mode for power saving */
+>> Well it clearly cannot be disabled if it has the CLK_IS_CRITICAL flag :D
+>>
+>> What's the "PHY mode" you're talking about?
+> Yes, the clock with flag CLK_IS_CRITICAL needs to be enabled, the hardware register needs to be configured to enable it, it is disabled by default.
+> 
+> this clock branch is necessary for the switch mode that has switch features such routing and fdb forwarding, i will remove the CLK_IS_CRITICAL from the clock that is not needed for the PHY mode, we can enable it later when configuring it as switch mode.
+> 
+> As for PHY mode, the device works as only PHY device, that includes 4 PHY ports, no switch functions.
+It's still not obvious at all what "phy mode" or "switch mode" are.
+Are they usecases for a device based on this SoC?
 
 Konrad
+> 
+>>
+>>> +            .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+>>> +            .ops = &clk_branch2_mdio_ops,
+>>> +        },
+>>> +    },
+>>> +};
+>> I see a whole bunch of CRITICAL clocks.. please make sure these clocks
+>> are actually necessary for Linux to know about (i.e. if we don't need
+>> to call any operations on them, we might just skip registering them
+>> with the driver).
+>>
+>> Konrad
+>>
+> yes, Konrad, the clocks with  CLK_IS_CRITICAL need to be enabled manually, all clocks are disabled after reset(by default).
