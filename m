@@ -2,131 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4AFD779BCD
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 02:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C286F779C19
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 02:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbjHLAQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 20:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38808 "EHLO
+        id S233767AbjHLAoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 20:44:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233551AbjHLAQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 20:16:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C45626A0
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:16:53 -0700 (PDT)
+        with ESMTP id S229793AbjHLAoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 20:44:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84DCD10DF
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:44:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EE2CA65C28
-        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:16:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02690C433C7;
-        Sat, 12 Aug 2023 00:16:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0614264673
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:44:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E848C433C7
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:44:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691799412;
-        bh=5sMSUmTaT6AsZS3fe+qczttQD0l64JfGaNck+YRtxbg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SvBWVPjbxpJ19d1S7KPIbJDIEoZ0BxbS4g9mlyiqbvN9JmrV/ITZmg/Nrwsd/+FA7
-         2lJ5eQ8cHu8AzPTzVRkAeqx/IizsSp1g6FthUAkmfNwv5T++ADi2XknJ5OKc7jxrEy
-         S9ju1hVcm0j5i8Sk9y6K5KVxmr5JAxCJMHjkzTq6zSkDDOkQhK61rKs6bfW1CObVsy
-         myp6E3oowSvK0dV5LJaEfqTX6GtexbUDBYsH2b2cywiX5Xp5biRqfV797gk+yah/nt
-         ssCCCVytSWvnTfazEDa+foo25VQczaDSMqlV1TjOg0Prnw1r2GofL4QzQihJhPvgBa
-         Gi3uHK8F/VwdA==
-Date:   Sat, 12 Aug 2023 01:16:47 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Jisheng Zhang <jszhang@kernel.org>, wefu@redhat.com,
-        jrtc27@jrtc27.com, anup@brainfault.org, samuel@sholland.org,
-        bmeng.cn@gmail.com, opensbi@lists.infradead.org,
-        Guo Ren <guoren@linux.alibaba.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
-Message-ID: <20230812-septum-gestate-4c62ef7c7213@spud>
-References: <20230808132958.1097873-1-guoren@kernel.org>
- <ZNURXBKkYdiWLanf@xhacker>
- <20230811-cardiac-platter-8b50b3b764d3@spud>
- <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
+        s=k20201202; t=1691801049;
+        bh=co1qgukDxnwu8ihtnDcIiIJV5ZpCrvOkMGpBxqXwvJ8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=E1fEOcl4B4y4ekTj+a9nLRQkfms++a6K5IdqfCaAzlNYtDcDsmdwppzHB+LFwbleE
+         o6Af1U8KsIkgVg5EtggsLAqqPdN8QY2wEnwP9tJEOZplvOeB3W+K9BTLeZ47GUXgsp
+         /dd6ND4BWq9CrOr9E7Pn24x+4VRB1nqvHuJZx0f2XqVGyVnE8BtjoUUZiCik2afLv4
+         n6gw0ADXpGKzOrk/SDyP+JEQecpDmH+uSqArNRPxjqyjCCKfDXuxj0TGBmbuhiV8B2
+         UCENRJntFA+cfSR9LOlt8QIT943y0I3QpRrOQYcB0XuDtUs0Kde1xR7rTjsXYvHvom
+         gueQXd93XQ+Hg==
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-52256241c66so5191010a12.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:44:09 -0700 (PDT)
+X-Gm-Message-State: AOJu0YynzAUy44jtx//ubdldCiUL7bfraqMmjIQLYv+0HQ3WOTRm6oyD
+        lWhM3XKj/+LgQeKtkle/c0Dr3wUNY0nZ19B2Wkw=
+X-Google-Smtp-Source: AGHT+IELivPB/D/CdGvlRPOS6XLUIlHNvEdOP9pyc/ADPUeO+5me1K5E40lvSzZ0uJJXBU1JEEUrlt1ay4EVloBCev4=
+X-Received: by 2002:aa7:c907:0:b0:522:3149:159b with SMTP id
+ b7-20020aa7c907000000b005223149159bmr4133559edt.2.1691801047638; Fri, 11 Aug
+ 2023 17:44:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UwVBjK3pjJcMONg/"
-Content-Disposition: inline
-In-Reply-To: <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230808132958.1097873-1-guoren@kernel.org> <ZNURXBKkYdiWLanf@xhacker>
+In-Reply-To: <ZNURXBKkYdiWLanf@xhacker>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sat, 12 Aug 2023 08:43:56 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTR86hWjcbKdk7w97nZjJ+42sMrEr-G07HXhPpRSHX=7gw@mail.gmail.com>
+Message-ID: <CAJF2gTR86hWjcbKdk7w97nZjJ+42sMrEr-G07HXhPpRSHX=7gw@mail.gmail.com>
+Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     wefu@redhat.com, conor@kernel.org, jrtc27@jrtc27.com,
+        anup@brainfault.org, samuel@sholland.org, bmeng.cn@gmail.com,
+        opensbi@lists.infradead.org, Guo Ren <guoren@linux.alibaba.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jisheng,
 
---UwVBjK3pjJcMONg/
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Could you give a review on this patch? This only corrects the
+documentation for the current thead, reset-sample driver of opensbi.
 
-On Sat, Aug 12, 2023 at 08:07:50AM +0800, Guo Ren wrote:
-> On Sat, Aug 12, 2023 at 1:57=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
+On Fri, Aug 11, 2023 at 12:45=E2=80=AFAM Jisheng Zhang <jszhang@kernel.org>=
+ wrote:
+>
+> On Tue, Aug 08, 2023 at 09:29:58AM -0400, guoren@kernel.org wrote:
+> > From: Guo Ren <guoren@linux.alibaba.com>
 > >
-> > On Fri, Aug 11, 2023 at 12:33:32AM +0800, Jisheng Zhang wrote:
-> > > On Tue, Aug 08, 2023 at 09:29:58AM -0400, guoren@kernel.org wrote:
-> > > > From: Guo Ren <guoren@linux.alibaba.com>
+> > Add detailed information about thead,reset-sample driver, and improve
+> > usage documentation.
 > >
-> > > > +T-HEAD Fdt Reset Driver Introduction
-> > > > +------------------------------------
-> > > > +
-> > > > +Every T-HEAD CPU provides a reset control signal and reset address=
- signals.
-> > > > + - Reset address signal determines CPU where to start up.
-> > > > + - Reset control signal releases CPU from reset state and begins t=
-o execute
-> > > > +   at reset address.
-> > > > +
-> > > > +Many vendors would gather these signals into SoC control registers=
-=2E These
-> > > > +register designs are similar but with different base addresses and=
- bits
-> > > > +definitions. We only provide standard opensbi, Linux binaries, and=
- jtag gdbinit
-> > > > +script to simplify Linux booting at the FPGA stage. The fdt reset =
-driver helps
-> > > > +users bring up their SMP system quickly with the below settings:
-> > >
-> > > +DT maintainers and DT list.
-> > >
-> > > I can submit a dt-binding for this if DT maintainers agree with below
-> > > properties. Could you please help review?
+> > Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
+> > Signed-off-by: Guo Ren <guoren@kernel.org>
+> > ---
+> >  docs/platform/thead-c9xx.md | 87 ++++++++++++++++++++++++++++---------
+> >  1 file changed, 67 insertions(+), 20 deletions(-)
 > >
-> > I already reviewed this once & nothing has improved.
-> > In fact, things have gotten worse IMO with this "using-csr-reset" that I
-> > don't think existed in the original iteration that I saw.
-> > I did see things getting better with the use of standard stuff like
-> > "reg" in our earlier discussion which I don't see here.
+> > diff --git a/docs/platform/thead-c9xx.md b/docs/platform/thead-c9xx.md
+> > index 8bb9e91f1a9b..fe05fc5bb85a 100644
+> > --- a/docs/platform/thead-c9xx.md
+> > +++ b/docs/platform/thead-c9xx.md
+> > @@ -1,8 +1,8 @@
+> > -T-HEAD C9xx Series Processors
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+> > +T-HEAD Processors
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > -The **C9xx** series processors are high-performance RISC-V architectur=
+e
+> > -multi-core processors with AI vector acceleration engine.
+> > +T-HEAD provides high-performance RISC-V architecture multi-core
+> > +processors with AI vector acceleration engine.
+> >
+> >  For more details, refer [T-HEAD.CN](https://www.t-head.cn/)
+> >
+> > @@ -12,15 +12,75 @@ To build the platform-specific library and firmware=
+ images, provide the
+> >  Platform Options
+> >  ----------------
+> >
+> > -The *T-HEAD C9xx* does not have any platform-specific compile options
+> > +The *T-HEAD CPU* does not have any platform-specific compile options
+> >  because it uses generic platform.
+> >
+> >  ```
+> >  CROSS_COMPILE=3Driscv64-linux-gnu- PLATFORM=3Dgeneric /usr/bin/make
+> >  ```
+> >
+> > -The *T-HEAD C9xx* DTB provided to OpenSBI generic firmwares will usual=
+ly have
+> > -"riscv,clint0", "riscv,plic0", "thead,reset-sample" compatible strings=
+.
+> > +The *T-HEAD CPU* DTB provided to OpenSBI generic firmwares will usuall=
+y have
+> > +"thead,reset-sample" compatible strings. The "thead,reset-sample" is a=
+ T-HEAD
+> > +custom driver for the SMP system bootup; the single-core system doesn'=
+t need
+> > +it.
+> > +
+> > +T-HEAD Fdt Reset Driver Introduction
+> > +------------------------------------
+> > +
+> > +Every T-HEAD CPU provides a reset control signal and reset address sig=
+nals.
+> > + - Reset address signal determines CPU where to start up.
+> > + - Reset control signal releases CPU from reset state and begins to ex=
+ecute
+> > +   at reset address.
+> > +
+> > +Many vendors would gather these signals into SoC control registers. Th=
+ese
+> > +register designs are similar but with different base addresses and bit=
+s
+> > +definitions. We only provide standard opensbi, Linux binaries, and jta=
+g gdbinit
+> > +script to simplify Linux booting at the FPGA stage. The fdt reset driv=
+er helps
+> > +users bring up their SMP system quickly with the below settings:
+>
+> +DT maintainers and DT list.
+>
+> I can submit a dt-binding for this if DT maintainers agree with below
+> properties. Could you please help review?
+>
+> > +
+> > + - entry-reg:
+> > +     The base address to store reset address value
+> > +
+> > + - entry-cnt:
+> > +     The numbers of entry-reg, all of them set the same reset address
+> > +
+> > + - control-reg:
+> > +     The base address to reset the controller
+> > +
+> > + - control-val:
+> > +     Write which bits of control-reg for booting
+> > +
+> > + - csr-copy:
+> > +     This array determines which csrs to copy from primary hart to the
+> > +     secondary harts, which are set in sequence from left to right. Th=
+e
+> > +     secondary harts should keep the same setting as the primary hart.
+> > +     These settings are also the first part of the bootup instructions
+> > +     for secondary harts.
+> > +
+> > + - using-csr-reset:
+> > +     A legacy reset controller for the SMP system, but abandoned in th=
+e
+> > +     latest T-HEAD processors.
+> > +
+> > +Here is the dts example:
+> > +```
+> > +     reset: reset-sample {
+> > +             compatible =3D "thead,reset-sample";
+> > +             entry-reg =3D <0xff 0xff019050>;
+> > +             entry-cnt =3D <4>;
+> > +             control-reg =3D <0xff 0xff015004>;
+> > +             control-val =3D <0x1c>;
+> > +             csr-copy =3D <0x7f3 0x7c0 0x7c1 0x7c2 0x7c3 0x7c5 0x7cc>;
+> > +     };
+> > +```
+> > +
+> > +Legacy dts example (Abandoned):
+> > +```
+> > +     reset: reset-sample {
+> > +             compatible =3D "thead,reset-sample";
+> > +             using-csr-reset;
+> > +             csr-copy =3D <0x7f3 0x7c0 0x7c1 0x7c2 0x7c3 0x7c5 0x7cc>;
+> > +     };
+> > +```
+> >
+> >  DTS Example1: (Single core, eg: Allwinner D1 - c906)
+> >  ----------------------------------------------------
+> > @@ -181,16 +241,3 @@ DTS Example2: (Multi cores with soc reset-regs)
+> >               };
+> >       }
+> >  ```
+> > -
+> > -DTS Example2: (Multi cores with old reset csrs)
+> > ------------------------------------------------
+> > -```
+> > -     reset: reset-sample {
+> > -             compatible =3D "thead,reset-sample";
+> > -             using-csr-reset;
+> > -             csr-copy =3D <0x7c0 0x7c1 0x7c2 0x7c3 0x7c5 0x7cc
+> > -                         0x3b0 0x3b1 0x3b2 0x3b3
+> > -                         0x3b4 0x3b5 0x3b6 0x3b7
+> > -                         0x3a0>;
+> > -     };
+> > -```
+> > --
+> > 2.36.1
+> >
 
-> It's not a patch to improve the implementation and we don't make a
-> deal in that discussion. This patch improves the document because the
-> previous doc didn't describe the whole thing about the
-> thead,reset-sample driver.
 
-That's all well and good, but there's still no point in Rob, Krzysztof
-or I reviewing it, which is what was being requested in the email I was
-replying to.
 
-> > What is the point in carrying out any further review if things will be
-> > flat out ignored?
-
---UwVBjK3pjJcMONg/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNbPbwAKCRB4tDGHoIJi
-0vtLAP9FTEGh5LZRS4Fi3VqSbLfn5GjeWp6jJ7SdTqM8+QAyzQEAkB6NY8wc7yoU
-SyTtUyrzonTJcPGECkcIdD1sVp1wGgY=
-=DlJg
------END PGP SIGNATURE-----
-
---UwVBjK3pjJcMONg/--
+--=20
+Best Regards
+ Guo Ren
