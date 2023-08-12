@@ -2,164 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2826D779FF5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 14:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC2377A00D
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 14:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231434AbjHLMZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Aug 2023 08:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
+        id S230454AbjHLM5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Aug 2023 08:57:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbjHLMZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 08:25:27 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E19E62;
-        Sat, 12 Aug 2023 05:25:30 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id D7A935C00F2;
-        Sat, 12 Aug 2023 08:25:27 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Sat, 12 Aug 2023 08:25:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-        1691843127; x=1691929527; bh=+DE7K+FkDwlmdeL3CpVV/dlir8qOYF4EGSw
-        DTQ8Iztc=; b=JArr1yVWNA+hyM/8PmwyBL5cCOeyn7ppUeMvEj3q6erbi0eVawO
-        867hmjCwtRzshjj2II9l4BZKRuGGCWLMkuP/Tz/OAalpUsmZM1BJGT78l2AG0a7d
-        gIR73l20BuTSrI5WwqBqiou8kAjZCn4k+C8idCsQE+gb5gn6UUA9mKj46tB92fj5
-        esXxYeS5cZLNSKqyZBfQM8S5e4522oHRV0grJaSo3Y7WR0DwZXZ02YsllhwdAwrP
-        Q0IflLIBUqovRLVQ784WxamIL05exxJ5WruA/DK7ljvJndImRdIqE9o+MMDk+YKp
-        vAXNEpdE8rvzXzC1CM81oyXljQQcVSJi+mw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-        1691843127; x=1691929527; bh=+DE7K+FkDwlmdeL3CpVV/dlir8qOYF4EGSw
-        DTQ8Iztc=; b=Az+t/QSiqKmMPqKtoziHfe7jvt4TJZzOE1fILZdhkcUAndG4fn8
-        eAreGmEkLX/xwFMV0GsoLrVMOhFDfXCIJD3LJ/0phyC2Q8PDF1n7Cxq1tuE4L7G3
-        9sDzitcmlA8w8LoYLCUxLxF+YLQj6fDGzTSfNN8Axz7WJbkXKFqHM5OEoTyzLQek
-        Ff+9ZflUFUQmEyZNs5D0IUgSCQeLiABn/iMNOpkAPEE8DxrbtuihPDk8qR1qEjN5
-        Y+tjaINHK7bM0/uSb3RlrvuJJb/KXXMGdOBsej/cCwkKqyy3sW7mLqKaZET0DGhf
-        gQoJPttwz9jPteAjvxC47AVo3AX0ZLrLjGg==
-X-ME-Sender: <xms:NnrXZIzvzHGDioQfqPjdOYWvVqV7l4pnddLNQ9kqdvM7IZ5lS267EQ>
-    <xme:NnrXZMTifxguaVpAQlXXwXslDwd56SoT_D1BJsSPRC08gVTabjHd5tg5qWZAMTTAM
-    13ktE_tmuUa2w22Pxo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedruddttddghedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeettedttdefhfekueduvedutdejudetgfekgfegfefhjeejteegveehtdeh
-    veejgfenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhlihhnuhigqdhmihhpshdroh
-    hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegr
-    rhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:NnrXZKX9P1BhvMJDQMMiY_IYIPZHOeNBSEWK5rOrNIWPbKu4bpWFiA>
-    <xmx:NnrXZGipINhmUz8Wv4-kl9WFBgJe4FtJ4ccxqF68HUAyxkE0vI43KQ>
-    <xmx:NnrXZKBVP_aSNVnYmUKzXmng-IlmF0BY_vpf_iyUsGyelQuMHLJVrg>
-    <xmx:N3rXZGzh1zo1LBJT5Oeh7YcR2sxGyGV06W2jhv1PJY6SUMznMbBNsg>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id A7436B60089; Sat, 12 Aug 2023 08:25:26 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-624-g7714e4406d-fm-20230801.001-g7714e440
-Mime-Version: 1.0
-Message-Id: <6d7335b4-63e2-4a7e-9620-8a0012558dfd@app.fastmail.com>
-In-Reply-To: <8efeac46-ebb7-fa05-3d88-7c21acd59c8b@loongson.cn>
-References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
- <20230803063703.5659-2-zhuyinbo@loongson.cn>
- <193f9138-57e0-4d4b-8225-54d38be9bfbc@app.fastmail.com>
- <8efeac46-ebb7-fa05-3d88-7c21acd59c8b@loongson.cn>
-Date:   Sat, 12 Aug 2023 14:25:05 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     "Jianmin Lv" <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        "Liu Peibao" <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
-        "Liu Yun" <liuyun@loongson.cn>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 1/2] soc: dt-bindings: add loongson-2 pm
-Content-Type: text/plain;charset=utf-8
+        with ESMTP id S230298AbjHLM5k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 08:57:40 -0400
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2083.outbound.protection.outlook.com [40.107.95.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A877010F;
+        Sat, 12 Aug 2023 05:57:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DIYnSJ6hazW+jKd+UMDjI9liM5KcvXXhCEOpL1aFVHklp4WD0QiHpJw4Ss8CFOfDhKGVn6dbiiod1Gywcu5pimzgK1NCffuGWz8gYz3LjiNy55Oy/QnlKyr2SgFsQuAR9+BnxNjSteSXatTRHM+/0obipmgd5/Kjf38An/McNj2DUitRi2Lhkl4umtERXgC2p8AnRVmKocayPW6jWLX7epKKZRHGQnqRuJfnZZjC78Kl1iufKe9X0ZOKYTIhz3daAy+0N5qUE1dhWnQzKNvOnIuFio6kuM9Kmb2/OX5n22F8HfK8c6C+9/zN4pWIOZAerYucIQSyq0EzAjYRhMHi6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l/hqtoHTV472AePJ10Ol/vUwnLp3kvMhWceNj4BIO70=;
+ b=kP379G/bBFfnMbtvtIg3Rb03zaEqsaJUIPg1qUUpXmDeQ4coSG8hQUMJ7qkMF3L6dFvLJNZwqzJg4qki47Y6uha6eCCK+3/DYQDr+NyCQd+WnlsxfXchaU/BCA/6zfeurxeHLFfOOqVwFs/Fjxl89ZAJfiIlcNaYZ+IGtWw/YLNvav1njORggZcJWTvJLmQL3NSZ3VEACmJxzyyY8nfojEvF3FDqa82/1G6BLVKzc4cuIqcoOSbunqn3ZfyBoBAyOyF5jaysNLL3iIWsmvfqb19vj49Lvh4vmNDVWm2yvxSn9p+y1kiAJkUGG7ZBUwuUz8xXwx5CZp+iVHzlrt5lIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l/hqtoHTV472AePJ10Ol/vUwnLp3kvMhWceNj4BIO70=;
+ b=SsXyVvIDzGWdecxY36XJOQJSNyxrjYLjNPiyzbQ0kBFky7QxM8i1pWtKq0zvhg2pJEErFrnKHTRV/eS/+AFDpwIzkhUlRLTa5UU8reqHZGhL8rRZmtihy9QvkllOUhZHEpHenp1GD9tiFoP+C9JV0yHoEMb6C2zNrw0F1nIc3qI=
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
+ by BL3PR12MB6378.namprd12.prod.outlook.com (2603:10b6:208:3b1::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.20; Sat, 12 Aug
+ 2023 12:57:40 +0000
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::5cff:cc6e:6241:168c]) by MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::5cff:cc6e:6241:168c%7]) with mapi id 15.20.6652.029; Sat, 12 Aug 2023
+ 12:57:40 +0000
+From:   "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "andersson@kernel.org" <andersson@kernel.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Levinsky, Ben" <ben.levinsky@amd.com>,
+        "Shah, Tanmay" <tanmay.shah@amd.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH v3] dt-bindings: remoteproc: add Tightly Coupled Memory
+ (TCM) bindings
+Thread-Topic: [PATCH v3] dt-bindings: remoteproc: add Tightly Coupled Memory
+ (TCM) bindings
+Thread-Index: AQHZvAMchwgx+zTwNUuGuVr0d0h8Mq/JHGQAgB2jLMA=
+Date:   Sat, 12 Aug 2023 12:57:39 +0000
+Message-ID: <MN0PR12MB5953E72D7950581A8FB5AD82B711A@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <1689964908-22371-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <20230724161632.GA3686365-robh@kernel.org>
+In-Reply-To: <20230724161632.GA3686365-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|BL3PR12MB6378:EE_
+x-ms-office365-filtering-correlation-id: 5a244b00-5ee5-4776-8f1c-08db9b33b5d9
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: vDT+p4GKI70r2xKm58DG5tXJCQCtF84RibBKpqLlOEe82QN6VYeUymlki4wHsys4NWzjsFjmO7ZyQhwSZqrHI2vmHvbN3gLj5QfcNTufJm0Z/xJXocZnhoYXUOibQ1tgQ0oWXbyJ8UuSh5XyBraORMkyVNh51K3u+meQ2Ak5xBHMWeUe19WTrr6HUuLYuBnUbeHYePZ7/xFLQiALCPFKDQQ8etxGsgNx3TLXHKtmgGja5nIeM8CeHlr+Q2kOoFmnUeSab4ejMF9l1kAPUjprij5RTKW1HliuCjAyJH8VNKcqdSMJnq0zh7/ABBmdknTa+HI6E2C9GtCCUJsA0hSyRwgkcHgMU2x8hGEtLsiwwmQhKKHum6jCxnrCFnHo9EBV9JtmPB8/HPyMu7YFM+76k02LPiwkhY15QxKKIUURbaIXOM7N5iDe3P6FIkLXw8YPtOnmVsvsaj3UWdvSwfPdZRpCZRThnE0gDj+isjXjEa+nHDPHhZ/38ctwmmebaQZ2hF/S/lTciUFyXXZOLUvdN3cIFsBMPiJudJ1wvHHilxIzVbAIMSHAyNBZWDgDgTitDSNL9SgbpkVnS95dw56i/nANxgH5ddyku+ktTclZ5GRy8NTsodqPv8Q+Nu/0iu5q
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(376002)(136003)(396003)(346002)(366004)(39860400002)(1800799006)(186006)(451199021)(8936002)(66476007)(8676002)(76116006)(71200400001)(7696005)(41300700001)(33656002)(6916009)(316002)(66446008)(64756008)(4326008)(478600001)(52536014)(5660300002)(38070700005)(122000001)(66556008)(66946007)(9686003)(54906003)(38100700002)(2906002)(86362001)(55016003)(83380400001)(53546011)(6506007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eCYzHFU31W9RddpX2KPxYJ3IqlyyGRpf8pqSTtt6lX7krX358jU1+NROihww?=
+ =?us-ascii?Q?JhdjEKmZKHTH7eZ2xFyGq24ry3tsfMjSPTDSFcese1MivtDlDwJtc1JTsDwt?=
+ =?us-ascii?Q?Us1JyL+UdU6+Y8IXHbhlrD6AVyibQerhPU3vqi0Pw80UPhpkRuKC4rg4/fWQ?=
+ =?us-ascii?Q?RA5sZQV5jDkabp3YLGsecND4YB+l/z0eMCqIjvPvXiRThAGUqqJJGhW+75VD?=
+ =?us-ascii?Q?BdLgbNaC7YZY0HmY6xHz4zAriiiOstYcFEwRTwkYaMFfEqNhcb5MIl9Xce3U?=
+ =?us-ascii?Q?4CAU65FMR6pWoNkkChnaQ6MoRQW+f/SBWdySPxjgtOGlXB5Crf4H8bx/dKfW?=
+ =?us-ascii?Q?7wl8T52l7ulc38XDQgojrV04PKldxl6lqqNbZyrr7MPewOqWqo2kZzpNgWmJ?=
+ =?us-ascii?Q?3UavA+k84wks2QCF1FiaXusXmGy1z0JrYoQbvWABAP+v9MAGHKp2QVKsMBkx?=
+ =?us-ascii?Q?jYaVWsMGs/9cuprvipnT/boZ6oJYaxObJAubKdudJ8B406UyA9hmGbxUooXC?=
+ =?us-ascii?Q?8RlLGvjh34QIUpgx6sgs8oNHIOnak41vhJ3039S2V/n3dIO0C0SClmFOBNr3?=
+ =?us-ascii?Q?DW9mx0vSjECqhNoEqfbmrECVD/MBus1JPiJWVtM5FbIcDL4LK23bN9oRvWMX?=
+ =?us-ascii?Q?gwcgJzTx3FBI64f1NX0JonFqAC6/8sainpVYoO818n69Qa3bFf6JpUUcN2pl?=
+ =?us-ascii?Q?AhQh/lpy6HGAwx21pQ+NKdRqR1DRP0441jrXcYjdrK9aD89Uh8YvnvlUAaVe?=
+ =?us-ascii?Q?95ZmpotA4DqGIVzg79GIiOJ4CAh9zYOHF19oH5ThYaH3Y2MX/SRbCNlqCp11?=
+ =?us-ascii?Q?Z1imJ8ZaTm3aBuml02Tyw6hdcnHh3kRS52JTMl0FqVqpqoNHmgVjZbf/J3ni?=
+ =?us-ascii?Q?UpzYP5kIFEsuRsQdGo1SnmbgFmS7prGT0kH7YUN5SgsjcIx81bxPFff/hpIO?=
+ =?us-ascii?Q?m7Jr64IIvALh3mpMBTCf01CrZ6fV0COrf+d+cC7EwAvfOdVHGsB7LUQuLibX?=
+ =?us-ascii?Q?c94U+LTzbEAaGRrxBNCxgdmg811Sd7kh9OJtADP3Bb4ivAOVw3nvKXk66fjZ?=
+ =?us-ascii?Q?S0+wuln7ENNIw3luAOVKQUIl0TtqiRtuYyGKJ/fJ8Wm1oMRdACIldCtqsmje?=
+ =?us-ascii?Q?Bnmao/nTNR+AEOQxIhYFlMz0f+259NUq/N+tp3xVHeZMahagqopV9XchATCt?=
+ =?us-ascii?Q?nG0b3T+S3pHsjV3/dnfg8UBFLiZPcoGK9fkqwl19RpEivc5/Xkds2RbQcZuO?=
+ =?us-ascii?Q?EzmDwIQQSghu6uAWKNJpmx9Nvpk4wCzObGG5SWGO9B2T0uVhShe0Y4Cj0aCp?=
+ =?us-ascii?Q?Ci8PUl16LoqFdXZXFZFIlRwvzI692AEev6BhcFCYW1M/u3Xa1bVt+QBakCEK?=
+ =?us-ascii?Q?RrxpPIRepxQh/GW0ahroXGt9lNifDS2kYX8fKa2+Lr308lVodYD/43bFxiov?=
+ =?us-ascii?Q?BldfYmXoQbMhjhr70Pum5SDtItO/II1ACMXCVbjrS/GXCsVm96gKYWJJ/S3G?=
+ =?us-ascii?Q?DmYZGZXTNjp3SMrHEi/UbLFEKFVnXvOEGOoFijS436MgWG3U1GCWzDLXDuqg?=
+ =?us-ascii?Q?IOsFwjm707UX0VhR0TE1p/B5hBMY3AaQ1BPnszJ14ZONL63OHHnvihIPE0yH?=
+ =?us-ascii?Q?YxbC7rwm/pceQbpVRQhaxls=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a244b00-5ee5-4776-8f1c-08db9b33b5d9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2023 12:57:39.9522
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZrCSzh/C+hs5M46cmls1/H2nQQxZER8mTheCWh/uv/dARmWfpv3vjDDsKLxNb70a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6378
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 4, 2023, at 04:54, Yinbo Zhu wrote:
-> =E5=9C=A8 2023/8/3 =E4=B8=8B=E5=8D=883:44, Arnd Bergmann =E5=86=99=E9=81=
-=93:
->> On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
->>=20
->>> +  loongson,suspend-address:
->>> +    $ref: /schemas/types.yaml#/definitions/uint64
->>> +    description:
->>> +      The "loongson,suspend-address" is a deep sleep state (Suspend=
- To
->>> +      RAM) firmware entry address which was jumped from kernel and =
-it's
->>> +      value was dependent on specific platform firmware code. In
->>> +      addition, the PM need according to it to indicate that current
->>> +      SoC whether support Suspend To RAM.
->>> +
->>=20
->> I just commented on this in the driver patch, assuming this
->> was an MMIO address, but I'm even more confused now, since
->> we try hard to not rely on being able to just interface with
->> firmware like this.
->>=20
->> If this is executable code, where does this actually reside?
->
->
-> Pmon firmware code.
->
->> Is this some SRAM that needs to execute the suspend logic
->> in order to shut down memory and cache controllers?=20
->
->
-> Yes, The suspend-to-ram after into pmon firmware code and set
-> self-refresh mode in memory controller and ensure that memory data is
-> not lost then shut down memory controller.
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Monday, July 24, 2023 9:47 PM
+> To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
+> Cc: andersson@kernel.org; mathieu.poirier@linaro.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; Simek, Michal
+> <michal.simek@amd.com>; Levinsky, Ben <ben.levinsky@amd.com>; Shah,
+> Tanmay <tanmay.shah@amd.com>; linux-remoteproc@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>
+> Subject: Re: [PATCH v3] dt-bindings: remoteproc: add Tightly Coupled
+> Memory (TCM) bindings
+>=20
+> On Sat, Jul 22, 2023 at 12:11:48AM +0530, Radhey Shyam Pandey wrote:
+> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+> > UltraScale+ platform. It will help in defining TCM in device-tree
+> > and make it's access platform agnostic and data-driven.
+>=20
+> From the subject, it sounds like this is a binding for all of remoteproc =
+for
+> TCMs.
+>=20
+> Otherwise,
+>=20
+> Acked-by: Rob Herring <robh@kernel.org>
 
-I'm sorry I missed your reply earlier, getting back to the
-thread now. So it's clear that this code needs to run in a
-special memory from your description, but I'm still trying
-to understand the details better.
-
-I found https://github.com/loongson-community/pmon source
-code, and a reference to its origin at LSI Logic at
-https://www.linux-mips.org/wiki/PMON but otherwise have
-no idea about what this actually is, or how it relates
-to your UEFI firmware. Did you add UEFI support to PMON,
-or do you use it as a first stage loader that loads
-the actual UEFI implementation (EDK2 or u-boot, I guess)?
-
->> Or is
->> this a runtime firmware interface similar to how UEFI handles
->> its runtime services to keep the implementation out of
->> the kernel?
->
->
-> No, The main cpu and other cpu will offline that after into firmware a=
-nd
-> finished Corresponding operations, the pmon firmware will not run.
-
-I'm still trying to understand your explanations here.
-You say that pmon no longer runs, but that seems to contradict
-what you said earlier about branching into pmon firmware code
-for suspend.
-
-Is this executing directly from ROM then?
-
-       Arnd
+Thanks for the review. Just checking if this patch will be taken through
+devicetree or remoteproc tree?
