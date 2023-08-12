@@ -2,116 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6934977A0E6
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 17:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0860277A104
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 18:28:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbjHLPwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Aug 2023 11:52:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42612 "EHLO
+        id S229454AbjHLQ2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Aug 2023 12:28:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjHLPwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 11:52:54 -0400
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D612E4D;
-        Sat, 12 Aug 2023 08:52:56 -0700 (PDT)
-Received: from newone.lan (unknown [10.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id BBA8516074D;
-        Sat, 12 Aug 2023 17:52:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1691855573;
+        with ESMTP id S229451AbjHLQ2L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 12:28:11 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA121BEE;
+        Sat, 12 Aug 2023 09:28:13 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3A51C20002;
+        Sat, 12 Aug 2023 16:28:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+        t=1691857692;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=nKiwwtStQeo2iwbfC4NwzJYRLyuxnMS+WXh6ZsB/n9M=;
-        b=zKt4VY3CyU/vtZfBzyvaTg0zgCE5xWbYb2TGv88rAXPv6BIW6hoU9HagxjXMs9thoVu0Dy
-        mR6Cwy/QN5518UKRi9DyU4+aYokn5BCZ7EtBTq2mjZW3zl4RwY3yR7U7Nn51/L/rU6D8WJ
-        AlNoKHTmqthlhCbQMvnihQ+j/rbGxss=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=38WNKp1tIHZuWDWyB1VGwPuC9C9gEwniYXC3BCan83U=;
+        b=btMVtgRqMyn/AKspRKynx1G2Dg6YT82EWik4KPC2lQZOo2oqPltopNdfNbwNV0UyqDhE57
+        rr5W7V6PXFcb21pzwX6pidCTc59c5yFAQEzbd8HiPS7Qlt5c47y5gwn3qqmcymz1ZBFWLb
+        gn4zfwmCj73tskoy7Zo0DZ7YEWXa1l7EMjaYIeF1/yHKlzXmNEbthAZb2fuGS4ne+9fhuP
+        vRxUE52SRldB0IBCiLxjw2eC3p4o39sQD0Us2JJ8zo5aCkBeFtuqkoYz36g9U20Ew+zYxD
+        DQuA9Serq/WreUiX/0ilFqR/G95g9WzbLkrtZKdjy+lnp/sBSEB27QOHtuPoAA==
+Message-ID: <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+Date:   Sat, 12 Aug 2023 19:28:02 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: apq8064: add support to gsbi4 uart
-Date:   Sat, 12 Aug 2023 17:52:34 +0200
-Message-Id: <20230812155234.338016-1-david@ixit.cz>
-X-Mailer: git-send-email 2.40.1
-MIME-Version: 1.0
+        Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230812091708.34665-1-arinc.unal@arinc9.com>
+ <20230812091708.34665-3-arinc.unal@arinc9.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230812091708.34665-3-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_RDNS_DYNAMIC_FP,
-        RCVD_IN_DNSWL_BLOCKED,RDNS_DYNAMIC,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support to gsbi4 uart which is used in LG Mako.
+I changed this to below. I will wait for reviews before submitting v2.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi | 16 ++++++++++++++++
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      | 12 ++++++++++++
- 2 files changed, 28 insertions(+)
+The realtek.yaml schema extends the mdio.yaml schema. The mdio.yaml schema
+is also being referred to through dsa.yaml#/$defs/ethernet-ports now which
+means we cannot disallow additional properties by 'unevaluatedProperties:
+false' on the dsa.yaml schema.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi
-index 1f15186dd710..a939b7336506 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi
-@@ -233,6 +233,22 @@ pinconf {
- 		};
- 	};
- 
-+	gsbi4_uart_pin_a: gsbi4-uart-pin-active {
-+		rx {
-+			pins = "gpio11";
-+			function = "gsbi4";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		tx {
-+			pins = "gpio10";
-+			function = "gsbi4";
-+			drive-strength = <4>;
-+			bias-disable;
-+		};
-+	};
-+
- 	gsbi6_uart_2pins: gsbi6_uart_2pins {
- 		mux {
- 			pins = "gpio14", "gpio15";
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-index 2ab69dd69862..870205028f5c 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-@@ -547,6 +547,18 @@ gsbi4: gsbi@16300000 {
- 			#size-cells = <1>;
- 			ranges;
- 
-+			gsbi4_serial: serial@16340000 {
-+				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
-+				reg = <0x16340000 0x100>,
-+				      <0x16300000 0x3>;
-+				interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-0 = <&gsbi4_uart_pin_a>;
-+				pinctrl-names = "default";
-+				clocks = <&gcc GSBI4_UART_CLK>, <&gcc GSBI4_H_CLK>;
-+				clock-names = "core", "iface";
-+				status = "disabled";
-+			};
-+
- 			gsbi4_i2c: i2c@16380000 {
- 				compatible = "qcom,i2c-qup-v1.1.1";
- 				pinctrl-0 = <&i2c4_pins>;
--- 
-2.40.1
+On the realtek.yaml schema, refer to dsa.yaml#/properties/mdio instead to
+point the human readers to the description on the dsa.yaml schema.
 
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+index ec74a660beda..03ccedbc49dc 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+@@ -31,6 +31,24 @@ properties:
+        (single device hanging off a CPU port) must not specify this property
+      $ref: /schemas/types.yaml#/definitions/uint32-array
+  
++  mdio:
++    description: The internal MDIO bus of the switch
++    $ref: /schemas/net/mdio.yaml#
++
++if:
++  required: [ mdio ]
++then:
++  patternProperties:
++    "^(ethernet-)?ports$":
++      patternProperties:
++        "^(ethernet-)?port@[0-9]+$":
++          if:
++            not:
++              required: [ ethernet ]
++          then:
++            required:
++              - phy-handle
++
+  additionalProperties: true
+  
+  $defs:
+diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+index cfd69c2604ea..f4b4fe0509a0 100644
+--- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+@@ -96,7 +96,7 @@ properties:
+        - '#interrupt-cells'
+  
+    mdio:
+-    $ref: /schemas/net/mdio.yaml#
++    $ref: dsa.yaml#/properties/mdio
+      unevaluatedProperties: false
+  
+      properties:
+
+Arınç
