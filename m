@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37936779BCB
+	by mail.lfdr.de (Postfix) with ESMTP id D4AFD779BCD
 	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 02:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234404AbjHLAPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 20:15:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35258 "EHLO
+        id S230500AbjHLAQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 20:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbjHLAPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 20:15:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF41E42
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:15:48 -0700 (PDT)
+        with ESMTP id S233551AbjHLAQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 20:16:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C45626A0
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:16:53 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 644C1612B3
-        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:15:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C389BC43391
-        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:15:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE2CA65C28
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:16:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02690C433C7;
+        Sat, 12 Aug 2023 00:16:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691799347;
-        bh=LzHAa8FdaFobgKZQkKpFvAilcLGLrQgEqIcYVXC7GxA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MzZSCxWUzJOAdsmu4RAqQQLC0Gg79VaKFN+XVhogBVPagwStHWeP6N+akoF+U+m7k
-         Bygxu7KB8xu4WxY/P08aHHxqh3RuwhgwQl+TyrSrpF4i6a757mtm4GouJ1uW72UpNM
-         k3o87P5BIyy7vvt3FNqOnZ1n5vXLr+ubDKQdXJ8rllpWz9D11d03ljRds/HYrKkpGy
-         VJkNXII0PeK/tEfzz0OxlGRLp+0bPx0/RHrhk60ic2Um2JemkQa+yD+/ptQFA9XQ00
-         fqwQ4reyauiec9K6Fvhc6YgMacj/XK1EIPqIwMY7cnEu5g4YDFei0QwYspOmYyDQB2
-         Zf35DVaWVTcJg==
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-52364e9daceso3219901a12.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:15:47 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yw2/UjU5M5X/MozqmfRQQhJTiOc39HG3SsN6vrctbJ9rEjT8lvj
-        r0cf2D6dNfjlpklzd4R0b2h3yWtaEBoT6tkrbmQ=
-X-Google-Smtp-Source: AGHT+IHAlgbDfqL2mF0l3Hs69Dhj2si/urJQvXIh8eeM6MoIR7x42f3d8ceSnAxAhQ513YvOxBSizW8Z7d8SFAjzuns=
-X-Received: by 2002:a05:6402:12d5:b0:523:bfec:4909 with SMTP id
- k21-20020a05640212d500b00523bfec4909mr2842218edx.7.1691799346002; Fri, 11 Aug
- 2023 17:15:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230808132958.1097873-1-guoren@kernel.org> <ZNURXBKkYdiWLanf@xhacker>
- <20230811-cardiac-platter-8b50b3b764d3@spud> <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
-In-Reply-To: <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Sat, 12 Aug 2023 08:15:34 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQrr8OqrqETpQrehUJRnN4y9O3tmvwTi0qFrZ4A-__p_g@mail.gmail.com>
-Message-ID: <CAJF2gTQrr8OqrqETpQrehUJRnN4y9O3tmvwTi0qFrZ4A-__p_g@mail.gmail.com>
-Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
-To:     Conor Dooley <conor@kernel.org>
+        s=k20201202; t=1691799412;
+        bh=5sMSUmTaT6AsZS3fe+qczttQD0l64JfGaNck+YRtxbg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SvBWVPjbxpJ19d1S7KPIbJDIEoZ0BxbS4g9mlyiqbvN9JmrV/ITZmg/Nrwsd/+FA7
+         2lJ5eQ8cHu8AzPTzVRkAeqx/IizsSp1g6FthUAkmfNwv5T++ADi2XknJ5OKc7jxrEy
+         S9ju1hVcm0j5i8Sk9y6K5KVxmr5JAxCJMHjkzTq6zSkDDOkQhK61rKs6bfW1CObVsy
+         myp6E3oowSvK0dV5LJaEfqTX6GtexbUDBYsH2b2cywiX5Xp5biRqfV797gk+yah/nt
+         ssCCCVytSWvnTfazEDa+foo25VQczaDSMqlV1TjOg0Prnw1r2GofL4QzQihJhPvgBa
+         Gi3uHK8F/VwdA==
+Date:   Sat, 12 Aug 2023 01:16:47 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Guo Ren <guoren@kernel.org>
 Cc:     Jisheng Zhang <jszhang@kernel.org>, wefu@redhat.com,
         jrtc27@jrtc27.com, anup@brainfault.org, samuel@sholland.org,
         bmeng.cn@gmail.com, opensbi@lists.infradead.org,
         Guo Ren <guoren@linux.alibaba.com>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
+Message-ID: <20230812-septum-gestate-4c62ef7c7213@spud>
+References: <20230808132958.1097873-1-guoren@kernel.org>
+ <ZNURXBKkYdiWLanf@xhacker>
+ <20230811-cardiac-platter-8b50b3b764d3@spud>
+ <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UwVBjK3pjJcMONg/"
+Content-Disposition: inline
+In-Reply-To: <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 12, 2023 at 8:07=E2=80=AFAM Guo Ren <guoren@kernel.org> wrote:
->
+
+--UwVBjK3pjJcMONg/
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Aug 12, 2023 at 08:07:50AM +0800, Guo Ren wrote:
 > On Sat, Aug 12, 2023 at 1:57=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
 rote:
 > >
@@ -87,7 +86,7 @@ o execute
 > > > > +   at reset address.
 > > > > +
 > > > > +Many vendors would gather these signals into SoC control registers=
-. These
+=2E These
 > > > > +register designs are similar but with different base addresses and=
  bits
 > > > > +definitions. We only provide standard opensbi, Linux binaries, and=
@@ -102,66 +101,32 @@ driver helps
 > > > properties. Could you please help review?
 > >
 > > I already reviewed this once & nothing has improved.
-> > In fact, things have gotten worse IMO with this "using-csr-reset" that =
-I
+> > In fact, things have gotten worse IMO with this "using-csr-reset" that I
 > > don't think existed in the original iteration that I saw.
 > > I did see things getting better with the use of standard stuff like
 > > "reg" in our earlier discussion which I don't see here.
+
 > It's not a patch to improve the implementation and we don't make a
 > deal in that discussion. This patch improves the document because the
 > previous doc didn't describe the whole thing about the
 > thead,reset-sample driver.
->
+
+That's all well and good, but there's still no point in Rob, Krzysztof
+or I reviewing it, which is what was being requested in the email I was
+replying to.
+
 > > What is the point in carrying out any further review if things will be
 > > flat out ignored?
-I think the critical problem is JC objects to the whole of this
-existing driver,  so any improvement is meaningless for the current.
-Your naming advice is okay for me, but it does not relate to this
-patch.
 
->
-> >
-> > Thanks,
-> > Conor.
-> >
-> > > > +
-> > > > + - entry-reg:
-> > > > +   The base address to store reset address value
-> > > > +
-> > > > + - entry-cnt:
-> > > > +   The numbers of entry-reg, all of them set the same reset addres=
-s
-> > > > +
-> > > > + - control-reg:
-> > > > +   The base address to reset the controller
-> > > > +
-> > > > + - control-val:
-> > > > +   Write which bits of control-reg for booting
-> > > > +
-> > > > + - csr-copy:
-> > > > +   This array determines which csrs to copy from primary hart to t=
-he
-> > > > +   secondary harts, which are set in sequence from left to right. =
-The
-> > > > +   secondary harts should keep the same setting as the primary har=
-t.
-> > > > +   These settings are also the first part of the bootup instructio=
-ns
-> > > > +   for secondary harts.
-> > > > +
-> > > > + - using-csr-reset:
-> > > > +   A legacy reset controller for the SMP system, but abandoned in =
-the
-> > > > +   latest T-HEAD processors.
-> >
->
->
-> --
-> Best Regards
->  Guo Ren
+--UwVBjK3pjJcMONg/
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNbPbwAKCRB4tDGHoIJi
+0vtLAP9FTEGh5LZRS4Fi3VqSbLfn5GjeWp6jJ7SdTqM8+QAyzQEAkB6NY8wc7yoU
+SyTtUyrzonTJcPGECkcIdD1sVp1wGgY=
+=DlJg
+-----END PGP SIGNATURE-----
 
---=20
-Best Regards
- Guo Ren
+--UwVBjK3pjJcMONg/--
