@@ -2,183 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A33779C20
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 02:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E021C779C29
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 02:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236645AbjHLArl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 20:47:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57746 "EHLO
+        id S237099AbjHLAtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 20:49:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232651AbjHLArk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 20:47:40 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABFE82686
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:47:39 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1bda9207132so17029535ad.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:47:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1691801259; x=1692406059;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=05BikiCLpUIHGHjBbtQXpjem9/6VYbL8VEjebyzDVSo=;
-        b=Nfo84er8B87Ux9oCI5j+m3UNMamRr/ciYPhN73kyWkhw7OIsCMQvJv7TXg37w3Ybh8
-         4ZKe/7qjsdKUiUsNd/wAe/YQQtDHl1SatFHBhDQ0l2wahIB0rAGDPhRQhH2Ye3h0fRjp
-         R0+afrfQ76Oiab8sNaY976b0rpV8yLs6KcP0d8vvTS7I43DBb2i/0w6OeoLitpveyjJ6
-         J40f1AAjoRw0r2+mv9mOMOYapXGipSTC3pVf1B/QPMCtmuqdtg/lnZnnLH4kxI0xj09F
-         PzO1zINiaC+dG3XJZ94sPNMsiW6nLKmW4xCuQnAXhWkp9iU5fWFxlrawJNE2BScbW6HL
-         YwJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691801259; x=1692406059;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=05BikiCLpUIHGHjBbtQXpjem9/6VYbL8VEjebyzDVSo=;
-        b=ER+kAafZo7stVtffX9TQK/lWGHJxwsWwDN1/BryhTQ6NUSkNcDl+eCOhgrN8Y7p4Pa
-         MIKD/Y+6o6SbcnKpxIksPRYWnUZiGWTKdj+uaiuFt79UIspxdMcGUvj+1zaQXWR0q8Ht
-         JbEh8QGX7gI7IcbU0R4wobhVuj3Hd2/nbNCiO38p+P4Ta7o/tV5xWAEIMDakc5n/Jfy3
-         w7vdiBxMxQvNIFWTo4ZoJcnYIvqSU7skKeBurPmoKbsVH+4o3G98cnBd7yxkm48RpvSd
-         oM13mL914HINFtZGoyv9S+gtXHVgs3o1GWNpfjoCXKWUzENuqDMmZ0mlh0JyNUcpQR8C
-         +M8w==
-X-Gm-Message-State: AOJu0YxmlAD2ux6Pq6vf29rimnFdlib4FQDUzAcdjVjFi0oLVe4EH2s8
-        C/URRrZwUN0Qhwmx441uWYQ1Qg==
-X-Google-Smtp-Source: AGHT+IFdDX562eGbJtNruygyIF2dN53hOpTDe7X+mKpz434vbf5cpu8OlnawmM1dZhBGKfVOn3zixQ==
-X-Received: by 2002:a17:902:b591:b0:1b9:ea60:cd82 with SMTP id a17-20020a170902b59100b001b9ea60cd82mr3320103pls.5.1691801259187;
-        Fri, 11 Aug 2023 17:47:39 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:1c2:1800:f680:5b85:b986:e090:9abc])
-        by smtp.gmail.com with ESMTPSA id c11-20020a170902724b00b001b246dcffb7sm4559247pll.300.2023.08.11.17.47.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 17:47:38 -0700 (PDT)
-From:   Drew Fustini <dfustini@baylibre.com>
-Date:   Fri, 11 Aug 2023 17:47:17 -0700
-Subject: [PATCH v3 2/2] riscv: dts: thead: add BeagleV Ahead board device
- tree
+        with ESMTP id S236991AbjHLAtK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 20:49:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ED7F30C8
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:49:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D173613B3
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:49:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D06DC433CD
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 00:49:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691801349;
+        bh=9j6d9Wofxm7Fh8whI8STMpdxW0WB168mbZCcZGWuTlo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZftZYaQrnIpaKgYAOuqxyOyiZUFePE4HJ19RVTcol6ezOCnwKU5iOFElksGOcR4+3
+         uiYUNS0ML8tf5rbjTqU5jzZeepSWHR9lzzhSKuQWlvgV95n9U4dlsgp6p+LjOMDFaW
+         JaZ76Ohf84jEA2q0hJGxWpe2bY2JDGuW1H0E2XK4D559PzSq2ENwc3QKHrvsoNR8uY
+         vKIv+gNzIezQJ2i5AUFgRyI2xSECT+63yZ8EJiNXmftwmD6Ssnkd9jG8/9OU8d+FcX
+         cCJGyyoUF4gNQAV7cZgSsqHJfciXJ2EMMbHFyWI0sV1bJMvdZjKAOtlGAd850x9LOr
+         v+0GcRfiNDQRA==
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-523c7b55d82so1605219a12.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 17:49:09 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yx6vUMWvoZmLNRzkw24Lmd0bxP2/425kGGpJiXoD3h2RXyHboi4
+        qNPgMgoTCJbQ5wRjthDLRvFEwvUYxac8FAzKt8M=
+X-Google-Smtp-Source: AGHT+IEnvNTtTMTg1Wz98n4oSBAmVld9uEmekhzRlhXDISgI9dtjezWXUIBydsKR/MES2gy+G9CZAjVdifoVEnPX9QU=
+X-Received: by 2002:a05:6402:650:b0:523:2da2:1ec4 with SMTP id
+ u16-20020a056402065000b005232da21ec4mr3011514edx.11.1691801347671; Fri, 11
+ Aug 2023 17:49:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230811-ahead-dt-v3-v1-2-aef2294bed86@baylibre.com>
-References: <20230811-ahead-dt-v3-v1-0-aef2294bed86@baylibre.com>
-In-Reply-To: <20230811-ahead-dt-v3-v1-0-aef2294bed86@baylibre.com>
-To:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <dfustini@baylibre.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691801256; l=2256;
- i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=Z2atrlGM8tcTPwr3A1Vti2dKZVGQj5R9fuQgJnqj1sI=;
- b=oyWcZ20LG4j7WS2sLMTHpSAPtOXFSF78Rdy3L88QLepL03Vrvp9oXTy0m39sCgx5A3inTSWkA
- cGzxPKP4sijASypHQEOtJpEM9fUMs/KYFXZEiA84pK6GCc7iOI/rzg1
-X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230808132958.1097873-1-guoren@kernel.org> <ZNURXBKkYdiWLanf@xhacker>
+ <20230811-cardiac-platter-8b50b3b764d3@spud> <CAJF2gTSYAz5ogsnB5SD_A3J1WEPzAHU1GDy_cPnuvXytqvMiBw@mail.gmail.com>
+ <20230812-septum-gestate-4c62ef7c7213@spud>
+In-Reply-To: <20230812-septum-gestate-4c62ef7c7213@spud>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sat, 12 Aug 2023 08:48:56 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTToB_a0gPitfHSPkNq4sdEsJ0RfHCGzHA_AystjY1fi+w@mail.gmail.com>
+Message-ID: <CAJF2gTToB_a0gPitfHSPkNq4sdEsJ0RfHCGzHA_AystjY1fi+w@mail.gmail.com>
+Subject: Re: [PATCH] docs/platform: thead-c9xx: Improve the documentation
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>, wefu@redhat.com,
+        jrtc27@jrtc27.com, anup@brainfault.org, samuel@sholland.org,
+        bmeng.cn@gmail.com, opensbi@lists.infradead.org,
+        Guo Ren <guoren@linux.alibaba.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BeagleV Ahead single board computer uses the T-Head TH1520 SoC.
-Add a minimal device tree to support basic uart/gpio/dmac drivers so
-that a user can boot to a basic shell.
+On Sat, Aug 12, 2023 at 8:16=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Sat, Aug 12, 2023 at 08:07:50AM +0800, Guo Ren wrote:
+> > On Sat, Aug 12, 2023 at 1:57=E2=80=AFAM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > >
+> > > On Fri, Aug 11, 2023 at 12:33:32AM +0800, Jisheng Zhang wrote:
+> > > > On Tue, Aug 08, 2023 at 09:29:58AM -0400, guoren@kernel.org wrote:
+> > > > > From: Guo Ren <guoren@linux.alibaba.com>
+> > >
+> > > > > +T-HEAD Fdt Reset Driver Introduction
+> > > > > +------------------------------------
+> > > > > +
+> > > > > +Every T-HEAD CPU provides a reset control signal and reset addre=
+ss signals.
+> > > > > + - Reset address signal determines CPU where to start up.
+> > > > > + - Reset control signal releases CPU from reset state and begins=
+ to execute
+> > > > > +   at reset address.
+> > > > > +
+> > > > > +Many vendors would gather these signals into SoC control registe=
+rs. These
+> > > > > +register designs are similar but with different base addresses a=
+nd bits
+> > > > > +definitions. We only provide standard opensbi, Linux binaries, a=
+nd jtag gdbinit
+> > > > > +script to simplify Linux booting at the FPGA stage. The fdt rese=
+t driver helps
+> > > > > +users bring up their SMP system quickly with the below settings:
+> > > >
+> > > > +DT maintainers and DT list.
+> > > >
+> > > > I can submit a dt-binding for this if DT maintainers agree with bel=
+ow
+> > > > properties. Could you please help review?
+> > >
+> > > I already reviewed this once & nothing has improved.
+> > > In fact, things have gotten worse IMO with this "using-csr-reset" tha=
+t I
+> > > don't think existed in the original iteration that I saw.
+> > > I did see things getting better with the use of standard stuff like
+> > > "reg" in our earlier discussion which I don't see here.
+>
+> > It's not a patch to improve the implementation and we don't make a
+> > deal in that discussion. This patch improves the document because the
+> > previous doc didn't describe the whole thing about the
+> > thead,reset-sample driver.
+>
+> That's all well and good, but there's still no point in Rob, Krzysztof
+> or I reviewing it, which is what was being requested in the email I was
+> replying to.
+We aim not to deliver any custom software binaries to our CPU
+customers. Only generic opensbi & Linux images are all enough at the
+prototype stage.
 
-Link: https://beagleboard.org/beaglev-ahead
-Reviewed-by: Guo Ren <guoren@kernel.org>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- arch/riscv/boot/dts/thead/Makefile                 |  2 +-
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 61 ++++++++++++++++++++++
- 2 files changed, 62 insertions(+), 1 deletion(-)
+>
+> > > What is the point in carrying out any further review if things will b=
+e
+> > > flat out ignored?
 
-diff --git a/arch/riscv/boot/dts/thead/Makefile b/arch/riscv/boot/dts/thead/Makefile
-index e311fc9a5939..b55a17127c2b 100644
---- a/arch/riscv/boot/dts/thead/Makefile
-+++ b/arch/riscv/boot/dts/thead/Makefile
-@@ -1,2 +1,2 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_ARCH_THEAD) += th1520-lichee-pi-4a.dtb
-+dtb-$(CONFIG_ARCH_THEAD) += th1520-lichee-pi-4a.dtb th1520-beaglev-ahead.dtb
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-new file mode 100644
-index 000000000000..70e8042c8304
---- /dev/null
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-+ * Copyright (C) 2023 Drew Fustini <dfustini@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "th1520.dtsi"
-+
-+/ {
-+	model = "BeagleV Ahead";
-+	compatible = "beagle,beaglev-ahead", "thead,th1520";
-+
-+	aliases {
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio1;
-+		gpio2 = &gpio2;
-+		gpio3 = &gpio3;
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+		serial5 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0  0x00000000  0x1 0x00000000>;
-+
-+	};
-+};
-+
-+&osc {
-+	clock-frequency = <24000000>;
-+};
-+
-+&osc_32k {
-+	clock-frequency = <32768>;
-+};
-+
-+&apb_clk {
-+	clock-frequency = <62500000>;
-+};
-+
-+&uart_sclk {
-+	clock-frequency = <100000000>;
-+};
-+
-+&dmac0 {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
 
--- 
-2.34.1
 
+--=20
+Best Regards
+ Guo Ren
