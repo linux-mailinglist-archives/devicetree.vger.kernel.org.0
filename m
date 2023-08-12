@@ -2,129 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0E8779F9E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 13:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93FCE779FC3
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 13:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237229AbjHLL12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Aug 2023 07:27:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34622 "EHLO
+        id S236985AbjHLLqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Aug 2023 07:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237238AbjHLL1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 07:27:18 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A931E7E;
-        Sat, 12 Aug 2023 04:27:19 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fe7e67cc77so4536033e87.2;
-        Sat, 12 Aug 2023 04:27:19 -0700 (PDT)
+        with ESMTP id S235237AbjHLLqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Aug 2023 07:46:35 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3FA31708
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 04:46:37 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe8c3b5ca0so4483704e87.1
+        for <devicetree@vger.kernel.org>; Sat, 12 Aug 2023 04:46:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691839638; x=1692444438;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YF7IV/t2RnprYmLwfCnYmyCQpWT6QNpR/xfog5JcW0k=;
-        b=mrSilgtXyIjVgz3RGl4U1tDbBtEZ15EsoDGG//y24OaFWUFe+uOnVqBlF9G06W/h2j
-         CL7boTuFOG/3vLcN+OiGWEVjwodaeWNOUQ+evLNqXQn+wBHU403KhbCxhp9YDfNWhinz
-         p8hdLQoE6pDLPS3ZGe+2dorr3T2zVpTgCOYs8z7XoErSvsToN/KAy+w7TM0cgrBcRChd
-         de9U9Ti4A+5kO4KAR+jZtiRF4ML2PZhPLvOLZcv1kp9QIPwQWjrPINZ6gkYzlM8F67yj
-         QeldAXeBHTaEQT9y0hBe8nOFCtF8YsiehYD8Fr74UXaft5qoyqox0nrXtkRejii63bm/
-         rIOg==
+        d=linaro.org; s=google; t=1691840796; x=1692445596;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a+JGjneC4SRUqtftpqJOx/UsXT5c6LOS8fWfDoVSEc8=;
+        b=fbdLpezOr8MA2r5ZjKo7SVwa6Djije9nmePF60bF5kcHJuRMa6gifRjWhT0sVDQVGx
+         Kxjzv439JapkUrPqZzqdjrLpxo7PyQ1Kyb56T1hB3sawqECtXGFK4w8AjQ6BoZB/t4RW
+         9aPkjviXGWwrPmYX9dT7WO3mx8FttYtnQ4miNY6JyKQQLrQZh9hvo7fcLscIqyb30OQe
+         i4K5jq5awb9JuTUgF39Rq4QYtmbi43Nv9Y2/qkYxuLAnsq8GK2bIqJZ84T1OtyNhfi+F
+         kHQ/bfUF+O5dpamgfv7vszUXmpurCYGzKEPn93hd1HRp2FUPO62WgN/J1khza9UF5IRR
+         0mMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691839638; x=1692444438;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YF7IV/t2RnprYmLwfCnYmyCQpWT6QNpR/xfog5JcW0k=;
-        b=f+jfDcq7lCfhbzs/kkbiXAPrC4YXqoSCBHS5M8DF8A1MgKVlTGckyq2r7dMc7e/P8n
-         yIFvhjJYfaXAGMt+HEqv47M5aMVLjkbRckTrhPeA/EAgnFE8fP6Ec2QD7ryEYR/dMsVM
-         CmsqTf9u5qU/w2VGdCnGkGM8XC6dp/k8ti8QtsK5O6pre8rkyCoFYO0hFdG/yxdMDGz0
-         IW5C6UGwCP/xUte5eU/F5Q8P7ram+0gCGacccLrD7JN3RV8nagACplkQKPMHY/ZTivxD
-         pIuVQjHOlvGySw2elR0W1j7UgpDCnBeyaJJRvSRllRPmIZK2p2Rp35srLaUy5o2wTyvC
-         OcXw==
-X-Gm-Message-State: AOJu0YylwQG7DM6ZWFqIg6R1k8sOBjSiDbg88FSfOW2A1o0Agv2uQYMz
-        lE2yhJaoMDypuWCyrccJd5o/v/643pTsVw==
-X-Google-Smtp-Source: AGHT+IEyIrZJpbCI0kGvUIiGJg9EDT8jtoIJfftz9EptJb9uUSUdEItjjsJFcnd5+yGtZ0Zlp5scZQ==
-X-Received: by 2002:a05:6512:2814:b0:4fe:d0f:b4f7 with SMTP id cf20-20020a056512281400b004fe0d0fb4f7mr3915409lfb.65.1691839637721;
-        Sat, 12 Aug 2023 04:27:17 -0700 (PDT)
-Received: from localhost.localdomain (bzd150.neoplus.adsl.tpnet.pl. [83.30.49.150])
-        by smtp.gmail.com with ESMTPSA id w3-20020ac24423000000b004fe2f085d5csm1087289lfl.299.2023.08.12.04.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Aug 2023 04:27:17 -0700 (PDT)
-From:   Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Adam Skladowski <a39.skl@gmail.com>,
+        d=1e100.net; s=20221208; t=1691840796; x=1692445596;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a+JGjneC4SRUqtftpqJOx/UsXT5c6LOS8fWfDoVSEc8=;
+        b=IJ2Uos4jbT41Qqhb1TtuCV3Oqa9zKjwYtNr0y5yp86Nl3oBQV5Bzz+5Pwj6y8V6GXr
+         S7gbhqAoJf9tRDAuYrYdh69BYqEdl5ScnHoqYRT7k1HWRJVDTJiDepKNRf0bBsRWvNaH
+         MGcb5oLJbBsvAulof+OV+YQnkv/GVb0norMVTb9gwd2d+Qn7grGk8rnaMUzTFKM5hR8t
+         LzZJ4AaiE0VFYS9wPrMxRWM7LbGdciua8iq8gzwPxIxfQHqBIZz6u6ae/etsZqDtRSwq
+         UnDCvwP7uLtpyI65Uvp9uxXKPuffS6jEFJHNMBqxdMofULmRwp1PdLPI5cnQEtHIp1gB
+         xCrw==
+X-Gm-Message-State: AOJu0YyGFwBA6wpEt26jTEw1cmNAGKT6u8LWwzN6708YkbLoZQrc3qlw
+        g8l0Rtiol8U0XH0neaPCHMz0aA==
+X-Google-Smtp-Source: AGHT+IGkoFOmVvMzr146QLzZz2N6QVOZN15DXr4roVYFSqmXFFsfZNXotCiP7Vgsx5gle7sTPSljvg==
+X-Received: by 2002:ac2:5399:0:b0:4f8:bfb4:e4c4 with SMTP id g25-20020ac25399000000b004f8bfb4e4c4mr3039008lfh.19.1691840795877;
+        Sat, 12 Aug 2023 04:46:35 -0700 (PDT)
+Received: from [192.168.1.101] (abyj188.neoplus.adsl.tpnet.pl. [83.9.29.188])
+        by smtp.gmail.com with ESMTPSA id p24-20020a19f018000000b004fdc5557a70sm1098079lfc.141.2023.08.12.04.46.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Aug 2023 04:46:35 -0700 (PDT)
+Message-ID: <b93bd745-fd93-4317-a16b-1aa05a34d60d@linaro.org>
+Date:   Sat, 12 Aug 2023 13:46:33 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/11] arm64: dts: qcom: msm8998: Remove AGGRE2 clock from
+ SLPI
+Content-Language: en-US
+To:     Jeffrey Hugo <quic_jhugo@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 7/7] arm64: dts: qcom: msm8976: Fix ipc bit shifts
-Date:   Sat, 12 Aug 2023 13:24:50 +0200
-Message-Id: <20230812112534.8610-8-a39.skl@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230812112534.8610-1-a39.skl@gmail.com>
-References: <20230812112534.8610-1-a39.skl@gmail.com>
-MIME-Version: 1.0
+References: <20230721-topic-rpm_clk_cleanup-v1-0-cf6cd5c621d5@linaro.org>
+ <20230721-topic-rpm_clk_cleanup-v1-9-cf6cd5c621d5@linaro.org>
+ <43afe706-5765-a8e7-2bbe-d9b21ec7a06e@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <43afe706-5765-a8e7-2bbe-d9b21ec7a06e@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update bits to match downstream irq-bitmask values.
+On 21.07.2023 17:50, Jeffrey Hugo wrote:
+> On 7/21/2023 9:36 AM, Konrad Dybcio wrote:
+>> The AGGRE2 clock is a clock for the entire AGGRE2 bus, managed from
+>> within the interconnect driver. Attaching it to SLPI was a total hack.
+>> Get rid of it.
+> 
+> Nit - why do we care what driver manages the clock?  DT describes hardware...
+> 
+> The entire SLPI block hangs off the AGGRE2 bus, so that bus needs to be on for the SLPI.  I agree that AGGRE2 is really an interconnect device and SLPI should be a consumer of that, but we don't have 8998 interconnects defined yet.  Seems like this hack is still needed.
+As we concluded in private, this has no effect as the clk-smd-rpm driver
+leaves that clock dangling at FMAX anyway
 
-Fixes: 0484d3ce0902 ("arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs")
-Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
----
- arch/arm64/boot/dts/qcom/msm8976.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-index 7385d5edec04..ab6d3834e436 100644
---- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-@@ -384,7 +384,7 @@ adsp_smp2p_in: slave-kernel {
- 	smp2p-modem {
- 		compatible = "qcom,smp2p";
- 		interrupts = <GIC_SPI 27 IRQ_TYPE_EDGE_RISING>;
--		qcom,ipc = <&apcs 8 13>;
-+		qcom,ipc = <&apcs 8 14>;
- 
- 		qcom,local-pid = <0>;
- 		qcom,remote-pid = <1>;
-@@ -407,7 +407,7 @@ modem_smp2p_in: slave-kernel {
- 	smp2p-wcnss {
- 		compatible = "qcom,smp2p";
- 		interrupts = <GIC_SPI 143 IRQ_TYPE_EDGE_RISING>;
--		qcom,ipc = <&apcs 8 17>;
-+		qcom,ipc = <&apcs 8 18>;
- 
- 		qcom,local-pid = <0>;
- 		qcom,remote-pid = <4>;
-@@ -433,9 +433,9 @@ smsm {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		qcom,ipc-1 = <&apcs 8 12>;
-+		qcom,ipc-1 = <&apcs 8 13>;
- 		qcom,ipc-2 = <&apcs 8 9>;
--		qcom,ipc-3 = <&apcs 8 18>;
-+		qcom,ipc-3 = <&apcs 8 19>;
- 
- 		apps_smsm: apps@0 {
- 			reg = <0>;
--- 
-2.41.0
-
+Konrad
