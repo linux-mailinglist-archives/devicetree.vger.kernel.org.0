@@ -2,85 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 898A4779C74
-	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 04:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 747B8779CB2
+	for <lists+devicetree@lfdr.de>; Sat, 12 Aug 2023 04:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbjHLCB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Aug 2023 22:01:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
+        id S234033AbjHLCto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Aug 2023 22:49:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234637AbjHLCB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 22:01:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F8030FD;
-        Fri, 11 Aug 2023 19:01:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C95E96128E;
-        Sat, 12 Aug 2023 02:01:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F281C433C9;
-        Sat, 12 Aug 2023 02:01:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691805714;
-        bh=gZu3VCSXksAlch1l/Nn0DJCrwCclu/WcPo7SWLglZjY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MYnrczVWhJ2d3+KS8jq0tJikwcuABKb3B8elSyBtYo+RjU4S7lcxHcY8f25FFTuIz
-         4nzw3uz0jXEkrwCrP9BAsFST9iwQbOm3ihbV1hKmGCgwEz5CpEX25EOcF+dT+lb9K4
-         RvUx3XN4YT8ehHu46Tz34oc4Mi5OYC871n9AuWThQCgQSwFqWJ9+NgZ8yU37SCJRKE
-         /kZLdJ4IB7JdgiIxpa/7y0akjg/727pG11zmNbSrbOvgcW0FFLKKD0xdgJBHXCm/4I
-         fM7dBtPSKOeyUavvdyAxipMSudWR71m2tLi1vRVDtUYe2h9U4TR2op20K+ykTkNX99
-         DMdsl1XGYh6Eg==
-Date:   Sat, 12 Aug 2023 10:01:38 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        kernel@puri.sm, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        David Heidelberg <david@ixit.cz>,
-        Sherry Sun <sherry.sun@nxp.com>
-Subject: Re: [PATCH v2 4/4] arm64: defconfig: Enable Redpine 91X wlan driver
-Message-ID: <20230812020138.GJ151430@dragon>
-References: <cover.1691684726.git.agx@sigxcpu.org>
- <ba8bc68cbe17224eafc84fc3fcad5a2522d3d97c.1691684726.git.agx@sigxcpu.org>
+        with ESMTP id S230092AbjHLCtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Aug 2023 22:49:43 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C7FCC
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 19:49:43 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-2682e33509bso1755657a91.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Aug 2023 19:49:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1691808583; x=1692413383;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+c6qMk3QtStqzHw364YKIXNMdy6an3kMtp3SLYCoxfM=;
+        b=MalmpBtQxt01xsOkZTkhma+joekPlJlFUMeP0v88Y01jMPncp41rCduqz09ABypXGd
+         5uGluXGgUaUgMLjiRQB3qEXc6jJ/a99+MdGEJWemD7JI0KypNbkrew/1cKdoni0cnIPi
+         N1idOfSREzDnKP3pjEt1sALYZ6Kj6plNjJHT+cu+SrbqOlh2UBRqqNiy3kPBt3ABXEfX
+         /8NpDswGuVUWyL7lj6cQEmiH+uzYm7s80mzicVNgcIEEawkwWAscOD73Id2BLStAteh0
+         aGAwQEzVicSv9t79gYu1s672xaFiszlxS0H2fY7E7RQI4EbwQPuAUrg3gIr7WSLDdrd7
+         c0hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691808583; x=1692413383;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+c6qMk3QtStqzHw364YKIXNMdy6an3kMtp3SLYCoxfM=;
+        b=R5OT9uIJcrnclFwaz2FRDt4SML2b5yRumr9yocdYi6xW59vVHJdV36arSloj3EwdBN
+         nfvbwlfKkhzjgCN0IaJfj/kcoX7bfGB3a5lm0vGVGZPr4KCTQqOLcCm18AXgH4J4GFjN
+         ZWWNAG1kQhqck/QuCUmrLtCKI8a/RItNmQ4Grz9XRYF0M8dL7RUC6q+MJd3DivMZZCJo
+         Z1DOILYwedpBb00lDxuqNj96kOufhjATlv/pNGdaRvQxdSUkH4hnq3sQYBPY8ZeiUoT6
+         VEa+KfB57EGXmJ5v3G7YwqTgfDCGPesO0T5pMEkY8Vqj/dm2aOGCT9/9uZy5zocHKxpG
+         wj2A==
+X-Gm-Message-State: AOJu0YypCa0H6cQNOhVGAY27bEpCE/T9kjbdcBPV9BCeJdcEvqJyTAt4
+        A+EcYFhcIGqZt7IxpRjOiHjrEFhBDDn2xMNxAVbiBw==
+X-Google-Smtp-Source: AGHT+IHku0ag6hrlvpEOpcPSNotrIsIoiIKBhILHsXBMpJJx+KIim1B3QMQhruyHQhr+ZmxJBtxD6KCrXp+upjFH6QM=
+X-Received: by 2002:a17:90a:3ee4:b0:262:ee7d:2d20 with SMTP id
+ k91-20020a17090a3ee400b00262ee7d2d20mr3093988pjc.12.1691808582631; Fri, 11
+ Aug 2023 19:49:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ba8bc68cbe17224eafc84fc3fcad5a2522d3d97c.1691684726.git.agx@sigxcpu.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230802150018.327079-1-apatel@ventanamicro.com>
+ <20230802150018.327079-3-apatel@ventanamicro.com> <20230811193924.GA3997669-robh@kernel.org>
+In-Reply-To: <20230811193924.GA3997669-robh@kernel.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Sat, 12 Aug 2023 08:19:30 +0530
+Message-ID: <CAK9=C2Wncgu2U_EqP0xKNQ7aau947zhE+-hy5pguV=LP=ANikA@mail.gmail.com>
+Subject: Re: [PATCH v7 02/15] of: property: Add fw_devlink support for msi-parent
+To:     Rob Herring <robh@kernel.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 10, 2023 at 07:59:52PM +0200, Guido Günther wrote:
-> The Librem 5 and it's devkit have it connected via SDIO.
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+On Sat, Aug 12, 2023 at 1:09=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Wed, Aug 02, 2023 at 08:30:05PM +0530, Anup Patel wrote:
+> > This allows fw_devlink to create device links between consumers of
+> > a MSI and the supplier of the MSI.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  drivers/of/property.c | 32 ++++++++++++++++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index ddc75cd50825..bc20535deed7 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1325,6 +1325,37 @@ static struct device_node *parse_interrupts(stru=
+ct device_node *np,
+> >       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.n=
+p;
+> >  }
+> >
+> > +static struct device_node *parse_msi_parent(struct device_node *np,
+> > +                                         const char *prop_name, int in=
+dex)
+> > +{
+> > +     struct of_phandle_args sup_args;
+> > +     struct device_node *msi_np;
+> > +
+> > +     if (IS_ENABLED(CONFIG_SPARC))
+> > +             return NULL;
+> > +
+> > +     if (strcmp(prop_name, "msi-parent"))
+> > +             return NULL;
+> > +
+> > +     msi_np =3D of_parse_phandle(np, prop_name, 0);
+> > +     if (msi_np) {
+> > +             if (!of_property_read_bool(msi_np, "#msi-cells")) {
+>
+> Use of_property_present() to check presence.
+>
+> However, this check is wrong. #msi-cells is optional and assumed to be 0
+> if not present. There's another flavor of of_parse_phandle_with_args()
+> that allows specifying a default cell count, so I think you can get rid
+> of all this checking.
 
-Applied, thanks!
+Okay, I will update in the next revision.
+
+Thanks,
+Anup
+
+>
+> > +                     if (index) {
+> > +                             of_node_put(msi_np);
+> > +                             return NULL;
+> > +                     }
+> > +                     return msi_np;
+> > +             }
+> > +             of_node_put(msi_np);
+> > +     }
+> > +
+> > +     if (of_parse_phandle_with_args(np, prop_name, "#msi-cells", index=
+,
+> > +                                    &sup_args))
+> > +             return NULL;
+> > +
+> > +     return sup_args.np;
+> > +}
+> > +
+> >  static const struct supplier_bindings of_supplier_bindings[] =3D {
+> >       { .parse_prop =3D parse_clocks, },
+> >       { .parse_prop =3D parse_interconnects, },
+> > @@ -1359,6 +1390,7 @@ static const struct supplier_bindings of_supplier=
+_bindings[] =3D {
+> >       { .parse_prop =3D parse_regulators, },
+> >       { .parse_prop =3D parse_gpio, },
+> >       { .parse_prop =3D parse_gpios, },
+> > +     { .parse_prop =3D parse_msi_parent, },
+> >       {}
+> >  };
+> >
+> > --
+> > 2.34.1
+> >
