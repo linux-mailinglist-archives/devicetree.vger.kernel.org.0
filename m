@@ -2,146 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A89C77AA18
-	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 18:40:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C7C677AA4F
+	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 19:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229559AbjHMQkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Aug 2023 12:40:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42196 "EHLO
+        id S230062AbjHMRZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Aug 2023 13:25:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjHMQkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 12:40:09 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BC893;
-        Sun, 13 Aug 2023 09:40:11 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-79095499a17so164254439f.3;
-        Sun, 13 Aug 2023 09:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691944810; x=1692549610;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jkYKfnm23y0JZXyxkiMl6WeMULC/M4WeYqcWbde97zA=;
-        b=H/GsSPCbd4ors8L8mZCdUp4F+d2nKBW9GbUMH1M1DUSAyvBY8fzWA9Uf9/P7s7GYu0
-         4XbALQdTivKcTStQ92sKecNqszOFyg5VlKi8gBjbL2Q9gRyoqIHvoS8lMm71t6222Q3s
-         zVUYab5IkC01C+FlXLbpYDhTUGOXs60VAZdV4IjehFoM5nzN2CKZicSeB+Xo5v9gdKR8
-         /Gd0WEC3TKiACGpEWaJPRVCNsQfn+CN54+rLbpipVXaxKgoPFQyOp9O+C4VkP+Ldvhcj
-         5+FuaJE5sp8H/iumKHesFLdOQiqHZ4hXTY85k4x02kldao5LWgzhR9E4JbFsYrjs0buv
-         tBfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691944810; x=1692549610;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jkYKfnm23y0JZXyxkiMl6WeMULC/M4WeYqcWbde97zA=;
-        b=OYE5eMCcEfw/rz/pEMfPl2ySUtbovoVaGQYagA3DhviREfZ2jQdh4IIi+A2rnt/7o7
-         uJftuDS7b6TCLJAC+LaHHiUK4N/OBmJiviJ0l4DsJnnXfHybQsrtYGIyk+nfWYSAiUdn
-         FXVLL34sM1QhKw4VJIvjdzeSq2LShpYdNPPTRPrwPgkI5GwiSQYqFe6+xGQjoNqwCpVa
-         AQUeePCg06Kz1r/iXRIM9K1jpeL/wDOF2ACybrnNIMt1YhpKspQDMjipi8i5Xx34DLOX
-         PLFKsGGqEoBCE8VD1qri8m4lawgiMmagddAsR3g43PZys+RUYXMOEqL19VEApWM3Tbor
-         gP3A==
-X-Gm-Message-State: AOJu0Yxh9AAnz1uwJZGNHBFkk72rJu5OrZdqpSngG3aS7Oz2V2+EL17o
-        oWDCjJg6zspFoNEFvtO56E8=
-X-Google-Smtp-Source: AGHT+IE2qfswRLj3jlOF1cETGSsfShv4HGhthFo8w78EYX1/sTVx0ndJHRkiAVZ+xw1wHg0pp1Jong==
-X-Received: by 2002:a05:6e02:dc1:b0:348:1a1c:3ed9 with SMTP id l1-20020a056e020dc100b003481a1c3ed9mr10065642ilj.11.1691944810330;
-        Sun, 13 Aug 2023 09:40:10 -0700 (PDT)
-Received: from aford-B741.lan ([2601:447:d001:897f:21ab:bc25:b29c:7b7e])
-        by smtp.gmail.com with ESMTPSA id v1-20020a92d241000000b00345d6297aa7sm2631301ilg.16.2023.08.13.09.40.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Aug 2023 09:40:09 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH V2] arm64: dts: imx8mp-beacon: Configure 100MHz PCIe Ref Clk
-Date:   Sun, 13 Aug 2023 11:40:03 -0500
-Message-Id: <20230813164003.23665-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S229684AbjHMRZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 13:25:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDBFD10DD;
+        Sun, 13 Aug 2023 10:25:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 79D976111D;
+        Sun, 13 Aug 2023 17:25:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CF3FC433C7;
+        Sun, 13 Aug 2023 17:25:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1691947545;
+        bh=8lbfPPJ4n+8aA2NeyWf4XOSw9lu+CR89Quao+yjZXQ0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mRoPtJg213x03htNDDiHekOtRmlSdoA2tLPvw83vbGbU00QIw8xPQp9VqQ04QPXih
+         NZvAzzctwjLoI2grRD3TclRM/NmQWjaGiq0klLd7vsH2vocnb4qUAQk2Cuiqw/CzuM
+         9qOOUFiSBvlZZwnP7SROh02qTUuYX1WhF1JwzJP58Wvbud6FXky3sHMDq+g1kmvbJo
+         mi5s2t53lnCfzp9I1KH/g29bu1mq6UyQZHCsTTs8V950imgXf4pWBQonqnGo4FAjMc
+         4QSHt2PTn/XhnEH6sVXd3K/xoiXY5YgNKG++KOKhtEXn37TUWNHP5t5IwTm2A0qzo7
+         Ytxu7qHrpUefw==
+Date:   Sun, 13 Aug 2023 18:25:42 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
+        alsa-devel@alsa-project.org, kuninori.morimoto.gx@renesas.com,
+        spujar@nvidia.com, tiwai@suse.com, perex@perex.cz,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, daniel.baluta@gmail.com
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: simple-card: Document new DAI
+ flags playback-only/capture-only
+Message-ID: <ZNkSFvZkQgtudM5Z@finisterre.sirena.org.uk>
+References: <20230801082433.548206-1-daniel.baluta@oss.nxp.com>
+ <20230801082433.548206-3-daniel.baluta@oss.nxp.com>
+ <20230811191236.GA3937407-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2MQbhxQeL2I8OcPf"
+Content-Disposition: inline
+In-Reply-To: <20230811191236.GA3937407-robh@kernel.org>
+X-Cookie: Give him an evasive answer.
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a I2C controlled 100MHz Reference clock used by the PCIe
-controller. Configure this clock's DIF1 output to be used by
-the PCIe.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:  Remove the pcie0_refclk clock that the new one replaces.
+--2MQbhxQeL2I8OcPf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index acd265d8b58e..a8ccde678c33 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -23,6 +23,12 @@ chosen {
- 		stdout-path = &uart2;
- 	};
- 
-+	clk_xtal25: clk-xtal25 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <25000000>;
-+	};
-+
- 	connector {
- 		compatible = "usb-c-connector";
- 		label = "USB-C";
-@@ -112,12 +118,6 @@ led-3 {
- 		};
- 	};
- 
--	pcie0_refclk: clock-pcie {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <100000000>;
--	};
--
- 	reg_audio: regulator-wm8962 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "3v3_aud";
-@@ -246,6 +246,13 @@ pca6416_3: gpio@20 {
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 	};
-+
-+	pcieclk: clk@68 {
-+		compatible = "renesas,9fgv0241";
-+		reg = <0x68>;
-+		clocks = <&clk_xtal25>;
-+		#clock-cells = <1>;
-+	};
- };
- 
- &i2c3 {
-@@ -372,8 +379,9 @@ &pcie {
- };
- 
- &pcie_phy {
-+	fsl,clkreq-unsupported;
- 	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
--	clocks = <&pcie0_refclk>;
-+	clocks = <&pcieclk 1>;
- 	clock-names = "ref";
- 	status = "okay";
- };
--- 
-2.39.2
+On Fri, Aug 11, 2023 at 01:12:36PM -0600, Rob Herring wrote:
+> On Tue, Aug 01, 2023 at 11:24:33AM +0300, Daniel Baluta wrote:
 
+> > +  playback-only:
+> > +    description: dai-link is used only for playback
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+
+> > +  capture-only:
+> > +    description: dai-link is used only for capture
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+
+> Wouldn't this be implicit based on limitations in the either the cpu or=
+=20
+> codec DAI?
+
+You can see cases where people just don't connect some of the signals
+for whatever reason so even if the two devices could do bidrectional
+audio the board can't, and there are also cases like the at91sam9g20ek
+where the DAI is connected for bidrectional audio but there's not
+actually any audio inputs you can connect (even loopbacks) for one of
+the directions so it's best to just mask things out from the user.
+
+--2MQbhxQeL2I8OcPf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTZEhUACgkQJNaLcl1U
+h9AFoAf9GbJjlpdCljVFwIbGL4YEzDszN7Bqo2ShmBFc2t6+CJ3cFIZIe3xx0e/n
+Brz83l9paS8ptdkksscqnvp8FsIK91gGI4o2UamvpF46DI3+t6yJ9AiNmtnC9JQx
+WMVBqNK4gUmlLnvcwM6Esy3BBpHU4XkuOgacAyaOYc2r2Knztc1LQwgk3Kmm4KGx
+FeESWRjTKDsFT1YjCOHgYEG4LRg5zoClyuL8O4DlzJ3suQwpjPogqoWVRexP/55A
+QAD8JtPo190LjiOWsp1qxVkNba/KRPADOS4KqBeQM+YFmcOW92E30t+0wdLthv5W
+Y5oiKJ0YF/0pprKQ+nTij4kxyPxokQ==
+=yaLR
+-----END PGP SIGNATURE-----
+
+--2MQbhxQeL2I8OcPf--
