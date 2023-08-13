@@ -2,82 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B439177A760
-	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 17:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE7577A78A
+	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 17:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjHMPY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Aug 2023 11:24:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
+        id S231521AbjHMPgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Aug 2023 11:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjHMPY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 11:24:57 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF97E0;
-        Sun, 13 Aug 2023 08:25:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=D6GK4r3g2pMNaj1/iMHxZq3AeQCZgFzlhT3OyuIGXJg=; b=uRaBb/AjtZ/XDK/WInjRB3JU3o
-        6m1Wl7WsYf6RGEtONjYbrd/7QyYu6c5BD4/xibXyQvgO7IhbBfjPnsfsQZcS6PI3yCfuYtqEjCSDc
-        ila7+dAYUp4jG02OEh/FfPskHSsqoYuKlBRhuu983PnIRovYNRIDZ+tSL4tRFKt2iPc8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qVCxZ-003yRr-Jv; Sun, 13 Aug 2023 17:24:53 +0200
-Date:   Sun, 13 Aug 2023 17:24:53 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229736AbjHMPgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 11:36:22 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5EDAE5F;
+        Sun, 13 Aug 2023 08:36:24 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31965c94001so1378132f8f.3;
+        Sun, 13 Aug 2023 08:36:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691940983; x=1692545783;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0HmyT9viofQwFO46Ag0TcEyc/eSeZtVKY9Vgh1cnGEs=;
+        b=asGfA/zadH3EzscS9pqL8hD9PkPJ4/WZnKGgBg0rVwo4UdOWRev46I9/CnAf6guzUf
+         NW0XrD20NpxsstWqh4FekZXXReMmJQmc8rJnDKIWFMoKqPredd7AGIyzbhcBoBiPKlUc
+         ZVZht/Elip16apR/VnS6qQLpvWYfML4xwHVlMYINasLxg0tw75NB0BYV4dEv4OX02bi3
+         oW5Y1EgGUSr6JM8t/WAmbTofAVVVivJbSyMWFCSCYRf9SypRLlhPBudbAOHedSZuOucF
+         3gtv2bkpHr6c/qVEQwsASu22PrIUZEVvhGlEIFUa94hmgNRRvf1vQA38gSTPnkEjKuV8
+         JLOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691940983; x=1692545783;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0HmyT9viofQwFO46Ag0TcEyc/eSeZtVKY9Vgh1cnGEs=;
+        b=ZIRsG8wtdkMNk/PoUdzL6pY98CKceMuU8j+To/dZtM6qRML4UKlGKtZZVneH8MMgcO
+         udVZzg7sU2e0BCFccPalxeU1DYxpNNxK4tbHLCKu8krVBuiS1sOpUu66L0bMd6fyir+v
+         XVUsHZYRqR4QizRBFks0SkDui8KiIO/yML1CAgJlVBmNZw6JHobhtZfLbz8T6F0ZsL7n
+         A4QPYQ0d5PsgtNpxy1wwFNPlTgIZD74QH43cX6jtuPpEeF0eH+V2cA8kRMVzb7aDEUAW
+         dvcRdN9zWIiAGLpD4Z/RkEieeNfv5ruw/227/zZe2FOtS01HuTFv0tkkE3qXBuo7Vd1V
+         EP5Q==
+X-Gm-Message-State: AOJu0YzvqISm2gxmrspPmT6L3XyYFBIoLXbLi6zaepPvikbKX4eVhmGZ
+        Z/Zo86bRynE+/fe+0fTSnj1bse5lnNv9Bw==
+X-Google-Smtp-Source: AGHT+IE9qkC2Ej8imYc6src4+3L/KGU0/FB4hp4AxhdHUalCY46flCcIBsPMWdx2pp/wNCgM4p9F0g==
+X-Received: by 2002:a5d:42d2:0:b0:317:52d2:d05f with SMTP id t18-20020a5d42d2000000b0031752d2d05fmr5663858wrr.26.1691940982982;
+        Sun, 13 Aug 2023 08:36:22 -0700 (PDT)
+Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
+        by smtp.gmail.com with ESMTPSA id w17-20020adff9d1000000b00313f61889ecsm11645608wrr.66.2023.08.13.08.36.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Aug 2023 08:36:22 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Martin Botka <martin.botka1@gmail.com>,
+        Martin Botka <martin@biqu3d.com>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>
-Subject: Re: [PATCH 0/5] Move Loongson1 MAC arch-code to the driver dir
-Message-ID: <2ed268fd-113a-4da0-8f33-04d618053dca@lunn.ch>
-References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: vendor-prefixes: Add BigTreeTech
+Date:   Sun, 13 Aug 2023 17:36:20 +0200
+Message-ID: <2291546.ElGaqSPkdT@jernej-laptop>
+In-Reply-To: <EB8B7A5FD2D8E12A+20230807145349.2220490-2-martin@biqu3d.com>
+References: <20230807145349.2220490-1-martin@biqu3d.com>
+ <EB8B7A5FD2D8E12A+20230807145349.2220490-2-martin@biqu3d.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230812151135.1028780-1-keguang.zhang@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 12, 2023 at 11:11:30PM +0800, Keguang Zhang wrote:
-> From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Dne ponedeljek, 07. avgust 2023 ob 16:53:21 CEST je Martin Botka napisal(a):
+> From: Martin Botka <martin.botka@somainline.org>
 > 
-> In order to convert Loongson1 MAC platform devices to the devicetree
-> nodes, Loongson1 MAC arch-code should be moved to the driver dir.
->     
-> In other words, this patchset is a preparation for converting
-> Loongson1 platform devices to devicetree.
+> BigTreeTech is a company based in Shenzhen that makes
+> 3D printers and accessories.
+> 
+> Add prefix for it.
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-It is a long time since i converted an ARM system from platform data
-to DT. But what we tended to do was to allow both for a period of
-time.
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Does a system using platform data still work after this change? The
-first patch seems to delete a lot of code, not just move it around.
+Best regards,
+Jernej
 
-Can you restructure this patchset to add the glue layer and DT binding
-in parallel with platform data. Then have a patchset which convert all
-in tree machines to using DT. And then a patchset, submitted in maybe
-6 months time, to remove support for platform data.
+> ---
+> Changes in V2:
+>     - Fix alphabetical order
+> Changes in V3,V4: none
+> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> b/Documentation/devicetree/bindings/vendor-prefixes.yaml index
+> af60bf1a6664..a1f3bb7be860 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -192,6 +192,8 @@ patternProperties:
+>      description: BeagleBoard.org Foundation
+>    "^bhf,.*":
+>      description: Beckhoff Automation GmbH & Co. KG
+> +  "^bigtreetech,.*":
+> +    description: Shenzhen BigTree Tech Co., LTD
+>    "^bitmain,.*":
+>      description: Bitmain Technologies
+>    "^blutek,.*":
 
-	Andrew
+
+
+
