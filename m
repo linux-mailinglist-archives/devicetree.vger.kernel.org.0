@@ -2,223 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E16477A9ED
-	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 18:25:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1FE977AA00
+	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 18:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234035AbjHMQYz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 13 Aug 2023 12:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48930 "EHLO
+        id S232100AbjHMQ3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Aug 2023 12:29:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232575AbjHMQYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 12:24:38 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22F33C0E;
-        Sun, 13 Aug 2023 09:23:43 -0700 (PDT)
-Received: from [192.168.2.144] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id AD3751F45E;
-        Sun, 13 Aug 2023 18:22:54 +0200 (CEST)
-Date:   Sun, 13 Aug 2023 18:22:49 +0200
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH v4 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi
- support
-To:     Jernej =?iso-8859-2?q?=A9krabec?= <jernej.skrabec@gmail.com>
-Cc:     Martin Botka <martin.botka1@gmail.com>,
-        Martin Botka <martin@biqu3d.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Martin Botka <martin@biqu3d.com>,
+        with ESMTP id S232466AbjHMQ30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 12:29:26 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05FF81BE4;
+        Sun, 13 Aug 2023 09:29:14 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-790cadee81bso107370439f.0;
+        Sun, 13 Aug 2023 09:29:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691944153; x=1692548953;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3cwCNs6X4jJcwApJaNSkv7YlnkadabMnWiNmxCJPzIk=;
+        b=s1Llsb0zuv3RvKl172ebqYoUJ7ExuiMBapH7bui0VG/0n9OCww2xTDWS/Jd2fKw8Qu
+         8H7kzhPbnDF6Y/YH6tOGY1FhNyVdLyxH2rEDRj2NEi6EPZHDh2X0bcOe3Du6IefxLOmI
+         bzGhiMmRp24jrrZxznM13ROlkST4397AfjXLQZiLUyw16IOkvu2y2XqcPl0GGoQnXdGr
+         JDbMi5QkIY4OjVJ0GhHrL3LCqhfPznzzS/5qMQNgAHJtxBjumneqhYMNpv5BJBqMRkBu
+         +kr0l5yzvcFtPnYlJ2Y8mpD+ORMmwZwX/wYpmfGGphICNkd/Lk9XpwhWTcit3ves1jV8
+         j+5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691944153; x=1692548953;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3cwCNs6X4jJcwApJaNSkv7YlnkadabMnWiNmxCJPzIk=;
+        b=ijyd+Ueov55v9ik2fFvHbaoOsI5qzP8K1xQGJvaALz2G3zmC28TM3nwva7882uidX6
+         cZH8zA7TJp7Ll9opyqRPEY+5RZRCtJgmFOFeP93NPszS08SLAvqGfMhgVzHIv0k/0evf
+         dTfJBPKnrRKF/3x3cN1LJNl4GIWXEZcNorHA5suScchFq6vYH5S5BF53Y1/jspRy0oFb
+         vkHYj2vTvzC4vQrirEM4dlpHOLo1/X3yrpluYCaXuRw8CrXxtnucKcmVEjyv7R75ybiQ
+         +vzAFq1gm7gKBjFVq51blJDpU5oWsOrYwSkimG9zj+WjimnygENxb5rwTLk+dJaK+OAU
+         LTRQ==
+X-Gm-Message-State: AOJu0YzwDm2QJzSi9+9p2f5OGbgSnMawMPDP+Lcs+2gLCStaMX+iiV1Q
+        HZ1y9cnii6omNa/WlM11xBYw2NooCDA=
+X-Google-Smtp-Source: AGHT+IFBO6DdSxulJCL01P2Lxc06UrO+73c8UExGsPeBdNbmi7kj9S34TR9Qxs5alyyeR0JpKdzBTA==
+X-Received: by 2002:a6b:5c08:0:b0:790:c9a9:d760 with SMTP id z8-20020a6b5c08000000b00790c9a9d760mr9174772ioh.16.1691944152951;
+        Sun, 13 Aug 2023 09:29:12 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:21ab:bc25:b29c:7b7e])
+        by smtp.gmail.com with ESMTPSA id fu11-20020a056638668b00b0042b6a760c31sm2454767jab.28.2023.08.13.09.29.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Aug 2023 09:29:12 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
-        Heiko Stuebner <heiko@sntech.de>,
         Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Message-Id: <168CZR.KVQVUV8KXJ5Y1@somainline.org>
-In-Reply-To: <10318766.nUPlyArG6x@jernej-laptop>
-References: <20230807145349.2220490-1-martin@biqu3d.com>
-        <09BFA974F83AB0E8+20230807145349.2220490-5-martin@biqu3d.com>
-        <10318766.nUPlyArG6x@jernej-laptop>
-X-Mailer: geary/43.0
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mp: Fix SDMA2/3 clocks
+Date:   Sun, 13 Aug 2023 11:29:05 -0500
+Message-Id: <20230813162906.22640-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+A previous patch to remove the Audio clocks from the main clock node
+was intended to force people to setup the audio PLL clocks per board
+instead of having a common set of rates since not all boards may use
+the various audio PLL clocks for audio devices.
 
+Unfortunately, with this parenting removed, the SDMA2 and SDMA3
+clocks were slowed to 24MHz because the SDMA2/3 clocks are controlled
+via the audio_blk_ctrl which is clocked from IMX8MP_CLK_AUDIO_ROOT,
+and that clock is enabled by pgc_audio.
 
-On Sun, Aug 13 2023 at 05:55:35 PM +02:00:00, Jernej ©krabec 
-<jernej.skrabec@gmail.com> wrote:
-> Dne ponedeljek, 07. avgust 2023 ob 16:53:24 CEST je Martin Botka 
-> napisal(a):
->>  The BigTreeTech Pi is an H616 based board based on CB1.
->>  Just in Rpi format board.
->> 
->>  It features the same internals as BTT CB1 but adds:
->>      - Fan port
->>      - IR receiver
->>      - ADXL345 Accelerometer connector via SPI
->>      - 24V DC power supply via terminal plugs
->>      - USB to CAN module connector (The actual USB to CAN happens on 
->> the
->>  external module)
->> 
->>  List of currently working things is same as BTT CB1 but also:
->>      - IR receiver
->>      - ADXL345 connector
->> 
->>  Signed-off-by: Martin Botka <martin@biqu3d.com>
->>  Reviewed-by: Andre Przywara <andre.przywara@arm.com>
->>  ---
->>  Changes in V2:
->>      - Add UART alongside aliases and chosen for it
->>      - Add model string
->>      - Enable IR receiver
->>      - Enable SPI0 for ADXL345 connector
->>  Changes in V3:
->>      - Add missing semicolons
->>      - Add pinctrl for SPI0
->> 
->>   arch/arm64/boot/dts/allwinner/Makefile        |  1 +
->>   .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 70 
->> +++++++++++++++++++
->>   2 files changed, 71 insertions(+)
->>   create mode 100644
->>  arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
->> 
->>  diff --git a/arch/arm64/boot/dts/allwinner/Makefile
->>  b/arch/arm64/boot/dts/allwinner/Makefile index 
->> 7b386428510b..0b6232a7f328
->>  100644
->>  --- a/arch/arm64/boot/dts/allwinner/Makefile
->>  +++ b/arch/arm64/boot/dts/allwinner/Makefile
->>  @@ -39,5 +39,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += 
->> sun50i-h6-pine-h64-model-b.dtb
->>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
->>  +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
->>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
->>  diff --git 
->> a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
->>  b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts new 
->> file
->>  mode 100644
->>  index 000000000000..b0d0386e8f13
->>  --- /dev/null
->>  +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
->>  @@ -0,0 +1,70 @@
->>  +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
->>  +/*
->>  + * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
->>  + */
->>  +
->>  +/dts-v1/;
->>  +
->>  +#include "sun50i-h616-bigtreetech-cb1.dtsi"
->>  +
->>  +/ {
->>  +	model = "BigTreeTech Pi";
->>  +	compatible = "bigtreetech,pi", "allwinner,sun50i-h616";
->>  +
->>  +	aliases {
->>  +		serial0 = &uart0;
->>  +	};
->>  +
->>  +	chosen {
->>  +		stdout-path = "serial0:115200n8";
->>  +	};
->>  +};
->>  +
->>  +&ehci0 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ehci1 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ehci2 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ehci3 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ir {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ohci0 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ohci1 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ohci2 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&ohci3 {
->>  +	status = "okay";
->>  +};
->>  +
->>  +&spi0 {
->>  +	/* SPI connection for onboard connector for ADXL345 accelerometer
-> */
->>  +	status = "okay";
->>  +	pinctrl-names = "default";
->>  +	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;
-> 
-> Driver and compatible for ADXL345 already exists, why don't you add 
-> child node
-> for it?
-> 
-> Best regards,
-> Jernej
-Ah. So the ADXL345 actually wont be driven by kernel.
-The SPI connection is enabled so that klipper (3d printer firmware) can
-be told to look for ADXL345 at this SPI and use it on its own.
+Per the TRM, "The SDMA2/3 target frequency is 400MHz IPG and 400MHz
+AHB, always 1:1 mode, to make sure there is enough throughput for all
+the audio use cases."
 
-Klipper will initialize and communicate with the ADXL on its own.
-> 
->>  +};
->>  +
->>  +&uart0 {
->>  +	pinctrl-names = "default";
->>  +	pinctrl-0 = <&uart0_ph_pins>;
->>  +	status = "okay";
->>  +};
-> 
-> 
-> 
-> 
+Instead of cluttering the clock node, place the clock rate and parent
+information into the pgc_audio node.
 
+With the parenting and clock rates restored for  IMX8MP_CLK_AUDIO_AHB,
+and IMX8MP_CLK_AUDIO_AXI_SRC, it appears the SDMA2 and SDMA3 run at
+400MHz again.
+
+Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks from CCM node")
+Signed-off-by: Adam Ford <aford173@gmail.com>
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 6f2f50e1639c..408b0c4ec4f8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -790,6 +790,12 @@ pgc_audio: power-domain@5 {
+ 						reg = <IMX8MP_POWER_DOMAIN_AUDIOMIX>;
+ 						clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
+ 							 <&clk IMX8MP_CLK_AUDIO_AXI>;
++						assigned-clocks = <&clk IMX8MP_CLK_AUDIO_AHB>,
++								  <&clk IMX8MP_CLK_AUDIO_AXI_SRC>;
++						assigned-clock-parents =  <&clk IMX8MP_SYS_PLL1_800M>,
++									  <&clk IMX8MP_SYS_PLL1_800M>;
++						assigned-clock-rates = <400000000>,
++								       <800000000>;
+ 					};
+ 
+ 					pgc_gpu2d: power-domain@6 {
+-- 
+2.39.2
 
