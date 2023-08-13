@@ -2,97 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D2A77AABB
-	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 21:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA3B77AEEC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 01:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbjHMTCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Aug 2023 15:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43798 "EHLO
+        id S231414AbjHMX1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Aug 2023 19:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbjHMTCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 15:02:36 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EFF6170D;
-        Sun, 13 Aug 2023 12:02:32 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b9e6cc93d8so56808211fa.0;
-        Sun, 13 Aug 2023 12:02:31 -0700 (PDT)
+        with ESMTP id S229597AbjHMX0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 19:26:39 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CF910C0;
+        Sun, 13 Aug 2023 16:26:39 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-686f6231bdeso1067865b3a.1;
+        Sun, 13 Aug 2023 16:26:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691953350; x=1692558150;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/1lGPqv1iSWWYndcdm44N796wnrwYOzK/z733GpYzNk=;
-        b=XiCI7liiU5Y+icmm8yci6xws0x3WQYQEwyvgXGsqkFEoZx7tuJdWJKhN3GCN2DyUF1
-         4IyL95YD3CQ7Nc7vyk3ts1qnnju0za83OWiz2xZ9cBAUwh2p0WxJfsRGBn86mZdIIkk/
-         XKlYkVr4gc69NnL3g71JvPsJyYwL+sRPSOOf6bzSBHeV/k20hdWGtHz0q9y5lm9qGVuf
-         WEiXmzXtI+RRyhBlNUfqIensHEEepUu8OeodNKmpWe6Cp42FvePmEUZjqKgiVm/9hMiT
-         J8kNEbYVP+P920fy+cX1fSEVIX50IAO2+tGS2vKT4OPKmR4uux0tHK1FfjL+x/WtsxvU
-         E9eA==
+        d=gmail.com; s=20221208; t=1691969198; x=1692573998;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BuNbu0gbni6xXLXBo/G7aeBfgO26R2ZGnsk2uYvwiOw=;
+        b=gTRv7Lyxt0jQpLY3S2vxMdR5Bswj9Dn7L/Tdq7DQqC1rIlsNAieoxQnYfj6Yd+abxT
+         qI8gr8X6k2YbqDDySB/atsnK5ifyd2LlHooXjkpMh3YkALKcTt9J0XS+ki8USpqJ1xva
+         lja3IFqlOFpTq0jddq73wMMQSt13kDJBN0GDsTeOd0+bmy3BCLZ/hvYCPFdhFvTBSenn
+         6WjjRxPdkQ0Ep/SnH8ntZXK1xckUOjTKLDFUbcEwctiZmofdsVmJDMEZ8/ub7NyGqd/d
+         MsuaA9HyJ5i4ZsUD/ZhImGnlabKt3sOfjpN9i+myHIjBh8r/JRGQH9UGsngoLweu5456
+         0Dfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691953350; x=1692558150;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/1lGPqv1iSWWYndcdm44N796wnrwYOzK/z733GpYzNk=;
-        b=bWB+vQDG56igrFVtd3JYAPSYii17qGztXwfnTVru/DNz7QuDnvKkNvQFT43pYmn0jB
-         WM43Me1Cl75jERnnH4ODDXZ0mgPVMhzPJnkUHxkDLi1z/yzBOAJHGfVJiPqAquxlArds
-         L1SHQpGIzvaCbuBBkQ/QDn5DXy9Wm19Pl0dliFHPTeBnkjVhbtJVdI+ltmbEw+NRGsvJ
-         +cObC8aGG3zAxnxoG61cxQIJw8JChrP1gsuGKuCxEp4KWUHBcYXPqv3lSvkY1PWGFH7x
-         G/bJpHzrtB3dSoOGPXXq92TtVKP7I9iNMP1IxlHMRd3KMCLcxLKst2XjHTUtdo/qK+/w
-         GAVQ==
-X-Gm-Message-State: AOJu0YxIOsHMzJTO7hAXK9IKUENjx+wXI+PqJguAQ5i4MGZx/bK9YKts
-        j5cXcY7IZgCke3L5HMqXnjM=
-X-Google-Smtp-Source: AGHT+IGrieknj/tH+gn9lVfd6xWvlDTto2rG2CojERZaieo4pEES6TqmKcjZxrDymguLVX6hXVZy3Q==
-X-Received: by 2002:ac2:4d84:0:b0:4fa:21d4:b3ca with SMTP id g4-20020ac24d84000000b004fa21d4b3camr4649958lfe.2.1691953350032;
-        Sun, 13 Aug 2023 12:02:30 -0700 (PDT)
-Received: from skbuf ([188.27.184.148])
-        by smtp.gmail.com with ESMTPSA id w7-20020aa7da47000000b0052567e6586bsm209432eds.38.2023.08.13.12.02.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Aug 2023 12:02:29 -0700 (PDT)
-Date:   Sun, 13 Aug 2023 22:02:27 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=1e100.net; s=20221208; t=1691969198; x=1692573998;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BuNbu0gbni6xXLXBo/G7aeBfgO26R2ZGnsk2uYvwiOw=;
+        b=f6t+LyWDAhyzXp9yaUy0b3EwI3MbFdT8tURoNbF0Id9kFt9SWLqPfJ8HLPqV43Hj4P
+         53kIlIE9t23sVHMLhvLe1PzcRPhZu2Xi1M9daaXc9jCUIJi0Dm6zVabxYPdntm9DHAu0
+         7SalcBevFFuHCYe0BvTxI1UOa5YkpvSdgC8pg13PtvbgvyXrgOWo9K/Uu0zMws3fvOq/
+         WRqtYeFUwha6t8XQ0rK2JowjhPYPc90kaKFnmql9f8n6yze9Vmd7m2hym8dM4WZsUOMy
+         4mRv6H5vg1fxCe1NV8tsAhRA9AQFvM3ffnw9oSne608PIFVwXW+6HFha54mtGUrOYI7j
+         5PhA==
+X-Gm-Message-State: AOJu0YxILwfJ/Iese5N1DbFni9XPvfXRqXXcCCCel1oCrHi2PB7+bE84
+        AjrB8n8wBAGUWt6tDFy4UQv5NVrINIRrs77gQ0U=
+X-Google-Smtp-Source: AGHT+IGdBhtZ+hQTxv3eusdQZDNsm5z8qa01ROz2ftxFts8FbdAc+Zumj/zzXP0WxszQ61aZmXq9YCegUF7jtNBcjDI=
+X-Received: by 2002:a05:6a21:3289:b0:137:4fd0:e2e6 with SMTP id
+ yt9-20020a056a21328900b001374fd0e2e6mr11547458pzb.6.1691969198407; Sun, 13
+ Aug 2023 16:26:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230813164003.23665-1-aford173@gmail.com>
+In-Reply-To: <20230813164003.23665-1-aford173@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 13 Aug 2023 20:26:27 -0300
+Message-ID: <CAOMZO5D-EjhDwBKcnC7Npwtbg5ezM-Ce_Yockdkak_FRTa68zQ@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: imx8mp-beacon: Configure 100MHz PCIe Ref Clk
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230813190227.6k2qyxfewbkmatn6@skbuf>
-References: <20230812091708.34665-3-arinc.unal@arinc9.com>
- <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
- <20230812091708.34665-1-arinc.unal@arinc9.com>
- <20230812091708.34665-3-arinc.unal@arinc9.com>
- <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
- <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
- <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
- <20230813112026.ohsx6srbt2staxma@skbuf>
- <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
- <891c0b67-abe1-416c-aa94-675f7f3d8044@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <891c0b67-abe1-416c-aa94-675f7f3d8044@arinc9.com>
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -103,8 +78,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 13, 2023 at 05:58:57PM +0300, Arınç ÜNAL wrote:
-> On top of this, I'd argue to document the internal MDIO bus on the
-> ethernet-switch.yaml schema instead.
+On Sun, Aug 13, 2023 at 1:40=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> There is a I2C controlled 100MHz Reference clock used by the PCIe
+> controller. Configure this clock's DIF1 output to be used by
+> the PCIe.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+> V2:  Remove the pcie0_refclk clock that the new one replaces.
 
-Why?
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
