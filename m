@@ -2,188 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 810C077AA86
-	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 20:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BA2577AAB2
+	for <lists+devicetree@lfdr.de>; Sun, 13 Aug 2023 20:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjHMSYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Aug 2023 14:24:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56348 "EHLO
+        id S231402AbjHMS7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Aug 2023 14:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjHMSYT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 14:24:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD5610CE;
-        Sun, 13 Aug 2023 11:24:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 72E7961344;
-        Sun, 13 Aug 2023 18:24:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E21AC433C8;
-        Sun, 13 Aug 2023 18:24:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1691951060;
-        bh=wafaiX+7NIalhVrFxtCoQeOwe8RD/H1orkbikL1Pz98=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=npS1YE7Q63hnAa/vcBYVkRgcf2caax4v8+OxC4AOKufDFadnJ7yClFzj1rNFOn82H
-         KmkqST7Lc+v8MWgSjN+xlFlq2mFnN+gSl+tAUb10ktGxazkWeUjupPPjKIVmyGDlDu
-         iZCBjfSLtN7YTj4raJVLYN8tpYU16wLSl+2wM4r8yayMrbWTuz3yDBE/09JC2ueNss
-         zD7icQTCVsHy+8F5dPTKT4u7ebE9InzobG6rkhTpRRiPR0ALrZLcIr/hYrQ97X8BpY
-         52Yrhk2efj/lh8WYFE0qLo0uslgLVgGfqknNuiE4pkcJNowEkFMT2hSxNn6x6Y5ebK
-         g+4I/nCpqRq+g==
-Date:   Sun, 13 Aug 2023 20:24:15 +0200
-From:   Simon Horman <horms@kernel.org>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231491AbjHMS7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 14:59:44 -0400
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFFAB1704
+        for <devicetree@vger.kernel.org>; Sun, 13 Aug 2023 11:59:45 -0700 (PDT)
+Received: by mail-ua1-x92b.google.com with SMTP id a1e0cc1a2514c-79aa1f24ba2so824339241.2
+        for <devicetree@vger.kernel.org>; Sun, 13 Aug 2023 11:59:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1691953185; x=1692557985;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mvSEBb+mluam1nmVpoK29fUncMJsHTGSApagTYFZ+Nw=;
+        b=pFVAQ/sNHiDXrGMz9gVFrGk2RoyqRTEw1A8tOgJUVd9tH/SoMcC4+2/HnhEgNGyqry
+         y5eF3PH4E5Ljq8EAuiT4NILGWvm9UpdMnZN+PPX7q4BfSDcUQdZi08uoijQXZTyvTc1N
+         sQExNrek1/cDxrigvgPUQTrFENNXxGF0C29mUtIV5UayKQEolEHPhIwNqoKkFarvejJE
+         1/qkbE7EyLKltNSugm7eoJtMJUz8wmSUlxm3n8qP/n/OH1ipG9b3P4KBBqt5v+L45imk
+         u17e8fPs0O8H0YPNEKv35qJS4NW6FrC7lgI7FPLc9427hSnejGg2qIvsAOXUJHzI0eOj
+         YR2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691953185; x=1692557985;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mvSEBb+mluam1nmVpoK29fUncMJsHTGSApagTYFZ+Nw=;
+        b=Dcxu02Iq1TD84xekzMIjfxtdYqWA7PTSO46sOx9Y06Q/B0a+ZmoT63tWdrjSup0A2E
+         Ld9dPEcw8nmdtBZ9RBSg2eqBgBfGLscvjCeNUfBt9xsLXZdi9Ck0dJiDh9ln3bPdHflp
+         XT/TXL/P7VztFWMdysATTQLoXJtuv9nYoO5wbKFsyaEi1KO3lpGgIrJplnZBzuQhbKZx
+         D5iS/Zu5V5dWsUW46Oqxzs/3Und36Pb2wL1yEEbaM6Ohm7T4dPQUArREKiia852lvigy
+         yZAXa+Ask6BDD404uRn9FOWhF5vDBMb1zT93wHOr+Ip3OVFq8RhCwmCuiGiKxJ3pcFHx
+         AAng==
+X-Gm-Message-State: AOJu0YzTyuCvKvHYwUBqVMh2SMdgyGHXov+vxDJSqaBQ8p2LswT1WlP5
+        54U+yN4LKN0sGlFNnRrHjjiGMPDzADpKnBSKqaDlbQ==
+X-Google-Smtp-Source: AGHT+IGluhxjUnvE0HEw7R1pBnoP9kfF80Uw2gAE8xhlQCTYodKi9s2rNhKVE9dOn2oFx7nOecRGqHm+O1G5Ai9/VuY=
+X-Received: by 2002:a67:f28b:0:b0:447:6965:7284 with SMTP id
+ m11-20020a67f28b000000b0044769657284mr7883113vsk.8.1691953185055; Sun, 13 Aug
+ 2023 11:59:45 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230812-pxa1908-lkml-v5-0-a5d51937ee34@skole.hr> <20230812-pxa1908-lkml-v5-1-a5d51937ee34@skole.hr>
+In-Reply-To: <20230812-pxa1908-lkml-v5-1-a5d51937ee34@skole.hr>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Sun, 13 Aug 2023 20:59:34 +0200
+Message-ID: <CAMRc=MfS7Ybr0sxCmgh98+7+3pnRmWFVutTgz4+sa1nsTdh3Hg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/8] gpio: pxa: disable pinctrl calls for MMP_GPIO
+To:     =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc:     Robert Jarzmik <robert.jarzmik@free.fr>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH 4/5] net: stmmac: Add glue layer for Loongson-1 SoC
-Message-ID: <ZNkfz1yKD90XmTFL@vergenet.net>
-References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
- <20230812151135.1028780-5-keguang.zhang@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230812151135.1028780-5-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-hardening@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afaerber@suse.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 12, 2023 at 11:11:34PM +0800, Keguang Zhang wrote:
-> This glue driver is created based on the arch-code
-> implemented earlier with the platform-specific settings.
-> 
-> Use syscon for SYSCON register access.
-> 
-> Partialy based on the previous work by Serge Semin.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+On Sat, Aug 12, 2023 at 12:26=E2=80=AFPM Duje Mihanovi=C4=87 <duje.mihanovi=
+c@skole.hr> wrote:
+>
+> Similarly to PXA3xx and MMP2, pinctrl-single isn't capable of setting
+> pin direction on MMP either.
+>
+> Fixes: a770d946371e ("gpio: pxa: add pin control gpio direction and reque=
+st")
+> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+> ---
+>  drivers/gpio/gpio-pxa.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpio/gpio-pxa.c b/drivers/gpio/gpio-pxa.c
+> index a1630ed4b741..d92650aecb06 100644
+> --- a/drivers/gpio/gpio-pxa.c
+> +++ b/drivers/gpio/gpio-pxa.c
+> @@ -238,6 +238,7 @@ static bool pxa_gpio_has_pinctrl(void)
+>         switch (gpio_type) {
+>         case PXA3XX_GPIO:
+>         case MMP2_GPIO:
+> +       case MMP_GPIO:
+>                 return false;
+>
+>         default:
+>
+> --
+> 2.41.0
+>
+>
 
-...
-
-Hi Keguang Zhang,
-
-some minor feedback from my side.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-
-...
-
-> +const struct reg_field ls1b_dwmac_syscon_regfields[] = {
-> +	[GMAC1_USE_UART1]	= REG_FIELD(LS1X_SYSCON0, 4, 4),
-> +	[GMAC1_USE_UART0]	= REG_FIELD(LS1X_SYSCON0, 3, 3),
-> +	[GMAC1_SHUT]		= REG_FIELD(LS1X_SYSCON1, 13, 13),
-> +	[GMAC0_SHUT]		= REG_FIELD(LS1X_SYSCON1, 12, 12),
-> +	[GMAC1_USE_TXCLK]	= REG_FIELD(LS1X_SYSCON1, 3, 3),
-> +	[GMAC0_USE_TXCLK]	= REG_FIELD(LS1X_SYSCON1, 2, 2),
-> +	[GMAC1_USE_PWM23]	= REG_FIELD(LS1X_SYSCON1, 1, 1),
-> +	[GMAC0_USE_PWM01]	= REG_FIELD(LS1X_SYSCON1, 0, 0)
-> +};
-
-nit: Perhaps ls1b_dwmac_syscon_regfields should be static.
-
-> +
-> +const struct reg_field ls1c_dwmac_syscon_regfields[] = {
-> +	[GMAC_SHUT]		= REG_FIELD(LS1X_SYSCON0, 6, 6),
-> +	[PHY_INTF_SELI]		= REG_FIELD(LS1X_SYSCON1, 28, 30)
-> +};
-
-Likewise, perhaps ls1c_dwmac_syscon_regfields should be static.
-
-...
-
-> +static const struct of_device_id ls1x_dwmac_syscon_match[] = {
-> +	{ .compatible = "loongson,ls1b-syscon", .data = &ls1b_dwmac_syscon },
-> +	{ .compatible = "loongson,ls1c-syscon", .data = &ls1c_dwmac_syscon },
-> +	{ }
-> +};o
-
-I am seeing a warning about ls1x_dwmac_syscon_match being unused.
-I think this is due to CONFIG_OF being unset.
-
-> +
-> +static int ls1x_dwmac_probe(struct platform_device *pdev)
-> +{
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct stmmac_resources stmmac_res;
-> +	struct device_node *syscon_np;
-> +	const struct of_device_id *match;
-> +	struct regmap *regmap;
-> +	struct ls1x_dwmac *dwmac;
-> +	const struct ls1x_dwmac_syscon *syscon;
-> +	size_t size;
-> +	int ret;
-> +
-> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Probe syscon */
-> +	syscon_np = of_parse_phandle(pdev->dev.of_node, "syscon", 0);
-> +	if (!syscon_np)
-> +		return -ENODEV;
-> +
-> +	match = of_match_node(ls1x_dwmac_syscon_match, syscon_np);
-> +	if (!match) {
-> +		of_node_put(syscon_np);
-> +		return -EINVAL;
-> +	}
-> +	syscon = (const struct ls1x_dwmac_syscon *)match->data;
-> +
-> +	regmap = syscon_node_to_regmap(syscon_np);
-> +	of_node_put(syscon_np);
-> +	if (IS_ERR(regmap)) {
-> +		ret = PTR_ERR(regmap);
-> +		dev_err(&pdev->dev, "Unable to map syscon: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	size = syscon->nr_reg_fields * sizeof(struct regmap_field *);
-> +	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac) + size, GFP_KERNEL);
-> +	if (!dwmac)
-> +		return -ENOMEM;
-> +
-> +	plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +	if (IS_ERR(plat_dat)) {
-> +		dev_err(&pdev->dev, "dt configuration failed\n");
-> +		return PTR_ERR(plat_dat);
-> +	}
-> +
-> +	plat_dat->bsp_priv = dwmac;
-> +	plat_dat->init = ls1x_dwmac_init;
-> +	dwmac->dev = &pdev->dev;
-> +	dwmac->plat_dat = plat_dat;
-> +	dwmac->syscon = syscon;
-> +	dwmac->regmap = regmap;
-> +
-> +	ret = stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-> +	if (ret)
-> +		goto err_remove_config_dt;
-> +
-> +	return 0;
-> +
-> +err_remove_config_dt:
-> +	if (pdev->dev.of_node)
-> +		stmmac_remove_config_dt(pdev, plat_dat);
-> +
-> +	return ret;
-> +}
-
-...
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
