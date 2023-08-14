@@ -2,96 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AEA077B33E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:05:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 972D177B36E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233633AbjHNIEv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 04:04:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40960 "EHLO
+        id S234691AbjHNIKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 04:10:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234430AbjHNIEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:04:36 -0400
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24281D2;
-        Mon, 14 Aug 2023 01:04:34 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-583f036d50bso45657947b3.3;
-        Mon, 14 Aug 2023 01:04:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692000273; x=1692605073;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bzJrlLI5WNhjukEiyCuwgA8oXCqB2FTn6jKbDcA5q68=;
-        b=VYkhUSIYevw4jX7n7DwtuqrMjDq8XZmpKTrtRIY8MlwENiC6xwNGzE9jwH2kJy49Zb
-         tehLBmOkdT0c5XI2LnVixG7HyrE9h5tA4v78JW0rRL3k01w/DFPi2gx2tHRai847WoxF
-         9m06TVHesaQ9SJDpfycDz2jpY8MhD4BEcrzFOImXBzJAjlFP//Pg1AfDDyOwWXIZfwp7
-         gkhP7Ic32EaErex/+CZPCp2dBvlK89hQf+Ez3vk649K/kTMloaj/W7/QlUAxgg86yXX8
-         2+EUEo0ZA9c2zOXn/zobg1WtazAIQ1izfTFu1CjRY71Q19574wQJGhZfydYAD/2hl9Uq
-         DebA==
-X-Gm-Message-State: AOJu0YzYqVvyXysCyNQw597bOECeRrB3cPxMrpATSrOhvPzjUgXKbpI6
-        wigJN7dT2bWuTs26WTbRKQaUUa3UO1a80IoS
-X-Google-Smtp-Source: AGHT+IFiqf0Cez/blAgJYgJXeaRB/XvhWeMardG4hntJrofeZmd5YFiLvCMUGqopXR2YgZc5vzk/fg==
-X-Received: by 2002:a0d:d552:0:b0:577:51cd:1b4a with SMTP id x79-20020a0dd552000000b0057751cd1b4amr13528895ywd.41.1692000273129;
-        Mon, 14 Aug 2023 01:04:33 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id n11-20020a0dcb0b000000b0058419c57c66sm2634017ywd.4.2023.08.14.01.04.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 01:04:32 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-583f036d50bso45657847b3.3;
-        Mon, 14 Aug 2023 01:04:32 -0700 (PDT)
-X-Received: by 2002:a81:9294:0:b0:561:206a:ee52 with SMTP id
- j142-20020a819294000000b00561206aee52mr11727423ywg.24.1692000272605; Mon, 14
- Aug 2023 01:04:32 -0700 (PDT)
+        with ESMTP id S233258AbjHNIJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:09:45 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300E2173B;
+        Mon, 14 Aug 2023 01:09:26 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37E4idOD007217;
+        Mon, 14 Aug 2023 08:08:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
+ : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=HDoY6/Us+r9g/LOMwCv6Ik5IuktODBtk250YSHNs2q8=;
+ b=mRe9hrEQCeJJ3MfdG/9g63hrAxLQNZLvqCsDfkKF2UKEQoUBRGq3hnySHqla9q4F22ue
+ FHuIgMBu5NAkq0/kf292iFs4zvjdDY4CZxGlj3/oAGmdpDS7k7OYpQ6vyuCQFzPGy6J3
+ ut1ADmY0m2d0tId4QtwqQtfwZiPNJhS8BswXlK4bzm0+WASsR6EllnRIKl+vxvrVVX22
+ uKTy2EDzJjEjUzsCpsm+RQ8dQiBG8nEllgO4hshnGFMU/byo7grl2bWlze7HApbMGocI
+ UOv7hgenJCcuP7sPQmV0izrMFJlR/DUKMtA0GfFPi1sHrCM9hle4Iu32f+VbKi7dC+YX cQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3se3fmb80n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Aug 2023 08:08:13 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37E88C8o007204
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Aug 2023 08:08:12 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 14 Aug 2023 01:08:05 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <arnd@arndb.de>,
+        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
+        <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v8 0/5] Enable IPQ5332 USB2
+Date:   Mon, 14 Aug 2023 13:36:00 +0530
+Message-ID: <cover.1691999761.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20230629073419.207886-1-tanure@linux.com> <20230629073419.207886-4-tanure@linux.com>
- <CAL_JsqKd_XYB682eHoW+omjGWLpuz0QL6zc0VB7u-Lm+X=PmOw@mail.gmail.com>
-In-Reply-To: <CAL_JsqKd_XYB682eHoW+omjGWLpuz0QL6zc0VB7u-Lm+X=PmOw@mail.gmail.com>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Mon, 14 Aug 2023 09:04:21 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+2QUEhYax=bOzGHr2f0O8KSGnn0ncD5+HQRSOTUXwv6wA@mail.gmail.com>
-Message-ID: <CAJX_Q+2QUEhYax=bOzGHr2f0O8KSGnn0ncD5+HQRSOTUXwv6wA@mail.gmail.com>
-Subject: Re: [PATCH v7 3/4] tty: serial: meson: Add a earlycon for the T7 SoC
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        Nick <nick@khadas.com>, Artem <art@khadas.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: djEjiLNa0k9EMEu0mvNU5H_--xPytzHr
+X-Proofpoint-ORIG-GUID: djEjiLNa0k9EMEu0mvNU5H_--xPytzHr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-14_03,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ mlxlogscore=445 suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0
+ malwarescore=0 priorityscore=1501 phishscore=0 clxscore=1015 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308140074
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 11, 2023 at 4:34 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Jun 29, 2023 at 1:34 AM Lucas Tanure <tanure@linux.com> wrote:
-> >
-> > The new Amlogic T7 SoC does not have a always-on uart,
-> > so add OF_EARLYCON_DECLARE for it.
-> >
-> > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > ---
-> >  drivers/tty/serial/meson_uart.c | 2 ++
-> >  1 file changed, 2 insertions(+)
->
-> These 2 serial patches will probably never be applied if you don't
-> send this to Greg and linux-serial. IOW, use get_maintainers.pl for
-> your patches.
->
-> Rob
-Thanks, I didn't see that issue.
-I just re-sent ad v9.
+This patch series adds the relevant phy and controller
+configurations for enabling USB2 on IPQ5332
+
+v8:
+	Driver:-
+		Change commit subject and message per review comments
+		Don't include of_platform.h
+		Change struct initialization coding style
+		GENMASK -> BIT for one of the defines
+v7:
+	Binding:-
+		Move 'compatible' to be the first entry
+		In the example have 'usb-phy' instead of 'usb2-phy'
+		Add 'Reviewed-by: Krzysztof Kozlowski'
+v6:
+	Binding and dts:-
+		Dropped the qcom,dwc3.yaml patch as it has been picked up for linux-next
+		Add const to compatible, vdd-supply
+		Move nodes per register address
+	Driver:-
+		Add vdd-supply
+		Cleanup error paths in probe with dev_err_probe
+v5:
+	Binding and dts:-
+		Fix email id
+		Removed 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+		as had to change bindings file to be able to use generic phy instead of
+		usb-phy
+
+	Driver:-
+		Remove unused definition
+		Use generic phy instead of usb-phy
+v4:
+	Binding and dts:-
+		Change node name (bindings & dts)
+	Driver:-
+		Remove unused enum
+		static const for '.data'
+		Error handling for devm_clk_get
+v3:
+	Fix bindings file based on review comments
+
+v1:
+	Cleanup DTS
+	Combine driver, kconfig and makefile patches
+	Remove unused functions from M31 driver
+	Drop the clock driver changes
+
+Varadarajan Narayanan (5):
+  dt-bindings: phy: qcom,m31: Document qcom,m31 USB phy
+  phy: qcom: Introduce M31 USB PHY driver
+  arm64: dts: qcom: ipq5332: Add USB related nodes
+  arm64: dts: qcom: ipq5332: Enable USB
+  arm64: defconfig: Enable M31 USB phy driver
+
+ .../bindings/phy/qcom,ipq5332-usb-hsphy.yaml       |  59 +++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts        |  23 ++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  55 ++++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/phy/qualcomm/Kconfig                       |  11 +
+ drivers/phy/qualcomm/Makefile                      |   1 +
+ drivers/phy/qualcomm/phy-qcom-m31.c                | 294 +++++++++++++++++++++
+ 7 files changed, 444 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-m31.c
+
+-- 
+2.7.4
+
