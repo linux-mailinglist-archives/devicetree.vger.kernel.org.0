@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A696477B438
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B408B77B443
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231649AbjHNIeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 04:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
+        id S233271AbjHNIgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 04:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233089AbjHNIeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:34:07 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DFC10D
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:34:05 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fe4a89e8c4so37059625e9.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:34:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692002044; x=1692606844;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ABhr9xdl4PfhPjffKylsEiPlhHM7MgFT5SzcRJwvV0I=;
-        b=Og/oeYBwFfnwkMvs3RMniQ1vd1qkUXae3em95ns+AMfs77qsCMS/Zj3ulyEW9fvmqa
-         0bTlH3G7FmRM010n1j7kfHDe966K52OXVkMZ7q+JyDNf8zdb3bGdrWBTH/elBCrqE6v7
-         Ul85ERTI1jw1IFwcYom/5GiVYXf/Zs62nShzxXtPCjY4+FLsgSrzQDXKjvi3j+9Sd1E7
-         7AaXS5apo29r7DDvGPFYw+zbvRAslZm9J0JYRZKg+SkxOi1gQIu+NWZ5lohqLbFECugg
-         bCY1c6JdAiDpJSfNWqumKue4J/oYEOEkPiRc7kP+SPlrS1Q8Ik8tm4x8yOS9o8r9z6v2
-         YZFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692002044; x=1692606844;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ABhr9xdl4PfhPjffKylsEiPlhHM7MgFT5SzcRJwvV0I=;
-        b=MX8llnszsG/zm5Zl3/KmoJ2PXC7kyc7gaCsX8TshhEOY4nm/y2kKfzHLOc7x1qINYQ
-         YnJADJeU1DUZ8s4jOE0roL43W15Qt/xvfT9lJc2oZeW8nM1+IJE6EQpRzzVB6uIkxijm
-         HBAPr4+DFwbxQpHJR+LCLit3zfjnmnaO3d9CxMkXt0qGedw21J0kHWGvFZhCuSz8YLzr
-         p+HDMrpn/ypPU+GyJGo6jzC1uhpuZWMpsPx8YITLvZGMpv8E/lWx6UKcw739sooVzTQi
-         KB99wfj0u4JB2Siz8bhnMcNrPpeeLmrUSlLa2GBY581TMD6yyLeE1sMPtU9AZgCuTg3E
-         xemw==
-X-Gm-Message-State: AOJu0Yx3ily19RGrp4bA750ZRTThwBZJYqZp2DaItvN/NgduaSsh0THL
-        JXPiXPLIMs4ezWpGqKcx39mU5JnaWM9BsXe6SEQF1Q==
-X-Google-Smtp-Source: AGHT+IFNCyAF1MrzrZ7BRHwLfz2xysilZbSytC4O9Hi3KVeUcStr4Y3L/lZ+k3Zyl/e4twFEoScCXA==
-X-Received: by 2002:a05:600c:2287:b0:3fe:1cd8:acf3 with SMTP id 7-20020a05600c228700b003fe1cd8acf3mr7321092wmf.17.1692002044384;
-        Mon, 14 Aug 2023 01:34:04 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id z10-20020a05600c220a00b003fbc30825fbsm13767052wml.39.2023.08.14.01.34.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 01:34:03 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Andy Shevchenko <andy@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
-References: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
-Subject: Re: [PATCH v3 0/3] ARM: oxnas support removal
-Message-Id: <169200204339.985309.9800197575088244365.b4-ty@linaro.org>
-Date:   Mon, 14 Aug 2023 10:34:03 +0200
+        with ESMTP id S232346AbjHNIfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:35:52 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B71E19C;
+        Mon, 14 Aug 2023 01:35:51 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37E8Dlfo014154;
+        Mon, 14 Aug 2023 08:35:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=qwGYKRRRJZy7n3umlavxW3NBP3HkUrUEnBJxfTTq5Mc=;
+ b=eqmEe3xSGlfUQFPs7o1HW5VsB2Jmd37g/ylM8wjaj/W6Hh+ArlJ3pluPLlPZvIff9TKl
+ vOOKTDpbVoRY6QvuGw48f1qltR+1e1ZKvo0TDRfW+l6dBmf20FcUnEt3fezYacfTxTnj
+ GfaWaMTMvGvge9ccpN+kOuFz8hyImqaO26OeGLESlC1+4gJOIxDzgYlyCaBFnoD3ktgv
+ CRtZKkMS4xkb5UaKfYa2QZ8lTgVMXImElPXBCVffyPxcW7VpT3tGILIFPxNZjBVBFvJx
+ QrjPvMg7a5gSH3M+2sxxuEXdlKQs5jG7CdRNZG04iRktnjEjhRlg9a+/Wq+oDmo/T+9l 1A== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sffxt83k3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Aug 2023 08:35:15 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37E8ZEjU000903
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Aug 2023 08:35:14 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 14 Aug 2023 01:35:07 -0700
+Date:   Mon, 14 Aug 2023 14:05:04 +0530
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <kishon@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
+        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
+        <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <quic_srichara@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v7 2/5] phy: qcom-m31: Introduce qcom,m31 USB phy driver
+Message-ID: <20230814083503.GA3490@varda-linux.qualcomm.com>
+References: <cover.1691660905.git.quic_varada@quicinc.com>
+ <b17b55b2ff2277bb9bfa99acdb2f98ed420dfb6e.1691660905.git.quic_varada@quicinc.com>
+ <ZNXxja5HvVOtgliL@matsya>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZNXxja5HvVOtgliL@matsya>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: DZ06qSZka_sIK-LlSDnwfR2sZa7D37gN
+X-Proofpoint-GUID: DZ06qSZka_sIK-LlSDnwfR2sZa7D37gN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-14_03,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=899 spamscore=0
+ malwarescore=0 clxscore=1015 suspectscore=0 adultscore=0 bulkscore=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308140079
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -82,48 +85,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Aug 11, 2023 at 09:30:05AM +0100, Vinod Koul wrote:
+> On 10-08-23, 15:26, Varadarajan Narayanan wrote:
+> > Add the M31 USB2 phy driver.
+>	.
+>	.
+>	.
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/of.h>
+>
+> do you need both headers..?
+>
+>	.
+>	.
+>	.
+> > + #define FREQ_24MHZ			(GENMASK(6, 6) | GENMASK(4, 4))
+>
+> why not use bit :-)
+>	.
+>	.
+>	.
+> > +struct m31_phy_regs m31_ipq5332_regs[] = {
+> > +	{ USB_PHY_CFG0, UTMI_PHY_OVERRIDE_EN, 0 },
+> > +	{ USB_PHY_UTMI_CTRL5, POR_EN, 15 },
+> > +	{ USB_PHY_FSEL_SEL, FREQ_SEL, 0 },
+> > +	{ USB_PHY_HS_PHY_CTRL_COMMON0, COMMONONN | FREQ_24MHZ | RETENABLEN, 0 },
+> > +	{ USB_PHY_UTMI_CTRL5, POR_EN, 0 },
+> > +	{ USB_PHY_HS_PHY_CTRL2, USB2_SUSPEND_N_SEL | USB2_SUSPEND_N | USB2_UTMI_CLK_EN, 0 },
+> > +	{ USB2PHY_USB_PHY_M31_XCFGI_11, XCFG_COARSE_TUNE_NUM  | XCFG_FINE_TUNE_NUM, 0 },
+> > +	{ USB2PHY_USB_PHY_M31_XCFGI_4, HSTX_SLEW_RATE_565PS | PLL_CHARGING_PUMP_CURRENT_35UA |
+> > +				       ODT_VALUE_38_02_OHM, 0 },
+> > +	{ USB2PHY_USB_PHY_M31_XCFGI_1, USB2_0_TX_ENABLE, 0 },
+> > +	{ USB2PHY_USB_PHY_M31_XCFGI_5, ODT_VALUE_45_02_OHM | HSTX_PRE_EMPHASIS_LEVEL_0_55MA, 4 },
+> > +	{ USB_PHY_UTMI_CTRL5, 0x0, 0 },
+> > +	{ USB_PHY_HS_PHY_CTRL2, USB2_SUSPEND_N | USB2_UTMI_CLK_EN, 0 },
+>
+> More readable way to code
+>                 USB_PHY_CFG0,
+>                 UTMI_PHY_OVERRIDE_EN,
+>                 0
+>
+> and so on, makes a better read and check for errors, one line for off,
+> one for val and one for delay
+>
+> --
+> `~Vinod
 
-On Mon, 14 Aug 2023 10:19:51 +0200, Neil Armstrong wrote:
-> With [1] removing MPCore SMP support, this makes the OX820 barely usable,
-> associated with a clear lack of maintainance, development and migration to
-> dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
-> 
-> In addition, the OX810 hasn't been booted for years and isn't even present
-> in an ARM config file.
-> 
-> [...]
+Have posted a new version addressing these (and Konrad's and Bjorn's) issues.
+Please review.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/narmstrong/linux-oxnas.git (v6.6/final)
-
-[1/3] irqchip: irq-versatile-fpga: remove obsolete oxnas compatible
-      https://git.kernel.org/narmstrong/linux-oxnas/c/33e839adabedb3a958efe5d974e38e868f7a8584
-[2/3] dt-bindings: interrupt-controller: arm,versatile-fpga-irq: mark oxnas compatible as deprecated
-      https://git.kernel.org/narmstrong/linux-oxnas/c/5f784ff8376dd519bbe317174972423508b627c4
-[3/3] MAINTAINERS: remove OXNAS entry
-      https://git.kernel.org/narmstrong/linux-oxnas/c/b1627ad5f457c8cea08bb2ab6b24d1c0381fbe30
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.6/final branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/narmstrong/linux-oxnas.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Thanks
+Varada
