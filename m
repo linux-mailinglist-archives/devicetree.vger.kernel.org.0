@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8E1377B6F8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:42:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C8CE77B6FB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:43:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233167AbjHNKlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 06:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37352 "EHLO
+        id S232034AbjHNKms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 06:42:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235186AbjHNKlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:41:37 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5212810DE
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:41:27 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-98377c5d53eso542564266b.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:41:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1692009685; x=1692614485;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Djj4l4V/6mjTCVIY5j1u2m14Bqurma+fObOXnVezLR0=;
-        b=fBXI+rRnh1me98p2B6w9MJ+himWLu2zzOVjf19ltNVYFfR/dNpJxyBqCz8zTs1bJhx
-         9ETPAkFP8toVGszYn8vNWF3zgyNJ8dTJ9EmV/PRn8ORbDyGt51YRA8tUs1AlGBYPc/uf
-         c1fZgwFTy5MW7wNzz0TeWZ+AVGDOxn1ORnT6Y3bMVEA1O6o86YSQvaIUysQgP58JRag5
-         N96eyCE5fUlCS1zHrsFwr4JEbOWtlKfr8WuPGfjnxcW3dS4jg+n7i3mahMjWVqicC5YO
-         +I4PbOWPQMjmRjlFmekO9xOnSInNBXEPmWFHHhWf5DFsvyNZTp8R5HQaQrITnK2LjyuE
-         L5gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692009685; x=1692614485;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Djj4l4V/6mjTCVIY5j1u2m14Bqurma+fObOXnVezLR0=;
-        b=HzP8/OP5tH9a7Xa6LXWZUHUZC972fWJqCTVd3E40Kcheo1pW+/+TQSK/eRKUdF9doo
-         rpz92DCrO6rYJuTmulGITMvJMCcT0wkRGeDoTa6OIWZ2ym/Qt9oHxZ5BCrDk8cuJqSnw
-         uZUvhCwZQ7vr6yy4QPXlI6J7H9zLRK00yluPQvwnjrcPvcqK0ipKt100hbxW+j5rrVLA
-         GtyNGdSwHFERHY0gAdBoiYMW5AWY5fsWeEedHC58wWkT5PDNtDla/RfWTAY5qS8bU1vp
-         /46pfFE/TmgypT8RaaJSOVKvbgvbF475KAEv7FgGqmA2kH62JuQMromEwtS8VmpyTYZX
-         61oQ==
-X-Gm-Message-State: AOJu0YwvTbdgWcrhLVfMgThFgDu1oAl1YrzgDL1ed1enkGg6l5ju7yly
-        YAEga4OUAsnz7tX0lnxOLEiuAg==
-X-Google-Smtp-Source: AGHT+IG2Bg4je6dJx6bRZIw22iqCWG+Wx8NgEDEAyVFrqeUSGUgTzmkjIzRJRcIMWoTUmhbGYHlFAw==
-X-Received: by 2002:a17:906:7489:b0:974:183a:54b6 with SMTP id e9-20020a170906748900b00974183a54b6mr7128442ejl.33.1692009685347;
-        Mon, 14 Aug 2023 03:41:25 -0700 (PDT)
-Received: from fedora.. (cpezg-94-253-129-24-cbl.xnet.hr. [94.253.129.24])
-        by smtp.googlemail.com with ESMTPSA id qw4-20020a170906fca400b009934707378fsm5486586ejb.87.2023.08.14.03.41.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 03:41:24 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 2/2] clk: qcom: gcc-ipq4019: add missing networking resets
-Date:   Mon, 14 Aug 2023 12:40:24 +0200
-Message-ID: <20230814104119.96858-2-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230814104119.96858-1-robert.marko@sartura.hr>
-References: <20230814104119.96858-1-robert.marko@sartura.hr>
+        with ESMTP id S233826AbjHNKmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:42:20 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CFE711A;
+        Mon, 14 Aug 2023 03:42:18 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37EAfurr085836;
+        Mon, 14 Aug 2023 05:41:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692009716;
+        bh=Lz356dlYT0Q7fdpMmgsrqqZokIAx9+np94XnpNO5Wt4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Kk9N6XcN5y6wkTH+BugUixyqNL4LzPx5i3PfOKafcOnesY3N5nAun95wz73+8ZA8O
+         a3mjIRJ3DHq9POKbLqHsSX1cJjxv1G0z+X9dsD3u7veUejTinXUUb/QgIXOfV1WpIV
+         uf/wtOY80VCE2S/hciOzf3BzfkF1dGI9ir1gB3i0=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37EAfuk6012941
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Aug 2023 05:41:56 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
+ Aug 2023 05:41:56 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 14 Aug 2023 05:41:56 -0500
+Received: from [172.24.227.132] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37EAfnDv018660;
+        Mon, 14 Aug 2023 05:41:49 -0500
+Message-ID: <8fd9c745-cb42-8d4d-8307-e428a491bfe1@ti.com>
+Date:   Mon, 14 Aug 2023 16:11:48 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NO_DNS_FOR_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Francesco Dolcini <francesco@dolcini.it>
+CC:     Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230809084559.17322-1-a-bhatia1@ti.com>
+ <169179274928.1340235.2380026214492639228.b4-ty@ti.com>
+Content-Language: en-US
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <169179274928.1340235.2380026214492639228.b4-ty@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,31 +79,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ4019 has more networking related resets that will be required for future
-wired networking support, so lets add them.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
- drivers/clk/qcom/gcc-ipq4019.c | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/clk/qcom/gcc-ipq4019.c b/drivers/clk/qcom/gcc-ipq4019.c
-index c134c468bb33..4a0bd668892e 100644
---- a/drivers/clk/qcom/gcc-ipq4019.c
-+++ b/drivers/clk/qcom/gcc-ipq4019.c
-@@ -1713,6 +1713,12 @@ static const struct qcom_reset_map gcc_ipq4019_resets[] = {
- 	[GCC_TCSR_BCR] = {0x22000, 0},
- 	[GCC_MPM_BCR] = {0x24000, 0},
- 	[GCC_SPDM_BCR] = {0x25000, 0},
-+	[ESS_MAC1_ARES] = {0x1200C, 0},
-+	[ESS_MAC2_ARES] = {0x1200C, 1},
-+	[ESS_MAC3_ARES] = {0x1200C, 2},
-+	[ESS_MAC4_ARES] = {0x1200C, 3},
-+	[ESS_MAC5_ARES] = {0x1200C, 4},
-+	[ESS_PSGMII_ARES] = {0x1200C, 5},
- };
- 
- static const struct regmap_config gcc_ipq4019_regmap_config = {
--- 
-2.41.0
+On 12-Aug-23 04:02, Nishanth Menon wrote:
+> Hi Aradhya Bhatia,
+> 
+> On Wed, 09 Aug 2023 14:15:53 +0530, Aradhya Bhatia wrote:
+>> The patch series adds DT nodes for Display SubSystem (DSS) and other
+>> peripherals required to enable the HDMI audio and video on the AM625 SK,
+>> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
+>> monitor can be connected to the boards for the audio/video outputs.
+>>
+>> The series adding the compatible and basic driver support[0] is in the
+>> drm-misc-next and linux-next queues and is expected to be in the
+>> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
+>> that introduces debounce select mux macros. This patch too is not in
+>> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
+>> linux-next.
+>>
+>> [...]
+> 
+> NOTE: This series creates checkpatch warnings against v6.5-rc1 and
+> complains that it cannot find ti,am625-dss which has been merged in
+> drm tree for next. This is clean in linux-next for a few weeks now.
+> Given the number of people who would really like to see it in v6.6-rc1
+> to keep the display support working in the tree without carried
+> patches and work on next set of features on display and graphics, and
+> given the real low risk of this NOT making to linus-master, we are
+> making an specific exception here for this time around. So, please
+> keep a watch on drm-next and if for any reason the support is dropped
+> going to linus's tre in the merge window or before, let this chain
+> know with appropriate maintainers so that we can take corrective
+> actions. PS: Thanks Arnd for taking time to give me some private
+> guidance. Fingers crossed that this will go through smooth.
+
+Nishanth, Vignesh, Arnd,
+
+Thank you for making an exception here, and allowing these patches in!
+=)
+
+I will keep an eye on drm-next and will make sure to let you all know if
+the AM62 base DSS support patches get dropped for any reason.
+
+Regards
+Aradhya
+
+> 
+> Thank you!
+> 
+> I have applied the following to branch ti-k3-dts-next on [1]:
+> 
+> [1/6] arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
+>       commit: 73387da70f9c26b6fba4f62371d013cce14663d9
+> [2/6] arm64: dts: ti: k3-am62-main: Add node for DSS
+>       commit: 8ccc1073c7bb2ae9654529a75f85ef23b7215c9b
+> [3/6] arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
+>       commit: db6e8237cf5435e972ea47632e5d8ac3e356f210
+> [4/6] arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
+>       commit: b50ccab9e07ca19d49a0d629dfbe184e6975be22
+> [5/6] arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
+>       commit: 1f7226a5e52cb8b90771cefc29077f9ce13a3c90
+> 
+> I have applied the following to branch ti-k3-config-next on [1]:
+> 
+> [6/6] arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
+>       commit: d5c988b43746de250bed33c17116e879f032ff12
+> 
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent up the chain during
+> the next merge window (or sooner if it is a relevant bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
+> 
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+> 
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+> 
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 
