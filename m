@@ -2,62 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B14E77B3F7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D936F77B404
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234660AbjHNIVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 04:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46712 "EHLO
+        id S231853AbjHNIXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 04:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234731AbjHNIUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:20:37 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53421710;
-        Mon, 14 Aug 2023 01:20:30 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 6A75324E2BA;
-        Mon, 14 Aug 2023 16:20:29 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 14 Aug
- 2023 16:20:29 +0800
-Received: from ubuntu.localdomain (183.27.98.20) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 14 Aug
- 2023 16:20:28 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>,
-        Minda Chen <minda.chen@starfivetech.com>
-Subject: [PATCH v3 11/11] riscv: dts: starfive: add PCIe dts configuration for JH7110
-Date:   Mon, 14 Aug 2023 16:20:16 +0800
-Message-ID: <20230814082016.104181-12-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230814082016.104181-1-minda.chen@starfivetech.com>
-References: <20230814082016.104181-1-minda.chen@starfivetech.com>
+        with ESMTP id S235041AbjHNIWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:22:21 -0400
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A74721FF1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:21:47 -0700 (PDT)
+Received: by mail-ua1-x931.google.com with SMTP id a1e0cc1a2514c-79ddb700ad4so92032241.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692001302; x=1692606102;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IbBAnYMt1osAjSLgXwXsESE/Ht4xXirnV0hpDFYwchU=;
+        b=e4LMTIUNziY8qEE/vVzl4NROTCVHR7aXx9zPn6XfabWgcXmD3ItQX7KheWh5RqNX/C
+         B1785uX0YjD3RLGQQpgcUznX21kaVF8L81c0H0l2+v9sTtvd2YL1GvL8ObB8z97zdh5r
+         ND87Zd2Q8MsbZL4GJNG+eZxgsP3C9idBC5obk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692001302; x=1692606102;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IbBAnYMt1osAjSLgXwXsESE/Ht4xXirnV0hpDFYwchU=;
+        b=c8JOEfYC5BDf5nNPnT44dTg0utgcxBEJUZ94DbagZysPL09pZjK3lTipZkhiFEDgkX
+         dFpS6uFkLA5oLr+k2JinV3JPM/SxIayMxNm2K6VgMXbM06i92TPis5UpQMqLYkDKXAr2
+         /Jp+9RMGgAaeVSN757tHrbZsuwARoARXU7eKbXRw/7A+fsnoSV0eR2F7RzTypuN4WoQx
+         vao+rBeSNS0Mybm6qtJLNzAbOpiIgFayCCrAAHrIOhoBO2YAX7mF7iXcLetn7XyyWtJy
+         gy1txR7zQEcEopYr24hA3unK0eCd4VkLz08bmbY/00WJlk3CRbecjwWaeq7ZOyJEXP7T
+         ZEgg==
+X-Gm-Message-State: AOJu0Yzw04ck+Xfocrpyw201pDWaYiliPeGIe8kLH/bOspknge5dVOA3
+        /hPwCgHKRGORozeVENE3Tl5uasWLBXx3Uej8PvwT2w==
+X-Google-Smtp-Source: AGHT+IEkqfirYS9rl9kYl1DneeftF4z9DIfsIMYPKU+dbFWSnA065ws9D799j3wglgRmTIWdm1P/MIbQT4YO4g8SbYU=
+X-Received: by 2002:a67:fd03:0:b0:447:4c30:cb68 with SMTP id
+ f3-20020a67fd03000000b004474c30cb68mr8236981vsr.32.1692001302415; Mon, 14 Aug
+ 2023 01:21:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.98.20]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+References: <20230602090227.7264-1-yong.wu@mediatek.com> <20230602090227.7264-6-yong.wu@mediatek.com>
+ <CAGXv+5EKwvn-axETPcuxTpxRkUGLroymeDYL+kr4QW8duAymmQ@mail.gmail.com>
+ <b695962fa3c3baac08f8be5202e6a5697e7826a0.camel@mediatek.com>
+ <CAGXv+5EVqODJJ4Ck+EcB9sn1bTjG5yFrWLi9mHTfVa0sB4wsug@mail.gmail.com> <810a3cbca7e837925b5750fd2eb1d1a261e865dc.camel@mediatek.com>
+In-Reply-To: <810a3cbca7e837925b5750fd2eb1d1a261e865dc.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 14 Aug 2023 16:21:31 +0800
+Message-ID: <CAGXv+5G=CM9203GR42szWXx8K7F+swkvKJ_M3ev5_bGTk_zjGg@mail.gmail.com>
+Subject: Re: [PATCH v12 5/7] iommu/mediatek: Add MT8188 IOMMU Support
+To:     =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= 
+        <Jianjiao.Zeng@mediatek.com>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        =?UTF-8?B?Q2hlbmdjaSBYdSAo6K645om/6LWQKQ==?= 
+        <Chengci.Xu@mediatek.com>,
+        =?UTF-8?B?WUYgV2FuZyAo546L5LqR6aOeKQ==?= <YF.Wang@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        =?UTF-8?B?TWluZ3l1YW4gTWEgKOmprOm4o+i/nCk=?= 
+        <Mingyuan.Ma@mediatek.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "will@kernel.org" <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,200 +89,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe dts configuraion for JH7110 SoC platform.
+On Mon, Aug 14, 2023 at 3:14=E2=80=AFPM Yong Wu (=E5=90=B4=E5=8B=87) <Yong.=
+Wu@mediatek.com> wrote:
+>
+> On Fri, 2023-08-11 at 11:30 +0800, Chen-Yu Tsai wrote:
+> >
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >  On Thu, Aug 10, 2023 at 8:23=E2=80=AFPM Yong Wu (=E5=90=B4=E5=8B=87) <=
+Yong.Wu@mediatek.com>
+> > wrote:
+> > >
+> > > On Tue, 2023-08-08 at 17:53 +0800, Chen-Yu Tsai wrote:
+> > > >
+> > > > External email : Please do not click links or open attachments
+> > until
+> > > > you have verified the sender or the content.
+> > > >  On Fri, Jun 2, 2023 at 5:04=E2=80=AFPM Yong Wu <yong.wu@mediatek.c=
+om>
+> > wrote:
+> > > > >
+> > > > > From: "Chengci.Xu" <chengci.xu@mediatek.com>
+> > > > >
+> > > > > MT8188 has 3 IOMMU, containing 2 MM IOMMUs, one is for vdo, the
+> > > > other
+> > > > > is for vpp. and 1 INFRA IOMMU.
+> > > > >
+> > > > > Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
+> > > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > > > Reviewed-by: AngeloGioacchino Del Regno <
+> > > > angelogioacchino.delregno@collabora.com>
+> > > > > ---
+> > > > >  drivers/iommu/mtk_iommu.c | 49
+> > > > +++++++++++++++++++++++++++++++++++++++
+> > > > >  1 file changed, 49 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/iommu/mtk_iommu.c
+> > b/drivers/iommu/mtk_iommu.c
+> > > > > index 9c89cf894a4d..5c66af0c45a8 100644
+> > > > > --- a/drivers/iommu/mtk_iommu.c
+> > > > > +++ b/drivers/iommu/mtk_iommu.c
+> > > > > @@ -170,6 +170,7 @@ enum mtk_iommu_plat {
+> > > > >         M4U_MT8173,
+> > > > >         M4U_MT8183,
+> > > > >         M4U_MT8186,
+> > > > > +       M4U_MT8188,
+> > > > >         M4U_MT8192,
+> > > > >         M4U_MT8195,
+> > > > >         M4U_MT8365,
+> > > > > @@ -1593,6 +1594,51 @@ static const struct mtk_iommu_plat_data
+> > > > mt8186_data_mm =3D {
+> > > > >         .iova_region_larb_msk =3D mt8186_larb_region_msk,
+> > > > >  };
+> > > > >
+> > > > > +static const struct mtk_iommu_plat_data mt8188_data_infra =3D {
+> > > > > +       .m4u_plat         =3D M4U_MT8188,
+> > > > > +       .flags            =3D WR_THROT_EN | DCM_DISABLE |
+> > > > STD_AXI_MODE | PM_CLK_AO |
+> > > > > +                           MTK_IOMMU_TYPE_INFRA |
+> > > > IFA_IOMMU_PCIE_SUPPORT |
+> > > > > +                           PGTABLE_PA_35_EN |
+> > > > CFG_IFA_MASTER_IN_ATF,
+> > > >
+> > > > FWIW, CFG_IFA_MASTER_IN_ATF should not be tied to the compatible
+> > > > string,
+> > > > but set via a DT property. The IOMMU controls are secured by
+> > > > firmware.
+> > > > It is not a property intrinsically tied to the hardware.
+> > >
+> > > The flag CFG_IFA_MASTER_IN_ATF means the registers which
+> > enable/disable
+> > > iommu are in the secure world. If the master like pcie want to
+> > enable
+> > > iommu, we have to enter secure world to configure it. It should be
+> > HW
+> > > intrinsical, right?
+> >
+> > If I understand correctly, this is forced by setting some registers.
+> > The registers are set by the firmware at boot time.
+>
+> The register will be set before the masters that have the "iommus=3D"
+> property probe. If the master doesn't have "iommus=3D" property in its
+> dtsi node, this register won't be set, then its iommu will be disabled
+> and it has to access continuous buffer.
+>
+> >
+> > So if a different firmware that doesn't set the registers is used,
+> > then the IOMMU is available to non-secure kernel, correct?
+>
+> No. The meaning of this register is whether to enable iommu. If the
+> register are not set, the IOMMU for that master is disabled.
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 64 ++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
- 2 files changed, 150 insertions(+)
+For clarity, I'm referring to PERI_MST_PROT [1], not the registers in the
+IOMMU or LARBs. So not any of the registers used in this patch.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index de0f40a8be93..3f7d07966997 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -15,6 +15,8 @@
- 		i2c2 = &i2c2;
- 		i2c5 = &i2c5;
- 		i2c6 = &i2c6;
-+		pcie0 = &pcie0;
-+		pcie1 = &pcie1;
- 		serial0 = &uart0;
- 	};
- 
-@@ -208,6 +210,54 @@
- 		};
- 	};
- 
-+	pcie0_pins: pcie0-0 {
-+		wake-pins {
-+			pinmux = <GPIOMUX(32, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		clkreq-pins {
-+			pinmux = <GPIOMUX(27, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pcie1_pins: pcie1-0 {
-+		wake-pins {
-+			pinmux = <GPIOMUX(21, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		clkreq-pins {
-+			pinmux = <GPIOMUX(29, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
-@@ -233,6 +283,20 @@
- 	};
- };
- 
-+&pcie0 {
-+	pinctrl-names = "default";
-+	perst-gpios = <&sysgpio 26 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&pcie0_pins>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	pinctrl-names = "default";
-+	perst-gpios = <&sysgpio 28 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&pcie1_pins>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pins>;
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 02354e642c44..7a5dc43cf63c 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -629,5 +629,91 @@
- 			#reset-cells = <1>;
- 			power-domains = <&pwrc JH7110_PD_VOUT>;
- 		};
-+
-+		pcie0: pcie@940000000 {
-+			compatible = "starfive,jh7110-pcie";
-+			reg = <0x9 0x40000000 0x0 0x1000000>,
-+			      <0x0 0x2b000000 0x0 0x100000>;
-+			reg-names = "cfg", "apb";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			ranges = <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0x08000000>,
-+				 <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x40000000>;
-+			interrupts = <56>;
-+			interrupt-parent = <&plic>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
-+					<0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
-+					<0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
-+					<0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
-+			msi-controller;
-+			device_type = "pci";
-+			starfive,stg-syscon = <&stg_syscon>;
-+			bus-range = <0x0 0xff>;
-+			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_TL>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_AXI_MST0>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_APB>;
-+			clock-names = "noc", "tl", "axi_mst0", "apb";
-+			resets = <&stgcrg JH7110_STGRST_PCIE0_AXI_MST0>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV0>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_BRG>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_CORE>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_APB>;
-+			reset-names = "mst0", "slv0", "slv", "brg",
-+				      "core", "apb";
-+			status = "disabled";
-+
-+			pcie_intc0: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		pcie1: pcie@9c0000000 {
-+			compatible = "starfive,jh7110-pcie";
-+			reg = <0x9 0xc0000000 0x0 0x1000000>,
-+			      <0x0 0x2c000000 0x0 0x100000>;
-+			reg-names = "cfg", "apb";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			ranges = <0x82000000  0x0 0x38000000  0x0 0x38000000 0x0 0x08000000>,
-+				 <0xc3000000  0x9 0x80000000  0x9 0x80000000 0x0 0x40000000>;
-+			interrupts = <57>;
-+			interrupt-parent = <&plic>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc1 0x1>,
-+					<0x0 0x0 0x0 0x2 &pcie_intc1 0x2>,
-+					<0x0 0x0 0x0 0x3 &pcie_intc1 0x3>,
-+					<0x0 0x0 0x0 0x4 &pcie_intc1 0x4>;
-+			msi-controller;
-+			device_type = "pci";
-+			starfive,stg-syscon = <&stg_syscon>;
-+			bus-range = <0x0 0xff>;
-+			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_TL>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_AXI_MST0>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_APB>;
-+			clock-names = "noc", "tl", "axi_mst0", "apb";
-+			resets = <&stgcrg JH7110_STGRST_PCIE1_AXI_MST0>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV0>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_BRG>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_CORE>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_APB>;
-+			reset-names = "mst0", "slv0", "slv", "brg",
-+				      "core", "apb";
-+			status = "disabled";
-+
-+			pcie_intc1: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
- 	};
- };
--- 
-2.17.1
+If that register doesn't restrict access to IOMMU register space to secure
+only, then I assume it is controlled by fuses?
 
+[1] https://review.trustedfirmware.org/plugins/gitiles/TF-A/trusted-firmwar=
+e-a/+/be457248c6b0a7f3c61bd95af58372938d13decd/plat/mediatek/drivers/iommu/=
+mt8188/mtk_iommu_plat.c#93
+
+> >
+> > That's why I said that it should not be tied to a particular hardware
+> > platform, but set using a boolean device tree property.
+> >
+> > > >
+> > > > If on some other project there is no such security requirement
+> > and
+> > > > the
+> > > > IOMMU is opened up to non-secure world, and ATF not even having
+> > > > support
+> > > > for the SMC call, this becomes unusable and hard to rectify
+> > without
+> > > > introducing a new compatible string.
+> > > >
+> > > > ChenYu
+> > > >
