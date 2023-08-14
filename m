@@ -2,53 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35CDF77B405
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1815277B408
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233406AbjHNIXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 04:23:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
+        id S230351AbjHNIYF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 04:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233178AbjHNIW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:22:29 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D3682728
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:21:58 -0700 (PDT)
-Received: from [192.168.2.144] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id B9E2A1F4A4;
-        Mon, 14 Aug 2023 10:21:55 +0200 (CEST)
-Date:   Mon, 14 Aug 2023 10:21:49 +0200
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: SID: Add binding for H616 SID
- controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234740AbjHNIXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:23:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096D7170D
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:23:18 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1qVSqN-0002iR-RI; Mon, 14 Aug 2023 10:22:31 +0200
+Message-ID: <c08784a0a1412d5843cf97b992efb17e1dc602b7.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Fix SDMA2/3 clocks
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Alan Ma <tech@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-Id: <DKGDZR.4G4SZ781MVSV2@somainline.org>
-In-Reply-To: <830e5e34-f6de-3233-4a12-06c8390169d1@linaro.org>
-References: <20230814-sid-h616-v2-0-0267749b4471@somainline.org>
-        <20230814-sid-h616-v2-1-0267749b4471@somainline.org>
-        <830e5e34-f6de-3233-4a12-06c8390169d1@linaro.org>
-X-Mailer: geary/43.0
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Mon, 14 Aug 2023 10:22:30 +0200
+In-Reply-To: <20230813162906.22640-1-aford173@gmail.com>
+References: <20230813162906.22640-1-aford173@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
@@ -58,45 +53,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Mon, Aug 14 2023 at 10:08:38 AM +02:00:00, Krzysztof Kozlowski 
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 14/08/2023 08:38, Martin Botka wrote:
->>  Add binding for the SID controller found in H616 SoC
->> 
->>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
->>  ---
->>   
->> Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml 
->> | 1 +
->>   1 file changed, 1 insertion(+)
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml 
->> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
->>  index 296001e7f498..2ec0a1b8f803 100644
->>  --- 
->> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
->>  +++ 
->> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
->>  @@ -27,6 +27,7 @@ properties:
->>             - const: allwinner,sun50i-a64-sid
->>         - const: allwinner,sun50i-h5-sid
->>         - const: allwinner,sun50i-h6-sid
->>  +      - const: allwinner,sun50i-h616-sid
+Am Sonntag, dem 13.08.2023 um 11:29 -0500 schrieb Adam Ford:
+> A previous patch to remove the Audio clocks from the main clock node
+> was intended to force people to setup the audio PLL clocks per board
+> instead of having a common set of rates since not all boards may use
+> the various audio PLL clocks for audio devices.
 > 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
+> Unfortunately, with this parenting removed, the SDMA2 and SDMA3
+> clocks were slowed to 24MHz because the SDMA2/3 clocks are controlled
+> via the audio_blk_ctrl which is clocked from IMX8MP_CLK_AUDIO_ROOT,
+> and that clock is enabled by pgc_audio.
 > 
-> Best regards,
-> Krzysztof
+> Per the TRM, "The SDMA2/3 target frequency is 400MHz IPG and 400MHz
+> AHB, always 1:1 mode, to make sure there is enough throughput for all
+> the audio use cases."
 > 
-Yea completely forgot. Sorry for that.
+> Instead of cluttering the clock node, place the clock rate and parent
+> information into the pgc_audio node.
+> 
+> With the parenting and clock rates restored for  IMX8MP_CLK_AUDIO_AHB,
+> and IMX8MP_CLK_AUDIO_AXI_SRC, it appears the SDMA2 and SDMA3 run at
+> 400MHz again.
+> 
+Note that 800MHz for the AXI clock is overdrive mode for the chip. For
+other i.MX8M* chips we tried to have the nominal drive rates as
+assigned rates in DT. With the i.MX8MP it's currently a wild mix and
+most of the AXI clocks are set to OD rates, so I won't reject this
+patch based on this.
 
-Will send v3 tomorrow with proper binding patch using items with enums
+Most boards run the DRAM at DDR4-4000, which already requires OD
+voltages, so there isn't much point in trying to stick to ND rates on
+those boards. We should probably do some consolidation here and come up
+with a proper policy for the i.MX8MP soon.
 
+> Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks from CCM node")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 6f2f50e1639c..408b0c4ec4f8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -790,6 +790,12 @@ pgc_audio: power-domain@5 {
+>  						reg = <IMX8MP_POWER_DOMAIN_AUDIOMIX>;
+>  						clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
+>  							 <&clk IMX8MP_CLK_AUDIO_AXI>;
+> +						assigned-clocks = <&clk IMX8MP_CLK_AUDIO_AHB>,
+> +								  <&clk IMX8MP_CLK_AUDIO_AXI_SRC>;
+> +						assigned-clock-parents =  <&clk IMX8MP_SYS_PLL1_800M>,
+> +									  <&clk IMX8MP_SYS_PLL1_800M>;
+> +						assigned-clock-rates = <400000000>,
+> +								       <800000000>;
+>  					};
+>  
+>  					pgc_gpu2d: power-domain@6 {
 
