@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EE7677B3D3
+	by mail.lfdr.de (Postfix) with ESMTP id 68CAD77B3D4
 	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234395AbjHNIUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 04:20:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33294 "EHLO
+        id S234499AbjHNIUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 04:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234445AbjHNIUE (ORCPT
+        with ESMTP id S234455AbjHNIUE (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:20:04 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A22A6
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C53FA
         for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:20:03 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31972944f30so936798f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:20:02 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-317b31203c7so3843763f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:20:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692001201; x=1692606001;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=esPHR8O6X5bh9IoLHOiOHIU3krlV6rNwOrRUOA+gIUo=;
-        b=QdyRM+tSjIUNtVGG3bdjEietP8Q2d1h3KJuEHViTr4USevxwefNxmxfgjWp+Fqi4m+
-         GJpixORRA94GzU5axi/iYDFVzlFBizCg/1nfFWeEGT0MP11vdKtdA91uuyIB2+PLtaWh
-         d9wqLtply0g2s5GIEGXzSVx5wa3jwKlh/ssjiq2d4w50GRf7IonlF/qpqOwP2/t1DCZk
-         AXXPs8jD0++owPBFfZ4Pxg3ymrExTABb5jWa8tq557dZw/rJZjsWRY5//tbvQ1h9+srP
-         XQH18q/5zB5pcP9D0DPSLGZ2X/FCUZXJMJv65ixmOm6H1Ke9B50G2/YFap2kvrubKTtd
-         /rDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692001201; x=1692606001;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1692001202; x=1692606002;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=esPHR8O6X5bh9IoLHOiOHIU3krlV6rNwOrRUOA+gIUo=;
-        b=iFUyApreis/gwuLK9Tc/YYf7hQahQ0h8Dr4u+AOk0v6HY4IrGmmrjyMwaUpZCfPwlv
-         AC2+lpABhy6krC0nlprxvtly7eSiXmkwIuvVWWH/zac3A4F9JpbED5xGTXYzCLTJK760
-         UAAf8HdAFWbzmJfMCF7YkJ9C2G4qF/aT2NABiwp2IxzXAZPnBXjG03TgtMTtZZwwsnN0
-         wm/BKBTM4uxUYEkvYIbEiWUlDS65dm7G+EIJEhtMysgh9rc3fUzaA/zibmvOjMDL6Vdu
-         auww68cw4D7Gb1AhvLNSuj/NlocmJl9DNrojwpluQ9k0u4QfLAijmjZveTq8wvZREjfq
-         rb0g==
-X-Gm-Message-State: AOJu0YwHQR9V2tXLdPEoYPamIfzANxmZ30JqtuGl43kwsGkpqEQRuk3c
-        I+NR3nYFS4viHUcZr/LOGFRO7Q==
-X-Google-Smtp-Source: AGHT+IEgmRsds34cslKDbyzCn7RIbp/IVD36Gq4bcl6RY6FcYmeCaeZR6THT0cmNsrr98F8PwaJJvA==
-X-Received: by 2002:a5d:525b:0:b0:314:1a09:6e71 with SMTP id k27-20020a5d525b000000b003141a096e71mr6992068wrc.53.1692001201484;
-        Mon, 14 Aug 2023 01:20:01 -0700 (PDT)
+        bh=oOhZF7S2DEx7MhxKavLsQLjZHhmWbqh7NuoRDJKNBTY=;
+        b=XDhYqIuSK5EX/3HgIE9f+NFoudhk+4NBOG8870h11dNzpBDUOBridTh4zSrFIW0fx7
+         A/xqx4y16iUSwoX3uYPF7lImfZCpHMwhaGCGkOSJeKmlYHw1nE4eNxyTdfknJkNFzzSq
+         jXFuvy1jTTtOz1zNW1HqD3f38oel3rn/4WSLXl5xoj9AkxPwOeMzYimjb5PT9tdDlXFn
+         4aZrPgEZSf8H6x2tcDcUUv4KBwZ+xcxNcgnMGaKFyjygufjmSYoRUGYLQomuzdNUBzjA
+         Yh/m+Q0Zesk8z2p/JmvIEbGn24h06NASIEY55C59jSj5MU/fZtecsz7UQ6rxhJUCAqUt
+         iMkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692001202; x=1692606002;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oOhZF7S2DEx7MhxKavLsQLjZHhmWbqh7NuoRDJKNBTY=;
+        b=f745UmDVZOHQPJ1nACGIluY7MT0TD20pC6UGdAzowUbI8zs4qNVv7YivNKuonn8inJ
+         KUpxMSN1jLsVU2ZP44YsHqYcq9r7o2nmYBhv0YMndjeroUq64/VD2gEW72i2jtaiL0rI
+         S4w8w9EZmfhSvaZ9UoRUcySpRK18MtyIGbTLwidzMH4h6MFf7Wa6oH0+jTOQtyaowR24
+         FhFydjPk9O6+myRCwqKm4g96bww/RflWlYL9crDJoRnAix4bcORRgsm83heePilwMu+G
+         NG9FO7ZIELrwzX+O+BlhNz1CixkHjPc3oS6KTZ9rBPGhvnc4E4rE/8Lp3AMTo0nZQj/t
+         AqEg==
+X-Gm-Message-State: AOJu0Yzzq75hER2t2rbc8JoNzQV07DNTA28YKRltihUY4YY+VjTMWqYc
+        AFPDyQP0RPUER4UDjiTf8UKbow==
+X-Google-Smtp-Source: AGHT+IGP5UO5fYq3iwVKUitezCVv4EUFlANCy8dLLXHKmY42St+nrJ2AbN/HVyqIBzipX+sx40KW+Q==
+X-Received: by 2002:a5d:5183:0:b0:315:9e1b:4ea6 with SMTP id k3-20020a5d5183000000b003159e1b4ea6mr6404183wrv.58.1692001202425;
+        Mon, 14 Aug 2023 01:20:02 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id f18-20020a5d6652000000b003143ba62cf4sm13661259wrw.86.2023.08.14.01.20.00
+        by smtp.gmail.com with ESMTPSA id f18-20020a5d6652000000b003143ba62cf4sm13661259wrw.86.2023.08.14.01.20.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 01:20:00 -0700 (PDT)
+        Mon, 14 Aug 2023 01:20:02 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v3 0/3] ARM: oxnas support removal
-Date:   Mon, 14 Aug 2023 10:19:51 +0200
-Message-Id: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
+Date:   Mon, 14 Aug 2023 10:19:52 +0200
+Subject: [PATCH v3 1/3] irqchip: irq-versatile-fpga: remove obsolete oxnas
+ compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKfj2WQC/43OwQ7CIBAE0F8xnF1TIFbryf8wHpayWJIWmqUSj
- em/S3sxXozHmcObeYlE7CmJ0+YlmLJPPoYS9HYj2g7DjcDbkoWqlK60ljDF0bcQHwET3Mc0MeE
- ATEPMBFgramxTOyISRTCYCAxjaLtihHvfl3Jkcv6xTl6uJXc+TZGf64Msl/a/sSyhgr2x+6Oz0
- lrpzr0PyHEX+SYWOKsPVuvqN6YK5kyNRlvC46H9wuZ5fgMPKRwuKQEAAA==
+Message-Id: <20230814-topic-oxnas-upstream-remove-v3-1-e2ba579a49d3@linaro.org>
+References: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
+In-Reply-To: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
@@ -71,23 +71,22 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Arnd Bergmann <arnd@arndb.de>,
         Daniel Golle <daniel@makrotopia.org>,
         Andy Shevchenko <andy@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>
+        Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2085;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1168;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=BV4eCveGpLmDCBGhcN3GoiI5PrQx89zH76D6FcS4Be0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk2eOuqaVY1uku6v+pz5LuDuN5iAslAyooWobVLTOr
- tZzgElGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZNnjrgAKCRB33NvayMhJ0ZHaD/
- 9gVyNvGWHyD2raAARWC5plh8EM5pfDj1qNzgaIRKz6CbVcEvw2brHkhAGGpK+gpmKVTRt+WCidx3la
- 4GHMEDOBYbg66XJCbAUTuEcNxz63tmbD+1ZIuI9w1G3W6NAPb92w8ZNRZyK699YQdzJ0Hks0fWrmGz
- yq7Qy5iJVFo3AjKqbp7RAWrhJsqYqEHp79DXlygA9gwzZdgNDw0TyawPi7Qxm21pzWDly4nf7AQcoG
- wwjSzV+s7pVvkljNECGghf8Tx/5Ej50/ZhDPu0Xo/ge0RQlKqY3gUDUnCrMqh0T1zCSFQTH4xph3JY
- 9kDCva0LLx32A3VWsXnEQ3Anpq5oAjbk5koTTlzIaaw8wUPXXzZFok5BStUD1z1Y//Be9kxHZy8cgi
- dmFpR8Vdk9x1F3iiSTvGJTLYHsEbmRbE75zRbXSTKSW7d4EYuv99A8t71u6yimKdZLxbzeOhe28PoQ
- fqCJ9AF8ZBJSm21rKhi0QE4UjS3L8FlrCHJEUVntiX6qhV91RRJH8rqqU7POv2epBBmI36SFGyoXLX
- IDgLQvoy8JvIuB/IlLkZ8mgHZf+K7XetdUJ/pK8ImTvWpMEC3IWG5s2pJpIsAE9H1gCobXVIBl8nFc
- KpiHd3CZ/37k1+q4gUbF5+iQO3Fzx/0/20o5z//R3ZqnRaTOUcznU8Fd1RQQ==
+ bh=xrcvmb4OrJIxT9W4K4DYvx35BanxWgzznHWlkuqpl9U=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk2eOvJ5Z8nxWDyXp/OFOosHrXRpttxDRuSo7frD/Z
+ h0xDFyCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZNnjrwAKCRB33NvayMhJ0c96D/
+ 9C/caIIUSYf+PlQlUQOiUDxI6siJ4QFbW3SVBUYEoqb8KcuNwfwBWxlNDeceIUIAdunfReXzrC9LvF
+ 5InVjX1zHa17f81p0aW/D262dkyvlTFtAAb/ZLqg6zsOBpj4GsIZHQrGWVYKLl1mpdiPrbyahskJNl
+ DGr5E3mRjyEPTgKgTH8+JgstuGzd+5P1tWHmO0i3GJRrBLZF00va9lIlRv6dRKoAH2TW6sm6jde+r/
+ ldXT2cKq03Xjl09cWvP/m9YYY7Vj4zkor3qhKCa+mxRnGQiHtqJVVkA04po305eyhCtfieS/uswZa/
+ /2tEr0UqgvNwJ8AimIJCW/xzPuvp8c6tRMc69J4sqNwmqzBSW/ktytKjcsJMYKa9oLuFQ7sz4EJgdD
+ w2rAuTVXj2TUWXghCcMFTra2elFVYEU8tVKm3qxEY7Ph0H8DoFpUyOGO2sWdS9ok/oG6ptYEYriI9o
+ wrPkiEBUhTa/j4CGhdvyI0awLq5SFgIFgHsEAyL3bwO7zGepJfiP1NljmkI8QJcjTWW423yZdlso3o
+ h/cimFD+Hir9k2J+DGragMHWSDZuMSTGC360csFZRd0uKzaLdTX7Dk/CPcGvWXuAw5VKqbVkgwyo9Z
+ aQ2yxNp7orkJk7B4T/KPwPXkUc+60tRf95I6MhDTkVdOdrX3pY1GKKovTyaw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -99,57 +98,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With [1] removing MPCore SMP support, this makes the OX820 barely usable,
-associated with a clear lack of maintainance, development and migration to
-dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
+Due to lack of maintenance and stall of development for a few years now,
+and since no new features will ever be added upstream, remove support
+for OX810 and OX820 IRQ controller.
 
-In addition, the OX810 hasn't been booted for years and isn't even present
-in an ARM config file.
-
-For the OX820, lack of USB and SATA support makes the platform not usable
-in the current Linux support and relies on off-tree drivers hacked from the
-vendor (defunct for years) sources.
-
-The last users are in the OpenWRT distribution, and today's removal means
-support will still be in stable 6.1 LTS kernel until end of 2026.
-
-If someone wants to take over the development even with lack of SMP, I'll
-be happy to hand off maintainance.
-
-It has been a fun time adding support for this architecture, but it's time
-to get over!
-
-I'll send the remaining patches in a final PR.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+Acked-by: Daniel Golle <daniel@makrotopia.org>
+Acked-by: Marc Zyngier <maz@kernel.org>
+Acked-by: Andy Shevchenko <andy@kernel.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v3:
-- Removed applied patches
-- Moved net & pinctrl to a separate patchset
-- Added Andy's tags
-- Link to v2: https://lore.kernel.org/r/20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org
+ drivers/irqchip/irq-versatile-fpga.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-Changes in v2:
-- s/maintainance/maintenance/
-- added acked/review tags
-- dropped already applied patches
-- drop RFC
-- Link to v1: https://lore.kernel.org/r/20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org
+diff --git a/drivers/irqchip/irq-versatile-fpga.c b/drivers/irqchip/irq-versatile-fpga.c
+index ba543ed9c154..5018a06060e6 100644
+--- a/drivers/irqchip/irq-versatile-fpga.c
++++ b/drivers/irqchip/irq-versatile-fpga.c
+@@ -242,5 +242,4 @@ static int __init fpga_irq_of_init(struct device_node *node,
+ }
+ IRQCHIP_DECLARE(arm_fpga, "arm,versatile-fpga-irq", fpga_irq_of_init);
+ IRQCHIP_DECLARE(arm_fpga_sic, "arm,versatile-sic", fpga_irq_of_init);
+-IRQCHIP_DECLARE(ox810se_rps, "oxsemi,ox810se-rps-irq", fpga_irq_of_init);
+ #endif
 
----
-Neil Armstrong (3):
-      irqchip: irq-versatile-fpga: remove obsolete oxnas compatible
-      dt-bindings: interrupt-controller: arm,versatile-fpga-irq: mark oxnas compatible as deprecated
-      MAINTAINERS: remove OXNAS entry
-
- .../bindings/interrupt-controller/arm,versatile-fpga-irq.txt   |  4 +++-
- MAINTAINERS                                                    | 10 ----------
- drivers/irqchip/irq-versatile-fpga.c                           |  1 -
- 3 files changed, 3 insertions(+), 12 deletions(-)
----
-base-commit: 21ef7b1e17d039053edaeaf41142423810572741
-change-id: 20230331-topic-oxnas-upstream-remove-a62e9d96feee
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
