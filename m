@@ -2,103 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1666D77BEBD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 19:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E21977BF65
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 19:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbjHNRPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 13:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49370 "EHLO
+        id S229816AbjHNR4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 13:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230266AbjHNRPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 13:15:20 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on20612.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eaa::612])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3424E63;
-        Mon, 14 Aug 2023 10:15:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RNrDr6qxhH0ANlWrkhw58mp8r2yLdAc2R524ufs5R/Kg2YIPPOt71FpWuZ2dzC9bX4bNG3TnA6tzPndxCrFGpvA2BO64KGoMxIoluBvoXniIij9/DUJN73UmoOZKmVqm3JNY8QkhxsQl3v4S9OhAw7cY8e2Jm4ErZQVhcGE3Nkq+5ADi+JRNuzjGqPnHyQVHsFpWaNP5BMDp3ShhKv9cpKOr0QJX2I4uT7gmT6S2cuwPA4VUq9NSPGuMM9s/wW+L6aC/YmnJZqAHyXN2Y/QEwD3hD5ov+R28b3I8ZN43NIpl32Q6eY/QrZj53qqL+zc5LT5sXL7xazHa+/Wvl8rLsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r0YvSdvX33yYC9wmHYVM4XJPVWwUWRf6UO5qdN7llik=;
- b=BuSjZ+Xl3Nvxa3aCNdSEbLpJAwbC0eV5BdUdkJ0qbNDD3K8AlvVlRglBA81eE40w6vaBanjbXxpr3vOm+bn2LwdDUk/UMM35WuGu0s596D2rYzGIZq+/bYdCDEU47+U/Rk59bYjMMEh8rugZAnte4ZgkzYEbVwWyLahX+PWA0BREnZ/S+xVOeScQ77JSSgkiwdaUad7UtK3OatTXHxr3Eq2F4hGNCms6KtsrdZcu7Q2HwuLqCFIixqzuo7T9i4+HKtY7Fg/PSqrp1DN6RIQWXZvHhJvyo3IAUQNib09XkdzxBrWSfZciappNGv1Vfxev6ZreJNs0CIdBQ/qMshSEkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r0YvSdvX33yYC9wmHYVM4XJPVWwUWRf6UO5qdN7llik=;
- b=L1b8hsNFtEWSg1FisOoSjFovOZhdlIlzTun/poXMCDDbiEYiR7BU4ih8TNnP8jUjMdB9khg1VSC6B+4efWONFYYRnlRQjDwrRVS5SrwpptngYkSW1uLH75cjnM++H86ReQslqcz7wz9YV0XWeM1fmHQvD9B3YETD/LBUci+LHuo=
-Received: from CY5PR17CA0004.namprd17.prod.outlook.com (2603:10b6:930:17::35)
- by SN7PR12MB7788.namprd12.prod.outlook.com (2603:10b6:806:345::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.24; Mon, 14 Aug
- 2023 17:15:15 +0000
-Received: from CY4PEPF0000E9D1.namprd03.prod.outlook.com
- (2603:10b6:930:17:cafe::c1) by CY5PR17CA0004.outlook.office365.com
- (2603:10b6:930:17::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.33 via Frontend
- Transport; Mon, 14 Aug 2023 17:15:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000E9D1.mail.protection.outlook.com (10.167.241.144) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6699.12 via Frontend Transport; Mon, 14 Aug 2023 17:15:15 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 14 Aug
- 2023 12:15:13 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 14 Aug
- 2023 10:14:55 -0700
-Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Mon, 14 Aug 2023 12:14:52 -0500
-From:   Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <bhelgaas@google.com>, <krzysztof.kozlowski@linaro.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <conor+dt@kernel.org>
-CC:     <lpieralisi@kernel.org>, <bharat.kumar.gogada@amd.com>,
-        <michal.simek@amd.com>, <linux-arm-kernel@lists.infradead.org>,
-        "Thippeswamy Havalige" <thippeswamy.havalige@amd.com>
-Subject: [PATCH v4 3/3] PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
-Date:   Mon, 14 Aug 2023 22:44:06 +0530
-Message-ID: <20230814171406.214932-5-thippeswamy.havalige@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230814171406.214932-1-thippeswamy.havalige@amd.com>
-References: <20230814171406.214932-1-thippeswamy.havalige@amd.com>
+        with ESMTP id S231723AbjHNR4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 13:56:12 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2A31BD
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 10:56:08 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so627172066b.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 10:56:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1692035766; x=1692640566;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hFzY+3o5iyiZNR4axHbUipth5s9dsXWAEbX8x/y0bSs=;
+        b=VvuZCIgyGDswMEd57lh8eCRqznErox9a+3qXCVw6XOLpEnr+qVsJim5THwVS88J0Dm
+         6XQETgkMQrTUmjYs0RTdDZznEqxy7AC9Ghxd/lP+/VRoUFnJS2gpu6FKQJmBjmAgX6gS
+         WB7a2cE3lLOBM+KJjGSKDcKLoEJsyQVDWKlCEo3xSD0QJ3N+UZBp71SgwYqLZ3uMXJrZ
+         V/RoEGs2lSuyGzzsz5md6Y3sasUnZZJ6GWkGSeEnFMOz9zqNbXeIunIp/lP5US5cRshE
+         aT+KBj9gVjEhZ1UAak/kiS7QZSBalg9Aww7ZYfOZBxs1NSD2QlLq/O7ZwDLQWWArm4Eq
+         brJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692035766; x=1692640566;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hFzY+3o5iyiZNR4axHbUipth5s9dsXWAEbX8x/y0bSs=;
+        b=fdS7m8faK/rGsljEJT9BM3DDf0FGT2BB5qWayYcGjZCuthEVdsfV27LALRM5kVcx9U
+         7tQ1UX8SIhyrQN4y3WHfBSxJoGbfwgnPt8UCJoFg4wDvHKeyKO+y7YdrWoZudoYaIfna
+         wDAp3zTIKhrVmO8Ow/Z7ynb2KcZM8IArvdI4aLR3UUEamaIs74qV1kpwG/Kq6Mc+fsSD
+         +S6qkFDblCRPwxPcj229LjZwOIPXe8vIb0dJLoc4CTa8XnQNBADFL/8mcDdo4ImqNrry
+         TmC0PV769reoaepYSKKCgOGvBkxrt00D0kxI8QrDYSR917v+IUwYUEFeXI+v3fg4hUmp
+         GO9g==
+X-Gm-Message-State: AOJu0YzXpRpUNSUYD0OJioRV1p/9lkcK6vNNrYUoM7ZLPPZqiAB8olng
+        4ynBmQsXa8n9jc0P5syUCHjIDTgn0bNx74Y2rvFQ7w==
+X-Google-Smtp-Source: AGHT+IGgfxvXjmSfHVrcDeGhQilM7aaIkidzxzEjSXmxxLG7h8txfZ7ybxQsnlCFLAr4hYjOOEt9f0Kf+JOL9WQeYl4=
+X-Received: by 2002:a17:907:2cd1:b0:99c:c8ec:bd4a with SMTP id
+ hg17-20020a1709072cd100b0099cc8ecbd4amr8073369ejc.60.1692035766424; Mon, 14
+ Aug 2023 10:56:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D1:EE_|SN7PR12MB7788:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8e04580-292b-4f5d-79b9-08db9cea06d4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 75arK9BF/8KmzYhJG4MML7Spf6zR6EaaGST/pvEtKv7p5mJZUyRbU44xHuLRWt+C3VwBx5gL3dyCbRIuY1G8IJlN2fT+gIaFZ7m0bSw6b+SYEUhVkKCn0LLJaPx12F+RKzuEC6R8HfnQiMmxhIK2EmALW98LKjevcDmpHq+LGAzYyDsvJHKNgcB3/25vK5EoS8vSLCYDpG/27/ca5BGYDKoCjl925mMFPh4KRpaEkvJVD1NfZfR9NQtCYoDM5KK+lnbNZrvLE7wxQSoXls04DAOAPhfiUvDZqS4xE672jYls5OMgLcL/RgI6bF9r6ZebKCMye26DYPIK6F19ZRZ+7GnO48yFlDn48wKnsuhWwuFg/wmBhz+VNWJ/GD7wwA8e+EF9wslxTg9ciphJGbZ3ty5k+wmJ/lWrD4854V53gvH4Cpksolg89gWBno0lMuzWZnjPiTNezEdkrqUH4U08KOcyLUovz50UOIvQNg7NtznuI6cfHxSJn05zpQEI9qtblW4CeR4nNbIRvm7GIHRktKDmiNntjDSl8VApMDYP4Zm/CP8mAWlJWLwWB0dZbT3Az/2YAZrfPcJbCkdypiHRv0nULtCYLa4rrSo9ene6f4RzF6J+0hClmBwwSUTcmpk9OEEyMvhllUXwLms+HLdD22kcm2fbDh5Al7KDnFLcLte/NYUQ0TOjqJ5+Aqzx3n6x3Dv2umwQqPEVto2nyEPiSlu1qTzqWDPSUv4WGkzPd7BThsSS9oTrnnI/rUDe1J3Q9jrMC0ofPU5lC/rEWBHv0A==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(136003)(39860400002)(346002)(186006)(1800799006)(82310400008)(451199021)(46966006)(40470700004)(36840700001)(83380400001)(36756003)(426003)(336012)(47076005)(36860700001)(86362001)(40480700001)(41300700001)(478600001)(356005)(81166007)(54906003)(70586007)(70206006)(316002)(8676002)(5660300002)(4326008)(44832011)(82740400003)(8936002)(110136005)(40460700003)(2616005)(1076003)(26005)(2906002)(6666004)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2023 17:15:15.2831
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8e04580-292b-4f5d-79b9-08db9cea06d4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D1.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7788
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE autolearn=no
+References: <20230711221518.2127861-1-tharvey@gateworks.com> <CAOMZO5ByzpUoirrTKz=x+00F2_oi6UK12wvLw9jFu6p7S+LWwQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5ByzpUoirrTKz=x+00F2_oi6UK12wvLw9jFu6p7S+LWwQ@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 14 Aug 2023 10:55:53 -0700
+Message-ID: <CAJ+vNU1W+DTJrVxPFTFmStL4Z5TSVZE3Adr3g9T527LUchLEhw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: add imx8mp-venice-gw74xx-imx219
+ overlay for rpi v2 camera
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -106,36 +75,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Our controller is expecting ECAM size to be programmed by software. By
-programming "NWL_ECAM_VALUE_DEFAULT  12" controller can access up to 16MB
-ECAM region which is used to detect 16 buses, so by updating
-"NWL_ECAM_VALUE_DEFAULT" to 16 so that controller can access up to 256MB
-ECAM region to detect 256 buses.
+On Thu, Jul 13, 2023 at 11:52=E2=80=AFAM Fabio Estevam <festevam@gmail.com>=
+ wrote:
+>
+> On Tue, Jul 11, 2023 at 7:15=E2=80=AFPM Tim Harvey <tharvey@gateworks.com=
+> wrote:
+> >
+> > Add support for the RaspberryPi Camera v2 which is an IMX219 8MP module=
+:
+> >  - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
+> >  - has its own on-board 24MHz osc so no clock required from baseboard
+> >  - pin 11 enables 1.8V and 2.8V LDO which is connected to
+> >    GW74xx MIPI_GPIO4 (IMX8MP GPIO1_IO4) so we use this as a gpio
+> >
+> > Support is added via a device-tree overlay.
+> >
+> > The IMX219 supports RAW8/RAW10 image formats.
+> >
+> > Example configuration:
+> > media-ctl -l "'imx219 3-0010':0->'csis-32e40000.csi':0[1]"
+> > media-ctl -v -V "'imx219 3-0010':0 [fmt:SRGGB8/640x480 field:none]"
+> > media-ctl -v -V "'crossbar':0 [fmt:SRGGB8/640x480 field:none]"
+> > media-ctl -v -V "'mxc_isi.0':0 [fmt:SRGGB8/640x480 field:none]"
+> > v4l2-ctl --set-fmt-video=3Dwidth=3D640,height=3D480,pixelformat=3DRGGB
+> > v4l2-ctl --stream-mmap --stream-to=3Dframe.raw --stream-count=3D1
+> > convert -size 640x480 -depth 8 gray:frame.raw frame.png
+> > gst-launch-1.0 v4l2src ! \
+> >   video/x-bayer,format=3Drggb,width=3D640,height=3D480,framerate=3D10/1=
+ ! \
+> >   bayer2rgb ! fbdevsink
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
-Nothing will break, when having a DT with the smaller ECAM size and boot a
-kernel that includes this change,but the kernel will only be able to use 16
-buses.
+Hi Shawn,
 
-Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
----
-Changes in v4:
-Move modified ECAM max size macro into a seperate patch.
- drivers/pci/controller/pcie-xilinx-nwl.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I think this patch got missed. Was there something I need to do here?
 
-diff --git a/drivers/pci/controller/pcie-xilinx-nwl.c b/drivers/pci/controller/pcie-xilinx-nwl.c
-index 8fe0e8a325b0..e307aceba5c9 100644
---- a/drivers/pci/controller/pcie-xilinx-nwl.c
-+++ b/drivers/pci/controller/pcie-xilinx-nwl.c
-@@ -126,7 +126,7 @@
- #define E_ECAM_CR_ENABLE		BIT(0)
- #define E_ECAM_SIZE_LOC			GENMASK(20, 16)
- #define E_ECAM_SIZE_SHIFT		16
--#define NWL_ECAM_MAX_SIZE		12
-+#define NWL_ECAM_MAX_SIZE		16
- 
- #define CFG_DMA_REG_BAR			GENMASK(2, 0)
- #define CFG_PCIE_CACHE			GENMASK(7, 0)
--- 
-2.17.1
+Best regards,
 
+Tim
