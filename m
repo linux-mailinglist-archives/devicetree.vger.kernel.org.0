@@ -2,99 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F1777B629
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 229F377B63F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234045AbjHNKMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 06:12:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50252 "EHLO
+        id S234375AbjHNKOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 06:14:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236442AbjHNKLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:11:46 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C42CD8
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:11:06 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fe4ad22e36so38222325e9.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:11:06 -0700 (PDT)
+        with ESMTP id S236518AbjHNKOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:14:21 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F354310D0
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:14:19 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-991c786369cso555697966b.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:14:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692007865; x=1692612665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/TcrCIKHTmaelivXm5tJOqwQfnbwJsTfWCqqVzifvaY=;
-        b=qvM6n5R3PsB9N5APOdoqqSc6/Hr6IfuOzXBjrGfMblnQ44KbDdh7i09qhHGRq5Axqt
-         ef7Ij/tziKY/QQ55x69iuS/wccMVrcay+Gp3HJioxj2nRRJXeS/gF2FnWZipbO42nfy6
-         KzxV0UY3i4C3Y17jQpsmpmfRLVggp903zy//kE1UT3xHuC/c8NndFAlkh97H+mlDKxyS
-         u9MBMZSt+4AOZpPCl4GRfCDEkLVF/Ptg7WtC1qEDMDS/bQ7oGKSHlqW+oyQB7Yne1eiq
-         /hXk4Q6vEWvVe0OB2O5D8O2SerYqHsaqctjIlzRqyKB4V0P+UVAKpUXp5JxHWH3dlkfS
-         klVQ==
+        d=fairphone.com; s=fair; t=1692008058; x=1692612858;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OaliXMOmH9SU1C2DkaplWarCzA0RpYIWvO0eSAY4J5I=;
+        b=vhCN3qS28z+GMKAMta2CsJCod5E7MyhhhaMf8cj9l8nCIRSTLPjLvlnMVZEAmZkgZC
+         yKZrsq0jgS11wzSOqKQh1GTzxApFlOVH/VwbQ32oInbjMF6eDt8eC6pH0Z72biW/Bnid
+         aHu5GAx8MzjyGI0j8xBURqGZyfYML1egsi2pHUNiDqqBHm/Zka0fL6Bya2jjdbGuKZb0
+         KR6hRXDM+ZaSXYLvb5jkxxYHE892EGSjXnxtoTMYwwi5s2KqFzbplyidMBAY8v/xkY5z
+         tzwOTnhRjdDlrRGRU+iSYJFhzv2KbqrgFh2zsNlv3Z/dCiDdrcX3yp10SJkf2DswHOEQ
+         1IxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692007865; x=1692612665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/TcrCIKHTmaelivXm5tJOqwQfnbwJsTfWCqqVzifvaY=;
-        b=HDNB6EAVBkoqiT9Txoq7QDWSjZKWQJUW5NMynG1xwk2fIsFQjEJFVr1VK2FKUNpTRo
-         h4tDZ20Yf3O3sahdyGdkPhEY5zd63Qmej5gHc48gpzkeyfFUh/V7qG73tUW8MlIRvbVK
-         VGMxQU5HO2nkR92/ywN2cxSOPt+1fGJN3tudE6LjILDrzqND7IzowWWF5hFmbfLFzoXj
-         FeTw+H5D3rfaosEJb3E+jRyt6bUUu/Po9pbrkbUGLQFxim8H+Jp3cSzekDVHKMUIEhuS
-         yE1mZffsAmXLRuLaJu2cyQUSnk0m6lzA9mbXPZEXwEvzdEGyVte5AVMiANwncDwjuqmY
-         OSzg==
-X-Gm-Message-State: AOJu0YwDRBN7aje7HeYv7i8jO2+PkFzp8d5+IlotKHSzdzDmpQX1n7dI
-        0YFww7UG6W245aIr3cmWGFdQlw==
-X-Google-Smtp-Source: AGHT+IHaKzKqwuHoAPI714LcqSkOGAT5pHN1eCF2DxjAZ0E9BhudZJYx+MSdCGmRUMJmBw9VrK3Qjg==
-X-Received: by 2002:a7b:ce08:0:b0:3fe:19cf:93ca with SMTP id m8-20020a7bce08000000b003fe19cf93camr7297351wmc.8.1692007865250;
-        Mon, 14 Aug 2023 03:11:05 -0700 (PDT)
-Received: from hackbox.lan ([84.232.191.92])
-        by smtp.gmail.com with ESMTPSA id n5-20020a05600c294500b003fbaade0735sm16750396wmd.19.2023.08.14.03.11.03
+        d=1e100.net; s=20221208; t=1692008058; x=1692612858;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OaliXMOmH9SU1C2DkaplWarCzA0RpYIWvO0eSAY4J5I=;
+        b=NRkUWIllAbio4h5yRGD6ycH01rl9dcNR9TCCyZJBWDumxesufbTReAzx1jENtDYz5t
+         HRmMmwvS7m1qaxPCbgBW5P7iFF+r56Ow+bdjap09D5VTeDp2Fd8FUCw9Dvkf7SaE6zQs
+         MG4xDL0Ib6o153558waUoeFuhq5b54u9BUHOGp/ltNA86tfyGM1AWua45ouxSdvNLYxf
+         7lq5E4kMqxRqUfoqiRUUw/peotRqbXDPGAqhUsxjk3ygzPrnZ4gnmb7608pdi68+vG+l
+         /+rEqdGCJsVOPfGtcOy5LpmJXSZs4e7rF2pt5E7K0eOqJOS3ddibYsNYk/+SZ9xkcMH3
+         VmLA==
+X-Gm-Message-State: AOJu0Yypq4bc8+AL51g9E3rlA56jNF8arrHgPjMP/AQytu9QNcL3EP1b
+        g6RUA6DpmTVDUiKNz3N2uVMZ5w==
+X-Google-Smtp-Source: AGHT+IFAjrefQcQM3SmBv83W2ILzm+6amDEF8zNjt221YcLaHgS5StgoYPz3Ya4i5UynFBXurtVucw==
+X-Received: by 2002:a17:906:2ce:b0:99c:aa43:b20c with SMTP id 14-20020a17090602ce00b0099caa43b20cmr7183610ejk.33.1692008058483;
+        Mon, 14 Aug 2023 03:14:18 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (212095005216.public.telering.at. [212.95.5.216])
+        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b00993a37aebc5sm5472870ejb.50.2023.08.14.03.14.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 03:11:04 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, shengjiu.wang@gmail.com,
-        Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/2] clk: imx: add audio clock mux driver
-Date:   Mon, 14 Aug 2023 13:10:03 +0300
-Message-Id: <169200755845.527063.15808665958303223878.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <1690260984-25744-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1690260984-25744-1-git-send-email-shengjiu.wang@nxp.com>
+        Mon, 14 Aug 2023 03:14:18 -0700 (PDT)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v6 0/4] Fix some issues in QCOM UFS bindings
+Date:   Mon, 14 Aug 2023 12:14:12 +0200
+Message-Id: <20230814-dt-binding-ufs-v6-0-fd94845adeda@fairphone.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHT+2WQC/33QzW7DIAwA4FepOJfJGAilp77HtAPB0CC1pII20
+ lTl3Wftuiwn/0j+LPstemoldXE+vEVLS+llrlwMx4OIU6jXJAtxLRAQFYKX9JRjqVTqVb5yl0g
+ uD8Z5lzMKHhpDT3JsocaJx+rrduPmVPpzbt+/SxbF4fNfb1ES5IksYIakOLnkUNpjmmv6iPNdf
+ DG34D6BTFB0AczgvXV+i9D7hGbCeE98lQ6g4xZh9gnDhDIx0QBZkxq3CLtPWCaiD/YUIVid//x
+ iXdcf5L0meMEBAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Iskren Chernev <me@iskren.info>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-crypto@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Eric Biggers <ebiggers@google.com>,
+        Rob Herring <robh@kernel.org>, Iskren Chernev <me@iskren.info>
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series aims to solve the dtbs_check errors from the qcom ufs
+bindings. It has changed in scope a bit since v1, so it may be a bit all
+over the place.
 
-On Tue, 25 Jul 2023 12:56:22 +0800, Shengjiu Wang wrote:
-> The Audio Clock Mux (ACM) is a collection of control registers
-> and multiplexers that are used to route the audio source clocks
-> to the audio peripherals on i.MX8QXP, i.MX8QM, i.MX8DXL
-> 
-> Shengjiu Wang (2):
->   dt-bindings: clock: fsl,imx8-acm: Add audio clock mux support
->   clk: imx: imx8: add audio clock mux driver
-> 
-> [...]
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v6:
+- Rebase on linux-next
+- Drop applied dts patch
+- Pick up tags
+- Link to v5: https://lore.kernel.org/r/20221209-dt-binding-ufs-v5-0-c9a58c0a53f5@fairphone.com
 
-Applied, thanks!
+Changes in v5:
+- Convert sm8450.dtsi to use qcom,ice property, so stop modifying schema
+  for sm8450 and only add qcom,ice property.
+- Move reg-names names to top-level with only minItems/maxItems in the
+  'if'
+- Link to v4: https://lore.kernel.org/r/20221209-dt-binding-ufs-v4-0-14ced60f3d1b@fairphone.com
 
-[1/2] dt-bindings: clock: fsl,imx8-acm: Add audio clock mux support
-      commit: a70cd8cdf7492006b547f46cc365eed79d331323
-[2/2] clk: imx: imx8: add audio clock mux driver
-      commit: d3a0946d7ac9ad844a196f0f2af696fde6b0728d
+Changes in v4:
+- Pick up tags
+- Rebase on linux-next (again)
+- Link to v3: https://lore.kernel.org/r/20221209-dt-binding-ufs-v3-0-499dff23a03c@fairphone.com
+
+Changes in v3:
+- Drop applied patch
+- Pick up sm6115 patch from v5 https://lore.kernel.org/all/20221030094258.486428-2-iskren.chernev@gmail.com/
+- Rebase on linux-next
+- Link to v2: https://lore.kernel.org/r/20221209-dt-binding-ufs-v2-0-dc7a04699579@fairphone.com
+
+Changes in v2:
+- Add new patch adding reg-names to sm6115 & rebase series on top of sm6115
+  addition
+- Fix binding example after sm8450 move, split this patch from original patch
+  since it became too big
+- Move reg-names definition to top-level
+- Link to v1: https://lore.kernel.org/r/20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com
+
+---
+Iskren Chernev (1):
+      dt-bindings: ufs: qcom: Add sm6115 binding
+
+Luca Weiss (3):
+      dt-bindings: ufs: qcom: Add reg-names property for ICE
+      dt-bindings: ufs: qcom: Add ICE to sm8450 example
+      dt-bindings: crypto: ice: Document sm8450 inline crypto engine
+
+ .../bindings/crypto/qcom,inline-crypto-engine.yaml |  1 +
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          | 44 ++++++++++++++++++++++
+ 2 files changed, 45 insertions(+)
+---
+base-commit: 13055cce6d3df0a2704721d6e2fd9011e973f53d
+change-id: 20221209-dt-binding-ufs-2d7f64797ff2
 
 Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+Luca Weiss <luca.weiss@fairphone.com>
+
