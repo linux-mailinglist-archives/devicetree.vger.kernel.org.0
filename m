@@ -2,124 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A9E77B8FC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E96E77B972
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 15:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbjHNMru convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 08:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49146 "EHLO
+        id S229485AbjHNNKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 09:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231273AbjHNMrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:47:41 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AFA2172C;
-        Mon, 14 Aug 2023 05:47:34 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B39BB1063;
-        Mon, 14 Aug 2023 05:48:15 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2AAB93F64C;
-        Mon, 14 Aug 2023 05:47:31 -0700 (PDT)
-Date:   Mon, 14 Aug 2023 13:47:29 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        with ESMTP id S230269AbjHNNKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 09:10:04 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F534E6E;
+        Mon, 14 Aug 2023 06:10:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=gNlIR5BmjVdCXJgcGwHTe/YYZhq8OipyVgHsLjLm8ko=; b=4BD0nhJSTcT3h243KKZyN1Ocjf
+        J04TgJOGP3ZgK3VSC52joEwASYDajz767mA/mDAelddXU3iSrrgWXHiZb9nMx6dbBzYV4j+frTPYf
+        4w2PlS5hWWxzSXEuBSt6mcFBfkgYw19kl4Re3rHXfJ1lap287z9RZh2/xEbk9cGLwR/I=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qVXK1-00431W-Ni; Mon, 14 Aug 2023 15:09:25 +0200
+Date:   Mon, 14 Aug 2023 15:09:25 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, Alan Ma <tech@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: SID: Add binding for H616
- SID controller
-Message-ID: <20230814134729.533f61b1@donnerap.manchester.arm.com>
-In-Reply-To: <5856748.MhkbZ0Pkbq@jernej-laptop>
-References: <20230814-sid-h616-v2-0-0267749b4471@somainline.org>
-        <830e5e34-f6de-3233-4a12-06c8390169d1@linaro.org>
-        <DKGDZR.4G4SZ781MVSV2@somainline.org>
-        <5856748.MhkbZ0Pkbq@jernej-laptop>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Message-ID: <617c51cf-2c09-4865-ac60-96599db597e7@lunn.ch>
+References: <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <20230812091708.34665-1-arinc.unal@arinc9.com>
+ <20230812091708.34665-3-arinc.unal@arinc9.com>
+ <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Aug 2023 12:28:36 +0200
-Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
+> Ah okay. I didn't consider the switch architecture where the data interface
+> of the PHY is connected to the switch, and the PHY management interface is
+> connected to the mdio bus that the switch is connected to.
 
-> Dne ponedeljek, 14. avgust 2023 ob 10:21:49 CEST je Martin Botka napisal(a):
-> > On Mon, Aug 14 2023 at 10:08:38 AM +02:00:00, Krzysztof Kozlowski
-> > 
-> > <krzysztof.kozlowski@linaro.org> wrote:  
-> > > On 14/08/2023 08:38, Martin Botka wrote:  
-> > >>  Add binding for the SID controller found in H616 SoC
-> > >>  
-> > >>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> > >>  ---
-> > >> 
-> > >> Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
-> > >> 
-> > >> | 1 +
-> > >> | 
-> > >>   1 file changed, 1 insertion(+)
-> > >>  
-> > >>  diff --git
-> > >> 
-> > >> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
-> > >> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
-> > >> 
-> > >>  index 296001e7f498..2ec0a1b8f803 100644
-> > >>  ---
-> > >> 
-> > >> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
-> > >> 
-> > >>  +++
-> > >> 
-> > >> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
-> > >> 
-> > >>  @@ -27,6 +27,7 @@ properties:
-> > >>             - const: allwinner,sun50i-a64-sid
-> > >>         
-> > >>         - const: allwinner,sun50i-h5-sid
-> > >>         - const: allwinner,sun50i-h6-sid
-> > >>  
-> > >>  +      - const: allwinner,sun50i-h616-sid  
-> > > 
-> > > It does not look like you tested the DTS against bindings. Please run
-> > > `make dtbs_check` (see
-> > > Documentation/devicetree/bindings/writing-schema.rst or
-> > > https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sour
-> > > ces-with-the-devicetree-schema/ for instructions).
-> > > 
-> > > Best regards,
-> > > Krzysztof  
-> > 
-> > Yea completely forgot. Sorry for that.
-> > 
-> > Will send v3 tomorrow with proper binding patch using items with enums  
-> 
-> Don't. You have cca. 1 month time now, since you missed at least window for DT 
-> changes for 6.6.
+The generic Linux architecture for PHYs and binding them to a MAC via
+a phandle allows the PHY to be on any MDIO bus anywhere. DSA has some
+additional shortcuts to support 1:1 mapping if the switch has its own
+MDIO bus, without describing it in DT, but this is just in addition to
+the generic code.
 
-Plus we need to figure out if my comment about using a fallback compatible
-was actually correct, as asked here:
-https://lore.kernel.org/linux-arm-kernel/20230811234212.2236c814@slackpad.lan/
+> Not json-schema documentation, don't care about:
+> - ar9331.txt
+> - lan9303.txt
+> - lantiq-gswip.txt
+> - marvell.txt
 
-Cheers,
-Andre
+The marvell switch can have up to 2 MDIO busses. If i remember
+correctly, there is also one switch which has one MDIO bus per port.
+
+	   Andrew
+
