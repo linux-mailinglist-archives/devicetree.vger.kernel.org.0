@@ -2,117 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E21977BF65
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 19:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E0D577BF9E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 20:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjHNR4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 13:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41126 "EHLO
+        id S230463AbjHNSOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 14:14:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231723AbjHNR4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 13:56:12 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2A31BD
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 10:56:08 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so627172066b.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 10:56:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1692035766; x=1692640566;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hFzY+3o5iyiZNR4axHbUipth5s9dsXWAEbX8x/y0bSs=;
-        b=VvuZCIgyGDswMEd57lh8eCRqznErox9a+3qXCVw6XOLpEnr+qVsJim5THwVS88J0Dm
-         6XQETgkMQrTUmjYs0RTdDZznEqxy7AC9Ghxd/lP+/VRoUFnJS2gpu6FKQJmBjmAgX6gS
-         WB7a2cE3lLOBM+KJjGSKDcKLoEJsyQVDWKlCEo3xSD0QJ3N+UZBp71SgwYqLZ3uMXJrZ
-         V/RoEGs2lSuyGzzsz5md6Y3sasUnZZJ6GWkGSeEnFMOz9zqNbXeIunIp/lP5US5cRshE
-         aT+KBj9gVjEhZ1UAak/kiS7QZSBalg9Aww7ZYfOZBxs1NSD2QlLq/O7ZwDLQWWArm4Eq
-         brJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692035766; x=1692640566;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hFzY+3o5iyiZNR4axHbUipth5s9dsXWAEbX8x/y0bSs=;
-        b=fdS7m8faK/rGsljEJT9BM3DDf0FGT2BB5qWayYcGjZCuthEVdsfV27LALRM5kVcx9U
-         7tQ1UX8SIhyrQN4y3WHfBSxJoGbfwgnPt8UCJoFg4wDvHKeyKO+y7YdrWoZudoYaIfna
-         wDAp3zTIKhrVmO8Ow/Z7ynb2KcZM8IArvdI4aLR3UUEamaIs74qV1kpwG/Kq6Mc+fsSD
-         +S6qkFDblCRPwxPcj229LjZwOIPXe8vIb0dJLoc4CTa8XnQNBADFL/8mcDdo4ImqNrry
-         TmC0PV769reoaepYSKKCgOGvBkxrt00D0kxI8QrDYSR917v+IUwYUEFeXI+v3fg4hUmp
-         GO9g==
-X-Gm-Message-State: AOJu0YzXpRpUNSUYD0OJioRV1p/9lkcK6vNNrYUoM7ZLPPZqiAB8olng
-        4ynBmQsXa8n9jc0P5syUCHjIDTgn0bNx74Y2rvFQ7w==
-X-Google-Smtp-Source: AGHT+IGgfxvXjmSfHVrcDeGhQilM7aaIkidzxzEjSXmxxLG7h8txfZ7ybxQsnlCFLAr4hYjOOEt9f0Kf+JOL9WQeYl4=
-X-Received: by 2002:a17:907:2cd1:b0:99c:c8ec:bd4a with SMTP id
- hg17-20020a1709072cd100b0099cc8ecbd4amr8073369ejc.60.1692035766424; Mon, 14
- Aug 2023 10:56:06 -0700 (PDT)
+        with ESMTP id S231656AbjHNSOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 14:14:10 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A10DCE65;
+        Mon, 14 Aug 2023 11:14:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692036849; x=1723572849;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ZPxt2QQcAtgeUsWpZ4wBDio4lSa6brn/TkPHu4rCISE=;
+  b=ZJjb+1rj6GhiA9R1D1rFPr/wyB+L5aT15NiSRHhe1W+KatvcSWwNYtYr
+   olqPMercPuI8i1J3eoJdrxNDsRxDp6SX53gdTJVG3mukyKYZCNQEYbrXa
+   fSylbE9FQHrm5b3FVeK73sG6QMj1N0N3f1IQ2ZnX2jeV3v17Gb4CphZf0
+   vbxv5s1K4bRTFepxQcySXrEycxtY9wLFPHfp0D1ZhkLTdoghqGy1XLM0+
+   WlV8JGJi4FIExp5DxvZpe4qHGK36T83jdXUDv5z/WhHkgX0KL1D2+T1dG
+   vp+UadwD5/b6c54vge/fxiCNTgRJyZ5ZxcKiKm5WAH6vhcFRZHSrkjgb2
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="438439543"
+X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; 
+   d="scan'208";a="438439543"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2023 11:14:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
+   d="scan'208";a="877060648"
+Received: from pglc00067.png.intel.com ([10.221.207.87])
+  by fmsmga001.fm.intel.com with ESMTP; 14 Aug 2023 11:14:02 -0700
+From:   rohan.g.thomas@intel.com
+To:     jose.abreu@synopsys.com
+Cc:     alexandre.torgue@foss.st.com, conor+dt@kernel.org,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        mcoquelin.stm32@gmail.com, netdev@vger.kernel.org,
+        pabeni@redhat.com, peppe.cavallaro@st.com, robh+dt@kernel.org,
+        Rohan G Thomas <rohan.g.thomas@intel.com>
+Subject: RE: [PATCH net-next v3 2/2] net: stmmac: Tx coe sw fallback
+Date:   Tue, 15 Aug 2023 02:13:54 +0800
+Message-Id: <20230814181354.8603-1-rohan.g.thomas@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <DM4PR12MB50889D6CC25880757AB8F146D317A@DM4PR12MB5088.namprd12.prod.outlook.com>
+References: <DM4PR12MB50889D6CC25880757AB8F146D317A@DM4PR12MB5088.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-References: <20230711221518.2127861-1-tharvey@gateworks.com> <CAOMZO5ByzpUoirrTKz=x+00F2_oi6UK12wvLw9jFu6p7S+LWwQ@mail.gmail.com>
-In-Reply-To: <CAOMZO5ByzpUoirrTKz=x+00F2_oi6UK12wvLw9jFu6p7S+LWwQ@mail.gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 14 Aug 2023 10:55:53 -0700
-Message-ID: <CAJ+vNU1W+DTJrVxPFTFmStL4Z5TSVZE3Adr3g9T527LUchLEhw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: add imx8mp-venice-gw74xx-imx219
- overlay for rpi v2 camera
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 13, 2023 at 11:52=E2=80=AFAM Fabio Estevam <festevam@gmail.com>=
- wrote:
->
-> On Tue, Jul 11, 2023 at 7:15=E2=80=AFPM Tim Harvey <tharvey@gateworks.com=
-> wrote:
-> >
-> > Add support for the RaspberryPi Camera v2 which is an IMX219 8MP module=
-:
-> >  - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
-> >  - has its own on-board 24MHz osc so no clock required from baseboard
-> >  - pin 11 enables 1.8V and 2.8V LDO which is connected to
-> >    GW74xx MIPI_GPIO4 (IMX8MP GPIO1_IO4) so we use this as a gpio
-> >
-> > Support is added via a device-tree overlay.
-> >
-> > The IMX219 supports RAW8/RAW10 image formats.
-> >
-> > Example configuration:
-> > media-ctl -l "'imx219 3-0010':0->'csis-32e40000.csi':0[1]"
-> > media-ctl -v -V "'imx219 3-0010':0 [fmt:SRGGB8/640x480 field:none]"
-> > media-ctl -v -V "'crossbar':0 [fmt:SRGGB8/640x480 field:none]"
-> > media-ctl -v -V "'mxc_isi.0':0 [fmt:SRGGB8/640x480 field:none]"
-> > v4l2-ctl --set-fmt-video=3Dwidth=3D640,height=3D480,pixelformat=3DRGGB
-> > v4l2-ctl --stream-mmap --stream-to=3Dframe.raw --stream-count=3D1
-> > convert -size 640x480 -depth 8 gray:frame.raw frame.png
-> > gst-launch-1.0 v4l2src ! \
-> >   video/x-bayer,format=3Drggb,width=3D640,height=3D480,framerate=3D10/1=
- ! \
-> >   bayer2rgb ! fbdevsink
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
->
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+From: Rohan G Thomas <rohan.g.thomas@intel.com>
 
-Hi Shawn,
+From: Rohan G Thomas <rohan.g.thomas@intel.com>
+Date: Mon, Aug 14, 2023 at 15:06:37
+> 
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> > @@ -219,6 +219,8 @@ struct stmmac_priv {
+> >  	int hwts_tx_en;
+> >  	bool tx_path_in_lpi_mode;
+> >  	bool tso;
+> > +	bool tx_q_coe_lmt;
+> 
+> Please use a flag here instead of "tx_q_coe_lmt". This is the preferrable
+> method now.
+> 
+> Thanks,
+> Jose
 
-I think this patch got missed. Was there something I need to do here?
+Thanks Jose for the feedback. If I read that correctly, your
+suggestion is to change " tx_q_coe_lmt" to something more readable,
+like "has_txcoe_limit". Please correct me if I understand it wrongly.
 
-Best regards,
+BR,
+Rohan
 
-Tim
+> 
+> > +	u32 tx_q_with_coe;
+> >  	int sph;
+> >  	int sph_cap;
+> >  	u32 sarc_type;
+
