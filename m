@@ -2,58 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A2A77C083
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5533977C093
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231229AbjHNTOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 15:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33650 "EHLO
+        id S232112AbjHNTRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 15:17:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232114AbjHNTOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:14:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814751718;
-        Mon, 14 Aug 2023 12:13:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 150E36590E;
-        Mon, 14 Aug 2023 19:13:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B02D6C433C8;
-        Mon, 14 Aug 2023 19:13:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692040426;
-        bh=4ubrGLmGSx7H43yd+PH1NyQQgBnfT7v8sS8kCQs0wVg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=B3B+DQj3kfBiGKdRaK5GD0wepAt7TaPdfTZAOz4WsukYx/W5Ud7NEeowzA+u62CaR
-         IGt6tYO7RCDKJKOg/W25v8gv85IUJWPpScRfgW1PpzAwGpmktHB7hC1ETycp2EU+Iz
-         IGxlwDlMne53EtIVba+bFXJhNZlaB9D/kcbIBaUmTwFffLVFiP2+BKbkiDys37jGtf
-         +QWxWmp7h6dmRnR2U9YsKRIpewPmBS7b8C2zuVTcZ7YembgJzhTnjH7PoNzom9msVh
-         9DSdiSHynk1xTBjp5e1CbSJaoFhFX+krXpR2i0U8x3BPJ41MiV18Cy3kPPlH78qsti
-         rbBnw9i6up4Tw==
-Received: (nullmailer pid 2797875 invoked by uid 1000);
-        Mon, 14 Aug 2023 19:13:44 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S232207AbjHNTRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:17:00 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C8312E
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:16:56 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fe426b8583so47389145e9.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:16:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692040614; x=1692645414;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zk52dSLQXvnZfsG9cL2HfOVudu1/6ehfGHh58zQ7WKc=;
+        b=WzK+v8D9fBfcGt2l2zHWaJQVsWPb5h+54DMm28xTsegwHgkSeTRz6GpZZld8gZNFpJ
+         bz8bhG4r0P0kbyyt1Fv8mToIOohdCD1qPxpbVI511WA25ZcOK9h/TxiW31/KtTy4vVl9
+         jLNSz794VBldh4CAUXtaEdaxYKUHhvnKln5SABRePzS1MRgFJu3LG8ZpC1ZICvQvuwBq
+         DBOkMklhjN06SmZh2LWKaeULJ3lOpcWPxqgMZVSkUAlcSsNI+coIPF/Ncwm5C7BrGv7g
+         YMhU5Dj4rv1Igg0cy4fQTn4vsPV2G8IuuOF+oPqmtI/3iYjckh5aLzXGnBjHt2CH8FJp
+         kw2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692040614; x=1692645414;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zk52dSLQXvnZfsG9cL2HfOVudu1/6ehfGHh58zQ7WKc=;
+        b=Tad3mJoa1vnIi9YPBPpp+VQhczGRcthdO5LtvLiKvFVfIzCVdiQq+UpJod+QOT60nQ
+         ZUFXkvQ5c07GgaHWdC+0sIqrmpGpUpMp56xRtjRpDI7/opfuOB63MPawOcLGJMbsPvOq
+         zX9E/8OS6dZa+J1rYWKVnIuwpCMHUa1Nxs+yk6uOdZi/7zBnVN5xobbaUtWtYVvqZ0et
+         EqOoqNysTMeZVpvlCqz5lJ1eNoDFY3w6HGyAfh06/ZCLoZHIAGTu3Ejb/XhwLzcS98Co
+         I5unJwWBdmmJyYH4rm2nNC7FioDWQZVywAm7MeCIu3Ff6kaMal+OlXtykDVW98OszDJ7
+         ouzw==
+X-Gm-Message-State: AOJu0YwJE8o7NvFpIXFSU3E0AhwuIiHJ/9E8Iap9pr1uJ1Cv7gQannYC
+        O9oAw0rr7M6zzHwIBp472lcy8g==
+X-Google-Smtp-Source: AGHT+IHjDcPCnZSFZ3J95HmdbzIaL2PJhovvSQpmTT7VnaTH2iV8HA5WTvsuus5E6GYRLw8+/p7wFQ==
+X-Received: by 2002:a7b:ca52:0:b0:3fe:2e0d:b715 with SMTP id m18-20020a7bca52000000b003fe2e0db715mr8105986wml.18.1692040614620;
+        Mon, 14 Aug 2023 12:16:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id 20-20020a05600c025400b003fa98908014sm18330895wmj.8.2023.08.14.12.16.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Aug 2023 12:16:54 -0700 (PDT)
+Message-ID: <a24a0b8a-ee97-e440-c67a-df315027075c@linaro.org>
+Date:   Mon, 14 Aug 2023 21:16:52 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Elson Roy Serrao <quic_eserrao@quicinc.com>
-Cc:     linux-usb@vger.kernel.org, rogerq@kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, conor+dt@kernel.org,
-        Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org,
-        krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20230814185043.9252-3-quic_eserrao@quicinc.com>
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-3-quic_eserrao@quicinc.com>
-Message-Id: <169204042460.2797841.11924261705709074920.robh@kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: usb: snps,dwc3: Add
- runtime-suspend-on-usb-suspend property
-Date:   Mon, 14 Aug 2023 13:13:44 -0600
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 5/5] MAINTAINERS: Add entry for Loongson-1 DWMAC
+Content-Language: en-US
+To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
+ <20230812151135.1028780-6-keguang.zhang@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230812151135.1028780-6-keguang.zhang@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,60 +87,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 14 Aug 2023 11:50:42 -0700, Elson Roy Serrao wrote:
-> This property allows dwc3 runtime suspend when bus suspend interrupt
-> is received even with cable connected. This would allow the dwc3
-> controller to enter low power mode during bus suspend scenario.
+On 12/08/2023 17:11, Keguang Zhang wrote:
+> Update MAINTAINERS to add Loongson-1 DWMAC entry.
 > 
-> This property would particularly benefit dwc3 IPs where hibernation is
-> not enabled and the dwc3 low power mode entry/exit is handled by the
-> glue driver. The assumption here is that the platform using this dt
-> property is capable of detecting resume events to bring the controller
-> out of suspend.
-> 
-> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 > ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  MAINTAINERS | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 02a3192195af..3f47f2a43b41 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14309,9 +14309,11 @@ MIPS/LOONGSON1 ARCHITECTURE
+>  M:	Keguang Zhang <keguang.zhang@gmail.com>
+>  L:	linux-mips@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
+>  F:	arch/mips/include/asm/mach-loongson32/
+>  F:	arch/mips/loongson32/
+>  F:	drivers/*/*loongson1*
+> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Since you do not add dedicated entry, just squash each part with commit
+adding this file.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: properties:snps,runtime-suspend-on-usb-suspend: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: properties:snps,runtime-suspend-on-usb-suspend: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: properties:snps,runtime-suspend-on-usb-suspend: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230814185043.9252-3-quic_eserrao@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
