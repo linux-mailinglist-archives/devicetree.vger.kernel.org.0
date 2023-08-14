@@ -2,131 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E542E77B5FC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC57D77B606
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235126AbjHNKHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 06:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55292 "EHLO
+        id S235476AbjHNKJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 06:09:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235034AbjHNKG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:06:59 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F2AE6D
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:06:58 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99c136ee106so552205066b.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:06:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692007617; x=1692612417;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gpFUakM9U9BclH5hKRnHKIPFG3rdR19+7vcbSkpu9+8=;
-        b=HV0WDI/Epsk6hzNmAN9LNW2gBufN9Pdobqmt7ZKcvbXnEKAcR0AL9UdocNNR3wKylZ
-         rQ0AWg4bDCWnl4ymonjqhTFAq+wwMt4RPBc3FP/Bils91iLDEWwP/cP16xbAkYb2q5AG
-         DIpDAE/3wDpOpUqvANyoI0vj/8HY7TQAB0Koaf5m2+dCjPOoCEyt7xHgRqnemKll+Zt9
-         74uqNxZ8PwtVRIPq91fFSNRIp85i9AVNdE6DhklJKbSySJMs7I77OE4E2NAM54EZMqlJ
-         8/CGyvj6ikJoBWaZfyXB09PP7B4vYHECS9x497L4LP/qb84JdLnu0WdaRMZb+Sayz8UY
-         ymgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692007617; x=1692612417;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gpFUakM9U9BclH5hKRnHKIPFG3rdR19+7vcbSkpu9+8=;
-        b=jNGOgqJWNyxCeXynDySgvMEHC17xRajjOEsSBF2iti+LLUEWvPzuvpNVMWSYnV6mPs
-         UlcmO7jsX/TtVoIQTuDIJXFIPS45JORhvpLeo3r7b1E3a+BExRWRnjyYeVfOe0RCbDB1
-         GGMXryjmYsx9FCPAbUsiTKTP3LufaVmyZiHmKKMmqthDbdZm3VVKRC4WpIYv6UXzc0Fp
-         TJQkviXCyzoEQbUCmHscUGFcC3xA7+RSEAYdpVjYR4bcR0h36DAxUpx19m4PDkUBf8Rk
-         DFppZ39L1oCIQFCzAxu49gKq18rYavr4nQ6cmM7RdM6Ka8gGRc1PcJIpDoTYQD9t8BOL
-         vsOQ==
-X-Gm-Message-State: AOJu0YxQYv6XqZx+ecYQrTjpcki4EWVSz6so9fcSR5WWmQVFY3/q275L
-        FsbbtkoTIf58tGb4eQKsKH3daEK4qx4Bz1q6x+RHSg==
-X-Google-Smtp-Source: AGHT+IFh0XWM4zQE34VibfXSge5f5gInCENxWeqQzXdw3INipJ8V402AhDwfC5TGsmdpZ3NYa5DGqg==
-X-Received: by 2002:a17:906:3284:b0:99c:570a:e23e with SMTP id 4-20020a170906328400b0099c570ae23emr7695264ejw.24.1692007616819;
-        Mon, 14 Aug 2023 03:06:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id b16-20020a170906039000b00993470682e5sm5499705eja.32.2023.08.14.03.06.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 03:06:56 -0700 (PDT)
-Message-ID: <a1b1cead-17e4-2016-91a1-9ad9949ff9e3@linaro.org>
-Date:   Mon, 14 Aug 2023 12:06:53 +0200
+        with ESMTP id S236103AbjHNKJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:09:16 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CA7133;
+        Mon, 14 Aug 2023 03:09:15 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37EA8tqL021908;
+        Mon, 14 Aug 2023 05:08:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692007735;
+        bh=57XUk92ZlkTTnzZmuSBzRzVS86e3pGIMjmRShA8tzuQ=;
+        h=From:To:CC:Subject:Date;
+        b=zHRtUR5Fhsi9OxfwZ8QN7IOd2GsCtpwjpQjW7rNl1cH49dW+LGnL/uyWobBT9Zbnj
+         YxHTwMRzJg2NHLIx0Lv9XLmFHZqK3+235Z1NIMG3cWTVDTRNtfiQ/ZEnsXy7xgwYZH
+         rRKZfD98k0J1UxHf0JNPaCgfnNZ98ImFoj50hwJo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37EA8sxG030851
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Aug 2023 05:08:55 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
+ Aug 2023 05:08:54 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 14 Aug 2023 05:08:54 -0500
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37EA8s9N033239;
+        Mon, 14 Aug 2023 05:08:54 -0500
+Received: from localhost (uda0501179.dhcp.ti.com [172.24.227.217])
+        by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 37EA8rBP020344;
+        Mon, 14 Aug 2023 05:08:54 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v4 0/5] Introduce IEP driver and packet timestamping support
+Date:   Mon, 14 Aug 2023 15:38:42 +0530
+Message-ID: <20230814100847.3531480-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 2/3] dt-bindings: input: qcom,pm8xxx-vib: add new SPMI
- vibrator module
-Content-Language: en-US
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_kamalw@quicinc.com, jestar@qti.qualcomm.com
-References: <20230731053712.2220898-1-quic_fenglinw@quicinc.com>
- <20230731053712.2220898-3-quic_fenglinw@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230731053712.2220898-3-quic_fenglinw@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 07:37, Fenglin Wu wrote:
-> Add compatible string 'qcom,spmi-vib-gen2' to support vibrator module
-> inside PMI632, PMI7250B, PM7325B, PM7550BA.
-> 
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> ---
->  .../bindings/input/qcom,pm8xxx-vib.yaml          | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-> index c8832cd0d7da..4a2319fc1e3f 100644
-> --- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-> +++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-> @@ -11,10 +11,18 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - qcom,pm8058-vib
-> -      - qcom,pm8916-vib
-> -      - qcom,pm8921-vib
-> +    oneOf:
-> +      - enum:
-> +          - qcom,pm8058-vib
-> +          - qcom,pm8916-vib
-> +          - qcom,pm8921-vib
-> +      - items:
-> +          - enum:
-> +              - qcom,pmi632-vib
-> +              - qcom,pm7250b-vib
-> +              - qcom,pm7325b-vib
-> +              - qcom,pm7550b-vib
-> +          - const: qcom,spmi-vib-gen2
+This series introduces Industrial Ethernet Peripheral (IEP) driver to
+support timestamping of ethernet packets and thus support PTP and PPS
+for PRU ICSSG ethernet ports.
 
-This does not seem to implement my comment:
+This series also adds 10M full duplex support for ICSSG ethernet driver.
 
-"Entirely remove qcom,spmi-vib-gen2 and
-qcom,spmi-vib-gen1.
+There are two IEP instances. IEP0 is used for packet timestamping while IEP1
+is used for 10M full duplex support.
 
-Use device specific compatibles names only. As fallback and as first
-compatible."
+This is v4 of the series [v1]. It addresses comments made on [v3].
+This series is based on linux-next(#next-20230809).
 
-It's nice to respond that you disagree with it. Therefore, I am not
-going to Ack it.
+Change from v3 to v4:
+*) Changed compatible in iep dt bindings. Now each SoC has their own compatible
+   in the binding with "ti,am654-icss-iep" as a fallback as asked by Conor.
+*) Addressed Andew's comments and removed helper APIs icss_iep_readl() / 
+   writel(). Now the settime/gettime APIs directly use readl() / writel().
+*) Moved selecting TI_ICSS_IEP in Kconfig from patch 3 to patch 4.
+*) Removed forward declaration of icss_iep_of_match in patch 3.
+*) Replaced use of of_device_get_match_data() to device_get_match_data() in
+   patch 3.
+*) Removed of_match_ptr() from patch 3 as it is not needed.
 
-Best regards,
-Krzysztof
+Changes from v2 to v3:
+*) Addressed Roger's comment and moved IEP1 related changes in patch 5.
+*) Addressed Roger's comment and moved icss_iep.c / .h changes from patch 4
+   to patch 3.
+*) Added support for multiple timestamping in patch 4 as asked by Roger.
+*) Addressed Andrew's comment and added comment in case SPEED_10 in
+   icssg_config_ipg() API.
+*) Kept compatible as "ti,am654-icss-iep" for all TI K3 SoCs
+
+Changes from v1 to v2:
+*) Addressed Simon's comment to fix reverse xmas tree declaration. Some APIs
+   in patch 3 and 4 were not following reverse xmas tree variable declaration.
+   Fixed it in this version.
+*) Addressed Conor's comments and removed unsupported SoCs from compatible
+   comment in patch 1. 
+*) Addded patch 2 which was not part of v1. Patch 2, adds IEP node to dt
+   bindings for ICSSG.
+
+[v1] https://lore.kernel.org/all/20230803110153.3309577-1-danishanwar@ti.com/
+[v2] https://lore.kernel.org/all/20230807110048.2611456-1-danishanwar@ti.com/
+[v3] https://lore.kernel.org/all/20230809114906.21866-1-danishanwar@ti.com/
+
+Thanks and Regards,
+Md Danish Anwar
+Grygorii Strashko (1):
+  net: ti: icssg-prueth: am65x SR2.0 add 10M full duplex support
+
+MD Danish Anwar (2):
+  dt-bindings: net: Add ICSS IEP
+  dt-bindings: net: Add IEP property in ICSSG DT binding
+
+Roger Quadros (2):
+  net: ti: icss-iep: Add IEP driver
+  net: ti: icssg-prueth: add packet timestamping and ptp support
+
+ .../devicetree/bindings/net/ti,icss-iep.yaml  |  61 ++
+ .../bindings/net/ti,icssg-prueth.yaml         |   7 +
+ drivers/net/ethernet/ti/Kconfig               |  12 +
+ drivers/net/ethernet/ti/Makefile              |   1 +
+ drivers/net/ethernet/ti/icssg/icss_iep.c      | 947 ++++++++++++++++++
+ drivers/net/ethernet/ti/icssg/icss_iep.h      |  41 +
+ drivers/net/ethernet/ti/icssg/icssg_config.c  |   7 +
+ drivers/net/ethernet/ti/icssg/icssg_ethtool.c |  21 +
+ drivers/net/ethernet/ti/icssg/icssg_prueth.c  | 451 ++++++++-
+ drivers/net/ethernet/ti/icssg/icssg_prueth.h  |  28 +-
+ 10 files changed, 1568 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+ create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.c
+ create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.h
+
+-- 
+2.34.1
 
