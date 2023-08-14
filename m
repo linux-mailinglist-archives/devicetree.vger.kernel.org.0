@@ -2,123 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D21977C187
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 22:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F110A77C1A7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 22:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231688AbjHNUep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 16:34:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
+        id S232081AbjHNUkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 16:40:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231499AbjHNUeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 16:34:14 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C520E5E;
-        Mon, 14 Aug 2023 13:34:13 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37EKXxTp040839;
-        Mon, 14 Aug 2023 15:33:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1692045239;
-        bh=P8ifeBQlXDh7fx14sIDDQ/xLBaeGI5CPl7R+rtlKe60=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=fZTkrOIl7Fn3II47C2EGI8V+LHEnavvap48rdxgRPLQw/znHb56HueLI0WDTw9dsA
-         lfUCj5Z8ZLrH/9NU1lvcC5Xbb3XKCv5cgXkH2LlmBSZnGrCgk6IFp9Ln+Q/Op8+W4T
-         oP6G8cuSq7Y6v5FpaQXnYPcxSA9G5jaNU8cobzmM=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37EKXxac039263
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Aug 2023 15:33:59 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
- Aug 2023 15:33:58 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 14 Aug 2023 15:33:59 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37EKXw8S022754;
-        Mon, 14 Aug 2023 15:33:58 -0500
-Date:   Mon, 14 Aug 2023 15:33:58 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <afd@ti.com>
-Subject: Re: [PATCH v2 0/3] arm64: dts: ti: Introduce AM62P5 SoC and board
-Message-ID: <20230814203358.tsx343ifog5tpldi@quicksand>
-References: <20230811184432.732215-1-vigneshr@ti.com>
- <169179403348.1346194.1236976094485793819.b4-ty@ti.com>
- <5a1ed797-d29a-e047-ccec-adb1dde6d74f@linaro.org>
+        with ESMTP id S232492AbjHNUkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 16:40:19 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C88AE5E;
+        Mon, 14 Aug 2023 13:40:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=BlrSDh1oWixOHfKJbeuFZ7Gd0lCm0lENmSCCvEiVQRE=; b=zsOhdtaaUYZZaAbTkpIlzs/sac
+        FkqYwD5s050zfzBo0NlJRgOLLpLFVCYsfgaVFiZV/4gG0IZvDEpD5oKs99JatBlyLW4woGB3XF+ra
+        XVGlyPb87AXjDxPe+mU0A5KCO+WBiBvG9EDTaMORU4rPhoGjP36ed6DMRrzC3Q5YOIIk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qVeLz-0045X0-Ny; Mon, 14 Aug 2023 22:39:55 +0200
+Date:   Mon, 14 Aug 2023 22:39:55 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sriranjani P <sriranjani.p@samsung.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        richardcochran@gmail.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        alim.akhtar@samsung.com, linux-fsd@tesla.com,
+        pankaj.dubey@samsung.com, swathi.ks@samsung.com,
+        ravi.patel@samsung.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+Message-ID: <4e745c2a-57bd-45da-8bd2-ee1cb2bab84f@lunn.ch>
+References: <20230814112539.70453-1-sriranjani.p@samsung.com>
+ <CGME20230814112605epcas5p31aca7b23e70e8d93df11414291f7ce66@epcas5p3.samsung.com>
+ <20230814112539.70453-2-sriranjani.p@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5a1ed797-d29a-e047-ccec-adb1dde6d74f@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230814112539.70453-2-sriranjani.p@samsung.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21:26-20230814, Krzysztof Kozlowski wrote:
-> On 12/08/2023 00:49, Nishanth Menon wrote:
+> +  fsd-rx-clock-skew:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to the syscon node
+> +          - description: offset of the control register
+> +    description:
+> +      Should be phandle/offset pair. The phandle to the syscon node.
 
-Looping in Vinod
+What clock are you skew-ing here? And why?
 
-[...]
+> +    ethernet_1: ethernet@14300000 {
+> +              compatible = "tesla,dwc-qos-ethernet-4.21";
+> +              reg = <0x0 0x14300000 0x0 0x10000>;
+> +              interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+> +              clocks = <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_CLK_PTP_REF_I>,
+> +                       <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_ACLK_I>,
+> +                       <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_HCLK_I>,
+> +                       <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_RGMII_CLK_I>,
+> +                       <&clock_peric PERIC_EQOS_TOP_IPCLKPORT_CLK_RX_I>,
+> +                       <&clock_peric PERIC_BUS_D_PERIC_IPCLKPORT_EQOSCLK>,
+> +                       <&clock_peric PERIC_BUS_P_PERIC_IPCLKPORT_EQOSCLK>,
+> +                       <&clock_peric PERIC_EQOS_PHYRXCLK_MUX>,
+> +                       <&clock_peric PERIC_EQOS_PHYRXCLK>,
+> +                       <&clock_peric PERIC_DOUT_RGMII_CLK>;
+> +              clock-names = "ptp_ref",
+> +                            "master_bus",
+> +                            "slave_bus",
+> +                            "tx",
+> +                            "rx",
+> +                            "master2_bus",
+> +                            "slave2_bus",
+> +                            "eqos_rxclk_mux",
+> +                            "eqos_phyrxclk",
+> +                            "dout_peric_rgmii_clk";
+> +              pinctrl-names = "default";
+> +              pinctrl-0 = <&eth1_tx_clk>, <&eth1_tx_data>, <&eth1_tx_ctrl>,
+> +                          <&eth1_phy_intr>, <&eth1_rx_clk>, <&eth1_rx_data>,
+> +                          <&eth1_rx_ctrl>, <&eth1_mdio>;
+> +              fsd-rx-clock-skew = <&sysreg_peric 0x10>;
+> +              iommus = <&smmu_peric 0x0 0x1>;
+> +              phy-mode = "rgmii";
 
-> 
-> A bit too fast. simple-mfd *is not allowed* on its own.
-> 
+I know it is just an example, but "rgmii" is generally
+wrong. "rgmii-id" is generally what you need. And when i do see
+"rgmii", it starts ringing alarm bells for me, it could mean your
+RGMII delays are being handled wrongly.
 
-Actually dtbs_check comes up clean, but more I dug at it, looks like we
-should probably cleanup.
-
-(everything):
-https://gist.github.com/nmenon/5f5f689333c66697969f5d80ad94cfca
-(am62p alone):
-https://gist.github.com/nmenon/9aaa2067a619b12af338647d19b4cf9b
-
-$ git grep 'compatible = "simple-mfd";' arch/arm64/boot/dts/ti/
-arch/arm64/boot/dts/ti/k3-am62-main.dtsi:               compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-am62p-main.dtsi:              compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-am64-main.dtsi:               compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-am65-main.dtsi:               compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi:                compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-j7200-main.dtsi:              compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi:                compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi:                compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi:             compatible = "simple-mfd";
-arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi:               compatible = "simple-mfd";
-
-It is all over our k3 dts folder for dma. Digging further, it looks to
-have been explicitly permitted by the bindings:
-
-$ git grep 'compatible = "simple-mfd";'  Documentation/devicetree/bindings/
-Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml:            compatible = "simple-mfd";
-Documentation/devicetree/bindings/dma/ti/k3-pktdma.yaml:            compatible = "simple-mfd";
-Documentation/devicetree/bindings/dma/ti/k3-udma.yaml:            compatible = "simple-mfd";
-
-Looks like we will have to cleanup the yaml bindings and the dts nodes
-in a manner that doesn't break the platforms.
-
-I am not saying that simple-mfd usage is correct, but it was
-explicitly permitted by schema in these instances, are you OK that we
-clean that in the upcoming merge window as the very first thing we do
-and let this series through?
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+       Andrew
