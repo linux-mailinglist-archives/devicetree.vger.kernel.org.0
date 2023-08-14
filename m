@@ -2,97 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B981F77B8EB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:47:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A9E77B8FC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbjHNMqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 08:46:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39126 "EHLO
+        id S229980AbjHNMru convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 08:47:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230148AbjHNMqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:46:15 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9C3E5B
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:46:14 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-317798b359aso3722495f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692017173; x=1692621973;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i0Tyv0KmVphJ0z20dJrEQzgQtleCJHCCuv4MDudOfPs=;
-        b=r7wMTgYRIZgNGkT/XoFO/w6nJ8I3Mvzdt4N1Lo412ofYgfveF31Kk35SADXVNs8BkN
-         5tfeHsQ7YoCIHrbKbOIA1dlBPAKEAr84d3qDp+7t2f9qpGnY/6tz85FZIkde+X+OVdmb
-         CnJmrjAMYD1VIOHXgzQgRrMIGOFDH+yZwtpQ/PFx6r4fvAlt+xzOIwLzRwENZooWCC+C
-         D+BxZM+S4JqYY+8SmQZP2PdWXgXrEgYf4SMamrZMjQixtFRWw2G6aZcVlbVYhHOJqodK
-         mXb5dUrUBOYGU+jUiGQXPXFEKHX/qPT774EmKlNl7LPbFhRTKHTZ5McwD7TyNBbBLXfC
-         Piow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692017173; x=1692621973;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i0Tyv0KmVphJ0z20dJrEQzgQtleCJHCCuv4MDudOfPs=;
-        b=kl/oP+gBjQ2LoyoZJdriDzrrMd7vmH9hRlfyLjzsIyDRjHmywznORsS3TQr2US0FSK
-         vDyhSTPoSpQlOJKOa2ReispL6sLAOVXo569aSC2MUVjsqEDqcwVoGchcn9UU0zUAzmXv
-         xYaOjIz8lk9k9CuyPDn1yWLjEwt6uGEsdkxC+ADNak8mHIqH5czojUcZPv4MfClt+Y1N
-         l26NZRiMOrTm3QVXYncR79r8jVJK4P6mOoWygKVQso1eVlTP4Z50m+k3V0QcBJwfNM7F
-         UgyHQ6UVTE4ya5/c68Hx/qoRMf6DwixIkFbHK85gu0hMjVy0L69qgCL85I9pDfIztB0r
-         RkDg==
-X-Gm-Message-State: AOJu0Yzj+00kJl1vUl/huePNJ6CWnYdbL23dwFrMvZuZEd38HuV5i5Bx
-        ob4Kwax5Mpsio/afFTWyHD/qeA==
-X-Google-Smtp-Source: AGHT+IGcnNO93t8qkVG3Y735XP05Xra+V4B0KMWlc1cVDIT00NklY7TjoBod3Xc6rzSu0jY6QrmpVg==
-X-Received: by 2002:a05:6000:12c4:b0:317:e766:d5e9 with SMTP id l4-20020a05600012c400b00317e766d5e9mr7293681wrx.3.1692017173460;
-        Mon, 14 Aug 2023 05:46:13 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id x13-20020a5d444d000000b00317f29ad113sm14249506wrr.32.2023.08.14.05.46.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 05:46:12 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Sam Ravnborg <sam@ravnborg.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        with ESMTP id S231273AbjHNMrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:47:41 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AFA2172C;
+        Mon, 14 Aug 2023 05:47:34 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B39BB1063;
+        Mon, 14 Aug 2023 05:48:15 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2AAB93F64C;
+        Mon, 14 Aug 2023 05:47:31 -0700 (PDT)
+Date:   Mon, 14 Aug 2023 13:47:29 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230807123138.67443-1-miquel.raynal@bootlin.com>
-References: <20230807123138.67443-1-miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: simple: Add Mitsubishi
- AA084XE01 panel
-Message-Id: <169201717234.1374248.9932150559832920648.b4-ty@linaro.org>
-Date:   Mon, 14 Aug 2023 14:46:12 +0200
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, Alan Ma <tech@biqu3d.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: SID: Add binding for H616
+ SID controller
+Message-ID: <20230814134729.533f61b1@donnerap.manchester.arm.com>
+In-Reply-To: <5856748.MhkbZ0Pkbq@jernej-laptop>
+References: <20230814-sid-h616-v2-0-0267749b4471@somainline.org>
+        <830e5e34-f6de-3233-4a12-06c8390169d1@linaro.org>
+        <DKGDZR.4G4SZ781MVSV2@somainline.org>
+        <5856748.MhkbZ0Pkbq@jernej-laptop>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 14 Aug 2023 12:28:36 +0200
+Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
 
-On Mon, 07 Aug 2023 14:31:37 +0200, Miquel Raynal wrote:
-> Add Mitsubishi AA084XE01 8.4" XGA TFT LCD panel compatible string.
+> Dne ponedeljek, 14. avgust 2023 ob 10:21:49 CEST je Martin Botka napisal(a):
+> > On Mon, Aug 14 2023 at 10:08:38 AM +02:00:00, Krzysztof Kozlowski
+> > 
+> > <krzysztof.kozlowski@linaro.org> wrote:  
+> > > On 14/08/2023 08:38, Martin Botka wrote:  
+> > >>  Add binding for the SID controller found in H616 SoC
+> > >>  
+> > >>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> > >>  ---
+> > >> 
+> > >> Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> > >> 
+> > >> | 1 +
+> > >> | 
+> > >>   1 file changed, 1 insertion(+)
+> > >>  
+> > >>  diff --git
+> > >> 
+> > >> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> > >> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> > >> 
+> > >>  index 296001e7f498..2ec0a1b8f803 100644
+> > >>  ---
+> > >> 
+> > >> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> > >> 
+> > >>  +++
+> > >> 
+> > >> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> > >> 
+> > >>  @@ -27,6 +27,7 @@ properties:
+> > >>             - const: allwinner,sun50i-a64-sid
+> > >>         
+> > >>         - const: allwinner,sun50i-h5-sid
+> > >>         - const: allwinner,sun50i-h6-sid
+> > >>  
+> > >>  +      - const: allwinner,sun50i-h616-sid  
+> > > 
+> > > It does not look like you tested the DTS against bindings. Please run
+> > > `make dtbs_check` (see
+> > > Documentation/devicetree/bindings/writing-schema.rst or
+> > > https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sour
+> > > ces-with-the-devicetree-schema/ for instructions).
+> > > 
+> > > Best regards,
+> > > Krzysztof  
+> > 
+> > Yea completely forgot. Sorry for that.
+> > 
+> > Will send v3 tomorrow with proper binding patch using items with enums  
 > 
-> 
+> Don't. You have cca. 1 month time now, since you missed at least window for DT 
+> changes for 6.6.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Plus we need to figure out if my comment about using a fallback compatible
+was actually correct, as asked here:
+https://lore.kernel.org/linux-arm-kernel/20230811234212.2236c814@slackpad.lan/
 
-[1/2] dt-bindings: display: simple: Add Mitsubishi AA084XE01 panel
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=50b0cd7d3ac3e6cbd8873434eafc3076957bbdf7
-[2/2] drm/panel: simple: Add support for Mitsubishi AA084XE01
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=637d3fdc109a63ed3d3864b9ffe1ae50ef57d03e
-
--- 
-Neil
-
+Cheers,
+Andre
