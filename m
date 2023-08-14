@@ -2,118 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E57FA77C120
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D21977C187
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 22:35:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231252AbjHNT4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 15:56:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58884 "EHLO
+        id S231688AbjHNUep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 16:34:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232284AbjHNT4q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:56:46 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF64FA
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:56:45 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bccc9ec02so664171466b.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:56:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692043004; x=1692647804;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nok+x4rAaoA66YfdKSul17+hSDqui/hoTkzkEnvOsak=;
-        b=LzejYZismv9otFUW9sYB9GRVEaob91IcaZzY149ALyRmA5jqtz9T23PAggKnM/v8z/
-         hsJlAc8Zu5Jtmg/lOwEZ/8xHdvCQMtCb7R9zxWVq8XmhEOkw6PHW5nlNf8hfCz5JpA/6
-         +KOgQbhRKtU4PLhIBDE4YYoQ/+lWbUUKYr99AgSMsNvzMsSCF7iitujt6wK+OIKDXpMy
-         Vr+cb8+xrYJT7V2tqcpxOW1/JvAhGTDGTuBDD9iLmPXCwEUkXArQeRen34niZJRdD3EH
-         blPMM1dYUsmMyHcXVxQdeLWI/TOBBHnrdW0rbGA1U8dh0+tDL+tsPmn5JvH+tG2zoYMI
-         xLdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692043004; x=1692647804;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nok+x4rAaoA66YfdKSul17+hSDqui/hoTkzkEnvOsak=;
-        b=Tf3VLQuj1Ja5FQlcxRCbHkwN3RB7F9GJM559rT/bmtnuVdYTAwrHoI80Mxwzh7LNRn
-         H7Ar3zNkuMzDh/MXP9tZAPFhpytr7/635s5thDq8auCiYg9wSt0/m+LeRedH8q2tracO
-         Ybrq8KlMasV6dSfqs0EMC3eA3twlSs07mxRtAKO6qS6Powi5wd7HYIZUivFQshaW3ux4
-         zH6wu7L5IYrEPZgvM9a4aeD09xMOowqo9U+IZU2o9ekpj/TNhmlL7xsyBWUokXOGPJ4I
-         IxLo10OYutU6a7q1CViE9uNbxZpumkS/x1CAPLtxyM16lbGFOq6oK55YSo0CgqLUnm58
-         CMmg==
-X-Gm-Message-State: AOJu0Ywp+B8XhSkjZLU2JJDjsEf3EveKLg7buBlDKuKaeWvxutld0AOs
-        GhJZ6NpWVpVrj9IoRaexVUlkFA==
-X-Google-Smtp-Source: AGHT+IF+xA1+FyUO9foiefiY3Jz8QtEmKZYsiJnOt9ZxqPDwExjQixI/+6KjrTEJTDYH2+oRvOg4pg==
-X-Received: by 2002:a17:906:32c6:b0:99b:415f:2e4f with SMTP id k6-20020a17090632c600b0099b415f2e4fmr8726890ejk.57.1692043003925;
-        Mon, 14 Aug 2023 12:56:43 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id a11-20020a170906670b00b0099315454e76sm6021723ejp.211.2023.08.14.12.56.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 12:56:43 -0700 (PDT)
-Message-ID: <b3cd8115-b2bd-63dd-01d3-3cd27127d534@linaro.org>
-Date:   Mon, 14 Aug 2023 21:56:41 +0200
+        with ESMTP id S231499AbjHNUeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 16:34:14 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C520E5E;
+        Mon, 14 Aug 2023 13:34:13 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37EKXxTp040839;
+        Mon, 14 Aug 2023 15:33:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692045239;
+        bh=P8ifeBQlXDh7fx14sIDDQ/xLBaeGI5CPl7R+rtlKe60=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=fZTkrOIl7Fn3II47C2EGI8V+LHEnavvap48rdxgRPLQw/znHb56HueLI0WDTw9dsA
+         lfUCj5Z8ZLrH/9NU1lvcC5Xbb3XKCv5cgXkH2LlmBSZnGrCgk6IFp9Ln+Q/Op8+W4T
+         oP6G8cuSq7Y6v5FpaQXnYPcxSA9G5jaNU8cobzmM=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37EKXxac039263
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Aug 2023 15:33:59 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
+ Aug 2023 15:33:58 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 14 Aug 2023 15:33:59 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37EKXw8S022754;
+        Mon, 14 Aug 2023 15:33:58 -0500
+Date:   Mon, 14 Aug 2023 15:33:58 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <afd@ti.com>
+Subject: Re: [PATCH v2 0/3] arm64: dts: ti: Introduce AM62P5 SoC and board
+Message-ID: <20230814203358.tsx343ifog5tpldi@quicksand>
+References: <20230811184432.732215-1-vigneshr@ti.com>
+ <169179403348.1346194.1236976094485793819.b4-ty@ti.com>
+ <5a1ed797-d29a-e047-ccec-adb1dde6d74f@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 3/4] arm64: dts: fsd: Add Ethernet support for FSYS0
- Block of FSD SoC
-Content-Language: en-US
-To:     Sriranjani P <sriranjani.p@samsung.com>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, richardcochran@gmail.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, alim.akhtar@samsung.com,
-        linux-fsd@tesla.com, pankaj.dubey@samsung.com,
-        swathi.ks@samsung.com, ravi.patel@samsung.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jayati Sahu <jayati.sahu@samsung.com>
-References: <20230814112539.70453-1-sriranjani.p@samsung.com>
- <CGME20230814112617epcas5p1bc094e9cf29da5dd7d1706e3f509ac28@epcas5p1.samsung.com>
- <20230814112539.70453-4-sriranjani.p@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230814112539.70453-4-sriranjani.p@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5a1ed797-d29a-e047-ccec-adb1dde6d74f@linaro.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/08/2023 13:25, Sriranjani P wrote:
-> The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP, one
-> in FSYS0 block and other in PERIC block.
+On 21:26-20230814, Krzysztof Kozlowski wrote:
+> On 12/08/2023 00:49, Nishanth Menon wrote:
+
+Looping in Vinod
+
+[...]
+
 > 
-> Adds device tree node for Ethernet in FSYS0 Block and enables the same for
-> FSD platform.
+> A bit too fast. simple-mfd *is not allowed* on its own.
 > 
 
-...
+Actually dtbs_check comes up clean, but more I dug at it, looks like we
+should probably cleanup.
 
->  &pinctrl_peric {
-> diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> index 1c53c68efd53..9a991f021711 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> @@ -32,6 +32,7 @@
->  		spi0 = &spi_0;
->  		spi1 = &spi_1;
->  		spi2 = &spi_2;
-> +		eth0 = &ethernet_0;
+(everything):
+https://gist.github.com/nmenon/5f5f689333c66697969f5d80ad94cfca
+(am62p alone):
+https://gist.github.com/nmenon/9aaa2067a619b12af338647d19b4cf9b
 
-One more thing - I said it two times already. Patch v1 and then in v2.
-You responded now without waiting for my further feedback and
-immediately sent the same stuff.
+$ git grep 'compatible = "simple-mfd";' arch/arm64/boot/dts/ti/
+arch/arm64/boot/dts/ti/k3-am62-main.dtsi:               compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-am62p-main.dtsi:              compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-am64-main.dtsi:               compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-am65-main.dtsi:               compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi:                compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-j7200-main.dtsi:              compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi:                compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi:                compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi:             compatible = "simple-mfd";
+arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi:               compatible = "simple-mfd";
 
-Let's be clear:
+It is all over our k3 dts folder for dma. Digging further, it looks to
+have been explicitly permitted by the bindings:
 
-NAK for the reasons I said multiple times.
+$ git grep 'compatible = "simple-mfd";'  Documentation/devicetree/bindings/
+Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml:            compatible = "simple-mfd";
+Documentation/devicetree/bindings/dma/ti/k3-pktdma.yaml:            compatible = "simple-mfd";
+Documentation/devicetree/bindings/dma/ti/k3-udma.yaml:            compatible = "simple-mfd";
 
-Best regards,
-Krzysztof
+Looks like we will have to cleanup the yaml bindings and the dts nodes
+in a manner that doesn't break the platforms.
 
+I am not saying that simple-mfd usage is correct, but it was
+explicitly permitted by schema in these instances, are you OK that we
+clean that in the upcoming merge window as the very first thing we do
+and let this series through?
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
