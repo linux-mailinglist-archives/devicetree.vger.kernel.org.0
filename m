@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B41377B275
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 09:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A25E777B28B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 09:34:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234136AbjHNH3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 03:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54154 "EHLO
+        id S233373AbjHNHdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 03:33:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233724AbjHNH2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 03:28:47 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF28018F;
-        Mon, 14 Aug 2023 00:28:45 -0700 (PDT)
-X-UUID: 2dbc999c3a7411eeb20a276fd37b9834-20230814
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=S7CYYCxauHwUQ9CvWRyvZwgOK8cGZ8/AmAGezFuN4V0=;
-        b=PHyHJw1rx7MRn7XHv8Zu9gJaG9KLjRIQGCvTt7bKyFYs3Kg6X94d6I8HOndz4OBU29+67rsunp4Q2nll9fRk/yExkmKW59zhxxkA7GqGujet6NiuOo42caZUYMCFg/7Oyklycfqt2LaFKrbONBz4Jl86csq0iUY3LqEKlrQ2ZLw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:dc217edc-2a0d-4c01-8468-061ce052f523,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:0ad78a4,CLOUDID:9fdabc12-4929-4845-9571-38c601e9c3c9,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-        NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 2dbc999c3a7411eeb20a276fd37b9834-20230814
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <shuijing.li@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1291675673; Mon, 14 Aug 2023 15:28:35 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 14 Aug 2023 15:28:33 +0800
-Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 14 Aug 2023 15:28:33 +0800
-From:   Shuijing Li <shuijing.li@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>, <jitao.shi@mediatek.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Shuijing Li <shuijing.li@mediatek.com>
-Subject: [PATCH v4,3/3] drm/mediatek: dp: Add the audio divider to mtk_dp_data struct
-Date:   Mon, 14 Aug 2023 15:28:42 +0800
-Message-ID: <20230814072842.28597-4-shuijing.li@mediatek.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230814072842.28597-1-shuijing.li@mediatek.com>
-References: <20230814072842.28597-1-shuijing.li@mediatek.com>
+        with ESMTP id S234193AbjHNHdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 03:33:08 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7199010E3;
+        Mon, 14 Aug 2023 00:33:06 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37E7Wcq2125087;
+        Mon, 14 Aug 2023 02:32:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1691998358;
+        bh=bdFeH2qZcAR1f3pLZ/uXJO+MJdOLdWxGk+XknPyZBWU=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=m2tiXeq61s36w4XXM4p2Qz8TUxiWU0KJVCHEd48Mr1hNxLuw1qRjhdLlQHvczValZ
+         9sWvZn/kIWuyIzXRXRGmG7/Jw4NEI3L57s04ztorsJzJqSn3pxIsWw9Gc47Re0AWGU
+         48cAx1kIJl81VSco1uk3NaNFozUFqbW5rcaTp8+s=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37E7Wccw025922
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Aug 2023 02:32:38 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
+ Aug 2023 02:32:37 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 14 Aug 2023 02:32:37 -0500
+Received: from [172.24.227.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37E7WVTf028513;
+        Mon, 14 Aug 2023 02:32:32 -0500
+Message-ID: <1f6a36fb-dfbe-1536-47de-f2335aac5bfa@ti.com>
+Date:   Mon, 14 Aug 2023 13:02:31 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 3/5] net: ti: icss-iep: Add IEP driver
+Content-Language: en-US
+To:     Andrew Davis <afd@ti.com>, MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230809114906.21866-1-danishanwar@ti.com>
+ <20230809114906.21866-4-danishanwar@ti.com>
+ <b43ee5ca-2aab-445a-e24b-cbc95f9186ea@ti.com>
+ <c7ddb12d-ae18-5fc2-9729-c88ea73b21d7@ti.com>
+ <4c40fbe4-3492-ec76-e452-3a3ecb0f2433@ti.com>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <4c40fbe4-3492-ec76-e452-3a3ecb0f2433@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,106 +85,209 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the difference of HW, different dividers need to be set.
+On 11/08/23 8:54 pm, Andrew Davis wrote:
+> On 8/10/23 6:50 AM, Md Danish Anwar wrote:
+>> Hi Andrew,
+>>
+>> On 09/08/23 8:30 pm, Andrew Davis wrote:
+>>> On 8/9/23 6:49 AM, MD Danish Anwar wrote:
+>>>> From: Roger Quadros <rogerq@ti.com>
+>>>>
+>>>> Add a driver for Industrial Ethernet Peripheral (IEP) block of PRUSS to
+>>>> support timestamping of ethernet packets and thus support PTP and PPS
+>>>> for PRU ethernet ports.
+>>>>
+>>>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>>>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+>>>> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+>>>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>> ---
+>>>>    drivers/net/ethernet/ti/Kconfig          |  12 +
+>>>>    drivers/net/ethernet/ti/Makefile         |   1 +
+>>>>    drivers/net/ethernet/ti/icssg/icss_iep.c | 935 +++++++++++++++++++++++
+>>>>    drivers/net/ethernet/ti/icssg/icss_iep.h |  38 +
+>>>>    4 files changed, 986 insertions(+)
+>>>>    create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.c
+>>>>    create mode 100644 drivers/net/ethernet/ti/icssg/icss_iep.h
+>>>>
+>>>> diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
+>>>> index 63e510b6860f..88b5b1b47779 100644
+>>>> --- a/drivers/net/ethernet/ti/Kconfig
+>>>> +++ b/drivers/net/ethernet/ti/Kconfig
+>>>> @@ -186,6 +186,7 @@ config CPMAC
+>>>>    config TI_ICSSG_PRUETH
+>>>>        tristate "TI Gigabit PRU Ethernet driver"
+>>>>        select PHYLIB
+>>>> +    select TI_ICSS_IEP
+>>>
+>>> Why not save selecting this until you add its use in the ICSSG_PRUETH driver in
+>>> the next patch.
+>>>
+>>
+>> The next patch is only adding changes to icssg-prueth .c /.h files. This patch
+>> is adding changes to Kconfig and the Makefile. To keep it that way selecting
+>> this is added in this patch. No worries, I will move this to next patch.
+>>
+>>> [...]
+>>>
+>>>> +
+>>>> +static u32 icss_iep_readl(struct icss_iep *iep, int reg)
+>>>> +{
+>>>> +    return readl(iep->base + iep->plat_data->reg_offs[reg]);
+>>>> +}
+>>>
+>>> Do these one line functions really add anything? Actually why
+>>> not use the regmap you have here.
+>>
+>> These one line functions are not really adding anything but they are acting as
+>> a wrapper around readl /writel and providing some sort of encapsulation as
+>> directly calling readl will result in a little complicated code.
+>>
+>> /* WIth One line function */
+>> ts_lo = icss_iep_readl(iep, ICSS_IEP_COUNT_REG0);
+>>
+>> /* Without one line function */
+>> ts_lo = readl(iep->base, iep->plat_data->reg_offs[ICSS_IEP_COUNT_REG0]);
+>>
+>> Previously regmap was used in this driver. But in older commit [1] in
+>> 5.10-ti-linux-kernel (Before I picked the driver for upstream) it got changed
+>> to readl / writel stating that regmap_read / write is too slow. IEP is time
+>> sensitive and needs faster read and write, probably because of this they
+>> changed it.
+>>
+> 
+> Sounds like you only need direct register access for time sensitive
+> gettime/settime functions, if that is the only place writel()/readl() is
+> needed just drop the helper and use directly in that one spot.
+> 
 
-Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
-Changes in v4:
-list all configuration for MT8188 and MT8195.
-per suggestion from the previous thread:
-https://lore.kernel.org/all/a9d1b9b7ef4780f51574d0bbbe28f6dd109a6ab8.camel@mediatek.com/
-Changes in v3:
-Separate these two things into two different patches.
-per suggestion from the previous thread:
-https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
-Changes in v2:
-- change the variables' name to be more descriptive
-- add a comment that describes the function of mtk_dp_audio_sample_arrange
-- reduce indentation by doing the inverse check
-- add a definition of some bits
-- add support for mediatek, mt8188-edp-tx
-per suggestion from the previous thread:
-https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
----
- drivers/gpu/drm/mediatek/mtk_dp.c     |  6 +++++-
- drivers/gpu/drm/mediatek/mtk_dp_reg.h | 18 ++++++++++++------
- 2 files changed, 17 insertions(+), 7 deletions(-)
+In total both icss_iep_readl() and writel() are used 4 time each. All related
+to gettime / settime. This is the only place where these helper APIs are used.
+I will drop these helper apis and used readl / writel directly.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index 75af6de7bc42..8f97e6f76639 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -140,6 +140,7 @@ struct mtk_dp_data {
- 	const struct mtk_dp_efuse_fmt *efuse_fmt;
- 	bool audio_supported;
- 	bool audio_pkt_in_hblank_area;
-+	u16 audio_m_div2_bit;
- };
- 
- static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
-@@ -648,7 +649,7 @@ static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp *mtk_dp,
- static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
- {
- 	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
--			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+			   mtk_dp->data->audio_m_div2_bit,
- 			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
- }
- 
-@@ -2636,6 +2637,7 @@ static const struct mtk_dp_data mt8188_dp_data = {
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
- 	.audio_supported = true,
- 	.audio_pkt_in_hblank_area = true,
-+	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct mtk_dp_data mt8195_edp_data = {
-@@ -2643,6 +2645,7 @@ static const struct mtk_dp_data mt8195_edp_data = {
- 	.smc_cmd = MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
- 	.efuse_fmt = mt8195_edp_efuse_fmt,
- 	.audio_supported = false,
-+	.audio_m_div2_bit = MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct mtk_dp_data mt8195_dp_data = {
-@@ -2650,6 +2653,7 @@ static const struct mtk_dp_data mt8195_dp_data = {
- 	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
- 	.audio_supported = true,
-+	.audio_m_div2_bit = MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct of_device_id mtk_dp_of_match[] = {
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-index f38d6ff12afe..709b79480693 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-+++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-@@ -159,12 +159,18 @@
- #define MTK_DP_ENC0_P0_30BC			0x30bc
- #define ISRC_CONT_DP_ENC0_P0				BIT(0)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK	GENMASK(10, 8)
--#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
--#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
--#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8	(3 << 8)
--#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(5 << 8)
--#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4	(6 << 8)
--#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8	(7 << 8)
-+#define MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
-+#define MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
-+#define MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8	(3 << 8)
-+#define MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(5 << 8)
-+#define MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4	(6 << 8)
-+#define MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8	(7 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8	(3 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(4 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4	(5 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8	(7 << 8)
- #define MTK_DP_ENC0_P0_30D8			0x30d8
- #define MTK_DP_ENC0_P0_312C			0x312c
- #define ASP_HB2_DP_ENC0_P0_MASK				GENMASK(7, 0)
+>>>
+>>> [...]
+>>>
+>>>> +static void icss_iep_enable(struct icss_iep *iep)
+>>>> +{
+>>>> +    regmap_update_bits(iep->map, ICSS_IEP_GLOBAL_CFG_REG,
+>>>> +               IEP_GLOBAL_CFG_CNT_ENABLE,
+>>>> +               IEP_GLOBAL_CFG_CNT_ENABLE);
+>>>
+>>> Have you looked into regmap_fields?
+>>>
+>>
+>> No I hadn't. But now I looked into regmap_fields, seems to be another way to
+>> update the bits, instead of passing mask and value, regmap_filed_read / write
+>> only takes the value. But for that we will need to create a regmap field. If
+>> you want me to switch to regmap_fields instead of regmap_update_bits I can make
+>> the changes. But I am fine with regmap_update_bits().
+>>
+> 
+> I'm suggesting regmap fields as I have used it several times and it resulted
+> in greatly improved readability. Yes you will need a regmap field table, but
+> that is the best part, it lets you put all your bit definitions in one spot
+> that can match 1:1 with the datasheet, much easier to check for correctness
+> than if the bit usages are all spread out in the driver.
+> 
+> I won't insist on you converting this driver to use it today, but I do recommend
+> you at least give it a shot for your own learning.
+> 
+
+Sure Andrew. For now I will keep it as regmap_update_bits(). I will look into
+regmap_fields for my own learning.
+
+> Andrew
+> 
+>>> [...]
+>>>
+>>>> +
+>>>> +    if (!!(iep->latch_enable & BIT(index)) == !!on)
+>>>> +        goto exit;
+>>>> +
+>>>
+>>> There has to be a better way to write this logic..
+>>>
+>>> [...]
+>>>
+>>>> +
+>>>> +static const struct of_device_id icss_iep_of_match[];
+>>>> +
+>>>
+>>> Why the forward declaration?
+>>
+>> I will remove this, I don't see any reason for this.
+>>
+>>>
+>>>> +static int icss_iep_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +    struct device *dev = &pdev->dev;
+>>>> +    struct icss_iep *iep;
+>>>> +    struct clk *iep_clk;
+>>>> +
+>>>> +    iep = devm_kzalloc(dev, sizeof(*iep), GFP_KERNEL);
+>>>> +    if (!iep)
+>>>> +        return -ENOMEM;
+>>>> +
+>>>> +    iep->dev = dev;
+>>>> +    iep->base = devm_platform_ioremap_resource(pdev, 0);
+>>>> +    if (IS_ERR(iep->base))
+>>>> +        return -ENODEV;
+>>>> +
+>>>> +    iep_clk = devm_clk_get(dev, NULL);
+>>>> +    if (IS_ERR(iep_clk))
+>>>> +        return PTR_ERR(iep_clk);
+>>>> +
+>>>> +    iep->refclk_freq = clk_get_rate(iep_clk);
+>>>> +
+>>>> +    iep->def_inc = NSEC_PER_SEC / iep->refclk_freq;    /* ns per clock
+>>>> tick */
+>>>> +    if (iep->def_inc > IEP_MAX_DEF_INC) {
+>>>> +        dev_err(dev, "Failed to set def_inc %d.  IEP_clock is too slow to be
+>>>> supported\n",
+>>>> +            iep->def_inc);
+>>>> +        return -EINVAL;
+>>>> +    }
+>>>> +
+>>>> +    iep->plat_data = of_device_get_match_data(dev);
+>>>
+>>> Directly using of_*() functions is often wrong, try just
+>>> device_get_match_data().
+>>>
+>>
+>> Sure. I will change to device_get_match_data().
+>>
+>>> [...]
+>>>
+>>>> +static struct platform_driver icss_iep_driver = {
+>>>> +    .driver = {
+>>>> +        .name = "icss-iep",
+>>>> +        .of_match_table = of_match_ptr(icss_iep_of_match),
+>>>
+>>> This driver cannot work without OF, using of_match_ptr() is not needed.
+>>>
+>>
+>> Sure, I will drop of_match_ptr().
+>>
+>>> Andrew
+>>
+>>
+>> For reading and updating registers, we can have
+>>     1. icss_iep_readl / writel and regmap_update_bits() OR
+>>     2. regmap_read / write and regmap_update_bits() OR
+>>     3. icss_iep_readl / writel and regmap_fields OR
+>>     4. regmap_read / write and regmap_fields
+>>     
+>>
+>> Currently we are using 1. Please let me know if you are fine with this and I
+>> can continue using 1. If not, please let me know your recommendation out of
+>> this 4.
+>>
+>> [1]
+>> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=linux-5.10.y&id=f4f45bf71cad5be232536d63a0557d13a7eed162
+>>
+
 -- 
-2.40.1
-
+Thanks and Regards,
+Danish.
