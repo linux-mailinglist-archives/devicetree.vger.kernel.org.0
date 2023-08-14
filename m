@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D7377C0AA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D172377C0BA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231913AbjHNTWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 15:22:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34124 "EHLO
+        id S232256AbjHNTZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 15:25:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbjHNTVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:21:50 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BFF910D0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:21:49 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5236b2b4cdbso6069175a12.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:21:49 -0700 (PDT)
+        with ESMTP id S232073AbjHNTYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:24:46 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FBF1E61
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:24:44 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bb736a0efdso23471301fa.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:24:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692040908; x=1692645708;
+        d=linaro.org; s=google; t=1692041083; x=1692645883;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZITc41fWR3jpgB8PGLmoYdFzSTWTyUb5ijn5aqBVuKA=;
-        b=Rmv5FqZ/bQZ4IhDXE2ASVxBcmjvK9/iXAilJkM1X7EqPUtZiG9NxSfn0f62AamjobR
-         ZTzoCXKzxSybbaYXeToCjfhpMjlp7EQAS9xNcd5gI0RIfGfMClf73JRfNWYB6VVhk3sD
-         X+DP4ZV5RCZ/7/sr6YFDU6MnxKYmRJOeYnRJQRnv0P+1VycKLoGEefr6toLQcUqO2HyL
-         t9v6OlIDpb0ivbEMri1vul9EeP74HiHxM4OW1MBzVQ1dKKg/kzl2ZeRibwNpFa4afifq
-         El4Eq8vM9aa6AKPzRrfB3jMAfVKXFsOrRa5TEjqmoP6baWfO1QoLOJD+UfSl9Gp2T9Pg
-         qydQ==
+        bh=6TYI8hfD5ubiFIaUUw5xZ9NbDnXIfF/xMmKHoxdgOqM=;
+        b=dTjF3oO+tR+a38Tv9Uj2P9O9Vzj6RvIU56UmLeO4FhiwwnPv6HEKeefSK0FR617tcz
+         fahtqXTJmrceRRGvNKIqzMuIwUaTecB4klDfyt/DkLlo7XMVvgyl+7rdRzNMYol58shJ
+         zSJix8GUpJ6pjMXqollUMbwrnM9VrDZ1NYk/TLK1k/ko2ZSBqybiyX0l4X4cfq2QKLjZ
+         kBa7Q3tyPZn9mtloITFsyqFqGhQl8Q4oB9gFbUGLSWKeBE5c4diKrncr7DcbLbaH3llm
+         3qdu91V/jklWsVtOY97DHHH/wcPGLAaKlQS5EdPjDHp9ya13oApOdoqZgzMg+RZM/KBg
+         LB5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692040908; x=1692645708;
+        d=1e100.net; s=20221208; t=1692041083; x=1692645883;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZITc41fWR3jpgB8PGLmoYdFzSTWTyUb5ijn5aqBVuKA=;
-        b=CDTINjwW7dpSkAeHPn8x+Jwpln8zQNRIgekpJciWaAuAD3JuVnreBmFjcd4wUEZejK
-         /5Tavedu7DTJwrx8NwcdXHeTU94GRThhqmkcjb1ZZWN9NmADN477iW5+K3oqxjBkAoSV
-         asR8YcB/WJj7A/GeaB3qeP7x0p5YYv7bxyI6bYbelw59pISmf2RVs8CWd6wCcbuQwU7P
-         bWQrRKK1mB6I6SDu+Jp/twzJjpgxd7sFYU3ouxyi8bPl4F+P8cZHWgjN6x5N6kB1dd61
-         R67Bnt+C6jTJKb+eM1qkhLQ+6VXPerzpN+jJI4d6y/taS8K/lpNS1+wW5ecvyNympkCZ
-         z4SQ==
-X-Gm-Message-State: AOJu0YwMKyIU1HkJDV0J8MKY0Ntdhe9dpzr07yut6Z5ECOhG6xgL6HZU
-        aN1pdZWEMipqBBQU6WACRhX8tQ==
-X-Google-Smtp-Source: AGHT+IGV02ywoYIQLLNfA9i2YcB4KVh0qjZBfknBTqo0YTqkYsSmO/usRrWcz1kIGi6jKLxPqCAn7A==
-X-Received: by 2002:a17:906:74da:b0:99d:b7d4:3ac0 with SMTP id z26-20020a17090674da00b0099db7d43ac0mr2017146ejl.28.1692040907769;
-        Mon, 14 Aug 2023 12:21:47 -0700 (PDT)
+        bh=6TYI8hfD5ubiFIaUUw5xZ9NbDnXIfF/xMmKHoxdgOqM=;
+        b=fOiyXN7UyffBRmJCfrsd6j0WRviOTwUFDh3wM2pqpfB3yvIZL/5PrIHEtdVYOeY0WB
+         LqT1rehb+a3cwoZa2A/Iu+f7aAYDDNAAuMLeLlb6ZpDnRIcwJdy6W3zt/IwP0vgux6SM
+         mM+ZQ2vvlgjmWkSqQHOAD6r+yO5plV5GuUvagVaw82Rb2kTsvUE+IMWZcXG8sDPJrNZp
+         TDLUzI5G3yBK+7jVTfMxRNxDcPuAZm+5Dh89xR7Wtm6EaAFrmBJEV2A8q/yy1sP/6yGV
+         dZuSqmZAVbrJfQgfk4ovMV4OIK0rIwDBA5+d8rKYwt9x0uZmAbGbRvGqC34EggVj+Bov
+         V2jg==
+X-Gm-Message-State: AOJu0Yws0vz8WVwhfx80sW+ZJBoqiPhOU0tnbZQfNndypED00Wq20mYN
+        hb57DmGsXTtKssxLlXERzo3ENA==
+X-Google-Smtp-Source: AGHT+IHIgsSbN/5vj4ushWzyT6lAMD2obNUe0xO1a1DU9GYJNJLH0vESwVygEgU/xiwHcAEqaUzzbg==
+X-Received: by 2002:a2e:9045:0:b0:2bb:3f89:ea50 with SMTP id n5-20020a2e9045000000b002bb3f89ea50mr4368944ljg.24.1692041082687;
+        Mon, 14 Aug 2023 12:24:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id i5-20020a170906850500b0098951bb4dc3sm5932372ejx.184.2023.08.14.12.21.46
+        by smtp.gmail.com with ESMTPSA id md15-20020a170906ae8f00b0098d486d2bdfsm6077811ejb.177.2023.08.14.12.24.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 12:21:47 -0700 (PDT)
-Message-ID: <8c7f28c4-ac9f-ee9e-e9f1-c58709ffaf14@linaro.org>
-Date:   Mon, 14 Aug 2023 21:21:45 +0200
+        Mon, 14 Aug 2023 12:24:42 -0700 (PDT)
+Message-ID: <3b88bbd0-81f2-a178-1e9f-1b950aad3da7@linaro.org>
+Date:   Mon, 14 Aug 2023 21:24:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/3] arm64: dts: ti: Introduce AM62P5 family of SoCs
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Introduce AM62P5 family of SoCs
 Content-Language: en-US
 To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
         Tero Kristo <kristo@kernel.org>,
@@ -62,23 +62,24 @@ To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230810045314.2676833-1-vigneshr@ti.com>
- <20230810045314.2676833-3-vigneshr@ti.com>
+        linux-kernel@vger.kernel.org, afd@ti.com
+References: <20230811184432.732215-1-vigneshr@ti.com>
+ <20230811184432.732215-3-vigneshr@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230810045314.2676833-3-vigneshr@ti.com>
+In-Reply-To: <20230811184432.732215-3-vigneshr@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2023 06:53, Vignesh Raghavendra wrote:
+On 11/08/2023 20:44, Vignesh Raghavendra wrote:
 > From: Bryan Brattlof <bb@ti.com>
 > 
 > The AM62Px is an extension of the existing Sitara AM62x low-cost family
@@ -90,9 +91,90 @@ On 10/08/2023 06:53, Vignesh Raghavendra wrote:
 > application, including automotive digital instrumentation, automotive
 > displays, industrial HMI, and more.
 > 
-
-...
-
+> Some highlights of AM62P SoC are:
+> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster.
+>   Dual/Single core variants are provided in the same package to allow HW
+>   compatible designs.
+> * One Device manager Cortext-R5F for system power and resource
+>   management, and one Cortex-R5F for Functional Safety or
+>   general-purpose usage.
+> * One 3D GPU up to 50 GLFOPS
+> * H.264/H.265 Video Encode/Decode.
+> * Display support: 3x display support over OLDI/LVDS (1x OLDI-DL, 1x or
+>   2x OLDI-SL), DSI, or DPI. Up to 3840x1080@60fps resolution
+> * Integrated Giga-bit Ethernet switch supporting up to a total of two
+>   external ports (TSN capable).
+> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3xMMC and SD, GPMC for
+>   NAND/FPGA connection, OSPI memory controller, 3xMcASP for audio,
+>   1xCSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other peripherals.
+> * Dedicated Centralized Hardware Security Module with support for secure
+>   boot, debug security and crypto acceleration and trusted execution
+>   environment.
+> * One 32-bit DDR Subsystem that supports LPDDR4, DDR4 memory types.
+> * Multiple low power modes support, ex: Deep sleep, Standby, MCU-only,
+>   enabling battery powered system design.
+> 
+> For those interested, more details about this SoC can be found in the
+> Technical Reference Manual here:
+> 
+>     https://www.ti.com/lit/pdf/spruj83
+> 
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
+> Acked-by: Andrew Davis <afd@ti.com>
+> Reviewed-by: Dhruva Gole <d-gole@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 136 ++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi    |  15 +++
+>  arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi |  32 +++++
+>  arch/arm64/boot/dts/ti/k3-am62p.dtsi        | 122 ++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62p5.dtsi       | 107 +++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-pinctrl.h         |   3 +
+>  6 files changed, 415 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> new file mode 100644
+> index 000000000000..c24ff905437f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> @@ -0,0 +1,136 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree file for the AM62P main domain peripherals
+> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +&cbass_main {
+> +	oc_sram: sram@70000000 {
+> +		compatible = "mmio-sram";
+> +		reg = <0x00 0x70000000 0x00 0x10000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x00 0x00 0x70000000 0x10000>;
+> +	};
+> +
+> +	gic500: interrupt-controller@1800000 {
+> +		compatible = "arm,gic-v3";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		#interrupt-cells = <3>;
+> +		interrupt-controller;
+> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
+> +		      <0x00 0x01880000 0x00 0xc0000>,	/* GICR */
+> +		      <0x01 0x00000000 0x00 0x2000>,    /* GICC */
+> +		      <0x01 0x00010000 0x00 0x1000>,    /* GICH */
+> +		      <0x01 0x00020000 0x00 0x2000>;    /* GICV */
+> +		/*
+> +		 * vcpumntirq:
+> +		 * virtual CPU interface maintenance interrupt
+> +		 */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 > +
 > +		gic_its: msi-controller@1820000 {
 > +			compatible = "arm,gic-v3-its";
@@ -104,6 +186,7 @@ On 10/08/2023 06:53, Vignesh Raghavendra wrote:
 > +	};
 > +
 > +	dmss: bus@48000000 {
+> +		bootph-all;
 > +		compatible = "simple-mfd";
 > +		#address-cells = <2>;
 > +		#size-cells = <2>;
@@ -112,11 +195,11 @@ On 10/08/2023 06:53, Vignesh Raghavendra wrote:
 > +
 > +		ti,sci-dev-id = <25>;
 
-Are you sure this passes dtbs_check?
-
+My v1 concerns are still valid.
 
 > +
 > +		secure_proxy_main: mailbox@4d000000 {
+> +			bootph-all;
 > +			compatible = "ti,am654-secure-proxy";
 > +			#mbox-cells = <1>;
 > +			reg-names = "target_data", "rt", "scfg";
