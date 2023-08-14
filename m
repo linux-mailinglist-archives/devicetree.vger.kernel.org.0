@@ -2,85 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D8477B40A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A696477B438
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233178AbjHNIYh convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 04:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40026 "EHLO
+        id S231649AbjHNIeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 04:34:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234918AbjHNIYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:24:31 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F140A10F
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:24:08 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1qVSrT-0002pB-V6; Mon, 14 Aug 2023 10:23:40 +0200
-Message-ID: <96c29015f86c84722c08a7ab2272f1355d6042ce.camel@pengutronix.de>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp-beacon-kit: Fix audio_pll2 clock
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233089AbjHNIeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:34:07 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DFC10D
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:34:05 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fe4a89e8c4so37059625e9.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:34:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692002044; x=1692606844;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ABhr9xdl4PfhPjffKylsEiPlhHM7MgFT5SzcRJwvV0I=;
+        b=Og/oeYBwFfnwkMvs3RMniQ1vd1qkUXae3em95ns+AMfs77qsCMS/Zj3ulyEW9fvmqa
+         0bTlH3G7FmRM010n1j7kfHDe966K52OXVkMZ7q+JyDNf8zdb3bGdrWBTH/elBCrqE6v7
+         Ul85ERTI1jw1IFwcYom/5GiVYXf/Zs62nShzxXtPCjY4+FLsgSrzQDXKjvi3j+9Sd1E7
+         7AaXS5apo29r7DDvGPFYw+zbvRAslZm9J0JYRZKg+SkxOi1gQIu+NWZ5lohqLbFECugg
+         bCY1c6JdAiDpJSfNWqumKue4J/oYEOEkPiRc7kP+SPlrS1Q8Ik8tm4x8yOS9o8r9z6v2
+         YZFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692002044; x=1692606844;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ABhr9xdl4PfhPjffKylsEiPlhHM7MgFT5SzcRJwvV0I=;
+        b=MX8llnszsG/zm5Zl3/KmoJ2PXC7kyc7gaCsX8TshhEOY4nm/y2kKfzHLOc7x1qINYQ
+         YnJADJeU1DUZ8s4jOE0roL43W15Qt/xvfT9lJc2oZeW8nM1+IJE6EQpRzzVB6uIkxijm
+         HBAPr4+DFwbxQpHJR+LCLit3zfjnmnaO3d9CxMkXt0qGedw21J0kHWGvFZhCuSz8YLzr
+         p+HDMrpn/ypPU+GyJGo6jzC1uhpuZWMpsPx8YITLvZGMpv8E/lWx6UKcw739sooVzTQi
+         KB99wfj0u4JB2Siz8bhnMcNrPpeeLmrUSlLa2GBY581TMD6yyLeE1sMPtU9AZgCuTg3E
+         xemw==
+X-Gm-Message-State: AOJu0Yx3ily19RGrp4bA750ZRTThwBZJYqZp2DaItvN/NgduaSsh0THL
+        JXPiXPLIMs4ezWpGqKcx39mU5JnaWM9BsXe6SEQF1Q==
+X-Google-Smtp-Source: AGHT+IFNCyAF1MrzrZ7BRHwLfz2xysilZbSytC4O9Hi3KVeUcStr4Y3L/lZ+k3Zyl/e4twFEoScCXA==
+X-Received: by 2002:a05:600c:2287:b0:3fe:1cd8:acf3 with SMTP id 7-20020a05600c228700b003fe1cd8acf3mr7321092wmf.17.1692002044384;
+        Mon, 14 Aug 2023 01:34:04 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id z10-20020a05600c220a00b003fbc30825fbsm13767052wml.39.2023.08.14.01.34.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Aug 2023 01:34:03 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Mon, 14 Aug 2023 10:23:38 +0200
-In-Reply-To: <20230813162906.22640-2-aford173@gmail.com>
-References: <20230813162906.22640-1-aford173@gmail.com>
-         <20230813162906.22640-2-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Andy Shevchenko <andy@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
+References: <20230814-topic-oxnas-upstream-remove-v3-0-e2ba579a49d3@linaro.org>
+Subject: Re: [PATCH v3 0/3] ARM: oxnas support removal
+Message-Id: <169200204339.985309.9800197575088244365.b4-ty@linaro.org>
+Date:   Mon, 14 Aug 2023 10:34:03 +0200
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, dem 13.08.2023 um 11:29 -0500 schrieb Adam Ford:
-> A previous patch removed the audio PLL configuration from the clk
-> node, which resulted in an incorrect clock rate when attempting
-> to playback audio.  Fix this by setting the AUDIO_PLL2 rate inside
-> the SAI3 node since it's the SAI3 that needs it.
-> 
-> Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks from CCM node")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+Hi,
 
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-
+On Mon, 14 Aug 2023 10:19:51 +0200, Neil Armstrong wrote:
+> With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+> associated with a clear lack of maintainance, development and migration to
+> dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> index 06e91297fb16..acd265d8b58e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> @@ -381,9 +381,10 @@ &pcie_phy {
->  &sai3 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_sai3>;
-> -	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
-> +	assigned-clocks = <&clk IMX8MP_CLK_SAI3>,
-> +			  <&clk IMX8MP_AUDIO_PLL2> ;
->  	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
-> -	assigned-clock-rates = <12288000>;
-> +	assigned-clock-rates = <12288000>, <361267200>;
->  	fsl,sai-mclk-direction-output;
->  	status = "okay";
->  };
+> In addition, the OX810 hasn't been booted for years and isn't even present
+> in an ARM config file.
+> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/narmstrong/linux-oxnas.git (v6.6/final)
+
+[1/3] irqchip: irq-versatile-fpga: remove obsolete oxnas compatible
+      https://git.kernel.org/narmstrong/linux-oxnas/c/33e839adabedb3a958efe5d974e38e868f7a8584
+[2/3] dt-bindings: interrupt-controller: arm,versatile-fpga-irq: mark oxnas compatible as deprecated
+      https://git.kernel.org/narmstrong/linux-oxnas/c/5f784ff8376dd519bbe317174972423508b627c4
+[3/3] MAINTAINERS: remove OXNAS entry
+      https://git.kernel.org/narmstrong/linux-oxnas/c/b1627ad5f457c8cea08bb2ab6b24d1c0381fbe30
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.6/final branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/narmstrong/linux-oxnas.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
