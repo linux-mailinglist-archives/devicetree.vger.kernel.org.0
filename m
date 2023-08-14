@@ -2,120 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8010D77BC42
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 17:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A945277BC97
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 17:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbjHNPB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 11:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56880 "EHLO
+        id S232608AbjHNPMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 11:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229833AbjHNPA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 11:00:57 -0400
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938D818F;
-        Mon, 14 Aug 2023 08:00:49 -0700 (PDT)
-Received: from newone.lan (unknown [10.0.0.1])
+        with ESMTP id S232790AbjHNPMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 11:12:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08D910D1;
+        Mon, 14 Aug 2023 08:12:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 7AD66160897;
-        Mon, 14 Aug 2023 17:00:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1692025246;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=7C2w+0tWL4XQt5OLTpreLub8Xk8xFwshC1CAe/wfDZs=;
-        b=QYklDSJFJ6+RGAkfa/CLMPH3Qn0WzV3psx6rHvu5qQD4WsobEYtEw1zpx/42SiydDHNPyD
-        1KHljAAe6laKnXjutI1uTM+rp93kSn887m++ZZRfg1Zq6dUdnEKU2/hpHdLH2HlCwB2r30
-        DLHKLd/WG2o9YvW7CDRGN2qbrtwABpQ=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8FB3463763;
+        Mon, 14 Aug 2023 15:12:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74862C433C8;
+        Mon, 14 Aug 2023 15:12:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692025944;
+        bh=S4zyki7PFmZ2cBORKIxO1VFOjZKURBWF9rTlNDun9pM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Yc2OS+OTzaM+C2zzmWrAmmuioDm4pRZBMfrHMAq0G5S0vuvQCACesO3XuTRnFLCId
+         ehMZ83+72mLSyJb/do38gnSmpon17lzKMWw/QRDA6HBTbX/+eLh9lYf4zpcg9ih1f6
+         3x5rmzpzKXh8snL+JJCwQYEJuSLDArmHYxfHZD5hKRl+npTrJkS+uv6p2vJxJbs5pd
+         5YErktFtdjZiD8x+La4Kz0f4FO/6XagSapaof7Shvm6j/xi/SX1cjbg8kHggMddypS
+         6JO2Ulx2Kxr1Cqd4Sqjrgqr96mTT7jKpLe2TVHzwEyi5rrGkMI9mMgD82ZCW0CeZjn
+         TBMkTelLVMICg==
+Date:   Mon, 14 Aug 2023 17:12:21 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Andi Shyti <andi.shyti@kernel.org>
+Cc:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: nxp,pca9541: convert to DT
+ schema
+Message-ID: <ZNpEVV3fRDVaEyya@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>, Peter Rosin <peda@axentia.se>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: apq8064: add support to gsbi4 uart
-Date:   Mon, 14 Aug 2023 17:00:40 +0200
-Message-Id: <20230814150040.64133-1-david@ixit.cz>
-X-Mailer: git-send-email 2.40.1
+        Conor Dooley <conor+dt@kernel.org>,
+        Doug Anderson <dianders@chromium.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+References: <20230731163833.319258-1-krzysztof.kozlowski@linaro.org>
+ <169100562788.1919254.3881890120063393214.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_RDNS_DYNAMIC_FP,
-        RCVD_IN_DNSWL_BLOCKED,RDNS_DYNAMIC,T_SPF_HELO_TEMPERROR,
-        T_SPF_TEMPERROR autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aGK2mMw4XGLmgIjx"
+Content-Disposition: inline
+In-Reply-To: <169100562788.1919254.3881890120063393214.b4-ty@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support to gsbi4 uart which is used in LG Mako.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-v2:
- - incorporated Krzysztof hints: added -state to the node name,
-   and -pins to the sub-nodes
+--aGK2mMw4XGLmgIjx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi | 16 ++++++++++++++++
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      | 12 ++++++++++++
- 2 files changed, 28 insertions(+)
+On Wed, Aug 02, 2023 at 10:10:33PM +0200, Andi Shyti wrote:
+> Hi
+>=20
+> On Mon, 31 Jul 2023 18:38:32 +0200, Krzysztof Kozlowski wrote:
+> > Convert the bindings for NXP PCA9541 I2C bus master selector to DT
+> > schema.
+> >=20
+> >=20
+>=20
+> Applied to i2c/andi-for-next on
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi
-index 1f15186dd710..3ece5260ee51 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi
-@@ -233,6 +233,22 @@ pinconf {
- 		};
- 	};
- 
-+	gsbi4_uart_pin_a: gsbi4-uart-pin-active-state {
-+		rx-pins {
-+			pins = "gpio11";
-+			function = "gsbi4";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio10";
-+			function = "gsbi4";
-+			drive-strength = <4>;
-+			bias-disable;
-+		};
-+	};
-+
- 	gsbi6_uart_2pins: gsbi6_uart_2pins {
- 		mux {
- 			pins = "gpio14", "gpio15";
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-index 2ab69dd69862..870205028f5c 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-@@ -547,6 +547,18 @@ gsbi4: gsbi@16300000 {
- 			#size-cells = <1>;
- 			ranges;
- 
-+			gsbi4_serial: serial@16340000 {
-+				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
-+				reg = <0x16340000 0x100>,
-+				      <0x16300000 0x3>;
-+				interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-0 = <&gsbi4_uart_pin_a>;
-+				pinctrl-names = "default";
-+				clocks = <&gcc GSBI4_UART_CLK>, <&gcc GSBI4_H_CLK>;
-+				clock-names = "core", "iface";
-+				status = "disabled";
-+			};
-+
- 			gsbi4_i2c: i2c@16380000 {
- 				compatible = "qcom,i2c-qup-v1.1.1";
- 				pinctrl-0 = <&i2c4_pins>;
--- 
-2.40.1
+Applied to for-next (via Andi's branch), thanks!
 
+
+--aGK2mMw4XGLmgIjx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmTaRFUACgkQFA3kzBSg
+KbaMRA//ROA0SC/R9jc9TvyvJuUT8D/GydARldGXju/36hrEaBAPGBW3sX2T4grb
+/z9kBYJaPlqLJylCoseSeW2D7wxl+/CMfaA2+phe395PGA/q2W9RZI93ddMcXq2R
+pnh7p0qSGSDRhS3PxEgdxFoElUDlAg8tqYdySBd3KCvgc94TLzRPW+k0huz4UlmE
+sOGKunktaLPIxyRQQSnNbWWgPb9sEOuC9IEZbtmVxmDtcidnLm5pCy1CDtPASWEV
+GJwz4lsY4OgtzgRxKZiejKmsmueI/BLp0AfWxEv1OpZ/zAgnpcUAKWS7Pt2PfD7O
+V7K3A9SN1L/8YWDRnGE6e0YMKFufMm/QaDLmeJOsS8ARB7LaXD5JmL0pnBA4C5T6
+1u1X4xWVeu+9Edfx09zWomVQ9IEWvveEgrmFAqKrLpybnm+SeKTM9uWKTvCrkm3o
+IgzLy0a6zZWtnrdDYTHoSyElPQCxtn5eZQfTWuhBzoGOS5MCJBOcbbRn/bUsCewC
+nsa83ZcSp7V8yJDStZp2rF+yHPNo+jCUxtFqardIRcF25Qd6d4mjWNog9/mv48j0
+WhK+QCtuIOVfMD3ArGtiSBleUgxPXjQgnO29ZW4BAMGY635Vnb2c/HFa8XDE78Nk
+kDdIFwEJA5XybyH3qYjZYQ+oG3i1RnqPQTcRHq672iyeGaafekA=
+=QGqD
+-----END PGP SIGNATURE-----
+
+--aGK2mMw4XGLmgIjx--
