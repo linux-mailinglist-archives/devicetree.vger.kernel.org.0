@@ -2,740 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D3F77B847
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F9FE77B88F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233120AbjHNMIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 08:08:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
+        id S229488AbjHNMXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 08:23:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233753AbjHNMIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:08:35 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F24541710;
-        Mon, 14 Aug 2023 05:08:24 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so10952640a12.1;
-        Mon, 14 Aug 2023 05:08:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692014903; x=1692619703;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ije6etBRqu9eyOmRNorXOsRit4C3yRzoqCKR1YSckOw=;
-        b=qBQfonkCykZodqMNBKKTmUy7IhkebJa/PMGqe4Fnx0MJdUtyNX5wG14gRVYF9u6I5W
-         S8P12wAInp0OEDVBEwG91gQzn/pRlJeniyy1mqs/L8rBeZCbxbJr2S72KwI1hnbM+Kl0
-         1ifth3nReofUOH0/aYtlnaxbj7lwflYOZo4SB9OTRPQQ8+lhTjM4awks5pmUlqVYrXeP
-         LuFkqnMNDmqGMnawMnjAgfAVZNuQVIsOQVFVld0VnwAbZzoR3hRe8AtR6xY5hgw6gFM4
-         qQ/CWe1W9JPX2ZTjh26BDW3FFtdO5Eci5d0KJKBc2AtH6VWd3BH8ZA0sTNMcVRikkHsG
-         OKCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692014903; x=1692619703;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ije6etBRqu9eyOmRNorXOsRit4C3yRzoqCKR1YSckOw=;
-        b=ZAvOH44JWB0hWWUWUbqeyHLBw+VMNXVgVcWzDmvsZB4dYN0WlirWRf7IDCTYHLvnhX
-         LE90Th0eYFEqLnITuXWxSTryBxOSt8ZvHIrGvp++/JQ0D/C5HE7vpFmJxLW0f3qudaem
-         8lcu/F3qh6DfbTciVi3coWo1hzREcTgfOSaYKYeIQtTW0N4rhRyhHpPMflCgjcuXQTNN
-         bVdAosYr1N9resx2pH22QinydyfmMQhjDDf6OZvZmYsTF/hqQZUIUbdBWDMTKnbOKTka
-         7ZizCz054xSIdDbdaexfx7/15RxaQYNtKQ4KHeayhABPKXWw975nSEakfKYpPyJppAxi
-         Gxrg==
-X-Gm-Message-State: AOJu0YwenT1BDJHPjSYuAVr95azppp2uVd7lispvOnu7skI/6lPG4Tgi
-        p6m4ZGoa0nqXQ/G+gb6pWjI=
-X-Google-Smtp-Source: AGHT+IF0IuVfW+uDKgyHTCGkarxWuxfyVzrYmzAnGLvPbaRN6mYbU4EhDQitY6n2fYhe2jOHWk1ETg==
-X-Received: by 2002:a17:907:1c95:b0:98d:f2c9:a1eb with SMTP id nb21-20020a1709071c9500b0098df2c9a1ebmr16447470ejc.24.1692014903336;
-        Mon, 14 Aug 2023 05:08:23 -0700 (PDT)
-Received: from goliat.isc.local (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id u5-20020a1709063b8500b009930042510csm5600433ejf.222.2023.08.14.05.08.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 05:08:22 -0700 (PDT)
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 6/6] iio: adc: mcp3911: add support for the whole MCP39xx family
-Date:   Mon, 14 Aug 2023 14:10:10 +0200
-Message-ID: <20230814121010.184842-6-marcus.folkesson@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230814121010.184842-1-marcus.folkesson@gmail.com>
-References: <20230814121010.184842-1-marcus.folkesson@gmail.com>
+        with ESMTP id S232533AbjHNMWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:22:55 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 66E72133;
+        Mon, 14 Aug 2023 05:22:34 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8BxpPBvHNpksy4YAA--.49830S3;
+        Mon, 14 Aug 2023 20:22:07 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLCNuHNpksu1ZAA--.5877S3;
+        Mon, 14 Aug 2023 20:22:06 +0800 (CST)
+Subject: Re: [PATCH v15 1/2] thermal: loongson-2: add thermal management
+ support
+To:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
+References: <20230620012944.28877-1-zhuyinbo@loongson.cn>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <bb1334bf-42fe-c6a9-c843-87efeb77c101@loongson.cn>
+Date:   Mon, 14 Aug 2023 20:22:06 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <20230620012944.28877-1-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8CxLCNuHNpksu1ZAA--.5877S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Microchip does have many similar chips, add support for those.
 
-The new supported chips are:
-  - microchip,mcp3910
-  - microchip,mcp3912
-  - microchip,mcp3913
-  - microchip,mcp3914
-  - microchip,mcp3918
-  - microchip,mcp3919
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
+Friendly ping ?
 
-Notes:
-    v2:
-        - Use callbacks rather than matching against enum for determine chip variants
-    v3:
-        - Fix cosmetics
-    v4:
-        - Do not pollute output variable upon error in *_get_osr() functions.
-        - Fix cosmetics
-    v5:
-        - Reorder text in Kconfig
-        - change val to u32 for *_get_osr(), *_set_osr() and *_set_scale()
-        - avoid ambiguity parameters in macro
 
- drivers/iio/adc/Kconfig   |   6 +-
- drivers/iio/adc/mcp3911.c | 454 +++++++++++++++++++++++++++++++++-----
- 2 files changed, 403 insertions(+), 57 deletions(-)
-
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index eb2b09ef5d5b..2e71a73d8c7d 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -774,8 +774,10 @@ config MCP3911
- 	select IIO_BUFFER
- 	select IIO_TRIGGERED_BUFFER
- 	help
--	  Say yes here to build support for Microchip Technology's MCP3911
--	  analog to digital converter.
-+	  Say yes here to build support for one of the following
-+	  Microchip Technology's analog to digital converters:
-+	  MCP3910, MCP3911, MCP3912, MCP3913, MCP3914,
-+	  MCP3918 and MCP3919.
- 
- 	  This driver can also be built as a module. If so, the module will be
- 	  called mcp3911.
-diff --git a/drivers/iio/adc/mcp3911.c b/drivers/iio/adc/mcp3911.c
-index f1e02aa14e93..6c4605c8f09d 100644
---- a/drivers/iio/adc/mcp3911.c
-+++ b/drivers/iio/adc/mcp3911.c
-@@ -61,12 +61,55 @@
- #define MCP3911_REG_WRITE(reg, id)	((((reg) << 1) | ((id) << 6) | (0 << 0)) & 0xff)
- #define MCP3911_REG_MASK		GENMASK(4, 1)
- 
--#define MCP3911_NUM_CHANNELS		2
- #define MCP3911_NUM_SCALES		6
- 
-+/* Registers compatible with MCP3910 */
-+#define MCP3910_REG_STATUSCOM		0x0c
-+#define MCP3910_STATUSCOM_READ		GENMASK(23, 22)
-+#define MCP3910_STATUSCOM_DRHIZ		BIT(20)
-+
-+#define MCP3910_REG_GAIN		0x0b
-+
-+#define MCP3910_REG_CONFIG0		0x0d
-+#define MCP3910_CONFIG0_EN_OFFCAL	BIT(23)
-+#define MCP3910_CONFIG0_OSR		GENMASK(15, 13)
-+
-+#define MCP3910_REG_CONFIG1		0x0e
-+#define MCP3910_CONFIG1_CLKEXT		BIT(6)
-+#define MCP3910_CONFIG1_VREFEXT		BIT(7)
-+
-+#define MCP3910_REG_OFFCAL_CH0		0x0f
-+#define MCP3910_OFFCAL(ch)		(MCP3910_REG_OFFCAL_CH0 + ch * 6)
-+
-+/* Maximal number of channels used by the MCP39XX family */
-+#define MCP39XX_MAX_NUM_CHANNELS	8
-+
- static const int mcp3911_osr_table[] = { 32, 64, 128, 256, 512, 1024, 2048, 4096 };
- static u32 mcp3911_scale_table[MCP3911_NUM_SCALES][2];
- 
-+enum mcp3911_id {
-+	MCP3910,
-+	MCP3911,
-+	MCP3912,
-+	MCP3913,
-+	MCP3914,
-+	MCP3918,
-+	MCP3919,
-+};
-+
-+struct mcp3911;
-+struct mcp3911_chip_info {
-+	const struct iio_chan_spec *channels;
-+	unsigned int num_channels;
-+
-+	int (*config)(struct mcp3911 *adc);
-+	int (*get_osr)(struct mcp3911 *adc, u32 *val);
-+	int (*set_osr)(struct mcp3911 *adc, u32 val);
-+	int (*get_offset)(struct mcp3911 *adc, int channel, int *val);
-+	int (*set_offset)(struct mcp3911 *adc, int channel, int val);
-+	int (*set_scale)(struct mcp3911 *adc, int channel, u32 val);
-+};
-+
- struct mcp3911 {
- 	struct spi_device *spi;
- 	struct mutex lock;
-@@ -74,14 +117,15 @@ struct mcp3911 {
- 	struct clk *clki;
- 	u32 dev_addr;
- 	struct iio_trigger *trig;
--	u32 gain[MCP3911_NUM_CHANNELS];
-+	u32 gain[MCP39XX_MAX_NUM_CHANNELS];
-+	const struct mcp3911_chip_info *chip;
- 	struct {
--		u32 channels[MCP3911_NUM_CHANNELS];
-+		u32 channels[MCP39XX_MAX_NUM_CHANNELS];
- 		s64 ts __aligned(8);
- 	} scan;
- 
- 	u8 tx_buf __aligned(IIO_DMA_MINALIGN);
--	u8 rx_buf[MCP3911_NUM_CHANNELS * 3];
-+	u8 rx_buf[MCP39XX_MAX_NUM_CHANNELS * 3];
- };
- 
- static int mcp3911_read(struct mcp3911 *adc, u8 reg, u32 *val, u8 len)
-@@ -125,6 +169,102 @@ static int mcp3911_update(struct mcp3911 *adc, u8 reg, u32 mask, u32 val, u8 len
- 	return mcp3911_write(adc, reg, val, len);
- }
- 
-+static int mcp3910_get_offset(struct mcp3911 *adc, int channel, int *val)
-+{
-+	return mcp3911_read(adc, MCP3910_OFFCAL(channel), val, 3);
-+}
-+
-+static int mcp3910_set_offset(struct mcp3911 *adc, int channel, int val)
-+{
-+	int ret;
-+
-+	/* Write offset */
-+	ret = mcp3911_write(adc, MCP3910_OFFCAL(channel), val, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable offset*/
-+	return mcp3911_update(adc, MCP3910_REG_CONFIG0,
-+			      MCP3910_CONFIG0_EN_OFFCAL,
-+			      MCP3910_CONFIG0_EN_OFFCAL, 3);
-+}
-+
-+static int mcp3911_get_offset(struct mcp3911 *adc, int channel, int *val)
-+{
-+	return mcp3911_read(adc, MCP3911_OFFCAL(channel), val, 3);
-+}
-+
-+static int mcp3911_set_offset(struct mcp3911 *adc, int channel, int val)
-+{
-+	int ret;
-+
-+	/* Write offset */
-+	ret = mcp3911_write(adc, MCP3911_OFFCAL(channel), val, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable offset */
-+	return mcp3911_update(adc, MCP3911_REG_STATUSCOM,
-+			      MCP3911_STATUSCOM_EN_OFFCAL,
-+			      MCP3911_STATUSCOM_EN_OFFCAL, 2);
-+}
-+
-+static int mcp3910_get_osr(struct mcp3911 *adc, u32 *val)
-+{
-+	int ret, osr;
-+
-+	ret = mcp3911_read(adc, MCP3910_REG_CONFIG0, val, 3);
-+	if (ret)
-+		return ret;
-+
-+	osr = FIELD_GET(MCP3910_CONFIG0_OSR, *val);
-+	*val = 32 << osr;
-+	return ret;
-+}
-+
-+static int mcp3910_set_osr(struct mcp3911 *adc, u32 val)
-+{
-+	int osr = FIELD_PREP(MCP3910_CONFIG0_OSR, val);
-+
-+	return mcp3911_update(adc, MCP3910_REG_CONFIG0,
-+			      MCP3910_CONFIG0_OSR, osr, 3);
-+}
-+
-+static int mcp3911_set_osr(struct mcp3911 *adc, u32 val)
-+{
-+	int osr = FIELD_PREP(MCP3911_CONFIG_OSR, val);
-+
-+	return mcp3911_update(adc, MCP3911_REG_CONFIG,
-+			      MCP3911_CONFIG_OSR, osr, 2);
-+}
-+
-+static int mcp3911_get_osr(struct mcp3911 *adc, u32 *val)
-+{
-+	int ret, osr;
-+
-+	ret = mcp3911_read(adc, MCP3911_REG_CONFIG, val, 2);
-+	if (ret)
-+		return ret;
-+
-+	osr = FIELD_GET(MCP3911_CONFIG_OSR, *val);
-+	*val = 32 << osr;
-+	return ret;
-+}
-+
-+static int mcp3910_set_scale(struct mcp3911 *adc, int channel, u32 val)
-+{
-+	return mcp3911_update(adc, MCP3910_REG_GAIN,
-+			      MCP3911_GAIN_MASK(channel),
-+			      MCP3911_GAIN_VAL(channel, val), 3);
-+}
-+
-+static int mcp3911_set_scale(struct mcp3911 *adc, int channel, u32 val)
-+{
-+	return mcp3911_update(adc, MCP3911_REG_GAIN,
-+			      MCP3911_GAIN_MASK(channel),
-+			      MCP3911_GAIN_VAL(channel, val), 1);
-+}
-+
- static int mcp3911_write_raw_get_fmt(struct iio_dev *indio_dev,
- 				     struct iio_chan_spec const *chan,
- 				     long mask)
-@@ -181,20 +321,18 @@ static int mcp3911_read_raw(struct iio_dev *indio_dev,
- 		break;
- 
- 	case IIO_CHAN_INFO_OFFSET:
--		ret = mcp3911_read(adc,
--				   MCP3911_OFFCAL(channel->channel), val, 3);
-+
-+		ret = adc->chip->get_offset(adc, channel->channel, val);
- 		if (ret)
- 			goto out;
- 
- 		ret = IIO_VAL_INT;
- 		break;
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
--		ret = mcp3911_read(adc, MCP3911_REG_CONFIG, val, 2);
-+		ret = adc->chip->get_osr(adc, val);
- 		if (ret)
- 			goto out;
- 
--		*val = FIELD_GET(MCP3911_CONFIG_OSR, *val);
--		*val = 32 << *val;
- 		ret = IIO_VAL_INT;
- 		break;
- 
-@@ -225,9 +363,7 @@ static int mcp3911_write_raw(struct iio_dev *indio_dev,
- 			    val2 == mcp3911_scale_table[i][1]) {
- 
- 				adc->gain[channel->channel] = BIT(i);
--				ret = mcp3911_update(adc, MCP3911_REG_GAIN,
--						     MCP3911_GAIN_MASK(channel->channel),
--						     MCP3911_GAIN_VAL(channel->channel, i), 1);
-+				ret = adc->chip->set_scale(adc, channel->channel, i);
- 			}
- 		}
- 		break;
-@@ -237,24 +373,13 @@ static int mcp3911_write_raw(struct iio_dev *indio_dev,
- 			goto out;
- 		}
- 
--		/* Write offset */
--		ret = mcp3911_write(adc, MCP3911_OFFCAL(channel->channel), val,
--				    3);
--		if (ret)
--			goto out;
--
--		/* Enable offset*/
--		ret = mcp3911_update(adc, MCP3911_REG_STATUSCOM,
--				     MCP3911_STATUSCOM_EN_OFFCAL,
--				     MCP3911_STATUSCOM_EN_OFFCAL, 2);
-+		ret = adc->chip->set_offset(adc, channel->channel, val);
- 		break;
- 
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
- 		for (int i = 0; i < ARRAY_SIZE(mcp3911_osr_table); i++) {
- 			if (val == mcp3911_osr_table[i]) {
--				val = FIELD_PREP(MCP3911_CONFIG_OSR, i);
--				ret = mcp3911_update(adc, MCP3911_REG_CONFIG, MCP3911_CONFIG_OSR,
--						     val, 2);
-+				ret = adc->chip->set_osr(adc, i);
- 				break;
- 			}
- 		}
-@@ -324,12 +449,60 @@ static int mcp3911_calc_scale_table(struct mcp3911 *adc)
- 		},						\
- }
- 
-+static const struct iio_chan_spec mcp3910_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	IIO_CHAN_SOFT_TIMESTAMP(2),
-+};
-+
- static const struct iio_chan_spec mcp3911_channels[] = {
- 	MCP3911_CHAN(0),
- 	MCP3911_CHAN(1),
- 	IIO_CHAN_SOFT_TIMESTAMP(2),
- };
- 
-+static const struct iio_chan_spec mcp3912_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	MCP3911_CHAN(3),
-+	IIO_CHAN_SOFT_TIMESTAMP(4),
-+};
-+
-+static const struct iio_chan_spec mcp3913_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	MCP3911_CHAN(3),
-+	MCP3911_CHAN(4),
-+	MCP3911_CHAN(5),
-+	IIO_CHAN_SOFT_TIMESTAMP(6),
-+};
-+
-+static const struct iio_chan_spec mcp3914_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	MCP3911_CHAN(3),
-+	MCP3911_CHAN(4),
-+	MCP3911_CHAN(5),
-+	MCP3911_CHAN(6),
-+	MCP3911_CHAN(7),
-+	IIO_CHAN_SOFT_TIMESTAMP(8),
-+};
-+
-+static const struct iio_chan_spec mcp3918_channels[] = {
-+	MCP3911_CHAN(0),
-+	IIO_CHAN_SOFT_TIMESTAMP(1),
-+};
-+
-+static const struct iio_chan_spec mcp3919_channels[] = {
-+	MCP3911_CHAN(0),
-+	MCP3911_CHAN(1),
-+	MCP3911_CHAN(2),
-+	IIO_CHAN_SOFT_TIMESTAMP(3),
-+};
-+
- static irqreturn_t mcp3911_trigger_handler(int irq, void *p)
- {
- 	struct iio_poll_func *pf = p;
-@@ -342,7 +515,7 @@ static irqreturn_t mcp3911_trigger_handler(int irq, void *p)
- 			.len = 1,
- 		}, {
- 			.rx_buf = adc->rx_buf,
--			.len = sizeof(adc->rx_buf),
-+			.len = (adc->chip->num_channels - 1) * 3,
- 		},
- 	};
- 	int scan_index;
-@@ -381,23 +554,9 @@ static const struct iio_info mcp3911_info = {
- 
- static int mcp3911_config(struct mcp3911 *adc)
- {
--	struct device *dev = &adc->spi->dev;
- 	u32 regval;
- 	int ret;
--
--	ret = device_property_read_u32(dev, "microchip,device-addr", &adc->dev_addr);
--
--	/*
--	 * Fallback to "device-addr" due to historical mismatch between
--	 * dt-bindings and implementation
--	 */
--	if (ret)
--		device_property_read_u32(dev, "device-addr", &adc->dev_addr);
--	if (adc->dev_addr > 3) {
--		dev_err(dev, "invalid device address (%i). Must be in range 0-3.\n", adc->dev_addr);
--		return -EINVAL;
--	}
--	dev_dbg(dev, "use device address %i\n", adc->dev_addr);
-+	struct device *dev = &adc->spi->dev;
- 
- 	ret = mcp3911_read(adc, MCP3911_REG_CONFIG, &regval, 2);
- 	if (ret)
-@@ -433,7 +592,102 @@ static int mcp3911_config(struct mcp3911 *adc)
- 	regval &= ~MCP3911_STATUSCOM_READ;
- 	regval |= FIELD_PREP(MCP3911_STATUSCOM_READ, 0x02);
- 
--	return  mcp3911_write(adc, MCP3911_REG_STATUSCOM, regval, 2);
-+	regval &= ~MCP3911_STATUSCOM_DRHIZ;
-+	if (device_property_read_bool(dev, "microchip,data-ready-hiz"))
-+		regval |= FIELD_PREP(MCP3911_STATUSCOM_DRHIZ, 0);
-+	else
-+		regval |= FIELD_PREP(MCP3911_STATUSCOM_DRHIZ, 1);
-+
-+	/* Disable offset to ignore any old values in offset register*/
-+	regval &= ~MCP3911_STATUSCOM_EN_OFFCAL;
-+
-+	ret =  mcp3911_write(adc, MCP3911_REG_STATUSCOM, regval, 2);
-+	if (ret)
-+		return ret;
-+
-+	/* Set gain to 1 for all channels */
-+	ret = mcp3911_read(adc, MCP3911_REG_GAIN, &regval, 1);
-+	if (ret)
-+		return ret;
-+
-+	for (int i = 0; i < adc->chip->num_channels - 1; i++) {
-+		adc->gain[i] = 1;
-+		regval &= ~MCP3911_GAIN_MASK(i);
-+	}
-+
-+	return mcp3911_write(adc, MCP3911_REG_GAIN, regval, 1);
-+}
-+
-+static int mcp3910_config(struct mcp3911 *adc)
-+{
-+	u32 regval;
-+	int ret;
-+	struct device *dev = &adc->spi->dev;
-+
-+	ret = mcp3911_read(adc, MCP3910_REG_CONFIG1, &regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	regval &= ~MCP3910_CONFIG1_VREFEXT;
-+	if (adc->vref) {
-+		dev_dbg(dev, "use external voltage reference\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_VREFEXT, 1);
-+	} else {
-+		dev_dbg(dev,
-+			"use internal voltage reference (1.2V)\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_VREFEXT, 0);
-+	}
-+
-+	regval &= ~MCP3910_CONFIG1_CLKEXT;
-+	if (adc->clki) {
-+		dev_dbg(dev, "use external clock as clocksource\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_CLKEXT, 1);
-+	} else {
-+		dev_dbg(dev,
-+			"use crystal oscillator as clocksource\n");
-+		regval |= FIELD_PREP(MCP3910_CONFIG1_CLKEXT, 0);
-+	}
-+
-+	ret = mcp3911_write(adc, MCP3910_REG_CONFIG1, regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	ret = mcp3911_read(adc, MCP3910_REG_STATUSCOM, &regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Address counter incremented, cycle through register types */
-+	regval &= ~MCP3910_STATUSCOM_READ;
-+	regval |= FIELD_PREP(MCP3910_STATUSCOM_READ, 0x02);
-+
-+
-+	regval &= ~MCP3910_STATUSCOM_DRHIZ;
-+	if (device_property_present(dev, "microchip,data-ready-hiz"))
-+		regval |= FIELD_PREP(MCP3910_STATUSCOM_DRHIZ, 0);
-+	else
-+		regval |= FIELD_PREP(MCP3910_STATUSCOM_DRHIZ, 1);
-+
-+	ret = mcp3911_write(adc, MCP3910_REG_STATUSCOM, regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Set gain to 1 for all channels */
-+	ret = mcp3911_read(adc, MCP3910_REG_GAIN, &regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	for (int i = 0; i < adc->chip->num_channels - 1; i++) {
-+		adc->gain[i] = 1;
-+		regval &= ~MCP3911_GAIN_MASK(i);
-+	}
-+	ret = mcp3911_write(adc, MCP3910_REG_GAIN, regval, 3);
-+	if (ret)
-+		return ret;
-+
-+	/* Disable offset to ignore any old values in offset register */
-+	return mcp3911_update(adc, MCP3910_REG_CONFIG0,
-+			      MCP3910_CONFIG0_EN_OFFCAL,
-+			      MCP3910_CONFIG0_EN_OFFCAL, 3);
- }
- 
- static void mcp3911_cleanup_regulator(void *vref)
-@@ -471,6 +725,7 @@ static int mcp3911_probe(struct spi_device *spi)
- 
- 	adc = iio_priv(indio_dev);
- 	adc->spi = spi;
-+	adc->chip = spi_get_device_match_data(spi);
- 
- 	adc->vref = devm_regulator_get_optional(dev, "vref");
- 	if (IS_ERR(adc->vref)) {
-@@ -499,16 +754,21 @@ static int mcp3911_probe(struct spi_device *spi)
- 		}
- 	}
- 
--	ret = mcp3911_config(adc);
-+	/*
-+	 * Fallback to "device-addr" due to historical mismatch between
-+	 * dt-bindings and implementation.
-+	 */
-+	ret = device_property_read_u32(dev, "microchip,device-addr", &adc->dev_addr);
- 	if (ret)
--		return ret;
-+		device_property_read_u32(dev, "device-addr", &adc->dev_addr);
-+	if (adc->dev_addr > 3) {
-+		dev_err_probe(dev, -EINVAL,
-+			"invalid device address (%i). Must be in range 0-3.\n",
-+			adc->dev_addr);
-+	}
-+	dev_dbg(dev, "use device address %i\n", adc->dev_addr);
- 
--	if (device_property_read_bool(dev, "microchip,data-ready-hiz"))
--		ret = mcp3911_update(adc, MCP3911_REG_STATUSCOM, MCP3911_STATUSCOM_DRHIZ,
--				     0, 2);
--	else
--		ret = mcp3911_update(adc, MCP3911_REG_STATUSCOM, MCP3911_STATUSCOM_DRHIZ,
--				     MCP3911_STATUSCOM_DRHIZ, 2);
-+	ret = adc->chip->config(adc);
- 	if (ret)
- 		return ret;
- 
-@@ -517,7 +777,7 @@ static int mcp3911_probe(struct spi_device *spi)
- 		return ret;
- 
- 	/* Set gain to 1 for all channels */
--	for (int i = 0; i < MCP3911_NUM_CHANNELS; i++) {
-+	for (int i = 0; i < adc->chip->num_channels - 1; i++) {
- 		adc->gain[i] = 1;
- 		ret = mcp3911_update(adc, MCP3911_REG_GAIN,
- 				     MCP3911_GAIN_MASK(i),
-@@ -531,8 +791,8 @@ static int mcp3911_probe(struct spi_device *spi)
- 	indio_dev->info = &mcp3911_info;
- 	spi_set_drvdata(spi, indio_dev);
- 
--	indio_dev->channels = mcp3911_channels;
--	indio_dev->num_channels = ARRAY_SIZE(mcp3911_channels);
-+	indio_dev->channels = adc->chip->channels;
-+	indio_dev->num_channels = adc->chip->num_channels;
- 
- 	mutex_init(&adc->lock);
- 
-@@ -571,14 +831,98 @@ static int mcp3911_probe(struct spi_device *spi)
- 	return devm_iio_device_register(dev, indio_dev);
- }
- 
-+static const struct mcp3911_chip_info mcp3911_chip_info[] = {
-+	[MCP3910] = {
-+		.channels = mcp3910_channels,
-+		.num_channels = ARRAY_SIZE(mcp3910_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3911] = {
-+		.channels = mcp3911_channels,
-+		.num_channels = ARRAY_SIZE(mcp3911_channels),
-+		.config = mcp3911_config,
-+		.get_osr = mcp3911_get_osr,
-+		.set_osr = mcp3911_set_osr,
-+		.get_offset = mcp3911_get_offset,
-+		.set_offset = mcp3911_set_offset,
-+		.set_scale = mcp3911_set_scale,
-+	},
-+	[MCP3912] = {
-+		.channels = mcp3912_channels,
-+		.num_channels = ARRAY_SIZE(mcp3912_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3913] = {
-+		.channels = mcp3913_channels,
-+		.num_channels = ARRAY_SIZE(mcp3913_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3914] = {
-+		.channels = mcp3914_channels,
-+		.num_channels = ARRAY_SIZE(mcp3914_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3918] = {
-+		.channels = mcp3918_channels,
-+		.num_channels = ARRAY_SIZE(mcp3918_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+	[MCP3919] = {
-+		.channels = mcp3919_channels,
-+		.num_channels = ARRAY_SIZE(mcp3919_channels),
-+		.config = mcp3910_config,
-+		.get_osr = mcp3910_get_osr,
-+		.set_osr = mcp3910_set_osr,
-+		.get_offset = mcp3910_get_offset,
-+		.set_offset = mcp3910_set_offset,
-+		.set_scale = mcp3910_set_scale,
-+	},
-+};
- static const struct of_device_id mcp3911_dt_ids[] = {
--	{ .compatible = "microchip,mcp3911" },
-+	{ .compatible = "microchip,mcp3910", .data = &mcp3911_chip_info[MCP3910] },
-+	{ .compatible = "microchip,mcp3911", .data = &mcp3911_chip_info[MCP3911] },
-+	{ .compatible = "microchip,mcp3912", .data = &mcp3911_chip_info[MCP3912] },
-+	{ .compatible = "microchip,mcp3913", .data = &mcp3911_chip_info[MCP3913] },
-+	{ .compatible = "microchip,mcp3914", .data = &mcp3911_chip_info[MCP3914] },
-+	{ .compatible = "microchip,mcp3918", .data = &mcp3911_chip_info[MCP3918] },
-+	{ .compatible = "microchip,mcp3919", .data = &mcp3911_chip_info[MCP3919] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, mcp3911_dt_ids);
- 
- static const struct spi_device_id mcp3911_id[] = {
--	{ "mcp3911", 0 },
-+	{ "mcp3910", (kernel_ulong_t)&mcp3911_chip_info[MCP3910] },
-+	{ "mcp3911", (kernel_ulong_t)&mcp3911_chip_info[MCP3911] },
-+	{ "mcp3912", (kernel_ulong_t)&mcp3911_chip_info[MCP3912] },
-+	{ "mcp3913", (kernel_ulong_t)&mcp3911_chip_info[MCP3913] },
-+	{ "mcp3914", (kernel_ulong_t)&mcp3911_chip_info[MCP3914] },
-+	{ "mcp3918", (kernel_ulong_t)&mcp3911_chip_info[MCP3918] },
-+	{ "mcp3919", (kernel_ulong_t)&mcp3911_chip_info[MCP3919] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, mcp3911_id);
--- 
-2.41.0
+ÔÚ 2023/6/20 ÉÏÎç9:29, Yinbo Zhu Ð´µÀ:
+> This patch adds the support for Loongson-2 thermal sensor controller,
+> which can support maximum four sensor selectors that corresponding to four
+> sets of thermal control registers and one set of sampling register. The
+> sensor selector can selector a speific thermal sensor as temperature input.
+> The sampling register is used to obtain the temperature in real time, the
+> control register GATE field is used to set the threshold of high or low
+> temperature, when the input temperature is higher than the high temperature
+> threshold or lower than the low temperature threshold, an interrupt will
+> occur.
+> 
+> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v15:
+> 		1. Remove the unused head file.
+> 		2. Remove the invalid conditions that such as (low > high).
+> 		3. Use the clamp() to replace max() and min().
+> 		4. Use the macros to replace some constant.
+> 		5. Use the struct data point as data field of of_device_id.
+> 		6. Use the thermal_sensor_sel to replace the sensor id.
+> 		7. Use the thermal_zone_device_priv to replace tz->devdata.
+> 		8. Reword the commit log information.
+> Change in v14:
+> 		1. Add back depends on COMPILE_TEST.
+> 		2. The implementation of devm_thermal_add_hwmon_sysfs has changed in
+> 		   recent community code that cause compile fail issue and this verison
+> 		   add a dev args in devm_thermal_add_hwmon_sysfs to fix compile issue.
+> Change in v13:
+> 		1. Add a description about that how works the sensor.
+> 		2. Drop the COMPILE_TEST.
+> 		3. Rework the help prograph in LOONGSON2_THERMAL Kconfig.
+> 		4. Drop the 'tzd' 'irq' and 'pdev' element in loongson2_thermal_data.
+> 		5. Drop the reset of variable in loongson2_thermal_set.
+> 		6. Drop the function loongson2_thermal_get_sensor_id.
+> 		7. Drop the function loongson2_thermal_alarm_irq.
+> 		8. Rework the devm_thermal_of_zone_register.
+> 		9. Pass 'tzd' instead of 'data' in devm_request_threaded_irq.
+> 		10. Drop the "data->tzd->tzp->no_hwmon = false".
+> 		11. Drop the loongson2_thermal_remove.
+> 		12. Add the sensor id in the of_device_id data field.
+> 		13. Drop the save and restore function.
+> Change in v12:
+> 		1. Fixup it about min and max.
+> 		2. Use dev_err_probe replace dev_err in devm_request_threaded_irq context.
+> Change in v11:
+> 		1. Add min() and max() to replace related code in function
+> 		   loongson2_thermal_set.
+> 		2. Add dev_err_probe to to replace related code for function
+> 		   return value use devm_thermal_of_zone_register.
+> 		3. Replace thermal_add_hwmon_sysfs with devm_thermal_add_hwmon_sysfs
+> 		   and use dev_warn replace dev_err in this context.
+> Change in v10:
+> 		1. Add all history change log information.
+> Change in v9:
+> 		1. Switch new API that use devm_thermal_of_zone_register
+> 		   to replace previous interfaces.
+> 		2. Add depend on LOONGARCH || COMPILE_TEST.
+> Change in v8:
+>                  1. Replace string loongson2/Loongson2/LOONGSON2 with loongson-2/
+>                     Loongson-2/LOONGSON-2 in Kconfig and commit log and MAINTAINERS
+> 		   files.
+> Change in v7:
+> 		1. Split the modification of patch 3 and merge it into this patch.
+> 		2. Remove the unless code annotation to fix the compile warning
+> 		   when compile C code with W=1.
+> Change in v6:
+> 		1. NO change, but other patch in this series of patches set has
+> 		   changes.
+> Change in v5:
+> 		1. NO change, but other patch in this series of patches set has
+> 		   changes.
+> Change in v4:
+> 		1. Fixup the compatible.
+> Change in v3:
+> 		1. Add a function to gain sensor id an remove dts id.
+> Change in v2:
+> 		1. Remove error msg printing when addr ioremap has error.
+> 		2. Make loongson2 thermal driver was built-in by default.
+> 		3. Replace ls2k with loongson2.
+> 		4. Remove CONFIG_PM_SLEEP and set pm function type was
+> 		   __maybe_unused.
+> 
+>   MAINTAINERS                         |   7 ++
+>   drivers/thermal/Kconfig             |  12 ++
+>   drivers/thermal/Makefile            |   1 +
+>   drivers/thermal/loongson2_thermal.c | 170 ++++++++++++++++++++++++++++
+>   4 files changed, 190 insertions(+)
+>   create mode 100644 drivers/thermal/loongson2_thermal.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7a91f14cad2e..f9277fa2a728 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12198,6 +12198,13 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+>   F:	drivers/pinctrl/pinctrl-loongson2.c
+>   
+> +LOONGSON-2 SOC SERIES THERMAL DRIVER
+> +M:	zhanghongchen <zhanghongchen@loongson.cn>
+> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+> +L:	linux-pm@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/thermal/loongson2_thermal.c
+> +
+>   LOONGSON GPIO DRIVER
+>   M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+>   L:	linux-gpio@vger.kernel.org
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index 4cd7ab707315..c4de94e972f4 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -502,4 +502,16 @@ config KHADAS_MCU_FAN_THERMAL
+>   	  If you say yes here you get support for the FAN controlled
+>   	  by the Microcontroller found on the Khadas VIM boards.
+>   
+> +config LOONGSON2_THERMAL
+> +	tristate "Loongson-2 SoC series thermal driver"
+> +	depends on LOONGARCH || COMPILE_TEST
+> +	depends on OF
+> +	help
+> +	  Support for Thermal driver found on Loongson-2 SoC series platforms.
+> +	  The thermal driver realizes get_temp and set_trips function, which
+> +	  are used to obtain the temperature of the current node and set the
+> +	  temperature range to trigger the interrupt. When the input temperature
+> +	  is higher than the high temperature threshold or lower than the low
+> +	  temperature threshold, the interrupt will occur.
+> +
+>   endif
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index 058664bc3ec0..c934cab309ae 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -63,3 +63,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+>   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+>   obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
+>   obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
+> +obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
+> diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
+> new file mode 100644
+> index 000000000000..2be8e0f5fea3
+> --- /dev/null
+> +++ b/drivers/thermal/loongson2_thermal.c
+> @@ -0,0 +1,170 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: zhanghongchen <zhanghongchen@loongson.cn>
+> + *         Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/minmax.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/thermal.h>
+> +#include <linux/units.h>
+> +#include "thermal_hwmon.h"
+> +
+> +#define LOONGSON2_MAX_SENSOR_SEL_NUM			3
+> +
+> +#define LOONGSON2_THSENS_CTRL_HI_REG			0x0
+> +#define LOONGSON2_THSENS_CTRL_LOW_REG			0x8
+> +#define LOONGSON2_THSENS_STATUS_REG			0x10
+> +#define LOONGSON2_THSENS_OUT_REG			0x14
+> +
+> +#define LOONGSON2_THSENS_INT_LO				BIT(0)
+> +#define LOONGSON2_THSENS_INT_HIGH			BIT(1)
+> +#define LOONGSON2_THSENS_OUT_MASK			0xFF
+> +
+> +struct loongson2_thermal_chip_data {
+> +	unsigned int	thermal_sensor_sel;
+> +};
+> +
+> +struct loongson2_thermal_data {
+> +	void __iomem	*regs;
+> +	const struct loongson2_thermal_chip_data *chip_data;
+> +};
+> +
+> +static int loongson2_thermal_set(struct loongson2_thermal_data *data,
+> +					int low, int high, bool enable)
+> +{
+> +	u64 reg_ctrl = 0;
+> +	int reg_off = data->chip_data->thermal_sensor_sel * 2;
+> +
+> +	low = clamp(-40, low, high);
+> +	high = clamp(125, low, high);
+> +
+> +	low += HECTO;
+> +	high += HECTO;
+> +
+> +	reg_ctrl = low;
+> +	reg_ctrl |= enable ? 0x100 : 0;
+> +	writew(reg_ctrl, data->regs + LOONGSON2_THSENS_CTRL_LOW_REG + reg_off);
+> +
+> +	reg_ctrl = high;
+> +	reg_ctrl |= enable ? 0x100 : 0;
+> +	writew(reg_ctrl, data->regs + LOONGSON2_THSENS_CTRL_HI_REG + reg_off);
+> +
+> +	return 0;
+> +}
+> +
+> +static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	u32 reg_val;
+> +	struct loongson2_thermal_data *data = thermal_zone_device_priv(tz);
+> +
+> +	reg_val = readl(data->regs + LOONGSON2_THSENS_OUT_REG);
+> +	*temp = ((reg_val & LOONGSON2_THSENS_OUT_MASK) - HECTO) * KILO;
+> +
+> +	return 0;
+> +}
+> +
+> +static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
+> +{
+> +	struct thermal_zone_device *tzd = dev;
+> +	struct loongson2_thermal_data *data = thermal_zone_device_priv(tzd);
+> +
+> +	writeb(LOONGSON2_THSENS_INT_LO | LOONGSON2_THSENS_INT_HIGH, data->regs +
+> +		LOONGSON2_THSENS_STATUS_REG);
+> +
+> +	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int loongson2_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
+> +{
+> +	struct loongson2_thermal_data *data = thermal_zone_device_priv(tz);
+> +
+> +	return loongson2_thermal_set(data, low/MILLI, high/MILLI, true);
+> +}
+> +
+> +static const struct thermal_zone_device_ops loongson2_of_thermal_ops = {
+> +	.get_temp = loongson2_thermal_get_temp,
+> +	.set_trips = loongson2_thermal_set_trips,
+> +};
+> +
+> +static int loongson2_thermal_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct loongson2_thermal_data *data;
+> +	struct thermal_zone_device *tzd;
+> +	int ret, irq, i;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->chip_data = device_get_match_data(dev);
+> +
+> +	data->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(data->regs))
+> +		return PTR_ERR(data->regs);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	writeb(LOONGSON2_THSENS_INT_LO | LOONGSON2_THSENS_INT_HIGH, data->regs +
+> +		LOONGSON2_THSENS_STATUS_REG);
+> +
+> +	loongson2_thermal_set(data, 0, 0, false);
+> +
+> +	for (i = 0; i <= LOONGSON2_MAX_SENSOR_SEL_NUM; i++) {
+> +		tzd = devm_thermal_of_zone_register(dev, i, data,
+> +			&loongson2_of_thermal_ops);
+> +
+> +		if (!IS_ERR(tzd))
+> +			break;
+> +
+> +		if (PTR_ERR(tzd) != ENODEV)
+> +			continue;
+> +
+> +		return dev_err_probe(dev, PTR_ERR(tzd), "failed to register");
+> +	}
+> +
+> +	ret = devm_request_threaded_irq(dev, irq, NULL, loongson2_thermal_irq_thread,
+> +			IRQF_ONESHOT, "loongson2_thermal", tzd);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
+> +
+> +	if (devm_thermal_add_hwmon_sysfs(dev, tzd))
+> +		dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct loongson2_thermal_chip_data loongson2_thermal_ls2k1000_data = {
+> +	.thermal_sensor_sel = 0,
+> +};
+> +
+> +static const struct of_device_id of_loongson2_thermal_match[] = {
+> +	{
+> +		.compatible = "loongson,ls2k1000-thermal",
+> +		.data = &loongson2_thermal_ls2k1000_data,
+> +	},
+> +	{ /* end */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
+> +
+> +static struct platform_driver loongson2_thermal_driver = {
+> +	.driver = {
+> +		.name		= "loongson2_thermal",
+> +		.of_match_table = of_loongson2_thermal_match,
+> +	},
+> +	.probe	= loongson2_thermal_probe,
+> +};
+> +module_platform_driver(loongson2_thermal_driver);
+> +
+> +MODULE_DESCRIPTION("Loongson2 thermal driver");
+> +MODULE_LICENSE("GPL");
+> 
 
