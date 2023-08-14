@@ -2,66 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 851C377B8D3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B981F77B8EB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:47:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjHNMjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 08:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43792 "EHLO
+        id S230230AbjHNMqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 08:46:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjHNMja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:39:30 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C133E52
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:39:29 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fe501e0b4cso39708495e9.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:39:29 -0700 (PDT)
+        with ESMTP id S230148AbjHNMqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:46:15 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9C3E5B
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:46:14 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-317798b359aso3722495f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:46:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692016768; x=1692621568;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hpbSxgw45nAC+tlCwInuCfzL+dDo7dZHHtU0fZD2iC0=;
-        b=IoW1+2NrVx8aip98rgcobGKSGktEsYQ9ZsJKE5JQpOqli6yihZaiU4ntnuS2HyBV03
-         gccBRoOmmjJluQzeG0jxu40zyQ72XG732bhwXAIDlacdBJT0QI/CPUj8U3/oaPCrX9Wu
-         3Z0ytBSAvCuda3dsjxpkuhmbwQhIRG99+ta0+v6mMv1RI+v7lJMtY4KBdUQfTqTjx2K7
-         26uQX0qSkCyM3Fv62qnYVOwaNFq+GD7aVKUoztMoeU3PQBk0Y6YnfTEMnKGS2ZSaiszQ
-         7glXDDMbx8JJezPJBrpb0OL+r4szdgSDtP9v3CJEoFIcglG9zLvZr3ykbXFpsw6GxJSZ
-         P+BA==
+        d=linaro.org; s=google; t=1692017173; x=1692621973;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i0Tyv0KmVphJ0z20dJrEQzgQtleCJHCCuv4MDudOfPs=;
+        b=r7wMTgYRIZgNGkT/XoFO/w6nJ8I3Mvzdt4N1Lo412ofYgfveF31Kk35SADXVNs8BkN
+         5tfeHsQ7YoCIHrbKbOIA1dlBPAKEAr84d3qDp+7t2f9qpGnY/6tz85FZIkde+X+OVdmb
+         CnJmrjAMYD1VIOHXgzQgRrMIGOFDH+yZwtpQ/PFx6r4fvAlt+xzOIwLzRwENZooWCC+C
+         D+BxZM+S4JqYY+8SmQZP2PdWXgXrEgYf4SMamrZMjQixtFRWw2G6aZcVlbVYhHOJqodK
+         mXb5dUrUBOYGU+jUiGQXPXFEKHX/qPT774EmKlNl7LPbFhRTKHTZ5McwD7TyNBbBLXfC
+         Piow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692016768; x=1692621568;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=hpbSxgw45nAC+tlCwInuCfzL+dDo7dZHHtU0fZD2iC0=;
-        b=AoCI+i4ujGFSJ3DanPlQO3MuBaLMTqZlqBfpGGJmhPULHjjVX4majCQYNFNe+Bj2Hx
-         ng49MFdBRLKq7XQQWDcZkx36tDDyFV+saCUUi+29bSYHGUMgS31B1vu8TdwT5esrkDV1
-         rNYTdsW3Ae7qCYvwQ19RTernd3AKLhV0NOxPF2A1Tpn2vAbI6j/VbGL7y78qUkl0Q0fz
-         /DtCv7Wi2meevJKs8Njon1H9hXzfBXz1X01TE3HLSilyjK2SEQDtvU+iEF0mLrrgWNMS
-         WeyBwbwbun+DAUt0lsp23a6VQ8yiUzW2izmZGsq+8BXNoHgQpsVq4RdERtsexqtyBdzn
-         qG0A==
-X-Gm-Message-State: AOJu0Yw/wd9Lb7F7lFbDWWTLG7VSi2DF31KvaS5vzm8xTmvfgh5sAw6D
-        xT5+by7GhlGkkbludCxxr0IXSQ==
-X-Google-Smtp-Source: AGHT+IFBM6qBD5Z8etFJth9xYWuZU2OYq9ybL//WTaViCH9Z1q6IDQJ0cv18+s90O1Lagv3qwTg1VA==
-X-Received: by 2002:a05:600c:3787:b0:3fe:89be:cd3 with SMTP id o7-20020a05600c378700b003fe89be0cd3mr6579845wmr.22.1692016767877;
-        Mon, 14 Aug 2023 05:39:27 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a3d8:b217:d82c:9bc0? ([2a01:e0a:982:cbb0:a3d8:b217:d82c:9bc0])
-        by smtp.gmail.com with ESMTPSA id v14-20020a1cf70e000000b003fe24441e23sm14193823wmh.24.2023.08.14.05.39.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 05:39:27 -0700 (PDT)
-Message-ID: <fa5d2936-93db-4965-be6d-1b6cdaee2755@linaro.org>
-Date:   Mon, 14 Aug 2023 14:39:26 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20221208; t=1692017173; x=1692621973;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i0Tyv0KmVphJ0z20dJrEQzgQtleCJHCCuv4MDudOfPs=;
+        b=kl/oP+gBjQ2LoyoZJdriDzrrMd7vmH9hRlfyLjzsIyDRjHmywznORsS3TQr2US0FSK
+         vDyhSTPoSpQlOJKOa2ReispL6sLAOVXo569aSC2MUVjsqEDqcwVoGchcn9UU0zUAzmXv
+         xYaOjIz8lk9k9CuyPDn1yWLjEwt6uGEsdkxC+ADNak8mHIqH5czojUcZPv4MfClt+Y1N
+         l26NZRiMOrTm3QVXYncR79r8jVJK4P6mOoWygKVQso1eVlTP4Z50m+k3V0QcBJwfNM7F
+         UgyHQ6UVTE4ya5/c68Hx/qoRMf6DwixIkFbHK85gu0hMjVy0L69qgCL85I9pDfIztB0r
+         RkDg==
+X-Gm-Message-State: AOJu0Yzj+00kJl1vUl/huePNJ6CWnYdbL23dwFrMvZuZEd38HuV5i5Bx
+        ob4Kwax5Mpsio/afFTWyHD/qeA==
+X-Google-Smtp-Source: AGHT+IGcnNO93t8qkVG3Y735XP05Xra+V4B0KMWlc1cVDIT00NklY7TjoBod3Xc6rzSu0jY6QrmpVg==
+X-Received: by 2002:a05:6000:12c4:b0:317:e766:d5e9 with SMTP id l4-20020a05600012c400b00317e766d5e9mr7293681wrx.3.1692017173460;
+        Mon, 14 Aug 2023 05:46:13 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id x13-20020a5d444d000000b00317f29ad113sm14249506wrr.32.2023.08.14.05.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Aug 2023 05:46:12 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 2/2] drm/panel: simple: Add support for Mitsubishi
- AA084XE01
-Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sam Ravnborg <sam@ravnborg.org>
+To:     Sam Ravnborg <sam@ravnborg.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
 Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
@@ -69,37 +59,17 @@ Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor.dooley@microchip.com>,
         devicetree@vger.kernel.org,
-        Thomas Weber <thomas.weber@corscience.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230807123138.67443-1-miquel.raynal@bootlin.com>
 References: <20230807123138.67443-1-miquel.raynal@bootlin.com>
- <20230807123138.67443-2-miquel.raynal@bootlin.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20230807123138.67443-2-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: simple: Add Mitsubishi
+ AA084XE01 panel
+Message-Id: <169201717234.1374248.9932150559832920648.b4-ty@linaro.org>
+Date:   Mon, 14 Aug 2023 14:46:12 +0200
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -109,75 +79,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/08/2023 14:31, Miquel Raynal wrote:
-> From: Thomas Weber <thomas.weber@corscience.de>
-> 
-> Add support for the Mitsubishi AA084XE01 panel which is an 8.4 inch XGA
-> TFT-LCD module for industrial use.
-> 
-> Link: https://www.mouser.fr/datasheet/2/274/aa084xe01_e-364171.pdf
-> Signed-off-by: Thomas Weber <thomas.weber@corscience.de>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
-> 
-> Changes in v4:
-> * None.
-> 
-> Changes in v3:
-> * Fix connector type.
-> 
-> Changes in v2:
-> * Add connector type and bus flags.
-> 
->   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
->   1 file changed, 29 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index a247a0e7c799..e498a40e1f78 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -2763,6 +2763,32 @@ static const struct panel_desc mitsubishi_aa070mc01 = {
->   	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
->   };
->   
-> +static const struct drm_display_mode mitsubishi_aa084xe01_mode = {
-> +	.clock = 56234,
-> +	.hdisplay = 1024,
-> +	.hsync_start = 1024 + 24,
-> +	.hsync_end = 1024 + 24 + 63,
-> +	.htotal = 1024 + 24 + 63 + 1,
-> +	.vdisplay = 768,
-> +	.vsync_start = 768 + 3,
-> +	.vsync_end = 768 + 3 + 6,
-> +	.vtotal = 768 + 3 + 6 + 1,
-> +	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-> +};
-> +
-> +static const struct panel_desc mitsubishi_aa084xe01 = {
-> +	.modes = &mitsubishi_aa084xe01_mode,
-> +	.num_modes = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 1024,
-> +		.height = 768,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB565_1X16,
-> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-> +};
-> +
->   static const struct display_timing multi_inno_mi0700s4t_6_timing = {
->   	.pixelclock = { 29000000, 33000000, 38000000 },
->   	.hactive = { 800, 800, 800 },
-> @@ -4286,6 +4312,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "mitsubishi,aa070mc01-ca1",
->   		.data = &mitsubishi_aa070mc01,
-> +	}, {
-> +		.compatible = "mitsubishi,aa084xe01",
-> +		.data = &mitsubishi_aa084xe01,
->   	}, {
->   		.compatible = "multi-inno,mi0700s4t-6",
->   		.data = &multi_inno_mi0700s4t_6,
+Hi,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Mon, 07 Aug 2023 14:31:37 +0200, Miquel Raynal wrote:
+> Add Mitsubishi AA084XE01 8.4" XGA TFT LCD panel compatible string.
+> 
+> 
+
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+
+[1/2] dt-bindings: display: simple: Add Mitsubishi AA084XE01 panel
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=50b0cd7d3ac3e6cbd8873434eafc3076957bbdf7
+[2/2] drm/panel: simple: Add support for Mitsubishi AA084XE01
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=637d3fdc109a63ed3d3864b9ffe1ae50ef57d03e
+
+-- 
+Neil
+
