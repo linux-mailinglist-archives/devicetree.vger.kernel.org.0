@@ -2,59 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8053177BDCD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 18:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421F277BE2E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 18:37:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbjHNQT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 12:19:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
+        id S232516AbjHNQhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 12:37:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232460AbjHNQTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 12:19:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56B0E61;
-        Mon, 14 Aug 2023 09:19:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AE9A6425E;
-        Mon, 14 Aug 2023 16:19:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C6FFC433C7;
-        Mon, 14 Aug 2023 16:19:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692029947;
-        bh=1HXaR1YqLupXBHwp85bkyMqldMzywffwekLUEAu17lQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZQpOKl/8SHJMA4ovCGZI5y3v9Q2m5JuInPWTmDYCAFpKJo66441o5sowDMYYJV23v
-         PurzGhRTt6wWzVnit+s4Q7vQ6Sm/flka8NxVydQo+Bxi1E0/WcKEmbKxuubgQpP1HF
-         7pMboXgBFOPLezf+don9/x/Gt863YXBzOg79jbJzZXhXhd8btAf62gQBVDbJR4YojW
-         xCBdXZIFJaeG1etr3MgbT4zHjxhv1EMeUVp5nhnOATFf7fTh/mpyaLEaGbnvMNbYmZ
-         lYtGLoXh4N+taPt424ET5oKphQfFdG93LBakDyyDUBan3LsAZqhmGPQfr08iC/geQ2
-         kMiJJodjH+M7Q==
-Date:   Mon, 14 Aug 2023 17:19:01 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Eugen Hristev <eugen.hristev@collabora.com>
-Cc:     linux-mediatek@lists.infradead.org, chunfeng.yun@mediatek.com,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-        sam.shih@mediatek.com, jieyy.yang@mediatek.com,
-        frank-w@public-files.de, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, chris.obbard@collabora.com,
-        kernel@collabora.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek,tphy: allow simple
- nodename pattern
-Message-ID: <20230814-isolating-faceless-72835873207e@spud>
-References: <20230814093931.9298-1-eugen.hristev@collabora.com>
+        with ESMTP id S231520AbjHNQgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 12:36:48 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC3FD124;
+        Mon, 14 Aug 2023 09:36:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=s31663417; t=1692031005; x=1692635805; i=j.neuschaefer@gmx.net;
+ bh=arIfURks3B5Vf0o5lhr2f1M0B+uljezROcQ5CKR6D/E=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+ b=nfmnsPRajTRJ1BzFYln1wimrbHO+bDp/zu0MSB1j761DFiZlCwanNRA8LIX+fFtY+WzNSCH
+ rCEGZaWQIBn7HZRnXlgmae7GKn9tpJpT44/8attvVkNLiWZ6aqbjoK2nbDVINQx9z9THcMDYS
+ LtP+h+xZbbMqtN1wI31MqPzRGHoKQDNrwR/u2PtYZqnRDehF+VF/h3nmkXtQcDsq4G3/TK4KJ
+ JS62Ph5nS69Ha6PNMzNBIjI5wPHMaHWC4b8Jl5NqfIQk5P05UwD/1y4Nm//UgEdg8fB8br3Du
+ sDOl9MHLqwIJRZd2H16uL8IJ/V8LU2v8zwehBXlRATbd9Ffku1fg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([151.216.154.44]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MvK4f-1pf8PU3OhF-00rIfq; Mon, 14
+ Aug 2023 18:31:17 +0200
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Rob Herring <robh@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH v3] dt-bindings: leds: Fix reference to definition of default-state
+Date:   Mon, 14 Aug 2023 18:31:15 +0200
+Message-Id: <20230814163116.1696092-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="g/mf8JY5atzBFUNd"
-Content-Disposition: inline
-In-Reply-To: <20230814093931.9298-1-eugen.hristev@collabora.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:kyk89y2Os9QLpyXCC2oVuYUPrP479VWYGZotKMM8bkxf3w6FVWK
+ hi7hiGpR66ycC5GlXKavQ6gQXMVLsBadVvO4bzWVh+B003VzUpm2P+kihy6GySuCidEkzpu
+ vkp30foIyrle6MveHZWq/FExBT72OmEd1MQWQhtO3rRoPgRxKcbs7uVmgJM5dta5elxYD+B
+ qjBPOgMLxd3bxYCIWCqSg==
+UI-OutboundReport: notjunk:1;M01:P0:ral/hzWxdXI=;BOIVTbOJwvwtjSwJCW5QldncwLg
+ VkHKXjwDxm4oGec/cJqwGx/zxsjR7GJ4fRRApfR+jmfdkmLdmr8z10E/S3vc/EwtWMcRsMdzM
+ d1jhEMIoE9EvvfGDqB6l51N8JX2fe0OjtBfFYcMVVjR9v444SkTbn/kihau550qvWAQPaNaYL
+ qTHQwNq49DYlNtjYapiYDzwZsFKBakxtMzmzsORAQOqsU1i7FPv7J+DU2O5aTm855SCAtPjpT
+ JP8iVRg9rU1n4cd/fLS67E522roBcWsgbj01B9RF9cMMFqn4SL8dPgvMj1LYqcf43OeiuSw+d
+ XhPQXzKOJnZXAR9Ji561nmbPhpxHMKZQpTnjayNK3O9AOpvqtXDbuMHgu4lmEHFt1BYKf1wXV
+ DqNuv7Mi4IW/JBQgkrq5tPLjYUsp5pJu2wm+RwVS2j/8aPc5EDgYrndVsPmIUjgrCA9xdHtpy
+ 0hy3P9JKNy8w/QSRW7bS6jSMhN+uAkpeFZdQx4DT1jKmPs5CmqqmZ4EWB6cHwT7rL34Ez1Tda
+ 1c01eE2AG8wWKVmTAhKZebXoFHd9ofDsfJy6oUwTDZxMUKmHGsklv5vUf7qDzCgE01nCnYWcp
+ KznOtfV4hq9AS0y6GYAV4wQMtCcSxyBd9m89Wri/ED7OJdb6+ty8af3bh5XYIgyNN2bbTVbfU
+ 24jjm6mmCKbi34JKn3/ZFGFw2JN4StQGVCzYnTa26NSpFwKbkOUjOEXCV6dxSyB0ftatOIycY
+ YXOMApPt/Ci7pVtv3Cb+b9GFiHQZfl/QSbKFidwfq8f7OIj5rGizWz/WBkV623Q+F4nVLdju3
+ Wn+t1D2XuNngQlcMmYJcIOTEUD6lKVlq4CbY4BX5SDeZF7ZtRj7cLHNjJyCx1W/nvyhFs/7x0
+ i9/0KugoSMqd+lHHznIliTESUtQlO5BSzDqMzhSLXuuDsP5tX8f+TyqekjbVquXmnnaFP/XaD
+ Sg1AGtAK0k0JkIWDRJ22FKBzr4E=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,87 +72,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+At least since the YAML conversion, the default-state property is
+described in leds/common.yaml, so there's no need to point to another
+file for its definition.
 
---g/mf8JY5atzBFUNd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+Acked-by: Rob Herring <robh@kernel.org>
+=2D--
 
-On Mon, Aug 14, 2023 at 12:39:30PM +0300, Eugen Hristev wrote:
-> The pattern for the nodename only allows t-phy@... , however, for the case
-> when the t-phy has no `reg` and only `ranges` (basically when the t-phy
-> is just a parent node), dtc will throw this warning:
->=20
-> Warning (unit_address_vs_reg): /t-phy@1a243000: node has a unit name, but=
- no reg or ranges property
->=20
-> For a node like this:
->=20
-> 	sata_phy: t-phy@1a243000 {
-> 		ranges;
->=20
-> 		sata_port: sata-phy@1a243000 {
-> 			reg =3D <0 0x1a243000 0 0x0100>;
-> 		};
-> 	};
->=20
-> it is normal that the parent node 't-phy' would be without any address, a=
-s in:
->=20
-> 	sata_phy: t-phy {
-> 		ranges;
->=20
-> 		sata_port: sata-phy@1a243000 {
-> 			reg =3D <0 0x1a243000 0 0x0100>;
-> 		};
-> 	};
->=20
-> because being just a holder it does not have its own reg.
->=20
-> However the binding does not allow such a name for the t-phy, so with this
-> patch, making the `@[0-9a-f]+` part optional, such node is possible.
->=20
-> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+v3:
+- Rebase on v6.3-rc6
 
-This seems reasonable to me, perhaps the lads will scream.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+v2:
+- https://lore.kernel.org/lkml/20221008131918.1235397-1-j.neuschaefer@gmx.=
+net/
+- Add Rob's ACK
+- Rebase on Marek Vasut's patch in -next
+=2D--
+ Documentation/devicetree/bindings/leds/common.yaml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Thanks,
-Conor.
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Document=
+ation/devicetree/bindings/leds/common.yaml
+index 15e3f6645682e..c9b0dde44986c 100644
+=2D-- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -83,8 +83,7 @@ properties:
+       - enum:
+             # LED will act as a back-light, controlled by the framebuffer=
+ system
+           - backlight
+-            # LED will turn on (but for leds-gpio see "default-state" pro=
+perty in
+-            # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
++            # LED will turn on (see also "default-state" property)
+           - default-on
+             # LED "double" flashes at a load average based rate
+           - heartbeat
+=2D-
+2.39.2
 
-> ---
-> Changes in v2:
-> - none
->  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/D=
-ocumentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index 230a17f24966..2bb91542e984 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -64,7 +64,7 @@ description: |
-> =20
->  properties:
->    $nodename:
-> -    pattern: "^t-phy@[0-9a-f]+$"
-> +    pattern: "^t-phy(@[0-9a-f]+)?$"
-> =20
->    compatible:
->      oneOf:
-> --=20
-> 2.34.1
->=20
-
---g/mf8JY5atzBFUNd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNpT9QAKCRB4tDGHoIJi
-0jU2AP9qah5UHtzzFaDMKPLx4YhxWLbBsHowrT9XMVj560Z2twD9FGmBUyZvKKW2
-UNhseLnLrkSED1LMAEZNSFekdLZpGgk=
-=dvtZ
------END PGP SIGNATURE-----
-
---g/mf8JY5atzBFUNd--
