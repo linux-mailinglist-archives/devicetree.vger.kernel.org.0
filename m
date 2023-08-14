@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED03377C264
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 23:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5DE077C269
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 23:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232888AbjHNV3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232917AbjHNV3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 14 Aug 2023 17:29:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44380 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232941AbjHNV2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 17:28:48 -0400
+        with ESMTP id S232963AbjHNV2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 17:28:55 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94538B3;
-        Mon, 14 Aug 2023 14:28:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F99910D1;
+        Mon, 14 Aug 2023 14:28:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F254164373;
-        Mon, 14 Aug 2023 21:28:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98706C433C8;
-        Mon, 14 Aug 2023 21:28:41 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DFF3361752;
+        Mon, 14 Aug 2023 21:28:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87735C433C7;
+        Mon, 14 Aug 2023 21:28:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692048522;
-        bh=/gxSq0DKPVrkss5Rpnj9a5pJpxVTChYnikNmbjdmZhs=;
+        s=k20201202; t=1692048528;
+        bh=uYZSQqTyeMMPBRds4IzVNqKFF0jRMoMeopN62eV3Cbc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jXteMdnmYK4wYPxCaBt0IzXRJ6SUYqHdvinzUmkMCwOhRlpShW8HF99mDGjEMtBlH
-         n4nTe1khdqwzagqlyCEzGQj/YUPqea3jGuvwjVnARUleeV3P0EgbD6Ze+FOyQVLTd5
-         oJ3s7Ej3kIq6Ka6pSLJ58QLM6mZQB6JHLrUw07O3G/mL8ovIyyehKfobtme30TZKHS
-         Kx8OxiVotVYvb41AdwLYmwE9mCSLAaKKe6H+6ViYm0sdXqbrg0VHMAfYe98DIlcnnp
-         JkbbT1J4nGeOOgT1edAasO3TV23t56cEh49QkWrxxNzaav4XXnkjwvxkri/x0DW1TM
-         6Ek6mTRIInOaA==
+        b=MPXfuSYPNA0LIqG7O3j+Te9L3dUspKNaOEjKko0Wz/4tX6PfnxL1iLltW0d8DgdVh
+         0SlY4vJE8ulDBXDgyftvmb6/GPDA8gJlA1IMGYPN5lEqJ9/+ap+Ro2SwmxNhNAMkyN
+         GSWUYclhYmMbwx4+fMfzAbc1AghTsyqn8T3GhPWSuiSogkH+Ubqij6Uy3L+Q+k8PhO
+         8H0/Pt2kFxX6GwTfTDI1BMcX9u34B7NJr0m9pgjMPmNiptG5Li/cv5acy5ssJmzBgS
+         5VF37A/fPwYLC3loCMA6/z9HwyKHMCOJ4fFm1ZuXaoT8d3FFcAZqy11Y3Q+ePoFVFm
+         gw3JxLi20E1lA==
 From:   Bjorn Helgaas <helgaas@kernel.org>
 To:     Jonathan Corbet <corbet@lwn.net>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -40,9 +40,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
         Bjorn Helgaas <bhelgaas@google.com>
-Subject: [PATCH 2/3] dt-bindings: Fix typos
-Date:   Mon, 14 Aug 2023 16:28:21 -0500
-Message-Id: <20230814212822.193684-3-helgaas@kernel.org>
+Subject: [PATCH 3/3] Documentation: Fix typos
+Date:   Mon, 14 Aug 2023 16:28:22 -0500
+Message-Id: <20230814212822.193684-4-helgaas@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230814212822.193684-1-helgaas@kernel.org>
 References: <20230814212822.193684-1-helgaas@kernel.org>
@@ -61,2502 +61,2360 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bjorn Helgaas <bhelgaas@google.com>
 
-Fix typos in Documentation/devicetree/bindings.  The changes are in
-descriptions or comments where they shouldn't affect functionality.
+Fix typos in Documentation.
 
 Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml   |  4 ++--
- .../arm/marvell/cp110-system-controller.txt      |  8 ++++----
- .../bindings/arm/mediatek/mediatek,mipi0a.txt    |  2 +-
- .../bindings/arm/mediatek/mediatek,vcodecsys.txt |  2 +-
- Documentation/devicetree/bindings/arm/sunxi.yaml |  4 ++--
- .../devicetree/bindings/ata/pata-common.yaml     |  2 +-
- .../devicetree/bindings/bus/brcm,gisb-arb.yaml   |  2 +-
- .../bindings/bus/nvidia,tegra210-aconnect.yaml   |  4 ++--
- .../clock/allwinner,sun4i-a10-osc-clk.yaml       |  2 +-
- .../devicetree/bindings/clock/alphascale,acc.txt |  4 ++--
- .../devicetree/bindings/clock/keystone-pll.txt   |  2 +-
- .../devicetree/bindings/clock/lpc1850-ccu.txt    |  2 +-
- .../bindings/clock/lpc1850-creg-clk.txt          |  4 ++--
- .../devicetree/bindings/clock/maxim,max9485.txt  |  2 +-
- .../bindings/clock/qcom,gcc-sm8450.yaml          |  2 +-
- .../bindings/clock/qcom,kpss-acc-v1.yaml         |  2 +-
- .../bindings/clock/sprd,sc9863a-clk.yaml         |  2 +-
- .../devicetree/bindings/clock/ti/mux.txt         |  2 +-
- .../devicetree/bindings/clock/vf610-clock.txt    |  2 +-
- .../bindings/clock/xlnx,zynqmp-clk.txt           |  2 +-
- .../bindings/connector/usb-connector.yaml        |  2 +-
- .../devfreq/event/samsung,exynos-ppmu.yaml       |  2 +-
- .../bindings/display/atmel/hlcdc-dc.txt          |  2 +-
- .../display/bridge/snps,dw-mipi-dsi.yaml         |  2 +-
- .../bindings/display/cirrus,clps711x-fb.txt      |  2 +-
- .../bindings/display/msm/qcom,mdss.yaml          |  2 +-
- .../display/panel/olimex,lcd-olinuxino.yaml      |  2 +-
- .../bindings/display/panel/panel-common.yaml     |  2 +-
- .../display/tegra/nvidia,tegra124-sor.yaml       |  2 +-
- .../devicetree/bindings/dma/ingenic,dma.yaml     |  2 +-
- .../bindings/dma/nvidia,tegra20-apbdma.txt       |  2 +-
- .../devicetree/bindings/dma/qcom,bam-dma.yaml    |  2 +-
- .../bindings/dma/stericsson,dma40.yaml           |  2 +-
- .../devicetree/bindings/fpga/fpga-region.txt     |  4 ++--
- .../devicetree/bindings/gpio/gpio-xgene-sb.txt   |  2 +-
- .../bindings/gpio/snps,dw-apb-gpio.yaml          |  2 +-
- .../devicetree/bindings/gpio/ti,omap-gpio.yaml   |  4 ++--
- .../devicetree/bindings/hwmon/adi,adm1177.yaml   |  2 +-
- .../bindings/hwmon/adi,axi-fan-control.yaml      |  2 +-
- .../devicetree/bindings/hwmon/adi,ltc2992.yaml   |  2 +-
- .../bindings/hwmon/aspeed-pwm-tacho.txt          |  2 +-
- Documentation/devicetree/bindings/hwmon/lm87.txt |  2 +-
- .../devicetree/bindings/hwmon/ltq-cputemp.txt    |  2 +-
- .../bindings/hwmon/moortec,mr75203.yaml          |  2 +-
- .../bindings/hwmon/npcm750-pwm-fan.txt           |  2 +-
- .../bindings/hwmon/sensirion,shtc1.yaml          |  2 +-
- .../devicetree/bindings/hwmon/ti,tmp513.yaml     |  2 +-
- .../devicetree/bindings/hwmon/ti,tps23861.yaml   |  2 +-
- .../devicetree/bindings/i2c/i2c-sprd.txt         |  2 +-
- .../bindings/iio/adc/xlnx,zynqmp-ams.yaml        |  2 +-
- .../devicetree/bindings/iio/cdc/adi,ad7150.yaml  |  2 +-
- .../devicetree/bindings/iio/common.yaml          |  2 +-
- .../bindings/iio/frequency/adi,admv1014.yaml     |  2 +-
- .../bindings/iio/humidity/ti,hdc2010.yaml        |  2 +-
- .../iio/pressure/honeywell,mprls0025pa.yaml      |  2 +-
- .../bindings/iio/proximity/ams,as3935.yaml       |  2 +-
- .../devicetree/bindings/iio/st,st-sensors.yaml   |  2 +-
- .../bindings/input/rmi4/rmi_2d_sensor.txt        |  4 ++--
- .../bindings/input/touchscreen/stmpe.txt         |  2 +-
- .../bindings/input/touchscreen/tsc2007.txt       |  2 +-
- .../interrupt-controller/arm,gic-v3.yaml         |  2 +-
- .../brcm,bcm2835-armctrl-ic.txt                  |  2 +-
- .../brcm,bcm7120-l2-intc.yaml                    |  2 +-
- .../backlight/mediatek,mt6370-backlight.yaml     |  2 +-
- .../devicetree/bindings/leds/leds-lp55xx.yaml    |  4 ++--
- .../devicetree/bindings/leds/leds-qcom-lpg.yaml  |  2 +-
- .../bindings/mailbox/brcm,iproc-flexrm-mbox.txt  |  2 +-
- .../bindings/mailbox/ti,omap-mailbox.yaml        |  2 +-
- .../bindings/media/i2c/toshiba,tc358746.yaml     |  2 +-
- .../devicetree/bindings/media/i2c/tvp5150.txt    |  2 +-
- .../media/mediatek,vcodec-subdev-decoder.yaml    |  2 +-
- .../memory-controllers/mediatek,smi-larb.yaml    |  2 +-
- .../memory-controllers/rockchip,rk3399-dmc.yaml  |  4 ++--
- .../memory-controllers/xlnx,zynq-ddrc-a05.yaml   |  2 +-
- .../devicetree/bindings/mfd/aspeed-lpc.yaml      |  2 +-
- .../bindings/mfd/rohm,bd9576-pmic.yaml           |  4 ++--
- .../bindings/mfd/stericsson,ab8500.yaml          | 16 ++++++++--------
- .../bindings/mfd/stericsson,db8500-prcmu.yaml    |  2 +-
- .../devicetree/bindings/mmc/pxa-mmc.txt          |  2 +-
- .../devicetree/bindings/mmc/ti-omap-hsmmc.txt    |  2 +-
- .../bindings/net/brcm,bcm7445-switch-v4.0.txt    |  2 +-
- .../devicetree/bindings/net/can/cc770.txt        |  2 +-
- .../devicetree/bindings/net/dsa/brcm,sf2.yaml    |  2 +-
- .../devicetree/bindings/net/ethernet-phy.yaml    |  2 +-
- .../devicetree/bindings/net/mediatek-dwmac.yaml  |  2 +-
- .../bindings/net/microchip,lan95xx.yaml          |  2 +-
- .../devicetree/bindings/net/nfc/marvell,nci.yaml |  4 ++--
- .../devicetree/bindings/net/samsung-sxgbe.txt    |  4 ++--
- .../bindings/net/snps,dwc-qos-ethernet.txt       |  2 +-
- .../devicetree/bindings/net/sti-dwmac.txt        |  2 +-
- .../bindings/net/xilinx_gmii2rgmii.txt           |  2 +-
- .../devicetree/bindings/nios2/nios2.txt          |  2 +-
- .../bindings/nvmem/layouts/onie,tlv-layout.yaml  |  2 +-
- .../bindings/phy/phy-hisi-inno-usb2.txt          |  2 +-
- .../bindings/phy/pistachio-usb-phy.txt           |  2 +-
- .../devicetree/bindings/phy/pxa1928-usb-phy.txt  |  2 +-
- .../bindings/phy/rockchip-inno-csi-dphy.yaml     |  2 +-
- .../bindings/phy/ti,phy-j721e-wiz.yaml           |  2 +-
- Documentation/devicetree/bindings/phy/ti-phy.txt |  2 +-
- .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml     |  2 +-
- .../bindings/pinctrl/canaan,k210-fpioa.yaml      |  2 +-
- .../pinctrl/mediatek,mt6779-pinctrl.yaml         |  2 +-
- .../pinctrl/mediatek,mt6795-pinctrl.yaml         |  2 +-
- .../pinctrl/mediatek,mt7981-pinctrl.yaml         |  4 ++--
- .../pinctrl/mediatek,mt7986-pinctrl.yaml         |  4 ++--
- .../pinctrl/mediatek,mt8183-pinctrl.yaml         |  2 +-
- .../pinctrl/mediatek,mt8365-pinctrl.yaml         |  2 +-
- .../bindings/pinctrl/pinctrl-max77620.txt        |  2 +-
- .../bindings/pinctrl/pinctrl-rk805.txt           |  2 +-
- .../devicetree/bindings/pinctrl/sprd,pinctrl.txt |  2 +-
- .../devicetree/bindings/pmem/pmem-region.txt     |  4 ++--
- .../bindings/power/renesas,sysc-rmobile.yaml     |  2 +-
- .../bindings/power/supply/sbs,sbs-manager.yaml   |  2 +-
- .../devicetree/bindings/powerpc/fsl/cpus.txt     |  2 +-
- .../devicetree/bindings/powerpc/fsl/dcsr.txt     |  4 ++--
- .../devicetree/bindings/powerpc/fsl/raideng.txt  |  2 +-
- .../bindings/powerpc/nintendo/gamecube.txt       |  2 +-
- .../devicetree/bindings/powerpc/nintendo/wii.txt |  2 +-
- .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml    |  2 +-
- .../bindings/regulator/regulator-max77620.txt    |  2 +-
- .../devicetree/bindings/regulator/regulator.yaml |  8 ++++----
- .../regulator/richtek,rt5190a-regulator.yaml     |  2 +-
- .../devicetree/bindings/regulator/vctrl.txt      |  2 +-
- .../bindings/remoteproc/ti,k3-r5f-rproc.yaml     |  2 +-
- .../bindings/reset/ti-syscon-reset.txt           |  2 +-
- .../devicetree/bindings/rng/omap_rng.yaml        |  4 ++--
- .../devicetree/bindings/rtc/rtc-cmos.txt         |  2 +-
- .../bindings/serial/nvidia,tegra20-hsuart.txt    |  2 +-
- .../devicetree/bindings/serial/st-asc.txt        |  2 +-
- .../soc/mediatek/mediatek,mt7986-wo-ccif.yaml    |  2 +-
- .../microchip/microchip,mpfs-sys-controller.yaml |  2 +-
- .../bindings/soc/qcom/qcom,aoss-qmp.yaml         |  2 +-
- .../bindings/sound/axentia,tse850-pcm5142.txt    |  2 +-
- .../devicetree/bindings/sound/cs35l35.txt        |  2 +-
- .../devicetree/bindings/sound/cs35l36.txt        |  2 +-
- .../devicetree/bindings/sound/cs53l30.txt        |  2 +-
- .../devicetree/bindings/sound/fsl,esai.txt       |  2 +-
- .../bindings/sound/mediatek,mt8188-afe.yaml      |  2 +-
- .../devicetree/bindings/sound/mt2701-afe-pcm.txt |  2 +-
- .../bindings/sound/mt8195-afe-pcm.yaml           |  4 ++--
- .../bindings/sound/qcom,msm8916-wcd-analog.txt   |  2 +-
- .../devicetree/bindings/sound/renesas,rsnd.txt   |  2 +-
- .../sound/rockchip,rk3288-hdmi-analog.txt        |  2 +-
- .../devicetree/bindings/sound/rt5663.txt         |  2 +-
- .../devicetree/bindings/sound/serial-midi.yaml   |  2 +-
- .../devicetree/bindings/sound/sprd-pcm.txt       |  2 +-
- .../devicetree/bindings/sound/st,stm32-sai.yaml  |  2 +-
- .../bindings/sound/ti,j721e-cpb-ivi-audio.yaml   |  2 +-
- .../devicetree/bindings/sound/ti,tas2781.yaml    |  2 +-
- .../devicetree/bindings/sound/tlv320adcx140.yaml |  2 +-
- .../bindings/soundwire/qcom,soundwire.yaml       |  4 ++--
- .../bindings/spi/brcm,bcm2835-aux-spi.txt        |  4 ++--
- .../bindings/spi/brcm,spi-bcm-qspi.yaml          |  4 ++--
- .../devicetree/bindings/spi/omap-spi.yaml        |  2 +-
- .../thermal/nvidia,tegra124-soctherm.txt         |  2 +-
- .../devicetree/bindings/timer/snps,arc-timer.txt |  2 +-
- .../devicetree/bindings/trivial-devices.yaml     |  8 ++++----
- .../devicetree/bindings/usb/ci-hdrc-usb2.yaml    |  2 +-
- .../devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml |  2 +-
- .../devicetree/bindings/usb/msm-hsusb.txt        |  2 +-
- .../devicetree/bindings/usb/richtek,rt1719.yaml  |  2 +-
- 161 files changed, 199 insertions(+), 199 deletions(-)
+ .../admin-guide/kernel-parameters.txt         |  2 +-
+ Documentation/admin-guide/mm/damon/usage.rst  |  4 +--
+ .../admin-guide/mm/numa_memory_policy.rst     |  2 +-
+ Documentation/admin-guide/module-signing.rst  |  2 +-
+ Documentation/admin-guide/xfs.rst             |  2 +-
+ Documentation/arch/arm/arm.rst                |  2 +-
+ Documentation/arch/arm/ixp4xx.rst             |  4 +--
+ Documentation/arch/arm/sunxi/clocks.rst       |  2 +-
+ Documentation/arch/arm/swp_emulation.rst      |  2 +-
+ Documentation/arch/arm/tcm.rst                |  2 +-
+ Documentation/arch/arm/vlocks.rst             |  2 +-
+ .../arch/arm64/acpi_object_usage.rst          |  2 +-
+ Documentation/arch/arm64/arm-acpi.rst         |  2 +-
+ Documentation/arch/openrisc/openrisc_port.rst |  4 +--
+ Documentation/arch/x86/boot.rst               |  2 +-
+ Documentation/arch/x86/buslock.rst            |  2 +-
+ Documentation/arch/x86/mds.rst                |  2 +-
+ Documentation/arch/x86/sgx.rst                |  2 +-
+ Documentation/arch/xtensa/atomctl.rst         |  2 +-
+ Documentation/block/data-integrity.rst        |  2 +-
+ Documentation/block/ublk.rst                  |  2 +-
+ Documentation/bpf/cpumasks.rst                |  2 +-
+ Documentation/bpf/graph_ds_impl.rst           |  2 +-
+ .../fault-injection/fault-injection.rst       |  2 +-
+ Documentation/fb/deferred_io.rst              |  2 +-
+ Documentation/fb/sm712fb.rst                  |  2 +-
+ Documentation/fb/sstfb.rst                    |  2 +-
+ .../core/thread-info-in-task/arch-support.txt |  2 +-
+ Documentation/filesystems/9p.rst              |  2 +-
+ Documentation/filesystems/befs.rst            |  4 +--
+ .../filesystems/caching/cachefiles.rst        |  2 +-
+ .../filesystems/caching/netfs-api.rst         |  6 ++---
+ Documentation/filesystems/configfs.rst        |  2 +-
+ Documentation/filesystems/dax.rst             |  2 +-
+ Documentation/filesystems/devpts.rst          |  4 +--
+ Documentation/filesystems/ext4/super.rst      |  2 +-
+ Documentation/filesystems/f2fs.rst            |  6 ++---
+ Documentation/filesystems/gfs2-glocks.rst     |  2 +-
+ Documentation/filesystems/idmappings.rst      | 14 +++++-----
+ Documentation/filesystems/netfs_library.rst   |  2 +-
+ .../filesystems/nfs/client-identifier.rst     |  2 +-
+ Documentation/filesystems/nfs/rpc-cache.rst   |  2 +-
+ .../filesystems/nfs/rpc-server-gss.rst        |  2 +-
+ Documentation/filesystems/nilfs2.rst          |  2 +-
+ Documentation/filesystems/ntfs3.rst           |  2 +-
+ Documentation/filesystems/orangefs.rst        |  2 +-
+ Documentation/filesystems/overlayfs.rst       |  4 +--
+ Documentation/filesystems/porting.rst         |  6 ++---
+ Documentation/filesystems/proc.rst            | 12 ++++-----
+ Documentation/filesystems/qnx6.rst            |  2 +-
+ Documentation/filesystems/seq_file.rst        |  4 +--
+ .../filesystems/ubifs-authentication.rst      |  2 +-
+ Documentation/filesystems/vfat.rst            |  2 +-
+ Documentation/filesystems/vfs.rst             |  2 +-
+ .../filesystems/xfs-online-fsck-design.rst    | 20 +++++++-------
+ Documentation/filesystems/zonefs.rst          |  2 +-
+ Documentation/firmware-guide/acpi/osi.rst     |  2 +-
+ .../gpu/amdgpu/display/mpo-overview.rst       |  2 +-
+ Documentation/gpu/drm-kms-helpers.rst         |  2 +-
+ Documentation/gpu/drm-kms.rst                 |  6 ++---
+ Documentation/gpu/drm-usage-stats.rst         |  4 +--
+ Documentation/gpu/i915.rst                    |  4 +--
+ Documentation/gpu/kms-properties.csv          |  2 +-
+ Documentation/gpu/komeda-kms.rst              |  4 +--
+ Documentation/gpu/msm-crash-dump.rst          |  2 +-
+ Documentation/gpu/rfc/i915_scheduler.rst      |  2 +-
+ Documentation/gpu/rfc/i915_vm_bind.rst        |  2 +-
+ Documentation/gpu/todo.rst                    |  8 +++---
+ Documentation/hwmon/pmbus-core.rst            |  2 +-
+ .../input/devices/iforce-protocol.rst         |  2 +-
+ Documentation/input/multi-touch-protocol.rst  |  2 +-
+ .../livepatch/reliable-stacktrace.rst         |  2 +-
+ Documentation/locking/lockdep-design.rst      |  4 +--
+ Documentation/locking/locktorture.rst         |  2 +-
+ Documentation/locking/locktypes.rst           |  2 +-
+ Documentation/mm/hmm.rst                      |  2 +-
+ Documentation/mm/hwpoison.rst                 |  2 +-
+ Documentation/mm/page_migration.rst           |  2 +-
+ Documentation/mm/unevictable-lru.rst          |  2 +-
+ Documentation/mm/vmemmap_dedup.rst            |  2 +-
+ Documentation/netlink/genetlink-c.yaml        |  2 +-
+ Documentation/netlink/genetlink-legacy.yaml   |  2 +-
+ Documentation/networking/bonding.rst          |  2 +-
+ .../networking/devlink/devlink-port.rst       |  6 ++---
+ Documentation/networking/packet_mmap.rst      |  2 +-
+ Documentation/power/energy-model.rst          |  4 +--
+ Documentation/powerpc/dscr.rst                |  2 +-
+ Documentation/powerpc/kasan.txt               |  2 +-
+ Documentation/powerpc/papr_hcalls.rst         |  2 +-
+ Documentation/powerpc/qe_firmware.rst         |  4 +--
+ Documentation/powerpc/vas-api.rst             |  4 +--
+ Documentation/process/botching-up-ioctls.rst  |  2 +-
+ Documentation/process/kernel-docs.rst         |  2 +-
+ Documentation/riscv/hwprobe.rst               |  4 +--
+ Documentation/riscv/vector.rst                |  2 +-
+ Documentation/s390/vfio-ap.rst                |  2 +-
+ Documentation/scheduler/sched-bwc.rst         |  2 +-
+ Documentation/scheduler/sched-energy.rst      |  4 +--
+ Documentation/scsi/ChangeLog.lpfc             |  2 +-
+ Documentation/security/digsig.rst             |  2 +-
+ Documentation/security/keys/core.rst          |  2 +-
+ Documentation/security/secrets/coco.rst       |  2 +-
+ Documentation/sphinx/cdomain.py               |  2 +-
+ Documentation/spi/spi-lm70llp.rst             |  2 +-
+ .../tools/rtla/rtla-timerlat-top.rst          |  2 +-
+ .../coresight/coresight-etm4x-reference.rst   |  2 +-
+ Documentation/trace/events.rst                |  6 ++---
+ Documentation/trace/fprobe.rst                |  2 +-
+ Documentation/trace/ftrace.rst                |  2 +-
+ Documentation/trace/hwlat_detector.rst        |  2 +-
+ .../trace/rv/da_monitor_synthesis.rst         |  2 +-
+ Documentation/trace/rv/monitor_wwnr.rst       |  2 +-
+ .../trace/rv/runtime-verification.rst         |  2 +-
+ Documentation/trace/uprobetracer.rst          |  2 +-
+ Documentation/trace/user_events.rst           |  2 +-
+ Documentation/usb/gadget_uvc.rst              |  2 +-
+ .../media/v4l/ext-ctrls-codec-stateless.rst   |  2 +-
+ .../userspace-api/media/v4l/metafmt-d4xx.rst  |  2 +-
+ Documentation/userspace-api/netlink/intro.rst |  2 +-
+ Documentation/virt/hyperv/clocks.rst          |  2 +-
+ Documentation/virt/kvm/api.rst                | 26 +++++++++----------
+ Documentation/virt/kvm/devices/vm.rst         |  2 +-
+ Documentation/virt/kvm/devices/xive.rst       |  2 +-
+ Documentation/virt/kvm/halt-polling.rst       |  2 +-
+ Documentation/virt/kvm/x86/mmu.rst            |  2 +-
+ .../virt/kvm/x86/running-nested-guests.rst    |  2 +-
+ .../virt/uml/user_mode_linux_howto_v2.rst     |  2 +-
+ Documentation/w1/slaves/w1_therm.rst          |  2 +-
+ Documentation/w1/w1-generic.rst               |  2 +-
+ Documentation/w1/w1-netlink.rst               |  2 +-
+ .../watchdog/watchdog-kernel-api.rst          |  2 +-
+ Documentation/wmi/devices/dell-wmi-ddv.rst    |  4 +--
+ 132 files changed, 196 insertions(+), 196 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 2510eaa8906d..9c29fdf63332 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1222,9 +1222,9 @@ properties:
-       - description:
-           Freescale Vybrid Platform Device Tree Bindings
+diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+index a1457995fd41..6a2feec63d17 100644
+--- a/Documentation/admin-guide/kernel-parameters.txt
++++ b/Documentation/admin-guide/kernel-parameters.txt
+@@ -2624,7 +2624,7 @@
  
--          For the Vybrid SoC familiy all variants with DDR controller are supported,
-+          For the Vybrid SoC family all variants with DDR controller are supported,
-           which is the VF5xx and VF6xx series. Out of historical reasons, in most
--          places the kernel uses vf610 to refer to the whole familiy.
-+          places the kernel uses vf610 to refer to the whole family.
-           The compatible string "fsl,vf610m4" is used for the secondary Cortex-M4
-           core support.
-         items:
-diff --git a/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-index d84105c7c935..9d5d70c98058 100644
---- a/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-+++ b/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-@@ -21,13 +21,13 @@ The Device Tree node representing this System Controller 0 provides a
- number of clocks:
+ 	kvm-intel.flexpriority=
+ 			[KVM,Intel] Control KVM's use of FlexPriority feature
+-			(TPR shadow). Default is 1 (enabled). Disalbe by KVM if
++			(TPR shadow). Default is 1 (enabled). Disable by KVM if
+ 			hardware lacks support for it.
  
-  - a set of core clocks
-- - a set of gatable clocks
-+ - a set of gateable clocks
+ 	kvm-intel.nested=
+diff --git a/Documentation/admin-guide/mm/damon/usage.rst b/Documentation/admin-guide/mm/damon/usage.rst
+index 2d495fa85a0e..37cbc5c0a2ab 100644
+--- a/Documentation/admin-guide/mm/damon/usage.rst
++++ b/Documentation/admin-guide/mm/damon/usage.rst
+@@ -99,7 +99,7 @@ Root
  
- Those clocks can be referenced by other Device Tree nodes using two
- cells:
-  - The first cell must be 0 or 1. 0 for the core clocks and 1 for the
--   gatable clocks.
-- - The second cell identifies the particular core clock or gatable
-+   gateable clocks.
-+ - The second cell identifies the particular core clock or gateable
-    clocks.
+ The root of the DAMON sysfs interface is ``<sysfs>/kernel/mm/damon/``, and it
+ has one directory named ``admin``.  The directory contains the files for
+-privileged user space programs' control of DAMON.  User space tools or deamons
++privileged user space programs' control of DAMON.  User space tools or daemons
+ having the root permission could use this directory.
  
- The following clocks are available:
-@@ -38,7 +38,7 @@ The following clocks are available:
-    - 0 3	Core
-    - 0 4	NAND core
-    - 0 5	SDIO core
-- - Gatable clocks
-+ - Gateable clocks
-    - 1 0	Audio
-    - 1 1	Comm Unit
-    - 1 2	NAND
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mipi0a.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mipi0a.txt
-index 8be5978f388d..1c671943ce4d 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mipi0a.txt
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mipi0a.txt
-@@ -16,7 +16,7 @@ The available clocks are defined in dt-bindings/clock/mt*-clk.h.
+ kdamonds/
+@@ -397,7 +397,7 @@ be used for online analysis or tuning of the schemes.
+ The statistics can be retrieved by reading the files under ``stats`` directory
+ (``nr_tried``, ``sz_tried``, ``nr_applied``, ``sz_applied``, and
+ ``qt_exceeds``), respectively.  The files are not updated in real time, so you
+-should ask DAMON sysfs interface to updte the content of the files for the
++should ask DAMON sysfs interface to update the content of the files for the
+ stats by writing a special keyword, ``update_schemes_stats`` to the relevant
+ ``kdamonds/<N>/state`` file.
  
- The mipi0a controller also uses the common power domain from
- Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
--The available power doamins are defined in dt-bindings/power/mt*-power.h.
-+The available power domains are defined in dt-bindings/power/mt*-power.h.
+diff --git a/Documentation/admin-guide/mm/numa_memory_policy.rst b/Documentation/admin-guide/mm/numa_memory_policy.rst
+index 46515ad2337f..eca38fa81e0f 100644
+--- a/Documentation/admin-guide/mm/numa_memory_policy.rst
++++ b/Documentation/admin-guide/mm/numa_memory_policy.rst
+@@ -109,7 +109,7 @@ VMA Policy
+ 	* A task may install a new VMA policy on a sub-range of a
+ 	  previously mmap()ed region.  When this happens, Linux splits
+ 	  the existing virtual memory area into 2 or 3 VMAs, each with
+-	  it's own policy.
++	  its own policy.
  
- Example:
+ 	* By default, VMA policy applies only to pages allocated after
+ 	  the policy is installed.  Any pages already faulted into the
+diff --git a/Documentation/admin-guide/module-signing.rst b/Documentation/admin-guide/module-signing.rst
+index 7d7c7c8a545c..2898b2703297 100644
+--- a/Documentation/admin-guide/module-signing.rst
++++ b/Documentation/admin-guide/module-signing.rst
+@@ -266,7 +266,7 @@ for which it has a public key.   Otherwise, it will also load modules that are
+ unsigned.   Any module for which the kernel has a key, but which proves to have
+ a signature mismatch will not be permitted to load.
  
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,vcodecsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,vcodecsys.txt
-index c877bcc1a5c5..f090147b7f1e 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,vcodecsys.txt
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,vcodecsys.txt
-@@ -15,7 +15,7 @@ The available clocks are defined in dt-bindings/clock/mt*-clk.h.
+-Any module that has an unparseable signature will be rejected.
++Any module that has an unparsable signature will be rejected.
  
- The vcodecsys controller also uses the common power domain from
- Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
--The available power doamins are defined in dt-bindings/power/mt*-power.h.
-+The available power domains are defined in dt-bindings/power/mt*-power.h.
  
- Example:
+ =========================================
+diff --git a/Documentation/admin-guide/xfs.rst b/Documentation/admin-guide/xfs.rst
+index 3a9c041d7f6c..b67772cf36d6 100644
+--- a/Documentation/admin-guide/xfs.rst
++++ b/Documentation/admin-guide/xfs.rst
+@@ -192,7 +192,7 @@ When mounting an XFS filesystem, the following options are accepted.
+ 	are any integer multiple of a valid ``sunit`` value.
  
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index ee8fdd2da869..b2a22060e4d5 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -541,13 +541,13 @@ properties:
-           - const: msi,primo81
-           - const: allwinner,sun6i-a31s
+ 	Typically the only time these mount options are necessary if
+-	after an underlying RAID device has had it's geometry
++	after an underlying RAID device has had its geometry
+ 	modified, such as adding a new disk to a RAID5 lun and
+ 	reshaping it.
  
--      - description: Emlid Neutis N5 Developper Board
-+      - description: Emlid Neutis N5 Developer Board
-         items:
-           - const: emlid,neutis-n5-devboard
-           - const: emlid,neutis-n5
-           - const: allwinner,sun50i-h5
+diff --git a/Documentation/arch/arm/arm.rst b/Documentation/arch/arm/arm.rst
+index 99d660fdf73f..7b41b89dd9bd 100644
+--- a/Documentation/arch/arm/arm.rst
++++ b/Documentation/arch/arm/arm.rst
+@@ -141,7 +141,7 @@ ST506 hard drives
+   `*configure` harddrive set to 2). I've got an internal 20MB and a great
+   big external 5.25" FH 64MB drive (who could ever want more :-) ).
  
--      - description: Emlid Neutis N5H3 Developper Board
-+      - description: Emlid Neutis N5H3 Developer Board
-         items:
-           - const: emlid,neutis-n5h3-devboard
-           - const: emlid,neutis-n5h3
-diff --git a/Documentation/devicetree/bindings/ata/pata-common.yaml b/Documentation/devicetree/bindings/ata/pata-common.yaml
-index 2412894a255d..337ddf1113c4 100644
---- a/Documentation/devicetree/bindings/ata/pata-common.yaml
-+++ b/Documentation/devicetree/bindings/ata/pata-common.yaml
-@@ -12,7 +12,7 @@ maintainers:
- description: |
-   This document defines device tree properties common to most Parallel
-   ATA (PATA, also known as IDE) AT attachment storage devices.
--  It doesn't constitue a device tree binding specification by itself but is
-+  It doesn't constitute a device tree binding specification by itself but is
-   meant to be referenced by device tree bindings.
+-  I've just got 240K/s off it (a dd with bs=128k); thats about half of what
++  I've just got 240K/s off it (a dd with bs=128k); that's about half of what
+   RiscOS gets; but it's a heck of a lot better than the 50K/s I was getting
+   last week :-)
  
-   The PATA (IDE) controller-specific device tree bindings are responsible for
-diff --git a/Documentation/devicetree/bindings/bus/brcm,gisb-arb.yaml b/Documentation/devicetree/bindings/bus/brcm,gisb-arb.yaml
-index b23c3001991e..3aaefdbe361e 100644
---- a/Documentation/devicetree/bindings/bus/brcm,gisb-arb.yaml
-+++ b/Documentation/devicetree/bindings/bus/brcm,gisb-arb.yaml
-@@ -43,7 +43,7 @@ properties:
-   brcm,gisb-arb-master-names:
-     $ref: /schemas/types.yaml#/definitions/string-array
-     description: >
--      String list of the litteral name of the GISB masters. Should match the
-+      String list of the literal name of the GISB masters. Should match the
-       number of bits set in brcm,gisb-master-mask and the order in which they
-       appear from MSB to LSB.
+diff --git a/Documentation/arch/arm/ixp4xx.rst b/Documentation/arch/arm/ixp4xx.rst
+index a57235616294..17aafc610908 100644
+--- a/Documentation/arch/arm/ixp4xx.rst
++++ b/Documentation/arch/arm/ixp4xx.rst
+@@ -78,9 +78,9 @@ IXP4xx provides two methods of accessing PCI memory space:
+ 1) A direct mapped window from 0x48000000 to 0x4bffffff (64MB).
+    To access PCI via this space, we simply ioremap() the BAR
+    into the kernel and we can use the standard read[bwl]/write[bwl]
+-   macros. This is the preffered method due to speed but it
++   macros. This is the preferred method due to speed but it
+    limits the system to just 64MB of PCI memory. This can be
+-   problamatic if using video cards and other memory-heavy devices.
++   problematic if using video cards and other memory-heavy devices.
  
-diff --git a/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
-index 4157e885c6e7..26362c9006e2 100644
---- a/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
-+++ b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
-@@ -7,10 +7,10 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: NVIDIA Tegra ACONNECT Bus
+ 2) If > 64MB of memory space is required, the IXP4xx can be
+    configured to use indirect registers to access PCI This allows
+diff --git a/Documentation/arch/arm/sunxi/clocks.rst b/Documentation/arch/arm/sunxi/clocks.rst
+index 23bd03f3e21f..dfe6d4887210 100644
+--- a/Documentation/arch/arm/sunxi/clocks.rst
++++ b/Documentation/arch/arm/sunxi/clocks.rst
+@@ -5,7 +5,7 @@ Frequently asked questions about the sunxi clock system
+ This document contains useful bits of information that people tend to ask
+ about the sunxi clock system, as well as accompanying ASCII art when adequate.
  
- description: |
--  The Tegra ACONNECT bus is an AXI switch which is used to connnect various
-+  The Tegra ACONNECT bus is an AXI switch which is used to connect various
-   components inside the Audio Processing Engine (APE). All CPU accesses to
-   the APE subsystem go through the ACONNECT via an APB to AXI wrapper. All
--  devices accessed via the ACONNNECT are described by child-nodes.
-+  devices accessed via the ACONNECT are described by child-nodes.
+-Q: Why is the main 24MHz oscillator gatable? Wouldn't that break the
++Q: Why is the main 24MHz oscillator gateable? Wouldn't that break the
+    system?
  
- maintainers:
-   - Jon Hunter <jonathanh@nvidia.com>
-diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-osc-clk.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-osc-clk.yaml
-index 52a7b6e7124c..0052bf1e8a6b 100644
---- a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-osc-clk.yaml
-+++ b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-osc-clk.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/clock/allwinner,sun4i-a10-osc-clk.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Allwinner A10 Gatable Oscillator Clock
-+title: Allwinner A10 Gateable Oscillator Clock
- 
- maintainers:
-   - Chen-Yu Tsai <wens@csie.org>
-diff --git a/Documentation/devicetree/bindings/clock/alphascale,acc.txt b/Documentation/devicetree/bindings/clock/alphascale,acc.txt
-index b3205b21c9d0..c9fb9324c634 100644
---- a/Documentation/devicetree/bindings/clock/alphascale,acc.txt
-+++ b/Documentation/devicetree/bindings/clock/alphascale,acc.txt
+ A: The 24MHz oscillator allows gating to save power. Indeed, if gated
+diff --git a/Documentation/arch/arm/swp_emulation.rst b/Documentation/arch/arm/swp_emulation.rst
+index 6a608a9c3715..bf205e3de36e 100644
+--- a/Documentation/arch/arm/swp_emulation.rst
++++ b/Documentation/arch/arm/swp_emulation.rst
 @@ -1,7 +1,7 @@
- Alphascale Clock Controller
+ Software emulation of deprecated SWP instruction (CONFIG_SWP_EMULATE)
+ ---------------------------------------------------------------------
  
--The ACC (Alphascale Clock Controller) is responsible of choising proper
--clock source, setting deviders and clock gates.
-+The ACC (Alphascale Clock Controller) is responsible for choosing proper
-+clock source, setting dividers and clock gates.
+-ARMv6 architecture deprecates use of the SWP/SWPB instructions, and recommeds
++ARMv6 architecture deprecates use of the SWP/SWPB instructions, and recommends
+ moving to the load-locked/store-conditional instructions LDREX and STREX.
  
- Required properties for the ACC node:
-  - compatible: must be "alphascale,asm9260-clock-controller"
-diff --git a/Documentation/devicetree/bindings/clock/keystone-pll.txt b/Documentation/devicetree/bindings/clock/keystone-pll.txt
-index 47570d207215..9a3fbc665606 100644
---- a/Documentation/devicetree/bindings/clock/keystone-pll.txt
-+++ b/Documentation/devicetree/bindings/clock/keystone-pll.txt
-@@ -14,7 +14,7 @@ Required properties:
- - #clock-cells : from common clock binding; shall be set to 0.
- - compatible : shall be "ti,keystone,main-pll-clock" or "ti,keystone,pll-clock"
- - clocks : parent clock phandle
--- reg - pll control0 and pll multipler registers
-+- reg - pll control0 and pll multiplier registers
- - reg-names : control, multiplier and post-divider. The multiplier and
- 		post-divider registers are applicable only for main pll clock
- - fixed-postdiv : fixed post divider value. If absent, use clkod register bits
-diff --git a/Documentation/devicetree/bindings/clock/lpc1850-ccu.txt b/Documentation/devicetree/bindings/clock/lpc1850-ccu.txt
-index fa97c12014ac..8cf8f0ecdd16 100644
---- a/Documentation/devicetree/bindings/clock/lpc1850-ccu.txt
-+++ b/Documentation/devicetree/bindings/clock/lpc1850-ccu.txt
-@@ -68,7 +68,7 @@ soc {
- 			      "base_ssp0_clk",  "base_sdio_clk";
- 	};
+ ARMv7 multiprocessing extensions introduce the ability to disable these
+diff --git a/Documentation/arch/arm/tcm.rst b/Documentation/arch/arm/tcm.rst
+index 1dc6c39220f9..7ce17a248af9 100644
+--- a/Documentation/arch/arm/tcm.rst
++++ b/Documentation/arch/arm/tcm.rst
+@@ -71,7 +71,7 @@ in <asm/tcm.h>. Using this interface it is possible to:
  
--	/* A user of CCU brach clocks */
-+	/* A user of CCU branch clocks */
- 	uart1: serial@40082000 {
- 		...
- 		clocks = <&ccu2 CLK_APB0_UART1>, <&ccu1 CLK_CPU_UART1>;
-diff --git a/Documentation/devicetree/bindings/clock/lpc1850-creg-clk.txt b/Documentation/devicetree/bindings/clock/lpc1850-creg-clk.txt
-index 6f1c7b4e4d2c..b6b2547a3d17 100644
---- a/Documentation/devicetree/bindings/clock/lpc1850-creg-clk.txt
-+++ b/Documentation/devicetree/bindings/clock/lpc1850-creg-clk.txt
-@@ -5,8 +5,8 @@ control registers for two low speed clocks. One of the clocks is a
- 32 kHz oscillator driver with power up/down and clock gating. Next
- is a fixed divider that creates a 1 kHz clock from the 32 kHz osc.
+ - Have the remaining TCM RAM added to a special
+   allocation pool with gen_pool_create() and gen_pool_add()
+-  and provice tcm_alloc() and tcm_free() for this
++  and provide tcm_alloc() and tcm_free() for this
+   memory. Such a heap is great for things like saving
+   device state when shutting off device power domains.
  
--These clocks are used by the RTC and the Event Router peripherials.
--The 32 kHz can also be routed to other peripherials to enable low
-+These clocks are used by the RTC and the Event Router peripherals.
-+The 32 kHz can also be routed to other peripherals to enable low
- power modes.
+diff --git a/Documentation/arch/arm/vlocks.rst b/Documentation/arch/arm/vlocks.rst
+index a40a1742110b..737aa8661a21 100644
+--- a/Documentation/arch/arm/vlocks.rst
++++ b/Documentation/arch/arm/vlocks.rst
+@@ -155,7 +155,7 @@ the basic algorithm:
+    optimisation.
  
- This binding uses the common clock binding:
-diff --git a/Documentation/devicetree/bindings/clock/maxim,max9485.txt b/Documentation/devicetree/bindings/clock/maxim,max9485.txt
-index 61bec1100a94..b8f5c3bbf12b 100644
---- a/Documentation/devicetree/bindings/clock/maxim,max9485.txt
-+++ b/Documentation/devicetree/bindings/clock/maxim,max9485.txt
-@@ -12,7 +12,7 @@ requests.
+    If there are too many CPUs to read the currently_voting array in
+-   one transaction then multiple transations are still required.  The
++   one transaction then multiple transactions are still required.  The
+    implementation uses a simple loop of word-sized loads for this
+    case.  The number of transactions is still fewer than would be
+    required if bytes were loaded individually.
+diff --git a/Documentation/arch/arm64/acpi_object_usage.rst b/Documentation/arch/arm64/acpi_object_usage.rst
+index 1da22200fdf8..06d8a87971ef 100644
+--- a/Documentation/arch/arm64/acpi_object_usage.rst
++++ b/Documentation/arch/arm64/acpi_object_usage.rst
+@@ -45,7 +45,7 @@ APMT   Signature Reserved (signature == "APMT")
  
- Required properties:
- - compatible:	"maxim,max9485"
--- clocks:	Input clock, must provice 27.000 MHz
-+- clocks:	Input clock, must provide 27.000 MHz
- - clock-names:	Must be set to "xclk"
- - #clock-cells: From common clock binding; shall be set to 1
+        **Arm Performance Monitoring Table**
  
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm8450.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8450.yaml
-index 9a31981fbeb2..75259f468d54 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-sm8450.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8450.yaml
-@@ -25,7 +25,7 @@ properties:
-       - description: Sleep clock source
-       - description: PCIE 0 Pipe clock source (Optional clock)
-       - description: PCIE 1 Pipe clock source (Optional clock)
--      - description: PCIE 1 Phy Auxillary clock source (Optional clock)
-+      - description: PCIE 1 Phy Auxiliary clock source (Optional clock)
-       - description: UFS Phy Rx symbol 0 clock source (Optional clock)
-       - description: UFS Phy Rx symbol 1 clock source (Optional clock)
-       - description: UFS Phy Tx symbol 0 clock source (Optional clock)
-diff --git a/Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml b/Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
-index a466e4e8aacd..57632757d4e6 100644
---- a/Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
-@@ -14,7 +14,7 @@ description:
-   There is one ACC register region per CPU within the KPSS remapped region as
-   well as an alias register region that remaps accesses to the ACC associated
-   with the CPU accessing the region. ACC v1 is currently used as a
--  clock-controller for enabling the cpu and hanling the aux clocks.
-+  clock-controller for enabling the cpu and handling the aux clocks.
+-       This table describes the properties of PMU support implmented by
++       This table describes the properties of PMU support implemented by
+        components in the system.
  
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.yaml
-index 1703e305e6d8..a0658056c330 100644
---- a/Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.yaml
-+++ b/Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.yaml
-@@ -66,7 +66,7 @@ then:
- else:
-   description: |
-     Other SC9863a clock nodes should be the child of a syscon node in
--    which compatible string shoule be:
-+    which compatible string should be:
-             "sprd,sc9863a-glbregs", "syscon", "simple-mfd"
+ BERT   Section 18.3 (signature == "BERT")
+diff --git a/Documentation/arch/arm64/arm-acpi.rst b/Documentation/arch/arm64/arm-acpi.rst
+index 94274a8d84cf..a46c34fa9604 100644
+--- a/Documentation/arch/arm64/arm-acpi.rst
++++ b/Documentation/arch/arm64/arm-acpi.rst
+@@ -99,7 +99,7 @@ to replace the kernel.
  
-     The 'reg' property for the clock node is also required if there is a sub
-diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documentation/devicetree/bindings/clock/ti/mux.txt
-index e17425a58621..b33f641f1043 100644
---- a/Documentation/devicetree/bindings/clock/ti/mux.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/mux.txt
-@@ -8,7 +8,7 @@ parents, one of which can be selected as output.  This clock does not
- gate or adjust the parent rate via a divider or multiplier.
+ When a Linux driver or subsystem is first implemented using ACPI, it by
+ definition ends up requiring a specific version of the ACPI specification
+--- it's baseline.  ACPI firmware must continue to work, even though it may
++-- its baseline.  ACPI firmware must continue to work, even though it may
+ not be optimal, with the earliest kernel version that first provides support
+ for that baseline version of ACPI.  There may be a need for additional drivers,
+ but adding new functionality (e.g., CPU power management) should not break
+diff --git a/Documentation/arch/openrisc/openrisc_port.rst b/Documentation/arch/openrisc/openrisc_port.rst
+index 657ac4af7be6..1565b9546e38 100644
+--- a/Documentation/arch/openrisc/openrisc_port.rst
++++ b/Documentation/arch/openrisc/openrisc_port.rst
+@@ -106,7 +106,7 @@ History
+ 	a much improved version with changes all around.
  
- By default the "clocks" property lists the parents in the same order
--as they are programmed into the regster.  E.g:
-+as they are programmed into the register.  E.g:
+ 10-04-2004	Matjaz Breskvar (phoenix@bsemi.com)
+-	alot of bugfixes all over.
++	a lot of bugfixes all over.
+ 	ethernet support, functional http and telnet servers.
+ 	running many standard linux apps.
  
- 	clocks = <&foo_clock>, <&bar_clock>, <&baz_clock>;
+@@ -114,7 +114,7 @@ History
+ 	port to 2.6.x
  
-diff --git a/Documentation/devicetree/bindings/clock/vf610-clock.txt b/Documentation/devicetree/bindings/clock/vf610-clock.txt
-index 63f9f1ac3439..109ffa3a5b66 100644
---- a/Documentation/devicetree/bindings/clock/vf610-clock.txt
-+++ b/Documentation/devicetree/bindings/clock/vf610-clock.txt
-@@ -9,7 +9,7 @@ Optional properties:
- - clocks: list of clock identifiers which are external input clocks to the
- 	given clock controller. Please refer the next section to find
- 	the input clocks for a given controller.
--- clock-names: list of names of clocks which are exteral input clocks to the
-+- clock-names: list of names of clocks which are external input clocks to the
- 	given clock controller.
+ 30-11-2004	Matjaz Breskvar (phoenix@bsemi.com)
+-	lots of bugfixes and enhancments.
++	lots of bugfixes and enhancements.
+ 	added opencores framebuffer driver.
  
- Input clocks for top clock controller:
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-index 391ee1a60bed..ed9082e66fab 100644
---- a/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-+++ b/Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-@@ -15,7 +15,7 @@ Required properties:
- 			clocks to the given clock controller. Please refer
- 			the next section to find the input clocks for a
- 			given controller.
-- - clock-names:		List of clock names which are exteral input clocks
-+ - clock-names:		List of clock names which are external input clocks
- 			to the given clock controller. Please refer to the
- 			clock bindings for more details.
+ 09-10-2010    Jonas Bonn (jonas@southpole.se)
+diff --git a/Documentation/arch/x86/boot.rst b/Documentation/arch/x86/boot.rst
+index 33520ecdb37a..32d6099ba994 100644
+--- a/Documentation/arch/x86/boot.rst
++++ b/Documentation/arch/x86/boot.rst
+@@ -1105,7 +1105,7 @@ The kernel command line should not be located below the real-mode
+ code, nor should it be located in high memory.
  
-diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-index 1c4d3eb87763..e0108a89b555 100644
---- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-+++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-@@ -224,7 +224,7 @@ properties:
-       state as defined in 7.4.2 Sink Electrical Parameters of USB Power Delivery Specification
-       Revision 3.0, Version 1.2. When the property is set, the port requests pSnkStby(2.5W -
-       5V@500mA) upon entering SNK_DISCOVERY(instead of 3A or the 1.5A, Rp current advertised, during
--      SNK_DISCOVERY) and the actual currrent limit after reception of PS_Ready for PD link or during
-+      SNK_DISCOVERY) and the actual current limit after reception of PS_Ready for PD link or during
-       SNK_READY for non-pd link.
-     type: boolean
  
-diff --git a/Documentation/devicetree/bindings/devfreq/event/samsung,exynos-ppmu.yaml b/Documentation/devicetree/bindings/devfreq/event/samsung,exynos-ppmu.yaml
-index e300df4b47f3..d27dcb2fef12 100644
---- a/Documentation/devicetree/bindings/devfreq/event/samsung,exynos-ppmu.yaml
-+++ b/Documentation/devicetree/bindings/devfreq/event/samsung,exynos-ppmu.yaml
-@@ -18,7 +18,7 @@ description: |
-   each IP (DMC, CPU, RIGHTBUS, LEFTBUS, CAM interface, LCD, G3D, MFC).  The
-   Exynos PPMU driver uses the devfreq-event class to provide event data to
-   various devfreq devices. The devfreq devices would use the event data when
--  derterming the current state of each IP.
-+  determining the current state of each IP.
+-Sample Boot Configuartion
++Sample Boot Configuration
+ =========================
  
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt b/Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt
-index 0398aec488ac..923aea25344c 100644
---- a/Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt
-+++ b/Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt
-@@ -12,7 +12,7 @@ Required properties:
+ As a sample configuration, assume the following layout of the real
+diff --git a/Documentation/arch/x86/buslock.rst b/Documentation/arch/x86/buslock.rst
+index 31ec0ef78086..4c5a4822eeb7 100644
+--- a/Documentation/arch/x86/buslock.rst
++++ b/Documentation/arch/x86/buslock.rst
+@@ -32,7 +32,7 @@ mechanisms to detect split locks and bus locks.
+ --------------------------------------
  
- Required children nodes:
-  Children nodes are encoding available output ports and their connections
-- to external devices using the OF graph reprensentation (see ../graph.txt).
-+ to external devices using the OF graph representation (see ../graph.txt).
-  At least one port node is required.
+ Beginning with the Tremont Atom CPU split lock operations may raise an
+-Alignment Check (#AC) exception when a split lock operation is attemped.
++Alignment Check (#AC) exception when a split lock operation is attempted.
  
- Optional properties in grandchild nodes:
-diff --git a/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
-index 0b51c64f141a..8747b95ec20d 100644
---- a/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/snps,dw-mipi-dsi.yaml
-@@ -11,7 +11,7 @@ maintainers:
+ #DB exception for bus lock detection
+ ------------------------------------
+diff --git a/Documentation/arch/x86/mds.rst b/Documentation/arch/x86/mds.rst
+index 5d4330be200f..e73fdff62c0a 100644
+--- a/Documentation/arch/x86/mds.rst
++++ b/Documentation/arch/x86/mds.rst
+@@ -60,7 +60,7 @@ needed for exploiting MDS requires:
+    data
  
- description: |
-   This document defines device tree properties for the Synopsys DesignWare MIPI
--  DSI host controller. It doesn't constitue a device tree binding specification
-+  DSI host controller. It doesn't constitute a device tree binding specification
-   by itself but is meant to be referenced by platform-specific device tree
-   bindings.
+ The existence of such a construct in the kernel cannot be excluded with
+-100% certainty, but the complexity involved makes it extremly unlikely.
++100% certainty, but the complexity involved makes it extremely unlikely.
  
-diff --git a/Documentation/devicetree/bindings/display/cirrus,clps711x-fb.txt b/Documentation/devicetree/bindings/display/cirrus,clps711x-fb.txt
-index 0ab5f0663611..84c75f849891 100644
---- a/Documentation/devicetree/bindings/display/cirrus,clps711x-fb.txt
-+++ b/Documentation/devicetree/bindings/display/cirrus,clps711x-fb.txt
-@@ -1,4 +1,4 @@
--* Currus Logic CLPS711X Framebuffer
-+* Cirrus Logic CLPS711X Framebuffer
+ There is one exception, which is untrusted BPF. The functionality of
+ untrusted BPF is limited, but it needs to be thoroughly investigated
+diff --git a/Documentation/arch/x86/sgx.rst b/Documentation/arch/x86/sgx.rst
+index 2bcbffacbed5..d90796adc2ec 100644
+--- a/Documentation/arch/x86/sgx.rst
++++ b/Documentation/arch/x86/sgx.rst
+@@ -245,7 +245,7 @@ SGX will likely become unusable because the memory available to SGX is
+ limited. However, while this may be fatal to SGX, the rest of the kernel
+ is unlikely to be impacted and should continue to work.
  
- Required properties:
- - compatible: Shall contain "cirrus,ep7209-fb".
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-index db9f07c6142d..5854a3a1224b 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-@@ -11,7 +11,7 @@ maintainers:
-   - Rob Clark <robdclark@gmail.com>
+-As a result, when this happpens, user should stop running any new
++As a result, when this happens, user should stop running any new
+ SGX workloads, (or just any new workloads), and migrate all valuable
+ workloads. Although a machine reboot can recover all EPC memory, the bug
+ should be reported to Linux developers.
+diff --git a/Documentation/arch/xtensa/atomctl.rst b/Documentation/arch/xtensa/atomctl.rst
+index 1ecbd0ba9a2e..75d174169430 100644
+--- a/Documentation/arch/xtensa/atomctl.rst
++++ b/Documentation/arch/xtensa/atomctl.rst
+@@ -23,7 +23,7 @@ doing a Cached (WB) transaction and use the Memory RCW for un-cached
+ operations.
  
- description:
--  This is the bindings documentation for the Mobile Display Subsytem(MDSS) that
-+  This is the bindings documentation for the Mobile Display Subsystem(MDSS) that
-   encapsulates sub-blocks like MDP5, DSI, HDMI, eDP, etc.
+ For systems without an coherent cache controller, non-MX, we always
+-use the memory controllers RCW, thought non-MX controlers likely
++use the memory controllers RCW, though non-MX controllers likely
+ support the Internal Operation.
  
- properties:
-diff --git a/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml b/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
-index 9f97598efdfa..72463795e4c6 100644
---- a/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.yaml
-@@ -20,7 +20,7 @@ description: |
-   The panel itself contains:
-     - AT24C16C EEPROM holding panel identification and timing requirements
-     - AR1021 resistive touch screen controller (optional)
--    - FT5x6 capacitive touch screnn controller (optional)
-+    - FT5x6 capacitive touch screen controller (optional)
-     - GT911/GT928 capacitive touch screen controller (optional)
+ CUSTOMER-WARNING:
+diff --git a/Documentation/block/data-integrity.rst b/Documentation/block/data-integrity.rst
+index 07a97aa26668..6a760c0eb192 100644
+--- a/Documentation/block/data-integrity.rst
++++ b/Documentation/block/data-integrity.rst
+@@ -209,7 +209,7 @@ will require extra work due to the application tag.
+       sector must be set, and the bio should have all data pages
+       added.  It is up to the caller to ensure that the bio does not
+       change while I/O is in progress.
+-      Complete bio with error if prepare failed for some reson.
++      Complete bio with error if prepare failed for some reason.
  
-   The above chips share same I2C bus. The EEPROM is factory preprogrammed with
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-index 5b38dc89cb21..0a57a31f4f3d 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
-@@ -12,7 +12,7 @@ maintainers:
  
- description: |
-   This document defines device tree properties common to several classes of
--  display panels. It doesn't constitue a device tree binding specification by
-+  display panels. It doesn't constitute a device tree binding specification by
-   itself but is meant to be referenced by device tree bindings.
+ 5.3 Passing Existing Integrity Metadata
+diff --git a/Documentation/block/ublk.rst b/Documentation/block/ublk.rst
+index 1713b2890abb..ff74b3ec4a98 100644
+--- a/Documentation/block/ublk.rst
++++ b/Documentation/block/ublk.rst
+@@ -238,7 +238,7 @@ The's IO is assigned by a unique tag, which is 1:1 mapping with IO
+ request of ``/dev/ublkb*``.
  
-   When referenced from panel device tree bindings the properties defined in this
-diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-sor.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-sor.yaml
-index 70f0e45c71d6..6f2e22471965 100644
---- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-sor.yaml
-+++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-sor.yaml
-@@ -97,7 +97,7 @@ properties:
+ UAPI structure of ``ublksrv_io_desc`` is defined for describing each IO from
+-the driver. A fixed mmaped area (array) on ``/dev/ublkc*`` is provided for
++the driver. A fixed mmapped area (array) on ``/dev/ublkc*`` is provided for
+ exporting IO info to the server; such as IO offset, length, OP/flags and
+ buffer address. Each ``ublksrv_io_desc`` instance can be indexed via queue id
+ and IO tag directly.
+diff --git a/Documentation/bpf/cpumasks.rst b/Documentation/bpf/cpumasks.rst
+index 3139c7c02e79..a22b6ad105fb 100644
+--- a/Documentation/bpf/cpumasks.rst
++++ b/Documentation/bpf/cpumasks.rst
+@@ -364,7 +364,7 @@ can be used to query the contents of cpumasks.
+ ----
  
-   # optional when driving an eDP output
-   nvidia,dpaux:
--    description: phandle to a DispayPort AUX interface
-+    description: phandle to a DisplayPort AUX interface
-     $ref: /schemas/types.yaml#/definitions/phandle
+ Some example usages of these querying kfuncs were shown above. We will not
+-replicate those exmaples here. Note, however, that all of the aforementioned
++replicate those examples here. Note, however, that all of the aforementioned
+ kfuncs are tested in `tools/testing/selftests/bpf/progs/cpumask_success.c`_, so
+ please take a look there if you're looking for more examples of how they can be
+ used.
+diff --git a/Documentation/bpf/graph_ds_impl.rst b/Documentation/bpf/graph_ds_impl.rst
+index 61274622b71d..06288cc719b3 100644
+--- a/Documentation/bpf/graph_ds_impl.rst
++++ b/Documentation/bpf/graph_ds_impl.rst
+@@ -23,7 +23,7 @@ Introduction
  
- allOf:
-diff --git a/Documentation/devicetree/bindings/dma/ingenic,dma.yaml b/Documentation/devicetree/bindings/dma/ingenic,dma.yaml
-index 37400496e086..d9cca3006e73 100644
---- a/Documentation/devicetree/bindings/dma/ingenic,dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/ingenic,dma.yaml
-@@ -68,7 +68,7 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: >
-       Bitmask of channels to reserve for devices that need a specific
--      channel. These channels will only be assigned when explicitely
-+      channel. These channels will only be assigned when explicitly
-       requested by a client. The primary use for this is channels 0 and
-       1, which can be configured to have special behaviour for NAND/BCH
-       when using programmable firmware.
-diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt
-index c6908e7c42cc..447fb44e7abe 100644
---- a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt
-+++ b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.txt
-@@ -2,7 +2,7 @@
+ The BPF map API has historically been the main way to expose data structures
+ of various types for use within BPF programs. Some data structures fit naturally
+-with the map API (HASH, ARRAY), others less so. Consequentially, programs
++with the map API (HASH, ARRAY), others less so. Consequently, programs
+ interacting with the latter group of data structures can be hard to parse
+ for kernel programmers without previous BPF experience.
  
- Required properties:
- - compatible: Should be "nvidia,<chip>-apbdma"
--- reg: Should contain DMA registers location and length. This shuld include
-+- reg: Should contain DMA registers location and length. This should include
-   all of the per-channel registers.
- - interrupts: Should contain all of the per-channel DMA interrupts.
- - clocks: Must contain one entry, for the module clock.
-diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-index f1ddcf672261..4f5510b6fa02 100644
---- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-@@ -48,7 +48,7 @@ properties:
-   qcom,controlled-remotely:
-     type: boolean
-     description:
--      Indicates that the bam is controlled by remote proccessor i.e. execution
-+      Indicates that the bam is controlled by remote processor i.e. execution
-       environment.
+diff --git a/Documentation/fault-injection/fault-injection.rst b/Documentation/fault-injection/fault-injection.rst
+index b64809514b0f..70380a2a01b4 100644
+--- a/Documentation/fault-injection/fault-injection.rst
++++ b/Documentation/fault-injection/fault-injection.rst
+@@ -243,7 +243,7 @@ proc entries
+ Error Injectable Functions
+ --------------------------
  
-   qcom,ee:
-diff --git a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-index 1e5752b19a49..7b94d24d5ef4 100644
---- a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-+++ b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-@@ -148,7 +148,7 @@ properties:
-   memcpy-channels:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     description: Array of u32 elements indicating which channels on the DMA
--      engine are elegible for memcpy transfers
-+      engine are eligible for memcpy transfers
+-This part is for the kenrel developers considering to add a function to
++This part is for the kernel developers considering to add a function to
+ ALLOW_ERROR_INJECTION() macro.
  
- required:
-   - "#dma-cells"
-diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-index 6694ef29a267..528df8a0e6d8 100644
---- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-+++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-@@ -63,7 +63,7 @@ FPGA Bridge
-    will be disabled.
-  * During Partial Reconfiguration of a specific region, that region's bridge
-    will be used to gate the busses.  Traffic to other regions is not affected.
-- * In some implementations, the FPGA Manager transparantly handles gating the
-+ * In some implementations, the FPGA Manager transparently handles gating the
-    buses, eliminating the need to show the hardware FPGA bridges in the
-    device tree.
-  * An FPGA image may create a set of reprogrammable regions, each having its
-@@ -466,7 +466,7 @@ It is beyond the scope of this document to fully describe all the FPGA design
- constraints required to make partial reconfiguration work[1] [2] [3], but a few
- deserve quick mention.
+ Requirements for the Error Injectable Functions
+diff --git a/Documentation/fb/deferred_io.rst b/Documentation/fb/deferred_io.rst
+index 7300cff255a3..7fc1933b06d9 100644
+--- a/Documentation/fb/deferred_io.rst
++++ b/Documentation/fb/deferred_io.rst
+@@ -9,7 +9,7 @@ works:
  
--A persona must have boundary connections that line up with those of the partion
-+A persona must have boundary connections that line up with those of the partition
- or region it is designed to go into.
+ - userspace app like Xfbdev mmaps framebuffer
+ - deferred IO and driver sets up fault and page_mkwrite handlers
+-- userspace app tries to write to mmaped vaddress
++- userspace app tries to write to mmapped vaddress
+ - we get pagefault and reach fault handler
+ - fault handler finds and returns physical page
+ - we get page_mkwrite where we add this page to a list
+diff --git a/Documentation/fb/sm712fb.rst b/Documentation/fb/sm712fb.rst
+index 994dad3b0238..8e000f80b5bc 100644
+--- a/Documentation/fb/sm712fb.rst
++++ b/Documentation/fb/sm712fb.rst
+@@ -31,5 +31,5 @@ Missing Features
+ ================
+ (alias TODO list)
  
- During programming, transactions through those connections must be stopped and
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-xgene-sb.txt b/Documentation/devicetree/bindings/gpio/gpio-xgene-sb.txt
-index e90fb987e25f..7ddf292db144 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-xgene-sb.txt
-+++ b/Documentation/devicetree/bindings/gpio/gpio-xgene-sb.txt
-@@ -27,7 +27,7 @@ Required properties:
- - gpio-controller: Marks the device node as a GPIO controller.
- - interrupts: The EXT_INT_0 parent interrupt resource must be listed first.
- - interrupt-cells: Should be two.
--       - first cell is 0-N coresponding for EXT_INT_0 to EXT_INT_N.
-+       - first cell is 0-N corresponding for EXT_INT_0 to EXT_INT_N.
-        - second cell is used to specify flags.
- - interrupt-controller: Marks the device node as an interrupt controller.
- - apm,nr-gpios: Optional, specify number of gpios pin.
-diff --git a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-index b391cc1b4590..7e39d7a2437d 100644
---- a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-@@ -9,7 +9,7 @@ title: Synopsys DesignWare APB GPIO controller
- description: |
-   Synopsys DesignWare GPIO controllers have a configurable number of ports,
-   each of which are intended to be represented as child nodes with the generic
--  GPIO-controller properties as desribed in this bindings file.
-+  GPIO-controller properties as described in this bindings file.
+-	* 2D acceleratrion
++	* 2D acceleration
+ 	* dual-head support
+diff --git a/Documentation/fb/sstfb.rst b/Documentation/fb/sstfb.rst
+index 42466ff49c58..88d5a52b13d8 100644
+--- a/Documentation/fb/sstfb.rst
++++ b/Documentation/fb/sstfb.rst
+@@ -73,7 +73,7 @@ Module insertion
+ 	  the device will be /dev/fb0. You can check this by doing a
+ 	  cat /proc/fb. You can find a copy of con2fb in tools/ directory.
+ 	  if you don't have another fb device, this step is superfluous,
+-	  as the console subsystem automagicaly binds ttys to the fb.
++	  as the console subsystem automagically binds ttys to the fb.
+        #. switch to the virtual console you just mapped. "tadaaa" ...
  
- maintainers:
-   - Hoan Tran <hoan@os.amperecomputing.com>
-diff --git a/Documentation/devicetree/bindings/gpio/ti,omap-gpio.yaml b/Documentation/devicetree/bindings/gpio/ti,omap-gpio.yaml
-index bd721c839059..7b75d2f92f1b 100644
---- a/Documentation/devicetree/bindings/gpio/ti,omap-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/ti,omap-gpio.yaml
-@@ -58,14 +58,14 @@ properties:
-     deprecated: true
-     description:
-       Name of the hwmod associated with the GPIO. Needed on some legacy OMAP
--      SoCs which have not been converted to the ti,sysc interconnect hierarachy.
-+      SoCs which have not been converted to the ti,sysc interconnect hierarchy.
+ Module removal
+diff --git a/Documentation/features/core/thread-info-in-task/arch-support.txt b/Documentation/features/core/thread-info-in-task/arch-support.txt
+index 9c5d39eebef2..97c65ed2ac23 100644
+--- a/Documentation/features/core/thread-info-in-task/arch-support.txt
++++ b/Documentation/features/core/thread-info-in-task/arch-support.txt
+@@ -1,7 +1,7 @@
+ #
+ # Feature name:          thread-info-in-task
+ #         Kconfig:       THREAD_INFO_IN_TASK
+-#         description:   arch makes use of the core kernel facility to embedd thread_info in task_struct
++#         description:   arch makes use of the core kernel facility to embed thread_info in task_struct
+ #
+     -----------------------
+     |         arch |status|
+diff --git a/Documentation/filesystems/9p.rst b/Documentation/filesystems/9p.rst
+index 1b5f0cc3e4ca..1e0e0bb6fdf9 100644
+--- a/Documentation/filesystems/9p.rst
++++ b/Documentation/filesystems/9p.rst
+@@ -79,7 +79,7 @@ Options
  
-   ti,no-reset-on-init:
-     $ref: /schemas/types.yaml#/definitions/flag
-     deprecated: true
-     description:
-       Do not reset on init. Used with ti,hwmods on some legacy OMAP SoCs which
--      have not been converted to the ti,sysc interconnect hierarachy.
-+      have not been converted to the ti,sysc interconnect hierarchy.
+   cache=mode	specifies a caching policy.  By default, no caches are used.
+ 		The mode can be specified as a bitmask or by using one of the
+-		prexisting common 'shortcuts'.
++		preexisting common 'shortcuts'.
+ 		The bitmask is described below: (unspecified bits are reserved)
  
- patternProperties:
-   "^(.+-hog(-[0-9]+)?)$":
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
-index ca2b47320689..2e45364d0543 100644
---- a/Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
-@@ -27,7 +27,7 @@ properties:
+ 			==========  ====================================================
+diff --git a/Documentation/filesystems/befs.rst b/Documentation/filesystems/befs.rst
+index 79f9740d76ff..a22f603b2938 100644
+--- a/Documentation/filesystems/befs.rst
++++ b/Documentation/filesystems/befs.rst
+@@ -106,8 +106,8 @@ iocharset=xxx  Use xxx as the name of the NLS translation table.
+ debug          The driver will output debugging information to the syslog.
+ =============  ===========================================================
  
-   shunt-resistor-micro-ohms:
-     description:
--      The value of curent sense resistor in microohms. If not provided,
-+      The value of current sense resistor in microohms. If not provided,
-       the current reading and overcurrent alert is disabled.
+-How to Get Lastest Version
+-==========================
++How to Get Latest Version
++=========================
  
-   adi,shutdown-threshold-microamp:
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml b/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
-index 0cf3ed6212a6..6751f9b643b4 100644
---- a/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
-@@ -11,7 +11,7 @@ maintainers:
-   - Nuno Sá <nuno.sa@analog.com>
+ The latest version is currently available at:
+ <http://befs-driver.sourceforge.net/>
+diff --git a/Documentation/filesystems/caching/cachefiles.rst b/Documentation/filesystems/caching/cachefiles.rst
+index fc7abf712315..e04a27bdbe19 100644
+--- a/Documentation/filesystems/caching/cachefiles.rst
++++ b/Documentation/filesystems/caching/cachefiles.rst
+@@ -416,7 +416,7 @@ process is the target of an operation by some other process (SIGKILL for
+ example).
  
- description: |+
--  Bindings for the Analog Devices AXI FAN Control driver. Spefications of the
-+  Bindings for the Analog Devices AXI FAN Control driver. Specifications of the
-   core can be found in:
+ The subjective security holds the active security properties of a process, and
+-may be overridden.  This is not seen externally, and is used whan a process
++may be overridden.  This is not seen externally, and is used when a process
+ acts upon another object, for example SIGKILLing another process or opening a
+ file.
  
-   https://wiki.analog.com/resources/fpga/docs/axi_fan_control
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-index b39c632956e8..0ad12d245656 100644
---- a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-@@ -46,7 +46,7 @@ patternProperties:
+diff --git a/Documentation/filesystems/caching/netfs-api.rst b/Documentation/filesystems/caching/netfs-api.rst
+index 1d18e9def183..665b27f1556e 100644
+--- a/Documentation/filesystems/caching/netfs-api.rst
++++ b/Documentation/filesystems/caching/netfs-api.rst
+@@ -59,7 +59,7 @@ A filesystem would typically have a volume cookie for each superblock.
  
-       shunt-resistor-micro-ohms:
-         description:
--          The value of curent sense resistor in microohms.
-+          The value of current sense resistor in microohms.
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt b/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
-index 3ac02988a1a5..8645cd3b867a 100644
---- a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
-+++ b/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
-@@ -45,7 +45,7 @@ Required properties for each child node:
- - aspeed,fan-tach-ch : should specify the Fan tach input channel.
-                 integer value in the range 0 through 15, with 0 indicating
- 		Fan tach channel 0 and 15 indicating Fan tach channel 15.
--		Atleast one Fan tach input channel is required.
-+		At least one Fan tach input channel is required.
- 
- Examples:
- 
-diff --git a/Documentation/devicetree/bindings/hwmon/lm87.txt b/Documentation/devicetree/bindings/hwmon/lm87.txt
-index e1b79903f204..758ff398b67b 100644
---- a/Documentation/devicetree/bindings/hwmon/lm87.txt
-+++ b/Documentation/devicetree/bindings/hwmon/lm87.txt
-@@ -18,7 +18,7 @@ optional properties:
-            in7. Otherwise the pin is set as FAN2 input.
- 
- - vcc-supply: a Phandle for the regulator supplying power, can be
--              cofigured to measure 5.0V power supply. Default is 3.3V.
-+              configured to measure 5.0V power supply. Default is 3.3V.
- 
- Example:
- 
-diff --git a/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt b/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt
-index 33fd00a987c7..473b34c876dd 100644
---- a/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt
-+++ b/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt
-@@ -1,4 +1,4 @@
--Lantiq cpu temperatur sensor
-+Lantiq cpu temperature sensor
- 
- Requires node properties:
- - compatible value :
-diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-index ae4f68d4e696..b420a4a4dd80 100644
---- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-@@ -42,7 +42,7 @@ properties:
-   reg:
-     items:
-       - description: PVT common registers
--      - description: PVT temprature sensor registers
-+      - description: PVT temperature sensor registers
-       - description: PVT process detector registers
-       - description: PVT voltage monitor registers
- 
-diff --git a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-index 28f43e929f6d..8523777f560c 100644
---- a/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-+++ b/Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
-@@ -23,7 +23,7 @@ Required properties for pwm-fan node
- fan subnode format:
+ The filesystem then acquires a cookie for each file within that volume using an
+ object key.  Object keys are binary blobs and only need to be unique within
+-their parent volume.  The cache backend is reponsible for rendering the binary
++their parent volume.  The cache backend is responsible for rendering the binary
+ blob into something it can use and may employ hash tables, trees or whatever to
+ improve its ability to find an object.  This is transparent to the network
+ filesystem.
+@@ -91,7 +91,7 @@ actually required and it can use the fscache I/O API directly.
+ Volume Registration
  ===================
- Under fan subnode can be upto 8 child nodes, each child node representing a fan.
--Each fan subnode must have one PWM channel and atleast one Fan tach channel.
-+Each fan subnode must have one PWM channel and at least one Fan tach channel.
  
- For PWM channel can be configured cooling-levels to create cooling device.
- Cooling device could be bound to a thermal zone for the thermal control.
-diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-index 159238efa9ed..3d14d5fc96c5 100644
---- a/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.yaml
-@@ -13,7 +13,7 @@ description: |
-   The SHTC1, SHTW1 and SHTC3 are digital humidity and temperature sensors
-   designed especially for battery-driven high-volume consumer electronics
-   applications.
--  For further information refere to Documentation/hwmon/shtc1.rst
-+  For further information refer to Documentation/hwmon/shtc1.rst
+-The first step for a network filsystem is to acquire a volume cookie for the
++The first step for a network filesystem is to acquire a volume cookie for the
+ volume it wants to access::
  
-   This binding document describes the binding for the hardware monitor
-   portion of the driver.
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
-index fde5225ce012..cdd1489e0c54 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
-@@ -33,7 +33,7 @@ properties:
+ 	struct fscache_volume *
+@@ -119,7 +119,7 @@ is provided.  If the coherency data doesn't match, the entire cache volume will
+ be invalidated.
  
-   shunt-resistor-micro-ohms:
-     description: |
--      If 0, the calibration process will be skiped and the current and power
-+      If 0, the calibration process will be skipped and the current and power
-       measurement engine will not work. Temperature and voltage measurement
-       will continue to work. The shunt value also need to respect:
-       rshunt <= pga-gain * 40 * 1000 * 1000.
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-index bce68a326919..ebc8d466c1aa 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-@@ -26,7 +26,7 @@ properties:
-     maxItems: 1
+ This function can return errors such as EBUSY if the volume key is already in
+-use by an acquired volume or ENOMEM if an allocation failure occured.  It may
++use by an acquired volume or ENOMEM if an allocation failure occurred.  It may
+ also return a NULL volume cookie if fscache is not enabled.  It is safe to
+ pass a NULL cookie to any function that takes a volume cookie.  This will
+ cause that function to do nothing.
+diff --git a/Documentation/filesystems/configfs.rst b/Documentation/filesystems/configfs.rst
+index 8c9342ed6d25..ac22138de6a4 100644
+--- a/Documentation/filesystems/configfs.rst
++++ b/Documentation/filesystems/configfs.rst
+@@ -253,7 +253,7 @@ to be used.
+ If binary attribute is readable and the config_item provides a
+ ct_item_ops->read_bin_attribute() method, that method will be called
+ whenever userspace asks for a read(2) on the attribute.  The converse
+-will happen for write(2). The reads/writes are bufferred so only a
++will happen for write(2). The reads/writes are buffered so only a
+ single read/write will occur; the attributes' need not concern itself
+ with it.
  
-   shunt-resistor-micro-ohms:
--    description: The value of curent sense resistor in microohms.
-+    description: The value of current sense resistor in microohms.
-     default: 255000
-     minimum: 250000
-     maximum: 255000
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-sprd.txt b/Documentation/devicetree/bindings/i2c/i2c-sprd.txt
-index 60b7cda15dd2..7b6b3b8d0d11 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-sprd.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c-sprd.txt
-@@ -10,7 +10,7 @@ Required properties:
-   "source" for I2C source (parent) clock,
-   "enable" for I2C module enable clock.
- - clocks: Should contain a clock specifier for each entry in clock-names.
--- clock-frequency: Constains desired I2C bus clock frequency in Hz.
-+- clock-frequency: Contains desired I2C bus clock frequency in Hz.
- - #address-cells: Should be 1 to describe address cells for I2C device address.
- - #size-cells: Should be 0 means no size cell for I2C device address.
+diff --git a/Documentation/filesystems/dax.rst b/Documentation/filesystems/dax.rst
+index c04609d8ee24..719e90f1988e 100644
+--- a/Documentation/filesystems/dax.rst
++++ b/Documentation/filesystems/dax.rst
+@@ -291,7 +291,7 @@ The DAX code does not work correctly on architectures which have virtually
+ mapped caches such as ARM, MIPS and SPARC.
  
-diff --git a/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml b/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-index be93c109d6ac..8cbad7e792b6 100644
---- a/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-@@ -57,7 +57,7 @@ description: |
-                 |27     |FPD Internal voltage measurement, VCC_PSINTFP (supply5).       |Voltage
-                 |28     |PS Auxiliary voltage measurement (supply6).                    |Voltage
-                 |29     |PL VCCADC voltage measurement (vccams).                        |Voltage
--                |30     |Differential analog input signal voltage measurment.           |Voltage
-+                |30     |Differential analog input signal voltage measurement.          |Voltage
-                 |31     |VUser0 voltage measurement (supply7).                          |Voltage
-                 |32     |VUser1 voltage measurement (supply8).                          |Voltage
-                 |33     |VUser2 voltage measurement (supply9).                          |Voltage
-diff --git a/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml b/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
-index 2155d3f5666c..3d7074fd17be 100644
---- a/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
-+++ b/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/iio/cdc/adi,ad7150.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+ Calling :c:func:`get_user_pages()` on a range of user memory that has been
+-mmaped from a `DAX` file will fail when there are no 'struct page' to describe
++mmapped from a `DAX` file will fail when there are no 'struct page' to describe
+ those pages.  This problem has been addressed in some device drivers
+ by adding optional struct page support for pages under the control of
+ the driver (see `CONFIG_NVDIMM_PFN` in ``drivers/nvdimm`` for an example of
+diff --git a/Documentation/filesystems/devpts.rst b/Documentation/filesystems/devpts.rst
+index a03248ddfb4c..b6324ab1960d 100644
+--- a/Documentation/filesystems/devpts.rst
++++ b/Documentation/filesystems/devpts.rst
+@@ -5,8 +5,8 @@ The Devpts Filesystem
+ =====================
  
--title: Analog device AD7150 and similar capacitance to digital convertors.
-+title: Analog device AD7150 and similar capacitance to digital converters.
+ Each mount of the devpts filesystem is now distinct such that ptys
+-and their indicies allocated in one mount are independent from ptys
+-and their indicies in all other mounts.
++and their indices allocated in one mount are independent from ptys
++and their indices in all other mounts.
  
- maintainers:
-   - Jonathan Cameron <jic23@kernel.org>
-diff --git a/Documentation/devicetree/bindings/iio/common.yaml b/Documentation/devicetree/bindings/iio/common.yaml
-index f845b41d74c4..b3a10af86d76 100644
---- a/Documentation/devicetree/bindings/iio/common.yaml
-+++ b/Documentation/devicetree/bindings/iio/common.yaml
-@@ -12,7 +12,7 @@ maintainers:
+ All mounts of the devpts filesystem now create a ``/dev/pts/ptmx`` node
+ with permissions ``0000``.
+diff --git a/Documentation/filesystems/ext4/super.rst b/Documentation/filesystems/ext4/super.rst
+index 0152888cac29..a1eb4a11a1d0 100644
+--- a/Documentation/filesystems/ext4/super.rst
++++ b/Documentation/filesystems/ext4/super.rst
+@@ -772,7 +772,7 @@ The ``s_default_mount_opts`` field is any combination of the following:
+    * - 0x0010
+      - Do not support 32-bit UIDs. (EXT4_DEFM_UID16)
+    * - 0x0020
+-     - All data and metadata are commited to the journal.
++     - All data and metadata are committed to the journal.
+        (EXT4_DEFM_JMODE_DATA)
+    * - 0x0040
+      - All data are flushed to the disk before metadata are committed to the
+diff --git a/Documentation/filesystems/f2fs.rst b/Documentation/filesystems/f2fs.rst
+index 9359978a5af2..d32c6209685d 100644
+--- a/Documentation/filesystems/f2fs.rst
++++ b/Documentation/filesystems/f2fs.rst
+@@ -359,7 +359,7 @@ errors=%s		 Specify f2fs behavior on critical errors. This supports modes:
+ 			 ====================== =============== =============== ========
+ 			 mode			continue	remount-ro	panic
+ 			 ====================== =============== =============== ========
+-			 access ops		normal		noraml		N/A
++			 access ops		normal		normal		N/A
+ 			 syscall errors		-EIO		-EROFS		N/A
+ 			 mount option		rw		ro		N/A
+ 			 pending dir write	keep		keep		N/A
+@@ -480,7 +480,7 @@ Note: please refer to the manpage of dump.f2fs(8) to get full option list.
  
- description: |
-   This document defines device tree properties common to several iio
--  sensors. It doesn't constitue a device tree binding specification by itself but
-+  sensors. It doesn't constitute a device tree binding specification by itself but
-   is meant to be referenced by device tree bindings.
+ sload.f2fs
+ ----------
+-The sload.f2fs gives a way to insert files and directories in the exisiting disk
++The sload.f2fs gives a way to insert files and directories in the existing disk
+ image. This tool is useful when building f2fs images given compiled files.
  
-   When referenced from sensor tree bindings the properties defined in this
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
-index ab86daa2c56e..d17601dbc498 100644
---- a/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
-+++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
-@@ -33,7 +33,7 @@ properties:
-     items:
-       - const: lo_in
-     description:
--      External clock that provides the Local Oscilator input.
-+      External clock that provides the Local Oscillator input.
+ Note: please refer to the manpage of sload.f2fs(8) to get full option list.
+@@ -792,7 +792,7 @@ Allocating disk space
+     as a method of optimally implementing that function.
  
-   vcm-supply:
-     description:
-diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml
-index a2bc1fa92da0..79e75a8675cb 100644
---- a/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml
-+++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc2010.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Eugene Zaikonnikov <ez@norophonic.com>
+ However, once F2FS receives ioctl(fd, F2FS_IOC_SET_PIN_FILE) in prior to
+-fallocate(fd, DEFAULT_MODE), it allocates on-disk block addressess having
++fallocate(fd, DEFAULT_MODE), it allocates on-disk block addresses having
+ zero or random data, which is useful to the below scenario where:
  
- description: |
--  Relative humidity and tempereature sensors on I2C bus
-+  Relative humidity and temperature sensors on I2C bus
+  1. create(fd)
+diff --git a/Documentation/filesystems/gfs2-glocks.rst b/Documentation/filesystems/gfs2-glocks.rst
+index d14f230f0b12..bec25c8b3e4b 100644
+--- a/Documentation/filesystems/gfs2-glocks.rst
++++ b/Documentation/filesystems/gfs2-glocks.rst
+@@ -78,7 +78,7 @@ The minimum hold time for each lock is the time after a remote lock
+ grant for which we ignore remote demote requests. This is in order to
+ prevent a situation where locks are being bounced around the cluster
+ from node to node with none of the nodes making any progress. This
+-tends to show up most with shared mmaped files which are being written
++tends to show up most with shared mmapped files which are being written
+ to by multiple nodes. By delaying the demotion in response to a
+ remote callback, that gives the userspace program time to make
+ some progress before the pages are unmapped.
+diff --git a/Documentation/filesystems/idmappings.rst b/Documentation/filesystems/idmappings.rst
+index ad6d21640576..9700fdff411d 100644
+--- a/Documentation/filesystems/idmappings.rst
++++ b/Documentation/filesystems/idmappings.rst
+@@ -36,7 +36,7 @@ and write down the mappings it will generate::
+ From a mathematical viewpoint ``U`` and ``K`` are well-ordered sets and an
+ idmapping is an order isomorphism from ``U`` into ``K``. So ``U`` and ``K`` are
+ order isomorphic. In fact, ``U`` and ``K`` are always well-ordered subsets of
+-the set of all possible ids useable on a given system.
++the set of all possible ids usable on a given system.
  
-   Datasheets are available at:
-     http://www.ti.com/product/HDC2010/datasheet
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-index c0a923febf13..b31f8120f14e 100644
---- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-@@ -47,7 +47,7 @@ properties:
-   reset-gpios:
-     description:
-       Optional GPIO for resetting the device.
--      If not present the device is not resetted during the probe.
-+      If not present the device is not reset during the probe.
-     maxItems: 1
+ Looking at this mathematically briefly will help us highlight some properties
+ that make it easier to understand how we can translate between idmappings. For
+@@ -47,7 +47,7 @@ example, we know that the inverse idmapping is an order isomorphism as well::
+  k10002 -> u24
  
-   honeywell,pmin-pascal:
-diff --git a/Documentation/devicetree/bindings/iio/proximity/ams,as3935.yaml b/Documentation/devicetree/bindings/iio/proximity/ams,as3935.yaml
-index c999994e19e3..9567993ce480 100644
---- a/Documentation/devicetree/bindings/iio/proximity/ams,as3935.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/ams,as3935.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Matt Ranostay <matt.ranostay@konsulko.com>
+ Given that we are dealing with order isomorphisms plus the fact that we're
+-dealing with subsets we can embedd idmappings into each other, i.e. we can
++dealing with subsets we can embed idmappings into each other, i.e. we can
+ sensibly translate between different idmappings. For example, assume we've been
+ given the three idmappings::
  
- description:
--  This lightening distance sensor uses an I2C or SPI interface. The
-+  This lightning distance sensor uses an I2C or SPI interface. The
-   binding currently only covers the SPI option.
+@@ -60,7 +60,7 @@ and id ``k11000`` which has been generated by the first idmapping by mapping
  
- properties:
-diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-index e450821a741d..fff7e3d83a02 100644
---- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-+++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-@@ -97,7 +97,7 @@ properties:
+ Because we're dealing with order isomorphic subsets it is meaningful to ask
+ what id ``k11000`` corresponds to in the second or third idmapping. The
+-straightfoward algorithm to use is to apply the inverse of the first idmapping,
++straightforward algorithm to use is to apply the inverse of the first idmapping,
+ mapping ``k11000`` up to ``u1000``. Afterwards, we can map ``u1000`` down using
+ either the second idmapping mapping or third idmapping mapping. The second
+ idmapping would map ``u1000`` down to ``21000``. The third idmapping would map
+@@ -367,7 +367,7 @@ So with the second step the kernel guarantees that a valid userspace id can be
+ written to disk. If it can't the kernel will refuse the creation request to not
+ even remotely risk filesystem corruption.
  
-   interrupts:
-     description: interrupt line(s) connected to the DRDY line(s) and/or the
--      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
-+      Inertial interrupt lines INT1 and INT2 if these exist. This means up to
-       three interrupts, and the DRDY must be the first one if it exists on
-       the package. The trigger edge of the interrupts is sometimes software
-       configurable in the hardware so the operating system should parse this
-diff --git a/Documentation/devicetree/bindings/input/rmi4/rmi_2d_sensor.txt b/Documentation/devicetree/bindings/input/rmi4/rmi_2d_sensor.txt
-index 9afffbdf6e28..3d5348305239 100644
---- a/Documentation/devicetree/bindings/input/rmi4/rmi_2d_sensor.txt
-+++ b/Documentation/devicetree/bindings/input/rmi4/rmi_2d_sensor.txt
-@@ -34,8 +34,8 @@ Optional Properties:
- 				mode.
- - syna,sensor-type: Set the sensor type. 1 for touchscreen 2 for touchpad.
- - syna,disable-report-mask: Mask for disabling posiiton reporting. Used to
--				disable reporing absolute position data.
--- syna,rezero-wait-ms: Time in miliseconds to wait after issuing a rezero
-+				disable reporting absolute position data.
-+- syna,rezero-wait-ms: Time in milliseconds to wait after issuing a rezero
- 				command.
+-The astute reader will have realized that this is simply a varation of the
++The astute reader will have realized that this is simply a variation of the
+ crossmapping algorithm we mentioned above in a previous section. First, the
+ kernel maps the caller's userspace id down into a kernel id according to the
+ caller's idmapping and then maps that kernel id up according to the
+@@ -458,7 +458,7 @@ the kernel id that was created in the caller's idmapping. This has mainly two
+ consequences.
+ 
+ First, that we can't allow a caller to ultimately write to disk with another
+-userspace id. We could only do this if we were to mount the whole fileystem
++userspace id. We could only do this if we were to mount the whole filesystem
+ with the caller's or another idmapping. But that solution is limited to a few
+ filesystems and not very flexible. But this is a use-case that is pretty
+ important in containerized workloads.
+@@ -589,7 +589,7 @@ on their work machine.
+ 
+ In both cases changing ownership recursively has grave implications. The most
+ obvious one is that ownership is changed globally and permanently. In the home
+-directory case this change in ownership would even need to happen everytime the
++directory case this change in ownership would even need to happen every time the
+ user switches from their home to their work machine. For really large sets of
+ files this becomes increasingly costly.
+ 
+@@ -662,7 +662,7 @@ use the ``vfsuid_into_kuid()`` and ``vfsgid_into_kgid()`` helpers.
+ To illustrate why this helper currently exists, consider what happens when we
+ change ownership of an inode from an idmapped mount. After we generated
+ a ``vfsuid_t`` or ``vfsgid_t`` based on the mount idmapping we later commit to
+-this ``vfsuid_t`` or ``vfsgid_t`` to become the new filesytem wide ownership.
++this ``vfsuid_t`` or ``vfsgid_t`` to become the new filesystem wide ownership.
+ Thus, we are turning the ``vfsuid_t`` or ``vfsgid_t`` into a global ``kuid_t``
+ or ``kgid_t``. And this can be done by using ``vfsuid_into_kuid()`` and
+ ``vfsgid_into_kgid()``.
+diff --git a/Documentation/filesystems/netfs_library.rst b/Documentation/filesystems/netfs_library.rst
+index 73a4176144b3..48b95d04f72d 100644
+--- a/Documentation/filesystems/netfs_library.rst
++++ b/Documentation/filesystems/netfs_library.rst
+@@ -155,7 +155,7 @@ conflicting writes or track dirty data and needs to put the acquired folio if
+ an error occurs after calling the helper.
+ 
+ The helpers manage the read request, calling back into the network filesystem
+-through the suppplied table of operations.  Waits will be performed as
++through the supplied table of operations.  Waits will be performed as
+ necessary before returning for helpers that are meant to be synchronous.
+ 
+ If an error occurs, the ->free_request() will be called to clean up the
+diff --git a/Documentation/filesystems/nfs/client-identifier.rst b/Documentation/filesystems/nfs/client-identifier.rst
+index a94c7a9748d7..4804441155f5 100644
+--- a/Documentation/filesystems/nfs/client-identifier.rst
++++ b/Documentation/filesystems/nfs/client-identifier.rst
+@@ -131,7 +131,7 @@ deployments, this construction is usually adequate. Often, however,
+ the node name by itself is not adequately unique, and can change
+ unexpectedly. Problematic situations include:
+ 
+-  - NFS-root (diskless) clients, where the local DCHP server (or
++  - NFS-root (diskless) clients, where the local DHCP server (or
+     equivalent) does not provide a unique host name.
+ 
+   - "Containers" within a single Linux host.  If each container has
+diff --git a/Documentation/filesystems/nfs/rpc-cache.rst b/Documentation/filesystems/nfs/rpc-cache.rst
+index bb164eea969b..339efd75016a 100644
+--- a/Documentation/filesystems/nfs/rpc-cache.rst
++++ b/Documentation/filesystems/nfs/rpc-cache.rst
+@@ -78,7 +78,7 @@ Creating a Cache
+       include taking references to shared objects.
+ 
+     void update(struct cache_head \*orig, struct cache_head \*new)
+-      Set the 'content' fileds in 'new' from 'orig'.
++      Set the 'content' fields in 'new' from 'orig'.
+ 
+     int cache_show(struct seq_file \*m, struct cache_detail \*cd, struct cache_head \*h)
+       Optional.  Used to provide a /proc file that lists the
+diff --git a/Documentation/filesystems/nfs/rpc-server-gss.rst b/Documentation/filesystems/nfs/rpc-server-gss.rst
+index ccaea9e7cea2..5c1a1c58fc27 100644
+--- a/Documentation/filesystems/nfs/rpc-server-gss.rst
++++ b/Documentation/filesystems/nfs/rpc-server-gss.rst
+@@ -29,7 +29,7 @@ The Linux kernel, at the moment, supports only the KRB5 mechanism, and
+ depends on GSSAPI extensions that are KRB5 specific.
+ 
+ GSSAPI is a complex library, and implementing it completely in kernel is
+-unwarranted. However GSSAPI operations are fundementally separable in 2
++unwarranted. However GSSAPI operations are fundamentally separable in 2
+ parts:
+ 
+ - initial context establishment
+diff --git a/Documentation/filesystems/nilfs2.rst b/Documentation/filesystems/nilfs2.rst
+index 6c49f04e9e0a..e3a5c8977f2c 100644
+--- a/Documentation/filesystems/nilfs2.rst
++++ b/Documentation/filesystems/nilfs2.rst
+@@ -231,7 +231,7 @@ file structures (nilfs_finfo), and per block structures (nilfs_binfo)::
  
  
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt b/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-index 238b51555c04..6a3a885caec4 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-+++ b/Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-@@ -81,7 +81,7 @@ stmpe811@41 {
- 	st,mod-12b = <1>;
- 	/* internal ADC reference */
- 	st,ref-sel = <0>;
--	/* ADC converstion time: 80 clocks */
-+	/* ADC conversion time: 80 clocks */
- 	st,sample-time = <4>;
+ The logs include regular files, directory files, symbolic link files
+-and several meta data files.  The mata data files are the files used
++and several meta data files.  The meta data files are the files used
+ to maintain file system meta data.  The current version of NILFS2 uses
+ the following meta data files::
  
- 	stmpe_touchscreen {
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-index ed00f61b8c08..210486a3fb11 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-+++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-@@ -6,7 +6,7 @@ Required properties:
- - ti,x-plate-ohms: X-plate resistance in ohms.
+diff --git a/Documentation/filesystems/ntfs3.rst b/Documentation/filesystems/ntfs3.rst
+index f0cf05cad2ba..2b86a9b3a6de 100644
+--- a/Documentation/filesystems/ntfs3.rst
++++ b/Documentation/filesystems/ntfs3.rst
+@@ -112,7 +112,7 @@ this table marked with no it means default is without **no**.
+ Todo list
+ =========
+ - Full journaling support over JBD. Currently journal replaying is supported
+-  which is not necessarily as effectice as JBD would be.
++  which is not necessarily as effective as JBD would be.
  
- Optional properties:
--- gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
-+- gpios: the interrupt gpio the chip is connected to (through the penirq pin).
-   The penirq pin goes to low when the panel is touched.
-   (see GPIO binding[1] for more details).
- - interrupts: (gpio) interrupt to which the chip is connected
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-index 39e64c7f6360..2bc38479a41e 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-@@ -49,7 +49,7 @@ properties:
+ References
+ ==========
+diff --git a/Documentation/filesystems/orangefs.rst b/Documentation/filesystems/orangefs.rst
+index 463e37694250..931159e61796 100644
+--- a/Documentation/filesystems/orangefs.rst
++++ b/Documentation/filesystems/orangefs.rst
+@@ -274,7 +274,7 @@ then contains:
+     of kcalloced memory. This memory is used as an array of pointers
+     to each of the pages in the IO buffer through a call to get_user_pages.
+   * desc_array - a pointer to ``desc_count * (sizeof(struct orangefs_bufmap_desc))``
+-    bytes of kcalloced memory. This memory is further intialized:
++    bytes of kcalloced memory. This memory is further initialized:
  
-       The 2nd cell contains the interrupt number for the interrupt type.
-       SPI interrupts are in the range [0-987]. PPI interrupts are in the
--      range [0-15]. Extented SPI interrupts are in the range [0-1023].
-+      range [0-15]. Extended SPI interrupts are in the range [0-1023].
-       Extended PPI interrupts are in the range [0-127].
+       user_desc is the kernel's copy of the IO buffer's ORANGEFS_dev_map_desc
+       structure. user_desc->ptr points to the IO buffer.
+diff --git a/Documentation/filesystems/overlayfs.rst b/Documentation/filesystems/overlayfs.rst
+index eb7d2c88ddec..cc4761599ac9 100644
+--- a/Documentation/filesystems/overlayfs.rst
++++ b/Documentation/filesystems/overlayfs.rst
+@@ -195,7 +195,7 @@ handle it in two different ways:
  
-       The 3rd cell is the flags, encoded as follows:
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-index 0f1af5a1c12e..bdd173056f72 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-@@ -70,7 +70,7 @@ Bank 1:
- 25: DMA9
- 26: DMA10
- 27: DMA11-14 - shared interrupt for DMA 11 to 14
--28: DMAALL - triggers on all dma interrupts (including chanel 15)
-+28: DMAALL - triggers on all dma interrupts (including channel 15)
- 29: AUX
- 30: ARM
- 31: VPUDMA
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
-index c680de1cbd56..786f2426399b 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
-@@ -59,7 +59,7 @@ description: >
-   ..
-   31 ........................ X
+ 1. return EXDEV error: this error is returned by rename(2) when trying to
+    move a file or directory across filesystem boundaries.  Hence
+-   applications are usually prepared to hande this error (mv(1) for example
++   applications are usually prepared to handle this error (mv(1) for example
+    recursively copies the directory tree).  This is the default behavior.
  
--  The BCM3380 Level 1 / Level 2 interrrupt controller shows up in various forms
-+  The BCM3380 Level 1 / Level 2 interrupt controller shows up in various forms
-   on many BCM338x/BCM63xx chipsets. It has the following properties:
+ 2. If the "redirect_dir" feature is enabled, then the directory will be
+@@ -235,7 +235,7 @@ Mount options:
+     Redirects are not created and not followed.
+ - "redirect_dir=off":
+     If "redirect_always_follow" is enabled in the kernel/module config,
+-    this "off" traslates to "follow", otherwise it translates to "nofollow".
++    this "off" translates to "follow", otherwise it translates to "nofollow".
  
-   - outputs a single interrupt signal to its interrupt controller parent
-diff --git a/Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml
-index 5533b6562d92..16fc98e71233 100644
---- a/Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml
-@@ -66,7 +66,7 @@ properties:
+ When the NFS export feature is enabled, every copied up directory is
+ indexed by the file handle of the lower inode and a file handle of the
+diff --git a/Documentation/filesystems/porting.rst b/Documentation/filesystems/porting.rst
+index d2d684ae7798..ffafd93001df 100644
+--- a/Documentation/filesystems/porting.rst
++++ b/Documentation/filesystems/porting.rst
+@@ -177,7 +177,7 @@ settles down a bit.
+ **mandatory**
  
-   mediatek,bled-ocp-shutdown:
-     description: |
--      Enable the backlight shutdown when OCP level triggerred.
-+      Enable the backlight shutdown when OCP level triggered.
-     type: boolean
+ s_export_op is now required for exporting a filesystem.
+-isofs, ext2, ext3, resierfs, fat
++isofs, ext2, ext3, reiserfs, fat
+ can be used as examples of very different filesystems.
  
-   mediatek,bled-ocp-microamp:
-diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-index 058be1fedbc8..e9d4514d0166 100644
---- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
-@@ -106,7 +106,7 @@ patternProperties:
+ ---
+@@ -470,7 +470,7 @@ has been taken to VFS and filesystems need to provide a non-NULL
+ **mandatory**
  
-           max-cur:
-             $ref: /schemas/types.yaml#/definitions/uint8
--            description: Maximun current at each LED channel.
-+            description: Maximum current at each LED channel.
+ If you implement your own ->llseek() you must handle SEEK_HOLE and
+-SEEK_DATA.  You can hanle this by returning -EINVAL, but it would be nicer to
++SEEK_DATA.  You can handle this by returning -EINVAL, but it would be nicer to
+ support it in some way.  The generic handler assumes that the entire file is
+ data and there is a virtual hole at the end of the file.  So if the provided
+ offset is less than i_size and SEEK_DATA is specified, return the same offset.
+@@ -517,7 +517,7 @@ The witch is dead!  Well, 2/3 of it, anyway.  ->d_revalidate() and
  
-           reg:
-             maximum: 8
-@@ -129,7 +129,7 @@ patternProperties:
+ ->create() doesn't take ``struct nameidata *``; unlike the previous
+ two, it gets "is it an O_EXCL or equivalent?" boolean argument.  Note that
+-local filesystems can ignore tha argument - they are guaranteed that the
++local filesystems can ignore this argument - they are guaranteed that the
+ object doesn't exist.  It's remote/distributed ones that might care...
  
-       max-cur:
-         $ref: /schemas/types.yaml#/definitions/uint8
--        description: Maximun current at each LED channel.
-+        description: Maximum current at each LED channel.
+ ---
+diff --git a/Documentation/filesystems/proc.rst b/Documentation/filesystems/proc.rst
+index 7897a7dafcbc..d6109c78a228 100644
+--- a/Documentation/filesystems/proc.rst
++++ b/Documentation/filesystems/proc.rst
+@@ -507,12 +507,12 @@ pressure if the memory is clean. Please note that the printed value might
+ be lower than the real value due to optimizations used in the current
+ implementation. If this is not desirable please file a bug report.
  
-       reg:
-         description: |
-diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-index e6f1999cb22f..ea84ad426df1 100644
---- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-@@ -56,7 +56,7 @@ properties:
-     description: >
-       A list of integer pairs, where each pair represent the dtest line the
-       particular channel should be connected to and the flags denoting how the
--      value should be outputed, as defined in the datasheet. The number of
-+      value should be outputted, as defined in the datasheet. The number of
-       pairs should be the same as the number of channels.
-     items:
-       items:
-diff --git a/Documentation/devicetree/bindings/mailbox/brcm,iproc-flexrm-mbox.txt b/Documentation/devicetree/bindings/mailbox/brcm,iproc-flexrm-mbox.txt
-index 752ae6b00d26..c80065a1eb97 100644
---- a/Documentation/devicetree/bindings/mailbox/brcm,iproc-flexrm-mbox.txt
-+++ b/Documentation/devicetree/bindings/mailbox/brcm,iproc-flexrm-mbox.txt
-@@ -29,7 +29,7 @@ Required properties:
- 		where N is the value specified by 2nd cell above. If FlexRM
- 		does not get required number of completion messages in time
- 		specified by this cell then it will inject one MSI interrupt
--		to CPU provided atleast one completion message is available.
-+		to CPU provided at least one completion message is available.
+-"AnonHugePages" shows the ammount of memory backed by transparent hugepage.
++"AnonHugePages" shows the amount of memory backed by transparent hugepage.
  
- Optional properties:
- --------------------
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-index d433e496ec6e..4943c75e8a60 100644
---- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-@@ -159,7 +159,7 @@ properties:
-       a corresponding sysc interconnect node.
+-"ShmemPmdMapped" shows the ammount of shared (shmem/tmpfs) memory backed by
++"ShmemPmdMapped" shows the amount of shared (shmem/tmpfs) memory backed by
+ huge pages.
  
-       This property is only needed on some legacy OMAP SoCs which have not
--      yet been converted to the ti,sysc interconnect hierarachy, but is
-+      yet been converted to the ti,sysc interconnect hierarchy, but is
-       otherwise considered obsolete.
+-"Shared_Hugetlb" and "Private_Hugetlb" show the ammounts of memory backed by
++"Shared_Hugetlb" and "Private_Hugetlb" show the amounts of memory backed by
+ hugetlbfs page which is *not* counted in "RSS" or "PSS" field for historical
+ reasons. And these are not included in {Shared,Private}_{Clean,Dirty} field.
  
- patternProperties:
-diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-index b8ba85a2416c..c5cab549ee8e 100644
---- a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-@@ -12,7 +12,7 @@ maintainers:
- description: |-
-   The Toshiba TC358746 converts a parallel video stream into a MIPI CSI-2
-   stream. The direction can be either parallel-in -> csi-out or csi-in ->
--  parallel-out The chip is programmable trough I2C and SPI but the SPI
-+  parallel-out The chip is programmable through I2C and SPI but the SPI
-   interface is only supported in parallel-in -> csi-out mode.
- 
-   Note that the current device tree bindings only support the
-diff --git a/Documentation/devicetree/bindings/media/i2c/tvp5150.txt b/Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-index 719b2995dc17..94b908ace53c 100644
---- a/Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-+++ b/Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-@@ -53,7 +53,7 @@ Optional Connector Properties:
+@@ -561,7 +561,7 @@ encoded manner. The codes are the following:
+     mm    mixed map area
+     hg    huge page advise flag
+     nh    no huge page advise flag
+-    mg    mergable advise flag
++    mg    mergeable advise flag
+     bt    arm64 BTI guarded page
+     mt    arm64 MTE allocation tags are enabled
+     um    userfaultfd missing tracking
+@@ -1081,7 +1081,7 @@ Writeback
+ AnonPages
+               Non-file backed pages mapped into userspace page tables
+ Mapped
+-              files which have been mmaped, such as libraries
++              files which have been mmapped, such as libraries
+ Shmem
+               Total memory used by shared memory (shmem) and tmpfs
+ KReclaimable
+@@ -2229,7 +2229,7 @@ are not related to tasks.
+ Chapter 5: Filesystem behavior
  ==============================
  
- - sdtv-standards: Set the possible signals to which the hardware tries to lock
--                  instead of using the autodetection mechnism. Please look at
-+                  instead of using the autodetection mechanism. Please look at
-                   [1] for more information.
- 
- [1] Documentation/devicetree/bindings/display/connector/analog-tv-connector.yaml.
-diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-index dca9b0c5e106..a500a585c692 100644
---- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-@@ -36,7 +36,7 @@ description: |
-   controls the information of each hardware independent which include clk/power/irq.
- 
-   There are two workqueues in parent device: lat workqueue and core workqueue. They are used
--  to lat and core hardware deocder. Lat workqueue need to get input bitstream and lat buffer,
-+  to lat and core hardware decoder. Lat workqueue need to get input bitstream and lat buffer,
-   then enable lat to decode, writing the result to lat buffer, dislabe hardware when lat decode
-   done. Core workqueue need to get lat buffer and output buffer, then enable core to decode,
-   writing the result to output buffer, disable hardware when core decode done. These two
-diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-index aee7f6cf1300..2381660b324c 100644
---- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-@@ -67,7 +67,7 @@ properties:
-     minimum: 0
-     maximum: 31
-     description: the hardware id of this larb. It's only required when this
--      hardward id is not consecutive from its M4U point of view.
-+      hardware id is not consecutive from its M4U point of view.
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
-index fb4920397d08..4e4af3cfc0fe 100644
---- a/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
-@@ -152,7 +152,7 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-       When the DRAM type is DDR3, this parameter defines the phy side CA line
--      (incluing command line, address line and clock line) drive strength.
-+      (including command line, address line and clock line) drive strength.
-     default: 40
- 
-   rockchip,phy_ddr3_dq_drv:
-@@ -305,7 +305,7 @@ properties:
-     description:
-       Defines the self-refresh power down idle period in which memories are
-       placed into self-refresh power down mode if bus is idle for
--      srpd_lite_idle nanoseonds. This parameter is for LPDDR4 only.
-+      srpd_lite_idle nanoseconds. This parameter is for LPDDR4 only.
- 
-   rockchip,standby-idle-ns:
-     description:
-diff --git a/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml b/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
-index 75143db51411..b74ad9a3305c 100644
---- a/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- description:
-   The Zynq DDR ECC controller has an optional ECC support in half-bus width
--  (16-bit) configuration. It is cappable of correcting single bit ECC errors
-+  (16-bit) configuration. It is capable of correcting single bit ECC errors
-   and detecting double bit ECC errors.
- 
- properties:
-diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-index 750996d9a175..5dfe77aca167 100644
---- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-+++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-@@ -27,7 +27,7 @@ description:
-     as LPC firmware hub cycles, configuration of the LPC-to-AHB mapping, UART
-     management and bus snoop configuration.
- 
--  * A set of SuperIO[3] scratch registers enableing implementation of e.g. custom
-+  * A set of SuperIO[3] scratch registers enabling implementation of e.g. custom
-     hardware management protocols for handover between the host and baseboard
-     management controller.
- 
-diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml
-index 10f207a38178..b7b323b1a4f2 100644
---- a/Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml
-@@ -34,7 +34,7 @@ properties:
-       BD9576 and BD9573 VOUT1 regulator enable state can be individually
-       controlled by a GPIO. This is dictated by state of vout1-en pin during
-       the PMIC startup. If vout1-en is LOW during PMIC startup then the VOUT1
--      enable sate is controlled via this pin. Set this property if vout1-en
-+      enable state is controlled via this pin. Set this property if vout1-en
-       is wired to be down at PMIC start-up.
-     type: boolean
- 
-@@ -61,7 +61,7 @@ properties:
-   rohm,hw-timeout-ms:
-     maxItems: 2
-     description:
--      Watchog timeout in milliseconds. If single value is given it is
-+      Watchdog timeout in milliseconds. If single value is given it is
-       the maximum timeout. Eg. if pinging watchdog is not done within this time
-       limit the watchdog will be triggered. If two values are given watchdog
-       is configured in "window mode". Then first value is limit for short-ping
-diff --git a/Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml b/Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml
-index 6c8d42f27fe8..94f9767a927d 100644
---- a/Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml
-+++ b/Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml
-@@ -313,7 +313,7 @@ properties:
-           - const: audioclk
- 
-       stericsson,earpeice-cmv:
--        description: Earpeice voltage
-+        description: Earpiece voltage
-         $ref: /schemas/types.yaml#/definitions/uint32
-         enum: [ 950, 1100, 1270, 1580 ]
- 
-@@ -337,39 +337,39 @@ properties:
-           with power.
- 
-       ab8500_ldo_aux1:
--        description: The voltage for the auxilary LDO regulator 1
-+        description: The voltage for the auxiliary LDO regulator 1
-         type: object
-         $ref: ../regulator/regulator.yaml#
-         unevaluatedProperties: false
- 
-       ab8500_ldo_aux2:
--        description: The voltage for the auxilary LDO regulator 2
-+        description: The voltage for the auxiliary LDO regulator 2
-         type: object
-         $ref: ../regulator/regulator.yaml#
-         unevaluatedProperties: false
- 
-       ab8500_ldo_aux3:
--        description: The voltage for the auxilary LDO regulator 3
-+        description: The voltage for the auxiliary LDO regulator 3
-         type: object
-         $ref: ../regulator/regulator.yaml#
-         unevaluatedProperties: false
- 
-       ab8500_ldo_aux4:
--        description: The voltage for the auxilary LDO regulator 4
-+        description: The voltage for the auxiliary LDO regulator 4
-           only present on AB8505
-         type: object
-         $ref: ../regulator/regulator.yaml#
-         unevaluatedProperties: false
- 
-       ab8500_ldo_aux5:
--        description: The voltage for the auxilary LDO regulator 5
-+        description: The voltage for the auxiliary LDO regulator 5
-           only present on AB8505
-         type: object
-         $ref: ../regulator/regulator.yaml#
-         unevaluatedProperties: false
- 
-       ab8500_ldo_aux6:
--        description: The voltage for the auxilary LDO regulator 6
-+        description: The voltage for the auxiliary LDO regulator 6
-           only present on AB8505
-         type: object
-         $ref: ../regulator/regulator.yaml#
-@@ -378,7 +378,7 @@ properties:
-       # There is never any AUX7 regulator which is confusing
- 
-       ab8500_ldo_aux8:
--        description: The voltage for the auxilary LDO regulator 8
-+        description: The voltage for the auxiliary LDO regulator 8
-           only present on AB8505
-         type: object
-         $ref: ../regulator/regulator.yaml#
-diff --git a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-index 1d4d88f7e82d..a66d58b4d1f2 100644
---- a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-+++ b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-@@ -107,7 +107,7 @@ properties:
-         $ref: ../regulator/regulator.yaml#
- 
-       db8500_vrf1:
--        description: RF transciever voltage regulator.
-+        description: RF transceiver voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
- 
-diff --git a/Documentation/devicetree/bindings/mmc/pxa-mmc.txt b/Documentation/devicetree/bindings/mmc/pxa-mmc.txt
-index 5f5c2bec2b8c..66a78eae4dc9 100644
---- a/Documentation/devicetree/bindings/mmc/pxa-mmc.txt
-+++ b/Documentation/devicetree/bindings/mmc/pxa-mmc.txt
-@@ -9,7 +9,7 @@ Required properties:
- Optional properties:
- - marvell,detect-delay-ms: sets the detection delay timeout in ms.
- 
--In addition to the properties described in this docuent, the details
-+In addition to the properties described in this document, the details
- described in mmc.txt are supported.
- 
- Examples:
-diff --git a/Documentation/devicetree/bindings/mmc/ti-omap-hsmmc.txt b/Documentation/devicetree/bindings/mmc/ti-omap-hsmmc.txt
-index 57d077c0b7c1..7a0e9dcdc444 100644
---- a/Documentation/devicetree/bindings/mmc/ti-omap-hsmmc.txt
-+++ b/Documentation/devicetree/bindings/mmc/ti-omap-hsmmc.txt
-@@ -95,7 +95,7 @@ while in suspend.
-       | card | -- CIRQ -->  | hsmmc | -- IRQ -->  | CPU |
-        ------                -------               -----
- 
--In suspend the fclk is off and the module is disfunctional. Even register reads
-+In suspend the fclk is off and the module is dysfunctional. Even register reads
- will fail. A small logic in the host will request fclk restore, when an
- external event is detected. Once the clock is restored, the host detects the
- event normally. Since am33xx doesn't have this line it never wakes from
-diff --git a/Documentation/devicetree/bindings/net/brcm,bcm7445-switch-v4.0.txt b/Documentation/devicetree/bindings/net/brcm,bcm7445-switch-v4.0.txt
-index d0935d2afef8..284cddb3118e 100644
---- a/Documentation/devicetree/bindings/net/brcm,bcm7445-switch-v4.0.txt
-+++ b/Documentation/devicetree/bindings/net/brcm,bcm7445-switch-v4.0.txt
-@@ -1,4 +1,4 @@
--* Broadcom Starfighter 2 integrated swich
-+* Broadcom Starfighter 2 integrated switch
- 
- See dsa/brcm,bcm7445-switch-v4.0.yaml for the documentation.
- 
-diff --git a/Documentation/devicetree/bindings/net/can/cc770.txt b/Documentation/devicetree/bindings/net/can/cc770.txt
-index 77027bf6460a..042200cf4419 100644
---- a/Documentation/devicetree/bindings/net/can/cc770.txt
-+++ b/Documentation/devicetree/bindings/net/can/cc770.txt
-@@ -26,7 +26,7 @@ Optional properties:
- 	will be disabled.
- 
- - bosch,slew-rate : slew rate of the CLKOUT signal. If not specified,
--	a resonable value will be calculated.
-+	a reasonable value will be calculated.
- 
- - bosch,disconnect-rx0-input : see data sheet.
- 
-diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
-index c745407f2f68..b06c416893ff 100644
---- a/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/net/dsa/brcm,sf2.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Broadcom Starfighter 2 integrated swich
-+title: Broadcom Starfighter 2 integrated switch
- 
- maintainers:
-   - Florian Fainelli <f.fainelli@gmail.com>
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index c1241c8a3b77..8fb2a6ee7e5b 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -110,7 +110,7 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
-       If set, indicates that PHY will disable swap of the
--      TX/RX lanes. This property allows the PHY to work correcly after
-+      TX/RX lanes. This property allows the PHY to work correctly after
-       e.g. wrong bootstrap configuration caused by issues in PCB
-       layout design.
- 
-diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index 5aa320c8af5a..ed9d845f6008 100644
---- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -129,7 +129,7 @@ properties:
-     type: boolean
-     description:
-       If present, indicates that MAC supports WOL(Wake-On-LAN), and MAC WOL will be enabled.
--      Otherwise, PHY WOL is perferred.
-+      Otherwise, PHY WOL is preferred.
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-index 0b97e14d947f..77c9bbf987e1 100644
---- a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-@@ -33,7 +33,7 @@ properties:
-           - usb424,9906   # SMSC9505A USB Ethernet Device (HAL)
-           - usb424,9907   # SMSC9500 USB Ethernet Device (Alternate ID)
-           - usb424,9908   # SMSC9500A USB Ethernet Device (Alternate ID)
--          - usb424,9909   # SMSC9512/9514 USB Hub & Ethernet Devic.  ID)
-+          - usb424,9909   # SMSC9512/9514 USB Hub & Ethernet Device  ID)
-           - usb424,9e00   # SMSC9500A USB Ethernet Device
-           - usb424,9e01   # SMSC9505A USB Ethernet Device
-           - usb424,9e08   # SMSC LAN89530 USB Ethernet Device
-diff --git a/Documentation/devicetree/bindings/net/nfc/marvell,nci.yaml b/Documentation/devicetree/bindings/net/nfc/marvell,nci.yaml
-index 8e9a95f24c80..89663fdd3eba 100644
---- a/Documentation/devicetree/bindings/net/nfc/marvell,nci.yaml
-+++ b/Documentation/devicetree/bindings/net/nfc/marvell,nci.yaml
-@@ -37,13 +37,13 @@ properties:
-     type: boolean
-     description: |
-       For I2C type of connection. Specifies that the chip read event shall be
--      trigged on falling edge.
-+      triggered on falling edge.
- 
-   i2c-int-rising:
-     type: boolean
-     description: |
-       For I2C type of connection.  Specifies that the chip read event shall be
--      trigged on rising edge.
-+      triggered on rising edge.
- 
-   break-control:
-     type: boolean
-diff --git a/Documentation/devicetree/bindings/net/samsung-sxgbe.txt b/Documentation/devicetree/bindings/net/samsung-sxgbe.txt
-index 2cff6d8a585a..b9381b761a27 100644
---- a/Documentation/devicetree/bindings/net/samsung-sxgbe.txt
-+++ b/Documentation/devicetree/bindings/net/samsung-sxgbe.txt
-@@ -5,10 +5,10 @@ Required properties:
- - reg: Address and length of the register set for the device
- - interrupts: Should contain the SXGBE interrupts
-   These interrupts are ordered by fixed and follows variable
--  trasmit DMA interrupts, receive DMA interrupts and lpi interrupt.
-+  transmit DMA interrupts, receive DMA interrupts and lpi interrupt.
-   index 0 - this is fixed common interrupt of SXGBE and it is always
-   available.
--  index 1 to 25 - 8 variable trasmit interrupts, variable 16 receive interrupts
-+  index 1 to 25 - 8 variable transmit interrupts, variable 16 receive interrupts
-   and 1 optional lpi interrupt.
- - phy-mode: String, operation mode of the PHY interface.
-   Supported values are: "sgmii", "xgmii".
-diff --git a/Documentation/devicetree/bindings/net/snps,dwc-qos-ethernet.txt b/Documentation/devicetree/bindings/net/snps,dwc-qos-ethernet.txt
-index ad3c6e109ce1..bb0224a3e826 100644
---- a/Documentation/devicetree/bindings/net/snps,dwc-qos-ethernet.txt
-+++ b/Documentation/devicetree/bindings/net/snps,dwc-qos-ethernet.txt
-@@ -110,7 +110,7 @@ Optional properties:
-   It depends on the SoC configuration.
- - snps,read-requests: Number of read requests that the AXI port can issue.
-   It depends on the SoC configuration.
--- snps,burst-map: Bitmap of allowed AXI burst lengts, with the LSB
-+- snps,burst-map: Bitmap of allowed AXI burst lengths, with the LSB
-   representing 4, then 8 etc.
- - snps,txpbl: DMA Programmable burst length for the TX DMA
- - snps,rxpbl: DMA Programmable burst length for the RX DMA
-diff --git a/Documentation/devicetree/bindings/net/sti-dwmac.txt b/Documentation/devicetree/bindings/net/sti-dwmac.txt
-index 42cd075456ab..e16287c06e5e 100644
---- a/Documentation/devicetree/bindings/net/sti-dwmac.txt
-+++ b/Documentation/devicetree/bindings/net/sti-dwmac.txt
-@@ -21,7 +21,7 @@ Optional properties:
-    MAC can generate it.
-  - st,tx-retime-src: This specifies which clk is wired up to the mac for
-    retimeing tx lines. This is totally board dependent and can take one of the
--   posssible values from "txclk", "clk_125" or "clkgen".
-+   possible values from "txclk", "clk_125" or "clkgen".
-    If not passed, the internal clock will be used by default.
-  - sti-ethclk: this is the phy clock.
-  - sti-clkconf: this is an extra sysconfig register, available in new SoCs,
-diff --git a/Documentation/devicetree/bindings/net/xilinx_gmii2rgmii.txt b/Documentation/devicetree/bindings/net/xilinx_gmii2rgmii.txt
-index 038dda48b8e6..425df7590e26 100644
---- a/Documentation/devicetree/bindings/net/xilinx_gmii2rgmii.txt
-+++ b/Documentation/devicetree/bindings/net/xilinx_gmii2rgmii.txt
-@@ -7,7 +7,7 @@ Ethernet physical media devices (PHY) and the Gigabit Ethernet controller.
- This core can be used in all three modes of operation(10/100/1000 Mb/s).
- The Management Data Input/Output (MDIO) interface is used to configure the
- Speed of operation. This core can switch dynamically between the three
--Different speed modes by configuring the conveter register through mdio write.
-+Different speed modes by configuring the converter register through mdio write.
- 
- This converter sits between the ethernet MAC and the external phy.
- MAC <==> GMII2RGMII <==> RGMII_PHY
-diff --git a/Documentation/devicetree/bindings/nios2/nios2.txt b/Documentation/devicetree/bindings/nios2/nios2.txt
-index b95e831bcba3..3e9cabe667b3 100644
---- a/Documentation/devicetree/bindings/nios2/nios2.txt
-+++ b/Documentation/devicetree/bindings/nios2/nios2.txt
-@@ -23,7 +23,7 @@ Required properties:
- - altr,tlb-num-ways: Specifies the number of set-associativity ways in the TLB.
- - altr,tlb-num-entries: Specifies the number of entries in the TLB.
- - altr,tlb-ptr-sz: Specifies size of TLB pointer.
--- altr,has-mul: Specifies CPU hardware multipy support, should be 1.
-+- altr,has-mul: Specifies CPU hardware multiply support, should be 1.
- - altr,has-mmu: Specifies CPU support MMU support, should be 1.
- - altr,has-initda: Specifies CPU support initda instruction, should be 1.
- - altr,reset-addr: Specifies CPU reset address
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-index 714a6538cc7c..ee8ac322332d 100644
---- a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-@@ -14,7 +14,7 @@ description:
-   infrastructure shall provide a non-volatile memory with a table whose the
-   content is well specified and gives many information about the manufacturer
-   (name, country of manufacture, etc) as well as device caracteristics (serial
--  number, hardware version, mac addresses, etc). The underlaying device type
-+  number, hardware version, mac addresses, etc). The underlying device type
-   (flash, EEPROM,...) is not specified. The exact location of each value is also
-   dynamic and should be discovered at run time because it depends on the
-   parameters the manufacturer decided to embed.
-diff --git a/Documentation/devicetree/bindings/phy/phy-hisi-inno-usb2.txt b/Documentation/devicetree/bindings/phy/phy-hisi-inno-usb2.txt
-index 0d70c8341095..104953e849e7 100644
---- a/Documentation/devicetree/bindings/phy/phy-hisi-inno-usb2.txt
-+++ b/Documentation/devicetree/bindings/phy/phy-hisi-inno-usb2.txt
-@@ -14,7 +14,7 @@ Required properties:
- - #size-cells: Must be 0.
- 
- The INNO USB2 PHY device should be a child node of peripheral controller that
--contains the PHY configuration register, and each device suppports up to 2 PHY
-+contains the PHY configuration register, and each device supports up to 2 PHY
- ports which are represented as child nodes of INNO USB2 PHY device.
- 
- Required properties for PHY port node:
-diff --git a/Documentation/devicetree/bindings/phy/pistachio-usb-phy.txt b/Documentation/devicetree/bindings/phy/pistachio-usb-phy.txt
-index afbc7e24a3de..c7970c07ee32 100644
---- a/Documentation/devicetree/bindings/phy/pistachio-usb-phy.txt
-+++ b/Documentation/devicetree/bindings/phy/pistachio-usb-phy.txt
-@@ -8,7 +8,7 @@ Required properties:
-  - clocks: Must contain an entry for each entry in clock-names.
-    See ../clock/clock-bindings.txt for details.
-  - clock-names: Must include "usb_phy".
-- - img,cr-top: Must constain a phandle to the CR_TOP syscon node.
-+ - img,cr-top: Must contain a phandle to the CR_TOP syscon node.
-  - img,refclk: Indicates the reference clock source for the USB PHY.
-    See <dt-bindings/phy/phy-pistachio-usb.h> for a list of valid values.
- 
-diff --git a/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt b/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
-index 660a13ca90b3..da94426aa694 100644
---- a/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
-+++ b/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
-@@ -4,7 +4,7 @@ Required properties:
- - compatible: "marvell,pxa1928-usb-phy" or "marvell,pxa1928-hsic-phy"
- - reg: base address and length of the registers
- - clocks - A single clock. From common clock binding.
--- #phys-cells: should be 0. From commmon phy binding.
-+- #phys-cells: should be 0. From common phy binding.
- - resets: reference to the reset controller
- 
- Example:
-diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-index 0e6505e9da50..5ac994b3c0aa 100644
---- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-+++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Heiko Stuebner <heiko@sntech.de>
- 
- description: |
--  The Rockchip SoC has a MIPI CSI D-PHY based on an Innosilicon IP wich
-+  The Rockchip SoC has a MIPI CSI D-PHY based on an Innosilicon IP which
-   connects to the ISP1 (Image Signal Processing unit v1.0) for CSI cameras.
- 
- properties:
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-index 9ea30eaba314..3f16ff14484d 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-@@ -59,7 +59,7 @@ properties:
-     description:
-       GPIO to signal Type-C cable orientation for lane swap.
-       If GPIO is active, lane 0 and lane 1 of SERDES will be swapped to
--      achieve the funtionality of an external type-C plug flip mux.
-+      achieve the functionality of an external type-C plug flip mux.
- 
-   typec-dir-debounce-ms:
-     minimum: 100
-diff --git a/Documentation/devicetree/bindings/phy/ti-phy.txt b/Documentation/devicetree/bindings/phy/ti-phy.txt
-index 60c9d0ac75e6..7c7936b89f2c 100644
---- a/Documentation/devicetree/bindings/phy/ti-phy.txt
-+++ b/Documentation/devicetree/bindings/phy/ti-phy.txt
-@@ -62,7 +62,7 @@ Deprecated properties:
-  - ctrl-module : phandle of the control module used by PHY driver to power on
-    the PHY.
- 
--Recommended properies:
-+Recommended properties:
-  - syscon-phy-power : phandle/offset pair. Phandle to the system control
-    module and the register offset to power on/off the PHY.
- 
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-index 467016cbb037..450240570314 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-@@ -97,7 +97,7 @@ patternProperties:
-   # It's pretty scary, but the basic idea is that:
-   #   - One node name can start with either s- or r- for PRCM nodes,
-   #   - Then, the name itself can be any repetition of <string>- (to
--  #     accomodate with nodes like uart4-rts-cts-pins), where each
-+  #     accommodate with nodes like uart4-rts-cts-pins), where each
-   #     string can be either starting with 'p' but in a string longer
-   #     than 3, or something that doesn't start with 'p',
-   #   - Then, the bank name is optional and will be between pa and pg,
-diff --git a/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml b/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
-index 739a08f00467..beb769e887c7 100644
---- a/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
-@@ -11,7 +11,7 @@ maintainers:
- 
- description:
-   The Canaan Kendryte K210 SoC Fully Programmable IO Array (FPIOA)
--  controller allows assiging any of 256 possible functions to any of
-+  controller allows assigning any of 256 possible functions to any of
-   48 IO pins of the SoC. Pin function configuration is performed on
-   a per-pin basis.
- 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-index 7f0e2d6cd6d9..3bbc00df5548 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-@@ -159,7 +159,7 @@ patternProperties:
- 
-           mediatek,pull-up-adv:
-             description: |
--              Pull up setings for 2 pull resistors, R0 and R1. User can
-+              Pull up settings for 2 pull resistors, R0 and R1. User can
-               configure those special pins. Valid arguments are described as
-               below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
-index 601d86aecdd4..68e91c05f122 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
-@@ -130,7 +130,7 @@ patternProperties:
- 
-           mediatek,pull-up-adv:
-             description: |
--              Pull up setings for 2 pull resistors, R0 and R1. User can
-+              Pull up settings for 2 pull resistors, R0 and R1. User can
-               configure those special pins. Valid arguments are described as
-               below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7981-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7981-pinctrl.yaml
-index 10717cee9058..74d52a741f6f 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7981-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7981-pinctrl.yaml
-@@ -386,7 +386,7 @@ patternProperties:
-           mediatek,pull-up-adv:
-             description: |
-               Valid arguments for 'mediatek,pull-up-adv' are '0', '1', '2', '3'
--              Pull up setings for 2 pull resistors, R0 and R1. Valid arguments
-+              Pull up settings for 2 pull resistors, R0 and R1. Valid arguments
-               are described as below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-               1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-@@ -398,7 +398,7 @@ patternProperties:
-           mediatek,pull-down-adv:
-             description: |
-               Valid arguments for 'mediatek,pull-up-adv' are '0', '1', '2', '3'
--              Pull down setings for 2 pull resistors, R0 and R1. Valid arguments
-+              Pull down settings for 2 pull resistors, R0 and R1. Valid arguments
-               are described as below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-               1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-index 0f615ada290a..5ad65135fe1c 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-@@ -332,7 +332,7 @@ patternProperties:
-           mediatek,pull-up-adv:
-             description: |
-               Valid arguments for 'mediatek,pull-up-adv' are '0', '1', '2', '3'
--              Pull up setings for 2 pull resistors, R0 and R1. Valid arguments
-+              Pull up settings for 2 pull resistors, R0 and R1. Valid arguments
-               are described as below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-               1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-@@ -344,7 +344,7 @@ patternProperties:
-           mediatek,pull-down-adv:
-             description: |
-               Valid arguments for 'mediatek,pull-up-adv' are '0', '1', '2', '3'
--              Pull down setings for 2 pull resistors, R0 and R1. Valid arguments
-+              Pull down settings for 2 pull resistors, R0 and R1. Valid arguments
-               are described as below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-               1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
-index ff24cf29eea7..8507bd15f243 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
-@@ -143,7 +143,7 @@ patternProperties:
- 
-           mediatek,pull-up-adv:
-             description: |
--              Pull up setings for 2 pull resistors, R0 and R1. User can
-+              Pull up settings for 2 pull resistors, R0 and R1. User can
-               configure those special pins. Valid arguments are described as
-               below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-index 61b33b5416f5..7b43e7857281 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-@@ -149,7 +149,7 @@ patternProperties:
-             deprecated: true
-             description: |
-               DEPRECATED: Please use bias-pull-up instead.
--              Pull up setings for 2 pull resistors, R0 and R1. User can
-+              Pull up settings for 2 pull resistors, R0 and R1. User can
-               configure those special pins. Valid arguments are described as
-               below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt
-index 511fc234558b..28fbca180068 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt
-@@ -38,7 +38,7 @@ Valid values for function properties are:
- 	gpio, lpm-control-in, fps-out, 32k-out, sd0-dvs-in, sd1-dvs-in,
- 	reference-out
- 
--Theres is also customised properties for the GPIO1, GPIO2 and GPIO3. These
-+There are also customised properties for the GPIO1, GPIO2 and GPIO3. These
- customised properties are required to configure FPS configuration parameters
- of these GPIOs. Please refer <devicetree/bindings/mfd/max77620.txt> for more
- detail of Flexible Power Sequence (FPS).
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-rk805.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-rk805.txt
-index 939cb5b6ffea..6ad49e51c72e 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-rk805.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-rk805.txt
-@@ -40,7 +40,7 @@ on default.
- 
- Valid values for function properties are: gpio.
- 
--Theres is also not customised properties for any GPIO.
-+There are also not customised properties for any GPIO.
- 
- Example:
- --------
-diff --git a/Documentation/devicetree/bindings/pinctrl/sprd,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/sprd,pinctrl.txt
-index b1cea7a3a071..779b8ef0f6e6 100644
---- a/Documentation/devicetree/bindings/pinctrl/sprd,pinctrl.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/sprd,pinctrl.txt
-@@ -8,7 +8,7 @@ to configure for some global common configuration, such as domain
- pad driving level, system control select and so on ("domain pad
- driving level": One pin can output 3.0v or 1.8v, depending on the
- related domain pad driving selection, if the related domain pad
--slect 3.0v, then the pin can output 3.0v. "system control" is used
-+select 3.0v, then the pin can output 3.0v. "system control" is used
- to choose one function (like: UART0) for which system, since we
- have several systems (AP/CP/CM4) on one SoC.).
- 
-diff --git a/Documentation/devicetree/bindings/pmem/pmem-region.txt b/Documentation/devicetree/bindings/pmem/pmem-region.txt
-index 5cfa4f016a00..cd79975e85ec 100644
---- a/Documentation/devicetree/bindings/pmem/pmem-region.txt
-+++ b/Documentation/devicetree/bindings/pmem/pmem-region.txt
-@@ -19,7 +19,7 @@ Required properties:
- 	- compatible = "pmem-region"
- 
- 	- reg = <base, size>;
--		The reg property should specificy an address range that is
-+		The reg property should specify an address range that is
- 		translatable to a system physical address range. This address
- 		range should be mappable as normal system memory would be
- 		(i.e cacheable).
-@@ -30,7 +30,7 @@ Required properties:
- 		node implies no special relationship between the two ranges.
- 
- Optional properties:
--	- Any relevant NUMA assocativity properties for the target platform.
-+	- Any relevant NUMA associativity properties for the target platform.
- 
- 	- volatile; This property indicates that this region is actually
- 	  backed by non-persistent memory. This lets the OS know that it
-diff --git a/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.yaml b/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.yaml
-index 559718997de7..fba6914ec40d 100644
---- a/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.yaml
-+++ b/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.yaml
-@@ -58,7 +58,7 @@ $defs:
-   pd-node:
-     type: object
-     description:
--      PM domain node representing a PM domain.  This node hould be named by
-+      PM domain node representing a PM domain.  This node should be named by
-       the real power area name, and thus its name should be unique.
- 
-     properties:
-diff --git a/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml b/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml
-index 99f506d6b0a0..f255f3858d08 100644
---- a/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/power/supply/sbs,sbs-manager.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: SBS compliant manger
-+title: SBS compliant manager
- 
- maintainers:
-   - Sebastian Reichel <sre@kernel.org>
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt b/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt
-index 801c66069121..4787db8de23f 100644
---- a/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt
-+++ b/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt
-@@ -28,6 +28,6 @@ PROPERTIES
- 	Snoop ID Port Mapping registers, which are part of the CoreNet
- 	Coherency fabric (CCF), provide a CoreNet Coherency Subdomain
- 	ID/CoreNet Snoop ID to cpu mapping functions.  Certain bits from
--	these registers should be set if the coresponding CPU should be
-+	these registers should be set if the corresponding CPU should be
- 	snooped.  This property defines a bitmask which selects the bit
- 	that should be set if this cpu should be snooped.
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/dcsr.txt b/Documentation/devicetree/bindings/powerpc/fsl/dcsr.txt
-index 4b01e1afafda..62744afb5b75 100644
---- a/Documentation/devicetree/bindings/powerpc/fsl/dcsr.txt
-+++ b/Documentation/devicetree/bindings/powerpc/fsl/dcsr.txt
-@@ -185,10 +185,10 @@ PROPERTIES
- 	with distinct functionality.
- 
- 	The first register range describes the CoreNet Debug Controller
--	functionalty to perform transaction and transaction attribute matches.
-+	functionality to perform transaction and transaction attribute matches.
- 
- 	The second register range describes the CoreNet Debug Controller
--	functionalty to trigger event notifications and debug traces.
-+	functionality to trigger event notifications and debug traces.
- 
- EXAMPLE
- 		dcsr-corenet {
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/raideng.txt b/Documentation/devicetree/bindings/powerpc/fsl/raideng.txt
-index 4ad29b9ac2ac..ea902bc5873d 100644
---- a/Documentation/devicetree/bindings/powerpc/fsl/raideng.txt
-+++ b/Documentation/devicetree/bindings/powerpc/fsl/raideng.txt
-@@ -60,7 +60,7 @@ Optional property:
- - fsl,liodn:	Specifies the LIODN to be used for Job Ring. This
- 		property is normally set by firmware. Value
- 		is of 12-bits which is the LIODN number for this JR.
--		This property is used by the IOMMU (PAMU) to distinquish
-+		This property is used by the IOMMU (PAMU) to distinguish
- 		transactions from this JR and than be able to do address
- 		translation & protection accordingly.
- 
-diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/gamecube.txt b/Documentation/devicetree/bindings/powerpc/nintendo/gamecube.txt
-index b558585b1aaf..3826bd1219d1 100644
---- a/Documentation/devicetree/bindings/powerpc/nintendo/gamecube.txt
-+++ b/Documentation/devicetree/bindings/powerpc/nintendo/gamecube.txt
-@@ -42,7 +42,7 @@ Nintendo GameCube device tree
- 
-   - compatible : should be "nintendo,flipper-pic"
- 
--1.c) The Digital Signal Procesor (DSP) node
-+1.c) The Digital Signal Processor (DSP) node
- 
-   Represents the digital signal processor interface, designed to offload
-   audio related tasks.
-diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wii.txt b/Documentation/devicetree/bindings/powerpc/nintendo/wii.txt
-index 3ff6ebbb4998..6f69a9dfe198 100644
---- a/Documentation/devicetree/bindings/powerpc/nintendo/wii.txt
-+++ b/Documentation/devicetree/bindings/powerpc/nintendo/wii.txt
-@@ -53,7 +53,7 @@ Nintendo Wii device tree
-   - compatible : should be "nintendo,flipper-pic"
-   - interrupt-controller
- 
--1.c) The Digital Signal Procesor (DSP) node
-+1.c) The Digital Signal Processor (DSP) node
- 
-   Represents the digital signal processor interface, designed to offload
-   audio related tasks.
-diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-index 9aabdb373afa..4d0b5964443d 100644
---- a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-+++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-@@ -18,7 +18,7 @@ description:
- 
-   The IP block has a version register so this can be used for detection
-   instead of having to encode the IP version number in the device tree
--  comaptible.
-+  compatible.
- 
- allOf:
-   - $ref: pwm.yaml#
-diff --git a/Documentation/devicetree/bindings/regulator/regulator-max77620.txt b/Documentation/devicetree/bindings/regulator/regulator-max77620.txt
-index 1c4bfe786736..bcf788897e44 100644
---- a/Documentation/devicetree/bindings/regulator/regulator-max77620.txt
-+++ b/Documentation/devicetree/bindings/regulator/regulator-max77620.txt
-@@ -35,7 +35,7 @@ information for that regulator. The definition for each of these
- nodes is defined using the standard binding for regulators found at
- <Documentation/devicetree/bindings/regulator/regulator.txt>.
- 
--Theres are also additional properties for SD/LDOs. These additional properties
-+There are also additional properties for SD/LDOs. These additional properties
- are required to configure FPS configuration parameters for SDs and LDOs.
- Please refer <devicetree/bindings/mfd/max77620.txt> for more detail of Flexible
- Power Sequence (FPS).
-diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml b/Documentation/devicetree/bindings/regulator/regulator.yaml
-index e158c2d3d3f9..9daf0fc2465f 100644
---- a/Documentation/devicetree/bindings/regulator/regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/regulator.yaml
-@@ -126,7 +126,7 @@ properties:
- 
-   regulator-oc-error-microamp:
-     description: Set over current error limit. This is a limit where part of
--      the hardware propably is malfunctional and damage prevention is requested.
-+      the hardware probably is malfunctional and damage prevention is requested.
-       Zero can be passed to disable error detection and value '1' indicates
-       that detection should be enabled but limit setting can be omitted.
- 
-@@ -146,7 +146,7 @@ properties:
- 
-   regulator-ov-error-microvolt:
-     description: Set over voltage error limit. This is a limit where part of
--      the hardware propably is malfunctional and damage prevention is requested
-+      the hardware probably is malfunctional and damage prevention is requested
-       Zero can be passed to disable error detection and value '1' indicates
-       that detection should be enabled but limit setting can be omitted. Limit
-       is given as microvolt offset from voltage set to regulator.
-@@ -168,7 +168,7 @@ properties:
- 
-   regulator-uv-error-microvolt:
-     description: Set under voltage error limit. This is a limit where part of
--      the hardware propably is malfunctional and damage prevention is requested
-+      the hardware probably is malfunctional and damage prevention is requested
-       Zero can be passed to disable error detection and value '1' indicates
-       that detection should be enabled but limit setting can be omitted. Limit
-       is given as microvolt offset from voltage set to regulator.
-@@ -189,7 +189,7 @@ properties:
- 
-   regulator-temp-error-kelvin:
-     description: Set over temperature error limit. This is a limit where part of
--      the hardware propably is malfunctional and damage prevention is requested
-+      the hardware probably is malfunctional and damage prevention is requested
-       Zero can be passed to disable error detection and value '1' indicates
-       that detection should be enabled but limit setting can be omitted.
- 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
-index edb411be0390..89341fdaa3af 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
-@@ -11,7 +11,7 @@ maintainers:
- 
- description: |
-   The RT5190A integrates 1 channel buck controller, 3 channels high efficiency
--  synchronous buck converters, 1 LDO, I2C control interface and peripherial
-+  synchronous buck converters, 1 LDO, I2C control interface and peripheral
-   logical control.
- 
-   It also supports mute AC OFF depop sound and quick setting storage while
-diff --git a/Documentation/devicetree/bindings/regulator/vctrl.txt b/Documentation/devicetree/bindings/regulator/vctrl.txt
-index 601328d7fdbb..e940377cfd69 100644
---- a/Documentation/devicetree/bindings/regulator/vctrl.txt
-+++ b/Documentation/devicetree/bindings/regulator/vctrl.txt
-@@ -21,7 +21,7 @@ Optional properties:
- 			  margin from the expected value for a given control
- 			  voltage. On larger voltage decreases this can occur
- 			  undesiredly since the output voltage does not adjust
--			  inmediately to changes in the control voltage. To
-+			  immediately to changes in the control voltage. To
- 			  avoid this situation the vctrl driver breaks down
- 			  larger voltage decreases into multiple steps, where
- 			  each step is within the OVP threshold.
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-index fcc3db97fe8f..54eecc567e0b 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-@@ -102,7 +102,7 @@ patternProperties:
-       caches. Each of the TCMs can be enabled or disabled independently and
-       either of them can be configured to appear at that R5F's address 0x0.
- 
--      The cores do not use an MMU, but has a Region Address Translater
-+      The cores do not use an MMU, but has a Region Address Translator
-       (RAT) module that is accessible only from the R5Fs for providing
-       translations between 32-bit CPU addresses into larger system bus
-       addresses. Cache and memory access settings are provided through a
-diff --git a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
-index 86945502ccb5..61a0ff33e89f 100644
---- a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
-+++ b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
-@@ -43,7 +43,7 @@ Required properties:
- 			    Cell #6 : bit position of the reset in the
- 			              reset status register
- 			    Cell #7 : Flags used to control reset behavior,
--			              availible flags defined in the DT include
-+			              available flags defined in the DT include
- 			              file <dt-bindings/reset/ti-syscon.h>
- 
- SysCon Reset Consumer Nodes
-diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/omap_rng.yaml
-index ccf54fae8302..c0ac4f68ea54 100644
---- a/Documentation/devicetree/bindings/rng/omap_rng.yaml
-+++ b/Documentation/devicetree/bindings/rng/omap_rng.yaml
-@@ -30,8 +30,8 @@ properties:
-   clocks:
-     minItems: 1
-     items:
--      - description: EIP150 gatable clock
--      - description: Main gatable clock
-+      - description: EIP150 gateable clock
-+      - description: Main gateable clock
- 
-   clock-names:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-cmos.txt b/Documentation/devicetree/bindings/rtc/rtc-cmos.txt
-index b94b35f3600b..7d7b5f6bda65 100644
---- a/Documentation/devicetree/bindings/rtc/rtc-cmos.txt
-+++ b/Documentation/devicetree/bindings/rtc/rtc-cmos.txt
-@@ -10,7 +10,7 @@ Optional properties:
-   - ctrl-reg : Contains the initial value of the control register also
-     called "Register B".
-   - freq-reg : Contains the initial value of the frequency register also
--    called "Regsiter A".
-+    called "Register A".
- 
- "Register A" and "B" are usually initialized by the firmware (BIOS for
- instance). If this is not done, it can be performed by the driver.
-diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-index f709304036c2..e9fca995dfe9 100644
---- a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-+++ b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-@@ -49,7 +49,7 @@ Baud Rate tolerance:
-   listed below.
-   0 to 9600 has 1% deviation
-   9600 to 115200 2% deviation
--  This slight deviation is expcted and Tegra UART is expected to handle it. Due
-+  This slight deviation is expected and Tegra UART is expected to handle it. Due
-   to the issue stated above, baud rate on Tegra UART should be set equal to or
-   above deviation observed for avoiding frame errors.
-   Property should be set like this
-diff --git a/Documentation/devicetree/bindings/serial/st-asc.txt b/Documentation/devicetree/bindings/serial/st-asc.txt
-index 75d877f5968f..a1b9b6f3490a 100644
---- a/Documentation/devicetree/bindings/serial/st-asc.txt
-+++ b/Documentation/devicetree/bindings/serial/st-asc.txt
-@@ -8,7 +8,7 @@ Required properties:
- 
- Optional properties:
- - st,hw-flow-ctrl	bool flag to enable hardware flow control.
--- st,force-m1		bool flat to force asc to be in Mode-1 recommeded
-+- st,force-m1		bool flat to force asc to be in Mode-1 recommended
- 			for high bit rates (above 19.2K)
- Example:
- serial@fe440000{
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-ccif.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-ccif.yaml
-index 8e6ba2ec8a43..f0fa92b04b32 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-ccif.yaml
-+++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-ccif.yaml
-@@ -12,7 +12,7 @@ maintainers:
- 
- description:
-   The MediaTek wo-ccif provides a configuration interface for WED WO
--  controller used to perfrom offload rx packet processing (e.g. 802.11
-+  controller used to perform offload rx packet processing (e.g. 802.11
-   aggregation packet reordering or rx header translation) on MT7986 soc.
- 
- properties:
-diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-index 04ffee3a7c59..365a9fed5914 100644
---- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-+++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-@@ -12,7 +12,7 @@ maintainers:
- description: |
-   PolarFire SoC devices include a microcontroller acting as the system controller,
-   which provides "services" to the main processor and to the FPGA fabric. These
--  services include hardware rng, reprogramming of the FPGA and verfification of the
-+  services include hardware rng, reprogramming of the FPGA and verification of the
-   eNVM contents etc. More information on these services can be found online, at
-   https://onlinedocs.microchip.com/pr/GUID-1409CF11-8EF9-4C24-A94E-70979A688632-en-US-1/index.html
- 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-index 9dc8e48c8af4..d1c7c2be865f 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-@@ -77,7 +77,7 @@ patternProperties:
-     description:
-       The AOSS side channel also provides the controls for three cooling devices,
-       these are expressed as subnodes of the QMP node. The name of the node is
--      used to identify the resource and must therefor be "cx", "mx" or "ebi".
-+      used to identify the resource and must therefore be "cx", "mx" or "ebi".
- 
-     properties:
-       "#cooling-cells":
-diff --git a/Documentation/devicetree/bindings/sound/axentia,tse850-pcm5142.txt b/Documentation/devicetree/bindings/sound/axentia,tse850-pcm5142.txt
-index 9d049d4bfd58..b6cc5f6f78c2 100644
---- a/Documentation/devicetree/bindings/sound/axentia,tse850-pcm5142.txt
-+++ b/Documentation/devicetree/bindings/sound/axentia,tse850-pcm5142.txt
-@@ -29,7 +29,7 @@ The schematics explaining the gpios are as follows:
-    IN2 +---o--+------------+--o---+ OUT2
-                loop2 relays
- 
--The 'loop1' gpio pin controlls two relays, which are either in loop position,
-+The 'loop1' gpio pin controls two relays, which are either in loop position,
- meaning that input and output are directly connected, or they are in mixer
- position, meaning that the signal is passed through the 'Sum' mixer. Similarly
- for 'loop2'.
-diff --git a/Documentation/devicetree/bindings/sound/cs35l35.txt b/Documentation/devicetree/bindings/sound/cs35l35.txt
-index 7915897f8a81..e84f30c5c39b 100644
---- a/Documentation/devicetree/bindings/sound/cs35l35.txt
-+++ b/Documentation/devicetree/bindings/sound/cs35l35.txt
-@@ -110,7 +110,7 @@ Optional Monitor Signal Format sub-node:
- 
-   See Sections 4.8.2 through 4.8.4 Serial-Port Control in the Datasheet
- 
--  -cirrus,monitor-signal-format : Sub-node for the Monitor Signaling Formating
-+  -cirrus,monitor-signal-format : Sub-node for the Monitor Signaling Formatting
-   on the I2S Port. Each of the 3 8 bit values in the array contain the settings
-   for depth, location, and frame.
- 
-diff --git a/Documentation/devicetree/bindings/sound/cs35l36.txt b/Documentation/devicetree/bindings/sound/cs35l36.txt
-index 912bd162b477..d34117b8558e 100644
---- a/Documentation/devicetree/bindings/sound/cs35l36.txt
-+++ b/Documentation/devicetree/bindings/sound/cs35l36.txt
-@@ -33,7 +33,7 @@ Optional properties:
-   one amplifier in the system. If more than one it is best to Hi-Z the ASP
-   port to prevent bus contention on the output signal
- 
--  - cirrus,boost-ctl-select : Boost conerter control source selection.
-+  - cirrus,boost-ctl-select : Boost converter control source selection.
-   Selects the source of the BST_CTL target VBST voltage for the boost
-   converter to generate.
-   0x00 - Control Port Value
-diff --git a/Documentation/devicetree/bindings/sound/cs53l30.txt b/Documentation/devicetree/bindings/sound/cs53l30.txt
-index 4dbfb8274cd9..dc256adb35a2 100644
---- a/Documentation/devicetree/bindings/sound/cs53l30.txt
-+++ b/Documentation/devicetree/bindings/sound/cs53l30.txt
-@@ -30,7 +30,7 @@ Optional properties:
- 			* frame using two different ways:
- 			* 1) Normal I2S mode on two data pins -- each SDOUT
- 			*    carries 2-channel data in the same time.
--			* 2) TDM mode on one signle data pin -- SDOUT1 carries
-+			* 2) TDM mode on one single data pin -- SDOUT1 carries
- 			*    4-channel data per frame.
- 
- Example:
-diff --git a/Documentation/devicetree/bindings/sound/fsl,esai.txt b/Documentation/devicetree/bindings/sound/fsl,esai.txt
-index 0a2480aeecf0..90112ca1ff42 100644
---- a/Documentation/devicetree/bindings/sound/fsl,esai.txt
-+++ b/Documentation/devicetree/bindings/sound/fsl,esai.txt
-@@ -44,7 +44,7 @@ Required properties:
-   - fsl,esai-synchronous: This is a boolean property. If present, indicating
- 			  that ESAI would work in the synchronous mode, which
- 			  means all the settings for Receiving would be
--			  duplicated from Transmition related registers.
-+			  duplicated from Transmission related registers.
- 
- Optional properties:
- 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml
-index e6cb711ece77..e49da939c52f 100644
---- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-afe.yaml
-@@ -135,7 +135,7 @@ patternProperties:
-     maxItems: 16
-     description:
-       This is a list of channel IDs which should be disabled.
--      By default, all data received from ETDM pins will be outputed to
-+      By default, all data received from ETDM pins will be outputted to
-       memory. etdm in supports disable_out in direct mode(w/o interconn),
-       so user can disable the specified channels by the property.
-     uniqueItems: true
-diff --git a/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt b/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
-index 560762e0a168..f548e6a58240 100644
---- a/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
-+++ b/Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
+-Originally, before the advent of pid namepsace, procfs was a global file
++Originally, before the advent of pid namespace, procfs was a global file
+ system. It means that there was only one procfs instance in the system.
+ 
+ When pid namespace was added, a separate procfs instance was mounted in
+diff --git a/Documentation/filesystems/qnx6.rst b/Documentation/filesystems/qnx6.rst
+index 523b798f04e7..560f3d470422 100644
+--- a/Documentation/filesystems/qnx6.rst
++++ b/Documentation/filesystems/qnx6.rst
+@@ -135,7 +135,7 @@ inode.
+ 
+ Character and block special devices do not exist in QNX as those files
+ are handled by the QNX kernel/drivers and created in /dev independent of the
+-underlaying filesystem.
++underlying filesystem.
+ 
+ Long filenames
+ --------------
+diff --git a/Documentation/filesystems/seq_file.rst b/Documentation/filesystems/seq_file.rst
+index a6726082a7c2..1e1713d00010 100644
+--- a/Documentation/filesystems/seq_file.rst
++++ b/Documentation/filesystems/seq_file.rst
+@@ -130,7 +130,7 @@ called SEQ_START_TOKEN; it can be used if you wish to instruct your
+ show() function (described below) to print a header at the top of the
+ output. SEQ_START_TOKEN should only be used if the offset is zero,
+ however.  SEQ_START_TOKEN has no special meaning to the core seq_file
+-code.  It is provided as a convenience for a start() funciton to
++code.  It is provided as a convenience for a start() function to
+ communicate with the next() and show() functions.
+ 
+ The next function to implement is called, amazingly, next(); its job is to
+@@ -217,7 +217,7 @@ between the calls to start() and stop(), so holding a lock during that time
+ is a reasonable thing to do. The seq_file code will also avoid taking any
+ other locks while the iterator is active.
+ 
+-The iterater value returned by start() or next() is guaranteed to be
++The iterator value returned by start() or next() is guaranteed to be
+ passed to a subsequent next() or stop() call.  This allows resources
+ such as locks that were taken to be reliably released.  There is *no*
+ guarantee that the iterator will be passed to show(), though in practice
+diff --git a/Documentation/filesystems/ubifs-authentication.rst b/Documentation/filesystems/ubifs-authentication.rst
+index 5210aed2afbc..3d85ee88719a 100644
+--- a/Documentation/filesystems/ubifs-authentication.rst
++++ b/Documentation/filesystems/ubifs-authentication.rst
+@@ -130,7 +130,7 @@ marked as dirty are written to the flash to update the persisted index.
+ Journal
+ ~~~~~~~
+ 
+-To avoid wearing out the flash, the index is only persisted (*commited*) when
++To avoid wearing out the flash, the index is only persisted (*committed*) when
+ certain conditions are met (eg. ``fsync(2)``). The journal is used to record
+ any changes (in form of inode nodes, data nodes etc.) between commits
+ of the index. During mount, the journal is read from the flash and replayed
+diff --git a/Documentation/filesystems/vfat.rst b/Documentation/filesystems/vfat.rst
+index 760a4d83fdf9..b289c4449cd0 100644
+--- a/Documentation/filesystems/vfat.rst
++++ b/Documentation/filesystems/vfat.rst
+@@ -50,7 +50,7 @@ VFAT MOUNT OPTIONS
+ 	Normally utime(2) checks current process is owner of
+ 	the file, or it has CAP_FOWNER capability. But FAT
+ 	filesystem doesn't have uid/gid on disk, so normal
+-	check is too unflexible. With this option you can
++	check is too inflexible. With this option you can
+ 	relax it.
+ 
+ **codepage=###**
+diff --git a/Documentation/filesystems/vfs.rst b/Documentation/filesystems/vfs.rst
+index cb2a97e49872..733fa0765bcb 100644
+--- a/Documentation/filesystems/vfs.rst
++++ b/Documentation/filesystems/vfs.rst
+@@ -761,7 +761,7 @@ is an error during writeback, they expect that error to be reported when
+ a file sync request is made.  After an error has been reported on one
+ request, subsequent requests on the same file descriptor should return
+ 0, unless further writeback errors have occurred since the previous file
+-syncronization.
++synchronization.
+ 
+ Ideally, the kernel would report errors only on file descriptions on
+ which writes were done that subsequently failed to be written back.  The
+diff --git a/Documentation/filesystems/xfs-online-fsck-design.rst b/Documentation/filesystems/xfs-online-fsck-design.rst
+index 791ab264b77e..1625d1131093 100644
+--- a/Documentation/filesystems/xfs-online-fsck-design.rst
++++ b/Documentation/filesystems/xfs-online-fsck-design.rst
+@@ -293,7 +293,7 @@ The seven phases are as follows:
+    Before starting repairs, the summary counters are checked and any necessary
+    repairs are performed so that subsequent repairs will not fail the resource
+    reservation step due to wildly incorrect summary counters.
+-   Unsuccesful repairs are requeued as long as forward progress on repairs is
++   Unsuccessful repairs are requeued as long as forward progress on repairs is
+    made somewhere in the filesystem.
+    Free space in the filesystem is trimmed at the end of phase 4 if the
+    filesystem is clean.
+@@ -542,7 +542,7 @@ ondisk structure.
+ 
+ Inspiration for quota and file link count repair strategies were drawn from
+ sections 2.12 ("Online Index Operations") through 2.14 ("Incremental View
+-Maintenace") of G.  Graefe, `"Concurrent Queries and Updates in Summary Views
++Maintenance") of G.  Graefe, `"Concurrent Queries and Updates in Summary Views
+ and Their Indexes"
+ <http://www.odbms.org/wp-content/uploads/2014/06/Increment-locks.pdf>`_, 2011.
+ 
+@@ -605,7 +605,7 @@ functionality.
+   The cron job does not have this protection.
+ 
+ - **Fuzz Kiddiez**: There are many people now who seem to think that running
+-  automated fuzz testing of ondisk artifacts to find mischevious behavior and
++  automated fuzz testing of ondisk artifacts to find mischievous behavior and
+   spraying exploit code onto the public mailing list for instant zero-day
+   disclosure is somehow of some social benefit.
+   In the view of this author, the benefit is realized only when the fuzz
+@@ -1351,7 +1351,7 @@ If the leaf information exceeds a single filesystem block, a dabtree (also
+ rooted at block 0) is created to map hashes of the attribute names to leaf
+ blocks in the attr fork.
+ 
+-Checking an extended attribute structure is not so straightfoward due to the
++Checking an extended attribute structure is not so straightforward due to the
+ lack of separation between attr blocks and index blocks.
+ Scrub must read each block mapped by the attr fork and ignore the non-leaf
+ blocks:
+@@ -1401,7 +1401,7 @@ If the free space has been separated and the second partition grows again
+ beyond one block, then a dabtree is used to map hashes of dirent names to
+ directory data blocks.
+ 
+-Checking a directory is pretty straightfoward:
++Checking a directory is pretty straightforward:
+ 
+ 1. Walk the dabtree in the second partition (if present) to ensure that there
+    are no irregularities in the blocks or dabtree mappings that do not point to
+@@ -1524,7 +1524,7 @@ Only online fsck has this requirement of total consistency of AG metadata, and
+ should be relatively rare as compared to filesystem change operations.
+ Online fsck coordinates with transaction chains as follows:
+ 
+-* For each AG, maintain a count of intent items targetting that AG.
++* For each AG, maintain a count of intent items targeting that AG.
+   The count should be bumped whenever a new item is added to the chain.
+   The count should be dropped when the filesystem has locked the AG header
+   buffers and finished the work.
+@@ -2102,7 +2102,7 @@ quicksort and a heapsort subalgorithm in the spirit of
+ kernel.
+ To sort records in a reasonably short amount of time, ``xfarray`` takes
+ advantage of the binary subpartitioning offered by quicksort, but it also uses
+-heapsort to hedge aginst performance collapse if the chosen quicksort pivots
++heapsort to hedge against performance collapse if the chosen quicksort pivots
+ are poor.
+ Both algorithms are (in general) O(n * lg(n)), but there is a wide performance
+ gulf between the two implementations.
+@@ -2566,8 +2566,8 @@ old metadata blocks:
+ The transaction rolling in steps 2c and 3 represent a weakness in the repair
+ algorithm, because a log flush and a crash before the end of the reap step can
+ result in space leaking.
+-Online repair functions minimize the chances of this occuring by using very
+-large transactions, which each can accomodate many thousands of block freeing
++Online repair functions minimize the chances of this occurring by using very
++large transactions, which each can accommodate many thousands of block freeing
+ instructions.
+ Repair moves on to reaping the old blocks, which will be presented in a
+ subsequent :ref:`section<reaping>` after a few case studies of bulk loading.
+@@ -5090,7 +5090,7 @@ This scan after validation of all filesystem metadata (except for the summary
+ counters) as phase 6.
+ The scan starts by calling ``FS_IOC_GETFSMAP`` to scan the filesystem space map
+ to find areas that are allocated to file data fork extents.
+-Gaps betweeen data fork extents that are smaller than 64k are treated as if
++Gaps between data fork extents that are smaller than 64k are treated as if
+ they were data fork extents to reduce the command setup overhead.
+ When the space map scan accumulates a region larger than 32MB, a media
+ verification request is sent to the disk as a directio read of the raw block
+diff --git a/Documentation/filesystems/zonefs.rst b/Documentation/filesystems/zonefs.rst
+index 394b9f15dce0..c22124c2213d 100644
+--- a/Documentation/filesystems/zonefs.rst
++++ b/Documentation/filesystems/zonefs.rst
+@@ -378,7 +378,7 @@ The attributes defined are as follows.
+   sequential zone files.  Failure to do so can result in write errors.
+ * **max_active_seq_files**:  This attribute reports the maximum number of
+   sequential zone files that are in an active state, that is, sequential zone
+-  files that are partially writen (not empty nor full) or that have a zone that
++  files that are partially written (not empty nor full) or that have a zone that
+   is explicitly open (which happens only if the *explicit-open* mount option is
+   used).  This number is always equal to the maximum number of active zones that
+   the device supports.  A value of 0 means that the mounted device has no limit
+diff --git a/Documentation/firmware-guide/acpi/osi.rst b/Documentation/firmware-guide/acpi/osi.rst
+index 784850adfcb6..868a0a40bb76 100644
+--- a/Documentation/firmware-guide/acpi/osi.rst
++++ b/Documentation/firmware-guide/acpi/osi.rst
+@@ -55,7 +55,7 @@ quirk, a bug, or a bug-fix.
+ 
+ However this was discovered to be abused by other BIOS vendors to change
+ completely unrelated code on completely unrelated systems.  This prompted
+-an evaluation of all of it's uses. This uncovered that they aren't needed
++an evaluation of all of its uses. This uncovered that they aren't needed
+ for any of the original reasons. As such, the kernel will not respond to
+ any custom Linux-* strings by default.
+ 
+diff --git a/Documentation/gpu/amdgpu/display/mpo-overview.rst b/Documentation/gpu/amdgpu/display/mpo-overview.rst
+index 0499aa92d08d..59a4f54a3ac7 100644
+--- a/Documentation/gpu/amdgpu/display/mpo-overview.rst
++++ b/Documentation/gpu/amdgpu/display/mpo-overview.rst
+@@ -178,7 +178,7 @@ Multiple Display MPO
+ 
+ AMDGPU supports display MPO when using multiple displays; however, this feature
+ behavior heavily relies on the compositor implementation. Keep in mind that
+-usespace can define different policies. For example, some OSes can use MPO to
++userspace can define different policies. For example, some OSes can use MPO to
+ protect the plane that handles the video playback; notice that we don't have
+ many limitations for a single display. Nonetheless, this manipulation can have
+ many more restrictions for a multi-display scenario. The below example shows a
+diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
+index b8ab05e42dbb..b748b8ae70b2 100644
+--- a/Documentation/gpu/drm-kms-helpers.rst
++++ b/Documentation/gpu/drm-kms-helpers.rst
+@@ -378,7 +378,7 @@ SCDC Helper Functions Reference
+ HDMI Infoframes Helper Reference
+ ================================
+ 
+-Strictly speaking this is not a DRM helper library but generally useable
++Strictly speaking this is not a DRM helper library but generally usable
+ by any driver interfacing with HDMI outputs like v4l or alsa drivers.
+ But it nicely fits into the overall topic of mode setting helper
+ libraries and hence is also included here.
+diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
+index c92d425cb2dd..a0c83fc48126 100644
+--- a/Documentation/gpu/drm-kms.rst
++++ b/Documentation/gpu/drm-kms.rst
+@@ -66,11 +66,11 @@ Composition Properties`_ and related chapters.
+ For the output routing the first step is encoders (represented by
+ :c:type:`struct drm_encoder <drm_encoder>`, see `Encoder Abstraction`_). Those
+ are really just internal artifacts of the helper libraries used to implement KMS
+-drivers. Besides that they make it unecessarily more complicated for userspace
++drivers. Besides that they make it unnecessarily more complicated for userspace
+ to figure out which connections between a CRTC and a connector are possible, and
+ what kind of cloning is supported, they serve no purpose in the userspace API.
+ Unfortunately encoders have been exposed to userspace, hence can't remove them
+-at this point.  Futhermore the exposed restrictions are often wrongly set by
++at this point.  Furthermore the exposed restrictions are often wrongly set by
+ drivers, and in many cases not powerful enough to express the real restrictions.
+ A CRTC can be connected to multiple encoders, and for an active CRTC there must
+ be at least one encoder.
+@@ -260,7 +260,7 @@ Taken all together there's two consequences for the atomic design:
+   drm_crtc_state <drm_crtc_state>` for CRTCs and :c:type:`struct
+   drm_connector_state <drm_connector_state>` for connectors. These are the only
+   objects with userspace-visible and settable state. For internal state drivers
+-  can subclass these structures through embeddeding, or add entirely new state
++  can subclass these structures through embedding, or add entirely new state
+   structures for their globally shared hardware functions, see :c:type:`struct
+   drm_private_state<drm_private_state>`.
+ 
+diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
+index fe35a291ff3e..044e6b2ed1be 100644
+--- a/Documentation/gpu/drm-usage-stats.rst
++++ b/Documentation/gpu/drm-usage-stats.rst
+@@ -8,7 +8,7 @@ DRM drivers can choose to export partly standardised text output via the
+ `fops->show_fdinfo()` as part of the driver specific file operations registered
+ in the `struct drm_driver` object registered with the DRM core.
+ 
+-One purpose of this output is to enable writing as generic as practicaly
++One purpose of this output is to enable writing as generic as practically
+ feasible `top(1)` like userspace monitoring tools.
+ 
+ Given the differences between various DRM drivers the specification of the
+@@ -119,7 +119,7 @@ drm-engine-<keystr> tag and shall contain the maximum frequency for the given
+ engine.  Taken together with drm-cycles-<keystr>, this can be used to calculate
+ percentage utilization of the engine, whereas drm-engine-<keystr> only reflects
+ time active without considering what frequency the engine is operating as a
+-percentage of it's maximum frequency.
++percentage of its maximum frequency.
+ 
+ Memory
+ ^^^^^^
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index 60ea21734902..378e825754d5 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -304,10 +304,10 @@ reads of following commands. Actions issued between different contexts
+ and the only way to synchronize across contexts (even from the same
+ file descriptor) is through the use of fences. At least as far back as
+ Gen4, also have that a context carries with it a GPU HW context;
+-the HW context is essentially (most of atleast) the state of a GPU.
++the HW context is essentially (most of at least) the state of a GPU.
+ In addition to the ordering guarantees, the kernel will restore GPU
+ state via HW context when commands are issued to a context, this saves
+-user space the need to restore (most of atleast) the GPU state at the
++user space the need to restore (most of at least) the GPU state at the
+ start of each batchbuffer. The non-deprecated ioctls to submit batchbuffer
+ work can pass that ID (in the lower bits of drm_i915_gem_execbuffer2::rsvd1)
+ to identify what context to use with the command.
+diff --git a/Documentation/gpu/kms-properties.csv b/Documentation/gpu/kms-properties.csv
+index 07ed22ea3bd6..0f9590834829 100644
+--- a/Documentation/gpu/kms-properties.csv
++++ b/Documentation/gpu/kms-properties.csv
+@@ -17,7 +17,7 @@ Owner Module/Drivers,Group,Property Name,Type,Property Values,Object attached,De
+ ,Virtual GPU,“suggested X”,RANGE,"Min=0, Max=0xffffffff",Connector,property to suggest an X offset for a connector
+ ,,“suggested Y”,RANGE,"Min=0, Max=0xffffffff",Connector,property to suggest an Y offset for a connector
+ ,Optional,"""aspect ratio""",ENUM,"{ ""None"", ""4:3"", ""16:9"" }",Connector,TDB
+-i915,Generic,"""Broadcast RGB""",ENUM,"{ ""Automatic"", ""Full"", ""Limited 16:235"" }",Connector,"When this property is set to Limited 16:235 and CTM is set, the hardware will be programmed with the result of the multiplication of CTM by the limited range matrix to ensure the pixels normaly in the range 0..1.0 are remapped to the range 16/255..235/255."
++i915,Generic,"""Broadcast RGB""",ENUM,"{ ""Automatic"", ""Full"", ""Limited 16:235"" }",Connector,"When this property is set to Limited 16:235 and CTM is set, the hardware will be programmed with the result of the multiplication of CTM by the limited range matrix to ensure the pixels normally in the range 0..1.0 are remapped to the range 16/255..235/255."
+ ,,“audio”,ENUM,"{ ""force-dvi"", ""off"", ""auto"", ""on"" }",Connector,TBD
+ ,SDVO-TV,“mode”,ENUM,"{ ""NTSC_M"", ""NTSC_J"", ""NTSC_443"", ""PAL_B"" } etc.",Connector,TBD
+ ,,"""left_margin""",RANGE,"Min=0, Max= SDVO dependent",Connector,TBD
+diff --git a/Documentation/gpu/komeda-kms.rst b/Documentation/gpu/komeda-kms.rst
+index eb693c857e2d..633a016563ae 100644
+--- a/Documentation/gpu/komeda-kms.rst
++++ b/Documentation/gpu/komeda-kms.rst
+@@ -328,7 +328,7 @@ of course we’d better share as much as possible between different products. To
+ achieve this, split the komeda device into two layers: CORE and CHIP.
+ 
+ -   CORE: for common features and capabilities handling.
+--   CHIP: for register programing and HW specific feature (limitation) handling.
++-   CHIP: for register programming and HW specific feature (limitation) handling.
+ 
+ CORE can access CHIP by three chip function structures:
+ 
+@@ -481,7 +481,7 @@ Build komeda to be a Linux module driver
+ Now we have two level devices:
+ 
+ -   komeda_dev: describes the real display hardware.
+--   komeda_kms_dev: attachs or connects komeda_dev to DRM-KMS.
++-   komeda_kms_dev: attaches or connects komeda_dev to DRM-KMS.
+ 
+ All komeda operations are supplied or operated by komeda_dev or komeda_kms_dev,
+ the module driver is only a simple wrapper to pass the Linux command
+diff --git a/Documentation/gpu/msm-crash-dump.rst b/Documentation/gpu/msm-crash-dump.rst
+index 240ef200f76c..9509cc4224f4 100644
+--- a/Documentation/gpu/msm-crash-dump.rst
++++ b/Documentation/gpu/msm-crash-dump.rst
+@@ -23,7 +23,7 @@ module
+ 	The module that generated the crashdump.
+ 
+ time
+-	The kernel time at crash formated as seconds.microseconds.
++	The kernel time at crash formatted as seconds.microseconds.
+ 
+ comm
+ 	Comm string for the binary that generated the fault.
+diff --git a/Documentation/gpu/rfc/i915_scheduler.rst b/Documentation/gpu/rfc/i915_scheduler.rst
+index d630f15ab795..23ba7006929b 100644
+--- a/Documentation/gpu/rfc/i915_scheduler.rst
++++ b/Documentation/gpu/rfc/i915_scheduler.rst
+@@ -37,7 +37,7 @@ i915 with the DRM scheduler is:
+ 		* Watchdog hooks into DRM scheduler
+ 		* Lots of complexity of the GuC backend can be pulled out once
+ 		  integrated with DRM scheduler (e.g. state machine gets
+-		  simplier, locking gets simplier, etc...)
++		  simpler, locking gets simpler, etc...)
+ 	* Execlists backend will minimum required to hook in the DRM scheduler
+ 		* Legacy interface
+ 		* Features like timeslicing / preemption / virtual engines would
+diff --git a/Documentation/gpu/rfc/i915_vm_bind.rst b/Documentation/gpu/rfc/i915_vm_bind.rst
+index 9a1dcdf2799e..0b3b525ac620 100644
+--- a/Documentation/gpu/rfc/i915_vm_bind.rst
++++ b/Documentation/gpu/rfc/i915_vm_bind.rst
+@@ -90,7 +90,7 @@ submission, they need only one dma-resv fence list updated. Thus, the fast
+ path (where required mappings are already bound) submission latency is O(1)
+ w.r.t the number of VM private BOs.
+ 
+-VM_BIND locking hirarchy
++VM_BIND locking hierarchy
+ -------------------------
+ The locking design here supports the older (execlist based) execbuf mode, the
+ newer VM_BIND mode, the VM_BIND mode with GPU page faults and possible future
+diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+index 68bdafa0284f..993948eee1a7 100644
+--- a/Documentation/gpu/todo.rst
++++ b/Documentation/gpu/todo.rst
+@@ -65,7 +65,7 @@ Clean up the clipped coordination confusion around planes
+ ---------------------------------------------------------
+ 
+ We have a helper to get this right with drm_plane_helper_check_update(), but
+-it's not consistently used. This should be fixed, preferrably in the atomic
++it's not consistently used. This should be fixed, preferably in the atomic
+ helpers (and drivers then moved over to clipped coordinates). Probably the
+ helper should also be moved from drm_plane_helper.c to the atomic helpers, to
+ avoid confusion - the other helpers in that file are all deprecated legacy
+@@ -181,13 +181,13 @@ reversed.
+ 
+ To solve this we need one standard per-object locking mechanism, which is
+ dma_resv_lock(). This lock needs to be called as the outermost lock, with all
+-other driver specific per-object locks removed. The problem is tha rolling out
++other driver specific per-object locks removed. The problem is that rolling out
+ the actual change to the locking contract is a flag day, due to struct dma_buf
+ buffer sharing.
+ 
+ Level: Expert
+ 
+-Convert logging to drm_* functions with drm_device paramater
++Convert logging to drm_* functions with drm_device parameter
+ ------------------------------------------------------------
+ 
+ For drivers which could have multiple instances, it is necessary to
+@@ -244,7 +244,7 @@ Level: Advanced
+ Benchmark and optimize blitting and format-conversion function
+ --------------------------------------------------------------
+ 
+-Drawing to dispay memory quickly is crucial for many applications'
++Drawing to display memory quickly is crucial for many applications'
+ performance.
+ 
+ On at least x86-64, sys_imageblit() is significantly slower than
+diff --git a/Documentation/hwmon/pmbus-core.rst b/Documentation/hwmon/pmbus-core.rst
+index cff93adf6e42..1eaf2b015837 100644
+--- a/Documentation/hwmon/pmbus-core.rst
++++ b/Documentation/hwmon/pmbus-core.rst
+@@ -345,7 +345,7 @@ PMBUS_NO_CAPABILITY
+ 
+ Some PMBus chips don't respond with valid data when reading the CAPABILITY
+ register. For such chips, this flag should be set so that the PMBus core
+-driver doesn't use CAPABILITY to determine it's behavior.
++driver doesn't use CAPABILITY to determine its behavior.
+ 
+ PMBUS_READ_STATUS_AFTER_FAILED_CHECK
+ 
+diff --git a/Documentation/input/devices/iforce-protocol.rst b/Documentation/input/devices/iforce-protocol.rst
+index 8634beac3fdb..52c1e0dd0ab7 100644
+--- a/Documentation/input/devices/iforce-protocol.rst
++++ b/Documentation/input/devices/iforce-protocol.rst
+@@ -49,7 +49,7 @@ OP DATA
+ == ====
+ 
+ The 2B, LEN and CS fields have disappeared, probably because USB handles
+-frames and data corruption is handled or unsignificant.
++frames and data corruption is handled or insignificant.
+ 
+ First, I describe effects that are sent by the device to the computer
+ 
+diff --git a/Documentation/input/multi-touch-protocol.rst b/Documentation/input/multi-touch-protocol.rst
+index 1085cbee4ee7..47d3dcb5d44b 100644
+--- a/Documentation/input/multi-touch-protocol.rst
++++ b/Documentation/input/multi-touch-protocol.rst
+@@ -383,7 +383,7 @@ Finger Tracking
+ ---------------
+ 
+ The process of finger tracking, i.e., to assign a unique trackingID to each
+-initiated contact on the surface, is a Euclidian Bipartite Matching
++initiated contact on the surface, is a Euclidean Bipartite Matching
+ problem.  At each event synchronization, the set of actual contacts is
+ matched to the set of contacts from the previous synchronization. A full
+ implementation can be found in [#f3]_.
+diff --git a/Documentation/livepatch/reliable-stacktrace.rst b/Documentation/livepatch/reliable-stacktrace.rst
+index d56bb706172f..8d950f3ffedd 100644
+--- a/Documentation/livepatch/reliable-stacktrace.rst
++++ b/Documentation/livepatch/reliable-stacktrace.rst
+@@ -40,7 +40,7 @@ Principally, the reliable stacktrace function must ensure that either:
+ .. note::
+    In some cases it is legitimate to omit specific functions from the trace,
+    but all other functions must be reported. These cases are described in
+-   futher detail below.
++   further detail below.
+ 
+ Secondly, the reliable stacktrace function must be robust to cases where
+ the stack or other unwind state is corrupt or otherwise unreliable. The
+diff --git a/Documentation/locking/lockdep-design.rst b/Documentation/locking/lockdep-design.rst
+index 82f36cab61bd..56b90eea2731 100644
+--- a/Documentation/locking/lockdep-design.rst
++++ b/Documentation/locking/lockdep-design.rst
+@@ -29,7 +29,7 @@ the validator will shoot a splat if incorrect.
+ A lock-class's behavior is constructed by its instances collectively:
+ when the first instance of a lock-class is used after bootup the class
+ gets registered, then all (subsequent) instances will be mapped to the
+-class and hence their usages and dependecies will contribute to those of
++class and hence their usages and dependencies will contribute to those of
+ the class. A lock-class does not go away when a lock instance does, but
+ it can be removed if the memory space of the lock class (static or
+ dynamic) is reclaimed, this happens for example when a module is
+@@ -105,7 +105,7 @@ exact case is for the lock as of the reporting time.
+   +--------------+-------------+--------------+
+ 
+ The character '-' suggests irq is disabled because if otherwise the
+-charactor '?' would have been shown instead. Similar deduction can be
++character '?' would have been shown instead. Similar deduction can be
+ applied for '+' too.
+ 
+ Unused locks (e.g., mutexes) cannot be part of the cause of an error.
+diff --git a/Documentation/locking/locktorture.rst b/Documentation/locking/locktorture.rst
+index 7f56fc0d7c31..3e763f77a620 100644
+--- a/Documentation/locking/locktorture.rst
++++ b/Documentation/locking/locktorture.rst
+@@ -113,7 +113,7 @@ stutter
+ 		  without pausing.
+ 
+ shuffle_interval
+-		  The number of seconds to keep the test threads affinitied
++		  The number of seconds to keep the test threads affinitized
+ 		  to a particular subset of the CPUs, defaults to 3 seconds.
+ 		  Used in conjunction with test_no_idle_hz.
+ 
+diff --git a/Documentation/locking/locktypes.rst b/Documentation/locking/locktypes.rst
+index 9933faad4771..80c914f6eae7 100644
+--- a/Documentation/locking/locktypes.rst
++++ b/Documentation/locking/locktypes.rst
+@@ -500,7 +500,7 @@ caveats also apply to bit spinlocks.
+ Some bit spinlocks are replaced with regular spinlock_t for PREEMPT_RT
+ using conditional (#ifdef'ed) code changes at the usage site.  In contrast,
+ usage-site changes are not needed for the spinlock_t substitution.
+-Instead, conditionals in header files and the core locking implemementation
++Instead, conditionals in header files and the core locking implementation
+ enable the compiler to do the substitution transparently.
+ 
+ 
+diff --git a/Documentation/mm/hmm.rst b/Documentation/mm/hmm.rst
+index 9aa512c3a12c..fec21e6f2284 100644
+--- a/Documentation/mm/hmm.rst
++++ b/Documentation/mm/hmm.rst
+@@ -417,7 +417,7 @@ entries. Any attempt to access the swap entry results in a fault which is
+ resovled by replacing the entry with the original mapping. A driver gets
+ notified that the mapping has been changed by MMU notifiers, after which point
+ it will no longer have exclusive access to the page. Exclusive access is
+-guranteed to last until the driver drops the page lock and page reference, at
++guaranteed to last until the driver drops the page lock and page reference, at
+ which point any CPU faults on the page may proceed as described.
+ 
+ Memory cgroup (memcg) and rss accounting
+diff --git a/Documentation/mm/hwpoison.rst b/Documentation/mm/hwpoison.rst
+index ba48a441feed..483b72aa7c11 100644
+--- a/Documentation/mm/hwpoison.rst
++++ b/Documentation/mm/hwpoison.rst
+@@ -48,7 +48,7 @@ of applications. KVM support requires a recent qemu-kvm release.
+ For the KVM use there was need for a new signal type so that
+ KVM can inject the machine check into the guest with the proper
+ address. This in theory allows other applications to handle
+-memory failures too. The expection is that near all applications
++memory failures too. The expectation is that most applications
+ won't do that, but some very specialized ones might.
+ 
+ Failure recovery modes
+diff --git a/Documentation/mm/page_migration.rst b/Documentation/mm/page_migration.rst
+index e35af7805be5..f1ce67a26615 100644
+--- a/Documentation/mm/page_migration.rst
++++ b/Documentation/mm/page_migration.rst
+@@ -180,7 +180,7 @@ The following events (counters) can be used to monitor page migration.
+ 4. THP_MIGRATION_FAIL: A THP could not be migrated nor it could be split.
+ 
+ 5. THP_MIGRATION_SPLIT: A THP was migrated, but not as such: first, the THP had
+-   to be split. After splitting, a migration retry was used for it's sub-pages.
++   to be split. After splitting, a migration retry was used for its sub-pages.
+ 
+ THP_MIGRATION_* events also update the appropriate PGMIGRATE_SUCCESS or
+ PGMIGRATE_FAIL events. For example, a THP migration failure will cause both
+diff --git a/Documentation/mm/unevictable-lru.rst b/Documentation/mm/unevictable-lru.rst
+index d5ac8511eb67..67f1338440a5 100644
+--- a/Documentation/mm/unevictable-lru.rst
++++ b/Documentation/mm/unevictable-lru.rst
+@@ -463,7 +463,7 @@ can request that a region of memory be mlocked by supplying the MAP_LOCKED flag
+ to the mmap() call.  There is one important and subtle difference here, though.
+ mmap() + mlock() will fail if the range cannot be faulted in (e.g. because
+ mm_populate fails) and returns with ENOMEM while mmap(MAP_LOCKED) will not fail.
+-The mmaped area will still have properties of the locked area - pages will not
++The mmapped area will still have properties of the locked area - pages will not
+ get swapped out - but major page faults to fault memory in might still happen.
+ 
+ Furthermore, any mmap() call or brk() call that expands the heap by a task
+diff --git a/Documentation/mm/vmemmap_dedup.rst b/Documentation/mm/vmemmap_dedup.rst
+index a4b12ff906c4..0c1d8882f4d0 100644
+--- a/Documentation/mm/vmemmap_dedup.rst
++++ b/Documentation/mm/vmemmap_dedup.rst
+@@ -10,7 +10,7 @@ HugeTLB
+ This section is to explain how HugeTLB Vmemmap Optimization (HVO) works.
+ 
+ The ``struct page`` structures are used to describe a physical page frame. By
+-default, there is a one-to-one mapping from a page frame to it's corresponding
++default, there is a one-to-one mapping from a page frame to its corresponding
+ ``struct page``.
+ 
+ HugeTLB pages consist of multiple base page size pages and is supported by many
+diff --git a/Documentation/netlink/genetlink-c.yaml b/Documentation/netlink/genetlink-c.yaml
+index 57d1c1c4918f..2627a384ae01 100644
+--- a/Documentation/netlink/genetlink-c.yaml
++++ b/Documentation/netlink/genetlink-c.yaml
+@@ -41,7 +41,7 @@ properties:
+     description: Name of the define for the family name.
+     type: string
+   c-version-name:
+-    description: Name of the define for the verion of the family.
++    description: Name of the define for the version of the family.
+     type: string
+   max-by-define:
+     description: Makes the number of attributes and commands be specified by a define, not an enum value.
+diff --git a/Documentation/netlink/genetlink-legacy.yaml b/Documentation/netlink/genetlink-legacy.yaml
+index 43b769c98fb2..30803dc21123 100644
+--- a/Documentation/netlink/genetlink-legacy.yaml
++++ b/Documentation/netlink/genetlink-legacy.yaml
+@@ -41,7 +41,7 @@ properties:
+     description: Name of the define for the family name.
+     type: string
+   c-version-name:
+-    description: Name of the define for the verion of the family.
++    description: Name of the define for the version of the family.
+     type: string
+   max-by-define:
+     description: Makes the number of attributes and commands be specified by a define, not an enum value.
+diff --git a/Documentation/networking/bonding.rst b/Documentation/networking/bonding.rst
+index 28925e19622d..f7a73421eb76 100644
+--- a/Documentation/networking/bonding.rst
++++ b/Documentation/networking/bonding.rst
+@@ -1636,7 +1636,7 @@ your init script::
+ -----------------------------------------
+ 
+ This section applies to distros which use /etc/network/interfaces file
+-to describe network interface configuration, most notably Debian and it's
++to describe network interface configuration, most notably Debian and its
+ derivatives.
+ 
+ The ifup and ifdown commands on Debian don't support bonding out of
+diff --git a/Documentation/networking/devlink/devlink-port.rst b/Documentation/networking/devlink/devlink-port.rst
+index 3da590953ce8..e0c7b95f505b 100644
+--- a/Documentation/networking/devlink/devlink-port.rst
++++ b/Documentation/networking/devlink/devlink-port.rst
+@@ -321,9 +321,9 @@ API allows to configure following rate object's parameters:
+   Allows for usage of Weighted Fair Queuing arbitration scheme among
+   siblings. This arbitration scheme can be used simultaneously with the
+   strict priority. As a node is configured with a higher rate it gets more
+-  BW relative to it's siblings. Values are relative like a percentage
++  BW relative to its siblings. Values are relative like a percentage
+   points, they basically tell how much BW should node take relative to
+-  it's siblings.
++  its siblings.
+ 
+ ``parent``
+   Parent node name. Parent node rate limits are considered as additional limits
+@@ -343,7 +343,7 @@ Arbitration flow from the high level:
+ #. If group of nodes have the same priority perform WFQ arbitration on
+    that subgroup. Use ``tx_weight`` as a parameter for this arbitration.
+ 
+-#. Select the winner node, and continue arbitration flow among it's children,
++#. Select the winner node, and continue arbitration flow among its children,
+    until leaf node is reached, and the winner is established.
+ 
+ #. If all the nodes from the highest priority sub-group are satisfied, or
+diff --git a/Documentation/networking/packet_mmap.rst b/Documentation/networking/packet_mmap.rst
+index c5da1a5d93de..30a3be3c48f3 100644
+--- a/Documentation/networking/packet_mmap.rst
++++ b/Documentation/networking/packet_mmap.rst
+@@ -755,7 +755,7 @@ AF_PACKET TPACKET_V3 example
+ ============================
+ 
+ AF_PACKET's TPACKET_V3 ring buffer can be configured to use non-static frame
+-sizes by doing it's own memory management. It is based on blocks where polling
++sizes by doing its own memory management. It is based on blocks where polling
+ works on a per block basis instead of per ring as in TPACKET_V2 and predecessor.
+ 
+ It is said that TPACKET_V3 brings the following benefits:
+diff --git a/Documentation/power/energy-model.rst b/Documentation/power/energy-model.rst
+index ef341be2882b..13225965c9a4 100644
+--- a/Documentation/power/energy-model.rst
++++ b/Documentation/power/energy-model.rst
+@@ -87,9 +87,9 @@ CONFIG_ENERGY_MODEL must be enabled to use the EM framework.
+ Registration of 'advanced' EM
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+-The 'advanced' EM gets it's name due to the fact that the driver is allowed
++The 'advanced' EM gets its name due to the fact that the driver is allowed
+ to provide more precised power model. It's not limited to some implemented math
+-formula in the framework (like it's in 'simple' EM case). It can better reflect
++formula in the framework (like it is in 'simple' EM case). It can better reflect
+ the real power measurements performed for each performance state. Thus, this
+ registration method should be preferred in case considering EM static power
+ (leakage) is important.
+diff --git a/Documentation/powerpc/dscr.rst b/Documentation/powerpc/dscr.rst
+index 2ab99006014c..f735ec5375d5 100644
+--- a/Documentation/powerpc/dscr.rst
++++ b/Documentation/powerpc/dscr.rst
+@@ -6,7 +6,7 @@ DSCR register in powerpc allows user to have some control of prefetch of data
+ stream in the processor. Please refer to the ISA documents or related manual
+ for more detailed information regarding how to use this DSCR to attain this
+ control of the prefetches . This document here provides an overview of kernel
+-support for DSCR, related kernel objects, it's functionalities and exported
++support for DSCR, related kernel objects, its functionalities and exported
+ user interface.
+ 
+ (A) Data Structures:
+diff --git a/Documentation/powerpc/kasan.txt b/Documentation/powerpc/kasan.txt
+index f032b4eaf205..a4f647e4fffa 100644
+--- a/Documentation/powerpc/kasan.txt
++++ b/Documentation/powerpc/kasan.txt
+@@ -40,7 +40,7 @@ checks can be delayed until after the MMU is set is up, and we can just not
+ instrument any code that runs with translations off after booting. This is the
+ current approach.
+ 
+-To avoid this limitiation, the KASAN shadow would have to be placed inside the
++To avoid this limitation, the KASAN shadow would have to be placed inside the
+ linear mapping, using the same high-bits trick we use for the rest of the linear
+ mapping. This is tricky:
+ 
+diff --git a/Documentation/powerpc/papr_hcalls.rst b/Documentation/powerpc/papr_hcalls.rst
+index fce8bc793660..80d2c0aadab5 100644
+--- a/Documentation/powerpc/papr_hcalls.rst
++++ b/Documentation/powerpc/papr_hcalls.rst
+@@ -22,7 +22,7 @@ privileged operations. Currently there are two PAPR compliant hypervisors:
+ On PPC64 arch a guest kernel running on top of a PAPR hypervisor is called
+ a *pSeries guest*. A pseries guest runs in a supervisor mode (HV=0) and must
+ issue hypercalls to the hypervisor whenever it needs to perform an action
+-that is hypervisor priviledged [3]_ or for other services managed by the
++that is hypervisor privileged [3]_ or for other services managed by the
+ hypervisor.
+ 
+ Hence a Hypercall (hcall) is essentially a request by the pseries guest
+diff --git a/Documentation/powerpc/qe_firmware.rst b/Documentation/powerpc/qe_firmware.rst
+index 42f5103140c9..a358f152b7e7 100644
+--- a/Documentation/powerpc/qe_firmware.rst
++++ b/Documentation/powerpc/qe_firmware.rst
+@@ -232,11 +232,11 @@ For example, to match the 8323, revision 1.0::
+ 'extended_modes' is a bitfield that defines special functionality which has an
+ impact on the device drivers.  Each bit has its own impact and has special
+ instructions for the driver associated with it.  This field is stored in
+-the QE library and available to any driver that calles qe_get_firmware_info().
++the QE library and available to any driver that calls qe_get_firmware_info().
+ 
+ 'vtraps' is an array of 8 words that contain virtual trap values for each
+ virtual traps.  As with 'extended_modes', this field is stored in the QE
+-library and available to any driver that calles qe_get_firmware_info().
++library and available to any driver that calls qe_get_firmware_info().
+ 
+ 'microcode' (type: struct qe_microcode):
+ 	For each RISC processor there is one 'microcode' structure.  The first
+diff --git a/Documentation/powerpc/vas-api.rst b/Documentation/powerpc/vas-api.rst
+index bdb50fed903e..a9625a2fa0c6 100644
+--- a/Documentation/powerpc/vas-api.rst
++++ b/Documentation/powerpc/vas-api.rst
+@@ -46,7 +46,7 @@ request queue into the application's virtual address space.
+ The application can then submit one or more requests to the engine by
+ using copy/paste instructions and pasting the CRBs to the virtual address
+ (aka paste_address) returned by mmap(). User space can close the
+-established connection or send window by closing the file descriptior
++established connection or send window by closing the file descriptor
+ (close(fd)) or upon the process exit.
+ 
+ Note that applications can send several requests with the same window or
+@@ -240,7 +240,7 @@ issued. This signal returns with the following siginfo struct::
+ 	siginfo.si_signo = SIGSEGV;
+ 	siginfo.si_errno = EFAULT;
+ 	siginfo.si_code = SEGV_MAPERR;
+-	siginfo.si_addr = CSB adress;
++	siginfo.si_addr = CSB address;
+ 
+ In the case of multi-thread applications, NX send windows can be shared
+ across all threads. For example, a child thread can open a send window,
+diff --git a/Documentation/process/botching-up-ioctls.rst b/Documentation/process/botching-up-ioctls.rst
+index 9739b88463a5..a05e8401de1c 100644
+--- a/Documentation/process/botching-up-ioctls.rst
++++ b/Documentation/process/botching-up-ioctls.rst
+@@ -208,7 +208,7 @@ Not every problem needs a new ioctl:
+    it's much quicker to push a driver-private interface than engaging in
+    lengthy discussions for a more generic solution. And occasionally doing a
+    private interface to spearhead a new concept is what's required. But in the
+-   end, once the generic interface comes around you'll end up maintainer two
++   end, once the generic interface comes around you'll end up maintaining two
+    interfaces. Indefinitely.
+ 
+  * Consider other interfaces than ioctls. A sysfs attribute is much better for
+diff --git a/Documentation/process/kernel-docs.rst b/Documentation/process/kernel-docs.rst
+index 46f927aae6eb..241b97929588 100644
+--- a/Documentation/process/kernel-docs.rst
++++ b/Documentation/process/kernel-docs.rst
+@@ -29,7 +29,7 @@ All documents are cataloged with the following fields: the document's
+ 
+    The documents on each section of this document are ordered by its
+    published date, from the newest to the oldest. The maintainer(s) should
+-   periodically retire resources as they become obsolte or outdated; with
++   periodically retire resources as they become obsolete or outdated; with
+    the exception of foundational books.
+ 
+ Docs at the Linux Kernel tree
+diff --git a/Documentation/riscv/hwprobe.rst b/Documentation/riscv/hwprobe.rst
+index 19165ebd82ba..67111304ae5f 100644
+--- a/Documentation/riscv/hwprobe.rst
++++ b/Documentation/riscv/hwprobe.rst
+@@ -88,11 +88,11 @@ The following keys are defined:
+     always extremely slow.
+ 
+   * :c:macro:`RISCV_HWPROBE_MISALIGNED_SLOW`: Misaligned accesses are supported
+-    in hardware, but are slower than the cooresponding aligned accesses
++    in hardware, but are slower than the corresponding aligned accesses
+     sequences.
+ 
+   * :c:macro:`RISCV_HWPROBE_MISALIGNED_FAST`: Misaligned accesses are supported
+-    in hardware and are faster than the cooresponding aligned accesses
++    in hardware and are faster than the corresponding aligned accesses
+     sequences.
+ 
+   * :c:macro:`RISCV_HWPROBE_MISALIGNED_UNSUPPORTED`: Misaligned accesses are
+diff --git a/Documentation/riscv/vector.rst b/Documentation/riscv/vector.rst
+index 165b7ed0ac4f..75dd88a62e1d 100644
+--- a/Documentation/riscv/vector.rst
++++ b/Documentation/riscv/vector.rst
+@@ -13,7 +13,7 @@ order to support the use of the RISC-V Vector Extension.
+ Two new prctl() calls are added to allow programs to manage the enablement
+ status for the use of Vector in userspace. The intended usage guideline for
+ these interfaces is to give init systems a way to modify the availability of V
+-for processes running under its domain. Calling thess interfaces is not
++for processes running under its domain. Calling these interfaces is not
+ recommended in libraries routines because libraries should not override policies
+ configured from the parant process. Also, users must noted that these interfaces
+ are not portable to non-Linux, nor non-RISC-V environments, so it is discourage
+diff --git a/Documentation/s390/vfio-ap.rst b/Documentation/s390/vfio-ap.rst
+index bb3f4c4e2885..929ee1c1c940 100644
+--- a/Documentation/s390/vfio-ap.rst
++++ b/Documentation/s390/vfio-ap.rst
+@@ -422,7 +422,7 @@ Configure the guest's AP resources
+ Configuring the AP resources for a KVM guest will be performed when the
+ VFIO_GROUP_NOTIFY_SET_KVM notifier callback is invoked. The notifier
+ function is called when userspace connects to KVM. The guest's AP resources are
+-configured via it's APCB by:
++configured via its APCB by:
+ 
+ * Setting the bits in the APM corresponding to the APIDs assigned to the
+   vfio_ap mediated device via its 'assign_adapter' interface.
+diff --git a/Documentation/scheduler/sched-bwc.rst b/Documentation/scheduler/sched-bwc.rst
+index f166b182ff95..41ed2ceafc92 100644
+--- a/Documentation/scheduler/sched-bwc.rst
++++ b/Documentation/scheduler/sched-bwc.rst
+@@ -186,7 +186,7 @@ average usage, albeit over a longer time window than a single period.  This
+ also limits the burst ability to no more than 1ms per cpu.  This provides
+ better more predictable user experience for highly threaded applications with
+ small quota limits on high core count machines. It also eliminates the
+-propensity to throttle these applications while simultanously using less than
++propensity to throttle these applications while simultaneously using less than
+ quota amounts of cpu. Another way to say this, is that by allowing the unused
+ portion of a slice to remain valid across periods we have decreased the
+ possibility of wastefully expiring quota on cpu-local silos that don't need a
+diff --git a/Documentation/scheduler/sched-energy.rst b/Documentation/scheduler/sched-energy.rst
+index 8fbce5e767d9..fc853c8cc346 100644
+--- a/Documentation/scheduler/sched-energy.rst
++++ b/Documentation/scheduler/sched-energy.rst
+@@ -82,7 +82,7 @@ through the arch_scale_cpu_capacity() callback.
+ The rest of platform knowledge used by EAS is directly read from the Energy
+ Model (EM) framework. The EM of a platform is composed of a power cost table
+ per 'performance domain' in the system (see Documentation/power/energy-model.rst
+-for futher details about performance domains).
++for further details about performance domains).
+ 
+ The scheduler manages references to the EM objects in the topology code when the
+ scheduling domains are built, or re-built. For each root domain (rd), the
+@@ -281,7 +281,7 @@ mechanism called 'over-utilization'.
+ From a general standpoint, the use-cases where EAS can help the most are those
+ involving a light/medium CPU utilization. Whenever long CPU-bound tasks are
+ being run, they will require all of the available CPU capacity, and there isn't
+-much that can be done by the scheduler to save energy without severly harming
++much that can be done by the scheduler to save energy without severely harming
+ throughput. In order to avoid hurting performance with EAS, CPUs are flagged as
+ 'over-utilized' as soon as they are used at more than 80% of their compute
+ capacity. As long as no CPUs are over-utilized in a root domain, load balancing
+diff --git a/Documentation/scsi/ChangeLog.lpfc b/Documentation/scsi/ChangeLog.lpfc
+index d16e6874d223..ccc48b8359bf 100644
+--- a/Documentation/scsi/ChangeLog.lpfc
++++ b/Documentation/scsi/ChangeLog.lpfc
+@@ -427,7 +427,7 @@ Changes from 20041207 to 20041213
+ 	* Changed version number to 8.0.17
+ 	* Fix sparse warnings by adding __iomem markers to lpfc_compat.h.
+ 	* Fix some sparse warnings -- 0 used as NULL pointer.
+-	* Make sure there's a space between every if and it's (.
++	* Make sure there's a space between every if and its (.
+ 	* Fix some overly long lines and make sure hard tabs are used for
+ 	  indentation.
+ 	* Remove all trailing whitespace.
+diff --git a/Documentation/security/digsig.rst b/Documentation/security/digsig.rst
+index f6a8902d3ef7..de035f282196 100644
+--- a/Documentation/security/digsig.rst
++++ b/Documentation/security/digsig.rst
+@@ -82,7 +82,7 @@ The signing and key management utilities evm-utils provide functionality
+ to generate signatures, to load keys into the kernel keyring.
+ Keys can be in PEM or converted to the kernel format.
+ When the key is added to the kernel keyring, the keyid defines the name
+-of the key: 5D2B05FC633EE3E8 in the example bellow.
++of the key: 5D2B05FC633EE3E8 in the example below.
+ 
+ Here is example output of the keyctl utility::
+ 
+diff --git a/Documentation/security/keys/core.rst b/Documentation/security/keys/core.rst
+index 811b905b56bf..326b8a973828 100644
+--- a/Documentation/security/keys/core.rst
++++ b/Documentation/security/keys/core.rst
+@@ -869,7 +869,7 @@ The keyctl syscall functions are:
+ 
+ 	 - ``char *hashname`` specifies the NUL terminated string identifying
+ 	   the hash used from the kernel crypto API and applied for the KDF
+-	   operation. The KDF implemenation complies with SP800-56A as well
++	   operation. The KDF implementation complies with SP800-56A as well
+ 	   as with SP800-108 (the counter KDF).
+ 
+ 	 - ``char *otherinfo`` specifies the OtherInfo data as documented in
+diff --git a/Documentation/security/secrets/coco.rst b/Documentation/security/secrets/coco.rst
+index 087e2d1ae38b..a1210db8ec07 100644
+--- a/Documentation/security/secrets/coco.rst
++++ b/Documentation/security/secrets/coco.rst
+@@ -34,7 +34,7 @@ be use it for its own purposes.
+ 
+ During the VM's launch, the virtual machine manager may inject a secret to that
+ area.  In AMD SEV and SEV-ES this is performed using the
+-``KVM_SEV_LAUNCH_SECRET`` command (see [sev]_).  The strucutre of the injected
++``KVM_SEV_LAUNCH_SECRET`` command (see [sev]_).  The structure of the injected
+ Guest Owner secret data should be a GUIDed table of secret values; the binary
+ format is described in ``drivers/virt/coco/efi_secret/efi_secret.c`` under
+ "Structure of the EFI secret area".
+diff --git a/Documentation/sphinx/cdomain.py b/Documentation/sphinx/cdomain.py
+index ca8ac9e59ded..a99716bf44b5 100644
+--- a/Documentation/sphinx/cdomain.py
++++ b/Documentation/sphinx/cdomain.py
+@@ -178,7 +178,7 @@ class CObject(Base_CObject):
+         if len(arglist[0].split(" ")) > 1:
+             return False
+ 
+-        # This is a function-like macro, it's arguments are typeless!
++        # This is a function-like macro, its arguments are typeless!
+         signode  += addnodes.desc_name(fullname, fullname)
+         paramlist = addnodes.desc_parameterlist()
+         signode  += paramlist
+diff --git a/Documentation/spi/spi-lm70llp.rst b/Documentation/spi/spi-lm70llp.rst
+index 0144e12d95bb..2f20e5b405e6 100644
+--- a/Documentation/spi/spi-lm70llp.rst
++++ b/Documentation/spi/spi-lm70llp.rst
+@@ -69,7 +69,7 @@ Interpreting this circuit, when the LM70 SI/O line is High (or tristate
+ and not grounded by the host via D7), the transistor conducts and switches
+ the collector to zero, which is reflected on pin 13 of the DB25 parport
+ connector.  When SI/O is Low (driven by the LM70 or the host) on the other
+-hand, the transistor is cut off and the voltage tied to it's collector is
++hand, the transistor is cut off and the voltage tied to its collector is
+ reflected on pin 13 as a High level.
+ 
+ So: the getmiso inline routine in this driver takes this fact into account,
+diff --git a/Documentation/tools/rtla/rtla-timerlat-top.rst b/Documentation/tools/rtla/rtla-timerlat-top.rst
+index 1b7cf4e3eafe..ab6cb60c9083 100644
+--- a/Documentation/tools/rtla/rtla-timerlat-top.rst
++++ b/Documentation/tools/rtla/rtla-timerlat-top.rst
+@@ -117,7 +117,7 @@ syscall in a btrfs file system.
+ The raw trace is saved in the **timerlat_trace.txt** file for further analysis.
+ 
+ Note that **rtla timerlat** was dispatched without changing *timerlat* tracer
+-threads' priority. That is generally not needed because these threads hava
++threads' priority. That is generally not needed because these threads have
+ priority *FIFO:95* by default, which is a common priority used by real-time
+ kernel developers to analyze scheduling delays.
+ 
+diff --git a/Documentation/trace/coresight/coresight-etm4x-reference.rst b/Documentation/trace/coresight/coresight-etm4x-reference.rst
+index 70e34b8c81c1..89ac4e6fc96f 100644
+--- a/Documentation/trace/coresight/coresight-etm4x-reference.rst
++++ b/Documentation/trace/coresight/coresight-etm4x-reference.rst
+@@ -675,7 +675,7 @@ Bit assignments shown below:-
+     reconstructed using only conditional branches.
+ 
+     There is currently no support in Perf for supplying modified binaries to the decoder, so this
+-    feature is only inteded to be used for debugging purposes or with a 3rd party tool.
++    feature is only intended to be used for debugging purposes or with a 3rd party tool.
+ 
+     Choosing this option will result in a significant increase in the amount of trace generated -
+     possible danger of overflows, or fewer instructions covered. Note, that this option also
+diff --git a/Documentation/trace/events.rst b/Documentation/trace/events.rst
+index f5fcb8e1218f..15f78e772384 100644
+--- a/Documentation/trace/events.rst
++++ b/Documentation/trace/events.rst
+@@ -915,7 +915,7 @@ functions can be used.
+ 
+ To create a kprobe event, an empty or partially empty kprobe event
+ should first be created using kprobe_event_gen_cmd_start().  The name
+-of the event and the probe location should be specfied along with one
++of the event and the probe location should be specified along with one
+ or args each representing a probe field should be supplied to this
+ function.  Before calling kprobe_event_gen_cmd_start(), the user
+ should create and initialize a dynevent_cmd object using
+@@ -995,7 +995,7 @@ The basic idea is simple and amounts to providing a general-purpose
+ layer that can be used to generate trace event commands.  The
+ generated command strings can then be passed to the command-parsing
+ and event creation code that already exists in the trace event
+-subystem for creating the corresponding trace events.
++subsystem for creating the corresponding trace events.
+ 
+ In a nutshell, the way it works is that the higher-level interface
+ code creates a struct dynevent_cmd object, then uses a couple
+@@ -1068,7 +1068,7 @@ to add an operator between the pair (here none) and a separator to be
+ appended onto the end of the arg pair (here ';').
+ 
+ There's also a dynevent_str_add() function that can be used to simply
+-add a string as-is, with no spaces, delimeters, or arg check.
++add a string as-is, with no spaces, delimiters, or arg check.
+ 
+ Any number of dynevent_*_add() calls can be made to build up the string
+ (until its length surpasses cmd->maxlen).  When all the arguments have
+diff --git a/Documentation/trace/fprobe.rst b/Documentation/trace/fprobe.rst
+index 40dd2fbce861..7a895514b537 100644
+--- a/Documentation/trace/fprobe.rst
++++ b/Documentation/trace/fprobe.rst
+@@ -113,7 +113,7 @@ If the entry callback function returns !0, the corresponding exit callback will
+         the instruction pointer of @regs may be different from the @entry_ip
+         in the entry_handler. If you need traced instruction pointer, you need
+         to use @entry_ip. On the other hand, in the exit_handler, the instruction
+-        pointer of @regs is set to the currect return address.
++        pointer of @regs is set to the current return address.
+ 
+ @entry_data
+         This is a local storage to share the data between entry and exit handlers.
+diff --git a/Documentation/trace/ftrace.rst b/Documentation/trace/ftrace.rst
+index f606c5bd1c0d..23572f6697c0 100644
+--- a/Documentation/trace/ftrace.rst
++++ b/Documentation/trace/ftrace.rst
+@@ -2725,7 +2725,7 @@ It is default disabled.
+ 
+ The return value of each traced function can be displayed after
+ an equal sign "=". When encountering system call failures, it
+-can be verfy helpful to quickly locate the function that first
++can be very helpful to quickly locate the function that first
+ returns an error code.
+ 
+ 	- hide: echo nofuncgraph-retval > trace_options
+diff --git a/Documentation/trace/hwlat_detector.rst b/Documentation/trace/hwlat_detector.rst
+index de94b499b0bc..11b749c2a8bd 100644
+--- a/Documentation/trace/hwlat_detector.rst
++++ b/Documentation/trace/hwlat_detector.rst
+@@ -14,7 +14,7 @@ originally written for use by the "RT" patch since the Real Time
+ kernel is highly latency sensitive.
+ 
+ SMIs are not serviced by the Linux kernel, which means that it does not
+-even know that they are occuring. SMIs are instead set up by BIOS code
++even know that they are occurring. SMIs are instead set up by BIOS code
+ and are serviced by BIOS code, usually for "critical" events such as
+ management of thermal sensors and fans. Sometimes though, SMIs are used for
+ other tasks and those tasks can spend an inordinate amount of time in the
+diff --git a/Documentation/trace/rv/da_monitor_synthesis.rst b/Documentation/trace/rv/da_monitor_synthesis.rst
+index 0dbdcd1e62b9..0a92729c8a9b 100644
+--- a/Documentation/trace/rv/da_monitor_synthesis.rst
++++ b/Documentation/trace/rv/da_monitor_synthesis.rst
 @@ -1,7 +1,7 @@
- Mediatek AFE PCM controller for mt2701
+ Deterministic Automata Monitor Synthesis
+ ========================================
  
- Required properties:
--- compatible: should be one of the followings.
-+- compatible: should be one of the following.
- 	      - "mediatek,mt2701-audio"
- 	      - "mediatek,mt7622-audio"
- - interrupts: should contain AFE and ASYS interrupts
-diff --git a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
-index d5adf07d46e0..5c8dba2b3a81 100644
---- a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
-@@ -111,7 +111,7 @@ patternProperties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: |
-       etdm modules can share the same external clock pin. Specify
--      which etdm clock source is required by this etdm in moudule.
-+      which etdm clock source is required by this etdm in module.
-     enum:
-       - 0 # etdm1_in
-       - 1 # etdm2_in
-@@ -122,7 +122,7 @@ patternProperties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: |
-       etdm modules can share the same external clock pin. Specify
--      which etdm clock source is required by this etdm out moudule.
-+      which etdm clock source is required by this etdm out module.
-     enum:
-       - 0 # etdm1_in
-       - 1 # etdm2_in
-diff --git a/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt b/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt
-index e7d17dda55db..1973c0da4cc0 100644
---- a/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt
-+++ b/Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt
-@@ -35,7 +35,7 @@ Optional Properties:
-  - qcom,mbhc-vthreshold-low: Array of 5 threshold voltages in mV for 5 buttons
- 			     detection on headset when the mbhc is powered up
- 			     by internal current source, this is a low power.
-- - qcom,mbhc-vthreshold-high: Array of 5 thresold voltages in mV for 5 buttons
-+ - qcom,mbhc-vthreshold-high: Array of 5 threshold voltages in mV for 5 buttons
- 			      detection on headset when mbhc is powered up
- 			       from micbias.
- - qcom,micbias-lvl:  Voltage (mV) for Mic Bias
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.txt b/Documentation/devicetree/bindings/sound/renesas,rsnd.txt
-index b731f16aea84..dfd768b1ad7d 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rsnd.txt
-+++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.txt
-@@ -94,7 +94,7 @@ see "Example: simple sound card for Asynchronous mode"
-  [xx]ch        [yy]ch
-  ------> [CTU] -------->
+-The starting point for the application of runtime verification (RV) technics
++The starting point for the application of runtime verification (RV) techniques
+ is the *specification* or *modeling* of the desired (or undesired) behavior
+ of the system under scrutiny.
  
--CTU can convert [xx]ch to [yy]ch, or exchange outputed channel.
-+CTU can convert [xx]ch to [yy]ch, or exchange outputted channel.
- CTU conversion needs matrix settings.
- For more detail information, see below
+diff --git a/Documentation/trace/rv/monitor_wwnr.rst b/Documentation/trace/rv/monitor_wwnr.rst
+index 80f1777b85aa..9f739030f826 100644
+--- a/Documentation/trace/rv/monitor_wwnr.rst
++++ b/Documentation/trace/rv/monitor_wwnr.rst
+@@ -26,7 +26,7 @@ definition::
+              |   running   | -+
+              +-------------+
  
-diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3288-hdmi-analog.txt b/Documentation/devicetree/bindings/sound/rockchip,rk3288-hdmi-analog.txt
-index e5430d1d34e4..73577ac1b89c 100644
---- a/Documentation/devicetree/bindings/sound/rockchip,rk3288-hdmi-analog.txt
-+++ b/Documentation/devicetree/bindings/sound/rockchip,rk3288-hdmi-analog.txt
-@@ -12,7 +12,7 @@ Required properties:
- 		    source. For this driver the first string should always be
- 		    "Analog".
+-This model is borken, the reason is that a task can be running
++This model is broken, the reason is that a task can be running
+ in the processor without being set as RUNNABLE. Think about a
+ task about to sleep::
  
--Optionnal properties:
-+Optional properties:
- - rockchip,hp-en-gpios = The phandle of the GPIO that power up/down the
-   headphone (when the analog output is an headphone).
- - rockchip,hp-det-gpios = The phandle of the GPIO that detects the headphone
-diff --git a/Documentation/devicetree/bindings/sound/rt5663.txt b/Documentation/devicetree/bindings/sound/rt5663.txt
-index 2a55e9133408..24a6dab28f25 100644
---- a/Documentation/devicetree/bindings/sound/rt5663.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5663.txt
-@@ -28,7 +28,7 @@ Optional properties:
-   If the value is 0, it means the impedance sensing is not supported.
- - "realtek,impedance_sensing_table"
-   The matrix rows of the impedance sensing table are consisted by impedance
--  minimum, impedance maximun, volume, DC offset w/o and w/ mic of each L and
-+  minimum, impedance maximum, volume, DC offset w/o and w/ mic of each L and
-   R channel accordingly. Example is shown as following.
-   <   0    300  7  0xffd160  0xffd1c0  0xff8a10  0xff8ab0
-     301  65535  4  0xffe470  0xffe470  0xffb8e0  0xffb8e0>
-diff --git a/Documentation/devicetree/bindings/sound/serial-midi.yaml b/Documentation/devicetree/bindings/sound/serial-midi.yaml
-index 4afc29376efc..f6a807329a5a 100644
---- a/Documentation/devicetree/bindings/sound/serial-midi.yaml
-+++ b/Documentation/devicetree/bindings/sound/serial-midi.yaml
-@@ -20,7 +20,7 @@ description:
-   parent serial device. If the standard MIDI baud of 31.25 kBaud is needed
-   (as would be the case if interfacing with arbitrary external MIDI devices),
-   configure the clocks of the parent serial device so that a requested baud of 38.4 kBaud
--  resuts in the standard MIDI baud rate, and set the 'current-speed' property to 38400 (default)
-+  results in the standard MIDI baud rate, and set the 'current-speed' property to 38400 (default)
+diff --git a/Documentation/trace/rv/runtime-verification.rst b/Documentation/trace/rv/runtime-verification.rst
+index c46b6149470e..dae78dfa7cdc 100644
+--- a/Documentation/trace/rv/runtime-verification.rst
++++ b/Documentation/trace/rv/runtime-verification.rst
+@@ -31,7 +31,7 @@ In Linux terms, the runtime verification monitors are encapsulated inside the
+ *RV monitor* abstraction. A *RV monitor* includes a reference model of the
+ system, a set of instances of the monitor (per-cpu monitor, per-task monitor,
+ and so on), and the helper functions that glue the monitor to the system via
+-trace, as depicted bellow::
++trace, as depicted below::
  
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/sound/sprd-pcm.txt b/Documentation/devicetree/bindings/sound/sprd-pcm.txt
-index 4b23e84b2e57..fbbcade2181d 100644
---- a/Documentation/devicetree/bindings/sound/sprd-pcm.txt
-+++ b/Documentation/devicetree/bindings/sound/sprd-pcm.txt
-@@ -1,4 +1,4 @@
--* Spreadtrum DMA platfrom bindings
-+* Spreadtrum DMA platform bindings
+  Linux   +---- RV Monitor ----------------------------------+ Formal
+   Realm  |                                                  |  Realm
+diff --git a/Documentation/trace/uprobetracer.rst b/Documentation/trace/uprobetracer.rst
+index 122d15572fd5..01f6a780fb04 100644
+--- a/Documentation/trace/uprobetracer.rst
++++ b/Documentation/trace/uprobetracer.rst
+@@ -55,7 +55,7 @@ Synopsis of uprobe_tracer
  
- Required properties:
- - compatible: Should be "sprd,pcm-platform".
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-index 56d206f97a96..59df8a832310 100644
---- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
-@@ -63,7 +63,7 @@ patternProperties:
-     additionalProperties: false
-     description:
-       Two subnodes corresponding to SAI sub-block instances A et B
--      can be defined. Subnode can be omitted for unsused sub-block.
-+      can be defined. Subnode can be omitted for unused sub-block.
+   (\*1) only for return probe.
+   (\*2) this is useful for fetching a field of data structures.
+-  (\*3) Unlike kprobe event, "u" prefix will just be ignored, becuse uprobe
++  (\*3) Unlike kprobe event, "u" prefix will just be ignored, because uprobe
+         events can access only user-space memory.
  
-     properties:
-       compatible:
-diff --git a/Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml b/Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml
-index 859d369c71e2..5b2874a80a4d 100644
---- a/Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,j721e-cpb-ivi-audio.yaml
-@@ -13,7 +13,7 @@ maintainers:
+ Types
+diff --git a/Documentation/trace/user_events.rst b/Documentation/trace/user_events.rst
+index e7b07313550a..f9530d0ac5d3 100644
+--- a/Documentation/trace/user_events.rst
++++ b/Documentation/trace/user_events.rst
+@@ -93,7 +93,7 @@ or perf record -e user_events:[name] when attaching/recording.
  
- description: |
-   The Infotainment board plugs into the Common Processor Board, the support of the
--  extension board is extending the CPB audio support, decribed in:
-+  extension board is extending the CPB audio support, described in:
-   sound/ti,j721e-cpb-audio.txt
+ **NOTE:** The event subsystem name by default is "user_events". Callers should
+ not assume it will always be "user_events". Operators reserve the right in the
+-future to change the subsystem name per-process to accomodate event isolation.
++future to change the subsystem name per-process to accommodate event isolation.
  
-   The audio support on the Infotainment Expansion Board consists of McASP0
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-index 8d60e4e236d6..a69e6c223308 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -29,7 +29,7 @@ properties:
-   reg:
-     description:
-       I2C address, in multiple tas2781s case, all the i2c address
--      aggreate as one Audio Device to support multiple audio slots.
-+      aggregate as one Audio Device to support multiple audio slots.
-     maxItems: 8
-     minItems: 1
-     items:
-diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-index c16e1760cf85..f3274bcc4c05 100644
---- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-+++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-@@ -32,7 +32,7 @@ properties:
-   reg:
-     maxItems: 1
-     description: |
--      I2C addresss of the device can be one of these 0x4c, 0x4d, 0x4e or 0x4f
-+      I2C address of the device can be one of these 0x4c, 0x4d, 0x4e or 0x4f
+ Command Format
+ ^^^^^^^^^^^^^^
+diff --git a/Documentation/usb/gadget_uvc.rst b/Documentation/usb/gadget_uvc.rst
+index 62bd81ba3dd1..80a1f031b593 100644
+--- a/Documentation/usb/gadget_uvc.rst
++++ b/Documentation/usb/gadget_uvc.rst
+@@ -168,7 +168,7 @@ Header linking
  
-   reset-gpios:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-index fb44b89a754e..7d60a9654912 100644
---- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-+++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-@@ -159,7 +159,7 @@ properties:
-   qcom,ports-hstart:
-     $ref: /schemas/types.yaml#/definitions/uint8-array
-     description:
--      Identifying lowerst numbered coloum in SoundWire Frame,
-+      Identifying lowerst numbered column in SoundWire Frame,
-       i.e. left edge of the Transport sub-frame for each port.
-       Out ports followed by In ports.
-       Value of 0xff indicates that this option is not implemented
-@@ -176,7 +176,7 @@ properties:
-   qcom,ports-hstop:
-     $ref: /schemas/types.yaml#/definitions/uint8-array
-     description:
--      Identifying highest numbered coloum in SoundWire Frame,
-+      Identifying highest numbered column in SoundWire Frame,
-       i.e. the right edge of the Transport
-       sub-frame for each port. Out ports followed by In ports.
-       Value of 0xff indicates that this option is not implemented
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-index 9887b0724759..d7668f41b03b 100644
---- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-+++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-@@ -1,4 +1,4 @@
--Broadcom BCM2835 auxiliar SPI1/2 controller
-+Broadcom BCM2835 auxiliary SPI1/2 controller
+ The UVC specification requires that Format and Frame descriptors be preceded by
+ Headers detailing things such as the number and cumulative size of the different
+-Format descriptors that follow. This and similar operations are acheived in
++Format descriptors that follow. This and similar operations are achieved in
+ configfs by linking between the configfs item representing the header and the
+ config items representing those other descriptors, in this manner:
  
- The BCM2835 contains two forms of SPI master controller, one known simply as
- SPI0, and the other known as the "Universal SPI Master"; part of the
-@@ -9,7 +9,7 @@ Required properties:
- - reg: Should contain register location and length for the spi block
- - interrupts: Should contain shared interrupt of the aux block
- - clocks: The clock feeding the SPI controller - needs to
--	  point to the auxiliar clock driver of the bcm2835,
-+	  point to the auxiliary clock driver of the bcm2835,
- 	  as this clock will enable the output gate for the specific
- 	  clock.
- - cs-gpios: the cs-gpios (native cs is NOT supported)
-diff --git a/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml b/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml
-index 28222aae3077..45975f40d943 100644
---- a/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml
-@@ -12,7 +12,7 @@ maintainers:
+diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
+index 81e60f4002c8..786127b1e206 100644
+--- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
++++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
+@@ -3293,7 +3293,7 @@ AV1 Frame Restoration Type.
  
- description: |
-   The Broadcom SPI controller is a SPI master found on various SOCs, including
--  BRCMSTB (BCM7XXX), Cygnus, NSP and NS2. The Broadcom Master SPI hw IP consits
-+  BRCMSTB (BCM7XXX), Cygnus, NSP and NS2. The Broadcom Master SPI hw IP consists
-   of:
-     MSPI : SPI master controller can read and write to a SPI slave device
-     BSPI : Broadcom SPI in combination with the MSPI hw IP provides acceleration
-@@ -20,7 +20,7 @@ description: |
-            io with 3-byte and 4-byte addressing support.
+ .. c:type:: v4l2_av1_loop_restoration
  
-   Supported Broadcom SoCs have one instance of MSPI+BSPI controller IP.
--  MSPI master can be used wihout BSPI. BRCMSTB SoCs have an additional instance
-+  MSPI master can be used without BSPI. BRCMSTB SoCs have an additional instance
-   of a MSPI master without the BSPI to use with non flash slave devices that
-   use SPI protocol.
+-AV1 Loop Restauration as described in section 6.10.15 "Loop restoration params
++AV1 Loop Restoration as described in section 6.10.15 "Loop restoration params
+ semantics" of :ref:`av1`.
  
-diff --git a/Documentation/devicetree/bindings/spi/omap-spi.yaml b/Documentation/devicetree/bindings/spi/omap-spi.yaml
-index 352affa4b7f8..ff4d361707bd 100644
---- a/Documentation/devicetree/bindings/spi/omap-spi.yaml
-+++ b/Documentation/devicetree/bindings/spi/omap-spi.yaml
-@@ -68,7 +68,7 @@ properties:
-   dma-names:
-     description:
-       List of DMA request names. These strings correspond 1:1 with
--      the DMA sepecifiers listed in dmas. The string names is to be
-+      the DMA specifiers listed in dmas. The string names is to be
-       "rxN" and "txN" for RX and TX requests, respectively. Where N
-       is the chip select number.
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
-index aea4a2a178b9..24b07c24b8ec 100644
---- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
-+++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
-@@ -85,7 +85,7 @@ Optional properties:
-   which the soctherm hardware will assert the thermal trigger signal to the
-   Power Management IC, which can be configured to reset or shutdown the device.
-   It is an array of pairs where each pair represents a tsensor id followed by a
--  temperature in milli Celcius. In the absence of this property the critical
-+  temperature in milli Celsius. In the absence of this property the critical
-   trip point will be used for thermtrip temperature.
+ .. cssclass:: longtable
+diff --git a/Documentation/userspace-api/media/v4l/metafmt-d4xx.rst b/Documentation/userspace-api/media/v4l/metafmt-d4xx.rst
+index 541836074f94..0686413b16b2 100644
+--- a/Documentation/userspace-api/media/v4l/metafmt-d4xx.rst
++++ b/Documentation/userspace-api/media/v4l/metafmt-d4xx.rst
+@@ -237,7 +237,7 @@ Fish Eye sensor: ::
+ camera projectors. As we have another field for "Laser Power" we introduced
+ "LED Power" for extra emitter.
  
- Note:
-diff --git a/Documentation/devicetree/bindings/timer/snps,arc-timer.txt b/Documentation/devicetree/bindings/timer/snps,arc-timer.txt
-index 147ef3e74452..b02ab0af10ce 100644
---- a/Documentation/devicetree/bindings/timer/snps,arc-timer.txt
-+++ b/Documentation/devicetree/bindings/timer/snps,arc-timer.txt
-@@ -1,7 +1,7 @@
- Synopsys ARC Local Timer with Interrupt Capabilities
- - Found on all ARC CPUs (ARC700/ARCHS)
- - Can be optionally programmed to interrupt on Limit
--- Two idential copies TIMER0 and TIMER1 exist in ARC cores and historically
-+- Two identical copies TIMER0 and TIMER1 exist in ARC cores and historically
-   TIMER0 used as clockevent provider (true for all ARC cores)
-   TIMER1 used for clocksource (mandatory for ARC700, optional for ARC HS)
+-The "Laser mode" __u32 fiels has been split into: ::
++The "Laser mode" __u32 fields has been split into: ::
+    1 __u8 Emitter mode
+    2 __u8 RFU byte
+    3 __u16 LED Power
+diff --git a/Documentation/userspace-api/netlink/intro.rst b/Documentation/userspace-api/netlink/intro.rst
+index 0955e9f203d3..af94e71761ec 100644
+--- a/Documentation/userspace-api/netlink/intro.rst
++++ b/Documentation/userspace-api/netlink/intro.rst
+@@ -615,7 +615,7 @@ and ``SET``. Each object can handle all or some of those requests
+ is defined by the 2 lowest bits of the message type, so commands for
+ new objects would always be allocated with a stride of 4.
  
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index ba2bfb547909..f473b9a6e424 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -193,13 +193,13 @@ properties:
-           - maxim,max1237
-             # Temperature Sensor, I2C interface
-           - maxim,max1619
--            # 10-bit 10 kOhm linear programable voltage divider
-+            # 10-bit 10 kOhm linear programmable voltage divider
-           - maxim,max5481
--            # 10-bit 50 kOhm linear programable voltage divider
-+            # 10-bit 50 kOhm linear programmable voltage divider
-           - maxim,max5482
--            # 10-bit 10 kOhm linear programable variable resistor
-+            # 10-bit 10 kOhm linear programmable variable resistor
-           - maxim,max5483
--            # 10-bit 50 kOhm linear programable variable resistor
-+            # 10-bit 50 kOhm linear programmable variable resistor
-           - maxim,max5484
-             # PECI-to-I2C translator for PECI-to-SMBus/I2C protocol conversion
-           - maxim,max6621
-diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-index 782402800d4a..91f135c3495b 100644
---- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-@@ -167,7 +167,7 @@ properties:
-       at RTL is 0, so this property only affects siTD.
+-Each object would also have it's own fixed metadata shared by all request
++Each object would also have its own fixed metadata shared by all request
+ types (e.g. struct ifinfomsg for netdev requests, struct ifaddrmsg for address
+ requests, struct tcmsg for qdisc requests).
  
-       If this property is not set, the max packet size is 1023 bytes, and
--      if the total of packet size for pervious transactions are more than
-+      if the total of packet size for previous transactions are more than
-       256 bytes, it can't accept any transactions within this frame. The
-       use case is single transaction, but higher frame rate.
+diff --git a/Documentation/virt/hyperv/clocks.rst b/Documentation/virt/hyperv/clocks.rst
+index 2da2879fad52..a56f4837d443 100644
+--- a/Documentation/virt/hyperv/clocks.rst
++++ b/Documentation/virt/hyperv/clocks.rst
+@@ -60,7 +60,7 @@ vDSO, and gettimeofday() and related system calls can execute
+ entirely in user space.  The vDSO is implemented by mapping the
+ shared page with scale and offset values into user space.  User
+ space code performs the same algorithm of reading the TSC and
+-appying the scale and offset to get the constant 10 MHz clock.
++applying the scale and offset to get the constant 10 MHz clock.
  
-diff --git a/Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml b/Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml
-index 3fb4feb6d3d9..9ea1e4cd0709 100644
---- a/Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml
-@@ -52,7 +52,7 @@ properties:
-   fsl,permanently-attached:
-     type: boolean
-     description:
--      Indicates if the device atached to a downstream port is
-+      Indicates if the device attached to a downstream port is
-       permanently attached.
+ Linux clockevents are based on Hyper-V synthetic timer 0. While
+ Hyper-V offers 4 synthetic timers for each CPU, Linux only uses
+diff --git a/Documentation/virt/kvm/api.rst b/Documentation/virt/kvm/api.rst
+index c0ddd3035462..73db30cb60fb 100644
+--- a/Documentation/virt/kvm/api.rst
++++ b/Documentation/virt/kvm/api.rst
+@@ -578,7 +578,7 @@ This is an asynchronous vcpu ioctl and can be invoked from any thread.
+ RISC-V:
+ ^^^^^^^
  
-   fsl,disable-port-power-control:
-diff --git a/Documentation/devicetree/bindings/usb/msm-hsusb.txt b/Documentation/devicetree/bindings/usb/msm-hsusb.txt
-index 8654a3ec23e4..afc30e98b123 100644
---- a/Documentation/devicetree/bindings/usb/msm-hsusb.txt
-+++ b/Documentation/devicetree/bindings/usb/msm-hsusb.txt
-@@ -53,7 +53,7 @@ Optional properties:
- - dr_mode:      One of "host", "peripheral" or "otg". Defaults to "otg"
+-Queues an external interrupt to be injected into the virutal CPU. This ioctl
++Queues an external interrupt to be injected into the virtual CPU. This ioctl
+ is overloaded with 2 different irq values:
  
- - switch-gpio:  A phandle + gpio-specifier pair. Some boards are using Dual
--                SPDT USB Switch, witch is cotrolled by GPIO to de/multiplex
-+                SPDT USB Switch, witch is controlled by GPIO to de/multiplex
-                 D+/D- USB lines between connectors.
+ a) KVM_INTERRUPT_SET
+@@ -2722,7 +2722,7 @@ The isa config register can be read anytime but can only be written before
+ a Guest VCPU runs. It will have ISA feature bits matching underlying host
+ set by default.
  
- - qcom,phy-init-sequence: PHY configuration sequence values. This is related to Device
-diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml b/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
-index 4ced2f68e2a9..07bec1fe6ebf 100644
---- a/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
-+++ b/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - ChiYuan Huang <cy_huang@richtek.com>
+-RISC-V core registers represent the general excution state of a Guest VCPU
++RISC-V core registers represent the general execution state of a Guest VCPU
+ and it has the following id bit patterns::
  
- description: |
--  The RT1719 is a sink-only USB Type-C contoller that complies with the latest
-+  The RT1719 is a sink-only USB Type-C controller that complies with the latest
-   USB Type-C and PD standards. It does the USB Type-C detection including attach
-   and orientation. It integrates the physical layer of the USB BMC power
-   delivery protocol to allow up to 100W of power. The BMC PD block enables full
+   0x8020 0000 02 <index into the kvm_riscv_core struct:24> (32bit Host)
+@@ -5232,7 +5232,7 @@ KVM_PV_DISABLE
+   Deregister the VM from the Ultravisor and reclaim the memory that had
+   been donated to the Ultravisor, making it usable by the kernel again.
+   All registered VCPUs are converted back to non-protected ones. If a
+-  previous protected VM had been prepared for asynchonous teardown with
++  previous protected VM had been prepared for asynchronous teardown with
+   KVM_PV_ASYNC_CLEANUP_PREPARE and not subsequently torn down with
+   KVM_PV_ASYNC_CLEANUP_PERFORM, it will be torn down in this call
+   together with the current protected VM.
+@@ -5692,7 +5692,7 @@ flags values for ``kvm_sregs2``:
+ 
+ ``KVM_SREGS2_FLAGS_PDPTRS_VALID``
+ 
+-  Indicates thats the struct contain valid PDPTR values.
++  Indicates that the struct contains valid PDPTR values.
+ 
+ 
+ 4.132 KVM_SET_SREGS2
+@@ -6263,7 +6263,7 @@ to the byte array.
+ 
+ It is strongly recommended that userspace use ``KVM_EXIT_IO`` (x86) or
+ ``KVM_EXIT_MMIO`` (all except s390) to implement functionality that
+-requires a guest to interact with host userpace.
++requires a guest to interact with host userspace.
+ 
+ .. note:: KVM_EXIT_IO is significantly faster than KVM_EXIT_MMIO.
+ 
+@@ -6336,7 +6336,7 @@ s390 specific.
+ 		} s390_ucontrol;
+ 
+ s390 specific. A page fault has occurred for a user controlled virtual
+-machine (KVM_VM_S390_UNCONTROL) on it's host page table that cannot be
++machine (KVM_VM_S390_UNCONTROL) on its host page table that cannot be
+ resolved by the kernel.
+ The program code and the translation exception code that were placed
+ in the cpu's lowcore are presented here as defined by the z Architecture
+@@ -7510,7 +7510,7 @@ APIC/MSRs/etc).
+           attribute is not supported by KVM.
+ 
+ KVM_CAP_SGX_ATTRIBUTE enables a userspace VMM to grant a VM access to one or
+-more priveleged enclave attributes.  args[0] must hold a file handle to a valid
++more privileged enclave attributes.  args[0] must hold a file handle to a valid
+ SGX attribute file corresponding to an attribute that is supported/restricted
+ by KVM (currently only PROVISIONKEY).
+ 
+@@ -7928,7 +7928,7 @@ writing to the respective MSRs.
+ 
+ This capability indicates that userspace can load HV_X64_MSR_VP_INDEX msr.  Its
+ value is used to denote the target vcpu for a SynIC interrupt.  For
+-compatibilty, KVM initializes this msr to KVM's internal vcpu index.  When this
++compatibility, KVM initializes this msr to KVM's internal vcpu index.  When this
+ capability is absent, userspace can still query this msr's value.
+ 
+ 8.13 KVM_CAP_S390_AIS_MIGRATION
+@@ -8118,10 +8118,10 @@ regardless of what has actually been exposed through the CPUID leaf.
+ :Parameters: args[0] - size of the dirty log ring
+ 
+ KVM is capable of tracking dirty memory using ring buffers that are
+-mmaped into userspace; there is one dirty ring per vcpu.
++mmapped into userspace; there is one dirty ring per vcpu.
+ 
+ The dirty ring is available to userspace as an array of
+-``struct kvm_dirty_gfn``.  Each dirty entry it's defined as::
++``struct kvm_dirty_gfn``.  Each dirty entry is defined as::
+ 
+   struct kvm_dirty_gfn {
+           __u32 flags;
+@@ -8160,7 +8160,7 @@ state machine for the entry is as follows::
+       |                                          |
+       +------------------------------------------+
+ 
+-To harvest the dirty pages, userspace accesses the mmaped ring buffer
++To harvest the dirty pages, userspace accesses the mmapped ring buffer
+ to read the dirty GFNs.  If the flags has the DIRTY bit set (at this stage
+ the RESET bit must be cleared), then it means this GFN is a dirty GFN.
+ The userspace should harvest this GFN and mark the flags from state
+@@ -8286,7 +8286,7 @@ the KVM_XEN_ATTR_TYPE_RUNSTATE_UPDATE_FLAG attribute in the KVM_XEN_SET_ATTR
+ and KVM_XEN_GET_ATTR ioctls. This controls whether KVM will set the
+ XEN_RUNSTATE_UPDATE flag in guest memory mapped vcpu_runstate_info during
+ updates of the runstate information. Note that versions of KVM which support
+-the RUNSTATE feature above, but not thie RUNSTATE_UPDATE_FLAG feature, will
++the RUNSTATE feature above, but not the RUNSTATE_UPDATE_FLAG feature, will
+ always set the XEN_RUNSTATE_UPDATE flag when updating the guest structure,
+ which is perhaps counterintuitive. When this flag is advertised, KVM will
+ behave more correctly, not using the XEN_RUNSTATE_UPDATE flag until/unless
+@@ -8335,7 +8335,7 @@ Architectures: x86
+ 
+ When enabled, KVM will disable emulated Hyper-V features provided to the
+ guest according to the bits Hyper-V CPUID feature leaves. Otherwise, all
+-currently implmented Hyper-V features are provided unconditionally when
++currently implemented Hyper-V features are provided unconditionally when
+ Hyper-V identification is set in the HYPERV_CPUID_INTERFACE (0x40000001)
+ leaf.
+ 
+diff --git a/Documentation/virt/kvm/devices/vm.rst b/Documentation/virt/kvm/devices/vm.rst
+index 9d726e60ec47..a4d39fa1b083 100644
+--- a/Documentation/virt/kvm/devices/vm.rst
++++ b/Documentation/virt/kvm/devices/vm.rst
+@@ -92,7 +92,7 @@ Allows user space to retrieve or request to change cpu related information for a
+ KVM does not enforce or limit the cpu model data in any form. Take the information
+ retrieved by means of KVM_S390_VM_CPU_MACHINE as hint for reasonable configuration
+ setups. Instruction interceptions triggered by additionally set facility bits that
+-are not handled by KVM need to by imlemented in the VM driver code.
++are not handled by KVM need to by implemented in the VM driver code.
+ 
+ :Parameters: address of buffer to store/set the processor related cpu
+ 	     data of type struct kvm_s390_vm_cpu_processor*.
+diff --git a/Documentation/virt/kvm/devices/xive.rst b/Documentation/virt/kvm/devices/xive.rst
+index 8b5e7b40bdf8..a07e16d34006 100644
+--- a/Documentation/virt/kvm/devices/xive.rst
++++ b/Documentation/virt/kvm/devices/xive.rst
+@@ -50,7 +50,7 @@ the legacy interrupt mode, referred as XICS (POWER7/8).
+ 
+   When a device is passed-through into the guest, the source
+   interrupts are from a different HW controller (PHB4) and the ESB
+-  pages exposed to the guest should accommadate this change.
++  pages exposed to the guest should accommodate this change.
+ 
+   The passthru_irq helpers, kvmppc_xive_set_mapped() and
+   kvmppc_xive_clr_mapped() are called when the device HW irqs are
+diff --git a/Documentation/virt/kvm/halt-polling.rst b/Documentation/virt/kvm/halt-polling.rst
+index 4f1a1b23d99c..c82a04b709b4 100644
+--- a/Documentation/virt/kvm/halt-polling.rst
++++ b/Documentation/virt/kvm/halt-polling.rst
+@@ -14,7 +14,7 @@ before giving up the cpu to the scheduler in order to let something else run.
+ Polling provides a latency advantage in cases where the guest can be run again
+ very quickly by at least saving us a trip through the scheduler, normally on
+ the order of a few micro-seconds, although performance benefits are workload
+-dependant. In the event that no wakeup source arrives during the polling
++dependent. In the event that no wakeup source arrives during the polling
+ interval or some other task on the runqueue is runnable the scheduler is
+ invoked. Thus halt polling is especially useful on workloads with very short
+ wakeup periods where the time spent halt polling is minimised and the time
+diff --git a/Documentation/virt/kvm/x86/mmu.rst b/Documentation/virt/kvm/x86/mmu.rst
+index 26f62034b6f3..d47595b33fcf 100644
+--- a/Documentation/virt/kvm/x86/mmu.rst
++++ b/Documentation/virt/kvm/x86/mmu.rst
+@@ -245,7 +245,7 @@ Shadow pages contain the following information:
+     unsynchronized children).
+   unsync_child_bitmap:
+     A bitmap indicating which sptes in spt point (directly or indirectly) at
+-    pages that may be unsynchronized.  Used to quickly locate all unsychronized
++    pages that may be unsynchronized.  Used to quickly locate all unsynchronized
+     pages reachable from a given page.
+   clear_spte_count:
+     Only present on 32-bit hosts, where a 64-bit spte cannot be written
+diff --git a/Documentation/virt/kvm/x86/running-nested-guests.rst b/Documentation/virt/kvm/x86/running-nested-guests.rst
+index 71136fe1723b..87326413d5c7 100644
+--- a/Documentation/virt/kvm/x86/running-nested-guests.rst
++++ b/Documentation/virt/kvm/x86/running-nested-guests.rst
+@@ -169,7 +169,7 @@ Enabling "nested" (s390x)
+     $ modprobe kvm nested=1
+ 
+ .. note:: On s390x, the kernel parameter ``hpage`` is mutually exclusive
+-          with the ``nested`` paramter — i.e. to be able to enable
++          with the ``nested`` parameter — i.e. to be able to enable
+           ``nested``, the ``hpage`` parameter *must* be disabled.
+ 
+ 2. The guest hypervisor (L1) must be provided with the ``sie`` CPU
+diff --git a/Documentation/virt/uml/user_mode_linux_howto_v2.rst b/Documentation/virt/uml/user_mode_linux_howto_v2.rst
+index af2a97429692..d1cfe415e4c4 100644
+--- a/Documentation/virt/uml/user_mode_linux_howto_v2.rst
++++ b/Documentation/virt/uml/user_mode_linux_howto_v2.rst
+@@ -1224,7 +1224,7 @@ between a driver and the host at the UML command line is OK
+ security-wise. Allowing it as a loadable module parameter
+ isn't.
+ 
+-If such functionality is desireable for a particular application
++If such functionality is desirable for a particular application
+ (e.g. loading BPF "firmware" for raw socket network transports),
+ it should be off by default and should be explicitly turned on
+ as a command line parameter at startup.
+diff --git a/Documentation/w1/slaves/w1_therm.rst b/Documentation/w1/slaves/w1_therm.rst
+index 758dadba84f6..6aec04dd0905 100644
+--- a/Documentation/w1/slaves/w1_therm.rst
++++ b/Documentation/w1/slaves/w1_therm.rst
+@@ -58,7 +58,7 @@ A strong pullup will be applied during the conversion if required.
+ 
+ ``conv_time`` is used to get current conversion time (read), and
+ adjust it (write). A temperature conversion time depends on the device type and
+-it's current resolution. Default conversion time is set by the driver according
++its current resolution. Default conversion time is set by the driver according
+ to the device datasheet. A conversion time for many original device clones
+ deviate from datasheet specs. There are three options: 1) manually set the
+ correct conversion time by writing a value in milliseconds to ``conv_time``; 2)
+diff --git a/Documentation/w1/w1-generic.rst b/Documentation/w1/w1-generic.rst
+index 99255b6d0e53..96a042585fce 100644
+--- a/Documentation/w1/w1-generic.rst
++++ b/Documentation/w1/w1-generic.rst
+@@ -101,7 +101,7 @@ w1_master_search          (rw) the number of searches left to do,
+ w1_master_slave_count     (ro) the number of slaves found
+ w1_master_slaves          (ro) the names of the slaves, one per line
+ w1_master_timeout         (ro) the delay in seconds between searches
+-w1_master_timeout_us      (ro) the delay in microseconds beetwen searches
++w1_master_timeout_us      (ro) the delay in microseconds between searches
+ ========================= =====================================================
+ 
+ If you have a w1 bus that never changes (you don't add or remove devices),
+diff --git a/Documentation/w1/w1-netlink.rst b/Documentation/w1/w1-netlink.rst
+index aaa13243a5e4..be4f7b82dcb4 100644
+--- a/Documentation/w1/w1-netlink.rst
++++ b/Documentation/w1/w1-netlink.rst
+@@ -66,7 +66,7 @@ Each connector message can include one or more w1_netlink_msg with
+ zero or more attached w1_netlink_cmd messages.
+ 
+ For event messages there are no w1_netlink_cmd embedded structures,
+-only connector header and w1_netlink_msg strucutre with "len" field
++only connector header and w1_netlink_msg structure with "len" field
+ being zero and filled type (one of event types) and id:
+ either 8 bytes of slave unique id in host order,
+ or master's id, which is assigned to bus master device
+diff --git a/Documentation/watchdog/watchdog-kernel-api.rst b/Documentation/watchdog/watchdog-kernel-api.rst
+index baf44e986b07..243231fe4c0a 100644
+--- a/Documentation/watchdog/watchdog-kernel-api.rst
++++ b/Documentation/watchdog/watchdog-kernel-api.rst
+@@ -77,7 +77,7 @@ It contains following fields:
+ * groups: List of sysfs attribute groups to create when creating the watchdog
+   device.
+ * info: a pointer to a watchdog_info structure. This structure gives some
+-  additional information about the watchdog timer itself. (Like it's unique name)
++  additional information about the watchdog timer itself. (Like its unique name)
+ * ops: a pointer to the list of watchdog operations that the watchdog supports.
+ * gov: a pointer to the assigned watchdog device pretimeout governor or NULL.
+ * timeout: the watchdog timer's timeout value (in seconds).
+diff --git a/Documentation/wmi/devices/dell-wmi-ddv.rst b/Documentation/wmi/devices/dell-wmi-ddv.rst
+index d8aa64e9c827..30313977bd25 100644
+--- a/Documentation/wmi/devices/dell-wmi-ddv.rst
++++ b/Documentation/wmi/devices/dell-wmi-ddv.rst
+@@ -185,7 +185,7 @@ Performs an analysis of the battery and returns a status code:
+ WMI method BatteryeRawAnalytics()
+ ---------------------------------
+ 
+-Returns a buffer usually containg 12 blocks of analytics data.
++Returns a buffer usually containing 12 blocks of analytics data.
+ Those blocks contain:
+ - block number starting with 0 (u8)
+ - 31 bytes of unknown data
+@@ -217,7 +217,7 @@ Returns the WMI interface version as an u32.
+ WMI method FanSensorInformation()
+ ---------------------------------
+ 
+-Returns a buffer containg fan sensor entries, terminated
++Returns a buffer containing fan sensor entries, terminated
+ with a single ``0xff``.
+ Those entries contain:
+ 
 -- 
 2.34.1
 
