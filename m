@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FB077B6F4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E1377B6F8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232771AbjHNKlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 06:41:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59434 "EHLO
+        id S233167AbjHNKlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 06:41:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235105AbjHNKld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:41:33 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB634E54
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:41:25 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99c1f6f3884so570140266b.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:41:25 -0700 (PDT)
+        with ESMTP id S235186AbjHNKlh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:41:37 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5212810DE
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:41:27 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-98377c5d53eso542564266b.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:41:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1692009684; x=1692614484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jSw4csycOwpeCvjk1+out8qA4MHRdLgT4XjSRFi9YI4=;
-        b=raD8xCmJS5LggmRmeEcYRS9BpLx62slvvmJlaJmLv3zXqb2NxLl83bXkWTa39H2ai/
-         1K1tAruj0xQezMsnjHOd4AFYg15nI+uP6swbX78Vd/bmydsYxHVV7ZpyD07eZ8bQ3AYm
-         o0xnJE3sTA6YXVuGTOBCa5MW/D5KnrH9mqlKMZMlIbae0Pq8DIduIwtFciGsEIUoiWo+
-         XFxUmKIb1etw6Lavv9dKY72eio1Ke47t9i8ob8kDUkhbwV4QAjINwzE6Bn8ryUGP4l+c
-         xmQuoQDB0DJ1MB61ouBwFf9v43/M/0adbvH/vqz5YpX526T1z0WGGAd+WxnR8A0PMvAg
-         sPhA==
+        d=sartura.hr; s=sartura; t=1692009685; x=1692614485;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Djj4l4V/6mjTCVIY5j1u2m14Bqurma+fObOXnVezLR0=;
+        b=fBXI+rRnh1me98p2B6w9MJ+himWLu2zzOVjf19ltNVYFfR/dNpJxyBqCz8zTs1bJhx
+         9ETPAkFP8toVGszYn8vNWF3zgyNJ8dTJ9EmV/PRn8ORbDyGt51YRA8tUs1AlGBYPc/uf
+         c1fZgwFTy5MW7wNzz0TeWZ+AVGDOxn1ORnT6Y3bMVEA1O6o86YSQvaIUysQgP58JRag5
+         N96eyCE5fUlCS1zHrsFwr4JEbOWtlKfr8WuPGfjnxcW3dS4jg+n7i3mahMjWVqicC5YO
+         +I4PbOWPQMjmRjlFmekO9xOnSInNBXEPmWFHHhWf5DFsvyNZTp8R5HQaQrITnK2LjyuE
+         L5gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692009684; x=1692614484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jSw4csycOwpeCvjk1+out8qA4MHRdLgT4XjSRFi9YI4=;
-        b=XhUFd06keV5z8kMXOtgu2xN1I/2h58Sk+kvhOCLvt63jaSPRkoU4Ws/yVU4dmjdH8j
-         /4ZFF5ocmbKtmvkjXoK6Mq0xQeR2bjrXggr4AACrl73W+bhh0jSoFbU6QMvcZjjU3gVy
-         P+/CxEpQ4UzTNPqJQJkeVG7h2FMwP/RrZXgz6Gx1nKBa43NtSGy424I2PAHkJJrSsNjl
-         eCYvrqndwcQ1m2qAzxIhrfvr5aEQbXlIyx0ZQQsX0JbCDA+u7zJeJgJg1cf5vJe2Zm1h
-         ut9bSTWvz7yd5awZM7oTrpbt98xPrUFqpF+ot7aqCd29A/RBBMKt/BZOr78WiYsBkKHH
-         FlKA==
-X-Gm-Message-State: AOJu0Yw4ccOhS2zAWurTkKCsa7zJzCDIamjgWfKbhhlgBFFX3En2F33f
-        p8OrBiOwvSqXEkTuFjBtMWkMRQ==
-X-Google-Smtp-Source: AGHT+IHIAdYTWJ7gkjJvy6BoDj+4PyTFlCuCnts+3w0Zi2xdzcmv4DYXC1DwBbhekY/xufKSsoDI0A==
-X-Received: by 2002:a17:907:801f:b0:992:b3a3:81f9 with SMTP id ft31-20020a170907801f00b00992b3a381f9mr6271991ejc.71.1692009684062;
-        Mon, 14 Aug 2023 03:41:24 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692009685; x=1692614485;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Djj4l4V/6mjTCVIY5j1u2m14Bqurma+fObOXnVezLR0=;
+        b=HzP8/OP5tH9a7Xa6LXWZUHUZC972fWJqCTVd3E40Kcheo1pW+/+TQSK/eRKUdF9doo
+         rpz92DCrO6rYJuTmulGITMvJMCcT0wkRGeDoTa6OIWZ2ym/Qt9oHxZ5BCrDk8cuJqSnw
+         uZUvhCwZQ7vr6yy4QPXlI6J7H9zLRK00yluPQvwnjrcPvcqK0ipKt100hbxW+j5rrVLA
+         GtyNGdSwHFERHY0gAdBoiYMW5AWY5fsWeEedHC58wWkT5PDNtDla/RfWTAY5qS8bU1vp
+         /46pfFE/TmgypT8RaaJSOVKvbgvbF475KAEv7FgGqmA2kH62JuQMromEwtS8VmpyTYZX
+         61oQ==
+X-Gm-Message-State: AOJu0YwvTbdgWcrhLVfMgThFgDu1oAl1YrzgDL1ed1enkGg6l5ju7yly
+        YAEga4OUAsnz7tX0lnxOLEiuAg==
+X-Google-Smtp-Source: AGHT+IG2Bg4je6dJx6bRZIw22iqCWG+Wx8NgEDEAyVFrqeUSGUgTzmkjIzRJRcIMWoTUmhbGYHlFAw==
+X-Received: by 2002:a17:906:7489:b0:974:183a:54b6 with SMTP id e9-20020a170906748900b00974183a54b6mr7128442ejl.33.1692009685347;
+        Mon, 14 Aug 2023 03:41:25 -0700 (PDT)
 Received: from fedora.. (cpezg-94-253-129-24-cbl.xnet.hr. [94.253.129.24])
-        by smtp.googlemail.com with ESMTPSA id qw4-20020a170906fca400b009934707378fsm5486586ejb.87.2023.08.14.03.41.22
+        by smtp.googlemail.com with ESMTPSA id qw4-20020a170906fca400b009934707378fsm5486586ejb.87.2023.08.14.03.41.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 03:41:23 -0700 (PDT)
+        Mon, 14 Aug 2023 03:41:24 -0700 (PDT)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
         mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
@@ -55,44 +56,49 @@ To:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 1/2] dt-bindings: clock: qcom: ipq4019: add missing networking resets
-Date:   Mon, 14 Aug 2023 12:40:23 +0200
-Message-ID: <20230814104119.96858-1-robert.marko@sartura.hr>
+Subject: [PATCH 2/2] clk: qcom: gcc-ipq4019: add missing networking resets
+Date:   Mon, 14 Aug 2023 12:40:24 +0200
+Message-ID: <20230814104119.96858-2-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230814104119.96858-1-robert.marko@sartura.hr>
+References: <20230814104119.96858-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,T_SPF_TEMPERROR
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NO_DNS_FOR_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the missing networking resets found in IPQ4019 GCC.
+IPQ4019 has more networking related resets that will be required for future
+wired networking support, so lets add them.
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
- include/dt-bindings/clock/qcom,gcc-ipq4019.h | 6 ++++++
+ drivers/clk/qcom/gcc-ipq4019.c | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/include/dt-bindings/clock/qcom,gcc-ipq4019.h b/include/dt-bindings/clock/qcom,gcc-ipq4019.h
-index 7e8a7be6dcda..fa0587857547 100644
---- a/include/dt-bindings/clock/qcom,gcc-ipq4019.h
-+++ b/include/dt-bindings/clock/qcom,gcc-ipq4019.h
-@@ -165,5 +165,11 @@
- #define GCC_QDSS_BCR					69
- #define GCC_MPM_BCR					70
- #define GCC_SPDM_BCR					71
-+#define ESS_MAC1_ARES					72
-+#define ESS_MAC2_ARES					73
-+#define ESS_MAC3_ARES					74
-+#define ESS_MAC4_ARES					75
-+#define ESS_MAC5_ARES					76
-+#define ESS_PSGMII_ARES					77
+diff --git a/drivers/clk/qcom/gcc-ipq4019.c b/drivers/clk/qcom/gcc-ipq4019.c
+index c134c468bb33..4a0bd668892e 100644
+--- a/drivers/clk/qcom/gcc-ipq4019.c
++++ b/drivers/clk/qcom/gcc-ipq4019.c
+@@ -1713,6 +1713,12 @@ static const struct qcom_reset_map gcc_ipq4019_resets[] = {
+ 	[GCC_TCSR_BCR] = {0x22000, 0},
+ 	[GCC_MPM_BCR] = {0x24000, 0},
+ 	[GCC_SPDM_BCR] = {0x25000, 0},
++	[ESS_MAC1_ARES] = {0x1200C, 0},
++	[ESS_MAC2_ARES] = {0x1200C, 1},
++	[ESS_MAC3_ARES] = {0x1200C, 2},
++	[ESS_MAC4_ARES] = {0x1200C, 3},
++	[ESS_MAC5_ARES] = {0x1200C, 4},
++	[ESS_PSGMII_ARES] = {0x1200C, 5},
+ };
  
- #endif
+ static const struct regmap_config gcc_ipq4019_regmap_config = {
 -- 
 2.41.0
 
