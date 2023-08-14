@@ -2,58 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AED7377B5B7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 11:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 181D677B5C5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 11:53:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232942AbjHNJpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 05:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46648 "EHLO
+        id S233309AbjHNJwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 05:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233998AbjHNJpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 05:45:13 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 820A3CC;
-        Mon, 14 Aug 2023 02:45:11 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7EEB92F4;
-        Mon, 14 Aug 2023 02:45:53 -0700 (PDT)
-Received: from [10.57.90.230] (unknown [10.57.90.230])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7C27E3F6C4;
-        Mon, 14 Aug 2023 02:45:08 -0700 (PDT)
-Message-ID: <ee3e8fc1-708c-d7b8-d827-c2f1adbc5c66@arm.com>
-Date:   Mon, 14 Aug 2023 10:45:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.13.0
-Subject: Re: [PATCH v7 06/13] coresight-tpdm: Add reset node to TPDM node
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S233977AbjHNJwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 05:52:00 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F45CD1;
+        Mon, 14 Aug 2023 02:51:58 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37E9pmv6027597;
+        Mon, 14 Aug 2023 04:51:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692006708;
+        bh=YHisbs6R0xXrNTsJCEqlxBiPrz26Ghe5FBVp20PuDnA=;
+        h=From:To:CC:Subject:Date;
+        b=Vo+v61TCf8/PNvxOjgM+iw74ijEXX8zx+2mq8YSZG3LPDimCRLPLnvFaTxXurntz9
+         GJl52+c9qal7+mKgvTL1mHTWj1SyMlcsQXt08+DP9BIUs/xCMrl1nMR/Wa3vdLSV4X
+         TEHbbMxuNvraDc55I/Ij4w59FOXJdoXFHGWeyY6c=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37E9pmiP014340
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Aug 2023 04:51:48 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
+ Aug 2023 04:51:48 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 14 Aug 2023 04:51:48 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37E9pmwG023606;
+        Mon, 14 Aug 2023 04:51:48 -0500
+Received: from localhost (uda0501179.dhcp.ti.com [172.24.227.217])
+        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 37E9plpd016978;
+        Mon, 14 Aug 2023 04:51:48 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Suman Anna <s-anna@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1690269353-10829-1-git-send-email-quic_taozha@quicinc.com>
- <1690269353-10829-7-git-send-email-quic_taozha@quicinc.com>
- <fc995a4a-81c5-648c-663a-4cee2cf15197@arm.com>
- <fb061c33-9f39-831a-76da-2fa86aaa6df6@quicinc.com>
- <1dba2258-e447-d019-da38-067bf776922a@quicinc.com>
- <ce14e453-50da-02c2-9147-f094ed8aa10f@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <ce14e453-50da-02c2-9147-f094ed8aa10f@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <srk@ti.com>, <nm@ti.com>
+Subject: [PATCH v2] dt-bindings: remoteproc: pru: Add Interrupt property
+Date:   Mon, 14 Aug 2023 15:21:41 +0530
+Message-ID: <20230814095141.3526684-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,167 +70,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/08/2023 08:08, Tao Zhang wrote:
-> 
-> On 8/13/2023 11:38 PM, Tao Zhang wrote:
->>
->> On 8/9/2023 2:35 PM, Tao Zhang wrote:
->>>
->>> On 8/7/2023 5:36 PM, Suzuki K Poulose wrote:
->>>> On 25/07/2023 08:15, Tao Zhang wrote:
->>>>> TPDM device need a node to reset the configurations and status of
->>>>> it. This change provides a node to reset the configurations and
->>>>> disable the TPDM if it has been enabled.
->>>>>
->>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>>> ---
->>>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 10 ++++++++++
->>>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 22 
->>>>> ++++++++++++++++++++++
->>>>>   2 files changed, 32 insertions(+)
->>>>>
->>>>> diff --git 
->>>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->>>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>> index 4a58e64..dbc2fbd0 100644
->>>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>> @@ -11,3 +11,13 @@ Description:
->>>>>           Accepts only one of the 2 values -  1 or 2.
->>>>>           1 : Generate 64 bits data
->>>>>           2 : Generate 32 bits data
->>>>> +
->>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/reset
->>>>> +Date:        March 2023
->>>>> +KernelVersion    6.5
->>>>
->>>>
->>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>>> +Description:
->>>>> +        (Write) Reset the dataset of the tpdm, and disable the tpdm.
->>>>
->>>> Please fix this, we don't disable TPDM. If it only ever resets the 
->>>> datasets, please could we rename this as such ?
->>>>
->>>>  i.e., reset_dataset or reset_dsb_data ?
->>> Sure, I will update this in the next patch series.
->>>>
->>>>> +
->>>>> +        Accepts only one value -  1.
->>>>> +        1 : Reset the dataset of the tpdm
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->>>>> b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>>> index 52aa48a6..acc3eea 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>>> @@ -159,6 +159,27 @@ static int tpdm_datasets_setup(struct 
->>>>> tpdm_drvdata *drvdata)
->>>>>       return 0;
->>>>>   }
->>>>>   +static ssize_t reset_store(struct device *dev,
->>>>> +                      struct device_attribute *attr,
->>>>> +                      const char *buf,
->>>>> +                      size_t size)
->>>>
->>>> Minor nit: alignment ? Could we have something like :
->>>>
->>>> static ssize_t reset_store(struct device *dev,
->>>>                struct device_attribute *attr,
->>>>                const char *buf,
->>>>                size_t size)
->>>>
->>> I will update this in the next patch series.
->>>
->>>
->>> Best,
->>>
->>> Tao
->>
->> Hi Suzuki,
->>
->>
->> With regards to the parameters alignment for the function, could you
->>
->> kindly remind me the rule of alignment?  I'm using the thunderbird
->>
->> mail client and I'm not sure if the alignment I see is what you expect.
+Add interrupts and interrupt-names protperties for PRU and RTU cores.
 
-It is not about the mail client, I am looking at the code with this 
-series applied to the code.
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+---
+Changes from v1 to v2:
+*) Added reference of ti,pruss-intc.yaml schema in the description of
+   interrupts property as suggested by Conor.
+*) Rebased on latest next-20230809 linux-next.
 
->>
->> If the rule can be specified, I can align all the function parameters in
->>
->> this patch series according to this rule.
->>
->>
->> Best,
->>
->> Tao
-> 
-> Hi Suzuki,
-> 
-> 
-> Can I follow the following rules to handle the similar case?
-> 
-> "Descendants are always substantially shorter than the parent and are 
-> placed substantially to the right.
-> 
+v1: https://lore.kernel.org/all/20230807110836.2612730-1-danishanwar@ti.com/
 
+ .../bindings/remoteproc/ti,pru-rproc.yaml     | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-> A very commonly used style is to align descendants to a function open 
-> parenthesis."
-
-Yes, this is what I expect.
-
-Suzuki
-
-
-> 
-> 
-> Best,
-> 
-> Tao
-> 
->>
->>>
->>>>
->>>>> +{
->>>>> +    int ret = 0;
->>>>> +    unsigned long val;
->>>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>>> +
->>>>> +    ret = kstrtoul(buf, 10, &val);
->>>>> +    if (ret || val != 1)
->>>>> +        return -EINVAL;
->>>>> +
->>>>> +    spin_lock(&drvdata->spinlock);
->>>>> +    tpdm_reset_datasets(drvdata);
->>>>> +    spin_unlock(&drvdata->spinlock);
->>>>> +
->>>>> +    return size;
->>>>> +}
->>>>> +static DEVICE_ATTR_WO(reset);
->>>>> +
->>>>>   /*
->>>>>    * value 1: 64 bits test data
->>>>>    * value 2: 32 bits test data
->>>>> @@ -199,6 +220,7 @@ static ssize_t integration_test_store(struct 
->>>>> device *dev,
->>>>>   static DEVICE_ATTR_WO(integration_test);
->>>>>     static struct attribute *tpdm_attrs[] = {
->>>>> +    &dev_attr_reset.attr,
->>>>>       &dev_attr_integration_test.attr,
->>>>>       NULL,
->>>>>   };
->>>>
->>>> Suzuki
->>>>
->>> _______________________________________________
->>> CoreSight mailing list -- coresight@lists.linaro.org
->>> To unsubscribe send an email to coresight-leave@lists.linaro.org
->> _______________________________________________
->> CoreSight mailing list -- coresight@lists.linaro.org
->> To unsubscribe send an email to coresight-leave@lists.linaro.org
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+index cd55d80137f7..fc81ba2ad2da 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+@@ -66,6 +66,17 @@ properties:
+       Should contain the name of the default firmware image
+       file located on the firmware search path.
+ 
++  interrupts:
++    maxItems: 1
++    description:
++      Interrupt specifiers enable the virtio/rpmsg communication between MPU
++      and the PRU/RTU cores. For the values of the interrupt cells please refer
++      to interrupt-controller/ti,pruss-intc.yaml schema.
++
++  interrupt-names:
++    items:
++      - const: vring
++
+ if:
+   properties:
+     compatible:
+@@ -171,6 +182,9 @@ examples:
+               <0x22400 0x100>;
+         reg-names = "iram", "control", "debug";
+         firmware-name = "am65x-pru0_0-fw";
++        interrupt-parent = <&icssg0_intc>;
++        interrupts = <16 2 2>;
++        interrupt-names = "vring";
+       };
+ 
+       rtu0_0: rtu@4000 {
+@@ -180,6 +194,9 @@ examples:
+               <0x23400 0x100>;
+         reg-names = "iram", "control", "debug";
+         firmware-name = "am65x-rtu0_0-fw";
++        interrupt-parent = <&icssg0_intc>;
++        interrupts = <20 4 4>;
++        interrupt-names = "vring";
+       };
+ 
+       tx_pru0_0: txpru@a000 {
+@@ -198,6 +215,9 @@ examples:
+               <0x24400 0x100>;
+         reg-names = "iram", "control", "debug";
+         firmware-name = "am65x-pru0_1-fw";
++        interrupt-parent = <&icssg0_intc>;
++        interrupts = <18 3 3>;
++        interrupt-names = "vring";
+       };
+ 
+       rtu0_1: rtu@6000 {
+@@ -207,6 +227,9 @@ examples:
+               <0x23c00 0x100>;
+         reg-names = "iram", "control", "debug";
+         firmware-name = "am65x-rtu0_1-fw";
++        interrupt-parent = <&icssg0_intc>;
++        interrupts = <22 5 5>;
++        interrupt-names = "vring";
+       };
+ 
+       tx_pru0_1: txpru@c000 {
+-- 
+2.34.1
 
