@@ -2,60 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11FA377B80F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 13:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F2F77B872
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232026AbjHNL65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 07:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
+        id S232761AbjHNMOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 08:14:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234873AbjHNL6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 07:58:38 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 163CA18B;
-        Mon, 14 Aug 2023 04:58:02 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8BxnuvDFtpkdSoYAA--.47621S3;
-        Mon, 14 Aug 2023 19:57:55 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxrM6_FtpkXuZZAA--.24469S3;
-        Mon, 14 Aug 2023 19:57:51 +0800 (CST)
-Subject: Re: [PATCH v6 1/2] soc: dt-bindings: add loongson-2 pm
-To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
-        Liu Yun <liuyun@loongson.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        zhuyinbo@loongson.cn
-References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
- <20230803063703.5659-2-zhuyinbo@loongson.cn>
- <193f9138-57e0-4d4b-8225-54d38be9bfbc@app.fastmail.com>
- <8efeac46-ebb7-fa05-3d88-7c21acd59c8b@loongson.cn>
- <6d7335b4-63e2-4a7e-9620-8a0012558dfd@app.fastmail.com>
- <0616585d-1459-b6ef-375b-890426004e01@loongson.cn>
- <19feb595-e22a-4304-9b88-b5cb55949cd8@app.fastmail.com>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <71c53c37-a0a6-6b11-31d5-4455d2309927@loongson.cn>
-Date:   Mon, 14 Aug 2023 19:57:51 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S233678AbjHNMOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:14:04 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC39DD
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:14:03 -0700 (PDT)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20230814121401epoutp010f9f324b72c5d997ae39acc79668052f~7PuXBVOfF0413804138epoutp01-
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:14:01 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20230814121401epoutp010f9f324b72c5d997ae39acc79668052f~7PuXBVOfF0413804138epoutp01-
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1692015241;
+        bh=xyVnog2jLedt14D6/THImFoemM70QCVX01i5t6rzCMg=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=oFSgT4+q5yp8TbP4QmFCpPhnX8C0I4GtNfuiaZC0Um+o60gElZbW83+raZsd389TU
+         5EEZTUwNvqY6bTf3YVaTU/rwhXycmcJM1tIt7+q7HTcSLzWxHqHnqefJwDao1oxZgp
+         se6gmGTNh81+GX2VsV1TJvJZAeB+/7EiIy4JoyWQ=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20230814121400epcas5p167b713d95d692ca9a85155c00fd29796~7PuWbYfMJ0558505585epcas5p1d;
+        Mon, 14 Aug 2023 12:14:00 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.178]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4RPYGb1R7Qz4x9Pp; Mon, 14 Aug
+        2023 12:13:59 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0B.FF.44250.78A1AD46; Mon, 14 Aug 2023 21:13:59 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20230814101856epcas5p258bdde8064b8796f512d694dd84479e2~7OJ4dlEYZ2119221192epcas5p2T;
+        Mon, 14 Aug 2023 10:18:56 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230814101856epsmtrp27552a66ecbc4b8b2bab0664475c73582~7OJ4cb1HG0861708617epsmtrp23;
+        Mon, 14 Aug 2023 10:18:56 +0000 (GMT)
+X-AuditID: b6c32a4a-ec1fd7000000acda-23-64da1a8761c2
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F0.E1.30535.09FF9D46; Mon, 14 Aug 2023 19:18:56 +0900 (KST)
+Received: from FDSFTE302 (unknown [107.122.81.78]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20230814101853epsmtip1485ac2ebfee8abec66117b25d30e6253~7OJ1rJAdB2787827878epsmtip1D;
+        Mon, 14 Aug 2023 10:18:53 +0000 (GMT)
+From:   "Sriranjani P" <sriranjani.p@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <alexandre.torgue@foss.st.com>, <peppe.cavallaro@st.com>,
+        <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>
+Cc:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <pankaj.dubey@samsung.com>,
+        <alim.akhtar@samsung.com>, <ravi.patel@samsung.com>,
+        "'Jayati Sahu'" <jayati.sahu@samsung.com>, <swathi.ks@samsung.com>
+In-Reply-To: <2590a514-81f7-1876-c43b-80c8abe40cf9@linaro.org>
+Subject: RE: [PATCH v2 3/4] arm64: dts: fsd: Add Ethernet support for FSYS0
+ Block of FSD SoC
+Date:   Mon, 14 Aug 2023 15:48:44 +0530
+Message-ID: <000001d9ce98$bbaedb90$330c92b0$@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <19feb595-e22a-4304-9b88-b5cb55949cd8@app.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxrM6_FtpkXuZZAA--.24469S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQGL0eLTHe4L9QyPOdGPE73PwLZVZAJJY+tAAlLq9WAA4UOvEbBZlhdw
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TfUxbVRjGc3r7BaTjCmwccCN4yYgDgZYBO0xAwhhcmC4kZsk2dVDptQVK
+        2/SDsRnNAiwbuLItyHTlq6IQRCtfLSLQuUHBCcai21AQFciaMcqXhU2Zkll6i/Lf733zvPd5
+        n3PO5WI+q+xAbp5MTSllQinB9mR2D+4Li7gQOCnit17noPWH1wCaru9mo1prGRM1WL5nIdvw
+        LAdZRj5hoN8al1iocm4GQ2a7iYPGuitZ6E5vLRvVbxhYaFi/Cz0eXQCo0bTGQU/tJoBmVvo5
+        6LzZwkFrHROcZF/S+OkEg7RdNnHIr3S/ckh9p4bsbC1nk1Pj/Wxy+cY9NllpbAWk7S8zRhq/
+        XgXkamdQltfJggQJJRRRymBKlisX5cnEicSRV7MPZcfG8QURgnh0gAiWCQupRCL15ayItDyp
+        Mx4RXCSUapytLKFKRUQlJSjlGjUVLJGr1IkEpRBJFTGKSJWwUKWRiSNllPqggM+PjnUKcwok
+        U5OJiifhxVbje9g5sB5SATy4EI+B+rl2UAE8uT54H4DV5h9YdOEA8I5Zz6SLxwCWVC9wtkYu
+        fuZwj5gB1E5UuosHAM4ZbrA3VWw8CtpbGlzshw8z4IP11zZFGP4IQPO03vUpDzwJOq4OMjfZ
+        Fz8FP9SvupiJ74WTlQ7XMA+Ph83To0yan4HfXr/vYgwPh80f2TF6pWC4bmtm0X1/OLR+CaON
+        0+DPXVUMWvOBB6wYO0NzKizTaVk0+8L5b4zuaIFwdcnMplkMuyxdbo0UXiwpdXu9BG/erXXu
+        wHV67YNtvVF0ew+sHvmCQa+wA2r/vu+25cGe+i0OhR/Plrt5NzTMOlhXAKHblky3LZluWxrd
+        /256wGwFAZRCVSimVLGKaBl1+r8Lz5UXdgLX6w/L7AEz0yuRA4DBBQMAcjHCj3eJNyny4YmE
+        Z85SSnm2UiOlVAMg1nncV7HAnbly5+8jU2cLYuL5MXFxcTHx++MEhD/Pfr5O5IOLhWqqgKIU
+        lHJrjsH1CDzH0Bb/mPL57XB2bMvaIy2WntJS1HG7h69Rpj7/5I8lwdF7ddRb8cnCXQHf7QjY
+        c/PKhndIWRI3g2TMHyFeeLvq1vzRtmO93CGv38dGj9cv2BjWp1H1VaaZy7ujtdUZr//5jyVj
+        uVyS1hbU35dR8+bQ4tShzJwc3FG3WJPULM5PKTl2+NnxmsURq5YzHpSQ3iHOVqKBmbL8AF7y
+        Q+bK3hMXiqZ2vmjB2kv3hxy4Jfd+Tk4uvFIMD/o25XtKj28sO9YEpakGw7WuU1NKv9GaOfX4
+        lyYUmmk1zHojUvrG4t2GJqukyYj65s+Gtne9+86JhWZ/r0H72PtRv5xMP/3U1qipzPiJYKok
+        QkEYplQJ/wXAlgUfhgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0yMcRzHfZ/nued5rhyPu4uvH2sc2oRLxnxJLW14yPwczW9X9+wuuuRO
+        hGx+NQlX2EwnXU4uXUinbugqznVWbmRNq1yUdavbRSQmi6w7tv577fP+sfcfHxoXuohJdGLy
+        QU6dLEuSkAGE5bkkeG7OUIt8Xv+D6WjAcxWg9nwLifJenyGQ3v6Kh9yOjxSy1xdi6L3hMw9p
+        uztwVOWtoFCDRctDjU/ySJT/+x4POQrGox8vewAyVPRTaMhbAVDHFyuFMqrsFOova6GiRWx5
+        cQvGurMrKPaxro1iC8yprNl0jmRdTVaS7a1+S7LachNg3T+rcLa85htgv5mD1wduC1gq55IS
+        D3HqsKg9AcrTn9JSzKFpg3fbwQlQJskCfBoyC2BmSR/IAgG0kKkE0NR8g/QLU2BdeyHuZxEs
+        /tNF+U1uALuLisCwQDJh0HtH7wuImQYMGr5GDJtw5jeAV6tLCH/iO4CDrhps2MVnomDfpefE
+        MIuYHdB155KPCWYmbNX2+ZoEzGJobH9J+HkcrMvt9DHOzIYXOzLAfzbe9P6bNxUOuI08/30C
+        rB24gPsXrYDND69gOUCkG1GlG1GlG1GlGxEvAIQJTORSNCqFShOeMj+ZOyzVyFSa1GSFNGG/
+        ygx8DxAa+ghYTV+kNoDRwAYgjUvEgtaVTXKhQC47cpRT79+tTk3iNDYwmSYkEwQ/vBflQkYh
+        O8jt47gUTv1fxWj+pBOYoGaNNC1+Tlix3vniepl+yrHIiW19acqoXM84o3WZ6xa/vsjQk/1k
+        bProDUHRxy29cU/jKPK9I9jDD96siLjNxOi144uiAy878AjxHltH96l3rmshSm9sXWzutRjD
+        T0Vp+s4Zub/GxkXbuxtOakSmFQ2vntFOz+qhWWu33MpfVG/sKqFbYtak5yy7Z195vzHyV1Dt
+        Ktex8tbqBX8s2887Rw/GsWffuBM8QWMCFZmjBgwhPU21kQ4xOPuhUuoEb3eVbmhOaFuyrtTW
+        tDF+6xxxRqc+flpe5nJD5HUhb6cYazWq7h6hrSHrG+ceyIKF3k2xlQt7Obtyr77y/jMvt8Up
+        ITRKWXgortbI/gL0QwPkbwMAAA==
+X-CMS-MailID: 20230814101856epcas5p258bdde8064b8796f512d694dd84479e2
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230111075450epcas5p3f13b94bfeaa66d386aa51f87ca4ec5bf
+References: <20230111075422.107173-1-sriranjani.p@samsung.com>
+        <CGME20230111075450epcas5p3f13b94bfeaa66d386aa51f87ca4ec5bf@epcas5p3.samsung.com>
+        <20230111075422.107173-4-sriranjani.p@samsung.com>
+        <2590a514-81f7-1876-c43b-80c8abe40cf9@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,118 +132,161 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-在 2023/8/14 下午4:19, Arnd Bergmann 写道:
-> On Mon, Aug 14, 2023, at 09:57, Yinbo Zhu wrote:
->> 在 2023/8/12 下午8:25, Arnd Bergmann 写道:
->>> On Fri, Aug 4, 2023, at 04:54, Yinbo Zhu wrote:
->>>> 在 2023/8/3 下午3:44, Arnd Bergmann 写道:
->>>>> On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
->>>>
->>>>> Is this some SRAM that needs to execute the suspend logic
->>>>> in order to shut down memory and cache controllers?
->>>>
->>>>
->>>> Yes, The suspend-to-ram after into pmon firmware code and set
->>>> self-refresh mode in memory controller and ensure that memory data is
->>>> not lost then shut down memory controller.
->>>
->>> I'm sorry I missed your reply earlier, getting back to the
->>> thread now. So it's clear that this code needs to run in a
->>> special memory from your description, but I'm still trying
->>> to understand the details better.
->>>
->>> I found https://github.com/loongson-community/pmon source
->>> code, and a reference to its origin at LSI Logic at
->>> https://www.linux-mips.org/wiki/PMON but otherwise have
->>> no idea about what this actually is, or how it relates
->>> to your UEFI firmware. Did you add UEFI support to PMON,
->>> or do you use it as a first stage loader that loads
->>> the actual UEFI implementation (EDK2 or u-boot, I guess)?
->>
->>
->> Pmon and uefi are two different firmware, and there is no connection
->> between them.
-> 
-> It sounds like we still have problems with terminology. >
-> I don't think categorizing UEFI as a firmware is correct,
+> -----Original Message-----
+> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
+> Sent: 12 January 2023 15:05
+> To: Sriranjani P <sriranjani.p=40samsung.com>; davem=40davemloft.net;
+> edumazet=40google.com; kuba=40kernel.org; pabeni=40redhat.com;
+> robh+dt=40kernel.org; krzysztof.kozlowski+dt=40linaro.org;
+> alexandre.torgue=40foss.st.com; peppe.cavallaro=40st.com;
+> joabreu=40synopsys.com; mcoquelin.stm32=40gmail.com
+> Cc: netdev=40vger.kernel.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; pankaj.dubey=40samsung.com;
+> alim.akhtar=40samsung.com; ravi.patel=40samsung.com; Jayati Sahu
+> <jayati.sahu=40samsung.com>
+> Subject: Re: =5BPATCH v2 3/4=5D arm64: dts: fsd: Add Ethernet support for=
+ FSYS0
+> Block of FSD SoC
+>=20
+> On 11/01/2023 08:54, Sriranjani P wrote:
+> > The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP,
+> > one in FSYS0 block and other in PERIC block.
+> >
+> > Adds device tree node for Ethernet in FSYS0 Block and enables the same
+> > for FSD platform.
+> >
+> > Signed-off-by: Pankaj Dubey <pankaj.dubey=40samsung.com>
+> > Signed-off-by: Jayati Sahu <jayati.sahu=40samsung.com>
+> > Signed-off-by: Sriranjani P <sriranjani.p=40samsung.com>
+> > ---
+> >  arch/arm64/boot/dts/tesla/fsd-evb.dts      =7C  9 ++++
+> >  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi =7C 56
+> ++++++++++++++++++++++
+> >  arch/arm64/boot/dts/tesla/fsd.dtsi         =7C 22 +++++++++
+> >  3 files changed, 87 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> > b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> > index 1db6ddf03f01..ca0c1a28d562 100644
+> > --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> > +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> > =40=40 -30,6 +30,15 =40=40
+> >  	=7D;
+> >  =7D;
+> >
+> > +&ethernet_0 =7B
+> > +	status =3D =22okay=22;
+> > +
+> > +	fixed-link =7B
+> > +		speed =3D <1000>;
+> > +		full-duplex;
+> > +	=7D;
+> > +=7D;
+> > +
+> >  &fin_pll =7B
+> >  	clock-frequency =3D <24000000>;
+> >  =7D;
+> > diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> > b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> > index d0abb9aa0e9e..7ccc0738a149 100644
+> > --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> > +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+> > =40=40 -64,6 +64,62 =40=40
+> >  		samsung,pin-pud =3D <FSD_PIN_PULL_NONE>;
+> >  		samsung,pin-drv =3D <FSD_PIN_DRV_LV2>;
+> >  	=7D;
+> > +
+> > +		eth0_tx_clk: eth0-tx-clk-pins =7B
+>=20
+> Wrong indentation.
+Will fix in the next version.
+>=20
+> > +		samsung,pins =3D =22gpf0-0=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_DOWN>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV6>;
+> > +	=7D;
+> > +
+> > +	eth0_tx_data: eth0-tx-data-pins =7B
+> > +		samsung,pins =3D =22gpf0-1=22, =22gpf0-2=22, =22gpf0-3=22, =22gpf0-4=
+=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_UP>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV6>;
+> > +	=7D;
+> > +
+> > +	eth0_tx_ctrl: eth0-tx-ctrl-pins =7B
+> > +		samsung,pins =3D =22gpf0-5=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_UP>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV6>;
+> > +	=7D;
+> > +
+> > +	eth0_phy_intr: eth0-phy-intr-pins =7B
+> > +		samsung,pins =3D =22gpf0-6=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_NONE>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV4>;
+> > +	=7D;
+> > +
+> > +	eth0_rx_clk: eth0-rx-clk-pins =7B
+> > +		samsung,pins =3D =22gpf1-0=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_UP>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV6>;
+> > +	=7D;
+> > +
+> > +	eth0_rx_data: eth0-rx-data-pins =7B
+> > +		samsung,pins =3D =22gpf1-1=22, =22gpf1-2=22, =22gpf1-3=22, =22gpf1-4=
+=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_UP>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV6>;
+> > +	=7D;
+> > +
+> > +	eth0_rx_ctrl: eth0-rx-ctrl-pins =7B
+> > +		samsung,pins =3D =22gpf1-5=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_UP>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV6>;
+> > +	=7D;
+> > +
+> > +	eth0_mdio: eth0-mdio-pins =7B
+> > +		samsung,pins =3D =22gpf1-6=22, =22gpf1-7=22;
+> > +		samsung,pin-function =3D <FSD_PIN_FUNC_2>;
+> > +		samsung,pin-pud =3D <FSD_PIN_PULL_NONE>;
+> > +		samsung,pin-drv =3D <FSD_PIN_DRV_LV4>;
+> > +	=7D;
+> >  =7D;
+> >
+> >  &pinctrl_peric =7B
+> > diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > b/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > index f35bc5a288c2..ade707cc646b 100644
+> > --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > =40=40 -32,6 +32,7 =40=40
+> >  		spi0 =3D &spi_0;
+> >  		spi1 =3D &spi_1;
+> >  		spi2 =3D &spi_2;
+> > +		eth0 =3D &ethernet_0;
+>=20
+> This is a friendly reminder during the review process.
+>=20
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all reques=
+ted
+> changes or keep discussing them.
+Sorry somehow I'm not able to find my previous mail chain.
+I had replied to your comment in the previous version of the mail.
+In this case alias id is used to differentiate between Ethernet instance 0 =
+and 1 in the driver code.
+>=20
+> Thank you.
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
-
-Sorry to have confused you, uefi firmware is our internal name, which is
-actually what you referred to as EDK2, the EDK2 need use UEFI.
-
-> it's the interface used by various firmware implementations
-> to load the operating system. As far as I understand,
-> loongarch currently mandates the use of UEFI in whichever
-> firmware is used, so if you have Pmon installed in ROM > and Pmon does not itself implement UEFI, it would have
-> to load some other firmware such as u-boot in order to
-> load a kernel through the UEFI protocol, right?
-
-
-PMON is an independent firmware and loader that can directly load the
-operating system and it does not require the use of UEFI.
-
-> 
-> Has the assumption that loongarch requires UEFI changed?
-
-
-LoongArch embedded board was use Pmon firmware, The other one uses UEFI
-firmware (EDK2) on LoongArch platform.
-
-> 
->>>>> Or is
->>>>> this a runtime firmware interface similar to how UEFI handles
->>>>> its runtime services to keep the implementation out of
->>>>> the kernel?
->>>>
->>>>
->>>> No, The main cpu and other cpu will offline that after into firmware and
->>>> finished Corresponding operations, the pmon firmware will not run.
->>>
->>> I'm still trying to understand your explanations here.
->>> You say that pmon no longer runs, but that seems to contradict
->>> what you said earlier about branching into pmon firmware code
->>> for suspend.
->>
->>
->> It's not contradictory.  The suspend-to-ram is that from kernel goto to
->> pmon firmware code, then pmon finished corresponding operations, which
->> was to set self-refresh mode in memory controller, then memory HW will
->> maintain its own data and no longer requires software processing, pmon
->> firmware will not run.
-> 
-> That is what I mean with a "runtime firmware interface", i.e. you
-> jump into firmware in order to request services from it. Clearly the
-> firmware itself does not run while the OS is executing code, but it is
-> still there and waiting to be called here, which is similar to
-> things like UEFI runtime services, PowerPC RTAS, Arm EL3/trustzone
-> based firmware or x86 SMM firmware, except that this is much less
-> formalized and only consists of an entry point with undocument
-> calling conventions.
-> 
->>> Is this executing directly from ROM then?
->>
->> Yes.
-> 
-> Is this the only runtime call into the firmware, 
-
-
-Only when suspend-to-ram occurs, the kernel will call into the firmware.
-No other case.
-
-> or are there
-> others that are either already called from mainline kernels
-> or in your downsteam implementation?
-> 
-> How do you ensure that the DTB matches the actual ROM code
-> after rebuilding Pmon? Does Pmon itself fill that field with
-> the correct address, or do you rely on it being a hardcoded
-> constant?
-
-
-Use Pmon, firmware team will always ensure that DTB matches the actual
-ROM code.  The "suspend-address" of dtb and pmon entry address will
-synchronized modification by firmware team.
-
-Thanks,
-Yinbo
 
