@@ -2,51 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9FE77B88F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 851C377B8D3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 14:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbjHNMXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 08:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39220 "EHLO
+        id S229541AbjHNMjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 08:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232533AbjHNMWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:22:55 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 66E72133;
-        Mon, 14 Aug 2023 05:22:34 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8BxpPBvHNpksy4YAA--.49830S3;
-        Mon, 14 Aug 2023 20:22:07 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLCNuHNpksu1ZAA--.5877S3;
-        Mon, 14 Aug 2023 20:22:06 +0800 (CST)
-Subject: Re: [PATCH v15 1/2] thermal: loongson-2: add thermal management
- support
-To:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn,
-        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
-References: <20230620012944.28877-1-zhuyinbo@loongson.cn>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <bb1334bf-42fe-c6a9-c843-87efeb77c101@loongson.cn>
-Date:   Mon, 14 Aug 2023 20:22:06 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229693AbjHNMja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 08:39:30 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C133E52
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:39:29 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fe501e0b4cso39708495e9.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 05:39:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692016768; x=1692621568;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hpbSxgw45nAC+tlCwInuCfzL+dDo7dZHHtU0fZD2iC0=;
+        b=IoW1+2NrVx8aip98rgcobGKSGktEsYQ9ZsJKE5JQpOqli6yihZaiU4ntnuS2HyBV03
+         gccBRoOmmjJluQzeG0jxu40zyQ72XG732bhwXAIDlacdBJT0QI/CPUj8U3/oaPCrX9Wu
+         3Z0ytBSAvCuda3dsjxpkuhmbwQhIRG99+ta0+v6mMv1RI+v7lJMtY4KBdUQfTqTjx2K7
+         26uQX0qSkCyM3Fv62qnYVOwaNFq+GD7aVKUoztMoeU3PQBk0Y6YnfTEMnKGS2ZSaiszQ
+         7glXDDMbx8JJezPJBrpb0OL+r4szdgSDtP9v3CJEoFIcglG9zLvZr3ykbXFpsw6GxJSZ
+         P+BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692016768; x=1692621568;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hpbSxgw45nAC+tlCwInuCfzL+dDo7dZHHtU0fZD2iC0=;
+        b=AoCI+i4ujGFSJ3DanPlQO3MuBaLMTqZlqBfpGGJmhPULHjjVX4majCQYNFNe+Bj2Hx
+         ng49MFdBRLKq7XQQWDcZkx36tDDyFV+saCUUi+29bSYHGUMgS31B1vu8TdwT5esrkDV1
+         rNYTdsW3Ae7qCYvwQ19RTernd3AKLhV0NOxPF2A1Tpn2vAbI6j/VbGL7y78qUkl0Q0fz
+         /DtCv7Wi2meevJKs8Njon1H9hXzfBXz1X01TE3HLSilyjK2SEQDtvU+iEF0mLrrgWNMS
+         WeyBwbwbun+DAUt0lsp23a6VQ8yiUzW2izmZGsq+8BXNoHgQpsVq4RdERtsexqtyBdzn
+         qG0A==
+X-Gm-Message-State: AOJu0Yw/wd9Lb7F7lFbDWWTLG7VSi2DF31KvaS5vzm8xTmvfgh5sAw6D
+        xT5+by7GhlGkkbludCxxr0IXSQ==
+X-Google-Smtp-Source: AGHT+IFBM6qBD5Z8etFJth9xYWuZU2OYq9ybL//WTaViCH9Z1q6IDQJ0cv18+s90O1Lagv3qwTg1VA==
+X-Received: by 2002:a05:600c:3787:b0:3fe:89be:cd3 with SMTP id o7-20020a05600c378700b003fe89be0cd3mr6579845wmr.22.1692016767877;
+        Mon, 14 Aug 2023 05:39:27 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a3d8:b217:d82c:9bc0? ([2a01:e0a:982:cbb0:a3d8:b217:d82c:9bc0])
+        by smtp.gmail.com with ESMTPSA id v14-20020a1cf70e000000b003fe24441e23sm14193823wmh.24.2023.08.14.05.39.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Aug 2023 05:39:27 -0700 (PDT)
+Message-ID: <fa5d2936-93db-4965-be6d-1b6cdaee2755@linaro.org>
+Date:   Mon, 14 Aug 2023 14:39:26 +0200
 MIME-Version: 1.0
-In-Reply-To: <20230620012944.28877-1-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=gbk; format=flowed
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 2/2] drm/panel: simple: Add support for Mitsubishi
+ AA084XE01
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxLCNuHNpksu1ZAA--.5877S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org,
+        Thomas Weber <thomas.weber@corscience.de>
+References: <20230807123138.67443-1-miquel.raynal@bootlin.com>
+ <20230807123138.67443-2-miquel.raynal@bootlin.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20230807123138.67443-2-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,324 +109,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Friendly ping ?
-
-
-ÔÚ 2023/6/20 ÉÏÎç9:29, Yinbo Zhu Ð´µÀ:
-> This patch adds the support for Loongson-2 thermal sensor controller,
-> which can support maximum four sensor selectors that corresponding to four
-> sets of thermal control registers and one set of sampling register. The
-> sensor selector can selector a speific thermal sensor as temperature input.
-> The sampling register is used to obtain the temperature in real time, the
-> control register GATE field is used to set the threshold of high or low
-> temperature, when the input temperature is higher than the high temperature
-> threshold or lower than the low temperature threshold, an interrupt will
-> occur.
+On 07/08/2023 14:31, Miquel Raynal wrote:
+> From: Thomas Weber <thomas.weber@corscience.de>
 > 
-> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Add support for the Mitsubishi AA084XE01 panel which is an 8.4 inch XGA
+> TFT-LCD module for industrial use.
+> 
+> Link: https://www.mouser.fr/datasheet/2/274/aa084xe01_e-364171.pdf
+> Signed-off-by: Thomas Weber <thomas.weber@corscience.de>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
-> Change in v15:
-> 		1. Remove the unused head file.
-> 		2. Remove the invalid conditions that such as (low > high).
-> 		3. Use the clamp() to replace max() and min().
-> 		4. Use the macros to replace some constant.
-> 		5. Use the struct data point as data field of of_device_id.
-> 		6. Use the thermal_sensor_sel to replace the sensor id.
-> 		7. Use the thermal_zone_device_priv to replace tz->devdata.
-> 		8. Reword the commit log information.
-> Change in v14:
-> 		1. Add back depends on COMPILE_TEST.
-> 		2. The implementation of devm_thermal_add_hwmon_sysfs has changed in
-> 		   recent community code that cause compile fail issue and this verison
-> 		   add a dev args in devm_thermal_add_hwmon_sysfs to fix compile issue.
-> Change in v13:
-> 		1. Add a description about that how works the sensor.
-> 		2. Drop the COMPILE_TEST.
-> 		3. Rework the help prograph in LOONGSON2_THERMAL Kconfig.
-> 		4. Drop the 'tzd' 'irq' and 'pdev' element in loongson2_thermal_data.
-> 		5. Drop the reset of variable in loongson2_thermal_set.
-> 		6. Drop the function loongson2_thermal_get_sensor_id.
-> 		7. Drop the function loongson2_thermal_alarm_irq.
-> 		8. Rework the devm_thermal_of_zone_register.
-> 		9. Pass 'tzd' instead of 'data' in devm_request_threaded_irq.
-> 		10. Drop the "data->tzd->tzp->no_hwmon = false".
-> 		11. Drop the loongson2_thermal_remove.
-> 		12. Add the sensor id in the of_device_id data field.
-> 		13. Drop the save and restore function.
-> Change in v12:
-> 		1. Fixup it about min and max.
-> 		2. Use dev_err_probe replace dev_err in devm_request_threaded_irq context.
-> Change in v11:
-> 		1. Add min() and max() to replace related code in function
-> 		   loongson2_thermal_set.
-> 		2. Add dev_err_probe to to replace related code for function
-> 		   return value use devm_thermal_of_zone_register.
-> 		3. Replace thermal_add_hwmon_sysfs with devm_thermal_add_hwmon_sysfs
-> 		   and use dev_warn replace dev_err in this context.
-> Change in v10:
-> 		1. Add all history change log information.
-> Change in v9:
-> 		1. Switch new API that use devm_thermal_of_zone_register
-> 		   to replace previous interfaces.
-> 		2. Add depend on LOONGARCH || COMPILE_TEST.
-> Change in v8:
->                  1. Replace string loongson2/Loongson2/LOONGSON2 with loongson-2/
->                     Loongson-2/LOONGSON-2 in Kconfig and commit log and MAINTAINERS
-> 		   files.
-> Change in v7:
-> 		1. Split the modification of patch 3 and merge it into this patch.
-> 		2. Remove the unless code annotation to fix the compile warning
-> 		   when compile C code with W=1.
-> Change in v6:
-> 		1. NO change, but other patch in this series of patches set has
-> 		   changes.
-> Change in v5:
-> 		1. NO change, but other patch in this series of patches set has
-> 		   changes.
-> Change in v4:
-> 		1. Fixup the compatible.
-> Change in v3:
-> 		1. Add a function to gain sensor id an remove dts id.
-> Change in v2:
-> 		1. Remove error msg printing when addr ioremap has error.
-> 		2. Make loongson2 thermal driver was built-in by default.
-> 		3. Replace ls2k with loongson2.
-> 		4. Remove CONFIG_PM_SLEEP and set pm function type was
-> 		   __maybe_unused.
 > 
->   MAINTAINERS                         |   7 ++
->   drivers/thermal/Kconfig             |  12 ++
->   drivers/thermal/Makefile            |   1 +
->   drivers/thermal/loongson2_thermal.c | 170 ++++++++++++++++++++++++++++
->   4 files changed, 190 insertions(+)
->   create mode 100644 drivers/thermal/loongson2_thermal.c
+> Changes in v4:
+> * None.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7a91f14cad2e..f9277fa2a728 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12198,6 +12198,13 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
->   F:	drivers/pinctrl/pinctrl-loongson2.c
+> Changes in v3:
+> * Fix connector type.
+> 
+> Changes in v2:
+> * Add connector type and bus flags.
+> 
+>   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
+>   1 file changed, 29 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index a247a0e7c799..e498a40e1f78 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2763,6 +2763,32 @@ static const struct panel_desc mitsubishi_aa070mc01 = {
+>   	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+>   };
 >   
-> +LOONGSON-2 SOC SERIES THERMAL DRIVER
-> +M:	zhanghongchen <zhanghongchen@loongson.cn>
-> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-> +L:	linux-pm@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/thermal/loongson2_thermal.c
-> +
->   LOONGSON GPIO DRIVER
->   M:	Yinbo Zhu <zhuyinbo@loongson.cn>
->   L:	linux-gpio@vger.kernel.org
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index 4cd7ab707315..c4de94e972f4 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -502,4 +502,16 @@ config KHADAS_MCU_FAN_THERMAL
->   	  If you say yes here you get support for the FAN controlled
->   	  by the Microcontroller found on the Khadas VIM boards.
->   
-> +config LOONGSON2_THERMAL
-> +	tristate "Loongson-2 SoC series thermal driver"
-> +	depends on LOONGARCH || COMPILE_TEST
-> +	depends on OF
-> +	help
-> +	  Support for Thermal driver found on Loongson-2 SoC series platforms.
-> +	  The thermal driver realizes get_temp and set_trips function, which
-> +	  are used to obtain the temperature of the current node and set the
-> +	  temperature range to trigger the interrupt. When the input temperature
-> +	  is higher than the high temperature threshold or lower than the low
-> +	  temperature threshold, the interrupt will occur.
-> +
->   endif
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index 058664bc3ec0..c934cab309ae 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -63,3 +63,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
->   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
->   obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
->   obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
-> +obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
-> diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
-> new file mode 100644
-> index 000000000000..2be8e0f5fea3
-> --- /dev/null
-> +++ b/drivers/thermal/loongson2_thermal.c
-> @@ -0,0 +1,170 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Author: zhanghongchen <zhanghongchen@loongson.cn>
-> + *         Yinbo Zhu <zhuyinbo@loongson.cn>
-> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
-> + */
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/minmax.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/thermal.h>
-> +#include <linux/units.h>
-> +#include "thermal_hwmon.h"
-> +
-> +#define LOONGSON2_MAX_SENSOR_SEL_NUM			3
-> +
-> +#define LOONGSON2_THSENS_CTRL_HI_REG			0x0
-> +#define LOONGSON2_THSENS_CTRL_LOW_REG			0x8
-> +#define LOONGSON2_THSENS_STATUS_REG			0x10
-> +#define LOONGSON2_THSENS_OUT_REG			0x14
-> +
-> +#define LOONGSON2_THSENS_INT_LO				BIT(0)
-> +#define LOONGSON2_THSENS_INT_HIGH			BIT(1)
-> +#define LOONGSON2_THSENS_OUT_MASK			0xFF
-> +
-> +struct loongson2_thermal_chip_data {
-> +	unsigned int	thermal_sensor_sel;
+> +static const struct drm_display_mode mitsubishi_aa084xe01_mode = {
+> +	.clock = 56234,
+> +	.hdisplay = 1024,
+> +	.hsync_start = 1024 + 24,
+> +	.hsync_end = 1024 + 24 + 63,
+> +	.htotal = 1024 + 24 + 63 + 1,
+> +	.vdisplay = 768,
+> +	.vsync_start = 768 + 3,
+> +	.vsync_end = 768 + 3 + 6,
+> +	.vtotal = 768 + 3 + 6 + 1,
+> +	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
 > +};
 > +
-> +struct loongson2_thermal_data {
-> +	void __iomem	*regs;
-> +	const struct loongson2_thermal_chip_data *chip_data;
-> +};
-> +
-> +static int loongson2_thermal_set(struct loongson2_thermal_data *data,
-> +					int low, int high, bool enable)
-> +{
-> +	u64 reg_ctrl = 0;
-> +	int reg_off = data->chip_data->thermal_sensor_sel * 2;
-> +
-> +	low = clamp(-40, low, high);
-> +	high = clamp(125, low, high);
-> +
-> +	low += HECTO;
-> +	high += HECTO;
-> +
-> +	reg_ctrl = low;
-> +	reg_ctrl |= enable ? 0x100 : 0;
-> +	writew(reg_ctrl, data->regs + LOONGSON2_THSENS_CTRL_LOW_REG + reg_off);
-> +
-> +	reg_ctrl = high;
-> +	reg_ctrl |= enable ? 0x100 : 0;
-> +	writew(reg_ctrl, data->regs + LOONGSON2_THSENS_CTRL_HI_REG + reg_off);
-> +
-> +	return 0;
-> +}
-> +
-> +static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
-> +{
-> +	u32 reg_val;
-> +	struct loongson2_thermal_data *data = thermal_zone_device_priv(tz);
-> +
-> +	reg_val = readl(data->regs + LOONGSON2_THSENS_OUT_REG);
-> +	*temp = ((reg_val & LOONGSON2_THSENS_OUT_MASK) - HECTO) * KILO;
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
-> +{
-> +	struct thermal_zone_device *tzd = dev;
-> +	struct loongson2_thermal_data *data = thermal_zone_device_priv(tzd);
-> +
-> +	writeb(LOONGSON2_THSENS_INT_LO | LOONGSON2_THSENS_INT_HIGH, data->regs +
-> +		LOONGSON2_THSENS_STATUS_REG);
-> +
-> +	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int loongson2_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
-> +{
-> +	struct loongson2_thermal_data *data = thermal_zone_device_priv(tz);
-> +
-> +	return loongson2_thermal_set(data, low/MILLI, high/MILLI, true);
-> +}
-> +
-> +static const struct thermal_zone_device_ops loongson2_of_thermal_ops = {
-> +	.get_temp = loongson2_thermal_get_temp,
-> +	.set_trips = loongson2_thermal_set_trips,
-> +};
-> +
-> +static int loongson2_thermal_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct loongson2_thermal_data *data;
-> +	struct thermal_zone_device *tzd;
-> +	int ret, irq, i;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->chip_data = device_get_match_data(dev);
-> +
-> +	data->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(data->regs))
-> +		return PTR_ERR(data->regs);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return irq;
-> +
-> +	writeb(LOONGSON2_THSENS_INT_LO | LOONGSON2_THSENS_INT_HIGH, data->regs +
-> +		LOONGSON2_THSENS_STATUS_REG);
-> +
-> +	loongson2_thermal_set(data, 0, 0, false);
-> +
-> +	for (i = 0; i <= LOONGSON2_MAX_SENSOR_SEL_NUM; i++) {
-> +		tzd = devm_thermal_of_zone_register(dev, i, data,
-> +			&loongson2_of_thermal_ops);
-> +
-> +		if (!IS_ERR(tzd))
-> +			break;
-> +
-> +		if (PTR_ERR(tzd) != ENODEV)
-> +			continue;
-> +
-> +		return dev_err_probe(dev, PTR_ERR(tzd), "failed to register");
-> +	}
-> +
-> +	ret = devm_request_threaded_irq(dev, irq, NULL, loongson2_thermal_irq_thread,
-> +			IRQF_ONESHOT, "loongson2_thermal", tzd);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
-> +
-> +	if (devm_thermal_add_hwmon_sysfs(dev, tzd))
-> +		dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct loongson2_thermal_chip_data loongson2_thermal_ls2k1000_data = {
-> +	.thermal_sensor_sel = 0,
-> +};
-> +
-> +static const struct of_device_id of_loongson2_thermal_match[] = {
-> +	{
-> +		.compatible = "loongson,ls2k1000-thermal",
-> +		.data = &loongson2_thermal_ls2k1000_data,
+> +static const struct panel_desc mitsubishi_aa084xe01 = {
+> +	.modes = &mitsubishi_aa084xe01_mode,
+> +	.num_modes = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 1024,
+> +		.height = 768,
 > +	},
-> +	{ /* end */ }
+> +	.bus_format = MEDIA_BUS_FMT_RGB565_1X16,
+> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
 > +};
-> +MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
 > +
-> +static struct platform_driver loongson2_thermal_driver = {
-> +	.driver = {
-> +		.name		= "loongson2_thermal",
-> +		.of_match_table = of_loongson2_thermal_match,
-> +	},
-> +	.probe	= loongson2_thermal_probe,
-> +};
-> +module_platform_driver(loongson2_thermal_driver);
-> +
-> +MODULE_DESCRIPTION("Loongson2 thermal driver");
-> +MODULE_LICENSE("GPL");
-> 
+>   static const struct display_timing multi_inno_mi0700s4t_6_timing = {
+>   	.pixelclock = { 29000000, 33000000, 38000000 },
+>   	.hactive = { 800, 800, 800 },
+> @@ -4286,6 +4312,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "mitsubishi,aa070mc01-ca1",
+>   		.data = &mitsubishi_aa070mc01,
+> +	}, {
+> +		.compatible = "mitsubishi,aa084xe01",
+> +		.data = &mitsubishi_aa084xe01,
+>   	}, {
+>   		.compatible = "multi-inno,mi0700s4t-6",
+>   		.data = &multi_inno_mi0700s4t_6,
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
