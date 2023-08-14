@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B95C77BC95
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 17:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8345577BD08
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 17:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232647AbjHNPMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 11:12:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42674 "EHLO
+        id S231403AbjHNPaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 11:30:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232844AbjHNPMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 11:12:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE7D10C0;
-        Mon, 14 Aug 2023 08:12:37 -0700 (PDT)
+        with ESMTP id S233106AbjHNP35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 11:29:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A59F10D5;
+        Mon, 14 Aug 2023 08:29:56 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4A4C163D0A;
-        Mon, 14 Aug 2023 15:12:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B3EDC433C8;
-        Mon, 14 Aug 2023 15:12:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EA3F261E74;
+        Mon, 14 Aug 2023 15:29:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C2F0C433C8;
+        Mon, 14 Aug 2023 15:29:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692025956;
-        bh=TqP1n036qOsgClnEkkjJbC7+SYLXwrxn2SdLyPtbu8w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PNcvsOVKoBl+rjTqlej9mUt5dvNE3hGDZcLgTBBHjGFxdXvkz94ED7jzb0AKNP0Y+
-         TqT8lPIAlb6Ss9a1m9vZpGOjrXYdVvAKIlVevIRO7XPpl+iU/Owup+c9BPL+pIpgIQ
-         LIpdj84J2ezJ55Hprt87VyzWQn9OTAXo24OWiI7VSEPl2noFMTnUky/cls8tW8qx5R
-         4iAqtZmm+3Id0tmRwYocoHKfLniZocjra+cIZ7Ccr6aT3pUqKGjX3eR0UzG8zBoHvg
-         pkRc91fnSWQiMJBlacjtDJIzmbKOsinIfE2yOSV2OFNeGohCfGBD4C+Xjz2orJ3hp3
-         nUKYTTva0DMgw==
-Date:   Mon, 14 Aug 2023 17:12:34 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Andi Shyti <andi.shyti@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Michal Simek <michal.simek@amd.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: cadence: Describe power-domains
- property
-Message-ID: <ZNpEYgo9EUzXsXnQ@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Andi Shyti <andi.shyti@kernel.org>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, git@xilinx.com,
-        Michal Simek <michal.simek@amd.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org
-References: <8774dba53cae5508f9f7aa173fbaf814d97898b1.1691047405.git.michal.simek@amd.com>
- <169119887100.1781235.4441400054342220300.b4-ty@kernel.org>
+        s=k20201202; t=1692026995;
+        bh=vCRlrdZqjMH67x3gjEky9BrHKTd04af3vMzFdJBho+o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UOKVLKXeqzrDG/Ysv9MCmP6d8Mjn6EYJLo22aw/neCTYsz34ZLEAf5gqnuYcYKz9o
+         dF5UNOjCJRdzxhFOoo4ajc1kYg2Iq56mGtRGnYZR6pnyj1j2vtYWx8qCC4iSwPq57/
+         APQ0Pn55+wZA4U4OjJdy5uHZwcPyx6y04s1dgAvyMqraCqvkO4ua7AVpTgRhhSGbxT
+         Szx1hfl4fn72hCZBMQgVDIsdTRC8Er+Ggaj0K9cZTx9bbafkWxWWJDWfJN/yQ401zs
+         vnwlZra/r9sxe1s2PBzgdiCm1PP84FvCXuM0lGOny0RFRk1NCkJVwYkk0eFz1kJe/H
+         6iLPVvsKlMKPw==
+Date:   Mon, 14 Aug 2023 08:29:53 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+Cc:     "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [PATCH net-next v5 10/10] net: axienet: Introduce dmaengine
+ support
+Message-ID: <20230814082953.747791ff@kernel.org>
+In-Reply-To: <MN0PR12MB5953A9FEC556D07494DB8E37B711A@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <1691387509-2113129-1-git-send-email-radhey.shyam.pandey@amd.com>
+        <1691387509-2113129-11-git-send-email-radhey.shyam.pandey@amd.com>
+        <20230808154853.0fafa7fc@kernel.org>
+        <MN0PR12MB5953A9FEC556D07494DB8E37B711A@MN0PR12MB5953.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="BJwiAtzYNkwpw9eK"
-Content-Disposition: inline
-In-Reply-To: <169119887100.1781235.4441400054342220300.b4-ty@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,45 +72,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 12 Aug 2023 15:27:19 +0000 Pandey, Radhey Shyam wrote:
+> > Drop on error, you're not stopping the queue correctly, just drop, return OK
+> > and avoid bugs.  
+> 
+> As I understand NETDEV_TX_OK returns means driver took care of packet.
+> So inline with non-dmaengine xmit (axienet_start_xmit_legacy) should
+> we stop the queue and return TX_BUSY?
 
---BJwiAtzYNkwpw9eK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You should only return BUSY if there is no space. All other errors
+should lead to drops, and increment of tx_error. Otherwise problem
+with handling a single packet may stall the NIC forever.
+It is somewhat confusing that we return TX_OK in that case but it
+is what it is.
 
-On Sat, Aug 05, 2023 at 03:29:11AM +0200, Andi Shyti wrote:
-> Hi
->=20
-> On Thu, 03 Aug 2023 09:23:31 +0200, Michal Simek wrote:
-> > ZynqMP Cadence I2c IP core has own power domain that's why describe it =
-as
-> > optional property.
-> >=20
-> >=20
->=20
-> Applied to i2c/andi-for-next on
+> > Why create a cache ?
+> > Isn't it cleaner to create a fake ring buffer of sgl? Most packets will not have
+> > MAX_SKB_FRAGS of memory. On a ring buffer you can use only as many sg
+> > entries as the packet requires. Also no need to alloc/free.  
+> 
+> The kmem_cache is used with intent to use slab cache interface and
+> make use of reusing objects in the kernel. slab cache maintains a 
+> cache of objects. When we free an object, instead of
+> deallocating it, it give it back to the cache. Next time, if we
+> want to create a new object, slab cache gives us one object from the
+> slab cache.
+> 
+> If we maintain custom circular buffer (struct circ_buf) ring buffer 
+> we have to create two such ring buffers one for TX and other for RX.
+> For multichannel this will multiply to * no of queues. Also we have to
+> ensure proper occupancy checks and head/tail pointer updates.
+> 
+> With kmem_cache pool we are offloading queue maintenance ops to
+> framework with a benefit of optimized alloc/dealloc. Let me know if it 
+> looks functionally fine and can retain it for this baseline dmaengine 
+> support version?
 
-Applied to for-next (via Andi's branch), thanks!
-
-
---BJwiAtzYNkwpw9eK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmTaRGEACgkQFA3kzBSg
-KbZoxQ//XdMF1no/Td0duw+OJ+eF/oxZbCWsHMiJSFQTLb2PvfogAA3M+GpboRda
-JIcs0ji9Ub5RleWFo3f9JlASUhqOqipDL+yLkkWttIR6kU1PAZxAUZNYAuKgf9jC
-GFklXxIhkOv5jy1NaJBuU0UThPgpvrf8lsNBMyh6xmaHBYi1CjWDC1CBtx8GCgXO
-G5oNdcg+UHn+p3WR5wvo6xMWCfgBtaHoLB/qHp1TnuxoS+dZ1Vsy7sVWxEUE8ODB
-s2YEq6tEybg7o1hYGOmfi0/wcur7d1PitdyY/Qroe9Y6OIsA172rK2Mc3U1Lnuy/
-UwQrg+BubQv+L2G3+susS5sD9w7wzQJgErGCB6gv8Hv62bP+nydQEXFKL+uljoxe
-oyxa4YSuGaZoqgmWERjcEWZCBwOlgtq79EU0C1DBrAVoDDAKr0ntiw44nWngoycs
-F2uaW/ZXvpm0vIzUF884jb0csczWe0ctYKzhQbG8eVliCrzEZlDJSCkH26pL/9yQ
-BFvkmKyFGr5vfPomsQMEjLMfODlG2yGsZd4JKm007b3yFK2naHQaMcXFvr4TW7i+
-8u4eDymjOt4xgpKEhXdrFy19y+7oSAic0gQEfzW+RLZ7/coYltwNk9T22qsmCKlR
-YmknRtj/rp6BT5+OxWCSfeuroT/VZn5E6R5D4ZxnIdYTw5q56T0=
-=Y86j
------END PGP SIGNATURE-----
-
---BJwiAtzYNkwpw9eK--
+The kmemcache is not the worst possible option but note that the
+objects you're allocating (with zeroing) are 512+ bytes. That's
+pretty large, when most packets will not have full 16 fragments.
+Ring buffer would allow to better match the allocation size to 
+the packets. Not to mention that it can be done fully locklessly.
