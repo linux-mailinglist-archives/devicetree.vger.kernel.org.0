@@ -2,94 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD5677B53B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 11:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5794077B54D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 11:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233713AbjHNJPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 05:15:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
+        id S233162AbjHNJWN convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 05:22:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235778AbjHNJPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 05:15:07 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72EA312D
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 02:15:06 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id e9e14a558f8ab-3492905f546so14365855ab.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 02:15:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692004505; x=1692609305;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=symJGMsghCtGvBGMFumnnn8XSl8s5K5BSajbCGhbLM0=;
-        b=eGRs4Ay+ND26wAbcQ1FlBvRI1gxFQO4+4/mt7ZmNa7fu4gYZ/hsTcRUrXrlzlKnTWd
-         x/K/x+VOx/r2+LxmYt3Cjy4BVWiYQXO/0ipPsO3xOUqPtwjSajLEUe1c86KaASSZorBl
-         XFIFzewmmBUiONdKoONnkaKvKbLg/e9GPPR/A=
+        with ESMTP id S231334AbjHNJVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 05:21:50 -0400
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A90130;
+        Mon, 14 Aug 2023 02:21:50 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-589f7855c13so6799937b3.0;
+        Mon, 14 Aug 2023 02:21:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692004505; x=1692609305;
+        d=1e100.net; s=20221208; t=1692004909; x=1692609709;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=symJGMsghCtGvBGMFumnnn8XSl8s5K5BSajbCGhbLM0=;
-        b=d8Hbaqi1h5e38mgzqS3vwDCZkUmRqitBnsWKlS68eM038HRh0vz9a2syAALj+YEMX9
-         938CQbZGWMVbZ5aSXMLqULYuxu4VF+ktRKsJHS/uyIFLheqT58ApQektC9yyPKFnhh0d
-         Jf1BPDBuu3oicTEkJ/OGlFGul5cYJOZ9q7HmVLMpqQzeE8buwn5JuwTKm79lMGuUUFgU
-         zGO+5Sur1kCDT9+7XQwn36UkEn4GUlFEXD7Mn+5W5fXtPR63watLj/LfdKsPUIEaIxZ4
-         sd/L6WT5F4viwOXAK/w4zBudSfOIo0uV596+ZHggu28pEkQQiaJXb9QvA8SO067lJIr+
-         Lhkw==
-X-Gm-Message-State: AOJu0YyOWmKzIq3vyLV9767sTIZ4tAdi8h9GxK0gPJBJtTn2dcewRgmj
-        VqP8jVWSNMvdOHlWM1aUsZrbdeQ7xoAqlMq6iS0=
-X-Google-Smtp-Source: AGHT+IEnPcqseKBTvhgLMfF2fTNtqRdsLADLKCP2k65Q7jyy9Q5Qk6H4AMBDA3L2UJzuHzMUyBigpg==
-X-Received: by 2002:a05:6e02:20ed:b0:345:a6c5:1ce8 with SMTP id q13-20020a056e0220ed00b00345a6c51ce8mr13633732ilv.14.1692004505661;
-        Mon, 14 Aug 2023 02:15:05 -0700 (PDT)
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
-        by smtp.gmail.com with ESMTPSA id c13-20020a92dc8d000000b00345b34fcf34sm3061453iln.38.2023.08.14.02.15.05
-        for <devicetree@vger.kernel.org>
+        bh=WS7Ydd7ku0gFWEOxZZf9XJKjTu/xZ8FJAZyxlP3qhP0=;
+        b=iSq5tGdUX8RiizWe4lxw4TfIvZ+lMLkdCVmyoR8Nwwjof5eJC8lWAgppzY9bBAIhz8
+         bXMYnuM9GeCdPylu15+k+5p+WfBhabKUyEiJjt/HNNNm1gQuffN7yTmSSCYSXgEDtYzr
+         wp+winB3o2hQF5IOodux7Nr7yQMppe3NRR960R0o12ouc0HiSui08/q6TTdP9bnFGu7K
+         9VYFANWStyeiPYSLwN+E7my9vs2VjysfymZGxT3juDB1tzKrbu1HqyE1JcMdCknkMe/x
+         r8PYG4X/lFV1wU6cTPDVLHiTKEJnuIhWZWkHpOEUeSoGS9dKV9t3OZU93cy1GQIjkumn
+         z78g==
+X-Gm-Message-State: AOJu0YwsyW0QVL5oCUuAe//1p2OPyhEPUoWKEmvKLRzdbI4xiyniR8GZ
+        8i5V10IHdUbAqWJQTZ3oY8VN6JjGhWRDfA==
+X-Google-Smtp-Source: AGHT+IFFpih6g0/ZL72Lze3U3Y8SsWHVJ66lQRLGG0tcf9hhv5wyV0rglJs+KRRnj9Po7K+F8V/AvQ==
+X-Received: by 2002:a81:5c82:0:b0:584:6d71:f465 with SMTP id q124-20020a815c82000000b005846d71f465mr11873070ywb.12.1692004909070;
+        Mon, 14 Aug 2023 02:21:49 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id l8-20020a0de208000000b005837fe8dbe8sm1979129ywe.8.2023.08.14.02.21.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 02:15:05 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-77ac14ff51bso161329839f.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 02:15:05 -0700 (PDT)
-X-Received: by 2002:a5d:9ada:0:b0:787:4b5f:b6cf with SMTP id
- x26-20020a5d9ada000000b007874b5fb6cfmr11533549ion.5.1692004505047; Mon, 14
- Aug 2023 02:15:05 -0700 (PDT)
+        Mon, 14 Aug 2023 02:21:48 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-d62bdd1a97dso4201776276.3;
+        Mon, 14 Aug 2023 02:21:48 -0700 (PDT)
+X-Received: by 2002:a25:da96:0:b0:d0b:fe82:8b99 with SMTP id
+ n144-20020a25da96000000b00d0bfe828b99mr11305972ybf.44.1692004908480; Mon, 14
+ Aug 2023 02:21:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230814072842.28597-1-shuijing.li@mediatek.com> <20230814072842.28597-3-shuijing.li@mediatek.com>
-In-Reply-To: <20230814072842.28597-3-shuijing.li@mediatek.com>
-From:   Fei Shao <fshao@chromium.org>
-Date:   Mon, 14 Aug 2023 17:14:29 +0800
-X-Gmail-Original-Message-ID: <CAC=S1nh9QtE7CNpsUujqSAM-Q10Mb8dOfXYtJQebvw4RifqOBA@mail.gmail.com>
-Message-ID: <CAC=S1nh9QtE7CNpsUujqSAM-Q10Mb8dOfXYtJQebvw4RifqOBA@mail.gmail.com>
-Subject: Re: [PATCH v4,2/3] drm/mediatek: dp: Add the audio packet flag to
- mtk_dp_data struct
-To:     Shuijing Li <shuijing.li@mediatek.com>
-Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-        jitao.shi@mediatek.com, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <cover.1690533838.git.geert+renesas@glider.be> <594a6a8934e5569bf96d317a6a3c0a9129a2ae20.1690533838.git.geert+renesas@glider.be>
+ <CAL_JsqJhd+t1Am48S+EGEf51Zge=83v8avYbzYTUjinebHm+nw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJhd+t1Am48S+EGEf51Zge=83v8avYbzYTUjinebHm+nw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Aug 2023 11:21:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXrKzM5B6_=pQmnXb8wWHpkw0yjQnzwOfYwFqw4aCfGEA@mail.gmail.com>
+Message-ID: <CAMuHMdXrKzM5B6_=pQmnXb8wWHpkw0yjQnzwOfYwFqw4aCfGEA@mail.gmail.com>
+Subject: Re: [PATCH v2 07/13] of: unittest: Cleanup partially-applied overlays
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 14, 2023 at 3:29=E2=80=AFPM Shuijing Li <shuijing.li@mediatek.c=
-om> wrote:
->
-> The audio packet arrangement function is to only arrange audio.
-> packets into the Hblanking area. In order to align with the HW
-> default setting of mt8195, this function needs to be turned off.
->
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Hi Rob,
 
-Reviewed-by: Fei Shao <fshao@chromium.org>
+On Tue, Aug 1, 2023 at 10:50 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Fri, Jul 28, 2023 at 2:50 AM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> > When of_overlay_fdt_apply() fails, the changeset may be partially
+> > applied, and the caller is still expected to call of_overlay_remove() to
+> > clean up this partial state.  However, overlay_17 is the only test that
+> > takes care of cleaning up after an (expected) failure.
+> >
+> > Instead of adding cleanup code to each individual test, extend
+> > overlay_info with the optional expected return value of
+> > of_overlay_remove(), and handle cleanup in the overlay_data_apply()
+> > helper.  While at it, simplify the end marker in the overlay_info table.
+> >
+> > Update the expected error output for errors during the newly cleanup.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v2:
+> >   - No changes.
+
+> > --- a/drivers/of/unittest.c
+> > +++ b/drivers/of/unittest.c
+
+> > @@ -3689,9 +3715,19 @@ static __init void of_unittest_overlay_high_level(void)
+> >         unittest(overlay_data_apply("overlay_bad_phandle", NULL),
+> >                  "Adding overlay 'overlay_bad_phandle' failed\n");
+> >
+> > +       EXPECT_BEGIN(KERN_ERR,
+> > +                    "OF: changeset: remove_property failed @/testcase-data-2/substation@100/hvac-medium-2/name");
+> > +       EXPECT_BEGIN(KERN_ERR,
+> > +                    "OF: resolver: overlay phandle fixup failed: -22");
+> > +
+> >         unittest(overlay_data_apply("overlay_bad_symbol", NULL),
+> >                  "Adding overlay 'overlay_bad_symbol' failed\n");
+> >
+> > +       EXPECT_END(KERN_ERR,
+> > +                  "OF: resolver: overlay phandle fixup failed: -22");
+>
+> I'm seeing "OF: Error reverting changeset (-19)" here instead.
+> Cut-n-paste error?
+
+Indeed. Thanks for pointing this out!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
