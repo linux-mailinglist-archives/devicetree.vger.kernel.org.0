@@ -2,155 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F72B77B7C4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 13:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11FA377B80F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 13:59:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbjHNLtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 07:49:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42120 "EHLO
+        id S232026AbjHNL65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 07:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjHNLtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 07:49:19 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BADF1AA;
-        Mon, 14 Aug 2023 04:49:18 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-5657add1073so1714461a12.0;
-        Mon, 14 Aug 2023 04:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692013758; x=1692618558;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HTPbXj2Uxmh/ZQx99D0srNo3oDkeQJHs+MeKAMMuYew=;
-        b=XmULyqyZJX48s0XpgxEHZX32tPmDo+LICgRH7lBo7TOk/Zf6l7D0ldoeVwuTmmXKQ9
-         oNGcRyJamj8OZ3b9pVV8mlAwpRQWIYKiKKGQLBRZP3BzMOps89lKN04WPcAcAGdRs6li
-         1rWGw59je9t7H4jl/Exbwyvet5ESH0/RcYH0YJSJs1qK6k7XHitrCbq2TC/e8TMfBYVq
-         je5Jiq8yUCFCaubVxgUyPxMQlxr15VmZHmUUOM3X1s+t2mv1RgmG8Ufmyi7KU7S1PGyC
-         kGdzF4/MQsaakAJbei0Eqt9fZz+i4DuJoTSluZhKJxBmQDLLp5RWl3eQl62wa3VfpI4w
-         pUJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692013758; x=1692618558;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HTPbXj2Uxmh/ZQx99D0srNo3oDkeQJHs+MeKAMMuYew=;
-        b=QI5uemoQj+KLh+CYFAbGxf2ELEwpuT48/LRxdUFozR+vlC2i+ndmhlMxQH7u8LNLcS
-         EwzJKx04RE2b2gEFvHGYdu/KyF1lbDvjoFMOj/3iRDy0rE0Fy/JuyfrY9zqNxbxyY5F6
-         f6PyJN0srkLxRr7X1leY5D8p2VJ7QAnmvqcaCHvO90vdhqCtTB2jYJ9peOrVjY0iUS/B
-         hhpjmBK+yqwzBXGKHdmEe6UymWJdDCM+fwEvViURKlGE03pvIZUqyYqek1ShEMiEcGjo
-         ub5Eh18Q9cYonCmvgtUWoyfyotarPuTKT+qNpXeFHoucJDNYw/4H7ZtULWOklH0SwnFg
-         QmuA==
-X-Gm-Message-State: AOJu0YzAq8O/L87kLkOu3J6HxQcOwjhZBcAD7YAz92ws0sEj7ELOoXXC
-        v+igmcV+msN5Yqlnh3QfqnOtQFv9QF9hRTTcR4Q=
-X-Google-Smtp-Source: AGHT+IGzs05rP2gaON/RJotGpSnz4dC5IpedGF2UWU9SvBHkLXR4J7HKk7ufGFIZ9/eJn9zDN0/0pgvThR7AKyygWOM=
-X-Received: by 2002:a17:90a:a0f:b0:267:fe88:f2f3 with SMTP id
- o15-20020a17090a0a0f00b00267fe88f2f3mr16343354pjo.15.1692013757821; Mon, 14
- Aug 2023 04:49:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230813162906.22640-1-aford173@gmail.com> <c08784a0a1412d5843cf97b992efb17e1dc602b7.camel@pengutronix.de>
-In-Reply-To: <c08784a0a1412d5843cf97b992efb17e1dc602b7.camel@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 14 Aug 2023 06:49:06 -0500
-Message-ID: <CAHCN7xKysFVRq0gkp8+VG_NNs1cijacbeDs4D2JDcZ-RucGUBw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Fix SDMA2/3 clocks
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234873AbjHNL6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 07:58:38 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 163CA18B;
+        Mon, 14 Aug 2023 04:58:02 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8BxnuvDFtpkdSoYAA--.47621S3;
+        Mon, 14 Aug 2023 19:57:55 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxrM6_FtpkXuZZAA--.24469S3;
+        Mon, 14 Aug 2023 19:57:51 +0800 (CST)
+Subject: Re: [PATCH v6 1/2] soc: dt-bindings: add loongson-2 pm
+To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        soc@kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
+        Liu Yun <liuyun@loongson.cn>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        zhuyinbo@loongson.cn
+References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
+ <20230803063703.5659-2-zhuyinbo@loongson.cn>
+ <193f9138-57e0-4d4b-8225-54d38be9bfbc@app.fastmail.com>
+ <8efeac46-ebb7-fa05-3d88-7c21acd59c8b@loongson.cn>
+ <6d7335b4-63e2-4a7e-9620-8a0012558dfd@app.fastmail.com>
+ <0616585d-1459-b6ef-375b-890426004e01@loongson.cn>
+ <19feb595-e22a-4304-9b88-b5cb55949cd8@app.fastmail.com>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <71c53c37-a0a6-6b11-31d5-4455d2309927@loongson.cn>
+Date:   Mon, 14 Aug 2023 19:57:51 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <19feb595-e22a-4304-9b88-b5cb55949cd8@app.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxrM6_FtpkXuZZAA--.24469S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 14, 2023 at 3:22=E2=80=AFAM Lucas Stach <l.stach@pengutronix.de=
-> wrote:
->
-> Am Sonntag, dem 13.08.2023 um 11:29 -0500 schrieb Adam Ford:
-> > A previous patch to remove the Audio clocks from the main clock node
-> > was intended to force people to setup the audio PLL clocks per board
-> > instead of having a common set of rates since not all boards may use
-> > the various audio PLL clocks for audio devices.
-> >
-> > Unfortunately, with this parenting removed, the SDMA2 and SDMA3
-> > clocks were slowed to 24MHz because the SDMA2/3 clocks are controlled
-> > via the audio_blk_ctrl which is clocked from IMX8MP_CLK_AUDIO_ROOT,
-> > and that clock is enabled by pgc_audio.
-> >
-> > Per the TRM, "The SDMA2/3 target frequency is 400MHz IPG and 400MHz
-> > AHB, always 1:1 mode, to make sure there is enough throughput for all
-> > the audio use cases."
-> >
-> > Instead of cluttering the clock node, place the clock rate and parent
-> > information into the pgc_audio node.
-> >
-> > With the parenting and clock rates restored for  IMX8MP_CLK_AUDIO_AHB,
-> > and IMX8MP_CLK_AUDIO_AXI_SRC, it appears the SDMA2 and SDMA3 run at
-> > 400MHz again.
-> >
-> Note that 800MHz for the AXI clock is overdrive mode for the chip. For
-> other i.MX8M* chips we tried to have the nominal drive rates as
-> assigned rates in DT. With the i.MX8MP it's currently a wild mix and
-> most of the AXI clocks are set to OD rates, so I won't reject this
-> patch based on this.
->
-> Most boards run the DRAM at DDR4-4000, which already requires OD
-> voltages, so there isn't much point in trying to stick to ND rates on
-> those boards. We should probably do some consolidation here and come up
-> with a proper policy for the i.MX8MP soon.
 
-I didn't realize 800MHz was OD.  I just set it to the rate that it was
-before the previous patch.  I think the defaults should be ND, and let
-boards who need OD set them.  Unless someone objects, I'll submit a
-V2.
 
-adam
->
-> > Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks=
- from CCM node")
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
->
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
-t/dts/freescale/imx8mp.dtsi
-> > index 6f2f50e1639c..408b0c4ec4f8 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -790,6 +790,12 @@ pgc_audio: power-domain@5 {
-> >                                               reg =3D <IMX8MP_POWER_DOM=
-AIN_AUDIOMIX>;
-> >                                               clocks =3D <&clk IMX8MP_C=
-LK_AUDIO_ROOT>,
-> >                                                        <&clk IMX8MP_CLK=
-_AUDIO_AXI>;
-> > +                                             assigned-clocks =3D <&clk=
- IMX8MP_CLK_AUDIO_AHB>,
-> > +                                                               <&clk I=
-MX8MP_CLK_AUDIO_AXI_SRC>;
-> > +                                             assigned-clock-parents =
-=3D  <&clk IMX8MP_SYS_PLL1_800M>,
-> > +                                                                      =
- <&clk IMX8MP_SYS_PLL1_800M>;
-> > +                                             assigned-clock-rates =3D =
-<400000000>,
-> > +                                                                    <8=
-00000000>;
-> >                                       };
-> >
-> >                                       pgc_gpu2d: power-domain@6 {
->
+在 2023/8/14 下午4:19, Arnd Bergmann 写道:
+> On Mon, Aug 14, 2023, at 09:57, Yinbo Zhu wrote:
+>> 在 2023/8/12 下午8:25, Arnd Bergmann 写道:
+>>> On Fri, Aug 4, 2023, at 04:54, Yinbo Zhu wrote:
+>>>> 在 2023/8/3 下午3:44, Arnd Bergmann 写道:
+>>>>> On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
+>>>>
+>>>>> Is this some SRAM that needs to execute the suspend logic
+>>>>> in order to shut down memory and cache controllers?
+>>>>
+>>>>
+>>>> Yes, The suspend-to-ram after into pmon firmware code and set
+>>>> self-refresh mode in memory controller and ensure that memory data is
+>>>> not lost then shut down memory controller.
+>>>
+>>> I'm sorry I missed your reply earlier, getting back to the
+>>> thread now. So it's clear that this code needs to run in a
+>>> special memory from your description, but I'm still trying
+>>> to understand the details better.
+>>>
+>>> I found https://github.com/loongson-community/pmon source
+>>> code, and a reference to its origin at LSI Logic at
+>>> https://www.linux-mips.org/wiki/PMON but otherwise have
+>>> no idea about what this actually is, or how it relates
+>>> to your UEFI firmware. Did you add UEFI support to PMON,
+>>> or do you use it as a first stage loader that loads
+>>> the actual UEFI implementation (EDK2 or u-boot, I guess)?
+>>
+>>
+>> Pmon and uefi are two different firmware, and there is no connection
+>> between them.
+> 
+> It sounds like we still have problems with terminology. >
+> I don't think categorizing UEFI as a firmware is correct,
+
+
+Sorry to have confused you, uefi firmware is our internal name, which is
+actually what you referred to as EDK2, the EDK2 need use UEFI.
+
+> it's the interface used by various firmware implementations
+> to load the operating system. As far as I understand,
+> loongarch currently mandates the use of UEFI in whichever
+> firmware is used, so if you have Pmon installed in ROM > and Pmon does not itself implement UEFI, it would have
+> to load some other firmware such as u-boot in order to
+> load a kernel through the UEFI protocol, right?
+
+
+PMON is an independent firmware and loader that can directly load the
+operating system and it does not require the use of UEFI.
+
+> 
+> Has the assumption that loongarch requires UEFI changed?
+
+
+LoongArch embedded board was use Pmon firmware, The other one uses UEFI
+firmware (EDK2) on LoongArch platform.
+
+> 
+>>>>> Or is
+>>>>> this a runtime firmware interface similar to how UEFI handles
+>>>>> its runtime services to keep the implementation out of
+>>>>> the kernel?
+>>>>
+>>>>
+>>>> No, The main cpu and other cpu will offline that after into firmware and
+>>>> finished Corresponding operations, the pmon firmware will not run.
+>>>
+>>> I'm still trying to understand your explanations here.
+>>> You say that pmon no longer runs, but that seems to contradict
+>>> what you said earlier about branching into pmon firmware code
+>>> for suspend.
+>>
+>>
+>> It's not contradictory.  The suspend-to-ram is that from kernel goto to
+>> pmon firmware code, then pmon finished corresponding operations, which
+>> was to set self-refresh mode in memory controller, then memory HW will
+>> maintain its own data and no longer requires software processing, pmon
+>> firmware will not run.
+> 
+> That is what I mean with a "runtime firmware interface", i.e. you
+> jump into firmware in order to request services from it. Clearly the
+> firmware itself does not run while the OS is executing code, but it is
+> still there and waiting to be called here, which is similar to
+> things like UEFI runtime services, PowerPC RTAS, Arm EL3/trustzone
+> based firmware or x86 SMM firmware, except that this is much less
+> formalized and only consists of an entry point with undocument
+> calling conventions.
+> 
+>>> Is this executing directly from ROM then?
+>>
+>> Yes.
+> 
+> Is this the only runtime call into the firmware, 
+
+
+Only when suspend-to-ram occurs, the kernel will call into the firmware.
+No other case.
+
+> or are there
+> others that are either already called from mainline kernels
+> or in your downsteam implementation?
+> 
+> How do you ensure that the DTB matches the actual ROM code
+> after rebuilding Pmon? Does Pmon itself fill that field with
+> the correct address, or do you rely on it being a hardcoded
+> constant?
+
+
+Use Pmon, firmware team will always ensure that DTB matches the actual
+ROM code.  The "suspend-address" of dtb and pmon entry address will
+synchronized modification by firmware team.
+
+Thanks,
+Yinbo
+
