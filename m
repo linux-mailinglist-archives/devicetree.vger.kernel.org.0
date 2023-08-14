@@ -2,61 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A19777B1BB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 08:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B2E777B1C3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 08:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbjHNGiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 02:38:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38712 "EHLO
+        id S233841AbjHNGnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 02:43:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231376AbjHNGiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 02:38:24 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4C8C3;
-        Sun, 13 Aug 2023 23:38:21 -0700 (PDT)
-Received: from [192.168.2.137] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 262A13EBDC;
-        Mon, 14 Aug 2023 08:38:19 +0200 (CEST)
-From:   Martin Botka <martin.botka@somainline.org>
-Date:   Mon, 14 Aug 2023 08:38:11 +0200
-Subject: [PATCH v2 2/2] arm64: dts: allwinner: h616: Add SID controller
- node
+        with ESMTP id S233860AbjHNGmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 02:42:47 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81057E62
+        for <devicetree@vger.kernel.org>; Sun, 13 Aug 2023 23:42:45 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so4920787a12.0
+        for <devicetree@vger.kernel.org>; Sun, 13 Aug 2023 23:42:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1691995364; x=1692600164;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9uQPBosJnF8JMaIESUn9a6pEN4H6O/rDfv1IpFvV4gc=;
+        b=tCoxS5U0erBg8aQ3By2RPQE84+vufddgYKijftwkGVSGsVzTYcPFNLxyOeofyJhWF4
+         LM+p5gKf6L0jaMAC/4beqCAWtzf38W1CwOHdq3oeweXeUIP/8F7hUusY85mrD4yekN7/
+         jdm58kDbLQ3BM/fFIFK9vv+rFKCTlS1Odiz1dRO0RYGNglpFNBFkPFjon0FLLpIsJhLT
+         RrTOFErAuNTQJaYVqJBQWrKA9K9AvS6PAvDuCBxPqo3OOkGeM52Jh+22ez8hSVJMH3rl
+         ZK6JrA1ZJSfYiE0h30PMLDZoFJzPy6kbsymT2kIPGzJznLONZJ4lJ169phMBH6cuigVS
+         t1EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691995364; x=1692600164;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9uQPBosJnF8JMaIESUn9a6pEN4H6O/rDfv1IpFvV4gc=;
+        b=XgZsE9uWaZMxr+l26DBasMw7iuq53XV/BBplQc0G2JEDVA7Ak8WUt/51ut2xYcNS8e
+         t+Xy7PaLrpPQvi8ATBr9sWQ+GqrEjFfWikTu2hnRwjbr1h5Bwg8L/9SlOtE1TzdbVNEX
+         BxLFujpNS7nSjWr3TeSocmS73U6ekp7RQ/5tb3xX63XIzu1GDubk60N0WHmtqujEHCVp
+         RX/wscwhUDqRxDhuw0ACupaIpj2jeW0Te1xmaxh2m5yAZhHglXFPov8KFmw7oOFmryD1
+         w1AMaFOd7cbbMa9kCzv3yeOrWUWSNYcIjxBGjGlzuUjzxY3wyuFU/amTBdEakRpmnx1l
+         HplQ==
+X-Gm-Message-State: AOJu0Yza55GNTRuGcLvHs5MiTVHp6OMafxTOz5UxI+SCMY5chCuzcWsN
+        wzrwulBddAFimF3j/qMZzd56Gw==
+X-Google-Smtp-Source: AGHT+IHL3BrYT9hcbD2l+kSKHckU3vNj9ruviF7zZUQH0dXomzUWO4qL/t94DJ4ctl56KfSdWTvUsA==
+X-Received: by 2002:a17:906:538d:b0:99b:ce19:b69a with SMTP id g13-20020a170906538d00b0099bce19b69amr7087659ejo.53.1691995363867;
+        Sun, 13 Aug 2023 23:42:43 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id x18-20020a170906805200b0099bcbaa242asm5328164ejw.9.2023.08.13.23.42.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Aug 2023 23:42:43 -0700 (PDT)
+Message-ID: <484fe3d7-210f-4d70-b387-3455ec4ad9f0@linaro.org>
+Date:   Mon, 14 Aug 2023 08:42:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230814-sid-h616-v2-2-0267749b4471@somainline.org>
-References: <20230814-sid-h616-v2-0-0267749b4471@somainline.org>
-In-Reply-To: <20230814-sid-h616-v2-0-0267749b4471@somainline.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 1/6] dt-bindings: arm: qcom: Document MSM8x26-based
+ Lumia phones
+To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Alan Ma <tech@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1691995097; l=864;
- i=martin.botka@somainline.org; s=20230811; h=from:subject:message-id;
- bh=q8Z3frbl92CnDSxzHRzs0CQF73K+Zv6PV4C5pSkxRc8=;
- b=jRKm1OBlKfkJYm1mrQQkjhF+MB0uew5IbHFuh7QGVphZY7vhGXUBJBFTJVy67nzyv4WiFSjjM
- 1TsBswmpDgYDYrWK4jzHeF9K6rukviQm3Xx54t6TXb6uOxX5+kYuwgZ
-X-Developer-Key: i=martin.botka@somainline.org; a=ed25519;
- pk=aTCd3jmwU8GrJidWg3DSKLpdVMcpFzXzCSLXLR6NtWU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+References: <20230813152623.64989-1-rayyan@ansari.sh>
+ <20230813152623.64989-2-rayyan@ansari.sh>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230813152623.64989-2-rayyan@ansari.sh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,32 +81,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node for the H616 SID controller
+On 13/08/2023 17:23, Rayyan Ansari wrote:
+> Document MSM8226 and MSM8926 Lumias.
+> 
+> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 74aed0d232a9..d549d277d972 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -133,6 +133,13 @@ ccu: clock@3001000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		sid: efuse@3006000 {
-+			compatible = "allwinner,sun50i-h616-sid", "allwinner,sun50i-a64-sid";
-+			reg = <0x03006000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+
- 		watchdog: watchdog@30090a0 {
- 			compatible = "allwinner,sun50i-h616-wdt",
- 				     "allwinner,sun6i-a31-wdt";
-
--- 
-2.41.0
+Best regards,
+Krzysztof
 
