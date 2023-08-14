@@ -2,77 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C8CE77B6FB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E93F77B70B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbjHNKms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 06:42:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54656 "EHLO
+        id S229715AbjHNKsl convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 06:48:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233826AbjHNKmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:42:20 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CFE711A;
-        Mon, 14 Aug 2023 03:42:18 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37EAfurr085836;
-        Mon, 14 Aug 2023 05:41:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1692009716;
-        bh=Lz356dlYT0Q7fdpMmgsrqqZokIAx9+np94XnpNO5Wt4=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Kk9N6XcN5y6wkTH+BugUixyqNL4LzPx5i3PfOKafcOnesY3N5nAun95wz73+8ZA8O
-         a3mjIRJ3DHq9POKbLqHsSX1cJjxv1G0z+X9dsD3u7veUejTinXUUb/QgIXOfV1WpIV
-         uf/wtOY80VCE2S/hciOzf3BzfkF1dGI9ir1gB3i0=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37EAfuk6012941
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Aug 2023 05:41:56 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
- Aug 2023 05:41:56 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 14 Aug 2023 05:41:56 -0500
-Received: from [172.24.227.132] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37EAfnDv018660;
-        Mon, 14 Aug 2023 05:41:49 -0500
-Message-ID: <8fd9c745-cb42-8d4d-8307-e428a491bfe1@ti.com>
-Date:   Mon, 14 Aug 2023 16:11:48 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 0/6] arm64: ti: k3-am62: Add display support
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S233418AbjHNKsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:48:12 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC824130
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 03:48:10 -0700 (PDT)
+Received: from [192.168.2.144] (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id BEB661F54D;
+        Mon, 14 Aug 2023 12:48:05 +0200 (CEST)
+Date:   Mon, 14 Aug 2023 12:47:59 +0200
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: Re: [PATCH v4 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi
+ support
+To:     Jernej =?iso-8859-2?q?=A9krabec?= <jernej.skrabec@gmail.com>
+Cc:     Martin Botka <martin.botka1@gmail.com>,
+        Martin Botka <martin@biqu3d.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Martin Botka <martin@biqu3d.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>
-CC:     Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230809084559.17322-1-a-bhatia1@ti.com>
- <169179274928.1340235.2380026214492639228.b4-ty@ti.com>
-Content-Language: en-US
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <169179274928.1340235.2380026214492639228.b4-ty@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Message-Id: <ZBNDZR.IENEPBA0KL4D2@somainline.org>
+In-Reply-To: <9148039.CDJkKcVGEf@jernej-laptop>
+References: <20230807145349.2220490-1-martin@biqu3d.com>
+        <10318766.nUPlyArG6x@jernej-laptop> <168CZR.KVQVUV8KXJ5Y1@somainline.org>
+        <9148039.CDJkKcVGEf@jernej-laptop>
+X-Mailer: geary/43.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,85 +70,226 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12-Aug-23 04:02, Nishanth Menon wrote:
-> Hi Aradhya Bhatia,
+On Mon, Aug 14 2023 at 12:26:07 PM +02:00:00, Jernej ©krabec 
+<jernej.skrabec@gmail.com> wrote:
+> Dne nedelja, 13. avgust 2023 ob 18:22:49 CEST je Martin Botka 
+> napisal(a):
+>>  On Sun, Aug 13 2023 at 05:55:35 PM +02:00:00, Jernej ©krabec
+>> 
+>>  <jernej.skrabec@gmail.com> wrote:
+>>  > Dne ponedeljek, 07. avgust 2023 ob 16:53:24 CEST je Martin Botka
+>>  >
+>>  > napisal(a):
+>>  >>  The BigTreeTech Pi is an H616 based board based on CB1.
+>>  >>  Just in Rpi format board.
+>>  >>
+>>  >>  It features the same internals as BTT CB1 but adds:
+>>  >>      - Fan port
+>>  >>      - IR receiver
+>>  >>      - ADXL345 Accelerometer connector via SPI
+>>  >>      - 24V DC power supply via terminal plugs
+>>  >>      - USB to CAN module connector (The actual USB to CAN 
+>> happens on
+>>  >>
+>>  >> the
+>>  >>
+>>  >>  external module)
+>>  >>
+>>  >>  List of currently working things is same as BTT CB1 but also:
+>>  >>      - IR receiver
+>>  >>      - ADXL345 connector
+>>  >>
+>>  >>  Signed-off-by: Martin Botka <martin@biqu3d.com>
+>>  >>  Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+>>  >>  ---
+>>  >>
+>>  >>  Changes in V2:
+>>  >>      - Add UART alongside aliases and chosen for it
+>>  >>      - Add model string
+>>  >>      - Enable IR receiver
+>>  >>      - Enable SPI0 for ADXL345 connector
+>>  >>
+>>  >>  Changes in V3:
+>>  >>      - Add missing semicolons
+>>  >>      - Add pinctrl for SPI0
+>>  >>
+>>  >>   arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+>>  >>   .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 70
+>>  >>
+>>  >> +++++++++++++++++++
+>>  >>
+>>  >>   2 files changed, 71 insertions(+)
+>>  >>   create mode 100644
+>>  >>
+>>  >>  arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+>>  >>
+>>  >>  diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+>>  >>  b/arch/arm64/boot/dts/allwinner/Makefile index
+>>  >>
+>>  >> 7b386428510b..0b6232a7f328
+>>  >>
+>>  >>  100644
+>>  >>  --- a/arch/arm64/boot/dts/allwinner/Makefile
+>>  >>  +++ b/arch/arm64/boot/dts/allwinner/Makefile
+>>  >>  @@ -39,5 +39,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=
+>>  >>
+>>  >> sun50i-h6-pine-h64-model-b.dtb
+>>  >>
+>>  >>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+>>  >>
+>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
+>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += 
+>> sun50i-h616-bigtreetech-cb1-manta.dtb
+>>  >>
+>>  >>  +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
+>>  >>
+>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+>>  >>
+>>  >>  diff --git
+>>  >>
+>>  >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+>>  >>
+>>  >>  b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts 
+>> new
+>>  >>
+>>  >> file
+>>  >>
+>>  >>  mode 100644
+>>  >>  index 000000000000..b0d0386e8f13
+>>  >>  --- /dev/null
+>>  >>  +++ 
+>> b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+>>  >>  @@ -0,0 +1,70 @@
+>>  >>  +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+>>  >>  +/*
+>>  >>  + * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
+>>  >>  + */
+>>  >>  +
+>>  >>  +/dts-v1/;
+>>  >>  +
+>>  >>  +#include "sun50i-h616-bigtreetech-cb1.dtsi"
+>>  >>  +
+>>  >>  +/ {
+>>  >>  +	model = "BigTreeTech Pi";
+>>  >>  +	compatible = "bigtreetech,pi", "allwinner,sun50i-h616";
+>>  >>  +
+>>  >>  +	aliases {
+>>  >>  +		serial0 = &uart0;
+>>  >>  +	};
+>>  >>  +
+>>  >>  +	chosen {
+>>  >>  +		stdout-path = "serial0:115200n8";
+>>  >>  +	};
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ehci0 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ehci1 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ehci2 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ehci3 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ir {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ohci0 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ohci1 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ohci2 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&ohci3 {
+>>  >>  +	status = "okay";
+>>  >>  +};
+>>  >>  +
+>>  >>  +&spi0 {
+>>  >>  +	/* SPI connection for onboard connector for ADXL345 
+>> accelerometer
+>>  >
+>>  > */
+>>  >
+>>  >>  +	status = "okay";
+>>  >>  +	pinctrl-names = "default";
+>>  >>  +	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;
+>>  >
+>>  > Driver and compatible for ADXL345 already exists, why don't you 
+>> add
+>>  > child node
+>>  > for it?
+>>  >
+>>  > Best regards,
+>>  > Jernej
+>> 
+>>  Ah. So the ADXL345 actually wont be driven by kernel.
 > 
-> On Wed, 09 Aug 2023 14:15:53 +0530, Aradhya Bhatia wrote:
->> The patch series adds DT nodes for Display SubSystem (DSS) and other
->> peripherals required to enable the HDMI audio and video on the AM625 SK,
->> AM62-LP SK, as well as the AM625 based Beagle-Play platforms. An HDMI
->> monitor can be connected to the boards for the audio/video outputs.
->>
->> The series adding the compatible and basic driver support[0] is in the
->> drm-misc-next and linux-next queues and is expected to be in the
->> mainline by v6.6-rc1. Patch 5/6 also requires Nishanth Menon's patch[1]
->> that introduces debounce select mux macros. This patch too is not in
->> v6.5-rc1 but has been picked up in ti-next[2] and hence, is present in
->> linux-next.
->>
->> [...]
+> DT is hardware description, it's not concerned what is done on 
+> software side,
+> either kernel or user space.
+Im aware. But this is not a device that is on the board. Its simply a 
+connector for the device.
+Like Rpi has connectors for camera module :)
 > 
-> NOTE: This series creates checkpatch warnings against v6.5-rc1 and
-> complains that it cannot find ti,am625-dss which has been merged in
-> drm tree for next. This is clean in linux-next for a few weeks now.
-> Given the number of people who would really like to see it in v6.6-rc1
-> to keep the display support working in the tree without carried
-> patches and work on next set of features on display and graphics, and
-> given the real low risk of this NOT making to linus-master, we are
-> making an specific exception here for this time around. So, please
-> keep a watch on drm-next and if for any reason the support is dropped
-> going to linus's tre in the merge window or before, let this chain
-> know with appropriate maintainers so that we can take corrective
-> actions. PS: Thanks Arnd for taking time to give me some private
-> guidance. Fingers crossed that this will go through smooth.
+>>  The SPI connection is enabled so that klipper (3d printer firmware) 
+>> can
+>>  be told to look for ADXL345 at this SPI and use it on its own.
+>> 
+>>  Klipper will initialize and communicate with the ADXL on its own.
+> 
+> What do you mean by firmware? User space app? In this case I suppose 
+> you'll use
+> direct SPI commands from user space? AFAIK that's less and less 
+> supported by
+> kernel (in contrast to I2C).
+Firmware as in 3d printer firmware. Klipper runs on the board (CB1 or 
+BTT Pi) and is indeed an userspace app.
+And indeed uses direct SPI commands to the device.
 
-Nishanth, Vignesh, Arnd,
+The reason for this is the flexibility.
+If Klipper read the values from kernel or well from the files the ADXL 
+driver would create
+then it would be unable to communicate with ADXL that is on toolhead 
+board. Or would have to have
+direct initialization either way for those. Thus it just controls the 
+ADXL itself :)
 
-Thank you for making an exception here, and allowing these patches in!
-=)
+I understand that this may be bit confusing. If there is still 
+something not clear im more then happy to explain in
+full detail how the userspace and 3D printer communicate :)
 
-I will keep an eye on drm-next and will make sure to let you all know if
-the AM62 base DSS support patches get dropped for any reason.
+Cheers,
+Martin.
+> 
+> Best regards,
+> Jernej
+> 
+>> 
+>>  >>  +};
+>>  >>  +
+>>  >>  +&uart0 {
+>>  >>  +	pinctrl-names = "default";
+>>  >>  +	pinctrl-0 = <&uart0_ph_pins>;
+>>  >>  +	status = "okay";
+>>  >>  +};
+> 
+> 
+> 
+> 
 
-Regards
-Aradhya
-
-> 
-> Thank you!
-> 
-> I have applied the following to branch ti-k3-dts-next on [1]:
-> 
-> [1/6] arm64: dts: ti: k3-am62x-sk-common: Update main-i2c1 frequency
->       commit: 73387da70f9c26b6fba4f62371d013cce14663d9
-> [2/6] arm64: dts: ti: k3-am62-main: Add node for DSS
->       commit: 8ccc1073c7bb2ae9654529a75f85ef23b7215c9b
-> [3/6] arm64: dts: ti: k3-am62x-sk-common: Add HDMI support
->       commit: db6e8237cf5435e972ea47632e5d8ac3e356f210
-> [4/6] arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
->       commit: b50ccab9e07ca19d49a0d629dfbe184e6975be22
-> [5/6] arm64: dts: ti: k3-am625-beagleplay: Add HDMI support
->       commit: 1f7226a5e52cb8b90771cefc29077f9ce13a3c90
-> 
-> I have applied the following to branch ti-k3-config-next on [1]:
-> 
-> [6/6] arm64: defconfig: Enable ITE_IT66121 HDMI transmitter
->       commit: d5c988b43746de250bed33c17116e879f032ff12
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent up the chain during
-> the next merge window (or sooner if it is a relevant bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 
