@@ -2,145 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47CA377B31B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 09:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E548577B331
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234380AbjHNH5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 03:57:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52544 "EHLO
+        id S232749AbjHNICM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 04:02:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234391AbjHNH5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 03:57:24 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1A5D4B5;
-        Mon, 14 Aug 2023 00:57:21 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8Bx5fBg3tlkIwkYAA--.49714S3;
-        Mon, 14 Aug 2023 15:57:20 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx3yNd3tlkmZxZAA--.49687S3;
-        Mon, 14 Aug 2023 15:57:18 +0800 (CST)
-Subject: Re: [PATCH v6 1/2] soc: dt-bindings: add loongson-2 pm
-To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229990AbjHNIBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:01:49 -0400
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F3349F;
+        Mon, 14 Aug 2023 01:01:48 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5236a9788a7so5473915a12.0;
+        Mon, 14 Aug 2023 01:01:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692000107; x=1692604907;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TSi5X4VgjsCMeAaQPLcYj9iEMPItGUk1KSzbhdjTG3Q=;
+        b=MkYcbpZmXAZXdsStvHTfA6gJsstR5KEOTTt8CUuwKjNxjuOIQaA5rChfS6E/F5VyKG
+         STE0fWXaMHot2lOhBRgM5oRm4RnfjTQAmjn41KaI/HsjOfMGzp52O/HioU9oKiQ77og8
+         6z/WUBkrzNLR3zw9xF5VToNARDMTE6uaIOeO38RlFOHpjW7+GUTIvd+L/z8eHWZUCDB7
+         FpUvr4FnZrjFhWs6H7mS244v6O5Dqoppyts4UxJsg6d1Oy/CvXitRcu21nF+DxdcshXo
+         Dikct8K8gGY45sgCxSmaU5WElmhaFxv9ifkWEvi7rPCWHVtMPRz00qtg2MrmKVospSgz
+         thAw==
+X-Gm-Message-State: AOJu0YzdDpBmtw7Y3gs8ocaqDO8pAcgMpC9OkdSbtlj53tUYhXuw39gf
+        TdOrvDmUHhWq1e9+ZRmkUCs=
+X-Google-Smtp-Source: AGHT+IEaAODooEEvQc066LIoQt4jMjMo+rdKjU8jqDHOucWJHkabU02sFbYF/sNsPcVB7Z+X3fz7AQ==
+X-Received: by 2002:aa7:d3d3:0:b0:522:1bdd:d41a with SMTP id o19-20020aa7d3d3000000b005221bddd41amr6651311edr.4.1692000106646;
+        Mon, 14 Aug 2023 01:01:46 -0700 (PDT)
+Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id s25-20020a056402165900b0052568bf9411sm678074edx.68.2023.08.14.01.01.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Aug 2023 01:01:46 -0700 (PDT)
+From:   Lucas Tanure <tanure@linux.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
-        Liu Yun <liuyun@loongson.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        zhuyinbo@loongson.cn
-References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
- <20230803063703.5659-2-zhuyinbo@loongson.cn>
- <193f9138-57e0-4d4b-8225-54d38be9bfbc@app.fastmail.com>
- <8efeac46-ebb7-fa05-3d88-7c21acd59c8b@loongson.cn>
- <6d7335b4-63e2-4a7e-9620-8a0012558dfd@app.fastmail.com>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <0616585d-1459-b6ef-375b-890426004e01@loongson.cn>
-Date:   Mon, 14 Aug 2023 15:57:17 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc:     Nick <nick@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        Lucas Tanure <tanure@linux.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v9 1/2] dt-bindings: serial: amlogic,meson-uart: Add compatible string for T7
+Date:   Mon, 14 Aug 2023 09:01:27 +0100
+Message-ID: <20230814080128.143613-1-tanure@linux.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-In-Reply-To: <6d7335b4-63e2-4a7e-9620-8a0012558dfd@app.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bx3yNd3tlkmZxZAA--.49687S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+There is no need for an extra compatible line in the driver, but
+add T7 compatible line for documentation.
 
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Since v8:
+ - Fix issues with git send-mail command line
+Since v7:
+ - Send to the correct maintainers
 
-在 2023/8/12 下午8:25, Arnd Bergmann 写道:
-> On Fri, Aug 4, 2023, at 04:54, Yinbo Zhu wrote:
->> 在 2023/8/3 下午3:44, Arnd Bergmann 写道:
->>> On Thu, Aug 3, 2023, at 08:37, Yinbo Zhu wrote:
->>>
->>>> +  loongson,suspend-address:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint64
->>>> +    description:
->>>> +      The "loongson,suspend-address" is a deep sleep state (Suspend To
->>>> +      RAM) firmware entry address which was jumped from kernel and it's
->>>> +      value was dependent on specific platform firmware code. In
->>>> +      addition, the PM need according to it to indicate that current
->>>> +      SoC whether support Suspend To RAM.
->>>> +
->>>
->>> I just commented on this in the driver patch, assuming this
->>> was an MMIO address, but I'm even more confused now, since
->>> we try hard to not rely on being able to just interface with
->>> firmware like this.
->>>
->>> If this is executable code, where does this actually reside?
->>
->>
->> Pmon firmware code.
->>
->>> Is this some SRAM that needs to execute the suspend logic
->>> in order to shut down memory and cache controllers?
->>
->>
->> Yes, The suspend-to-ram after into pmon firmware code and set
->> self-refresh mode in memory controller and ensure that memory data is
->> not lost then shut down memory controller.
-> 
-> I'm sorry I missed your reply earlier, getting back to the
-> thread now. So it's clear that this code needs to run in a
-> special memory from your description, but I'm still trying
-> to understand the details better.
-> 
-> I found https://github.com/loongson-community/pmon source
-> code, and a reference to its origin at LSI Logic at
-> https://www.linux-mips.org/wiki/PMON but otherwise have
-> no idea about what this actually is, or how it relates
-> to your UEFI firmware. Did you add UEFI support to PMON,
-> or do you use it as a first stage loader that loads
-> the actual UEFI implementation (EDK2 or u-boot, I guess)?
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-
-Pmon and uefi are two different firmware, and there is no connection
-between them.
-
-> 
->>> Or is
->>> this a runtime firmware interface similar to how UEFI handles
->>> its runtime services to keep the implementation out of
->>> the kernel?
->>
->>
->> No, The main cpu and other cpu will offline that after into firmware and
->> finished Corresponding operations, the pmon firmware will not run.
-> 
-> I'm still trying to understand your explanations here.
-> You say that pmon no longer runs, but that seems to contradict
-> what you said earlier about branching into pmon firmware code
-> for suspend.
-
-
-It's not contradictory.  The suspend-to-ram is that from kernel goto to
-pmon firmware code, then pmon finished corresponding operations, which
-was to set self-refresh mode in memory controller, then memory HW will
-maintain its own data and no longer requires software processing, pmon
-firmware will not run.
-
-> 
-> Is this executing directly from ROM then?
-
-
-Yes.
-
-Thanks,
-Yinbo
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index f1ae8c4934d9..2e189e548327 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -52,6 +52,10 @@ properties:
+         items:
+           - const: amlogic,meson-g12a-uart
+           - const: amlogic,meson-gx-uart
++      - description: UART controller on S4 compatible SoCs
++        items:
++          - const: amlogic,t7-uart
++          - const: amlogic,meson-s4-uart
+ 
+   reg:
+     maxItems: 1
+-- 
+2.41.0
 
