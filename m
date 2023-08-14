@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7ED477B32D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AEA077B33E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 10:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233294AbjHNICL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 04:02:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38566 "EHLO
+        id S233633AbjHNIEv convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Aug 2023 04:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232749AbjHNIBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:01:39 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484C3AD
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:01:38 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fe2048c910so36983625e9.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 01:01:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692000097; x=1692604897;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6iRD9A4irJNmOgu6eUxG8gRcHEW76etNPCgT+ma+/4M=;
-        b=mtoe8izgXzHXuALrWwwyl/olIUk2+XnUPjPqEHhXpft+LZRT5+Wi24R9EIqRg911Fu
-         Y51yihxEOqA/mUIs64B/6fNH/bDSgczY7eWaLQpZTTgbKR2G9nSa2Li0/swbJgoY3tA0
-         AzhEuHZzd8PesLeCOYs3kXox5IbAiNgpZK88DmCcb+JZ5AwEA/vEE6Npc4r0JZ9yR0so
-         I2c6QPgBQg63M+yps32jREj4fnUBKqAmQqlBYCsGxmW6doR/oWG2TVNaLLYSVqT/n/YH
-         QqwbepB8SP4+uW8FO36S/2RrXJWavK799imH/TNeGjuYAURxF5r3nS7Y+vEjluSDWKaT
-         c5Cg==
+        with ESMTP id S234430AbjHNIEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 04:04:36 -0400
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24281D2;
+        Mon, 14 Aug 2023 01:04:34 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-583f036d50bso45657947b3.3;
+        Mon, 14 Aug 2023 01:04:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692000097; x=1692604897;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6iRD9A4irJNmOgu6eUxG8gRcHEW76etNPCgT+ma+/4M=;
-        b=VAlN8hAhYDwtv9AP94xO/q8rVD8mgtaPLFWs+Xx8pPt0RQ5MVBgPzSiyiwXUQ/7+3P
-         rWqjJ+nMnr7L3XHze5S4Dh/sie7M3vuiDM0dbl9XQ+C3H5mdI1py3LXB2H6xRJMt9muj
-         dhfi5hl6Bdpc/TPggcRb0nky+lNvQXIuN3nDwQmx++boCHkbKVMu2XsRgxrj/Bim+FyB
-         6blMNy0iBUqRUaWoCCrLUR6so08uT/78r5sABFVgWRrEP8ifPC5/hgr0Iyck2LDIEq1V
-         FtoU1PfdesTyP3wyOCSQ4nqM3V5vXMFyZLjKZF/Df6MlnpKydgD/M+LwgPZrHxsB/Fd7
-         LQ1g==
-X-Gm-Message-State: AOJu0Yw68qQ29kW5YYADt5hnQqMg3qvTsonwI34QAqWhjXsTK1uQzsha
-        UO8PxMrCWqfXMcfIjgcdZkPEGg==
-X-Google-Smtp-Source: AGHT+IHl+WyUuKJlARfd8AJ8xAj3jeBTIhgTCUmlckWdRylYB0YEauFV5hliIuK5c5ePGXkYuElu1A==
-X-Received: by 2002:a7b:c307:0:b0:3fe:1c33:2814 with SMTP id k7-20020a7bc307000000b003fe1c332814mr6794323wmj.30.1692000096756;
-        Mon, 14 Aug 2023 01:01:36 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id 17-20020a05600c229100b003fc01f7a42dsm7998151wmf.8.2023.08.14.01.01.34
+        d=1e100.net; s=20221208; t=1692000273; x=1692605073;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bzJrlLI5WNhjukEiyCuwgA8oXCqB2FTn6jKbDcA5q68=;
+        b=VYkhUSIYevw4jX7n7DwtuqrMjDq8XZmpKTrtRIY8MlwENiC6xwNGzE9jwH2kJy49Zb
+         tehLBmOkdT0c5XI2LnVixG7HyrE9h5tA4v78JW0rRL3k01w/DFPi2gx2tHRai847WoxF
+         9m06TVHesaQ9SJDpfycDz2jpY8MhD4BEcrzFOImXBzJAjlFP//Pg1AfDDyOwWXIZfwp7
+         gkhP7Ic32EaErex/+CZPCp2dBvlK89hQf+Ez3vk649K/kTMloaj/W7/QlUAxgg86yXX8
+         2+EUEo0ZA9c2zOXn/zobg1WtazAIQ1izfTFu1CjRY71Q19574wQJGhZfydYAD/2hl9Uq
+         DebA==
+X-Gm-Message-State: AOJu0YzYqVvyXysCyNQw597bOECeRrB3cPxMrpATSrOhvPzjUgXKbpI6
+        wigJN7dT2bWuTs26WTbRKQaUUa3UO1a80IoS
+X-Google-Smtp-Source: AGHT+IFiqf0Cez/blAgJYgJXeaRB/XvhWeMardG4hntJrofeZmd5YFiLvCMUGqopXR2YgZc5vzk/fg==
+X-Received: by 2002:a0d:d552:0:b0:577:51cd:1b4a with SMTP id x79-20020a0dd552000000b0057751cd1b4amr13528895ywd.41.1692000273129;
+        Mon, 14 Aug 2023 01:04:33 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id n11-20020a0dcb0b000000b0058419c57c66sm2634017ywd.4.2023.08.14.01.04.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 01:01:36 -0700 (PDT)
-Message-ID: <1dfaf72b-1e2a-e771-39f9-c3a5cf1c8463@linaro.org>
-Date:   Mon, 14 Aug 2023 10:01:34 +0200
+        Mon, 14 Aug 2023 01:04:32 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-583f036d50bso45657847b3.3;
+        Mon, 14 Aug 2023 01:04:32 -0700 (PDT)
+X-Received: by 2002:a81:9294:0:b0:561:206a:ee52 with SMTP id
+ j142-20020a819294000000b00561206aee52mr11727423ywg.24.1692000272605; Mon, 14
+ Aug 2023 01:04:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sc7180: Add board id for
- lazor/limozeen
-Content-Language: en-US
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        dianders@chromium.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        robh+dt@kernel.org
-References: <20230809064908.193739-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20230809144516.v3.3.Ie77732a87ab53d21bac47db309b75a796fa19337@changeid>
- <cd15df3a-eadc-13d6-7088-3ad785ea733e@linaro.org>
- <4e05a1fb-f6f2-3219-b41d-67351c70a7ff@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4e05a1fb-f6f2-3219-b41d-67351c70a7ff@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230629073419.207886-1-tanure@linux.com> <20230629073419.207886-4-tanure@linux.com>
+ <CAL_JsqKd_XYB682eHoW+omjGWLpuz0QL6zc0VB7u-Lm+X=PmOw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKd_XYB682eHoW+omjGWLpuz0QL6zc0VB7u-Lm+X=PmOw@mail.gmail.com>
+Reply-To: tanure@linux.com
+From:   Lucas Tanure <tanure@linux.com>
+Date:   Mon, 14 Aug 2023 09:04:21 +0100
+X-Gmail-Original-Message-ID: <CAJX_Q+2QUEhYax=bOzGHr2f0O8KSGnn0ncD5+HQRSOTUXwv6wA@mail.gmail.com>
+Message-ID: <CAJX_Q+2QUEhYax=bOzGHr2f0O8KSGnn0ncD5+HQRSOTUXwv6wA@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] tty: serial: meson: Add a earlycon for the T7 SoC
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        Nick <nick@khadas.com>, Artem <art@khadas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2023 05:46, Sheng-Liang Pan wrote:
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> On 10/08/2023 11:30, Sheng-Liang Pan wrote:
->>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>>> Isn't this duplicated with r9? Probably other places as well... or....
->>>> separate r10 add rt5682s node which different with r9.
->>> we separate r10 add rt5682s which differentwith r9
->>>
->>>
->>>>> -	model = "Google Lazor Limozeen without Touchscreen (rev9+)";
->>>>> -	compatible = "google,lazor-sku6", "google,lazor-sku18", "qcom,sc7180";
->>>>> +	model = "Google Lazor Limozeen without Touchscreen (rev9)";
->>>>> +	compatible = "google,lazor-rev9-sku6", "google,lazor-rev9-sku18", "qcom,sc7180";
->>>
->>>> Your patch 2 does not make any sense. Didn't you touch it in patch 2?
->>>> Really, what is happening here?
->>> patch 2 explain why we added new sku for no-eSIM.
->>
->> So which commit explain why you touch the same line twice? Sorry, this
->> does not make sense.
->>
->> Best regards,
->> Krzysztof
-> 
-> We sort patch by change order,
-> fist request for non-eSIM, patch2 add new sku 10, 15 for non-eSIM, and 18, but keep the newset reversion is r9,
-> after add non-eSIM SKU, a sencond request for ALC5682i-VS, 
-> so continue patch2 we upreversion r10 which include rt5682s node.
-
-I barely can parse it, but anyway does not look right. You explained
-what you are doing but it does not explain why touching the same line
-twice. There is no point in making one board new SKU, but then
-immediately change it to something else. The previous commit is just no-op.
-
-Best regards,
-Krzysztof
-
+On Fri, Aug 11, 2023 at 4:34 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Jun 29, 2023 at 1:34 AM Lucas Tanure <tanure@linux.com> wrote:
+> >
+> > The new Amlogic T7 SoC does not have a always-on uart,
+> > so add OF_EARLYCON_DECLARE for it.
+> >
+> > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> >  drivers/tty/serial/meson_uart.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+>
+> These 2 serial patches will probably never be applied if you don't
+> send this to Greg and linux-serial. IOW, use get_maintainers.pl for
+> your patches.
+>
+> Rob
+Thanks, I didn't see that issue.
+I just re-sent ad v9.
