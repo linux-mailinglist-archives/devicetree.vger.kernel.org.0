@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E114E77BC19
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 16:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9550877BC2A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 16:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbjHNOxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 10:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
+        id S229540AbjHNOz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 10:55:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbjHNOxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 10:53:22 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2554D1739;
-        Mon, 14 Aug 2023 07:53:09 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so11334980a12.0;
-        Mon, 14 Aug 2023 07:53:09 -0700 (PDT)
+        with ESMTP id S232524AbjHNOzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 10:55:02 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A400FE65;
+        Mon, 14 Aug 2023 07:54:57 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99c1c66876aso587432166b.2;
+        Mon, 14 Aug 2023 07:54:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692024787; x=1692629587;
+        d=gmail.com; s=20221208; t=1692024896; x=1692629696;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=wWKCUp2yq16ZBo58YuOZhMaFJTEXME++1KBwQF44Y3o=;
-        b=BVMd15TcKSqiobpIdT/J/hWTHgjlmyGfcHaTZx5coE8RbvluwebBuuXc3FxtyC7kvB
-         mgeoI9CwqQ1odg48P1swSA8Hc/dNSAZv9L4DSnNxzhvDKhMAI2/3639aPgKAZ0eKusn/
-         Ap6oL5ddWZtM+V3c6WPE2t0YsMPA0Giws2twA+IhMCLFIddg/quuD46ccKmhqT4DflUo
-         j9/ndUqGGk1LTzNS55e2NaCR87WIPIXCGBba1zFsBPNXEO6sGiDty2DJa7Ohbm4Wceky
-         +pYsKLNabLxVBCNN/DgOtcYBNPfUZaZycVxiaBCMzz4/3dWaKHKve8A+yhIW4xEPesRB
-         Nciw==
+        bh=SdQr3rrizrMRhKoEmZUiV2af/wkAGf076hXpLFsw31g=;
+        b=cJpN17+XMgDreKMySImUvNHZksbt4rB280CaUXDOttaJA280+H7xGnogrnAC3wkGYO
+         Wx8q5yJltHuAYXHIq12XESM+AWMq2o+xK/N3+WFGjy1q5hj+V86Ag0wXspihkYcHdULk
+         XNCiba2p7GCrfK2/a7khsCdUAQxFHo6qbWjcaJQ4oiBHSr+G4oHperJs0875V/l5wEIZ
+         WX5/ZTizYDiFpmFlOkN+ov+k5ET0n1Z6xqYhntGuW8jYREQ7C0lUcrYM80fZD/0npfR+
+         oCbDAq6RXYskXP0SEocdIWIaqrejtXpTwLhKFLmFpnr5fsbbip5DtlEQxli6PQ/gIUDp
+         eE3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692024787; x=1692629587;
+        d=1e100.net; s=20221208; t=1692024896; x=1692629696;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wWKCUp2yq16ZBo58YuOZhMaFJTEXME++1KBwQF44Y3o=;
-        b=k/ZQTJmEArEekCt0JoXaPIIeY0IDBPPVzNRoJ99/CJIWv+57MHkxzGHj9r44s4hI0/
-         2T0WLXQfLDqLEWD3xkUki55dORo3zPaVSn7SASX4yeazLP1AbQlDJtpglT5lLbBoASnG
-         YnI2z+OFuwQwQNyq+2C6qWmYc88vjt1sYbjUQb6E747Y+LRiha+Xz4DM8NpP44WHtLN5
-         r3Kod3AuVBHgu7w1QpoyrLkwTil/lkfljx3UFaouwyO1b8FCvYAFzrfuaap4keNbstoN
-         ShTzo2NaP+VtLj7K9H5OzHhqGWsOGu+g57EUxF1eUrJOVJcAlfm583ji64KNQRyHU7PN
-         3Bcg==
-X-Gm-Message-State: AOJu0YwKGK+0deasb3A/7SPNN3wzEFb884qe1OW2MO28h0i4hqw/sygB
-        bIkHfoKAwb2TbD15j8hfumA=
-X-Google-Smtp-Source: AGHT+IFtixjrdADMZKOEGkvAvBctiXAzgbQ0mso/IW2gdlLC49MP49+TS5aibY9BoUnf8wWiX5cTgg==
-X-Received: by 2002:a17:907:9483:b0:99b:af5a:fc2c with SMTP id dm3-20020a170907948300b0099baf5afc2cmr14913956ejc.26.1692024787125;
-        Mon, 14 Aug 2023 07:53:07 -0700 (PDT)
+        bh=SdQr3rrizrMRhKoEmZUiV2af/wkAGf076hXpLFsw31g=;
+        b=ap9lwajLz3WmhwUNa0e7llnYj8E3OIB7FW9bnPr21tgtTH2BtfWSCo67Y7XQOEsWTD
+         LgQytGQ8QM9/lTvzwxyd4j36tlrSLMWjFrTVX/9JkVjBzlU9kP3yc1PV6T9Tf/f3iYCQ
+         k5tL1lre8crVPEsGPnd1zRna8c/UdYX9XdInaKte+sJKjuJhbZnLgGcXwJzbRA+U5g/O
+         FXNTKvapcBAYknX6F6KznpQz2vn2TqolIx6MCTxG/lwz+awiD7l7ZaKhbYxqFOSVuFwA
+         aKNjAR1TU2BDGgjwrsDAhlieIslA+6tl/zjaIMkjogAZnuzWVCN8CSIgSyblO8SZ16/i
+         PFHA==
+X-Gm-Message-State: AOJu0Yx6yVnqlfiJ/B5YEMvlp04AZVc6VoyX9vwXeEPQs/yvmn6JWtvM
+        TzPe4L2owZAvUVDDIK5M8RI=
+X-Google-Smtp-Source: AGHT+IGD+bEMcb3aN2r3jf0W/51DuXGWSsBb0MvHmMbqHAkymleRZPycJXHf7avCMC7iSeqawJ64/A==
+X-Received: by 2002:a17:907:1de9:b0:99b:55e3:bbd with SMTP id og41-20020a1709071de900b0099b55e30bbdmr8394422ejc.34.1692024895791;
+        Mon, 14 Aug 2023 07:54:55 -0700 (PDT)
 Received: from skbuf ([188.26.184.136])
-        by smtp.gmail.com with ESMTPSA id j19-20020a1709064b5300b00982a92a849asm5768751ejv.91.2023.08.14.07.53.05
+        by smtp.gmail.com with ESMTPSA id p18-20020a17090635d200b0099d0a8ccb5fsm5767726ejb.152.2023.08.14.07.54.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 07:53:06 -0700 (PDT)
-Date:   Mon, 14 Aug 2023 17:53:03 +0300
+        Mon, 14 Aug 2023 07:54:55 -0700 (PDT)
+Date:   Mon, 14 Aug 2023 17:54:52 +0300
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
 Cc:     Andrew Lunn <andrew@lunn.ch>,
@@ -76,16 +76,16 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/4] dt-bindings: net: dsa: realtek: require compatible
- property under mdio node
-Message-ID: <20230814145303.bqiknvvi5urnpjgz@skbuf>
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: microchip,lan937x: add
+ missing ethernet on example
+Message-ID: <20230814145452.i73g7bfb6wkoqp5w@skbuf>
 References: <20230812091708.34665-1-arinc.unal@arinc9.com>
- <20230812091708.34665-4-arinc.unal@arinc9.com>
+ <20230812091708.34665-2-arinc.unal@arinc9.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230812091708.34665-4-arinc.unal@arinc9.com>
+In-Reply-To: <20230812091708.34665-2-arinc.unal@arinc9.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -96,31 +96,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 12, 2023 at 12:17:07PM +0300, Arınç ÜNAL wrote:
-> The compatible property must be defined under the mdio node. Enforce it.
+On Sat, Aug 12, 2023 at 12:17:05PM +0300, Arınç ÜNAL wrote:
+> The port@5 node on the example is missing the ethernet property. Add it.
+> Remove the MAC bindings on the example as they cannot be validated.
 > 
 > Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
 
 Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
->  Documentation/devicetree/bindings/net/dsa/realtek.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/net/dsa/microchip,lan937x.yaml           | 11 +----------
+>  1 file changed, 1 insertion(+), 10 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> index ea7db0890abc..f600e65fc990 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> @@ -103,6 +103,9 @@ allOf:
->              compatible:
->                const: realtek,smi-mdio
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> index 8d7e878b84dc..49af4b0d5916 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> @@ -68,16 +68,6 @@ examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
 >  
-> +          required:
-> +            - compatible
-> +
->    - if:
->        required:
->          - reg
+> -    macb0 {
+> -            #address-cells = <1>;
+> -            #size-cells = <0>;
+> -
+> -            fixed-link {
+> -                    speed = <1000>;
+> -                    full-duplex;
+> -            };
+> -    };
+> -
+>      spi {
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+> @@ -138,6 +128,7 @@ examples:
+>                                      phy-mode = "rgmii";
+>                                      tx-internal-delay-ps = <2000>;
+>                                      rx-internal-delay-ps = <2000>;
+> +                                    ethernet = <&macb1>;
+>  
+>                                      fixed-link {
+>                                              speed = <1000>;
 > -- 
 > 2.39.2
 > 
