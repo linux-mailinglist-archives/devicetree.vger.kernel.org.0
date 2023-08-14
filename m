@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA3B77AEEC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 01:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C34E77AF39
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 03:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbjHMX1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Aug 2023 19:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
+        id S229584AbjHNBoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Aug 2023 21:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjHMX0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 19:26:39 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CF910C0;
-        Sun, 13 Aug 2023 16:26:39 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-686f6231bdeso1067865b3a.1;
-        Sun, 13 Aug 2023 16:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691969198; x=1692573998;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BuNbu0gbni6xXLXBo/G7aeBfgO26R2ZGnsk2uYvwiOw=;
-        b=gTRv7Lyxt0jQpLY3S2vxMdR5Bswj9Dn7L/Tdq7DQqC1rIlsNAieoxQnYfj6Yd+abxT
-         qI8gr8X6k2YbqDDySB/atsnK5ifyd2LlHooXjkpMh3YkALKcTt9J0XS+ki8USpqJ1xva
-         lja3IFqlOFpTq0jddq73wMMQSt13kDJBN0GDsTeOd0+bmy3BCLZ/hvYCPFdhFvTBSenn
-         6WjjRxPdkQ0Ep/SnH8ntZXK1xckUOjTKLDFUbcEwctiZmofdsVmJDMEZ8/ub7NyGqd/d
-         MsuaA9HyJ5i4ZsUD/ZhImGnlabKt3sOfjpN9i+myHIjBh8r/JRGQH9UGsngoLweu5456
-         0Dfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691969198; x=1692573998;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BuNbu0gbni6xXLXBo/G7aeBfgO26R2ZGnsk2uYvwiOw=;
-        b=f6t+LyWDAhyzXp9yaUy0b3EwI3MbFdT8tURoNbF0Id9kFt9SWLqPfJ8HLPqV43Hj4P
-         53kIlIE9t23sVHMLhvLe1PzcRPhZu2Xi1M9daaXc9jCUIJi0Dm6zVabxYPdntm9DHAu0
-         7SalcBevFFuHCYe0BvTxI1UOa5YkpvSdgC8pg13PtvbgvyXrgOWo9K/Uu0zMws3fvOq/
-         WRqtYeFUwha6t8XQ0rK2JowjhPYPc90kaKFnmql9f8n6yze9Vmd7m2hym8dM4WZsUOMy
-         4mRv6H5vg1fxCe1NV8tsAhRA9AQFvM3ffnw9oSne608PIFVwXW+6HFha54mtGUrOYI7j
-         5PhA==
-X-Gm-Message-State: AOJu0YxILwfJ/Iese5N1DbFni9XPvfXRqXXcCCCel1oCrHi2PB7+bE84
-        AjrB8n8wBAGUWt6tDFy4UQv5NVrINIRrs77gQ0U=
-X-Google-Smtp-Source: AGHT+IGdBhtZ+hQTxv3eusdQZDNsm5z8qa01ROz2ftxFts8FbdAc+Zumj/zzXP0WxszQ61aZmXq9YCegUF7jtNBcjDI=
-X-Received: by 2002:a05:6a21:3289:b0:137:4fd0:e2e6 with SMTP id
- yt9-20020a056a21328900b001374fd0e2e6mr11547458pzb.6.1691969198407; Sun, 13
- Aug 2023 16:26:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230813164003.23665-1-aford173@gmail.com>
-In-Reply-To: <20230813164003.23665-1-aford173@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 13 Aug 2023 20:26:27 -0300
-Message-ID: <CAOMZO5D-EjhDwBKcnC7Npwtbg5ezM-Ce_Yockdkak_FRTa68zQ@mail.gmail.com>
-Subject: Re: [PATCH V2] arm64: dts: imx8mp-beacon: Configure 100MHz PCIe Ref Clk
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        with ESMTP id S231491AbjHNBob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Aug 2023 21:44:31 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C40E52;
+        Sun, 13 Aug 2023 18:44:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1691977470; x=1723513470;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=H1bYfTn7A/qFI7qE6WjuM6lA5WEd0AWnwsOlRd3Pq2A=;
+  b=E7hGrmM5Wr3DO9uzkhNxUBRx11k877dkIUXMTbB5qjddRtMGwroq1Uuu
+   uIykL2TuUroSSm+CdDmLDlV93bQxdCP7AyETz/YKfkh77AK8ywMwgZfYD
+   39NqhHtlwzvunST8VKZHqG2LG5xIN0CYZj939ELERypMJHLk0F41rI2g0
+   XEB3w/NrbLpt8SZtG9z2MtWl6dBPHOy8QHyXLnoEtotVhJllZb7uzyfn0
+   fhXowuway4rKGUSaAPqndDazYXSvb/WKzR6shyBXwPLld9YukXMtD3/P4
+   sG9WzjzdfJtdolMRslUIai3te0X2lzVfFpD5JHMhD3qdQ5+DI0F110My+
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10801"; a="356904804"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; 
+   d="scan'208";a="356904804"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2023 18:44:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10801"; a="907061650"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; 
+   d="scan'208";a="907061650"
+Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 13 Aug 2023 18:44:27 -0700
+Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qVMd8-0009It-2c;
+        Mon, 14 Aug 2023 01:44:26 +0000
+Date:   Mon, 14 Aug 2023 09:44:14 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        robh@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Lizhi Hou <lizhi.hou@amd.com>,
+        max.zhen@amd.com, sonal.santan@amd.com,
+        stefano.stabellini@xilinx.com
+Subject: Re: [PATCH V12 5/5] of: unittest: Add pci_dt_testdrv pci driver
+Message-ID: <202308140955.QY7JaDK3-lkp@intel.com>
+References: <1690564018-11142-6-git-send-email-lizhi.hou@amd.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1690564018-11142-6-git-send-email-lizhi.hou@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,15 +67,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 13, 2023 at 1:40=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
-e:
->
-> There is a I2C controlled 100MHz Reference clock used by the PCIe
-> controller. Configure this clock's DIF1 output to be used by
-> the PCIe.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> V2:  Remove the pcie0_refclk clock that the new one replaces.
+Hi Lizhi,
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on pci/next]
+[also build test WARNING on pci/for-linus robh/for-next linus/master v6.5-rc6 next-20230809]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Lizhi-Hou/of-dynamic-Add-interfaces-for-creating-device-node-dynamically/20230729-010934
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/1690564018-11142-6-git-send-email-lizhi.hou%40amd.com
+patch subject: [PATCH V12 5/5] of: unittest: Add pci_dt_testdrv pci driver
+config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20230814/202308140955.QY7JaDK3-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230814/202308140955.QY7JaDK3-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308140955.QY7JaDK3-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/of/unittest.c:3737:5: sparse: sparse: symbol 'of_unittest_pci_dev_num' was not declared. Should it be static?
+>> drivers/of/unittest.c:3738:5: sparse: sparse: symbol 'of_unittest_pci_child_num' was not declared. Should it be static?
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
