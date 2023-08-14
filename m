@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C42F77C05B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2544077C074
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 21:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231652AbjHNTHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 15:07:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36122 "EHLO
+        id S231524AbjHNTM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 15:12:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231918AbjHNTGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:06:30 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3F4D10F9
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:06:28 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52340d9187aso6163001a12.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:06:28 -0700 (PDT)
+        with ESMTP id S231965AbjHNTLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 15:11:55 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D046B1705
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:11:51 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99c93638322so970410666b.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 12:11:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692039987; x=1692644787;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692040310; x=1692645110;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=T5HtRk7v9N5XEliCZizIOYoda+POCp5Lvz3Wvapa2NQ=;
-        b=rDeKbTEZJKLZ9FP1roXmnxVr4jyE26Xz426JSxZdrzFWLD5ynNP3xL8sNjLcZU/yaL
-         56uzL+AXlE3EnhrMYYJZN356xVRsL+DBftaWVa5MdwnNPtTB/06e8PaKrxHHpwMVfRfM
-         Dsp69t/qPIE2on4qrEYQZfSRtWSPiRVAM5a887sF+w+hBCVqnycbtdnYngB+lHxLLy46
-         QaSiAGaZeqwj0iZ2S/TTfBYlt+kgL/KVZOr09/XGuys4tU09IOhFHylGoMYHVXxrB+IS
-         6IUxT0Z2anepZ/wN3DbVMWHvkX/h95uHAqig2E2Nmj97puU6DWSdv2Q7TercqwaTXKrk
-         e26w==
+        bh=Mo9zfMF4rzhISKZ3uWZNmfx0/F+q0VWq5mhKXrJtzwg=;
+        b=G5LuqB47KqASYkQCxngknTDuDLpMahbLF9i4GmcHbdeToC9cx/igeI7mCHVSSwX8UT
+         pWG+tKcn+L8FnXY2Xu5D0jKhRkjL8cqEq8D7iZlRONg6d6kNri+A391waYWwsa1h4Ydh
+         E7EU8RH/S3N/YibvbVEeoKa+aTHRodd7nL635F+bWm0a0hiaSiz0irCxfaUQP6Lj2V9W
+         Q+QUiRlxhJfWZEGZK0VVhqzelgNSa9RmXfIw67gPMNovAyx9xp/M5TF+UhCreJA8DAtu
+         PqQbFxI8jXMgXo/dqfSb9L8s64JdVTogaLBajvRM+kP/soAF7TOvGUpM65c5A/QwXr1I
+         +foA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692039987; x=1692644787;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692040310; x=1692645110;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T5HtRk7v9N5XEliCZizIOYoda+POCp5Lvz3Wvapa2NQ=;
-        b=ZmhCuZ6MhlcfdlXq8dbqtkfQS4IpkKU+5mSKxkOyhs1w9WYxnTM148Amt9czmyl+7Y
-         necKoh64/XLm3jMwzcJ49qvYTBFjrQj/CYBALi0uLOtQQaEvMvQUQvexaxb0HTJ/othk
-         +UcYpNg1gp3/s4hBZuJWwXYbMlMI6fvknld/Jau4SyJBrKfenJjdkxnWp6C30ug0pSXA
-         QILnfdSKV1l0py2yUd3u8XHBNJ9eOoRjAYgqjBA/UZaqoSRlH/HepzwAroM3LNsZirkk
-         oeMnUtjhypg527bQkdgBvKpO+CA1NL0vxqHaXn1ADIMJ48Rm1lDmBq2OEa/zLwZ2kUP0
-         UuMQ==
-X-Gm-Message-State: AOJu0YxqoX8CM25b5sYAGVP5bL9btKm0u5kprERxUkuFjSiCdNEdR5l0
-        NIv8Kw7oN2zMWuuD99A9Cxk1wg==
-X-Google-Smtp-Source: AGHT+IFHiepWq3vTDb+HRBkxRdAsLmYtndO/QQpUJgvVSY+3A1b+srlVoCwN0ixgeEioddUXasf1pA==
-X-Received: by 2002:a05:6402:792:b0:51d:fa7c:c330 with SMTP id d18-20020a056402079200b0051dfa7cc330mr8460833edy.26.1692039987311;
-        Mon, 14 Aug 2023 12:06:27 -0700 (PDT)
+        bh=Mo9zfMF4rzhISKZ3uWZNmfx0/F+q0VWq5mhKXrJtzwg=;
+        b=IyXLD009l41NpTn1cahfaMaZbSLtOmKVtQkIk9P7pcFoq/ZDN+SfXnsESq1i0+d0B9
+         xf66Fv7TymiseMwcZXgyz61/ZB1RKXORpwSh2WftQPEnaAn98Wec4Y3c3MCyttGOIB2e
+         beMIumVW8OqOJ6BbcpK4VqCnbDntC5URasEWCX7zZgzBSyTqozGqIc4ZjsA6eYxCyWs8
+         nt3pBO7NjXaPsYoiQOrcawoop6UGN056lga0b0RKicBqFkeFeoxQk1eMrBhc/bt+SQDX
+         5Po1SkdF9EKod3oZxedkKxnzg0QDpvuYEOnz0GkwDojlBVojmkjO66qag3cQdDP128uv
+         LTmA==
+X-Gm-Message-State: AOJu0YwvLt9jmNWSPEy+18pVJtMpO0N5A/dPt2YPIfRtsHp7O7MyJdCB
+        3HJ5684d3qiuG8D+Lj371tqlPDQrAx1mvWmtmy5Jag==
+X-Google-Smtp-Source: AGHT+IGLcWiHa+m0i2IU1V4krPCSZTNR6TfQG1pTLgEyD0EoKeloaegoQm8ZqHLBojqoawO2eKacvw==
+X-Received: by 2002:a17:907:7789:b0:99b:cdfd:fb44 with SMTP id ky9-20020a170907778900b0099bcdfdfb44mr12190607ejc.9.1692040310238;
+        Mon, 14 Aug 2023 12:11:50 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id t8-20020a056402020800b005236b47116asm5862939edv.70.2023.08.14.12.06.25
+        by smtp.gmail.com with ESMTPSA id s6-20020a170906454600b0099cd1c0cb21sm5892574ejq.129.2023.08.14.12.11.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 12:06:26 -0700 (PDT)
-Message-ID: <fae2d136-28e3-d3a1-c789-8552e8f59a15@linaro.org>
-Date:   Mon, 14 Aug 2023 21:06:24 +0200
+        Mon, 14 Aug 2023 12:11:49 -0700 (PDT)
+Message-ID: <2d672791-2194-8d66-9de2-a8bf0e4db088@linaro.org>
+Date:   Mon, 14 Aug 2023 21:11:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add compatibles for
- Loongson-1 syscon
+Subject: Re: [PATCH 3/5] dt-bindings: net: Add Loongson-1 DWMAC glue layer
+Content-Language: en-US
 To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
         linux-kernel@vger.kernel.org
@@ -72,10 +72,9 @@ Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Jose Abreu <joabreu@synopsys.com>,
         Serge Semin <Sergey.Semin@baikalelectronics.ru>
 References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
- <20230812151135.1028780-3-keguang.zhang@gmail.com>
-Content-Language: en-US
+ <20230812151135.1028780-4-keguang.zhang@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230812151135.1028780-3-keguang.zhang@gmail.com>
+In-Reply-To: <20230812151135.1028780-4-keguang.zhang@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,26 +88,153 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/08/2023 17:11, Keguang Zhang wrote:
-> Add Loongson LS1B and LS1C compatibles for system controller.
+> Add devicetree binding document for Loongson-1 DWMAC glue layer.
 > 
 > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 > ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/net/loongson,ls1x-dwmac.yaml     | 98 +++++++++++++++++++
+>  .../devicetree/bindings/net/snps,dwmac.yaml   |  2 +
+>  2 files changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 8103154bbb52..c77d7b155a4c 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -49,6 +49,8 @@ properties:
->                - hisilicon,peri-subctrl
->                - hpe,gxp-sysreg
->                - intel,lgm-syscon
-> +              - loongson,ls1b-syscon
-> +              - loongson,ls1c-syscon
+> diff --git a/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml b/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
+> new file mode 100644
+> index 000000000000..150799460599
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/loongson,ls1x-dwmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson-1 DWMAC glue layer
+> +
+> +maintainers:
+> +  - Keguang Zhang <keguang.zhang@gmail.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - loongson,ls1b-dwmac
+> +          - loongson,ls1c-dwmac
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - loongson,ls1b-dwmac
+> +          - loongson,ls1c-dwmac
+> +      - const: snps,dwmac-3.50a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: stmmaceth
 
-It seems each SoC has multiple syscons so using the same compatible is
-wrong. Different devices should have different compatibles.
+This should be list (items) with one const item.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    const: macirq
+
+Ditto
+
+> +
+> +  syscon:
+
+Let me quote:
+
+"Phandle to syscon device requires a vendor, descriptive name and a
+description"
+
+You only got description right.
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon containing some extra configurations
+> +      including PHY interface mode.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - phy-handle
+> +  - phy-mode
+
+Drop, it is not defined here and already required by snps,dwmac.
+
+> +  - syscon
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    gmac0: ethernet@1fe10000 {
+> +        compatible = "loongson,ls1b-dwmac", "snps,dwmac-3.50a";
+> +        reg = <0x1fe10000 0x10000>;
+> +
+> +        clocks = <&clkc LS1X_CLKID_AHB>;
+> +        clock-names = "stmmaceth";
+> +
+> +        interrupt-parent = <&intc1>;
+> +        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "macirq";
+> +
+> +        phy-handle = <&phy0>;
+> +        phy-mode = "mii";
+> +
+> +        snps,pbl = <1>;
+> +        syscon = <&syscon>;
+> +
+> +        mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            compatible = "snps,dwmac-mdio";
+> +
+> +            phy0: ethernet-phy@0 {
+> +                reg = <0x0>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index ddf9522a5dc2..e1a956cf171e 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -66,6 +66,8 @@ properties:
+>          - ingenic,x2000-mac
+>          - loongson,ls2k-dwmac
+>          - loongson,ls7a-dwmac
+> +        - loongson,ls1b-dwmac
+> +        - loongson,ls1c-dwmac
+
+You should not need it. Isn't snps,dwmac-3.50a already there? Anyway,
+not alphabetically ordered...
+
+>          - qcom,qcs404-ethqos
+>          - qcom,sa8775p-ethqos
+>          - qcom,sc8280xp-ethqos
 
 Best regards,
 Krzysztof
