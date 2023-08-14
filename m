@@ -2,105 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE5977C373
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 00:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 328BC77C37A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 00:31:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233253AbjHNW2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 18:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52340 "EHLO
+        id S232698AbjHNWbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 18:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233317AbjHNW2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 18:28:41 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7975B171A;
-        Mon, 14 Aug 2023 15:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692052119; x=1723588119;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9oOBn1v8SHtGrgH+6GcV/nLem9oDmQtlr+e36iqVfw4=;
-  b=T3nlBuZDDThmwVhU19+JsiumYSL6c8c+p1/5iv0FqgPhbmKyxt5Pl+ia
-   fD3Qj5ixhJ/3R3DwyhK5qXPUkb6/YXoy72gx9ujQ6lcPT+VkfCmIT1jKY
-   ox4tpp/Mjf7CwPcJ6rGdp99RJ6WAGUQGs9Nob+tTeT4SiULZDqWIHpAqC
-   NY8TVVzi2vKbdTV9LYQaf/kCPMUpXTQdoJx3t8CaykD9xX04GZdgG3yEm
-   ovvWiHK/7tXH7gTINzcoj+pbduSVMum2rfcyyI6kIXWjStBxG8FdeXSCQ
-   Gy2zPwjZQ2BJDbAdJ14tJQ8xTwDcV7lgQ+4U3kz15zqx09SgFYIyCGmLv
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="374919687"
-X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; 
-   d="scan'208";a="374919687"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2023 15:28:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="803602476"
-X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; 
-   d="scan'208";a="803602476"
-Received: from lkp-server02.sh.intel.com (HELO b5fb8d9e1ffc) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 14 Aug 2023 15:28:36 -0700
-Received: from kbuild by b5fb8d9e1ffc with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qVg39-0000Sp-2W;
-        Mon, 14 Aug 2023 22:28:35 +0000
-Date:   Tue, 15 Aug 2023 06:28:24 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, Lizhi Hou <lizhi.hou@amd.com>,
-        max.zhen@amd.com, sonal.santan@amd.com,
-        stefano.stabellini@xilinx.com
-Subject: Re: [PATCH V12 5/5] of: unittest: Add pci_dt_testdrv pci driver
-Message-ID: <202308150643.iteeGiQb-lkp@intel.com>
-References: <1690564018-11142-6-git-send-email-lizhi.hou@amd.com>
+        with ESMTP id S233342AbjHNWao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 18:30:44 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E15199B;
+        Mon, 14 Aug 2023 15:30:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=f6Od+nROclrydhFNKKC4y7J24uEmtyay1uyUpf7kRbQ=; b=OLSvh5zvCZLXX1bheJwx2AWxCN
+        JGz51FNSsU67yQO2YbWkDpjKczxA8Zq+LffmAAZAtCRTqYRTAA4X6rcGSNbyl18YMeDMthEwOAMXj
+        8xzDNRfRwuBQs2ibphvaLXSql0LtQ/JkO9qKaxZ2MA+UjQIRBU/dR4LQfE+aOSqwGK64TgES4XEGw
+        esUygLyJm6TfeCz1q3xAsVRkBj/qMER2PfGski5UPFIqNQfAlCO3UFIAkzSMjhzotCbu7mBrKfQHi
+        q1ulFJuMcYWyGn9EXnp781f2YeneYZz2bGHP8zEnwpfDuxs9554NOvuMu8PxpOF+B4R6gfQ1W29B2
+        W2XVcVMg==;
+Received: from [2601:1c2:980:9ec0::577]
+        by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1qVg4c-004ZSc-Kc; Mon, 14 Aug 2023 22:30:07 +0000
+Message-ID: <046757e4-7b61-6035-5672-0c654df5339a@infradead.org>
+Date:   Mon, 14 Aug 2023 15:30:01 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1690564018-11142-6-git-send-email-lizhi.hou@amd.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/3] Documentation/ABI: Fix typos
+To:     Bjorn Helgaas <helgaas@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>
+References: <20230814212822.193684-1-helgaas@kernel.org>
+ <20230814212822.193684-2-helgaas@kernel.org>
+Content-Language: en-US
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20230814212822.193684-2-helgaas@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lizhi,
 
-kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus robh/for-next linus/master v6.5-rc6 next-20230809]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 8/14/23 14:28, Bjorn Helgaas wrote:
+> From: Bjorn Helgaas<bhelgaas@google.com>
+> 
+> Fix typos in Documentation/ABI.  The changes are in descriptions or
+> comments where they shouldn't affect use of the ABIs.
+> 
+> Signed-off-by: Bjorn Helgaas<bhelgaas@google.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lizhi-Hou/of-dynamic-Add-interfaces-for-creating-device-node-dynamically/20230729-010934
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/1690564018-11142-6-git-send-email-lizhi.hou%40amd.com
-patch subject: [PATCH V12 5/5] of: unittest: Add pci_dt_testdrv pci driver
-config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20230815/202308150643.iteeGiQb-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20230815/202308150643.iteeGiQb-lkp@intel.com/reproduce)
+Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308150643.iteeGiQb-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/of/unittest.c:3737:5: sparse: sparse: symbol 'of_unittest_pci_dev_num' was not declared. Should it be static?
->> drivers/of/unittest.c:3738:5: sparse: sparse: symbol 'of_unittest_pci_child_num' was not declared. Should it be static?
-
-vim +/of_unittest_pci_dev_num +3737 drivers/of/unittest.c
-
-  3736	
-> 3737	int of_unittest_pci_dev_num;
-> 3738	int of_unittest_pci_child_num;
-  3739	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks.
