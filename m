@@ -2,157 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E7577B72E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 12:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F72B77B7C4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 13:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232501AbjHNK6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 06:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39624 "EHLO
+        id S229507AbjHNLtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 07:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234802AbjHNK6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 06:58:46 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13C2109;
-        Mon, 14 Aug 2023 03:58:45 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37EAng7r023888;
-        Mon, 14 Aug 2023 10:58:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TpxlUtKjEJSvZzzD9sKu9m96D0X87KJp+Yzh5rie9SE=;
- b=BknKqspmwygizK1OxMlK9Rou6YME3kkBzyveZVjQyMi1pz4XymkICSswJU7Dx7sI02XA
- XwdkMeNdLfUOZdwxCTmfiP4GwcvKvxliz/tdQ33cLkq6fIfQ2bCjod6gHVu2ptspv1ST
- pjR0dsQxtInyLlkAKOlG1pPKrK5ErNR8CHeZn/T4NP6Aq9l18T90d3/sBBaVYrLBjcgD
- yEihaDaY5egK4IjzQAp7Fd1nn4uN00FNeRf1LFhWzttQFrkjA4atBTs8HDfIrUYWiYX8
- eIKyXIdrsZVcTPgUtEpYV5HW+H4+8bMny2AvWEceFYVagRTlw+R3UhpAfRAZvI9NYs8s SA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3se3j93nj5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Aug 2023 10:58:35 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37EAwYNS023256
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Aug 2023 10:58:34 GMT
-Received: from [10.253.13.227] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 14 Aug
- 2023 03:58:30 -0700
-Message-ID: <6ebdcbdc-409c-0c08-1e5d-f9aa0b92c3b2@quicinc.com>
-Date:   Mon, 14 Aug 2023 18:58:26 +0800
+        with ESMTP id S229510AbjHNLtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 07:49:19 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BADF1AA;
+        Mon, 14 Aug 2023 04:49:18 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-5657add1073so1714461a12.0;
+        Mon, 14 Aug 2023 04:49:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692013758; x=1692618558;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HTPbXj2Uxmh/ZQx99D0srNo3oDkeQJHs+MeKAMMuYew=;
+        b=XmULyqyZJX48s0XpgxEHZX32tPmDo+LICgRH7lBo7TOk/Zf6l7D0ldoeVwuTmmXKQ9
+         oNGcRyJamj8OZ3b9pVV8mlAwpRQWIYKiKKGQLBRZP3BzMOps89lKN04WPcAcAGdRs6li
+         1rWGw59je9t7H4jl/Exbwyvet5ESH0/RcYH0YJSJs1qK6k7XHitrCbq2TC/e8TMfBYVq
+         je5Jiq8yUCFCaubVxgUyPxMQlxr15VmZHmUUOM3X1s+t2mv1RgmG8Ufmyi7KU7S1PGyC
+         kGdzF4/MQsaakAJbei0Eqt9fZz+i4DuJoTSluZhKJxBmQDLLp5RWl3eQl62wa3VfpI4w
+         pUJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692013758; x=1692618558;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HTPbXj2Uxmh/ZQx99D0srNo3oDkeQJHs+MeKAMMuYew=;
+        b=QI5uemoQj+KLh+CYFAbGxf2ELEwpuT48/LRxdUFozR+vlC2i+ndmhlMxQH7u8LNLcS
+         EwzJKx04RE2b2gEFvHGYdu/KyF1lbDvjoFMOj/3iRDy0rE0Fy/JuyfrY9zqNxbxyY5F6
+         f6PyJN0srkLxRr7X1leY5D8p2VJ7QAnmvqcaCHvO90vdhqCtTB2jYJ9peOrVjY0iUS/B
+         hhpjmBK+yqwzBXGKHdmEe6UymWJdDCM+fwEvViURKlGE03pvIZUqyYqek1ShEMiEcGjo
+         ub5Eh18Q9cYonCmvgtUWoyfyotarPuTKT+qNpXeFHoucJDNYw/4H7ZtULWOklH0SwnFg
+         QmuA==
+X-Gm-Message-State: AOJu0YzAq8O/L87kLkOu3J6HxQcOwjhZBcAD7YAz92ws0sEj7ELOoXXC
+        v+igmcV+msN5Yqlnh3QfqnOtQFv9QF9hRTTcR4Q=
+X-Google-Smtp-Source: AGHT+IGzs05rP2gaON/RJotGpSnz4dC5IpedGF2UWU9SvBHkLXR4J7HKk7ufGFIZ9/eJn9zDN0/0pgvThR7AKyygWOM=
+X-Received: by 2002:a17:90a:a0f:b0:267:fe88:f2f3 with SMTP id
+ o15-20020a17090a0a0f00b00267fe88f2f3mr16343354pjo.15.1692013757821; Mon, 14
+ Aug 2023 04:49:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 3/3] clk: qcom: add clock controller driver for
- qca8386/qca8084
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
-        <agross@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230810115419.25539-1-quic_luoj@quicinc.com>
- <20230810115419.25539-4-quic_luoj@quicinc.com>
- <9dec09fa-a5a3-416c-9b4d-4b4c4e10320b@linaro.org>
- <9a55016f-0049-f185-f2be-d138fe33384b@quicinc.com>
- <631d5a82-7d24-49cd-9868-74c7b3c08bcd@linaro.org>
-Content-Language: en-US
-From:   Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <631d5a82-7d24-49cd-9868-74c7b3c08bcd@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: k6VyMzyfW_Ejz_QeZLomfM7TLdkoEecw
-X-Proofpoint-GUID: k6VyMzyfW_Ejz_QeZLomfM7TLdkoEecw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-14_06,2023-08-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- priorityscore=1501 mlxscore=0 adultscore=0 mlxlogscore=999 suspectscore=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 clxscore=1015 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2308140101
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230813162906.22640-1-aford173@gmail.com> <c08784a0a1412d5843cf97b992efb17e1dc602b7.camel@pengutronix.de>
+In-Reply-To: <c08784a0a1412d5843cf97b992efb17e1dc602b7.camel@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 14 Aug 2023 06:49:06 -0500
+Message-ID: <CAHCN7xKysFVRq0gkp8+VG_NNs1cijacbeDs4D2JDcZ-RucGUBw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Fix SDMA2/3 clocks
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 14, 2023 at 3:22=E2=80=AFAM Lucas Stach <l.stach@pengutronix.de=
+> wrote:
+>
+> Am Sonntag, dem 13.08.2023 um 11:29 -0500 schrieb Adam Ford:
+> > A previous patch to remove the Audio clocks from the main clock node
+> > was intended to force people to setup the audio PLL clocks per board
+> > instead of having a common set of rates since not all boards may use
+> > the various audio PLL clocks for audio devices.
+> >
+> > Unfortunately, with this parenting removed, the SDMA2 and SDMA3
+> > clocks were slowed to 24MHz because the SDMA2/3 clocks are controlled
+> > via the audio_blk_ctrl which is clocked from IMX8MP_CLK_AUDIO_ROOT,
+> > and that clock is enabled by pgc_audio.
+> >
+> > Per the TRM, "The SDMA2/3 target frequency is 400MHz IPG and 400MHz
+> > AHB, always 1:1 mode, to make sure there is enough throughput for all
+> > the audio use cases."
+> >
+> > Instead of cluttering the clock node, place the clock rate and parent
+> > information into the pgc_audio node.
+> >
+> > With the parenting and clock rates restored for  IMX8MP_CLK_AUDIO_AHB,
+> > and IMX8MP_CLK_AUDIO_AXI_SRC, it appears the SDMA2 and SDMA3 run at
+> > 400MHz again.
+> >
+> Note that 800MHz for the AXI clock is overdrive mode for the chip. For
+> other i.MX8M* chips we tried to have the nominal drive rates as
+> assigned rates in DT. With the i.MX8MP it's currently a wild mix and
+> most of the AXI clocks are set to OD rates, so I won't reject this
+> patch based on this.
+>
+> Most boards run the DRAM at DDR4-4000, which already requires OD
+> voltages, so there isn't much point in trying to stick to ND rates on
+> those boards. We should probably do some consolidation here and come up
+> with a proper policy for the i.MX8MP soon.
 
+I didn't realize 800MHz was OD.  I just set it to the rate that it was
+before the previous patch.  I think the defaults should be ND, and let
+boards who need OD set them.  Unless someone objects, I'll submit a
+V2.
 
-On 8/12/2023 6:56 PM, Konrad Dybcio wrote:
-> On 11.08.2023 13:49, Jie Luo wrote:
->>
->>
->> On 8/10/2023 8:59 PM, Konrad Dybcio wrote:
->>> On 10.08.2023 13:54, Luo Jie wrote:
->>>> Add clock & reset controller driver for qca8386/qca8084.
->>>>
->>>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->>>> ---
->>>
->>>> +struct qcom_cc {
->>>> +    struct qcom_reset_controller reset;
->>>> +    struct clk_regmap **rclks;
->>>> +    size_t num_rclks;
->>>> +};
->>> This all, including the probe func, is required because of the MDIO dance,
->>> I assume?
->>>
->>> Commonizing that would make more sense should more clocks like this appear
->>> in the future.
->>>
->> Hi Konrad,
->> Thanks for the review.
->> the structure qcom_cc is not because of MDIO dance, this is the common structure used by other qcom clock drivers such as gcc-ipq9574 in the probe function.
->>
->> seems that we can't make any more commonization on this, please let me know if there is any idea on this.
-> My main point is, why can't you use qcom_cc_really_probe?
-> 
-
-Hi Konrad,
-qcom_cc_really_probe is taking the platform_device as the input 
-parameter, but the nss_cc_qca8k_probe takes the mdio_device as the probe 
-parameter.
-
->>
->>> [...]
->>>
->>>> +static struct clk_branch nss_cc_switch_core_clk = {
->>>> +    .halt_reg = 0x8,
->>>> +    .clkr = {
->>>> +        .enable_reg = 0x8,
->>>> +        .enable_mask = BIT(0),
->>>> +        .hw.init = &(const struct clk_init_data) {
->>>> +            .name = "nss_cc_switch_core_clk",
->>>> +            .parent_hws = (const struct clk_hw *[]) {
->>>> +                &nss_cc_switch_core_clk_src.clkr.hw,
->>>> +            },
->>>> +            .num_parents = 1,
->>>> +            /* Can be disabled in PHY mode for power saving */
->>> Well it clearly cannot be disabled if it has the CLK_IS_CRITICAL flag :D
->>>
->>> What's the "PHY mode" you're talking about?
->> Yes, the clock with flag CLK_IS_CRITICAL needs to be enabled, the hardware register needs to be configured to enable it, it is disabled by default.
->>
->> this clock branch is necessary for the switch mode that has switch features such routing and fdb forwarding, i will remove the CLK_IS_CRITICAL from the clock that is not needed for the PHY mode, we can enable it later when configuring it as switch mode.
->>
->> As for PHY mode, the device works as only PHY device, that includes 4 PHY ports, no switch functions.
-> It's still not obvious at all what "phy mode" or "switch mode" are.
-> Are they usecases for a device based on this SoC?
-> 
-> Konrad
-
-They are different chips, qca8084 works in PHY mode, however qca8386 
-works in switch mode, that is the different hardware device, but the 
-clock controller driver can be used by both.
+adam
+>
+> > Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks=
+ from CCM node")
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+>
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
+t/dts/freescale/imx8mp.dtsi
+> > index 6f2f50e1639c..408b0c4ec4f8 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -790,6 +790,12 @@ pgc_audio: power-domain@5 {
+> >                                               reg =3D <IMX8MP_POWER_DOM=
+AIN_AUDIOMIX>;
+> >                                               clocks =3D <&clk IMX8MP_C=
+LK_AUDIO_ROOT>,
+> >                                                        <&clk IMX8MP_CLK=
+_AUDIO_AXI>;
+> > +                                             assigned-clocks =3D <&clk=
+ IMX8MP_CLK_AUDIO_AHB>,
+> > +                                                               <&clk I=
+MX8MP_CLK_AUDIO_AXI_SRC>;
+> > +                                             assigned-clock-parents =
+=3D  <&clk IMX8MP_SYS_PLL1_800M>,
+> > +                                                                      =
+ <&clk IMX8MP_SYS_PLL1_800M>;
+> > +                                             assigned-clock-rates =3D =
+<400000000>,
+> > +                                                                    <8=
+00000000>;
+> >                                       };
+> >
+> >                                       pgc_gpu2d: power-domain@6 {
+>
