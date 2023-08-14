@@ -2,252 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3311277B9A1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 15:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D67477BA05
+	for <lists+devicetree@lfdr.de>; Mon, 14 Aug 2023 15:29:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbjHNNUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Aug 2023 09:20:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48046 "EHLO
+        id S231208AbjHNN3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Aug 2023 09:29:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230340AbjHNNTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 09:19:44 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACB312D;
-        Mon, 14 Aug 2023 06:19:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1692019178; x=1723555178;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4yeKTYqAjpez7eQcNgoLipzdYDL2hK98LTipXnuNLpI=;
-  b=taMwmPp8ioAAkS0/TE4bIGuANfqnxbuRziIDO9tZpvheKD2+hO7JDSWS
-   u+pdtyUfg4avUo2eSS5BfHrhdrQJ/xdE1El/qbTZlC4k3XNolCvBLzsNG
-   Tn0gA2S17NiUdtXQjQhoxfxeCcuNKTIMsL8iU76R1nGACsP8GFs+olm+p
-   JwIs9WgjgU7pFXWlJJQuoguYqWscDCjdJNSdZSWQ3aiweOKQp24dFhkCB
-   L+TjMhPnrXE8iDXP2LLzaGoftYHTtHQVExZBA/BwP2QcGJnOVIM4WvAQ9
-   2zCzQS8nvpJOlK+1TkXQW6P1OZRw6Q4ITgeVmm8PG8q7xp0uXlvnuJ6js
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; 
-   d="asc'?scan'208";a="241504570"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Aug 2023 06:19:37 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 14 Aug 2023 06:19:37 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 14 Aug 2023 06:19:33 -0700
-Date:   Mon, 14 Aug 2023 14:18:55 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Minda Chen <minda.chen@starfivetech.com>
-CC:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231229AbjHNN2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Aug 2023 09:28:51 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6DED1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 06:28:50 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id a640c23a62f3a-99c4923195dso589658966b.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 06:28:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1692019728; x=1692624528;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UwTK4kQuV5VxtjBSsgaGk0balJ0EXu0ogmgIW94gvrs=;
+        b=Gr+qyuiLUYHVDstJKxuX9OmR+46d+I9eLx7/jZRTje+YIqMXDAXUywQUzxqi+5oxFi
+         we3gIUjU9v/By0hcv2xh13nzuQ1h3z9KRCo0yxfMM6SkQlHCkUVAuzxKlDW5a0Rw5ftH
+         whLYUfuT46a28iUkKMhbbVZY/iZG7cWrAQveE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692019728; x=1692624528;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UwTK4kQuV5VxtjBSsgaGk0balJ0EXu0ogmgIW94gvrs=;
+        b=Z8a4WHOFcPTldl8oiCuXbJO0V7GNaImOBNSPFCPx6phcpMx13iTgG67G1csfub21iQ
+         KFSG3kZgVq1ulQ/s3Bj6ZPyl1jggv+btUazSHFi1tuGy+emMVgpVO3ixYebb/9bjjktS
+         UTKZRu+Tk48zxaRj6TXHEIH1tlAHyCbKwc51ot6POHZZRMD6ffah01CUjGeTuITbntaX
+         iLJVx0b+JnahhcjHCrt3kdQNBAavdfPFWDJxV2sqSnNZeWuF1D/t3+pQlFaHcqApSiIF
+         vE1rptENFRpNFCs9J3q15ORiAoDTxUk3bfUYxXBqVaERXokP27bj0/9qGJDDE6vATyS9
+         egRA==
+X-Gm-Message-State: AOJu0YwqZGM/7ycxoSqVak7TNofT9qjjYEJNbJCsw4Z5xMZ5odd/atBa
+        PTj0AxR3YdbJTQp/j5FpeeElpw==
+X-Google-Smtp-Source: AGHT+IGls+RQsK667fY/9NGJP8lytIadwNC1YoCHU8DSXGFvYdF3uY8ozRFXsf8peTtmChtHNxVDnA==
+X-Received: by 2002:a17:906:30d7:b0:99c:4ea0:ed18 with SMTP id b23-20020a17090630d700b0099c4ea0ed18mr7677926ejb.8.1692019728414;
+        Mon, 14 Aug 2023 06:28:48 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-180-23-204.pool80180.interbusiness.it. [80.180.23.204])
+        by smtp.gmail.com with ESMTPSA id e3-20020a170906248300b0099d02ca4327sm5662066ejb.54.2023.08.14.06.28.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Aug 2023 06:28:47 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Philippe Cornu <philippe.cornu@foss.st.com>,
+        michael@amarulasolutions.com,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v3 09/11] dt-bindings: PCI: Add StarFive JH7110 PCIe
- controller
-Message-ID: <20230814-ladies-duckbill-953f13b03e71@wendy>
-References: <20230814082016.104181-1-minda.chen@starfivetech.com>
- <20230814082016.104181-10-minda.chen@starfivetech.com>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v8 0/4] Add display support on the stm32f746-disco board
+Date:   Mon, 14 Aug 2023 15:28:40 +0200
+Message-Id: <20230814132844.113312-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Sqa5jIzCxeaGhRmV"
-Content-Disposition: inline
-In-Reply-To: <20230814082016.104181-10-minda.chen@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sqa5jIzCxeaGhRmV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The series adds support for the display on the stm32f746-disco board.
 
-On Mon, Aug 14, 2023 at 04:20:14PM +0800, Minda Chen wrote:
-> Add StarFive JH7110 SoC PCIe controller dt-bindings.
-> JH7110 using PLDA XpressRICH PCIe host controller IP.
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+Changes in v8:
+- Add the patch [3/4] "ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on stm32f746-disco" to
+  th series.
+- Add the 'power-supply' property to panel-rgb node.
+- Move backlight and panel-rgb nodes after the vcc-3v3 node.
 
-This looks good to me now, thanks.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Changes in v7:
+- Add 'Reviewed-by' tags I forgot in v6.
+  https://lore.kernel.org/linux-arm-kernel/20230629083726.84910-1-dario.binacchi@amarulasolutions.com/T/
 
-Thanks,
-Conor.
+Changes in v6:
+- Remove dma nodes from stm32f746-disco.dts, they are not used by LTDC,
+  so there is no need to enable them.
 
-> ---
->  .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110=
--pcie.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.y=
-aml b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
-> new file mode 100644
-> index 000000000000..67151aaa3948
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/starfive,jh7110-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 PCIe host controller
-> +
-> +maintainers:
-> +  - Kevin Xie <kevin.xie@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: plda,xpressrich3-axi-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-pcie
-> +
-> +  clocks:
-> +    items:
-> +      - description: NOC bus clock
-> +      - description: Transport layer clock
-> +      - description: AXI MST0 clock
-> +      - description: APB clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: noc
-> +      - const: tl
-> +      - const: axi_mst0
-> +      - const: apb
-> +
-> +  resets:
-> +    items:
-> +      - description: AXI MST0 reset
-> +      - description: AXI SLAVE0 reset
-> +      - description: AXI SLAVE reset
-> +      - description: PCIE BRIDGE reset
-> +      - description: PCIE CORE reset
-> +      - description: PCIE APB reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: mst0
-> +      - const: slv0
-> +      - const: slv
-> +      - const: brg
-> +      - const: core
-> +      - const: apb
-> +
-> +  starfive,stg-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      The phandle to System Register Controller syscon node.
-> +
-> +  perst-gpios:
-> +    description: GPIO controlled connection to PERST# signal
-> +    maxItems: 1
-> +
-> +  phys:
-> +    description:
-> +      Specified PHY is attached to PCIe controller.
-> +    maxItems: 1
-> +
-> +required:
-> +  - clocks
-> +  - resets
-> +  - starfive,stg-syscon
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    soc {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        pcie@940000000 {
-> +            compatible =3D "starfive,jh7110-pcie";
-> +            reg =3D <0x9 0x40000000 0x0 0x10000000>,
-> +                  <0x0 0x2b000000 0x0 0x1000000>;
-> +            reg-names =3D "cfg", "apb";
-> +            #address-cells =3D <3>;
-> +            #size-cells =3D <2>;
-> +            #interrupt-cells =3D <1>;
-> +            device_type =3D "pci";
-> +            ranges =3D <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0=
-x08000000>,
-> +                     <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x4=
-0000000>;
-> +            starfive,stg-syscon =3D <&stg_syscon>;
-> +            bus-range =3D <0x0 0xff>;
-> +            interrupt-parent =3D <&plic>;
-> +            interrupts =3D <56>;
-> +            interrupt-map-mask =3D <0x0 0x0 0x0 0x7>;
-> +            interrupt-map =3D <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
-> +                            <0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
-> +                            <0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
-> +                            <0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
-> +            msi-controller;
-> +            clocks =3D <&syscrg 86>,
-> +                     <&stgcrg 10>,
-> +                     <&stgcrg 8>,
-> +                     <&stgcrg 9>;
-> +            clock-names =3D "noc", "tl", "axi_mst0", "apb";
-> +            resets =3D <&stgcrg 11>,
-> +                     <&stgcrg 12>,
-> +                     <&stgcrg 13>,
-> +                     <&stgcrg 14>,
-> +                     <&stgcrg 15>,
-> +                     <&stgcrg 16>;
-> +            perst-gpios =3D <&gpios 26 GPIO_ACTIVE_LOW>;
-> +            phys =3D <&pciephy0>;
-> +
-> +            pcie_intc0: interrupt-controller {
-> +                #address-cells =3D <0>;
-> +                #interrupt-cells =3D <1>;
-> +                interrupt-controller;
-> +            };
-> +        };
-> +    };
-> --=20
-> 2.17.1
->=20
+Changes in v5:
+I am confident that framebuffer sizing is a real requirement for STM32 boards,
+but I need some time to understand if and how to introduce this functionality.
+Therefore, I drop the following patches to allow the series to be fully merged:
+ - [4/6] dt-bindings: display: stm32-ltdc: add optional st,fb-bpp property
+ - [5/6] ARM: dts: stm32: set framebuffer bit depth on stm32f746-disco
+ - [6/6] drm/stm: set framebuffer bit depth through DTS property
 
---Sqa5jIzCxeaGhRmV
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v4:
+- Use DTS property instead of module parameter to set the framebuffer bit depth.
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+- rename ltdc-pins-a-0 to ltdc-0.
+- drop [4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
+  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next):
+  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
+- drop [5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
+  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZNopvgAKCRB4tDGHoIJi
-0iSHAQDMRNa7PWUFYKq79mqAOecblr9dEMDz58gNXKX6SU2A5AEA7dPaFdMe0sZv
-m5zURgaysbaf4Ap+PX4LTjFyAegQoQI=
-=/IdZ
------END PGP SIGNATURE-----
+Dario Binacchi (4):
+  ARM: dts: stm32: add ltdc support on stm32f746 MCU
+  ARM: dts: stm32: add pin map for LTDC on stm32f7
+  ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on stm32f746-disco
+  ARM: dts: stm32: support display on stm32f746-disco board
 
---Sqa5jIzCxeaGhRmV--
+ arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi | 35 ++++++++++++++++
+ arch/arm/boot/dts/st/stm32f746-disco.dts  | 50 +++++++++++++++++++++--
+ arch/arm/boot/dts/st/stm32f746.dtsi       | 10 +++++
+ 3 files changed, 92 insertions(+), 3 deletions(-)
+
+-- 
+2.34.1
+
