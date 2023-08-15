@@ -2,100 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B58377CE97
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 16:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6047377CF6E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 17:45:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237628AbjHOO6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 10:58:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
+        id S234821AbjHOPpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 11:45:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237875AbjHOO6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 10:58:20 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A72698;
-        Tue, 15 Aug 2023 07:58:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692111500; x=1723647500;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hE2Z7EIx9lPTY/TXevj9JFdznE6dRVYWEq750m4r8U8=;
-  b=ZZbgsT3moijXVESbXXWWYw6xUWwFsNEesoV0xRskDzzU6nYSy/tAun7g
-   h0cw7uIR5KUfN8K+/Vpe8ttGMokfTbbnGwhKmgjE50nC3abnqiHgvwrhm
-   weXmiIBkZg/VZ5yfhyVDeuxLZbtv6SoP243ctTyrNQ6pBbLjFu27RUMvs
-   8zjhZXStNbEUFXMfMhNqhhkv9a50shOFEt8IhKX5pTFz5cqYIAzRQNLh1
-   yVlUD/hvzonAtMlErVWKToMid2lbVC7ZxvtfB1X9WpMDOj7iAx8JiNmZ4
-   nDSO/q9N5JuppPYIPKyUWBvy4mSSkvSmfLhmygSiT7gO03qQgp3Z54kFR
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="403276101"
-X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; 
-   d="scan'208";a="403276101"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Aug 2023 07:58:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="803837751"
-X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; 
-   d="scan'208";a="803837751"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 15 Aug 2023 07:58:15 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qVvUr-006FPp-1I;
-        Tue, 15 Aug 2023 17:58:13 +0300
-Date:   Tue, 15 Aug 2023 17:58:13 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238148AbjHOPou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 11:44:50 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E267E10FF
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 08:44:48 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-686f0d66652so5267660b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 08:44:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692114288; x=1692719088;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X+b40dDlDBakx8+hTHp2ebRkg2RA++lkqQVSTeac6zA=;
+        b=BtS41tzhfK7XY6exlpjzQzgARG+Ehge1+0PRdLnYhdOW6v1Bo7SJIi4QfUUoIKcI9x
+         pbi2VdZOgXud1DEl9BDa7AbCo5HKvn/XKF10E4aOV81o3c7y81bD4TpDN0gxIjiW+o34
+         PdoWIJpg8d/x3+RQWmBeMDtnW3My6yZM1rnx0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692114288; x=1692719088;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X+b40dDlDBakx8+hTHp2ebRkg2RA++lkqQVSTeac6zA=;
+        b=O85YGtc5nl2mjz6DS8AnNj6At0x/vF2G9jwJXeLRBVVqp2bj4ExFcZ2pf/3v3ExJ95
+         ZahWOXAYNQfY/xmNkeJQs+0UObcXpsyPcvUUj3z0sWNUmTbh4WAWrW8n1eEG3B2bVkik
+         cvix91nElSbPcjpP70Ljn75LtBNitNHk0Ljktq4X1EugvNIbzaPtwgk8qv7vs2CrPym4
+         z5N7Cjqa76QKq47GvKQylnlZqniOOa0sbfWiKkQ5gWW9M4+cva97n15lVMT8YH06C/6A
+         57eynQ/6arRuDm1ZtmKS6QKUmBz3jy/0Znj20y8H9Vpd+420cZ4mChkMGZr09AKmXWPv
+         U6AA==
+X-Gm-Message-State: AOJu0YxVpMjeb/537XtmsmOXipgPBbZkWS0AHbRbcvxLcyk4jMQ9ywbK
+        LmIbLWIHkbltm0axmxl2vszXHK6WkoHjNu6B7RU=
+X-Google-Smtp-Source: AGHT+IGzSeQ7P7d6hIuKp8jX5Kc6bcArFd2OV1P4lsTdQ+wIT/RytQKLIYbcjxTcDvbMf4xA8ee6oA==
+X-Received: by 2002:a05:6a20:3d28:b0:134:1011:8582 with SMTP id y40-20020a056a203d2800b0013410118582mr17945878pzi.47.1692114288344;
+        Tue, 15 Aug 2023 08:44:48 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:40cf:3807:f8c8:2d76])
+        by smtp.gmail.com with ESMTPSA id n13-20020aa78a4d000000b0065e154bac6dsm9431247pfa.133.2023.08.15.08.44.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Aug 2023 08:44:47 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/6] iio: adc: mcp3911: fix indentation
-Message-ID: <ZNuShXfOoaLk8Ua1@smile.fi.intel.com>
-References: <20230814121010.184842-1-marcus.folkesson@gmail.com>
- <20230814121010.184842-4-marcus.folkesson@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger )" <richard@nod.at>,
+        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/4] Add a property to override the quad mode
+Date:   Tue, 15 Aug 2023 23:31:51 +0800
+Message-ID: <20230815154412.713846-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.41.0.694.ge786442a9b-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230814121010.184842-4-marcus.folkesson@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 14, 2023 at 02:10:08PM +0200, Marcus Folkesson wrote:
-> The file does not make use of indentation properly.
+On gigadevice gd25lq64c, the quad mode is enabled after BFPT is parsed.
+According to datasheet[1], Quad enable (QE) bit needs to be set to 0 to
+use write protection (WP) pin. It also recommends setting default value of
+QE to 0 to avoid a potential short issue.
 
-> Fix that.
+Add a disable-quad-mode property in devicetree that platform can use it to
+override the quad mode status parsed from BFPT to use write protection.
 
-I'm not sure this is anyhow a fix. Yet you may refer to the checkpatch
-if it complains.
+[1]
+https://www.elm-tech.com/ja/products/spi-flash-memory/gd25lq64/gd25lq64.pdf
+page 13
 
-...
+Hsin-Yi Wang (4):
+  dt-bindings: mtd: jedec,spi-nor: Add disable-quad-mode property
+  mtd: spi-nor: sfdp: read disable-quad-mode property
+  arm64: dts: mediatek: mt8183: disable quad mode for spi nor
+  arm64: dts: qcom: sc7180: disable quad mode for spi nor
 
-This kind of change is preferred to be the last in the series or closer
-to the end where no more code changed.
-
+ Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 7 +++++++
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi           | 1 +
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi             | 1 +
+ drivers/mtd/spi-nor/core.c                               | 5 +++++
+ drivers/mtd/spi-nor/core.h                               | 1 +
+ drivers/mtd/spi-nor/debugfs.c                            | 1 +
+ 6 files changed, 16 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.41.0.694.ge786442a9b-goog
 
