@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82A4877C9F5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 11:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA20077C9F3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 11:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbjHOJIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 05:08:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43654 "EHLO
+        id S234089AbjHOJIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 05:08:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235870AbjHOJIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 05:08:06 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603CB212B
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 02:00:03 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-586a3159588so73262877b3.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 02:00:03 -0700 (PDT)
+        with ESMTP id S233339AbjHOJHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 05:07:35 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D39410C
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 02:07:34 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-d67869054bfso3382403276.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 02:07:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692090002; x=1692694802;
+        d=linaro.org; s=google; t=1692090453; x=1692695253;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FEXvWpz1Ti3WddZiehf4bMtrsV0/Lyv9JePsyhGV0js=;
-        b=kPBYQmCGwBL78lqjbqrQzlQx8uIpN57DWxkq4sdWf7AGwHh0C6RWjwLCiSE+zNmVX9
-         nCvj25dxqlgOo8YGkVmIogYSjXlUY4KFHA3/8crfzGypfE9dbqLpjodUaUVKgu6oqxld
-         pxt3/7mqQL5dbC+XdKhJXKbXV5TvttH66Uwhxo2zjkGpeOMzwNnRrf5aHvJ0x/NwE5hG
-         Y7GikTxj4tt9HNfFFkuchFsiPjI9Y91nfaA8E8IXuaMrRH/p8MDyhsNdcSB057vIZL6U
-         TcWkUtn/Wp/LGrsGcPPNQk771jCGRrf6jwlir87V5Y65Wb7AkmMKHRPrNyVqwLiis3Di
-         AkmA==
+        bh=jJiwa7MX7E9UzCFZRPS93zbDDNLkVOtjyj6xJhd5fHI=;
+        b=Gwn/JRJCEEG3RzTctzi5baxq1GNHVPoTdzdSW8HQC6lhuPhc05i4QKK/RvP5fnCkLi
+         CTPO9v4lQuR6T0HCawxn1jpMIB1u2o60Jql7qnHqYVPLN7r3MuLwgR4kCxfYHAf0v7Sl
+         Jrj4DqDKoY+WPWsehTLjW4aYsghUiHiS8YN40ZJF9npjZDFs2rwVRNtAUM3uFextusUL
+         S0aRw9gVbKeWXlj8hfVp2gwasHNRguPPt/k2KNcvYHfi6kxxpygAZ5zicbXLDJy2CBIc
+         mz2wMFHzdiEYS44c4p1ivn0fxR7nPnYAHv7IsrGIJKU3gj86b9Em7ZrVFKT4GLL19doX
+         wEOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692090002; x=1692694802;
+        d=1e100.net; s=20221208; t=1692090453; x=1692695253;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FEXvWpz1Ti3WddZiehf4bMtrsV0/Lyv9JePsyhGV0js=;
-        b=SZXbyhLF//Vt2rHjoTDFeO65CN3GdXKud+uqGOXZWXgiJeSZZGCURi8/HYLM7hiW1Z
-         YKMRA3MDhW7Jjns9RTcbuX4iQNgxjv6KX3w6TZtoMzCIFkxHv3hRHJAd1LssYsPG+oYT
-         A1Y+MR7JAs7NyyLT4oR9JM9FqQpIUob1aXaSPiAMs9Kitp+soJ00jkWcMnWV+b+70GIn
-         Pf1fF5HI+zYhSMSlqrgFfU1tUPCVGUr86Ew/QCJtZH5jKuZOd/JX+ZJz8H61vCDh8KuT
-         7K6UxR/dZ4vhqjiW2P22NCC/FmYXy8Khy//OCycov+FRV90jmjpWWAfA+kW8JPXL3IAb
-         Qmsg==
-X-Gm-Message-State: AOJu0YxVCDF0QyPveKc5JQu+jlMKyZa3VrPiYTRVPSbVcxwANHlsk/ad
-        0bJpwB4cDuk8nDE1sQaGU6MF6pLOa5yXFRLDyjDnXQ==
-X-Google-Smtp-Source: AGHT+IH1k/Zc4/6x+5Qgabmeij3DXoCWWxtMA2ktD3S6hLypmy/89je1LNRw0jXVyyZJtALES4RQLzS0ImyxXgEKxjI=
-X-Received: by 2002:a0d:e644:0:b0:589:ad2e:7293 with SMTP id
- p65-20020a0de644000000b00589ad2e7293mr1309621ywe.5.1692090002452; Tue, 15 Aug
- 2023 02:00:02 -0700 (PDT)
+        bh=jJiwa7MX7E9UzCFZRPS93zbDDNLkVOtjyj6xJhd5fHI=;
+        b=Vh2xOtGW5VqwpD8LqSZc3XftEnXHHnzFZ+u98bPxThk6bB5qlMCPufSTo9lldlSnAx
+         M5v25yfAvgfGNKxvEGxjrviOW1PxdMpsU+jMiawkF+955gLixk43/bq3t0jeJsL6jV3j
+         EYCwKyIF07d6DkoQWWocpRjTKeiTgCnOoaTzv7VHfzY+ccXihcaLtrIIFvw/MU9CBP+r
+         +wMgmeX8LcwmAUhMctu5rtd1CHqK0hOvY7j5F6wXnGXJqu8IpKnjbfSfTD30HV6iKJo1
+         iRMgcZ6B4NzQc02TTxH463zBKTN/p8kZPXgeoS7skOnes4BdF1akJo5K3DGEwCBj0p5v
+         XoxQ==
+X-Gm-Message-State: AOJu0YzyApMU8r9bmJUiMxtDJOechTY5pEb23+JU1ZTSO+z6301ZWUra
+        SfDF4wYskoZXkbU9yJcUagEM4fwjAdXeAo6GVApQHQ==
+X-Google-Smtp-Source: AGHT+IFxreQVgIKgg4ARVAgssmx6oUKCAKo87yIkx7T3/VZxIUtSvSF6EhjfXJPBHlRd+AtI3dpnbxfbc+KttA68TQo=
+X-Received: by 2002:a5b:18c:0:b0:d0e:9914:f5e1 with SMTP id
+ r12-20020a5b018c000000b00d0e9914f5e1mr11458463ybl.15.1692090453424; Tue, 15
+ Aug 2023 02:07:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn> <20230807074043.31288-2-zhuyinbo@loongson.cn>
- <20230808-amount-urban-9a6eb09852ca@spud> <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
- <20230809-circus-photo-6911d2e18f96@spud> <d4e16768-bed0-beda-42c3-f0a01b7e96cc@loongson.cn>
- <CAMRc=Mc00yy6DxdEos_w7HAkAwH7j0HBvkbQbaQiA_wTXiwFUg@mail.gmail.com> <80325b72-e7b3-08cc-f726-513de75de94c@loongson.cn>
-In-Reply-To: <80325b72-e7b3-08cc-f726-513de75de94c@loongson.cn>
+References: <20230814-topic-oxnas-upstream-remove-v3-0-04a0c5cdda52@linaro.org>
+In-Reply-To: <20230814-topic-oxnas-upstream-remove-v3-0-04a0c5cdda52@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 15 Aug 2023 10:59:50 +0200
-Message-ID: <CACRpkdam7zxSSj3Lirha8tWdeM_WhZpD4xO7MbTK4hVumU0a8w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio offset
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 15 Aug 2023 11:07:22 +0200
+Message-ID: <CACRpkdZmLFb_abUqN8_oNTx8NGt91Ub8KMftiY8qiOpRS_uGSw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] pinctrl: oxnas support removal
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 14, 2023 at 5:39=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wr=
-ote:
+On Mon, Aug 14, 2023 at 10:16=E2=80=AFAM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
 
-> > Why do you want to put it into device-tree so badly? This is not the
-> > first driver that would have of_match_data for different variants
-> > where you can have a structure that would keep offsets for different
-> > models. It's not like you will have hundreds of "compatible" chips
-> > anyway, most likely just a few?
->
-> Using this ways that put offset property into device-tree that can be
-> compatible with future GPIO chips without the need to modify drivers,
-> such as more 2K chips in the future, but use of_match_data and data
-> field of_device_id, which every time a new SoC is released, the GPIO
-> driver needs to be modified once, which is not friendly to us.
+> This patchset only removes pinctrl/gpio code, and is derived from:
+> https://lore.kernel.org/r/20230630-topic-oxnas-upstream-remove-v2-0-fb6ab=
+3dea87c@linaro.org
 
-The purpose of device tree is to describe the hardware and
-to configure it for a target system.
-
-The purpose of device tree is not to make driver writing easy
-or convenient. It often does, but that is not the purpose.
-
-These offsets are not relevant to the people that need to
-author and maintain device trees to support and tailor their
-system. They are only relevant to driver authors and SoC
-manufacturers.
-
-What about just writing these offsets into the driver and use
-the compatible match to look them up.
+Patches applied, sayonara Oxnas.
 
 Yours,
 Linus Walleij
