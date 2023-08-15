@@ -2,106 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A3877C736
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 07:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C90E277C742
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 07:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234651AbjHOFoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 01:44:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45204 "EHLO
+        id S234710AbjHOFy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 01:54:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234706AbjHOFnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 01:43:45 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409D710B
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:43:13 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9cd6a554cso74516811fa.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:43:13 -0700 (PDT)
+        with ESMTP id S234771AbjHOFwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 01:52:37 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5AE170C
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:52:17 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-317798b359aso4397904f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:52:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692078191; x=1692682991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jw6ZKn2vNcjA9MqDmrsGFXdRmKd5KhjNUkjx2Uq1Kd0=;
-        b=BKPeeD2U5MUnrhf2RZMUCETsWAXISwTYH1oSOI+t2Vck3SDjGoEiNzMWDyFmdcHs/j
-         uyTL46pkrEV5ecqCe3sq2Pnn6PUCw/k+qZsRw471glKKDFPifLXrTwy2V40oVR7V+rEQ
-         q3jBlmWdxIrFdkIho2LetNiOrmtJnPyxYIEXGh5vtVMQRgT3UFee42wen2p8fcX0zbg6
-         0QTT1v/c2mt1LDGjwZCnJsAZqyDF1qW5UCUXq8znpC/GwRrsQMAOo2wrp950tBowieZB
-         rizyV7w0X1IOn7f34tjjcw5F5PoRHjKpvJn//xBWCEld44q4wJsYWMzXy7IFITeD4IeO
-         kGMQ==
+        d=linaro.org; s=google; t=1692078735; x=1692683535;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U5zZszRJ1TGZmt1SftJeogGq7JuNQUPsnorZGUjcM80=;
+        b=MsolIu3IE0lP2hEs6fQ0tC7Ck8AEypROUkZlWM3Ebv8EHB6YRbrVlHiQUbtn7VWgPT
+         UiV3H+ECTKz6aw4bzdgsvwGoWPH4In6jIWjjel3dD+dH64px9vo6vL5EuAiTaBHwfWKf
+         5vBoz2/iVMH9XVUHc4I++Pwit3udVu+xZlsYLZ66g5pCwx28MhUJFSjf17ZFYeJYUB9R
+         28T5bUgUhFdjcEUTxkmeIbjqF0IGjXOwG4okGd8uyEH9q01vgJ2QEql4SVUrN4XprKBr
+         LNUanWMQLyGYcjGjfc61EmefJZZkWEF2b/eNBfkjcetih+G/x4ix6Um4xk2jPpGZp7bz
+         6gYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692078191; x=1692682991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jw6ZKn2vNcjA9MqDmrsGFXdRmKd5KhjNUkjx2Uq1Kd0=;
-        b=mDbBqlTA6LYk2H4ObLVm33oQpI2yNr/7PiphFbnLfmZpLZzsv7NI+5qWTOrV2JlH5h
-         u7FQpREPSyRykPBbarFwel/q+hWj4P3PXPeFxzx4TXNJB7G6q2eIAgK5YVS83RaKxKeO
-         PaVhPn2vZGjyVRk2l/tAVNMY7di08ScSV8Tq4IxrR2Vh4Hn26G0uH8qSzD2xWfCiN9Oa
-         hi8sOd0tuJXID7d22kHIbLkpVPHvALKZ+EBwxE7MbFFUFSQWcAFAzbEZ7oxtrg3MWGKf
-         mnpwjwBjSkVcul6qwqAd+wEczW0FXw7Ou6/Yhk4Q5yDVaEByQOqjHBqHoMpXY+Rme3Qy
-         nwxw==
-X-Gm-Message-State: AOJu0Yw/ydH+ClWVPRipt45Nt5e1qn8Vy6AjwCUaCT7DZZKSHfyoUVXG
-        DKQA8WAbLrR/PfmRLpQqrKTYag==
-X-Google-Smtp-Source: AGHT+IEvyC3KHqPI4Aqoe7nlXlx/XKraQasiWSzM4QIIBy+bofI9pfUzQQxcwHNZtVA6mH3J4pDrQQ==
-X-Received: by 2002:a2e:8317:0:b0:2b9:ecc5:d1de with SMTP id a23-20020a2e8317000000b002b9ecc5d1demr6962968ljh.37.1692078191458;
-        Mon, 14 Aug 2023 22:43:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id u11-20020a05600c00cb00b003fe29f6b61bsm16416026wmm.46.2023.08.14.22.43.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 22:43:11 -0700 (PDT)
-Message-ID: <c70422eb-ca6d-ed86-dd15-dfa555e64c89@linaro.org>
-Date:   Tue, 15 Aug 2023 07:43:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 02/14] dt-bindings: display/msm/gmu: Allow passing QMP
- handle
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230628-topic-a7xx_drmmsm-v2-0-1439e1b2343f@linaro.org>
- <20230628-topic-a7xx_drmmsm-v2-2-1439e1b2343f@linaro.org>
+        d=1e100.net; s=20221208; t=1692078735; x=1692683535;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U5zZszRJ1TGZmt1SftJeogGq7JuNQUPsnorZGUjcM80=;
+        b=as11ojtpVHutaJOft0Z/sABC9dJabGzDRRPSompmcKDHmUs+yRINRmeZmdtlBLFr+3
+         6ipAzYVyE5lgLSOdd+g6ViBdyMf4OJzBOtLnyRjidLOubd3RMSdBYh8aWdpabztv5hkt
+         /BP46Yhqz0VoiQ5EfF/8epI1vz7fSqeDb7xoiz00T0OkD6DdVK8V6w+dIcjRyl0Uv7ZG
+         WtNJJtrTQUKJV2AP988t2cHSqUzOIGfC96U+6Wj8l65Y09QX3VMf6OnyqSgBNwcOaS9Z
+         8rj5R4rILO0E9iEr1OdKYGgrRWXyCDoaVo9r7EVcONoNDjt6PXGll8XgvDhXmuuyZl/J
+         2dqw==
+X-Gm-Message-State: AOJu0Yy/kW+5FnO3qnn86hBCciHnk87RSgOnDTraMtF/23knzynF9XKO
+        KkBSjtOIMI6gHxJplRT/0cMJ8g==
+X-Google-Smtp-Source: AGHT+IE/LzquRwTZSsulsvNuTfzEJnWCWfvoE6jF1rEF9CrWQKOMne+14OV1eWD5PpxyW0xtsskriw==
+X-Received: by 2002:a05:6000:12c4:b0:317:e766:d5e9 with SMTP id l4-20020a05600012c400b00317e766d5e9mr8903334wrx.3.1692078735462;
+        Mon, 14 Aug 2023 22:52:15 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id o13-20020a05600c378d00b003fe2de3f94fsm16455755wmr.12.2023.08.14.22.52.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Aug 2023 22:52:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v2-2-1439e1b2343f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 00/11] clk: samsung: remove number of clocks from bindings
+Date:   Tue, 15 Aug 2023 07:52:12 +0200
+Message-Id: <169207869892.18669.12968579673742031375.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
+References: <20230808082738.122804-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2023 23:02, Konrad Dybcio wrote:
-> When booting the GMU, the QMP mailbox should be pinged about some tunables
-> (e.g. adaptive clock distribution state). To achieve that, a reference to
-> it is necessary. Allow it and require it with A730.
-> 
-> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/display/msm/gmu.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, 08 Aug 2023 10:27:27 +0200, Krzysztof Kozlowski wrote:
+> No dependencies, patches can be taken in one set via my clk tree.
+> 
+> Best regards,
+> Krzysztof
+> 
+> Krzysztof Kozlowski (11):
+>   clk: samsung: exynos3250: do not define number of clocks in bindings
+>   clk: samsung: exynos4: do not define number of clocks in bindings
+>   clk: samsung: exynos5250: do not define number of clocks in bindings
+>   clk: samsung: exynos5260: do not define number of clocks in bindings
+>   clk: samsung: exynos5410: do not define number of clocks in bindings
+>   clk: samsung: exynos5420: do not define number of clocks in bindings
+>   clk: samsung: exynos5433: do not define number of clocks in bindings
+>   clk: samsung: exynos7885: do not define number of clocks in bindings
+>   clk: samsung: exynos850: do not define number of clocks in bindings
+>   clk: samsung: exynoautov9: do not define number of clocks in bindings
+>   dt-bindings: clock: samsung: remove define with number of clocks
+> 
+> [...]
+
+Applied, thanks!
+
+Fixed commit msg language as suggested by Conor.
+
+[01/11] clk: samsung: exynos3250: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/ec01691c9c631ae465ff0438172738d68bca828b
+[02/11] clk: samsung: exynos4: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/826951d90658199a1a1098e823b6205aaea09b0f
+[03/11] clk: samsung: exynos5250: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/835dc5ac296073b9ca3a2fda86568bb1b9377dee
+[04/11] clk: samsung: exynos5260: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/727d0f0640755eb6e41725d63a506d510078fa8f
+[05/11] clk: samsung: exynos5410: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/678417694b8ec22d31d7605352196ffce9bfe128
+[06/11] clk: samsung: exynos5420: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/62eef444cf300ea8a5498a98bfcfd6eb0e53dd3e
+[07/11] clk: samsung: exynos5433: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/6a44298ddbdde13bc7d84168bd4d256521aef439
+[08/11] clk: samsung: exynos7885: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/ef4923c8e0523d83b7cd4918760e03b03b2b08ad
+[09/11] clk: samsung: exynos850: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/56d62cd46dee861080e2484e1bdcc9f892add060
+[10/11] clk: samsung: exynoautov9: do not define number of clocks in bindings
+        https://git.kernel.org/krzk/linux/c/901a0c690f547dbe24fd599e7fc58d7cbf69599b
+[11/11] dt-bindings: clock: samsung: remove define with number of clocks
+        https://git.kernel.org/krzk/linux/c/b3f9581affb03ed28ff1905b649e66904f29b9e4
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
