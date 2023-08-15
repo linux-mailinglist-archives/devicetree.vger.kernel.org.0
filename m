@@ -2,172 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3DE77C6AA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 06:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F8A677C6E8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 07:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234584AbjHOEOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 00:14:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52132 "EHLO
+        id S234570AbjHOFJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 01:09:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234599AbjHOELl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 00:11:41 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 12FE11BCA;
-        Mon, 14 Aug 2023 21:08:43 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8CxyOhK+tpkuZ4YAA--.14979S3;
-        Tue, 15 Aug 2023 12:08:42 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxHCNH+tpkc+BaAA--.7836S3;
-        Tue, 15 Aug 2023 12:08:39 +0800 (CST)
-Subject: Re: [PATCH v6 1/2] soc: dt-bindings: add loongson-2 pm
-To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        zhuyinbo@loongson.cn, Conor Dooley <conor+dt@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, loongarch@lists.linux.dev,
-        Liu Yun <liuyun@loongson.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230803063703.5659-1-zhuyinbo@loongson.cn>
- <20230803063703.5659-2-zhuyinbo@loongson.cn>
- <193f9138-57e0-4d4b-8225-54d38be9bfbc@app.fastmail.com>
- <8efeac46-ebb7-fa05-3d88-7c21acd59c8b@loongson.cn>
- <6d7335b4-63e2-4a7e-9620-8a0012558dfd@app.fastmail.com>
- <0616585d-1459-b6ef-375b-890426004e01@loongson.cn>
- <19feb595-e22a-4304-9b88-b5cb55949cd8@app.fastmail.com>
- <71c53c37-a0a6-6b11-31d5-4455d2309927@loongson.cn>
- <e04cf26e-2e38-4e87-b7b4-23dafadee00d@app.fastmail.com>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <753d10b9-3b33-e7ef-a3d3-78090d67d648@loongson.cn>
-Date:   Tue, 15 Aug 2023 12:08:39 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S234597AbjHOFId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 01:08:33 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3821F1710
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:08:27 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99cdb0fd093so687914566b.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:08:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692076106; x=1692680906;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/RtZ3qk8KDKAyM7uZ723VgsO7ZDljAE8bUmfZOovcVo=;
+        b=sTZl+F97t7YyvAewnlM00xqrYjUFSyHwBOdsZ9fZeLUUSF0ZbNjPiebYsCeXNOux5L
+         Om0GcWypAhk/8WoE3iP5TCdCujKevLy/0tw/nHuWkNCBZRs3la0CT1cxH9wyhfsAx4f0
+         lcCHRRtXl5rj+3oq8hMMxDMK30KAxWoSaQW+QntiRB3+839SOSY8LtnCGqL7o2OQc4Gw
+         NTwf3aJg1nhDJ3jSNY0ylXCTsG6xCCcvfgmBdKk9iwFEO0JS0gmfwxPFqg0YwCRmTcKe
+         H53CJMmuTAgGGGw7MN36x3QKlDJ8RROukHZNovnd04tkhYkR4FicRyzRG0IThK/qdAvc
+         WTWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692076106; x=1692680906;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/RtZ3qk8KDKAyM7uZ723VgsO7ZDljAE8bUmfZOovcVo=;
+        b=SU9av4XjGk2q0ter9f3iE+nHveASkiXMHhIeEryNuMF1XfuO1L1cRf99PSaC5zlMzD
+         WlOhzUKPbGf5wJCAZPdM7lov72ztwHhfWcLD8qUPwgPuMDIgcmIjNfHlHMduz1VZy8GC
+         zp/v3jrrnhoj5XScdpCWJ861TmDui4qDhZzdJ99+hMSmtWyDSyTUeRrK01wBr2UiI/ax
+         ERwl/u2HZfKFr6ssaakUi2blxz5mebsB5bhsDa197fW+CIwZp10m9LonNNwos3+bw26/
+         LbASu7TcjUNMsTTRow8Usj+r8VOd16SjS8Ex7QxjIFQ7yb9+AJDSNzytT0SYSy8tKoSi
+         ru9g==
+X-Gm-Message-State: AOJu0YziTZ2fYk9jh4J6wTOZBdLt/MUUHqzfb9l9oMbgCcU6DLEAYXdy
+        S9yQtiQPGWqyiR6nn3Vp0oA6kg==
+X-Google-Smtp-Source: AGHT+IEHl+XQA70lMQvfpN0fpkw+dM2wsdNQNUQCh6s7LR/jIakD6PWpTcV4OEOZuywWquixGwOmGg==
+X-Received: by 2002:a17:907:2c74:b0:99d:b9d6:6011 with SMTP id ib20-20020a1709072c7400b0099db9d66011mr2031715ejc.55.1692076106060;
+        Mon, 14 Aug 2023 22:08:26 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id mb25-20020a170906eb1900b0099ce025f8ccsm6514364ejb.186.2023.08.14.22.08.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Aug 2023 22:08:25 -0700 (PDT)
+Message-ID: <ba958196-fb2d-f7ba-46cd-6a3cb40f21bd@linaro.org>
+Date:   Tue, 15 Aug 2023 07:08:22 +0200
 MIME-Version: 1.0
-In-Reply-To: <e04cf26e-2e38-4e87-b7b4-23dafadee00d@app.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 2/2] Input: cs40l50 - Initial support for Cirrus Logic
+ CS40L50
 Content-Language: en-US
+To:     James Ogletree <James.Ogletree@cirrus.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fred Treven <Fred.Treven@cirrus.com>,
+        Ben Bright <Ben.Bright@cirrus.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Peng Fan <peng.fan@nxp.com>, Jean Delvare <jdelvare@suse.de>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Eddie James <eajames@linux.ibm.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Jerome Neanne <jneanne@baylibre.com>,
+        "patches@cirrus.com" <patches@cirrus.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230808172511.665787-1-james.ogletree@cirrus.com>
+ <20230808172511.665787-2-james.ogletree@cirrus.com>
+ <065fbe51-928c-4728-efc2-bde87cd48cb3@linaro.org>
+ <ADCCD2C5-B79B-4C50-B3CE-007B1FBF5A5E@cirrus.com>
+ <3f406442-d46e-7f9e-426d-22a96f893103@linaro.org>
+ <E3A9D2CF-333D-4238-8013-346135AC001B@cirrus.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <E3A9D2CF-333D-4238-8013-346135AC001B@cirrus.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxHCNH+tpkc+BaAA--.7836S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/08/2023 23:44, James Ogletree wrote:
 
-
-在 2023/8/14 下午9:41, Arnd Bergmann 写道:
-> On Mon, Aug 14, 2023, at 13:57, Yinbo Zhu wrote:
->> 在 2023/8/14 下午4:19, Arnd Bergmann 写道:
->>> On Mon, Aug 14, 2023, at 09:57, Yinbo Zhu wrote:
->>>> 在 2023/8/12 下午8:25, Arnd Bergmann 写道:
->>>>> I found https://github.com/loongson-community/pmon source
->>>>> code, and a reference to its origin at LSI Logic at
->>>>> https://www.linux-mips.org/wiki/PMON but otherwise have
->>>>> no idea about what this actually is, or how it relates
->>>>> to your UEFI firmware. Did you add UEFI support to PMON,
->>>>> or do you use it as a first stage loader that loads
->>>>> the actual UEFI implementation (EDK2 or u-boot, I guess)?
->>>>
->>>>
->>>> Pmon and uefi are two different firmware, and there is no connection
->>>> between them.
+>>>> I don't think this is a module.
 >>>
->>> It sounds like we still have problems with terminology. >
->>> I don't think categorizing UEFI as a firmware is correct,
+>>> It can be compiled as a module with CONFIG_INPUT_CS40L50=m. However, there is a
+>>> typo in the Kconfig entry description: the module will be called “cs40l50” not “cs40l50-core”.
+>>> That will be fixed. 
 >>
+>> Really, *this* unit file can be compiled as module? Where is the
+>> module_xxx_driver() then?
 >>
->> Sorry to have confused you, uefi firmware is our internal name, which is
->> actually what you referred to as EDK2, the EDK2 need use UEFI.
 > 
-> Ok
-> 
->>> it's the interface used by various firmware implementations
->>> to load the operating system. As far as I understand,
->>> loongarch currently mandates the use of UEFI in whichever
->>> firmware is used, so if you have Pmon installed in ROM > and Pmon does not itself implement UEFI, it would have
->>> to load some other firmware such as u-boot in order to
->>> load a kernel through the UEFI protocol, right?
->>
->>
->> PMON is an independent firmware and loader that can directly load the
->> operating system and it does not require the use of UEFI.
->>>
->>> Has the assumption that loongarch requires UEFI changed?
->>
->>
->> LoongArch embedded board was use Pmon firmware, The other one uses UEFI
->> firmware (EDK2) on LoongArch platform.
-> 
-> I'm pretty sure we discussed this when the loongarch port
-> was originally merged, with the decisionto just use UEFI for
-> booting any kernel, as the legacy entry point for the ACPI
-> based environment was not really well-defined and the UEFI
-> stub was an easy alternative to have more commonality
-> with other architectures.
-> 
-> I see this was already extended for embedded CPUs to use
-> the uefi stub with DT in commit 88d4d957edc70 ("LoongArch: Add
-> FDT booting support from efi system table"), which seems like
-> the right direction. >
-> Can you explain why this board would want yet another method
-> for entering the kernel? Is there any documentation for the
-> boot protocol?
-
-Yes, you're right, the latest PMON does indeed support UEFI, the PMON
-used in the product code is still outdated and does not support UEFI.
-
-Actually, whether using EDK2, Pmon firmware, or other firmware, the
-LoongArch platform's s3 (suspend-to-ram) requires a suspend-address to
-be defined, if dts is supported, it is defined in dts, and if acpi table
-is supported, it is defined in acpi table.
-
-> 
->>>>> Is this executing directly from ROM then?
->>>>
->>>> Yes.
->>>
->>> Is this the only runtime call into the firmware,
->>
->>
->> Only when suspend-to-ram occurs, the kernel will call into the firmware.
->> No other case.
-> 
-> Ok
-> 
->>> or are there
->>> others that are either already called from mainline kernels
->>> or in your downsteam implementation?
->>>
->>> How do you ensure that the DTB matches the actual ROM code
->>> after rebuilding Pmon? Does Pmon itself fill that field with
->>> the correct address, or do you rely on it being a hardcoded
->>> constant?
->>
->>
->> Use Pmon, firmware team will always ensure that DTB matches the actual
->> ROM code.  The "suspend-address" of dtb and pmon entry address will
->> synchronized modification by firmware team.
-> 
-> Ok.  So it's linked against libfdt to fill the dtb information,
-> or do you have to provide a dtb blob that matches the firmware?
+> As I understand it, the “module_XXX_driver()” has nothing to do with whether or not the file is built as a module, rather it just provides code to attach the driver to a bus. But this is a bus-agnostic, separate module (not a driver in itself) that provides implementation to cs40l26-i2c or cs40l26-spi drivers, which do contain that macro as they should. This doesn’t appear to be an uncommon pattern.
 
 
-For pmon firmware, the dtb was as part of firmware, the firmware has
-defined the address of the DTB's suspend and the address of the firmware
-entry, and is consistent.
+I see now in the Makefile that it can be indeed built as module and
+compiled on its own. It's fine then.
 
-Thanks,
-Yinbo
+Best regards,
+Krzysztof
 
