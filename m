@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6868C77D441
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 22:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E839177D475
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 22:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbjHOUhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 16:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51282 "EHLO
+        id S238142AbjHOUmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 16:42:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238387AbjHOUhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 16:37:20 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF4C2681
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:36:45 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99d6d5054bcso1109007266b.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:36:45 -0700 (PDT)
+        with ESMTP id S239344AbjHOUmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 16:42:13 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58812113
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:41:55 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5234b80e9b6so7909441a12.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:41:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692131802; x=1692736602;
+        d=linaro.org; s=google; t=1692132037; x=1692736837;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=X6Sjc5kCdevNBIooFIAdaXcgvp9MHaLBrm4GmR4a5kI=;
-        b=fAj5Uun6fMmg8JwRtrO+awU+LcEYYn3b1AiRgb2/esrYZBkNM8tV10/hR44o06tYxe
-         x6tW13BtvxlFQHUYSqCIZV5Ry835ARs2CNw903bBXAvZ+OehESNUGsUEsnaUYN1sTHdq
-         shby10LOk+9SulpTwmNO7xf04GJoS2R8Ey3J9g6DxAo6+MKv19y5GR/Dmo7R97yAG+mL
-         F5k2GyoQ+ROmnqMzBPGvHOv7I5DwPEr+mJOC2jM2/HNe2rq9pxwgYcUGWrCIAJMvNhAe
-         dJ5rKDHjV9bKla4CBC1ge739eOZnuCIEhDBfWTLKGMk5tOMBE2eYhAYPy7bzn2RJ5Siw
-         +gfA==
+        bh=bNzhnTa2Xplp/Tkji9CmBI7UUP7vxyc/BEYibHP6fMQ=;
+        b=srmms7IdhzOX1cLlrqv6Q9s2uerSydrAV9Qr/nLk6QT0ZQqq25pWZdTI16JG0pkLWC
+         yGPXh4avz+515+cg7+fDgRQoq24dJcuNmQ+WB5P8tN/Jlh9QJ/TbhdcU0tDrR/opgl4i
+         JEgJt4EQQU7UdpEMutnOybY2xfJsGNva9N4X1yO2wzq2UHRWhx6/gHLP7GkcRTimbKra
+         APsVJlgee0SHZ0w/zyq/QPN2jk608iwmvjFOoYAMpHjjCIrJXP9BoXtK5muMkS5Qfp2z
+         23YzIrmYnJtLNM3mhc63bFSPU+7JDSMpDLjhfOLVPVuSZl+2kxIVGPg3VEI20lu77tTG
+         lW/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692131802; x=1692736602;
+        d=1e100.net; s=20221208; t=1692132037; x=1692736837;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X6Sjc5kCdevNBIooFIAdaXcgvp9MHaLBrm4GmR4a5kI=;
-        b=cTAoCWR2JeD/X4yazprsHkHcRUz0uJtoRVF0t7zu/JP5P470sVU+4kUvO3x0+fk0Wj
-         QMeYbbdD99MjOFgJI4zVISQ9gvwQQLNtG3xVECG4k5OzPcq0dcWCLm9NlMTK9lGcdqGu
-         seAaW0kEOdCMxQhO7JV/eh+6cZgIezCs2oz8o36IsrL2UCM9/kWMwLgMjq/u7S+Bu7Hd
-         BoB59yYX41m5Q2cPYJYkw6xW7RLAEJkKqSZK6Q3kDoq6O9zYMSigRH1JK12Ziq6g8Li7
-         JngmV9cTsWCm5/gEMsuIHMDZqncO5P6KHzKrFm3+BUFevhVvRUrIKQf8evP+t/NYaW9G
-         OOdA==
-X-Gm-Message-State: AOJu0Yyp36dUftFxj8eamMtF/R28W1s6Y0PO/g0OVUX4cKWXEKDWvxR4
-        UOq/ENT+oL0QrtvSidvDTfv8sA==
-X-Google-Smtp-Source: AGHT+IH4wM7nrkfOFTqG/v7+FSAdJxm80o8iaJuv9GJHnk6yEmOMGbDxs3H4ETByecHIE/WMvpi9VA==
-X-Received: by 2002:a17:906:6a04:b0:99b:dd23:4f01 with SMTP id qw4-20020a1709066a0400b0099bdd234f01mr3314224ejc.33.1692131802432;
-        Tue, 15 Aug 2023 13:36:42 -0700 (PDT)
+        bh=bNzhnTa2Xplp/Tkji9CmBI7UUP7vxyc/BEYibHP6fMQ=;
+        b=ky+dhBSD+4u0lGaWPJX27jaPLA18dN99AvY5dn8bJw51SdLgL4GT2/uMG72KhmJwI9
+         nONZh/Us2BjM+ZtEney9AzofyNDK85CRZkqoUTu++nyHdDtqjHY+7hOwpPlRyvqGIM4u
+         /FaTg0BoyMJKBjam3i9ftwxWyv1tmRDN3vjIfS3oEADZrOTAwIF/QGJrkZ7ovU6mQDZI
+         vRPMnqyYirstdBKZOI1RmoFDLyHZY8tqAOEDzq0zbpxiywL6NvmfFkBnic409rQXYvFT
+         QAhsUiRjhGYSQL9zyTpb5TFcu+Bb39LPwBrsPMVtjPnV4+FonLmfY5DwD4guI4PjKYWT
+         PD5Q==
+X-Gm-Message-State: AOJu0Yx97A7Xt9TUXuqG2JQVQmxWYorPNTWfMc19xm2ans0ZdZVfOI9x
+        XB29Pm74TK+jZuwURm/v5/ghPQ==
+X-Google-Smtp-Source: AGHT+IF0wXBsnPoEuKcnguUYJu/0ii7qC8GDdNixBFOmOnFlT/R385o4ZmzsQLucS1IJNlav7GC30Q==
+X-Received: by 2002:aa7:d8c4:0:b0:523:35ce:bf50 with SMTP id k4-20020aa7d8c4000000b0052335cebf50mr11399349eds.23.1692132037464;
+        Tue, 15 Aug 2023 13:40:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id f8-20020a17090624c800b009894b476310sm7407880ejb.163.2023.08.15.13.36.40
+        by smtp.gmail.com with ESMTPSA id w4-20020a056402128400b005232c051605sm7184074edv.19.2023.08.15.13.40.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 13:36:42 -0700 (PDT)
-Message-ID: <102328fa-5699-4731-d639-079bce8863a5@linaro.org>
-Date:   Tue, 15 Aug 2023 22:36:39 +0200
+        Tue, 15 Aug 2023 13:40:37 -0700 (PDT)
+Message-ID: <97e58b59-7b02-bfb7-9904-abfcff6f1005@linaro.org>
+Date:   Tue, 15 Aug 2023 22:40:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/7] dt-bindings: soc: qcom: Add qcom,pbs bindings
+Subject: Re: [PATCH v3 2/7] dt-bindings: leds: leds-qcom-lpg: Add support for
+ LPG PPG
 Content-Language: en-US
 To:     Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
         lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
@@ -66,9 +67,9 @@ Cc:     luca.weiss@fairphone.com, konrad.dybcio@linaro.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-pwm@vger.kernel.org
 References: <20230814235918.10396-1-quic_amelende@quicinc.com>
- <20230814235918.10396-2-quic_amelende@quicinc.com>
+ <20230814235918.10396-3-quic_amelende@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230814235918.10396-2-quic_amelende@quicinc.com>
+In-Reply-To: <20230814235918.10396-3-quic_amelende@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,62 +83,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/08/2023 01:59, Anjelique Melendez wrote:
-> Add binding for the Qualcomm Programmable Boot Sequencer device.
+> Update leds-qcom-lpg binding to support LPG PPG.
 > 
 > Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
 > ---
->  .../bindings/soc/qcom/qcom,pbs.yaml           | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
-> new file mode 100644
-> index 000000000000..b502ca72266a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,pbs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. Programmable Boot Sequencer
-> +
-> +maintainers:
-> +  - Anjelique Melendez <quic_amelende@quicinc.com>
-> +
-> +description: |
-> +  The Qualcomm Technologies, Inc. Programmable Boot Sequencer (PBS)
-> +  supports triggering power up and power down sequences for clients
-> +  upon request.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,pmi632-pbs
-> +      - const: qcom,pbs
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/spmi/spmi.h>
-> +
-> +    pmic@0 {
-
-This should be rather just "pmic", because the examples have
-address-cells=1 and size-cells=1, which is not correct in this context.
-
-Anyway:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
