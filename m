@@ -2,94 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E839177D475
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 22:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C62277D47D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 22:44:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238142AbjHOUmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 16:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45948 "EHLO
+        id S238270AbjHOUnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 16:43:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239344AbjHOUmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 16:42:13 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58812113
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:41:55 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5234b80e9b6so7909441a12.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:41:55 -0700 (PDT)
+        with ESMTP id S239383AbjHOUnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 16:43:23 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F682125
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:42:58 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-76ad8892d49so473300185a.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692132037; x=1692736837;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bNzhnTa2Xplp/Tkji9CmBI7UUP7vxyc/BEYibHP6fMQ=;
-        b=srmms7IdhzOX1cLlrqv6Q9s2uerSydrAV9Qr/nLk6QT0ZQqq25pWZdTI16JG0pkLWC
-         yGPXh4avz+515+cg7+fDgRQoq24dJcuNmQ+WB5P8tN/Jlh9QJ/TbhdcU0tDrR/opgl4i
-         JEgJt4EQQU7UdpEMutnOybY2xfJsGNva9N4X1yO2wzq2UHRWhx6/gHLP7GkcRTimbKra
-         APsVJlgee0SHZ0w/zyq/QPN2jk608iwmvjFOoYAMpHjjCIrJXP9BoXtK5muMkS5Qfp2z
-         23YzIrmYnJtLNM3mhc63bFSPU+7JDSMpDLjhfOLVPVuSZl+2kxIVGPg3VEI20lu77tTG
-         lW/w==
+        d=chromium.org; s=google; t=1692132121; x=1692736921;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OkRDDoNPzSLjlacKlxL+E41IsOW/ULTgctVKXf9RjXA=;
+        b=AhSm8P7U3wggkUiQ1aaVWbX2RO2zZQu6I7XM+0id9rRXqNK30NyILpRvymyoE254/8
+         7ngaGCxkQerCw/badBXjo6F2P5nmY556IGIltrRW3XqFaOjvMzjx5N9stoBbos9pdpct
+         XHoydlaSBUGh8Dh2RhT2YH7SjiX1J45Y69R4E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692132037; x=1692736837;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bNzhnTa2Xplp/Tkji9CmBI7UUP7vxyc/BEYibHP6fMQ=;
-        b=ky+dhBSD+4u0lGaWPJX27jaPLA18dN99AvY5dn8bJw51SdLgL4GT2/uMG72KhmJwI9
-         nONZh/Us2BjM+ZtEney9AzofyNDK85CRZkqoUTu++nyHdDtqjHY+7hOwpPlRyvqGIM4u
-         /FaTg0BoyMJKBjam3i9ftwxWyv1tmRDN3vjIfS3oEADZrOTAwIF/QGJrkZ7ovU6mQDZI
-         vRPMnqyYirstdBKZOI1RmoFDLyHZY8tqAOEDzq0zbpxiywL6NvmfFkBnic409rQXYvFT
-         QAhsUiRjhGYSQL9zyTpb5TFcu+Bb39LPwBrsPMVtjPnV4+FonLmfY5DwD4guI4PjKYWT
-         PD5Q==
-X-Gm-Message-State: AOJu0Yx97A7Xt9TUXuqG2JQVQmxWYorPNTWfMc19xm2ans0ZdZVfOI9x
-        XB29Pm74TK+jZuwURm/v5/ghPQ==
-X-Google-Smtp-Source: AGHT+IF0wXBsnPoEuKcnguUYJu/0ii7qC8GDdNixBFOmOnFlT/R385o4ZmzsQLucS1IJNlav7GC30Q==
-X-Received: by 2002:aa7:d8c4:0:b0:523:35ce:bf50 with SMTP id k4-20020aa7d8c4000000b0052335cebf50mr11399349eds.23.1692132037464;
-        Tue, 15 Aug 2023 13:40:37 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id w4-20020a056402128400b005232c051605sm7184074edv.19.2023.08.15.13.40.35
+        d=1e100.net; s=20221208; t=1692132121; x=1692736921;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OkRDDoNPzSLjlacKlxL+E41IsOW/ULTgctVKXf9RjXA=;
+        b=Am0z/KR20CuV7BZgYZeiZS8vzC61xNHHb2o/DsbeTDbHE7yJcDJptt8tYuJaeDBizM
+         +/aqqoC5qFiJB8+bG5cuWasfE9oClSOl1CYuhWEeABZqiW1yG4168h2RVTfyFzy/ggTM
+         3kGIMNXzfR5mhcMYBgHJGPjrwsf0LXAdudDIQpso7Wvc8ekqF2Y2QNd/g2NYQIcQI/tt
+         FQYWYt+5RN762D76fAFFDR61UoGoCwt9jjLeKBzGYEICRBTnpFFaVA+FNLLj9pPFnA98
+         xUe+z+ixVtRlGBy/DlpqrWNqAWRD48Snt9571tHuskJL0giA1JlmNEfw33IHQQkV+N8q
+         u17A==
+X-Gm-Message-State: AOJu0YwOv88LuB/6nFoEJMjiKilFZasadr/Z8nHVFUD284jHkDOLnq6I
+        sKg1E8xMQlbi2EiwipecmN8yKi0UKXoSoe2EMop3yG/5
+X-Google-Smtp-Source: AGHT+IHp+wSD4eKZ4LgNqUN4x6y1vsTwY8r49GjsZFvhnHWVNoU8jG51Kl0Rc9ZjraJsuvXxvTw5GA==
+X-Received: by 2002:a37:ef19:0:b0:76c:cb21:179f with SMTP id j25-20020a37ef19000000b0076ccb21179fmr15692873qkk.29.1692132121255;
+        Tue, 15 Aug 2023 13:42:01 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
+        by smtp.gmail.com with ESMTPSA id g3-20020a05620a13c300b0075cd80fde9esm3987727qkl.89.2023.08.15.13.42.00
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 13:40:37 -0700 (PDT)
-Message-ID: <97e58b59-7b02-bfb7-9904-abfcff6f1005@linaro.org>
-Date:   Tue, 15 Aug 2023 22:40:34 +0200
+        Tue, 15 Aug 2023 13:42:00 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4036bd4fff1so94951cf.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:42:00 -0700 (PDT)
+X-Received: by 2002:a05:622a:491:b0:403:aa88:cf7e with SMTP id
+ p17-20020a05622a049100b00403aa88cf7emr21591qtx.29.1692132120085; Tue, 15 Aug
+ 2023 13:42:00 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 2/7] dt-bindings: leds: leds-qcom-lpg: Add support for
- LPG PPG
-Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
-        lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org
-Cc:     luca.weiss@fairphone.com, konrad.dybcio@linaro.org,
-        u.kleine-koenig@pengutronix.de, quic_subbaram@quicinc.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20230814235918.10396-1-quic_amelende@quicinc.com>
- <20230814235918.10396-3-quic_amelende@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230814235918.10396-3-quic_amelende@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+References: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20230804175734.v2.1.I7a950de49ec24b957e90d7fe7abd5f2f5f2e24c3@changeid> <3ed8a34b-5f7d-6547-7e34-35e4d0994bba@linaro.org>
+In-Reply-To: <3ed8a34b-5f7d-6547-7e34-35e4d0994bba@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 15 Aug 2023 13:41:46 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WqFo5PFB7+7ZOQtsTLYojjTn1VkaAQpMkqvWUFPOmBQg@mail.gmail.com>
+Message-ID: <CAD=FV=WqFo5PFB7+7ZOQtsTLYojjTn1VkaAQpMkqvWUFPOmBQg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: add sc7180-lazor board bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2023 01:59, Anjelique Melendez wrote:
-> Update leds-qcom-lpg binding to support LPG PPG.
-> 
-> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> ---
+Hi,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Sun, Aug 6, 2023 at 11:32=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 04/08/2023 11:58, Sheng-Liang Pan wrote:
+> > Introduce more sc7180-lazor sku and board version configuration,
+> > add no-eSIM SKU 10 for Lazor, no-eSIM SKU 15 and 18 for Limozeen,
+> > add new board version 10 for audio codec ALC5682i-VS.
+> >
+> > Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.goo=
+gle.com>
+> > ---
+> >
+> > Changes in v2:
+> > - add new entry rev9 with Parade bridge chip
+> >
+> >  .../devicetree/bindings/arm/qcom.yaml         | 55 +++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Document=
+ation/devicetree/bindings/arm/qcom.yaml
+> > index 450f616774e0..dce7b771a280 100644
+> > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > @@ -470,6 +470,11 @@ properties:
+> >            - const: google,lazor-rev8
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook Spin 513 Parade bridge chip (rev9=
+)
+> > +        items:
+> > +          - const: google,lazor-rev9
+> > +          - const: qcom,sc7180
+> > +
+> >        - description: Acer Chromebook Spin 513 (newest rev)
+> >          items:
+> >            - const: google,lazor
+> > @@ -491,6 +496,11 @@ properties:
+> >            - const: google,lazor-rev8-sku2
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook Spin 513 Parade bridge chip with =
+KB Backlight (rev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku2
+> > +          - const: qcom,sc7180
+> > +
+> >        - description: Acer Chromebook Spin 513 with KB Backlight (newes=
+t rev)
+> >          items:
+> >            - const: google,lazor-sku2
+> > @@ -512,11 +522,26 @@ properties:
+> >            - const: google,lazor-rev8-sku0
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook Spin 513 Parade bridge chip with =
+LTE (rev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku0
+> > +          - const: qcom,sc7180
+> > +
+> >        - description: Acer Chromebook Spin 513 with LTE (newest rev)
+> >          items:
+> >            - const: google,lazor-sku0
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook Spin 513 Parade bridge chip with =
+LTE no-esim (rev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku10
+> > +          - const: qcom,sc7180
+> > +
+> > +      - description: Acer Chromebook Spin 513 with LTE no-esim (newest=
+ rev)
+> > +        items:
+> > +          - const: google,lazor-sku10
+> > +          - const: qcom,sc7180
+> > +
+> >        - description: Acer Chromebook 511 (rev4 - rev8)
+> >          items:
+> >            - const: google,lazor-rev4-sku4
+> > @@ -526,6 +551,11 @@ properties:
+> >            - const: google,lazor-rev8-sku4
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook 511 Parade bridge chip (rev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku4
+> > +          - const: qcom,sc7180
+> > +
+> >        - description: Acer Chromebook 511 (newest rev)
+> >          items:
+> >            - const: google,lazor-sku4
+> > @@ -545,11 +575,36 @@ properties:
+> >            - const: google,lazor-rev8-sku6
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook 511 Parade bridge chip without To=
+uchscreen (rev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku6
+> > +          - const: qcom,sc7180
+> > +
+> >        - description: Acer Chromebook 511 without Touchscreen (newest r=
+ev)
+> >          items:
+> >            - const: google,lazor-sku6
+> >            - const: qcom,sc7180
+> >
+> > +      - description: Acer Chromebook 511 Parade bridge chip no-esim (r=
+ev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku15
+> > +          - const: qcom,sc7180
+> > +
+> > +      - description: Acer Chromebook 511 no-esim (newest rev)
+> > +        items:
+> > +          - const: google,lazor-sku15
+> > +          - const: qcom,sc7180
+> > +
+> > +      - description: Acer Chromebook 511 Parade bridge chip without To=
+uchscreen no-esim (rev9)
+> > +        items:
+> > +          - const: google,lazor-rev9-sku18
+> > +          - const: qcom,sc7180
+> > +
+> > +      - description: Acer Chromebook 511 without Touchscreen no-esim (=
+newest rev)
+> > +        items:
+> > +          - const: google,lazor-sku18
+>
+> All of these entries (existing and new) should be just one entry with:
+>  - enum:
+>      - ....
+>      - ....
+>  - const: qcom,sc7180
 
-Best regards,
-Krzysztof
+I believe we've had this discussion before. At least twice. Here's a
+link to the last time you said "Ah, OK, I guess this is fine".
 
+https://lore.kernel.org/r/d3d4d90b-85b5-5ad9-78e6-5a074c21af4f@linaro.org
