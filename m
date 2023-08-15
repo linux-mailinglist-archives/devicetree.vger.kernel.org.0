@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5D5777D2AC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 20:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDA177D25C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 20:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239540AbjHOS6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 14:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53418 "EHLO
+        id S239225AbjHOStP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 14:49:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239695AbjHOS6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 14:58:20 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2081FE6;
-        Tue, 15 Aug 2023 11:58:06 -0700 (PDT)
-Received: from p200300ccff31d1001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff31:d100:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qVynp-002fC8-Iy; Tue, 15 Aug 2023 20:30:01 +0200
-Received: from andi by aktux with local (Exim 4.96)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qVynp-000tJJ-0e;
-        Tue, 15 Aug 2023 20:30:01 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, rydberg@bitmath.org,
-        u.kleine-koenig@pengutronix.de, linus.walleij@linaro.org,
-        Jonathan.Cameron@huawei.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH 4/4] ARM: dts: imx6sl-tolino-shine2hd: fix touchscreen rotation
-Date:   Tue, 15 Aug 2023 20:29:48 +0200
-Message-Id: <20230815182948.212575-5-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230815182948.212575-1-andreas@kemnade.info>
-References: <20230815182948.212575-1-andreas@kemnade.info>
+        with ESMTP id S239493AbjHOStN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 14:49:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB99D1FE2;
+        Tue, 15 Aug 2023 11:48:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E919763D89;
+        Tue, 15 Aug 2023 18:46:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD4E5C433C8;
+        Tue, 15 Aug 2023 18:46:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692125189;
+        bh=zv5pC+Qqu8iU5zcIUK+msSKv/nfgRX2M/72yR3ws9O4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=oQva9tmvM3AMR6Y79y6EIBuN+SqRjVKWd2QQEG54PUsyKb/WPEWDqarysEaMcu7CG
+         4Nw07IjgdX13tWg26/765cqt8v+jB8kr3PJ2bzc54e2drkN5JZZlgI1VglIBJYvUM7
+         f9zcJjKCXPVGOzy4mjkMEO0jxF0uuKVYwJ809t++2qEVjW/jZbHXAF+GE8tRvEyAZP
+         YoeTmFP8PSo4VGAiP8GBnXclPvCG0/JIxLJR+yNY6zrNo0Y8jlX5rf0jvu2o1SLeKZ
+         FwhgZAblcEVMpmamqhOvB6zrHRAK3pU2zCfPx3QFldU7ivRGOcFhdIFKynP7XUcrPD
+         ViAw79u+nJsNA==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: apq8064: add support to gsbi4 uart
+Date:   Tue, 15 Aug 2023 11:49:11 -0700
+Message-ID: <169212535062.2466993.11739627292690261281.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230814150040.64133-1-david@ixit.cz>
+References: <20230814150040.64133-1-david@ixit.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The display is in landscape orientation, but the touchscreen is in portrait
-orientation. Specify that properly in the devicetree.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+On Mon, 14 Aug 2023 17:00:40 +0200, David Heidelberg wrote:
+> This patch adds support to gsbi4 uart which is used in LG Mako.
+> 
+> 
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-index 815119c12bd4..5636fb3661e8 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-@@ -141,8 +141,10 @@ zforce: touchscreen@50 {
- 		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
- 		vdd-supply = <&ldo1_reg>;
- 		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
--		x-size = <1072>;
--		y-size = <1448>;
-+		touchscreen-size-x = <1072>;
-+		touchscreen-size-y = <1448>;
-+		touchscreen-swapped-x-y;
-+		touchscreen-inverted-x;
- 	};
- 
- 	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
+Applied, thanks!
+
+[1/1] ARM: dts: apq8064: add support to gsbi4 uart
+      commit: f6ce0896b4ec0683abfcc86a6facdacb72e1b23c
+
+Best regards,
 -- 
-2.39.2
-
+Bjorn Andersson <andersson@kernel.org>
