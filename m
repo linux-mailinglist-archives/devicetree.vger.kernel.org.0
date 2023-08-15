@@ -2,97 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7918377CFCA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 18:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DFA477CFF9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 18:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234538AbjHOP7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 11:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
+        id S229952AbjHOQPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 12:15:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238469AbjHOP7k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 11:59:40 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1B6DF;
-        Tue, 15 Aug 2023 08:59:38 -0700 (PDT)
-Received: from [127.0.0.1] (ip-109-43-115-51.web.vodafone.de [109.43.115.51])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S230336AbjHOQOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 12:14:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D128398;
+        Tue, 15 Aug 2023 09:14:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 6B6F53D5;
-        Tue, 15 Aug 2023 17:59:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1692115176;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=74PPELyfTdRJMzG/844z25bsJa3XCvyEnvQBQNAdiaY=;
-        b=2LurkNY/UP++tp7HyhcQAep+uOzh7mSWOIHO4I7wCdCKHTrppFFdvhjvrgs+ZrKui2E9xm
-        JzvuT20uC9Zqh/+HN758R4LUWl8W3jqtbPyGvi2lWQol8JiWqVxuAeiF37/yk4M2ea73e7
-        aST0SfYvNKisMulDXoy3rP7N4/V3meWHvzjvZ3KjmToa/WEbAs98POlxnc48ddolyzklhD
-        2tn1oQ9akdoCL7IySSv+FNIigyHN+mvVecJ4hOCrPYm02RjxXEMaiIwd7m0LHhLhMMYnLI
-        rBdaW6KeyIoU13hl8/44rNf7/hK9gozl9G2KXX/uAdh5QDeetvIsl5ILnk2m/g==
-Date:   Tue, 15 Aug 2023 17:59:34 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>
-CC:     Pratyush Yadav <pratyush@kernel.org>,
-        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger )" <richard@nod.at>,
-        "Vignesh Raghavendra )" <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH 0/4] Add a property to override the quad mode
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20230815154412.713846-1-hsinyi@chromium.org>
-References: <20230815154412.713846-1-hsinyi@chromium.org>
-Message-ID: <202A0C36-D1F6-4BB4-BDEC-F36A76B757A2@walle.cc>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C50F65901;
+        Tue, 15 Aug 2023 16:14:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BA68C433C8;
+        Tue, 15 Aug 2023 16:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692116071;
+        bh=ZA+SlCsBMcnj/rlUUuHXJT4uMLI0+8HJJCCwjUgVjFE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jiXjZ/81Cq1PNFPGEq8fDFH9sKNNd9snIxjKN94/udALhDGffa5XO8k6sSggzXt7Q
+         dUTHTmc2oD4jtfaMh9mnRRGjNKR5iHe8gNc8aTryVXvvGCcJozWt5Q0b9V9rNyZA4c
+         Pzov2uJeQ6YfHGRKAEdQLgX5fhdbUozgnsYv8BEJEahk3Tn+9Qb13ZpKhqtTZKPiQi
+         ffpGYM8muRKPD7U+I5NDrSY/B00x46Y0uMX8Kdj2ORT4CDGVzQeMQAyK38mRTKPS1H
+         /0Im8Y0PCxOgrIjQSWs8AEfdEr7+sMjc5vSJgvrCpI+VIMAG9J98mqqYFvMoQvdCQ6
+         bV6JU3T2nLmLw==
+Date:   Tue, 15 Aug 2023 09:17:15 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Anjelique Melendez <quic_amelende@quicinc.com>
+Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, agross@kernel.org, luca.weiss@fairphone.com,
+        konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
+        quic_subbaram@quicinc.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>
+Subject: Re: [PATCH v3 6/7] leds: rgb: leds-qcom-lpg: Support two-nvmem PPG
+ Scheme
+Message-ID: <ho2oldc5dgwc274tc7unxuw6dymaz4i6amssfnkaauxhgzmjqx@in7yjuhyezm6>
+References: <20230814235918.10396-1-quic_amelende@quicinc.com>
+ <20230814235918.10396-7-quic_amelende@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230814235918.10396-7-quic_amelende@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,=20
+On Mon, Aug 14, 2023 at 04:59:17PM -0700, Anjelique Melendez wrote:
+> On PMICs such as PM8350C, the lookup table containing the pattern data
+> is stored in a separate nvmem device from the one where the per-channel
 
->On gigadevice gd25lq64c, the quad mode is enabled after BFPT is parsed=2E
->According to datasheet[1], Quad enable (QE) bit needs to be set to 0 to
->use write protection (WP) pin=2E It also recommends setting default value=
- of
->QE to 0 to avoid a potential short issue=2E
+I think it would be better to say "separate SDAM" instead of "separate
+nvmem device", to make it clearer to the reader what's being done.
 
-So you are using either dual or single io mode=2E Why can't you use the de=
-vice tree property spi-{tx,rx}-bus-width?=20
+> data is stored.
+> 
+> Add support for two separate nvmems to handle this case while maintaining
 
->Add a disable-quad-mode property in devicetree that platform can use it t=
-o
->override the quad mode status parsed from BFPT to use write protection=2E
->
->[1]
->https://www=2Eelm-tech=2Ecom/ja/products/spi-flash-memory/gd25lq64/gd25lq=
-64=2Epdf
+You're only adding the support for the dedicated LUT SDAM, not "for two
+separate nvmems".
 
-should be a link on the vendor Homepage if possible=2E=20
+> backward compatibility for those targets that use only a single nvmem
+> device.
+> 
+> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
 
--michael
+If Guru was the first to sign off the change, then he must have authored
+the patch. Or add a Co-developed-by if that's appropriate.
 
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> ---
+>  drivers/leds/rgb/leds-qcom-lpg.c | 112 ++++++++++++++++++++++++-------
+>  1 file changed, 89 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index 822c7bff00df..f3f83925ab41 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -60,6 +60,7 @@
+>  #define RAMP_STEP_DURATION(x)		(((x) * 1000 / DEFAULT_TICK_DURATION_US) & 0xff)
+>  
+>  /* LPG common config settings for PPG */
+> +#define SDAM_START_BASE			0x40
+
+I really wish that we hid this offset in the SDAM nvmem driver - but
+that ship has sailed...
+
+>  #define SDAM_REG_RAMP_STEP_DURATION		0x47
+>  #define SDAM_LUT_COUNT_MAX			64
+>  
+> @@ -69,6 +70,8 @@
+>  #define SDAM_END_INDEX_OFFSET			0x3
+>  #define SDAM_START_INDEX_OFFSET		0x4
+>  #define SDAM_PBS_SCRATCH_LUT_COUNTER_OFFSET	0x6
+> +#define SDAM_PAUSE_HI_MULTIPLIER_OFFSET	0x8
+> +#define SDAM_PAUSE_LO_MULTIPLIER_OFFSET	0x9
+>  
+>  struct lpg_channel;
+>  struct lpg_data;
+> @@ -85,7 +88,9 @@ struct lpg_data;
+>   * @lut_bitmap:	allocation bitmap for LUT entries
+>   * @pbs_dev:	PBS device
+>   * @lpg_chan_nvmem:	LPG nvmem peripheral device
+> + * @lut_nvmem:	LUT nvmem peripheral device
+>   * @pbs_en_bitmap:	bitmap for tracking PBS triggers
+> + * @nvmem_count:	number of nvmems used for LUT and PPG config
+
+I find the concept of "how many nvmem do we have" slightly unclear.
+Perhaps we could split this that into two separate boolean properties,
+something like use_sdam and use_sdam_lut?
+
+
+On the other hand, use_sdam and use_sdam_lut should afaict always be
+equal to lpg_chan_nvmem != NULL and lut_nvmem != NULL. So you could use
+these directly instead.
+
+>   * @lut_sdam_base:	offset where LUT pattern begins in nvmem
+>   * @ppg_en:	Flag indicating whether PPG is enabled/used
+>   * @triled_base:	base address of the TRILED block (optional)
+> @@ -111,7 +116,9 @@ struct lpg {
+>  
+>  	struct pbs_dev *pbs_dev;
+>  	struct nvmem_device *lpg_chan_nvmem;
+> +	struct nvmem_device *lut_nvmem;
+>  	unsigned long pbs_en_bitmap;
+> +	unsigned int nvmem_count;
+>  	u32 lut_sdam_base;
+>  	bool ppg_en;
+>  
+> @@ -261,6 +268,8 @@ static int lpg_sdam_write(struct lpg *lpg, u16 addr, u8 val)
+>  }
+>  
+>  #define SDAM_REG_PBS_SEQ_EN		0x42
+> +#define SDAM_PBS_TRIG_SET		0xe5
+> +#define SDAM_PBS_TRIG_CLR		0xe6
+
+Please add these at the top, like requested in the previous patch.
+
+>  #define PBS_SW_TRIG_BIT		BIT(0)
+>  
+[..]
+>  static void lpg_sdam_apply_lut_control(struct lpg_channel *chan)
+>  {
+>  	u8 val, conf = 0;
+> +	unsigned int hi_pause, lo_pause;
+>  	struct lpg *lpg = chan->lpg;
+>  
+> +	hi_pause = DIV_ROUND_UP(chan->ramp_hi_pause_ms, chan->ramp_tick_ms);
+> +	lo_pause = DIV_ROUND_UP(chan->ramp_lo_pause_ms, chan->ramp_tick_ms);
+> +
+>  	if (!chan->ramp_oneshot)
+>  		conf |= LPG_PATTERN_CONFIG_REPEAT;
+> +	if (chan->ramp_hi_pause_ms && lpg->nvmem_count != 1)
+> +		conf |= LPG_PATTERN_CONFIG_PAUSE_HI;
+> +	if (chan->ramp_lo_pause_ms && lpg->nvmem_count != 1)
+> +		conf |= LPG_PATTERN_CONFIG_PAUSE_LO;
+>  
+>  	lpg_sdam_write(lpg, SDAM_PBS_SCRATCH_LUT_COUNTER_OFFSET + chan->sdam_offset, 0);
+>  	lpg_sdam_write(lpg, SDAM_PATTERN_CONFIG_OFFSET + chan->sdam_offset, conf);
+>  
+> -	lpg_sdam_write(lpg, SDAM_END_INDEX_OFFSET + chan->sdam_offset, chan->pattern_hi_idx);
+> -	lpg_sdam_write(lpg, SDAM_START_INDEX_OFFSET + chan->sdam_offset, chan->pattern_lo_idx);
+> +	val = lpg_get_sdam_lut_idx(chan, chan->pattern_hi_idx);
+
+I'd suggest adding a local variable "lut_offset" to the values here,
+instead of calling out to a separate function to perhaps adjust the
+values.
+
+> +	lpg_sdam_write(lpg, SDAM_END_INDEX_OFFSET + chan->sdam_offset, val);
+> +
+> +	val = lpg_get_sdam_lut_idx(chan, chan->pattern_lo_idx);
+> +	lpg_sdam_write(lpg, SDAM_START_INDEX_OFFSET + chan->sdam_offset, val);
+>  
+>  	val = RAMP_STEP_DURATION(chan->ramp_tick_ms);
+>  	if (val > 0)
+>  		val--;
+>  	lpg_sdam_write(lpg, SDAM_REG_RAMP_STEP_DURATION, val);
+> +
+> +	if (lpg->nvmem_count != 1) {
+> +		lpg_sdam_write(lpg, SDAM_PAUSE_HI_MULTIPLIER_OFFSET + chan->sdam_offset, hi_pause);
+> +		lpg_sdam_write(lpg, SDAM_PAUSE_LO_MULTIPLIER_OFFSET + chan->sdam_offset, lo_pause);
+> +	}
+> +
+>  }
+>  
+>  static void lpg_apply_lut_control(struct lpg_channel *chan)
+> @@ -1000,8 +1050,8 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
+>  	 * enabled. In this scenario the delta_t of the middle entry (i.e. the
+>  	 * last in the programmed pattern) determines the "high pause".
+>  	 *
+> -	 * NVMEM devices supporting LUT do not support "low pause", "high pause"
+> -	 * or "ping pong"
+> +	 * All NVMEM devices supporting LUT do not support "ping pong"
+> +	 * Single NVMEM devices supporting LUT do not support "low pause" and "high pause"
+
+How about: "SDAM-based devices does not support "ping pong", and only
+supports "low pause" and "high pause" with dedicated SDAM LUT." ?
+
+>  	 */
+>  
+>  	/* Detect palindromes and use "ping pong" to reduce LUT usage */
+[..]
+> @@ -1509,29 +1559,45 @@ static int lpg_parse_sdam(struct lpg *lpg)
+>  {
+>  	int rc = 0;
+>  
+> -	if (lpg->data->nvmem_count == 0)
+> +	lpg->nvmem_count = lpg->data->nvmem_count;
+> +	if (lpg->nvmem_count == 0)
+>  		return 0;
+>  
+> -	/* get the nvmem device for LPG/LUT config */
+> +	if (lpg->nvmem_count > 2)
+> +		return -EINVAL;
+> +
+> +	/* get the 1st nvmem device for LPG/LUT config */
+>  	lpg->lpg_chan_nvmem = devm_nvmem_device_get(lpg->dev, "lpg_chan_sdam");
+>  	if (IS_ERR(lpg->lpg_chan_nvmem)) {
+>  		rc = PTR_ERR(lpg->lpg_chan_nvmem);
+> -		if (rc != -EPROBE_DEFER)
+> -			dev_err(lpg->dev, "Failed to get nvmem device, rc=%d\n", rc);
+> -		return rc;
+> +		goto err;
+>  	}
+>  
+> -	lpg->pbs_dev = get_pbs_client_device(lpg->dev);
+> -	if (IS_ERR(lpg->pbs_dev)) {
+> -		rc = PTR_ERR(lpg->pbs_dev);
+> -		if (rc != -EPROBE_DEFER)
+> -			dev_err(lpg->dev, "Failed to get PBS client device, rc=%d\n", rc);
+> -		return rc;
+> +	if (lpg->nvmem_count == 1) {
+> +		/* get PBS device node if single NVMEM device */
+> +		lpg->pbs_dev = get_pbs_client_device(lpg->dev);
+> +		if (IS_ERR(lpg->pbs_dev)) {
+> +			rc = PTR_ERR(lpg->pbs_dev);
+> +			if (rc != -EPROBE_DEFER)
+> +				dev_err(lpg->dev, "Failed to get PBS client device, rc=%d\n", rc);
+> +			return rc;
+
+return dev_err_probe() please.
+
+> +		}
+> +	} else if (lpg->nvmem_count == 2) {
+> +		/* get the 2nd nvmem device for LUT pattern */
+> +		lpg->lut_nvmem = devm_nvmem_device_get(lpg->dev, "lut_sdam");
+> +		if (IS_ERR(lpg->lut_nvmem)) {
+> +			rc = PTR_ERR(lpg->lut_nvmem);
+> +			goto err;
+> +		}
+>  	}
+>  
+>  	lpg->ppg_en = true;
+>  
+>  	return rc;
+
+rc is still 0 here.
+
+> +err:
+> +	if (rc != -EPROBE_DEFER)
+> +		dev_err(lpg->dev, "Failed to get nvmem device, rc=%d\n", rc);
+
+The idiomatic usage of goto is to share error handling, and release
+resources in a reverse order that they where acquired. It's therefor
+going to confuse future readers when you do:
+
+if (error)
+  goto err;
+
+if (error2)
+  return rc;
+
+if (error3)
+  goto err;
+
+
+But more importantly, this error message gives no indication about which
+nvmem device the driver failed to find. If you move the error print up,
+and use dev_err_probe() the code will be easier to follow and you can
+afford making the error message more helpful.
+
+Regards,
+Bjorn
