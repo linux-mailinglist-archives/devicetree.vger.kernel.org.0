@@ -2,91 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7764377D178
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 20:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB76A77D29E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 20:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237586AbjHOSEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 14:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
+        id S239287AbjHOS56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 14:57:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238416AbjHOSEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 14:04:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EAA41987;
-        Tue, 15 Aug 2023 11:04:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3982861309;
-        Tue, 15 Aug 2023 18:04:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D12DC433C9;
-        Tue, 15 Aug 2023 18:04:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692122651;
-        bh=mzbNzne3PD1b7Z60xa5BSWREMcguu9Lbh3k0qDDEqnI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TFxdue8orHKEsUJoqRmvAkg7i1FWDzK3aT5o1una/QIlGBbxpoRPQMz48jitc78la
-         jqPPzbnjmO+eEdnclI/4Hag3At/rhrOaZycktuADX3S7E1le7pMT/++mMHEKaNiiNN
-         40ESLPG1GqKGuEiU3wjOWj6iQtVE93MMmXcvblFZnbVTKE4TxqW+wYaf6oUx7PDIxH
-         fuy08mqTdZ/q0snWUmLARyyh/WjC2Lt/gTXQ82XhUutsTvtcBBBAt6onua7HsDt/iu
-         xCn3RmqpmBlUKQvm5stmJUeLx192DpJubKU3tWq5IpnF9x/aWRGLteXLmEAVAZo06B
-         bYLRxby9C4xwA==
-Date:   Tue, 15 Aug 2023 19:04:05 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] treewide: Update Guru Das Srinagesh's email address
-Message-ID: <20230815180405.GG648357@google.com>
-References: <20230728001622.4938-1-quic_gurus@quicinc.com>
- <20230728075416.GC8175@google.com>
- <20230803011016.GA1630536-robh@kernel.org>
+        with ESMTP id S239534AbjHOS5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 14:57:30 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1769210E;
+        Tue, 15 Aug 2023 11:56:57 -0700 (PDT)
+Received: from p200300ccff31d1001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff31:d100:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qVyno-002fC1-4Z; Tue, 15 Aug 2023 20:30:00 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qVynn-000tIy-0u;
+        Tue, 15 Aug 2023 20:29:59 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, rydberg@bitmath.org,
+        u.kleine-koenig@pengutronix.de, linus.walleij@linaro.org,
+        Jonathan.Cameron@huawei.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH 0/4] Input: zforce_ts: standard properties
+Date:   Tue, 15 Aug 2023 20:29:44 +0200
+Message-Id: <20230815182948.212575-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230803011016.GA1630536-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Aug 2023, Rob Herring wrote:
+Accept standard touchscreen properties to also enable specification
+of touchscreen orientation. 
 
-> On Fri, Jul 28, 2023 at 08:54:16AM +0100, Lee Jones wrote:
-> > On Thu, 27 Jul 2023, Guru Das Srinagesh wrote:
-> > 
-> > > Clean up my email address as the codeaurora.org address is not used
-> > > anymore.
-> > > 
-> > > Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
-> > >  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
-> > 
-> > 2 patches isn't exactly 'treewide'.
-> > 
-> > Anyway, since there are not dependencies between the changes, please
-> > separate them out, one per subsystem.
-> 
-> I'm happy to take these patches via the DT tree. No real advantage to 
-> creating more work to split up these trivial changes.
+Andreas Kemnade (4):
+  dt-bindings: touchscreen: convert neonode,zforce to json-schema
+  dt-bindings: touchscreen: neonode,zforce: Use standard properties
+  Input: zforce_ts: Accept standard touchscreen properties
+  ARM: dts: imx6sl-tolino-shine2hd: fix touchscreen rotation
 
-Sounds good.
+ .../input/touchscreen/neonode,zforce.yaml     | 72 +++++++++++++++++++
+ .../bindings/input/touchscreen/zforce_ts.txt  | 34 ---------
+ .../dts/nxp/imx/imx6sl-tolino-shine2hd.dts    |  6 +-
+ drivers/input/touchscreen/zforce_ts.c         | 36 +++++-----
+ 4 files changed, 94 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/neonode,zforce.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/zforce_ts.txt
 
 -- 
-Lee Jones [李琼斯]
+2.39.2
+
