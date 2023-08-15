@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B382C77C896
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 09:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA02B77C94E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 10:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232566AbjHOHdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 03:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33624 "EHLO
+        id S235601AbjHOIXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 04:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234491AbjHOHdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 03:33:15 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 114ABE65
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 00:33:14 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-991c786369cso691137466b.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 00:33:13 -0700 (PDT)
+        with ESMTP id S235614AbjHOIXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 04:23:45 -0400
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BFF9127
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 01:23:44 -0700 (PDT)
+Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-56c87f89178so3595987eaf.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 01:23:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692084792; x=1692689592;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mbR8jCSs/QiaV6+2VKNjUs44H5IHvuOfBsH4XIH3FZA=;
-        b=b4S6bUYtiLhsX0nhZOEZvszfR31uQkNh1w9uS0GuIZK1cTGPVMfuQebopR4toCuhOZ
-         yW4bZeOdaiR7WtW3wj3SBlpnDP4o+Biu6f6/5yKJxA/CdulN4o4wUeKAmw8CPHJQzSx8
-         365a9V7SWjF2zSXP1fQuOLa0uXWi1LFUd0OKj6kYMU1hjDEHTioVMdDRX1R3q/YF7+5p
-         zzS6stfKAebdNm+/WDc9r5xA4vBaWMaW7OwBbdZzHYuuic9SkGayKeIu0+rTAgmpvYLW
-         xZtfNo81EbuPSaeZdXJJh6StuSc9WcJcY2euGdN13lTavvhL+xEgStOBqtEIHij6T7G2
-         tLNA==
+        d=linaro.org; s=google; t=1692087823; x=1692692623;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P+/qnY4s3O9rrWU/lJLgkQWAGmTXFaSBrM1nwh5H2Ug=;
+        b=U62tym13etyd8Lv2775EVMPp1NUMkeDUd0VgFmZ//jYSNkmrldUQf16rwMjKEyS+Uh
+         PuZVNU7eC71Xzt1HXBX8cKq4FELs1x5crxczWj7sw3HFjC2L6fjjVp6AUoLJEJor3Rr0
+         ykgoBrShYla3Zk9ru2uq+TnA/8MhzfYN24gWxMqK4XJ/P04I40g4wWCh+/PpHVmGuCiR
+         I8pV6qCfuDwnM3/gUDWmlm2tIsXdGcd+zDxKcbJ64faZhjl80zjJPQJOde4BTMtvNmdY
+         qkDuCBSiZy1qoRSs/pVAglQnnQznJG4q11bMNgGgzWAsRScz5AlAE5KuLTXW2X9RFvQQ
+         waaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692084792; x=1692689592;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mbR8jCSs/QiaV6+2VKNjUs44H5IHvuOfBsH4XIH3FZA=;
-        b=dE/XeoXCkRuk1deXbNEMzbaHwi6VCciwwdD76auhVpjTkPYPULMU/Y7V/HOcEWY+U2
-         tveHHx5fizUbAQhfCeCO2+3zLnEkok22y6ig3Kd40vBvyFD0n8VcR6QqiNO08g/072jx
-         HFrz4YkRlkWC+tS1qnmh8cyKhwiCG1Lg+VLzZM/SM3qTO5UvCoYblEAm4hgT6ISQzIE9
-         96vnodXaiBuTWWWrmteiy1S+vEqqmVfCSwwDFVzFAjfh6t+N2kIQ27oI6X/A7Qo8zDHm
-         YDHtAWkgtUGDY7Dlteh0mYHHSJeZAVXjl09CVsuyTk7tOgV261PE3Nsiyimfnv4acw4x
-         zoqw==
-X-Gm-Message-State: AOJu0YwA7Y4MeYFUiRDmsbRapcaH+M3uwN0HnmUMCWfoXJl0zyRzJy2w
-        1nAg1MUwLyWZPF5EaBUCCX6KzA==
-X-Google-Smtp-Source: AGHT+IGYr6mviWLuAJOcMVHhWs6mcErZpsU6d2ANXHcTLWDqnzCdX+z3y/tcTK3XnSwggzX8pkDwyQ==
-X-Received: by 2002:a17:906:314c:b0:99b:64d0:f6c8 with SMTP id e12-20020a170906314c00b0099b64d0f6c8mr8910909eje.50.1692084792293;
-        Tue, 15 Aug 2023 00:33:12 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id w20-20020a170906385400b0097404f4a124sm6651143ejc.2.2023.08.15.00.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 00:33:11 -0700 (PDT)
-Message-ID: <79985698-2107-0aee-1395-81e3d9b4d727@linaro.org>
-Date:   Tue, 15 Aug 2023 09:33:09 +0200
+        d=1e100.net; s=20221208; t=1692087823; x=1692692623;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P+/qnY4s3O9rrWU/lJLgkQWAGmTXFaSBrM1nwh5H2Ug=;
+        b=Vg38oOioBHxVxIuQUuCLoSrfDYaQzgdLFepCvPosyeZIFWxwWZRbmJa1okpL3pJuG2
+         DCgcmR/eSEUpkFiy+wAeE7ooxuhlPfzC2sZvpyqMGq324mo/XLji/xTTMdHdrnXAqxXU
+         yohvmK0xCltt3Tiox8ow7Eweg19rDhhYaP0OOCYY+MpEAh5oGKkhnbDgeI/LjRDzrejY
+         RsAY+k9Up9dcw8q63n18D9FDvShom+b0rweBITWZaiWBwgtDucX2r51+csWumjsqg84s
+         vqiPFC8bg7/QRl8WxWJ8VUm8kJvKBaR22/345Bv/w6lT92S5NDV0bspKT6kkfXDxgVJO
+         GOgA==
+X-Gm-Message-State: AOJu0YzmmDZy3CuT4uSoW/lcPtNM646uJuucJ59kF3bwYryujY2cP1Ja
+        y5SRZm1ElsMxMxoAtVUrf9tsKPuz8X51ELnQnHUuQQ==
+X-Google-Smtp-Source: AGHT+IHZe2JYf6h5xBkiktmDAAJ7mhgcLZVHcUkqOn4jYmb7vvvl8cefNEhX0u+yeQzyD87YDK5qRQYxMv0CgZbbySc=
+X-Received: by 2002:a05:6358:e49a:b0:13a:9d5:356a with SMTP id
+ by26-20020a056358e49a00b0013a09d5356amr12170871rwb.21.1692087823463; Tue, 15
+ Aug 2023 01:23:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v6 2/3] dt-bindings: input: qcom,pm8xxx-vib: add new SPMI
- vibrator module
-Content-Language: en-US
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_kamalw@quicinc.com, jestar@qti.qualcomm.com
-References: <20230815064917.387235-1-quic_fenglinw@quicinc.com>
- <20230815064917.387235-3-quic_fenglinw@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230815064917.387235-3-quic_fenglinw@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <ZMZ3aEnrrZRDNdO+@standask-GA-A55M-S2HP>
+In-Reply-To: <ZMZ3aEnrrZRDNdO+@standask-GA-A55M-S2HP>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 15 Aug 2023 10:23:31 +0200
+Message-ID: <CACRpkdaS_Lq6VGqv2mfSDw03H71XGc9HKAYsgEqkxaakKKxxjg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: brcm,bcm11351-pinctrl: Convert to YAML
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2023 08:49, Fenglin Wu wrote:
-> Add compatible strings to support vibrator module inside PMI632,
-> PMI7250B, PM7325B, PM7550BA.
-> 
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> ---
+On Sun, Jul 30, 2023 at 4:44=E2=80=AFPM Stanislav Jakubek
+<stano.jakubek@gmail.com> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Convert Broadcom BCM281xx pin controller bindings to DT schema.
+>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 
-Best regards,
-Krzysztof
+Patch applied!
+Thanks for doing this Stanislav!
 
+Yours,
+Linus Walleij
