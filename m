@@ -2,141 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0FCA77CD63
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 15:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40D577CD7C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 15:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237441AbjHONiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 09:38:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
+        id S237193AbjHONpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 09:45:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237447AbjHONij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 09:38:39 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2057.outbound.protection.outlook.com [40.107.243.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AB7173D;
-        Tue, 15 Aug 2023 06:38:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MqkKPZdVIg1xncYlBPShjd02xOAkw1o7VqHDfiV3tu1/o1DahGEFGUF5rq4A6+RgAtEAZ5JanpikSmglFchYKrErkGXvzI7TaG7Dye+gufmr4p4pzLILhI8MP+1ZdYGRNf8zfdc9GuEw+4deB8Uyhncb+zr5rMPyOTRi48UIvMnwMv2VDixmLvoi+8LffKy4FSDuARYmLzufrCMXCmf3uXNDXDBxbusq8ksgzj+A3vg6g/Yd+zW+8+NBI05fJst4u1qUFpAYzggisRy4PyEQ47MyukkTZa9ZKqfeUTN0X8T36l10jCtYjR1x0NBLWATkE0VHGnIGNGHIWiVvX/npOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CXWtVKVyei6mM31rowI8vb74euuOOHMXYA1rwCuD9Dk=;
- b=b3TwgXmLYk8cfTUva0L8zuQ1xBUB3xMsdwpYyCBrJIkOSntvRGd9/WyPXi2BDUlcS7cia3xLUhy0+Qt/DqJFM263w3JpdaE3sGhSmxtWF1xT79U41qnWHJu6bUNPEkKCQANvtgrHL1wQqCCysJdu7to4vQksorzYOpkC7gnRqo11v9SDa63fxxNMxkHbrtMF63877KYeqUYjWp5wazPICIeUUcFwf6LprwxlwS7rX37Pfy3dzRfG7Ura/3ZTIq7wz6OKloV4t32wzE3NYUlteh27p/0byrDgdzyX/4Ht1ftNy6ttVk4KhA1JcgiUPPEK0KKbNQzE4qIYXIg480kSog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CXWtVKVyei6mM31rowI8vb74euuOOHMXYA1rwCuD9Dk=;
- b=bMmEiYGuATZqrIc6BIeZB97oNPLLf0YZVU7JQG/u7YmF1kpvXYjj/KOdSKcBa0X2fnzF+SKJoPGVEKYZ8yK10waqBL8nmhu9xIORw+QAIy/T2fKpPMVL2eSXb5rHtAQsUC/8DLgK8gjYKd4Wy+mhVFJI3nmmSLyENjQENKtcCMTUEvku5YPj+1htzjig4xKubXI/jbX8jg0G2jDgqCNlSSEM1UCZ2ERxIfQYtoczLEbha8aQ7E06ujKeauayu1bV+0cfPJCSUowypURJDZjHhNgqnP5kVFLKnJ9+ID/N9Plj0KQkG8zdM+rgOwmRXJ6idkBMp1mqPUtgebwxcabbng==
-Received: from CH2PR12MB4278.namprd12.prod.outlook.com (2603:10b6:610:ab::17)
- by PH7PR12MB6540.namprd12.prod.outlook.com (2603:10b6:510:213::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.26; Tue, 15 Aug
- 2023 13:38:35 +0000
-Received: from CH2PR12MB4278.namprd12.prod.outlook.com
- ([fe80::2742:341d:5f8:493e]) by CH2PR12MB4278.namprd12.prod.outlook.com
- ([fe80::2742:341d:5f8:493e%6]) with mapi id 15.20.6678.025; Tue, 15 Aug 2023
- 13:38:35 +0000
-From:   Brad Griffis <bgriffis@nvidia.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-Subject: RE: [PATCH 2/2] arm64: tegra: fix p3767 QSPI speed
-Thread-Topic: [PATCH 2/2] arm64: tegra: fix p3767 QSPI speed
-Thread-Index: AQHZqFlo4vPVMY+kFE62xmlJXVHk8q/D58AAgCfBP5A=
-Date:   Tue, 15 Aug 2023 13:38:35 +0000
-Message-ID: <CH2PR12MB427838F14EA7C962C97C4B9CAC14A@CH2PR12MB4278.namprd12.prod.outlook.com>
-References: <20230626180920.318774-1-bgriffis@nvidia.com>
- <20230626180920.318774-2-bgriffis@nvidia.com> <ZLok_Lg6B_ggDzR9@orome>
-In-Reply-To: <ZLok_Lg6B_ggDzR9@orome>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH2PR12MB4278:EE_|PH7PR12MB6540:EE_
-x-ms-office365-filtering-correlation-id: 453445ac-45bb-448f-e81a-08db9d94ecdd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JYS6sPP7xAnGCKzqY+FfbU2P6ezK1ofQg177quQA7toXMF9quAaiCiNyINjXbK0Yi+IGj8SEQELJum3scmd78yfitvsAYahVqSReU9xb0jheS2Kkx78gRCXJyiUmPMIKykM7s5DcpocRIEOEOt/c6E1OgPGLj3KpLNaWXVoJBhlY2MNSd+ahiw16xQ2QTkpQEZAZpFppVMY9W0fxXyBcrbKKTRuXo+rmjkW80MbCWoSFpLF2fh1OJG/5ZZD5Y6BS7HFIihs5BEfWezrUvIUtUoy2oPiRQBcDQOBeJTS3sh/McVdIxWC6eSLnstiJV+k9p1xm2LaoEY2hSRIcvsIsE/ZqPyN1c+zfErwjbSeE1RghvtVRpS+xpJSa+0xzNd4fxI+oVEUIfO3AgFsRATXEf6qDMUTTEH0piTk08X8CEhBtlxE7v9iPBNSRNis88fiKNO23+KFByedGMaqbPMHBs70bgvQtgPbXexGLJfxnLv2gkH9rS1ZymXeockOdaUcu4nc/2LlnYmORfDSacugf2KNFhxrrTa0Ger3CKKh6PpEuX3JhdO0DnBTrogOogKgpFkUN9S1gt2Gf3hU57Xu7faUYaq55n14O4fz6e3iFUXkndNopl9z3QtFkLkpo4Acv
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB4278.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(39860400002)(366004)(136003)(396003)(186009)(1800799009)(451199024)(7696005)(71200400001)(9686003)(54906003)(478600001)(55016003)(53546011)(26005)(6506007)(2906002)(4744005)(4326008)(316002)(6916009)(64756008)(76116006)(66446008)(66556008)(66946007)(66476007)(41300700001)(5660300002)(52536014)(8676002)(8936002)(86362001)(33656002)(83380400001)(38100700002)(122000001)(38070700005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KUge7Ma3F50nnjg0/Oo7W8mebo5ISFyvj4+Ph4ENRX9R30kAn1XlxSH7Cvcd?=
- =?us-ascii?Q?9LJpshLWG8Oal986yDwyi6xio8HcKhE9QdKw7WETxCgYtFXnHhEQUeQMA5Ll?=
- =?us-ascii?Q?SHvbaz6FRfW6ygdt6nJ7d3nDtYbcvZ8oppqnfyV+YNpIaGzMB42z9maRc8/K?=
- =?us-ascii?Q?IZ2kuQ00bfwf53DTymriNxw8R+MNNYnu0ETd1MuYgCcMSDt45w1e10kgN6E/?=
- =?us-ascii?Q?JWpBkcR8rZeo4cv27MenwSn0FxLJ0aO5MOAIM2HBCCUHETmrnT/WSo13LkTJ?=
- =?us-ascii?Q?HNbj1GU3nrwbk4ITYInIoTiyQNE+g4Xf0Q6WOq2q/wCSFIeCU0B8Kiyl+Ns6?=
- =?us-ascii?Q?C+kVvTAfrCfoEML1wmzExDMVZ3gQIatnsNI4fsDl+jVX93I5us3lI8bFJ9Nw?=
- =?us-ascii?Q?DwPf1MlkiuSp1Kc4zFRC2/nav0hF7T3ncVPrgxb7lczWncFQuQi9d7qD6TeK?=
- =?us-ascii?Q?XQNmxtW15CjqBVamGj3QQ8aWvlNLRq6rOQay10ZrpFUXKhJYyJxCoE0DXR8k?=
- =?us-ascii?Q?T4XOM8jaJzmCTI7IUKdkt2Zl/2nr9jVLE0jKs8ZxWBCnNpmbS64HCkrZ7MRY?=
- =?us-ascii?Q?Qn+zoiqIqv169EjVewooMNYDbqpVIqYxbw4KJpF78Cw/w45od4LvUuj7Vmor?=
- =?us-ascii?Q?WORxjfo24ftU98rgJne25hEDEEShIAgBBi6UtDLshH2rFyT50uL5h6VkFNIx?=
- =?us-ascii?Q?ZHMhAawFTh8cfaJvOtWejUaKaf4x+chxdACF3XsyR8T+AhWzrAWLxFRa1Xtf?=
- =?us-ascii?Q?sgXWujJaXJwJO2CKFFpi/yR1Fe0r12oN8WDwX8d1xxpTx6/P2KGTr0KQR2qC?=
- =?us-ascii?Q?j67GZ7icnTOjJNjMMyImJqb3Tq3JIUK8Rw4vEDTfFXYvTd5vM7orOiB99/ZQ?=
- =?us-ascii?Q?oxlgWoEQKB/XiyzslnDNWRHmTCF5qfqf/9IA1n95S69ILWdCy9EIf6VJEfSK?=
- =?us-ascii?Q?gS8AGQ783j5dSc/bxoM7zx0ZJiR+ifXZY/5Uznyzv0N5jw4mjogqDoGeiv0c?=
- =?us-ascii?Q?YxNFZHjNs+HFRn9bvGTOTTZavhbYJkayy2X29W5TlyoKQ+T5RF9LGlJovSbc?=
- =?us-ascii?Q?huXTySPhG/lGfuY/GXbLrLs4CIqQg+4D09O0W2dpIz5deNt/yADd3pGwPnVr?=
- =?us-ascii?Q?OgpVHZBr++ZuODstmuheDlJOxhBrbQI6mDPvQ9eqrQIAQspC5hw2MIDy/+oP?=
- =?us-ascii?Q?Hrtx5CtMndssBOathrbVcsLyxEJ0jkyBIClqpfX7+RJBWjbLBz3ufc+0r4k7?=
- =?us-ascii?Q?GgE30p+F4c8TR69znDofiSBXYYEHIaQKQ12bQnXpfM7twhFdN0sqcxCGP1LE?=
- =?us-ascii?Q?MdlKKKxSLP1miv1Z4VmZpkyZ4UvLpp6a8g4TTvvk+JDcgoEMqUxPJ1UoCzBC?=
- =?us-ascii?Q?c0Mu7huEOQcqJjB7VjiJmN620EuRZwC1QqJkwoNXaIpwS3uk13mXBVYT4IOA?=
- =?us-ascii?Q?ghmlo0LfHkJ0pr/u1rZRvTmuxCmG9qvjgVU+G166dTZGkVIcDh4ohWKLCyEC?=
- =?us-ascii?Q?h2lIsJftfRLWjmFRerxqptlK9YCibqzFJXEXyG9rh39DQw8tYM6xp8+FPhY8?=
- =?us-ascii?Q?BEgHkCeu9w70vZjCHlMBy+f3vowsOD76f5doEKTk?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S237445AbjHONpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 09:45:21 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8490A1986
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 06:45:18 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-31792ac0fefso4617305f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 06:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692107117; x=1692711917;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xcPUWysXDTiKfw7gZ8FtN9+LX48DKX4a+XFMxnig2RQ=;
+        b=M7RTjmd48w11YdcpK96o0eRSzZ037MNkV+HZEEuC2zUhMeMQqSgQpfNGK/nll10pJu
+         J6W43MWyDBnilAR0jgeDw2E5DC45xAi6gutKMf6rSu5f7b4w46gWz/Xt2K0gir1s4HyB
+         SF5zpiw+tMYBhS2pjGMTu4fAGd4k3+PnQ60q26ktPyWC4qCo3lDkDFRRXrQ1E2q9Kcma
+         J1ZxK0NT6CuIiZSCEd67+2w2K9GnO2Zu9jcwrBdTSzUgevJvf5b+55aIpHONG3VFld/m
+         Kq+vjPstU35EPnw4bVYXjkdF+ZK00sBpPJTaUhA8YUn7N1lsf4nsMwXVlCTT2jCIqwtI
+         dglw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692107117; x=1692711917;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xcPUWysXDTiKfw7gZ8FtN9+LX48DKX4a+XFMxnig2RQ=;
+        b=dxZMPbCD9spnQDEvPa+nf6vFaRbC9kguVZ3ZWuuaTIkIB50MMCQA72G19X/yweE4xa
+         JqCCRkfCZ54bEEADewFIkpWI8VW9OEgeLuiyoMM2IYBbNIWQbA4yzStygtyEq8bAi5Y2
+         EjSEHxSEJ6osC0jKT0v69WDRhcBwTRqLE29tp1OOckNZ7I8T75LWVTLOb+NVm6AvkI2K
+         YTX73swXUy1dkFhBZ5Rpgj5eTXaIig5djicOrgspg4aKzY63iJPjrlrtNDnAlwrcME9f
+         yzv6HvVxX9DV+pDYO99OwZ3ZFP4KaQebao5x4zjEGhD9rLuWYLKX5pkcAGR8MjO7r89n
+         JtlA==
+X-Gm-Message-State: AOJu0YwRqmeHfqDnnnOt/tDquhAU1PhpAYNZv7TiuO0/K1rNN5Ko1EcB
+        FsrV4nk+2iR+s6P290Ep5RNYl9glWVK+vi7Qr4Y=
+X-Google-Smtp-Source: AGHT+IGOhWSAUTJVLUdJ50unBGIbYPraM5efuHT0Xv/Q3OR3+4nOlIO5hF3MoMxq1vhiEk9zAwDe7w==
+X-Received: by 2002:adf:e74f:0:b0:317:6314:96e2 with SMTP id c15-20020adfe74f000000b00317631496e2mr9097744wrn.14.1692107116984;
+        Tue, 15 Aug 2023 06:45:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id v9-20020a5d6b09000000b0031759e6b43fsm18004088wrw.39.2023.08.15.06.45.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Aug 2023 06:45:16 -0700 (PDT)
+Message-ID: <a80a8f73-eef4-311b-c508-726956471880@linaro.org>
+Date:   Tue, 15 Aug 2023 15:45:14 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4278.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 453445ac-45bb-448f-e81a-08db9d94ecdd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Aug 2023 13:38:35.7151
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aWmJ5JBGodg/DFeG9fONcBEPP3+X18yca0pMPgoKwdE2WyoUnFtr80yZ1hmN+e/vuc4cMjkvJK/sBOk+dzykhw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6540
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Orange Pi 5
+Content-Language: en-US
+To:     Muhammed Efe Cetin <efectn@6tel.net>,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, sebastian.reichel@collabora.com
+References: <cover.1692102057.git.efectn@6tel.net>
+ <a1eca379d151c3f91f4cd4e1751ba389096c4f13.1692102057.git.efectn@6tel.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a1eca379d151c3f91f4cd4e1751ba389096c4f13.1692102057.git.efectn@6tel.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 6:26 AM +0000, Thierry Reding wrote:
-> On Mon, Jun 26, 2023 at 06:09:20PM +0000, Brad Griffis wrote:
-> > The QSPI device used in Jetson Orin NX and Nano modules (p3767) is the
-> > same as Jetson AGX Orin (p3701) and should have a max speed of
-> > 102 MHz.
-> >
-> > Fixes: 13b0aca303e9 ("arm64: tegra: Support Jetson Orin NX")
-> > Signed-off-by: Brad Griffis <bgriffis@nvidia.com>
-> > ---
-> >  arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> This was originally copied from the downstream DTB and I see 136 MHz for
-> both P3701 and P3767 there. So now I wonder which one is correct. Should
-> perhaps the P3701 be updated to 136 MHz instead if that's what is being u=
-sed
-> downstream?
+On 15/08/2023 14:59, Muhammed Efe Cetin wrote:
+> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
+> Sdmmc, SPI Flash, PMIC.
+> 
+> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
+> ---
+>  .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 873 ++++++++++++++++++
 
-Downstream we have changed both p3701 and p3767 to use 102 MHz.  That is
-the max speed for Quad I/O DTR reads.=20
+Without Makefile this won't be build, so this was not ever tested.
+
+>  1 file changed, 873 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> new file mode 100644
+> index 000000000000..85071084a207
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> @@ -0,0 +1,873 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include "rk3588s.dtsi"
+> +
+> +/ {
+> +	model = "Xunlong Orange Pi 5";
+> +	compatible = "xunlong,orangepi-5", "rockchip,rk3588s";
+> +
+> +	aliases {
+> +		mmc0 = &sdmmc;
+> +		serial2 = &uart2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 =<&leds_gpio>;
+> +
+> +		led@1 {
+
+Unit address is not correct here, it is not a bus. This should be
+reported as warning, so you did not check for warnings.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			gpios = <&gpio1 RK_PA2 GPIO_ACTIVE_HIGH>;
+> +			label = "status_led";
+> +			linux,default-trigger = "heartbeat";
+> +			linux,default-trigger-delay-ms = <0>;
+> +		};
+> +	};
+> +
+> +	adc-keys {
+> +		compatible = "adc-keys";
+> +		io-channels = <&saradc 1>;
+> +		io-channel-names = "buttons";
+> +		keyup-threshold-microvolt = <1800000>;
+> +		poll-interval = <100>;
+> +
+> +		vol-up-key {
+> +			label = "volume up";
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			press-threshold-microvolt = <17000>;
+> +		};
+> +
+> +		vol-down-key {
+> +			label = "volume down";
+> +			linux,code = <KEY_VOLUMEDOWN>;
+> +			press-threshold-microvolt = <417000>;
+> +		};
+> +
+> +		menu-key {
+> +			label = "menu";
+> +			linux,code = <KEY_MENU>;
+> +			press-threshold-microvolt = <890000>;
+> +		};
+> +
+> +		back-key {
+> +			label = "back";
+> +			linux,code = <KEY_BACK>;
+> +			press-threshold-microvolt = <1235000>;
+> +		};
+> +	};
+> +
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		brightness-levels = <  0  20  20  21  21  22  22  23
+> +					  23  24  24  25  25  26  26  27
+> +					  27  28  28  29  29  30  30  31
+> +					  31  32  32  33  33  34  34  35
+> +					  35  36  36  37  37  38  38  39
+> +					  40  41  42  43  44  45  46  47
+> +					  48  49  50  51  52  53  54  55
+> +					  56  57  58  59  60  61  62  63
+> +					  64  65  66  67  68  69  70  71
+> +					  72  73  74  75  76  77  78  79
+> +					  80  81  82  83  84  85  86  87
+> +					  88  89  90  91  92  93  94  95
+> +					  96  97  98  99 100 101 102 103
+> +					  104 105 106 107 108 109 110 111
+> +					  112 113 114 115 116 117 118 119
+> +					  120 121 122 123 124 125 126 127
+> +					  128 129 130 131 132 133 134 135
+> +					  136 137 138 139 140 141 142 143
+> +					  144 145 146 147 148 149 150 151
+> +					  152 153 154 155 156 157 158 159
+> +					  160 161 162 163 164 165 166 167
+> +					  168 169 170 171 172 173 174 175
+> +					  176 177 178 179 180 181 182 183
+> +					  184 185 186 187 188 189 190 191
+> +					  192 193 194 195 196 197 198 199
+> +					  200 201 202 203 204 205 206 207
+> +					  208 209 210 211 212 213 214 215
+> +					  216 217 218 219 220 221 222 223
+> +					  224 225 226 227 228 229 230 231
+> +					  232 233 234 235 236 237 238 239
+> +					  240 241 242 243 244 245 246 247
+> +					  248 249 250 251 252 253 254 255>;
+> +		default-brightness-level = <200>;
+> +		pwms = <&pwm2 0 25000 0>;
+> +	};
+> +
+> +	backlight_1: backlight_1 {
+
+No underscores in node names, use -
+
+> +		compatible = "pwm-backlight";
+> +		brightness-levels = <  0  20  20  21  21  22  22  23
+> +					  23  24  24  25  25  26  26  27
+> +					  27  28  28  29  29  30  30  31
+
+...
+
+> +
+> +&combphy0_ps {
+> +	status = "okay";
+> +};
+> +
+> +&combphy2_psu {
+> +	status = "okay";
+> +};
+> +
+> +&cpu_b0 {
+> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> +	mem-supply = <&vdd_cpu_big0_mem_s0>;
+> +};
+> +
+> +&cpu_b1 {
+> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> +	mem-supply = <&vdd_cpu_big0_mem_s0>;
+> +};
+> +
+> +&cpu_b2 {
+> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> +	mem-supply = <&vdd_cpu_big1_mem_s0>;
+> +};
+> +
+> +&cpu_b3 {
+> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> +	mem-supply = <&vdd_cpu_big1_mem_s0>;
+> +};
+> +
+> +&cpu_l0 {
+> +	cpu-supply = <&vdd_cpu_lit_s0>;
+> +	mem-supply = <&vdd_cpu_lit_mem_s0>;
+> +};
+> +
+> +&cpu_l1 {
+> +	cpu-supply = <&vdd_cpu_lit_s0>;
+> +	mem-supply = <&vdd_cpu_lit_mem_s0>;
+> +};
+> +
+> +&cpu_l2 {
+> +	cpu-supply = <&vdd_cpu_lit_s0>;
+> +	mem-supply = <&vdd_cpu_lit_mem_s0>;
+> +};
+> +
+> +&cpu_l3 {
+> +	cpu-supply = <&vdd_cpu_lit_s0>;
+> +	mem-supply = <&vdd_cpu_lit_mem_s0>;
+> +};
+> +
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-mode = "rgmii-rxid";
+> +	pinctrl-0 = <&gmac1_miim
+> +					&gmac1_tx_bus2
+> +					&gmac1_rx_bus2
+> +					&gmac1_rgmii_clk
+> +					&gmac1_rgmii_bus>;
+
+Messed alignment.
+
+> +	pinctrl-names = "default";
+> +	snps,reset-gpio = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 20000 100000>;
+> +	tx_delay = <0x42>;
+> +	status = "okay";
+> +};
+> +
+
+...
+
+> +
+> +&sfc {
+> +	pinctrl-0 = <&fspim0_pins>;
+> +	pinctrl-names = "default";
+> +	max-freq = <100000000>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	spi_flash: spi-flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-max-frequency = <100000000>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-rx-bus-width = <4>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "okay";
+
+okay is by default, was it disabled anywhere?
+
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			loader@0 {
+> +				label = "loader";
+> +				reg = <0x0 0x1000000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+
+
+Best regards,
+Krzysztof
+
