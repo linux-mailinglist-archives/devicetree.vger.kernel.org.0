@@ -2,155 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 963D877D35B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 21:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B836477D366
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 21:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239460AbjHOTYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 15:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59436 "EHLO
+        id S235977AbjHOTc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 15:32:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239875AbjHOTYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 15:24:31 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F65F1FF9
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 12:24:05 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3196afc7d4bso2857371f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 12:24:05 -0700 (PDT)
+        with ESMTP id S239893AbjHOTcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 15:32:33 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A48C1737
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 12:32:32 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so7201908a12.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 12:32:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692127443; x=1692732243;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eB2YdeaffFvKapTeu97tKDXHKtW8rfmRdezXiy0N6zs=;
-        b=SAY2gmIGNEAiGgInuM1nDGvc/w31ckngzwPdU5Nqy5hC0Nh2Va91zmvCGoJguwvcGY
-         20kRSVSGJXKP6DVme+avP+mwcYdlzcSUDrzWwPvB5dQFqt0dp/w9V4ASPFPW4ogmj4vh
-         x3pE5ECuJREptlRY/PQ5DolWgEM1gYN8/r5QPaIgZwBnj4bC4q+KfKIrLK8qNd9mcvZ7
-         ZHWQkA/8tCoe9HfDv6JqLPFLWGUJrKapW+0lccWL7ASniljFJpcv72pKauVvxCdq9bue
-         afDATz3M4QhchabaBBQ5x0iaP7I28TZfZHV1IuvfYkJmJDCW0E5Xl2crAyvz1ETAjo0I
-         B1eg==
+        d=chromium.org; s=google; t=1692127949; x=1692732749;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7QUc0x0pjPpKWnmgAca1QOq5TW3L4ejfm50N+84Kmuc=;
+        b=Rc4t/cyDu8Ic5J4iJ9ZsNBB62qcAxdOJVy9Ee86pehyaeAs0Suqmv9EQX/WgQ4X7v/
+         7vVDh2H7MT+q8/wZFM6Bwvpo7G5dvUrHj76IvIoh29ISgu2tl4RQpoMFcbCkD65VrOcQ
+         CnKpxVAUGCs8IeuVEkQdupwLaAg7eiExbfGx0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692127443; x=1692732243;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eB2YdeaffFvKapTeu97tKDXHKtW8rfmRdezXiy0N6zs=;
-        b=Cwiuv6b1ox35UoiqASgp8EnCsxWGd9cC7f/R73rzi+1h59p9n7WtspLNaezM5yItLU
-         i6scOylKU6+y+crqww5mMDefFE12Oehgjl75KeuCv/r+z8TOYPevbwJ6B1vgAdCIfC7y
-         UePBcjFfNwR1EHW4z79AsMwbcbb0jGmccXjp46IY/bpAgcL0sv1WSlIyac7EvScZOakN
-         NXwcshiNGXRMBPpHta2OlCXb/lZwTrQScSuxDKaLI5qgPsWLclLArmBd55oIw9heI3Q0
-         7YszK5fxiYnb21g2BzzL5/P76tmT8HWJZnQMxoY4Gs/oDbHSaU7hkOBJTc3UdBZE7+iR
-         mlcA==
-X-Gm-Message-State: AOJu0YzgouH8pl6NFX62hzAu2/cDW4XvDnsex7R1K+gBazH6XwDOi7Oi
-        wyT5ZQBlfnu9s3BPL7IiICyQxg==
-X-Google-Smtp-Source: AGHT+IHnCElvhjrz7ZJrHjNtJ31GOUgLq29EzBpHyKL8Ir+AdcbNQiYstFhuJeVysB7QpeLgwYuM6Q==
-X-Received: by 2002:adf:ed41:0:b0:317:cdc4:762e with SMTP id u1-20020adfed41000000b00317cdc4762emr11427959wro.63.1692127443408;
-        Tue, 15 Aug 2023 12:24:03 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id c13-20020a5d528d000000b003142c85fbcdsm18681305wrv.11.2023.08.15.12.24.00
+        d=1e100.net; s=20221208; t=1692127949; x=1692732749;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7QUc0x0pjPpKWnmgAca1QOq5TW3L4ejfm50N+84Kmuc=;
+        b=OR0F2xDS7P/6HtOKmpvRBiJgPVTbhiw0zrfYWHLkgQX5cO+KqrPtAea4UZUrdR+8Nc
+         K/NaXyECZDeSESUq3HwB4Nek2q3aSEklZdZpAqQNJx0wvirNIyHIIty4Pv9FmIDuoXkf
+         3iALWFcOO7DO7eS5RBVralm5y/0PKM3X166NrE2DQKC+Oaw6a3DKfGzk4GFxLzRnJUSP
+         yved8qnf/IFhmf4239StdINj+6QXSsV+oB+U0PY3pAZza2oPk4Zor5bDM9Q4nEDYJnpq
+         +67U++1MzmDEATmD18OZQt0UlmOXGTZ3NqIv2lcg6wHd8oJN++rX2/xWcyhBsWobb1ss
+         uA9g==
+X-Gm-Message-State: AOJu0YxwzHkr6lTJbT5LfBCItrxswjmVz5v1h5l9/CLwetw3WdFSF3yV
+        2ixqiJ5Ntxv5l1eLW5GhmbJ21AsjCW11DIYgqEbrVQ==
+X-Google-Smtp-Source: AGHT+IEs3aiwuRhdkyyATmaK5GFiScCPklPU8cpaeOroUrpYhVgcTCULMT+eRale4HI1k4Y9k+HHog==
+X-Received: by 2002:a17:906:2ce:b0:99c:aa43:b20c with SMTP id 14-20020a17090602ce00b0099caa43b20cmr10886570ejk.33.1692127948961;
+        Tue, 15 Aug 2023 12:32:28 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
+        by smtp.gmail.com with ESMTPSA id qx22-20020a170906fcd600b0099cd008c1a4sm7411026ejb.136.2023.08.15.12.32.27
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 12:24:02 -0700 (PDT)
-Message-ID: <afefa654-4f9a-121e-7d1b-76d9dcd778f7@linaro.org>
-Date:   Tue, 15 Aug 2023 21:23:59 +0200
+        Tue, 15 Aug 2023 12:32:27 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-3fe2a116565so1045e9.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 12:32:27 -0700 (PDT)
+X-Received: by 2002:a05:600c:35c7:b0:3fd:e15:41e3 with SMTP id
+ r7-20020a05600c35c700b003fd0e1541e3mr24772wmq.2.1692127947638; Tue, 15 Aug
+ 2023 12:32:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 2/2] Input: cs40l50 - Initial support for Cirrus Logic
- CS40L50
-Content-Language: en-US
-To:     James Ogletree <James.Ogletree@cirrus.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Fred Treven <Fred.Treven@cirrus.com>,
-        Ben Bright <Ben.Bright@cirrus.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230815154412.713846-1-hsinyi@chromium.org> <20230815154412.713846-5-hsinyi@chromium.org>
+In-Reply-To: <20230815154412.713846-5-hsinyi@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 15 Aug 2023 12:32:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UvDZOgJ0TxeBYGgDMqSUYUX9am+QAMEXpRQ0C-Hh=kVw@mail.gmail.com>
+Message-ID: <CAD=FV=UvDZOgJ0TxeBYGgDMqSUYUX9am+QAMEXpRQ0C-Hh=kVw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc7180: disable quad mode for spi nor
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Jeff LaBundy <jeff@labundy.com>, Joel Stanley <joel@jms.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, Jacky Bai <ping.bai@nxp.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        Eddie James <eajames@linux.ibm.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "patches@cirrus.com" <patches@cirrus.com>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230809191032.820271-1-james.ogletree@cirrus.com>
- <20230809191032.820271-3-james.ogletree@cirrus.com>
- <d1b9e063-54df-2dae-1487-c7c932fda145@linaro.org>
- <D4B53566-9F7D-46DA-8BAE-0572B9A8AA7A@cirrus.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <D4B53566-9F7D-46DA-8BAE-0572B9A8AA7A@cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger )" <richard@nod.at>,
+        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2023 17:56, James Ogletree wrote:
-> 
-> 
->> On Aug 10, 2023, at 1:17 AM, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 09/08/2023 21:10, James Ogletree wrote:
->>
->>> +
->>> +static int cs40l50_cs_dsp_init(struct cs40l50_private *cs40l50)
->>> +{
->>> + cs40l50->dsp.num = 1;
->>> + cs40l50->dsp.type = WMFW_HALO;
->>> + cs40l50->dsp.dev = cs40l50->dev;
->>> + cs40l50->dsp.regmap = cs40l50->regmap;
->>> + cs40l50->dsp.base = CS40L50_DSP1_CORE_BASE;
->>> + cs40l50->dsp.base_sysinfo = CS40L50_DSP1_SYS_INFO_ID;
->>> + cs40l50->dsp.mem = cs40l50_dsp_regions;
->>> + cs40l50->dsp.num_mems = ARRAY_SIZE(cs40l50_dsp_regions);
->>> + cs40l50->dsp.lock_regions = 0xFFFFFFFF;
->>> + cs40l50->dsp.no_core_startstop = true;
->>> + cs40l50->dsp.client_ops = &cs40l50_cs_dsp_client_ops;
->>> +
->>> + return cs_dsp_halo_init(&cs40l50->dsp);
->>> +}
->>> +
->>> +int cs40l50_probe(struct cs40l50_private *cs40l50)
->>> +{
->>> + int error, i, irq;
->>> + u32 val;
->>> +
->>> + mutex_init(&cs40l50->lock);
->>> +
->>> + error = devm_regulator_bulk_get(cs40l50->dev, ARRAY_SIZE(cs40l50_supplies),
->>> + cs40l50_supplies);
->>> + if (error)
->>> + return dev_err_probe(cs40l50->dev, error, "Failed to request supplies\n");
->>> +
->>> + error = regulator_bulk_enable(ARRAY_SIZE(cs40l50_supplies), cs40l50_supplies);
->>> + if (error)
->>> + return dev_err_probe(cs40l50->dev, error, "Failed to enable supplies\n");
->>> +
->>> + cs40l50->reset_gpio = devm_gpiod_get_optional(cs40l50->dev, "reset", GPIOD_OUT_HIGH);
->>
->> None of the lines above or below seem to be wrapped according to Linux
->> coding style (80).
-> 
-> This patch abides by the 100-column line length limit which checkpatch.pl enforces.
+Hi,
 
-Checkpatch does not enforce 100, because it accepts also 80. It
-complains if something is longer than 100, but coding style is still the
-same. Format everything according to coding style and use 100 only if it
-increases readability.
 
-> However, I can see how some of the lines might be less jarring to the eyes if wrapped.
-> That will be addressed in V4.
-> 
+On Tue, Aug 15, 2023 at 8:45=E2=80=AFAM Hsin-Yi Wang <hsinyi@chromium.org> =
+wrote:
+>
+> Some of the SKUs are using gigadevice gd25lq64c flash chip. The chip
+> default enables quad mode, which results in the write protect pin set to
+> IO pin. In trogdor platforms, we won't use quad enable for all SKUs, so
+> apply the property to disable spi nor's quad mode.
+>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/bo=
+ot/dts/qcom/sc7180-trogdor.dtsi
+> index 5a33e16a8b677..0806ce8e86bea 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -436,6 +436,7 @@ flash@0 {
+>                 spi-max-frequency =3D <37500000>;
+>                 spi-tx-bus-width =3D <2>;
+>                 spi-rx-bus-width =3D <2>;
+> +               disable-quad-mode;
 
-Best regards,
-Krzysztof
+This seems unnecessary. Unless "tx-bus-width" or "rx-bus-width" is 4
+then Quad SPI isn't enabled. You don't need an explicit property since
+this can just be inferred from the tx and rx bus width.
 
+-Doug
