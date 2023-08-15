@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B38B77D4EF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 23:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C38FF77D4F7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 23:14:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239900AbjHOVLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 17:11:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60732 "EHLO
+        id S240125AbjHOVNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 17:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240025AbjHOVLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 17:11:14 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D35EE
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:11:13 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-997c4107d62so777568366b.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:11:13 -0700 (PDT)
+        with ESMTP id S240234AbjHOVNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 17:13:19 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41692198B
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:13:15 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so7568513a12.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:13:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692133870; x=1692738670;
+        d=chromium.org; s=google; t=1692133991; x=1692738791;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K9aC/ossKYxTISDH8R+YhqoUzqggrmfQ7aidlPBuOX0=;
-        b=QqNvMeZeGm2Ei0pk5DQcG0lsP8wgS+MpbVXzUqAnMpCfIkE2wE704qScT9wn0h9uss
-         osUP6fhVcmagjY3Z+P8yPeRiSixeXcadX1+umFGLZHob0+q2sGDj9V66C+9OmS8Jo/gq
-         /wofk7WUSwgOHFXNF/V3MD7Iu9n+uFOk5PQRw=
+        bh=KQL376aYCM3mORsHenByKOm9UE97TQIxr1RFcgdCPKQ=;
+        b=HAK8GG9O0/3jtFiiUynpPDzV212pGhmNxm8edooqqx/pAVg29LxGMQ4IN1wOJVDRDH
+         J4iF2vhWI6iDRdiI1VrzmxURR3gKR42BFFKZlEXX+U2ZvqulAXJhlpztmEeox+MIU8+0
+         x1z8/m5LOWL2MKyscFagcCs0p8Hp0o4RQEHBE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692133870; x=1692738670;
+        d=1e100.net; s=20221208; t=1692133991; x=1692738791;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K9aC/ossKYxTISDH8R+YhqoUzqggrmfQ7aidlPBuOX0=;
-        b=hFf8LAb+9RXwSNGACqyvNF+6ZYZrWd3vbLoknvYwtSlNL0XGNwctErq15HNLwgrxxt
-         rsTFeP39pCfAv7A5j4CdU5thoO/J47C6StS7FCE+kVtZUNmecQrYX6H61Om4gQXBWhwj
-         fnMHR+8FBtQGoIJ5o5TF7v08WFZdB/b+bM+19sU6xh8xp9Se3yMVuGnolpxHNaL9SP9Y
-         IbT0PZPe+1GrAPOSbNb3B6QkAWMWTUjtI96A9ZArb1wUQfFadrQ9W61zwJRXqYtwUBzc
-         aBhnBK27+OfRpEuajTUJtU3qw1e/uGUwvOpTwQLoj+BmaxjMVODym4R4FuOa0CBkoreF
-         cPBg==
-X-Gm-Message-State: AOJu0Yz3rrvLsay+WahKeszYTUE9gykXI8iE77Un1Z1PUw2fiCAxJEOY
-        9xL8vTcBvtqCDy0OfjlM9pM0CZ/rVQVIgWLuqgeOG7R3
-X-Google-Smtp-Source: AGHT+IH4OQa0o6JKCZmmL1Gkt4Qzhf29LWKSsMwtoEOx60ZKH7uTJQVbWMiC580HVwxa4sfdcWe/qw==
-X-Received: by 2002:a17:906:2252:b0:99b:5e5f:1667 with SMTP id 18-20020a170906225200b0099b5e5f1667mr12116884ejr.15.1692133870471;
-        Tue, 15 Aug 2023 14:11:10 -0700 (PDT)
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com. [209.85.208.48])
-        by smtp.gmail.com with ESMTPSA id gu11-20020a170906f28b00b0099bd86f9248sm7486347ejb.63.2023.08.15.14.11.09
+        bh=KQL376aYCM3mORsHenByKOm9UE97TQIxr1RFcgdCPKQ=;
+        b=l8ZYyDxsV9GwsiMD8Dc2RgUbsi7VJWWsxbM+1BSG6fQkV7OK5RwfkGtPhOYnueIjMO
+         rayphCxpfMApg1hjpBO9za0O6CRFwrWVg/yE4XL5rw4+kR94fkS/83ghjX9zgCi7qSwb
+         VWoTVgEx1xU0g0s4e1vas8zTLujVm32W2zZShfGxyXvc7T8KHqimWMtAC0QKgZTYBISq
+         oyWi+sgZAXLKQgbGtvjXZdgD+DjaXYlCHMiG0sApw0NFnUJVjydj77K9ZfQlb7sWaQPB
+         3bJH3W/Gi0KK0ynGHHx9Rg8RyB1Min9TZpBSEwJEuV7jTiFj1fNfsgpB6bnQTguTEbh4
+         1EyQ==
+X-Gm-Message-State: AOJu0YxmfidIBMq8gU2byWRZsyoCPzDXw9ER56lYEokxBV2ArppQTzMB
+        bOt8JQBY86fFMVcIhDEZ26+h7yhJfFyNN3AMwcs0fJyY
+X-Google-Smtp-Source: AGHT+IH/9eGY9wEtGPEgVTMFC4JYDaEehB6UgIEM6zZrctxa6iyC13TWS8gZUo22RMvTD4w5ZLvd9Q==
+X-Received: by 2002:aa7:d951:0:b0:522:3855:7ec5 with SMTP id l17-20020aa7d951000000b0052238557ec5mr28115eds.10.1692133991586;
+        Tue, 15 Aug 2023 14:13:11 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id by6-20020a0564021b0600b00523d2a1626esm5861304edb.6.2023.08.15.14.13.09
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 14:11:10 -0700 (PDT)
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-521e046f6c7so1241a12.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:11:09 -0700 (PDT)
-X-Received: by 2002:a50:d754:0:b0:525:573c:6444 with SMTP id
- i20-20020a50d754000000b00525573c6444mr12779edj.1.1692133869378; Tue, 15 Aug
- 2023 14:11:09 -0700 (PDT)
+        Tue, 15 Aug 2023 14:13:10 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-3fe2a116565so8935e9.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:13:09 -0700 (PDT)
+X-Received: by 2002:a05:600c:5126:b0:3fc:75d:8f85 with SMTP id
+ o38-20020a05600c512600b003fc075d8f85mr36477wms.6.1692133989440; Tue, 15 Aug
+ 2023 14:13:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20230804175734.v2.3.Ie77732a87ab53d21bac47db309b75a796fa19337@changeid> <0cc71595-ba11-11d4-1fcd-865721ede3f9@linaro.org>
-In-Reply-To: <0cc71595-ba11-11d4-1fcd-865721ede3f9@linaro.org>
+References: <20230809064908.193739-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20230809144516.v3.3.Ie77732a87ab53d21bac47db309b75a796fa19337@changeid>
+ <cd15df3a-eadc-13d6-7088-3ad785ea733e@linaro.org> <4e05a1fb-f6f2-3219-b41d-67351c70a7ff@linaro.org>
+ <1dfaf72b-1e2a-e771-39f9-c3a5cf1c8463@linaro.org> <20230814094802.9127-1-sheng-liang.pan@quanta.corp-partner.google.com>
+In-Reply-To: <20230814094802.9127-1-sheng-liang.pan@quanta.corp-partner.google.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 15 Aug 2023 14:10:57 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UfKXBQ6R0+5yY6WaNFS49=jmg2NTXrUPcyD3MBZA7A5A@mail.gmail.com>
-Message-ID: <CAD=FV=UfKXBQ6R0+5yY6WaNFS49=jmg2NTXrUPcyD3MBZA7A5A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7180: Add board id for lazor/limozeen
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 15 Aug 2023 14:12:57 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U1_yxPT1=ncYBdd33HSuoqSiQ8Uzt2+ETkS-Doj06azA@mail.gmail.com>
+Message-ID: <CAD=FV=U1_yxPT1=ncYBdd33HSuoqSiQ8Uzt2+ETkS-Doj06azA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sc7180: Add board id for lazor/limozeen
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+Cc:     krzysztof.kozlowski@linaro.org, agross@kernel.org,
+        andersson@kernel.org, conor+dt@kernel.org,
         cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
+        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,97 +84,63 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Sun, Aug 6, 2023 at 11:34=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Mon, Aug 14, 2023 at 2:49=E2=80=AFAM Sheng-Liang Pan
+<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
 >
-> On 04/08/2023 11:58, Sheng-Liang Pan wrote:
-> > add BRD_ID(0, Z, 0) =3D 10 for new board with ALC5682i-VS
+> >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >> On 10/08/2023 11:30, Sheng-Liang Pan wrote:
+> >>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>>>
+> >>>>> Isn't this duplicated with r9? Probably other places as well... or.=
+...
+> >>>>> separate r10 add rt5682s node which different with r9.
+> >>>> we separate r10 add rt5682s which differentwith r9
+> >>>>
+> >>>>
+> >>>>>> -        model =3D "Google Lazor Limozeen without Touchscreen (rev=
+9+)";
+> >>>>>> -        compatible =3D "google,lazor-sku6", "google,lazor-sku18",=
+ "qcom,sc7180";
+> >>>>>> +        model =3D "Google Lazor Limozeen without Touchscreen (rev=
+9)";
+> >>>>>> +        compatible =3D "google,lazor-rev9-sku6", "google,lazor-re=
+v9-sku18", "qcom,sc7180";
+> >>>>
+> >>>>> Your patch 2 does not make any sense. Didn't you touch it in patch =
+2?
+> >>>>> Really, what is happening here?
+> >>>> patch 2 explain why we added new sku for no-eSIM.
+> >>>
+> >>> So which commit explain why you touch the same line twice? Sorry, thi=
+s
+> >>> does not make sense.
+> >>>
+> >>> Best regards,
+> >>> Krzysztof
+> >>
+> >> We sort patch by change order,
+> >> fist request for non-eSIM, patch2 add new sku 10, 15 for non-eSIM, and=
+ 18, but keep the newset reversion is r9,
+> >> after add non-eSIM SKU, a sencond request for ALC5682i-VS,
+> >> so continue patch2 we upreversion r10 which include rt5682s node.
 > >
-> > Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.goo=
-gle.com>
-> > ---
+> > I barely can parse it, but anyway does not look right. You explained
+> > what you are doing but it does not explain why touching the same line
+> > twice. There is no point in making one board new SKU, but then
+> > immediately change it to something else. The previous commit is just no=
+-op.
 > >
-> > Changes in v2:
-> > - correct newly create dts files
-> >
+> > Best regards,
+> > Krzysztof
 >
+> Thanks Krzysztof.
 >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts b/ar=
-ch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
-> > new file mode 100644
-> > index 000000000000..5a58e94c228e
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
-> > @@ -0,0 +1,30 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor board device tree source
-> > + *
-> > + * Copyright 2023 Google LLC.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sc7180-trogdor.dtsi"
-> > +#include "sc7180-trogdor-parade-ps8640.dtsi"
-> > +#include "sc7180-trogdor-lazor.dtsi"
-> > +#include "sc7180-lite.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Google Lazor (rev10+)";
-> > +     compatible =3D "google,lazor", "qcom,sc7180";
-> > +};
-> > +
-> > +&alc5682 {
-> > +     compatible =3D "realtek,rt5682s";
-> > +     /delete-property/ VBAT-supply;
->
-> No, don't delete properties. First of all, why you do not have this
-> supply here? I doubt it... Especially that this DTS has vbat-supply
-> regulator!
->
-> Second, define the properties where applicable instead.
+> Hi Douglas,
+> May I consult with you if you can accept we merge patch2 and patch3 toget=
+her?
 
-It looks like v3 is out, but responding here since it looks like
-Sheng-Liang didn't make any changes in v3 but also didn't respond and
-explain why he didn't make any changes. Sheng-Liang: for future
-reference you should make sure to address comments folks have on the
-list. If your new version takes their feedback into account then
-there's no reason to just respond with "Done", but if (like in this
-case) you ignored feedback you need to say why.
-
-In this case the extra "/delete-property/" is needed to pass bindings
-checks. Specifically this revision of the board replaces the "rt5682i"
-with the newer "rt5682s". This new codec is _almost_ a drop-in
-replacement for the old codec with just a few tiny changes. One such
-change is that the new codec doesn't need a "VBAT-supply".
-
-Since most trogdor devices have the older "rt5682i" codec, the default
-in "sc7180-trogdor.dtsi" specifies the properties for that codec. Only
-the handful of boards that have been spun to use the new codec have an
-override like this. You can see that the override done here matches
-the one done in a few other trogdor boards. A good grep is:
-
-git grep -A4 realtek,rt5682s -- arch/arm64/boot/dts/qcom/sc7180-*
-
-Ironically, that grep finds that "sc7180-trogdor-pazquel360.dtsi" is
-missing the "/delete-property/" which I'm fairly certain means that
-it's giving a validation warning today.
-
-I'm happy to have a bikeshed discussion about doing this better. In a
-previous reply [1] I suggested that it's probably time to move the
-"realtek,rt5682s" snippet to something like
-"sc7180-trogdor-rt5682s-sku.dtsi". Then we could include it in the
-devices and avoid duplicating this bit of dts. I didn't insist on it,
-but if you feel strongly then maybe Sheng-Liang could add that to his
-series? Once done, we could have further bikeshed discussions about
-whether we should continue to use the "/delete-property/" solution or
-if we have to also create a "sc7180-trogdor-rt5682i-sku.dtsi" and
-force all older SKUs to include that. Personally I don't hate this
-"/delete-property/" but I don't care a whole lot either way.
-
-[1] https://lore.kernel.org/r/CAD=3DFV=3DXRq8ymnPrMPCa=3Dc7PkSH+Kj9aG29_hCj=
-CNSL3fY-qaGg@mail.gmail.com
-
+I have no objection to merging patch #2 and patch #3 into one patch if
+that makes it better for Krzysztof.
 
 -Doug
