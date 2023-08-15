@@ -2,85 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70DA177C7FA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 08:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9A077C80B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 08:46:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234952AbjHOGnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 02:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
+        id S235187AbjHOGpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 02:45:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234738AbjHOGnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 02:43:02 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A986127;
-        Mon, 14 Aug 2023 23:43:00 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37F6eHer029692;
-        Tue, 15 Aug 2023 06:42:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=nH9TdN+9Ou+OLup3W8vXF8KOi6F2nLMXNpePTMty3Pw=;
- b=TEnr36r8z8X6ycCjCSTdCOPm9MnZz+TeQlfUhh0BwYevNikLmLXL7UdYSzX6NpV4S/+y
- iJI6VrMU1f//HhYUz/P84oat8PeDAz4+rWnqhGwBqckgjcXD+09K3l7Aw5b75yWB51nB
- PEkdcXdEv0tCQp5CP0HRJZvHh9/+ng5yXCWWWApz3BGLZXOPDsHG2EgnloE5PR8U1oJ5
- 7jNY2WgUa5J97hc6K78f6VPcvKja3/NigbO/TaH7+M22IOwldnLjA/Ci1OEWK/78H84a
- yAvOPTzUV5ekeoNdFLh/xU59BNXtohOZw6Mld+fa8WiiYRKKxMSjhsRtM52a2qM/jLpA Ug== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sfqp1h7em-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 15 Aug 2023 06:42:46 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37F6gjWR022595
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 15 Aug 2023 06:42:45 GMT
-Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 14 Aug
- 2023 23:42:42 -0700
-Message-ID: <d4cee19c-6f13-a1dc-d402-1d5c2b769ad1@quicinc.com>
-Date:   Tue, 15 Aug 2023 14:42:40 +0800
+        with ESMTP id S235299AbjHOGpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 02:45:24 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B27110D4;
+        Mon, 14 Aug 2023 23:45:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692081923; x=1723617923;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HvkfSiHy79k9Iz4p/AVVmgGnM9X12fXMJvvLNDHBJVE=;
+  b=PvUldLZoLCFOk/WRrAboRwqGe5TmTjl3ubAD2tzqBujz0F7SZFHKAur9
+   ly93F9+uRfhpjHhRuQM6lezw1QrGqsZIKUMxOqLx7Xs8HnKUjVKGSoBZI
+   a22nyL6/KxEYt8Uargzr1417Bij5Lvv/xhQaCkK/Dv0uVFKHRM1zA27fu
+   xs3jjFk3Rt8H2O+AHeDn08vT+uWq7CcfnHWAQqrs30F7FyuBgbt1tG4FW
+   lFcnm/n9TKLFvDefDKfGhha/TguQ0Kw/RfaIsLN7Idwi8/WJ+C1uKWrdg
+   CiVlva1vU31FVzrjvgzbp7cfFT8IkGLrwiUKKy3uM07j1+M9XifwSnLlx
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="372210526"
+X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; 
+   d="scan'208";a="372210526"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2023 23:45:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="803705192"
+X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; 
+   d="scan'208";a="803705192"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga004.fm.intel.com with ESMTP; 14 Aug 2023 23:45:20 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qVnnq-006uvN-1Z;
+        Tue, 15 Aug 2023 09:45:18 +0300
+Date:   Tue, 15 Aug 2023 09:45:18 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] of/platform: increase refcount of fwnode
+Message-ID: <ZNse/kwnG9WTc9cL@smile.fi.intel.com>
+References: <20230812122411.3410399-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 2/3] dt-bindings: input: qcom,pm8xxx-vib: add new SPMI
- vibrator module
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_kamalw@quicinc.com>, <jestar@qti.qualcomm.com>
-References: <20230815060314.352103-1-quic_fenglinw@quicinc.com>
- <20230815060314.352103-3-quic_fenglinw@quicinc.com>
- <CUSWRRL6QOPU.1YM7S0F8F3V2D@otso>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <CUSWRRL6QOPU.1YM7S0F8F3V2D@otso>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0x4I6bYn13pn8C_SAAubBjQ-LITwhqcZ
-X-Proofpoint-ORIG-GUID: 0x4I6bYn13pn8C_SAAubBjQ-LITwhqcZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-15_05,2023-08-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501
- impostorscore=0 mlxscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308150060
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230812122411.3410399-1-peng.fan@oss.nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,75 +67,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Aug 12, 2023 at 08:24:11PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> commit 0f8e5651095b
+> ("of/platform: Propagate firmware node by calling device_set_node()")
+> use of_fwnode_handle to replace of_node_get, which introduces a side
+> effect that the refcount is not increased. Then the out of tree
+> jailhouse hypervisor enable/disable test will trigger kernel dump in
+> of_overlay_remove, with the following sequence
+> "
+>    of_changeset_revert(&overlay_changeset);
+>    of_changeset_destroy(&overlay_changeset);
+>    of_overlay_remove(&overlay_id);
+> "
+> 
+> So increase the refcount to avoid issues.
+
+Right, thank you for the report!
+I was too busy to send myself a fix (I realized about the issue).
+But what I think about this the actual platform code has to be balanced with
+this. I dunno why we have OF code do one part and the platform core do the
+other. It's not obvious and prone to mistakes (like I made).
+
+Let me look to this closer.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-On 8/15/2023 2:35 PM, Luca Weiss wrote:
-> Hi Fenglin,
-> 
-> On Tue Aug 15, 2023 at 8:03 AM CEST, Fenglin Wu wrote:
->> Add compatible strings to support vibrator module inside PMI632,
->> PMI7250B, PM7325B, PM7550BA.
->>
->> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->> ---
->>   .../bindings/input/qcom,pm8xxx-vib.yaml           | 15 +++++++++++----
->>   1 file changed, 11 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
->> index c8832cd0d7da..72b72c67a9b6 100644
->> --- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
->> +++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
->> @@ -11,10 +11,17 @@ maintainers:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - qcom,pm8058-vib
->> -      - qcom,pm8916-vib
->> -      - qcom,pm8921-vib
->> +    oneOf:
->> +      - enum:
->> +          - qcom,pm8058-vib
->> +          - qcom,pm8916-vib
->> +          - qcom,pm8921-vib
->> +      - items:
->> +          - enum:
->> +              - qcom,pm7250b-vib
->> +              - qcom,pm7325b-vib
->> +              - qcom,pm7550ba-vib
->> +          - const: qcom,pmi632-vib
-> 
-> With the new revision the standalone 'compatible = "qcom,pmi632-vib";'
-> doesn't pass validation anymore.
-> 
-> foo.dtb: vibrator@5700: compatible: 'oneOf' conditional failed, one must be fixed:
->          ['qcom,pmi632-vib'] is too short
->          'qcom,pmi632-vib' is not one of ['qcom,pm8058-vib', 'qcom,pm8916-vib', 'qcom,pm8921-vib']
->          'qcom,pmi632-vib' is not one of ['qcom,pm7250b-vib', 'qcom,pm7325b-vib', 'qcom,pm7550ba-vib']
->          from schema $id: http://devicetree.org/schemas/input/qcom,pm8xxx-vib.yaml#
-> 
-> I believe you need to add the compatible also like this:
-> 
-> diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-> index 72b72c67a9b6..2025d6a5423e 100644
-> --- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-> +++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-> @@ -16,6 +16,7 @@ properties:
->             - qcom,pm8058-vib
->             - qcom,pm8916-vib
->             - qcom,pm8921-vib
-> +          - qcom,pmi632-vib
->         - items:
->             - enum:
->                 - qcom,pm7250b-vib
-> 
-Yeah, thanks for catching this. I will update it soon.
-
-> 
-> Regards
-> Luca
-> 
->>   
->>     reg:
->>       maxItems: 1
-> 
