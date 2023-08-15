@@ -2,98 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF3477C704
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 07:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DB6777C706
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 07:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234637AbjHOFWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 01:22:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
+        id S234700AbjHOFXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 01:23:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234764AbjHOFUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 01:20:39 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160461FF1
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:19:48 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fe85fd3d27so8357926e87.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:19:48 -0700 (PDT)
+        with ESMTP id S234699AbjHOFVi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 01:21:38 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0EA1BCB
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:20:40 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-317716a4622so4458972f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 22:20:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1692076786; x=1692681586;
+        d=linaro.org; s=google; t=1692076838; x=1692681638;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FknlwclC7+OtWq5SNlcgj5uStWt+3ALYnSPMd2n2Tj8=;
-        b=OFenEgmn2gqLfy3FCtzBF6PbA3ekm8oN/NXz+34WiXac1iIs6490/cNKIkC756bvoW
-         4kFl1TL0/EvE8h8CV64HIswTfy3iUb4LuFi5mp9OeYDo6uCLAUMlKnDtftdNcNhBK6sj
-         XVdtI/ny7HAkBaxLhH4HR4RElX9ck20xBCOyHCFQGcEGX1og5gR+t+OJXsOvk1wqrVmI
-         TgXp6sor3sRsw2L3pkyaYpewwm509MCUjdrZMq5Ck2Uw3DJhKcV8DSO1DoM83xjvgzYB
-         O6wpXzJvkDIv7O+wYvIdopw7FgQeHx73mezepZ2Jjk+FtXIGIFbWFVBVsPgyn5DKrDR6
-         4AuA==
+        bh=E1iK6gDGnLT6YH6YDnZtvo75txDfUuM4Picw/2uLIh0=;
+        b=JVbj6cxuWCQ4fdjUTVThiW9Yn4j9If3QsCX5dlVqGZF5tuQ8Bzg071hgBP4IHNPZkI
+         FE/l9sNnzLLIzVG9bo8ex1Nxad+f63t8bXDH4saMDy6SjqPqRLtEJRHCaRJwJ5hHz68o
+         I1hzJmZJeBvfXRsBqqF4ljx/euy8s1Zu11yQ4g92+yzWb101bDbmjJgrHcb1tUPTvU8J
+         aA6kM3RS/Yk0aJwTtXZCcjzzf6NFVSb6Mjyg3WJRe4krR7pdKlxmutOoCZ6EChZ7z2vr
+         nyGc1whQFZVGmdYziMgf59L+JdDaKZeOeozjWz0AomrEbiFeViWSYgcVuO/tD+Y1lCaE
+         2Lsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692076786; x=1692681586;
+        d=1e100.net; s=20221208; t=1692076838; x=1692681638;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FknlwclC7+OtWq5SNlcgj5uStWt+3ALYnSPMd2n2Tj8=;
-        b=BL4vNMGIQkiaTZpHxrYjmSPSuO3672d4nkz0fWv4GtpFadcd7T5CwN2tCRdiqwhN06
-         2calP25gidNMI3czMB4KTSkl0D8NUq2eOjAhBSj/oP/J3Zc1ewyyqPYpTxewl7F3FQ+K
-         ar+sDywKqOQG9AO8OLNp0zn4HNi5CcOYgXArPX+EVMpnVmyXgR0dhIN+spQvJqaklXcQ
-         LJ2TuPeGOXjcUw1mYh2IXrvf7r31lSu4cHQxIkVbBtw8HgdoyYExHrt7xRRJ2ewuEoQM
-         Z/mou/eWo348kY23sk2xbbXFZlaqnMOBGsBoPCCVLLmXUiGRFtLPGPC+v4o+amgABFip
-         sQyg==
-X-Gm-Message-State: AOJu0YxkE/ixHQTEzLUbShiw2I5fJHixbanl3wF+9vB7WpKM8S2aNSAN
-        cfS82TM+pH5cRUQF5kO9V8RDOA==
-X-Google-Smtp-Source: AGHT+IGW5H0+167JcPGa8HUXwV/Dhz1hWaMMSuRLDmovtMrs9htYPt5VAYHJaK3rVPEBWTHcv7vunw==
-X-Received: by 2002:a05:6512:703:b0:4f8:49a7:2deb with SMTP id b3-20020a056512070300b004f849a72debmr5860026lfs.8.1692076786192;
-        Mon, 14 Aug 2023 22:19:46 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.75])
-        by smtp.gmail.com with ESMTPSA id qc1-20020a170906d8a100b0099d9bc9bfd9sm3176573ejb.48.2023.08.14.22.19.44
+        bh=E1iK6gDGnLT6YH6YDnZtvo75txDfUuM4Picw/2uLIh0=;
+        b=Xovp0N88a3OTa3Ap08wG7TBgHEIbTUA5XJwXNzhSzLh0W9TPfWUTIBCHRjJyA9Jmx9
+         Bumvn5QH3ufxoJptYP0ZW2awm39AElx+fU5u+QLYZnWchEuabSs8WX22VDA49j4XFDBD
+         3o9hfZka4Azf3bwLvS38JR5iw484wf2/oQlCVVwr3sMepLpX9niVqCIkDIaxeW/qEwjE
+         jW6WEQkwo4R0ljIJFwcS3K++9kuthK/8OBf/FO/Vuy+jwUE+k/mn9kP4tpaBaLeMxx7O
+         Z+vUO6S19KraQ+N7h6bBaKxorXLWyu9neJUZGci2FYOLSfXNX7tCcOLp9MGUdMYPveUV
+         vf9Q==
+X-Gm-Message-State: AOJu0YxLcptLsu1D7ZI3BT+jrkSA0P/p4QX/hC1IAKVVsAQx+PM/0aKF
+        iO6cEhnTzqJVPRGPg4g254LKww==
+X-Google-Smtp-Source: AGHT+IFyjkPBJoV+XazQhAjmKyn6CK4hTOt2a3tGZBE3jpKVIpVKhpfJ/wcMf8ugaCQ3TimspEYXXg==
+X-Received: by 2002:a5d:554e:0:b0:314:10d8:b491 with SMTP id g14-20020a5d554e000000b0031410d8b491mr6785789wrw.67.1692076838327;
+        Mon, 14 Aug 2023 22:20:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id l11-20020a05600012cb00b003177f57e79esm4297502wrx.88.2023.08.14.22.20.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 22:19:45 -0700 (PDT)
-Message-ID: <98d01db3-3eba-0731-0dd9-4310ed293bd6@tuxon.dev>
-Date:   Tue, 15 Aug 2023 08:19:44 +0300
+        Mon, 14 Aug 2023 22:20:37 -0700 (PDT)
+Message-ID: <c577a92a-d1e4-df7e-250c-33d47b4d5bcb@linaro.org>
+Date:   Tue, 15 Aug 2023 07:20:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] ARM: dts: at91: sama5d29_curiosity: Add device tree for
- sama5d29_curiosity board
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 2/2] i2c: Add GPIO-based hotplug gate
 Content-Language: en-US
-To:     Mihai.Sain@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        Nicolas.Ferre@microchip.com, Cristian.Birsan@microchip.com,
-        alexandre.belloni@bootlin.com, andre.przywara@arm.com,
-        Jerry.Ray@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Andrei.Simion@microchip.com
-References: <20230804101043.4063-1-mihai.sain@microchip.com>
- <127fc712-d924-f27f-5449-33385e89d6c3@tuxon.dev>
- <PH8PR11MB6804E49B5946F4A9D60837E18213A@PH8PR11MB6804.namprd11.prod.outlook.com>
-From:   claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <PH8PR11MB6804E49B5946F4A9D60837E18213A@PH8PR11MB6804.namprd11.prod.outlook.com>
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230729160857.6332-1-clamor95@gmail.com>
+ <20230729160857.6332-3-clamor95@gmail.com>
+ <25858c22-ef92-2136-67ef-0d27364c1600@linaro.org>
+ <ZMbcb0yuTz6l6BYh@qmqm.qmqm.pl>
+ <b9183dfc-8e8a-9602-f31c-5de9e27acb88@linaro.org>
+ <ZMd1qI7RjQhpI8zO@qmqm.qmqm.pl>
+ <fdc513a3-c0e0-c57d-5c9a-8da6fa2f54e2@linaro.org>
+ <ZMg6m+Dru6rxCRqU@qmqm.qmqm.pl>
+ <249e806a-f094-9514-9c83-e74e7b1f00ba@linaro.org>
+ <ZNVcEfNjo0ZZlhIp@qmqm.qmqm.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZNVcEfNjo0ZZlhIp@qmqm.qmqm.pl>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Mihai,
-
-On 8/10/23 09:47, Mihai.Sain@microchip.com wrote:
->> +&i2s0 {
->> +     pinctrl-names = "default";
->> +     pinctrl-0 = <&pinctrl_i2s0_default>;
->> +     status = "okay";
-> I see no sound bindings on DT. Is there any reason for having this here?
-> # i2s0 bus is wired to RPi 40-pin connector. I want to have this node and its pinctrl here.
-> # i2c1, flx4-spi, pwm0, uart1 are also wired to Rpi connector, and are defined here.
-> # The same logic we apply also for mikroBUS sockets: i2c, pwm, spi and uart nodes are defined here.
+On 10/08/2023 23:52, Michał Mirosław wrote:
+>>>>>>>> Shared IRQ with devm is a recipe for disaster. Are you sure this is a
+>>>>>>>> shared one? You have a remove() function which also points that it is
+>>>>>>>> not safe. You can:
+>>>>>>>> 1. investigate to be sure it is 100% safe (please document why do you
+>>>>>>>> think it is safe)
+> [...]
+>>>> True, therefore non-devm interrupts are recommended also in such case.
+>>>> Maybe one of my solutions is actually not recommended.
+>>>>
+>>>> However if done right, driver with non-shared interrupts, is expected to
+>>>> disable interrupts in remove(), thus there is no risk. We have big
+>>>> discussions in the past about it, so feel free to dig through LKML to
+>>>> read more about. Anyway shared and devm is a clear no go.
+>>>
+>>> Can you share pointers to some of those discussions? Quick search
+>>> about devm_request_irq() and friends found only a thread from 2013
+>>
+>> Just look at CONFIG_DEBUG_SHIRQ. Some things lore points:
+>> https://lore.kernel.org/all/1592130544-19759-2-git-send-email-krzk@kernel.org/
+>> https://lore.kernel.org/all/20200616103956.GL4447@sirena.org.uk/
+>>
+>> I think pretty clear:
+>> https://lore.kernel.org/all/87mu52ca4b.fsf@nanos.tec.linutronix.de/
+>> https://lore.kernel.org/all/CA+h21hrxQ1fRahyQGFS42Xuop_Q2petE=No1dft4nVb-ijUu2g@mail.gmail.com/
+>>
+>> Also:
+>> https://lore.kernel.org/all/651c9a33-71e6-c042-58e2-6ad501e984cd@pengutronix.de/
+>> https://lore.kernel.org/all/36AC4067-78C6-4986-8B97-591F93E266D8@gmail.com/
+> [...]
 > 
+> Thanks! It all looks like a proof by example [1]: a broken driver [2]
+> was converted to devres [3] and allowed a shared interrupt [4] and now is
+> used to back an argument that devres and/or shared IRQs are bad. I have
+> a hard time accepting this line of reasoning.
+> 
+> So: sure, if you disable device's clock, you should first disable the
+> interrupt handler one way or another, and if you request a shared interrupt
+> then you have to write the handler expecting spurious invocations anytime
+> between entry to register_irq() and return from free_irq() (BTW, DEBUG_SHIRQ
+> is here to help test exactly this). And, when used correctly, devres can
+> release you from having to write remove() and error paths (but I guess it
+> might be a challenge to find a single driver that is a complete, good and
+> complex-enough example).
+> 
+> Coming back from the digression: I gathered following items from the
+> review of the i2c-hotplug-gpio driver:
+> 
+>   1. TODO: register i2c_hotplug_deactivate(priv) using
+>      devm_add_action_or_reset() before registering the IRQ handler
+>      and remove remove();
+> 
+>   2. shared IRQ: it is expected to be an edge-triggered, rarely
+>      signalled interrupt and the handler will work fine if called
+>      spuriously; it is not required to be shared for my Transformer,
+>      but I can't say much about other hardware. Would a comment help?
 
-Can you use it (either with user space tools or other kernel consumers) w/o
-additional device tree bindings?
+We have way too lengthy discussion and now we are circling back. Can you
+refer to the first email I wrote?
+
+"You can:
+1. investigate to be sure it is 100% safe (please document why do you
+think it is safe)
+2. drop devm
+3. drop shared flag."
+
+
+Best regards,
+Krzysztof
 
