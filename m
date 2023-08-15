@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F22077D4B9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 23:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE4F77D4D0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 23:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239841AbjHOVAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 17:00:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57880 "EHLO
+        id S239964AbjHOVHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 17:07:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239825AbjHOVAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 17:00:05 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED3610F0
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:00:01 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fe4ad22eb0so56875625e9.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:00:00 -0700 (PDT)
+        with ESMTP id S239976AbjHOVGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 17:06:50 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845041B2
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:06:48 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fe8a1591c7so43569985e9.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 14:06:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692133199; x=1692737999;
+        d=linaro.org; s=google; t=1692133607; x=1692738407;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JUh3d8Lt7h78kSmqim/NK0v26wjsQ9UPaRp1gHVVLo8=;
-        b=tfxl1J+rEIE3RPV5s+HiYSSmR8o3fwI4rI7kmbxDGa1qQl7mFASsACCcBG4tmCBqlR
-         9ysXL06I0IHZJix2RiiaetlvM8QBPcwn/WsEnPTvyPXtauzT2xeXvAV+zEmUUhOYeibD
-         I8YpqAdiuPgxg6sePWl0vU8RSoCHfTWoaBHvkUSqCSAWzwH8JU4tqvv1Uso9rIaO+ZCs
-         IcKLflToXoiJmS0DF1owHeFiY8bHFPE9a0FM+Lc4CCgLfWvarmy0LZCq9yAdFRFBAtw1
-         4kWs28w0XrSurCux7MWrFxfpzhluB8LgqGLSgrZSk588Kc883RFYpw3f/exZtt4u6NNL
-         LZ4Q==
+        bh=Pm/+S7GL+s6rxl0CrepE+RJtzi+4NNC4FV8XfAplmZs=;
+        b=seUYquo5i1CaxnnpikjNxyne9ePL9rIeTdCMDV289jgplV7+bxRaFgGknqzS/9xIef
+         /Eo+CqC0AH5gxlEPjjATV4Kw475/fHfJHpwOvmNxRQF3w9apc1gQXapo8rPtwAzDINF6
+         y3Z7ns0IfcluxYkaIB7E/Bg44jCahRyi4PYNQWDJXYBd9e0JuOVkymXk4U0yFFbdzANy
+         64Pp6TN4IJxfPQD5sWIgHJFjasbhOP7Z/7kpWsfICNFlMogZ/vQiti4G9BK7GFFhPmgu
+         SobQcbYrHM+nX4EobDAt1i52HaXJAk0cRyyAYFVAt1/7RhP3CtPOijFH8psnjZcptp9G
+         /uvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692133199; x=1692737999;
+        d=1e100.net; s=20221208; t=1692133607; x=1692738407;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JUh3d8Lt7h78kSmqim/NK0v26wjsQ9UPaRp1gHVVLo8=;
-        b=aH8Vj6+jqthDNfJ8OukVIGAiQBe6hvZKpwgcRdQsHCCofhc1CnTdAD9KWI0BJaqVt0
-         62fAdGXrLrEUV04pJzsazp3vvSCCxh78G31ebIrghO8rSHsSdmQy8rkLUe7v0N/nWTVR
-         XvDG9C+DxwtV9eZgG7t0hXfB0qOe3BdNfR5T4Gol366q+F+WcqekAcXS6cFgKa19w38s
-         dM34aUxFo0mRVJp0NATjz5fdGA1sfrjoAyckCgIxWV3OKEtKV/wW/eUknj0/8Vq/7hL4
-         oD+S1S6CrJpsPH8SPdXMdagOBoLrPv+dnUw6v0z9EO0loQ9krLeZqR44XseVAWm739zW
-         U5Rw==
-X-Gm-Message-State: AOJu0YymmJQDyQCEUn1MkTJ722MWJ/1XkDJNnrY+t9t6PvFI8DHR1b4a
-        PMdYCDAOmfnZ+hS+RD7u1K+u5w==
-X-Google-Smtp-Source: AGHT+IHPR5ZgIquj78Pw6M82XZhDr7Qg0j9byeQ7z5RcXbozmJwaicWWbYDePNqCmEBEVYDTpuPHHQ==
-X-Received: by 2002:a7b:ce94:0:b0:3fb:ff34:a846 with SMTP id q20-20020a7bce94000000b003fbff34a846mr10667435wmj.22.1692133199585;
-        Tue, 15 Aug 2023 13:59:59 -0700 (PDT)
+        bh=Pm/+S7GL+s6rxl0CrepE+RJtzi+4NNC4FV8XfAplmZs=;
+        b=lAk+jDzpqbN7FjpeXEcoQ86e8sBxAOV1yvNOOPfnNX31C5EfQNivDt40PgZbd7I8sD
+         t31LUDYP1G6xMoUcvZcTI6w1pgtbnCnJZdEnw6tFuFcDW4LVhqct1f9iqE0qfgHouN7/
+         3eYfJVrfbSy76YXOSHwtL0h6/vMYC60MA3utrz4NgFxbc5YikmlmT/CvY39O708CvNFz
+         immIynPC2qM5//wRPvp0XAIjxyXtfsW7gDjG4Z6j+mws4KJXvl0OxEfPSI3dM2668N+q
+         ENcdWf3+au5ar2OoE//wo2g9WSSuC8d4a0hk409AL2m++Eztd7ti3pmLXhYtvg1G9ZlV
+         pCEQ==
+X-Gm-Message-State: AOJu0YxA69YPUYKREwZ5171EViZxkoJ46OdpFmfP25q5/cFZI6FV7T22
+        fwo6dUt1BfvIkrryUp3BCIdrfQ==
+X-Google-Smtp-Source: AGHT+IGcod8rWFDnxW8A0sFUMzg4nVn9IHR6hKqRw5l8a134zB6nlVl1dQaEh1dMFoV0X3nuoh/Qqw==
+X-Received: by 2002:a7b:c449:0:b0:3f8:fc96:6bfd with SMTP id l9-20020a7bc449000000b003f8fc966bfdmr11017146wmi.17.1692133606905;
+        Tue, 15 Aug 2023 14:06:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id h14-20020a05600c260e00b003fa8dbb7b5dsm19027605wma.25.2023.08.15.13.59.57
+        by smtp.gmail.com with ESMTPSA id u11-20020a05600c00cb00b003fe29f6b61bsm18871524wmm.46.2023.08.15.14.06.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 13:59:59 -0700 (PDT)
-Message-ID: <3efc0e28-3a5a-bfc7-57e3-e7e3d5ae1740@linaro.org>
-Date:   Tue, 15 Aug 2023 22:59:57 +0200
+        Tue, 15 Aug 2023 14:06:46 -0700 (PDT)
+Message-ID: <4d94d0fd-72d4-0196-3a30-3e1efb9f5aca@linaro.org>
+Date:   Tue, 15 Aug 2023 23:06:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 01/13] dt-bindings: pwm: rockchip: Document rv1126-pwm
+Subject: Re: [PATCH v2 0/1] Add add-maintainer.py script
 Content-Language: en-US
-To:     Heiko Stuebner <heiko@sntech.de>, Jagan Teki <jagan@edgeble.ai>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-References: <20230731103518.2906147-1-jagan@edgeble.ai>
- <20230731103518.2906147-2-jagan@edgeble.ai>
- <20230731145129.mrrkb6tcuvlpmxan@pengutronix.de> <5533260.88bMQJbFj6@phil>
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Kees Cook <keescook@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        quic_pkondeti@quicinc.com, u.kleine-koenig@pengutronix.de
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <cover.1691049436.git.quic_gurus@quicinc.com>
+ <20230810185526.GC31860@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5533260.88bMQJbFj6@phil>
+In-Reply-To: <20230810185526.GC31860@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
@@ -81,27 +85,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2023 16:02, Heiko Stuebner wrote:
-> Am Montag, 31. Juli 2023, 16:51:29 CEST schrieb Uwe Kleine-König:
->> On Mon, Jul 31, 2023 at 04:05:06PM +0530, Jagan Teki wrote:
->>> Document pwm compatible for rv1126 which is fallback compatible
->>> of rk3328-pwm group.
->>>
->>> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+On 10/08/2023 20:55, Guru Das Srinagesh wrote:
+> On Aug 03 2023 01:23, Guru Das Srinagesh wrote:
+>> When pushing patches to upstream, the `get_maintainer.pl` script is used to
+>> determine whom to send the patches to. Instead of having to manually process
+>> the output of the script, add a wrapper script to do that for you.
 >>
->> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
->>
->> Should this go in via the pwm tree, or together with the other patches
->> via rockchip?
+>> The add-maintainer.py script adds maintainers (and mailing lists) to a patch,
+>> editing it in-place.
 > 
-> I have no clue, sadly. I _can_ pick it up, but I guess that would
-> require an Ack from Thierry? Otherwise I guess we'll need to wait
-> for him.
+> Could I request reviews from the other maintainers as well, please? Just to see
+> if I should continue working on this script or if the `b4` tool obviates the
+> need for such a script.
 
-General preference is that binding goes via subsystem (so Thierry), but
-there are no driver changes here and your DTS branch would benefit from
-it (less dtbs_check warnings). Therefore I propose - just grab it -
-unless Thierry wants other way.
+I send a bit of patches but I use very simple workflow. It is really
+simple, so simple, that I was always surprised how people can make their
+life difficult with some complicated process to send patches... and then
+obviously skip some maintainers, because of that process.
+
+I almost always feed git send-email with addresses from
+scripts/get_maintainers.pl. This tool would not bring any benefits to my
+simple workflow.
+
+For newcomers, OTOH, I would either recommend simple workflow or just
+use b4. Why? Because if you cannot use git-send-email, then it means
+your email setup will make your life difficult and adding maintainers to
+existing patch won't help you.
+
+This tool depends on the command line and shell interface of
+scripts/get_maintainers.pl which is another reason why it might not be a
+good idea.
 
 Best regards,
 Krzysztof
