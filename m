@@ -2,129 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F1777C756
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 08:03:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C7777C75D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 08:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234778AbjHOGCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 02:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37538 "EHLO
+        id S234748AbjHOGEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 02:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234799AbjHOGCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 02:02:07 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3409FFB
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 23:02:04 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fe5c0e5747so29737175e9.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Aug 2023 23:02:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692079323; x=1692684123;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o6wjkIKXmOaC3qza9ogWX1PomwYcyCLkZwNgjvdvmF0=;
-        b=FqTAU0K1pTfh5WW9XG7/+VbWaNfxNE0P1Cgd7FNwP+5Kit3dZqstnLRbm5EVOiLBPB
-         HXb4GjGcGfzsfJQIsnjMa7niQEnd4GfQOl/ntuRTxXnzL+sLBzCrOMDqOAOQBCVsd67l
-         SP+gPQWmoH1oNOjwezxaKNMl+MM7xgXBAWlwVBebPL8fG0wlaQpzATWjgKhprw4Z6yRD
-         toXiUiJuQF1rB0Crq50oF9ypUXkLbJiTXbx/RyHBPA5Civjxn+jX7J7kGwLof4oWmzOn
-         Vf9BpD3SaIjpV8FNhqsmL9yiWAe8bWGjLf8ENiv7bMSbO2FWL0PolRcWjKLBckmjQMwh
-         RVqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692079323; x=1692684123;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o6wjkIKXmOaC3qza9ogWX1PomwYcyCLkZwNgjvdvmF0=;
-        b=FiOgdux+lmAxsr1Q86oiDIg8xCAzBtEutPaCkNTY1ruF7lskuJx5IsHLAAhQ7iaJtl
-         KRmSxca2qbksh8Wc7KJTIM8usKlGsOfiNjl2yftZQp8C28kT88dK2581H45GB32owkvL
-         X5N34O3sFZ3gZnXNfMLCYi2BWT8oCcIl6E2CJTYvXQjI4B4bSPofHl9lDi4xtjpkQaYT
-         k1UCyEqysc6wmmgJWNbv7zMqfC5kyslpgfgXd+0VnucAy6TbVlGAP1apNvm/xytt2iV0
-         e+u7rdaEnb9BUS2WNxhQIl64PjX2fqlemxE7jquYe1Koj1osVISTXSUomZvY3+g/uaFK
-         138g==
-X-Gm-Message-State: AOJu0YyPTKeis5+NYneoFUUkuYMcRIzhwMQGksdCAaQfSlpwvf2OC83j
-        T3YEWpc8jiUEjR0rFPjdH/DBkA==
-X-Google-Smtp-Source: AGHT+IHgHo0QXSlNn4F4uyvrQSqk9Lo79B56aRJmWoK2BovwZJenEVz07aEzcZNE1duJw8q8vT/y0w==
-X-Received: by 2002:a7b:c04d:0:b0:3fe:4341:a5aa with SMTP id u13-20020a7bc04d000000b003fe4341a5aamr782291wmc.8.1692079322615;
-        Mon, 14 Aug 2023 23:02:02 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id a9-20020a5d5089000000b0031434c08bb7sm16733802wrt.105.2023.08.14.23.02.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Aug 2023 23:02:02 -0700 (PDT)
-Message-ID: <552c1bd6-0c91-071e-bd11-8d7c8feb7bc5@linaro.org>
-Date:   Tue, 15 Aug 2023 08:02:00 +0200
+        with ESMTP id S234977AbjHOGDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 02:03:43 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AAA511D;
+        Mon, 14 Aug 2023 23:03:41 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37F5xxit013108;
+        Tue, 15 Aug 2023 06:03:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=eRo+KqFCUvut0lTML8k2L89clzqzSPF29e124dI/wt0=;
+ b=CyG1b+dQpTiqAcU8mHV3tFR4JH4How1FF7kHMtx4KRRcPRrOtwgvtpQ7pUF8ijGAeDLq
+ 0Kft2P6RTwSMV+PsK+4OkKXbox69S5sTtqSAeI9duM35zlJs71/7YNfMwUryUQ3YYuBn
+ mOC8/LFqdIVMJ1pHNa44poYkQOeHYoG4xCw4qDeqvVVZio40WJ+PxBlv/sdYJzTWPWX0
+ S9rvYv8qejU4LQTBPkwYF+8XeejIIT3nBwvpPPSf+18chjzTQEEx2penZDyU7+hqloMc
+ BCofEfg9+g7a7JIBBFVT9IVRytnwGEB0LyoL4JCvgdqsIDcL8bKZwdjBf4HdBew4DIVN uQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sfx0qgfnw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Aug 2023 06:03:37 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37F63atF027696
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Aug 2023 06:03:36 GMT
+Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 14 Aug 2023 23:03:33 -0700
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_fenglinw@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <jestar@qti.qualcomm.com>
+Subject: [PATCH v5 2/3] dt-bindings: input: qcom,pm8xxx-vib: add new SPMI vibrator module
+Date:   Tue, 15 Aug 2023 14:03:13 +0800
+Message-ID: <20230815060314.352103-3-quic_fenglinw@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230815060314.352103-1-quic_fenglinw@quicinc.com>
+References: <20230815060314.352103-1-quic_fenglinw@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 3/3] media: exynos4-is: fimc-is: replace duplicate pmu
- node with phandle
-Content-Language: en-US
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Andi Shyti <andi.shyti@kernel.org>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230807131256.254243-1-krzysztof.kozlowski@linaro.org>
- <20230807131256.254243-3-krzysztof.kozlowski@linaro.org>
- <20230807231320.svssge6uymw3jiho@intel.intel>
- <9520cdcb-5262-f429-b7bc-35c4cda08c12@xs4all.nl>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9520cdcb-5262-f429-b7bc-35c4cda08c12@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7YoB8pEto1iXLibhSDcuHTrZ7rPnX8-X
+X-Proofpoint-ORIG-GUID: 7YoB8pEto1iXLibhSDcuHTrZ7rPnX8-X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-15_04,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 mlxlogscore=999
+ adultscore=0 impostorscore=0 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308150055
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2023 11:49, Hans Verkuil wrote:
-> Hi Krzysztof,
-> 
-> On 08/08/2023 01:13, Andi Shyti wrote:
->> Hi Krzysztof,
->>
->> [...]
->>
->>> +static void __iomem *fimc_is_get_pmu_regs(struct device *dev)
->>> +{
->>> +	struct device_node *node;
->>> +	void __iomem *regs;
->>> +
->>> +	node = of_parse_phandle(dev->of_node, "samsung,pmu-syscon", 0);
->>> +	if (!node) {
->>> +		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
->>> +		node = of_get_child_by_name(dev->of_node, "pmu");
->>> +		if (!node)
->>> +			return IOMEM_ERR_PTR(-ENODEV);
->>
->> in my opinion this should be:
->>
->> 		...
->> 		if (!node)
->> 			return IOMEM_ERR_PTR(-ENODEV);
->>
->> 		dev_warn(dev, "Finding PMU node via deprecated method, update your DTB\n");
->>
->> Because if you don't have both "samsung,pmu-syscon and "pmu" then
->> the warning should not be printed and you need to return -ENODEV.
-> 
-> I agree with Andi for this part.
-> 
-> The only time you want to see this message is if samsung,pmu-syscon is
-> missing AND pmu is present. If both are missing, then just return ENODEV as
-> it was before.
+Add compatible strings to support vibrator module inside PMI632,
+PMI7250B, PM7325B, PM7550BA.
 
-OK, understood. I will send a v3.
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+---
+ .../bindings/input/qcom,pm8xxx-vib.yaml           | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+index c8832cd0d7da..72b72c67a9b6 100644
+--- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
++++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+@@ -11,10 +11,17 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,pm8058-vib
+-      - qcom,pm8916-vib
+-      - qcom,pm8921-vib
++    oneOf:
++      - enum:
++          - qcom,pm8058-vib
++          - qcom,pm8916-vib
++          - qcom,pm8921-vib
++      - items:
++          - enum:
++              - qcom,pm7250b-vib
++              - qcom,pm7325b-vib
++              - qcom,pm7550ba-vib
++          - const: qcom,pmi632-vib
+ 
+   reg:
+     maxItems: 1
+-- 
+2.25.1
 
