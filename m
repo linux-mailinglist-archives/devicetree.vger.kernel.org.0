@@ -2,141 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F66877C9AC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 10:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45CAF77C9B6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 10:53:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235759AbjHOIv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 04:51:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
+        id S235783AbjHOIxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 04:53:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235728AbjHOIv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 04:51:27 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 69FAAFE
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 01:51:25 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.109.245])
-        by gateway (Coremail) with SMTP id _____8AxV_GMPNtkkLIYAA--.51270S3;
-        Tue, 15 Aug 2023 16:51:24 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.245])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxviOHPNtkGQhbAA--.51617S5;
-        Tue, 15 Aug 2023 16:51:23 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v2 7/7] LoongArch: Parsing CPU-related information from DTS
-Date:   Tue, 15 Aug 2023 16:51:13 +0800
-Message-Id: <44e4a47851575bc9ae583cf8c6d2f63ef05b10bd.1692088166.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <cover.1692088166.git.zhoubinbin@loongson.cn>
-References: <cover.1692088166.git.zhoubinbin@loongson.cn>
+        with ESMTP id S235789AbjHOIwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 04:52:47 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E43F19BC;
+        Tue, 15 Aug 2023 01:52:41 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37F7A9eV028826;
+        Tue, 15 Aug 2023 08:52:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=Kt3iFDmr8ZJ/XYq+so82jFjoXDuIgsJ3If0n1u9Tvy0=;
+ b=AdkTIVDJQGDr4+D1pwUHFFCtV6JnJY387h/KZYUj4zjaw74KexeApU4vcTWydPuAwk9P
+ K9YURbQ6yqitDgvPCEWDclcHXe2sdfFqhzeWhS2K441m6I9G3Sqg1GGYAg767/9F+ZHv
+ Nqv71bvifQF9TdyGaTAHPv4xZ16fbb75X/8JVE3xShBXWrlX79rKdvmojb4Dyg12QX2C
+ ppIGeSc6pZ3bW5Qjp9mRZQlnnkD7neSoi4gm7VAhAveThptI/6wa/97YRsl40hvhDDIe
+ VFGu/7jaK/uP36867eYG0MWQkqENTxN/6Gsc9UBlrC1n9ETecwNli4kz88OZBGGCL6Mc ZQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sfqp1hdey-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Aug 2023 08:52:25 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37F8qOrq025648
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Aug 2023 08:52:24 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 15 Aug 2023 01:52:20 -0700
+From:   Luo Jie <quic_luoj@quicinc.com>
+To:     <andersson@kernel.org>, <agross@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, Luo Jie <quic_luoj@quicinc.com>
+Subject: [PATCH v4 0/4] add clock controller of qca8386/qca8084
+Date:   Tue, 15 Aug 2023 16:52:01 +0800
+Message-ID: <20230815085205.9868-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxviOHPNtkGQhbAA--.51617S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7AryrtFyrurW8XrykGFykZwc_yoW8ZF48pF
-        Z7CFWrKrZ5CFn3G3Wftryjyryavrs5Ga17XFW29FWUCFnxKrnYqr4v9rnrtF18ZFWrWa4r
-        XFWrGFWqgF4UArXCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
-        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-        0xBIdaVrnRJUUUBlb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-        0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E
-        14v26r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6x
-        kI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v2
-        6Fy26r45twAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0x
-        vY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVW7JVWDJwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0x
-        vE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280
-        aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0wqXPUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: t5ORGL9dUWFDyV2fzh0CI5Bn_rwqQ_kN
+X-Proofpoint-ORIG-GUID: t5ORGL9dUWFDyV2fzh0CI5Bn_rwqQ_kN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-15_08,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ mlxlogscore=957 bulkscore=0 malwarescore=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308150079
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Generally, we can get cpu-related information, such as model name, from
-/proc/cpuinfo. for DT-based systems, we need to parse the relevant
-information from DTS.
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Signed-off-by: Hongliang Wang <wanghongliang@loongson.cn>
----
- arch/loongarch/kernel/env.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_mdio_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
 
-diff --git a/arch/loongarch/kernel/env.c b/arch/loongarch/kernel/env.c
-index 6b3bfb0092e6..0191fe20b535 100644
---- a/arch/loongarch/kernel/env.c
-+++ b/arch/loongarch/kernel/env.c
-@@ -5,13 +5,16 @@
-  * Copyright (C) 2020-2022 Loongson Technology Corporation Limited
-  */
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/efi.h>
- #include <linux/export.h>
- #include <linux/memblock.h>
-+#include <linux/of_clk.h>
- #include <asm/early_ioremap.h>
- #include <asm/bootinfo.h>
- #include <asm/loongson.h>
- #include <asm/setup.h>
-+#include <asm/time.h>
- 
- u64 efi_system_table;
- struct loongson_system_configuration loongson_sysconf;
-@@ -34,9 +37,39 @@ void __init init_environ(void)
- 	efi_system_table = fw_arg2;
- }
- 
-+static int __init fdt_cpu_clk_init(void)
-+{
-+	struct clk *clk;
-+	struct device_node *np;
-+
-+	np = of_get_cpu_node(0, NULL);
-+	if (!np)
-+		return -ENODEV;
-+
-+	clk = of_clk_get(np, 0);
-+	if (IS_ERR(clk))
-+		return -ENODEV;
-+
-+	cpu_clock_freq = clk_get_rate(clk);
-+	clk_put(clk);
-+
-+	return 0;
-+}
-+late_initcall(fdt_cpu_clk_init);
-+
- static int __init init_cpu_fullname(void)
- {
- 	int cpu;
-+	char *prop;
-+	struct device_node *root;
-+
-+	/* Parsing cpuname from DTS model property */
-+	root = of_find_node_by_path("/");
-+	if (root) {
-+		of_property_read_string(root, "model", (const char **)&prop);
-+		if (prop)
-+			loongson_sysconf.cpuname = strsep(&prop, " ");
-+	}
- 
- 	if (loongson_sysconf.cpuname && !strncmp(loongson_sysconf.cpuname, "Loongson", 8)) {
- 		for (cpu = 0; cpu < NR_CPUS; cpu++)
+Changes in v2:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
+
+Changes in v3:
+	* rename clk_branch2_qca8k_ops to clk_branch2_mdio_ops.
+	* fix review comments on yaml file.
+	* use dev_err_probe on driver probe error.
+	* only use the compatible "qcom,qca8084-nsscc".
+	* remove enable clock controller driver patch.
+
+Changes in v4:
+	* add _qcom_cc_really_probe function.
+	* commonizing the probe function.
+	* remove flag CLK_IS_CRITICAL from clocks only needed
+	to be enabled in switch device.
+	* update device tree property reg to 0x10. 
+
+Luo Jie (4):
+  clk: qcom: branch: Add clk_branch2_mdio_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: common: add _qcom_cc_really_probe
+  clk: qcom: add clock controller driver for qca8386/qca8084
+
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |    7 +
+ drivers/clk/qcom/clk-branch.h                 |    1 +
+ drivers/clk/qcom/common.c                     |   10 +-
+ drivers/clk/qcom/common.h                     |    2 +
+ drivers/clk/qcom/nsscc-qca8k.c                | 2118 +++++++++++++++++
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 10 files changed, 2400 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
+
+
+base-commit: 479b322ee6feaff612285a0e7f22c022e8cd84eb
 -- 
-2.39.3
+2.17.1
 
