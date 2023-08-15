@@ -2,108 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A24977CA35
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 11:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1979B77CA6A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 11:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236075AbjHOJQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 05:16:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
+        id S236194AbjHOJ2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 05:28:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236044AbjHOJP2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 05:15:28 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCDC171F
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 02:15:23 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c1f6f3884so710174266b.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 02:15:23 -0700 (PDT)
+        with ESMTP id S236199AbjHOJ17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 05:27:59 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF211FEB;
+        Tue, 15 Aug 2023 02:27:58 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe3b86cec1so8109165e87.2;
+        Tue, 15 Aug 2023 02:27:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692090921; x=1692695721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ze5ObTtpb+O9rxTntCpaoYVBo6hW76OOXVC3qfWoqz8=;
-        b=iL4nBpa1LZ7tG9SMde7NSMb5L0c8rOGNT76wdFySWCOO0KxytEcQkII33/Y4ugK9IP
-         0CvkHGFxwqScK6O61uD9ov2ImrC8UJBbu2/svlE+MS4SX7WaR9HxiBQcY4JN50BjF6uB
-         uwfxyqh+H0ifF/L+Zt562ihCSGQIvfPuhaO07Lj7/BGgEHETUiDwbdWOQRUPUwNbGhFV
-         s8S/U7bpPXJk4k7xufe5dG8OS4blesmC9MJCs9uTjx7wTGXPquUfszOq3jtE44Jo/p3X
-         OYPnnoxPx7mm+OS/1NJDH9s0K6Qm1hl410bfigGArRKLTqThEQmcRiYMq6nC99NeT67A
-         tBCQ==
+        d=gmail.com; s=20221208; t=1692091677; x=1692696477;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jdeVCEOEq3IkqSl8lDhrM4eFNQnZwh1jACSNFV8VQn4=;
+        b=M5xbtJPjLw4KCMdi3TdevUmVGy8Z7WVJQt+UoKTL1z77zJxfamamUAsIwGUhud5OvX
+         2UcefmbbUu2AjG0VcmvrJ2sC9wCz4PV4Gjjv+3JtWbW57LvEGsDDyywQo/rZlsesgRnv
+         AqPkELQpCWPAKhYcS5HTteN3qYSwJxV0x42nCXCeelmw+2Edx3CHOeXZzmDbYR38ayaN
+         G9yaAIaC8dqTghp5uMTJHH+tmGgTX0aHh/wWO+fyBdYOFuAZHezYFOyATDEXHRsOQA/4
+         JQlXHPHz+MQ5KfWkEI7IbXD9uqBUfAaqASWUvngZXANHDNdaZSJ4xSwc7aG7DBWEXkuB
+         TOng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692090921; x=1692695721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ze5ObTtpb+O9rxTntCpaoYVBo6hW76OOXVC3qfWoqz8=;
-        b=VRCkayVZTAAxIYyBlrR/YtzGSMW3I633VlP23at6Sv/RTW6FLaqAnQyjAifwidw2n3
-         dlx8lLNThnqcQvqgfvMhKxGccXb3j10DcIK2+WE944qOXVdKHzOhwZavdrEINGQNlvHJ
-         jG8rB32hKyjFbQL2ntMHZ1VAJ17Ifl3pinm/nW6sOGxjM9X9vu+481TW7/DdJoB7RHR0
-         wZefohRllZQhhYowQks8O2dSGoa/DtGd5+ny8+T5xCxGfyrEl4LgN3y6z1aRS6jmksV2
-         CReV96x8Eg9yw4GTURTKKCUmb9KXCl7DoGQxvuUXpCaUISTDWF0ywhxzEr7rR+7MaL67
-         oPNw==
-X-Gm-Message-State: AOJu0YxnVPgjuF1zBvhyKs+wPUcx4thnKkRtw3+Yzr6qYhYaP+C0AEaP
-        Ke97Q+9IBvE+383zXmRtZx3TLg==
-X-Google-Smtp-Source: AGHT+IHL0Yt0Nl21n4oLa/TVXgO+c1ct/xVXLAY94QKOW8C+tl23w7X44rljo02S0XUhWgx6eKSeHQ==
-X-Received: by 2002:a17:907:78d3:b0:993:d88e:41ed with SMTP id kv19-20020a17090778d300b00993d88e41edmr10415864ejc.3.1692090921599;
-        Tue, 15 Aug 2023 02:15:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id qx27-20020a170906fcdb00b0098e0a937a6asm6764797ejb.69.2023.08.15.02.15.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 02:15:21 -0700 (PDT)
-Message-ID: <3c702ccd-6a82-1121-0b4e-9529d82ccc13@linaro.org>
-Date:   Tue, 15 Aug 2023 11:15:18 +0200
+        d=1e100.net; s=20221208; t=1692091677; x=1692696477;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jdeVCEOEq3IkqSl8lDhrM4eFNQnZwh1jACSNFV8VQn4=;
+        b=W+98QSS9ITihJWmiwe1g6hYNxrY4pRmwJdatMzx5wGZgNyptvzD7beMlAnjFIVPJ+y
+         Lp2gytJpQBNCQjxVuyI69CbJLUIl3Li5jcALBVTeDehYY2AH5uYrY/N9cqQXer+nlfYh
+         OqEJ1i4VuKEAX58jtodY5ew3pI/Ro8tK6xHcAnqxV6svKM1CMvDFI7pihWx3P2mc1tV8
+         qUa/4XH/DShPb1fLJ7SGuvVwsKZqJzxlNb++6VjOv2n1QxH5MyiJUm4f5uDNXaAFa52Q
+         Czkg3ZQfelzkzRauO1s4gME2sIiX5w3ti+22DeX3kBxe+P7WZxUvmSRM64iUb7zHOeur
+         4APw==
+X-Gm-Message-State: AOJu0YxNytVnSCl6eUS971HYHgrX6I1GYxH4beBGNy7VKdlMrWkaMoxV
+        Z6tmZae8gOCEZuciUnU8v0sdpZZMVoY=
+X-Google-Smtp-Source: AGHT+IGygiHXlVQiObE/1QBEILsWiJePF+nIYsZEgpCf4YcO1Sf9M14FSD46HJfe1Bnrx2J0GtYGbA==
+X-Received: by 2002:a05:6512:b84:b0:4f8:d385:41bd with SMTP id b4-20020a0565120b8400b004f8d38541bdmr10278325lfv.8.1692091676625;
+        Tue, 15 Aug 2023 02:27:56 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id p1-20020adfcc81000000b003179b3fd837sm17230853wrj.33.2023.08.15.02.27.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Aug 2023 02:27:55 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+Date:   Tue, 15 Aug 2023 09:27:48 +0000
+Message-Id: <20230815092751.1791195-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 2/4] dt-bindings: clock: add qca8386/qca8084 clock and
- reset definitions
-Content-Language: en-US
-To:     Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_srichara@quicinc.com
-References: <20230815085205.9868-1-quic_luoj@quicinc.com>
- <20230815085205.9868-3-quic_luoj@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230815085205.9868-3-quic_luoj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2023 10:52, Luo Jie wrote:
-> QCA8386/QCA8084 includes the clock & reset controller that is
-> accessed by MDIO bus. Two work modes are supported, qca8386 works
-> as switch mode, qca8084 works as PHY mode.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
+reference boards. Few people likely have the original reference boards which have
+extra audio capabilities, but the device-trees are widely [ab]used by users with
+Android set-top boxes whose hardware is copy/pasted from the reference designs to
+get working installs. Adding basic audio support does no harm to the real boards
+and helps the secondary cause.
 
-This is a friendly reminder during the review process.
+Christian Hewitt (3):
+  arm64: dts: meson: add audio playback to p200
+  arm64: dts: meson: add audio playback to p201
+  arm64: dts: meson: add audio playback to u200
 
-It looks like you received a tag and forgot to add it.
+ .../boot/dts/amlogic/meson-g12a-u200.dts      | 129 ++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-p200.dts      |  60 ++++++++
+ .../boot/dts/amlogic/meson-gxbb-p201.dts      |  39 ++++++
+ 3 files changed, 228 insertions(+)
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
