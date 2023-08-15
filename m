@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D1B177D3D1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 22:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A89477D41F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 22:31:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240089AbjHOUBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 16:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
+        id S237822AbjHOUbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 16:31:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240152AbjHOUBE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 16:01:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB4883;
-        Tue, 15 Aug 2023 13:01:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C8C5065F37;
-        Tue, 15 Aug 2023 20:01:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9524AC433C7;
-        Tue, 15 Aug 2023 20:01:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692129663;
-        bh=EvZs3//r+5RX7/NTYdrqg9AZrjkjRWoh42oY8jUURpQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hLFxBTyfGv+cv3LAjiUVd/ceDyr3FGOOd5FZYJq3ZCZ9s3lHDhyMffM2pAVCDJuL9
-         jv65lKr46zV1ZWCOlZ1uFLoV1Houz3nAEDAec0HKgA3dz7W4hYD62ThfF5TkqH5jQM
-         4IvX11YnlpPsQbv9ahey9MFs7pEkQ305Y5GMYHuoiNgvJRIfc/wAVF4uPFytmhub0s
-         X8s5+lWSuosZRzK2JRFOS+FKfA+oKhws7iKsfB98bJw9/ycxt8yVzmNs7hYczaXqXG
-         Q6HOF88QDzICvaQfc99CrC9yUJDffOrXl0SEDQOm97s5t+XtJuIBAj4OG66IEunLw6
-         2v8IQ7axsh0Tg==
-Date:   Tue, 15 Aug 2023 22:00:55 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Rob Herring <robh@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: add binding for i2c-hotplug-gpio
-Message-ID: <ZNvZd2sOK+WMN4XN@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Rob Herring <robh@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230729160857.6332-1-clamor95@gmail.com>
- <20230729160857.6332-2-clamor95@gmail.com>
- <20230811173752.GA3639776-robh@kernel.org>
- <ZNf9vKJHc/FFlkY4@qmqm.qmqm.pl>
+        with ESMTP id S237814AbjHOUbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 16:31:11 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 487CA1BF1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:31:08 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fe8a1591c8so42836745e9.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 13:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692131467; x=1692736267;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JPkucb8eDhS4EQOsVKiEyG5iEoUjpanM1Rn3+s2iurY=;
+        b=Z6DUqHW+sMPrT0LeS6Km/PZyRkUqlEgFHgN9K6DozAppi0f2cnLhUJIpEBu3nx7qBb
+         A2Mukl7Bz4fGiDSSi5gBqMjvmA2CjiXx7gwzR3YusogaRZGCn3UfYvXGN5y7dFa5CT+w
+         6HliZlx8cmZERFRf+JvGQwPERDErcgopPDGjLtTh/FChO9NmKNd6ijpcD6jacEHq98nw
+         gsT9DvDfXZPLM/GTbKdBThQxNOX+zSIpQ2995qlLu6oAe9ZecD34OXTKiHzwO9RbOyog
+         S2hef2Mw+h6E3fYoloOre0IlVCYqZG/nfYaJ/o7OQdRZ9e3dq0y9sIaLSTodqGD4KfYX
+         kt1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692131467; x=1692736267;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JPkucb8eDhS4EQOsVKiEyG5iEoUjpanM1Rn3+s2iurY=;
+        b=JBD7lPJGaQzfdF1KskXcFWqLZ8xrgE9LZSKMS9TLONuPbkf3jgWcoqRXJWXNF+akJL
+         HU0LkrAI/eehzJbxA11csOHjP3NvZvFYR4Lb1xekcwCwQl4LrBPZcni6SHcoJUXlA+AV
+         Xj7tamfSapbYrG8tYBX6PAO+bDBW4Gmfyw84vRWb/Z6X3KwKdwFri+miTnSIY1jKZINI
+         Q9GBQWAjcMb1GJQharzKwoUW980w7gf0eniRSWqBIEsDgxUzNq2FDCr+gGd1tFG7aS34
+         toOD/B/h+BOdffQk6bFORwjFZJaDBP73Oe4pBqM9mIGGvWhB2nEOMUHLXWXQimSuMK88
+         R4/w==
+X-Gm-Message-State: AOJu0YyKxUVaWTPmd8srEDxnEhRIzsZoWRl0JhRM+NHtYm7/jQKjgMLk
+        Up+qTE3bhDHRzoCF27oXp1Jgkg==
+X-Google-Smtp-Source: AGHT+IHoUjJZshomlKAVo+zZzSVfwj2oWSovdFIH5SwrSkWxE+CGl4DjaPILVirJDXOOyjhzKYQV6w==
+X-Received: by 2002:a05:600c:2058:b0:3fe:ba7:f1ed with SMTP id p24-20020a05600c205800b003fe0ba7f1edmr10668870wmg.25.1692131466760;
+        Tue, 15 Aug 2023 13:31:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id c21-20020a05600c0ad500b003fbb346279dsm18971048wmr.38.2023.08.15.13.31.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Aug 2023 13:31:06 -0700 (PDT)
+Message-ID: <ced3e7fd-dca2-0ea7-8847-54c3efbe3165@linaro.org>
+Date:   Tue, 15 Aug 2023 22:31:04 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VNSvbZBwBusE8ygy"
-Content-Disposition: inline
-In-Reply-To: <ZNf9vKJHc/FFlkY4@qmqm.qmqm.pl>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: leds: aw2013: Document interrupt
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>, Pavel Machek <pavel@ucw.cz>,
+        Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nikita Travkin <nikita@trvn.ru>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+References: <20230815-aw2013-vio-v3-0-2505296b0856@gerhold.net>
+ <20230815-aw2013-vio-v3-1-2505296b0856@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230815-aw2013-vio-v3-1-2505296b0856@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---VNSvbZBwBusE8ygy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-
-> Not a driver but a group of devices (possibly discovered dynamically)
-> behind a passive gate (like e.g. PCA9517A with EN tied to a connector pin).
-> It's not much different to a I2C gate or mux with a single child bus
-> (i2c-mux-gpio that has only a single child).
-
-I agree. To prevent the the bus from spikes when connecting /
-disconnecting something like PCA9517A should be in place. And this one
-can be considered a 1:1 mux. Just with the exception that Linux cannot
-control the gate, but can only react to changes to the enable pin.
-
-Can't we have a driver for the PCA9517 which gets interrupts when the
-enable pin changes and then adds / removes the child i2c adapter?
+On 15/08/2023 19:21, Stephan Gerhold wrote:
+> AW2013 has an optional interrupt pin "INTN" which is used to report
+> completion of started operations (e.g. power up or LED breath effects).
+> The driver does not use it (yet) but it should be described for
+> completeness inside the DT schema.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
 
 
---VNSvbZBwBusE8ygy
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmTb2XIACgkQFA3kzBSg
-KbZ0CQ/9HaWnOT59/L9KdKzqxf5OJrVvdhwELVc04Bnuu0DQf3l2oH2msar6ptKP
-mLZgg2zD8LDypWOGe34YlKy1UvUcis8bYwpYSg8yOXg6XZWd+iyJkgm5SsutkH2j
-Jufawu1SRM06hgPC1UGtnIR17aNra2bRI/N7XgptIvfiWriNx/8klVPmXMfvkcjt
-cYHsJ8d6vRls9nOEYXruiTMYJ5TGlj9qaq4Kw3sYg/nGsIoreVkRHjQJfQY7tnkm
-vpRaQKL3MPurpBDaW/Ov0KaElminXzumRX0qDqP4qOmPnnCJIZftIAQs5NhU/3xj
-15ZGKz9KrWv7f8RDaaC6pO81hUyNOgC6c0/dWC+Nl2CTlmsLoZqohYex0hRx5o4U
-DSg8jmF2MAofXISjuTwzjhssS113W790W9vEqncuu0AavfW+sAkJjU05iwvyAGsI
-fWNOdKmb1vJ/+nMpXoR0xGIxGqhnZkDO3/oOOEg25ORrYsDWjSO7mflNkcVtTgTL
-Rz6nsSFWHad+0JAHbWbdBCFRWX4zQtCQX1yKbp6Hs/sWh95JSlKE3fp3QkBm1TKZ
-3Vj7tpc3j7dgVUeTkxwYr6HJvmWInxLSrsEfsDTbBg7h789GL9pycF37VnKB9GuC
-rFhFicZnd3A549q/oDygX7yYE8OXhQdUG7xmjN53U0pD7QuVjQ8=
-=YOUx
------END PGP SIGNATURE-----
-
---VNSvbZBwBusE8ygy--
