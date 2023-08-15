@@ -2,128 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D06B77CC61
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 14:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8C777CC96
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 14:28:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237040AbjHOMKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 08:10:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33794 "EHLO
+        id S236192AbjHOM2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 08:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237067AbjHOMKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 08:10:23 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE042E51;
-        Tue, 15 Aug 2023 05:10:19 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3924E6BE;
-        Tue, 15 Aug 2023 14:09:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1692101345;
-        bh=KW0vx009AqO7xSRMMkK4x1+GAudFOgostRFnyNMAqJo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=uVe4fAAELF9vwDd8TqfvGsAazt+qzmiZcOwEtfckHzAQghbPHNTvUsCbC/x9cw4gT
-         v+I0NyycM/SykUDa/PmQlZEcDYJJkSRGngKxAyb+cYb944vfFTOKj4nESUP/GkTgOo
-         D6EEbwLf8XOYwgwA90uRjcvXqtPQYD0LNDDjdvgA=
-Message-ID: <7ffd3f08-ffb7-7c79-2cdd-ecbf740d204a@ideasonboard.com>
-Date:   Tue, 15 Aug 2023 15:10:13 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v9 07/13] media: cadence: csi2rx: Soft reset the streams
- before starting capture
-Content-Language: en-US
-To:     Jai Luthra <j-luthra@ti.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237147AbjHOM1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 08:27:47 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743411BD0;
+        Tue, 15 Aug 2023 05:27:35 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37FCJmU8018489;
+        Tue, 15 Aug 2023 12:27:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references; s=qcppdkim1;
+ bh=i0AnmdUOsXQqwOopqH5Rf4zxdkWAzaOeG/tNttnbpMY=;
+ b=izJz+7khWrD4rEIPDa5c1tl4mZNZ+L1uKS+NMm17hG55dVxHlImT62F1s83TD9yXGj5i
+ qHQd/FfTfvCkVbD7B0WAfg82T1H+JuM4/GBmcZJvcpXmY42e6w/nF9r3imZAtOgFXAo4
+ 6HfoQV/ZpWF34JKeFCbMDEipZaObSeljF94IncyikphBaTxLJj/QxCdO5lRzIHiE6see
+ Ps5W+ARz3GP0ufrPcDCpdUyE7lGuM3kikVQdVN62IaULgsWNnm8gx9WOMCQfKZU/aQiu
+ gb/TRDAzpzK9weXqfC9sW0CzhSn2Kf3Q6tzK21OZRvWXvRTatS0+JtlnRVdUUh55A8EC pQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sfxqrrxsw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Aug 2023 12:27:28 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 37FCRPhY022550;
+        Tue, 15 Aug 2023 12:27:25 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3se35kb8q8-1;
+        Tue, 15 Aug 2023 12:27:25 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 37FCRPRE022539;
+        Tue, 15 Aug 2023 12:27:25 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 37FCRPI8022536;
+        Tue, 15 Aug 2023 12:27:25 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id 6846F4BC5; Tue, 15 Aug 2023 17:57:24 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     manivannan.sadhasivam@linaro.org
+Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
+        quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        niklas.soderlund+renesas@ragnatech.se,
-        Benoit Parrot <bparrot@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, nm@ti.com,
-        devarsht@ti.com, a-bhatia1@ti.com,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Julien Massot <julien.massot@collabora.com>
-References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
- <20230811-upstream_csi-v9-7-8943f7a68a81@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230811-upstream_csi-v9-7-8943f7a68a81@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Manivannan Sadhasivam <mani@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v1 1/3] dt-bindings: pci: qcom: Add binding for operating-points-v2
+Date:   Tue, 15 Aug 2023 17:56:46 +0530
+Message-Id: <1692102408-7010-2-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1692102408-7010-1-git-send-email-quic_krichai@quicinc.com>
+References: <1692102408-7010-1-git-send-email-quic_krichai@quicinc.com>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: AtRGzP904bpUHiDoogzSOKLAMue-dBCp
+X-Proofpoint-ORIG-GUID: AtRGzP904bpUHiDoogzSOKLAMue-dBCp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-15_13,2023-08-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=840 adultscore=0
+ clxscore=1015 impostorscore=0 mlxscore=0 phishscore=0 bulkscore=0
+ spamscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308150111
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2023 13:47, Jai Luthra wrote:
-> From: Pratyush Yadav <p.yadav@ti.com>
-> 
-> This resets the stream state machines and FIFOs, giving them a clean
-> slate. On J721E if the streams are not reset before starting the
-> capture, the captured frame gets wrapped around vertically on every run
-> after the first.
-> 
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
-> Changes from v8:
->      - Simplify reset sequence, minimizing delays
-> 
->   drivers/media/platform/cadence/cdns-csi2rx.c | 14 +++++++++++++-
->   1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index 933edec89520..b57e0c3b1944 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -40,6 +40,7 @@
->   #define CSI2RX_STREAM_BASE(n)		(((n) + 1) * 0x100)
->   
->   #define CSI2RX_STREAM_CTRL_REG(n)		(CSI2RX_STREAM_BASE(n) + 0x000)
-> +#define CSI2RX_STREAM_CTRL_SOFT_RST			BIT(4)
->   #define CSI2RX_STREAM_CTRL_START			BIT(0)
->   
->   #define CSI2RX_STREAM_DATA_CFG_REG(n)		(CSI2RX_STREAM_BASE(n) + 0x008)
-> @@ -134,12 +135,23 @@ struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
->   
->   static void csi2rx_reset(struct csi2rx_priv *csi2rx)
->   {
-> +	unsigned int i;
-> +
-> +	/* Reset module */
->   	writel(CSI2RX_SOFT_RESET_PROTOCOL | CSI2RX_SOFT_RESET_FRONT,
->   	       csi2rx->base + CSI2RX_SOFT_RESET_REG);
-> +	/* Reset individual streams. */
-> +	for (i = 0; i < csi2rx->max_streams; i++) {
-> +		writel(CSI2RX_STREAM_CTRL_SOFT_RST,
-> +		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
-> +	}
->   
-> -	udelay(10);
-> +	usleep_range(10, 20);
->   
-> +	/* Clear resets */
->   	writel(0, csi2rx->base + CSI2RX_SOFT_RESET_REG);
-> +	for (i = 0; i < csi2rx->max_streams; i++)
-> +		writel(0, csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
->   }
->   
->   static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
-> 
+This adds a binding documenting operating-points-v2.
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-
-  Tomi
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 81971be4..6bc99c5 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -121,6 +121,8 @@ properties:
+     description: GPIO controlled connection to WAKE# signal
+     maxItems: 1
+ 
++  operating-points-v2: true
++
+ required:
+   - compatible
+   - reg
+-- 
+2.7.4
 
