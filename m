@@ -2,168 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B615577CCB3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 14:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B831877CD26
+	for <lists+devicetree@lfdr.de>; Tue, 15 Aug 2023 15:08:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234334AbjHOMcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 08:32:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47294 "EHLO
+        id S233294AbjHONIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 09:08:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237138AbjHOMbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 08:31:34 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C656198C
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 05:31:31 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bc9e3cbf1so1112551366b.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 05:31:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692102689; x=1692707489;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E3JquWo+PhnRtxv5g8Z8h2LMAj8f61Bdb2igirOa0jM=;
-        b=dp2t8K3rQLReEkq8+il3zNjCfqzoSV52QkRvqwOJXzNReL1sNVI636pULvQcFPpJaR
-         V+aNLoVRQqZyuXMGW9HVCuVKZXXE54NCrg+DeukyswbIGgkS9zc+S+/e/kxqe6UVRRUl
-         P2aD3nOj1rXv6j+R/JbypnD8E6gOZRDEuYviqyNnGvNpy3B1QpnWNMjCP7SfdEceUvRP
-         WvNYT58K8LtLQhGWIjYzmrcZ/XxgERoOgsaiEwqUg7jv1srkCBgM6KF0Q93pTM/uuS9W
-         1UNH4iXuKiS+eJXQwDAACduANt1QFGgnYoYgV2izjPWyEBUqsE3JZ3kXzC67yXx67aBO
-         upBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692102689; x=1692707489;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E3JquWo+PhnRtxv5g8Z8h2LMAj8f61Bdb2igirOa0jM=;
-        b=FzFpCRUpCe2mIvhld3keX4L6lYADr4BN44Up04q77AO0WdGTI6w4JF4sk2aZq2ElnT
-         uIzrMvOmQwD7n7jcSNf/Mb0ZCJ+bN0PuuhsiG9sBhvLTCo82PnTBy2Pw3K4Rj6XcSQmf
-         5lespmKpTX1uV0+67P/2h8jfX8n27MkMGpLOxd3yOGvQYELa/RrRuadqnyVZCX7MWndu
-         80t8nWMiVs31Y2nW9d+i8wSClgRa9sDsRhCpvP5WXrT3yv0m7eWPe1kt0G1S8Os3sH3q
-         WhMdvgTmsU60D/bM97/hgabxdQBx/0WM8/bPieEkWqSBNVEEUFCfi59yrWcGg9+MUOuK
-         DqeA==
-X-Gm-Message-State: AOJu0Yz4wLY0X887cek87PaZjg/LKeYcIXZ6vS5ZAHd/mCO7EXgm4U8v
-        NIIzYPKQ7Z122CNnMiVY9ZMc2Q==
-X-Google-Smtp-Source: AGHT+IEiYJSPT35S7+7Wzy05+K/JOnc4rIBxfI9zhqdwci8Y3J9mEVZ/8574G6ZEikqQrY/sPJTi9w==
-X-Received: by 2002:a17:906:7315:b0:98e:4f1:f987 with SMTP id di21-20020a170906731500b0098e04f1f987mr2028420ejc.3.1692102689508;
-        Tue, 15 Aug 2023 05:31:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id w7-20020aa7da47000000b0052567e6586bsm2349583eds.38.2023.08.15.05.31.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 05:31:29 -0700 (PDT)
-Message-ID: <7fe554e9-27c3-9af4-8167-ae4329c40eb7@linaro.org>
-Date:   Tue, 15 Aug 2023 14:31:27 +0200
+        with ESMTP id S233968AbjHONHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 09:07:52 -0400
+Received: from forward201c.mail.yandex.net (forward201c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AC7B0;
+        Tue, 15 Aug 2023 06:07:50 -0700 (PDT)
+Received: from forward103b.mail.yandex.net (forward103b.mail.yandex.net [IPv6:2a02:6b8:c02:900:1:45:d181:d103])
+        by forward201c.mail.yandex.net (Yandex) with ESMTP id 2358A4A49F;
+        Tue, 15 Aug 2023 15:59:43 +0300 (MSK)
+Received: from mail-nwsmtp-smtp-production-main-91.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-91.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:17a3:0:640:53a6:0])
+        by forward103b.mail.yandex.net (Yandex) with ESMTP id 643BA60031;
+        Tue, 15 Aug 2023 15:59:10 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-91.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 3xeYJg5Wma60-VVag7b6Y;
+        Tue, 15 Aug 2023 15:59:09 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail; t=1692104349;
+        bh=W0sB+Yne05rsYeHXPgw3LIcd/XRPY0E85Vo6QNC1YDQ=;
+        h=Message-ID:Date:Cc:Subject:To:From;
+        b=LVy7viZueqdVlCckBmTTdfAMirSbVmesDdfXgWPE6RjzJg1dGN5pPXiUfYddfRvyW
+         1+Q/F39qaCANTXtp1xiW0Uga/P+1Zg0BSRQL2y7fwT8i2I8EDHguB5KIsWvU7EWK1K
+         0/tsEPqfOg0q1FqbhuTYCHBI1aw5o/LrCguqBb6c=
+Authentication-Results: mail-nwsmtp-smtp-production-main-91.iva.yp-c.yandex.net; dkim=pass header.i=@6tel.net
+From:   Muhammed Efe Cetin <efectn@6tel.net>
+To:     linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, sebastian.reichel@collabora.com,
+        Muhammed Efe Cetin <efectn@6tel.net>
+Subject: [PATCH 0/3] Add Support for Orange Pi 5
+Date:   Tue, 15 Aug 2023 15:58:58 +0300
+Message-ID: <cover.1692102057.git.efectn@6tel.net>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v1 2/3] arm64: dts: qcom: sm8450: Add opp table support to
- PCIe
-Content-Language: en-US
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        quic_parass@quicinc.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1692102408-7010-1-git-send-email-quic_krichai@quicinc.com>
- <1692102408-7010-3-git-send-email-quic_krichai@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1692102408-7010-3-git-send-email-quic_krichai@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,T_SPF_PERMERROR,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2023 14:26, Krishna chaitanya chundru wrote:
-> PCIe needs to choose the appropriate performance state of RPMH power
-> domain based upon the PCIe gen speed.
+Hi,
 
-This explanation should be also in bindings patch, otherwise why would
-we consider the bindings patch?
+These series add initial support for Orange Pi 5 and SFC node for RK3588S.
 
-> 
-> So, let's add the OPP table support to specify RPMH performance states.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 47 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 595533a..681ea9c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -381,6 +381,49 @@
->  		};
->  	};
->  
-> +	pcie0_opp_table: opp-table-pcie0 {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-2500000 {
-> +			opp-hz = /bits/ 64 <2500000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +		};
-> +
-> +		opp-5000000 {
-> +			opp-hz = /bits/ 64 <5000000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +		};
-> +
-> +		opp-8000000 {
-> +			opp-hz = /bits/ 64 <8000000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +		};
-> +	};
-> +
-> +	pcie1_opp_table: opp-table-pcie1 {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-2500000 {
-> +			opp-hz = /bits/ 64 <2500000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +		};
-> +
-> +		opp-5000000 {
-> +			opp-hz = /bits/ 64 <5000000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +		};
-> +
-> +		opp-8000000 {
-> +			opp-hz = /bits/ 64 <8000000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +		};
-> +
-> +		opp-16000000 {
-> +			opp-hz = /bits/ 64 <16000000>;
-> +			opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-> +		};
-> +	};
-> +
->  	reserved_memory: reserved-memory {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -1803,6 +1846,8 @@
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pcie0_default_state>;
->  
-> +			operating-points-v2 = <&pcie0_opp_table>;
+Muhammed Efe Cetin (3):
+  dt-bindings: arm: rockchip: Add Orange Pi 5 board
+  arm64: dts: rockchip: Add sfc node to rk3588s
+  arm64: dts: rockchip: Add Orange Pi 5
 
-Why the table is not here? Is it shared with multiple devices?
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 873 ++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  13 +
+ 3 files changed, 891 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
 
-Best regards,
-Krzysztof
+-- 
+2.41.0
 
