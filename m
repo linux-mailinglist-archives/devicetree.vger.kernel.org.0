@@ -2,112 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D1677D688
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 01:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F08177D6A4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 01:29:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240547AbjHOXLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 19:11:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55106 "EHLO
+        id S240585AbjHOX2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 19:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240582AbjHOXLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 19:11:35 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DAF72113;
-        Tue, 15 Aug 2023 16:11:28 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-790cc395896so252774839f.1;
-        Tue, 15 Aug 2023 16:11:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692141087; x=1692745887;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IFuVWEZAayPE5YmN8cygrBYhtB1NcKCdwRoP31NzXkw=;
-        b=CVr3SmK6yMXlTFfFbcWxbD7vs61Yp3FziYtTuX9eSZgR0j7klupfKh4IbQEysjTD2H
-         tiHKlQROjAtYA8SA6K3PPODpyuh9KFhVXJulC3pW1bNNPn2NXIzTNUlUdMC6mzMXpUD7
-         5XKlsVXl94faQGiWq1MicusRDdGChbGlO7p/oPiXc8xznayhTSgfWxL5sOIEgc4hN+Ps
-         Ojm3rLJ6SJquiSdA4QLbUPsctb/tQ4qfS6oxN4uc5vCWSaLRCG/VCTvLWajQUJn8LfM8
-         6MIi+giRt6ZrbvxjiawrD2mjV4SfNzMQwMMCvRlvqqU/ay9OHnH3jZvdbcv06Jhm5r36
-         QYrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692141087; x=1692745887;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IFuVWEZAayPE5YmN8cygrBYhtB1NcKCdwRoP31NzXkw=;
-        b=kS6XCskHgIJouii6rWzmvGLpMyWR7+vndNK5axKJT51TgD1BTcSTTdNKWg0a7xKIUS
-         JgEwXEJfuFmQ3Wv24RntrCifDrkIS0A9Hfh4JQhDkWGNVFqM1TG9OIl6dnsR18TFc546
-         TPZbEmCBMonbKz8HguWlvfzkXt4dyYYb/uZ9SP6oaaloxuCizCkgxSjN8dhPJlYceHid
-         Aoc6JJQwkNF5xHEY6gT+BA//UNrhpDtZJOPhJ7/mWcmgt3EdEJs5ZPIV5gDkZ7Gto3o9
-         Kk4YSW9jyoDgr6iuHzUGqjJElsUUK2XjY1WJUEVgjZ2jKYyunSLczBvxQJ8YdrXY8jLG
-         u7HQ==
-X-Gm-Message-State: AOJu0YzK0TPzoyYO5+HYfpExFjihFPjp9Fc2O23vlDW5L0zk5o9inJgf
-        0xfrerAnD6SND5KjhIKigmo=
-X-Google-Smtp-Source: AGHT+IGDZoXS/wW3wFfvPCaoY5jxROtdqRC78WsHWjiv5QtkDcgtP4GMYgZteHS26ZdVKydZa2P4cQ==
-X-Received: by 2002:a05:6e02:194e:b0:348:999b:2c44 with SMTP id x14-20020a056e02194e00b00348999b2c44mr551971ilu.26.1692141087360;
-        Tue, 15 Aug 2023 16:11:27 -0700 (PDT)
-Received: from aford-B741.lan ([2601:447:d001:897f:9622:3fc0:6e75:a6c0])
-        by smtp.gmail.com with ESMTPSA id i14-20020a056e02054e00b003421231fb8csm4190093ils.74.2023.08.15.16.11.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Aug 2023 16:11:26 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234151AbjHOX21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 19:28:27 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E193C98;
+        Tue, 15 Aug 2023 16:28:24 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4EBCC1BF205;
+        Tue, 15 Aug 2023 23:28:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1692142103;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=KqoiUzPl/8iWAJ5m3KsWYUUQxGcs9hu5/Zmem3XAmgk=;
+        b=nDvy8sqLas9We8g2a4pajsYbUzEELa5PVa+FViFrfQC6tLLYIw3Jn7C8Nu/cvyoo77h8Oq
+        dcbvZdetBmqbo+CqcjfdiLqdOAACYqvmGPWZxVjao6pP82BF8gjvgykKGfqhvWsgEvLTTG
+        FG14roPRnXmnjdz8Zk91sErFXhEsHBMNaFlr01YQaut4TZQ7atlWTpTGLBaooIG//6yYN5
+        ilDlkxd4hjy/BUJfH5XCXFT9TXEBaSyf7XPs5IJ+57Mzit2VYvcL3hvU6TK+eyOEicHkux
+        1c7Z8BV9qruAoUrTNb7XKWBgfYH/4sdtNf+oN6xM+EHQqhUstV2a8ENMs6ageQ==
+Date:   Wed, 16 Aug 2023 01:28:22 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 2/2] arm64: dts: imx8mp-beacon-kit: Fix audio_pll2 clock
-Date:   Tue, 15 Aug 2023 18:11:17 -0500
-Message-Id: <20230815231117.15169-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230815231117.15169-1-aford173@gmail.com>
-References: <20230815231117.15169-1-aford173@gmail.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] rtc: isl12022: battery backup voltage and clock
+ support
+Message-ID: <169214205184.2051743.7107002461402510185.b4-ty@bootlin.com>
+References: <20230612113059.247275-1-linux@rasmusvillemoes.dk>
+ <20230615105826.411953-1-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230615105826.411953-1-linux@rasmusvillemoes.dk>
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A previous patch removed the audio PLL configuration from the clk
-node, which resulted in an incorrect clock rate when attempting
-to playback audio.  Fix this by setting the AUDIO_PLL2 rate inside
-the SAI3 node since it's the SAI3 that needs it.
 
-Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks from CCM node")
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
----
-V2:  No change
+On Thu, 15 Jun 2023 12:58:18 +0200, Rasmus Villemoes wrote:
+> The current handling of the low-battery bits in the status register is
+> wrong. The first six patches fix that and implement proper support for
+> RTC_VL_READ.
+> 
+> The last two patches allow describing the isl12022 as a clock
+> provider, for now just as a fixed 32kHz clock. They are also
+> tangentially related to the backup battery, in that when the isl12022
+> is not used as a clock source, one can save some power consumption in
+> battery mode by setting the FOx bits to 0.
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index 06e91297fb16..acd265d8b58e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -381,9 +381,10 @@ &pcie_phy {
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
--	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI3>,
-+			  <&clk IMX8MP_AUDIO_PLL2> ;
- 	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
--	assigned-clock-rates = <12288000>;
-+	assigned-clock-rates = <12288000>, <361267200>;
- 	fsl,sai-mclk-direction-output;
- 	status = "okay";
- };
+Applied, thanks!
+
+[1/8] rtc: isl12022: remove wrong warning for low battery level
+      commit: 4d6af37cafad69ff93f62db80d5a3daa9ac3223f
+[2/8] dt-bindings: rtc: Move isil,isl12022 from trivial-rtc.yaml into own schema file
+      commit: ffc005280a47030d16cbbf3105c75d3562dba5a8
+[3/8] dt-bindings: rtc: isl12022: add bindings for battery alarm trip levels
+      commit: 69b569c124ffa698de25d039018fe86313c46c84
+[4/8] rtc: isl12022: add support for trip level DT binding
+      commit: 2caeb566baabb65add7d99ca6d8bfd566fe91582
+[5/8] rtc: isl12022: implement RTC_VL_READ ioctl
+      commit: eccebd813874b748ac4e79a9fe4c7290117ad3be
+[6/8] rtc: isl12022: trigger battery level detection during probe
+      commit: a11b6c460620f7fb5fae4c3aee5a5ba2e1e1129b
+[7/8] dt-bindings: rtc: isl12022: add #clock-cells property
+      commit: ab246c897be0bdf981f776399ca62b5ec4b8138f
+[8/8] rtc: isl12022: implement support for the #clock-cells DT property
+      commit: d57d12db774820819d0e591548a56b5cfc95f82a
+
+Best regards,
+
 -- 
-2.39.2
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
