@@ -2,87 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0014177EA67
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 22:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A44CC77EA71
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 22:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346030AbjHPUK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 16:10:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54600 "EHLO
+        id S1345376AbjHPULe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 16:11:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234641AbjHPUJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 16:09:56 -0400
-Received: from out-35.mta0.migadu.com (out-35.mta0.migadu.com [IPv6:2001:41d0:1004:224b::23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3756CD
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 13:09:54 -0700 (PDT)
-Message-ID: <fa2f0e13-1576-7985-5702-80cba3ecb17f@ansari.sh>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1692216591;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9VhizC2mjx6tKAlv2xv+dNkvMh6f5vBXVV6pf3KhE5k=;
-        b=X5Dybzomz7Or4AMQHSAz8uCpPHp0shuNl7iBWykV7vfiSVFoPMcHWyYn1MGk/CpnE90aoq
-        pPFhwHvqagzeadWH01r0CpfPauoicC1So4sMWYwMe7Vdxpx73st7up4d6fcd3jL6CJMqG6
-        kvaLUziwY23T6MXgL/BxgJD4J/jBXd8=
-Date:   Wed, 16 Aug 2023 21:09:49 +0100
+        with ESMTP id S1346102AbjHPUL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 16:11:26 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A4B1BEE
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 13:11:24 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6bd0c953fd9so4812860a34.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 13:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692216684; x=1692821484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Lws75iJ418dvUiFUMpSCZSJpyx26Sbj9eIlHFk1PcY=;
+        b=gN0LEIm74Bz0xvqXdVi1r5MAh02OiOvRcyxW0f5+qOT1fJ/7dmXHMYpRBo7e8fuedD
+         8E4aeaIwULrgMTSxCM6jl7PiqnX64zMuGoumHx0wl9gy/X+Bc+FYvDnQVSxw7e/jJLxx
+         HlLEC2nruRP1nKj8dGZNxRz3ZfnKUDUPrlmrFzHIumdsS2pBPPbZXXu7Io7JbR8rLxHT
+         52TZ66fWdg83GsKplHOCsehJ/qqNNLkipPKwsrkQB02DfKddjUYHpd4MCyGel9BmX377
+         U5dFdwvUhxoGzVKdzENDAKD78Yk6dYBnyZPLXU7qe5kjSmRbYP6Yqyeb0vQob5B29ZEV
+         EGww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692216684; x=1692821484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Lws75iJ418dvUiFUMpSCZSJpyx26Sbj9eIlHFk1PcY=;
+        b=YKniiOotB/vGAaG/RRAZIy4uKX9lPG7yOm3XMxvyi+aV258Kzf0pxXKZUSvXHNKaux
+         osnTOf5dUFtvN68/FrKTN1bmtG5JNcWC+FiD4jkMNfKXx/5sL6rc2ajX3CrPEaD1txmv
+         LatwHM5FsMDbfrGe7sTPSp/bWiwT+qE93TdvhfL9l6fdhowE0FkiHjyHsWAPnLRJ11Fa
+         3qpIiJihWJYM/HglaM6PTJ4Lt4CYxhBoaKobLor82MdooOnODRCtx6R/xp5kgMsJdipU
+         T3BRsKCPMfdCou1KNgEJ2IlQCKoqx1nr3d1N2pRqo8iRWrdMoXSYPjkAOGqPIb6Rx/bI
+         9e3w==
+X-Gm-Message-State: AOJu0YyrfzuBAw5L3mcNv4l49JswS3c6W/H9N7DTT422vcso1+u6bv3T
+        Rskhw4zPdzFSGpgvQvmGHvHucw==
+X-Google-Smtp-Source: AGHT+IFnT/6Su+IdemW7NvD/jLoMyj22j+Z2P6LjjB67eLjhfM9Ka2Q7lSUSr79I01dl9GO21DBAtw==
+X-Received: by 2002:a9d:6a99:0:b0:6b8:dc53:9efd with SMTP id l25-20020a9d6a99000000b006b8dc539efdmr3138769otq.3.1692216684263;
+        Wed, 16 Aug 2023 13:11:24 -0700 (PDT)
+Received: from localhost ([136.49.140.41])
+        by smtp.gmail.com with ESMTPSA id i6-20020a9d6506000000b006b58616daa1sm6349374otl.2.2023.08.16.13.11.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Aug 2023 13:11:23 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: Fix Exynos5433 compatible
+Date:   Wed, 16 Aug 2023 15:11:23 -0500
+Message-Id: <20230816201123.3530-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: tegra: Enable IOMMU for host1x on Tegra132
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Rayyan Ansari <rayyan@ansari.sh>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230810214543.16235-1-rayyan@ansari.sh> <ZNz4IZ8lSXlGIZb_@orome>
- <b07819ea-4a96-0906-b8e9-a9b045c37032@ansari.sh>
-In-Reply-To: <b07819ea-4a96-0906-b8e9-a9b045c37032@ansari.sh>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 20:56, Rayyan Ansari wrote:
-> On 16/08/2023 17:24, Thierry Reding wrote:
->> On Thu, Aug 10, 2023 at 10:45:41PM +0100, Rayyan Ansari wrote:
->>> Add the iommu property to the host1x node to register it with its
->>> swgroup.
->>>
->>> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
->>> ---
->>>   arch/arm64/boot/dts/nvidia/tegra132.dtsi | 2 ++
->>>   1 file changed, 2 insertions(+)
->>
->> Do you happen to have a Tegra132 device that you can test upstream Linux
->> on? Just asking out of curiosity because these devices are becoming very
->> rare these days and it'd be good to know if people are still using these
->> and that recent Linux kernels are still running on them.
-> 
-> I do - I have the Nexus 9. At some point I was trying to mainline it, 
-> but I stopped as I couldn't manage to get USB working - I only got 
-> simplefb working. If it would be useful I could see if my old patches 
-> work now and submit them.
+The correct compatible for Exynos5433 is "samsung,exynos5433-dwusb3".
+Fix the typo in its usage.
 
-I looked through my old notes and I was able to get USB host mode (ie 
-USB OTG) working but not USB device mode.
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+Fixes: 949ea75b7ba4 ("dt-bindings: usb: samsung,exynos-dwc3: convert to dtschema")
+---
+ Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
->>
->> Thierry
-> 
-
+diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+index 42ceaf13cd5d..240f41b7133a 100644
+--- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+@@ -72,7 +72,7 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: samsung,exynos54333-dwusb3
++            const: samsung,exynos5433-dwusb3
+     then:
+       properties:
+         clocks:
 -- 
-Rayyan Ansari
-https://ansari.sh
+2.39.2
 
