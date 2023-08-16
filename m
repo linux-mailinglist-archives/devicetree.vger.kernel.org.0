@@ -2,113 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A8BA77DA05
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 07:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF55977DA13
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 08:01:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239388AbjHPFyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 01:54:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45242 "EHLO
+        id S231645AbjHPGBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 02:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241926AbjHPFyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 01:54:05 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E3519A6
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:54:04 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5236a9788a7so8356583a12.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:54:04 -0700 (PDT)
+        with ESMTP id S241842AbjHPGAt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 02:00:49 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5F3E56
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:00:47 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so7652555a12.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:00:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692165242; x=1692770042;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LkzrRsAYqrGofyJHqddcC4Cgi7d2HxMzD8UKMfbqpyA=;
-        b=zdyH7p8r1t+d7AodepeRORQf9lv8n693thNDOqgqgKacJ8Gkd3CprrEcZ25D+0Ae34
-         n69WmK24u4a7Ekjca1g8YBEROjM4gognKgAvZh8mFXWVMOa1losPxbwKiTbDhd4sbRpS
-         v0fnixlrVBFsNMviJsNB8GKlXWySsbu+yBZdwNX++s/V5K1a4FgvVHZ4o1s5mIJDbKnm
-         ytQAfVqC0rpfZ/jUTAtKFyfgS2nakoZnuf8WrYysR/40cpnbsFEGk891b3PyS2rrUa+T
-         /5zQl4+k8Da5kkuSCZ7wMc4toIhjhvanwsz3DBO4b/aTMNlNlvCeF0jvWThKhCgUUNdN
-         +aWQ==
+        d=linaro.org; s=google; t=1692165646; x=1692770446;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Zt17Yup/WwnoxQl5WE6O4OHqB2elPd3OhHcTS9NLBY=;
+        b=e/CjjO+S1IEF0k4oc+Khg/7xOTgNlgMSEyIIljAgBEYyzLgMwfR71GmFXBKraVIq6O
+         fBipu1EogU9NaTpDLPGhZhrKWwZhCDUFykOIPVMUKwXr401h5cRKf3sc140nwMwOqSY8
+         zlR1L1JfJGzM7sI/zCQZR/BrrstfYf5hnNg6A3XWJBoqqDbLNwR1N+ybHHbPxX8JXY06
+         xX4Uishf6RDdxeZx8szQ2OSLukh6NONOjXVT3UPDA6Ku8uRB8YPJGgTF1u/0FUxfxV7j
+         cnzByF65KXUGpjC8XoJvy4RkxD+9fU6igvvthaUDrt1wqV7EWrp9LRk2Pkvwny/ZMpcV
+         BZhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692165242; x=1692770042;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LkzrRsAYqrGofyJHqddcC4Cgi7d2HxMzD8UKMfbqpyA=;
-        b=LK5ea/umgzqwMTW8dJftyuryTJEv2yHyHp59uGLPA1RHha6yu3hxCKDCjjJA9z6LDB
-         2bV+bnar0OrIXspWRIyAEf3/m3IlaN+Q6x/r0QRV61/awPihZJ3VuDPuH2g6SN0iiEzo
-         dF8XIeN2P2DGx2B1IanMWQoZy25uflT+paRcVUZCAYoncLUThwY5ayrA7cX/8vCaWSoH
-         hSQhFalpuXKwZdnterhMpeA7LNMFEiL70CGx1FDnIqH8W1Mgt07K9PMAKrt4KwBvK0sc
-         7Jkz8xila4IRGIkxBny4Gtt9xn3QAZ0pxRX6EMA5OoJUrgQaUEZYcxK5udytAVG5sMxk
-         nAMQ==
-X-Gm-Message-State: AOJu0YxBBvj5FUxXP4e0js0MJMXabKjQDzn7H1OPMTlPGdu4FQUetjHq
-        1ge3BssqjUTNVXlRpm6YIN8Ijg==
-X-Google-Smtp-Source: AGHT+IH8gmG+hio/x9+oLX/5LuYk2m5XfXtmHrNThBUEMthCRZbysoAmJfuRw8UWaizg01Hv0d8QBg==
-X-Received: by 2002:aa7:ce14:0:b0:523:69bf:2bd3 with SMTP id d20-20020aa7ce14000000b0052369bf2bd3mr778982edv.13.1692165242622;
-        Tue, 15 Aug 2023 22:54:02 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id b5-20020aa7c6c5000000b005224d960e66sm7804334eds.96.2023.08.15.22.54.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 22:54:02 -0700 (PDT)
-Message-ID: <87111632-f032-87a4-159f-1dd5357bac70@linaro.org>
-Date:   Wed, 16 Aug 2023 07:53:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH] bindings: mfd: qcom-pm8xxx: add a property for rtc-pm8xxx
-Content-Language: en-US
-To:     Anvesh Jain P <quic_ajainp@quicinc.com>,
+        d=1e100.net; s=20221208; t=1692165646; x=1692770446;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8Zt17Yup/WwnoxQl5WE6O4OHqB2elPd3OhHcTS9NLBY=;
+        b=PyEE1wg68ezNzgykQ8JI685cXFevxLsKInes9C9cedrFaxrFK28k0DHca79G3QP3EF
+         UglR3xQjaxHBg1j07FqjM8PmTggnB2NTDtGr34nWzq5sWJDFLJaCYEN4U8stPiJfkePi
+         mMokStaxJT335er9K6N7XtE6BVF0hwiKoWWleRM7OvmRk84p6tvSZ7+A/9U4cTt7aSqN
+         uHl6RLhFqYTszzpxXf1g5bJT/FfNLmlk2n/bvVVMB9dVPOBV5G2uA73i8fnMQjzlJYwp
+         t5FUGaOwJ98sLP1zxVKu05ipH2+tglukjFNx5euI7tc1kbN1E25LuyKHqgxfgar4uFSd
+         I/4g==
+X-Gm-Message-State: AOJu0YxV5J3SL4FDlfWPPlalk8lbQSGtYkJ4iaZwfCNCXA4pBSUMvJ/x
+        BdkFnjKh/ikrYG3oNtV2B+0Bxg==
+X-Google-Smtp-Source: AGHT+IFnZMRmU3l5bDL4krmMYV9i/GGQ2cFPcEpPog29Rq4WEsSorbWfJcRt4CAlmefd7grij1wz/g==
+X-Received: by 2002:a17:906:5354:b0:993:ec0b:1a24 with SMTP id j20-20020a170906535400b00993ec0b1a24mr649778ejo.7.1692165646414;
+        Tue, 15 Aug 2023 23:00:46 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id i18-20020a1709061cd200b0098e422d6758sm7961455ejh.219.2023.08.15.23.00.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Aug 2023 23:00:45 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     cros-qcom-dts-watchers@chromium.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Venkata Rao Kakani <quic_vkakani@quicinc.com>
-References: <20230801115143.27738-1-quic_ajainp@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230801115143.27738-1-quic_ajainp@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Stephen Boyd <swboyd@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sc7280: drop unsupported qcom,adsp-bypass-mode
+Date:   Wed, 16 Aug 2023 08:00:42 +0200
+Message-Id: <20230816060042.13110-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/08/2023 13:51, Anvesh Jain P wrote:
-> Update rtc-pm8xxx bindings with disable-alarm-wakeup property.
-> 
-> Signed-off-by: Venkata Rao Kakani <quic_vkakani@quicinc.com>
-> Signed-off-by: Anvesh Jain P <quic_ajainp@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> index 9c51c1b19067..e4f1d2ff02b6 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> @@ -42,6 +42,9 @@ properties:
->  
->    interrupt-controller: true
->  
-> +  disable-alarm-wakeup:
-> +    description: optional, disable alarm wake up capability.
+LPASS LPI pin controller node binding does not allow
+qcom,adsp-bypass-mode property:
 
-This was no tested. Missing type, vendor prefix. Additionally the
-description says absolutely nothing, just repeats the schema.
+  sc7280-herobrine-crd.dtb: pinctrl@33c0000: 'qcom,adsp-bypass-mode' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
 
-Sorry, does not look like hardware property with such description.
+Fixes: 32d4541abe0f ("arm64: dts: qcom: sc7280: add lpass lpi pin controller node")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Anyway sending it without DTS or driver is also no-go, so NAK, sorry.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index dbcd139f60f1..d8b12666e592 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2498,7 +2498,6 @@ lpass_tlmm: pinctrl@33c0000 {
+ 			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
+ 			reg = <0 0x033c0000 0x0 0x20000>,
+ 				<0 0x03550000 0x0 0x10000>;
+-			qcom,adsp-bypass-mode;
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+ 			gpio-ranges = <&lpass_tlmm 0 0 15>;
+-- 
+2.34.1
 
