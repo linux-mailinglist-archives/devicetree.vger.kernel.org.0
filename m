@@ -2,91 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91B9377DA36
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 08:08:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6AEE77DA4A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 08:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235328AbjHPGIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 02:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36106 "EHLO
+        id S242047AbjHPGL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 02:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242063AbjHPGH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 02:07:56 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12EC2711
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:07:40 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fe4a89e7efso55875335e9.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:07:40 -0700 (PDT)
+        with ESMTP id S242045AbjHPGK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 02:10:56 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AAF91984
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:10:55 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-31956020336so3145062f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:10:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692166059; x=1692770859;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692166254; x=1692771054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FsYZ939dcLj42q9uy/F44+/jrXXmiBF/awHAuWPvXAk=;
-        b=uoJ+LTaG3QZMIz/ZFLv0qitRtNF1EyLtA5yKAhtE0OP5ZF3SDoPOryh+VBT2oJIdZR
-         HzuvuvrrGmTfQcJWx1qjBb82be5InQkZkimokkpc6WFYWTThE03x5RDOF5i5RzbiufBU
-         k8bruS4aN0nVlwIpq8CMZtnJRo2kutK1aW4gPOHB6XhQ3t/UTuABsHe/EblA5UzRhSOe
-         BVMNFLuhMUuF+/2bR5fOkHe93l6aaymbU8tgOUAMFb22GQXtRrUOmxzN7Nq+6AFNp2Hv
-         XXo7PP2XgKMS7EhbP3na6XXN9z+/DXSh4vMwE06+Pp6o+J9lk3wdK2NEgkjDbwWXLFn2
-         gSUg==
+        bh=TLgYjBnr1a+GUC8i+zwPCXmJXdHbs5C8fS0fA8QCuyM=;
+        b=WUMSi9LhYgjTaZKyBwLkW4Gh0gYEKU5tB67Mg8CsnBUU2vlfilZyjO7Lyh2eqeDNFK
+         QMgnEPPPmXT6hCKBg8LDGHiOydSE8W2HdOZOc+KjKbTsLN2p/tKaSf+hnU+eFniS8rS6
+         17y3m228FiSrX47uPULULKBX8yOcgCjlz1uNCdfNmeQVUat3fPRN8cdInxw8DZipdQMx
+         4qfHcg2xPEUhSYSzm54pQUbUq5M/Dj1SkcJO2C91XDLKnlNH57OTIPhlxSj2PVklXVzA
+         SBvrx3Iv6jl5mvVTUrCm1wG0a7cN63dsAytT/flUQSQNmCTe9IIODEgUCsI5xWE7La2a
+         NPLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692166059; x=1692770859;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692166254; x=1692771054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FsYZ939dcLj42q9uy/F44+/jrXXmiBF/awHAuWPvXAk=;
-        b=QGyGmSyOprI56VruhjkHJ5DBOoRjujXO6rfdhd3tyaj5wQRax3CjRtSsVr3h7z580o
-         pEF09LI1jeIWP4H11zqdIZeMF50preUPKSt13+qI33A5EuLOkh1ya3Qs3AqhZXfFdO5h
-         PMtj5nziVO1/L4IO3NQmzcqHbgwLeOYnX1Op7slamhXBYmQYR59cUTb+g4KDarYq+Hvm
-         V5G9nxSmQrhrdca8RBVuD0VLtk2359JX1CH8hR+Xxc5w8chesxY82n6sqZNFWLG5FGO1
-         Mn+TPics4V6on9GlsBqPxk4Ych8Sie9uMpoL/0O9MgMZ7dYoEN0m3F437wi2XcpvpXxY
-         wfQQ==
-X-Gm-Message-State: AOJu0Yxi9ao/oe6yvWNcfrJvEaJA4/bMMnYop9k47ciznz/2QkmVuofr
-        0MmdMpvnZD0ign2gkm8j5e7xWQ==
-X-Google-Smtp-Source: AGHT+IER5sMU2fdIlArto/rLhBPLokkQ2ZvUUXeHU0aH2Ely9ASzANipMTVKXsFzMCMuJLWXHwMwYQ==
-X-Received: by 2002:adf:dd84:0:b0:317:4bdc:6f34 with SMTP id x4-20020adfdd84000000b003174bdc6f34mr710578wrl.64.1692166059333;
-        Tue, 15 Aug 2023 23:07:39 -0700 (PDT)
+        bh=TLgYjBnr1a+GUC8i+zwPCXmJXdHbs5C8fS0fA8QCuyM=;
+        b=WklaAEr0UjBBnwzD1plRvZxf50o4BPAta8YQFjzgbG/l3vDZncnFrOVkJdUeyF9hVF
+         mSk9jC4Se6wBcBSUspeEQuLDImRYkJXchsOAYrSexz6KvIlKKygavLs5eKeVxIKoHU3s
+         3cICZKmaWXqwetyQP4B12QOqpAyj8GLng8XywXjAeL/t++MaRCBx0C527uQamQqH6xN7
+         gxnD84yS+eMr8o45D34N9FSIbM6Q06MRa1ZRQVv3U05bnmxpju91kvlTEcQnDLSB6ttH
+         yQvA0klbE1NW6bWlDk7r1WFO2N1JqYMwS0TkRDgDTAdCMmALjDdXnfHy9kJ0nC28IHNg
+         3law==
+X-Gm-Message-State: AOJu0YyhnLmMxuFo2tvQ1m/nBVCcruBVf8y9ack3SQQ8nn5KPzc/evhh
+        nkhOLrf5eWilhr/tSE50CXeMTX9jbeEo6OB0fiw=
+X-Google-Smtp-Source: AGHT+IGJlquxNv63cLtSF0xE2AT2adYs1i+eTHqL1MiaERZvUNWrrTmO6AZGgsIwwvLWDDMWG4rw1A==
+X-Received: by 2002:adf:cd82:0:b0:319:7abb:4112 with SMTP id q2-20020adfcd82000000b003197abb4112mr2945584wrj.21.1692166253828;
+        Tue, 15 Aug 2023 23:10:53 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b003197c2316ecsm7456530wru.112.2023.08.15.23.07.37
+        by smtp.gmail.com with ESMTPSA id h14-20020a05600c260e00b003fa8dbb7b5dsm20090696wma.25.2023.08.15.23.10.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 23:07:38 -0700 (PDT)
-Message-ID: <5ec6669f-454f-5c50-7ab2-522940f2c57e@linaro.org>
-Date:   Wed, 16 Aug 2023 08:07:36 +0200
+        Tue, 15 Aug 2023 23:10:53 -0700 (PDT)
+Message-ID: <0bb12177-e8f0-1873-4ffb-9a0df0a9f24d@linaro.org>
+Date:   Wed, 16 Aug 2023 08:10:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH linux dev-6.1 v1 1/2] dt-bindings: arm: aspeed: add Meta
- Yosemite 4 board
-To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-        openbmc@lists.ozlabs.org, patrick@stwcx.xyz,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230816060547.40489-1-Delphine_CC_Chiu@wiwynn.com>
- <20230816060547.40489-2-Delphine_CC_Chiu@wiwynn.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: firmware: qcom,scm: document IPQ5018
+ compatible
 Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     computersforpeace@gmail.com
+References: <20230815140030.1068590-1-robimarko@gmail.com>
+ <20230815140030.1068590-4-robimarko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230816060547.40489-2-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20230815140030.1068590-4-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 08:05, Delphine CC Chiu wrote:
-> Document the new compatibles used on Meta Yosemite 4.
+On 15/08/2023 15:59, Robert Marko wrote:
+> It seems that IPQ5018 compatible was never documented in the bindings.
 > 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
 
-I don't understand this patch prefix and why we are Cc-ed on some v6.1
-work. Please split your downstream work not to involve upstream.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
