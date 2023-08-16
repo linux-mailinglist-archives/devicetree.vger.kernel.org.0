@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF26677D9E1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 07:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E57A77D9E8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 07:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241909AbjHPFks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 01:40:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46162 "EHLO
+        id S241942AbjHPFol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 01:44:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241960AbjHPFk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 01:40:28 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D1E26A9
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:40:19 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so14814169a12.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:40:19 -0700 (PDT)
+        with ESMTP id S241948AbjHPFoa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 01:44:30 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F23913E
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:44:29 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bb8a12e819so21629031fa.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:44:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692164418; x=1692769218;
+        d=linaro.org; s=google; t=1692164667; x=1692769467;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=USJC4rpReyW+hwtVRVOdsjwJafjpOqRaJ3WmgpmCGIM=;
-        b=k5e/30EsXvfXpGX01sx0sXsAOLqB7+6MUKPHrEq4a3LTu8aE5E4v3XaYP+NeBXmySy
-         Ynnwvbr2wkMuJuPVWUA+vRnW6j6RIJqfpsHhbR9RYGl743YsIFzPJOiq0KDpZnZAK9Ll
-         Tz22ZDIEkXO9CaNwZFf1NWbRqQHXqXnuNs9VB7eK5nIdkJKA8+RQV0t6M43MxhmXmWMb
-         U0U9VDqTzkMSljTBN8FfbH0KKZ0lLUTErOdOCdE4iGbA4bu1jL3ct3xsqtFIjDNvuS5Z
-         1TY+vOpqpukE/JOwLf0URvnvR7AnDJLnRqb7y84t/vXPJq01Z9RRQ4WaLmCbnBwIlUgM
-         Ulfg==
+        bh=p1Cm3rJor+XGdM+JIjydBHGbLEQZZ1g1LuWvc+gZ0Ws=;
+        b=aRueGjQacY6wEgWZGOweUYdzMfdD0aYJNkkXYRhF4sNem4ZuqZ0eALGamCCY9cRVfd
+         CeN4vPFV/aBN+BL3bnrRR5hZyZxd33Umc7ORjtrImrxYofsVh5EBK7/gu0PK/0iIJgzm
+         L4PA1UjhUYi9DEp/canKyjkmCSrJb5pe5YZhWU9xGHfzzWHhgDfKGjHnUwCI0YLnvSvK
+         /PrwgXJHZi1TIZIMhnT9eZu3MxYscEwUqAPzV8FxWt39NH2GbQ67x2sVhrcG4e+hhN6O
+         Q1ZwScyBzhZcfAKpMIs90B/oKNmGIhgqH5pFU4cPxfs7YKG34yJYCrscL7bwF9Sge9TJ
+         fTzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692164418; x=1692769218;
+        d=1e100.net; s=20221208; t=1692164667; x=1692769467;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=USJC4rpReyW+hwtVRVOdsjwJafjpOqRaJ3WmgpmCGIM=;
-        b=eih1xP3mm9ipwtpl0TYbJOFUp8hwwTCN1yg+gFf0m46LYoGvaaZ9ZEkqNIsEhVthpT
-         ztA0O/AveXPxLiBFEXMQmPt0cogx8kW6gKNRXC8jt4LI/Qg8BNddS5oXC1lOmMWL3lHN
-         p+jBEiD4UlzV03N5NjxDM7KaNNZIeGQyiZBHcYoXdjWhb/5Hj7CkK8cFRzm2v/cAcJjZ
-         JChArr6aCGYFWXM3BrdOLrM9wXs21Ka9jY4BCqID+y+54csGUSd8+8meK5oTCFjVOmsn
-         E8771aOzjxl+TaYKbxDDQOQdS+b/A3XGMfzNYh99SVu2+i8Kvqw+jXU0WZhNnaOg3Af2
-         0a2w==
-X-Gm-Message-State: AOJu0YzApztaGfSyeG2cXishbdnOO0qQScVvJ//qcn/wTMEvRDZ8U/TH
-        LVvuYv0MJuWMGniNRMVEZ4NMvg==
-X-Google-Smtp-Source: AGHT+IH4DWL6x7gAbnrg5y+pHdZZyj3rUVGs96XdIkDFPXvPhUN+hMnhvwaeC1baPY9OqB7ySNqtkQ==
-X-Received: by 2002:aa7:df04:0:b0:522:4764:8baa with SMTP id c4-20020aa7df04000000b0052247648baamr1330178edy.12.1692164418258;
-        Tue, 15 Aug 2023 22:40:18 -0700 (PDT)
+        bh=p1Cm3rJor+XGdM+JIjydBHGbLEQZZ1g1LuWvc+gZ0Ws=;
+        b=RiFcvE9qCNGAYq+7T507+qtXnNrZmezbO5lzBnX5WBmo3KqDsm76AzrQgf834pMYTz
+         x4gOTLAVFCBMmDDmvPCCZjSDEYETYDWpr6VXt2b4Vwpy8wsgECm5jbEvAjPSqgudp4Lu
+         fGJbSXNehI1/yXFMEgMOFtR+jAhZCJH5/Nk2+Cn7xjpWaKHm2p8ArZ79TeAU2bG+SXWc
+         gzk/xDrqsQJi+dXtwHszFvk71eo9MnH2oRxMBB/jpSsQ+SUpab7VmAGLdR5h5pF7gZHQ
+         87qYmkNPGM2gOOrfLYzxYl8Qc9Kl2fjLMUmB45VkForROjKxsu7rSz1rJsnDabt+vIhj
+         vlrw==
+X-Gm-Message-State: AOJu0YyY3dG13ov8rUiLYUW/zEWyrU0YGC5GWxuqfbp7/r1hVAzTMdEs
+        +ZyMcHKOG741k2Yj+MmizArY7m59PsFRiubgFkU=
+X-Google-Smtp-Source: AGHT+IENB/+/1yCrgGPWlxAVOLiWjZiIUENth9HghBcpRunhKp0CjXWEK4UXuzlDgMFSy68BFO/+ZA==
+X-Received: by 2002:a2e:9b0d:0:b0:2b9:e501:a6a6 with SMTP id u13-20020a2e9b0d000000b002b9e501a6a6mr819956lji.30.1692164667394;
+        Tue, 15 Aug 2023 22:44:27 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id v17-20020aa7d9d1000000b0052563bff34bsm3783876eds.63.2023.08.15.22.40.16
+        by smtp.gmail.com with ESMTPSA id k3-20020a5d6283000000b00317643a93f4sm19907832wru.96.2023.08.15.22.44.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Aug 2023 22:40:17 -0700 (PDT)
-Message-ID: <bad3c49b-a571-bbba-4c20-d2c6f2d2ce46@linaro.org>
-Date:   Wed, 16 Aug 2023 07:40:15 +0200
+        Tue, 15 Aug 2023 22:44:26 -0700 (PDT)
+Message-ID: <a77403f5-8b99-3012-3843-1999ee8d12ce@linaro.org>
+Date:   Wed, 16 Aug 2023 07:44:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add FSD EQoS device tree
- bindings
+Subject: Re: [PATCH v4 2/3] dt-bindings: usb: snps,dwc3: Add
+ runtime-suspend-on-usb-suspend property
 Content-Language: en-US
-To:     Sriranjani P <sriranjani.p@samsung.com>,
-        'Rob Herring' <robh@kernel.org>
-Cc:     edumazet@google.com, linux-kernel@vger.kernel.org,
-        alexandre.torgue@foss.st.com, ravi.patel@samsung.com,
-        alim.akhtar@samsung.com, linux-samsung-soc@vger.kernel.org,
-        linux-fsd@tesla.com, conor+dt@kernel.org,
-        mcoquelin.stm32@gmail.com, kuba@kernel.org, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, pabeni@redhat.com,
-        robh+dt@kernel.org, pankaj.dubey@samsung.com,
-        richardcochran@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        joabreu@synopsys.com, devicetree@vger.kernel.org,
-        davem@davemloft.net, swathi.ks@samsung.com
-References: <20230814112539.70453-1-sriranjani.p@samsung.com>
- <CGME20230814112605epcas5p31aca7b23e70e8d93df11414291f7ce66@epcas5p3.samsung.com>
- <20230814112539.70453-2-sriranjani.p@samsung.com>
- <169201998303.2086680.8457687937999615543.robh@kernel.org>
- <000001d9d003$b3a9a8a0$1afcf9e0$@samsung.com>
+To:     Elson Roy Serrao <quic_eserrao@quicinc.com>,
+        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
+        rogerq@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
+ <20230814185043.9252-3-quic_eserrao@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <000001d9d003$b3a9a8a0$1afcf9e0$@samsung.com>
+In-Reply-To: <20230814185043.9252-3-quic_eserrao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,100 +79,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 07:36, Sriranjani P wrote:
+On 14/08/2023 20:50, Elson Roy Serrao wrote:
+> This property allows dwc3 runtime suspend when bus suspend interrupt
+> is received even with cable connected. This would allow the dwc3
+> controller to enter low power mode during bus suspend scenario.
 > 
+> This property would particularly benefit dwc3 IPs where hibernation is
+> not enabled and the dwc3 low power mode entry/exit is handled by the
+> glue driver. The assumption here is that the platform using this dt
+> property is capable of detecting resume events to bring the controller
+> out of suspend.
 > 
->> -----Original Message-----
->> From: Rob Herring [mailto:robh@kernel.org]
->> Sent: 14 August 2023 19:03
->> To: Sriranjani P <sriranjani.p@samsung.com>
->> Cc: edumazet@google.com; linux-kernel@vger.kernel.org;
->> alexandre.torgue@foss.st.com; ravi.patel@samsung.com;
->> alim.akhtar@samsung.com; linux-samsung-soc@vger.kernel.org; linux-
->> fsd@tesla.com; conor+dt@kernel.org; mcoquelin.stm32@gmail.com;
->> kuba@kernel.org; netdev@vger.kernel.org; linux-arm-
->> kernel@lists.infradead.org; pabeni@redhat.com; robh+dt@kernel.org;
->> pankaj.dubey@samsung.com; richardcochran@gmail.com;
->> krzysztof.kozlowski+dt@linaro.org; joabreu@synopsys.com;
->> devicetree@vger.kernel.org; davem@davemloft.net;
->> swathi.ks@samsung.com
->> Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add FSD EQoS device tree
->> bindings
->>
->>
->> On Mon, 14 Aug 2023 16:55:36 +0530, Sriranjani P wrote:
->>> Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
->>> Ethernet YAML schema to enable the DT validation.
->>>
->>> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
->>> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
->>> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
->>> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
->>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   5 +-
->>>  .../devicetree/bindings/net/tesla,ethqos.yaml | 114
->>> ++++++++++++++++++
->>>  2 files changed, 117 insertions(+), 2 deletions(-)  create mode
->>> 100644 Documentation/devicetree/bindings/net/tesla,ethqos.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m
->> dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-
->> ci/linux/Documentation/devicetree/bindings/net/tesla,ethqos.yaml:
->> properties:clock-names: {'minItems': 5, 'maxItems': 10, 'items': [{'const':
->> 'ptp_ref'}, {'const': 'master_bus'}, {'const': 'slave_bus'}, {'const': 'tx'}, {'const':
->> 'rx'}, {'const': 'master2_bus'}, {'const': 'slave2_bus'}, {'const':
->> 'eqos_rxclk_mux'}, {'const': 'eqos_phyrxclk'}, {'const':
->> 'dout_peric_rgmii_clk'}]} should not be valid under {'required': ['maxItems']}
->> 	hint: "maxItems" is not needed with an "items" list
->> 	from schema $id: https://protect2.fireeye.com/v1/url?k=f50e335d-
->> aa950a44-f50fb812-000babff3793-de26ea17ef025418&q=1&e=897786e4-
->> 5f9b-40d8-8a7f-399cb69c7ee8&u=http%3A%2F%2Fdevicetree.org%2Fmeta-
->> schemas%2Fitems.yaml%23
->> Documentation/devicetree/bindings/net/tesla,ethqos.example.dtb:
->> /example-0/ethernet@14300000: failed to match any schema with
->> compatible: ['tesla,dwc-qos-ethernet-4.21']
->>
+> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Thanks for review. Will fix this in v4.
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index a696f23730d3..e19a60d06d2b 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -403,6 +403,11 @@ properties:
+>      description:
+>        Enable USB remote wakeup.
+>  
+> +  snps,runtime-suspend-on-usb-suspend:
+> +    description:
+> +      If True then dwc3 runtime suspend is allowed during bus suspend
+> +      case even with the USB cable connected.
 
-Test the patches before sending them.
+This was no tested... but anyway, this is no a DT property but OS
+policy. There is no such thing as "runtime suspend" in the hardware,
+because you describe one particular OS.
 
-> 
->> doc reference errors (make refcheckdocs):
->>
->> See https://protect2.fireeye.com/v1/url?k=ccb7f6d0-932ccfc9-ccb67d9f-
->> 000babff3793-2137ac63fe6ddef8&q=1&e=897786e4-5f9b-40d8-8a7f-
->> 399cb69c7ee8&u=https%3A%2F%2Fpatchwork.ozlabs.org%2Fproject%2Fdev
->> icetree-bindings%2Fpatch%2F20230814112539.70453-2-
->> sriranjani.p%40samsung.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
-> 
-> Sorry, I could not get this comment, can you elaborate this. 
+Sorry, no a DT property, drop the change entirely.
 
-What else to say? You did no stated any dependency here. The base is
-explained.
-
-
-> 
->> If you already ran 'make dt_binding_check' and didn't see the above error(s),
->> then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
-> Sure will cross check.
-
-Why do you ask/comment to bot?
 
 Best regards,
 Krzysztof
