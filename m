@@ -2,182 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8847F77DE9A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC45D77DF0D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238882AbjHPK1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 06:27:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58632 "EHLO
+        id S237226AbjHPKm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 06:42:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243414AbjHPK1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:27:40 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CDEE719A1;
-        Wed, 16 Aug 2023 03:27:38 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61BAE1063;
-        Wed, 16 Aug 2023 03:28:19 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 433D13F762;
-        Wed, 16 Aug 2023 03:27:36 -0700 (PDT)
-Date:   Wed, 16 Aug 2023 11:27:32 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S243955AbjHPKmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:42:54 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF048211E
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:42:52 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1bdc8081147so26544685ad.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:42:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692182572; x=1692787372;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7PnvIFrpSGnja4bvJtTn8bJ0Kfic4a2Wxy3t2tdxXRU=;
+        b=CoAp7Fc1Cacsc2lmTyKEL5Lgy0D1mtYvNUWh/lzpXdMqI76zMeZUv1o3cpEgTmRLP/
+         kQ3Leidt/qHEmucA2U/DXSpGAbR1wh7SMHtLueY98tqpRiXqKsul9R38jTyghIwV4Bez
+         ZLQZnBLtq0Fiv4ucAAh1wbSGG1XqddS8CIm7w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692182572; x=1692787372;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7PnvIFrpSGnja4bvJtTn8bJ0Kfic4a2Wxy3t2tdxXRU=;
+        b=YdzNbU6zOLZGYT5r/FARRVruQ5FLh2fyZROG5md7qkueLBTzJ69bIMmAWaCOJFbq2f
+         CggxJ9wXUnKvewRWsmgLh4Y3tBA55IpGUGhWtA6vOqZuNKqre6TVE92u6PpQio2UUshN
+         xDSVoCllHeIdoDUiCYM5sJqyG01pqMNVT2nqZJzv0uiwgfxCqKla+NXDo4rK5Epe1Rb8
+         /a2fURiy/JgFUY1cUvThQI/fTGM+AVmG+d1/RYf03zFcUNzpA8Gy9/mMiSowGCWHjuUB
+         wnEdBEbcjQWKIgD4XU+PVdgWvsdtrSTReSvgnnLtGqLcsdu1i2skELDxDVtX3WgX7V+6
+         d/4w==
+X-Gm-Message-State: AOJu0YwNq7c8t5VtOD6v9MP4QxKjPCgvu0zf7JhGwE6eeBP7myotwRqg
+        oJaVRWsC7g2a1XsIUJvSNb7mag==
+X-Google-Smtp-Source: AGHT+IFPXnWFX4zJxPA3lPUtxu59Q9sGZo/xVnTX67kYXuB7P1GInWKjqj/biOIS/1y+wH4+4gntTQ==
+X-Received: by 2002:a17:902:c70c:b0:1bd:f69e:a407 with SMTP id p12-20020a170902c70c00b001bdf69ea407mr4771921plp.8.1692182572401;
+        Wed, 16 Aug 2023 03:42:52 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:40cf:3807:f8c8:2d76])
+        by smtp.gmail.com with ESMTPSA id kx14-20020a170902f94e00b001b8a3dd5a4asm2899270plb.283.2023.08.16.03.42.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Aug 2023 03:42:52 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] firmware: arm_scmi: Add optional flags to
- extended names helper
-Message-ID: <ZNyklIL7qGhJnDiJ@pluto>
-References: <cover.1691518313.git.oleksii_moisieiev@epam.com>
- <318eb79c7e1ddb1f964a901e778a0475bf18c85b.1691518313.git.oleksii_moisieiev@epam.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger )" <richard@nod.at>,
+        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2,1/2] mtd: spi-nor: giga: gd25lq64c: Disable quad mode according to bus width
+Date:   Wed, 16 Aug 2023 18:38:32 +0800
+Message-ID: <20230816104245.2676965-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.41.0.694.ge786442a9b-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <318eb79c7e1ddb1f964a901e778a0475bf18c85b.1691518313.git.oleksii_moisieiev@epam.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 06:25:35PM +0000, Oleksii Moisieiev wrote:
-> From: Cristian Marussi <cristian.marussi@arm.com>
-> 
-> Some recently added SCMI protocols needs an additional flags parameter to
-> be able to properly configure the command used to query the extended name
-> of a resource.
-> 
+gd25lq64c has Quad Enable Requirement flag parsed as
+BFPT_DWORD15_QER_SR2_BIT1_BUGGY in BFPT, even if spi-{rx/tx}-bus-width
+set as non QUAD, eg. 0, 1, 2... Thus quad_enable will not be NULL and
+quad enable (QE) bit will be set to 1 by default. According to
+datasheet[1], if QE bit is enabled, WP pin will become IO pin and the
+system can't use write protection feature, and it's also not recommended
+to set QE bit to 1[1].
 
-Hi Oleksii,
+Add a post_bfpt fixup that reads spi-rx-bus-width to remove quad_enable
+if the width is set to below QUAD mode.
 
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> ---
+[1]
+https://www.gigadevice.com.cn/Public/Uploads/uploadfile/files/20220714/DS-00012-GD25LQ64C-Rev3.4.pdf
+page 13
 
-You need to apply also your Signed-off as last in V5 for this to be
-accepted AND beside this I spotted a bug while re-testing this. (my bad)
-See down below a possible fix.
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+ drivers/mtd/spi-nor/gigadevice.c | 28 +++++++++++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
 
->  drivers/firmware/arm_scmi/clock.c     | 2 +-
->  drivers/firmware/arm_scmi/driver.c    | 7 +++++--
->  drivers/firmware/arm_scmi/perf.c      | 3 ++-
->  drivers/firmware/arm_scmi/power.c     | 2 +-
->  drivers/firmware/arm_scmi/powercap.c  | 2 +-
->  drivers/firmware/arm_scmi/protocols.h | 3 ++-
->  drivers/firmware/arm_scmi/reset.c     | 3 ++-
->  drivers/firmware/arm_scmi/sensors.c   | 2 +-
->  drivers/firmware/arm_scmi/voltage.c   | 2 +-
->  9 files changed, 16 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/firmware/arm_scmi/clock.c b/drivers/firmware/arm_scmi/clock.c
-> index 96060bf90a24..e6e087686e8c 100644
-> --- a/drivers/firmware/arm_scmi/clock.c
-> +++ b/drivers/firmware/arm_scmi/clock.c
-> @@ -169,7 +169,7 @@ static int scmi_clock_attributes_get(const struct scmi_protocol_handle *ph,
->  	if (!ret && PROTOCOL_REV_MAJOR(version) >= 0x2) {
->  		if (SUPPORTS_EXTENDED_NAMES(attributes))
->  			ph->hops->extended_name_get(ph, CLOCK_NAME_GET, clk_id,
-> -						    clk->name,
-> +						    NULL, clk->name,
->  						    SCMI_MAX_STR_SIZE);
->  
->  		if (SUPPORTS_RATE_CHANGED_NOTIF(attributes))
-> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-> index e7d97b59963b..729201d8f935 100644
-> --- a/drivers/firmware/arm_scmi/driver.c
-> +++ b/drivers/firmware/arm_scmi/driver.c
-> @@ -1438,6 +1438,7 @@ struct scmi_msg_resp_domain_name_get {
->   * @ph: A protocol handle reference.
->   * @cmd_id: The specific command ID to use.
->   * @res_id: The specific resource ID to use.
-> + * @flags: A pointer to specific flags to use, if any.
->   * @name: A pointer to the preallocated area where the retrieved name will be
->   *	  stored as a NULL terminated string.
->   * @len: The len in bytes of the @name char array.
-> @@ -1445,8 +1446,8 @@ struct scmi_msg_resp_domain_name_get {
->   * Return: 0 on Succcess
->   */
->  static int scmi_common_extended_name_get(const struct scmi_protocol_handle *ph,
-> -					 u8 cmd_id, u32 res_id, char *name,
-> -					 size_t len)
-> +					 u8 cmd_id, u32 res_id, u32 *flags,
-> +					 char *name, size_t len)
->  {
->  	int ret;
->  	struct scmi_xfer *t;
-> @@ -1458,6 +1459,8 @@ static int scmi_common_extended_name_get(const struct scmi_protocol_handle *ph,
->  		goto out;
->  
->  	put_unaligned_le32(res_id, t->tx.buf);
-> +	if (flags)
-> +		put_unaligned_le32(*flags, t->tx.buf + sizeof(res_id));
->  	resp = t->rx.buf;
->  
->  	ret = ph->xops->do_xfer(ph, t);
-
-Here my patch is buggy since when you provide the optional flags they
-are after the res_id parameter BUT the previous xfer_get_init still
-requires an xfer with a tx_len size of sizeof(res_id) ONLY, so while the
-flags will fit into tx.buf that second optional flags field won't be
-sent because the core SCMI stack will see t->tx.len == 4 :<
-(so this flags extension wont work when needed in Pinctrl)
-
-A possible fix that I tested consist in changing this snippet with:
-
--->8---
-diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-index b5957cc12fee..06c101edba7f 100644
---- a/drivers/firmware/arm_scmi/driver.c
-+++ b/drivers/firmware/arm_scmi/driver.c
-@@ -1438,6 +1438,7 @@ struct scmi_msg_resp_domain_name_get {
-  * @ph: A protocol handle reference.
-  * @cmd_id: The specific command ID to use.
-  * @res_id: The specific resource ID to use.
-+ * @flags: A pointer to specific flags to use, if any.
-  * @name: A pointer to the preallocated area where the retrieved name will be
-  *       stored as a NULL terminated string.
-  * @len: The len in bytes of the @name char array.
-@@ -1445,19 +1446,22 @@ struct scmi_msg_resp_domain_name_get {
-  * Return: 0 on Succcess
-  */
- static int scmi_common_extended_name_get(const struct scmi_protocol_handle *ph,
--                                        u8 cmd_id, u32 res_id, char *name,
--                                        size_t len)
-+                                        u8 cmd_id, u32 res_id, u32 *flags,
-+                                        char *name, size_t len)
- {
-        int ret;
-+       size_t txlen;
-        struct scmi_xfer *t;
-        struct scmi_msg_resp_domain_name_get *resp;
+diff --git a/drivers/mtd/spi-nor/gigadevice.c b/drivers/mtd/spi-nor/gigadevice.c
+index d57ddaf1525b3..8ea89e1858f9b 100644
+--- a/drivers/mtd/spi-nor/gigadevice.c
++++ b/drivers/mtd/spi-nor/gigadevice.c
+@@ -33,6 +33,31 @@ static const struct spi_nor_fixups gd25q256_fixups = {
+ 	.post_bfpt = gd25q256_post_bfpt,
+ };
  
--       ret = ph->xops->xfer_get_init(ph, cmd_id, sizeof(res_id),
--                                     sizeof(*resp), &t);
-+       txlen = !flags ? sizeof(res_id) : sizeof(res_id) + sizeof(*flags);
-+       ret = ph->xops->xfer_get_init(ph, cmd_id, txlen, sizeof(*resp), &t);
-        if (ret)
-                goto out;
- 
-        put_unaligned_le32(res_id, t->tx.buf);
-+       if (flags)
-+               put_unaligned_le32(*flags, t->tx.buf + sizeof(res_id));
-        resp = t->rx.buf;
- 
-        ret = ph->xops->do_xfer(ph, t);
++static int
++gd25lq64c_post_bfpt(struct spi_nor *nor,
++		    const struct sfdp_parameter_header *bfpt_header,
++		    const struct sfdp_bfpt *bfpt)
++{
++	struct device_node *np = spi_nor_get_flash_node(nor);
++	u32 value;
++
++	/*
++	 * Even if spi-{tx,rx}-bus-width is set to DUAL mode, due to the QER
++	 * flag parsed from BFPT is BFPT_DWORD15_QER_SR2_BIT1_BUGGY, so the
++	 * quad_enable will be set and QE bit set to 1.
++	 */
++	if (!of_property_read_u32(np, "spi-rx-bus-width", &value)) {
++		if (value <= 2)
++			nor->params->quad_enable = NULL;
++	}
++
++	return 0;
++}
++
++static struct spi_nor_fixups gd25lq64c_fixups = {
++	.post_bfpt = gd25lq64c_post_bfpt,
++};
++
+ static const struct flash_info gigadevice_nor_parts[] = {
+ 	{ "gd25q16", INFO(0xc84015, 0, 64 * 1024,  32)
+ 		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+@@ -53,7 +78,8 @@ static const struct flash_info gigadevice_nor_parts[] = {
+ 	{ "gd25lq64c", INFO(0xc86017, 0, 64 * 1024, 128)
+ 		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+ 		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
+-			      SPI_NOR_QUAD_READ) },
++			      SPI_NOR_QUAD_READ)
++		.fixups = &gd25lq64c_fixups },
+ 	{ "gd25lq128d", INFO(0xc86018, 0, 64 * 1024, 256)
+ 		FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+ 		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
+-- 
+2.41.0.694.ge786442a9b-goog
 
-
----8<---
-
-My bad,
-
-Thanks,
-Cristian
