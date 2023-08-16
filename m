@@ -2,172 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46B6077D7CA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 03:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F2F77D7FC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 03:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241109AbjHPBje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 21:39:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36846 "EHLO
+        id S240986AbjHPB6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 21:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241110AbjHPBjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 21:39:15 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FEFF1FDE;
-        Tue, 15 Aug 2023 18:39:14 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37G1WQHV006698;
-        Wed, 16 Aug 2023 01:38:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=koRzxrmeNQzJ9pi6tjKMz8jrP9wCwbUXOe6N2acoMR8=;
- b=cUrakPLbQ1xfArW5yKWNrWezJ52VtZO1F/+tWlQnq4iP0dACVaRZC2LOtty80ILyMN53
- nq/eS2GE95FAYYEbd7eC0ZZhWpIb1fNi76cJJLXoEEcnyTSRk7/EfOtRj3lr4G1fdlRR
- 1C3fiC9rmIJs9bsMq/lyVic6NTYIWkZR2pnuZYXFogqETacbbminN/5e6ynRq8rgo8uR
- Vmbs3+2u0ch+MCslaxAvceIBot8vuQnnCRdCOuvTMMGJz/sF2ccB7Bf02b7u2nKMFkNX
- hHryA0pQpvfS3wCT43X+9vc9+iHsBSdX+G/Q6Y8lonjETtd6yZxS+oUqHhwInc/QR8Vo jQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sfuhujk7r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 01:38:47 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37G1ck9X021595
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 01:38:46 GMT
-Received: from [10.110.95.218] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 15 Aug
- 2023 18:38:44 -0700
-Message-ID: <d42b4db3-d36d-d8fd-90ca-e00c2151195c@quicinc.com>
-Date:   Tue, 15 Aug 2023 18:38:44 -0700
+        with ESMTP id S240840AbjHPB6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 21:58:10 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915F41FE7;
+        Tue, 15 Aug 2023 18:58:09 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-790dcf48546so28201239f.0;
+        Tue, 15 Aug 2023 18:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692151089; x=1692755889;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ad7ks/gqRcM772r54juY5Ni4nGO1bdTguKO7vk1J9xQ=;
+        b=ePUqiVoYSm9qW8zbzcuL2LIsDEY4l4ubZapPD19gWa3olDnn24vc54r8a9+QtJcfs0
+         4vN9Fxi2EpvyK7n7ttDycG3g8Tp0RVmt8/MYtYO5l9O2doPbgrEisjkl9Wvkf85tXRBW
+         Z5RKtCNW4VxIJBTqMnecVKnSUE2Ppti1HKHVTtjRV8ltIPi1s7XKU26Mp5AwYo2C5kin
+         TThm/wkbmgDZmRArKDCNmvLwr3b/qCdKqor0PRYtzdO3/7teWg36B1HDIcyucDTGNP/D
+         xCyBZWvGgWnXGMQ2Xm9vyJcwTxshSjG8iTmMocjpUn6pLcDY2wbWDO3pLYHOMWcrjHzQ
+         aCdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692151089; x=1692755889;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ad7ks/gqRcM772r54juY5Ni4nGO1bdTguKO7vk1J9xQ=;
+        b=SREf7rww1iBbgKElLPkAx4Hm4PiWIZFBV3Zwyay4Y5ppjb4qGJ2rVdnYEbnCP8MYZI
+         uOpGIj6BigHcws5YSMuETkmxIvV31p325Md0PUvOSlJaPl4vm+IK46JMGVQ8UJODRV/h
+         v1XZi+wiVl8B3dpL9fVZWzIvxvdWtgh74kF2SjulP5Wm7jOMUO4PIwYSStDJqXeqzdCC
+         Y0XPtfc5Pawh8W+lU1w9NV76YBdbYNkJV9h5e2pE/F4Ujbm/vPc9szk20Vo71fEtsQMT
+         SKtrUYtVLvRDZJqfJZjG6U0ZL9P8ejFWBG4hLrqMfis6zIt4BWHSjVIcUhf6XVinJ5kI
+         tgqw==
+X-Gm-Message-State: AOJu0YyziO5t/siRrftNfDBIsn78BlOEY3ayvid8HO09gsEM1EiucEel
+        Wtv1vu4hgV5jprMZ7A0WtWwysAOdeGXSN1HGzLA=
+X-Google-Smtp-Source: AGHT+IF/SWi3XRFfRrTthn4s7TkYWds670zji0ekasPbscRDR6kW6nMQXkM6w9WK74rdsWGf1GxzQHASJUGP7BjLkLQ=
+X-Received: by 2002:a92:d090:0:b0:349:5d26:506a with SMTP id
+ h16-20020a92d090000000b003495d26506amr947471ilh.0.1692151088870; Tue, 15 Aug
+ 2023 18:58:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 31/32] sound: usb: card: Allow for rediscovery of
- connected USB SND devices
-Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <bgoswami@quicinc.com>, <Thinh.Nguyen@synopsys.com>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <quic_jackp@quicinc.com>, <oneukum@suse.com>,
-        <albertccwang@google.com>, <o-takashi@sakamocchi.jp>
-References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
- <20230725023416.11205-32-quic_wcheng@quicinc.com>
- <671a524d-b4c8-78d8-33de-40170a23d189@linux.intel.com>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <671a524d-b4c8-78d8-33de-40170a23d189@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Pa7zWAzvySZs5rUBazuPdUgsyvuZC4bf
-X-Proofpoint-ORIG-GUID: Pa7zWAzvySZs5rUBazuPdUgsyvuZC4bf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-15_22,2023-08-15_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- impostorscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
- mlxscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=999 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2308160013
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230815231117.15169-1-aford173@gmail.com>
+In-Reply-To: <20230815231117.15169-1-aford173@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 15 Aug 2023 22:57:57 -0300
+Message-ID: <CAOMZO5Cw5bFD3U6KXkuobUCmZbjYsL_=gZobeKFXGQo55aA+Vg@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] arm64: dts: imx8mp: Fix SDMA2/3 clocks
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
+Hi Adam,
 
-On 7/25/2023 2:15 AM, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 7/25/23 04:34, Wesley Cheng wrote:
->> In case of notifying SND platform drivers of connection events, some of
->> these use cases, such as offloading, require an ASoC USB backend device to
->> be initialized before the events can be handled.  If the USB backend device
->> has not yet been probed, this leads to missing initial USB audio device
->> connection events.
->>
->> Expose an API that traverses the usb_chip array for connected devices, and
->> to call the respective connection callback registered to the SND platform
->> driver.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
->>   sound/usb/card.c | 19 +++++++++++++++++++
->>   sound/usb/card.h |  2 ++
->>   2 files changed, 21 insertions(+)
->>
->> diff --git a/sound/usb/card.c b/sound/usb/card.c
->> index 365f6d978608..27a89aaa0bf3 100644
->> --- a/sound/usb/card.c
->> +++ b/sound/usb/card.c
->> @@ -170,6 +170,25 @@ struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
->>   }
->>   EXPORT_SYMBOL_GPL(snd_usb_find_suppported_substream);
->>   
->> +/*
->> + * in case the platform driver was not ready at the time of USB SND
->> + * device connect, expose an API to discover all connected USB devices
->> + * so it can populate any dependent resources/structures.
->> + */
->> +void snd_usb_rediscover_devices(void)
->> +{
->> +	int i;
->> +
->> +	mutex_lock(&register_mutex);
->> +	for (i = 0; i < SNDRV_CARDS; i++) {
->> +		if (usb_chip[i])
->> +			if (platform_ops && platform_ops->connect_cb)
->> +				platform_ops->connect_cb(usb_chip[i]);
-> 
-> what happens if the USB device is removed while the platform device adds
-> a port?
-> 
-> This sounds super-racy to me. It's the same set of problems we're having
-> between audio and display/DRM, I would be surprised if this function
-> dealt with all corner cases of insertion/removal, bind/unbind.
-> 
+On Tue, Aug 15, 2023 at 8:11=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> A previous patch to remove the Audio clocks from the main clock node
 
-The chip array entries are all populated and removed while under the 
-register_mutex, so going over your race condition, we should see:
+Nit: Instead of referring to "A previous patch", it would be clearer
+to explicitly
+refer to the actual commit.
 
-Thread#1:
-q6usb_component_probe()
---> snd_soc_usb_add_port()
-   --> snd_usb_rediscover_devices()
-     --> mutex_lock(register_mutex)
+> was intended to force people to setup the audio PLL clocks per board
+> instead of having a common set of rates since not all boards may use
+> the various audio PLL clocks for audio devices.
+>
+> Unfortunately, with this parenting removed, the SDMA2 and SDMA3
+> clocks were slowed to 24MHz because the SDMA2/3 clocks are controlled
+> via the audio_blk_ctrl which is clocked from IMX8MP_CLK_AUDIO_ROOT,
+> and that clock is enabled by pgc_audio.
+>
+> Per the TRM, "The SDMA2/3 target frequency is 400MHz IPG and 400MHz
+> AHB, always 1:1 mode, to make sure there is enough throughput for all
+> the audio use cases."
+>
+> Instead of cluttering the clock node, place the clock rate and parent
+> information into the pgc_audio node.
+>
+> With the parenting and clock rates restored for  IMX8MP_CLK_AUDIO_AHB,
+> and IMX8MP_CLK_AUDIO_AXI_SRC, it appears the SDMA2 and SDMA3 run at
+> 400MHz again.
+>
+> Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks f=
+rom CCM node")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-Thread#2
---> usb_audio_disconnect()
-   --> mutex_lock(register_mutex)
-
-So either thread#1 or thread#2 will complete first.  If
-
-Thread#1 completes before thread#2:
-   SOC USB will notify DPCM backend of the device connection.  Shortly 
-after, once thread#2 runs, we will get a disconnect event for the 
-connected device.
-
-Thread#2 completes before thread#1:
-   Then during snd_usb_rediscover_devices() we won't notify of any 
-connection for that particular chip index.
-
-Thanks
-Wesley Cheng
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
