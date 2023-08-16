@@ -2,137 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5181777E1BD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 14:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 988AF77E1DB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 14:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244737AbjHPMhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 08:37:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38146 "EHLO
+        id S244445AbjHPMqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 08:46:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244388AbjHPMhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 08:37:10 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E851D1FDC;
-        Wed, 16 Aug 2023 05:37:09 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 3514AA06;
-        Wed, 16 Aug 2023 14:37:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1692189428;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=vJfh6GC8aHch959POkYyqkTUnj4NnXdjMKw7FcRwKoc=;
-        b=u8hsom4F23QN+Q0vmRp43G18VGyk4NagNu0MBrNjIj82pxXy7IdgNV1LyTKVVledQSz0Mr
-        yWqNrOj03deQUT0jvO8ZmrKfCDriYz9ymRcOGi9FU2T5d0Wbs/p088U7l0anJN/JvEFOu0
-        gEvQd+3d60Qg3aElZTBAvP9OJPTrCzb1vUnAhZJGSMps6CWM1kQ58UFp+laD9NR5/rcw1n
-        C1tWsUsHbPCaeKpN9GnRRcpO5a6NkVK9RA7baa99xytvA59XKaUtFl0ZpgUs+d54oRVXFg
-        NgpVc/pmdUwmfzBl1mXRHjIQvgjjrtSl+fT8m9Qo4GCuwQtGVtSDq9dtjW841A==
+        with ESMTP id S245322AbjHPMqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 08:46:40 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914E826BE
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 05:46:37 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3178dd771ceso5724702f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 05:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692189996; x=1692794796;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+6KDBeOZQrkaTjxPwBCtEwguBc9sQAcZzICpLFmLiK4=;
+        b=g2jUNLROrFTBTTK2QZDNP/TBk3AOUhdC52QhbDV44ElvGbnFwI6Z4bvXlF9bxFF4Ts
+         g8X3oHUtzKGTXWIoW3lkYglPG2eKr3/ThXbWCMzeW5Wc+SOus2lZSH517RwzjQpHY4vl
+         hGA17geaiiHjzn+tKyXRt+0rAb6ghPOZBM3R2WyO5WLdmaD9E7EjYEdUrjmWU9fsYLaq
+         wwpywz+ay/Dj7wl/LcxMsl9u9oODKeq8UCo0fpMjQpe/Xw4kZc3ui8obWlpjatuqq8ni
+         Gs0ZfEyTVSE4Hbiqpw2odb0Z7D3gekjA549E6gV7tboNPASy/hxhOeuaXVfYqfB2smXN
+         0zSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692189996; x=1692794796;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+6KDBeOZQrkaTjxPwBCtEwguBc9sQAcZzICpLFmLiK4=;
+        b=jFiFnkKJtn8uXXWHSTdrB38SinNNL5g+2VI9ut/NC5tWQJiFPwMAARKaVw0pFNKfOy
+         anMGrQTHSu3lp0npgal0wWpXiPe2IfxucUAD8rVF7nVwMY7tJxfTyKzu7UOygmUTn66S
+         pO2JjmGae6Yjk+8tX7vgOPb3zep3AuHChHYt2rGQ6ympkj5LERE1kUmkTLh+WktITN+v
+         CWDvIVbDw0qKFncw376f9Tvke5fuh46IyaRgCKHufqR4Qav4zIyZIOLvJ5Vl2Y2p9cH0
+         wRSnsRGj8H3LNeNR+1/vwIFrzlEbRUkCtsAWfW3fXCqUKLHxJmITc/Hi8+ICqhNRDS5N
+         Opvg==
+X-Gm-Message-State: AOJu0YxDHHKuKlmz6DxDIxQlgNiR266GlCQ+U8yj8kEc9GIpf2uyOsvn
+        uZ76Me8UdzXmTTWUE5rnGaK0NQ==
+X-Google-Smtp-Source: AGHT+IFuL7fyxjBeu6kqloW0l/lvxoHCSe4utcFUCa7ZnImaiB3rZUL/dq9gtO1QbbcPYY8UNV6d5Q==
+X-Received: by 2002:adf:ec43:0:b0:317:3b13:94c3 with SMTP id w3-20020adfec43000000b003173b1394c3mr1488315wrn.41.1692189995944;
+        Wed, 16 Aug 2023 05:46:35 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id m9-20020a7bce09000000b003fe2120ad0bsm24011542wmc.41.2023.08.16.05.46.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Aug 2023 05:46:35 -0700 (PDT)
+Message-ID: <da3e6348-33e0-aaa9-8f86-4b1ba1504551@linaro.org>
+Date:   Wed, 16 Aug 2023 14:46:34 +0200
 MIME-Version: 1.0
-Date:   Wed, 16 Aug 2023 14:37:07 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger )" <richard@nod.at>,
-        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v15 1/2] thermal: loongson-2: add thermal management
+ support
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v2,1/2] mtd: spi-nor: giga: gd25lq64c: Disable quad mode
- according to bus width
-In-Reply-To: <0011a25a-e096-73ac-9800-9d8e35efdc8b@linaro.org>
-References: <20230816104245.2676965-1-hsinyi@chromium.org>
- <6702bac712daab13698b9bb9ad81d49e@walle.cc>
- <5911201a-f703-abbd-3c7b-769f70df08a8@linaro.org>
- <80ec748f37f40ae5c3c3c5d1602681b3@walle.cc>
- <0011a25a-e096-73ac-9800-9d8e35efdc8b@linaro.org>
-Message-ID: <ecfe1bc6799755d1f2c6f94b8cb59b27@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20230620012944.28877-1-zhuyinbo@loongson.cn>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230620012944.28877-1-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
->>>> like a fundamental problem and that commit 39d1e3340c73 ("mtd: 
->>>> spi-nor:
->>>> Fix clearing of QE bit on lock()/unlock()") is broken in that 
->>>> regard.
->>> 
->>> what's wrong with the mentioned commit?
->> 
->>         } else if (nor->params->quad_enable) {
->>                 /*
->>                  * If the Status Register 2 Read command (35h) is not
->>                  * supported, we should at least be sure we don't
->>                  * change the value of the SR2 Quad Enable bit.
->>                  *
->>                  * We can safely assume that when the Quad Enable 
->> method is
->>                  * set, the value of the QE bit is one, as a 
->> consequence of the
->>                  * nor->params->quad_enable() call.
->>                  *
->>                  * We can safely assume that the Quad Enable bit is 
->> present in
->>                  * the Status Register 2 at BIT(1). According to the 
->> JESD216
->>                  * revB standard, BFPT DWORDS[15], bits 22:20, the 
->> 16-bit
->>                  * Write Status (01h) command is available just for 
->> the cases
->>                  * in which the QE bit is described in SR2 at BIT(1).
->>                  */
->>                 sr_cr[1] = SR2_QUAD_EN_BIT1;
->>         } else {
->>                 sr_cr[1] = 0;
->>         }
->> 
->> "We can safely assume that when the Quad Enable method..". We cannot, 
->> if we
->> don't have 4 I/O lines. The quad_enable is just the op how to do it, 
->> but not
->> *if* can do it. It seems to be missing the same check as the
->> spi_nor_quad_enable(). But I'm not sure if it's that simple.
->> 
+On 20/06/2023 03:29, Yinbo Zhu wrote:
+> This patch adds the support for Loongson-2 thermal sensor controller,
+> which can support maximum four sensor selectors that corresponding to four
+> sets of thermal control registers and one set of sampling register. The
+> sensor selector can selector a speific thermal sensor as temperature input.
+> The sampling register is used to obtain the temperature in real time, the
+> control register GATE field is used to set the threshold of high or low
+> temperature, when the input temperature is higher than the high temperature
+> threshold or lower than the low temperature threshold, an interrupt will
+> occur.
 > 
-> I see. Then extending the if condition should do the trick, as
-> spi_nor_write_16bit_sr_and_check() is called after setup. Something
-> like:
-> 
-> if (spi_nor_get_protocol_width(nor->read_proto) == 4 &&
->     spi_nor_get_protocol_width(nor->write_proto) == 4 &&
->     nor->params->quad_enable)
-> 
-> Is this what Hsin-Yi is hitting?
+> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
 
-Hopefully :)
+[ ... ]
 
--michael
+> +	if (devm_thermal_add_hwmon_sysfs(dev, tzd))
+> +		dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
+
+[ ... ]
+
+This has been factored out by adding a message directly in 
+devm_thermal_add_hwmon_sysfs(), so the test is not needed here neither 
+the message.
+
+However, these changes have been long enough on the mailing list and the 
+result looks nice.
+
+I can pick this patch and you provide a small patch on top. Or you send 
+a V16 with this change. It is your call.
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
