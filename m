@@ -2,101 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A85B877DF13
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72A3D77DF9F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243863AbjHPKn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 06:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49436 "EHLO
+        id S239452AbjHPKxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 06:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244017AbjHPKnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:43:25 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD99272A
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:43:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        sang-engineering.com; h=from:to:cc:subject:date:message-id
-        :in-reply-to:references:mime-version:content-transfer-encoding;
-         s=k1; bh=km1S8zZEcbuRQRFhnQ+j9vTvoJEJFWsqJkELKGUX9fM=; b=iipWif
-        VziqxvoctkdD0a4uDomoV5Gx5g68x/BZgl/zd/rx26ND5tT8Rb8V+ovfpUGaNoCM
-        mboweDoxfCKT+j2ABFnF222c+8dDB3z0/Jc8q3Vr940/R/LcY3JU3KGTMcEs54Rj
-        Z0yezwMOGW2xUldHX/WCRTa2lmYvT2/A/Yq4EAxI7fIv0O22noPsq/Q1xTbzI20I
-        oGjVy+2xmNrRoknxuSCfDfB8KLXcZQW5WXssUqsTyOJYS5ObWXoeomXwpwL+QdV6
-        Ovg4Y7L+Xi5MrHSA6q3c9LsRHyPwVKJoCbSbd1fLbIJrV1/w98FYaMW1k1UYjD8c
-        mG8GS/AawGQ9i4tA==
-Received: (qmail 101970 invoked from network); 16 Aug 2023 12:43:10 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Aug 2023 12:43:10 +0200
-X-UD-Smtp-Session: l3s3148p1@eVQp9gcDTr0gAwDPXy5qAJ1huuy56R1W
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: PCI: rcar-pci-host: add optional regulators
-Date:   Wed, 16 Aug 2023 12:42:49 +0200
-Message-Id: <20230816104251.19744-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230816104251.19744-1-wsa+renesas@sang-engineering.com>
-References: <20230816104251.19744-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S244278AbjHPKxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:53:22 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F19432D40
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:52:56 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6bd6a34474cso596222a34.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:52:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692182831; x=1692787631;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JHVFwf2+IJdhvL1m7bcmD2X+8MDeoieDkbHIWtoTZtU=;
+        b=Nlgcv2HJLA79Yxsz2pDMqw8KXCAYKf35hze4/k++oS8i+tFaUoOBUCemVoo+mmy2et
+         TkNIzFP6EPK8Ex14d6TifkAeVTJ7s5Ank/Jj+Gvch59tbIuJ+5GT75kH2Nw951pwiyDN
+         vvYJMQprRBYlJFsncnqLvGU8DfW0XcaIcqmLg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692182831; x=1692787631;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JHVFwf2+IJdhvL1m7bcmD2X+8MDeoieDkbHIWtoTZtU=;
+        b=VYwcVuFhFvKeo64kQg/O5KHZym9ql8uN7CXE2SiSQXC4Emm9BACjNurhIU452mPjAl
+         HYEuCA7yXNvzcav+E2aqNLZTrO+AWI1anmQVDbCS+aiLt/J2UaaWv+kVuhpkvfMNDZWt
+         Mrlceabedgy4oaHAiU+S7pxOppDPFwJBBVjNjHzIdhM8ViRbUKq4N7Hb8famAeeJGCLi
+         3pz4e6uzf/NXctScUZ6pqVI5auOSg2xwchIB7cTvAs4ikHZ/qzJjIUe6v6aKcE/ee8TO
+         +X5Jwv1flS52KezyDqOf6t8fwnTGb0IWu6YZlZzqnno3j8Cn7qNTFCQ6+DAIKVSxvFiD
+         If1w==
+X-Gm-Message-State: AOJu0YyupLY15cjYzGIymE9WkEe8f9wHUc/wKWQTfjbtSuoqmtZjRC/D
+        8mj9dpFJMM+WMbGYXnCQBEscKzcXM+XW061hJy/Ckg==
+X-Google-Smtp-Source: AGHT+IFop6ccKvKv4AO2QL1MFngv5Zyjpe0Iy6hNB7Ea7XfS2ppUUNyTqyfMkTCzFCreFuZWS/ZjF6x+8JoQCmIeYP8=
+X-Received: by 2002:a05:6830:1d69:b0:6bd:b40:8912 with SMTP id
+ l9-20020a0568301d6900b006bd0b408912mr1258271oti.35.1692182831303; Wed, 16 Aug
+ 2023 03:47:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230816104245.2676965-1-hsinyi@chromium.org>
+In-Reply-To: <20230816104245.2676965-1-hsinyi@chromium.org>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 16 Aug 2023 18:46:45 +0800
+Message-ID: <CAJMQK-hR0eaO0b4Vd0U8_KAndLyZapqdHjVLAoe42rWi9rdLkA@mail.gmail.com>
+Subject: Re: [PATCH v2,1/2] mtd: spi-nor: giga: gd25lq64c: Disable quad mode
+ according to bus width
+To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger )" <richard@nod.at>,
+        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support regulators found on the KingFisher board for miniPCIe (1.5 and
-3.3v). For completeness, describe a 12v regulator while we are here.
-
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, Aug 16, 2023 at 6:42=E2=80=AFPM Hsin-Yi Wang <hsinyi@chromium.org> =
+wrote:
+>
+> gd25lq64c has Quad Enable Requirement flag parsed as
+> BFPT_DWORD15_QER_SR2_BIT1_BUGGY in BFPT, even if spi-{rx/tx}-bus-width
+> set as non QUAD, eg. 0, 1, 2... Thus quad_enable will not be NULL and
+> quad enable (QE) bit will be set to 1 by default. According to
+> datasheet[1], if QE bit is enabled, WP pin will become IO pin and the
+> system can't use write protection feature, and it's also not recommended
+> to set QE bit to 1[1].
+>
+> Add a post_bfpt fixup that reads spi-rx-bus-width to remove quad_enable
+> if the width is set to below QUAD mode.
+>
+> [1]
+> https://www.gigadevice.com.cn/Public/Uploads/uploadfile/files/20220714/DS=
+-00012-GD25LQ64C-Rev3.4.pdf
+> page 13
+>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+change log:
+v1->v2: read bus width property in driver instead of creating a
+duplicate dt property.
+v1 link: https://lore.kernel.org/lkml/20230815154412.713846-1-hsinyi@chromi=
+um.org/
 ---
- .../devicetree/bindings/pci/rcar-pci-host.yaml        | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-index 8fdfbc763d70..b6a7cb32f61e 100644
---- a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-@@ -68,6 +68,15 @@ properties:
-   phy-names:
-     const: pcie
- 
-+  vpcie1v5-supply:
-+    description: The 1.5v regulator to use for PCIe.
-+
-+  vpcie3v3-supply:
-+    description: The 3.3v regulator to use for PCIe.
-+
-+  vpcie12v-supply:
-+    description: The 12v regulator to use for PCIe.
-+
- required:
-   - compatible
-   - reg
-@@ -121,5 +130,7 @@ examples:
-              clock-names = "pcie", "pcie_bus";
-              power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
-              resets = <&cpg 319>;
-+             vpcie3v3-supply = <&pcie_3v3>;
-+             vpcie12v-supply = <&pcie_12v>;
-          };
-     };
--- 
-2.35.1
-
+>  drivers/mtd/spi-nor/gigadevice.c | 28 +++++++++++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mtd/spi-nor/gigadevice.c b/drivers/mtd/spi-nor/gigad=
+evice.c
+> index d57ddaf1525b3..8ea89e1858f9b 100644
+> --- a/drivers/mtd/spi-nor/gigadevice.c
+> +++ b/drivers/mtd/spi-nor/gigadevice.c
+> @@ -33,6 +33,31 @@ static const struct spi_nor_fixups gd25q256_fixups =3D=
+ {
+>         .post_bfpt =3D gd25q256_post_bfpt,
+>  };
+>
+> +static int
+> +gd25lq64c_post_bfpt(struct spi_nor *nor,
+> +                   const struct sfdp_parameter_header *bfpt_header,
+> +                   const struct sfdp_bfpt *bfpt)
+> +{
+> +       struct device_node *np =3D spi_nor_get_flash_node(nor);
+> +       u32 value;
+> +
+> +       /*
+> +        * Even if spi-{tx,rx}-bus-width is set to DUAL mode, due to the =
+QER
+> +        * flag parsed from BFPT is BFPT_DWORD15_QER_SR2_BIT1_BUGGY, so t=
+he
+> +        * quad_enable will be set and QE bit set to 1.
+> +        */
+> +       if (!of_property_read_u32(np, "spi-rx-bus-width", &value)) {
+> +               if (value <=3D 2)
+> +                       nor->params->quad_enable =3D NULL;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static struct spi_nor_fixups gd25lq64c_fixups =3D {
+> +       .post_bfpt =3D gd25lq64c_post_bfpt,
+> +};
+> +
+>  static const struct flash_info gigadevice_nor_parts[] =3D {
+>         { "gd25q16", INFO(0xc84015, 0, 64 * 1024,  32)
+>                 FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+> @@ -53,7 +78,8 @@ static const struct flash_info gigadevice_nor_parts[] =
+=3D {
+>         { "gd25lq64c", INFO(0xc86017, 0, 64 * 1024, 128)
+>                 FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+>                 NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
+> -                             SPI_NOR_QUAD_READ) },
+> +                             SPI_NOR_QUAD_READ)
+> +               .fixups =3D &gd25lq64c_fixups },
+>         { "gd25lq128d", INFO(0xc86018, 0, 64 * 1024, 256)
+>                 FLAGS(SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+>                 NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
+> --
+> 2.41.0.694.ge786442a9b-goog
+>
