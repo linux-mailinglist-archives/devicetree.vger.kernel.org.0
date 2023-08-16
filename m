@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 188B277E7F8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E6077E806
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345240AbjHPRzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 13:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48290 "EHLO
+        id S1345311AbjHPR6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 13:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345288AbjHPRzL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:55:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1A72717;
-        Wed, 16 Aug 2023 10:55:10 -0700 (PDT)
+        with ESMTP id S1345369AbjHPR6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:58:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9466E2698;
+        Wed, 16 Aug 2023 10:58:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B511664CDE;
-        Wed, 16 Aug 2023 17:55:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78DEDC433C7;
-        Wed, 16 Aug 2023 17:55:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 31BDB62238;
+        Wed, 16 Aug 2023 17:58:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3ACC433C8;
+        Wed, 16 Aug 2023 17:58:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692208509;
-        bh=I+lSIZWGoXi55IVZPRG0vPCphER0alUE3nMtkYVX6gs=;
+        s=k20201202; t=1692208725;
+        bh=fDU2HXAeFWB4n482i4GZf6hhte8bflt2UwJqfgDiRXo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nk2H/zUuGto+900FV0DVKBKsSpGW7aVbXgKPZJGU/WtZFpD0hRjdcG8tfjL19FfAL
-         33cwm0neZsVXXjJxUrkMhT+hirnuFoAmUZCvjPlrqtJmAOvNZpSKO+Nq+FjjNzsBNp
-         rDa11mIYhFK4EgtFUiX3gX3R4aT/cSX2w8AxJ6h1MBRgwal0MfxZIkTs9gYU8xBc57
-         RM3GQ8GdpR/vRcKJC5mkYlH+oTEcXGDZiwboLz3/3y+vzJw92b1U2kXTBwljzA9eW9
-         TeBkj1zGgbzfc+yvg1v02a1au11tmsv8oP4cVBRe58KQs/P/2E9reoYDv4X7dcAbod
-         7YPnhnpLZPUIA==
-Date:   Wed, 16 Aug 2023 18:55:03 +0100
+        b=rDr/hoxyn60n1Rb/HIgQ+4XMZC8loA7CRK/5KGyOtm/wv+1XnvWCEWpEWaBTCIXGa
+         GJxp/OgdsWU5ZvzDN2AZ3ma+d927CGT2EhRWgIGQJ3zi9k4UGrCmScoeq9Rm+85gqa
+         pdrW58ONBnBgRbK1PflCj8rVJ1/oxyBW3r/c9dF3Jaz1CVJl66vux10SI+3eI5a8qO
+         VesWuulpU33K094jBs9Uk1g76Fwx6KLw0u4+TsvazU50xmHvEPUFV+Jg6+LfGjCN1y
+         9iffwpCvFBLCEdoAvJEyZQNIAvpdMKwKYYChyoigyMefCPv+KhoU2SMd05KfF/MfkF
+         ry2e4B8ZducKg==
+Date:   Wed, 16 Aug 2023 18:58:39 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, rydberg@bitmath.org,
-        u.kleine-koenig@pengutronix.de, linus.walleij@linaro.org,
-        Jonathan.Cameron@huawei.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, heiko@sntech.de
-Subject: Re: [PATCH 1/4] dt-bindings: touchscreen: convert neonode,zforce to
- json-schema
-Message-ID: <20230816-operation-curator-e9ab3159d9c4@spud>
-References: <20230815182948.212575-1-andreas@kemnade.info>
- <20230815182948.212575-2-andreas@kemnade.info>
- <20230816-customary-service-8d9c5e5dbf1b@spud>
- <20230816192049.630fbf6c@aktux>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Drew Fustini <dfustini@baylibre.com>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 0/2] riscv: Add BeagleV Ahead board support
+Message-ID: <20230816-lubricate-grout-b5db43b94163@spud>
+References: <20230811-ahead-dt-v3-v1-0-aef2294bed86@baylibre.com>
+ <20230815-aroma-graveyard-f1fcc61e5030@spud>
+ <ZNzvGMmKufXxdOjt@xhacker>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="J+9iqmHLWvb13iO/"
+        protocol="application/pgp-signature"; boundary="eZbM/ViOOX4Bfyy9"
 Content-Disposition: inline
-In-Reply-To: <20230816192049.630fbf6c@aktux>
+In-Reply-To: <ZNzvGMmKufXxdOjt@xhacker>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,73 +69,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---J+9iqmHLWvb13iO/
+--eZbM/ViOOX4Bfyy9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 16, 2023 at 07:20:49PM +0200, Andreas Kemnade wrote:
-> On Wed, 16 Aug 2023 15:52:16 +0100
-> Conor Dooley <conor@kernel.org> wrote:
+On Wed, Aug 16, 2023 at 11:45:28PM +0800, Jisheng Zhang wrote:
+> On Tue, Aug 15, 2023 at 02:15:46PM +0100, Conor Dooley wrote:
+> > Hey Jisheng,
+> >=20
+> > On Fri, Aug 11, 2023 at 05:47:15PM -0700, Drew Fustini wrote:
+> > > The BeagleV Ahead single board computer [1] features the T-Head TH1520
+> > > SoC. Similar to the Lichee Pi 4A series from Jisheng [2], this adds a
+> > > minimal device tree file to support booting to a basic shell [3].
+> >=20
+> > Am I supposed to take this, or will you? I still don't know where I
+> > stand with any of this and will default to assuming things are for me
+> > to take in the absence of clarity.
 >=20
-> > On Tue, Aug 15, 2023 at 08:29:45PM +0200, Andreas Kemnade wrote:
-> > > Convert Neonode infrared touchscreen controller binding to DT schema.
-> > >=20
-> > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > > ---
-> > >  .../input/touchscreen/neonode,zforce.yaml     | 67 +++++++++++++++++=
-++
-> > >  .../bindings/input/touchscreen/zforce_ts.txt  | 34 ----------
-> > >  2 files changed, 67 insertions(+), 34 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/input/touchscre=
-en/neonode,zforce.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/input/touchscre=
-en/zforce_ts.txt
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/neon=
-ode,zforce.yaml b/Documentation/devicetree/bindings/input/touchscreen/neono=
-de,zforce.yaml
-> > > new file mode 100644
-> > > index 000000000000..1c45adb2407a
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/input/touchscreen/neonode,zfo=
-rce.yaml
-> > > @@ -0,0 +1,67 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/input/touchscreen/neonode,zforce.=
-yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Neonode infrared touchscreen controller
-> > > +
-> > > +maintainers:
-> > > +  - Heiko Stuebner <heiko.stuebner@bqreaders.com> =20
-> >=20
-> > It;d be good to CC the person you're volunteering! I've done so.
-> >=20
-> well, apparently my get_maintainer.pl | confirm_and_add_addresses | git s=
-end-email
-> script did not run in the kernel checkout I applied the patch to, so it d=
-id
-> not catch that address. Sorry.
+> Hi Conor,
+>=20
+> Since the patches in this window is small, so yes please help us to
+> take this series and the one of changing the dts license. I see Guo Ren
+> has acked it, I will ack too soon.
 
-> BTW: What is common practice for the maintainer address
-> in the binding in conversions? Here I looked at the commits of the plaint=
-ext binding.
+Okay, I will go grab both.
+Can you please decide if you want me to take the patches going forward,
+or will make a git tree, put it in linux-next & send PRs to the SoC
+maintainers? One or the other, not this ad-hoc mix where neither I nor
+contributors know?
 
-Yeah, that seems reasonable to me.
+Thanks,
+Conor.
 
---J+9iqmHLWvb13iO/
+--eZbM/ViOOX4Bfyy9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZN0NdwAKCRB4tDGHoIJi
-0rBHAP0asQP/9+46aWItDl5XgvW5fAIVD6sf70nmci07F9z4XgEA1SF1/UyaWI/h
-KJsRYfqvyukvn7hO0faEMzXwz1+VZw8=
-=Grf5
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZN0OTwAKCRB4tDGHoIJi
+0jMSAP4hn/7YFk6PN0m3OewUmY2bsv72Mc41vuCdqYDleiDu2wEA80xVtTaRWClC
+IXGNPUVCSg517oznOJnFXrkFdVT1uwk=
+=0VY7
 -----END PGP SIGNATURE-----
 
---J+9iqmHLWvb13iO/--
+--eZbM/ViOOX4Bfyy9--
