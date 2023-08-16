@@ -2,246 +2,297 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 345F877DF5F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 830E977DE53
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:16:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243909AbjHPKpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 06:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59270 "EHLO
+        id S243790AbjHPKP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 06:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244197AbjHPKpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:45:24 -0400
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9249C2733
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:45:12 -0700 (PDT)
-Received: from ramsan.of.borg ([84.195.187.55])
-        by andre.telenet-ops.be with bizsmtp
-        id aAki2A00L1C8whw01AkiDo; Wed, 16 Aug 2023 12:44:47 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qWE0x-000otH-UA;
-        Wed, 16 Aug 2023 12:44:42 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qWDAw-00674D-C9;
-        Wed, 16 Aug 2023 11:50:50 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S243861AbjHPKPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:15:51 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A5AE3
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:15:50 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-317798b359aso5510247f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:15:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692180949; x=1692785749;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wKKgBBisqytUj4cW8xuK5eYALL8492/KSwF6veUAcHE=;
+        b=D3OP/V2exGjRUPhNnd7mGYofJlGZYIoAMiTRSkHe1/kbuyqR9SDdop2M/iKTYMBGw9
+         3m5tzQFVHeZbGfb7jRLxPjxzcTexkHieMOMxdr/cVXWd0mt+tDY72tmkv+Gh3q8pes96
+         vdFuLcFUbeJ97MDzTNFBTKlwAiv8XD4L7FeNsX19BCOYARRBNnIeCZn+0I83EZE3PWgl
+         lPZjQFMJzSN4AVizI8LujDhHp1jBlS6OFpibP+wCOBx5RM6f/zDxj9jV9F4hRZ7uPhdu
+         zE7tiLqlphc0M3e0GZnQ7rVKDjGqaBbtn3uPztFdOJlZxKamXnYHQ6D1ZStQjNBnoY8O
+         KKuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692180949; x=1692785749;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wKKgBBisqytUj4cW8xuK5eYALL8492/KSwF6veUAcHE=;
+        b=ZU1BiRXUZqr7JrH8F50nvAyNUmLykF1C28wn2OC5UuAZr2XmrfUD17dZadBqdI7s8b
+         eXqQhpQBEYsoFEBk8QK46rJ3ak+a11sEL+G/8WWDLqmlBax2UtQOzH3YGhSdIGu784yM
+         I9f14zeP5XAKKxCqDlYAXKeTwVh3S7ghe1zwhZwdtzXaOkIkdHlZyfxAvX1puldtE9pn
+         0ZPuG7e2aohFfrgvp8i7in/FMP8MrYgFNbTcK/V6vVsEQC3iS/WYMJEe9jccFx4bzEHg
+         jNv94qn9Aa2eEWKtQI4/3VRj5dE1BAIMG9tDsw34haaKgVJRydIYAUafsUxo5lPnnwlV
+         QVLA==
+X-Gm-Message-State: AOJu0Yw+m1CnQdTOSk/ili+qsYCioAizHYD9bhWgZXinuuQEmnQx3mgS
+        Unl6T6Ox1T/KepP2LdLtwAuCOw==
+X-Google-Smtp-Source: AGHT+IGuxahEpScu0GulwO2zvI7Rhyna98xQswwF5RjaDjtX792Tt4gc3qCKw7lITa7rBCJG1GKeKQ==
+X-Received: by 2002:adf:e68a:0:b0:319:75e0:c49 with SMTP id r10-20020adfe68a000000b0031975e00c49mr951649wrm.13.1692180948643;
+        Wed, 16 Aug 2023 03:15:48 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id e1-20020a5d5941000000b003141f96ed36sm20892952wri.0.2023.08.16.03.15.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Aug 2023 03:15:48 -0700 (PDT)
+Message-ID: <8ea8370a-50bd-99e9-064c-66b006aa454b@linaro.org>
+Date:   Wed, 16 Aug 2023 12:15:47 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/3] thermal: k3_j72xx_bandgap: Add cooling device support
+Content-Language: en-US
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 02/41] dt-bindings: display: Add Renesas SH-Mobile LCDC bindings
-Date:   Wed, 16 Aug 2023 11:50:09 +0200
-Message-Id: <46ecfb69fcc2d2b30935368594e5852492b99c92.1692178020.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1692178020.git.geert+renesas@glider.be>
-References: <cover.1692178020.git.geert+renesas@glider.be>
-MIME-Version: 1.0
+        Conor Dooley <conor+dt@kernel.org>,
+        Rafael J Wysocki <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Udit Kumar <u-kumar1@ti.com>, Keerthy J <j-keerthy@ti.com>
+References: <20230809173905.1844132-1-a-nandan@ti.com>
+ <20230809173905.1844132-2-a-nandan@ti.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230809173905.1844132-2-a-nandan@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the LCD Controller (LCDC) found in Renesas
-SuperH SH-Mobile and ARM SH/R-Mobile SOCs.
+On 09/08/2023 19:39, Apurva Nandan wrote:
+> From: Keerthy <j-keerthy@ti.com>
+> 
+> Add cpufreq as a cooling device, based on the inputs from the thermal
+> sensors.
 
-Based on a plain text prototype by Laurent Pinchart.
+I don't understand these changes.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
+By using the DT, it is all done automatically, no ?
 
-v3:
-  - Add Reviewed-by,
+> 
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+>   drivers/thermal/k3_j72xx_bandgap.c | 121 +++++++++++++++++++++++++++++
+>   1 file changed, 121 insertions(+)
+> 
+> diff --git a/drivers/thermal/k3_j72xx_bandgap.c b/drivers/thermal/k3_j72xx_bandgap.c
+> index a5a0fc9b9356..c844cb527761 100644
+> --- a/drivers/thermal/k3_j72xx_bandgap.c
+> +++ b/drivers/thermal/k3_j72xx_bandgap.c
+> @@ -19,6 +19,9 @@
+>   #include <linux/of.h>
+>   #include <linux/delay.h>
+>   #include <linux/slab.h>
+> +#include <linux/cpufreq.h>
+> +#include <linux/cpumask.h>
+> +#include <linux/cpu_cooling.h>
+>   
+>   #define K3_VTM_DEVINFO_PWR0_OFFSET		0x4
+>   #define K3_VTM_DEVINFO_PWR0_TEMPSENS_CT_MASK	0xf0
+> @@ -183,10 +186,28 @@ struct k3_j72xx_bandgap {
+>   /* common data structures */
+>   struct k3_thermal_data {
+>   	struct k3_j72xx_bandgap *bgp;
+> +	struct cpufreq_policy *policy;
+> +	struct thermal_zone_device *ti_thermal;
+> +	struct thermal_cooling_device *cool_dev;
+> +	struct work_struct thermal_wq;
+>   	u32 ctrl_offset;
+>   	u32 stat_offset;
+> +	enum thermal_device_mode mode;
+> +	int prev_temp;
+> +	int sensor_id;
+>   };
+>   
+> +static void k3_thermal_work(struct work_struct *work)
+> +{
+> +	struct k3_thermal_data *data = container_of(work,
+> +					struct k3_thermal_data, thermal_wq);
+> +
+> +	thermal_zone_device_update(data->ti_thermal, THERMAL_EVENT_UNSPECIFIED);
+> +
+> +	dev_info(&data->ti_thermal->device, "updated thermal zone %s\n",
+> +		 data->ti_thermal->type);
+> +}
+> +
+>   static int two_cmp(int tmp, int mask)
+>   {
+>   	tmp = ~(tmp);
+> @@ -251,8 +272,40 @@ static int k3_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+>   	return k3_bgp_read_temp(thermal_zone_device_priv(tz), temp);
+>   }
+>   
+> +static int k3_thermal_get_trend(struct thermal_zone_device *tz, int trip, enum thermal_trend *trend)
+> +{
+> +	struct k3_thermal_data *data = tz->devdata;
+> +	struct k3_j72xx_bandgap *bgp;
+> +	u32 temp1, temp2;
+> +	int tr, ret = 0;
+> +
+> +	bgp = data->bgp;
+> +
+> +	ret = k3_thermal_get_temp(tz, &temp1);
+> +	if (ret)
+> +		return ret;
+> +	temp2 = data->prev_temp;
+> +
+> +	tr = temp1 - temp2;
+> +
+> +	data->prev_temp = temp1;
+> +
+> +	if (tr > 0)
+> +		*trend = THERMAL_TREND_RAISING;
+> +	else if (tr < 0)
+> +		*trend = THERMAL_TREND_DROPPING;
+> +	else
+> +		*trend = THERMAL_TREND_STABLE;
+> +
+> +	dev_dbg(bgp->dev, "The temperatures are t1 = %d and t2 = %d and trend =%d\n",
+> +		temp1, temp2, *trend);
+> +
+> +	return ret;
+> +}
+> +
+>   static const struct thermal_zone_device_ops k3_of_thermal_ops = {
+>   	.get_temp = k3_thermal_get_temp,
+> +	.get_trend = k3_thermal_get_trend,
+>   };
+>   
+>   static int k3_j72xx_bandgap_temp_to_adc_code(int temp)
+> @@ -342,6 +395,63 @@ struct k3_j72xx_bandgap_data {
+>   	const bool has_errata_i2128;
+>   };
+>   
+> +static int k3_thermal_register_cpu_cooling(struct k3_j72xx_bandgap *bgp, int id)
+> +{
+> +	struct k3_thermal_data *data;
+> +	struct device_node *np = bgp->dev->of_node;
+> +
+> +	/*
+> +	 * We are assuming here that if one deploys the zone
+> +	 * using DT, then it must be aware that the cooling device
+> +	 * loading has to happen via cpufreq driver.
+> +	 */
+> +	if (of_find_property(np, "#thermal-sensor-cells", NULL))
+> +		return 0;
+> +
+> +	data = bgp->ts_data[id];
+> +	if (!data)
+> +		return -EINVAL;
+> +
+> +	data->policy = cpufreq_cpu_get(0);
+> +	if (!data->policy) {
+> +		pr_debug("%s: CPUFreq policy not found\n", __func__);
+> +		return -EPROBE_DEFER;
+> +	}
+> +
+> +	/* Register cooling device */
+> +	data->cool_dev = cpufreq_cooling_register(data->policy);
+> +	if (IS_ERR(data->cool_dev)) {
+> +		int ret = PTR_ERR(data->cool_dev);
+> +
+> +		dev_err(bgp->dev, "Failed to register cpu cooling device %d\n",
+> +			ret);
+> +		cpufreq_cpu_put(data->policy);
+> +
+> +		return ret;
+> +	}
+> +
+> +	data->mode = THERMAL_DEVICE_ENABLED;
+> +
+> +	INIT_WORK(&data->thermal_wq, k3_thermal_work);
+> +
+> +	return 0;
+> +}
+> +
+> +static int k3_thermal_unregister_cpu_cooling(struct k3_j72xx_bandgap *bgp, int id)
+> +{
+> +	struct k3_thermal_data *data;
+> +
+> +	data = bgp->ts_data[id];
+> +
+> +	if (!IS_ERR_OR_NULL(data)) {
+> +		cpufreq_cooling_unregister(data->cool_dev);
+> +		if (data->policy)
+> +			cpufreq_cpu_put(data->policy);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static int k3_j72xx_bandgap_probe(struct platform_device *pdev)
+>   {
+>   	int ret = 0, cnt, val, id;
+> @@ -452,6 +562,7 @@ static int k3_j72xx_bandgap_probe(struct platform_device *pdev)
+>   	/* Register the thermal sensors */
+>   	for (id = 0; id < cnt; id++) {
+>   		data[id].bgp = bgp;
+> +		data[id].sensor_id = id;
+>   		data[id].ctrl_offset = K3_VTM_TMPSENS0_CTRL_OFFSET + id * 0x20;
+>   		data[id].stat_offset = data[id].ctrl_offset +
+>   					K3_VTM_TMPSENS_STAT_OFFSET;
+> @@ -477,6 +588,12 @@ static int k3_j72xx_bandgap_probe(struct platform_device *pdev)
+>   		writel(val, data[id].bgp->cfg2_base + data[id].ctrl_offset);
+>   
+>   		bgp->ts_data[id] = &data[id];
+> +
+> +		if (id == 1)
+> +			ret = k3_thermal_register_cpu_cooling(bgp, 1);
+> +		if (ret)
+> +			goto err_alloc;
+> +
+>   		ti_thermal = devm_thermal_of_zone_register(bgp->dev, id, &data[id],
+>   							   &k3_of_thermal_ops);
+>   		if (IS_ERR(ti_thermal)) {
+> @@ -514,6 +631,7 @@ static int k3_j72xx_bandgap_probe(struct platform_device *pdev)
+>   	return 0;
+>   
+>   err_free_ref_table:
+> +	k3_thermal_unregister_cpu_cooling(bgp, 1);
+>   	kfree(ref_table);
+>   
+>   err_alloc:
+> @@ -525,6 +643,9 @@ static int k3_j72xx_bandgap_probe(struct platform_device *pdev)
+>   
+>   static int k3_j72xx_bandgap_remove(struct platform_device *pdev)
+>   {
+> +	struct k3_j72xx_bandgap *bgp = platform_get_drvdata(pdev);
+> +
+> +	k3_thermal_unregister_cpu_cooling(bgp, 1);
+>   	pm_runtime_put_sync(&pdev->dev);
+>   	pm_runtime_disable(&pdev->dev);
+>   
 
-v2:
-  - Add myself as co-maintainer,
-  - Make fck clock required,
-  - Drop ports description referring to obsolete graph.txt,
-  - Condition ports to compatible strings,
-  - Drop label and status from example.
-
-Changes compared to Laurent's original:
-  - Convert to json-schema,
-  - Rename compatible values from "renesas,lcdc-<SoC>" to
-    "renesas,<SoC>-lcdc",
-  - Add power-domains property,
-  - Add MIPI-DSI port on SH-Mobile AG5,
-  - Update example to reflect reality,
-  - Add to MAINTAINERS.
----
- .../display/renesas,shmobile-lcdc.yaml        | 130 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 131 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-new file mode 100644
-index 0000000000000000..9816c4cacc7d9a7f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/renesas,shmobile-lcdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas SH-Mobile LCD Controller (LCDC)
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - renesas,r8a7740-lcdc # R-Mobile A1
-+      - renesas,sh73a0-lcdc  # SH-Mobile AG5
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 5
-+    description:
-+      Only the functional clock is mandatory.
-+      Some of the optional clocks are model-dependent (e.g. "video" (a.k.a.
-+      "vou" or "dv_clk") is available on R-Mobile A1 only).
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: fck
-+      - enum: [ media, lclk, hdmi, video ]
-+      - enum: [ media, lclk, hdmi, video ]
-+      - enum: [ media, lclk, hdmi, video ]
-+      - enum: [ media, lclk, hdmi, video ]
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: LCD port (R-Mobile A1 and SH-Mobile AG5)
-+        unevaluatedProperties: false
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: HDMI port (R-Mobile A1 LCDC1 and SH-Mobile AG5)
-+        unevaluatedProperties: false
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: MIPI-DSI port (SH-Mobile AG5)
-+        unevaluatedProperties: false
-+
-+    required:
-+      - port@0
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - ports
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r8a7740-lcdc
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@2: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,sh73a0-lcdc
-+    then:
-+      properties:
-+        ports:
-+          required:
-+            - port@1
-+            - port@2
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7740-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    lcd-controller@fe940000 {
-+        compatible = "renesas,r8a7740-lcdc";
-+        reg = <0xfe940000 0x4000>;
-+        interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&mstp1_clks R8A7740_CLK_LCDC0>,
-+                 <&cpg_clocks R8A7740_CLK_M3>, <&lcdlclk0_clk>,
-+                 <&vou_clk>;
-+        clock-names = "fck", "media", "lclk", "video";
-+        power-domains = <&pd_a4lc>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+
-+                lcdc0_rgb: endpoint {
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c454b0186fd669dd..d3e1b194dfbd129e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7026,6 +7026,7 @@ M:	Geert Uytterhoeven <geert+renesas@glider.be>
- L:	dri-devel@lists.freedesktop.org
- L:	linux-renesas-soc@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
- F:	drivers/gpu/drm/renesas/shmobile/
- F:	include/linux/platform_data/shmob_drm.h
- 
 -- 
-2.34.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
