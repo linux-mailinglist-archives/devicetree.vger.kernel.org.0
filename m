@@ -2,113 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F5777E018
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B7A77E024
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:18:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244447AbjHPLOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 07:14:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59970 "EHLO
+        id S242250AbjHPLSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 07:18:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244252AbjHPLN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:13:58 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3104E40;
-        Wed, 16 Aug 2023 04:13:57 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-686f94328a4so4330210b3a.0;
-        Wed, 16 Aug 2023 04:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692184437; x=1692789237;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q9kK5DIzApBxuWnbw06RTl4SjwuCEuicEM0Xs3i511o=;
-        b=mF5rzaYtzgFfRw4XRRB0D9/JrvS5xToIOKOCT/YArIZvXZ0wx/XKain9gmorBwamVa
-         ANsCSqGu6eF13WtiisitonvMt7zMxH/IOQpU6lyuBq/PWIdq+wCwiSTeprAc83nC8q1x
-         R9FJ2LgMHySDcThrGFMmcsd+1+61WxWTY7UOX7jl7Hgi9ekuaam8Eu7qIHrUT4VBxs7w
-         nchI8nkfig6AcEFkCgiSVDmAQUIoXaCQncjje0kVcfmC/CHlqU3hvOLC+OFBGq3x8CAa
-         y0MkFqm3iadklxEwew/IvHwqH9mJqOBhDq37IBF3B4DU/UcPMMUYb/BebW1rrDE7e5/M
-         5uoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692184437; x=1692789237;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q9kK5DIzApBxuWnbw06RTl4SjwuCEuicEM0Xs3i511o=;
-        b=P5pY/L9LtKGGjUXq1n+TuFBi91jPdz0LMaYiIUxQW4HHabpYl6xDVLIBbgkKMr4uNo
-         TCCoGJ9LgBADSJWkNnGjmzLERjZcmUZ4CWGt1gUt95Ap7qC+cYzt51KPKZQvWoaESqH0
-         8p+Eyw6UttocASVmf1dnVoh37KiFLspfmni6BSicFWuLWoznrDQc/SDqwKR71DcKmZKy
-         MpLOWYqWuk8VtDuzXjybUyUki8hpIhJsuBHyAQBezns8Ub34fsRlsQuyriT/QQm/OneD
-         rxKiEYNDyYoTffOInEmcjnZUiuwb/2t9ozjERmOUCrFmMjYuYyz3qyHXJGZlGuyMtOlQ
-         tWWA==
-X-Gm-Message-State: AOJu0YwY72j3F+Lavhve3KRqGQN4mdbvbZX+4dePTyL0MwDioYEzJG3u
-        OjWGOCtXyP3Kdm3zvqKvCXU5DG89RudYha3L
-X-Google-Smtp-Source: AGHT+IH/bC5k0/+M6D3V5ZG8pBcxMj4UoZOvrsgj/Th3yyxER0TsvysF6O71BWUZFxJ1mlTD/ZeWPA==
-X-Received: by 2002:a05:6a20:7f84:b0:137:c971:6a0c with SMTP id d4-20020a056a207f8400b00137c9716a0cmr1705965pzj.31.1692184436961;
-        Wed, 16 Aug 2023 04:13:56 -0700 (PDT)
-Received: from kelvin-ThinkPad-L14-Gen-1.. ([38.114.108.131])
-        by smtp.gmail.com with ESMTPSA id r8-20020a638f48000000b00563e1ef0491sm11750627pgn.8.2023.08.16.04.13.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Aug 2023 04:13:56 -0700 (PDT)
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S244519AbjHPLRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:17:49 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5682123;
+        Wed, 16 Aug 2023 04:17:47 -0700 (PDT)
+Received: from [172.20.10.4] (unknown [109.166.130.180])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: ehristev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A185266071DF;
+        Wed, 16 Aug 2023 12:17:44 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1692184666;
+        bh=NRfGcuwBsM/mHuY7Ji1D+ZyvpHFkv2T1TUJuvYW9S8c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PFIZutdjY21qgCq+Fen+1uRJQm2bFCoKxnTEdJNR+2F2XExnx3YhK7pu/5zitiD6l
+         si1KCI+8IUBSh80pm+71APW+xEA+oFvcTm3cGUbyHsWWG0HkYVvCN3Kv/2oJD/G1yG
+         re9iW6ziV/1VYbjsJ5tukB5QU9YKfVxmUPlawSx3EQSSqt5XnA6uNPmjYQCtwmbt21
+         IQNcpOplkz5mI6j9sLPaehiyI2x2UAI4EeyDU6cot6HIc7t3vv4pOQ2P4DKQ4vY7KO
+         0RmD4z12PkGtrlDTbC6oYIa9z5w1pAusaVzblEFcLq/nor/8QqnL3625TPF76pKrQ6
+         2o+ese6i4w87Q==
+Message-ID: <699d7552-cb9b-041a-467c-597e5a209857@collabora.com>
+Date:   Wed, 16 Aug 2023 14:17:41 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/4] arm64: dts: mediatek: mt8183: disable quad mode for
+ spi nor
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Keguang Zhang <keguang.zhang@gmail.com>
-Subject: [PATCH v2 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
-Date:   Wed, 16 Aug 2023 19:13:10 +0800
-Message-Id: <20230816111310.1656224-5-keguang.zhang@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230816111310.1656224-1-keguang.zhang@gmail.com>
-References: <20230816111310.1656224-1-keguang.zhang@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger )" <richard@nod.at>,
+        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20230815154412.713846-1-hsinyi@chromium.org>
+ <20230815154412.713846-4-hsinyi@chromium.org>
+Content-Language: en-US
+From:   Eugen Hristev <eugen.hristev@collabora.com>
+In-Reply-To: <20230815154412.713846-4-hsinyi@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new F: entry for Loongson1 DWMAC driver.
-Add a new F: entry for all Loongson-1 dt-bindings.
+On 8/15/23 18:31, Hsin-Yi Wang wrote:
+> Some of the SKUs are using gigadevice gd25lq64c flash chip. The chip
+> default enables quad mode, which results in the write protect pin set to
+> IO pin. In mt8183 kukui, we won't use quad enable for all SKUs, so apply
+> the property to disable spi nor's quad mode.
 
-Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
----
-V1 -> V2: Improve the commit message
+Hi Hsin-Yi,
 
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+To me this property, and the way you 'apply' it, makes me think that you 
+are using the devicetree as a configuration and not a description of the 
+hardware itself.
+I think the driver should decide whether to use quad or not depending on 
+the situation or the pinout of the device (as in your case quad mode 
+overlaps with the WP pin)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d8700b009e22..4621facb2cc8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14313,9 +14313,11 @@ MIPS/LOONGSON1 ARCHITECTURE
- M:	Keguang Zhang <keguang.zhang@gmail.com>
- L:	linux-mips@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
- F:	arch/mips/include/asm/mach-loongson32/
- F:	arch/mips/loongson32/
- F:	drivers/*/*loongson1*
-+F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
- 
- MIPS/LOONGSON2EF ARCHITECTURE
- M:	Jiaxun Yang <jiaxun.yang@flygoat.com>
--- 
-2.39.2
+Eugen
+
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index 6ce16a265e053..8e4761e2b8ff4 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -877,6 +877,7 @@ w25q64dw: flash@0 {
+>   		compatible = "winbond,w25q64dw", "jedec,spi-nor";
+>   		reg = <0>;
+>   		spi-max-frequency = <25000000>;
+> +		disable-quad-mode;
+>   	};
+>   };
+>   
 
