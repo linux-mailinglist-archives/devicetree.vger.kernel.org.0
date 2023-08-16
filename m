@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CC677E664
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D76D77E66D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344696AbjHPQ3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 12:29:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43970 "EHLO
+        id S1344722AbjHPQaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 12:30:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344709AbjHPQ3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:29:15 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7390F173F;
-        Wed, 16 Aug 2023 09:29:14 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-55b5a37acb6so834578a12.0;
-        Wed, 16 Aug 2023 09:29:14 -0700 (PDT)
+        with ESMTP id S1344692AbjHPQ3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:29:50 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E42610EC;
+        Wed, 16 Aug 2023 09:29:49 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99c353a395cso909705366b.2;
+        Wed, 16 Aug 2023 09:29:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692203354; x=1692808154;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IDwTPJw+5ucZMyeoaXg4Y3bABbR60PDLoOBlQrwY1jg=;
-        b=paLtg+ZCT6g2zAkxL08b100Ise2GGAjj+J1pD7w0/a7CxKOU6vyWdy8XHDcUhoGohg
-         giLp452lGlJZHY1PYB/sgUPZh2UsFRooXUrg1SM3+fFQA0M9M+lULqj6o4BI9xa7h/El
-         vw7RNewAruvaJvqxv/FmNvouBEBXDjYhsdg0B/ICKpGYxjH0BkLRuVmIevKd2OE0nKZc
-         QwejWbof71Lu1VyIPcYJtSay6HlO5wfEbtqy8ezs2+RxOtrQzCJldVc8guzMXYLmUsZ5
-         YeotVoE2DYnggx0JD/jw2J7yiDHlOsPFukq9Yp9ZgY+sxzweX15rqzbPK/v7vsQX65El
-         Cfzg==
+        d=gmail.com; s=20221208; t=1692203387; x=1692808187;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iXGFip4xPQmMc5o7WGRu/er7WEU0mmI/vsDic791oFk=;
+        b=nav2gjQSHKdfSoi26eHLcYD2RTczPmWHhP9Wz123smxcYh9WU4evRt3NPI9Qz9N/I1
+         qNeVriHM6r+4Hqc41JCa12Yx5VhTVQyRlWGWMpg+a29P/S1fGBRGdVZfIIbUmUw8wgwJ
+         qpaULOP/ByK8TtxAexpFYqpyarMP7Osjh97BeFVxnwzLe1qJ27ljP/UPQuDL5aMynjck
+         39KbCTcGKm4fVBFNg5VvJnfdTvXmaNdkaIVwJevkqTFPUh1i6rvH4AB5ZWwaBFZx63jV
+         X/HmuaxBvgNRmQUccRO6HxGGKrobYWjhghK8Bc+OdTpW3kjNJqaTE8MmClDT9DI3mECr
+         Xf0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692203354; x=1692808154;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1692203387; x=1692808187;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IDwTPJw+5ucZMyeoaXg4Y3bABbR60PDLoOBlQrwY1jg=;
-        b=ExTf2kcgWWxmckX3tQ/TsjjUAX5HgqhK1MD84RGCDEUvjXG/F4uUZezOjcaSIbt4TG
-         k7YhrNnd8A9swwLf8pbM5SAoFjPq8r67VlW+9/3v6CcFbb86lYbv4+F+jJCT5axmel8p
-         a5cvWttuZlXw+YSJDv7bBA3A/6GlUYl64SvTuiKnO0evijiUEhPGcDRXuZqyDJ4F2dMV
-         dLBBu8JEkI86BrGKtqxDOnHfEBiDXOdA+OqIwNJDgg9z/8w3qffXj3uG0LEipX4q2HJw
-         /PhESTGsqd5Ge0J63XfbcmViK1jMIfH6CcjDjPDdaE0pdprLq8XT5v1AmFeYFUmwL+v/
-         +gWQ==
-X-Gm-Message-State: AOJu0YxdBKuEgj5M85nPxrZGdmXNvrrPHxTORjKZiDx1bwLQU6jXZ1HL
-        WgpqBtK8CvvDMCHQADWs/zofBUh+OoAn8PfK/oQ=
-X-Google-Smtp-Source: AGHT+IE2wAHu4qgJXHj7jeWuhe1a2iuhfrVjwcBDyHwA4GqsOz4k1VsQbuW8ersWNzjlYQ/Mlyon0h466UVJLelP8gw=
-X-Received: by 2002:a17:90a:2a8f:b0:26c:fd49:8b3e with SMTP id
- j15-20020a17090a2a8f00b0026cfd498b3emr1367509pjd.3.1692203353851; Wed, 16 Aug
- 2023 09:29:13 -0700 (PDT)
+        bh=iXGFip4xPQmMc5o7WGRu/er7WEU0mmI/vsDic791oFk=;
+        b=aoZWiaMuTUl2cY90QxjDDcRB2E4ivOAaFiSo9FxY9Ip6MhpqGtuar/ywkRrPtD1hmB
+         fsyEMPhfYesAKpTzSrZ5sR/x7zfiKv78al4jFQG+1XI+NETOWF/s0Lg3p+wl8PRF0AAC
+         mmKAFNcz0J9XxI28KW9iHYx5RPfi2TebtxdOMSTK1qN3qUYNd5842Ro92YmnkDe7eJFm
+         YmZsDFj4ggem0eAGUJx3RbSF7Rf27E5KCkyqhOG0YfXeWb9IKEXk7u1BF9sa5aE730xh
+         TWmc/aTzdu0eF8Kq1la0ZIWzGpDFint8X3ZO7X4tKRAaHdae0gryryVYUYU5xdY9LyRP
+         bO8g==
+X-Gm-Message-State: AOJu0YypwqQZ+FEOu+Ar6gHF31liSAZ0BF/VHovIHdhpktkHPbif2te+
+        /tl3S6iqD/QFLyU5Ft+lndvnlePU/AY=
+X-Google-Smtp-Source: AGHT+IFHKqf7og4SYztrQ3hgIh5ddW0RNG/gZrAwpm3G8/UpTC9TEWnOgxvGkdelTp6fWETrxjdcIg==
+X-Received: by 2002:a17:906:504e:b0:970:c9f:2db6 with SMTP id e14-20020a170906504e00b009700c9f2db6mr1458897ejk.63.1692203387361;
+        Wed, 16 Aug 2023 09:29:47 -0700 (PDT)
+Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id kg7-20020a17090776e700b009829d2e892csm8760489ejc.15.2023.08.16.09.29.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Aug 2023 09:29:46 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Subject: Re: (subset) [PATCH v3 0/5] Add JDI LPM102A188A display panel support
+Date:   Wed, 16 Aug 2023 18:29:45 +0200
+Message-ID: <169220337040.3329623.1496882748150713518.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230807133307.27456-1-diogo.ivo@tecnico.ulisboa.pt>
+References: <20230807133307.27456-1-diogo.ivo@tecnico.ulisboa.pt>
 MIME-Version: 1.0
-References: <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-0-3889b1b2050c@pengutronix.de>
- <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-3-3889b1b2050c@pengutronix.de>
- <6a894ff0-3232-4ef0-5e26-95471cc33ed9@roeck-us.net> <20230504142708.l4xo4sbl7wzsrbql@pengutronix.de>
-In-Reply-To: <20230504142708.l4xo4sbl7wzsrbql@pengutronix.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 16 Aug 2023 13:29:02 -0300
-Message-ID: <CAOMZO5CCpeQLOhxvOCHjuip_DkVeZokGH_WgewxqyE+L40dvgw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] usb: typec: tcpci: clear the fault status bit
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Guenter Roeck <linux@roeck-us.net>, andreas@fatal.se,
-        jun.li@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -80,16 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+From: Thierry Reding <treding@nvidia.com>
 
-On Thu, May 4, 2023 at 11:27=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
 
-> > Also, why not just write the bit unconditionally, similar
-> > to TCPC_ALERT ?
->
-> Thought about this too.. I will change it in the v3.
+On Mon, 07 Aug 2023 14:33:00 +0100, Diogo Ivo wrote:
+> These patches add support for the JDI LPM102A188A display panel,
+> found in the Google Pixel C.
+> 
+> Patch 1 adds the DT bindings for the panel.
+> 
+> Patch 2 adds the panel driver, which is based on the downstream
+> kernel driver published by Google and developed by Sean Paul.
+> 
+> [...]
 
-Was there ever a v3 for this patch?
+Applied, thanks!
 
-Thanks
+[3/5] arm64: dts: smaug: Add DSI/CSI regulator
+      (no commit info)
+[4/5] arm64: dts: smaug: Add backlight node
+      (no commit info)
+[5/5] arm64: dts: smaug: Add display panel node
+      (no commit info)
+
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
