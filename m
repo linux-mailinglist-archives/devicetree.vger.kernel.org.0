@@ -2,145 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B874877E949
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 21:05:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0913277E9BD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 21:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241155AbjHPTEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 15:04:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55994 "EHLO
+        id S1345808AbjHPTft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 15:35:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344345AbjHPTEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 15:04:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C7212700;
-        Wed, 16 Aug 2023 12:04:41 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E1DA566031F9;
-        Wed, 16 Aug 2023 20:04:37 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1692212679;
-        bh=grEIxwyKWyaQ5DQD9LOQJqFA2qXty1UB693xBcBE02o=;
-        h=From:To:Cc:Subject:Date:From;
-        b=eFFZtCQKOPsXXlPcCnjRMP15CAFzGizQJgr5QYp+Mfj+/l+tbetzvVq3HpVTKjesY
-         gOfMVulywRu6DLrb0cBBahI0u6kfLWArgTt1hMeKpu9GQWGhKvbG54C3MxD6DGn8pU
-         S9ox2TscEfiS6pf8IlgA4ruK0ntjR99q44vRx4fA7ExLZM6KURcJ3Hwmc65f7/cl+z
-         Dzml/H2zBnKKZT+oI2xqbTjmrjNvs3xbF+dKsJqdsUySbDqeR6NP8HE5KRR+y/RFfg
-         OqXJ/PLHXhhUAz4tDqwW1+k0JIKjV8M9Kvuxj0l37Nznv109H8nmGaXW/A4ce+7XkF
-         A7jqZiES2tYSw==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v3] arm64: dts: mediatek: cherry: Configure eDP and internal display
-Date:   Wed, 16 Aug 2023 15:04:16 -0400
-Message-ID: <20230816190427.2137768-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S1345832AbjHPTft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 15:35:49 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9A11FE1;
+        Wed, 16 Aug 2023 12:35:46 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37GJZZaF066780;
+        Wed, 16 Aug 2023 14:35:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692214535;
+        bh=5zI4vCVLeo3iyZwinwH6jUeYayvH56D3YVbeqqg8/IU=;
+        h=From:To:CC:Subject:Date;
+        b=v6DrgbPsH9JO2pWG4gMRoUCFdNAK2NHaEhmMTcg+eEvoti6m99t5PLQYWD60+ehP6
+         oCzFpoAaJOOgUF6SgDIy9mkk84/u8btJ/M8fZG6VnLTuCygaURjQ8DWRXf1t2C29DY
+         0mXC0dJXnv00ni2Tx/3u1jmDVPc9UFqSs9qtIFf4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37GJZZCb042556
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Aug 2023 14:35:35 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 16
+ Aug 2023 14:35:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 16 Aug 2023 14:35:34 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37GJZXgD087479;
+        Wed, 16 Aug 2023 14:35:34 -0500
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <b-kapoor@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add support for MCAN interfaces
+Date:   Thu, 17 Aug 2023 01:05:33 +0530
+Message-ID: <20230816193533.25722-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+There are 2 MCAN instances in the mcu domain and 4 MCAN instances in the
+main domain. Add support for both MCAN nodes present in the mcu domain
+and MCAN16 that is present in the main domain and isn't muxed.
 
-Add the required nodes to enable the DisplayPort interface, connected
-to the Embedded DisplayPort port, where we have an internal display.
-
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-[nfraprado: removed always-on, added vin-supply and enable delay]
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
 ---
-The MediaTek DRM changes needed for MT8195 have already been queued for
-v6.6 [1], so this DT patch is the last missing piece needed to get
-a working display on MT8195 Tomato.
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 87 ++++++++++++++++++++++++
+ 1 file changed, 87 insertions(+)
 
-[1] https://lore.kernel.org/all/20230813152726.14802-1-chunkuang.hu@kernel.org/
-
-Changes in v3:
-- Split from "MT8195 Acer Tomato - devicetrees Part 3" series
-- Removed regulator-always-on as it's no longer needed
-- Added missing vin-supply and regulator-enable-delay
-
- .../boot/dts/mediatek/mt8195-cherry.dtsi      | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 37a3e9de90ff..dd5b89b73190 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -47,6 +47,19 @@ memory@40000000 {
- 		reg = <0 0x40000000 0 0x80000000>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+index 430b8a2c5df5..2ac4a17050a9 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+@@ -249,6 +249,31 @@ vdd_sd_dv: regulator-TLV71033 {
+ 		states = <1800000 0x0>,
+ 			 <3300000 0x1>;
  	};
- 
-+	pp3300_disp_x: regulator-pp3300-disp-x {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pp3300_disp_x";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-enable-ramp-delay = <2500>;
-+		enable-active-high;
-+		gpio = <&pio 55 GPIO_ACTIVE_HIGH>;
++
++	transceiver1: can-phy0 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
 +		pinctrl-names = "default";
-+		pinctrl-0 = <&panel_fixed_pins>;
-+		vin-supply = <&pp3300_z2>;
++		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
++		standby-gpios = <&wkup_gpio0 69 GPIO_ACTIVE_HIGH>;
 +	};
 +
- 	/* system wide LDO 3.3V power rail */
- 	pp3300_z5: regulator-pp3300-ldo-z5 {
- 		compatible = "regulator-fixed";
-@@ -217,6 +230,20 @@ port@1 {
- 			reg = <1>;
- 			edp_out: endpoint {
- 				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
++	transceiver2: can-phy1 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcu_mcan1_gpio_pins_default>;
++		standby-gpios = <&wkup_gpio0 2 GPIO_ACTIVE_HIGH>;
 +	};
 +
-+	aux-bus {
-+		panel {
-+			compatible = "edp-panel";
-+			power-supply = <&pp3300_disp_x>;
-+			backlight = <&backlight_lcd0>;
-+			port {
-+				panel_in: endpoint {
-+					remote-endpoint = <&edp_out>;
-+				};
- 			};
- 		};
- 	};
-@@ -881,6 +908,12 @@ pins-bus {
- 		};
- 	};
++	transceiver3: can-phy2 {
++		/* standby pin has been grounded by default */
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++	};
+ };
  
-+	panel_fixed_pins: panel-pwr-default-pins {
-+		pins-vreg-en {
-+			pinmux = <PINMUX_GPIO55__FUNC_GPIO55>;
-+		};
+ &main_pmx0 {
+@@ -286,6 +311,13 @@ vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
+ 			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+ 		>;
+ 	};
++
++	main_mcan16_pins_default: main-mcan16-default-pins {
++		pinctrl-single,pins = <
++			J784S4_IOPAD(0x028, PIN_INPUT, 0) /* (AE33) MCAN16_RX */
++			J784S4_IOPAD(0x024, PIN_OUTPUT, 0) /* (AH34) MCAN16_TX */
++		>;
++	};
+ };
+ 
+ &wkup_pmx2 {
+@@ -363,6 +395,32 @@ J784S4_WKUP_IOPAD(0x16c, PIN_INPUT, 0) /* (U33) MCU_ADC1_AIN6 */
+ 			J784S4_WKUP_IOPAD(0x170, PIN_INPUT, 0) /* (Y36) MCU_ADC1_AIN7 */
+ 		>;
+ 	};
++
++	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J784S4_WKUP_IOPAD(0x050, PIN_OUTPUT, 0) /* (K33) MCU_MCAN0_TX */
++			J784S4_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (F38) MCU_MCAN0_RX */
++		>;
 +	};
 +
- 	pio_default: pio-default-pins {
- 		pins-wifi-enable {
- 			pinmux = <PINMUX_GPIO58__FUNC_GPIO58>;
++	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
++		pinctrl-single,pins = <
++			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (H35) WKUP_GPIO0_4.MCU_MCAN1_TX */
++			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (K36) WKUP_GPIO0_5.MCU_MCAN1_RX */
++		>;
++	};
++
++	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
++		pinctrl-single,pins = <
++			J784S4_WKUP_IOPAD(0x040, PIN_INPUT, 7) /* (J38) MCU_SPI0_D1.WKUP_GPIO0_69 */
++		>;
++	};
++
++	mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-default-pins {
++		pinctrl-single,pins = <
++			J784S4_WKUP_IOPAD(0x060, PIN_INPUT, 7) /* (J35) WKUP_GPIO0_2 */
++		>;
++	};
+ };
+ 
+ &wkup_pmx0 {
+@@ -827,3 +885,32 @@ adc {
+ 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+ 	};
+ };
++
++&wkup_gpio_intr {
++	status = "okay";
++};
++
++&wkup_gpio0 {
++	status = "okay";
++};
++
++mcu_mcan0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan0_pins_default>;
++	phys = <&transceiver1>;
++};
++
++&mcu_mcan1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan1_pins_default>;
++	phys = <&transceiver2>;
++};
++
++&main_mcan16 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan16_pins_default>;
++	phys = <&transceiver3>;
++};
 -- 
-2.41.0
+2.39.2
 
