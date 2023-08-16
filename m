@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4603077E342
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 16:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3AE77E388
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 16:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242867AbjHPOJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 10:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39590 "EHLO
+        id S1343592AbjHPO0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 10:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343553AbjHPOJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 10:09:19 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908FA272E;
-        Wed, 16 Aug 2023 07:09:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692194949; x=1723730949;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rXIvn7ntMx76r7mOiVD3Xshd7gBZ900TQnREESXho9w=;
-  b=lCg7fsL+hTlG4AQZXfMH9/iAMcXea9bN8wl3C7sO/4Oo41Zy0dT7UINQ
-   gPyAeVNGQElY90aCmZLRA83xi/t9NtO1BRaQbQx2wGbvzo00XcqmSCNZG
-   IFgAfk4A1ZiNcOGwo+z8UkEVvziBH8wJH2N1IjYv8EELKkEieDL0Gatce
-   6cNMJhAn8Exx74xjEXnQ1mRyGFPOZe3G/wh0VILxZ6TMGtdRTSlsTGnLK
-   GuN9DtBhHAeQcDFlk8US38goF3f1FLHHiTHS8AzzTalFUYZuWPnRcz0dl
-   x2GMQN0YjPSzj3NP96dXvvfu6q1Y/NEgiJc2uXt9Ljc2QNkiX1LAeKAg5
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="375312516"
-X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; 
-   d="scan'208";a="375312516"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2023 07:08:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="980752908"
-X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; 
-   d="scan'208";a="980752908"
-Received: from lkp-server02.sh.intel.com (HELO a9caf1a0cf30) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 16 Aug 2023 07:07:58 -0700
-Received: from kbuild by a9caf1a0cf30 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qWHBm-0000MT-0F;
-        Wed, 16 Aug 2023 14:07:58 +0000
-Date:   Wed, 16 Aug 2023 22:07:15 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Mingjin Yang <mingjin.yang@unisoc.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev, mingjin.yang@unisoc.com,
-        magicyangmingjin@gmail.com, Ling_Ling.Xu@unisoc.com,
-        Jinfeng.Lin1@unisoc.com, Yangbin.Li@unisoc.com,
-        Jiansheng.Wu@unisoc.com, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V0 2/2] iio: adc: sprd_pmic_adc: Add support for UMP
- serise pmic adc
-Message-ID: <202308162143.UjXhwiRf-lkp@intel.com>
-References: <20230816080225.21482-3-mingjin.yang@unisoc.com>
+        with ESMTP id S1343602AbjHPO0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 10:26:39 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC541999;
+        Wed, 16 Aug 2023 07:26:37 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37GDHGWA002228;
+        Wed, 16 Aug 2023 16:26:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding:content-type; s=selector1; bh=szXQJpt
+        kKizXSfwXSxIj1fEKQa8MbeyLm6VyELkCJP8=; b=eDXXTE+kNc8l575O6SYJRbx
+        Q64U+Q2QfzVvBMbbcsz/6S8w395jRmLR8VkA2xerleMO4xW2D09rsYq4/36avVM2
+        5oCAXH4Fy9wFyaNxqE26563DkeQxzekw8GXDJqZtp8iBSMnQL0Sh4EuzZOQFkZu8
+        jWzW0umKGWEyoGvB7ChfVoX/l8g0V11y3LeHoROQSWs/mbgNfax0tt4KOQ5/siZV
+        UpPaT9BQMd8OOKIPu3XOW9lctPrblJ8y7AZmjJr8+IklNcGRbPz47xDce4viyyx4
+        TIT/++f0Vu7Ya2/6NzOQMS/XuXMELH/cZMYgJ2Zowt3AOZy9Ev/c9nOncfB+svA=
+        =
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sgth628tk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Aug 2023 16:26:24 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3E382100061;
+        Wed, 16 Aug 2023 16:26:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 35C3824C447;
+        Wed, 16 Aug 2023 16:26:22 +0200 (CEST)
+Received: from localhost (10.252.20.29) by EQNDAG1NODE4.st.com (10.75.129.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 16 Aug
+ 2023 16:26:21 +0200
+From:   Thomas BOURGOIN <thomas.bourgoin@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Thomas BOURGOIN <thomas.bourgoin@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Lionel Debieve <lionel.debieve@foss.st.com>
+Subject: [PATCH] ARM: dts: stm32: add HASH on stm32mp131
+Date:   Wed, 16 Aug 2023 16:26:17 +0200
+Message-ID: <20230816142617.2625802-1-thomas.bourgoin@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230816080225.21482-3-mingjin.yang@unisoc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.252.20.29]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To EQNDAG1NODE4.st.com
+ (10.75.129.133)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-16_14,2023-08-15_02,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,67 +75,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mingjin,
+From: Lionel Debieve <lionel.debieve@foss.st.com>
 
-kernel test robot noticed the following build warnings:
+Add the HASH support on stm32mp131.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.5-rc6 next-20230816]
-[cannot apply to jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Lionel Debieve <lionel.debieve@foss.st.com>
+Signed-off-by: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+---
+ arch/arm/boot/dts/st/stm32mp131.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mingjin-Yang/dt-bindings-iio-adc-Add-support-for-ump518-pmic-adc/20230816-160754
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230816080225.21482-3-mingjin.yang%40unisoc.com
-patch subject: [PATCH V0 2/2] iio: adc: sprd_pmic_adc: Add support for UMP serise pmic adc
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20230816/202308162143.UjXhwiRf-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230816/202308162143.UjXhwiRf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308162143.UjXhwiRf-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/adc/sprd_pmic_adc.c: In function 'ump9620_ch_data_init':
->> drivers/iio/adc/sprd_pmic_adc.c:530:1: warning: the frame size of 1320 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-     530 | }
-         | ^
-
-
-vim +530 drivers/iio/adc/sprd_pmic_adc.c
-
-   506	
-   507	static void ump9620_ch_data_init(struct sprd_adc_data *data)
-   508	{
-   509		struct sprd_adc_channel_data ch_data_def = CH_DATA_INIT(SCALE_00, 0, 0, RATIO_DEF);
-   510		struct sprd_adc_channel_data ch_data[SPRD_ADC_CHANNEL_MAX] = {
-   511			[0] = CH_DATA_INIT(SCALE_01, 0, 0, RATIO_DEF),
-   512			[5] = CH_DATA_INIT(SCALE_00, 0x1, 0x9, RATIO_DEF),
-   513			[6] = CH_DATA_INIT(SCALE_00, 0x1, 0x9, RATIO_DEF),
-   514			[7] = CH_DATA_INIT(SCALE_10, 0, 0, RATIO_DEF),
-   515			[9] = CH_DATA_INIT(SCALE_10, 0, 0, RATIO_DEF),
-   516			[10] = CH_DATA_INIT(SCALE_11, 0, 0, RATIO_DEF),
-   517			[11] = CH_DATA_INIT(SCALE_00, 0, 0, RATIO_DEF),
-   518			[13] = CH_DATA_INIT(SCALE_01, 0, 0, RATIO_DEF),
-   519			[14] = CH_DATA_INIT(SCALE_00, 0, 0, RATIO(68, 900)),
-   520			[15] = CH_DATA_INIT(SCALE_00, 0, 0, RATIO(1, 3)),
-   521			[19] = CH_DATA_INIT(SCALE_11, 0, 0, RATIO_DEF),
-   522			[21] = CH_DATA_INIT(SCALE_00, 0, 0, RATIO(3, 8)),
-   523			[22] = CH_DATA_INIT(SCALE_00, 0, 0, RATIO(3, 8)),
-   524			[23] = CH_DATA_INIT(SCALE_00, 0, 0, RATIO(3, 8)),
-   525			[30] = CH_DATA_INIT(SCALE_11, 0, 0, RATIO_DEF),
-   526			[31] = CH_DATA_INIT(SCALE_11, 0, 0, RATIO_DEF),
-   527		};
-   528	
-   529		sprd_adc_ch_data_merge(data, ch_data, &ch_data_def);
- > 530	}
-   531	
-
+diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
+index 672f3b7735a2..4e4f64cfb75b 100644
+--- a/arch/arm/boot/dts/st/stm32mp131.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+@@ -1210,6 +1210,17 @@ timer {
+ 			};
+ 		};
+ 
++		hash: hash@54003000 {
++			compatible = "st,stm32mp13-hash";
++			reg = <0x54003000 0x400>;
++			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&rcc HASH1>;
++			resets = <&rcc HASH1_R>;
++			dmas = <&mdma 30 0x2 0x1000a02 0x0 0x0>;
++			dma-names = "in";
++			status = "disabled";
++		};
++
+ 		mdma: dma-controller@58000000 {
+ 			compatible = "st,stm32h7-mdma";
+ 			reg = <0x58000000 0x1000>;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
