@@ -2,178 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FB1877E2DA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 15:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D6877E333
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 16:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240011AbjHPNlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 09:41:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49196 "EHLO
+        id S1343492AbjHPOFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 10:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245699AbjHPNkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 09:40:49 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA052D62
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 06:40:41 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d63c0a6568fso6290716276.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 06:40:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692193241; x=1692798041;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uW3Lzg0G0ukvtpwGKKg+qtuDKg0FVtuflLIlmeo8bN8=;
-        b=oZpRJpvRd2EjO2z7st8fP82ZF0z+F8XMZd6CEC4Akp0AyW5oLcP3COxI0/dxXXj0aC
-         uGuH/7R26eGcSkIsGoB0PF3OB0kC8lThxICjpcwL1Yc/TZLHnqMlwtpJR3Bw+wxYyuaH
-         sXS8SdL5TZstYI3btQdzsTD+ez6/futektEUaHEpD6u2fiQ7f9J4zGkH6a2b/z7ojrdR
-         ZE8GIE4fYhyH1IBcFN509pvt6IXev1j4uWirb08syYFzBuASjzXVsNFxfvPXNkAm5RNs
-         41eKbZ9m8SV5BTQDUDgSdVz8214YRA9W5+SNwtu2F65ggOFE0GkDUfFuZVwnrp6cTcnn
-         gOYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692193241; x=1692798041;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uW3Lzg0G0ukvtpwGKKg+qtuDKg0FVtuflLIlmeo8bN8=;
-        b=l6pX2c9jmjTT9kq2ahA/+7AO+3WXMRXFYbYTI2kHhCQwAlagHkmaEbbRYlGNfwg/K3
-         DhhhA+GGQXU2YiyT4Q9XNdHou0oaLwgSGEUl2gHKqO+3KihGmO3u7gMeMp8FZsHoEMhs
-         ohhIOUEMxi3Xd9QznapJ8S+W06fnNcmpOAZgX+PuJS/4OlCiSbPmjkwBduA0NmZXqP3E
-         /QK0/Xsu5EvXyGewjHqX9UH0tvxFfZ8jZD5rRcCW/QOa9zAgp27e50C6gdUTUehPEaHr
-         AvAX4SYA6qpGpiuM9kU5PxgwCccQ4eNCpeaw9OAkql3N47BfPqxgepuZ95+Es1yJqVpK
-         JYgw==
-X-Gm-Message-State: AOJu0YwO8ps64k319OoDe5caBfsvKeTIKWDYxLWIobWElPfJsoIRBtiu
-        TPSq7ZYFWAkvSZx6BoyIXWYDuQVTtJS7yJc4D/K3Zg==
-X-Google-Smtp-Source: AGHT+IFNL56vtxDQRoreDk45OGBhvFCcV6wVgeoLWkPDigEeck6H4HmGis5nHvN0MbHwyvDBAYyT59QoiBLg/FrsP3Q=
-X-Received: by 2002:a25:d4cb:0:b0:d4c:f456:d563 with SMTP id
- m194-20020a25d4cb000000b00d4cf456d563mr1825605ybf.8.1692193240831; Wed, 16
- Aug 2023 06:40:40 -0700 (PDT)
+        with ESMTP id S1343518AbjHPOF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 10:05:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB103E48;
+        Wed, 16 Aug 2023 07:05:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7967164098;
+        Wed, 16 Aug 2023 14:05:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03B69C433C9;
+        Wed, 16 Aug 2023 14:05:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692194727;
+        bh=FGkS4ih0i9IQrsdNdewKD4GHzQlsrdNCp/QxM1kYKQU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NEjc6mlUBLa2InyCxlwS9MCJr/+1GBk2EQTI1yn5mWUCPJFRUgnRlPv1EfcDpp9RG
+         +p4kLaIbQ9Ps76p/mBmp7TgPfxnSkKwn/TbUXvrJWXxd8IfUkRdgi3owo9SS8FG+iN
+         gp9nhADVRWebs9rETkdrr2oWoUL7OHBQOA3EHIqARUhu3vHcsCQ4qp9SEgeg9lby5c
+         B2EBG2ry6+bg46kt/VgAF6JqVt0ibZJd0MfxYKJxXuOni1m6sVs8QQS8n7mCQdCiqb
+         5Q/xxBJEvbeSBgCEmZB7fIPYTaJpgOKRhUgXFqqxpEPFsTgnbYVYIxonWCA1twXAMz
+         7hIqS7nWElbMQ==
+Date:   Wed, 16 Aug 2023 15:05:21 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Seven Lee <wtli@nuvoton.com>
+Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com,
+        KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com,
+        scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com
+Subject: Re: [PATCH 2/2] ASoC: nau8821: Improve AMIC recording performance.
+Message-ID: <2f72d241-7617-48c0-a0c9-86bd14c50ac8@sirena.org.uk>
+References: <20230816080006.1624342-1-wtli@nuvoton.com>
+ <20230816080006.1624342-2-wtli@nuvoton.com>
 MIME-Version: 1.0
-References: <1692192264-18515-1-git-send-email-quic_krichai@quicinc.com> <1692192264-18515-3-git-send-email-quic_krichai@quicinc.com>
-In-Reply-To: <1692192264-18515-3-git-send-email-quic_krichai@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 16 Aug 2023 16:40:28 +0300
-Message-ID: <CAA8EJpoi0BkuQZef=v3JxB-axXe+jB0bEWCmsk1ZJYiaWiuevw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8450: Add opp table support to PCIe
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc:     manivannan.sadhasivam@linaro.org, helgaas@kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, quic_parass@quicinc.com,
-        krzysztof.kozlowski@linaro.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7XHR/LbWkR41hupe"
+Content-Disposition: inline
+In-Reply-To: <20230816080006.1624342-2-wtli@nuvoton.com>
+X-Cookie: Old soldiers never die.  Young ones do.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Aug 2023 at 16:25, Krishna chaitanya chundru
-<quic_krichai@quicinc.com> wrote:
->
-> PCIe needs to choose the appropriate performance state of RPMH power
-> domain based upon the PCIe gen speed.
->
-> So let's add the OPP table support to specify RPMH performance states.
->
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 47 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 595533a..c77a683 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1803,7 +1803,28 @@
->                         pinctrl-names = "default";
->                         pinctrl-0 = <&pcie0_default_state>;
->
-> +                       operating-points-v2 = <&pcie0_opp_table>;
-> +
->                         status = "disabled";
-> +
-> +                       pcie0_opp_table: opp-table {
-> +                               compatible = "operating-points-v2";
-> +
-> +                               opp-2500000 {
 
-As a random suggestion: these frequencies are calculated by the
-driver. It might be easier to use opp-level for the PCIe generation
-instead.
+--7XHR/LbWkR41hupe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This way this OPP entry can become:
+On Wed, Aug 16, 2023 at 04:00:06PM +0800, Seven Lee wrote:
+> Since the hardware may be designed as a single-ended input, the headset mic
+> record only supports single-ended input on the left side. This patch
+> will enhance microphone recording performance for single-end.
 
-opp-1 {
-    opp-level = <1>;
-    required-opps = <&rpmhpd_opp_low_svs>;
-};
+The new property looks fine but you need to fix the build error 0day
+reported.
 
-> +                                       opp-hz = /bits/ 64 <2500000>;
-> +                                       required-opps = <&rpmhpd_opp_low_svs>;
-> +                               };
-> +
-> +                               opp-5000000 {
-> +                                       opp-hz = /bits/ 64 <5000000>;
-> +                                       required-opps = <&rpmhpd_opp_low_svs>;
-> +                               };
-> +
-> +                               opp-8000000 {
-> +                                       opp-hz = /bits/ 64 <8000000>;
-> +                                       required-opps = <&rpmhpd_opp_nom>;
-> +                               };
-> +                       };
->                 };
->
->                 pcie0_phy: phy@1c06000 {
-> @@ -1915,7 +1936,33 @@
->                         pinctrl-names = "default";
->                         pinctrl-0 = <&pcie1_default_state>;
->
-> +                       operating-points-v2 = <&pcie1_opp_table>;
-> +
->                         status = "disabled";
-> +
-> +                       pcie1_opp_table: opp-table {
-> +                               compatible = "operating-points-v2";
-> +
-> +                               opp-2500000 {
-> +                                       opp-hz = /bits/ 64 <2500000>;
-> +                                       required-opps = <&rpmhpd_opp_low_svs>;
-> +                               };
-> +
-> +                               opp-5000000 {
-> +                                       opp-hz = /bits/ 64 <5000000>;
-> +                                       required-opps = <&rpmhpd_opp_low_svs>;
-> +                               };
-> +
-> +                               opp-8000000 {
-> +                                       opp-hz = /bits/ 64 <8000000>;
-> +                                       required-opps = <&rpmhpd_opp_low_svs>;
-> +                               };
-> +
-> +                               opp-16000000 {
-> +                                       opp-hz = /bits/ 64 <16000000>;
-> +                                       required-opps = <&rpmhpd_opp_nom>;
-> +                               };
-> +                       };
->                 };
->
->                 pcie1_phy: phy@1c0f000 {
-> --
-> 2.7.4
->
+--7XHR/LbWkR41hupe
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
--- 
-With best wishes
-Dmitry
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTc16EACgkQJNaLcl1U
+h9AJ9Af/XZxGppLWjNl8VmVBlE8dAbfXi2O59Rlr7fLtOb0uHm040wM3pQjywMze
+8kawuRIWKzHB7KYiUvzne/FsfvYg2qHbnCIKkx9BK4n+zjxk7tMEnqpnMWgVCjcm
+OzkC0mSsLjIpXMx1UYeu1qiMrRD/Cvn0RK2VOhkw4ZSyjpKwdQI/1B6+t4E3nIug
+DEm54Lwkx2zC7See2ogDVuOujuHmMzZhj79GtaR3r9aKXIEaIx24BaJCofAqCMWr
+YMm2piEbpMgQqilGJzLyamQWdmcMZzbAQRegTN/vnKJxT7eHkXt/YkNxG4FcrF9c
+gZVHE+nrqoidze9w7rGfJUfrtWVTeg==
+=jnGm
+-----END PGP SIGNATURE-----
+
+--7XHR/LbWkR41hupe--
