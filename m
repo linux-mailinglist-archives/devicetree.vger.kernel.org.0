@@ -2,118 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF0177E09D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:40:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AAF77E0A6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbjHPLjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 07:39:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46978 "EHLO
+        id S244701AbjHPLmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 07:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244703AbjHPLjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:39:45 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CF4138;
-        Wed, 16 Aug 2023 04:39:41 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37G8qjjf002232;
-        Wed, 16 Aug 2023 13:39:12 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-        message-id:date:mime-version:subject:to:cc:references:from
-        :in-reply-to:content-type:content-transfer-encoding; s=
-        selector1; bh=a8L54AqLoW+YCVf5muWdGfhIDNv/gOLzOo4eeextb24=; b=wT
-        sLsklvobkJHK4RDIIDi6CiH/ENfG3+EN25t25S77kRYign479HodC8eXywKBES7Q
-        0dN/h3NwCc1z6d6DRWBXVLe9YOmNnmAKfpYE81/58s2fV/03+K7wnlP5kAdbbPmv
-        EGuedlynJi69hHWc3hcgTbgYy+7yfOHTXE3YqnA+GLf2qZv3fUI1VuKV+1rOWNQJ
-        ljsHcjSyf1YPDxtMdgIB0GluU1c5iXD3OIzABKdylWkqCXVBQ9MDrla+kCWWzmHe
-        9nBdmGlWbSLgeSEIlAgGb5MAd0TYwZEciEcu3HGDPfcdVayltHPvn3u+f059hHBZ
-        az2q+V1rEejY6dn8kGnA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sgth61d4g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 13:39:11 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D68E9100064;
-        Wed, 16 Aug 2023 13:39:09 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CB7F22309FB;
-        Wed, 16 Aug 2023 13:39:09 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 16 Aug
- 2023 13:39:08 +0200
-Message-ID: <e0e35593-bccc-4959-1de6-07062849ccf5@foss.st.com>
-Date:   Wed, 16 Aug 2023 13:39:07 +0200
+        with ESMTP id S244737AbjHPLll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:41:41 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F8B19A7
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 04:41:38 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4ff09632194so5714811e87.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 04:41:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692186097; x=1692790897;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=dTTv4mN0CK8srY0jmfAzwYFC9Vvym6xURRJfTo9B8GE=;
+        b=kFidX7ox6dMNz+KfuK7rw6TezINaxiJaGfbxhseXvMenNI0Mre/bXK0oPKL7Arn2a4
+         kAADSCILxjW7wEEVxFBQPnAklD/M7le3oywtBLY10oT3CrL+Uc73SfBndgi8VpmKVj8+
+         VpeZ5VdVh05PPdAjZm3UBKRQFYriR0sl+gvobgWCQAfqsr8n8azeaAcZrXAktWJsPDuU
+         xJMsHT9PKOrx/GvGcUQV+F/DP9mCgheUrdOFuMDcSwd0/F88OuQl1qLz7hDcQZTqVDKE
+         nfVukGbjSHSvW4HXqjQTK77Gt/IVY+L7mMMox6Jn2cc8vNgWnfROTvgUvg66LHt8rg8x
+         gyyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692186097; x=1692790897;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dTTv4mN0CK8srY0jmfAzwYFC9Vvym6xURRJfTo9B8GE=;
+        b=DfYeoHtFoS1wt7bP2MG5Kca/H3TwFm8eR8j1x7Zo6SRVMnMkXLAeAWC6pCrDRmK98H
+         DlcyHqZapZ2YgU2F9XV6aTuya8ZCzwYKYT+II1VxvG9MR7i+VHqWgeDUJLZf39pM6vRz
+         Zt+qn7SMnE7azu0HmJECqyTnYPy508ySP+LSsqb6xG0Inu5yWbsJR9e5uuj5nXEUtYt5
+         prRt93l9hCRBqQhi5vICvRQTlwgwRVrS72RKdY7F7d1lIeVJlTqy4D/zwJsgCFxUe9lA
+         cTUpYtUTzFGfU76YsGzyU1Vh7jlvJTrt77ZXjtxt1M1YdkrTdRRahkcSnEMRkcAcQyZ9
+         G53g==
+X-Gm-Message-State: AOJu0Yy894HQQ9/mvTN1y4xZ6af7utpCWmGu/oZl/Ju6ehRVNF8vQbI+
+        ewhu7903bCdPgqGQJa2I0YE5xS1xqdeIsAAXFho=
+X-Google-Smtp-Source: AGHT+IG+ZJeVK0o65eiBpqpLQimRibtQz9xv6ycGjG4ta8duJ212uEgIpdyMlblaq8wOiebtvefIZg==
+X-Received: by 2002:a19:6b16:0:b0:4f8:766f:8dc3 with SMTP id d22-20020a196b16000000b004f8766f8dc3mr1171248lfa.32.1692186096801;
+        Wed, 16 Aug 2023 04:41:36 -0700 (PDT)
+Received: from [192.168.1.101] (abxi8.neoplus.adsl.tpnet.pl. [83.9.2.8])
+        by smtp.gmail.com with ESMTPSA id f14-20020a056512092e00b004fe4833ca5csm2874964lft.237.2023.08.16.04.41.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Aug 2023 04:41:36 -0700 (PDT)
+Message-ID: <3a4bb4c3-ccbe-45a1-a7e9-ee3d31f73c9a@linaro.org>
+Date:   Wed, 16 Aug 2023 13:41:34 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/4] STM32MP13x expose SCMI regulators
-Content-Language: en-US
-To:     <p.paillet@foss.st.com>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: drop unsupported
+ qcom,adsp-bypass-mode
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Etienne Carriere <etienne.carriere@foss.st.com>
-References: <20230712142432.1885162-1-p.paillet@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230712142432.1885162-1-p.paillet@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Stephen Boyd <swboyd@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230816060042.13110-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20230816060042.13110-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To EQNDAG1NODE4.st.com
- (10.75.129.133)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-16_10,2023-08-15_02,2023-05-22_02
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pascal
+On 16.08.2023 08:00, Krzysztof Kozlowski wrote:
+> LPASS LPI pin controller node binding does not allow
+> qcom,adsp-bypass-mode property:
+> 
+>   sc7280-herobrine-crd.dtb: pinctrl@33c0000: 'qcom,adsp-bypass-mode' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+> 
+> Fixes: 32d4541abe0f ("arm64: dts: qcom: sc7280: add lpass lpi pin controller node")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Looks like it was never picked up
 
-On 7/12/23 16:24, p.paillet@foss.st.com wrote:
-> From: Pascal Paillet <p.paillet@foss.st.com>
-> 
-> Updates STM32MP13 DTS files to define the voltage regulators
-> exposed by OP-TEE SCMI service and remove the fixed regulator
-> abstraction previously used.
-> 
-> Etienne Carriere (3):
->    dt-bindings: rcc: stm32: add STM32MP13 SCMI regulators IDs
->    ARM: dts: stm32: STM32MP13x SoC exposes SCMI regulators
->    ARM: dts: stm32: add SCMI PMIC regulators on stm32mp135f-dk board
-> 
-> Pascal Paillet (1):
->    ARM: multi_v7_defconfig: Add SCMI regulator support
-> 
->   arch/arm/boot/dts/st/stm32mp131.dtsi          | 50 +++++++-------
->   arch/arm/boot/dts/st/stm32mp135f-dk.dts       | 68 ++++++++-----------
->   arch/arm/configs/multi_v7_defconfig           |  1 +
->   .../regulator/st,stm32mp13-regulator.h        | 42 ++++++++++++
->   4 files changed, 98 insertions(+), 63 deletions(-)
->   create mode 100644 include/dt-bindings/regulator/st,stm32mp13-regulator.h
-> 
+https://lore.kernel.org/linux-arm-msm/20230714-topic-lpass_lpi_cleanup-v1-3-dc18b5bd14f7@linaro.org/
 
-Series applied on stm32-next. Commit title of patch[4] has been updated 
-to explain the reason of the patch (as suggested by Krzysztof). I also 
-ordered the config flag.
-
-Regards
-Alex
+Konrad
