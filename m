@@ -2,150 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDC277E89C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 20:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD0C677E8C3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 20:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344193AbjHPSYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 14:24:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45234 "EHLO
+        id S1345534AbjHPSb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 14:31:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345523AbjHPSYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 14:24:50 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB1110C1
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 11:24:49 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-6bd045336c6so6000537a34.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 11:24:49 -0700 (PDT)
+        with ESMTP id S1345557AbjHPSby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 14:31:54 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3202310C1
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 11:31:53 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe11652b64so10812844e87.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 11:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692210288; x=1692815088;
+        d=chromium.org; s=google; t=1692210710; x=1692815510;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vH3CkbS+no8xu7xLg3uZvAz4wzema/itwp2Tc+c167Q=;
-        b=llZD2J6325NRzggUheb32gJnMOi0s+ae4Wl7M+BJK9y4mft/TBWwNVki7sdnPSIBgP
-         0sGjTfxBw+CvxYl8en56GwsG/rqZVEOY3cv2nvoXeWLsI3qQbzU1He0r4Xco2aHaObgD
-         cq/JIfDJBlkJQsT0zsDGjsyj48B8MzOmd5EX8=
+        bh=Lx+mSV9nVDCSUCZ9Mp20Kvrcl4sv9ALrPuz3+qN6T0w=;
+        b=KF72xASUYluN/72dWo+aR6khFl46jSBhJ21VozdC9HBp/U7j4mfKg7Kmso6fv1RyrL
+         2UZad5fbNrfwGOKnAfHtkX/hd2+nvmLX7dQAa+BWV5Cbgg64KpeOk5Hf7TPAX1pQgEjP
+         3WKXN3vQrj7aSUja4t6Ql4ldSe+I6OKbb5C+g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692210288; x=1692815088;
+        d=1e100.net; s=20221208; t=1692210710; x=1692815510;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vH3CkbS+no8xu7xLg3uZvAz4wzema/itwp2Tc+c167Q=;
-        b=cRv/DhTh7CPjpeQhEi0E35HOHdC6dDzVDAzK+F/ftblA3Vyl2mdOQ0Y7G8kIkNKjNU
-         W/yYqWvxlKhSk40X0tyCTfYd/kgruZFDiZPAfqpvgKjh/3TNwSpNNjIdIapX7YzsLlFG
-         05+3tqN57zj4EA5iHBOhJsF1hrnuwDqOynElt+nWXEViHh9OeC7p0iKIc/k3weRg3yeT
-         B/JXFml4o3snXZeOI6YGHwU5lqFijFaVm4HhDFSZD3RfHnl9kTownS98FlAsa+j3p5DD
-         NOAi1ICewjmDk+tbBJDHVpWYqveA8U3EpsVteVfLuiilA1c335+LiimVXedMl7t6SVWt
-         1/FA==
-X-Gm-Message-State: AOJu0YzYQ6suD1TBIQqeMd0uuoO1JQYzM4rZp/ASfATHyuEv+qeSJ1nx
-        EQQZ8ukiuAyATM0BV+NNuFj+9yygqYYXLqy/TdjlGw==
-X-Google-Smtp-Source: AGHT+IFhH83WvJtRVMVm2GAtVDT3sTRvuK+g1KkIMZB0RU5RRarSlXYvZLoA25e52zZYKSGVkqvK7p18o08QNZFd3O4=
-X-Received: by 2002:a9d:7d13:0:b0:6b9:9129:dddf with SMTP id
- v19-20020a9d7d13000000b006b99129dddfmr2763929otn.16.1692210288472; Wed, 16
- Aug 2023 11:24:48 -0700 (PDT)
+        bh=Lx+mSV9nVDCSUCZ9Mp20Kvrcl4sv9ALrPuz3+qN6T0w=;
+        b=AfYcU6hAnFeKqforzJPdX173Er5ioCkbEQhZLRqm+SsxM5AF4EUhOLrJ4tC1vFIoHh
+         0WHa5yh3D5K0++820yp3R07AbUtqsotP7IK7jzPtAsIQgJCzx64wOGvW/ifxX0WRkuuQ
+         /6j5glKHXP040WC9zrpFdfg4JrymCAP6aUHT7KzjMtiEXPguF0kqIM+slcuAYkA7Iue3
+         1O/wsCQZIB+Q6M+obo1M/Y5r84kg/n90PPZv8e4DYusvtgkAsP9k9jrppbTv7oB0rJ69
+         xtF/JnAhz7QNJ1zQDlIDNevalDAUCqKOh/OWDViSho3my/MxAhaW0KJk4TFjEN0V5XDE
+         US+Q==
+X-Gm-Message-State: AOJu0YyfLtd4DbNcVk36UH0WByWJwPbNfGce3mBDsgANAZGDdCpLansc
+        5qCQGjPL177Sm2twaiOjPIgk9OXTLBg6tPBYm1M+N8ni
+X-Google-Smtp-Source: AGHT+IGBE8xmneAiMj/gvXc2ae6iK7mOjDnOmsVEuSdtOstPjKrioGr/sx2U4lIaDcSwJz7KWcDhFA==
+X-Received: by 2002:a05:6512:3994:b0:4fb:772a:af12 with SMTP id j20-20020a056512399400b004fb772aaf12mr2664571lfu.21.1692210710118;
+        Wed, 16 Aug 2023 11:31:50 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com. [209.85.208.42])
+        by smtp.gmail.com with ESMTPSA id r15-20020a056402034f00b005255991c576sm5148652edw.66.2023.08.16.11.31.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Aug 2023 11:31:49 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-51e24210395so1994a12.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 11:31:49 -0700 (PDT)
+X-Received: by 2002:a50:a45b:0:b0:523:bdc9:48a9 with SMTP id
+ v27-20020a50a45b000000b00523bdc948a9mr18121edb.0.1692210709094; Wed, 16 Aug
+ 2023 11:31:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230816104245.2676965-1-hsinyi@chromium.org> <6702bac712daab13698b9bb9ad81d49e@walle.cc>
- <5911201a-f703-abbd-3c7b-769f70df08a8@linaro.org> <80ec748f37f40ae5c3c3c5d1602681b3@walle.cc>
- <0011a25a-e096-73ac-9800-9d8e35efdc8b@linaro.org>
-In-Reply-To: <0011a25a-e096-73ac-9800-9d8e35efdc8b@linaro.org>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Thu, 17 Aug 2023 02:24:22 +0800
-Message-ID: <CAJMQK-jgcH-OBQox3fisr0M0gbhFnSvKWCHwos2mtiRH7t8kVA@mail.gmail.com>
-Subject: Re: [PATCH v2,1/2] mtd: spi-nor: giga: gd25lq64c: Disable quad mode
- according to bus width
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger )" <richard@nod.at>,
-        "Vignesh Raghavendra )" <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20230804095836.39551-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20230804175734.v2.3.Ie77732a87ab53d21bac47db309b75a796fa19337@changeid>
+ <0cc71595-ba11-11d4-1fcd-865721ede3f9@linaro.org> <CAD=FV=UfKXBQ6R0+5yY6WaNFS49=jmg2NTXrUPcyD3MBZA7A5A@mail.gmail.com>
+ <eb082e10-efc2-0f5f-95e1-4d2707c87c59@linaro.org> <eb082e10-efc2-0f5f-95e1-4d2707c87c59@linaro.org/>
+ <20230816095910.41305-1-sheng-liang.pan@quanta.corp-partner.google.com>
+In-Reply-To: <20230816095910.41305-1-sheng-liang.pan@quanta.corp-partner.google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 16 Aug 2023 11:31:36 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VedSS62LKPHeHm8qXF_acVmjXODJS8V-EeC6eHSc9yNg@mail.gmail.com>
+Message-ID: <CAD=FV=VedSS62LKPHeHm8qXF_acVmjXODJS8V-EeC6eHSc9yNg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7180: Add board id for lazor/limozeen
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+Cc:     krzysztof.kozlowski@linaro.org, agross@kernel.org,
+        andersson@kernel.org, conor+dt@kernel.org,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 8:34=E2=80=AFPM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
+Hi,
+
+On Wed, Aug 16, 2023 at 2:59=E2=80=AFAM Sheng-Liang Pan
+<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
 >
->
->
-> On 8/16/23 13:22, Michael Walle wrote:
-> > Hi,
-> >
-> >>> like a fundamental problem and that commit 39d1e3340c73 ("mtd: spi-no=
-r:
-> >>> Fix clearing of QE bit on lock()/unlock()") is broken in that regard.
+> > On 15/08/2023 23:10, Doug Anderson wrote:
+> >> Hi,
 > >>
-> >> what's wrong with the mentioned commit?
+> >> On Sun, Aug 6, 2023 at 11:34=E2=80=AFPM Krzysztof Kozlowski
+> >> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>
+> >>> On 04/08/2023 11:58, Sheng-Liang Pan wrote:
+> >>>> add BRD_ID(0, Z, 0) =3D 10 for new board with ALC5682i-VS
+> >>>>
+> >>>> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.=
+google.com>
+> >>>> ---
+> >>>>
+> >>>> Changes in v2:
+> >>>> - correct newly create dts files
+> >>>>
+> >>>
+> >>>
+> >>>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts b=
+/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
+> >>>> new file mode 100644
+> >>>> index 000000000000..5a58e94c228e
+> >>>> --- /dev/null
+> >>>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10.dts
+> >>>> @@ -0,0 +1,30 @@
+> >>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >>>> +/*
+> >>>> + * Google Lazor board device tree source
+> >>>> + *
+> >>>> + * Copyright 2023 Google LLC.
+> >>>> + */
+> >>>> +
+> >>>> +/dts-v1/;
+> >>>> +
+> >>>> +#include "sc7180-trogdor.dtsi"
+> >>>> +#include "sc7180-trogdor-parade-ps8640.dtsi"
+> >>>> +#include "sc7180-trogdor-lazor.dtsi"
+> >>>> +#include "sc7180-lite.dtsi"
+> >>>> +
+> >>>> +/ {
+> >>>> +     model =3D "Google Lazor (rev10+)";
+> >>>> +     compatible =3D "google,lazor", "qcom,sc7180";
+> >>>> +};
+> >>>> +
+> >>>> +&alc5682 {
+> >>>> +     compatible =3D "realtek,rt5682s";
+> >>>> +     /delete-property/ VBAT-supply;
+> >>>
+> >>> No, don't delete properties. First of all, why you do not have this
+> >>> supply here? I doubt it... Especially that this DTS has vbat-supply
+> >>> regulator!
+> >>>
+> >>> Second, define the properties where applicable instead.
+> >>
+> >> It looks like v3 is out, but responding here since it looks like
+> >> Sheng-Liang didn't make any changes in v3 but also didn't respond and
+> >> explain why he didn't make any changes. Sheng-Liang: for future
+> >> reference you should make sure to address comments folks have on the
+> >> list. If your new version takes their feedback into account then
+> >> there's no reason to just respond with "Done", but if (like in this
+> >> case) you ignored feedback you need to say why.
+> >>
+> >> In this case the extra "/delete-property/" is needed to pass bindings
+> >> checks. Specifically this revision of the board replaces the "rt5682i"
+> >> with the newer "rt5682s". This new codec is _almost_ a drop-in
+> >> replacement for the old codec with just a few tiny changes. One such
+> >> change is that the new codec doesn't need a "VBAT-supply".
+> >>
+> >> Since most trogdor devices have the older "rt5682i" codec, the default
+> >> in "sc7180-trogdor.dtsi" specifies the properties for that codec. Only
+> >> the handful of boards that have been spun to use the new codec have an
+> >> override like this. You can see that the override done here matches
+> >> the one done in a few other trogdor boards. A good grep is:
+> >>
+> >> git grep -A4 realtek,rt5682s -- arch/arm64/boot/dts/qcom/sc7180-*
+> >>
+> >> Ironically, that grep finds that "sc7180-trogdor-pazquel360.dtsi" is
+> >> missing the "/delete-property/" which I'm fairly certain means that
+> >> it's giving a validation warning today.
+> >>
+> >> I'm happy to have a bikeshed discussion about doing this better. In a
+> >> previous reply [1] I suggested that it's probably time to move the
+> >> "realtek,rt5682s" snippet to something like
+> >> "sc7180-trogdor-rt5682s-sku.dtsi". Then we could include it in the
+> >> devices and avoid duplicating this bit of dts. I didn't insist on it,
+> >> but if you feel strongly then maybe Sheng-Liang could add that to his
+> >> series? Once done, we could have further bikeshed discussions about
+> >> whether we should continue to use the "/delete-property/" solution or
+> >> if we have to also create a "sc7180-trogdor-rt5682i-sku.dtsi" and
+> >> force all older SKUs to include that. Personally I don't hate this
+> >> "/delete-property/" but I don't care a whole lot either way.
 > >
-> >         } else if (nor->params->quad_enable) {
-> >                 /*
-> >                  * If the Status Register 2 Read command (35h) is not
-> >                  * supported, we should at least be sure we don't
-> >                  * change the value of the SR2 Quad Enable bit.
-> >                  *
-> >                  * We can safely assume that when the Quad Enable metho=
-d is
-> >                  * set, the value of the QE bit is one, as a consequenc=
-e of the
-> >                  * nor->params->quad_enable() call.
-> >                  *
-> >                  * We can safely assume that the Quad Enable bit is pre=
-sent in
-> >                  * the Status Register 2 at BIT(1). According to the JE=
-SD216
-> >                  * revB standard, BFPT DWORDS[15], bits 22:20, the 16-b=
-it
-> >                  * Write Status (01h) command is available just for the=
- cases
-> >                  * in which the QE bit is described in SR2 at BIT(1).
-> >                  */
-> >                 sr_cr[1] =3D SR2_QUAD_EN_BIT1;
-> >         } else {
-> >                 sr_cr[1] =3D 0;
-> >         }
-> >
-> > "We can safely assume that when the Quad Enable method..". We cannot, i=
-f we
-> > don't have 4 I/O lines. The quad_enable is just the op how to do it, bu=
-t not
-> > *if* can do it. It seems to be missing the same check as the
-> > spi_nor_quad_enable(). But I'm not sure if it's that simple.
-> >
->
-> I see. Then extending the if condition should do the trick, as
-> spi_nor_write_16bit_sr_and_check() is called after setup. Something
-> like:
->
-> if (spi_nor_get_protocol_width(nor->read_proto) =3D=3D 4 &&
->     spi_nor_get_protocol_width(nor->write_proto) =3D=3D 4 &&
->     nor->params->quad_enable)
->
-> Is this what Hsin-Yi is hitting?
+> > Thanks for explanation. I vote against /delete-property/ because it is
+> > error-prone and a bit confusing. The same with overriding compatibles -
+> > if possible, should be avoided. sc7180-trogdor-pazquel360.dtsi is doing
+> > both, but that's not the pattern I find easy to read.
 
-Yes, it is. Adding these checks can solve the issue. The read out
-width for both read and write is 1, which matches the default bus
-width.
+OK, I tried it. I'm on the fence but don't object to it landing [1]
 
-Thanks.
+
+> > I accept overriding supplies or pins, because these differ per board.
+> > But if common DTSI defines compatible, then it is common for everyone o=
+r
+> > it is not really part of common DTSI.
+> >
+> > IOW, the common DTSI should be more like a SoC DTSI - have only parts
+> > present there. I simplify here, because obviously SoC is a real thing
+> > piece of hardware and common board DTSI is not. It's just an
+> > abstraction... but anyway if different boards use different codecs, the=
+n
+> > I would say it is not part of common platform.
+> >
+> > Best regards,
+> > Krzysztof
+> >
+> >
+> Thank Doug's explain, as Doug says, we need "/delete-property/" to pass b=
+inding checks.
+> I read from https://lore.kernel.org/all/20221102182002.255282-9-nfraprado=
+@collabora.com/ which removed VBAT-supply;
+>
+> I'd like to know what I can do for our project. Please advise.
+
+I've posted a series which I think will help [2] [1]. Assuming those
+look good, your action items would be:
+
+1. If they look good, you could provide "Reviewed-by" and/or
+"Tested-by" tags on my patches.
+
+2. You can send a new version of your patches based atop mine. You'd
+want to note in the cover letter and/or "after the cut" in the patch
+that your patches depend on mine.
+
+NOTE: there's no reason that the cleanup patches needed to be posted
+by me. As you get more familiar with upstream kernel development, you
+should be able to write similar patches yourself and include them in
+your series. It's perfectly OK to "cleanup" other boards as part of
+your series.
+
+
+[1] https://lore.kernel.org/r/20230816112143.2.I29a5a330b6994afca81871f74bb=
+acaf55b155937@changeid
+[2] https://lore.kernel.org/r/20230816112143.1.I7227efd47e0dc42b6ff243bd22a=
+a1a3e01923220@changeid
