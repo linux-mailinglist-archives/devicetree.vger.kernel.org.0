@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D5C77E7AD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F6B77E7BC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345197AbjHPRd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 13:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
+        id S1344516AbjHPRgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 13:36:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345303AbjHPRdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:33:19 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3912A198E
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:33:18 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b962c226ceso106054311fa.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:33:18 -0700 (PDT)
+        with ESMTP id S1344855AbjHPRgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:36:16 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25339270E
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:36:14 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe21e7f3d1so11000809e87.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692207196; x=1692811996;
+        d=linaro.org; s=google; t=1692207372; x=1692812172;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hlJlE+pLzohqehJhGlKehccYlE2SfB36KPQVu33mNpA=;
-        b=IT7+QY425Z6hPqSdKlPUHX+BgJhLtUz6CFYhT0PlTQtFlEQp3u4BUH9ezBHaIx96Bz
-         ui88ZdlkKUT7is+qkZbkjMyDcdJH6GbV7MnC6VEckQZsUHMfOvbLqKGWyijgBg9ChGT6
-         9f3R+hd+zrXbeSiiNxnJHjdmBpKhYFNiB37oDDRW3A2yoR2RcBPfTnstsqsfefInvuM+
-         aoSYRGYGFQnicmMDeIhiFiSxjDEreLpCyU24/Cj490L5pq+Hxugq8udc+fyqZtdpvX1V
-         HYYaieabRVjIrZQb2H4Lpg7um+m4lXLayUDF5buetlGWJa1t6/z93ZJwjekdXvyHNZwr
-         49VA==
+        bh=am0/Q3stKuBxx8e63FY+o9BSm3oiO2R3IBlAH+Mi9ok=;
+        b=hXW27+q3rYB4HsP/B7zpUIeSwERHFsDCgbmkI9jk5q0kqi7vaT2zmAKj82Azcp6jLL
+         3tz9flOJ6ClvyOFcuCsCL72Gq38Uwl++tokUxyQgPKuGRjw5LaHCtQ7is3/ee4Lvr5R4
+         GBFBVG9skciT8hgIClC4hPwNMosU3FaTkYw/jlq6wkTVJFOvFRqVGpUIdiIR+HEeppIe
+         eqbZo4sD7nj/p1z6i1+cUpphyad+XV72gWeSYcVAKbadM4LHojPUSA28z0Bmt0S0zinO
+         ENYR4oDu8LzOZugTJzb+IdNuPDn5TugpjOvSs56jI7sXUxIrZ2epEPRFuAF+p/nQow9h
+         X+OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692207196; x=1692811996;
+        d=1e100.net; s=20221208; t=1692207372; x=1692812172;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hlJlE+pLzohqehJhGlKehccYlE2SfB36KPQVu33mNpA=;
-        b=e+II+MOK9bIa0wYJQ9qWfHlIDjHxFHVnGbexHhUfXyMAtcYWwYc9WIy2MLNMEMJuM0
-         98p3n3u0fqomjBYTa3sGHbI40gsORgBCr+FJBabj+git6mvoL+iDR1n0MgBtcwkrC8yX
-         Mr6XXX4OILA0838umesw5vd4PTC0kGpCP3PIzA8PmNTd2JL/GIwt4h9LOcXfphazwJSr
-         2yIkYyVEbz+wSJzZzbL7nH40DvnuikBeE1KuxlHXh4LfNKBJM5o0wtHANwYEdf13z4W7
-         cxklawziETHH5GZonc4vdn1G827KR6opbUgQi5doadI3524Atq4DLAuleAsekOMgmXzy
-         K53w==
-X-Gm-Message-State: AOJu0Yy4Mwo4tG190I812xG+XXAU4ECcq+oFYvvdnGbvGvSzyOU+JySF
-        QMotGBrOHtnbMx+YaLhwxTN6Ig==
-X-Google-Smtp-Source: AGHT+IF2+esa9Q6gVnEqpMdQ6jiaFvZ66jD02ePRHhMaBTrMMqQR+eMYM/3bkmvze/MjJtR0+3h2AQ==
-X-Received: by 2002:a2e:8604:0:b0:2b9:ea17:5590 with SMTP id a4-20020a2e8604000000b002b9ea175590mr1867712lji.16.1692207196484;
-        Wed, 16 Aug 2023 10:33:16 -0700 (PDT)
+        bh=am0/Q3stKuBxx8e63FY+o9BSm3oiO2R3IBlAH+Mi9ok=;
+        b=lEyntQGzw/LEqhF2czZIVJLUt8wZaautfJoyNqb2iUyfEkhnPoPwD2jC5nqPVTJeNF
+         sOPm7MNUj/sK10km/u+2Xig87MamRyyfNC3lhs3IL/w0nlqUWsmSyNFVpaoe/SoXK448
+         72OlwFjf47EkxhabxA0aq1xQXO5L//JTgRzdy/aJuK0IYZ99QX4CKt6xUXAPYTpp7S9F
+         Bi+NIYiaFMTbS3GKm0Ey8owenojN8hMob8Hiq0DqAp1/fYPT3KMBQ9YprMQTUX14rItP
+         jwLO8hwlZukXVlEql6CGk2S5ntL6pdh/XIGEguBm+D3kt6c4FGLBJbBJrUaJc2CJV32w
+         1mkA==
+X-Gm-Message-State: AOJu0YwX86VxFuRKIx0NvZSaL5S67ftnFoj9jSSr3TOPnGoP+b4WbHHD
+        mfhmfH++SWmpDled697ZRFHlDVBrYjjm4mDEJd4=
+X-Google-Smtp-Source: AGHT+IEJu2EKFIYVQP1vOtcr2w8izNQRsMDD+f95NDPhGQunIwect/XiCjpLlFl6RBB01zTret7EzA==
+X-Received: by 2002:ac2:4c9b:0:b0:4fe:179a:18d2 with SMTP id d27-20020ac24c9b000000b004fe179a18d2mr1939743lfl.21.1692207372308;
+        Wed, 16 Aug 2023 10:36:12 -0700 (PDT)
 Received: from [192.168.1.101] (abxi8.neoplus.adsl.tpnet.pl. [83.9.2.8])
-        by smtp.gmail.com with ESMTPSA id p17-20020a2ea411000000b002b9f9cb8e08sm3588267ljn.21.2023.08.16.10.33.15
+        by smtp.gmail.com with ESMTPSA id w7-20020a05651204c700b004fbb610c354sm2988732lfq.0.2023.08.16.10.36.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Aug 2023 10:33:16 -0700 (PDT)
-Message-ID: <e89b4a5a-e634-45b5-a8dc-cf7d1a968ccc@linaro.org>
-Date:   Wed, 16 Aug 2023 19:33:14 +0200
+        Wed, 16 Aug 2023 10:36:11 -0700 (PDT)
+Message-ID: <17542518-42ff-46f6-8304-fb8a214bfa77@linaro.org>
+Date:   Wed, 16 Aug 2023 19:36:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] firmware: qcom_scm: disable SDI if required
+Subject: Re: [PATCH v10 2/2] Input: Add Novatek NT36xxx touchscreen driver
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_mojha@quicinc.com
-Cc:     computersforpeace@gmail.com
-References: <20230816164641.3371878-1-robimarko@gmail.com>
- <20230816164641.3371878-2-robimarko@gmail.com>
+To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>,
+        Amit Pundir <amit.pundir@linaro.org>
+References: <20230808-topic-nt36xxx-v10-0-dd135dfa0b5e@linaro.org>
+ <20230808-topic-nt36xxx-v10-2-dd135dfa0b5e@linaro.org>
+ <2980f5e6-40b0-4ab2-ae73-bceeb97b4de5@gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,43 +106,39 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230816164641.3371878-2-robimarko@gmail.com>
+In-Reply-To: <2980f5e6-40b0-4ab2-ae73-bceeb97b4de5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.08.2023 18:45, Robert Marko wrote:
-> IPQ5018 has SDI (Secure Debug Image) enabled by TZ by default, and that
-> means that WDT being asserted or just trying to reboot will hang the board
-> in the debug mode and only pulling the power and repowering will help.
-> Some IPQ4019 boards like Google WiFI have it enabled as well.
+On 16.08.2023 03:09, Joel Selvaraj wrote:
+> Hi Konrad Dybcio,
 > 
-> Luckily, SDI can be disabled via an SCM call.
+> On 8/8/23 18:38, Konrad Dybcio wrote:
+>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>
+>> This is a driver for the Novatek in-cell touch controller and
+>> supports various chips from the NT36xxx family, currently
+>> including NT36525, NT36672A, NT36676F, NT36772 and NT36870.
 > 
-> So, lets use the boolean DT property to identify boards that have SDI
-> enabled by default and use the SCM call to disable SDI during SCM probe.
-> It is important to disable it as soon as possible as we might have a WDT
-> assertion at any time which would then leave the board in debug mode,
-> thus disabling it during SCM removal is not enough.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
-[...]
+> In kernel v6.4, a basic novatek touchscreen driver was introduced [1].
+> I was able to tweak IT a bit (add devicetree compatible, regulator support, remove chip id hardcode) and get it properly working in my Xiaomi Poco F1 which has Novatek NT36672A touchscreen. Probably the other ICs will also work. So, do we really need a separate touchscreen driver? Maybe the existing one can be improved to add more features if needed?
+Do you have your end outcome somewhere?
+
+I can take a look and compare if anything's missing..
 
 
-> +	/*
-> +	 * Disable SDI if indicated by DT that it is enabled by default.
-> +	 */
-> +	if (of_property_read_bool(pdev->dev.of_node, "qcom,sdi-enabled"))
-> +		qcom_scm_disable_sdi();
-Should we care about the return value?
+> 
+> Personally I have been looking forward to the v10 of this patchseries :) Thanks for working on this! But, yeah, we need to decide if we need this to be a separate driver.
+We'll see, I was hoping I could add firmware loading, SPI transport and
+eventually pen support..
 
 Konrad
