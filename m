@@ -2,113 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B7A77E024
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF0177E09D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242250AbjHPLSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 07:18:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53312 "EHLO
+        id S229456AbjHPLjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 07:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244519AbjHPLRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:17:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5682123;
-        Wed, 16 Aug 2023 04:17:47 -0700 (PDT)
-Received: from [172.20.10.4] (unknown [109.166.130.180])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: ehristev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A185266071DF;
-        Wed, 16 Aug 2023 12:17:44 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1692184666;
-        bh=NRfGcuwBsM/mHuY7Ji1D+ZyvpHFkv2T1TUJuvYW9S8c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PFIZutdjY21qgCq+Fen+1uRJQm2bFCoKxnTEdJNR+2F2XExnx3YhK7pu/5zitiD6l
-         si1KCI+8IUBSh80pm+71APW+xEA+oFvcTm3cGUbyHsWWG0HkYVvCN3Kv/2oJD/G1yG
-         re9iW6ziV/1VYbjsJ5tukB5QU9YKfVxmUPlawSx3EQSSqt5XnA6uNPmjYQCtwmbt21
-         IQNcpOplkz5mI6j9sLPaehiyI2x2UAI4EeyDU6cot6HIc7t3vv4pOQ2P4DKQ4vY7KO
-         0RmD4z12PkGtrlDTbC6oYIa9z5w1pAusaVzblEFcLq/nor/8QqnL3625TPF76pKrQ6
-         2o+ese6i4w87Q==
-Message-ID: <699d7552-cb9b-041a-467c-597e5a209857@collabora.com>
-Date:   Wed, 16 Aug 2023 14:17:41 +0300
+        with ESMTP id S244703AbjHPLjp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:39:45 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CF4138;
+        Wed, 16 Aug 2023 04:39:41 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37G8qjjf002232;
+        Wed, 16 Aug 2023 13:39:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        message-id:date:mime-version:subject:to:cc:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        selector1; bh=a8L54AqLoW+YCVf5muWdGfhIDNv/gOLzOo4eeextb24=; b=wT
+        sLsklvobkJHK4RDIIDi6CiH/ENfG3+EN25t25S77kRYign479HodC8eXywKBES7Q
+        0dN/h3NwCc1z6d6DRWBXVLe9YOmNnmAKfpYE81/58s2fV/03+K7wnlP5kAdbbPmv
+        EGuedlynJi69hHWc3hcgTbgYy+7yfOHTXE3YqnA+GLf2qZv3fUI1VuKV+1rOWNQJ
+        ljsHcjSyf1YPDxtMdgIB0GluU1c5iXD3OIzABKdylWkqCXVBQ9MDrla+kCWWzmHe
+        9nBdmGlWbSLgeSEIlAgGb5MAd0TYwZEciEcu3HGDPfcdVayltHPvn3u+f059hHBZ
+        az2q+V1rEejY6dn8kGnA==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sgth61d4g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Aug 2023 13:39:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D68E9100064;
+        Wed, 16 Aug 2023 13:39:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CB7F22309FB;
+        Wed, 16 Aug 2023 13:39:09 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 16 Aug
+ 2023 13:39:08 +0200
+Message-ID: <e0e35593-bccc-4959-1de6-07062849ccf5@foss.st.com>
+Date:   Wed, 16 Aug 2023 13:39:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/4] arm64: dts: mediatek: mt8183: disable quad mode for
- spi nor
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 0/4] STM32MP13x expose SCMI regulators
+Content-Language: en-US
+To:     <p.paillet@foss.st.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger )" <richard@nod.at>,
-        "Vignesh Raghavendra )" <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-References: <20230815154412.713846-1-hsinyi@chromium.org>
- <20230815154412.713846-4-hsinyi@chromium.org>
-Content-Language: en-US
-From:   Eugen Hristev <eugen.hristev@collabora.com>
-In-Reply-To: <20230815154412.713846-4-hsinyi@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Etienne Carriere <etienne.carriere@foss.st.com>
+References: <20230712142432.1885162-1-p.paillet@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230712142432.1885162-1-p.paillet@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To EQNDAG1NODE4.st.com
+ (10.75.129.133)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-16_10,2023-08-15_02,2023-05-22_02
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/15/23 18:31, Hsin-Yi Wang wrote:
-> Some of the SKUs are using gigadevice gd25lq64c flash chip. The chip
-> default enables quad mode, which results in the write protect pin set to
-> IO pin. In mt8183 kukui, we won't use quad enable for all SKUs, so apply
-> the property to disable spi nor's quad mode.
+Hi Pascal
 
-Hi Hsin-Yi,
-
-To me this property, and the way you 'apply' it, makes me think that you 
-are using the devicetree as a configuration and not a description of the 
-hardware itself.
-I think the driver should decide whether to use quad or not depending on 
-the situation or the pinout of the device (as in your case quad mode 
-overlaps with the WP pin)
-
-Eugen
-
+On 7/12/23 16:24, p.paillet@foss.st.com wrote:
+> From: Pascal Paillet <p.paillet@foss.st.com>
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
->   1 file changed, 1 insertion(+)
+> Updates STM32MP13 DTS files to define the voltage regulators
+> exposed by OP-TEE SCMI service and remove the fixed regulator
+> abstraction previously used.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index 6ce16a265e053..8e4761e2b8ff4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -877,6 +877,7 @@ w25q64dw: flash@0 {
->   		compatible = "winbond,w25q64dw", "jedec,spi-nor";
->   		reg = <0>;
->   		spi-max-frequency = <25000000>;
-> +		disable-quad-mode;
->   	};
->   };
->   
+> Etienne Carriere (3):
+>    dt-bindings: rcc: stm32: add STM32MP13 SCMI regulators IDs
+>    ARM: dts: stm32: STM32MP13x SoC exposes SCMI regulators
+>    ARM: dts: stm32: add SCMI PMIC regulators on stm32mp135f-dk board
+> 
+> Pascal Paillet (1):
+>    ARM: multi_v7_defconfig: Add SCMI regulator support
+> 
+>   arch/arm/boot/dts/st/stm32mp131.dtsi          | 50 +++++++-------
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts       | 68 ++++++++-----------
+>   arch/arm/configs/multi_v7_defconfig           |  1 +
+>   .../regulator/st,stm32mp13-regulator.h        | 42 ++++++++++++
+>   4 files changed, 98 insertions(+), 63 deletions(-)
+>   create mode 100644 include/dt-bindings/regulator/st,stm32mp13-regulator.h
+> 
 
+Series applied on stm32-next. Commit title of patch[4] has been updated 
+to explain the reason of the patch (as suggested by Krzysztof). I also 
+ordered the config flag.
+
+Regards
+Alex
