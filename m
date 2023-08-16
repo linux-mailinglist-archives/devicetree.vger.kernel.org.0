@@ -2,136 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E50177DF9C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 049F377E002
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234579AbjHPKuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 06:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40000 "EHLO
+        id S243717AbjHPLKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 07:10:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244201AbjHPKuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:50:35 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A002718
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:50:06 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6bca38a6618so5364501a34.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:50:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692182930; x=1692787730;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t5m5UzpJlRLvwZeV0suPAl3MejkzVUOiX3hWF9GgbnY=;
-        b=SIZLCfPs9aH+YpE486zaXOdb61mkGGRDh9Y8KutGAeY79M/EAAssMwEC1dEJFKORid
-         aS8a3Nq4ZpKa0X48K9jI3bApIT3qdGNFG7llYR2u7+sipMAY5fnjL83o6jOE/lWM+g+W
-         HhSkWp5jOVUkOIpugI9BUetX2MdSzoOqA3U7o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692182930; x=1692787730;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t5m5UzpJlRLvwZeV0suPAl3MejkzVUOiX3hWF9GgbnY=;
-        b=Yhuuy6u5u9FNlkQmtr3bFdTtuq6H7QEkUX+RhUnzlZzJ6CCse1r9JhgY16QbcUyg1A
-         RLLE7wwmVFl7kcvpYOyEuS4nPDio7sCCO49xgH4U3Q36SGJSdQWt1a9+Smx9ky+4rCBt
-         yz0OkLFzlN11e+YLIAaQUqvrjdaNZ6U9oS9c6bfET7Rkm+Rmjeq1wOQxNuawSFSfA4GO
-         F9iRTZd9cAlzRyBm2F3zIAKkiXbxGaw2uLN0xzTrUIOxYTffoJ/e6DxG21MRZew/++nm
-         ApuXRKrsjzJx+QUa+S1gMF9wlFd+7zi77+ykP7TM+xBtCO7FG9TeV7XXtDoJGFEmt3FI
-         ONUg==
-X-Gm-Message-State: AOJu0YymuxLwCm4C770XjDmAsEQ7xltOzo/xYBcF8SE8SxSWCAphDRO4
-        7NCUvF3PIBfQCnDGi4SIg6ChySIWHsIOBeghTpVTIw==
-X-Google-Smtp-Source: AGHT+IHw+Hn5+HaHJOx4yIHLzCbxLXGJi1570SOwBYj4CutbHBvqVodnckZLDA7MEapvrG2f0e1muho0h/AXY5oEx2o=
-X-Received: by 2002:a9d:77c9:0:b0:6b9:1917:b2f3 with SMTP id
- w9-20020a9d77c9000000b006b91917b2f3mr1353972otl.33.1692182930471; Wed, 16 Aug
- 2023 03:48:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230815154412.713846-1-hsinyi@chromium.org> <202A0C36-D1F6-4BB4-BDEC-F36A76B757A2@walle.cc>
- <CAJMQK-iw7ikyHKPPC8+hnpXuRq-_nq_N+21BKgWxD2nx=vAeJA@mail.gmail.com> <fb85c288-2ea9-3343-ff19-cd58940b44ec@linaro.org>
-In-Reply-To: <fb85c288-2ea9-3343-ff19-cd58940b44ec@linaro.org>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 16 Aug 2023 18:48:24 +0800
-Message-ID: <CAJMQK-h+j-uFvqqC9-ri_ciTBV=v5F8u2u6SBSArD8m+dONFyg@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add a property to override the quad mode
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        with ESMTP id S244106AbjHPLJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:09:58 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F0D1985;
+        Wed, 16 Aug 2023 04:09:57 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37G9pGOG019132;
+        Wed, 16 Aug 2023 07:09:33 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3se8g8y9w1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Aug 2023 07:09:33 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 37GB9Wmb010995
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Aug 2023 07:09:32 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 16 Aug
+ 2023 07:09:30 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 16 Aug 2023 07:09:30 -0400
+Received: from ubuntu.ad.analog.com ([10.48.65.222])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 37GB9Dxh027589;
+        Wed, 16 Aug 2023 07:09:16 -0400
+From:   Ana-Maria Cusco <ana-maria.cusco@analog.com>
+To:     <ana-maria.cusco@analog.com>
+CC:     Michael Hennerich <michael.hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger )" <richard@nod.at>,
-        "Vignesh Raghavendra )" <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] iio: amplifiers: hmc425a: Add Support HMC540S 4-bit Attenuator
+Date:   Wed, 16 Aug 2023 14:09:05 +0300
+Message-ID: <20230816110906.144540-1-ana-maria.cusco@analog.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: Iaj7JFOyWX4afQhPhh1-fdB_-3eV22XO
+X-Proofpoint-GUID: Iaj7JFOyWX4afQhPhh1-fdB_-3eV22XO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-16_09,2023-08-15_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 adultscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999
+ priorityscore=1501 clxscore=1011 lowpriorityscore=0 phishscore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2306200000 definitions=main-2308160099
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 3:19=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 15/08/2023 19:21, Hsin-Yi Wang wrote:
-> > On Tue, Aug 15, 2023 at 11:59=E2=80=AFPM Michael Walle <michael@walle.c=
-c> wrote:
-> >>
-> >> Hi,
-> >>
-> >>> On gigadevice gd25lq64c, the quad mode is enabled after BFPT is parse=
-d.
-> >>> According to datasheet[1], Quad enable (QE) bit needs to be set to 0 =
-to
-> >>> use write protection (WP) pin. It also recommends setting default val=
-ue of
-> >>> QE to 0 to avoid a potential short issue.
-> >>
-> >> So you are using either dual or single io mode. Why can't you use the =
-device tree property spi-{tx,rx}-bus-width?
-> >
-> > I tried setting spi-tx-bus-width and spi-rx-bus-width to either 0 or 1
-> > and WP still doesn't work.
-> > For this chip, quad_enable will be set to spi_nor_sr2_bit1_quad_enable
-> > (QER flag is BFPT_DWORD15_QER_SR2_BIT1_BUGGY)[1]
-> >
-> > spi_nor_write_sr_and_check() calls
-> > spi_nor_write_16bit_sr_and_check()[2] and the function sets QE bit if
-> > quad_enable is not NULL.
-> >
-> > [1] https://elixir.bootlin.com/linux/latest/source/drivers/mtd/spi-nor/=
-sfdp.c#L575
-> > [2] https://elixir.bootlin.com/linux/latest/source/drivers/mtd/spi-nor/=
-core.c#L879
-> >
-> > Setting spi-{tx,rx}-bus-width still falls to this function and cases.
->
-> with tx/rx bus width =3D 2, how quad mode is still possible? IOW, why do
-> you need new property? You wrote here about driver, but I ask about
-> bindings.
->
-This may be a bug in the driver that setting spi-{tx,rx}-bus-width
-still enables the QE bit. I proposed another method in the chip's
-fixup to deal with this issue instead of creating a new binding
-property.
-v2: https://lore.kernel.org/lkml/20230816104245.2676965-1-hsinyi@chromium.o=
-rg/
+From: Michael Hennerich <michael.hennerich@analog.com>
 
+This adds support for the Analog Devices HMC540s 1 dB LSB
+Silicon MMIC 4-Bit Digital Positive Control Attenuator, 0.1 - 8 GHz
 
-> Best regards,
-> Krzysztof
->
+Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+---
+ drivers/iio/amplifiers/hmc425a.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hmc425a.c
+index 108f0f1685ef..e87d35d50a95 100644
+--- a/drivers/iio/amplifiers/hmc425a.c
++++ b/drivers/iio/amplifiers/hmc425a.c
+@@ -21,6 +21,7 @@
+ 
+ enum hmc425a_type {
+ 	ID_HMC425A,
++	ID_HMC540S,
+ };
+ 
+ struct hmc425a_chip_info {
+@@ -70,6 +71,9 @@ static int hmc425a_read_raw(struct iio_dev *indio_dev,
+ 		case ID_HMC425A:
+ 			gain = ~code * -500;
+ 			break;
++		case ID_HMC540S:
++			gain = ~code * -1000;
++			break;
+ 		}
+ 
+ 		*val = gain / 1000;
+@@ -106,6 +110,9 @@ static int hmc425a_write_raw(struct iio_dev *indio_dev,
+ 	case ID_HMC425A:
+ 		code = ~((abs(gain) / 500) & 0x3F);
+ 		break;
++	case ID_HMC540S:
++		code = ~((abs(gain) / 1000) & 0xF);
++		break;
+ 	}
+ 
+ 	mutex_lock(&st->lock);
+@@ -157,6 +164,7 @@ static const struct iio_chan_spec hmc425a_channels[] = {
+ /* Match table for of_platform binding */
+ static const struct of_device_id hmc425a_of_match[] = {
+ 	{ .compatible = "adi,hmc425a", .data = (void *)ID_HMC425A },
++	{ .compatible = "adi,hmc540s", .data = (void *)ID_HMC540S },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, hmc425a_of_match);
+@@ -171,6 +179,15 @@ static struct hmc425a_chip_info hmc425a_chip_info_tbl[] = {
+ 		.gain_max = 0,
+ 		.default_gain = -0x40, /* set default gain -31.5db*/
+ 	},
++	[ID_HMC540S] = {
++		.name = "hmc540s",
++		.channels = hmc425a_channels,
++		.num_channels = ARRAY_SIZE(hmc425a_channels),
++		.num_gpios = 4,
++		.gain_min = -15000,
++		.gain_max = 0,
++		.default_gain = -0x10, /* set default gain -15.0db*/
++	},
+ };
+ 
+ static int hmc425a_probe(struct platform_device *pdev)
+-- 
+2.34.1
+
