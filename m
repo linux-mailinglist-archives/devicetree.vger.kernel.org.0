@@ -2,251 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007FD77E1FF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 14:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDEA277E21C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 15:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244706AbjHPMyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 08:54:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
+        id S229986AbjHPND7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 09:03:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245314AbjHPMym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 08:54:42 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B498E1BFB;
-        Wed, 16 Aug 2023 05:54:40 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fe48d0ab0fso10192587e87.1;
-        Wed, 16 Aug 2023 05:54:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692190479; x=1692795279;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=otC1BARuGKDrulb25sBJGAOkpbq1QL5ujMHgaPKF79w=;
-        b=B7AYusGRFo5AuJWiBk+QxjiQPJZUfezxxKhyf1w7LVl2wley0BKeRCSkI4EAjq41wv
-         msojDeLJ4ScpL4Jyn6lA9uJKtAtXIjNZU9sJHodJT/t2FQguMbmIIAbGMArDGu7DpW7a
-         DCejtrDKPw6UdT3t1u/JhspF4S3bnKBlrLJNspfDzHYUXjsddnvrZGQr2sv1ifDKGuwk
-         akTJKzUBkISX5OyvVUr2E7kP57wKifDfU5jA0sgK0h2CDbzRfgdzXmJThK4b5Sea5yRk
-         057jlcLoVO58tBNfSVQnOxu5876qZI4twz/bEGDU8wYrVy1w2PPgOiWdL3gogzcWtll8
-         cvrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692190479; x=1692795279;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=otC1BARuGKDrulb25sBJGAOkpbq1QL5ujMHgaPKF79w=;
-        b=BmSiL8Ze6SNR3EWUrp8TI+ru6V7s7tFBezEWUqWAXq2397es/TuX78rkkT8HDAg8je
-         2cKwNe6QQTxcRRlHImm37IZdfcaLSTwOsMOrkkkhh4cztUDdSKdAv92ijtlSKSdnhVU8
-         TkRnRFOTS9x+Ggg/mKKfJB9c6nJwnXqynGwB1JquVPfUEcZt1LE615GS/uDL1H0COlMT
-         ak4cBQU9VR8jftFPGOOVshLXfr7WF5wdT7CyiWpCPx5qkjPsPxvljwlqj7JHcxWoh3qB
-         b4ldigCIYYYWjkEZjvzsBsQ4cKZpvCSqvJFHvKO3cJ3+gDLhfFbekN841Eja9vRSCDuf
-         SE0A==
-X-Gm-Message-State: AOJu0Yzhkkm9lG2SiSQc/66lCFRYKwPfoSN37rEB8X0CE3ATd9yWblTR
-        XOhj3z4V/bRrN0Fixj+DLZtrV3eOHAE=
-X-Google-Smtp-Source: AGHT+IGYwSGmcuzLfNZH82E0Vs8+ENwke0+OUOh8o1/3HmUSps6AiORgdshjinFaUFj6evvdF2fWNw==
-X-Received: by 2002:a05:6512:3112:b0:4fb:8c52:611 with SMTP id n18-20020a056512311200b004fb8c520611mr1263309lfb.38.1692190478600;
-        Wed, 16 Aug 2023 05:54:38 -0700 (PDT)
-Received: from mobilestation ([93.157.254.210])
-        by smtp.gmail.com with ESMTPSA id c5-20020ac25305000000b004ff7e742143sm984501lfh.61.2023.08.16.05.54.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Aug 2023 05:54:37 -0700 (PDT)
-Date:   Wed, 16 Aug 2023 15:54:35 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH 3/5] dt-bindings: net: Add Loongson-1 DWMAC glue layer
-Message-ID: <thdwhlbs5salnufag24tqk4txqs3skidhq5nmzdeyxt3ni5pos@duj55rpqskl3>
-References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
- <20230812151135.1028780-4-keguang.zhang@gmail.com>
+        with ESMTP id S245369AbjHPNDq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 09:03:46 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2082.outbound.protection.outlook.com [40.107.93.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7171BFB;
+        Wed, 16 Aug 2023 06:03:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WigPJZX7K5AiPZRvlEcqBz4KOP/17hIF05bv0Maqx/WqyDp4E4UJ2lgns/k4NbYcWefo8wmP4UstA+fu3N9yatXAXPV940AnCf2bE2MKuZxzMvnm66AuXTzqHRvd7eQFdFp/tEbQ1OGUL7GMokH4wsavvWyxyNMElQ4Z+WXyFu3YrochCLnxYvKAConryK6dqH3/5Wl69zlc4n1gk2RwRZFlf6HK9L+UpM1riryBJLENciUInjHnX6yoV51NNk8Z4P+cbkdlZa6di9i9uksbS04+cee637TLeTPE/J0AIibyern73AHzSM0RhPZb/ymjlDyXu1WKNJuqUglBF8h7TA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uYkocjOKlpt6A7J9xQ+CeuEm06ixB8N1Aj1Ncgj2NBU=;
+ b=gd/QHPnELOve19MnPK9I4zr+6Tgj26QL+SBYe/xQthdpLGPmpobBb+b/8E2nlUNO7V6NxM7mdHK5SQu8n7zaqblphH25thRcNGxqNGsIydKacP5oeyGZBhIAvcI/bsxs+6s2EAObhoI4OwvX0evBf0rYR519KLT0DT+jJfrYuKeaNhwPjHjPChDaUu9U2Qs0ugzZnzudv0UHfYxapYRacz4LjzhNCRszNnRlS2gTDqH8x4oMZjilY+klWagKksev/zcUI+Xx3Egj8BGglTqwmo3sk9eQK7lMRlkqncl7VL5l6ygH586n691+4FmOPn3SwR11huugV0DyCtkGRIitag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uYkocjOKlpt6A7J9xQ+CeuEm06ixB8N1Aj1Ncgj2NBU=;
+ b=5PRTKz5Teg7He4jW48cIHE36nqxjyIC/OkXHaeM11Vvy3IJ+gziIy/AjheOE5Cyq3rMqP7Mwmjh5tKK3WtWb1s9V2HBQby2NoseNIWWGd5P6WKmpWEzl6dxJrR6H2bZAYiQXuOioAzsGhd4SecD3gLMdAK/WC7fsvCJCyX83lYQ=
+Received: from SA0PR11CA0172.namprd11.prod.outlook.com (2603:10b6:806:1bb::27)
+ by CY5PR12MB6549.namprd12.prod.outlook.com (2603:10b6:930:43::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.29; Wed, 16 Aug
+ 2023 13:03:42 +0000
+Received: from SA2PEPF00001506.namprd04.prod.outlook.com
+ (2603:10b6:806:1bb:cafe::a6) by SA0PR11CA0172.outlook.office365.com
+ (2603:10b6:806:1bb::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.33 via Frontend
+ Transport; Wed, 16 Aug 2023 13:03:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SA2PEPF00001506.mail.protection.outlook.com (10.167.242.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6699.14 via Frontend Transport; Wed, 16 Aug 2023 13:03:42 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 16 Aug
+ 2023 08:03:42 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 16 Aug
+ 2023 08:03:42 -0500
+Received: from xsjwillw50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Wed, 16 Aug 2023 08:03:41 -0500
+From:   Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>
+To:     <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <michal.simek@amd.com>, <sebastian.reichel@collabora.com>,
+        <naman.trivedimanojbhai@amd.com>, <jassisinghbrar@gmail.com>,
+        <dlemoal@kernel.org>, <nava.kishore.manne@amd.com>,
+        <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: power: xilinx: merge zynqmp-genpd.txt with firmware binding
+Date:   Wed, 16 Aug 2023 06:03:09 -0700
+Message-ID: <20230816130309.1338446-1-naman.trivedimanojbhai@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230812151135.1028780-4-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001506:EE_|CY5PR12MB6549:EE_
+X-MS-Office365-Filtering-Correlation-Id: a25aa52a-3370-44c6-5ded-08db9e5937c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XOMqzssUkcXf6Ar+OCNAq4wObudJp47sfI5jCnSjnBu3tT3aDMgvm7RnEMILIV7t8nepEdwVTBwTGfeUgI6EYboTjLi50mqiVfHfEIDspdx8DAnG1HNZgT/crqtixVMJgo2aW5PG2CpmApkwF7jR1T6DUtLaGaQt+zsrobWbArXJHQksTigASo8ue8qDti7NmjpQCYmrMkSFb9i2d1j1Zb9tbK0EGTOSx5Rd82T+KUnVq2JiyoOVxqIRfCGnG6VwxI2vZSJt8Tg/3X6/zO5LdzABMzUI/YjDmI5hAA9hKz3dogahjyQ4SxU6jHdgWpyxIuYwETBchL9jmJqz7nc7FA/KhNLSnUCRB5pCWquQF0O/K2i0FfiFy669m44XxtSsLRgG2S9chxp44APDTzK1fAAqYeTvNU/XlW7ZoXC0QTxodBl1/VtoTCSnlkO3iq0e+EpngDMk2FhNRgCCKp2mi38d/fvwlqhpvmHCwMAgOMWxg9MQjeN6hQtvyf9y4daH6Lj8+YxX+QI2Vw49I5G3FUlFpluSLxaaJsQ+WrjcQGSRbrhftUVn3Or/pRcHECMS9P4xGeYuOdzMvhfqhe2/Z5yVVhAkG6NS/S+3iuyqzkssXeUZ2lo2p9t7gpYUlS8EONqC9AErg9F/JQ8hNhm+/nrIFvDqC5UfZhKa6zwuVYYZ9iQI3E2cIqURtLXaHzCg+YOJ8/70IFJZ1QeEc/iopR3E2r7SS93MlA3m3/tkE6c023D8qaKmk84ju1HfXKkxLMGkp/+ircm39XtR6tO9RP/V1YQx9GVVtTOp1Ucye8A=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(346002)(376002)(136003)(1800799009)(451199024)(186009)(82310400011)(46966006)(36840700001)(40470700004)(316002)(921005)(356005)(82740400003)(81166007)(110136005)(70586007)(70206006)(36860700001)(41300700001)(5660300002)(47076005)(8676002)(4326008)(8936002)(2906002)(40460700003)(83380400001)(26005)(40480700001)(478600001)(426003)(336012)(86362001)(36756003)(6666004)(1076003)(2616005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2023 13:03:42.7613
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a25aa52a-3370-44c6-5ded-08db9e5937c6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001506.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6549
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Keguang
+Remove the zynqmp-genpd.txt binding. Add the power-domain-cells
+property from the zynqmp-genpd.txt binding to firmware binding.
 
-On Sat, Aug 12, 2023 at 11:11:33PM +0800, Keguang Zhang wrote:
-> Add devicetree binding document for Loongson-1 DWMAC glue layer.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
->  .../bindings/net/loongson,ls1x-dwmac.yaml     | 98 +++++++++++++++++++
->  .../devicetree/bindings/net/snps,dwmac.yaml   |  2 +
->  2 files changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml b/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
-> new file mode 100644
-> index 000000000000..150799460599
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/loongson,ls1x-dwmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
+Signed-off-by: Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>
+---
+ .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 14 ++++++++
+ .../bindings/power/xlnx,zynqmp-genpd.txt      | 34 -------------------
+ 2 files changed, 14 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt
 
-> +title: Loongson-1 DWMAC glue layer
+diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+index 910bebe6cfa8..822864488dcb 100644
+--- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
++++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+@@ -38,6 +38,9 @@ properties:
+       - smc
+       - hvc
+ 
++  "#power-domain-cells":
++    const: 1
++
+   versal_fpga:
+     $ref: /schemas/fpga/xlnx,versal-fpga.yaml#
+     description: Compatible of the FPGA device.
+@@ -66,6 +69,17 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/power/xlnx-zynqmp-power.h>
++    firmware {
++      zynqmp_firmware: zynqmp-firmware {
++        #power-domain-cells = <1>;
++        };
++    };
++
++    sata {
++      power-domains = <&zynqmp_firmware PD_SATA>;
++    };
++
+     versal-firmware {
+       compatible = "xlnx,versal-firmware";
+       method = "smc";
+diff --git a/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt b/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt
+deleted file mode 100644
+index 54b9f9d0f90f..000000000000
+--- a/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt
++++ /dev/null
+@@ -1,34 +0,0 @@
+------------------------------------------------------------
+-Device Tree Bindings for the Xilinx Zynq MPSoC PM domains
+------------------------------------------------------------
+-The binding for zynqmp-power-controller follow the common
+-generic PM domain binding[1].
+-
+-[1] Documentation/devicetree/bindings/power/power-domain.yaml
+-
+-== Zynq MPSoC Generic PM Domain Node ==
+-
+-Required property:
+- - Below property should be in zynqmp-firmware node.
+- - #power-domain-cells:	Number of cells in a PM domain specifier. Must be 1.
+-
+-Power domain ID indexes are mentioned in
+-include/dt-bindings/power/xlnx-zynqmp-power.h.
+-
+--------
+-Example
+--------
+-
+-firmware {
+-	zynqmp_firmware: zynqmp-firmware {
+-		...
+-		#power-domain-cells = <1>;
+-		...
+-	};
+-};
+-
+-sata {
+-	...
+-	power-domains = <&zynqmp_firmware 28>;
+-	...
+-};
+-- 
+2.25.1
 
-DT-schemas describe a device. It has nothing to do with the glue
-driver/layer/whatever.
-
-Also I suggest to add a brief device description in the
-"description:" property and add there a brief info regarding the SoCs
-the controllers can be found on, the DW (G)MAC IP-core version the
-ethernet controllers are based on and if possible some data about the
-synthesize parameters: SMA (MDIO-bus), Tx/Rx COE, DMA FIFOs size,
-perfect and hash MAC-filters size, L3L4 frame filters availability,
-PHY interfaces (MII, RMII, RGMII, etc), EEE support, IEEE 1588(-2008)
-Timestamping support, PMT and Wake-up frame support, MAC Management
-counters (MMC).
-
-Note DMA FIFO sizes can be also constrained in the properties
-"rx-fifo-depth" and "tx-fifo-depth"; perfect and hash MAC-filter sizes -
-in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
-
-> +
-> +maintainers:
-> +  - Keguang Zhang <keguang.zhang@gmail.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - loongson,ls1b-dwmac
-> +          - loongson,ls1c-dwmac
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - loongson,ls1b-dwmac
-> +          - loongson,ls1c-dwmac
-> +      - const: snps,dwmac-3.50a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: stmmaceth
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: macirq
-> +
-
-> +  syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon containing some extra configurations
-> +      including PHY interface mode.
-
-I believe the property is supposed to have a vendor-specific name like
-"loongson,ls1-syscon" or similar.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - phy-handle
-
-> +  - phy-mode
-
-You may want to specify the enum-constraints with the value permitted
-for the particular Loongson (G)MAC controller. Seeing ls1b and ls1c
-imply different sets of the PHY-modes the constraints are better to be
-defined in the allOf sub-schemas. Alternatively you can split the
-DT-schema file into two: one for ls1b-dwmac, another one for
-ls1c-dwmac. IMO the later option seems better.
-
--Serge(y)
-
-> +  - syscon
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    gmac0: ethernet@1fe10000 {
-> +        compatible = "loongson,ls1b-dwmac", "snps,dwmac-3.50a";
-> +        reg = <0x1fe10000 0x10000>;
-> +
-> +        clocks = <&clkc LS1X_CLKID_AHB>;
-> +        clock-names = "stmmaceth";
-> +
-> +        interrupt-parent = <&intc1>;
-> +        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +
-> +        phy-handle = <&phy0>;
-> +        phy-mode = "mii";
-> +
-> +        snps,pbl = <1>;
-> +        syscon = <&syscon>;
-> +
-> +        mdio {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "snps,dwmac-mdio";
-> +
-> +            phy0: ethernet-phy@0 {
-> +                reg = <0x0>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index ddf9522a5dc2..e1a956cf171e 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -66,6 +66,8 @@ properties:
->          - ingenic,x2000-mac
->          - loongson,ls2k-dwmac
->          - loongson,ls7a-dwmac
-> +        - loongson,ls1b-dwmac
-> +        - loongson,ls1c-dwmac
->          - qcom,qcs404-ethqos
->          - qcom,sa8775p-ethqos
->          - qcom,sc8280xp-ethqos
-> -- 
-> 2.39.2
-> 
