@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0562477E675
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6743777E6A8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344701AbjHPQdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 12:33:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
+        id S245029AbjHPQlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 12:41:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344724AbjHPQdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:33:31 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E4310EC;
-        Wed, 16 Aug 2023 09:33:30 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fea0640d7aso27037485e9.0;
-        Wed, 16 Aug 2023 09:33:30 -0700 (PDT)
+        with ESMTP id S245043AbjHPQk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:40:56 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D6DB199B;
+        Wed, 16 Aug 2023 09:40:55 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-98377c5d53eso877724066b.0;
+        Wed, 16 Aug 2023 09:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692203609; x=1692808409;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SJiIlHMyQfQBxg1cQn+zdj6Ql8K07Mh0YWe2mQONyeY=;
-        b=HGtjfdNoLqTLOk0xezZfmS/VtqcwNWuYLrD1NxJhfsUpGrErobTkis/lWs5b3aBu5z
-         EVhgfnKEguvBfyRmWETL9HLdfN63Hg9YjTKJxHcmbZ9VEiRI5W0EWOOa55ghYv8vlXcI
-         UrjdKQLi6I856L7MXM8+YwsPfnf3mQ2ivLmleRW6TGfb4EEqHI0Bh1BVeXWb80OFNINt
-         /cMnr6FSZxx25BpFMN6UccvIL7JjPUR7kDaLhmCmdqax4gMKOBIJ9VGaet/4qGXE1+OE
-         yaAgFDb32bL9l+xi1zEnFW8cTWAKdvasaoUqfGajzG1BbnJtGhOm6b4CkSb/gxQnHxiU
-         Xqfw==
+        d=gmail.com; s=20221208; t=1692204054; x=1692808854;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ZnAg5Sl149z7ViygrBQ3MpmOtkYN8kNq0j+PK91FRkA=;
+        b=k9PU1QbtDp9pJtbV4tv5vbKng3HPJRyWMCPUe9pVPfy8bT0yzusB13SoSbhte0puc+
+         5XHiO2d1lEF3NIwP3O5sb737ciKUU+Ihg2EWPjr9eFk6Qwcz2gfpqkU8twkJut7+xrpP
+         Dl5BqQT/k9CquUrrr9tNIeWINdJhpf0d+k20aXtBWDDbzhzZJoYx290mpEuxi4LGnuVv
+         u3lSiP4wsfPgcBU6H1VK4HXXHtjW6EvP61RppgvERXwFZMyztWKDyrrEEAAzJW5y9ALZ
+         n1ISny/JnhFIqA1UoVKVajGVT+xb4r85ywDp3Pfsa9RS7l2y9TAnvQF1bdqGDRDAOQqm
+         0KOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692203609; x=1692808409;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SJiIlHMyQfQBxg1cQn+zdj6Ql8K07Mh0YWe2mQONyeY=;
-        b=ObEfIWk0UoX8o5S8FsGyc/K0vET4dfsR5TZmlCOBJ6HmJC1iUHEo5c2D+66N0pQCZ1
-         gS4xfPU/jdGcglogUjtfTM7DbuFfluCbG+5mOdceAljdZDy7cldNUlADvRshbYs6Vt2A
-         UwXN5X6IlvilibwikqJcN/eWKSJZS9IuW6jIbuRZiim8ZAINYxTxOTEnuz/m+MIecTIp
-         IKuW9rWtfZ2m6U4kyUbfUO76VR5VA2mZMCkRY0sKtgkcOpKfSgs7D/QOllqlQi+gi8YD
-         /AZhkyfnF6joD7vzi5R/oxBd3sukUPnId8NbzSGAE27P42Oz8uvFzt/6MLjuNf2BoPHp
-         ESFw==
-X-Gm-Message-State: AOJu0Yz22hq39ayAH8bHPBp5a6M8L3GVUDxov+bSeva3DEgqmKHWdckS
-        G6uomEZ3bW8BZ3dMyp5J5eg=
-X-Google-Smtp-Source: AGHT+IHEpWpfZ1DHgdMXnjReXK4pTFA+kdNsij/sWEtkA+1duw8Cdve7xYI3f3KOoy8g61gydwYUrw==
-X-Received: by 2002:a7b:c445:0:b0:3f9:70f:8b99 with SMTP id l5-20020a7bc445000000b003f9070f8b99mr1870969wmi.7.1692203609014;
-        Wed, 16 Aug 2023 09:33:29 -0700 (PDT)
-Received: from orome (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id o13-20020a05600c378d00b003fe2de3f94fsm21665509wmr.12.2023.08.16.09.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Aug 2023 09:33:28 -0700 (PDT)
-Date:   Wed, 16 Aug 2023 18:33:27 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1692204054; x=1692808854;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZnAg5Sl149z7ViygrBQ3MpmOtkYN8kNq0j+PK91FRkA=;
+        b=LEZsts+48Zmmr+SJgJ1YKejXSxh3gBn7nNGFxwABWMVMR4cA+xoIZzAE1ErFw1jiOI
+         6U7F6usWB8/D023V9gel701JmRw3RDo6+0ZHWYEeGvZ01N6LNkZxV5xPgOwlrQUv/IqS
+         vaSkU6qaBtMDBet7ejwLuB2Id8Ut0AJ8nItEo1VsF6j/ngvAiqr9MC8yXouvuSGK07GT
+         IzxUXh9wAqFCZL2C4Rrd7Dv0T2xfSHh9OSiC+P6TzIsbNDl0iuzv7P8uztar5eu/yEo9
+         GgAc4bV5TNmjZF3X6isfz08pdToOCvD2IvebETB1z9i0w2BiC0z8ifALlSBOe2hqh19e
+         pr2Q==
+X-Gm-Message-State: AOJu0YxcITmcIiKokjmuW/M30CDYrAK/DImmOT2BpyGNwDgn6itQwk+v
+        P0hpjj8hZstdFoq1IXiX2xw=
+X-Google-Smtp-Source: AGHT+IEjxT84OgkQa8mveW5q/Es+b+AQV5j79gPtNTYmi7XhBX86o72+WMhwZmmu4GbNc7iqC7Xp0g==
+X-Received: by 2002:a17:907:75f8:b0:99b:4908:1a6d with SMTP id jz24-20020a17090775f800b0099b49081a6dmr1832648ejc.52.1692204053659;
+        Wed, 16 Aug 2023 09:40:53 -0700 (PDT)
+Received: from [127.0.0.1] ([46.211.8.232])
+        by smtp.gmail.com with ESMTPSA id qx22-20020a170906fcd600b0099cd008c1a4sm8726210ejb.136.2023.08.16.09.40.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Aug 2023 09:40:53 -0700 (PDT)
+Date:   Wed, 16 Aug 2023 19:40:52 +0300
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Jonathan Hunter <jonathanh@nvidia.com>,
         devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/1] ARM: tegra: transformer: use labels for mmc in
- aliases
-Message-ID: <ZNz6VyWASDV2Srie@orome>
-References: <20230730125150.4716-1-clamor95@gmail.com>
- <20230730125150.4716-2-clamor95@gmail.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_1/1=5D_ARM=3A_tegra=3A_trans?= =?US-ASCII?Q?former=3A_use_labels_for_mmc_in_aliases?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <ZNz6VyWASDV2Srie@orome>
+References: <20230730125150.4716-1-clamor95@gmail.com> <20230730125150.4716-2-clamor95@gmail.com> <ZNz6VyWASDV2Srie@orome>
+Message-ID: <900CEBDC-61FB-4123-9E1F-18D18FF0B2CD@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ny3DNPUHaADqAo+m"
-Content-Disposition: inline
-In-Reply-To: <20230730125150.4716-2-clamor95@gmail.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,43 +78,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ny3DNPUHaADqAo+m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jul 30, 2023 at 03:51:50PM +0300, Svyatoslav Ryhel wrote:
-> Use phandle references for mmc instead of path in aliases.
->=20
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  arch/arm/boot/dts/tegra114-asus-tf701t.dts           | 12 ++++++------
->  .../boot/dts/tegra30-asus-transformer-common.dtsi    | 12 ++++++------
->  2 files changed, 12 insertions(+), 12 deletions(-)
+16 =D1=81=D0=B5=D1=80=D0=BF=D0=BD=D1=8F 2023 =D1=80=2E 19:33:27 GMT+03:00,=
+ Thierry Reding <thierry=2Ereding@gmail=2Ecom> =D0=BD=D0=B0=D0=BF=D0=B8=D1=
+=81=D0=B0=D0=B2(-=D0=BB=D0=B0):
+>On Sun, Jul 30, 2023 at 03:51:50PM +0300, Svyatoslav Ryhel wrote:
+>> Use phandle references for mmc instead of path in aliases=2E
+>>=20
+>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail=2Ecom>
+>> ---
+>>  arch/arm/boot/dts/tegra114-asus-tf701t=2Edts           | 12 ++++++----=
+--
+>>  =2E=2E=2E/boot/dts/tegra30-asus-transformer-common=2Edtsi    | 12 ++++=
+++------
+>>  2 files changed, 12 insertions(+), 12 deletions(-)
+>
+>The commit message doesn't describe why this is useful and without any
+>clarification I don't see any benefit in doing this=2E
 
-The commit message doesn't describe why this is useful and without any
-clarification I don't see any benefit in doing this.
+1=2E Simplify comprehension of aliases, path is harder to read then a labe=
+l
+2=2E Unify with other t20 and t30 trees (paz00, tf101, grouper, picasso et=
+c)
 
-Thierry
-
---ny3DNPUHaADqAo+m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmTc+lYACgkQ3SOs138+
-s6Ea9g//Si9Hn5wMkV/kg3fuFRiYST1VVeW3vWe/P9gvqeQ0H9leDW+hw90YmVHw
-a349WWe4UFuxGNzz/+CyEYjwLiHWJD4SxjzIzUQSm7qhYs8iJLrTNzVaB43KQH5L
-KF62VIQWDQbCbmoqdnrbvXTeVadv+F988sG3Zc4A3P43mQgqgIaOEMZvFQ0xrWTm
-zA9CrTA1TyQTlZ5uG1PC4dBMOY3YqQQT2nwsA4nKNDF2X6xG3gTZ5FZ8ss0qQ4lX
-m8bzFUKSoSTQApvs1f0eDmarSIdRFeL9WAKIR3K6bG3irO/JNbizM5iEcL/s55JV
-5YBCnuNOxqADZtUD79NdnWYJACCftJAf4qX8HxJINLjpnWVaEPcXFvbEP0yni/b3
-QLErRQkVIZditEkhJtlsNUHW8+RlPj2oKvJ7FOf9WzlZZLSqAE0myipN1i7xkLPX
-mrj/zPw9KcJ2oqpqUGSS/QPf4vxxsat61OzfnUHP0oqlMAweDGSbGdSr4C03dRvH
-W44XTemR05OyQfoXXUHwLrtds7HIA0FO5ux3m8mJTWSOWek0v5VGY7ygGkZxIsC+
-St9eZ5pasvwo5Ow6pbZwYacm0HlKLdHyiiYqCUwngowix2Ko2SPxziMw0pE5JZNe
-XCi3tcdi/JybCUL+nvKXXlsH3iSEfD4UHL7mCxQffl5AUzWTGIg=
-=x+rY
------END PGP SIGNATURE-----
-
---ny3DNPUHaADqAo+m--
+>Thierry
