@@ -2,101 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B0AE77E0B0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5357B77E0D2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 13:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232923AbjHPLpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 07:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41404 "EHLO
+        id S244806AbjHPLwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 07:52:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244720AbjHPLpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:45:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC15E1FC3;
-        Wed, 16 Aug 2023 04:45:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 595EA61FFD;
-        Wed, 16 Aug 2023 11:45:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ECC2C433C7;
-        Wed, 16 Aug 2023 11:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692186301;
-        bh=zWNrCC9D/ZGZLVx6/MNogtB5y4I71xfms58Io+1Vxhg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=HrMr+pjtgrAkRbb4vE11dFmpCmp9zzwJcqbmWnO65g9F9hiJULyc+WCzKGCpYC3Md
-         Axw/XJr/4JIvfHpZOmweW9sE5CuNBU9eaCF/nClsBnP2Z/vld/akXe+48yD11fRSsX
-         lokhOaE5gwkDzCSo57oXRtIdksNfOSA9WgdOIFQTh1bzacBKdaPfxgpeo3DsDuFVdq
-         unf8bLX4SSuQWYMMQi5PAG7ycVEaY3y1uKebUKpSaDcc5I8MMI/5j3C1TjYFhxq/rH
-         t8yHKkAOnzlh9h1BNG0IdQwA0YZ5xVjR6gICiQVShzPBIr1itAYMDOZ/AYx5yw9a42
-         S5+WU9npF/slg==
-Date:   Wed, 16 Aug 2023 06:44:59 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     bhelgaas@google.com, devicetree@vger.kernel.org,
-        gustavo.pimentel@synopsys.com, imx@lists.linux.dev, kw@linux.com,
-        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        lpieralisi@kernel.org, mani@kernel.org,
-        manivannan.sadhasivam@linaro.org, minghuan.lian@nxp.com,
-        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v11 1/3] PCI: Add macro PCIE_PME_TO_L2_TIMEOUT_US
-Message-ID: <20230816114459.GA284194@bhelgaas>
+        with ESMTP id S244869AbjHPLv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 07:51:59 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5F2268A
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 04:51:55 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fe4ad22e36so60189895e9.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 04:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692186714; x=1692791514;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WUxp4xDGfeAwcS28zr7IxYfQXNI5BkebZS1gNm5QJRY=;
+        b=pW9lJq6wRUiJ4/JEhzw1GpAFHTDhrBtcJJpzr2N7WaVEB+SeBLEo9Y/DlEbj/Wx41s
+         ZPjx7lk/TH4m9Iq+SLtEzSLCM98B32vKFfDiVa6wImOgo0AWopy580+cBoFI+nSj4ORB
+         JFVKEet0tLXAgCtJq9PdOLspY/aiJ5hBvzQqQelNKGrI92HwvnqMJ2chkKEzTXwp8VhI
+         /nHdscKRUOiOglCTLwuovKACWc/IjpYaeodXXCBmmE5ut7JVipqY17IBPcK89HdjkgIK
+         H25lE3yKTm08B3PokAXhNhQ3qbClr2h9vo9j7Va7Zh/DCMrawh5mOw28uAop0sqblIqn
+         Qugw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692186714; x=1692791514;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WUxp4xDGfeAwcS28zr7IxYfQXNI5BkebZS1gNm5QJRY=;
+        b=jfWfekxZ6jZTXOBuzFZigQ/bdc4OiXvX609H1t7GNTcsVT0XKPngVz0KymZQPu3uiP
+         WAY5anohUQix11u/ZnLHXKH6NOXBkPQgJZWr2a6UPFEg5QZ6KNuArpKpIlZty6LBg+2L
+         RQUksj4P2FneuHAJ009iHQjlO0vPn3IgQfVeOVu44dqEl2YHgfVJIiKlqUfRKcOpF9Cb
+         VU8tWl5vtyTCwfSUUi4Bh8/mD/Q53TCIZwhz9n6nmffQWUmelMDX5EV7j2lZSW+/69BB
+         TSx9aRedZM3bq3MYYqqLh58CeeYcUldxrNH6YOTv+cdC01aP7mu0aNerSnLbDfbHGVDe
+         yG9g==
+X-Gm-Message-State: AOJu0Yy6kMe3lU4tEy1z8JM/7p5CsXem4ApShb9JPJc8iImq2ifI5yDO
+        eX9saF1Xk9sqlg8IAOX7RSTpgw==
+X-Google-Smtp-Source: AGHT+IE/mdRqqXBlzx9+ClH9bKrcMBIUEXxq4luhrZZvrWUfk/knJkFDtiF9cSaffXivVPqxXu+TCA==
+X-Received: by 2002:a7b:c044:0:b0:3fa:99d6:4798 with SMTP id u4-20020a7bc044000000b003fa99d64798mr1196587wmc.37.1692186714223;
+        Wed, 16 Aug 2023 04:51:54 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id fk3-20020a05600c0cc300b003fc05b89e5bsm21280663wmb.34.2023.08.16.04.51.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Aug 2023 04:51:53 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        sboyd@kernel.org, luca.weiss@fairphone.com
+Cc:     bryan.odonoghue@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/7] Add Qualcomm PMIC TPCM support
+Date:   Wed, 16 Aug 2023 12:51:44 +0100
+Message-ID: <20230816115151.501736-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230809153540.834653-2-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 09, 2023 at 11:35:38AM -0400, Frank Li wrote:
-> Introduce the PCIE_PME_TO_L2_TIMEOUT_US macro to facilitate checking the
-> L2 ready timeout in the PCI subsystem.
-> 
-> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+V9:
 
-Looks good, thanks!
+- Reuses glink ports {} definitions and locations per Bjorn's request
+- Adds additional port @ 2 to 8250.dtsi as a result - Bjorn
+- Drops logic in previous patch
+  "dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add input and output ports"
+  No longer required
+- I've amended the names of the endpoints to match sc8280xp too - bod
 
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+Bootable tree
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/usb-next-23-08-15-pm8150b-typec
 
-> ---
->  drivers/pci/pci.h | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index a4c3974340576..da8156663c825 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -13,6 +13,12 @@
->  
->  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
->  
-> +/*
-> + * PCIe r6.0, sec 5.3.3.2.1 <PME Synchronization>
-> + * Recommends 1ms to 10ms timeout to check L2 ready.
-> + */
-> +#define PCIE_PME_TO_L2_TIMEOUT_US	10000
-> +
->  extern const unsigned char pcie_link_speed[];
->  extern bool pci_early_dump;
->  
-> -- 
-> 2.34.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+V8:
+- Makes pm8150b_typec::status = disabled by default - bod
+- Greg merged the TCPM description and driver to usb-next so two patches less now.
+  I've rebased this series on to usb-next using "--base=auto"
+  All of the kernel robot dts/yaml checks should now pass against usb-next / a4422ff221429c600c3dc5d0394fb3738b89d040
+
+V7:
+- Adds R/B to "dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add input and output ports" - Krzysztof
+- Fixes indicated, adds R/B to "dt-bindings: usb: Add Qualcomm PMIC Type-C" - Krzysztof
+- Fixes indicated, adds R/B to "usb: typec: qcom: Add Qualcomm PMIC Type-C driver" - Guenter
+- Fixes indicated, adds R/B to "usb: typec: qcom: Add Qualcomm PMIC Type-C driver" - Caleb
+- Adds R/B to "arm64: dts: qcom: sm8250: Define ports for qmpphy orientation-switching" - Konrad
+- Adds R/B to "arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost" - Konrad
+- Fixes indicated, adds R/B to "arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM" - Jianhua, Konrad
+- Connector ports/endpoints left inside of connector
+  Documentation/devicetree/bindings/connector/usb-connector.yaml - Jianhua
+- dwc3_role_switch_in -> usb_1_dwc3_role_switch_in
+  qmpphy_typec_mux_in -> usb_1_qmpphy_typec_mux_in
+  Both ports/endpoints defined inside of pm8150b dtsi - Konrad
+
+  I modified the name of both so that the port/endpoint would be directly
+  adjacent to the containing node in the dtsi file for code locality/readbility - bod
+
+- Fixes newline indicated "arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for usb_1" - Jianhua, Konrad
+- Fixes newline indicated "arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for usb_1_qmpphy" - Jianhua, Konrad
+
+- connector
+  I have left the connector defintion and its ports/endpoints in the platform dts
+
+  The reason for this
+  a) Prior art e.g. arch/arm64/boot/dts/qcom/sc8280xp*
+  b) The connector is really a non-SoC/PMIC component its something that is defined
+     for your platform.
+
+  I'm open to further debate on this topic:
+  Link: https://imgflip.com/i/7kw6ck
+
+- port@1 -> port@1 "arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for usb_1_qmpphy" - Jianhua
+
+- OF: graph: no port node found in /soc@0/spmi@c440000/pmic@2/typec@1500
+
+  I left this as-is since the DT model we want is to connect the connector directly to
+  the PHY for orientation or controller for data-role switching
+
+  I similarly didn't put this hack in place to remove the warning but "it would work"
+
+V6:
+ - I'm dropping the previous V1-V6 log because the text is getting too long
+   here's a link to the previous cover letter instead
+   Link: https://lore.kernel.org/linux-arm-msm/20230501121111.1058190-1-bryan.odonoghue@linaro.org/
+
+Bryan O'Donoghue (7):
+  dt-bindings: mfd: qcom,spmi-pmic: Add typec to SPMI device types
+  arm64: dts: qcom: sm8250: Define ports for qmpphy
+    orientation-switching
+  arm64: dts: qcom: pm8150b: Add a TCPM description
+  arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
+  arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM
+  arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for
+    usb_1
+  arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for
+    usb_1_qmpphy
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |  4 ++
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         | 40 +++++++++++++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      | 56 ++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 22 ++++++++
+ 4 files changed, 121 insertions(+), 1 deletion(-)
+
+-- 
+2.41.0
+
