@@ -2,71 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B388F77D956
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 06:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F71977D9D0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 07:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237599AbjHPEBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 00:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37428 "EHLO
+        id S241890AbjHPFg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 01:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241733AbjHPEAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 00:00:49 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4061FC3;
-        Tue, 15 Aug 2023 21:00:47 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37G40ZMM109953;
-        Tue, 15 Aug 2023 23:00:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1692158435;
-        bh=aUFTwOiJ4/lk8UbdCulZVY0zNqXiXpvsU5HWQtWQNUo=;
-        h=Date:Subject:From:To:CC:References:In-Reply-To;
-        b=jnb2fYuiMu9NadMrpWBTEs82L9O++ZrE7wIgsDnoFpWdi4se3nxuO+lcA4KyYYtF3
-         e6LMnsF9NiNIgqjnWoU9Z978r4Zr/KmuVCCEUgs4MJy/B8TuJGkUyBvPByyCdXW9aG
-         WbCnQ3X+prjXA0PHyy4axpb+APIEK2ZG2HyVeuLA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37G40ZDn121284
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Aug 2023 23:00:35 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
- Aug 2023 23:00:35 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 15 Aug 2023 23:00:35 -0500
-Received: from [172.24.227.94] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37G40W7B025649;
-        Tue, 15 Aug 2023 23:00:32 -0500
-Message-ID: <8c6d3e52-17f0-b3a1-c8ab-aff6eec79dff@ti.com>
-Date:   Wed, 16 Aug 2023 09:30:31 +0530
+        with ESMTP id S241933AbjHPFgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 01:36:44 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8CE826AA
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:36:41 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so92944111fa.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:36:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692164200; x=1692769000;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4Ik7oB2lk1wIqJS13yqGm2Jzcg954+ej63dLWafujLc=;
+        b=Jm6G45hlR9D4az3ti0gcPLs4wGjFIUBqIFwbcKTT3jMnFeIazCVB+qCferkNs9C6JC
+         LuRsPJjdBwO2uzLRbNl+S17gdQrKWedPjJYRcKsgYVKFRfAkf8lIAYQzjyWcne8C72yj
+         Cm9C7S1HNnh+mLFk07mZiH4rh8yiJhTe/AOEDLoz8kb2RCj8A1LzasCKZVN32qOXt/qw
+         MA+1il5inA5DhGyht9qIGQJgzt7x6t1LvPOdo+FaqAsyyLs4Vg8hkjRs7R6hqQGNtkjT
+         P8LbHQkpC2kQS5n3fZSGpdBHNEJkVw17Zlb2WR5yj8rSQ3Bz9WcUEQj898bFGkAzSXiU
+         YN2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692164200; x=1692769000;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Ik7oB2lk1wIqJS13yqGm2Jzcg954+ej63dLWafujLc=;
+        b=FoJD12PihV0d7ijehwFT6gYRwIt6ZxASacEs9SMxA4ol2oIouNJQbl/P9igvpDuogq
+         LE4zlGWSjipaQh3fKbJ1VRUpx2kgBZAzEYggbr4dtr/ScuCQGa7B9nFvsZlP9tGArRyJ
+         p57u/R8d1Cqsvpl227Or3vJTMV6ye4TIb39fDfJWviuWzOEeIv7NN/YXQKCqNign6/GN
+         LUbZu/LtAQYys1NhfoH0BqOwS+nSG3yZKIk4gr+IveKuPOICI2nH/NgjgCD0VkRDFG4O
+         bpag2hU7mKyDcfxMne7TLhYxkd0iq9Ayok2cvHhzthCSE2EcRcSajKUO1DwmwPBTFdXW
+         dp6Q==
+X-Gm-Message-State: AOJu0YxtlLTS0PxaeuYYJLJZu2Fh3vHjUDHpRUap3HoLYZUxIilgbPgP
+        IERX8nrhlA6/arr65PsGMPPj6w==
+X-Google-Smtp-Source: AGHT+IFAs62wSEs2OIDQDCPJhNq9ervbfVQQNZaVRMpFSL1Wxj0WM+O93QtbpxtBP9I9KfbxKfhHKA==
+X-Received: by 2002:a05:6512:3410:b0:4fe:6fc:1fc7 with SMTP id i16-20020a056512341000b004fe06fc1fc7mr654460lfr.27.1692164200175;
+        Tue, 15 Aug 2023 22:36:40 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id v2-20020a5d6102000000b003141e629cb6sm19799961wrt.101.2023.08.15.22.36.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Aug 2023 22:36:39 -0700 (PDT)
+Message-ID: <02ade1e1-e319-2f95-4645-95e9f9f00843@linaro.org>
+Date:   Wed, 16 Aug 2023 07:36:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 0/3] arm64: dts: ti: Introduce AM62P5 SoC and board
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 2/3] dt-bindings: cpufreq: cpufreq-qcom-hw: add SDM670
+ compatible
 Content-Language: en-US
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Andrew Davis <afd@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+To:     Richard Acayan <mailingradian@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230811184432.732215-1-vigneshr@ti.com>
- <169179403348.1346194.1236976094485793819.b4-ty@ti.com>
- <5a1ed797-d29a-e047-ccec-adb1dde6d74f@linaro.org>
- <696e95b2-59fa-136a-541e-edc86ef91715@ti.com>
- <222cafa8-1d29-7200-cbaa-781a012f4e4d@ti.com>
-In-Reply-To: <222cafa8-1d29-7200-cbaa-781a012f4e4d@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230815223108.306018-5-mailingradian@gmail.com>
+ <20230815223108.306018-7-mailingradian@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230815223108.306018-7-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,80 +86,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/08/2023 00:31, Richard Acayan wrote:
+> The bindings for Qualcomm CPU frequency have a compatible for each SoC.
 
+Drop this sentence, it is not relevant.
 
-On 15/08/23 12:29, Vignesh Raghavendra wrote:
+> Add the compatible for SDM670.
 > 
-> 
-> On 15/08/23 02:24, Andrew Davis wrote:
->> On 8/14/23 2:26 PM, Krzysztof Kozlowski wrote:
->>> On 12/08/2023 00:49, Nishanth Menon wrote:
->>>> Hi Vignesh Raghavendra,
->>>>
->>>> On Sat, 12 Aug 2023 00:14:29 +0530, Vignesh Raghavendra wrote:
->>>>> This series adds basic support for AM62P family of SoCs and
->>>>> specifically
->>>>> AM62P5 variant. Also adds AM62P5-SK support with basic peripheral
->>>>> like UART.
->>>>>
->>>>> TRM at [0] and Schematics is at [1]
->>>>>
->>>>> [0]: https://www.ti.com/lit/pdf/spruj83
->>>>> [1]: https://www.ti.com/lit/zip/sprr487
->>>>>
->>>>> [...]
->>>>
->>>> Note: since the changes were trivial, I incorporated the cosmetic
->>>> fixup suggested by Andrew locally when I applied. I have also dropped
->>>> bootph property from board's reserved nodes inline with what we did
->>>> for j721s2[2]. Thanks for the bootlog.
->>>>
->>>> I have applied the following to branch ti-k3-dts-next on [1].
->>>> Thank you!
->>>>
->>>> [1/3] dt-bindings: arm: ti: Add bindings for AM62P5 SoCs
->>>>        commit: b57fc5cbdbdfd04d44697800a9d59aeb3be2f273
->>>> [2/3] arm64: dts: ti: Introduce AM62P5 family of SoCs
->>>>        commit: 29075cc09f43a024d962da66d2e4f9eb577713d0
->>>> [3/3] arm64: dts: ti: Add support for the AM62P5 Starter Kit
->>>>        commit: 935c4047d42e53a06ec768ddc495a44f6869209c
->>>>
->>>
->>> A bit too fast. simple-mfd *is not allowed* on its own.
->>>
->> We have the rule against ['syscon', 'simple-mfd'], which requires a 3rd
->> specific compatible, but it seems 'simple-mfd' is allowed in the same way
->> as "simple-bus" (not sure how or why, I would expect a `failed to match any
->> schema with compatible`, but I'm not getting that either?).
->>
-> 
-> Indeed, I didn't see any warnings from dtbs_check so far
-> 
->> We can add something like simple-mfd.yaml for this to explicitly check that
->> the compatible has minItems: 2.
->>
->> But in this case these seem to be just a typo and we meant "simple-bus"
->> here,
->> then it got copy/pasted over our k3 tree.
->>
-> 
-> I dont think "simple-bus" is enough due to presence to TI specific
-> property (ti,sci-dev-id). So this will warrant a separate yaml bindings.
->  I will work towards adding such a file.
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
+You missed to update rest of the file.
 
-Unfortunately that cannot be dropped, it indicates the navss instance to 
-be used during PSIL pairing [0] (PSIL proxy to use). 
+Best regards,
+Krzysztof
 
-Looking again at simple-bus.yaml in dt-schema repo, I do see arbitrary 
-properties are accepted [1]. But I am not sure if its means device
-specific properties are acceptable?
-
-[0] https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/rm/rm_psil.html
-[1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/simple-bus.yaml#L60
-
-> 
-
--- 
-Regards
-Vignesh
