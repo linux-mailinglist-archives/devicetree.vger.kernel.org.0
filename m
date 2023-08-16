@@ -2,104 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5988077D9D9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 07:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF26677D9E1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 07:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236178AbjHPFjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 01:39:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36182 "EHLO
+        id S241909AbjHPFks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 01:40:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241908AbjHPFii (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 01:38:38 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EFB383;
-        Tue, 15 Aug 2023 22:38:37 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id E0747403BB;
-        Wed, 16 Aug 2023 10:38:30 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1692164311; bh=aS3/Q+3Kvd+eXLcU6L4xBEvokWhzPuKVKrew+FxaV58=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=l7mLNQhsUNFQIYi8ylKj2lKqBGJHdbxj/69aEySIBgn8lEd/ScYOpH5faP82wSmPc
-         yKt/K8JO3C+5mLQuLVC1d5mUCpM7idka2OrsbppsBVWzGTblGMHPkKojuuWCO+VjLG
-         +TJWdMKwcDo5C7MUHYcUN+UFR0C16XMG+qnL683LD17YHEDWxVm2e1K9GUFU7y904e
-         dfYq2ojTepDhlIaer/KfL8hkCPqJN2fYyFmqyB0RJp7kPeMkEtFLlzOqLMKknZdtCk
-         x7JGODHMCQRbanfsTnA7Sq7djw84qUH0TANTm2bQ9u7KpfeYnRj9DugBRKw8YO6UfL
-         WqYWfXpbKFIHQ==
+        with ESMTP id S241960AbjHPFk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 01:40:28 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D1E26A9
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:40:19 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so14814169a12.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 22:40:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692164418; x=1692769218;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=USJC4rpReyW+hwtVRVOdsjwJafjpOqRaJ3WmgpmCGIM=;
+        b=k5e/30EsXvfXpGX01sx0sXsAOLqB7+6MUKPHrEq4a3LTu8aE5E4v3XaYP+NeBXmySy
+         Ynnwvbr2wkMuJuPVWUA+vRnW6j6RIJqfpsHhbR9RYGl743YsIFzPJOiq0KDpZnZAK9Ll
+         Tz22ZDIEkXO9CaNwZFf1NWbRqQHXqXnuNs9VB7eK5nIdkJKA8+RQV0t6M43MxhmXmWMb
+         U0U9VDqTzkMSljTBN8FfbH0KKZ0lLUTErOdOCdE4iGbA4bu1jL3ct3xsqtFIjDNvuS5Z
+         1TY+vOpqpukE/JOwLf0URvnvR7AnDJLnRqb7y84t/vXPJq01Z9RRQ4WaLmCbnBwIlUgM
+         Ulfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692164418; x=1692769218;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=USJC4rpReyW+hwtVRVOdsjwJafjpOqRaJ3WmgpmCGIM=;
+        b=eih1xP3mm9ipwtpl0TYbJOFUp8hwwTCN1yg+gFf0m46LYoGvaaZ9ZEkqNIsEhVthpT
+         ztA0O/AveXPxLiBFEXMQmPt0cogx8kW6gKNRXC8jt4LI/Qg8BNddS5oXC1lOmMWL3lHN
+         p+jBEiD4UlzV03N5NjxDM7KaNNZIeGQyiZBHcYoXdjWhb/5Hj7CkK8cFRzm2v/cAcJjZ
+         JChArr6aCGYFWXM3BrdOLrM9wXs21Ka9jY4BCqID+y+54csGUSd8+8meK5oTCFjVOmsn
+         E8771aOzjxl+TaYKbxDDQOQdS+b/A3XGMfzNYh99SVu2+i8Kvqw+jXU0WZhNnaOg3Af2
+         0a2w==
+X-Gm-Message-State: AOJu0YzApztaGfSyeG2cXishbdnOO0qQScVvJ//qcn/wTMEvRDZ8U/TH
+        LVvuYv0MJuWMGniNRMVEZ4NMvg==
+X-Google-Smtp-Source: AGHT+IH4DWL6x7gAbnrg5y+pHdZZyj3rUVGs96XdIkDFPXvPhUN+hMnhvwaeC1baPY9OqB7ySNqtkQ==
+X-Received: by 2002:aa7:df04:0:b0:522:4764:8baa with SMTP id c4-20020aa7df04000000b0052247648baamr1330178edy.12.1692164418258;
+        Tue, 15 Aug 2023 22:40:18 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id v17-20020aa7d9d1000000b0052563bff34bsm3783876eds.63.2023.08.15.22.40.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Aug 2023 22:40:17 -0700 (PDT)
+Message-ID: <bad3c49b-a571-bbba-4c20-d2c6f2d2ce46@linaro.org>
+Date:   Wed, 16 Aug 2023 07:40:15 +0200
 MIME-Version: 1.0
-Date:   Wed, 16 Aug 2023 10:38:29 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Subject: Re: [PATCH v3 0/3] leds: aw2013: Document interrupt and pull-up
- supply
-In-Reply-To: <20230815-aw2013-vio-v3-0-2505296b0856@gerhold.net>
-References: <20230815-aw2013-vio-v3-0-2505296b0856@gerhold.net>
-Message-ID: <b16899c6673a34b69ce5903f5372d0ba@trvn.ru>
-X-Sender: nikita@trvn.ru
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+Content-Language: en-US
+To:     Sriranjani P <sriranjani.p@samsung.com>,
+        'Rob Herring' <robh@kernel.org>
+Cc:     edumazet@google.com, linux-kernel@vger.kernel.org,
+        alexandre.torgue@foss.st.com, ravi.patel@samsung.com,
+        alim.akhtar@samsung.com, linux-samsung-soc@vger.kernel.org,
+        linux-fsd@tesla.com, conor+dt@kernel.org,
+        mcoquelin.stm32@gmail.com, kuba@kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, pabeni@redhat.com,
+        robh+dt@kernel.org, pankaj.dubey@samsung.com,
+        richardcochran@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        joabreu@synopsys.com, devicetree@vger.kernel.org,
+        davem@davemloft.net, swathi.ks@samsung.com
+References: <20230814112539.70453-1-sriranjani.p@samsung.com>
+ <CGME20230814112605epcas5p31aca7b23e70e8d93df11414291f7ce66@epcas5p3.samsung.com>
+ <20230814112539.70453-2-sriranjani.p@samsung.com>
+ <169201998303.2086680.8457687937999615543.robh@kernel.org>
+ <000001d9d003$b3a9a8a0$1afcf9e0$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000001d9d003$b3a9a8a0$1afcf9e0$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Stephan Gerhold писал(а) 15.08.2023 22:21:
-> AW2013 has an optional interrupt pin "INTN" which is used to report 
-> completion of started operations (e.g. power up or LED breath effects). 
-> The driver does not use it (yet) but it should be already described for 
-> completeness inside the DT schema.
+On 16/08/2023 07:36, Sriranjani P wrote:
 > 
-> Since the interrupt and I2C lines operate in open drain low active mode 
-> a pull-up supply is needed for correct operation. Unfortunately there 
-> is no ideal place to describe it in the DT: The pull-up needed for the 
-> I2C lines could be described on the I2C bus. However, the pull-up 
-> needed for the interrupt line belongs neither directly to the interrupt 
-> controller nor to AW2013. Since the AW2013 driver will be typically in 
-> control of the power management and interrupt masking it makes more 
-> sense to describe it inside the AW2013 device tree node.
 > 
+>> -----Original Message-----
+>> From: Rob Herring [mailto:robh@kernel.org]
+>> Sent: 14 August 2023 19:03
+>> To: Sriranjani P <sriranjani.p@samsung.com>
+>> Cc: edumazet@google.com; linux-kernel@vger.kernel.org;
+>> alexandre.torgue@foss.st.com; ravi.patel@samsung.com;
+>> alim.akhtar@samsung.com; linux-samsung-soc@vger.kernel.org; linux-
+>> fsd@tesla.com; conor+dt@kernel.org; mcoquelin.stm32@gmail.com;
+>> kuba@kernel.org; netdev@vger.kernel.org; linux-arm-
+>> kernel@lists.infradead.org; pabeni@redhat.com; robh+dt@kernel.org;
+>> pankaj.dubey@samsung.com; richardcochran@gmail.com;
+>> krzysztof.kozlowski+dt@linaro.org; joabreu@synopsys.com;
+>> devicetree@vger.kernel.org; davem@davemloft.net;
+>> swathi.ks@samsung.com
+>> Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add FSD EQoS device tree
+>> bindings
+>>
+>>
+>> On Mon, 14 Aug 2023 16:55:36 +0530, Sriranjani P wrote:
+>>> Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
+>>> Ethernet YAML schema to enable the DT validation.
+>>>
+>>> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+>>> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+>>> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
+>>> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+>>> ---
+>>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   5 +-
+>>>  .../devicetree/bindings/net/tesla,ethqos.yaml | 114
+>>> ++++++++++++++++++
+>>>  2 files changed, 117 insertions(+), 2 deletions(-)  create mode
+>>> 100644 Documentation/devicetree/bindings/net/tesla,ethqos.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m
+>> dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-
+>> ci/linux/Documentation/devicetree/bindings/net/tesla,ethqos.yaml:
+>> properties:clock-names: {'minItems': 5, 'maxItems': 10, 'items': [{'const':
+>> 'ptp_ref'}, {'const': 'master_bus'}, {'const': 'slave_bus'}, {'const': 'tx'}, {'const':
+>> 'rx'}, {'const': 'master2_bus'}, {'const': 'slave2_bus'}, {'const':
+>> 'eqos_rxclk_mux'}, {'const': 'eqos_phyrxclk'}, {'const':
+>> 'dout_peric_rgmii_clk'}]} should not be valid under {'required': ['maxItems']}
+>> 	hint: "maxItems" is not needed with an "items" list
+>> 	from schema $id: https://protect2.fireeye.com/v1/url?k=f50e335d-
+>> aa950a44-f50fb812-000babff3793-de26ea17ef025418&q=1&e=897786e4-
+>> 5f9b-40d8-8a7f-399cb69c7ee8&u=http%3A%2F%2Fdevicetree.org%2Fmeta-
+>> schemas%2Fitems.yaml%23
+>> Documentation/devicetree/bindings/net/tesla,ethqos.example.dtb:
+>> /example-0/ethernet@14300000: failed to match any schema with
+>> compatible: ['tesla,dwc-qos-ethernet-4.21']
+>>
+> 
+> Thanks for review. Will fix this in v4.
 
-Oh indeed, seems like even on the hardware I was initially targeting,
-the pull is tied to a regulator, I probably missed it because it was
-always on. Thank you both for adding that and fixing up the bindings!
+Test the patches before sending them.
 
-Reviewed-by: Nikita Travkin <nikita@trvn.ru>
+> 
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://protect2.fireeye.com/v1/url?k=ccb7f6d0-932ccfc9-ccb67d9f-
+>> 000babff3793-2137ac63fe6ddef8&q=1&e=897786e4-5f9b-40d8-8a7f-
+>> 399cb69c7ee8&u=https%3A%2F%2Fpatchwork.ozlabs.org%2Fproject%2Fdev
+>> icetree-bindings%2Fpatch%2F20230814112539.70453-2-
+>> sriranjani.p%40samsung.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+> 
+> Sorry, I could not get this comment, can you elaborate this. 
 
-Nikita
+What else to say? You did no stated any dependency here. The base is
+explained.
 
-> Changes in v3:
->   - Rewrite commit messages based on discussion on v2
->   - Also document missing interrupt in DT schema (new patch)
+
 > 
-> Discussion on v2:
-> https://lore.kernel.org/linux-leds/20230321220825.GA1685482-robh@kernel.org/
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> Lin, Meng-Bo (1):
->       leds: aw2013: Enable pull-up supply for interrupt and I2C
-> 
-> Stephan Gerhold (2):
->       dt-bindings: leds: aw2013: Document interrupt
->       dt-bindings: leds: Document pull-up supply for interrupt and I2C
-> 
->  .../devicetree/bindings/leds/leds-aw2013.yaml      | 13 ++++++++
->  drivers/leds/leds-aw2013.c                         | 36 +++++++++++++---------
->  2 files changed, 35 insertions(+), 14 deletions(-)
-> ---
-> base-commit: 841165267827955bb3295b066cb6a906ba9265c0
-> change-id: 20230815-aw2013-vio-92a4566c5863
-> 
-> Best regards,
+>> If you already ran 'make dt_binding_check' and didn't see the above error(s),
+>> then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+> Sure will cross check.
+
+Why do you ask/comment to bot?
+
+Best regards,
+Krzysztof
+
