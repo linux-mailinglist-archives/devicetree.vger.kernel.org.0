@@ -2,98 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5815C77E72D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A43C77E737
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345039AbjHPRDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 13:03:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44472 "EHLO
+        id S1345051AbjHPREU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 13:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345050AbjHPRC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:02:56 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFAE9103;
-        Wed, 16 Aug 2023 10:02:55 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37GCtD6G014036;
-        Wed, 16 Aug 2023 17:02:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=mQL/ubOpOCVvSH/YDZTWN5K9XhRt1hFWYAP3tg6tKgU=;
- b=jPAUN9O1LHn70sEhJs3otJlkwvdz76eHp1IWXDQmSbBNjpHnZQJGXeIAQN+UBye5lO1E
- 8BHwHQ9lYIQlkv6AjO5yXLMGgWQOPPQDX2jh9Lzgc6zCEFbRtWRs9DgRpay0NYkyMEki
- fs0kE3nDei26EXvmgh3GRmoj8qQ3wvFz1w8knTySimkHcvQBuIqb5OGdoPnKJ+u61LkF
- odpQUkAFirFc9AQ3aRyjE2BLfDpgOVxBJEex1EX59r4wrJjL2beL9ThuKnWIpzS5tXEI
- /PMq18xEFEO9Vz54JbvVwCfAec35NbBmG7cMI3JTQtQY/x/wXvsrI/7A9YTHaHjljItb /g== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sgf5uaarx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 17:02:40 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37GH2cJX016162
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 17:02:38 GMT
-Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 16 Aug
- 2023 10:02:37 -0700
-Date:   Wed, 16 Aug 2023 10:02:33 -0700
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Robert Marko <robimarko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_mojha@quicinc.com>,
-        <computersforpeace@gmail.com>
-Subject: Re: [PATCH v3 2/4] firmware: qcom_scm: disable SDI if required
-Message-ID: <20230816170232.GA26279@quicinc.com>
-References: <20230816164641.3371878-1-robimarko@gmail.com>
- <20230816164641.3371878-2-robimarko@gmail.com>
+        with ESMTP id S1345068AbjHPRDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:03:54 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C14273A
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:03:50 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-986d8332f50so917769366b.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:03:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692205429; x=1692810229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xA0nxblLEhHPpBIZZtW+HOiojWVRcj+llWDtNwnRsQI=;
+        b=krQB+VM3K7SsNBknMDJeZDCGnkEnF65p/NWWUrlcfNPpwjM+NbuU+7Ei7qsy2sWhMD
+         /Pw6dKrTOytF6GtMrtn8DIDiB0UNP3QSQ62/uaNFiQPGhLHi7lyuMU871WqOFesquHIE
+         p8wI6iDAtwGE/iD3mNkLEKnqEQJ1Z6otLNjcc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692205429; x=1692810229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xA0nxblLEhHPpBIZZtW+HOiojWVRcj+llWDtNwnRsQI=;
+        b=d8YJL0E9JFONts0n8BzCAjWFhlGXC9xbFXStd9Ltfn74A22P/nf4sgKOta7KTQI2Mk
+         izyHZ4eGSVkxKXL0an/ngXrPBny7U2n2/2KPlJNaZda0Yn006CMKxVCDEDOXEJ7zkk5t
+         XIKp9pYUebadekzoMOkla8fZiDWBwbWFG8rIAgqA2AOS37t0pl2ubBfLCrJOhXchpupK
+         WwbijiGq/U//bNctLclwDEDGh4CUhatxtmuCfEDbtRTsHElgWDKeXyZPrjCYio00nhoB
+         z2/C7Av8/RB5QtBcMQfIucfgKgweZlpEf8bANXin6svvFkD+YKfUj9yV7B90coE6ubVA
+         dDbw==
+X-Gm-Message-State: AOJu0YzV7ti2cM/+1W8ipPXfandl6+1OttDtYrGtkbevnazeTlGXhxLW
+        eV4i7zdF+TBg8ykka2o9Pm0vcaXPUj/2mc19wwype5nz
+X-Google-Smtp-Source: AGHT+IEIPClSZMiGgob7k5gsa3QuUp8RptRGMNctQXu4RIrUbA16fE3coUqDEtcrvpDwx1yvAZcVoA==
+X-Received: by 2002:a17:906:27c9:b0:966:17b2:5b0b with SMTP id k9-20020a17090627c900b0096617b25b0bmr1893941ejc.49.1692205428806;
+        Wed, 16 Aug 2023 10:03:48 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com. [209.85.128.50])
+        by smtp.gmail.com with ESMTPSA id y21-20020a17090668d500b0099cf44adf2csm8708923ejr.46.2023.08.16.10.03.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Aug 2023 10:03:48 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-3fe1e44fd2bso4295e9.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 10:03:48 -0700 (PDT)
+X-Received: by 2002:a05:600c:4fc2:b0:3f1:6fe9:4a95 with SMTP id
+ o2-20020a05600c4fc200b003f16fe94a95mr6307wmq.4.1692205427880; Wed, 16 Aug
+ 2023 10:03:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230816164641.3371878-2-robimarko@gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RRV8N2iztFnBwow1eBB_xDypdGCKMq6c
-X-Proofpoint-GUID: RRV8N2iztFnBwow1eBB_xDypdGCKMq6c
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-16_17,2023-08-15_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 impostorscore=0
- mlxscore=0 mlxlogscore=516 clxscore=1011 adultscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308160149
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230816104245.2676965-1-hsinyi@chromium.org> <20230816104245.2676965-2-hsinyi@chromium.org>
+In-Reply-To: <20230816104245.2676965-2-hsinyi@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 16 Aug 2023 10:03:35 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UH0NFH9LGk663WeWodD9oN7o8M70jy26CYBXd7=o5-VA@mail.gmail.com>
+Message-ID: <CAD=FV=UH0NFH9LGk663WeWodD9oN7o8M70jy26CYBXd7=o5-VA@mail.gmail.com>
+Subject: Re: [PATCH v2,2/2] arm64: dts: mediatek: mt8183: set bus rx width to
+ disable quad mode
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        "Miquel Raynal )" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger )" <richard@nod.at>,
+        "Vignesh Raghavendra )" <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Aug 16 2023 18:45, Robert Marko wrote:
-> IPQ5018 has SDI (Secure Debug Image) enabled by TZ by default, and that
-> means that WDT being asserted or just trying to reboot will hang the board
-> in the debug mode and only pulling the power and repowering will help.
-> Some IPQ4019 boards like Google WiFI have it enabled as well.
-> 
-> Luckily, SDI can be disabled via an SCM call.
-> 
-> So, lets use the boolean DT property to identify boards that have SDI
-> enabled by default and use the SCM call to disable SDI during SCM probe.
-> It is important to disable it as soon as possible as we might have a WDT
-> assertion at any time which would then leave the board in debug mode,
-> thus disabling it during SCM removal is not enough.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+Hi,
 
-Reviewed-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+On Wed, Aug 16, 2023 at 3:43=E2=80=AFAM Hsin-Yi Wang <hsinyi@chromium.org> =
+wrote:
+>
+> Some of the SKUs are using gigadevice gd25lq64c flash chip. The chip
+> default enables quad mode, which results in the write protect pin set to
+> IO pin. In mt8183 kukui, we won't use quad enable for all SKUs, so apply
+> the property to disable spi nor's quad mode.
+>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/=
+boot/dts/mediatek/mt8183-kukui.dtsi
+> index 6ce16a265e053..ef472b522f2e7 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -877,6 +877,7 @@ w25q64dw: flash@0 {
+>                 compatible =3D "winbond,w25q64dw", "jedec,spi-nor";
+>                 reg =3D <0>;
+>                 spi-max-frequency =3D <25000000>;
+> +               spi-rx-bus-width =3D <2>;
+
+This feels wrong to me. Is your controller actually capable of "dual
+SPI"? If so, why wasn't the rx-bus-width specified before? ...and if
+you're truly capable of "dual SPI" then why aren't you also setting
+the tx-bus-width?
+
+My best guess (I can look up the schematic if needed) is that you're
+actually _single_ lane, not dual lane SPI. Thus, a more accurate
+description would probably be:
+
+spi-rx-bus-width =3D <1>;
+spi-tx-bus-width =3D <1>;
+
+...but... I think that the default of rx/tx bus width isn't specified
+is "1". Thus I think you should drop this patch.
+
+-Doug
