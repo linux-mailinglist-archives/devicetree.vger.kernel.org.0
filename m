@@ -2,191 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1500077DA94
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 08:42:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7172677DAA9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 08:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242134AbjHPGlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 02:41:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
+        id S238883AbjHPGt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 02:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242165AbjHPGlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 02:41:37 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD2D1FC6
-        for <devicetree@vger.kernel.org>; Tue, 15 Aug 2023 23:41:36 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230816064134epoutp049526cd7fe822685df46465d3a5ceeee3~7yeqrlaV32678626786epoutp04a
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 06:41:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230816064134epoutp049526cd7fe822685df46465d3a5ceeee3~7yeqrlaV32678626786epoutp04a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1692168094;
-        bh=SOhYZsDP2Lg0eVQL9xjGQnNiIfQ6hpZwMVNw/iZqBg4=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=tT1MYiMGsTuGJMJQM2t6fvNSS/0iyL4NjrwBdva+NDQ6eHQa3sE2t+NDdSjerXwlr
-         SZU62AqmscRqDNz3IUzMWD/4jUc0bIC2/yc6Y9bilIv8sJh38StM4iWz4YSghEhhou
-         9v1tHWfOBryF3uFa49ucLWh361CBemAfnSckm9Pg=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-        20230816064134epcas5p17ea935f22f2ccd47bdc8ab425a6504aa~7yeqFaN641088310883epcas5p18;
-        Wed, 16 Aug 2023 06:41:34 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.178]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4RQdp40wSZz4x9Q1; Wed, 16 Aug
-        2023 06:41:32 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F3.0E.55522.B9F6CD46; Wed, 16 Aug 2023 15:41:31 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20230816064031epcas5p161bf015960cb5d4031eaf9bac1d3541c~7ydv2ILrz0916809168epcas5p1W;
-        Wed, 16 Aug 2023 06:40:31 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230816064031epsmtrp220fa0fa8607e054aafdcaabfe278805e~7ydv07QNT2285722857epsmtrp2z;
-        Wed, 16 Aug 2023 06:40:31 +0000 (GMT)
-X-AuditID: b6c32a49-419ff7000000d8e2-0d-64dc6f9b5a8c
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        95.FB.64355.F5F6CD46; Wed, 16 Aug 2023 15:40:31 +0900 (KST)
-Received: from FDSFTE302 (unknown [107.122.81.78]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230816064028epsmtip2fc43110ce47b75a5a6a0622e8087e4b7~7ydso76CJ0449704497epsmtip2T;
-        Wed, 16 Aug 2023 06:40:27 +0000 (GMT)
-From:   "Sriranjani P" <sriranjani.p@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <richardcochran@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>,
-        <alim.akhtar@samsung.com>, <linux-fsd@tesla.com>,
-        <pankaj.dubey@samsung.com>, <swathi.ks@samsung.com>,
-        <ravi.patel@samsung.com>
-Cc:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>,
+        with ESMTP id S242184AbjHPGtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 02:49:36 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575841FC7;
+        Tue, 15 Aug 2023 23:49:31 -0700 (PDT)
+X-UUID: 09b470ae3c0111ee9cb5633481061a41-20230816
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=p2zs2hkEuHvdYQnuvLHmevrQc59UrIGWyRE+tGtmhUk=;
+        b=bvWBHHVtJkjldiBIhtLv1C11CBsoGSBQOrexsK807pqDRVu9JEzmoERMZKMz1WoCnyn4bQUAPcsylQ0IIFvySfwhxo6Hm1YY6LHGbTaBOyClmtNWbzNOK415UoVGaUGPqKGs+wzFn8gRWXTiQJkyg+UDNVJA9l26Q7/Ifiy2K14=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:c6c790b3-f2e0-45cf-93af-b1c0594a9561,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:f411d312-4929-4845-9571-38c601e9c3c9,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 09b470ae3c0111ee9cb5633481061a41-20230816
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1343958390; Wed, 16 Aug 2023 14:49:25 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 16 Aug 2023 14:49:24 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 16 Aug 2023 14:49:24 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KgYY6XVy5ypdJKMyatqiVoNceszXpSUm3Dr1pP6VhZWm0Kkf8dWchKHblbnwv1vEaa7qvPtSoIC5muZy/QC3mit8JQwW3GDU2oHGU9ij+6HjILpem8+qrKCkSr034eIlihPJ2mGempehK194u47IKY3hEXgRQogsuLhjzc1gCZIqYlRIxQSjeshhGxmucZUaVzu50jHa/vGOUURTwEQQw7+f59B//y68Ah3bJ72gsiJuX06l3WxFUJifADYnKboXbR2GV2H+pYjwVoW+55uuA/hx/nsku7S1ELqo5hszh9m1eUn0EgVJV09+tostKeB5NhtniNmJIen6Z9WNgtgz0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p2zs2hkEuHvdYQnuvLHmevrQc59UrIGWyRE+tGtmhUk=;
+ b=gLOL1h6823rvxqK2PwdWmVai0kJRM63/teHUnwWPZyiN10JlWRwksK8S77/CkAOgXS8zteueWBk6xcgm2iylgTYJiAsiiQXj7rkdPQF1aChPBoWmrJbIIMnmsICdH1fDlmOP0wXkTiOhdjr2Rd1xN28Iy8QBwtnlcfe9R8zBOSSzPa8vRzO97KLd6w55gpeTdNsUKSSal8cD6ifCCaWmsUG8kjCwDz5eq3963X1m7bjry9KIFgOZUcXOABKyUNjQsuCVSHUb+Xb17H6MpcYO9nSmMkKWR855I7E9eZ+xdGdaZrd2CyASSZZusOqm7GGchuQ1U1hMZ+f32PJROxamTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p2zs2hkEuHvdYQnuvLHmevrQc59UrIGWyRE+tGtmhUk=;
+ b=P/YotiLGUw2uHtYKSBqVba0Y9ZGsPLWtH6/qN0scZXvEXH/ArxNozH4P5Gk9e4L+EoaOIUSWwiiRKH4J+sFi5+uUGsh9yZxY8cEmWO7491+jUsBy2fDoCmYlNx1IEHHNP7LejnaG7QpUjAZwhz3aDSTrmteNWUUf53eh2VVamr8=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by SEZPR03MB7328.apcprd03.prod.outlook.com (2603:1096:101:123::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.26; Wed, 16 Aug
+ 2023 06:49:21 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::d126:7f34:9e4f:a95]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::d126:7f34:9e4f:a95%4]) with mapi id 15.20.6678.022; Wed, 16 Aug 2023
+ 06:49:21 +0000
+From:   =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To:     =?utf-8?B?U2h1aWppbmcgTGkgKOadjuawtOmdmSk=?= 
+        <Shuijing.Li@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        =?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>
+CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "'Jayati Sahu'" <jayati.sahu@samsung.com>
-In-Reply-To: <b3cd8115-b2bd-63dd-01d3-3cd27127d534@linaro.org>
-Subject: RE: [PATCH v3 3/4] arm64: dts: fsd: Add Ethernet support for FSYS0
- Block of FSD SoC
-Date:   Wed, 16 Aug 2023 12:10:26 +0530
-Message-ID: <001301d9d00c$8d427cb0$a7c77610$@samsung.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQG0kE2cByMDcfrFjxkR49X5VWx9JAKuNFnTAVxbNBUDmCxvSq/54n2w
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupil+LIzCtJLcpLzFFi42LZdlhTQ3d2/p0UgwvTrSx+vpzGaPFg3jY2
-        izV7zzFZzDnfwmIx/8g5Vounxx6xWxw5tYTJ4t6id6wWfS8eMlvsfb2V3eLCtj5Wi02Pr7Fa
-        PHwVbnF51xw2ixnn9zFZzPu7ltXi2AIxi2+n3zBaLNr6hd3i4Yc9QDPOvGC2aN17hN3iy8ab
-        7A7iHltW3mTyeNq/ld1j56y77B4LNpV6bFrVyeZx59oeNo/NS+o93u+7yubRt2UVo8eW/Z8Z
-        Pf41zWX3+LxJLoAnKtsmIzUxJbVIITUvOT8lMy/dVsk7ON453tTMwFDX0NLCXEkhLzE31VbJ
-        xSdA1y0zB+hrJYWyxJxSoFBAYnGxkr6dTVF+aUmqQkZ+cYmtUmpBSk6BSYFecWJucWleul5e
-        aomVoYGBkSlQYUJ2xqojb5kKPvJVnN75k72BcSlPFyMnh4SAicT0uTeZuhi5OIQEdjNKXJ86
-        gx3C+cQo8XzxOzY45+CHXewwLeev/2eBSOxklFg+eSaU85xR4u7qHlaQKjYBfYnXK+azgdgi
-        As+YJebNKwexmQVuMErcX+IEYnMK2EmsfzgNqJ6DQ1ggTmLZPB+QMIuAqkRHwxOwMbwClhJP
-        lixng7AFJU7OfMICMUZeYvvbOcwQBylI/Hy6jBVilZvE655PzBA14hJHf/Ywg9wmIbCdU2L5
-        +vVQH7hInHixA8oWlnh1fAuULSXx+d1eNgg7XWLzkc2sEHaOREdTM9Qye4kDV+awgNzMLKAp
-        sX6XPkRYVmLqqXVMEHv5JHp/P2GCiPNK7JgHY6tJLH7UCWXLSKx99Il1AqPSLCSvzULy2iwk
-        L8xC2LaAkWUVo2RqQXFuemqxaYFhXmo5PMKT83M3MYIzhZbnDsa7Dz7oHWJk4mA8xCjBwawk
-        wtvDeytFiDclsbIqtSg/vqg0J7X4EKMpMLwnMkuJJucDc1VeSbyhiaWBiZmZmYmlsZmhkjjv
-        69a5KUIC6YklqdmpqQWpRTB9TBycUg1MNpMnPFePjJypfW7xgdknW2cGTw8NeOMp0L3oZ7+r
-        kvKFLYmbNxQse7bPTydT7uD1xbIqib+dq7deLdcPmxYb0SU/W1O2Rvvibt0bPt8D6j+Wdbse
-        3R7Fx2s9w+Tb6anLgq573yyeeOdAuuem+g8atjuPq744OIXZTf3yi489BxTPqmQEvGQPrrl5
-        c2te1Valzy/PmOtNNkp1ijf9UOO9QHN1aFdS2495yffzGParsWxxEO00tzH6crRevfLnd68/
-        BoI/XK+5ddvPfLj/0+0D35J756qcKw/3cK43uamRI2/pdCrUT0v42PMpGyRvf42wUpTvD3x9
-        f9P+k70m5rvkLj+Lebkl4ZL6E6W5t5WNlFiKMxINtZiLihMBf1N+8J0EAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrIIsWRmVeSWpSXmKPExsWy7bCSvG58/p0Ug0dfJCx+vpzGaPFg3jY2
-        izV7zzFZzDnfwmIx/8g5Vounxx6xWxw5tYTJ4t6id6wWfS8eMlvsfb2V3eLCtj5Wi02Pr7Fa
-        PHwVbnF51xw2ixnn9zFZzPu7ltXi2AIxi2+n3zBaLNr6hd3i4Yc9QDPOvGC2aN17hN3iy8ab
-        7A7iHltW3mTyeNq/ld1j56y77B4LNpV6bFrVyeZx59oeNo/NS+o93u+7yubRt2UVo8eW/Z8Z
-        Pf41zWX3+LxJLoAnissmJTUnsyy1SN8ugStj1ZG3TAUf+SpO7/zJ3sC4lKeLkZNDQsBE4vz1
-        /yxdjFwcQgLbGSVutc5lhkjISJx8sATKFpZY+e85O0TRU0aJPS8vs4Mk2AT0JV6vmM8GkhAR
-        +MYs8ej1DjCHWeAOo8TVuUtYIVo+M0rsOv6LBaSFU8BOYv3DaawgtrBAjETP/yZGEJtFQFWi
-        o+EJWJxXwFLiyZLlbBC2oMTJmU/AepkFtCWe3nwKZctLbH87B+o+BYmfT5eB9YoIuEm87vnE
-        DFEjLnH0Zw/zBEbhWUhGzUIyahaSUbOQtCxgZFnFKJpaUJybnptcYKhXnJhbXJqXrpecn7uJ
-        EZwqtIJ2MC5b/1fvECMTB+MhRgkOZiUR3h7eWylCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeZVz
-        OlOEBNITS1KzU1MLUotgskwcnFINTLMYstbnL685Pn9Wt96bzyxPFntJPvyol3g+rUiJW3DJ
-        xw4uM878TU464U/D7mo+/b/l9ZnrbF1zAvP2p55U3duaWH2v0U/65uUl/JmH6w6XMR6Ua2xm
-        Kq8pnej9tlJvX+ff9N2TnJQW8+2yVP0zv+nK409T2N/9eTWTd4byxcZVFV3KDKFfeLhdjNxn
-        fDyWHry3/ZPHi6MaZ/cWX1HYkMAmHndspULZtaPLlz467cZe91VDZLLMb+3FhV//B+lEL7i+
-        YLrq5sMXZxXFz1TZZ/35mWCmlVsi/1Lxo1J7OP88DqndttGxPF7+oEXHufnKuz/ZvxJZX/dN
-        12Suud6H93LCFyrk7HcnHXQObPuxykiJpTgj0VCLuag4EQCW3Mm2hAMAAA==
-X-CMS-MailID: 20230816064031epcas5p161bf015960cb5d4031eaf9bac1d3541c
-X-Msg-Generator: CA
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: Re: [PATCH v4,1/3] dt-bindings: display: mediatek: dp: Add compatible
+ for MediaTek MT8188
+Thread-Topic: [PATCH v4,1/3] dt-bindings: display: mediatek: dp: Add
+ compatible for MediaTek MT8188
+Thread-Index: AQHZzoEPd3SY9Hkp9kuhWXwiy7nyL6/sfo+A
+Date:   Wed, 16 Aug 2023 06:49:21 +0000
+Message-ID: <25b048feb8cc02e449c4f4b6caf67586e82167f1.camel@mediatek.com>
+References: <20230814072842.28597-1-shuijing.li@mediatek.com>
+         <20230814072842.28597-2-shuijing.li@mediatek.com>
+In-Reply-To: <20230814072842.28597-2-shuijing.li@mediatek.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SEZPR03MB7328:EE_
+x-ms-office365-filtering-correlation-id: e7b6e91a-b749-4ed4-8d71-08db9e24ebd1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: IMC/R3Y0et5AKvt7ku0uyTnOeJUnO3nssGF+PCovjEdr5eBd61hbbhk3wgMEHqZYSskXk/b4zEpne0mh98LTyniKk/GgryOYYG6eXoCN7iVDrVpECdZIinVf2drDsA6t2Si4Qamat1zpDnK0u6SJZS4/pHQCBrRHEV7bA7cfLB4Z78pwXt7G0lpErabxZbOq91zyXvodpuiPh8h386Lpkx/WafwcnooOfQ05JE41z57b4O+All7yKNK8qgResD0lxg/6rxDCo/WXanUrUGwdsqiw4GRn6DQEySrTw2YLeENm4zF+DaUi+/UsQMnuQs/E0NBWoopQOHs1akKKMPnQNfkYoHINpzo4VDbcUvYHXrgj8FB89zLI9/RBhQqibbmqMPDUG2qENicvJHbip0H2BeNff79/Ddd7iufMSF+a1Jo6b4lmKztIa4BBNPkk8/72Pb/zPuh1B19u8Z0d+pEv1Ru63RD+N64Jo2ET3ZApOdVrGA5xfV8Mmi8WQtdemIobXgpbzqYsBqVoXEs0MAqhChdf105bCbtOioqu+b0gxPO3tYTsaVMAEWyphKMbPtsYLLuo3tP4xgB8vKX0dlEUMl56wfG0yS1Gi6EKvDnnLJOfxK3pvglCn9xpjqVVBhs9AsTSO8hMvCOFiNxWX4AiM/Y9w2dLZwB9dTJdBSwEVa3LR4nNw5LrDQWZJagkAWdOY+qXbI9uZaItP9pC6ElRmQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(39860400002)(376002)(366004)(346002)(396003)(1800799009)(451199024)(186009)(316002)(921005)(110136005)(66946007)(54906003)(64756008)(66446008)(76116006)(66476007)(66556008)(122000001)(12101799020)(966005)(41300700001)(5660300002)(8936002)(8676002)(38070700005)(38100700002)(4326008)(7416002)(2906002)(26005)(478600001)(86362001)(6512007)(107886003)(85182001)(6506007)(71200400001)(36756003)(6486002)(2616005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Vkk2aFNkM3Q1VXIyMW5meXJQTzdFaW45ZWhsUXZiZ0pnazdoT1B2bldLdnRo?=
+ =?utf-8?B?QVpQL25xNmpkWFRJV3lYNFB4SGtteEs2RkZNaHZsbnM4ZEd6OVBVbW9kdHlt?=
+ =?utf-8?B?ZjdhK2FiaWh0d2pvQkw3NzVoQVpyeFFjQVMzWTJrQlUzbmRXZlJsdzFOSDBO?=
+ =?utf-8?B?WUxqUFVPbi9Yc2M2MVQ3cm9iamVKOVpHNms4dE03dXkrUnZLQi9YWko5QVBn?=
+ =?utf-8?B?WWsxaUYxUzc1aldRNXZnUmNXRkNZOXFZTUlQZzE2QVpTdWFETGdDVitBL0lM?=
+ =?utf-8?B?UGhKbmxCUnhibUhDOUhYUTlrWW1oME00SlN0YmpEZ2pIWXdyZTRmNzRCd2s1?=
+ =?utf-8?B?MTREbXROQUNjYzhrb0JvcXg2cXA0Q0hRNFczRmVxNkJSOXkvUTUxMzg3Y1M5?=
+ =?utf-8?B?V0JjSmdDUUVRK0p0Qk5KbnZDNGtwWm9iVXJlNjRHUGhIRXRna3YxRTduTDl5?=
+ =?utf-8?B?MHZXU3d6K2RwSUo1RXVMYU1QMUVuNkl3N094UGZCc0sydHZjUG5vRzh0WjRn?=
+ =?utf-8?B?UzUwVithT1Q5WVFkbDNZUldDdGNRYld5NUYwQVBYVXVYeld0M1R4U0xnc2R6?=
+ =?utf-8?B?Q2F2V0hEdnNlVVdqd2JnSVBvVzFrWGt1UURJYzZWWW5oUUUxTHJsSGRHOFl6?=
+ =?utf-8?B?RzdMY3JoajdlMEFya0xCdVZyVEwxTzVsN0JJU0JIV2FYTlV4NFZFTlFEckVS?=
+ =?utf-8?B?alA2c3ZIYXhPNlUvcnJ1RUR2TXJCb2VnWTZBT2FoOVZtcEQ1Sk92QnF0ZG8r?=
+ =?utf-8?B?YTdUNjJhemdlQ01CZFp3VkpKbUtxRURWa3NKbmNMNHdINVZnRGp2eGdVbnF5?=
+ =?utf-8?B?cVRpVlJ6d1hUemloZ01hdTZtTEZULzZKWkUxM0wwTnZkb2dNcVJVTW8yUGc2?=
+ =?utf-8?B?enVKeXlVdE1oUGpBTVZXYURlOElLQ2M5TFNKUVpQdG1WWkJYSWNBSGdnRFVk?=
+ =?utf-8?B?akVaUDZjVWNWWmZvVmxkaDlCblFKd1dIcHN5T3hMdEQvbUFSYVh4Sll0TGFs?=
+ =?utf-8?B?UlArd2hjNGlNd2tIdnF3UkdzQnBKRlZ2bTFLcFpNNDFZWG1tdldLUUd4UGpy?=
+ =?utf-8?B?S1Y5aG9TL1hvU2hQQzhHclJPb3dTQUZoR3lsa1VraEI3L2hZUXNSSGRseDN6?=
+ =?utf-8?B?b2UrMmVYTDFpVnBrSlVQNkxPNUUzclFCeDBxbXFpVGZsSGROTFlSVUpaTUto?=
+ =?utf-8?B?TE55ZVZQc1lKTmdJNldMZlRQb2dINTE3NlRjVTMrbFdMKzFwbW1DRkNLOXVK?=
+ =?utf-8?B?ZUJJSk5FeGNJMGEyVVhoOVdBeEFGdE05ZS92VUgvNUozODFCTDRnRVlyc3V4?=
+ =?utf-8?B?MkhjVGw1Yk9tK0JHaWtMWkRXNm9aQzlEWnlqOUtDUWM5R3Y0WkswZ0tRY3li?=
+ =?utf-8?B?UUZlL1p2Y2ZkTWNkSC9HLzBoamdYUnFWdlcySDFZUjZzbS9WUGgvNlE0RzNv?=
+ =?utf-8?B?RTdpcUVWZWJoM3VJSXpudUdvaVdKZ2dwYWNwWXV3dlFMYVp1MG1hcmx2czk0?=
+ =?utf-8?B?YUF1MXlTcCsvWTJ6endiTm9nU1hUNHFIcVN5dkVQLzV0M3FKUjkxb1NGYmhm?=
+ =?utf-8?B?WHJSWUJMN2JxUmFOQWtYR05Kd3ViekcxbklOVUlDTHJLUmJCUjR6dHZBY29G?=
+ =?utf-8?B?ejgzdSsvYWs0WUhXUExqOWk5SmlHbkFBMUovQ2dLQmszaXc0Y3I2V2ZtUEo4?=
+ =?utf-8?B?Sm9oRXdWL21oQVVLYmRFdE5vRlR1ZmNOY3BIY0lSMk8zQ2QvVVpjeFdqTEsz?=
+ =?utf-8?B?WFcvQ2orbk9uTHdwQVJBcmRibDl0Si9rVDcrN1VEcklwczRHYTRHY1FUd3cw?=
+ =?utf-8?B?c01pVk1mQ3BQN3BhK3JpVHlTYTJVNTRacTJheFE0anppMVFjcnN5cDJQL1Vv?=
+ =?utf-8?B?dHhWUUpmdlZSeVRqZE16QzJONEp2NWk2MlJZL2x1R0szRlVoTTNvK3cwMlpH?=
+ =?utf-8?B?Tm9SSGdEL0dhb1k1YjBZQkp6ZDE5d0x1ZzV2QmxaSDErWC8vWGQrQUlodWdO?=
+ =?utf-8?B?ZnBuU05NbnFxQ1kyYmFpd21FMmNraGRUTnRKV3ZET0FtUG1NQ1BrS1pidEcv?=
+ =?utf-8?B?Qng1YUNNcDJmL2tnd0prWmgzV1FwU0JGTlVkWGhITXNyMXZ4RWJqaCtNYTRi?=
+ =?utf-8?Q?4Tkhz0vgcakciR6CghAPhauZR?=
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230814112617epcas5p1bc094e9cf29da5dd7d1706e3f509ac28
-References: <20230814112539.70453-1-sriranjani.p@samsung.com>
-        <CGME20230814112617epcas5p1bc094e9cf29da5dd7d1706e3f509ac28@epcas5p1.samsung.com>
-        <20230814112539.70453-4-sriranjani.p@samsung.com>
-        <b3cd8115-b2bd-63dd-01d3-3cd27127d534@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-ID: <1FB1C235EF1F5E4391A75D0170F8DD73@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7b6e91a-b749-4ed4-8d71-08db9e24ebd1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2023 06:49:21.5079
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: evkrlZ3X8G77Zm7Lq+phbNYUC21Tq6SEUW245tTjoFs6PldhipDZZZAWF8w80pppFnanTq6MjBrxDWAtDbXtiA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7328
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
-> Sent: 15 August 2023 01:27
-> To: Sriranjani P <sriranjani.p@samsung.com>; davem@davemloft.net;
-> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
-> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> conor+dt@kernel.org; richardcochran@gmail.com;
-> alexandre.torgue@foss.st.com; joabreu@synopsys.com;
-> mcoquelin.stm32@gmail.com; alim.akhtar@samsung.com; linux-
-> fsd@tesla.com; pankaj.dubey@samsung.com; swathi.ks@samsung.com;
-> ravi.patel@samsung.com
-> Cc: netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; Jayati Sahu <jayati.sahu@samsung.com>
-> Subject: Re: [PATCH v3 3/4] arm64: dts: fsd: Add Ethernet support for FSYS0
-> Block of FSD SoC
-> 
-> On 14/08/2023 13:25, Sriranjani P wrote:
-> > The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP,
-> > one in FSYS0 block and other in PERIC block.
-> >
-> > Adds device tree node for Ethernet in FSYS0 Block and enables the same
-> > for FSD platform.
-> >
-> 
-> ...
-> 
-> >  &pinctrl_peric {
-> > diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
-> > b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> > index 1c53c68efd53..9a991f021711 100644
-> > --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-> > +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> > @@ -32,6 +32,7 @@
-> >  		spi0 = &spi_0;
-> >  		spi1 = &spi_1;
-> >  		spi2 = &spi_2;
-> > +		eth0 = &ethernet_0;
-> 
-> One more thing - I said it two times already. Patch v1 and then in v2.
-> You responded now without waiting for my further feedback and
-> immediately sent the same stuff.
-> 
-> Let's be clear:
-> 
-> NAK for the reasons I said multiple times.
-
-Got it, will move this alias in board specific dts file.
-
-> 
-> Best regards,
-> Krzysztof
-
-
+SGksIFNodWlqaW5nOg0KDQpPbiBNb24sIDIwMjMtMDgtMTQgYXQgMTU6MjggKzA4MDAsIFNodWlq
+aW5nIExpIHdyb3RlOg0KPiBBZGQgZHQtYmluZGluZyBkb2N1bWVudGF0aW9uIG9mIGRwLXR4IGZv
+ciBNZWRpYVRlayBNVDgxODggU29DLg0KDQpSZXZpZXdlZC1ieTogQ0sgSHUgPGNrLmh1QG1lZGlh
+dGVrLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogU2h1aWppbmcgTGkgPHNodWlqaW5nLmxp
+QG1lZGlhdGVrLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSml0YW8gU2hpIDxqaXRhby5zaGlAbWVk
+aWF0ZWsuY29tPg0KPiBSZXZpZXdlZC1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8gPA0K
+PiBhbmdlbG9naW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+DQo+IEFja2VkLWJ5OiBL
+cnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+IC0t
+LQ0KPiBDaGFuZ2VzIGluIHYyOg0KPiBhZGQgYSBtZWRpYXRlayxtdDgxODgtZWRwLXR4IGNvbXBh
+dGlibGUgcGVyIHN1Z2dlc3Rpb24gZnJvbSB0aGUNCj4gcHJldmlvdXMgdGhyZWFkOg0KPiANCmh0
+dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvYzRhNGE5MDAtYzgwZC1iMTEwLWYxMGUtN2ZhMmRh
+ZThiN2I1QGNvbGxhYm9yYS5jb20vDQo+IC0tLQ0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3Mv
+ZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkcC55YW1sICAgICAgIHwgMg0KPiArKw0KPiAgMSBm
+aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdA0KPiBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRw
+LnlhbWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRp
+YXRlay9tZWRpYXRlayxkcC55YW1sDQo+IGluZGV4IGZmNzgxZjIxNzRhMC4uMmFlZjFlYjMyZTEx
+IDEwMDY0NA0KPiAtLS0NCj4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlz
+cGxheS9tZWRpYXRlay9tZWRpYXRlayxkcC55YW1sDQo+ICsrKw0KPiBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRwLnlhbWwNCj4g
+QEAgLTIxLDYgKzIxLDggQEAgZGVzY3JpcHRpb246IHwNCj4gIHByb3BlcnRpZXM6DQo+ICAgIGNv
+bXBhdGlibGU6DQo+ICAgICAgZW51bToNCj4gKyAgICAgIC0gbWVkaWF0ZWssbXQ4MTg4LWRwLXR4
+DQo+ICsgICAgICAtIG1lZGlhdGVrLG10ODE4OC1lZHAtdHgNCj4gICAgICAgIC0gbWVkaWF0ZWss
+bXQ4MTk1LWRwLXR4DQo+ICAgICAgICAtIG1lZGlhdGVrLG10ODE5NS1lZHAtdHgNCj4gIA0K
