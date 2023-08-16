@@ -2,117 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E49A77DABD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 08:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD4777DAE6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 09:06:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238481AbjHPGy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 02:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49776 "EHLO
+        id S242261AbjHPHGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 03:06:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbjHPGyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 02:54:47 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4181BCC;
-        Tue, 15 Aug 2023 23:54:45 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37G4gLd5026291;
-        Wed, 16 Aug 2023 08:54:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-        message-id:date:mime-version:subject:to:references:from
-        :in-reply-to:content-type:content-transfer-encoding; s=
-        selector1; bh=rOjor1O0+ig6x7t9FGtOGQthnaKBxVrqga54n11aiSg=; b=gO
-        jftjL04i9doCW+11nldbpxfZSepBBVMud65Mhf05oNJRR3R2NTYt9gPVNKEtyy3H
-        fCxsXCTwDHu7QpKhVHbcueVIZXs31U3lJSGDSkxn3wSnMiGD1IXDl4gCnbsy1ZA/
-        5te1q/m5sfoesUmvXIe6/5NsVt51LRdqY4gATiTw8ij4VvWBOYyulx7RBF1AX2Ji
-        3ug0zg2+lIRtNRMn0KbisuN8hiMW9bKjBffdQ0FgVvIWdcDeJMS5k/fJeu7tktJX
-        MC5RjwabsEOWZktBtCZDPMwZ8QBLM2pPZLm7vvgc5Mvj5ELM/dk6ZSKdEyBUhh+a
-        9Hd+X9tdhnr4uf8Ohg6g==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sgqnt8jub-1
+        with ESMTP id S242315AbjHPHGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 03:06:10 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40179BF;
+        Wed, 16 Aug 2023 00:06:09 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37G6cApx006153;
+        Wed, 16 Aug 2023 07:06:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=npvEtPS+ycTaepNqfNy8oXlhCmpyQC2OQsgZCW9B+G8=;
+ b=IeYN/wOiGH0otS9cf0Yhn22U2vk6OKQkblH5ChcISRAJAogLLGUrXNl+CNAHHd24wC9+
+ 8XKMIiV9HHuq/0l0trl6Zd7+PJlQKfEjE0he2+0uXvBeC6sbuMJAAGM4kKFy+Qi7Rzf1
+ +vm8HKS+Fwi1ZATtoGu5JZ18iEEXlR6q5tLajuSfzhiw71YhZl7IIXUEihbWh3L9Uaqe
+ KyS5u3rhjzmnPASpyNzL36AYOe5ki85VeHO0a/zbbaOSWdkwYyG7XVuIxZ1Po2KAyJeX
+ 6b+AXM4nellQsCSG1azLooE39wqYYGfAbwjgTP3Jd54MegHtM6fp/t1Czea4zocCHi2l mQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sfuj8k3x0-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 08:54:22 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8F61E100068;
-        Wed, 16 Aug 2023 08:54:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8470A216ED2;
-        Wed, 16 Aug 2023 08:54:18 +0200 (CEST)
-Received: from [10.201.20.38] (10.201.20.38) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 16 Aug
- 2023 08:54:17 +0200
-Message-ID: <e6afc5bb-7477-36d6-b05b-2afdd1107f03@foss.st.com>
-Date:   Wed, 16 Aug 2023 08:54:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 4/4] ARM: dts: st: stih407: drop max-duty-cycle
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Wed, 16 Aug 2023 07:06:04 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37G7636s003603
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Aug 2023 07:06:03 GMT
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Wed, 16 Aug 2023 00:05:57 -0700
+Date:   Wed, 16 Aug 2023 12:35:54 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>
+CC:     <manivannan.sadhasivam@linaro.org>, <helgaas@kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_ramkri@quicinc.com>, <quic_parass@quicinc.com>,
+        <krzysztof.kozlowski@linaro.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230730174954.5293-1-krzysztof.kozlowski@linaro.org>
- <20230730174954.5293-4-krzysztof.kozlowski@linaro.org>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20230730174954.5293-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.38]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To EQNDAG1NODE4.st.com
- (10.75.129.133)
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 2/3] arm64: dts: qcom: sm8450: Add opp table support
+ to PCIe
+Message-ID: <dc14acb4-9fe8-4b3b-a9da-7f7915de4d5c@quicinc.com>
+References: <1692102408-7010-1-git-send-email-quic_krichai@quicinc.com>
+ <1692102408-7010-3-git-send-email-quic_krichai@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1692102408-7010-3-git-send-email-quic_krichai@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rDErzUi5WBgE6QMXZM7TE95s7FWEECSZ
+X-Proofpoint-GUID: rDErzUi5WBgE6QMXZM7TE95s7FWEECSZ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
  definitions=2023-08-16_04,2023-08-15_02,2023-05-22_02
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ spamscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ lowpriorityscore=0 mlxlogscore=878 bulkscore=0 impostorscore=0
+ clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308160063
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/30/23 19:49, Krzysztof Kozlowski wrote:
-> "max-duty-cycle" property was removed in the commit f747a1fe7848
-> ("regulator: pwm-regulator: Remove obsoleted property"):
+On Tue, Aug 15, 2023 at 05:56:47PM +0530, Krishna chaitanya chundru wrote:
+> PCIe needs to choose the appropriate performance state of RPMH power
+> domain based upon the PCIe gen speed.
 > 
->   stih418-b2199.dtb: pwm-regulator: Unevaluated properties are not allowed ('max-duty-cycle' was unexpected)
+> So, let's add the OPP table support to specify RPMH performance states.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 > ---
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 47 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 > 
-> Changes in v2:
-> 1. Correct subject prefix: AMR->ARM
-> ---
->  arch/arm/boot/dts/st/stih407-family.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
-> index 3f58383a7b59..29302e74aa1d 100644
-> --- a/arch/arm/boot/dts/st/stih407-family.dtsi
-> +++ b/arch/arm/boot/dts/st/stih407-family.dtsi
-> @@ -111,7 +111,6 @@ pwm_regulator: pwm-regulator {
->  		regulator-min-microvolt = <784000>;
->  		regulator-max-microvolt = <1299000>;
->  		regulator-always-on;
-> -		max-duty-cycle = <255>;
->  		status = "okay";
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 595533a..681ea9c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -381,6 +381,49 @@
+>  		};
 >  	};
 >  
+> +	pcie0_opp_table: opp-table-pcie0 {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-2500000 {
+> +			opp-hz = /bits/ 64 <2500000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +		};
+> +
+> +		opp-5000000 {
+> +			opp-hz = /bits/ 64 <5000000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +		};
+> +
+> +		opp-8000000 {
+> +			opp-hz = /bits/ 64 <8000000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +		};
+> +	};
+> +
+> +	pcie1_opp_table: opp-table-pcie1 {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-2500000 {
+> +			opp-hz = /bits/ 64 <2500000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +		};
+> +
+> +		opp-5000000 {
+> +			opp-hz = /bits/ 64 <5000000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +		};
+> +
+> +		opp-8000000 {
+> +			opp-hz = /bits/ 64 <8000000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +		};
+> +
+> +		opp-16000000 {
+> +			opp-hz = /bits/ 64 <16000000>;
+> +			opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+> +		};
+> +	};
+> +
 
+Should not we using required-opps property to pass the
+rpmhpd_opp_xxx phandle so that when this OPP is selected based on your
+clock rate, the appropriate OPP (voltage) would be selected on the RPMH side?
 
-Applied on sti-next
+Please see SDHCI/MMC voting (sdhc2_opp_table) as an example.
 
-Thanks
-Patrice
+Thanks,
+Pavan
