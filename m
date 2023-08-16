@@ -2,99 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A44CC77EA71
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 22:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92DAD77EB1C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 22:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345376AbjHPULe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 16:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
+        id S1346288AbjHPU4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 16:56:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346102AbjHPUL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 16:11:26 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A4B1BEE
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 13:11:24 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6bd0c953fd9so4812860a34.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 13:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692216684; x=1692821484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Lws75iJ418dvUiFUMpSCZSJpyx26Sbj9eIlHFk1PcY=;
-        b=gN0LEIm74Bz0xvqXdVi1r5MAh02OiOvRcyxW0f5+qOT1fJ/7dmXHMYpRBo7e8fuedD
-         8E4aeaIwULrgMTSxCM6jl7PiqnX64zMuGoumHx0wl9gy/X+Bc+FYvDnQVSxw7e/jJLxx
-         HlLEC2nruRP1nKj8dGZNxRz3ZfnKUDUPrlmrFzHIumdsS2pBPPbZXXu7Io7JbR8rLxHT
-         52TZ66fWdg83GsKplHOCsehJ/qqNNLkipPKwsrkQB02DfKddjUYHpd4MCyGel9BmX377
-         U5dFdwvUhxoGzVKdzENDAKD78Yk6dYBnyZPLXU7qe5kjSmRbYP6Yqyeb0vQob5B29ZEV
-         EGww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692216684; x=1692821484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2Lws75iJ418dvUiFUMpSCZSJpyx26Sbj9eIlHFk1PcY=;
-        b=YKniiOotB/vGAaG/RRAZIy4uKX9lPG7yOm3XMxvyi+aV258Kzf0pxXKZUSvXHNKaux
-         osnTOf5dUFtvN68/FrKTN1bmtG5JNcWC+FiD4jkMNfKXx/5sL6rc2ajX3CrPEaD1txmv
-         LatwHM5FsMDbfrGe7sTPSp/bWiwT+qE93TdvhfL9l6fdhowE0FkiHjyHsWAPnLRJ11Fa
-         3qpIiJihWJYM/HglaM6PTJ4Lt4CYxhBoaKobLor82MdooOnODRCtx6R/xp5kgMsJdipU
-         T3BRsKCPMfdCou1KNgEJ2IlQCKoqx1nr3d1N2pRqo8iRWrdMoXSYPjkAOGqPIb6Rx/bI
-         9e3w==
-X-Gm-Message-State: AOJu0YyrfzuBAw5L3mcNv4l49JswS3c6W/H9N7DTT422vcso1+u6bv3T
-        Rskhw4zPdzFSGpgvQvmGHvHucw==
-X-Google-Smtp-Source: AGHT+IFnT/6Su+IdemW7NvD/jLoMyj22j+Z2P6LjjB67eLjhfM9Ka2Q7lSUSr79I01dl9GO21DBAtw==
-X-Received: by 2002:a9d:6a99:0:b0:6b8:dc53:9efd with SMTP id l25-20020a9d6a99000000b006b8dc539efdmr3138769otq.3.1692216684263;
-        Wed, 16 Aug 2023 13:11:24 -0700 (PDT)
-Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id i6-20020a9d6506000000b006b58616daa1sm6349374otl.2.2023.08.16.13.11.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Aug 2023 13:11:23 -0700 (PDT)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: Fix Exynos5433 compatible
-Date:   Wed, 16 Aug 2023 15:11:23 -0500
-Message-Id: <20230816201123.3530-1-semen.protsenko@linaro.org>
+        with ESMTP id S1346289AbjHPU4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 16:56:24 -0400
+X-Greylist: delayed 1772 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 16 Aug 2023 13:56:22 PDT
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73AEB270A;
+        Wed, 16 Aug 2023 13:56:22 -0700 (PDT)
+Received: from p200300ccff49da001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff49:da00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qWN6G-002hco-8F; Wed, 16 Aug 2023 22:26:40 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qWN6F-001MPV-1i;
+        Wed, 16 Aug 2023 22:26:39 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        andreas@kemnade.info, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio: adc: Add TI TWL603X GPADC
+Date:   Wed, 16 Aug 2023 22:26:14 +0200
+Message-Id: <20230816202614.324457-1-andreas@kemnade.info>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The correct compatible for Exynos5433 is "samsung,exynos5433-dwusb3".
-Fix the typo in its usage.
+Document TI TWL603X GPADC devicetree bindings.
+A driver is already there, the compatibles are used, but not documented.
+Use two separate files to reference only the allowed compatible in
+a future YAML version of
+Documentation/devicetree/bindings/mfd/twl-family.txt
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-Fixes: 949ea75b7ba4 ("dt-bindings: usb: samsung,exynos-dwc3: convert to dtschema")
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/iio/adc/ti,twl6030-gpadc.yaml    | 42 +++++++++++++++++++
+ .../bindings/iio/adc/ti,twl6032-gpadc.yaml    | 42 +++++++++++++++++++
+ 2 files changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,twl6032-gpadc.yaml
 
-diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-index 42ceaf13cd5d..240f41b7133a 100644
---- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-@@ -72,7 +72,7 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: samsung,exynos54333-dwusb3
-+            const: samsung,exynos5433-dwusb3
-     then:
-       properties:
-         clocks:
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml
+new file mode 100644
+index 000000000000..08bc0468f616
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,twl6030-gpadc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPADC subsystem in the TWL6030 power module
++
++maintainers:
++  - Jonathan Cameron <jic23@kernel.org>
++
++description:
++  The GPADC subsystem in the TWL6030 consists of a 10-bit ADC
++  combined with a 15-input analog multiplexer.
++
++properties:
++  compatible:
++    const: ti,twl6030-gpadc
++
++  interrupts:
++    maxItems: 1
++
++  "#io-channel-cells":
++    const: 1
++
++required:
++  - compatible
++  - interrupts
++  - "#io-channel-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    twl {
++        gpadc {
++            compatible = "ti,twl6030-gpadc";
++            interrupts = <3>;
++            #io-channel-cells = <1>;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,twl6032-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,twl6032-gpadc.yaml
+new file mode 100644
+index 000000000000..70acec533277
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,twl6032-gpadc.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,twl6032-gpadc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPADC subsystem in the TWL6032 power module
++
++maintainers:
++  - Jonathan Cameron <jic23@kernel.org>
++
++description:
++  The GPADC subsystem in the TWL6032 consists of a 10-bit ADC
++  combined with a 19-input analog multiplexer.
++
++properties:
++  compatible:
++    const: ti,twl6032-gpadc
++
++  interrupts:
++    maxItems: 1
++
++  "#io-channel-cells":
++    const: 1
++
++required:
++  - compatible
++  - interrupts
++  - "#io-channel-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    twl {
++        gpadc {
++            compatible = "ti,twl6032-gpadc";
++            interrupts = <3>;
++            #io-channel-cells = <1>;
++        };
++    };
++...
 -- 
 2.39.2
 
