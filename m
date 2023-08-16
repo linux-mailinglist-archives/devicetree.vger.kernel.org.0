@@ -2,211 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADBE77DF07
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A74077DF16
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 12:44:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243548AbjHPKmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 06:42:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48482 "EHLO
+        id S243928AbjHPKn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 06:43:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244012AbjHPKmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:42:15 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6790A2718;
-        Wed, 16 Aug 2023 03:42:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692182524; x=1723718524;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=O9Mi3ukPZMXGw4qpDDWQ4PFtxGV6uTKsBrO6Nq3xvJk=;
-  b=L6qW7eaZdtwwO9jhrDLzoQd78K1CfZDmQTW9Qdv987aw21F8s/9Ptx71
-   yqZ0XSdK2jCWdmQY4lj7vpgVukhah8bVJFwhTthDk15bMgNfDHHew5UoS
-   01MnDA+6WBZrOde4siaMqlHHCUiIzG3sUqKE705I7JhSEEDdc/jJroz8N
-   PB8OMNFbQf9scDHxpcHvHi8MY8opOo4pDNrc+yZUuJfZJaxiR/08ig4Jq
-   n94ymPcq8Kw2WKCEl36SvrlKjhOZpIjwwcJl+oc0WnydZSznrRTzdAenw
-   4wq9Ru3NLoII+k5fZbDmfV6kRhczOQ0ogvHKhYkvYB1TpefzsAAv4B+5y
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="371405700"
-X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; 
-   d="scan'208";a="371405700"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2023 03:41:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="804181910"
-X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; 
-   d="scan'208";a="804181910"
-Received: from lkp-server02.sh.intel.com (HELO a9caf1a0cf30) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 16 Aug 2023 03:41:41 -0700
-Received: from kbuild by a9caf1a0cf30 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qWDy8-0000En-32;
-        Wed, 16 Aug 2023 10:41:40 +0000
-Date:   Wed, 16 Aug 2023 18:41:20 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Seven Lee <wtli@nuvoton.com>, broonie@kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        with ESMTP id S244013AbjHPKnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 06:43:22 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1CF2724
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 03:43:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        sang-engineering.com; h=from:to:cc:subject:date:message-id
+        :mime-version:content-transfer-encoding; s=k1; bh=+g5CczUC0LAQ/D
+        vPOJcyPdA8qzB+pAOqt2A3QG4u+4I=; b=NvJKnk0bLExDm1/E7mUH3Aan/y+Qc/
+        5It39boGsc/1KnBzb/UQAK5cCzBasyxcEupFiJa61uVDzIkl1QP1j/NTj7ZCDBYd
+        CR1pDQ9desc2sjaWqAeMQ53xIuqH8uGT5BnpByY+1253zHfF0TYIX3TyB7+QgVGl
+        9o3kovnJFunSTfyvERHDR6xGwkFrXNlo40uVW3tumGArLNKVRnB/lAqq5FlXs8ka
+        vA+7JTKSb+190sGjCO/7pnAGwgsaahYHVx8rHThtRvD6cTOvaaxDwlXf3+98wxrB
+        ckHf5cbKz3m9DBeUbpRqzavi3xu1kVGs3CwAqiIze0Xrmn3oU2nZdYkw==
+Received: (qmail 101914 invoked from network); 16 Aug 2023 12:43:09 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Aug 2023 12:43:09 +0200
+X-UD-Smtp-Session: l3s3148p1@u4Yd9gcDQL0gAwDPXy5qAJ1huuy56R1W
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com,
-        KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, WTLI@nuvoton.com,
-        SJLIN0@nuvoton.com, scott6986@gmail.com, supercraig0719@gmail.com,
-        dardar923@gmail.com
-Subject: Re: [PATCH 2/2] ASoC: nau8821: Improve AMIC recording performance.
-Message-ID: <202308161844.humS3QWm-lkp@intel.com>
-References: <20230816080006.1624342-2-wtli@nuvoton.com>
+        linux-pci@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v4 0/2] PCI: rcar: support regulators for PCIe
+Date:   Wed, 16 Aug 2023 12:42:48 +0200
+Message-Id: <20230816104251.19744-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230816080006.1624342-2-wtli@nuvoton.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Seven,
+Here are the patches to make PCIe cards work in the slot CN15 on a
+KingFisher board. No code changes since v3, only rebased to 6.5-rc6 and
+reworded the commit messages. Please apply.
 
-kernel test robot noticed the following build warnings:
+Wolfram Sang (2):
+  dt-bindings: PCI: rcar-pci-host: add optional regulators
+  PCI: rcar-host: add support for optional regulators
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on next-20230816]
-[cannot apply to linus/master v6.5-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Seven-Lee/ASoC-nau8821-Improve-AMIC-recording-performance/20230816-160236
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20230816080006.1624342-2-wtli%40nuvoton.com
-patch subject: [PATCH 2/2] ASoC: nau8821: Improve AMIC recording performance.
-config: hexagon-randconfig-r003-20230816 (https://download.01.org/0day-ci/archive/20230816/202308161844.humS3QWm-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project.git 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce: (https://download.01.org/0day-ci/archive/20230816/202308161844.humS3QWm-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308161844.humS3QWm-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from sound/soc/codecs/nau8821.c:15:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from sound/soc/codecs/nau8821.c:15:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from sound/soc/codecs/nau8821.c:15:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
->> sound/soc/codecs/nau8821.c:649:2: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
-           default:
-           ^
-   sound/soc/codecs/nau8821.c:649:2: note: insert 'break;' to avoid fall-through
-           default:
-           ^
-           break; 
-   7 warnings generated.
-
-
-vim +649 sound/soc/codecs/nau8821.c
-
-   626	
-   627	static int nau8821_left_fepga_event(struct snd_soc_dapm_widget *w,
-   628			struct snd_kcontrol *kcontrol, int event)
-   629	{
-   630		struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-   631		struct nau8821 *nau8821 = snd_soc_component_get_drvdata(component);
-   632	
-   633		if (!nau8821->left_input_single_end)
-   634			return 0;
-   635	
-   636		switch (event) {
-   637		case SND_SOC_DAPM_POST_PMU:
-   638			regmap_update_bits(nau8821->regmap, NAU8821_R77_FEPGA,
-   639				NAU8821_ACDC_CTRL_MASK | NAU8821_FEPGA_MODEL_MASK,
-   640				NAU8821_ACDC_VREF_MICN | NAU8821_FEPGA_MODEL_AAF);
-   641			regmap_update_bits(nau8821->regmap, NAU8821_R76_BOOST,
-   642				NAU8821_HP_BOOST_DISCHRG_EN, NAU8821_HP_BOOST_DISCHRG_EN);
-   643			break;
-   644		case SND_SOC_DAPM_POST_PMD:
-   645			regmap_update_bits(nau8821->regmap, NAU8821_R77_FEPGA,
-   646				NAU8821_ACDC_CTRL_MASK | NAU8821_FEPGA_MODEL_MASK, 0);
-   647			regmap_update_bits(nau8821->regmap, NAU8821_R76_BOOST,
-   648				NAU8821_HP_BOOST_DISCHRG_EN, 0);
- > 649		default:
-   650			break;
-   651		}
-   652	
-   653		return 0;
-   654	}
-   655	
+ .../devicetree/bindings/pci/rcar-pci-host.yaml   | 11 +++++++++++
+ drivers/pci/controller/pcie-rcar-host.c          | 16 +++++++++++++++-
+ 2 files changed, 26 insertions(+), 1 deletion(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.35.1
+
