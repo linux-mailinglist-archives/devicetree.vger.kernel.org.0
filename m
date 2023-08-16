@@ -2,112 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A212D77EC54
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 23:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA3B77ED0C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 00:27:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346699AbjHPV4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 17:56:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48420 "EHLO
+        id S1346893AbjHPW0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 18:26:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346661AbjHPV4P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 17:56:15 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4EB2713;
-        Wed, 16 Aug 2023 14:56:13 -0700 (PDT)
-Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37GK9ce8019826;
-        Wed, 16 Aug 2023 21:55:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references; s=pps0720;
- bh=dk5k6u/sI9iN3+yUtFn5EJMT5UPXLcBIp9iFZkAqb9E=;
- b=YZ0DnxWy+ZnU+0Fo1y/Q8C2sePjaKkyTGDl+JKpU6f5M2AqsEV9GzSsVbCIn+KQp7g9k
- sknaewy0R0uK/7Jrsl/YTPTAKDo1lzxOTImzfe6zvMVCFTannHGW1kwLAploe6AH3Fog
- m5HHFQuRb2hVxAf7TdLGeOUlJOY8GnoeXa9mVejSIAVSCCNoqXLIpJ1AWvEkCRNMxc9i
- 29lSj/DL2isZjsVsa33my/H9ddy0CqVR9osEmxprHRu3U1FHTUtGhsDnEGutlPIHN45K
- RW9d3re/TGbaTTl2ddmXpBk+VdOjM4aNXto0bUuem17s2r4Q5y9lTyWFoDwu6+piL9UE wg== 
-Received: from p1lg14880.it.hpe.com ([16.230.97.201])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3sh5880w89-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Aug 2023 21:55:49 +0000
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 0276D80171B;
-        Wed, 16 Aug 2023 21:55:49 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.39])
-        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 2A0CD80BA10;
-        Wed, 16 Aug 2023 21:55:48 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
-        andrew@lunn.ch, verdun@hpe.com, nick.hawkins@hpe.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 5/5] MAINTAINERS: HPE: Add GXP UMAC Networking Files
-Date:   Wed, 16 Aug 2023 16:52:20 -0500
-Message-Id: <20230816215220.114118-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230816215220.114118-1-nick.hawkins@hpe.com>
-References: <20230816215220.114118-1-nick.hawkins@hpe.com>
-X-Proofpoint-GUID: 8w6JR2cMxvQC3w6ckR4Y1JqMgnQZTf4Y
-X-Proofpoint-ORIG-GUID: 8w6JR2cMxvQC3w6ckR4Y1JqMgnQZTf4Y
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-16_19,2023-08-15_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=957 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 suspectscore=0 phishscore=0 mlxscore=0 adultscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308160195
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1346901AbjHPW0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 18:26:18 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2788D269F
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 15:26:15 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1bbc87ded50so45409195ad.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 15:26:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1692224774; x=1692829574;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=u7uQIIcrOFzc49aqvUkRDZzFxEz4KqT+ICR1+8quc8w=;
+        b=nLsRg3gBX8FVyACCctF8pWA6iGOG69Klww5ee5m0rSCjDQ1YLbML1J9hVFaaA/yc9K
+         gN9B0kRZxzGXG+oIrQ5rA1nGd7nw9fPduPa7qWfDgaCOjGkrRtjnoY0zWtWMnjO5OfuE
+         wrITOm5wFbE09oL+nq29oWN/YMWC9K8uX2wnG/v4lufrI7J/4fdhx5rHfVfy0+MIfrBV
+         kYdgPBB6pyhLfrZsrgkO4wFXcLZKDIrfwa9UeGzJjd1FiwQ78IfmcX0smW7FoLFVRma8
+         47XJ32lOwHSSKwLlIyrf46dCG7xiLL4bl1FLaFz8N8GyW6pXusCNIP6nrAt+1g8yoJm7
+         2OHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692224774; x=1692829574;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u7uQIIcrOFzc49aqvUkRDZzFxEz4KqT+ICR1+8quc8w=;
+        b=lCZpzv2WWj7g7eIss0mTywiBcAMedfJaxFZBiEiIrP9gezueTvFIlticIU8Wk6IUlx
+         V761dIw1XzwCATvaEK9hOoMzx36jAplGHDgZ2hozJS0+guIpNTfJBB0Zo8yzaxdLHExS
+         Wkr2fwS9ls/TMKao155Seh37tR7o+xVT+vfWlJRZe1REVmX+yT+B2omRnV+mQyiswS0P
+         zlNO4fRD01mphfr7xAMkzPGQmz9pi0gxs/FIZ+eynntSJMnAjiRzOxCFZgclSWp9Vf1f
+         ZBqKDyKn5uwy6gidI12ZQCPaz/UZHsS5gTXRLM80gNJrf9iZD/CfVakxx0a4ltLsVWnc
+         2l1A==
+X-Gm-Message-State: AOJu0YzgmGuAMiYZPlAOFEdaUUN4IDrNhM/v5FI+VTPldI2NwAjCu2LE
+        4FCPdITqMnp/6w5StXBR1pqq4A==
+X-Google-Smtp-Source: AGHT+IGkgRJCXIVVufTd3KRR6mXCo4jmAJTUdqHRVFHuFCpLRjBwYq8DpHYyhSTWPV9UPPmJYCZB9w==
+X-Received: by 2002:a17:902:d2c7:b0:1b2:5d5b:e871 with SMTP id n7-20020a170902d2c700b001b25d5be871mr3674598plc.59.1692224774508;
+        Wed, 16 Aug 2023 15:26:14 -0700 (PDT)
+Received: from x1 ([2601:1c2:1800:f680:ad77:24cb:c068:c5e6])
+        by smtp.gmail.com with ESMTPSA id c13-20020a170902d48d00b001bdcd4b1616sm8966890plg.260.2023.08.16.15.26.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Aug 2023 15:26:14 -0700 (PDT)
+Date:   Wed, 16 Aug 2023 15:26:12 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>
+Subject: Re: [PATCH RFC v2 1/4] dt-bindings: mmc: sdhci-of-dwcmhsc: Add
+ T-Head TH1520 support
+Message-ID: <ZN1NBE2+HHfatQ/T@x1>
+References: <20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com>
+ <20230724-th1520-emmc-v2-1-132ed2e2171e@baylibre.com>
+ <ca0b9a19-d7d7-80e5-f47e-f74615cdac86@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ca0b9a19-d7d7-80e5-f47e-f74615cdac86@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+On Mon, Aug 07, 2023 at 08:29:21AM +0200, Krzysztof Kozlowski wrote:
+> On 05/08/2023 05:14, Drew Fustini wrote:
+> > Add compatible value for the T-Head TH1520 dwcmshc controller and
+> > thead,io-fixed-1v8 and thead,pull-up properties.
+> > 
+> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> > ---
+> >  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > index a43eb837f8da..57602c345cab 100644
+> > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > @@ -19,6 +19,7 @@ properties:
+> >        - rockchip,rk3568-dwcmshc
+> >        - rockchip,rk3588-dwcmshc
+> >        - snps,dwcmshc-sdhci
+> > +      - thead,th1520-dwcmshc
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -60,6 +61,14 @@ properties:
+> >      description: Specify the number of delay for tx sampling.
+> >      $ref: /schemas/types.yaml#/definitions/uint8
+> >  
+> > +  thead,io-fixed-1v8:
+> > +    description: SoC PHY pad is fixed 1.8V
+> > +    type: boolean
+> 
+> Isn't this duplicating existing properties for MMC modes with 1.8 V?
 
-List the files added for supporting the UMAC networking on GXP.
+Thank you for reviewing. Yes, now that you mention it, I do see those
+properties now in mmc-controller.yaml. It seems like the existing
+mmc-ddr-1_8v property would be appropriate.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> > +
+> > +  thead,pull-up:
+> > +    description: True if pull-up, false if pull-down
+> 
+> This explains me nothing. No clue what you are pulling and why do you
+> need it. Pin pulls should be done via pin controller, not MMC.
 
----
-v3:
- *No change
-v2:
- *Changed dt-binding net directory files to "hpe,gxp*"
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Good point that my description is not helpful. The pull-up property
+determines whether certain phy registers are written to. I need to try
+to can get documentation on the phy so that I can better understand the
+details of the pull-up configuration in the phy registers.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 27ef11624748..c0bb534bec97 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2243,6 +2243,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
- F:	Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
- F:	Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-+F:	Documentation/devicetree/bindings/net/hpe,gxp*
- F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
- F:	Documentation/hwmon/gxp-fan-ctrl.rst
-@@ -2252,6 +2253,7 @@ F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
-+F:	drivers/net/ethernet/hpe/
- F:	drivers/spi/spi-gxp.c
- F:	drivers/watchdog/gxp-wdt.c
- 
--- 
-2.17.1
+> 
+> Anyway you should have here allOf:if:then (move the allOf: from top to
+> behind "required:") which will disallow these properties for other variants.
 
+I noticed that nvidia,tegra20-sdhci.yaml has several lines related to
+pull-up/down configuration:
+
+218   - if:
+219       properties:
+220         compatible:
+221           contains:
+222             const: nvidia,tegra210-sdhci
+223     then:
+224       properties:
+225         pinctrl-names:
+226           oneOf:
+227             - items:
+228                 - const: sdmmc-3v3
+229                   description: pad configuration for 3.3 V
+230                 - const: sdmmc-1v8
+231                   description: pad configuration for 1.8 V
+232                 - const: sdmmc-3v3-drv
+233                   description: pull-up/down configuration for 3.3 V
+234                 - const: sdmmc-1v8-drv
+235                   description: pull-up/down configuration for 1.8 V
+236             - items:
+237                 - const: sdmmc-3v3-drv
+238                   description: pull-up/down configuration for 3.3 V
+239                 - const: sdmmc-1v8-drv
+240                   description: pull-up/down configuration for 1.8 V
+241             - items:
+242                 - const: sdmmc-1v8-drv
+243                   description: pull-up/down configuration for 1.8 V
+
+Do you think creating something like that would be a good approach?
+
+Thank you,
+Drew
