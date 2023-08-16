@@ -2,99 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0803B77E714
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:58:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5815C77E72D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 19:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345003AbjHPQ5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 12:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40690 "EHLO
+        id S1345039AbjHPRDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 13:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345013AbjHPQ5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:57:32 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6498E4C
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 09:57:30 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31757edd9edso5621883f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 09:57:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692205049; x=1692809849;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o9UCPIbwET1nK7OtL4k21iTK03Gqf/XBiAM4YHfVC6Y=;
-        b=DD1Lh5jRTBRof6bbiGBRpUxJArFXGYFf30JHXVXInFmcmgQhStl3XzifEFVJO29bY2
-         beN/dYamXkkV9Co3T11uakyKlVRMaR7MkDL9OFaBlMV9/6sQCYh3tmHvTosVLrJ1t69I
-         uix15KIKS3fvAkDzPjeNuW4iFWiR0oLfsAgSFLUtjB8UpakA0tR9EpwPVXp43Bepslu7
-         Qm8/5U17ooD+ooJ87KSFmrU+1yagSCcVky0Q2tZhdYnbhCTZbzomKljlPpaapzFdiNmU
-         Z9D9av5lBowbi3TXjnnX7CGJRpVy436GtoIm2mK9yb62z0tMTnBjF8xU77YE0DkwuEUA
-         YckQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692205049; x=1692809849;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=o9UCPIbwET1nK7OtL4k21iTK03Gqf/XBiAM4YHfVC6Y=;
-        b=iPH6vNGNegMRtiTa+f9axIOwOLxOzxBjGkkwg+hu1CDzJcbF52T0Nf2qofihDQQ1mV
-         /NugKZZenV9C60x0cXnVsO/FmA63yJO5HS2XoiR6tpZzbQX57IHJUhkMmm7f7YmKOUpo
-         DracscpzoYOLcS+Klb+bQSKn9NMwAM8qgllkIeQfjvXNpCcLIAEFFwPsrFiB7yzVKrQ6
-         3Fs9mVmfdQFdbK/O4QZgN1iB36SOo2nnnC+v5eS3l3s83zb+TYDIRpQF49wuMkxP6KjO
-         UMWN7IXKOg2fLhvk3bur72Phy9LXsQzAam5iHvNHHzyWRj7xbjqfoB/ouNEOuvfGV6G3
-         cAOQ==
-X-Gm-Message-State: AOJu0YxZ2K3gTflEafXktu8at0lNwYgT/bOWdHb0vciDa78rLTXENUsC
-        cdWcMpG5YufAFAn4xe3LukrSvw==
-X-Google-Smtp-Source: AGHT+IFpu7NsMnfNRz0FQaZYKkOj0aFLicer1gWur6dmfQYA+bPEhZnBoAqhud9cPlQiIuUFfFjHAA==
-X-Received: by 2002:a5d:4d11:0:b0:319:77d4:b313 with SMTP id z17-20020a5d4d11000000b0031977d4b313mr1673688wrt.58.1692205049186;
-        Wed, 16 Aug 2023 09:57:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:9f7b:ceef:54e7:3152? ([2a01:e0a:982:cbb0:9f7b:ceef:54e7:3152])
-        by smtp.gmail.com with ESMTPSA id k1-20020a5d4281000000b00317a29af4b2sm21758221wrq.68.2023.08.16.09.57.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Aug 2023 09:57:28 -0700 (PDT)
-Message-ID: <29304199-1df3-4fa4-8fcf-a8e34bd7a098@linaro.org>
-Date:   Wed, 16 Aug 2023 18:57:27 +0200
+        with ESMTP id S1345050AbjHPRC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 13:02:56 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFAE9103;
+        Wed, 16 Aug 2023 10:02:55 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37GCtD6G014036;
+        Wed, 16 Aug 2023 17:02:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=mQL/ubOpOCVvSH/YDZTWN5K9XhRt1hFWYAP3tg6tKgU=;
+ b=jPAUN9O1LHn70sEhJs3otJlkwvdz76eHp1IWXDQmSbBNjpHnZQJGXeIAQN+UBye5lO1E
+ 8BHwHQ9lYIQlkv6AjO5yXLMGgWQOPPQDX2jh9Lzgc6zCEFbRtWRs9DgRpay0NYkyMEki
+ fs0kE3nDei26EXvmgh3GRmoj8qQ3wvFz1w8knTySimkHcvQBuIqb5OGdoPnKJ+u61LkF
+ odpQUkAFirFc9AQ3aRyjE2BLfDpgOVxBJEex1EX59r4wrJjL2beL9ThuKnWIpzS5tXEI
+ /PMq18xEFEO9Vz54JbvVwCfAec35NbBmG7cMI3JTQtQY/x/wXvsrI/7A9YTHaHjljItb /g== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sgf5uaarx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Aug 2023 17:02:40 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37GH2cJX016162
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Aug 2023 17:02:38 GMT
+Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 16 Aug
+ 2023 10:02:37 -0700
+Date:   Wed, 16 Aug 2023 10:02:33 -0700
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Robert Marko <robimarko@gmail.com>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_mojha@quicinc.com>,
+        <computersforpeace@gmail.com>
+Subject: Re: [PATCH v3 2/4] firmware: qcom_scm: disable SDI if required
+Message-ID: <20230816170232.GA26279@quicinc.com>
+References: <20230816164641.3371878-1-robimarko@gmail.com>
+ <20230816164641.3371878-2-robimarko@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 0/5] Add JDI LPM102A188A display panel support
-Content-Language: en-US, fr
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230807133307.27456-1-diogo.ivo@tecnico.ulisboa.pt>
- <ZNz5sSnxs_E8p_4J@orome>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <ZNz5sSnxs_E8p_4J@orome>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230816164641.3371878-2-robimarko@gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RRV8N2iztFnBwow1eBB_xDypdGCKMq6c
+X-Proofpoint-GUID: RRV8N2iztFnBwow1eBB_xDypdGCKMq6c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-16_17,2023-08-15_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 mlxlogscore=516 clxscore=1011 adultscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308160149
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -105,53 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 18:30, Thierry Reding wrote:
-> On Mon, Aug 07, 2023 at 02:33:00PM +0100, Diogo Ivo wrote:
->> Hello,
->>
->> These patches add support for the JDI LPM102A188A display panel,
->> found in the Google Pixel C.
->>
->> Patch 1 adds the DT bindings for the panel.
->>
->> Patch 2 adds the panel driver, which is based on the downstream
->> kernel driver published by Google and developed by Sean Paul.
->>
->> Patches 3-5 add DT nodes for the regulator, backlight controller and
->> display panel.
->>
->> The first version of this patch series can be found at:
->> https://lore.kernel.org/all/20220929170502.1034040-1-diogo.ivo@tecnico.ulisboa.pt/
->>
->> The first submission of v2 can be found at:
->> https://lore.kernel.org/all/20221025153746.101278-1-diogo.ivo@tecnico.ulisboa.pt/
->>
->> Changes in v2:
->>   - Patch 1: remove touchscreen reset gpio property
->>   - Patch 2: clear register based on its value rather than a DT property
->>   - Patch 3: tune backlight delay values
->>   - Patch 4: add generic node names, remove underscores
->>
->> Changes in v3:
->>   - Patch 1: add Reviewed-by
->>   - Patch 2: fix error handling, remove enabled/prepared booleans, add
->>     dc/dc setting
->>   - Patches 3-5: Split previous patch 3 into three different patches,
->>     each adding a separate node
->>   - removed previous patch 2 pertaining to Tegra DSI reset as it was upstreamed
->>
->> Diogo Ivo (5):
->>    dt-bindings: display: Add bindings for JDI LPM102A188A
->>    drm/panel: Add driver for JDI LPM102A188A
->>    arm64: dts: smaug: Add DSI/CSI regulator
->>    arm64: dts: smaug: Add backlight node
->>    arm64: dts: smaug: Add display panel node
+On Aug 16 2023 18:45, Robert Marko wrote:
+> IPQ5018 has SDI (Secure Debug Image) enabled by TZ by default, and that
+> means that WDT being asserted or just trying to reboot will hang the board
+> in the debug mode and only pulling the power and repowering will help.
+> Some IPQ4019 boards like Google WiFI have it enabled as well.
 > 
-> I've picked up patches 3-5 into the Tegra tree and I assume the other
-> two will go in through drm-misc?
-
-Sure, done !
-
+> Luckily, SDI can be disabled via an SCM call.
 > 
-> Thierry
+> So, lets use the boolean DT property to identify boards that have SDI
+> enabled by default and use the SCM call to disable SDI during SCM probe.
+> It is important to disable it as soon as possible as we might have a WDT
+> assertion at any time which would then leave the board in debug mode,
+> thus disabling it during SCM removal is not enough.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 
+Reviewed-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
