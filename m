@@ -2,94 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1ABD77EA41
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 22:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0014177EA67
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 22:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346050AbjHPUBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 16:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38886 "EHLO
+        id S1346030AbjHPUK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 16:10:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345946AbjHPUAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 16:00:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329DB1FE3;
-        Wed, 16 Aug 2023 13:00:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B73D06204B;
-        Wed, 16 Aug 2023 20:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 143C9C433C8;
-        Wed, 16 Aug 2023 20:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692216022;
-        bh=FqhxkuPdgVbJETSXDsWvg4mXVhYdn8SeQrY8c+xWq78=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=riEM3m7lIRonoMiBMuDX96KWnMnZ3fbs0J1JuZenDRx3CQ73U2CTT2VjIknevpnoR
-         nO7YTuKKyyqBPZrE7brSIShfw0RJdniaL2w08VfTRrR8Eo+YjxvhZVrGU47iT3e9JX
-         aanczv4Su2UTNPFM9HoAFrws9+wWuH9UnFPrno7OC/ZgY1k1IWdp4jeOPAxhPk9cxg
-         6pokkr7KKg7fGFXjSHSrRXqMMHdHIVfZv129b+sz2zCk3OMELAv6h9iD6PWBsgIN+e
-         ckJT6Skr+rRV+Q6CfnVZNYkHoixt0X+3p8BnJGWZ55mGTAL8wABQtKEXCMxflDvtuA
-         Y5SzwKJ8WvgbQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id EA150C395C5;
-        Wed, 16 Aug 2023 20:00:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S234641AbjHPUJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 16:09:56 -0400
+Received: from out-35.mta0.migadu.com (out-35.mta0.migadu.com [IPv6:2001:41d0:1004:224b::23])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3756CD
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 13:09:54 -0700 (PDT)
+Message-ID: <fa2f0e13-1576-7985-5702-80cba3ecb17f@ansari.sh>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
+        t=1692216591;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9VhizC2mjx6tKAlv2xv+dNkvMh6f5vBXVV6pf3KhE5k=;
+        b=X5Dybzomz7Or4AMQHSAz8uCpPHp0shuNl7iBWykV7vfiSVFoPMcHWyYn1MGk/CpnE90aoq
+        pPFhwHvqagzeadWH01r0CpfPauoicC1So4sMWYwMe7Vdxpx73st7up4d6fcd3jL6CJMqG6
+        kvaLUziwY23T6MXgL/BxgJD4J/jBXd8=
+Date:   Wed, 16 Aug 2023 21:09:49 +0100
 MIME-Version: 1.0
+Subject: Re: [PATCH] arm64: tegra: Enable IOMMU for host1x on Tegra132
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   Rayyan Ansari <rayyan@ansari.sh>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230810214543.16235-1-rayyan@ansari.sh> <ZNz4IZ8lSXlGIZb_@orome>
+ <b07819ea-4a96-0906-b8e9-a9b045c37032@ansari.sh>
+In-Reply-To: <b07819ea-4a96-0906-b8e9-a9b045c37032@ansari.sh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/3] Bluetooth: qca: enable WCN7850 support
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <169221602195.24089.4864640872066685763.git-patchwork-notify@kernel.org>
-Date:   Wed, 16 Aug 2023 20:00:21 +0000
-References: <20230816-topic-sm8550-upstream-bt-v4-0-2ea2212719f6@linaro.org>
-In-Reply-To: <20230816-topic-sm8550-upstream-bt-v4-0-2ea2212719f6@linaro.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     luiz.dentz@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marcel@holtmann.org, johan.hedberg@gmail.com, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        quic_bgodavar@quicinc.com, quic_rjliao@quicinc.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, robh@kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
-
-On Wed, 16 Aug 2023 10:06:45 +0200 you wrote:
-> This serie enables WCN7850 on the Qualcomm SM8550 QRD
-> reference platform.
+On 16/08/2023 20:56, Rayyan Ansari wrote:
+> On 16/08/2023 17:24, Thierry Reding wrote:
+>> On Thu, Aug 10, 2023 at 10:45:41PM +0100, Rayyan Ansari wrote:
+>>> Add the iommu property to the host1x node to register it with its
+>>> swgroup.
+>>>
+>>> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+>>> ---
+>>>   arch/arm64/boot/dts/nvidia/tegra132.dtsi | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>
+>> Do you happen to have a Tegra132 device that you can test upstream Linux
+>> on? Just asking out of curiosity because these devices are becoming very
+>> rare these days and it'd be good to know if people are still using these
+>> and that recent Linux kernels are still running on them.
 > 
-> The WCN7850 is close to the WCN6855 but uses different
-> firmware names.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> [...]
+> I do - I have the Nexus 9. At some point I was trying to mainline it, 
+> but I stopped as I couldn't manage to get USB working - I only got 
+> simplefb working. If it would be useful I could see if my old patches 
+> work now and submit them.
 
-Here is the summary with links:
-  - [v4,1/3] dt-bindings: net: bluetooth: qualcomm: document WCN7850 chipset
-    https://git.kernel.org/bluetooth/bluetooth-next/c/f38a5adcbd53
-  - [v4,2/3] Bluetooth: qca: use switch case for soc type behavior
-    https://git.kernel.org/bluetooth/bluetooth-next/c/08292727a9fc
-  - [v4,3/3] Bluetooth: qca: add support for WCN7850
-    https://git.kernel.org/bluetooth/bluetooth-next/c/ef6d9b23aa58
+I looked through my old notes and I was able to get USB host mode (ie 
+USB OTG) working but not USB device mode.
 
-You are awesome, thank you!
+> 
+>>
+>> Thierry
+> 
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Rayyan Ansari
+https://ansari.sh
 
