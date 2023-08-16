@@ -2,150 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0283777E5F9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E227177E60A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 18:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237820AbjHPQEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 12:04:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57216 "EHLO
+        id S1344605AbjHPQIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 12:08:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344495AbjHPQEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:04:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CA11121;
-        Wed, 16 Aug 2023 09:04:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S1344628AbjHPQIL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 12:08:11 -0400
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B1C114;
+        Wed, 16 Aug 2023 09:08:08 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 16518100003;
+        Wed, 16 Aug 2023 19:08:07 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 16518100003
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1692202087;
+        bh=wGqvJOn5fP6VPclwBqfTYsb4NWORtmmUmxW9yBj0C14=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+        b=pu+ViZnBT4SSAr62uJNCBMvDiuJCilFDki3AXaaLXyz4XH2VnUEiTE9Huf8B701oc
+         bxprMscRUVXlinABZqkwEkHGqofS+XCEHJp8oy6z8Z94iXDblbqV1pr7VRm24s0DQK
+         KwvnNuE+iWW2TIFXdBdCUGVcLz9JEvmBpmfTqEtLNBnkqdys9TvxZEg3zU+j7bU5IE
+         30rB589keO2aD3Nb3crBHjBYsVwxrxSSm5d9NrcLgzbb2o4qxgm10Ys7X+b2CXe6xG
+         Y+LIx72CggsxaVqPKn62YzN/FDyraKHJ1wrU1QwQhFq2zgcSio+B7CaDq3ZQpTWZaw
+         Z97Awe+AvAX1Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B443664904;
-        Wed, 16 Aug 2023 16:04:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90265C433C8;
-        Wed, 16 Aug 2023 16:04:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692201879;
-        bh=4Zp3gWJ/UNXl5LmVpCbTdj3eqr5kWiHHc7k0ReSn3hQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OdpNHr+CytMtoJpZeiAl2Xzi7+pDId7Xfjb/3bZi8Pk+XWouoXSg9a0POUmnKK8gK
-         OcEephfmv973Ybjmgpmuw41k/dYlLPEoZBlRChm34EsmWn2GrifjY+cu6oGNAcj2iL
-         yvl1HfXQFX1oVYxsFaFsda2FVI4l+03j9ERhPGMus+ri/E5ah7C1JLAadr/LTYE6NK
-         r09mWMjaoFOrWOKTgJGMpmiRDwOzOIdg4JCkytUL61ndvuQYLeRJrJZXIYOIuBZw7T
-         ew5tURaBN7HSkAWt7eFw8H8tSWC+0A3uKowil81GNaAOWA5a0ytyeF5GaWTP/fZZyA
-         bVnJ+wQ04434g==
-Date:   Wed, 16 Aug 2023 23:52:53 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v3 06/10] net: stmmac: xgmac: support
- per-channel irq
-Message-ID: <ZNzw1cqmGQaKpfGi@xhacker>
-References: <20230809165007.1439-1-jszhang@kernel.org>
- <20230809165007.1439-7-jszhang@kernel.org>
- <a12b6d39-0e26-7bdc-4207-c767342ebcf6@foss.st.com>
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Wed, 16 Aug 2023 19:08:06 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 16 Aug 2023 19:08:05 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([::1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::80e5:bab:4999:4480%7]) with mapi id
+ 15.02.1118.030; Wed, 16 Aug 2023 19:08:05 +0300
+From:   Alexey Romanov <AVRomanov@sberdevices.ru>
+To:     "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "olivia@selenic.com" <olivia@selenic.com>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "conor@kernel.org" <conor@kernel.org>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "lists@kaiser.cx" <lists@kaiser.cx>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v2 0/3]  Meson S4 HW RNG Support
+Thread-Topic: [PATCH v2 0/3]  Meson S4 HW RNG Support
+Thread-Index: AQHZyS/okR/Cmydlp02gvetqwMngtK/s8v8A
+Date:   Wed, 16 Aug 2023 16:08:05 +0000
+Message-ID: <20230816160802.pi75gl2smx2llcf4@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20230807130611.63914-1-avromanov@sberdevices.ru>
+In-Reply-To: <20230807130611.63914-1-avromanov@sberdevices.ru>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.18.93]
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <7146A6B2EA2EED4BA4EE46F3C863E684@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <a12b6d39-0e26-7bdc-4207-c767342ebcf6@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 179289 [Aug 16 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVRomanov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 526 526 7a6a9b19f6b9b3921b5701490f189af0e0cd5310, {Track_E25351}, {Tracking_internal2}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;cab-wsm-0029881.sigma.sbrf.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/08/16 12:02:00 #21629266
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 10, 2023 at 04:52:01PM +0200, Alexandre TORGUE wrote:
-> On 8/9/23 18:50, Jisheng Zhang wrote:
-> > The IP supports per channel interrupt, add support for this usage case.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >   .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  2 ++
-> >   .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 33 +++++++++++--------
-> >   2 files changed, 22 insertions(+), 13 deletions(-)
-> > 
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> > index 81cbb13a101d..12e1228ccf2a 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> > @@ -327,6 +327,8 @@
-> >   /* DMA Registers */
-> >   #define XGMAC_DMA_MODE			0x00003000
-> > +#define XGMAC_INTM			GENMASK(13, 12)
-> > +#define XGMAC_INTM_MODE1		0x1
-> >   #define XGMAC_SWR			BIT(0)
-> >   #define XGMAC_DMA_SYSBUS_MODE		0x00003004
-> >   #define XGMAC_WR_OSR_LMT		GENMASK(29, 24)
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> > index b5ba4e0cca55..ef25af92d6cc 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> > @@ -31,6 +31,13 @@ static void dwxgmac2_dma_init(void __iomem *ioaddr,
-> >   		value |= XGMAC_EAME;
-> >   	writel(value, ioaddr + XGMAC_DMA_SYSBUS_MODE);
-> > +
-> > +	if (dma_cfg->perch_irq_en) {
-> > +		value = readl(ioaddr + XGMAC_DMA_MODE);
-> > +		value &= ~XGMAC_INTM;
-> > +		value |= FIELD_PREP(XGMAC_INTM, XGMAC_INTM_MODE1);
-> > +		writel(value, ioaddr + XGMAC_DMA_MODE);
-> > +	}
-> >   }
-> >   static void dwxgmac2_dma_init_chan(struct stmmac_priv *priv,
-> > @@ -365,20 +372,20 @@ static int dwxgmac2_dma_interrupt(struct stmmac_priv *priv,
-> >   	}
-> >   	/* TX/RX NORMAL interrupts */
-> > -	if (likely(intr_status & XGMAC_NIS)) {
-> 
-> No longer need to check NIS bit ?
+Hi!
 
-Hi Alexandre,
+Really sorry for the noise, but
+I would like to receive some feedback on my patchset.
 
-NIS is RI | TI | TBU, since we have checked these three
-bits we can ignore NIS. And dwmac4 behaves similarly.
+On Mon, Aug 07, 2023 at 04:06:08PM +0300, Alexey Romanov wrote:
+> Hello!
+>=20
+> This patch series adds hwrng support for Amlogic S4-series.
+> Now, S4 uses a new random number generation algorithm.
+> This changes implemnents new algo and also adds description
+> to meson-s4.dtsi.
+>=20
+> V2:
+>=20
+> - Use readl_relaxed_poll_timeout_atomic() function instead of loop.
+> - Use two different functions: meson_rng_read() and meson_s4_rng_read().
+> - Fix naming in DT schema (meson-s4-hwrng instead of meson-hwrng-s4).
+> - A little code style fixes.
+>=20
+> Alexey Romanov (3):
+>   drivers: rng: meson: add support for S4
+>   dt-bindings: rng: meson: add meson-rng-s4 compatible
+>   arch/arm64: dts: meson-s4: add hwrng node
+>=20
+>  .../bindings/rng/amlogic,meson-rng.yaml       |  1 +
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  5 ++
+>  drivers/char/hw_random/meson-rng.c            | 80 ++++++++++++++++++-
+>  3 files changed, 83 insertions(+), 3 deletions(-)
+>=20
+> --=20
+> 2.38.1
+>=20
 
-Thanks
-
-> 
-> > -		if (likely(intr_status & XGMAC_RI)) {
-> > -			u64_stats_update_begin(&rx_q->rxq_stats.syncp);
-> > -			rx_q->rxq_stats.rx_normal_irq_n++;
-> > -			u64_stats_update_end(&rx_q->rxq_stats.syncp);
-> > -			ret |= handle_rx;
-> > -		}
-> > -		if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
-> > -			u64_stats_update_begin(&tx_q->txq_stats.syncp);
-> > -			tx_q->txq_stats.tx_normal_irq_n++;
-> > -			u64_stats_update_end(&tx_q->txq_stats.syncp);
-> > -			ret |= handle_tx;
-> > -		}
-> > +	if (likely(intr_status & XGMAC_RI)) {
-> > +		u64_stats_update_begin(&rx_q->rxq_stats.syncp);
-> > +		rx_q->rxq_stats.rx_normal_irq_n++;
-> > +		u64_stats_update_end(&rx_q->rxq_stats.syncp);
-> > +		ret |= handle_rx;
-> > +	}
-> > +	if (likely(intr_status & XGMAC_TI)) {
-> > +		u64_stats_update_begin(&tx_q->txq_stats.syncp);
-> > +		tx_q->txq_stats.tx_normal_irq_n++;
-> > +		u64_stats_update_end(&tx_q->txq_stats.syncp);
-> > +		ret |= handle_tx;
-> >   	}
-> > +	if (unlikely(intr_status & XGMAC_TBU))
-> > +		ret |= handle_tx;
-> >   	/* Clear interrupts */
-> >   	writel(intr_en & intr_status, ioaddr + XGMAC_DMA_CH_STATUS(chan));
-> 
+--=20
+Thank you,
+Alexey=
