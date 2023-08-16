@@ -2,137 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7217577E5C5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 17:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C61C77E5A1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 17:51:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344454AbjHPP7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 11:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        id S239116AbjHPPuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 11:50:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344461AbjHPP6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 11:58:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6E62D46;
-        Wed, 16 Aug 2023 08:58:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3094B6397C;
-        Wed, 16 Aug 2023 15:58:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0244FC433C8;
-        Wed, 16 Aug 2023 15:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692201496;
-        bh=yI3jO41F7I/D3o6O2gOqgEinRf/cP8uzb58UxsDvrsQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lOcjP2EXCONRBcqrbt5zkrB422WqcWN4nFbUcpq1VSIrMSUqz/I+eOOLH51KG4mUP
-         /oR92BYvYXlmHEB9etc0pB1mRX/y2xTv1f2qEFEC4n0Gp7pci+mKwh0+oumUO+8AqU
-         19i3pVPE4pHViUJpU/y4Geoo7v5Xvwx/UzBrmw1JoghVf/mnfSEM8GkZQ16jCz/OxT
-         rd32ztPE31TzWNp1fPQQZ7/+tzmn0f8iRvJwebRBjnNEvCxev0kB5uV4i/Unzb3rzJ
-         qzvHIsZQmPwqyFw54c6PuLhwxSluXo0SLZWczAAqyZ501d7u3/5zvTHQbzY3qryRuO
-         D84MQ9hFjdAfg==
-Date:   Wed, 16 Aug 2023 23:46:30 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Drew Fustini <dfustini@baylibre.com>, Fu Wei <wefu@redhat.com>,
+        with ESMTP id S1344243AbjHPPuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 11:50:23 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7C92D58;
+        Wed, 16 Aug 2023 08:50:05 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 88A01E0008;
+        Wed, 16 Aug 2023 15:49:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1692201004;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=U7qqsraPhv0yClgxA/hyk25/qkMt80mxh+Qel/Qxjxk=;
+        b=aTA9l5F6XqBRUIBDAk06nQK/nIEigxkLt66oO1lwGxbsCjnlCIksXy66MYVGgyPuPhY0NJ
+        vcgwSZPKuyDa3dpID6QwUfiGt+IN8msV8YcunSM7kYtF1MGNuhN3WTTVxkX+EPgysd5VQG
+        Y1STGp7KLgLqOUDDP+50lCSdlCa8KUV9rkbZbfyStWE5OcI3ADLgii1Ip6/MvbsBxhQlDj
+        6u2BmR71zqZy9okYfyhuIL6jZaEld4kQiGU7rMUIwVCh7I2/PYqV1NMKGK610szgjiBcZk
+        w7ZnmE8N4F7hjEK/ew8ZCi5q3X25mzwLmN2yTK1pO+C2UzINVFe4WGbLTiP2Kg==
+Date:   Wed, 16 Aug 2023 17:49:58 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: change TH1520 files to dual license
-Message-ID: <ZNzvVuJ9fW8xTCTN@xhacker>
-References: <20230724182129.843687-1-dfustini@baylibre.com>
- <ZM9tUFddbRUglwfG@xhacker>
- <CAJF2gTT4pyAT5xpSAuOJ801WSk=xouv=uC0PSpHKqB3D=GxHsg@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 22/28] dt-bindings: net: Add the Lantiq PEF2256
+ E1/T1/J1 framer
+Message-ID: <20230816174847.4709a428@bootlin.com>
+In-Reply-To: <CACRpkdZWHw7sL6EKe0EP0hX5TEsdhzgkPSdVtPPYhS3LqJRHFg@mail.gmail.com>
+References: <20230809132757.2470544-1-herve.codina@bootlin.com>
+        <20230809132757.2470544-23-herve.codina@bootlin.com>
+        <CACRpkdZWHw7sL6EKe0EP0hX5TEsdhzgkPSdVtPPYhS3LqJRHFg@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJF2gTT4pyAT5xpSAuOJ801WSk=xouv=uC0PSpHKqB3D=GxHsg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-GND-Sasl: herve.codina@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 08, 2023 at 11:23:30PM +0800, Guo Ren wrote:
-> On Sun, Aug 6, 2023 at 6:03 PM Jisheng Zhang <jszhang@kernel.org> wrote:
-> >
-> > On Mon, Jul 24, 2023 at 11:21:29AM -0700, Drew Fustini wrote:
-> > > Modify the SPDX-License-Identifier for dual license of GPL-2.0 OR MIT.
-> > >
-> > > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+Hi Linus,
 
-Acked-by: Jisheng Zhang <jszhang@kernel.org>
+On Thu, 10 Aug 2023 10:53:04 +0200
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
-> > > ---
-> > >  arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi | 2 +-
-> > >  arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts      | 2 +-
-> > >  arch/riscv/boot/dts/thead/th1520.dtsi                  | 2 +-
-> > >  3 files changed, 3 insertions(+), 3 deletions(-)
-> > >
-> > > Jisheng Zhang and Guo Ren - I thought I would post this patch based on
-> > > the discussion in the thread about the BeagleV Ahead patches.
+> Hi Herve,
+> 
+> thanks for your patch!
+> 
+> On Wed, Aug 9, 2023 at 3:28 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> 
+> > The Lantiq PEF2256 is a framer and line interface component designed to
+> > fulfill all required interfacing between an analog E1/T1/J1 line and the
+> > digital PCM system highway/H.100 bus.
 > >
-> > I need Guo's ack to this patch. Hi Guo Ren, are you OK with this patch?
-> I'm okay with the dual license.
-> Acked-by: Guo Ren <guoren@kernel.org>
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
+> (...)
+> > +    patternProperties:
+> > +      '-pins$':
+> > +        type: object
+> > +        $ref: /schemas/pinctrl/pincfg-node.yaml#  
 > 
-> >
-> > Thanks
-> >
-> > >
-> > > Message-ID:
-> > > 20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com
-> > >
-> > > Thanks,
-> > > Drew
-> > >
-> > > diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> > > index 4b0249ac710f..a802ab110429 100644
-> > > --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> > > +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> > > @@ -1,4 +1,4 @@
-> > > -// SPDX-License-Identifier: GPL-2.0
-> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > >  /*
-> > >   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > >   */
-> > > diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> > > index a1248b2ee3a3..9a3884a73e13 100644
-> > > --- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> > > +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> > > @@ -1,4 +1,4 @@
-> > > -// SPDX-License-Identifier: GPL-2.0
-> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > >  /*
-> > >   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > >   */
-> > > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > > index 56a73134b49e..ce708183b6f6 100644
-> > > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > > @@ -1,4 +1,4 @@
-> > > -// SPDX-License-Identifier: GPL-2.0
-> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > >  /*
-> > >   * Copyright (C) 2021 Alibaba Group Holding Limited.
-> > >   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > > --
-> > > 2.34.1
-> > >
+> Shouldn't that be pinmux-node.yaml?
 > 
-> 
-> 
-> -- 
-> Best Regards
->  Guo Ren
+
+Indeed, it should be pinmux-node.yaml.
+This will be fixed in the next iteration.
+
+Best regards,
+Hervé
