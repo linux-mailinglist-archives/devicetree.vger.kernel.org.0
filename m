@@ -2,102 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0184D77D7AD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 03:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 315A577D7C2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Aug 2023 03:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241041AbjHPB3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Aug 2023 21:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53462 "EHLO
+        id S241173AbjHPBcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Aug 2023 21:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241044AbjHPB3n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 21:29:43 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4527D211E;
-        Tue, 15 Aug 2023 18:29:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=bfS5LUD1zjNYyRIJC4f8khPclEuBDPMUL6qQTc/jqQQ=; b=3ZSJBcsKSY/X08DUQ2pvtDMl2D
-        wMlCaoIUKDtLZBsnTGd8gcDrfFyA5ZwLnb425Rx0PQsV+W9rY1V2rr53hqeH5JhM/hwsBDvMj0oBb
-        EQri7hFRHvLSsMwfqDtygaF54/zWzJ356CdZiODqU6OqmVcJu0i+o04t3uaQDGgWjDag=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qW5Lg-004Dsk-8j; Wed, 16 Aug 2023 03:29:24 +0200
-Date:   Wed, 16 Aug 2023 03:29:24 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "simon.horman@corigine.com" <simon.horman@corigine.com>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/5] net: hpe: Add GXP UMAC MDIO
-Message-ID: <8f68f1dc-1841-4d28-b0b5-d968b1950e81@lunn.ch>
-References: <20230802201824.3683-1-nick.hawkins@hpe.com>
- <20230802201824.3683-3-nick.hawkins@hpe.com>
- <0b227994-2577-4a74-b604-79410f5607b8@lunn.ch>
- <75F51B6F-A477-4A2B-B40F-1CC894546CF2@hpe.com>
+        with ESMTP id S241139AbjHPBcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Aug 2023 21:32:18 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34159272A;
+        Tue, 15 Aug 2023 18:31:52 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-76ad8892d49so486845485a.1;
+        Tue, 15 Aug 2023 18:31:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692149511; x=1692754311;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KC/cApFMvEYrEIpnwwSkCOWAaT1//dyx1th4I4Q+dsY=;
+        b=D2FClF8/+NQzLwtJdJ+P9ZDqGWRgQfz4fcbWeXMybL1L6NldUSCuPVbn/I140LaqhO
+         cXVo9rGv3MeiPYPzqfN8llzwOpVuSuVjn+sHGprngJZNqngouwNi96z3kkIWlY/aWJZ6
+         slUrVEtJwkceETz0/AWe/8gN3CgvYRMeO7skJ19OmFOmIw6JtVE4dEbrEO5R9ZEE58xx
+         GXqFgj9vyUyxY7ZfCsTAgEFNYOEjyUQkaUSL4NLjK1YcS89Urpmj0UgWAehJXAwCReFO
+         omTENNYEvzUAFAmyoW93GIiOm2gnS9KbJF/t6JYHeZbzvNhQdTPP2UkNW/CJsH1tYe1N
+         zcKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692149511; x=1692754311;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KC/cApFMvEYrEIpnwwSkCOWAaT1//dyx1th4I4Q+dsY=;
+        b=cBofYitUSDWHtg11m2JlhI+CPZRp1RcNShtWD88ZZRlGpBUctQ6tJQ3nUsglaPiJ73
+         sYvbUCtYPB6PHJ5MT+6j12vQGXvIi/yLJzk51LlGxCrjO0uA7N18Ljh8v2o2+tQ+Aypu
+         PEEO4lYsRchqcuRn9iCYcVkRjF2xA1bUP+n5EQqkned3PpLJlWGO/cqSN0p3rkYR6JoY
+         DVZDT6vmgIkzXGL/KD+nyCm89MP9d9bCsJodkr5qMcSsLuiHe3t/LuqMiRK/e3zFyg8u
+         n671t3PTl5HZLp0p+DzM3CMnW33fntcEYdqh7RG/Lef0CSjjTjTKja/+P62WlXFy4HC/
+         qK3Q==
+X-Gm-Message-State: AOJu0YxysvjdHzrokXsBkQyQE6/Z9M7QubF0jcDuE+ta2AAHBKML/TwD
+        9+cAQFdlLSwJj5d6DOQ5QlBBgJ6aXmI=
+X-Google-Smtp-Source: AGHT+IECe6gu8XItzWbODdfYRK/vYBZ7bFoQEUsWlillTnyh3Dz8ePUGXSXeV20G5qWlTM4QhDeItw==
+X-Received: by 2002:a05:620a:40d2:b0:76c:d05f:99f5 with SMTP id g18-20020a05620a40d200b0076cd05f99f5mr629426qko.52.1692149511217;
+        Tue, 15 Aug 2023 18:31:51 -0700 (PDT)
+Received: from localhost ([2607:fea8:529e:7800::bdee])
+        by smtp.gmail.com with ESMTPSA id g3-20020a05620a13c300b0075cd80fde9esm4123037qkl.89.2023.08.15.18.31.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Aug 2023 18:31:50 -0700 (PDT)
+Date:   Tue, 15 Aug 2023 21:31:48 -0400
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFT 2/6] arm64: dts: qcom: sdm670: Add PDC
+Message-ID: <ZNwnBIDGZi11QT0P@radian>
+References: <20230811-topic-tlmm_wakeup-v1-0-5616a7da1fff@linaro.org>
+ <20230811-topic-tlmm_wakeup-v1-2-5616a7da1fff@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <75F51B6F-A477-4A2B-B40F-1CC894546CF2@hpe.com>
+In-Reply-To: <20230811-topic-tlmm_wakeup-v1-2-5616a7da1fff@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 12:55:56AM +0000, Hawkins, Nick wrote:
-> Greetings Andrew,
-> 
-> I have a follow up question below:
-> 
-> >> +static int umac_mdio_read(struct mii_bus *bus, int phy_id, int reg)
-> >> +{
-> >> + struct umac_mdio_priv *umac_mdio = bus->priv;
-> >> + unsigned int status;
-> >> + unsigned int value;
-> >> + int ret;
-> >> +
-> >> + status = __raw_readl(umac_mdio->base + UMAC_MII);
-> >> +
-> >> + status &= ~(UMAC_MII_PHY_ADDR_MASK | UMAC_MII_REG_ADDR_MASK);
-> >> + status |= ((phy_id << UMAC_MII_PHY_ADDR_SHIFT) &
-> >> + UMAC_MII_PHY_ADDR_MASK);
-> >> + status |= (reg & UMAC_MII_REG_ADDR_MASK);
-> >> + status |= UMAC_MII_MRNW; /* set bit for read mode */
-> >> + __raw_writel(status, umac_mdio->base + UMAC_MII);
-> >> +
-> >> + status |= UMAC_MII_MOWNER; /* set bit to activate mii transfer */
-> >> + __raw_writel(status, umac_mdio->base + UMAC_MII);
-> 
-> 
-> > I assume UMAC_MII_MOWNER must be set in a separate operation? But
-> > using __raw_writel() i'm not sure there is any barrier between the two
-> > writes.
-> 
-> Is there a function you would recommend using instead?
+On Fri, Aug 11, 2023 at 10:48:35PM +0200, Konrad Dybcio wrote:
+> Add support for the PDC to enable deep sleep wakeup from external sources.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-writel().
+Apologies for not testing this. I am not subscribed to the mailing list
+and just found this patch. You may CC me or ping me on #linux-msm if you
+want anything tested on SDM670 hardware.
 
-In general, it is best to use writel()/readl() for correctness. In the
-hot path, dealing with actually Ethernet frames where every uS counts,
-you can then think about using writel_relaxed()/readl_relaxed(). But
-for something slow like an MDIO bus driver, i would always avoid the
-possibility of having hard to find bugs because of missing barriers.
+>  arch/arm64/boot/dts/qcom/sdm670.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> index a1c207c0266d..da10f0a6d92e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> @@ -1169,6 +1169,16 @@ usb_1_dwc3: usb@a600000 {
+>  			};
+>  		};
+>  
+> +		pdc: interrupt-controller@b220000 {
+> +			compatible = "qcom,sdm670-pdc", "qcom,pdc";
+> +			reg = <0 0x0b220000 0 0x30000>;
+> +			qcom,pdc-ranges = <0 480 40>, <41 521 7>, <49 529 4>,
+> +					  <54 534 24>, <79 559 30>, <115 630 7>;
 
-	Andrew
+The <79 559 30> range is not continuous, just like on SDM845. While PDC
+interrupt 93 is on hwirq 573, PDC interrupt 94 is on hwirq 609.
+
+Another patch is needed to fix this because this was already applied.
+This does not cause a regression, though, because the pinctrl driver has
+no wakeirq map yet.
+
+https://android.googlesource.com/kernel/msm/+/d8e93ac1450a783fc095f082b0e5324cedee2e75/drivers/irqchip/qcom/pdc-sdm670.c#108
+
+> +			#interrupt-cells = <2>;
+> +			interrupt-parent = <&intc>;
+> +			interrupt-controller;
+> +		};
+> +
+>  		spmi_bus: spmi@c440000 {
+>  			compatible = "qcom,spmi-pmic-arb";
+>  			reg = <0 0x0c440000 0 0x1100>,
+>
+> -- 
+> 2.41.0
+>
