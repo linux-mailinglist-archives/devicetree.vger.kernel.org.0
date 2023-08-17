@@ -2,101 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FA5377F5BC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 13:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C871477F5D4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 14:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350516AbjHQLwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 07:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59708 "EHLO
+        id S1350563AbjHQMA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 08:00:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350667AbjHQLwl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 07:52:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F26E4F;
-        Thu, 17 Aug 2023 04:52:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DB87261259;
-        Thu, 17 Aug 2023 11:52:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8071FC433C8;
-        Thu, 17 Aug 2023 11:52:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692273159;
-        bh=aS1R/jCtUKchJK+GEF+wtWti/s/BvEvP1gcYy7Hq5zE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AyYLj4zKtJ2uDTHu3+MbkTcTTRdw6me/+W0vzq/FVkPqDHzN0ImGDHOcR+hGDPRiN
-         8AySu3/TeEMRiuTRAWWOd7T16XAa+FqrF/aEQkpSzcXQn1D4MT+f8zRgXrFv5iqFip
-         1r/HPtNAyXM3GyxePeoFtPV65ipAv4+2ORXabXpOJMAiO4owPxHy4223pTean9wJwv
-         qB8DEYVZC8l9UY1wt9QeWtGM4MqPcmXKq2Qqperuu6KsZ15imuib4ha6l+cKn14Z5k
-         RDIAf8gjlTvr/EthXeB32UuwCYnOSbunRJGZeFlYasnc55I/ZXMJe+6OnT2TAL4zA/
-         peGilOVKWWP2A==
-Date:   Thu, 17 Aug 2023 12:52:34 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: st,stpmic1: Add missing
- unevaluatedProperties for each regulator
-Message-ID: <20230817115234.GC986605@google.com>
-References: <20230725123740.149559-1-krzysztof.kozlowski@linaro.org>
- <11b08764-87bd-1d9b-a1d2-603193231f40@linaro.org>
+        with ESMTP id S1350607AbjHQMAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 08:00:40 -0400
+Received: from TWMBX03.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25CDF2112;
+        Thu, 17 Aug 2023 05:00:37 -0700 (PDT)
+Received: from TWMBX02.aspeed.com (192.168.0.24) by TWMBX03.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Aug
+ 2023 20:00:31 +0800
+Received: from twmbx02.aspeed.com (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Aug 2023 20:00:31 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <corbet@lwn.net>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
+        <billy_tsai@aspeedtech.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <BMC-SW@aspeedtech.com>, <patrick@stwcx.xyz>
+Subject: [PATCH v7 0/2] Support pwm/tach driver for aspeed ast26xx
+Date:   Thu, 17 Aug 2023 20:00:27 +0800
+Message-ID: <20230817120029.221484-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <11b08764-87bd-1d9b-a1d2-603193231f40@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_FAIL,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jul 2023, Krzysztof Kozlowski wrote:
+Unlike the old design that the register setting of the TACH should based
+on the configure of the PWM. In ast26xx, the dependency between pwm and
+tach controller is eliminated and becomes a separate hardware block. One
+is used to provide pwm output and another is used to monitor the frequency
+of the input. This driver implements them by exposing two kernel
+subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
+existing drivers for controlling elements such as fans (pwm-fan.c),
+beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
+provides sysfs interfaces for fan.
 
-> On 25/07/2023 14:37, Krzysztof Kozlowski wrote:
-> > Each regulator node, which references common regulator.yaml schema,
-> > should disallow additional or unevaluated properties.  Otherwise
-> > mistakes in properties will go unnoticed.  unevaluatedProperties:false
-> > requires listing existing properties (present in example and in other
-> > regulators of this device).
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
-> > index 97c61097f9e2..1a1ced489ef7 100644
-> > --- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
-> > @@ -189,6 +189,16 @@ properties:
-> >  
-> >        "^(buck[1-4]|ldo[1-6]|boost|vref_ddr|pwr_sw[1-2])$":
-> >          $ref: ../regulator/regulator.yaml
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          interrupts:
-> > +            maxItems: 1
-> > +
-> > +          st,mask-reset:
-> > +            description: mask reset for this regulator, the regulator configuration
-> > +              is maintained during pmic reset.
-> > +            $ref: /schemas/types.yaml#/definitions/flag
-> 
-> After further testing I see this patch is wrong. There are already
-> buck[1-4] entries, so this is duplicating things. I will send v2.
+Changes since v6:
+Consolidate the PWM and TACH functionalities into a unified driver.
 
-Are you still planning on resending this set?
+Changes since v5:
+- pwm/tach:
+  - Remove the utilization of common resources from the parent node.
+  - Change the concept to 16 PWM/TACH controllers, each with one channel,
+  instead of 1 PWM/TACH controller with 16 channels.
+- dt-binding:
+  - Eliminate the usage of simple-mfd.
+
+Changes since v4:
+- pwm:
+  - Fix the return type of get_status function.
+- tach:
+  - read clk source once and re-use it
+  - Remove the constants variables
+  - Allocate tach_channel as array
+  - Use dev->parent
+- dt-binding:
+  - Fix the order of the patches
+  - Add example and description for tach child node
+  - Remove pwm extension property
+
+Changes since v3:
+- pwm:
+  - Remove unnecessary include header
+  - Fix warning Prefer "GPL" over "GPL v2"
+- tach:
+  - Remove the paremeter min_rpm and max_rpm and return the tach value 
+  directly without any polling or delay.
+  - Fix warning Prefer "GPL" over "GPL v2"
+- dt-binding:
+  - Replace underscore in node names with dashes
+  - Split per subsystem
+
+Changes since v2:
+- pwm:
+  - Use devm_* api to simplify the error cleanup
+  - Fix the multi-line alignment problem
+- tach:
+  - Add tach-aspeed-ast2600 to index.rst
+  - Fix the multi-line alignment problem
+  - Remove the tach enable/disable when read the rpm
+  - Fix some coding format issue
+
+Changes since v1:
+- tach:
+  - Add the document tach-aspeed-ast2600.rst
+  - Use devm_* api to simplify the error cleanup.
+  - Change hwmon register api to devm_hwmon_device_register_with_info
+
+Billy Tsai (2):
+  dt-bindings: hwmon: Support Aspeed g6 PWM TACH Control
+  hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED g6 PWM/Fan tach
+
+ .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    |  57 ++
+ Documentation/hwmon/aspeed-g6-pwm-tach.rst    |  24 +
+ Documentation/hwmon/index.rst                 |   1 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/aspeed-g6-pwm-tach.c            | 530 ++++++++++++++++++
+ 6 files changed, 624 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+ create mode 100644 Documentation/hwmon/aspeed-g6-pwm-tach.rst
+ create mode 100644 drivers/hwmon/aspeed-g6-pwm-tach.c
 
 -- 
-Lee Jones [李琼斯]
+2.25.1
+
