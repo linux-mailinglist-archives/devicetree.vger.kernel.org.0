@@ -2,72 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E6BC77EDBE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 01:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B40D577EE8A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 03:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbjHPXRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 19:17:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34996 "EHLO
+        id S1347426AbjHQBJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 21:09:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243898AbjHPXQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 19:16:41 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1F41FD0;
-        Wed, 16 Aug 2023 16:16:39 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A28F2240003;
-        Wed, 16 Aug 2023 23:16:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1692227797;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=9MNHp+DZRHMKkAmzptdpSH5KkQPXokWmV5WR4tcAlYk=;
-        b=UWkNqIyu2aivCuCwMmA8uXBvYjXBLgZaZC7DQHGmy8mYXxUIQ/TdLqDhWJDMVwtTrAMmQV
-        I5ZwFfpDt6JqSLVk/CKDuweQiJ5th0HiSs5Bmghj2/cD3lS/Lbe9uJZW5r8MzCOT4/fa9P
-        V6GiMOK6az8kLyD5p2xTeRdid1J3pRYURcTA1qDE4c9FgnqGV78fqk3ixs66TD+DNZUyGs
-        NkgL5H22yjl21AXSPyyFxTw05uWsn4wN+OKVelFNggg3Eh0LLU0G5vUNoD+g0zcv6IuQGv
-        vB1y18ZdgTQLT0Z+6thmsiBXCheRa8IdMawViQc2M1J8fB2PJ/E/Y3T+TiZRxQ==
-Date:   Thu, 17 Aug 2023 01:16:33 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     a.zummo@towertech.it, robh+dt@kernel.org,
+        with ESMTP id S1347439AbjHQBIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 21:08:40 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89FA19E;
+        Wed, 16 Aug 2023 18:08:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=ORBO1bgDwwLTGU2FQD05PvmXsHJhi0jAldTTQpGEgzk=; b=kzzL9qIYj3vwiOpab5xV3v2zOQ
+        70bxdcMse0tMHvYi3pl1o48dQh8mrWo4aKhfKgEAtpfrXiR2mXFtyikn5pguXN6osBCE3Wy1bIYjk
+        u7Lro3N0JELdQ7fYHjZpcjYSf0HucUVLTGVX5rPceWVbglzWNeS/DLEMHuQzkq4ObJfg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qWRUt-004KhJ-4s; Thu, 17 Aug 2023 03:08:23 +0200
+Date:   Thu, 17 Aug 2023 03:08:23 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     nick.hawkins@hpe.com
+Cc:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
+        verdun@hpe.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Varshini Rajendran <varshini.rajendran@microchip.com>
-Subject: Re: (subset) [PATCH v3 23/50] dt-bindings: rtc: at91rm9200: add
- sam9x7 compatible
-Message-ID: <169222778127.125583.3606477911048247590.b4-ty@bootlin.com>
-References: <20230728102710.266457-1-varshini.rajendran@microchip.com>
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/5] ARM: Add GXP UMAC Support
+Message-ID: <d37e1a1a-eea3-4151-b0a9-449049707b05@lunn.ch>
+References: <20230816215220.114118-1-nick.hawkins@hpe.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230728102710.266457-1-varshini.rajendran@microchip.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20230816215220.114118-1-nick.hawkins@hpe.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> Changes since v2:
+>  *Removed PHY Configuration from MAC driver to Bootloader
 
-On Fri, 28 Jul 2023 15:57:10 +0530, Varshini Rajendran wrote:
-> Add compatible for SAM9X7 RTC.
-> 
-> 
+By PHY, you mean PCS?
 
-Applied, thanks!
+Can you still dynamically swap between 1000BaseX and SGMII?
+Is there an interface to determine if the PCS has link?
 
-[23/50] dt-bindings: rtc: at91rm9200: add sam9x7 compatible
-        commit: 0197a7cb44872e49919b0068a512aaf4e06f1850
+Is the PHY code upstream in uboot and barebox? Can you detect when it
+is missing because the vendor bootloader has been replaced, and report
+useful error messages?
 
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+       Andrew
