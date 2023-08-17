@@ -2,93 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3797077FCD2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 19:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70C0577FCD6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 19:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244059AbjHQRQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 13:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40122 "EHLO
+        id S245089AbjHQRSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 13:18:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353881AbjHQRQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 13:16:20 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3E5BF;
-        Thu, 17 Aug 2023 10:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692292579; x=1723828579;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o6y1BWMjXV74XcSSqEAshBC+8ARHfDknIFta4VOIKeI=;
-  b=BMlf1mxqOuBaqf9AjT5fQ/ZbjjIwZSwWNkIny0Xcrp1Hso6P54u32261
-   HIUenyzN0dQ4p4TWFDPgV0RRbcRlEFm3BNpMrOsox1LgxdpWPSoLeLjsC
-   jvJ+2MJQaKurl/WL68I7EFzHHREfiJ1imvDi7gycKeTyFmkbp9MTpeee1
-   XybcTvP/BVylGIpWY56FvdtqKfNW5QoEWKkZPEwJstmOTbh9UAj0efkQa
-   bocUEIZq0I00PqtvIFnpQ3VNzfI6s3HY/rjpjY0ljZL6LMh+lQOO3ZiaS
-   J6wqopLeDbChLdgh4Db/bv7Ln90DFdVlqUa7/33mXF+CvYiXzTq9K2oHg
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="372866611"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; 
-   d="scan'208";a="372866611"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2023 10:15:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="804770162"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; 
-   d="scan'208";a="804770162"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 17 Aug 2023 10:15:55 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qWgbB-003a75-3B;
-        Thu, 17 Aug 2023 20:15:53 +0300
-Date:   Thu, 17 Aug 2023 20:15:53 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] of: dynamic: Move dead property list check into
- property add/update functions
-Message-ID: <ZN5Vyd22nwx0l5mM@smile.fi.intel.com>
-References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
- <20230801-dt-changeset-fixes-v2-5-c2b701579dee@kernel.org>
- <ZNEPqwQ0H9srkxxq@smile.fi.intel.com>
- <20230817170934.GA1495946-robh@kernel.org>
+        with ESMTP id S1353786AbjHQRRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 13:17:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67321EE;
+        Thu, 17 Aug 2023 10:17:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EFA8361FD7;
+        Thu, 17 Aug 2023 17:17:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7054BC433C8;
+        Thu, 17 Aug 2023 17:17:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692292670;
+        bh=VE7jTioS63J6dT8DX8rxcZQN+MbADV02CUtWuC3SwBE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=jVzjSVqs1+lTaYG6lzHndiGFfzNDhbGLuhD19D7hgl/q0qQxl1BbmFe1MaVzxp6Tm
+         Hx/K5NG4Ij8QbVSYSytOxECnwBFD/SVWkQiVPow4n5TcVVo9fh6oi9g5G9d8xSIA9G
+         1Vb2LoMxFcL7qdfm5kMcpi2beS6ogLEqAsYIU65anIg3D6bwuhiKERVbu38RXrkxKc
+         ClUG83825XzWyvDbQZ2j1xSy8hLmJ1wio0LhVrZqjuuc6L18K5io/NAKczwTHC9k8u
+         rqRUeCVqrhU09kNwPLGvxINK5Had9eADyVMGJHpo/xK2wqkh/PerOztYdXpJCG+t7z
+         L0yz6JtHPsSfQ==
+Received: (nullmailer pid 1614972 invoked by uid 1000);
+        Thu, 17 Aug 2023 17:17:47 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230817170934.GA1495946-robh@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Maso Huang <maso.huang@mediatek.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+        Trevor Wu <trevor.wu@mediatek.com>, devicetree@vger.kernel.org,
+        Takashi Iwai <tiwai@suse.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        linux-mediatek@lists.infradead.org
+In-Reply-To: <20230817101338.18782-6-maso.huang@mediatek.com>
+References: <20230817101338.18782-1-maso.huang@mediatek.com>
+ <20230817101338.18782-6-maso.huang@mediatek.com>
+Message-Id: <169229266724.1614955.5685157579196442265.robh@kernel.org>
+Subject: Re: [PATCH v4 5/6] ASoC: dt-bindings: mediatek,mt7986-wm8960: add
+ mt7986-wm8960 document
+Date:   Thu, 17 Aug 2023 12:17:47 -0500
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 17, 2023 at 12:09:34PM -0500, Rob Herring wrote:
-> On Mon, Aug 07, 2023 at 06:37:15PM +0300, Andy Shevchenko wrote:
-> > On Fri, Aug 04, 2023 at 04:41:55PM -0600, Rob Herring wrote:
 
-...
-
-> > Suggested-by: ? :-)
+On Thu, 17 Aug 2023 18:13:37 +0800, Maso Huang wrote:
+> Add document for mt7986 board with wm8960.
 > 
-> Humm, by me? The change in behavior and point of this patch comes from 
-> me. You've provided review comments which will get covered by a
-> Reviewed-by I presume.
+> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../sound/mediatek,mt7986-wm8960.yaml         | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt7986-wm8960.yaml
+> 
 
-OK!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-With Best Regards,
-Andy Shevchenko
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/mediatek,mt7986-wm8960.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/sound/sound-card-common.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/mediatek,mt7986-wm8960.example.dtb: sound: False schema does not allow {'compatible': ['mediatek,mt7986-wm8960-sound'], 'model': ['mt7986-wm8960'], 'audio-routing': ['Headphone', 'HP_L', 'Headphone', 'HP_R', 'LINPUT1', 'AMIC', 'RINPUT1', 'AMIC'], 'platform': {'sound-dai': [[4294967295]]}, 'codec': {'sound-dai': [[4294967295]]}, '$nodename': ['sound']}
+	from schema $id: http://devicetree.org/schemas/sound/mediatek,mt7986-wm8960.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/mediatek,mt7986-wm8960.example.dtb: sound: Unevaluated properties are not allowed ('audio-routing', 'model' were unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/mediatek,mt7986-wm8960.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230817101338.18782-6-maso.huang@mediatek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
