@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A45A377EF94
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 05:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85AA677EFB7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 06:04:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347867AbjHQDf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 23:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34468 "EHLO
+        id S236474AbjHQEDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 00:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347857AbjHQDfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 23:35:23 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B83D2110;
-        Wed, 16 Aug 2023 20:35:21 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-688779ffcfdso1620882b3a.1;
-        Wed, 16 Aug 2023 20:35:21 -0700 (PDT)
+        with ESMTP id S1347961AbjHQEDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 00:03:55 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02523272B
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 21:03:53 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3a1ebb85f99so6455390b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 21:03:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692243321; x=1692848121;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hBdpvPB6uEEiKinZQMEcCksuN2D5HSupo0xUfRm4FcY=;
-        b=AlZiXkWiw+M/HsFs9sJhfJbZdJwRhnd3KcWgFj6Q7AT9n/CIf2cSW0cimST1Eq2m+L
-         wsBBao3b//PSdL21lbs8nV/hXu+OdQBmyXDRIaF/lkYKMT285iU3dfFgZtgCOXcqCbkN
-         ot+AHVXdf87eOHj1oP7eUOUI8w+V5ZTfkcDXemiZDPqqpBP/+o9JXX+VDvAldHc3tzWv
-         GwE+TJxW7qC6MqpdJ4p2U8JpH3X2B/eXmA8Yya8pRK07t0K+AijpnjI3bHY2DxvtI1uJ
-         pTonduoRn7djY5QKfbJAqctzolm8Z5RVDlnp66flT0xNuSZ/1uEFY0ppYMkbhb5eq8kK
-         HIXw==
+        d=gmail.com; s=20221208; t=1692245032; x=1692849832;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gb4qAVlMN/V48c3tDnit9Qdh+68rSKImmu7s/ky4OWc=;
+        b=KXJ+Jglrdeii0HMIk1gDSKLVjNYezHWgC+holYgqB4hPjXlw2AcaAIGJsjRNwjBbii
+         72uMHRbkRozfrt1Mv/z0ffgHbDj05us4zzynEojmnEmYugWtVP+x3NM0L1a5+cjPFr2b
+         Y/zASNH7n/LrWeu1UsXrKGUoeZ9sqe+tNM8pO0SeIkqfH8pKzq6WmAqlV4YEKpJM9Ved
+         lGxiT7DdRNr4uR7Sc0jGvBrWSQu9Udt20X82xe4wO5GBZRxVliNyAUcZG+4oaBsSHJUD
+         JECUGtT50Nqf7Iv/R6OOjfaEy4zJZk2fZzo+zF5tCx9AQokg/xlrFMKiZ8L5XQxyhbQi
+         Gz1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692243321; x=1692848121;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hBdpvPB6uEEiKinZQMEcCksuN2D5HSupo0xUfRm4FcY=;
-        b=OCqP/lvx/k1VrERWGe3PAxzsawac69yllgwXVbaDyVqqVwRBm8MWOjmgJMcGaTspOH
-         xMhkbZQKgdYbtvwjg2A5LdGUAnYKnFLwkPoEu/oFDQ73CskV/z5BWaGVKc8hS1mucU6/
-         X+N3UXmvVurPbhD2t2UPZ73Kq4/j+cIC72oB/7rGpkn/l7C3XVru290cGLeIT2RUfBnI
-         M/LMXJwHEgAW2X4KVQl6WeIeBYsBzMZfYRYBK4+jrtd/oduG4+CAL4Yk0SN/n/IOmWMp
-         gkvSBo+oCZiddbuarm9OqZggJk8Cf1COXSEG12mAnMw3HEDXzQIknClOLcZbq4C0wCbO
-         VblA==
-X-Gm-Message-State: AOJu0YwkueS0bip3mwXAuERnXSdO0MR5F96Ucmmf7n/gEEgbpPBsRnEI
-        0JOa1XZevtoKP946XNEC3x8=
-X-Google-Smtp-Source: AGHT+IHGyVbcG0vLhAhV+eZ25Nd06toC73NkFeyUgjw3avP214nrGFB8qJsgFdwuYb1MR009f2tS7A==
-X-Received: by 2002:a05:6a00:1912:b0:686:ec1d:18e5 with SMTP id y18-20020a056a00191200b00686ec1d18e5mr3943453pfi.28.1692243320916;
-        Wed, 16 Aug 2023 20:35:20 -0700 (PDT)
-Received: from localhost ([2600:1700:38c1:1d7f:f66d:4ff:fe3c:3ceb])
-        by smtp.gmail.com with ESMTPSA id j4-20020aa78d04000000b006884844dfcasm3404469pfe.20.2023.08.16.20.35.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Aug 2023 20:35:19 -0700 (PDT)
-Date:   Wed, 16 Aug 2023 20:35:16 -0700
-From:   Brian Norris <computersforpeace@gmail.com>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, quic_gurus@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_mojha@quicinc.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: firmware: qcom,scm: support
- indicating SDI default state
-Message-ID: <ZN2VdHb95tE6RrZy@localhost>
-References: <20230816164641.3371878-1-robimarko@gmail.com>
+        d=1e100.net; s=20221208; t=1692245032; x=1692849832;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gb4qAVlMN/V48c3tDnit9Qdh+68rSKImmu7s/ky4OWc=;
+        b=A5sJuK7B3GA0mZDYplUJfM0OrUrwczb8VfOxNTkzh4oM3VvAtRUMCZ2EWSNWgeoDOf
+         g/RPkcg947FpGoGnqx/K7+VZ7WVpHJMjZxhZvZnmszv/RkmFz8RarBh9aVj+Sl6LWzjX
+         PXyAcEvKud1zdvn9N7JtpXrICIqGyxwnMh5NAQoouD+AOnKmJSJrFumv2a7sfqlwUqz4
+         DMHGBzUYat4xG9WLnHHhd+oI0clrh1Yooj6L+v7zjBqcXZ/jztugIPGRiqzoC3Rpcb8S
+         h6gXJ/Qsq6kK+SBafgoei5HWI5PJwhQHKvKH2ypSwBtQMYSJpwmqiP/I4F5+KvJ6gOdI
+         WXvg==
+X-Gm-Message-State: AOJu0Yzrfs94SqimPFxlWHsk1oxNk1aDXJqrJ0u5UJ9Fnpg3bQMu/NDN
+        TUeZLWpp0VDM+fWwUSKljUqL65uzeQLY1skIE7c=
+X-Google-Smtp-Source: AGHT+IFti9p+fVZFpmO4+KuCfQiZ8sQG6xP4TAavNRah3XLt4v85oUN4CRtLviei1b5GkQkcC8BUapyZbczONmt1n/c=
+X-Received: by 2002:a05:6808:1396:b0:3a3:1424:7258 with SMTP id
+ c22-20020a056808139600b003a314247258mr5172540oiw.3.1692245032268; Wed, 16 Aug
+ 2023 21:03:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230816164641.3371878-1-robimarko@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: by 2002:a05:6358:d099:b0:133:91d:bed5 with HTTP; Wed, 16 Aug 2023
+ 21:03:51 -0700 (PDT)
+Reply-To: privateemail01112@gmail.com
+From:   KEIN BRIGGS <privateemailjsuee@gmail.com>
+Date:   Wed, 16 Aug 2023 21:03:51 -0700
+Message-ID: <CAGgyiOqKoO1=AAy17gH1J8BYR+jMRMmci-t6rEjtDUOGSF2fpg@mail.gmail.com>
+Subject: Your attention please!!
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.4 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 06:45:38PM +0200, Robert Marko wrote:
-> IPQ5018 has SDI (Secure Debug Image) enabled by TZ by default, and that
-> means that WDT being asserted or just trying to reboot will hang the board
-> in the debug mode and only pulling the power and repowering will help.
-> Some IPQ4019 boards like Google WiFI have it enabled as well.
-> 
-> So, lets add a boolean property to indicate that SDI is enabled by default
-> and thus needs to be disabled by the kernel.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+Your attention please!
 
-The series looks good to me. Thanks for doing this!
+My efforts to reaching you many times always not through.
 
-Reviewed-by: Brian Norris <computersforpeace@gmail.com>
+Please may you kindly let me know if you are still using this email
+address as my previous messages to you were not responded to.
+
+I await hearing from you once more if my previous messages were not received.
+Reach me via my email: privateemail01112@gmail.com
+
+My regards,
+Kein Briggs.
