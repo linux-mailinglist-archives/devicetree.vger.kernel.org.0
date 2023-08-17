@@ -2,117 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A27B177F20D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0673F77F214
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348864AbjHQI0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 04:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
+        id S1349006AbjHQI2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 04:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348930AbjHQI0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:26:52 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92022D57;
-        Thu, 17 Aug 2023 01:26:51 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so9600650a12.1;
-        Thu, 17 Aug 2023 01:26:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692260810; x=1692865610;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rlMF7ovViqq0ugED3FJJqRatkLdBYCCpmtAAJM1UKiU=;
-        b=WbPo41i8cd8rXCJCH7lp5U8AZvrgq8oK6KGNF9B9RA3rxb4kM4wuYqU+7Y8chQBvE3
-         HhTX0hcbfOSdgnbhITIebmMXMwbKq83qdIlYxf5U+cDVJm8HyWXP4Hm6jxfDXd6r4U0K
-         Rnf+v+pEaOSGR4AtBcCgbDTo1frIB6bTL8Sg+0o4puPXlCGDqCRb+9ADLIQCxWHn+2qw
-         DTpv0Iwb7qjjuHG881e10e48pKZTnEvkldQMqZ0aMMxAG4A26kMzOuBr02drvFaDn/ip
-         JTfuMy77HEH2undGaGzUOW8kIFd87HE/7D24yThDXgGZPrvRgDBGktJzRv0e9dEUvPJ2
-         0J0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692260810; x=1692865610;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rlMF7ovViqq0ugED3FJJqRatkLdBYCCpmtAAJM1UKiU=;
-        b=PLFI0fwpr5BnLwmdWMdiFM0xyXIC0JgmRZ3RM+t7fsfnu+kXXsr8wj1LJnhOq9R3SY
-         elfz57otInxa2DOh5Yae4GGfdeXSFJOgJCKGCptWVgUThesXPNwYbTIWGDszCFjv8DL5
-         M6jLbbZllTv7v0zjc0MyB1PMu7r5ZuE6UJw7CWQDMtZqty3hK7IueStAcZGFPsfoRffF
-         rG4BsrgJxGo5LcYGvmkRwH7oU7agbd1Bw9qqRudmTZw73mB7+BRkPPsCDY2XHarQ+/At
-         kze+5oSZhc6a2Vu6HfidiTgaw6yx8Naw7ZV6X44k964acho9nij/eJ3nePE53zPppesB
-         YWrA==
-X-Gm-Message-State: AOJu0Yyv183arMFmAHDaULhzPCqYkz+pmLVqQV/IWyywrW9FtysjkWdJ
-        WvXN3Dn/bmZhdNguEuDME7w3zz6NL2Ebfe3HBmU=
-X-Google-Smtp-Source: AGHT+IEwUb269mLv8B048N5rOpTXPkPv81uaXg2r0melQjmsUDZLA2j3D1qFboxx371HLTQyJKsI5SWjYOFvVdx14Fk=
-X-Received: by 2002:aa7:cd13:0:b0:523:19f0:b113 with SMTP id
- b19-20020aa7cd13000000b0052319f0b113mr3840035edw.31.1692260809792; Thu, 17
- Aug 2023 01:26:49 -0700 (PDT)
+        with ESMTP id S1348937AbjHQI1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:27:39 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB24E30EA;
+        Thu, 17 Aug 2023 01:27:35 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id AE14B24E2B1;
+        Thu, 17 Aug 2023 16:27:34 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 17 Aug
+ 2023 16:27:34 +0800
+Received: from [192.168.125.113] (183.27.97.249) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 17 Aug
+ 2023 16:27:33 +0800
+Message-ID: <d241515f-f5c7-f2aa-0c78-80f0c5b569f3@starfivetech.com>
+Date:   Thu, 17 Aug 2023 16:27:32 +0800
 MIME-Version: 1.0
-References: <20230711162346.5978-1-cixi.geng@linux.dev>
-In-Reply-To: <20230711162346.5978-1-cixi.geng@linux.dev>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Thu, 17 Aug 2023 16:26:12 +0800
-Message-ID: <CAAfSe-sorWk5zhzevAoxwbiyk2YoDU9d47FLXcT43q1ZwHdvdg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sprd: fix the cpu node for UMS512
-To:     Cixi Geng <cixi.geng@linux.dev>, SoC Team <soc@kernel.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, orsonzhai@gmail.com,
-        baolin.wang@linux.alibaba.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        cixi.geng1@unisoc.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v4 3/3] riscv: dts: jh7110: starfive: Add timer node
+Content-Language: en-US
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+References: <20230814101603.166951-1-xingyu.wu@starfivetech.com>
+ <20230814101603.166951-4-xingyu.wu@starfivetech.com>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <20230814101603.166951-4-xingyu.wu@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.249]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jul 2023 at 00:24, Cixi Geng <cixi.geng@linux.dev> wrote:
->
-> From: Cixi Geng <cixi.geng1@unisoc.com>
->
-> The UMS512 Socs have 8 cores contains 6 a55 and 2 a75.
-> modify the cpu nodes to correct information.
->
-> Fixes: 2b4881839a39 ("arm64: dts: sprd: Add support for Unisoc's UMS512")
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
 
-Acked-by: Chunyan Zhang <zhang.lyra@gmail.com>
-
-Thanks,
-Chunyan
-
-
-
-
+On 2023/8/14 18:16, Xingyu Wu wrote:
+> Add the timer node for the Starfive JH7110 SoC.
+> 
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
 > ---
->  arch/arm64/boot/dts/sprd/ums512.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
-> index 024be594c47d..97ac550af2f1 100644
-> --- a/arch/arm64/boot/dts/sprd/ums512.dtsi
-> +++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
-> @@ -96,7 +96,7 @@ CPU5: cpu@500 {
->
->                 CPU6: cpu@600 {
->                         device_type = "cpu";
-> -                       compatible = "arm,cortex-a55";
-> +                       compatible = "arm,cortex-a75";
->                         reg = <0x0 0x600>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&CORE_PD>;
-> @@ -104,7 +104,7 @@ CPU6: cpu@600 {
->
->                 CPU7: cpu@700 {
->                         device_type = "cpu";
-> -                       compatible = "arm,cortex-a55";
-> +                       compatible = "arm,cortex-a75";
->                         reg = <0x0 0x700>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&CORE_PD>;
-> --
-> 2.34.1
->
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index ec2e70011a73..84bb9717be13 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -502,6 +502,26 @@ sysgpio: pinctrl@13040000 {
+>  			#gpio-cells = <2>;
+>  		};
+>  
+> +		timer@13050000 {
+> +			compatible = "starfive,jh7110-timer";
+> +			reg = <0x0 0x13050000 0x0 0x10000>;
+> +			interrupts = <69>, <70>, <71> ,<72>;
+> +			clocks = <&syscrg JH7110_SYSCLK_TIMER_APB>,
+> +				 <&syscrg JH7110_SYSCLK_TIMER0>,
+> +				 <&syscrg JH7110_SYSCLK_TIMER1>,
+> +				 <&syscrg JH7110_SYSCLK_TIMER2>,
+> +				 <&syscrg JH7110_SYSCLK_TIMER3>;
+> +			clock-names = "apb", "ch0", "ch1",
+> +				      "ch2", "ch3";
+> +			resets = <&syscrg JH7110_SYSRST_TIMER_APB>,
+> +				 <&syscrg JH7110_SYSRST_TIMER0>,
+> +				 <&syscrg JH7110_SYSRST_TIMER1>,
+> +				 <&syscrg JH7110_SYSRST_TIMER2>,
+> +				 <&syscrg JH7110_SYSRST_TIMER3>;
+> +			reset-names = "apb", "ch0", "ch1",
+> +				      "ch2", "ch3";
+> +		};
+> +
+>  		watchdog@13070000 {
+>  			compatible = "starfive,jh7110-wdt";
+>  			reg = <0x0 0x13070000 0x0 0x10000>;
+
+Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
+Thanks!
