@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B716D77F2B7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 11:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A83B77F2BD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 11:07:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349262AbjHQJGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 05:06:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55762 "EHLO
+        id S244082AbjHQJHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 05:07:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349263AbjHQJFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 05:05:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5402F198C;
-        Thu, 17 Aug 2023 02:05:30 -0700 (PDT)
+        with ESMTP id S1349378AbjHQJG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 05:06:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB602D40;
+        Thu, 17 Aug 2023 02:06:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD3686405F;
-        Thu, 17 Aug 2023 09:05:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B0D7C433C8;
-        Thu, 17 Aug 2023 09:05:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D1C4865B66;
+        Thu, 17 Aug 2023 09:06:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C38AC433C7;
+        Thu, 17 Aug 2023 09:06:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692263129;
-        bh=+Jnj8GJFBamTvK5cxmX7TmNo57+sMPD4uUEdg61dzTQ=;
+        s=k20201202; t=1692263208;
+        bh=SqQbXc1eQwPHkS8qcXpAjk0yPygmpKpDzq9KX0jTsw8=;
         h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=TbccUY98YPiu6LTC1u10UlGAGP6E18LD7+ODDVe7iFQgYngvGor9S5/AnPbVjrbvS
-         gQDa5wTA8wV14clW4IhsVmLeBVeDDsLeDVb7rM6hAXjfcjfSwFljQWa0fS7ESIO2Jf
-         En0Za8nxsXl9P6q/+o5bBse72h2QSwsTsLWcBqer7URTpx4+QAKAOFYfk9pP00B8Ja
-         NidjmKh3167D2UMdmEAcPOvgRqz3fp2JEsVitjpAr/sz3XOk7hUqs3PV8U3dOtcVZ7
-         JEYb7kG1IsvY4dC8DjpcA2HpmJ+Bl8h1EKG4TlY2mZ3lV/jZf72d7EBxbqkzoQwbBI
-         D4pYdqRN/IcIQ==
+        b=WUj/PAgbUwqPOCkCUdR8yrwdEQnNDls8Wnt48XbsPnOFk5QN7LF0QqE9IzX1n1GLo
+         uUHnAs3QtQe5M27/xRrWgakO3RPCLhyYmTO7CxFWVEqZwqbJNx+c13+WhGeSWZbys8
+         2k6GCG15YCXEtIqu3O9ybY2w2JAhkrPXIMW8z4dpqjtGuPkodmPZYuiOdzRVAmKnuB
+         t5TqTCFiLAbzCgdRmCk4T7fNqN9LfXZJL/z21+AvdjGiAieIyNczTWB0tlXkSr6g86
+         0w6mdxUwP1IOy4PqwtDeeYVIdcATSHsTrk3bUEv/hl/jGy7E2itNghei4Gdbvhf5Cv
+         ASeagLPufNSZQ==
 From:   Lee Jones <lee@kernel.org>
 To:     lee@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -39,18 +39,18 @@ To:     lee@kernel.org, robh+dt@kernel.org,
         claudiu.beznea@microchip.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Varshini Rajendran <varshini.rajendran@microchip.com>
-In-Reply-To: <20230728102539.266085-1-varshini.rajendran@microchip.com>
-References: <20230728102539.266085-1-varshini.rajendran@microchip.com>
-Subject: Re: (subset) [PATCH v3 16/50] dt-bindings: atmel-matrix: add
- microchip,sam9x7-matrix
-Message-Id: <169226312676.929379.5981372625277712422.b4-ty@kernel.org>
-Date:   Thu, 17 Aug 2023 10:05:26 +0100
+In-Reply-To: <20230728102550.266134-1-varshini.rajendran@microchip.com>
+References: <20230728102550.266134-1-varshini.rajendran@microchip.com>
+Subject: Re: (subset) [PATCH v3 17/50] dt-bindings: atmel-smc: add
+ microchip,sam9x7-smc
+Message-Id: <169226320596.930413.6357154496969671577.b4-ty@kernel.org>
+Date:   Thu, 17 Aug 2023 10:06:45 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,15 +58,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Jul 2023 15:55:39 +0530, Varshini Rajendran wrote:
-> Add microchip,sam9x7-matrix to DT bindings documentation.
+On Fri, 28 Jul 2023 15:55:50 +0530, Varshini Rajendran wrote:
+> Add microchip,sam9x7-smc to DT bindings documentation.
 > 
 > 
 
 Applied, thanks!
 
-[16/50] dt-bindings: atmel-matrix: add microchip,sam9x7-matrix
-        commit: 39e82a0774739ce4bde4adf8c4997bcc4541816a
+[17/50] dt-bindings: atmel-smc: add microchip,sam9x7-smc
+        commit: ca3fd125e95c91a779342293373aa509d1eef028
 
 --
 Lee Jones [李琼斯]
