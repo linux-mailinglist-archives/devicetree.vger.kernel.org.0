@@ -2,256 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AD4177F206
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A27B177F20D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:27:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348821AbjHQIYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 04:24:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54650 "EHLO
+        id S1348864AbjHQI0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 04:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348853AbjHQIYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:24:37 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A555273C
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:24:35 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6889c748c44so142041b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:24:35 -0700 (PDT)
+        with ESMTP id S1348930AbjHQI0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:26:52 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92022D57;
+        Thu, 17 Aug 2023 01:26:51 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so9600650a12.1;
+        Thu, 17 Aug 2023 01:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1692260675; x=1692865475;
-        h=content-transfer-encoding:from:in-reply-to:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vtlgCIuryLaOllepBHuZqfvLXaBJxG5kP8A128x7u5w=;
-        b=xjJFtNEn6A2iwld+nKGeQs3/p2ybWbTg3Dj9U+5W0saQV7IvsQxlfy5bir48RgqMjQ
-         wKW7YRIPYUL8xAoxN7fP+9ItmpFP4HtE8HDh7NRxgcsD4XQrpn0VCcmtd0wuKAg/Y19D
-         v45+N15hby6TF5peiRvF4Txdqu7lS7hXndpLX8ACz9BQeMWQBCTnLLbbP0uB6nv6Ij7X
-         k33/tbBMqfoW54UA4xYm4F7H32Kinnz9KrRb6gc99IfTADI3U9ulW9DdW8TV4ydubOlV
-         O65Roj7GnEOuXj32WLeGtMiyy2Aa4fx8INNogdlFelvdbSR7GNk2yXKN1LumAh+nHh0E
-         G5Kg==
+        d=gmail.com; s=20221208; t=1692260810; x=1692865610;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rlMF7ovViqq0ugED3FJJqRatkLdBYCCpmtAAJM1UKiU=;
+        b=WbPo41i8cd8rXCJCH7lp5U8AZvrgq8oK6KGNF9B9RA3rxb4kM4wuYqU+7Y8chQBvE3
+         HhTX0hcbfOSdgnbhITIebmMXMwbKq83qdIlYxf5U+cDVJm8HyWXP4Hm6jxfDXd6r4U0K
+         Rnf+v+pEaOSGR4AtBcCgbDTo1frIB6bTL8Sg+0o4puPXlCGDqCRb+9ADLIQCxWHn+2qw
+         DTpv0Iwb7qjjuHG881e10e48pKZTnEvkldQMqZ0aMMxAG4A26kMzOuBr02drvFaDn/ip
+         JTfuMy77HEH2undGaGzUOW8kIFd87HE/7D24yThDXgGZPrvRgDBGktJzRv0e9dEUvPJ2
+         0J0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692260675; x=1692865475;
-        h=content-transfer-encoding:from:in-reply-to:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vtlgCIuryLaOllepBHuZqfvLXaBJxG5kP8A128x7u5w=;
-        b=VfeaJidKp+r589pEGd3ny0VZz6PiBc1p9lFdpFnQ8ifdxx03jphgVE3mdQFqZ/vy1s
-         rmDn79xKFmi+7QwwxiUnEhn9GQL4vPwewF7yKlsKOyd4r0FVMZ3WB7Ipwl0PfSmu2LLC
-         iira8gQTbP2jHvi92Oi3D6SqDHlpMimTEMIetLaKm4QFHwqOx7pzPD0mqkKQRtZn8qje
-         NWmTD/YbmGUrR9VajgCARJ6FoIhO+66C9iZSfltNHwcHY+1hf4xY0XDg5eXQbqxIBt3B
-         B0nO/D1imc7L18ddaB5MJAekzd/r4CU1pku3wYXAqyO2eGpN3u0UwQ0Ac74bY3gkhyl+
-         Pzhg==
-X-Gm-Message-State: AOJu0YxswNfEjp7R2z2FwF7VNplbo4Pc9rRBUgWIw9p1f5ph4qX9J7DI
-        HLnKJ4ODfglNwSGguT7st0S+7Q==
-X-Google-Smtp-Source: AGHT+IGbKSuG9QUnW5n7HhYT5Yo39hvyPnt3KADftYUSDRjRTT/dV+ZAQvNEpD/l4Tk+nLysp/mhwQ==
-X-Received: by 2002:a05:6a00:4891:b0:668:834d:4bd with SMTP id dk17-20020a056a00489100b00668834d04bdmr4468593pfb.0.1692260675016;
-        Thu, 17 Aug 2023 01:24:35 -0700 (PDT)
-Received: from [192.168.0.224] (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id i15-20020a63a84f000000b005634343cd9esm13256965pgp.44.2023.08.17.01.24.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Aug 2023 01:24:34 -0700 (PDT)
-Message-ID: <54f9b8db-e5e5-a109-3c96-1a215979661f@quanta.corp-partner.google.com>
-Date:   Thu, 17 Aug 2023 16:24:31 +0800
+        d=1e100.net; s=20221208; t=1692260810; x=1692865610;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rlMF7ovViqq0ugED3FJJqRatkLdBYCCpmtAAJM1UKiU=;
+        b=PLFI0fwpr5BnLwmdWMdiFM0xyXIC0JgmRZ3RM+t7fsfnu+kXXsr8wj1LJnhOq9R3SY
+         elfz57otInxa2DOh5Yae4GGfdeXSFJOgJCKGCptWVgUThesXPNwYbTIWGDszCFjv8DL5
+         M6jLbbZllTv7v0zjc0MyB1PMu7r5ZuE6UJw7CWQDMtZqty3hK7IueStAcZGFPsfoRffF
+         rG4BsrgJxGo5LcYGvmkRwH7oU7agbd1Bw9qqRudmTZw73mB7+BRkPPsCDY2XHarQ+/At
+         kze+5oSZhc6a2Vu6HfidiTgaw6yx8Naw7ZV6X44k964acho9nij/eJ3nePE53zPppesB
+         YWrA==
+X-Gm-Message-State: AOJu0Yyv183arMFmAHDaULhzPCqYkz+pmLVqQV/IWyywrW9FtysjkWdJ
+        WvXN3Dn/bmZhdNguEuDME7w3zz6NL2Ebfe3HBmU=
+X-Google-Smtp-Source: AGHT+IEwUb269mLv8B048N5rOpTXPkPv81uaXg2r0melQjmsUDZLA2j3D1qFboxx371HLTQyJKsI5SWjYOFvVdx14Fk=
+X-Received: by 2002:aa7:cd13:0:b0:523:19f0:b113 with SMTP id
+ b19-20020aa7cd13000000b0052319f0b113mr3840035edw.31.1692260809792; Thu, 17
+ Aug 2023 01:26:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180: Move trogdor rt5682s bits
- to a fragment
-Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sheng-liang.pan@quanta.corp-partner.google.com
-References: <20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid>
-In-Reply-To: <20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid>
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230711162346.5978-1-cixi.geng@linux.dev>
+In-Reply-To: <20230711162346.5978-1-cixi.geng@linux.dev>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Thu, 17 Aug 2023 16:26:12 +0800
+Message-ID: <CAAfSe-sorWk5zhzevAoxwbiyk2YoDU9d47FLXcT43q1ZwHdvdg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: sprd: fix the cpu node for UMS512
+To:     Cixi Geng <cixi.geng@linux.dev>, SoC Team <soc@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, orsonzhai@gmail.com,
+        baolin.wang@linux.alibaba.com, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        cixi.geng1@unisoc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Wed, 12 Jul 2023 at 00:24, Cixi Geng <cixi.geng@linux.dev> wrote:
+>
+> From: Cixi Geng <cixi.geng1@unisoc.com>
+>
+> The UMS512 Socs have 8 cores contains 6 a55 and 2 a75.
+> modify the cpu nodes to correct information.
+>
+> Fixes: 2b4881839a39 ("arm64: dts: sprd: Add support for Unisoc's UMS512")
+> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
 
-> Several trogdor boards have moved from the older rt5862i to the newer
-> rt5862s, at least on newer revisions of boards. Let's get rid of the
-> dts duplication across boards and promote this to a fragment.
->
-> Note: The old boards used to override the "compatible" in the "sound"
-> node with the exact same thing that was in "sc7180-trogdor.dtsi"
-> ("google,sc7180-trogdor"). I got rid of that.
->
-> This is validated to produce the same result when taking the dtbs
-> generated by the kernel build and then doing:
->
->    for dtb in *trogdor*.dtb; do
->      dtc -I dtb -O dts $dtb -o out/$dtb.dts;
->    done
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Acked-by: Chunyan Zhang <zhang.lyra@gmail.com>
+
+Thanks,
+Chunyan
+
+
+
+
 > ---
+>  arch/arm64/boot/dts/sprd/ums512.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
->   .../boot/dts/qcom/sc7180-trogdor-kingoftown.dts | 13 +------------
->   .../dts/qcom/sc7180-trogdor-pazquel360.dtsi     | 13 +------------
->   .../dts/qcom/sc7180-trogdor-rt5682s-sku.dtsi    | 17 +++++++++++++++++
->   ...180-trogdor-wormdingler-rev1-boe-rt5682s.dts | 13 +------------
->   ...180-trogdor-wormdingler-rev1-inx-rt5682s.dts | 13 +------------
->   5 files changed, 21 insertions(+), 48 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-rt5682s-sku.dtsi
+> diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
+> index 024be594c47d..97ac550af2f1 100644
+> --- a/arch/arm64/boot/dts/sprd/ums512.dtsi
+> +++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
+> @@ -96,7 +96,7 @@ CPU5: cpu@500 {
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-> index 36326ef972dc..d6db7d83adcf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-> @@ -11,19 +11,13 @@
->   #include "sc7180-trogdor-parade-ps8640.dtsi"
->   #include <arm/cros-ec-keyboard.dtsi>
->   #include "sc7180-trogdor-lte-sku.dtsi"
-> +#include "sc7180-trogdor-rt5682s-sku.dtsi"
->   
->   / {
->   	model = "Google Kingoftown";
->   	compatible = "google,kingoftown", "qcom,sc7180";
->   };
->   
-> -&alc5682 {
-> -	compatible = "realtek,rt5682s";
-> -	/delete-property/ VBAT-supply;
-> -	realtek,dmic1-clk-pin = <2>;
-> -	realtek,dmic-clk-rate-hz = <2048000>;
-> -};
-> -
->   &ap_tp_i2c {
->   	status = "okay";
->   };
-> @@ -84,11 +78,6 @@ &pp3300_dx_edp {
->   	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
->   };
->   
-> -&sound {
-> -	compatible = "google,sc7180-trogdor";
-> -	model = "sc7180-rt5682s-max98357a-1mic";
-> -};
-> -
->   &wifi {
->   	qcom,ath10k-calibration-variant = "GO_KINGOFTOWN";
->   };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-> index 273e2249f018..89034b6702f4 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-> @@ -7,13 +7,7 @@
->   
->   /* This file must be included after sc7180-trogdor.dtsi */
->   #include "sc7180-trogdor-pazquel.dtsi"
-> -
-> -&alc5682 {
-> -	compatible = "realtek,rt5682s";
-> -	realtek,dmic1-clk-pin = <2>;
-> -	realtek,dmic-clk-rate-hz = <2048000>;
-> -	/delete-property/ VBAT-supply;
-> -};
-> +#include "sc7180-trogdor-rt5682s-sku.dtsi"
->   
->   ap_ts_pen_1v8: &i2c4 {
->   	clock-frequency = <400000>;
-> @@ -64,11 +58,6 @@ CROS_STD_MAIN_KEYMAP
->   	>;
->   };
->   
-> -&sound {
-> -	compatible = "google,sc7180-trogdor";
-> -	model = "sc7180-rt5682s-max98357a-1mic";
-> -};
-> -
->   &wifi {
->   	qcom,ath10k-calibration-variant = "GO_PAZQUEL360";
->   };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-rt5682s-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-rt5682s-sku.dtsi
-> new file mode 100644
-> index 000000000000..66b8773309d4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-rt5682s-sku.dtsi
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Trogdor dts fragment for SKUs with
-> + *
-> + * Copyright 2023 Google LLC.
-> + */
-> +
-> +&alc5682 {
-> +	compatible = "realtek,rt5682s";
-> +	/delete-property/ VBAT-supply;
-> +	realtek,dmic1-clk-pin = <2>;
-> +	realtek,dmic-clk-rate-hz = <2048000>;
-> +};
-> +
-> +&sound {
-> +	model = "sc7180-rt5682s-max98357a-1mic";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
-> index 6225ab8329c3..842f07f16ed1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
-> @@ -11,20 +11,9 @@
->   /dts-v1/;
->   
->   #include "sc7180-trogdor-wormdingler-rev1-boe.dts"
-> +#include "sc7180-trogdor-rt5682s-sku.dtsi"
->   
->   / {
->   	model = "Google Wormdingler rev1+ (BOE, rt5682s)";
->   	compatible = "google,wormdingler-sku1025", "qcom,sc7180";
->   };
-> -
-> -&alc5682 {
-> -	compatible = "realtek,rt5682s";
-> -	/delete-property/ VBAT-supply;
-> -	realtek,dmic1-clk-pin = <2>;
-> -	realtek,dmic-clk-rate-hz = <2048000>;
-> -};
-> -
-> -&sound {
-> -	compatible = "google,sc7180-trogdor";
-> -	model = "sc7180-rt5682s-max98357a-1mic";
-> -};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
-> index b40b068dad6a..084870323606 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
-> @@ -11,20 +11,9 @@
->   /dts-v1/;
->   
->   #include "sc7180-trogdor-wormdingler-rev1-inx.dts"
-> +#include "sc7180-trogdor-rt5682s-sku.dtsi"
->   
->   / {
->   	model = "Google Wormdingler rev1+ (INX, rt5682s)";
->   	compatible = "google,wormdingler-sku1", "qcom,sc7180";
->   };
-> -
-> -&alc5682 {
-> -	compatible = "realtek,rt5682s";
-> -	/delete-property/ VBAT-supply;
-> -	realtek,dmic1-clk-pin = <2>;
-> -	realtek,dmic-clk-rate-hz = <2048000>;
-> -};
-> -
-> -&sound {
-> -	compatible = "google,sc7180-trogdor";
-> -	model = "sc7180-rt5682s-max98357a-1mic";
-> -};
-
-Reviewed-by: Sheng-Liang Pan 
-<sheng-liang.pan@quanta.corp-partner.google.com>
-
+>                 CPU6: cpu@600 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a55";
+> +                       compatible = "arm,cortex-a75";
+>                         reg = <0x0 0x600>;
+>                         enable-method = "psci";
+>                         cpu-idle-states = <&CORE_PD>;
+> @@ -104,7 +104,7 @@ CPU6: cpu@600 {
+>
+>                 CPU7: cpu@700 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a55";
+> +                       compatible = "arm,cortex-a75";
+>                         reg = <0x0 0x700>;
+>                         enable-method = "psci";
+>                         cpu-idle-states = <&CORE_PD>;
+> --
+> 2.34.1
+>
