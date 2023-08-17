@@ -2,189 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBFC17801B7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 01:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 518117801F4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 01:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356109AbjHQXgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 19:36:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50182 "EHLO
+        id S238541AbjHQXxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 19:53:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356192AbjHQXgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 19:36:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54D73595;
-        Thu, 17 Aug 2023 16:36:47 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2EDA666071EB;
-        Fri, 18 Aug 2023 00:36:45 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1692315406;
-        bh=2KgVTEnaEFVbuvK2kyzQ8wdw/iggAoQVGyxWLHJ7ACs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=c8dsZ2snflxQGWX61ASKPuDSIeNWkmINuXabd0PDRmomM22DXa1pYlvb565Lr4Wo/
-         yQRQcYAC/my5dZzIuD7fcEWuKUELPNmAtnkkKup3gPCRQ7b6NgWvtRA6sgA9GUMSnu
-         H/mePYez8jJVB5vPpW9Gi7wtSPC5Qpbvb35bdTGjmOs+MfsV0FJrPG59XXOPxLzg+T
-         ryoskDfwG3MJDIgOYnH1gGxAu+2rRg4lJJPwt136TlffuPPFGRAUC2qY947d//eMUa
-         GztmxJjmaOZOncXuDnfP67v8d6/4sdL9J9RgkUu63CE2+BvMle4cc0zDDbwvCKHq8Q
-         ArIPfURrG/OVA==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Shuah Khan <shuah@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>, kernel@collabora.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] dt: dt-extract-compatibles: Add flag for driver matching compatibles
-Date:   Thu, 17 Aug 2023 19:35:26 -0400
-Message-ID: <20230817233635.2306377-3-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230817233635.2306377-1-nfraprado@collabora.com>
-References: <20230817233635.2306377-1-nfraprado@collabora.com>
+        with ESMTP id S1356305AbjHQXwz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 19:52:55 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB5735BF;
+        Thu, 17 Aug 2023 16:52:54 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-4103fdba0fbso2623021cf.3;
+        Thu, 17 Aug 2023 16:52:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692316373; x=1692921173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PQ0G1EvgU1HC0gxjA7w5dxfWvDoQ5EWsfP+3vCAXEN8=;
+        b=YBg7iTjAjAK8mG3OkUrv1uRt6brhKKSOQqiMWvmOm1WEUHtRm5rcAMPnAUxlrgIgp0
+         AER5Ue5x/i4CtoqkJ/MYLkDnD73p/6R99PsmKOWNJMdm0TlM1+V2creyZaPvJAycvBQf
+         7K2B7WTKEzMH1y7epPZhqebIxKIbBin4nubPiL36i9kf1s+knCNYOuzYj/kiLG3BKI3k
+         SyR7lWVEJA8+uYHLYzPSdCnk2tBL0DQdN8wCIlI17oSRj6D9WHJAMYGO1ND30LClFpw3
+         KzVQ0zUwMh7rGTgjZw4tD1v4yYJrLuY4S/WPWXfBzXL6KL9zcmQT5amSR1jQFvQeAETj
+         CSWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692316373; x=1692921173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PQ0G1EvgU1HC0gxjA7w5dxfWvDoQ5EWsfP+3vCAXEN8=;
+        b=bP6RhL8O81aCR5sKR7RrFFQjZUjxEajzYDy21A1+/2UatO9AtUqDHpJpBIKvRZr+a9
+         L1gd2c5B8/0IipJdY5zGcLqOhsNyAwI7VHGkvN1Ir2+lX4biCfj33Jiolbsv1HF05jy1
+         08OXGp6Yc5yD4HJs9c/2MTjrVeQ7jC/40STV6I4sjSLpVncioTWRDM+6FcdBY+iS8Dwj
+         ifrB6uSPyXgbwRPuWmZVj7xrLxjOnMvwMubEemR3Hp+Vl43b+cnpfwaHCFy9j4tPZzBA
+         vHMSiL9415kPA8FDGkIw7kU9p8raaQaEQXPkoSdzigSd1vjIQ+r96erSFyvoou5JwJRj
+         VtPQ==
+X-Gm-Message-State: AOJu0YyHzxLxK5KS5i4vPfhnCW5P1mtUBgdFsYFkbt0basL00eIkDAEY
+        kh5V+TfAR/ItCa2BJxpz9JlJPjKVAdXLLA==
+X-Google-Smtp-Source: AGHT+IFo2aePLz6YbpD+aEmNktkj8NrQwK/eej9BAsFzXrRmP1DuZaT1nzX4cBiP+iGYnSU5GFQ2bw==
+X-Received: by 2002:ac8:5981:0:b0:40e:a3cb:a1ec with SMTP id e1-20020ac85981000000b0040ea3cba1ecmr1243179qte.10.1692316372781;
+        Thu, 17 Aug 2023 16:52:52 -0700 (PDT)
+Received: from localhost.localdomain ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id e16-20020a05620a12d000b00767ceac979asm159798qkl.42.2023.08.17.16.52.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Aug 2023 16:52:52 -0700 (PDT)
+From:   Abdel Alkuor <alkuor@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Abdel Alkuor <abdelalkuor@geotab.com>
+Subject: [PATCH] dt-bindings: usb: Add binding for ti,tps25750
+Date:   Thu, 17 Aug 2023 19:52:12 -0400
+Message-Id: <20230817235212.441254-1-alkuor@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new flag, '--driver-match', to the dt-extract-compatibles script
-that causes it to only print out compatibles that are expected to match
-a driver. This output can then be used by tests to detect device probe
-failures.
+From: Abdel Alkuor <abdelalkuor@geotab.com>
 
-In order to filter the compatibles down to only ones that will match to
-a driver, the following is considered:
-- A compatible needs to show up in a driver's of_match_table for it to
-  be matched to a driver
-- Compatibles that are used in both of_match_table and OF_DECLARE type
-  macros can't be expected to match to a driver and so are ignored.
-  One exception is CLK_OF_DECLARE_DRIVER, since it indicates that a
-  driver will also later probe, so compatibles in this macro are not
-  ignored.
+TPS25750 provides power negotiation and capabilities management
+for USB Type-C applications.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
 ---
+ .../devicetree/bindings/usb/ti,tps25750.yaml  | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,tps25750.yaml
 
-Changes in v2:
-- Added this commit
-
- scripts/dtc/dt-extract-compatibles | 57 +++++++++++++++++++++++++-----
- 1 file changed, 48 insertions(+), 9 deletions(-)
-
-diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
-index 2b6d228602e8..bd07477dd144 100755
---- a/scripts/dtc/dt-extract-compatibles
-+++ b/scripts/dtc/dt-extract-compatibles
-@@ -7,11 +7,15 @@ import re
- import argparse
- 
- 
--def parse_of_declare_macros(data):
-+def parse_of_declare_macros(data, include_driver_macros=True):
- 	""" Find all compatible strings in OF_DECLARE() style macros """
- 	compat_list = []
- 	# CPU_METHOD_OF_DECLARE does not have a compatible string
--	for m in re.finditer(r'(?<!CPU_METHOD_)(IRQCHIP|OF)_(DECLARE|MATCH)(_DRIVER)?\(.*?\)', data):
-+	if include_driver_macros:
-+		re_macros = r'(?<!CPU_METHOD_)(IRQCHIP|OF)_(DECLARE|MATCH)(_DRIVER)?\(.*?\)'
-+	else:
-+		re_macros = r'(?<!CPU_METHOD_)(IRQCHIP|OF)_(DECLARE|MATCH)\(.*?\)'
-+	for m in re.finditer(re_macros, data):
- 		try:
- 			compat = re.search(r'"(.*?)"', m[0])[1]
- 		except:
-@@ -22,24 +26,52 @@ def parse_of_declare_macros(data):
- 	return compat_list
- 
- 
--def parse_of_device_id(data):
-+def parse_of_device_id(data, match_table_list=None):
- 	""" Find all compatible strings in of_device_id structs """
- 	compat_list = []
--	for m in re.finditer(r'of_device_id(\s+\S+)?\s+\S+\[\](\s+\S+)?\s*=\s*({.*?);', data):
--		compat_list += re.findall(r'\.compatible\s+=\s+"(\S+)"', m[3])
-+	for m in re.finditer(r'of_device_id(\s+\S+)?\s+(\S+)\[\](\s+\S+)?\s*=\s*({.*?);', data):
-+		if match_table_list is not None and m[2] not in match_table_list:
-+			continue
-+		compat_list += re.findall(r'\.compatible\s+=\s+"(\S+)"', m[4])
- 
- 	return compat_list
- 
- 
--def parse_compatibles(file):
-+def parse_of_match_table(data):
-+	""" Find all driver's of_match_table """
-+	match_table_list = []
-+	for m in re.finditer(r'\.of_match_table\s+=\s+(of_match_ptr\()?([a-zA-Z0-9_-]+)', data):
-+		match_table_list.append(m[2])
+diff --git a/Documentation/devicetree/bindings/usb/ti,tps25750.yaml b/Documentation/devicetree/bindings/usb/ti,tps25750.yaml
+new file mode 100644
+index 000000000000..326c9c2f766b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/ti,tps25750.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/ti,tps25750.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	return match_table_list
++title: Texas Instruments 25750 Type-C Port Switch and Power Delivery controller
 +
++maintainers:
++  - Abdel Alkuor <abdelalkuor@geotab.com>
 +
-+def parse_compatibles(file, compat_ignore_list):
- 	with open(file, 'r', encoding='utf-8') as f:
- 		data = f.read().replace('\n', '')
- 
--	compat_list = parse_of_declare_macros(data)
--	compat_list += parse_of_device_id(data)
-+	if compat_ignore_list is not None:
-+		# For a compatible in the DT to be matched to a driver it needs to show
-+		# up in a driver's of_match_table
-+		match_table_list = parse_of_match_table(data)
-+		compat_list = parse_of_device_id(data, match_table_list)
++description: |
++  Texas Instruments 25750 Type-C Port Switch and Power Delivery controller
 +
-+		compat_list = [compat for compat in compat_list if compat not in compat_ignore_list]
-+	else:
-+		compat_list = parse_of_declare_macros(data)
-+		compat_list += parse_of_device_id(data)
- 
- 	return compat_list
- 
-+def parse_compatibles_to_ignore(file):
-+	with open(file, 'r', encoding='utf-8') as f:
-+		data = f.read().replace('\n', '')
++properties:
++  compatible:
++    enum:
++      - ti,tps25750
++  reg:
++    maxItems: 1
 +
-+	# Compatibles that show up in OF_DECLARE macros can't be expected to
-+	# match a driver, except for the _DRIVER ones.
-+	return parse_of_declare_macros(data, include_driver_macros=False)
++  interrupts:
++    description: |
++    maxItems: 1
 +
++  interrupt-names:
++    items:
++      - const: irq
 +
- def print_compat(filename, compatibles):
- 	if not compatibles:
- 		return
-@@ -63,10 +95,17 @@ if __name__ == "__main__":
- 	ap = argparse.ArgumentParser()
- 	ap.add_argument("cfile", type=str, nargs='*', help="C source files or directories to parse")
- 	ap.add_argument('-H', '--with-filename', help="Print filename with compatibles", action="store_true")
-+	ap.add_argument('-d', '--driver-match', help="Only print compatibles that should match to a driver", action="store_true")
- 	args = ap.parse_args()
- 
- 	show_filename = args.with_filename
-+	compat_ignore_list = None
++  firmware-name:
++    description: |
++      Should contain the name of the default patch binary
++      file located on the firmware search path which is
++      used to switch the controller into APP mode
 +
-+	if args.driver_match:
-+		compat_ignore_list = []
-+		for f in files_to_parse(args.cfile):
-+			compat_ignore_list.extend(parse_compatibles_to_ignore(f))
- 
- 	for f in files_to_parse(args.cfile):
--		compat_list = parse_compatibles(f)
-+		compat_list = parse_compatibles(f, compat_ignore_list)
- 		print_compat(f, compat_list)
++  connector:
++    type: object
++    $ref: ../connector/usb-connector.yaml#
++    description:
++      Properties for usb c connector.
++    required:
++      - data-role
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - connector
++
++additionalProperties: true
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tps25750: tps25750@21 {
++            compatible = "ti,tps25750";
++            reg = <0x21>;
++
++            interrupt-parent = <&msmgpio>;
++            interrupts = <107 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-names = "irq";
++
++            firmware-name = "tps25750.bin";
++
++            pinctrl-names = "default";
++            pinctrl-0 = <&typec_pins>;
++
++            typec_con: connector {
++                compatible = "usb-c-connector";
++                label = "USB-C";
++                data-role = "dual";
++                port {
++                    typec_ep: endpoint {
++                        remote-endpoint = <&otg_ep>;
++                    };
++                };
++            };
++        };
++    };
++...
 -- 
-2.41.0
+2.24.4
 
