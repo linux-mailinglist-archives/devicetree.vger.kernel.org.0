@@ -2,110 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D79C077FA17
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25AEB77FA38
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:06:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352496AbjHQPAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 11:00:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33462 "EHLO
+        id S1352710AbjHQPFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 11:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352687AbjHQPAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:00:15 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665F7359B
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 07:59:54 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bcf2de59cso1009886466b.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 07:59:54 -0700 (PDT)
+        with ESMTP id S1352823AbjHQPFZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:05:25 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 366952D78
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 08:05:21 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-1bff2d2c141so4598707fac.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 08:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692284387; x=1692889187;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jyrnYd+/grcDQWPBP5YRxE3h8w3O63U4ojbQQv8+188=;
-        b=i8FbFHOG1mmFj7PIdrs6Zmo5zyhxgDtP2ATKD8llf4JJfnMx7olqSqs+54+VgSSKlo
-         J2oO8jVUS+elgWtZxpzcG8A53UMIypAcb7xJfBARwXOwtaRQpBpMcIxq5yIplYJAoKWt
-         P1azHtVrokAvSW1fGaO69NqqtMo62ut9prYyWQqEybIM7yGealQUycmM28RpwAgVzYNp
-         CBN0dZm2e8nxsNELv9aHp5yEd70V8jVxipzWI+pmn2QqiXUQ20phD1fbXHppYwifwS+o
-         Fy8KNZ1Z/8y0DCPcqYTCLc/lBZExIxGTRe6K4gAYuvxmADo17shmuGBJ2vqSJUxhGClO
-         2VYA==
+        d=gmail.com; s=20221208; t=1692284720; x=1692889520;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=deyjZLeLJlZBKubG6uZiC2GX/sQ0rpTBXelPhs8NNsk=;
+        b=WCX1YMDceHg90Q9VDL/ZTou3tFbnUMBONWxIBO4pyfKoUEzF4PFwte1LISKChgB5/t
+         eabHyn6JSK54nDzUHMEFq3vwJ+5mzh2WqJQsX1nmgrhyNuchtyIsqg6CFqpdzl2Xjab7
+         fyRnsMz7e+Flq8+B9TsjgpzoUP/WtKSCB5xkCjMBlU5oOtYbume0WIjp0QdnijO8lC/n
+         C8jHwEsnFVubjaB0QQzJuDTu6DWTLnFkKZT5mP2IEnhw7iQ0PXXKcbl1QlUjjbZNBpvN
+         8rewbAUoxhgwtLytYpU4EWqdujeb5L/Fz+SroZRyy/zK7klRLaMcxV3xrpgx1rur98nF
+         IqBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692284387; x=1692889187;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jyrnYd+/grcDQWPBP5YRxE3h8w3O63U4ojbQQv8+188=;
-        b=lsUVKdOOSOzUPng2PsLREi0Ruj7j/JLMSWtD0Sxi/zIQxuQQ6bSsAqkCxzF+Pg+j9X
-         +5h/hOXTI0EtlJFVWT57KMSCB/kDwOZquD7MDTSUXGrzF4aIedlg5u6jnmuxKkeIbQgy
-         A/QukKwWnFoJpAKmDSaymjpMyvluUnTjf7y28gsQ0HECND1HE8422gk084QCU2sX2aBg
-         iZy8Z8BMzbb87lKYpBiRWc/ZlSK9aPjU8JW5TohOPg1Cu2CGFwTWyBxBIg6zw84zYrS2
-         k/FQV6sjzAKXq6XHZMYpMupy/+KgmiGEKdrZ0ofrIadzAoyGMevqWKWZ+q91VvzaqbVY
-         m5rA==
-X-Gm-Message-State: AOJu0YyWenhaGXaO/9Lbn/jnv56ItFcpA2xG43ji9GylU0uHuC3QmVe2
-        mAS32Rl2S4Wzd7gMd56vVxp4yw==
-X-Google-Smtp-Source: AGHT+IFrDXU9RyQ2b51UNFwD8gODzimUQlViN1buaLRaNRS/xBOehnJnNWmJk7sJ/VfKKwLbM4dG8g==
-X-Received: by 2002:a17:906:31cf:b0:99c:5623:a2f1 with SMTP id f15-20020a17090631cf00b0099c5623a2f1mr3775578ejf.48.1692284387650;
-        Thu, 17 Aug 2023 07:59:47 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id lj9-20020a170906f9c900b00988be3c1d87sm10233557ejb.116.2023.08.17.07.59.46
+        d=1e100.net; s=20221208; t=1692284720; x=1692889520;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=deyjZLeLJlZBKubG6uZiC2GX/sQ0rpTBXelPhs8NNsk=;
+        b=diAoECiOxsXMJYJfL+pyen0xh5sVE2Hyhu7zHSiTxw4U7GmDi6XhkJu31dpZl97iq3
+         FA0lPHYEeVbdUcLuL6CmuN8L+g/S1jo/WVttl6D7x6FnCXnSfe+oCRTdYhT5uob2Swta
+         dwQBLjQQUHJdZEgWkzV5TvGeMqqPJjQED8w5IOphnGyG+xCdcCo+8FqoW7W51/S4SmCy
+         +l6Jr51ncsrXcLuABuN665Uy0wqFERN5oSUvebqte3WrL/276KCWaH00ZN1tayW1nJYs
+         unBe+XFIHHMe2P/ehfhjlUi5hm0ZVZzhQ+WWd3J37G7bfB384oAaOLT8F6Puljxd/e6g
+         9FuQ==
+X-Gm-Message-State: AOJu0YyrmrY1ECMc96Vn7IfQ0Z26BpVAqot7MMb40NJltwMeYp+azGFV
+        JaEVNQgSZn2V699xvMvhYis=
+X-Google-Smtp-Source: AGHT+IGs5rYhDcqho7rv8u5Z89EZt3O4Lm4CO/AsjRZBf+TzcBRtA0xL7NBRP7/I9upLKdtp+TH3vw==
+X-Received: by 2002:a05:6871:212:b0:1be:e6d6:15c4 with SMTP id t18-20020a056871021200b001bee6d615c4mr5563102oad.9.1692284720360;
+        Thu, 17 Aug 2023 08:05:20 -0700 (PDT)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id e4-20020a9d63c4000000b006b9d21100d0sm7070234otl.64.2023.08.17.08.05.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Aug 2023 07:59:47 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH v2 4/4] arm64: dts: qcom: qrb5165-rb5: enable DP altmode
-Date:   Thu, 17 Aug 2023 17:59:40 +0300
-Message-Id: <20230817145940.9887-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
-References: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
+        Thu, 17 Aug 2023 08:05:19 -0700 (PDT)
+Message-ID: <64de372f.9d0a0220.f75e0.abb0@mx.google.com>
+X-Google-Original-Message-ID: <ZN43Lk+GKhSPZY8o@neuromancer.>
+Date:   Thu, 17 Aug 2023 10:05:18 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+        neil.armstrong@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: display: newvision,nv3051d: Add
+ Anbernic 351V Support
+References: <20230809153941.1172-1-macroalpha82@gmail.com>
+ <20230809153941.1172-2-macroalpha82@gmail.com>
+ <20230810232409.GA1548096-robh@kernel.org>
+ <ZNZIrOYaOar4DSkO@neuromancer.>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZNZIrOYaOar4DSkO@neuromancer.>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add displayport altmode declaration to the Type-C controller node to
-enable DP altmode negotiation.
+On Fri, Aug 11, 2023 at 09:41:50AM -0500, Chris Morgan wrote:
+> On Thu, Aug 10, 2023 at 05:24:09PM -0600, Rob Herring wrote:
+> > On Wed, Aug 09, 2023 at 10:39:40AM -0500, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Document the Anbernic RG351V panel, which appears to be identical to
+> > > the panel used in their 353 series except for in inclusion of an
+> > > additional DSI format flag.
+> > > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > >  .../display/panel/newvision,nv3051d.yaml       | 18 ++++++++++--------
+> > >  1 file changed, 10 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > > index 116c1b6030a2..576f3640cb33 100644
+> > > --- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > > @@ -7,9 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >  title: NewVision NV3051D based LCD panel
+> > >  
+> > >  description: |
+> > > -  The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
+> > > -  this driver only supports the 640x480 panels found in the Anbernic RG353
+> > > -  based devices.
+> > > +  The NewVision NV3051D is a driver chip used to drive DSI panels.
+> > >  
+> > >  maintainers:
+> > >    - Chris Morgan <macromorgan@hotmail.com>
+> > > @@ -19,11 +17,15 @@ allOf:
+> > >  
+> > >  properties:
+> > >    compatible:
+> > > -    items:
+> > > -      - enum:
+> > > -          - anbernic,rg353p-panel
+> > > -          - anbernic,rg353v-panel
+> > > -      - const: newvision,nv3051d
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - anbernic,rg353p-panel
+> > > +              - anbernic,rg353v-panel
+> > > +          - const: newvision,nv3051d
+> > > +
+> > > +      - items:
+> > > +          - const: anbernic,rg351v-panel
+> > 
+> > I don't understand. Is this panel not based on newvision,nv3051d? If 
+> > not, then it probably should be a different binding. Lot's of panel 
+> > bindings have similar properties.
+> 
+> It appears to be the same panel (or extremely similar, honestly I don't
+> know because there are no external markings on it). However, this
+> specific implementation seems to require MIPI_DSI_CLOCK_NON_CONTINUOUS,
+> not using it prevents the panel from working. As for the existing panel
+> MIPI_DSI_CLOCK_NON_CONTINUOUS stops it from working. The different
+> binding essentially determines whether or not that flag is present, but
+> otherwise everything else is identical.
+> 
+> Chris
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+If this is not correct I could also change it so instead there is a
+property that toggles the MIPI_DSI_CLOCK_NON_CONTINUOUS flag, something
+like "newvision,clk_non_continuous". Again aside from this flag the
+panel itself is identical to the one already supported by this driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 3bd0c06e7315..c8cd40a462a3 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1423,6 +1423,13 @@ PDO_FIXED_DUAL_ROLE |
- 					 PDO_FIXED_USB_COMM |
- 					 PDO_FIXED_DATA_SWAP)>;
- 
-+		altmodes {
-+			displayport {
-+				svid = <0xff01>;
-+				vdo = <0x00001c46>;
-+			};
-+		};
-+
- 		ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.39.2
+Thank you,
+Chris
 
+> 
+> > 
+> > Rob
