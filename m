@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88C1C77F0F8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 09:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDEB77F0F6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 09:11:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348359AbjHQHLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1348378AbjHQHLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 17 Aug 2023 03:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58508 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348364AbjHQHLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 03:11:05 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10D42D50
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:01 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99d937b83efso619859366b.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:01 -0700 (PDT)
+        with ESMTP id S1348367AbjHQHLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 03:11:07 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669842D58
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:03 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-997c4107d62so977980366b.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1692256260; x=1692861060;
+        d=9elements.com; s=google; t=1692256262; x=1692861062;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VIjrnEwaKeqGTU5grAtJfqf2YP8aALmcmlloCUUh95k=;
-        b=WacsCwd/mTW/bUVtr3GPWrz7PCmkCc2+kASptV0P7rFTE0R9JwO0dwS0d9fm5zWWCP
-         jVQLBAEuEY2TeZ+7J43YpwG/rvwmOFcUtCixJOpcfUD9ER/YGw6ud6q0H3BJuii5bTmm
-         oz7NiDzwXh+YNrM3WWh0maeTRON+wvh0VkyxUxYITj4CUpXFRfSbsY8lOZsmtQRMVP9J
-         d7LiAEEEaNIfXlpOUBvsxhQpbKS97igXv9he8JpvAoJDmMh+QfEoCCQIqu7vaGfdjiOF
-         cz7UZfJ/vzykdECCYUEClUJwoo8cNxkkZ4QUJoy2rQTI3/tSdPg/ua9ngS7lgAjjz76+
-         AGTg==
+        bh=b90IMLBWM6zQGsk777iCjnjr53BKkJdrEo5WNQ1ldaY=;
+        b=H2c7NBiQQhO7/E+JhYmltH5Qey+YF7rioiXGPAct8f1Q++JttPziqyPgN9AzV7QaeC
+         wbvn0skUZbWJx3/XZ8hT5/KK2lY+EoBYEsTKBGFocAUZyM2BqhyFrNd/fMB1Jt4bxcfP
+         vt5Sp3TwVEGX2NMLnd3+P4pVzHO3g98ugqPOPMomOVeuLRGo7ljqecvx/0HL90dJY5MY
+         BTyNeomIxik49AbiSKIH5sYTeHhEkCbXYPS9OO6LqQwlx6nRijQaQZU8J26pIAfRMm42
+         F62n2sZeF8VDqtjLbFTM7Gd0ii2k7oQXvuNl+Q/85HIColE/a4BXG26jmUckMCnjEPZb
+         4y/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692256260; x=1692861060;
+        d=1e100.net; s=20221208; t=1692256262; x=1692861062;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VIjrnEwaKeqGTU5grAtJfqf2YP8aALmcmlloCUUh95k=;
-        b=J1iXjDBJFQrxpAcrJeBQzO7Dv/G8WnNb2tFphLGIGFxE6kiOzOQ1nUmPWXfHYTHAr1
-         okZNQFQN5JN6ovYOJ3lc2cFZXCfKcpugG7I1rWzLyubM8P48jBOV2Hyx/IR22s+R4Q6Q
-         sdhvHzMytxaALKkGMtsilK6wUeUmGRcdiV2Ok0p8Yv9c//KcLvVkkHA2XqYdea1Nb+UU
-         f4krIzpyYC4Jho8pg83TNK65efK29L6n7VOtgywu3qjVP/wFTsuNnccNu2AyIYnUGU5m
-         /9E9945f6vc4drjJ4PvyJcE3T5RwfnH38Crqw0qJdNgkEP/ns0EoLLuR2V2daf/LmMA/
-         J7aw==
-X-Gm-Message-State: AOJu0Yz4q0XfHKXyQLsGPbXHTwNWMINHake+w2r3U9AGtjFFmyil+YyC
-        0Q5lMOak5i3SaWrSTZ24G7qTPQ==
-X-Google-Smtp-Source: AGHT+IEm3Zuw6iWJxveFv6TWkJryZMT36/j5LUA/U0DfI6Y7uj4yMRyUOzDLKV23+RFgUnjU5V3B+w==
-X-Received: by 2002:a17:906:20dc:b0:99b:ed53:5c12 with SMTP id c28-20020a17090620dc00b0099bed535c12mr3023587ejc.17.1692256260537;
-        Thu, 17 Aug 2023 00:11:00 -0700 (PDT)
+        bh=b90IMLBWM6zQGsk777iCjnjr53BKkJdrEo5WNQ1ldaY=;
+        b=BEHL3Q1UUoDgoClaVRoGS3oUnZaVXn4MW5/agZ4BEyk40L8feFX/0qCGd5XVEkB+iA
+         Z/J3v3ACW+NsExJWdkNQy4ek3xVQzS8DGgqDBJUYqrnenwxsxNsXmOI8so8ZnP5jalu4
+         M6CoTwZz63h+5TSe5YD/toOs9F0YDiZZLlCFbLatlCBiPHJSUA28adpzIUI/4k3Riv6p
+         d9OUVfh2pbb0UWmN2XizucSXHvRB45w/IxpdMUGml6vqhh0GugHhWr/NrEsyM5ZEj+eM
+         zKvyYnXoXD0lDWI9SBYGYoJcm9fAog4WSkdmjS+2Fg3nZoF+9/evCpi5sAsKAwMSkVUy
+         0Qfw==
+X-Gm-Message-State: AOJu0YwvDfcXBWwUfzizp4b1OlfXzGoP6rgpHBYyspsaZTgnl3nIWied
+        1F8Re1thX0XydLdl/piiCeXvYw==
+X-Google-Smtp-Source: AGHT+IEgdlNDyUuQTO740sHhf8djCEa8VT8SCiFbw6TV/IOas227T3QbIjZIW2aIg8rgvvW1eRh80Q==
+X-Received: by 2002:a17:906:311b:b0:99b:507d:dc05 with SMTP id 27-20020a170906311b00b0099b507ddc05mr3493724ejx.16.1692256261878;
+        Thu, 17 Aug 2023 00:11:01 -0700 (PDT)
 Received: from fedora.sec.9e.network (ip-095-222-150-251.um34.pools.vodafone-ip.de. [95.222.150.251])
-        by smtp.gmail.com with ESMTPSA id qn17-20020a170907211100b00992b510089asm9674361ejb.84.2023.08.17.00.10.59
+        by smtp.gmail.com with ESMTPSA id qn17-20020a170907211100b00992b510089asm9674361ejb.84.2023.08.17.00.11.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Aug 2023 00:11:00 -0700 (PDT)
+        Thu, 17 Aug 2023 00:11:01 -0700 (PDT)
 From:   Patrick Rudolph <patrick.rudolph@9elements.com>
 To:     Peter Rosin <peda@axentia.se>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
@@ -59,9 +59,9 @@ Cc:     naresh.solanki@9elements.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v15 1/4] dt-bindings: i2c: pca954x: Correct interrupt support
-Date:   Thu, 17 Aug 2023 09:10:50 +0200
-Message-ID: <20230817071056.2125679-2-patrick.rudolph@9elements.com>
+Subject: [PATCH v15 2/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+Date:   Thu, 17 Aug 2023 09:10:51 +0200
+Message-ID: <20230817071056.2125679-3-patrick.rudolph@9elements.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230817071056.2125679-1-patrick.rudolph@9elements.com>
 References: <20230817071056.2125679-1-patrick.rudolph@9elements.com>
@@ -69,77 +69,89 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Only some of the PCA954x compatible ICs have interrupt
-capability, but the binding advertises it on all ICs.
+Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
+chips. The functionality will be provided by the existing pca954x driver.
 
-Sync the dt-binding with the driver and only advertise it on:
- - nxp,pca9542
- - nxp,pca9543
- - nxp,pca9544
- - nxp,pca9545
+For chips that are powered off by default add a regulator called vdd-supply.
 
 Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 23 +++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 23 +++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 9f1726d0356b..e5c1070903ef 100644
+index e5c1070903ef..2d7bb998b0e9 100644
 --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
 +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -12,9 +12,6 @@ maintainers:
- description:
-   The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
+@@ -4,18 +4,29 @@
+ $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
--allOf:
--  - $ref: /schemas/i2c/i2c-mux.yaml#
--
+-title: NXP PCA954x I2C bus switch
++title: NXP PCA954x I2C and compatible bus switches
+ 
+ maintainers:
+   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+ 
+ description:
+-  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
++  The NXP PCA954x and compatible devices are I2C bus
++  multiplexer/switches that share the same functionality
++  and register layout.
++  The devices usually have 4 or 8 child buses, which are
++  attached to the parent bus by using the SMBus "Send Byte"
++  command.
+ 
  properties:
    compatible:
      oneOf:
-@@ -63,6 +60,24 @@ required:
+       - enum:
++          - maxim,max7356
++          - maxim,max7357
++          - maxim,max7358
++          - maxim,max7367
++          - maxim,max7368
++          - maxim,max7369
+           - nxp,pca9540
+           - nxp,pca9542
+           - nxp,pca9543
+@@ -56,6 +67,10 @@ properties:
+     description: if present, overrides i2c-mux-idle-disconnect
+     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
+ 
++  vdd-supply:
++    description: A voltage regulator supplying power to the chip. On PCA9846
++      the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
++
+ required:
    - compatible
    - reg
- 
-+allOf:
-+  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - nxp,pca9542
-+                - nxp,pca9543
-+                - nxp,pca9544
-+                - nxp,pca9545
-+    then:
-+      properties:
-+        interrupts: false
-+        "#interrupt-cells": false
-+        interrupt-controller: false
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -74,7 +89,7 @@ examples:
-         #size-cells = <0>;
- 
-         i2c-mux@74 {
--            compatible = "nxp,pca9548";
-+            compatible = "nxp,pca9545";
-             #address-cells = <1>;
+@@ -68,6 +83,8 @@ allOf:
+           compatible:
+             contains:
+               enum:
++                - maxim,max7367
++                - maxim,max7369
+                 - nxp,pca9542
+                 - nxp,pca9543
+                 - nxp,pca9544
+@@ -94,6 +111,8 @@ examples:
              #size-cells = <0>;
              reg = <0x74>;
+ 
++            vdd-supply = <&p3v3>;
++
+             interrupt-parent = <&ipic>;
+             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+             interrupt-controller;
 -- 
 2.41.0
 
