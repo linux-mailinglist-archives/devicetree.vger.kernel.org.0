@@ -2,83 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97F1777FF2A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 22:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5978077FF7B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 23:06:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347175AbjHQUes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 16:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
+        id S1355147AbjHQVGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 17:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354962AbjHQUeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 16:34:23 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B9E35BB
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 13:34:10 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fe426b8583so2482045e9.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 13:34:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1692304449; x=1692909249;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aJanSbcbdRbqlFQWo2SBp1vOjmdCAm9+u8RhmfEAHas=;
-        b=HokACvUW0mjpLc8YiUL9KCHIpjZi7PunfjPeUHX6F+hjAFZ8BdwqsjEvDvr+7iRwVG
-         4RUuiYx72kRPxCLwwB7DdFYF8LNXJ3naJlB86oAWLH1YmN47FzCgCLklB55s8jPnmKSv
-         htCVokwgGAVZVfCchsvs3EHYtrIfyJGhbyy/int/Mmafg9jCf7KOSyodZjfmmPR91HGa
-         vfqJcPLKBW6Hu4qVQ8QLDIIE5mMlYp4V8C/+6JToFay+dieiQWQWy269oXSrq9rPtrUe
-         52UHXxT6IHvN+zic1Nru5lJKeD9q0GRPM2I09yq5wLSQp4EPMDxX6fz9RH8ROpVRu3Ox
-         3NPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692304449; x=1692909249;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aJanSbcbdRbqlFQWo2SBp1vOjmdCAm9+u8RhmfEAHas=;
-        b=EDaBESyDZRsKvlA9x9MPIeiOs5MRSLN8tLF/krCu17YO5Wv94deoKsSsnjnR52M6Gk
-         yVu/+0+U+w4x/N4EwwHInBwVt1mFLk7loiZ4n7U0JoZQOdk662LHidwni2XGpw+OO/Oy
-         LZS25fy/kaqmsUNZaUrPwVwGVgCrc+DgCqCXy2gVU1mWuplt5MSLq8iNzWOfpw240qIH
-         Flbzv70XRGIwgbDjlaaUaqQ15wP6xP0ni+FXB/4Rj9JiLnEOlDUjh5R794rojT+Y/slN
-         UoO5E92VoYDrR8DrSKJWsKyCYDx0pkNt2jSDD6KWYPpTNev8K2TySUZV/JfWkWU8QvVl
-         F3Pw==
-X-Gm-Message-State: AOJu0Yxl+OTTAY1HdnNHbxFZmbp4aNsRjjvLVfMlYjbTJ3t0wsxAdk6W
-        8b/EfHprkfXjRM2OsJ7jpfEKvA==
-X-Google-Smtp-Source: AGHT+IFq0O851NzocA+e/CpjQ6uPrVChiJJ+FMGBCKsk+tDIGC8ffOouYN49JM4byaw7gqWx2KgfSA==
-X-Received: by 2002:adf:de8c:0:b0:317:e515:d623 with SMTP id w12-20020adfde8c000000b00317e515d623mr416308wrl.60.1692304449002;
-        Thu, 17 Aug 2023 13:34:09 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o2-20020adfcf02000000b0031423a8f4f7sm323543wrj.56.2023.08.17.13.34.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Aug 2023 13:34:08 -0700 (PDT)
-Message-ID: <653fd80b-0055-ddbd-3641-a38efaa3be9c@nexus-software.ie>
-Date:   Thu, 17 Aug 2023 21:34:06 +0100
+        with ESMTP id S1355158AbjHQVFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 17:05:54 -0400
+X-Greylist: delayed 91 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Aug 2023 14:05:52 PDT
+Received: from s.wrqvwxzv.outbound-mail.sendgrid.net (s.wrqvwxzv.outbound-mail.sendgrid.net [149.72.154.232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F22912D56
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 14:05:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+        h=mime-version:subject:references:from:in-reply-to:to:cc:content-type:
+        content-transfer-encoding:cc:content-type:from:subject:to;
+        s=s1; bh=TcEEszJfjlCHwKsFpwnWm1d65Qo4xi+W36wwjFhVKOo=;
+        b=oDOPIB5D/fL5/fWe3ME9vleCXenp1V7YZDIoGspzOJ2/iWYvxSyEHpVuBoSxTspVvOtu
+        1RBmvL0ThLdbBHQY88xK0TZ9SCHWBOyhP6hdJHAhF+IpKf0dWyRoB8ViAo1r/UR0m8KETi
+        VfA08g9KcWsgpL4tJL9L6XNoexsB6rKC9fGAmvjeRfPt9deZPM+hHGa8oGm+GamRXjcygT
+        xlrfwU/0WJ7hgl5x1A6r2hG8u0q/Po5xtDEjqSTjEIh5T5Wwxr5sERRn3foE8M1c1nldab
+        87M0Qi5nG4S00FsMs/VJW8o7Zn6Wu6HC94rhyQPvHTabj5QPAgoZov8TzyZFapIA==
+Received: by filterdrecv-66949dbc98-r7x9c with SMTP id filterdrecv-66949dbc98-r7x9c-1-64DE8B54-15
+        2023-08-17 21:04:20.267440901 +0000 UTC m=+8544276.233978210
+Received: from [192.168.1.50] (unknown)
+        by geopod-ismtpd-5 (SG) with ESMTP
+        id 4A2qnn0eRB6lO0Onw9U5kw
+        Thu, 17 Aug 2023 21:04:19.902 +0000 (UTC)
+Message-ID: <86c92a80-38ac-bd5d-2f31-fd003f13d2ed@kwiboo.se>
+Date:   Thu, 17 Aug 2023 21:04:20 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: qrb5165-rb5: add onboard USB-C
- redriver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add sfc node to rk3588s
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
- <20230817145940.9887-3-dmitry.baryshkov@linaro.org>
-From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <20230817145940.9887-3-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <cover.1692102057.git.efectn@6tel.net>
+ <b96e8d517d431d13eedd9c9606523076d72033bf.1692102057.git.efectn@6tel.net>
+From:   Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <b96e8d517d431d13eedd9c9606523076d72033bf.1692102057.git.efectn@6tel.net>
+X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
+ =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h7He8qHGjMdPut1pE?=
+ =?us-ascii?Q?dkn9+=2F2DGDvT=2FkkNZp68DzJlYASbgkv9+xcggGU?=
+ =?us-ascii?Q?r3Cd2hy7EWNayQYq5V0=2F3cCs2E5vkKxIZtq9UtA?=
+ =?us-ascii?Q?UIRYAPZ5Fjvfr3qWaBDtSJOV0L8YQnSfd=2FZ3grT?=
+ =?us-ascii?Q?+qXM+ksK32jK1cbJiCyVzgPfWJ4eHFZUXAiSg7?=
+To:     Muhammed Efe Cetin <efectn@6tel.net>,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, sebastian.reichel@collabora.com
+X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,92 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2023 15:59, Dmitry Baryshkov wrote:
-> Add the nb7vpq904m, onboard USB-C redriver / retimer.
+On 2023-08-15 14:59, Muhammed Efe Cetin wrote:
+> Add sfc node to rk3588s.dtsi from downstream kernel.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
 > ---
->   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 52 +++++++++++++++++++++++-
->   1 file changed, 50 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 303d07f9c6e5..a4f7a9f9c22c 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -610,6 +610,46 @@ lt9611_out: endpoint {
->   /* LS-I2C1 */
->   &i2c15 {
->   	status = "okay";
-> +
-> +	typec-mux@1c {
-> +		compatible = "onnn,nb7vpq904m";
-> +		reg = <0x1c>;
-> +
-> +		vcc-supply = <&vreg_s4a_1p8>;
-> +
-> +		retimer-switch;
-> +		orientation-switch;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				redriver_usb_con_ss: endpoint {
-> +					remote-endpoint = <&pm8150b_typec_mux_in>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				redriver_phy_con_ss: endpoint {
-> +					remote-endpoint = <&usb_1_qmpphy_out>;
-> +					data-lanes = <0 1 2 3>;
-> +				};
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +
-> +				redriver_usb_con_sbu: endpoint {
-> +					remote-endpoint = <&pm8150b_typec_sbu_out>;
-> +				};
-> +			};
-> +		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 5544f66c6ff4..a38a0158fce0 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -1424,6 +1424,19 @@ sata-port@0 {
+>  		};
+>  	};
+>  
+> +	sfc: spi@fe2b0000 {
+> +		compatible = "rockchip,sfc";
+> +		reg = <0x0 0xfe2b0000 0x0 0x4000>;
+> +		interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
+
+gic use 4 interrupt-cells, should be:
+
+  interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH 0>;
+
+> +		clocks = <&cru SCLK_SFC>, <&cru HCLK_SFC>;
+> +		clock-names = "clk_sfc", "hclk_sfc";
+> +		assigned-clocks = <&cru SCLK_SFC>;
+> +		assigned-clock-rates = <100000000>;
+
+You should not need to assign clock rate here, do it in your board dts
+if you really must.
+
+Regards,
+Jonas
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
 > +	};
->   };
->   
->   &mdss {
-> @@ -1299,7 +1339,7 @@ &usb_1_qmpphy {
->   };
->   
->   &usb_1_qmpphy_out {
-> -	remote-endpoint = <&pm8150b_typec_mux_in>;
-> +	remote-endpoint = <&redriver_phy_con_ss>;
->   };
->   
->   &usb_2 {
-> @@ -1388,7 +1428,15 @@ pm8150b_role_switch_in: endpoint {
->   			port@1 {
->   				reg = <1>;
->   				pm8150b_typec_mux_in: endpoint {
-> -					remote-endpoint = <&usb_1_qmpphy_out>;
-> +					remote-endpoint = <&redriver_usb_con_ss>;
-> +				};
-> +			};
 > +
-> +			port@2 {
-> +				reg = <2>;
-> +
-> +				pm8150b_typec_sbu_out: endpoint {
-> +					remote-endpoint = <&redriver_usb_con_sbu>;
->   				};
->   			};
->   		};
+>  	sdmmc: mmc@fe2c0000 {
+>  		compatible = "rockchip,rk3588-dw-mshc", "rockchip,rk3288-dw-mshc";
+>  		reg = <0x0 0xfe2c0000 0x0 0x4000>;
 
-LGTM
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
