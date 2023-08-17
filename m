@@ -2,44 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F2E77F2C5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 11:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DBF777F319
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 11:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349310AbjHQJIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 05:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50636 "EHLO
+        id S237396AbjHQJT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 05:19:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349316AbjHQJI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 05:08:29 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 31CD413D;
-        Thu, 17 Aug 2023 02:08:27 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,179,1684767600"; 
-   d="scan'208";a="176864895"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Aug 2023 18:08:26 +0900
-Received: from localhost.localdomain (unknown [10.226.93.71])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 37E5141B6449;
-        Thu, 17 Aug 2023 18:08:23 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 3/3] arm64: dts: renesas: rz-smarc-common: Use versa3 clk for audio mclk
-Date:   Thu, 17 Aug 2023 10:08:10 +0100
-Message-Id: <20230817090810.203900-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230817090810.203900-1-biju.das.jz@bp.renesas.com>
-References: <20230817090810.203900-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S1349507AbjHQJTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 05:19:37 -0400
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CC01FE9
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 02:19:34 -0700 (PDT)
+Received: by mail-ua1-x932.google.com with SMTP id a1e0cc1a2514c-7a02252eb5dso103734241.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 02:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692263973; x=1692868773;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qbGMPo3tGq+YirHQo7N71fQRLGFMALJjCkoQPoPiIHU=;
+        b=Qm4ciNzlc9FRYwftkqfSAyfAJyKqfzBRh+ndFYouevcnVSonb3hkzyvNI/TpnCr7df
+         YQVULPS4tC7BQPr/r0pwsUCTYp2OeYVOwQStWnaMlrdJ2CswwHkpGf3RWEeQRg7YL1c9
+         NM0YInO7/bmGJBXYmx4HfUeLSpeUf0aNlJcHU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692263973; x=1692868773;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qbGMPo3tGq+YirHQo7N71fQRLGFMALJjCkoQPoPiIHU=;
+        b=PBQ1IXLSw0jwFBfdPlrkoIoRmglvLRpiCqTMIq1eDIewTTTkgd++9diDGr4LXpfkWo
+         J103sqFujBe3bnqKjdlAHKtQkq7qGH/pSRuTsNqUuyj7xo4o7qbrmAhKQqIqpm24mjV7
+         SM0dp9Ia+0baLFSgxSIRYOrCwwHQs1yx584wkw6M2VeQS2e8yFV6TuFHvNcekvg1tDGt
+         ftCdEcWnVCkTYJzBwQ01qOkOCpSZRmdx7OGieayMHDwHQyIKJb4Ij8KSIIOH+bmNgn0T
+         T5qkc9mTFp/dJIusmGqICRwYq+VbSwrcN+dP3b+E++rcRrBHoe3yFruofo3htbPYN3F0
+         tu1g==
+X-Gm-Message-State: AOJu0Yy2CEQBDjSeXK8StmJnHHyApsVNcB+L+TqddYqcqwBTbW8CpyUE
+        fnH+nFJrUUGq3Em0w7p8xJEt6FacnrSojGmPWPaoow==
+X-Google-Smtp-Source: AGHT+IHwlHp84D6NTZQKO4FRUFD+68Z2Jmt2OGg+nN3JshwrNkRkLgGjAWC0Nkmq381j0LC9zkZDtC2kGHPxE51tmPw=
+X-Received: by 2002:a67:ce0e:0:b0:443:7eba:e22c with SMTP id
+ s14-20020a67ce0e000000b004437ebae22cmr3050838vsl.8.1692263973474; Thu, 17 Aug
+ 2023 02:19:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230816190427.2137768-1-nfraprado@collabora.com>
+In-Reply-To: <20230816190427.2137768-1-nfraprado@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 17 Aug 2023 17:19:22 +0800
+Message-ID: <CAGXv+5EnbovYSfw=_wSKyKTSbDQYu6UW8u8L5bm9PKjN1dVGyQ@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: cherry: Configure eDP and
+ internal display
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,175 +73,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently audio mclk uses a fixed clk of 11.2896MHz (multiple of 44.1kHz).
-Replace this fixed clk with the programmable versa3 clk that can provide
-the clocking to support both 44.1kHz (with a clock of 11.2896MHz) and
-48kHz (with a clock of 12.2880MHz), based on audio sampling rate for
-playback and record.
+On Thu, Aug 17, 2023 at 3:04=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com=
+>
+>
+> Add the required nodes to enable the DisplayPort interface, connected
+> to the Embedded DisplayPort port, where we have an internal display.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> [nfraprado: removed always-on, added vin-supply and enable delay]
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * No change.
-v1:
- * Added this patch as part of this series.
- * Replaced xtal->x1-clock and x1_x2->x1.
- * Added clock-output-names.
- * Updated clock-frequency = <400000> for RZ/G2UL i2c0
- * Updated assigned-clocks and assigned-clock-rates as per bindings.
- * Replaced mclk from '<&versa3 3>'->'<&versa3 2>'.
----
- .../boot/dts/renesas/rz-smarc-common.dtsi     | 14 +++++-----
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 23 ++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 23 ++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 27 +++++++++++++++++++
- 4 files changed, 80 insertions(+), 7 deletions(-)
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index a7594ba3a998..b7a3e6caa386 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -32,12 +32,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	audio_mclock: audio_mclock {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <11289600>;
--	};
--
- 	snd_rzg2l: sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,format = "i2s";
-@@ -55,7 +49,7 @@ cpu_dai: simple-audio-card,cpu {
- 		};
- 
- 		codec_dai: simple-audio-card,codec {
--			clocks = <&audio_mclock>;
-+			clocks = <&versa3 2>;
- 			sound-dai = <&wm8978>;
- 		};
- 	};
-@@ -76,6 +70,12 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
- 		gpios-states = <1>;
- 		states = <3300000 1>, <1800000 0>;
- 	};
-+
-+	x1: x1-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
- };
- 
- &audio_clk1 {
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index 68eab8e26bf2..186ca8f305db 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -105,6 +105,29 @@ &i2c3 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		clock-output-names = "ref", "se1", "se2", "se3",
-+				     "diff1", "diff2";
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 83fce96a2575..5abac6bc03c9 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -121,6 +121,29 @@ &i2c2 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		clock-output-names = "ref", "se1", "se2", "se3",
-+				     "diff1", "diff2";
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-index 8eb411aac80d..7e0a5814824e 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-@@ -20,6 +20,33 @@ &cpu_dai {
- 	sound-dai = <&ssi1>;
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		clock-output-names = "ref", "se1", "se2", "se3",
-+				     "diff1", "diff2";
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+};
-+
- &i2c1 {
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
--- 
-2.25.1
+> ---
+> The MediaTek DRM changes needed for MT8195 have already been queued for
+> v6.6 [1], so this DT patch is the last missing piece needed to get
+> a working display on MT8195 Tomato.
+>
+> [1] https://lore.kernel.org/all/20230813152726.14802-1-chunkuang.hu@kerne=
+l.org/
+>
+> Changes in v3:
+> - Split from "MT8195 Acer Tomato - devicetrees Part 3" series
 
+The platform thermal patch from that series hasn't been merged either?
+
+> - Removed regulator-always-on as it's no longer needed
+> - Added missing vin-supply and regulator-enable-delay
+>
+>  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
+/boot/dts/mediatek/mt8195-cherry.dtsi
+> index 37a3e9de90ff..dd5b89b73190 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -47,6 +47,19 @@ memory@40000000 {
+>                 reg =3D <0 0x40000000 0 0x80000000>;
+>         };
+>
+> +       pp3300_disp_x: regulator-pp3300-disp-x {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "pp3300_disp_x";
+> +               regulator-min-microvolt =3D <3300000>;
+> +               regulator-max-microvolt =3D <3300000>;
+> +               regulator-enable-ramp-delay =3D <2500>;
+> +               enable-active-high;
+> +               gpio =3D <&pio 55 GPIO_ACTIVE_HIGH>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&panel_fixed_pins>;
+> +               vin-supply =3D <&pp3300_z2>;
+> +       };
+> +
+>         /* system wide LDO 3.3V power rail */
+>         pp3300_z5: regulator-pp3300-ldo-z5 {
+>                 compatible =3D "regulator-fixed";
+> @@ -217,6 +230,20 @@ port@1 {
+>                         reg =3D <1>;
+>                         edp_out: endpoint {
+>                                 data-lanes =3D <0 1 2 3>;
+> +                               remote-endpoint =3D <&panel_in>;
+> +                       };
+> +               };
+> +       };
+> +
+> +       aux-bus {
+> +               panel {
+> +                       compatible =3D "edp-panel";
+> +                       power-supply =3D <&pp3300_disp_x>;
+> +                       backlight =3D <&backlight_lcd0>;
+> +                       port {
+> +                               panel_in: endpoint {
+> +                                       remote-endpoint =3D <&edp_out>;
+> +                               };
+>                         };
+>                 };
+>         };
+> @@ -881,6 +908,12 @@ pins-bus {
+>                 };
+>         };
+>
+> +       panel_fixed_pins: panel-pwr-default-pins {
+> +               pins-vreg-en {
+> +                       pinmux =3D <PINMUX_GPIO55__FUNC_GPIO55>;
+> +               };
+> +       };
+> +
+>         pio_default: pio-default-pins {
+>                 pins-wifi-enable {
+>                         pinmux =3D <PINMUX_GPIO58__FUNC_GPIO58>;
+> --
+> 2.41.0
+>
