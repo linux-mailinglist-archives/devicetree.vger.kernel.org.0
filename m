@@ -2,117 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311EF77EEA2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 03:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06F377EEC2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 03:35:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347508AbjHQBUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 21:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45082 "EHLO
+        id S232413AbjHQBfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 21:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347473AbjHQBTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 21:19:45 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E913026AB;
-        Wed, 16 Aug 2023 18:19:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=k5AnX52HD8DrL7Os7PUELSo5Kpp0aTUuVSiOe7uZSvA=; b=zJTv3OespTvnIpKqpdeTzp2Apm
-        rRuzIwgp6H8nV64WxkoetxEnVFauAI9aiNe6529+zOAFcL/3+Z0hl5k4KnwjtlxoXi805URdVwk1k
-        R6HZDUvpDIh3Xt5jHZxiqynp/sNZB6iMssAFh+DYMqa+xHxEKQO21dw4vf80S8NJI1xY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qWRfh-004Kkc-So; Thu, 17 Aug 2023 03:19:33 +0200
-Date:   Thu, 17 Aug 2023 03:19:33 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     nick.hawkins@hpe.com
-Cc:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
-        verdun@hpe.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S1347557AbjHQBfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 21:35:16 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 18556271E;
+        Wed, 16 Aug 2023 18:35:12 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8AxTetPed1kfFQZAA--.46769S3;
+        Thu, 17 Aug 2023 09:35:11 +0800 (CST)
+Received: from [10.20.42.201] (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxTSNOed1kgmVcAA--.11513S3;
+        Thu, 17 Aug 2023 09:35:10 +0800 (CST)
+Subject: Re: [PATCH v15 1/2] thermal: loongson-2: add thermal management
+ support
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] net: hpe: Add GXP UMAC MDIO
-Message-ID: <16d8e283-79f7-44bb-af5f-b84cdf7c9d79@lunn.ch>
-References: <20230816215220.114118-1-nick.hawkins@hpe.com>
- <20230816215220.114118-3-nick.hawkins@hpe.com>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
+References: <20230620012944.28877-1-zhuyinbo@loongson.cn>
+ <da3e6348-33e0-aaa9-8f86-4b1ba1504551@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <4486a43d-131c-0dcb-d2e5-1f4659a873c0@loongson.cn>
+Date:   Thu, 17 Aug 2023 09:35:10 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230816215220.114118-3-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <da3e6348-33e0-aaa9-8f86-4b1ba1504551@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxTSNOed1kgmVcAA--.11513S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 04:52:17PM -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+
+
+在 2023/8/16 下午8:46, Daniel Lezcano 写道:
+> On 20/06/2023 03:29, Yinbo Zhu wrote:
+>> This patch adds the support for Loongson-2 thermal sensor controller,
+>> which can support maximum four sensor selectors that corresponding to 
+>> four
+>> sets of thermal control registers and one set of sampling register. The
+>> sensor selector can selector a speific thermal sensor as temperature 
+>> input.
+>> The sampling register is used to obtain the temperature in real time, the
+>> control register GATE field is used to set the threshold of high or low
+>> temperature, when the input temperature is higher than the high 
+>> temperature
+>> threshold or lower than the low temperature threshold, an interrupt will
+>> occur.
+>>
+>> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
 > 
-> The GXP contains two Universal Ethernet MACs that can be
-> connected externally to several physical devices. From an external
-> interface perspective the BMC provides two SERDES interface connections
-> capable of either SGMII or 1000Base-X operation. The BMC also provides
-> a RMII interface for sideband connections to external Ethernet controllers.
+> [ ... ]
 > 
-> The primary MAC (umac0) can be mapped to either SGMII/1000-BaseX
-> SERDES interface.  The secondary MAC (umac1) can be mapped to only
-> the second SGMII/1000-Base X Serdes interface or it can be mapped for
-> RMII sideband.
+>> +    if (devm_thermal_add_hwmon_sysfs(dev, tzd))
+>> +        dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
 > 
-> The MDIO(mdio0) interface from the primary MAC (umac0) is used for
-> external PHY status and configuration. The MDIO(mdio1) interface from
-> the secondary MAC (umac1) is routed to the SGMII/100Base-X IP blocks
-
-I think that is a typo. 100BaseX does not exist, the nearest is 100BaseFX.
-
-> +config GXP_UMAC_MDIO
-> +	tristate "GXP UMAC mdio support"
-> +	depends on ARCH_HPE || COMPILE_TEST
-> +	depends on OF_MDIO && HAS_IOMEM
-> +	depends on MDIO_DEVRES
-> +	help
-> +	  Say y here to support the GXP UMAC MDIO bus. The
-> +	  MDIO (mdio0) interface from the primary MAC (umac0)
-> +	  is used for external PHY status and configuration.
-> +	  The MDIO (mdio1) interface from the secondary MAC
-> +	  (umac1) is routed to the SGMII/100Base-X IP blocks
-
-Same here.
-
-> --- a/drivers/net/mdio/Makefile
-> +++ b/drivers/net/mdio/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_MDIO_BCM_UNIMAC)		+= mdio-bcm-unimac.o
->  obj-$(CONFIG_MDIO_BITBANG)		+= mdio-bitbang.o
->  obj-$(CONFIG_MDIO_CAVIUM)		+= mdio-cavium.o
->  obj-$(CONFIG_MDIO_GPIO)			+= mdio-gpio.o
-> +obj-$(CONFIG_GXP_UMAC_MDIO)		+= mdio-gxp-umac.o
->  obj-$(CONFIG_MDIO_HISI_FEMAC)		+= mdio-hisi-femac.o
-
-Don't you think this looks out of place. The only one not CONFIG_MDIO ?
-
-> +static int umac_mdio_write(struct mii_bus *bus, int phy_id, int reg, u16 value)
-> +{
-> +	struct umac_mdio_priv *umac_mdio = bus->priv;
-> +	unsigned int status;
-> +	int ret;
-> +
-> +	writel(value, umac_mdio->base + UMAC_MII_DATA);
-
-...
-
-> +	if (ret)
-> +		dev_err(bus->parent, "mdio read time out\n");
-
-cut/paste error.
+> [ ... ]
+> 
+> This has been factored out by adding a message directly in 
+> devm_thermal_add_hwmon_sysfs(), so the test is not needed here neither 
+> the message.
 
 
-    Andrew
+okay, I got it, I will remove the message.
 
----
-pw-bot: cr
+> 
+> However, these changes have been long enough on the mailing list and the 
+> result looks nice.
+> 
+> I can pick this patch and you provide a small patch on top. Or you send 
+> a V16 with this change. It is your call.
+
+
+okay, I will send v16.
+
+Thanks,
+Yinbo.
+
