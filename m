@@ -2,118 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F99077F170
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 09:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A05D277F1AB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348530AbjHQHqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 03:46:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35482 "EHLO
+        id S242527AbjHQIAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 04:00:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348612AbjHQHp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 03:45:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2996E2D63;
-        Thu, 17 Aug 2023 00:45:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8074563436;
-        Thu, 17 Aug 2023 07:45:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CD9DC433C8;
-        Thu, 17 Aug 2023 07:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692258352;
-        bh=onKG4UaSIXvx73FVELXuTURmfyjPZd62E2Ggu8RV0UY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UBSyYwRq4ukM+F0TADNzRB2xmIXTJcxJ0yaWvaf8nHHyv0HwA4WqV406TOksPFasq
-         Pd0ZU1Q17HqL4fKlQb7bTcigZNc0/ETKGYy+XZdSQDvOCvBcbUDKijk/6GTZ3W2YnZ
-         pnDR+tgWaUw1GfmhJIm6GR4PI35UPBWktbp3sRWx0h+dfBjebD/9cWISc9+VLe3Mda
-         f//r5igfPaFWTfLj5pI9MJzGe6Byb1M0hl00nO5q9TYD6Vn+8YDpm+QdbbBm6ZBh87
-         hJovxgM7gqMvD6YRICJvi0UOTmqoXffJF1Csfs/rTDfm+rN3yQ+Amou0x2gcEboU5w
-         nc7PbHoWQHSUA==
-Date:   Thu, 17 Aug 2023 09:45:47 +0200
-From:   Simon Horman <horms@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
-        andrew@lunn.ch, verdun@hpe.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] net: hpe: Add GXP UMAC Driver
-Message-ID: <ZN3QKyHoUNoN9dx5@vergenet.net>
-References: <20230816215220.114118-1-nick.hawkins@hpe.com>
- <20230816215220.114118-5-nick.hawkins@hpe.com>
+        with ESMTP id S1348682AbjHQIAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:00:46 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832D0E48
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:00:45 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qWXvb-0001Bu-7D; Thu, 17 Aug 2023 10:00:23 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qWXvZ-0003sk-Mt; Thu, 17 Aug 2023 10:00:21 +0200
+Date:   Thu, 17 Aug 2023 10:00:21 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>, andreas@fatal.se,
+        jun.li@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] usb: typec: tcpci: clear the fault status bit
+Message-ID: <20230817080021.iz5mot24ojgkieem@pengutronix.de>
+References: <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-0-3889b1b2050c@pengutronix.de>
+ <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-3-3889b1b2050c@pengutronix.de>
+ <6a894ff0-3232-4ef0-5e26-95471cc33ed9@roeck-us.net>
+ <20230504142708.l4xo4sbl7wzsrbql@pengutronix.de>
+ <CAOMZO5CCpeQLOhxvOCHjuip_DkVeZokGH_WgewxqyE+L40dvgw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230816215220.114118-5-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5CCpeQLOhxvOCHjuip_DkVeZokGH_WgewxqyE+L40dvgw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 04:52:19PM -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On 23-08-16, Fabio Estevam wrote:
+> Hi Marco,
 > 
-> The GXP contains two Ethernet MACs that can be connected externally
-> to several physical devices. From an external interface perspective
-> the BMC provides two SERDES interface connections capable of either
-> SGMII or 1000Base-X operation. The BMC also provides a RMII interface
-> for sideband connections to external Ethernet controllers.
+> On Thu, May 4, 2023 at 11:27 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
 > 
-> The primary MAC (umac0) can be mapped to either SGMII/1000-BaseX
-> SERDES interface.  The secondary MAC (umac1) can be mapped to only
-> the second SGMII/1000-Base X Serdes interface or it can be mapped for
-> RMII sideband.
+> > > Also, why not just write the bit unconditionally, similar
+> > > to TCPC_ALERT ?
+> >
+> > Thought about this too.. I will change it in the v3.
 > 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> Was there ever a v3 for this patch?
 
-...
+Nope, thanks for sending it separate :)
 
-> diff --git a/drivers/net/ethernet/hpe/gxp-umac.c b/drivers/net/ethernet/hpe/gxp-umac.c
-
-...
-
-> +static int umac_init_mac_address(struct net_device *ndev)
-> +{
-> +	struct umac_priv *umac = netdev_priv(ndev);
-> +	struct platform_device *pdev = umac->pdev;
-> +	char addr[ETH_ALEN];
-> +	int err;
-> +
-> +	err = of_get_mac_address(pdev->dev.of_node, addr);
-> +	if (err)
-> +		netdev_err(ndev, "Failed to get address from device-tree: %d\n",
-> +			   err);
-> +		return -EINVAL;
-
-Hi Nick,
-
-it looks like there should be some {} involved in the condition above,
-else the function will return -EINVAL unconditionally.
-
-Flagged by W=1 builds with clang-16 and gcc-13.
-
-> +
-> +	if (is_valid_ether_addr(addr)) {
-> +		dev_addr_set(ndev, addr);
-> +		netdev_dbg(ndev,
-> +			   "Read MAC address %pM from DTB\n", ndev->dev_addr);
-> +	} else {
-> +		netdev_err(ndev, "Mac Address is Invalid");
-> +		return -EINVAL;
-> +	}
-> +
-> +	dev_addr_set(ndev, addr);
-> +	umac_set_mac_address(ndev, addr);
-> +
-> +	return 0;
-> +}
-
-...
+Regards,
+  Marco
