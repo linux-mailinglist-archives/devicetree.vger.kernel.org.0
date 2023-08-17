@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6562577FA12
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7480277FA0F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:00:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352541AbjHQPAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 11:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33364 "EHLO
+        id S1352523AbjHQPAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 11:00:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352645AbjHQPAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:00:12 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1329C2D74
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 07:59:48 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-523d2ef19e4so8304778a12.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 07:59:48 -0700 (PDT)
+        with ESMTP id S1352662AbjHQPAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:00:13 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE332D78
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 07:59:51 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-991c786369cso1054988466b.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 07:59:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692284382; x=1692889182;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7cbonIUO9k6Z+IRlK2Q9DZPwI9fbtSbJaIBTTDnpXJk=;
-        b=bvURTGxPiaEsoW2gStRUIiIUL1nmpH9aWh69Jd03Mbx/clTMRyGpkrpPMLGNg1vfNw
-         t60axJ/0XPgoW6RwmVzKTchAtH89Wf3xDZTBDFmIkQTlMsgpN6yZC0WqqpeLxe43mdjg
-         ImihLUer4BFAWQZDUCa0WsRSPLLMFvtkBQF9GrLDErYBMlaNiT6mP6P4Tcs7Sm8OGfbE
-         91zkigZhdOfDwR0bR4E07wH5Ok0S0DTzBd6iWisJKQIbn1Hnj2RGI7VFCtJDjuPvfSRa
-         41N2ReFCUMhwKNP4uDOD/0CAA0O1AVNOWrMrETPpm5czoV1gque6ifzp2MBaDqYCH1FF
-         UQ4Q==
+        d=linaro.org; s=google; t=1692284383; x=1692889183;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=etL/n3iIerD/3favPB10Vxz8tYmFCIfiw+o1s0E1jRw=;
+        b=gLqQwVag4j6WLy7UPvyheHVMlmXCtSkD+1PLKE9qtrB5nVJrSAqp+0kz+xv+VDbJi1
+         jKE/hGupX5oK4S0uNwwIUVEfXayuaSdhkC3FIEW8MpTvEYrScK3KVJr6aAGymjtbqLdt
+         TVSg1nGsoBAtgNzBzhr4n0HZgyUr560hTiqxSMVmm6L1NEkMtaw3UmPrgiVudGyz8gzp
+         UqE7ZbDlJAg82aMe15RHCiqXgHZ8aUlVUELaDmIYlqwKVTK9cg2C6cTBE9oygGXfWDJn
+         HRk82p8zUrYzZvbIgSioUmpitrH4acCg5KX1QaMFfEJvYLWIhhemQSmcNuWIQvr/mLIV
+         RbPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692284382; x=1692889182;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7cbonIUO9k6Z+IRlK2Q9DZPwI9fbtSbJaIBTTDnpXJk=;
-        b=L8O4F9/3ExsjrLvj27QYqWRNOCAoMvnL/2eJ22gWh7dgZ/I+i0oVeyuWQWwCGZZh2H
-         hAtObX+9tG//zMT5m6xdeBwUEGH5mij5YgJrRe+F+rRqgsd3hbr5cwchTsSkjyuYX0FY
-         j2+lwTPsErzzxJpqGn73ZNffwxwbYhZfX959LY+i8Q3pOmAfyOGc9sc+vhwZE4N/U0MG
-         O3lZCva6e1tzbw0hlLB6ZE27lltjkBomTJuGxNEolfthrwutQcdOWxmEBwiFSU/JpCdY
-         57Rfpe5YNEo9hXJHd9ctsBjl1widCsz041iMqeeGmIGNiJJ66AJNXW2/t/UyE25NnFLO
-         Y3mw==
-X-Gm-Message-State: AOJu0YzSmhzl1m++gm7i7KLk/k1QonEVTkLlQHc7MF/HDDKm4OxO3pCT
-        J7HF9u/q6AwIcZjNY92gzQmi+g==
-X-Google-Smtp-Source: AGHT+IFobKEdN20qtppJzG8TCXzVIQ4fmQ2hZKkbD/f9l/zI2ykDbRkXuG4GeVNDpLJ3yFMy+MmLAA==
-X-Received: by 2002:a17:906:768f:b0:99c:4ea0:ed18 with SMTP id o15-20020a170906768f00b0099c4ea0ed18mr4219514ejm.8.1692284382349;
-        Thu, 17 Aug 2023 07:59:42 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692284383; x=1692889183;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=etL/n3iIerD/3favPB10Vxz8tYmFCIfiw+o1s0E1jRw=;
+        b=Lluuex3u+PLxUz4Jrb/pUuBrNo0oCbFNc0nCW7b9TmNFmMbBjs/+YrsJitD9j5HXY9
+         2WFdHWHUAeFqZWU0ajJEBe2e3yPh11Jg4yLCSiyhuNXAkY5eDLuYsrE3zt6yOO/3GuJO
+         O75guKBL/Y5fqBj1Y37YzJbp1x5zdNKMBtAPCpSbo0ZTEyEOQyeWHQ1h7F6VLxOuaF+C
+         Mc2b7z1Z3hnpc0cgTW4JYHBmVPFd9U4I6OXjFRmaV94CrEeqGBcLV44KiIO7twBTfWFA
+         TyOht4vfcsRZgzmxEwimbnuwPL6lOvHkWu9+Fh1ATEJUWIm8eSBA9/OWxd8NaCqUUWWf
+         KXQA==
+X-Gm-Message-State: AOJu0YyJjQEfXkdk/79f40qn6I5mGj4QawbanhNXUVgSaOhTUBMb7dL9
+        cHE57gSQPwN4SgxOxIEgpGyE7g==
+X-Google-Smtp-Source: AGHT+IHeXDSrhPybt02SUhe5x+g+/A5UCwhRAqPoHSTmVLbvzzDNwTMyaQ0YbS3gHY/Rq9LTt3h+EQ==
+X-Received: by 2002:a17:906:7fc8:b0:99b:ca24:ce33 with SMTP id r8-20020a1709067fc800b0099bca24ce33mr3638518ejs.31.1692284383645;
+        Thu, 17 Aug 2023 07:59:43 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id lj9-20020a170906f9c900b00988be3c1d87sm10233557ejb.116.2023.08.17.07.59.40
+        by smtp.gmail.com with ESMTPSA id lj9-20020a170906f9c900b00988be3c1d87sm10233557ejb.116.2023.08.17.07.59.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Aug 2023 07:59:41 -0700 (PDT)
+        Thu, 17 Aug 2023 07:59:43 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,10 +63,12 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH v2 0/4] arm64: dts: qcom: qrb5165-rb5: enable DP support
-Date:   Thu, 17 Aug 2023 17:59:36 +0300
-Message-Id: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 1/4] arm64: dts: qcom: sm8250: Add DisplayPort device node
+Date:   Thu, 17 Aug 2023 17:59:37 +0300
+Message-Id: <20230817145940.9887-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
+References: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,33 +80,127 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement DisplayPort support for the Qualcomm RB5 platform.
+Declare the displayport controller present on the Qualcomm SM8250 SoC.
 
-Note: while testing this, I had link training issues with several
-dongles with DP connectors. Other DisplayPort-USB-C dongles (with HDMI
-or VGA connectors) work perfectly.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 89 ++++++++++++++++++++++++++++
+ 1 file changed, 89 insertions(+)
 
-Dependencies: [1]
-Soft-dependencies: [2], [3]
-
-[1] https://lore.kernel.org/linux-arm-msm/20230816115151.501736-1-bryan.odonoghue@linaro.org/
-[2] https://lore.kernel.org/linux-arm-msm/20230709034211.4045004-1-dmitry.baryshkov@linaro.org/
-[3] https://lore.kernel.org/linux-arm-msm/20230817145516.5924-1-dmitry.baryshkov@linaro.org/
-
-Changes since v1:
- - Rebased on v9 of Bryan's patchset
- - Dropped merged dt-bindings patch
-
-Dmitry Baryshkov (4):
-  arm64: dts: qcom: sm8250: Add DisplayPort device node
-  arm64: dts: qcom: qrb5165-rb5: add onboard USB-C redriver
-  arm64: dts: qcom: qrb5165-rb5: enable displayport controller
-  arm64: dts: qcom: qrb5165-rb5: enable DP altmode
-
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 72 ++++++++++++++++++-
- arch/arm64/boot/dts/qcom/sm8250.dtsi     | 89 ++++++++++++++++++++++++
- 2 files changed, 159 insertions(+), 2 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index eb00bbd3e1f3..8d705a1713fb 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3638,6 +3638,8 @@ port@1 {
+ 
+ 				port@2 {
+ 					reg = <2>;
++
++					usb_1_qmpphy_dp_in: endpoint {};
+ 				};
+ 			};
+ 		};
+@@ -4405,6 +4407,14 @@ dpu_intf2_out: endpoint {
+ 							remote-endpoint = <&mdss_dsi1_in>;
+ 						};
+ 					};
++
++					port@2 {
++						reg = <2>;
++
++						dpu_intf0_out: endpoint {
++							remote-endpoint = <&mdss_dp_in>;
++						};
++					};
+ 				};
+ 
+ 				mdp_opp_table: opp-table {
+@@ -4432,6 +4442,85 @@ opp-460000000 {
+ 				};
+ 			};
+ 
++			mdss_dp: displayport-controller@ae90000 {
++				compatible = "qcom,sm8250-dp", "qcom,sm8350-dp";
++				reg = <0 0xae90000 0 0x200>,
++				      <0 0xae90200 0 0x200>,
++				      <0 0xae90400 0 0x600>,
++				      <0 0xae91000 0 0x400>,
++				      <0 0xae91400 0 0x400>;
++				interrupt-parent = <&mdss>;
++				interrupts = <12>;
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
++				clock-names = "core_iface",
++					      "core_aux",
++					      "ctrl_link",
++					      "ctrl_link_iface",
++					      "stream_pixel";
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
++				assigned-clock-parents = <&dp_phy 0>,
++							 <&dp_phy 1>;
++
++				phys = <&dp_phy>;
++				phy-names = "dp";
++
++				#sound-dai-cells = <0>;
++
++				operating-points-v2 = <&dp_opp_table>;
++				power-domains = <&rpmhpd SM8250_MMCX>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						mdss_dp_in: endpoint {
++							remote-endpoint = <&dpu_intf0_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						mdss_dp_out: endpoint {
++						};
++					};
++				};
++
++				dp_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-160000000 {
++						opp-hz = /bits/ 64 <160000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-270000000 {
++						opp-hz = /bits/ 64 <270000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-540000000 {
++						opp-hz = /bits/ 64 <540000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-810000000 {
++						opp-hz = /bits/ 64 <810000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
++
+ 			mdss_dsi0: dsi@ae94000 {
+ 				compatible = "qcom,sm8250-dsi-ctrl",
+ 					     "qcom,mdss-dsi-ctrl";
 -- 
 2.39.2
 
