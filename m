@@ -2,66 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9196677FAF3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEFD877FAFF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237913AbjHQPht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 11:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46566 "EHLO
+        id S244299AbjHQPlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 11:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353129AbjHQPh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:37:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACB530C5;
-        Thu, 17 Aug 2023 08:37:28 -0700 (PDT)
+        with ESMTP id S1353255AbjHQPks (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:40:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914FC2D6D;
+        Thu, 17 Aug 2023 08:40:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F400E6471D;
-        Thu, 17 Aug 2023 15:37:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D9BC433C7;
-        Thu, 17 Aug 2023 15:37:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2CFE0638D5;
+        Thu, 17 Aug 2023 15:40:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7971DC433C7;
+        Thu, 17 Aug 2023 15:40:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692286647;
-        bh=PPdaDsmbvOoUgBA9blhD/gAGWLwMHvPr4MIBG/oHTnU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=PK65OHBcR96E/S7r7/GbV5sJE8f40prJcTn4zD5UCeK/MxrcGpdkrquNdOZAVtZVD
-         PQkkdfrORXaaTFXN9AnCOJKXj5kffm+U4xEThi7qMeY2NHsu+X3Bie1e9F/OW9tXUz
-         kJxeUGyINARAlkwPm7TtGYFCIocQUIpMrTq8UgQBdVbkw0yfRSnhkYnmG4yFotmora
-         Ha3IkJimfiri0xHQWfRlm+GD1w9xF5fgmMZx+ufKjCIuF60BLXWILH+vrdWdhZ7lHB
-         78QYeRhhf4hr61DXhjx9iF7CUa9DSqdF0HYYlIqZYuV0mSewUUplW9qiky6gQ1f5sW
-         0T12GKOooTNIA==
-Received: (nullmailer pid 1107201 invoked by uid 1000);
-        Thu, 17 Aug 2023 15:37:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
+        s=k20201202; t=1692286846;
+        bh=pRxsif8JlKAfLdB+T3fZbbIPVAzSOFHuTHn7rX4RoCU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l2U5bSFfaCme7/htqAE8HVLKhvoYU3uG8Ad18CUyTuFe2UB+1oS4/cxLXDXhT5/r1
+         VIQGH0tiY59nii3muBz8mp4fwX07Gkmp/7LYZcA378c2/I3s8zDtzmpbh0dfjmF4TF
+         /RPNHHmE1aorPjscN47GlNUm+h97rE5aNO4grTyed5a3eatGRo4JnRCNumivOnvR8V
+         GDoXofYoqDUyh4sc6A6tRxXUAn2ChJjFTiIoThukqm6W7hUB39yr1oLXpQZdAn1vkh
+         hJ1Moww2mLezp7Teu0pPdoXFf/CsXtuRrK963zZMpO3+JQgwS9o6pAlb6xSzpuz+Gk
+         sOvu3T7arDXBg==
+Received: (nullmailer pid 1138046 invoked by uid 1000);
+        Thu, 17 Aug 2023 15:40:43 -0000
+Date:   Thu, 17 Aug 2023 10:40:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        "David S . Miller" <davem@davemloft.net>,
+To:     Minda Chen <minda.chen@starfivetech.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Jose Abreu <joabreu@synopsys.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>
-In-Reply-To: <20230816152926.4093-7-jszhang@kernel.org>
-References: <20230816152926.4093-1-jszhang@kernel.org>
- <20230816152926.4093-7-jszhang@kernel.org>
-Message-Id: <169228664449.1107185.1318874790899719478.robh@kernel.org>
-Subject: Re: [PATCH net-next v4 6/9] dt-bindings: net: snps,dwmac: add
- safety irq support
-Date:   Thu, 17 Aug 2023 10:37:24 -0500
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-pci@vger.kernel.org,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        linux-riscv@lists.infradead.org,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v3 01/11] dt-bindings: PCI: Add PLDA XpressRICH PCIe host
+ common properties
+Message-ID: <169228684231.1137777.15649817865540406129.robh@kernel.org>
+References: <20230814082016.104181-1-minda.chen@starfivetech.com>
+ <20230814082016.104181-2-minda.chen@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230814082016.104181-2-minda.chen@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,45 +76,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 16 Aug 2023 23:29:23 +0800, Jisheng Zhang wrote:
-> The snps dwmac IP support safety features, and those Safety Feature
-> Correctible Error and Uncorrectible Error irqs may be separate irqs.
+On Mon, 14 Aug 2023 16:20:06 +0800, Minda Chen wrote:
+> Add PLDA XpressRICH PCIe host common properties dt-binding doc.
+> Microchip PolarFire PCIe host using PLDA IP.
+> Move common properties from Microchip PolarFire PCIe host
+> to PLDA files.
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>  .../bindings/pci/microchip,pcie-host.yaml     | 55 +-------------
+>  .../pci/plda,xpressrich3-axi-common.yaml      | 75 +++++++++++++++++++
+>  2 files changed, 76 insertions(+), 54 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
-	from schema $id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: Unevaluated properties are not allowed ('mdio', 'phy-handle', 'phy-mode', 'rx-fifo-depth', 'snps,axi-config', 'snps,en-tx-lpi-clockgating', 'snps,fixed-burst', 'snps,force_thresh_dma_mode', 'snps,multicast-filter-bins', 'snps,no-pbl-x8', 'snps,perfect-filter-entries', 'snps,rxpbl', 'snps,tso', 'snps,txpbl', 'stmmac-axi-config', 'tx-fifo-depth' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.example.dtb: ethernet@e0800000: interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230816152926.4093-7-jszhang@kernel.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
