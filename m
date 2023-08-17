@@ -2,156 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDEB77F0F6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 09:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B049B77F101
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 09:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348378AbjHQHLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 03:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58540 "EHLO
+        id S1348405AbjHQHL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 03:11:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348367AbjHQHLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 03:11:07 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669842D58
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:03 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-997c4107d62so977980366b.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1692256262; x=1692861062;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b90IMLBWM6zQGsk777iCjnjr53BKkJdrEo5WNQ1ldaY=;
-        b=H2c7NBiQQhO7/E+JhYmltH5Qey+YF7rioiXGPAct8f1Q++JttPziqyPgN9AzV7QaeC
-         wbvn0skUZbWJx3/XZ8hT5/KK2lY+EoBYEsTKBGFocAUZyM2BqhyFrNd/fMB1Jt4bxcfP
-         vt5Sp3TwVEGX2NMLnd3+P4pVzHO3g98ugqPOPMomOVeuLRGo7ljqecvx/0HL90dJY5MY
-         BTyNeomIxik49AbiSKIH5sYTeHhEkCbXYPS9OO6LqQwlx6nRijQaQZU8J26pIAfRMm42
-         F62n2sZeF8VDqtjLbFTM7Gd0ii2k7oQXvuNl+Q/85HIColE/a4BXG26jmUckMCnjEPZb
-         4y/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692256262; x=1692861062;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b90IMLBWM6zQGsk777iCjnjr53BKkJdrEo5WNQ1ldaY=;
-        b=BEHL3Q1UUoDgoClaVRoGS3oUnZaVXn4MW5/agZ4BEyk40L8feFX/0qCGd5XVEkB+iA
-         Z/J3v3ACW+NsExJWdkNQy4ek3xVQzS8DGgqDBJUYqrnenwxsxNsXmOI8so8ZnP5jalu4
-         M6CoTwZz63h+5TSe5YD/toOs9F0YDiZZLlCFbLatlCBiPHJSUA28adpzIUI/4k3Riv6p
-         d9OUVfh2pbb0UWmN2XizucSXHvRB45w/IxpdMUGml6vqhh0GugHhWr/NrEsyM5ZEj+eM
-         zKvyYnXoXD0lDWI9SBYGYoJcm9fAog4WSkdmjS+2Fg3nZoF+9/evCpi5sAsKAwMSkVUy
-         0Qfw==
-X-Gm-Message-State: AOJu0YwvDfcXBWwUfzizp4b1OlfXzGoP6rgpHBYyspsaZTgnl3nIWied
-        1F8Re1thX0XydLdl/piiCeXvYw==
-X-Google-Smtp-Source: AGHT+IEgdlNDyUuQTO740sHhf8djCEa8VT8SCiFbw6TV/IOas227T3QbIjZIW2aIg8rgvvW1eRh80Q==
-X-Received: by 2002:a17:906:311b:b0:99b:507d:dc05 with SMTP id 27-20020a170906311b00b0099b507ddc05mr3493724ejx.16.1692256261878;
-        Thu, 17 Aug 2023 00:11:01 -0700 (PDT)
-Received: from fedora.sec.9e.network (ip-095-222-150-251.um34.pools.vodafone-ip.de. [95.222.150.251])
-        by smtp.gmail.com with ESMTPSA id qn17-20020a170907211100b00992b510089asm9674361ejb.84.2023.08.17.00.11.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Aug 2023 00:11:01 -0700 (PDT)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     naresh.solanki@9elements.com,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1348404AbjHQHL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 03:11:56 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A44272B;
+        Thu, 17 Aug 2023 00:11:54 -0700 (PDT)
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 17 Aug 2023
+ 15:11:51 +0800
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+To:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v15 2/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Thu, 17 Aug 2023 09:10:51 +0200
-Message-ID: <20230817071056.2125679-3-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230817071056.2125679-1-patrick.rudolph@9elements.com>
-References: <20230817071056.2125679-1-patrick.rudolph@9elements.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        "Neil Armstrong" <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH 0/6] Power: T7: add  power domain driver
+Date:   Thu, 17 Aug 2023 15:11:42 +0800
+Message-ID: <20230817071148.510575-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.98.11.200]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the existing pca954x driver.
+First patch is that remove C3 some power domain ALWAYS_ON property.
+Second patch is that add driver to support power parent node. 
+Third patch is that turn on power if initial power domain with
+"AWAY_ON" property state is off.
 
-For chips that are powered off by default add a regulator called vdd-supply.
+Other patchs adds power controller driver support for Amlogic T7 SoC.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 23 +++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+xianwei.zhao (6):
+  soc: amlogic: modify some power domains property
+  soc: amlogic: add driver to support power parent node
+  soc: amlogic: init power domain state
+  dt-bindings: power: add Amlogic T7 power domains
+  soc: amlogic: Add support for T7 power domains controller
+  arm64: dts: add support for T7 power domain controller
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index e5c1070903ef..2d7bb998b0e9 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,18 +4,29 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-+  The NXP PCA954x and compatible devices are I2C bus
-+  multiplexer/switches that share the same functionality
-+  and register layout.
-+  The devices usually have 4 or 8 child buses, which are
-+  attached to the parent bus by using the SMBus "Send Byte"
-+  command.
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -56,6 +67,10 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip. On PCA9846
-+      the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
-+
- required:
-   - compatible
-   - reg
-@@ -68,6 +83,8 @@ allOf:
-           compatible:
-             contains:
-               enum:
-+                - maxim,max7367
-+                - maxim,max7369
-                 - nxp,pca9542
-                 - nxp,pca9543
-                 - nxp,pca9544
-@@ -94,6 +111,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
+ .../power/amlogic,meson-sec-pwrc.yaml         |   3 +-
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   6 +
+ drivers/genpd/amlogic/meson-secure-pwrc.c     | 128 ++++++++++++++++--
+ include/dt-bindings/power/amlogic,t7-pwrc.h   |  63 +++++++++
+ 4 files changed, 185 insertions(+), 15 deletions(-)
+ create mode 100644 include/dt-bindings/power/amlogic,t7-pwrc.h
+
+
+base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
 -- 
-2.41.0
+2.37.1
 
