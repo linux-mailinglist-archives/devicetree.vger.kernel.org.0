@@ -2,107 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0673F77F214
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57EDA77F22E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349006AbjHQI2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 04:28:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40876 "EHLO
+        id S1348919AbjHQI3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 04:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348937AbjHQI1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:27:39 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB24E30EA;
-        Thu, 17 Aug 2023 01:27:35 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id AE14B24E2B1;
-        Thu, 17 Aug 2023 16:27:34 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 17 Aug
- 2023 16:27:34 +0800
-Received: from [192.168.125.113] (183.27.97.249) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 17 Aug
- 2023 16:27:33 +0800
-Message-ID: <d241515f-f5c7-f2aa-0c78-80f0c5b569f3@starfivetech.com>
-Date:   Thu, 17 Aug 2023 16:27:32 +0800
+        with ESMTP id S1348953AbjHQI3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:29:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62292723;
+        Thu, 17 Aug 2023 01:29:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DBD46562E;
+        Thu, 17 Aug 2023 08:29:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1E6C433C9;
+        Thu, 17 Aug 2023 08:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692260941;
+        bh=BbGi2kVrkXBHhaot+Rw7YbWMiGVGl0ctmnn+aGT0E4o=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=CynTVj+yi93r/Igaep0/WKTWTBkNtE7nW4KF/yyRu+To3Cn7uW5U48dL/7WowW9zo
+         pKFlW1MSSWfHeDeUHTW5u+FHLeDZXjgK0oUGAKawfMHShM2lzG0y986EECC4dYfu8l
+         7l+4uw+meDMz7scVoZtLtktRn2LAP7+uhCBK0SW5L3a3wz6QF1tXwvglPM0wstkybW
+         WWqraoAkR/S9bART/hkWUAWri5F8ltsefOq7Ai01YyHKcGcin4AyRfTVs8Jw0quCHU
+         ZJLK0Ne8YbfgbpLtCnR/m8iw+xEKQbJErxiRoE6CrSWext2x8ZcwwLxJOe7CyBkvC7
+         zs4d+ob3+DafA==
+From:   Lee Jones <lee@kernel.org>
+To:     lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230718092527.37516-1-jjhiblot@traphandler.com>
+References: <20230718092527.37516-1-jjhiblot@traphandler.com>
+Subject: Re: [PATCH v11 0/5] Add a multicolor LED driver for groups of
+ monochromatic LEDs
+Message-Id: <169226093956.909741.13461014038581088073.b4-ty@kernel.org>
+Date:   Thu, 17 Aug 2023 09:28:59 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 3/3] riscv: dts: jh7110: starfive: Add timer node
-Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
-References: <20230814101603.166951-1-xingyu.wu@starfivetech.com>
- <20230814101603.166951-4-xingyu.wu@starfivetech.com>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <20230814101603.166951-4-xingyu.wu@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 2023/8/14 18:16, Xingyu Wu wrote:
-> Add the timer node for the Starfive JH7110 SoC.
+On Tue, 18 Jul 2023 11:25:22 +0200, Jean-Jacques Hiblot wrote:
+> Some HW design implement multicolor LEDs with several monochromatic LEDs.
+> Grouping the monochromatic LEDs allows to configure them in sync and use
+> the triggers.
+> The PWM multicolor LED driver implements such grouping but only for
+> PWM-based LEDs. As this feature is also desirable for the other types of
+> LEDs, this series implements it for any kind of LED device.
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index ec2e70011a73..84bb9717be13 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -502,6 +502,26 @@ sysgpio: pinctrl@13040000 {
->  			#gpio-cells = <2>;
->  		};
->  
-> +		timer@13050000 {
-> +			compatible = "starfive,jh7110-timer";
-> +			reg = <0x0 0x13050000 0x0 0x10000>;
-> +			interrupts = <69>, <70>, <71> ,<72>;
-> +			clocks = <&syscrg JH7110_SYSCLK_TIMER_APB>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER0>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER1>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER2>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER3>;
-> +			clock-names = "apb", "ch0", "ch1",
-> +				      "ch2", "ch3";
-> +			resets = <&syscrg JH7110_SYSRST_TIMER_APB>,
-> +				 <&syscrg JH7110_SYSRST_TIMER0>,
-> +				 <&syscrg JH7110_SYSRST_TIMER1>,
-> +				 <&syscrg JH7110_SYSRST_TIMER2>,
-> +				 <&syscrg JH7110_SYSRST_TIMER3>;
-> +			reset-names = "apb", "ch0", "ch1",
-> +				      "ch2", "ch3";
-> +		};
-> +
->  		watchdog@13070000 {
->  			compatible = "starfive,jh7110-wdt";
->  			reg = <0x0 0x13070000 0x0 0x10000>;
+> [...]
 
-Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-Thanks!
+Applied, thanks!
+
+[1/5] devres: provide devm_krealloc_array()
+      (no commit info)
+[2/5] leds: provide devm_of_led_get_optional()
+      (no commit info)
+[3/5] leds: class: store the color index in struct led_classdev
+      (no commit info)
+[4/5] dt-bindings: leds: Add binding for a multicolor group of LEDs
+      commit: 099c52d9448c1ca832b4695e982221a521282b94
+[5/5] leds: Add a multicolor LED driver to group monochromatic LEDs
+      (no commit info)
+
+--
+Lee Jones [李琼斯]
+
