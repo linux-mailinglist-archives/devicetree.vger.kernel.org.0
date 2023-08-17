@@ -2,95 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6F877FC87
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 19:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59DA177FCAA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 19:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352856AbjHQRHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 13:07:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49120 "EHLO
+        id S1353835AbjHQRJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 13:09:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353402AbjHQRHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 13:07:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242E22D7D;
-        Thu, 17 Aug 2023 10:07:42 -0700 (PDT)
+        with ESMTP id S1353875AbjHQRJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 13:09:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9A3359C;
+        Thu, 17 Aug 2023 10:09:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD97561E59;
-        Thu, 17 Aug 2023 17:07:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B94C433C7;
-        Thu, 17 Aug 2023 17:07:38 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45F39675A3;
+        Thu, 17 Aug 2023 17:09:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD208C43397;
+        Thu, 17 Aug 2023 17:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692292061;
-        bh=jjLMJQLkvBtPmN2DZO+wAXBMk5uQ7gi9EiUBK0dmS5w=;
+        s=k20201202; t=1692292176;
+        bh=tr+gP1wBdRSCgmPKKlr0hl197P9Phizogm7powCc/ck=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LPF0kOUF36cY8Ge4aicrd+cOzkG+UYr6dgNy5ouH0jzZuuaGdCwkZqulHjGZ4wGdm
-         Ucfyr1fDIDAI/u+gYOKmgYT+GDa8HKDgSNy7ll9E0VFiHzinTiGZRxWbn1pvp7bgMs
-         DkEQpWYSRA4v7/B+jz94T+VzR0wPqBOmjgvGsxmslBv6bCOXwd7qkNIW5U+87fc7Kv
-         6bKIsWUCKAfsYmFT+wgyeN/3Pfi4JF0yV2juBS4A/kFQ2Xa4BpjvPPlJUhd8didGqX
-         70n8CoPDRVlgJSZc/ArPZbOtNrqTWUkLoYXK23v4lq+fXlNwOeQMjrEn6rmplgopDw
-         OItlFBsvSO3cw==
-Date:   Thu, 17 Aug 2023 18:07:36 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Aradhya Bhatia <a-bhatia1@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add ti,dss-oldi-io-ctrl
- compatible
-Message-ID: <20230817170736.GK986605@google.com>
-References: <20230809165752.46133-1-afd@ti.com>
+        b=sOorrPBMF7lDdfdLSDTHK/I+6wSeVQzn8mDmHCDl6sGa2MVBTxLaY2rJM/pBgjY6D
+         tjP6nouIHjzzA4uVpnjFxtrHC7bsb7WAC/zVbsWgowFCoUHGybCVk1dENk1lN07UqE
+         1z72bRHSUw+QMl0lgKMITdeBy5lFqsMP5wgtoVUv4a9p0wb28eC3t8hxc3u7A7CtN1
+         er+PL/kk+rYuZqGHE/8VhrGteYbsH6TLoY6dmLYYKuE9hq9yeMWNWXyoXR/0wVfqAF
+         0oHKaQUq6iWZwrrXUyWYA0LlP2xj4tCJwKSrlsV6/aOfpAu55pVcx+9ngxeHWhEFA7
+         HsuPVHXa0kyNw==
+Received: (nullmailer pid 1548189 invoked by uid 1000);
+        Thu, 17 Aug 2023 17:09:34 -0000
+Date:   Thu, 17 Aug 2023 12:09:34 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] of: dynamic: Move dead property list check into
+ property add/update functions
+Message-ID: <20230817170934.GA1495946-robh@kernel.org>
+References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
+ <20230801-dt-changeset-fixes-v2-5-c2b701579dee@kernel.org>
+ <ZNEPqwQ0H9srkxxq@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230809165752.46133-1-afd@ti.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ZNEPqwQ0H9srkxxq@smile.fi.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Aug 2023, Andrew Davis wrote:
-
-> Add TI DSS OLDI-IO control registers compatible. This is a region of 5
-> 32bit registers found in the TI AM65 CTRL_MMR0 register space[0]. They
-> are used to control the characteristics of the OLDI DATA/CLK IO as needed
-> by the DSS display controller node.
+On Mon, Aug 07, 2023 at 06:37:15PM +0300, Andy Shevchenko wrote:
+> On Fri, Aug 04, 2023 at 04:41:55PM -0600, Rob Herring wrote:
+> > The changeset code checks for a property in the deadprops list when
+> > adding/updating a property, but of_add_property() and
+> > of_update_property() do not. As the users of these functions are pretty
+> > simple, they have not hit this scenario or else the property lists
+> > would get corrupted.
 > 
-> [0] https://www.ti.com/lit/pdf/spruid7
+> Suggested-by: ? :-)
+
+Humm, by me? The change in behavior and point of this patch comes from 
+me. You've provided review comments which will get covered by a
+Reviewed-by I presume.
+
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
-
-Dropping.  Please resubmit once the discussion is over.
-
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 8103154bbb529..5029abd6d6411 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -69,6 +69,7 @@ properties:
->                - rockchip,rk3588-qos
->                - rockchip,rv1126-qos
->                - starfive,jh7100-sysmain
-> +              - ti,dss-oldi-io-ctrl
->  
->            - const: syscon
->  
-> -- 
-> 2.39.2
+> ...
 > 
+> > +static void __of_remove_dead_property(struct device_node *np, struct property *prop)
+> > +{
+> > +	struct property **next;
+> > +
+> > +	/* If the property is in deadprops then it must be removed */
+> > +	for (next = &np->deadprops; *next; next = &(*next)->next) {
+> > +		if (*next != prop)
+> > +			continue;
+> > +
+> > +		*next = prop->next;
+> > +		prop->next = NULL;
+> > +		break;
+> 
+> Why not
+> 
+> 		if (*next == prop) {
+> 			*next = prop->next;
+> 			prop->next = NULL;
+> 			break;
+> 		}
+> 
+> which seems to me clearer?
 
--- 
-Lee Jones [李琼斯]
+Sure. I like the style I wrote, but whichever way ends the discussion is 
+fine for me.
+
+Rob
