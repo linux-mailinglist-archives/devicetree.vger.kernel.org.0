@@ -2,58 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2473E77F3ED
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 11:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA33177F40B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 12:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349836AbjHQJ4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 05:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
+        id S1349212AbjHQKGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 06:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349480AbjHQJzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 05:55:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8605712C;
-        Thu, 17 Aug 2023 02:55:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D70A61701;
-        Thu, 17 Aug 2023 09:55:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8575FC433C8;
-        Thu, 17 Aug 2023 09:55:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692266146;
-        bh=Fh06Vul6kUtxm5v0Al+KBxIVTAQZE1h73BsYg77XvSI=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=MmkTMe92HkQ0gIn5FTvpvHdU84rFFSxkcdmdMMUsP2tbBr8uPxOePLHCmb+VGYCV4
-         wIQNn7fODQQhTVYIsBtWnZHcEBZf4jjraQbpU59omdO+Uc33DTYoYLRUin29dEk17q
-         U64rub7TPb296lPgei3QyD/qPrkilRd89rjtt61+1z/aRdwAwSmyOS+u7WBvhwlTiB
-         zZjmL1t+fTpY8uM+TZLIndsmlineFkfGWzy0FoPn9X0Gi5DLdy5jG1X/WGs9IYqPZr
-         90BKrI5DZSMELVFOV0PX5+zQW2/ugOgz1Y9nlLzJpxW9K1wVjDV7rK5S6X6MP2xAQj
-         Fso+ZsvZmWNIg==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        arnd@arndb.de, geert+renesas@glider.be, nfraprado@collabora.com,
-        rafal@milecki.pl, peng.fan@nxp.com, quic_srichara@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Varadarajan Narayanan <quic_varada@quicinc.com>
-In-Reply-To: <cover.1691999761.git.quic_varada@quicinc.com>
-References: <cover.1691999761.git.quic_varada@quicinc.com>
-Subject: Re: (subset) [PATCH v8 0/5] Enable IPQ5332 USB2
-Message-Id: <169226613917.81413.1200008047604336868.b4-ty@kernel.org>
-Date:   Thu, 17 Aug 2023 15:25:39 +0530
+        with ESMTP id S1349940AbjHQKF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 06:05:59 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994522D7B
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 03:05:56 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe2de785e7so12117762e87.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 03:05:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692266755; x=1692871555;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tU1OBnu/6KxECDpM0IzJ/SgAaQcKe+fJT4+4ZHxLk2k=;
+        b=o7F1Q+VWc8vFZ8O6jibK3igZE8P/juYrKZZGxZfHPCtZBv/VveZyfn2blr+KinpS0o
+         BYsM5RQa9Vekp/1Of4n3WHI72P6R+VBCXIzL5Yi3nCjm2jApUfXOmZlRYSd+ZatQl74B
+         zwx2QQ/0hyQmoRvj+dizVxULpy3Jv0KL2KKN2sLlRLZAsUPN5rZSEKR/fa45rOL3eITm
+         DdbedVuyXLZRQRRpKs0GVKJnwxH6dwrvNmYoBZxTDgmUCbGryeK2AEgtL2GXtv2VOHlt
+         NUudH9bgGBCVBbASmSZtGH/P42s5t2qkTN2BZPq3kWaEIv2CV3PIq6FkbGqknTCjIc6G
+         +xyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692266755; x=1692871555;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tU1OBnu/6KxECDpM0IzJ/SgAaQcKe+fJT4+4ZHxLk2k=;
+        b=VGQ39iozdo/gywm3qTcs5SCk2knMBKwyxZQbbgDgNkXz4qkwIAL3CFwZvfsRQL9G+E
+         peRLXhMTDZ/adaHRu/tiTJsLUoccBiT/C5VRnjPKqqtB/i12o9A7i6VJCiR2PA9xNLTh
+         VfMws3cylNB58hx5JaIrng5VjhdHrvNm0YRkWA8qZL+07GtlH6Xg2EP+t7IbPhqbL8UV
+         t/vMskTK1G3X7ggMpBldS7P5Na9a6PKyhYbrOGeilVjH6E1sANjNwTl1tAzTasoVZm/O
+         6gO2R/s1rWBFixEehYrPPzenvgv9CQFT6PDJ9Hgv4INL797B1yiHcsuOekl9/UknbFUI
+         ccSQ==
+X-Gm-Message-State: AOJu0YyoApjIEIUcJp0VgLYueosZFdGHj8Qj9SAc7r3qleC85uCoMd7q
+        4BJKhiVw46wBweTvmbGfyeMt+Q==
+X-Google-Smtp-Source: AGHT+IFCG5Al/QsWgxP4N4ZeswwQ4NoxpW9761uM5QnL5lXermAgUtYjDUWYz2a42K4cgDwfPj70ow==
+X-Received: by 2002:a19:915b:0:b0:4f8:8be4:8a82 with SMTP id y27-20020a19915b000000b004f88be48a82mr3310881lfj.22.1692266754892;
+        Thu, 17 Aug 2023 03:05:54 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id h24-20020a197018000000b004ff9ab6463fsm276653lfc.87.2023.08.17.03.05.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Aug 2023 03:05:54 -0700 (PDT)
+Message-ID: <c485b64e-3c83-4616-b8d8-76c2c7d56b0e@linaro.org>
+Date:   Thu, 17 Aug 2023 13:05:53 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/7] phy: Add HDMI configuration options
+To:     Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com,
+        alexander.stein@ew.tq-group.com, sam@ravnborg.org
+References: <20230808083243.3113192-1-Sandor.yu@nxp.com>
+ <20230808083243.3113192-3-Sandor.yu@nxp.com>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230808083243.3113192-3-Sandor.yu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,48 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 14 Aug 2023 13:36:00 +0530, Varadarajan Narayanan wrote:
-> This patch series adds the relevant phy and controller
-> configurations for enabling USB2 on IPQ5332
+On 08/08/2023 11:32, Sandor Yu wrote:
+> Allow HDMI PHYs to be configured through the generic
+> functions through a custom structure added to the generic union.
 > 
-> v8:
-> 	Driver:-
-> 		Change commit subject and message per review comments
-> 		Don't include of_platform.h
-> 		Change struct initialization coding style
-> 		GENMASK -> BIT for one of the defines
-> v7:
-> 	Binding:-
-> 		Move 'compatible' to be the first entry
-> 		In the example have 'usb-phy' instead of 'usb2-phy'
-> 		Add 'Reviewed-by: Krzysztof Kozlowski'
-> v6:
-> 	Binding and dts:-
-> 		Dropped the qcom,dwc3.yaml patch as it has been picked up for linux-next
-> 		Add const to compatible, vdd-supply
-> 		Move nodes per register address
-> 	Driver:-
-> 		Add vdd-supply
-> 		Cleanup error paths in probe with dev_err_probe
-> v5:
-> 	Binding and dts:-
-> 		Fix email id
-> 		Removed 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
-> 		as had to change bindings file to be able to use generic phy instead of
-> 		usb-phy
+> The parameters added here are based on HDMI PHY
+> implementation practices.  The current set of parameters
+> should cover the potential users.
 > 
-> [...]
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> ---
+>   include/linux/phy/phy-hdmi.h | 24 ++++++++++++++++++++++++
+>   include/linux/phy/phy.h      |  7 ++++++-
+>   2 files changed, 30 insertions(+), 1 deletion(-)
+>   create mode 100644 include/linux/phy/phy-hdmi.h
 
-Applied, thanks!
+I think this looks good now, thank you!
 
-[1/5] dt-bindings: phy: qcom,m31: Document qcom,m31 USB phy
-      commit: b11f8acb937ed64841eeba22b0f0371ded58bef2
-[2/5] phy: qcom: Introduce M31 USB PHY driver
-      commit: 9bc2b3b35334aa2742ad3dc4219c001279a97998
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Best regards,
 -- 
-~Vinod
-
+With best wishes
+Dmitry
 
