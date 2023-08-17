@@ -2,275 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8065077FF01
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 22:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97F1777FF2A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 22:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354866AbjHQU1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 16:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34790 "EHLO
+        id S1347175AbjHQUes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 16:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354876AbjHQU12 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 16:27:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AA4359C;
-        Thu, 17 Aug 2023 13:27:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C34861FE9;
-        Thu, 17 Aug 2023 20:27:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D46C433C7;
-        Thu, 17 Aug 2023 20:27:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692304046;
-        bh=N4h/9erYEL2Ffzymz/cqNbvkGlt3eZnqrWxrHYkGXe0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=V/yD1h9UVs+NgvwbDl9HTmfJNXJ6mEYoHl38aNkAl0Wmd1P5l4eHBPwJcnmS+O2O8
-         C6d/2foh0R60c+a1DyqSNvWmHJaocrtdsFQTzgklsQWoQMjicRqDklBwBhM0Vae0zz
-         J52YsohD5EWek9U52xN159Q0BOOj6GHz+4IOgGvzqxVuHyTH5Vb5eQcMfHidfoNL48
-         bE77SXR1pPDEusyZ/YFm10VUA39MH0YMBTgdzp38HYLcUqPQcyX1ia1YGKQ8GtDBO8
-         js9ppJExaiqkDX8lOkwmogzgCp0IfoWRr3tfB9IrE+n8+UdOm97t/yLhpxOt7eOfFR
-         Ah0CQPGo0M/6g==
-Received: (nullmailer pid 2180435 invoked by uid 1000);
-        Thu, 17 Aug 2023 20:27:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <rfoss@kernel.org>, Andy Gross <agross@kernel.org>,
+        with ESMTP id S1354962AbjHQUeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 16:34:23 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B9E35BB
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 13:34:10 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fe426b8583so2482045e9.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 13:34:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1692304449; x=1692909249;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aJanSbcbdRbqlFQWo2SBp1vOjmdCAm9+u8RhmfEAHas=;
+        b=HokACvUW0mjpLc8YiUL9KCHIpjZi7PunfjPeUHX6F+hjAFZ8BdwqsjEvDvr+7iRwVG
+         4RUuiYx72kRPxCLwwB7DdFYF8LNXJ3naJlB86oAWLH1YmN47FzCgCLklB55s8jPnmKSv
+         htCVokwgGAVZVfCchsvs3EHYtrIfyJGhbyy/int/Mmafg9jCf7KOSyodZjfmmPR91HGa
+         vfqJcPLKBW6Hu4qVQ8QLDIIE5mMlYp4V8C/+6JToFay+dieiQWQWy269oXSrq9rPtrUe
+         52UHXxT6IHvN+zic1Nru5lJKeD9q0GRPM2I09yq5wLSQp4EPMDxX6fz9RH8ROpVRu3Ox
+         3NPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692304449; x=1692909249;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aJanSbcbdRbqlFQWo2SBp1vOjmdCAm9+u8RhmfEAHas=;
+        b=EDaBESyDZRsKvlA9x9MPIeiOs5MRSLN8tLF/krCu17YO5Wv94deoKsSsnjnR52M6Gk
+         yVu/+0+U+w4x/N4EwwHInBwVt1mFLk7loiZ4n7U0JoZQOdk662LHidwni2XGpw+OO/Oy
+         LZS25fy/kaqmsUNZaUrPwVwGVgCrc+DgCqCXy2gVU1mWuplt5MSLq8iNzWOfpw240qIH
+         Flbzv70XRGIwgbDjlaaUaqQ15wP6xP0ni+FXB/4Rj9JiLnEOlDUjh5R794rojT+Y/slN
+         UoO5E92VoYDrR8DrSKJWsKyCYDx0pkNt2jSDD6KWYPpTNev8K2TySUZV/JfWkWU8QvVl
+         F3Pw==
+X-Gm-Message-State: AOJu0Yxl+OTTAY1HdnNHbxFZmbp4aNsRjjvLVfMlYjbTJ3t0wsxAdk6W
+        8b/EfHprkfXjRM2OsJ7jpfEKvA==
+X-Google-Smtp-Source: AGHT+IFq0O851NzocA+e/CpjQ6uPrVChiJJ+FMGBCKsk+tDIGC8ffOouYN49JM4byaw7gqWx2KgfSA==
+X-Received: by 2002:adf:de8c:0:b0:317:e515:d623 with SMTP id w12-20020adfde8c000000b00317e515d623mr416308wrl.60.1692304449002;
+        Thu, 17 Aug 2023 13:34:09 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id o2-20020adfcf02000000b0031423a8f4f7sm323543wrj.56.2023.08.17.13.34.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Aug 2023 13:34:08 -0700 (PDT)
+Message-ID: <653fd80b-0055-ddbd-3641-a38efaa3be9c@nexus-software.ie>
+Date:   Thu, 17 Aug 2023 21:34:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: qrb5165-rb5: add onboard USB-C
+ redriver
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: [PATCH v2] media: dt-bindings: Convert Omnivision OV7251 to DT schema
-Date:   Thu, 17 Aug 2023 15:27:13 -0500
-Message-Id: <20230817202713.2180195-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230817145940.9887-1-dmitry.baryshkov@linaro.org>
+ <20230817145940.9887-3-dmitry.baryshkov@linaro.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <20230817145940.9887-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the OmniVision OV7251 Image Sensor binding to DT schema format.
+On 17/08/2023 15:59, Dmitry Baryshkov wrote:
+> Add the nb7vpq904m, onboard USB-C redriver / retimer.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 52 +++++++++++++++++++++++-
+>   1 file changed, 50 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 303d07f9c6e5..a4f7a9f9c22c 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -610,6 +610,46 @@ lt9611_out: endpoint {
+>   /* LS-I2C1 */
+>   &i2c15 {
+>   	status = "okay";
+> +
+> +	typec-mux@1c {
+> +		compatible = "onnn,nb7vpq904m";
+> +		reg = <0x1c>;
+> +
+> +		vcc-supply = <&vreg_s4a_1p8>;
+> +
+> +		retimer-switch;
+> +		orientation-switch;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				redriver_usb_con_ss: endpoint {
+> +					remote-endpoint = <&pm8150b_typec_mux_in>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				redriver_phy_con_ss: endpoint {
+> +					remote-endpoint = <&usb_1_qmpphy_out>;
+> +					data-lanes = <0 1 2 3>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				redriver_usb_con_sbu: endpoint {
+> +					remote-endpoint = <&pm8150b_typec_sbu_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &mdss {
+> @@ -1299,7 +1339,7 @@ &usb_1_qmpphy {
+>   };
+>   
+>   &usb_1_qmpphy_out {
+> -	remote-endpoint = <&pm8150b_typec_mux_in>;
+> +	remote-endpoint = <&redriver_phy_con_ss>;
+>   };
+>   
+>   &usb_2 {
+> @@ -1388,7 +1428,15 @@ pm8150b_role_switch_in: endpoint {
+>   			port@1 {
+>   				reg = <1>;
+>   				pm8150b_typec_mux_in: endpoint {
+> -					remote-endpoint = <&usb_1_qmpphy_out>;
+> +					remote-endpoint = <&redriver_usb_con_ss>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				pm8150b_typec_sbu_out: endpoint {
+> +					remote-endpoint = <&redriver_usb_con_sbu>;
+>   				};
+>   			};
+>   		};
 
-vddd-supply was listed as required, but the example and actual user
-don't have it. Also, the data brief says it has an internal regulator,
-so perhaps it is truly optional.
+LGTM
 
-Add missing common "link-frequencies" which is used and required by the
-Linux driver.
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Add link-frequencies which the driver requires
----
- .../devicetree/bindings/i2c/qcom,i2c-cci.yaml |   1 +
- .../devicetree/bindings/media/i2c/ov7251.txt  |  52 ---------
- .../bindings/media/i2c/ovti,ov7251.yaml       | 109 ++++++++++++++++++
- 3 files changed, 110 insertions(+), 52 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov7251.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-index ec79b7270437..042d4dc636ee 100644
---- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-+++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-@@ -269,6 +269,7 @@ examples:
-                 port {
-                     ov7251_ep: endpoint {
-                         data-lanes = <0 1>;
-+                        link-frequencies = /bits/ 64 <240000000 319200000>;
-                         remote-endpoint = <&csiphy3_ep>;
-                     };
-                 };
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov7251.txt b/Documentation/devicetree/bindings/media/i2c/ov7251.txt
-deleted file mode 100644
-index 8281151f7493..000000000000
---- a/Documentation/devicetree/bindings/media/i2c/ov7251.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--* Omnivision 1/7.5-Inch B&W VGA CMOS Digital Image Sensor
--
--The Omnivision OV7251 is a 1/7.5-Inch CMOS active pixel digital image sensor
--with an active array size of 640H x 480V. It is programmable through a serial
--I2C interface.
--
--Required Properties:
--- compatible: Value should be "ovti,ov7251".
--- clocks: Reference to the xclk clock.
--- clock-names: Should be "xclk".
--- clock-frequency: Frequency of the xclk clock.
--- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
--  to the hardware pin XSHUTDOWN which is physically active low.
--- vdddo-supply: Chip digital IO regulator.
--- vdda-supply: Chip analog regulator.
--- vddd-supply: Chip digital core regulator.
--
--The device node shall contain one 'port' child node with a single 'endpoint'
--subnode for its digital output video port, in accordance with the video
--interface bindings defined in
--Documentation/devicetree/bindings/media/video-interfaces.txt.
--
--Example:
--
--	&i2c1 {
--		...
--
--		ov7251: camera-sensor@60 {
--			compatible = "ovti,ov7251";
--			reg = <0x60>;
--
--			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
--			pinctrl-names = "default";
--			pinctrl-0 = <&camera_bw_default>;
--
--			clocks = <&clks 200>;
--			clock-names = "xclk";
--			clock-frequency = <24000000>;
--
--			vdddo-supply = <&camera_dovdd_1v8>;
--			vdda-supply = <&camera_avdd_2v8>;
--			vddd-supply = <&camera_dvdd_1v2>;
--
--			port {
--				ov7251_ep: endpoint {
--					clock-lanes = <1>;
--					data-lanes = <0>;
--					remote-endpoint = <&csi0_ep>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
-new file mode 100644
-index 000000000000..2e5187acbbb8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov7251.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV7251 Image Sensor
-+
-+description:
-+  The Omnivision OV7251 is a 1/7.5-Inch CMOS active pixel digital image sensor
-+  with an active array size of 640H x 480V. It is programmable through a serial
-+  I2C interface.
-+
-+maintainers:
-+  - Todor Tomov <todor.too@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: ovti,ov7251
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: XCLK Input Clock
-+
-+  clock-names:
-+    const: xclk
-+
-+  clock-frequency:
-+    description: Frequency of the xclk clock in Hz.
-+
-+  vdda-supply:
-+    description: Analog voltage supply, 2.8 volts
-+
-+  vddd-supply:
-+    description: Digital core voltage supply, 1.2 volts
-+
-+  vdddo-supply:
-+    description: Digital I/O voltage supply, 1.8 volts
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description:
-+      Reference to the GPIO connected to the XSHUTDOWN pin, if any. Polarity
-+      is GPIO_ACTIVE_HIGH.
-+
-+  port:
-+    description: Digital Output Port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          clock-lanes:
-+            maximum: 1
-+
-+          data-lanes:
-+            maxItems: 1
-+
-+          link-frequencies: true
-+
-+        required:
-+          - data-lanes
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - vdddo-supply
-+  - vdda-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@3c {
-+            compatible = "ovti,ov7251";
-+            reg = <0x3c>;
-+            clocks = <&clks 1>;
-+            clock-frequency = <24000000>;
-+            vdddo-supply = <&ov7251_vdddo_1v8>;
-+            vdda-supply = <&ov7251_vdda_2v8>;
-+            vddd-supply = <&ov7251_vddd_1v5>;
-+            enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+
-+            port {
-+                ov7251_ep: endpoint {
-+                    remote-endpoint = <&csi0_ep>;
-+                    clock-lanes = <1>;
-+                    data-lanes = <0>;
-+                    link-frequencies = /bits/ 64 <240000000 319200000>;
-+                };
-+            };
-+        };
-+    };
-+...
--- 
-2.40.1
-
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
