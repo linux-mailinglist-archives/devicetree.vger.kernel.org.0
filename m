@@ -2,63 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 329FB77F25F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 525B977F265
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349064AbjHQIq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 04:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60862 "EHLO
+        id S1349071AbjHQIrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 04:47:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349085AbjHQIqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:46:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE7A1BE7
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:46:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A7D6C61255
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 08:46:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F2EC433C7;
-        Thu, 17 Aug 2023 08:46:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692261976;
-        bh=jf+wqer+KvpRWJ83WI3GJr55MfutnzEKmb14T+s/nMk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=crh24dP2yGde/Lwty1AGZ7ELIyMosXzBUHnbrjqGwH/GUoJ696G7Dvl7iGmfkEX1k
-         R1HQydDhX2XY/9t6EkiqAV4N9cILeKj8XDEn8XmyFGm6lzk3/ZA1twwgLqFMmrnRNw
-         GMAOsBhojM0cR00CHJ5SzukzClR2LX7uQkjkgDtcG6NI2sePm7/UphNc79A01SXk/y
-         +xoZm9G1wUqayGVTWdE0BeNgnsgkyNKluasyh8qHjeusLgDrY5u7oo8IlJiBvYqlXN
-         vkXoAkp89kZUg7SCr0DCUeFXTnng7Jb6WwsCzUdPwzgstU1ATU4ZIBOuobreB2lRsJ
-         CGlHzHJnuP65g==
-Date:   Thu, 17 Aug 2023 09:46:11 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
+        with ESMTP id S1349113AbjHQIrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:47:17 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11CD62D40
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:47:16 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fe8a158fcbso54775215e9.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:47:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692262034; x=1692866834;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3fJBKichbcUJaUeGuGGVi5uOpWmIO39Fx8xDfL4HHr0=;
+        b=bD2O9X36wqMFMPrap8rY+/KUTwFsiPgaF7Gd0AlTyejgR9fjMhakei0V4k7Bg42EGl
+         2eFzVyyRuMn/PQTHL4FWUlQ4ElHnzTsC9/qkd+hp8pyrnmEMLpYm9AK5NZU/NrGyPOFn
+         TG/zD+ZjAxlbdsw5ni4xjNXqPeT9Xf03MW7dXuh8z+BSQMPO/ZP1LMmWH/wpgVbTsP7Z
+         9o4oAHkEnD3q3i+8JQFrkxMO0BoS/guye9z/g1zDseKaveA/+WCxQlZ6Yl7vZ1li57Oo
+         Jh3iWgjmpN2ug6poTj7DmmD3j8la3LTd6TyrYj0XUD0ZWdb+K7wBhKeLwNOgTDPKB94i
+         zotg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692262034; x=1692866834;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3fJBKichbcUJaUeGuGGVi5uOpWmIO39Fx8xDfL4HHr0=;
+        b=JxrJe25geB0pF/kwqL+EuNQ/xufmEKh55hyRpipH9eRsC7OG74EDv1XkovZQ5PQBfY
+         T8FKn8yRNOnw761XLTYEOCrIt/PJfsefzZUVSzffQbKXGRMlJ93CCjaRm7t+BauWCsPy
+         XrVqeGhKfjtch2t4BNpGJlHPZiWm+Qkdud4zMmErjP1CCDnl4YzZSYFiB3iG9us/irEb
+         OxKwi7VUyGdz00UM6145j/Uo7a0ZKuqZd+9BXQfdrTNAJxpAD8DNRv59Yb9nU3Uti5CF
+         FnVkl+PK4xI9C0nuyKLkqm+lFsKvunmydhL6AZ778utv6p+Z/veaHTs3aexePSeDYN5W
+         ftxw==
+X-Gm-Message-State: AOJu0YxxWlnc3GhS57R8a5THBmL2VhzhwsOV9oEbdSrYzJ2gq7UU9JP8
+        TxXI6x6g4TgQHt47v1n0iuod/g==
+X-Google-Smtp-Source: AGHT+IGT8x4c6zQIFNUyxxR3dpkayg723Mjmd9l+9co8A8XnKbuXyyMxlZ0ZKj6sJixUXZ5ulMIRjg==
+X-Received: by 2002:a05:600c:3b23:b0:3fe:2b60:b24e with SMTP id m35-20020a05600c3b2300b003fe2b60b24emr4583739wms.29.1692262034496;
+        Thu, 17 Aug 2023 01:47:14 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id m9-20020a05600c280900b003fe539b83f2sm2117285wmb.42.2023.08.17.01.47.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Aug 2023 01:47:13 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/2] arm64: dts: qcom: enable BT on SM8550-QRD
+Date:   Thu, 17 Aug 2023 10:47:05 +0200
+Message-Id: <20230817-topic-sm8550-upstream-bt-v3-0-33f386e7b461@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIne3WQC/42NTQ6DIBgFr2JY92v4Veyq92i6QAQlUTCgpo3x7
+ kV33bmcl7yZDSUTnUnoUWwomtUlF3wGdiuQ7pXvDLg2M6KYMlxSDHOYnIY0SiEwLFOao1EjNDO
+ 0VnOGha014SjfG5UMNFF53WeBX4Yhj1M01n3O3uuduXdpDvF75ldyrBdKKwEMvKJSlNxKWdHn4
+ LyK4R5ihw7rSq+aaDbVssGYs5YRxf9M+77/AGQ1//kgAQAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-Subject: Re: [PATCH v2 2/7] dt-bindings: loongarch: Add Loongson SoC boards
- compatibles
-Message-ID: <20230817-zestfully-regulate-0c3d2f2c8639@spud>
-References: <cover.1692088166.git.zhoubinbin@loongson.cn>
- <6d8d0d8d21e32e0577565158bc1c4960a92fb216.1692088166.git.zhoubinbin@loongson.cn>
- <20230815-fineness-lesser-d807c051dd36@spud>
- <CAMpQs4JY0=mdSvw64aMAk0Vq5qBcfvqzyXzscsdOhOS4vNuTwA@mail.gmail.com>
- <20230817-snowfield-public-af7228b71c3f@spud>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Nh194gtvCFg142Rc"
-Content-Disposition: inline
-In-Reply-To: <20230817-snowfield-public-af7228b71c3f@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1232;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=3MIYSeYKIkzNTWMQi9UAASSfKFViulJz76XyoneyY7A=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk3d6Qo1cA05Afq+jv47MR7TKY3YBiYClr8xIBBWpB
+ pXzr3WeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZN3ekAAKCRB33NvayMhJ0QBXD/
+ 9RTANCKRGJgcwHXFeJWFNF7X28mQL4UyUGPCWKZ21wJBepPWRSvcOldIyPpBiQRLOn4/emy/MOzakk
+ JcvIQOP13jzFn2tGZzyuH4rEV0ppBuY2JW5GDts6tcEca5NgRFPx9DsknGN0AXnfeKdzvBLnYzda4r
+ 85vA/8BEeJGBg9aXZFvL7m/y8uQlI6ghZFFwc0JI+wOFW6oZc9LvLiC9NfAUgJpo6JMEAmrm4/N1St
+ 7h4UqdHZ/Ip4rtsLen0UJnxpSYyhYBucmClNOmh7BcbA/+ZbCzmxvJUWxtX5bYAQHd4JPRL+gT66LF
+ 3NPR0A7greRkftW2V3ZUKJtNWk7j59MWqISK36kzrTGDmJYixKfO/PseDCyy5lBThOTAcE18qKUuNf
+ BJCYilXuBfh9CMzrn1OXVVMk4XNXgq4h82V54hyLYpGBsBJ82mze70Z2WvAT9v+GSjsgL3bNvTLwU1
+ N4m3aHSLSjMDpmTFyva4XsxiEXDyeecv7AtN7p5ueMbX6+sPKvvny7hfz/rmkpD6XoFIDgAuNtVD3o
+ b7AyDP03RnJtfnhI1ZeuB5m7BZXhaCB0T1MtZfF0y6t+cSObLSSFE4Pwhj+3DZFmFoaSjRVlt1HgSS
+ H6aIt01q8UK8vX2SGzNJ3h0GMFGShNAqKRyDuGgStDKXyObJmD0n2qE1+90Q==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,97 +94,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This serie enables WCN7850 on the Qualcomm SM8550 QRD
+reference platform.
 
---Nh194gtvCFg142Rc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The WCN7850 is close to the WCN6855 but uses different
+firmware names.
 
-On Thu, Aug 17, 2023 at 09:44:16AM +0100, Conor Dooley wrote:
-> On Thu, Aug 17, 2023 at 02:16:13PM +0800, Binbin Zhou wrote:
-> > Hi Conor:
-> >=20
-> > Thanks for your reply.
-> >=20
-> > On Tue, Aug 15, 2023 at 10:13=E2=80=AFPM Conor Dooley <conor@kernel.org=
-> wrote:
-> > >
-> > > On Tue, Aug 15, 2023 at 04:50:47PM +0800, Binbin Zhou wrote:
-> > > > Add Loongson SoC boards binding with DT schema format using json-sc=
-hema.
-> > > >
-> > > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > > ---
-> > > >  .../devicetree/bindings/loongarch/boards.yaml | 34 +++++++++++++++=
-++++
-> > > >  1 file changed, 34 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/loongarch/boa=
-rds.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/loongarch/boards.yam=
-l b/Documentation/devicetree/bindings/loongarch/boards.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..5092314b7a52
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/loongarch/boards.yaml
-> > > > @@ -0,0 +1,34 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/loongarch/boards.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Loongson SoC-based boards
-> > > > +
-> > > > +maintainers:
-> > > > +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> > > > +
-> > > > +properties:
-> > > > +  $nodename:
-> > > > +    const: '/'
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - description: Loongson-2K0500 processor based boards
-> > > > +        items:
-> > > > +          - const: loongson,ls2k0500-ref
-> > > > +          - const: loongson,ls2k0500
-> > > > +
-> > > > +      - description: Loongson-2K1000 processor based boards
-> > > > +        items:
-> > > > +          - const: loongson,ls2k1000-ref
-> > > > +          - const: loongson,ls2k1000
-> > > > +
-> > > > +      - description: Loongson-2K2000 processor based boards
-> > > > +        items:
-> > > > +          - const: loongson,ls2k2000-ref
-> > > > +          - const: loongson,ls2k2000
-> > >
-> > > Do all of these SoCs just have a single reference/dev board?
-> >=20
-> > Yes, I have development boards for each Soc on hand now, and it has a
-> > relatively complete interface. My original idea was to use the
-> > development boards as examples to show you the Loongson-2K Soc.
-> > I'm sure more boards will be added in the future.
->=20
-> My reason for asking was that "-ref" is quite generic, but if there is
-> only one reference board produced by Loongson that's not a problem.
+This patchset is the followup of https://lore.kernel.org/r/20230620-topic-sm8550-upstream-bt-v2-0-98b0043d31a4@linaro.org
+with only the DT patches.
 
-Whoops, I forgot to add this:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes in v3:
+- Dropped applied BT patches, on DT patches remains
+- Link to v2: https://lore.kernel.org/r/20230620-topic-sm8550-upstream-bt-v2-0-98b0043d31a4@linaro.org
 
-Thanks,
-Conor.
+Changes in v2:
+- Convert if/else and qca_is_*() macros by switch/case to simplify adding now BT SoCs
+- Add bindings reviewed-by
+- Link to v1: https://lore.kernel.org/r/20230620-topic-sm8550-upstream-bt-v1-0-4728564f8872@linaro.org
 
+---
+Neil Armstrong (2):
+      arm64: dts: qcom: sm8550: add UART14 nodes
+      arm64: dts: qcom: sm8550-qrd: add bluetooth support
 
---Nh194gtvCFg142Rc
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 43 +++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 30 +++++++++++++++++++++++
+ 2 files changed, 73 insertions(+)
+---
+base-commit: ef66bf8aeb91fd331cf8f5dca8f9d7bca9ab2849
+change-id: 20230620-topic-sm8550-upstream-bt-dfc4305f9c14
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZN3eUwAKCRB4tDGHoIJi
-0haXAQD/gVN77attUS1vZPtQAeKHfpK6zHZtijfW1P0pAs2XoAEAmcU+jxbrwAyS
-LWGLRkk0bqlOdAsatGutu0BTlQfFSgY=
-=75xQ
------END PGP SIGNATURE-----
-
---Nh194gtvCFg142Rc--
