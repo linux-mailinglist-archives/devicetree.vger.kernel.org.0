@@ -2,45 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E86477F8B2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 16:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3761377F8ED
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 16:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351759AbjHQOW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 10:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58612 "EHLO
+        id S1345506AbjHQOaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 10:30:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351837AbjHQOWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 10:22:25 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 14C3A2D77;
-        Thu, 17 Aug 2023 07:22:23 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,180,1684767600"; 
-   d="scan'208";a="176882438"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Aug 2023 23:22:23 +0900
-Received: from localhost.localdomain (unknown [10.226.93.71])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7F5AF4270482;
-        Thu, 17 Aug 2023 23:22:19 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S1351897AbjHQO3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 10:29:44 -0400
+Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9DF41FFF;
+        Thu, 17 Aug 2023 07:29:42 -0700 (PDT)
+Received: from [2001:a61:623e:e40:c80a:ff:fe00:409d] (helo=cs-wrt.lan.local); authenticated
+        by wp534.webpack.hosteurope.de running ExIM with esmtpa
+        id 1qWe0D-0004jV-Rw; Thu, 17 Aug 2023 16:29:33 +0200
+From:   =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>
+To:     =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 1/4] dt-bindings: clock: versaclock3: Document clock-output-names
-Date:   Thu, 17 Aug 2023 15:22:08 +0100
-Message-Id: <20230817142211.311366-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230817142211.311366-1-biju.das.jz@bp.renesas.com>
-References: <20230817142211.311366-1-biju.das.jz@bp.renesas.com>
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v4 0/2] hwmon: (isl28022) new driver for ISL28022 power monitor
+Date:   Thu, 17 Aug 2023 16:29:19 +0200
+Message-Id: <cover.1692033412.git.mail@carsten-spiess.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1692282583;c4e7cae7;
+X-HE-SMSGID: 1qWe0D-0004jV-Rw
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
@@ -50,68 +48,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document clock-output-names property and fix the "assigned-clock-rates"
-for each clock output in the example based on Table 3. ("Output Source")
-in the 5P35023 datasheet(ie: {REF,SE1,SE2,SE3,DIFF1,DIFF2}).
+Driver for Renesas ISL28022 power monitor chip.
+Found e.g. on Ubiquiti Edgerouter ER-6P
 
-While at it, replace clocks phandle in the example from x1_x2->x1 as
-X2 is a different 32768 kHz crystal.
+v4: property compatible fixed
+v3: changelog added
+v2: properties reworked
+v2: calculations fixed
+v2: shunt voltage input moved to debugfs
+v2: documentation and devicetree schema reworked
+v1: created
 
-Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Closes: https://lore.kernel.org/all/CAMuHMdUHD+bEco=WYTYWsTAyRt3dTQQt4Xpaejss0Y2ZpLCMNg@mail.gmail.com/
-Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock generator bindings")
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * No change.
-v1->v2:
- * Updated commit description to make it clear it fixes
-   "assigned-clock-rates" in the example based on 5P35023 datasheet.
----
- .../devicetree/bindings/clock/renesas,5p35023.yaml | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+Carsten Spieß (2):
+  hwmon: (isl28022) new driver for ISL28022 power monitor
+  dt-bindings: hwmon: add renesas,isl28022
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-index 839648e753d4..db8d01b291dd 100644
---- a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-+++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-@@ -49,6 +49,9 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint8-array
-     maxItems: 37
- 
-+  clock-output-names:
-+    maxItems: 6
-+
- required:
-   - compatible
-   - reg
-@@ -68,7 +71,7 @@ examples:
-             reg = <0x68>;
-             #clock-cells = <1>;
- 
--            clocks = <&x1_x2>;
-+            clocks = <&x1>;
- 
-             renesas,settings = [
-                 80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-@@ -76,11 +79,14 @@ examples:
-                 80 b0 45 c4 95
-             ];
- 
-+            clock-output-names = "ref", "se1", "se2", "se3",
-+                                 "diff1", "diff2";
-+
-             assigned-clocks = <&versa3 0>, <&versa3 1>,
-                               <&versa3 2>, <&versa3 3>,
-                               <&versa3 4>, <&versa3 5>;
--            assigned-clock-rates = <12288000>, <25000000>,
--                                   <12000000>, <11289600>,
--                                   <11289600>, <24000000>;
-+            assigned-clock-rates = <24000000>, <11289600>,
-+                                   <11289600>, <12000000>,
-+                                   <25000000>, <12288000>;
-         };
-     };
+ .../bindings/hwmon/renesas,isl28022.yaml      |  64 +++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/isl28022.rst              |  63 +++
+ MAINTAINERS                                   |   8 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/isl28022.c                      | 496 ++++++++++++++++++
+ 7 files changed, 644 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+ create mode 100644 Documentation/hwmon/isl28022.rst
+ create mode 100644 drivers/hwmon/isl28022.c
+
 -- 
-2.25.1
+2.34.1
 
