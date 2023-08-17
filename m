@@ -2,132 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF0F677F48A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 12:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AAD577F498
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 12:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjHQKy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 06:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35658 "EHLO
+        id S1350064AbjHQK6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 06:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243780AbjHQKyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 06:54:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C86D2D4A;
-        Thu, 17 Aug 2023 03:54:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BB252639AD;
-        Thu, 17 Aug 2023 10:54:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C380C433C8;
-        Thu, 17 Aug 2023 10:54:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692269648;
-        bh=B2TtcfD8DgHSarpK0UHDsmnpRH+gYIewBTOs8qq34CE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QZOO2ewr5cLOEnMu+iTWKj2tNFf2Yks7dJLb3FthvDEAXQCCMMnlERijrriLnogmS
-         UhqAh+XRX5ElJjW5rzyEeJob9rk8ZMXy8Rmc/muAO0Q6LvXnL0GGyuSu/hdvncRZgr
-         n+S/PE6Et8BB1CByrZMWCPAsTs0XqM4GIVeYJhwOzBEmpsbnY/QHphKGx4SDfGTtjj
-         K6YQoO9smH/ZcHWQy+Z3oHmYsh2nGOkEYaAJjzppBC9hRFAgeJJ+/xD9/88xX5E1t9
-         zWImGSxzYmcp6Tl1EUY3hbM/ez060M2vBszxAfsF/76TepaeA33dj9PabuEt0AegIz
-         0opTCvqKBvn8g==
-Date:   Thu, 17 Aug 2023 12:54:05 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     nm@ti.com, vigneshr@ti.com, afd@ti.com, rogerq@kernel.org,
-        s-vadapalli@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        a-bhatia1@ti.com, r-ravikumar@ti.com, sabiya.d@ti.com,
+        with ESMTP id S1350058AbjHQK5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 06:57:44 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9F32D4A;
+        Thu, 17 Aug 2023 03:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692269863; x=1723805863;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Rm4f5NsR1biahPa3QrDVvCHt5rax9gbe6J/pvQJg2lA=;
+  b=Y5B0bR6khgZUpMTiMxy0CfCMsC+PnyVU9VOe4vAgV5juveCso9X9mTfR
+   eggmXe1E1ksez87FzVpCbgxlC4I3yOXLv2kye6wIrzGW3ntkvNdIAZPhI
+   AzxpV9yTQ15QdoGI2Ajn6ujt6WWg06fczFoutQc10Cla7F3hk0P8ACB6b
+   3E2kw3GDG90DHeqNAnbAYquOtqruANVAN9fphG3WiLYqE4WhzFkUkd4jO
+   RAxUKbqCcW2tkkahnLUng/X8X5nlnq8GD5Kwu618Ek8NKtBMoLDW+5Y8S
+   eSCgHQwTCoj0q7sjQ9d2CAiSyMhabuIHN0TKcRJlyg+8OM3nNR/IuRMHa
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="403758776"
+X-IronPort-AV: E=Sophos;i="6.01,179,1684825200"; 
+   d="scan'208";a="403758776"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2023 03:57:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="737674762"
+X-IronPort-AV: E=Sophos;i="6.01,179,1684825200"; 
+   d="scan'208";a="737674762"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007.fm.intel.com with ESMTP; 17 Aug 2023 03:57:41 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qWah9-008F1l-12;
+        Thu, 17 Aug 2023 13:57:39 +0300
+Date:   Thu, 17 Aug 2023 13:57:39 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, frowand.list@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 3/5] arm64: dts: ti: k3-j784s4-main: Add DSS and
- DP-bridge node
-Message-ID: <aqfx7fj446gkyirhsiwijiuilhoao4hexmpjfxu4gojpujhbib@2wqzjuh3yz46>
-References: <20230803080441.367341-1-j-choudhary@ti.com>
- <20230803080441.367341-4-j-choudhary@ti.com>
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] of/platform: increase refcount of fwnode
+Message-ID: <ZN39I7w4ARc0WLnI@smile.fi.intel.com>
+References: <20230812122411.3410399-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lqw2sj7oetk76z5f"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230803080441.367341-4-j-choudhary@ti.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230812122411.3410399-1-peng.fan@oss.nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Aug 12, 2023 at 08:24:11PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> commit 0f8e5651095b
+> ("of/platform: Propagate firmware node by calling device_set_node()")
+> use of_fwnode_handle to replace of_node_get, which introduces a side
+> effect that the refcount is not increased. Then the out of tree
+> jailhouse hypervisor enable/disable test will trigger kernel dump in
+> of_overlay_remove, with the following sequence
+> "
+>    of_changeset_revert(&overlay_changeset);
+>    of_changeset_destroy(&overlay_changeset);
+>    of_overlay_remove(&overlay_id);
+> "
+> 
+> So increase the refcount to avoid issues.
 
---lqw2sj7oetk76z5f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I was thinking about this and it's kind quite a tricky thing.
+So, let's go with your patch after some modifications, see below.
 
-Hi,
+With that, feel free to add
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-On Thu, Aug 03, 2023 at 01:34:39PM +0530, Jayesh Choudhary wrote:
-> From: Rahul T R <r-ravikumar@ti.com>
->=20
-> Add DSS and DP-bridge node for J784S4 SoC. DSS IP in J784S4 is
-> same as DSS IP in J721E, so same compatible is being used.
-> The DP is Cadence MHDP8546.
->=20
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> [j-choudhary@ti.com: move dss & mhdp node together in main, fix dss node]
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 63 ++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot=
-/dts/ti/k3-j784s4-main.dtsi
-> index 446d7efa715f..824312b9ef9f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -1741,4 +1741,67 @@ c71_3: dsp@67800000 {
->  		resets =3D <&k3_reset 40 1>;
->  		firmware-name =3D "j784s4-c71_3-fw";
->  	};
-> +
-> +	mhdp: bridge@a000000 {
-> +		compatible =3D "ti,j721e-mhdp8546";
-> +		reg =3D <0x0 0xa000000 0x0 0x30a00>,
-> +		      <0x0 0x4f40000 0x0 0x20>;
-> +		reg-names =3D "mhdptx", "j721e-intg";
-> +		clocks =3D <&k3_clks 217 11>;
-> +		interrupt-parent =3D <&gic500>;
-> +		interrupts =3D <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains =3D <&k3_pds 217 TI_SCI_PD_EXCLUSIVE>;
-> +		status =3D "disabled";
-> +
-> +		dp0_ports: ports {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +	};
-> +
-> +	dss: dss@4a00000 {
-> +		compatible =3D "ti,j721e-dss";
+...
 
-As far as I can see, this compatible limits the (DPI) pixel clock to
-160MHz, but the TRM seems to mention that it's 600MHz?
+> -	device_set_node(&dev->dev, of_fwnode_handle(np));
+> +	device_set_node(&dev->dev, fwnode_handle_get(fwnode));
 
-Is it expected?
+We know that we only handle OF node here, let's not involve other APIs,
+so
 
-Maxime
+	device_set_node(&dev->dev, of_fwnode_handle(of_node_get(np)));
 
---lqw2sj7oetk76z5f
-Content-Type: application/pgp-signature; name="signature.asc"
+...
 
------BEGIN PGP SIGNATURE-----
+> -	device_set_node(&dev->dev, of_fwnode_handle(node));
+> +	device_set_node(&dev->dev, fwnode_handle_get(fwnode));
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZN38TQAKCRDj7w1vZxhR
-xdlfAP9njqMypScML1Ykj875V84t1+5ow6mZmYOpRyeoDeT1xQEA04z8y2wc3kZJ
-un7PaGDaHunD03IIUHZFHcK2vImQvAc=
-=D1tr
------END PGP SIGNATURE-----
+Ditto.
 
---lqw2sj7oetk76z5f--
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
