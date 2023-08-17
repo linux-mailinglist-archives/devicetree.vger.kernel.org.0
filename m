@@ -2,536 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 796DE77F09F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 08:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC2F877F0F3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 09:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244633AbjHQGlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 02:41:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        id S243464AbjHQHLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 03:11:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234311AbjHQGlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 02:41:18 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4659F2700
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 23:41:16 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-58cbdf3eecaso14519427b3.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Aug 2023 23:41:16 -0700 (PDT)
+        with ESMTP id S1348360AbjHQHLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 03:11:05 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F0C2D40
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:00 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bfcf4c814so977235966b.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 00:11:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692254475; x=1692859275;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JMJC7hrurW391WkZyGokn2Ex5jeN7WUEe63sxXlCMEc=;
-        b=GatgLQeM2z+W7S/8vmAjUV/3fi2Ksnqm7CABFckzma1OiWlpmyWFPVxxmUzCEnunjO
-         FG2yKE4OhrOSqBtVbnfQpXPPbfikt+O/5pp0/Fj2sMeG79dgzGqzndpn6ijc+8gPzDx0
-         jELAHUDKBSTK4RHyJ2X6N/I604tsyTEAU3gvWV2K8OYGcyit6e5Y+TANyYxBmtt4ApPM
-         iH0Z3x+esmOlLP0dpGqBrrLrEsPEVxwI+LyZRCkky2muEzo0Chr6II8a2l8ViGMYxp9U
-         aD9lE3nFYEdD2czPPuGv5GvTYEZRoADaRaDwd8hpObZun63PQXffRD5EXwDltszXSWiV
-         YY2A==
+        d=9elements.com; s=google; t=1692256259; x=1692861059;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=10hrN69GNW7jEsK+iBtlLYcIuc/Ievar3/OKjhX+0P4=;
+        b=cYAqRqrFGqxtx5X++EX/SpDAvNsuRgefS9Ues4JEL15GQFDrFph+1a6Foy6xBSieyN
+         cjSO2ZKEAypjLOiPVGTtD/gQPi5oWEFyF8c/BYoYMAujD5VK4VvLEfGby3pJ6hIS0u+N
+         EZLVvf/96s3aA9hOB9OuStKj9KfTzq21Ws6cSTB2IP17Z4QbMgKpU/6K3XCr2+6QYFzP
+         IQX1NJOJ6jqgCEXo3OjG/JA2QRBlBDLjpdeCZYABzakGcMItmza1o2O2vQS0J0fsttat
+         lO9TwyzzYCGIefo4uqmylK3KPSdYVTl1T0eond1gPEb6dZHdarjtKXR1UW0jXKbv7qnk
+         FNEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692254475; x=1692859275;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JMJC7hrurW391WkZyGokn2Ex5jeN7WUEe63sxXlCMEc=;
-        b=SEM99+TKwqAZpWgznC03yge1oMa0zS/Wxh6S9O5G8gYjfdryQV3z+InSuw6DbxkrXn
-         RbUyNofoF8MsQeQH2VQidCUE3n4PQTlmk/dAsubA8fe9gUXZCfJlyNYPBFIb9Iuhbvbq
-         ozVoT28RBvpexYmzNAsgUlIUZwwuvl4bsOGd7ITEY0XlCFkVzLx+IJMo46e/6t8yC/IH
-         mKBnGtl6eS2KY7kkndq5ZwFevd990jL87BNM7aoenEEhVGMjMFoc3Jp1Fic4M8faG78B
-         P8A+EXnqtQs9x+4yvW/vcKhkMUqzt0RZ8c7TVdVwxdN9sLKUAwK/eywwDOAzAxDZ11I1
-         LWQg==
-X-Gm-Message-State: AOJu0YzorYkgIx+YsXr3taHdfSP5J74TPZ6raGQJXzrMse0SDsRtb3Hi
-        hLDx3WPiHbu87pOPh210bQzBwgNVubpw3cjpXzg=
-X-Google-Smtp-Source: AGHT+IE8bdg/RKBBNeeuzSK6h8v0sD0UWc5eDuE4rJwG85pcCmfDV4Nei4/yI5JxDCeelXjclxXp+2IzO58JS8A/ZkM=
-X-Received: by 2002:a0d:fec5:0:b0:589:dc7a:3d79 with SMTP id
- o188-20020a0dfec5000000b00589dc7a3d79mr3351500ywf.21.1692254475397; Wed, 16
- Aug 2023 23:41:15 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692256259; x=1692861059;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=10hrN69GNW7jEsK+iBtlLYcIuc/Ievar3/OKjhX+0P4=;
+        b=b+SgJZ4f4rSTe/2sed0L22tai5GzVVPWGRTBI9OpVGymCMvF5T3W0r55wr1m6sw+0Y
+         cT59lX052lNjsGqeQhC7jemqPWvLEHSHq0vbdBkeTqYutgxxd6E9ria/49RSI1zvWjDy
+         K/TDOSwql1jUh7i51qmc/FIK/CopOyDKxmGsMMhFuNBXFYbI8f1ZzdmvoVv2Eoa+A1HG
+         ptn+0erzoHTt+QdDTDAOEFSwY6pLJXmEX9/0YtRJvuUWT7yvjTHQK/YXwnUhXo52nvqm
+         YJNklZFv1T/Uh2ek2WZtZjbTCNeyjgKI9QEQ4eg0rf1UvA4yqVzDknOT+VAjlx34jT86
+         1teA==
+X-Gm-Message-State: AOJu0YyzNe6phGlV2OKSD4Z/Mk3sVx00WVidMlrtzRYbEgcW5awbt75l
+        aWo4edVOunC0cRxDE8PbDVHNWm1/kbrqN/mNX8p2qg==
+X-Google-Smtp-Source: AGHT+IEhSMzhYE0v4cwo8rnXfYnPMUytVW1oTxHU6/vvXlqg+cUZxbuDSTMTgUa3lnrofuowlLqbpg==
+X-Received: by 2002:a17:906:5195:b0:99d:f6e9:1cf8 with SMTP id y21-20020a170906519500b0099df6e91cf8mr3781695ejk.20.1692256259251;
+        Thu, 17 Aug 2023 00:10:59 -0700 (PDT)
+Received: from fedora.sec.9e.network (ip-095-222-150-251.um34.pools.vodafone-ip.de. [95.222.150.251])
+        by smtp.gmail.com with ESMTPSA id qn17-20020a170907211100b00992b510089asm9674361ejb.84.2023.08.17.00.10.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Aug 2023 00:10:58 -0700 (PDT)
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-i2c@vger.kernel.org
+Cc:     naresh.solanki@9elements.com,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v15 0/4] Add support for Maxim MAX735x/MAX736x variants
+Date:   Thu, 17 Aug 2023 09:10:49 +0200
+Message-ID: <20230817071056.2125679-1-patrick.rudolph@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-References: <cover.1692088166.git.zhoubinbin@loongson.cn> <dcd87b8934c9b9869ffb24b3c904905587dcaa42.1692088166.git.zhoubinbin@loongson.cn>
- <175ab37b-2b01-bd67-cfbc-914efc810a7f@linaro.org>
-In-Reply-To: <175ab37b-2b01-bd67-cfbc-914efc810a7f@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Thu, 17 Aug 2023 14:41:03 +0800
-Message-ID: <CAMpQs4JzwjYvj=XO3S-9GqatVuH1g-2cDkUKkEc70-+U1M+=+g@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] LoongArch: dts: DeviceTree for Loongson-2K1000
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+v15:
+- Clarified VDD usage on PCA9846 which has two VDD pins 
 
-Thanks for your reply.
+v14:
+- Added comment for interrupt support
 
-On Tue, Aug 15, 2023 at 10:56=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 15/08/2023 10:51, Binbin Zhou wrote:
-> > Add DeviceTree file for Loongson-2K1000 processor, which integrates two
-> > 64-bit dual emission superscalar LA264 processor cores.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  arch/loongarch/boot/dts/Makefile              |   3 +-
-> >  .../boot/dts/loongson-2k1000-ref.dts          | 217 +++++++++++
-> >  arch/loongarch/boot/dts/loongson-2k1000.dtsi  | 345 ++++++++++++++++++
-> >  3 files changed, 564 insertions(+), 1 deletion(-)
-> >  create mode 100644 arch/loongarch/boot/dts/loongson-2k1000-ref.dts
-> >  create mode 100644 arch/loongarch/boot/dts/loongson-2k1000.dtsi
-> >
-> > diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts=
-/Makefile
-> > index aa0b21d73d4e..dc0782315bed 100644
-> > --- a/arch/loongarch/boot/dts/Makefile
-> > +++ b/arch/loongarch/boot/dts/Makefile
-> > @@ -1,5 +1,6 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> >
-> > -dtb-$(CONFIG_MACH_LOONGSON64)        =3D loongson-2k0500-ref.dtb
-> > +dtb-$(CONFIG_MACH_LOONGSON64)        =3D loongson-2k0500-ref.dtb \
-> > +                               loongson-2k1000-ref.dtb
-> >
-> >  obj-$(CONFIG_BUILTIN_DTB)    +=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN=
-_DTB_NAME))
-> > diff --git a/arch/loongarch/boot/dts/loongson-2k1000-ref.dts b/arch/loo=
-ngarch/boot/dts/loongson-2k1000-ref.dts
-> > new file mode 100644
-> > index 000000000000..950a2df4e33f
-> > --- /dev/null
-> > +++ b/arch/loongarch/boot/dts/loongson-2k1000-ref.dts
-> > @@ -0,0 +1,217 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2023 Loongson Technology Corporation Limited
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "loongson-2k1000.dtsi"
-> > +
-> > +/ {
-> > +     compatible =3D "loongson,ls2k1000-ref", "loongson,ls2k1000";
-> > +     model =3D "Loongson-2K1000 Reference Board";
-> > +
-> > +     aliases {
-> > +             serial0 =3D &uart0;
-> > +     };
-> > +
-> > +     chosen {
-> > +             stdout-path =3D "serial0:115200n8";
-> > +             bootargs =3D "earlycon";
-> > +     };
-> > +
-> > +     cpus {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +
-> > +             cpu-map {
-> > +                     cluster0 {
-> > +                             core0 {
-> > +                                     cpu =3D <&cpu0>;
-> > +                             };
-> > +                             core1 {
-> > +                                     cpu =3D <&cpu1>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             cpu0: cpu@0 {
-> > +                     compatible =3D "loongson,la264";
-> > +                     device_type =3D "cpu";
-> > +                     reg=3D <0x0>;
-> > +                     clocks =3D <&clk LOONGSON2_NODE_CLK>;
-> > +             };
-> > +
-> > +             cpu1: cpu@1 {
-> > +                     compatible =3D "loongson,la264";
-> > +                     device_type =3D "cpu";
-> > +                     reg =3D <0x1>;
-> > +                     clocks =3D <&clk LOONGSON2_NODE_CLK>;
-> > +             };
-> > +     };
-> > +
-> > +     memory@200000 {
-> > +             device_type =3D "memory";
-> > +             reg =3D <0x0 0x200000 0x0 0x6e00000>,
-> > +                   <0x0 0x08000000 0x0 0x7000000>,
-> > +                   <0x0 0x90000000 0x1 0xe0000000>;
-> > +     };
-> > +
-> > +     reserved-memory {
-> > +             #address-cells =3D <2>;
-> > +             #size-cells =3D <2>;
-> > +             ranges;
-> > +
-> > +             linux,cma {
-> > +                     compatible =3D "shared-dma-pool";
-> > +                     reusable;
-> > +                     size =3D <0x0 0x2000000>;
-> > +                     linux,cma-default;
-> > +             };
-> > +     };
-> > +
-> > +     i2c-gpio-0 {
-> > +             compatible =3D "i2c-gpio";
-> > +             scl-gpios =3D <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRA=
-IN)>;
-> > +             sda-gpios =3D <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRA=
-IN)>;
-> > +             i2c-gpio,delay-us =3D <5>;        /* ~100 kHz */
-> > +             status =3D "disabled";
->
-> Disabled node in board, without comment providing a reason, is useless.
-> Drop the node or fix the status.
+v13:
+- Fix dt-binding
+- Fixed nits
 
-I got it, I will check it again.
->
-> > +     };
-> > +
-> > +     i2c-gpio-1 {
-> > +             compatible =3D "i2c-gpio";
-> > +             scl-gpios =3D <&gpio0 33 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DR=
-AIN)>;
-> > +             sda-gpios =3D <&gpio0 32 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DR=
-AIN)>;
-> > +             i2c-gpio,delay-us =3D <5>;        /* ~100 kHz */
-> > +             status =3D "disabled";
->
-> Ditto
->
-> > +     };
-> > +};
-> > +
-> > +&gmac0 {
-> > +     status =3D "okay";
-> > +
-> > +     phy-mode =3D "rgmii";
-> > +     phy-handle =3D <&phy0>;
-> > +     mdio {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +             compatible =3D "snps,dwmac-mdio";
->
-> compatible is always the first property.
+v12:
+- Add separate patch correcting interrupt support in dt-binding
+- Fix typo in commit message
+- Make vdd-supply non optional
 
-OK...
->
-> > +             phy0: ethernet-phy@0 {
-> > +                     reg =3D <0>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&gmac1 {
-> > +     status =3D "okay";
-> > +
-> > +     phy-mode =3D "rgmii";
-> > +     phy-handle =3D <&phy1>;
-> > +     mdio {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +             compatible =3D "snps,dwmac-mdio";
->
-> compatible is always the first property.
->
-> > +             phy1: ethernet-phy@1 {
-> > +                     reg =3D <16>;
-> > +             };
-> > +     };
-> > +};
->
-> ...
->
-> > +};
-> > diff --git a/arch/loongarch/boot/dts/loongson-2k1000.dtsi b/arch/loonga=
-rch/boot/dts/loongson-2k1000.dtsi
-> > new file mode 100644
-> > index 000000000000..fc3bb6368a5e
-> > --- /dev/null
-> > +++ b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-> > @@ -0,0 +1,345 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2023 Loongson Technology Corporation Limited
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/clock/loongson,ls2k-clk.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +/ {
-> > +     #address-cells =3D <2>;
-> > +     #size-cells =3D <2>;
-> > +
-> > +     ref_100m: clock-ref-100m {
-> > +             compatible =3D "fixed-clock";
-> > +             #clock-cells =3D <0>;
-> > +             clock-frequency =3D <100000000>;
-> > +             clock-output-names =3D "ref_100m";
-> > +     };
-> > +
-> > +     cpuintc: interrupt-controller {
-> > +             compatible =3D "loongson,cpu-interrupt-controller";
-> > +             #interrupt-cells =3D <1>;
-> > +             interrupt-controller;
-> > +     };
-> > +
-> > +     bus@10000000 {
-> > +             compatible =3D "simple-bus";
-> > +             #address-cells =3D <2>;
-> > +             #size-cells =3D <2>;
-> > +
-> > +             ranges =3D <0x0 0x10000000 0x0 0x10000000 0x0 0x10000000>=
-,
-> > +                      <0x0 0x2000000 0x0 0x2000000 0x0 0x2000000>,
-> > +                      <0x0 0x20000000 0x0 0x20000000 0x0 0x10000000>,
-> > +                      <0x0 0x40000000 0x0 0x40000000 0x0 0x40000000>,
-> > +                      <0xfe 0x0 0xfe 0x0 0x0 0x40000000>;
-> > +
-> > +             dma-coherent;
-> > +
-> > +             liointc0: interrupt-controller@1fe01400 {
-> > +                     compatible =3D "loongson,liointc-2.0";
-> > +                     reg =3D <0x0 0x1fe01400 0x0 0x40>,
-> > +                           <0x0 0x1fe01040 0x0 0x8>,
-> > +                           <0x0 0x1fe01140 0x0 0x8>;
-> > +                     reg-names =3D "main", "isr0", "isr1";
-> > +                     interrupt-controller;
-> > +                     #interrupt-cells =3D <2>;
-> > +                     interrupt-parent =3D <&cpuintc>;
-> > +                     interrupts =3D <2>;
-> > +                     interrupt-names =3D "int0";
-> > +                     loongson,parent_int_map =3D <0xffffffff>, /* int0=
- */
-> > +                                               <0x00000000>, /* int1 *=
-/
-> > +                                               <0x00000000>, /* int2 *=
-/
-> > +                                               <0x00000000>; /* int3 *=
-/
-> > +             };
-> > +
-> > +             liointc1: interrupt-controller@1fe01440 {
-> > +                     compatible =3D "loongson,liointc-2.0";
-> > +                     reg =3D <0x0 0x1fe01440 0x0 0x40>,
-> > +                           <0x0 0x1fe01048 0x0 0x8>,
-> > +                           <0x0 0x1fe01148 0x0 0x8>;
-> > +                     reg-names =3D "main", "isr0", "isr1";
-> > +                     interrupt-controller;
-> > +                     #interrupt-cells =3D <2>;
-> > +                     interrupt-parent =3D <&cpuintc>;
-> > +                     interrupts =3D <3>;
-> > +                     interrupt-names =3D "int1";
-> > +                     loongson,parent_int_map =3D <0x00000000>, /* int0=
- */
-> > +                                               <0xffffffff>, /* int1 *=
-/
-> > +                                               <0x00000000>, /* int2 *=
-/
-> > +                                               <0x00000000>; /* int3 *=
-/
-> > +             };
-> > +
-> > +             global-utilities@1fe00000 {
-> > +                     compatible =3D "loongson,ls2k-chipid";
-> > +                     reg =3D <0x0 0x1fe00000 0x0 0x3ffc>;
-> > +                     little-endian;
-> > +             };
-> > +
-> > +             pctrl: pinctrl@1fe00420 {
-> > +                     compatible =3D "loongson,ls2k-pinctrl";
-> > +                     reg =3D <0x0 0x1fe00420 0x0 0x18>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             clk: clock-controller@1fe00480 {
-> > +                     compatible =3D "loongson,ls2k-clk";
-> > +                     reg =3D <0x0 0x1fe00480 0x0 0x58>;
-> > +                     #clock-cells =3D <1>;
-> > +                     clocks =3D <&ref_100m>;
-> > +                     clock-names =3D "ref_100m";
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             gpio0: gpio@1fe00500 {
-> > +                     compatible =3D "loongson,ls2k-gpio";
-> > +                     reg =3D <0x0 0x1fe00500 0x0 0x38>;
-> > +                     ngpios =3D <64>;
-> > +                     #gpio-cells =3D <2>;
-> > +                     gpio-controller;
-> > +                     gpio-ranges =3D <&pctrl 0x0 0x0 15>,
-> > +                                   <&pctrl 16 16 15>,
-> > +                                   <&pctrl 32 32 10>,
-> > +                                   <&pctrl 44 44 20>;
-> > +                     interrupt-parent =3D <&liointc1>;
-> > +                     interrupts =3D <28 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <29 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <30 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <30 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <26 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <>,
-> > +                                  <>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <27 IRQ_TYPE_LEVEL_HIGH>;
-> > +             };
-> > +
-> > +             uart0: serial@1fe20000 {
-> > +                     compatible =3D "ns16550a";
-> > +                     reg =3D <0x0 0x1fe20000 0x0 0x10>;
-> > +                     clock-frequency =3D <125000000>;
-> > +                     interrupt-parent =3D <&liointc0>;
-> > +                     interrupts =3D <0x0 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     no-loopback-test;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             i2c2: i2c@1fe21000 {
-> > +                     compatible =3D "loongson,ls2k-i2c";
-> > +                     reg =3D <0x0 0x1fe21000 0x0 0x8>;
-> > +                     interrupt-parent =3D <&liointc0>;
-> > +                     interrupts =3D <22 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             i2c3: i2c@1fe21800 {
-> > +                     compatible =3D "loongson,ls2k-i2c";
-> > +                     reg =3D <0x0 0x1fe21800 0x0 0x8>;
-> > +                     interrupt-parent =3D <&liointc0>;
-> > +                     interrupts =3D <23 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             rtc0: rtc@1fe27800 {
-> > +                     compatible =3D "loongson,ls2k1000-rtc";
-> > +                     reg =3D <0x0 0x1fe27800 0x0 0x100>;
-> > +                     interrupt-parent =3D <&liointc1>;
-> > +                     interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             pcie@1a000000 {
-> > +                     compatible =3D "loongson,ls2k-pci";
-> > +                     device_type =3D "pci";
-> > +                     #size-cells =3D <2>;
-> > +                     #address-cells =3D <3>;
-> > +
-> > +                     reg =3D <0x0 0x1a000000 0x0 0x02000000>,
-> > +                           <0xfe 0x0 0x0 0x20000000>;
-> > +
-> > +                     ranges =3D <0x1000000 0x0 0x8000 0x0 0x18008000 0=
-x0 0x8000>,
-> > +                              <0x2000000 0x0 0x60000000 0x0 0x60000000=
- 0x0 0x20000000>; /* mem */
-> > +
-> > +                     gmac0: ethernet@3,0 {
-> > +                             reg =3D <0x1800 0x0 0x0 0x0 0x0>;
-> > +                             interrupt-parent =3D <&liointc0>;
-> > +                             interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                          <13 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             interrupt-names =3D "macirq", "eth_lpi";
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     gmac1: ethernet@3,1 {
-> > +                             reg =3D <0x1900 0x0 0x0 0x0 0x0>;
-> > +                             interrupt-parent =3D <&liointc0>;
-> > +                             interrupts =3D <14 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                          <15 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             interrupt-names =3D "macirq", "eth_lpi";
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> > +                     ehci0: usb@4,1 {
-> > +                             reg =3D <0x2100 0x0 0x0 0x0 0x0>;
-> > +                             interrupt-parent =3D <&liointc1>;
-> > +                             interrupts =3D <18 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             status =3D "disabled";
->
->
-> All these PCI devices are part of SoC? The SoC?
+v11:
+- Fix dt-binding example
 
-Yes, these PCI devices are SoC on-chip integrated.
-They are connected to the IO interconnect module via a multi-stage
-interconnect bus.
+v10:
+- Small updates to dt-bindings
+- Make vdd-supply optional
+- Drop MAX7357 enhanced mode configuration
 
-Thanks.
-Binbin
+v9:
+- Fix 'then' not aligned with 'if' in dt-bindings
+- Split enhanced mode configuration into separate patch
+- Add MAX7357/MAX7358 register definitions
+- Rename config register defines
+- Update comments and explain non default config being applied on MAX7357
+- Check for I2C_FUNC_SMBUS_WRITE_BYTE_DATA functionality
 
->
-> Best regards,
-> Krzysztof
->
+v8:
+- Move allOf in dt-binding and use double negation
+
+v7:
+- Reworked the commit message, comments and renamed a struct
+  field. No functional change.
+
+v6:
+- Fix typo in dt-bindings
+
+v5:
+- Remove optional and make vdd-supply mandatory
+
+v4:
+- Add missing maxitems dt-bindings property
+
+v3:
+- Merge dt-bindings into i2c-mux-pca954x.yaml
+
+v2:
+- Move dt-bindings to separate file
+- Added support for MAX736x as they are very similar
+- Fixed an issue found by kernel test robot
+- Dropped max735x property and custom IRQ check
+- Added MAX7357 config register defines instead of magic values
+- Renamed vcc-supply to vdd-supply
+
+Patrick Rudolph (4):
+  dt-bindings: i2c: pca954x: Correct interrupt support
+  dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+  i2c: muxes: pca954x: Add MAX735x/MAX736x support
+  i2c: muxes: pca954x: Add regulator support
+
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 46 ++++++++--
+ drivers/i2c/muxes/Kconfig                     |  6 +-
+ drivers/i2c/muxes/i2c-mux-pca954x.c           | 92 +++++++++++++++++--
+ 3 files changed, 129 insertions(+), 15 deletions(-)
+
+-- 
+2.41.0
+
