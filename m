@@ -2,105 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA33177F40B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 12:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E439977F427
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 12:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349212AbjHQKGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 06:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
+        id S243164AbjHQKO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 06:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349940AbjHQKF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 06:05:59 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994522D7B
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 03:05:56 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe2de785e7so12117762e87.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 03:05:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692266755; x=1692871555;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tU1OBnu/6KxECDpM0IzJ/SgAaQcKe+fJT4+4ZHxLk2k=;
-        b=o7F1Q+VWc8vFZ8O6jibK3igZE8P/juYrKZZGxZfHPCtZBv/VveZyfn2blr+KinpS0o
-         BYsM5RQa9Vekp/1Of4n3WHI72P6R+VBCXIzL5Yi3nCjm2jApUfXOmZlRYSd+ZatQl74B
-         zwx2QQ/0hyQmoRvj+dizVxULpy3Jv0KL2KKN2sLlRLZAsUPN5rZSEKR/fa45rOL3eITm
-         DdbedVuyXLZRQRRpKs0GVKJnwxH6dwrvNmYoBZxTDgmUCbGryeK2AEgtL2GXtv2VOHlt
-         NUudH9bgGBCVBbASmSZtGH/P42s5t2qkTN2BZPq3kWaEIv2CV3PIq6FkbGqknTCjIc6G
-         +xyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692266755; x=1692871555;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tU1OBnu/6KxECDpM0IzJ/SgAaQcKe+fJT4+4ZHxLk2k=;
-        b=VGQ39iozdo/gywm3qTcs5SCk2knMBKwyxZQbbgDgNkXz4qkwIAL3CFwZvfsRQL9G+E
-         peRLXhMTDZ/adaHRu/tiTJsLUoccBiT/C5VRnjPKqqtB/i12o9A7i6VJCiR2PA9xNLTh
-         VfMws3cylNB58hx5JaIrng5VjhdHrvNm0YRkWA8qZL+07GtlH6Xg2EP+t7IbPhqbL8UV
-         t/vMskTK1G3X7ggMpBldS7P5Na9a6PKyhYbrOGeilVjH6E1sANjNwTl1tAzTasoVZm/O
-         6gO2R/s1rWBFixEehYrPPzenvgv9CQFT6PDJ9Hgv4INL797B1yiHcsuOekl9/UknbFUI
-         ccSQ==
-X-Gm-Message-State: AOJu0YyoApjIEIUcJp0VgLYueosZFdGHj8Qj9SAc7r3qleC85uCoMd7q
-        4BJKhiVw46wBweTvmbGfyeMt+Q==
-X-Google-Smtp-Source: AGHT+IFCG5Al/QsWgxP4N4ZeswwQ4NoxpW9761uM5QnL5lXermAgUtYjDUWYz2a42K4cgDwfPj70ow==
-X-Received: by 2002:a19:915b:0:b0:4f8:8be4:8a82 with SMTP id y27-20020a19915b000000b004f88be48a82mr3310881lfj.22.1692266754892;
-        Thu, 17 Aug 2023 03:05:54 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id h24-20020a197018000000b004ff9ab6463fsm276653lfc.87.2023.08.17.03.05.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Aug 2023 03:05:54 -0700 (PDT)
-Message-ID: <c485b64e-3c83-4616-b8d8-76c2c7d56b0e@linaro.org>
-Date:   Thu, 17 Aug 2023 13:05:53 +0300
+        with ESMTP id S1349961AbjHQKOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 06:14:03 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8507210E6;
+        Thu, 17 Aug 2023 03:13:56 -0700 (PDT)
+X-UUID: c2badbd43ce611ee9cb5633481061a41-20230817
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=J7C/JbBcdP4UPQpMsHZoKtgXXL6KW320QsNuaBg+Lvs=;
+        b=aWMPfZMTtpS1Snzc7oqYpMrpOPi34NbMsII2FOA+u2NL8OKeJZa/n44CW4kul0jPtLzfZnqV/NBDD03B2DqJr/5kXsT0aCShg0XaSIZN3jpKynKeV0AnUkQ2biiNPSAXmq5D+is0ZBQun8aEu3v+oQGc5LtCuINTZJZP/M9BFSA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:321c027c-5418-4e8c-bbcf-9042a5ba4c24,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.31,REQID:321c027c-5418-4e8c-bbcf-9042a5ba4c24,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:0ad78a4,CLOUDID:0314f7c1-1e57-4345-9d31-31ad9818b39f,B
+        ulkID:230817181352S4OS5CUW,BulkQuantity:0,Recheck:0,SF:19|48|38|29|28|17,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_FAS,TF_CID_SPAM_FSD,TF_CID_SPAM_SNR,TF_CID_SPAM_SDM,
+        TF_CID_SPAM_ASC
+X-UUID: c2badbd43ce611ee9cb5633481061a41-20230817
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <maso.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1808962401; Thu, 17 Aug 2023 18:13:50 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 17 Aug 2023 18:13:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 17 Aug 2023 18:13:49 +0800
+From:   Maso Huang <maso.huang@mediatek.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Maso Huang <maso.huang@mediatek.com>
+Subject: [PATCH v4 0/6] ASoC: mediatek: Add support for MT7986 SoC
+Date:   Thu, 17 Aug 2023 18:13:32 +0800
+Message-ID: <20230817101338.18782-1-maso.huang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/7] phy: Add HDMI configuration options
-To:     Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com,
-        alexander.stein@ew.tq-group.com, sam@ravnborg.org
-References: <20230808083243.3113192-1-Sandor.yu@nxp.com>
- <20230808083243.3113192-3-Sandor.yu@nxp.com>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230808083243.3113192-3-Sandor.yu@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2023 11:32, Sandor Yu wrote:
-> Allow HDMI PHYs to be configured through the generic
-> functions through a custom structure added to the generic union.
-> 
-> The parameters added here are based on HDMI PHY
-> implementation practices.  The current set of parameters
-> should cover the potential users.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->   include/linux/phy/phy-hdmi.h | 24 ++++++++++++++++++++++++
->   include/linux/phy/phy.h      |  7 ++++++-
->   2 files changed, 30 insertions(+), 1 deletion(-)
->   create mode 100644 include/linux/phy/phy-hdmi.h
+Changes in v4:
+ - fix typo of authors and copyright
+ - refine with bitfield helper for readability [2/6] 
+ - refine with human readable error message [3/6]
+ - use "mt7986-wm8960-sound" as compatible string [4/6] [5/6]
+ - refine properties based on reviewer's suggestions [5/6]
+ - remove assigned-clocks and assigned-clocks-parents [6/6]
+ - constrain clocks per variants [6/6]
 
-I think this looks good now, thank you!
+Changes in v3:
+ - merge clk api to mt7986-afe-pcm.c, remove [2/7] in v2
+ - refine based on reviewer's suggestions [1/6] [2/6]
+ - fix the comment format, move in clk api, and simplify based on reviewer's suggestions [3/6] 
+ - remove redundant prefix in dt-binding [6/6]
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Changes in v2:
+ - v1 title: [PATCH 0/7] ASoC: mediatek: Add support for MT79xx SoC
+ - add missing maintainers
+ - rename mt79xx to mt7986 in all files
+ - use clk bulk api in mt7986-afe-clk.c [2/7]
+ - refine mt79xx-afe-pcm.c based on reviewer's suggestions [4/7]
+ - refine dt-binding files based on reviewer's suggestions [6/7] [7/7]
+ - transpose [3/7] and [4/7] in v1 to fix test build errors
+
+Maso Huang (6):
+  ASoC: mediatek: mt7986: add common header
+  ASoC: mediatek: mt7986: support etdm in platform driver
+  ASoC: mediatek: mt7986: add platform driver
+  ASoC: mediatek: mt7986: add machine driver with wm8960
+  ASoC: dt-bindings: mediatek,mt7986-wm8960: add mt7986-wm8960 document
+  ASoC: dt-bindings: mediatek,mt7986-afe: add audio afe document
+
+ .../bindings/sound/mediatek,mt7986-afe.yaml   | 160 +++++
+ .../sound/mediatek,mt7986-wm8960.yaml         |  67 ++
+ sound/soc/mediatek/Kconfig                    |  20 +
+ sound/soc/mediatek/Makefile                   |   1 +
+ sound/soc/mediatek/mt7986/Makefile            |   9 +
+ sound/soc/mediatek/mt7986/mt7986-afe-common.h |  49 ++
+ sound/soc/mediatek/mt7986/mt7986-afe-pcm.c    | 622 ++++++++++++++++++
+ sound/soc/mediatek/mt7986/mt7986-dai-etdm.c   | 411 ++++++++++++
+ sound/soc/mediatek/mt7986/mt7986-reg.h        | 196 ++++++
+ sound/soc/mediatek/mt7986/mt7986-wm8960.c     | 196 ++++++
+ 10 files changed, 1731 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt7986-afe.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt7986-wm8960.yaml
+ create mode 100644 sound/soc/mediatek/mt7986/Makefile
+ create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-common.h
+ create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-pcm.c
+ create mode 100644 sound/soc/mediatek/mt7986/mt7986-dai-etdm.c
+ create mode 100644 sound/soc/mediatek/mt7986/mt7986-reg.h
+ create mode 100644 sound/soc/mediatek/mt7986/mt7986-wm8960.c
 
 -- 
-With best wishes
-Dmitry
+2.18.0
 
