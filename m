@@ -2,108 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A06F377EEC2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 03:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4353E77EED3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 03:47:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232413AbjHQBfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Aug 2023 21:35:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54548 "EHLO
+        id S242470AbjHQBrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Aug 2023 21:47:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347557AbjHQBfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 21:35:16 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 18556271E;
-        Wed, 16 Aug 2023 18:35:12 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8AxTetPed1kfFQZAA--.46769S3;
-        Thu, 17 Aug 2023 09:35:11 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxTSNOed1kgmVcAA--.11513S3;
-        Thu, 17 Aug 2023 09:35:10 +0800 (CST)
-Subject: Re: [PATCH v15 1/2] thermal: loongson-2: add thermal management
- support
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S229747AbjHQBqr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Aug 2023 21:46:47 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1616C2723;
+        Wed, 16 Aug 2023 18:46:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=M/qvZh1sqwluQKeK6M4PiqwvLV9ejkgNBmKISK2HN/8=; b=Wat5/UeeLuy4BttcNEfglFgoVc
+        B5o5CyB045TmSU8TINFIfnU2c2c/ohegAFxnTUWd1FOCGminra5Ar9/M2DSIVLGfFQMZtRmMo/DrP
+        j3agpQ5JxmbudAgYlH60C9h0FefXX8E2LEk7Hsg3MNLeMM9ZrP3QIBhlLbRvHzTtNUJQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qWS5q-004Kox-3o; Thu, 17 Aug 2023 03:46:34 +0200
+Date:   Thu, 17 Aug 2023 03:46:34 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     nick.hawkins@hpe.com
+Cc:     christophe.jaillet@wanadoo.fr, simon.horman@corigine.com,
+        verdun@hpe.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn,
-        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
-References: <20230620012944.28877-1-zhuyinbo@loongson.cn>
- <da3e6348-33e0-aaa9-8f86-4b1ba1504551@linaro.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <4486a43d-131c-0dcb-d2e5-1f4659a873c0@loongson.cn>
-Date:   Thu, 17 Aug 2023 09:35:10 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Subject: Re: [PATCH v3 4/5] net: hpe: Add GXP UMAC Driver
+Message-ID: <01e96219-4f0c-4259-9398-bc2e6bc1794f@lunn.ch>
+References: <20230816215220.114118-1-nick.hawkins@hpe.com>
+ <20230816215220.114118-5-nick.hawkins@hpe.com>
 MIME-Version: 1.0
-In-Reply-To: <da3e6348-33e0-aaa9-8f86-4b1ba1504551@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxTSNOed1kgmVcAA--.11513S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230816215220.114118-5-nick.hawkins@hpe.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> +static int umac_ioctl(struct net_device *ndev, struct ifreq *ifr, int cmd)
+> +{
+> +	if (!netif_running(ndev))
+> +		return -EINVAL;
+> +
+> +	if (!ndev->phydev)
+> +		return -ENODEV;
+> +
+> +	return phy_mii_ioctl(ndev->phydev, ifr, cmd);
+
+Sometimes power management does not allow it, but can you use phy_do_ioctl()?
+
+> +static int umac_init_hw(struct net_device *ndev)
 
 
-在 2023/8/16 下午8:46, Daniel Lezcano 写道:
-> On 20/06/2023 03:29, Yinbo Zhu wrote:
->> This patch adds the support for Loongson-2 thermal sensor controller,
->> which can support maximum four sensor selectors that corresponding to 
->> four
->> sets of thermal control registers and one set of sampling register. The
->> sensor selector can selector a speific thermal sensor as temperature 
->> input.
->> The sampling register is used to obtain the temperature in real time, the
->> control register GATE field is used to set the threshold of high or low
->> temperature, when the input temperature is higher than the high 
->> temperature
->> threshold or lower than the low temperature threshold, an interrupt will
->> occur.
->>
->> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
-> 
-> [ ... ]
-> 
->> +    if (devm_thermal_add_hwmon_sysfs(dev, tzd))
->> +        dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
-> 
-> [ ... ]
-> 
-> This has been factored out by adding a message directly in 
-> devm_thermal_add_hwmon_sysfs(), so the test is not needed here neither 
-> the message.
+> +{
+> +	} else {
+> +		value |= UMAC_CFG_FULL_DUPLEX;
+> +
+> +		if (ndev->phydev->speed == SPEED_1000) {
 
+I'm pretty sure i pointed this out once before. It is not safe to
+access phydev members outside of the adjust link callback.
 
-okay, I got it, I will remove the message.
+> +static int umac_start_xmit(struct sk_buff *skb, struct net_device *ndev)
+> +{
+> +	struct umac_priv *umac = netdev_priv(ndev);
+> +	struct umac_tx_desc_entry *ptxdesc;
+> +	unsigned int length;
+> +	u8 *pframe;
+> +
+> +	ptxdesc = &umac->tx_descs->entrylist[umac->tx_cur];
+> +	pframe = umac->tx_descs->framelist[umac->tx_cur];
+> +
+> +	length = skb->len;
+> +	if (length > 1514) {
+> +		netdev_err(ndev, "send data %d bytes > 1514, clamp it to 1514\n",
+> +			   skb->len);
 
-> 
-> However, these changes have been long enough on the mailing list and the 
-> result looks nice.
-> 
-> I can pick this patch and you provide a small patch on top. Or you send 
-> a V16 with this change. It is your call.
+Than should be rate limited.
 
+Also, if you chop the end of the packet, it is going to be useless. It
+is better to drop it, to improve your goodput.
 
-okay, I will send v16.
+> +		length = 1514;
+> +	}
+> +
+> +	memset(pframe, 0, UMAC_MAX_FRAME_SIZE);
+> +	memcpy(pframe, skb->data, length);
 
-Thanks,
-Yinbo.
+Is this cached or uncached memory? uncached is expansive so you want
+to avoid touching it twice. Depending on how busy your cache is,
+touching it twice might cause it to expelled from L1 on the first
+write, so you could be writing to L2 twice for no reason. Do the math
+and calculate the tail space you need to zero.
 
+I would also suggest you look at the page pool code and use that for
+all you buffer handling. It is likely to be more efficient than what
+you have here.
+
+> +static int umac_setup_phy(struct net_device *ndev)
+> +{
+> +	struct umac_priv *umac = netdev_priv(ndev);
+> +	struct platform_device *pdev = umac->pdev;
+> +	struct device_node *phy_handle;
+> +	phy_interface_t interface;
+> +	struct device_node *eth_ports_np;
+> +	struct device_node *port_np;
+> +	int ret;
+> +	int i;
+> +
+> +	/* Get child node ethernet-ports. */
+> +	eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+> +	if (!eth_ports_np) {
+> +		dev_err(&pdev->dev, "No ethernet-ports child node found!\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	for (i = 0; i < NUMBER_OF_PORTS; i++) {
+> +		/* Get port@i of node ethernet-ports */
+> +		port_np = gxp_umac_get_eth_child_node(eth_ports_np, i);
+> +		if (!port_np)
+> +			break;
+> +
+> +		if (i == INTERNAL_PORT) {
+> +			phy_handle = of_parse_phandle(port_np, "phy-handle", 0);
+> +			if (phy_handle) {
+> +				umac->int_phy_dev = of_phy_find_device(phy_handle);
+> +				if (!umac->int_phy_dev)
+> +					return -ENODEV;
+
+You appear to find the PHY, and then do nothing with it?
+
+    Andrew
