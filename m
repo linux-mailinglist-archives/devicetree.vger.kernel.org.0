@@ -2,51 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2668F77FAD0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9196677FAF3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 17:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351979AbjHQPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 11:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47104 "EHLO
+        id S237913AbjHQPht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 11:37:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352320AbjHQPcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:32:05 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D31A2D78;
-        Thu, 17 Aug 2023 08:32:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1692286322; bh=jhloUQX2E1J9+PoKe/QiW8FViWr4zfA5WBk4rOU7L6s=;
-        h=Date:From:To:Subject:X-My-GPG-KeyId:References:From;
-        b=llwTCSiy/meO+QCeWQcdDEJQ5tpXiV0KwZB3J88v8VDWtxp2VdxsS8cX9UmncP12U
-         jmHW0NO+61zt91X/btYyoWKBl2Lfz3KyyxL6JhqNFtWhVX3h1nte8PNJrbwytF0pPt
-         J1XCSFaxq0y0/YpklFws+VCQK38auNCD6z+ebeiI=
-Date:   Thu, 17 Aug 2023 17:32:02 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Muhammed Efe Cetin <efectn@6tel.net>, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        sebastian.reichel@collabora.com
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Orange Pi 5
-Message-ID: <qqx5tay4etbepyyy7hqdp2prtw4t3m57esulruevggw2yi4xqf@63a7v5vzodhs>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-        Muhammed Efe Cetin <efectn@6tel.net>, conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, 
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, robh+dt@kernel.org, 
-        sebastian.reichel@collabora.com
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <dz2i6ix6dphyu6dwsqgvx7byoxegmdlsc6dwhyxd3uffqus6jo@r6jnxz7jprdv>
- <20230817145756.161970-1-efectn@6tel.net>
- <czvylysw2shlmvryimwtaquz747jel5k4dzfel6kgijmome7py@d4exzabfp3ig>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        with ESMTP id S1353129AbjHQPh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 11:37:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACB530C5;
+        Thu, 17 Aug 2023 08:37:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F400E6471D;
+        Thu, 17 Aug 2023 15:37:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D9BC433C7;
+        Thu, 17 Aug 2023 15:37:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692286647;
+        bh=PPdaDsmbvOoUgBA9blhD/gAGWLwMHvPr4MIBG/oHTnU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=PK65OHBcR96E/S7r7/GbV5sJE8f40prJcTn4zD5UCeK/MxrcGpdkrquNdOZAVtZVD
+         PQkkdfrORXaaTFXN9AnCOJKXj5kffm+U4xEThi7qMeY2NHsu+X3Bie1e9F/OW9tXUz
+         kJxeUGyINARAlkwPm7TtGYFCIocQUIpMrTq8UgQBdVbkw0yfRSnhkYnmG4yFotmora
+         Ha3IkJimfiri0xHQWfRlm+GD1w9xF5fgmMZx+ufKjCIuF60BLXWILH+vrdWdhZ7lHB
+         78QYeRhhf4hr61DXhjx9iF7CUa9DSqdF0HYYlIqZYuV0mSewUUplW9qiky6gQ1f5sW
+         0T12GKOooTNIA==
+Received: (nullmailer pid 1107201 invoked by uid 1000);
+        Thu, 17 Aug 2023 15:37:24 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <czvylysw2shlmvryimwtaquz747jel5k4dzfel6kgijmome7py@d4exzabfp3ig>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Jose Abreu <joabreu@synopsys.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>
+In-Reply-To: <20230816152926.4093-7-jszhang@kernel.org>
+References: <20230816152926.4093-1-jszhang@kernel.org>
+ <20230816152926.4093-7-jszhang@kernel.org>
+Message-Id: <169228664449.1107185.1318874790899719478.robh@kernel.org>
+Subject: Re: [PATCH net-next v4 6/9] dt-bindings: net: snps,dwmac: add
+ safety irq support
+Date:   Thu, 17 Aug 2023 10:37:24 -0500
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,61 +68,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 17, 2023 at 05:30:04PM +0200, megi xff wrote:
-> 
-> On Thu, Aug 17, 2023 at 05:57:55PM +0300, Muhammed Efe Cetin wrote:
-> > 
-> > Hi, Ondřej
-> > 
-> > On 17.08.2023 16:57, Ondřej Jirman wrote:
-> > > Hi Muhammed,
-> > > 
-> > >>>> [...]
-> > >>>
-> > >>>> +	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
-> > >>>> +		compatible = "regulator-fixed";
-> > >>>> +		regulator-name = "vcc_1v1_nldo_s3";
-> > >>>> +		regulator-always-on;
-> > >>>> +		regulator-boot-on;
-> > >>>> +		regulator-min-microvolt = <1100000>;
-> > >>>> +		regulator-max-microvolt = <1100000>;
-> > >>>> +		vin-supply = <&vcc5v0_sys>;
-> > >>>> +	};
-> > >>>
-> > >>> There's no such regulator on the board.
-> > >>
-> > >> It's connected to PMIC https://i.imgur.com/sVJdC5K.png
-> > > 
-> > > It's not a separate fixed regulator. It's a PMIC output from buck6 https://megous.com/dl/tmp/8630fa17407c75b9.png
-> > > 
-> > 
-> > I think it should be fixed regulator. It's used as vcc13-supply and
-> > vcc14-supply regulator on PMIC and it's same as other rk3588 boards.
-> 
-> Yes, BUCK6 output is input to some LDOs. If you make this a regulator-fixed,
-> BUCK6 will not get enabled when those LDOs are enabled, and the LDOs will not
-> work because they'll lack input power.
-> 
-> Your regulator-fixed does nothing to enable BUCK6 which is where vcc_1v1_nldo_s3
-> power rail is connected.
-> 
-> It only works for you now, because dcdc-reg6 is marked as regulator-always-on,
-> so it's already enabled when you need those dependent LDOs.
 
-And if other boards have this same HW setup and user separate DT node with
-regulator-fixed for this, they're broken, too.
-
-regards,
-	o.
-
-> regards,
-> 	o.
+On Wed, 16 Aug 2023 23:29:23 +0800, Jisheng Zhang wrote:
+> The snps dwmac IP support safety features, and those Safety Feature
+> Correctible Error and Uncorrectible Error irqs may be separate irqs.
 > 
-> > > So this is VDD2_DDR_S3. If you want to keep the alias, just add extra alias to
-> > > dcdc-reg6 like this:
-> > > 
-> > > 		...
-> > > 	vcc_1v1_nldo_s3: vdd2_ddr_s3: dcdc-reg6 {
-> > > 		...
-> > > 
-> > >>>
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
+	from schema $id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: Unevaluated properties are not allowed ('mdio', 'phy-handle', 'phy-mode', 'rx-fifo-depth', 'snps,axi-config', 'snps,en-tx-lpi-clockgating', 'snps,fixed-burst', 'snps,force_thresh_dma_mode', 'snps,multicast-filter-bins', 'snps,no-pbl-x8', 'snps,perfect-filter-entries', 'snps,rxpbl', 'snps,tso', 'snps,txpbl', 'stmmac-axi-config', 'tx-fifo-depth' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.example.dtb: ethernet@e0800000: interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230816152926.4093-7-jszhang@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
