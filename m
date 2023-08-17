@@ -2,165 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFD177FC2F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 18:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F4E77FC9F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 19:10:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348766AbjHQQfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 12:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50572 "EHLO
+        id S1351767AbjHQRJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 13:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353084AbjHQQev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 12:34:51 -0400
+        with ESMTP id S1353872AbjHQRJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 13:09:43 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B385AE2
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 09:34:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D31930D4;
+        Thu, 17 Aug 2023 10:09:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 495FC6417D
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 16:34:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22D1EC433C7;
-        Thu, 17 Aug 2023 16:34:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A9BF8675A7;
+        Thu, 17 Aug 2023 17:09:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D18C433C8;
+        Thu, 17 Aug 2023 17:09:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692290089;
-        bh=4G7bqY95FSSBkFnhpbCePZrOFV169SKiMTHQJcOmWac=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SWnLLRtPj7njK53JRw17uyGL3sWBlQIfdFem+2REe6QeyDAWkjqQPH18IeFnHIrNQ
-         Z7tTnyfzxSgOWGwja4iOYBqkYdhdR4T8YeHbI98/CuQ2Oy/KndHP6Atenz21fYduXa
-         MsbUpfjgGn7a8ctad33xYf5mAI7nXMwmbUL4ORtBaUCIQskbNPnJEV09MgsPEnrRCf
-         hCqyRoraEAwMyW3PRInA5s6jPYTOOi/lDepyAw8sIQTWuenH+GPVo7THJspzd3TQYR
-         NpxRIataHFzRXjC3YQ6+1prPvumuOnz1cb68Bw08TDMeoApKJ+zioy7zPsHUygs/AC
-         9NkXsFhgYnlfA==
-Received: (nullmailer pid 1458902 invoked by uid 1000);
-        Thu, 17 Aug 2023 16:34:47 -0000
-Date:   Thu, 17 Aug 2023 11:34:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sarah Walker <sarah.walker@imgtec.com>
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, Frank Binns <frank.binns@imgtec.com>
-Subject: Re: [PATCH v5 02/17] dt-bindings: gpu: Add Imagination Technologies
- PowerVR GPU
-Message-ID: <20230817163447.GA1452321-robh@kernel.org>
-References: <20230816082725.164880-1-sarah.walker@imgtec.com>
+        s=k20201202; t=1692292174;
+        bh=/IF04sHkLLuYwZg5UDGG+9COl2K4c5dV5hCvL3rgYGo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jGCwjPthnd6uH4tJfKVWBnQmxaCK2g/kXtyb2msrBxtoW25nEs7w1Ajj/BW+fpY6p
+         ItcloqGHp1tbzAHwf4QfunNDFPfY7UB2kiKfKvAkHdYjt+pHMEWCAnaS9nmhH+m+UE
+         AvW4HFjtvK0lKfL35Mniy6hFbixtI9oMmTXRTqaUQsroGbbvE5Vhk2KHNcvv9WZ3Jt
+         Zat6t4/CaGZykYor1fD6Jm7h7kGHsLKEVbAKRIQ7xc53TTEnl0O1eJmmcwZG3T2Jkn
+         zbIErRgMecOnIu7Y45iR/vX7Ke8LrJy7n9fHjsa9uoqKp6DBsRnKQG69QAWu9GDFOl
+         nPipyytJQzJJQ==
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH net-next v5 0/9] net: stmmac: add new features to xgmac
+Date:   Fri, 18 Aug 2023 00:57:40 +0800
+Message-Id: <20230817165749.672-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230816082725.164880-1-sarah.walker@imgtec.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 16, 2023 at 09:27:25AM +0100, Sarah Walker wrote:
-> Add the device tree binding documentation for the Series AXE GPU used in
-> TI AM62 SoCs.
-> 
-> Co-developed-by: Frank Binns <frank.binns@imgtec.com>
-> Signed-off-by: Frank Binns <frank.binns@imgtec.com>
-> Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
-> ---
-> Changes since v4:
-> - Add clocks constraint for ti,am62-gpu
-> - Remove excess address and size cells in example
-> - Remove interrupt name and add maxItems
-> - Make property order consistent between dts and bindings doc
-> - Update example to match dts
-> 
-> Changes since v3:
-> - Remove oneOf in compatible property
-> - Remove power-supply (not used on AM62)
-> 
-> Changes since v2:
-> - Add commit message description
-> - Remove mt8173-gpu support (not currently supported)
-> - Drop quotes from $id and $schema
-> - Remove reg: minItems
-> - Drop _clk suffixes from clock-names
-> - Remove operating-points-v2 property and cooling-cells (not currently
->   used)
-> - Add additionalProperties: false
-> - Remove stray blank line at the end of file
-> 
->  .../devicetree/bindings/gpu/img,powervr.yaml  | 75 +++++++++++++++++++
->  MAINTAINERS                                   |  7 ++
->  2 files changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> new file mode 100644
-> index 000000000000..40ade5ceef6e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2023 Imagination Technologies Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/img,powervr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Imagination Technologies PowerVR GPU
-> +
-> +maintainers:
-> +  - Sarah Walker <sarah.walker@imgtec.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - ti,am62-gpu
-> +      - const: img,powervr-seriesaxe
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: mem
-> +      - const: sys
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,am62-gpu
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +        clock-names:
-> +          const: core
+This series add below new features to xgmac:
 
-The main section already defined the name, so just 'maxItems: 1' here.
+correct RX COE parsing
+add more feature parsing from hw cap
+enlarge C22 ADDR and rx/tx channels
+support parse safety ce/ue irq from DT
+support per channel irq
 
-With that, 
+Since v4:
+ - move "additionalItems" and "maxItems" a bit earlier to patch5 to
+   fix "interrupt-names... is too long"
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Since v3:
+ - collect Acked-by tag
+ - remove patch which enlarges the max XGMAC C22 ADDR to 31 since it's
+   merged
+ - s/stmmac_request_irq_multi/stmmac_request_irq_multi_channel
+ - update the dt-binding to refelct the optional per-channel irq:
+     - use enum
+     - add additionalItems and maxItems to fix the "interrupt-names ..
+       is too long"
+
+Since v2:
+ - check per channel irq by (res->rx_irq[0] > 0 && res->tx_irq[0] > 0)
+   rather than (res->rx_irq[0] && res->tx_irq[0])
+ - bypass if (irq <= 0) when request rx/tx irq
+
+Since v1:
+ - remove "_irq" suffix from safety irqs dt binding
+ - remove "snps,per-channel-interrupt" dt binding, check the channel irq
+   instead.
+ - more renaming about "msi" to reflect per channel irq isn't MSI
+   specific
+
+
+Jisheng Zhang (9):
+  net: stmmac: correct RX COE parsing for xgmac
+  net: stmmac: xgmac: add more feature parsing from hw cap
+  net: stmmac: enlarge max rx/tx queues and channels to 16
+  net: stmmac: reflect multi irqs for tx/rx channels and mac and safety
+  net: stmmac: xgmac: support per-channel irq
+  dt-bindings: net: snps,dwmac: add safety irq support
+  net: stmmac: platform: support parsing safety irqs from DT
+  dt-bindings: net: snps,dwmac: add per channel irq support
+  net: stmmac: platform: support parsing per channel irq from DT
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   | 77 ++++++++++++++++++-
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  4 +-
+ .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  2 +
+ .../ethernet/stmicro/stmmac/dwxgmac2_core.c   |  5 +-
+ .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 34 ++++----
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c | 56 +++++++-------
+ .../ethernet/stmicro/stmmac/stmmac_platform.c | 35 +++++++++
+ include/linux/stmmac.h                        | 10 +--
+ 9 files changed, 172 insertions(+), 53 deletions(-)
+
+-- 
+2.40.1
+
