@@ -2,247 +2,577 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD13477F1E1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D44A77F1F8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Aug 2023 10:20:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237270AbjHQILn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Aug 2023 04:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32846 "EHLO
+        id S1348835AbjHQIUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Aug 2023 04:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348873AbjHQILh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:11:37 -0400
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BB3359D
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:11:09 -0700 (PDT)
-Received: by mail-ua1-x92e.google.com with SMTP id a1e0cc1a2514c-79df12ff0f0so916437241.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 01:11:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692259863; x=1692864663;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xnhnXpfMXVOkUdJ8XTjqlG22FaxEQYoj9IS672h/7bM=;
-        b=VamYqVM5YtUAB1bPNlGnv50ns9In+OK4nsXx1TvaHbtNVOerYEcmISzAKjpCgptdZ5
-         Z7/ONLchmQ2mERNnLJtZmUryheCtJA4k2G1TquEt2U4PU+nytlBWDnL73rM+/xqi3Iut
-         SyHaRPwV5vobvIwfAyQymJoDRGzeX2h2vib9M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692259863; x=1692864663;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xnhnXpfMXVOkUdJ8XTjqlG22FaxEQYoj9IS672h/7bM=;
-        b=Dlnv9mIY3M/dEw0aIAw0VVLW5vlop/18N5s1bQKH9N8SpsjBqsbRt/W8i561pHafEs
-         mz9DvlsZOVFpDA6pVijat09Jxf0a4fmXf5vAKFCfB78MTOjF8NAN5QtGNf8OtqTZxAIQ
-         kFvd52t8mdDyle1JVkatnzV0IHKNeC5tdpDNyoWuVHChaBLWAAWtOgMBUpJ7o33FxMgq
-         1EytS6uwK7I/4pxk6Tvwy5pCIyRqDKNI+4R63FsePfCGO4x10gR/aMNF/PO5ozxZR/nc
-         58rV3SAdk19mHKW8I2jUKqt8epfzzmF93zH1sjiahsApL/lf0D2/zuJOEE0sDshKpN14
-         YNeA==
-X-Gm-Message-State: AOJu0YyStc2Y/HJiRBrOWNaws3VzfxxKmOjEeyRXWiiYgxeJ/44tVWzU
-        W1Zp8l7M1RqlbvZ1dMKbOkc24Q1c8MUBdqW0Nm39hw==
-X-Google-Smtp-Source: AGHT+IFMsqL3pFYM3QtwPqpO5LX2pHlaj7if/3HlFso69UDgkdRzVb32750YVOtroJzIB9qxeEO7OeSMQcZ129EchfA=
-X-Received: by 2002:a67:f150:0:b0:445:209:cac7 with SMTP id
- t16-20020a67f150000000b004450209cac7mr3439728vsm.27.1692259863374; Thu, 17
- Aug 2023 01:11:03 -0700 (PDT)
+        with ESMTP id S1348836AbjHQIUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Aug 2023 04:20:23 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96712273C;
+        Thu, 17 Aug 2023 01:20:19 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id E95C924E2A3;
+        Thu, 17 Aug 2023 16:20:03 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 17 Aug
+ 2023 16:20:03 +0800
+Received: from [192.168.125.113] (183.27.97.249) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 17 Aug
+ 2023 16:20:02 +0800
+Message-ID: <6a5de6c1-aa80-e1a4-3da7-33789248bfde@starfivetech.com>
+Date:   Thu, 17 Aug 2023 16:20:02 +0800
 MIME-Version: 1.0
-References: <20230602090227.7264-1-yong.wu@mediatek.com> <20230602090227.7264-6-yong.wu@mediatek.com>
- <CAGXv+5EKwvn-axETPcuxTpxRkUGLroymeDYL+kr4QW8duAymmQ@mail.gmail.com>
- <b695962fa3c3baac08f8be5202e6a5697e7826a0.camel@mediatek.com>
- <CAGXv+5EVqODJJ4Ck+EcB9sn1bTjG5yFrWLi9mHTfVa0sB4wsug@mail.gmail.com>
- <810a3cbca7e837925b5750fd2eb1d1a261e865dc.camel@mediatek.com>
- <CAGXv+5G=CM9203GR42szWXx8K7F+swkvKJ_M3ev5_bGTk_zjGg@mail.gmail.com> <2607586420f4c81a2e2fd9f3395263e85d1f83ef.camel@mediatek.com>
-In-Reply-To: <2607586420f4c81a2e2fd9f3395263e85d1f83ef.camel@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 17 Aug 2023 16:10:52 +0800
-Message-ID: <CAGXv+5E13wFUPH9yw+JeP6-=O6ta51shUGsCH1o5Pvsd5W3h2w@mail.gmail.com>
-Subject: Re: [PATCH v12 5/7] iommu/mediatek: Add MT8188 IOMMU Support
-To:     =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= 
-        <Jianjiao.Zeng@mediatek.com>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        =?UTF-8?B?Q2hlbmdjaSBYdSAo6K645om/6LWQKQ==?= 
-        <Chengci.Xu@mediatek.com>,
-        =?UTF-8?B?WUYgV2FuZyAo546L5LqR6aOeKQ==?= <YF.Wang@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        =?UTF-8?B?TWluZ3l1YW4gTWEgKOmprOm4o+i/nCk=?= 
-        <Mingyuan.Ma@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "will@kernel.org" <will@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v4 2/3] clocksource: Add JH7110 timer driver
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+References: <20230814101603.166951-1-xingyu.wu@starfivetech.com>
+ <20230814101603.166951-3-xingyu.wu@starfivetech.com>
+Content-Language: en-US
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <20230814101603.166951-3-xingyu.wu@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.249]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 17, 2023 at 4:03=E2=80=AFPM Yong Wu (=E5=90=B4=E5=8B=87) <Yong.=
-Wu@mediatek.com> wrote:
->
-> On Mon, 2023-08-14 at 16:21 +0800, Chen-Yu Tsai wrote:
-> >
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >  On Mon, Aug 14, 2023 at 3:14=E2=80=AFPM Yong Wu (=E5=90=B4=E5=8B=87) <=
-Yong.Wu@mediatek.com>
-> > wrote:
-> > >
-> > > On Fri, 2023-08-11 at 11:30 +0800, Chen-Yu Tsai wrote:
-> > > >
-> > > > External email : Please do not click links or open attachments
-> > until
-> > > > you have verified the sender or the content.
-> > > >  On Thu, Aug 10, 2023 at 8:23=E2=80=AFPM Yong Wu (=E5=90=B4=E5=8B=
-=87) <
-> > Yong.Wu@mediatek.com>
-> > > > wrote:
-> > > > >
-> > > > > On Tue, 2023-08-08 at 17:53 +0800, Chen-Yu Tsai wrote:
-> > > > > >
-> > > > > > External email : Please do not click links or open
-> > attachments
-> > > > until
-> > > > > > you have verified the sender or the content.
-> > > > > >  On Fri, Jun 2, 2023 at 5:04=E2=80=AFPM Yong Wu <yong.wu@mediat=
-ek.com
-> > >
-> > > > wrote:
-> > > > > > >
-> > > > > > > From: "Chengci.Xu" <chengci.xu@mediatek.com>
-> > > > > > >
-> > > > > > > MT8188 has 3 IOMMU, containing 2 MM IOMMUs, one is for vdo,
-> > the
-> > > > > > other
-> > > > > > > is for vpp. and 1 INFRA IOMMU.
-> > > > > > >
-> > > > > > > Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
-> > > > > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > > > > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > > > > angelogioacchino.delregno@collabora.com>
-> > > > > > > ---
-> > > > > > >  drivers/iommu/mtk_iommu.c | 49
-> > > > > > +++++++++++++++++++++++++++++++++++++++
-> > > > > > >  1 file changed, 49 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/drivers/iommu/mtk_iommu.c
-> > > > b/drivers/iommu/mtk_iommu.c
-> > > > > > > index 9c89cf894a4d..5c66af0c45a8 100644
-> > > > > > > --- a/drivers/iommu/mtk_iommu.c
-> > > > > > > +++ b/drivers/iommu/mtk_iommu.c
-> > > > > > > @@ -170,6 +170,7 @@ enum mtk_iommu_plat {
-> > > > > > >         M4U_MT8173,
-> > > > > > >         M4U_MT8183,
-> > > > > > >         M4U_MT8186,
-> > > > > > > +       M4U_MT8188,
-> > > > > > >         M4U_MT8192,
-> > > > > > >         M4U_MT8195,
-> > > > > > >         M4U_MT8365,
-> > > > > > > @@ -1593,6 +1594,51 @@ static const struct
-> > mtk_iommu_plat_data
-> > > > > > mt8186_data_mm =3D {
-> > > > > > >         .iova_region_larb_msk =3D mt8186_larb_region_msk,
-> > > > > > >  };
-> > > > > > >
-> > > > > > > +static const struct mtk_iommu_plat_data mt8188_data_infra
-> > =3D {
-> > > > > > > +       .m4u_plat         =3D M4U_MT8188,
-> > > > > > > +       .flags            =3D WR_THROT_EN | DCM_DISABLE |
-> > > > > > STD_AXI_MODE | PM_CLK_AO |
-> > > > > > > +                           MTK_IOMMU_TYPE_INFRA |
-> > > > > > IFA_IOMMU_PCIE_SUPPORT |
-> > > > > > > +                           PGTABLE_PA_35_EN |
-> > > > > > CFG_IFA_MASTER_IN_ATF,
-> > > > > >
-> > > > > > FWIW, CFG_IFA_MASTER_IN_ATF should not be tied to the
-> > compatible
-> > > > > > string,
-> > > > > > but set via a DT property. The IOMMU controls are secured by
-> > > > > > firmware.
-> > > > > > It is not a property intrinsically tied to the hardware.
-> > > > >
-> > > > > The flag CFG_IFA_MASTER_IN_ATF means the registers which
-> > > > enable/disable
-> > > > > iommu are in the secure world. If the master like pcie want to
-> > > > enable
-> > > > > iommu, we have to enter secure world to configure it. It should
-> > be
-> > > > HW
-> > > > > intrinsical, right?
-> > > >
-> > > > If I understand correctly, this is forced by setting some
-> > registers.
-> > > > The registers are set by the firmware at boot time.
-> > >
-> > > The register will be set before the masters that have the "iommus=3D"
-> > > property probe. If the master doesn't have "iommus=3D" property in
-> > its
-> > > dtsi node, this register won't be set, then its iommu will be
-> > disabled
-> > > and it has to access continuous buffer.
-> > >
-> > > >
-> > > > So if a different firmware that doesn't set the registers is
-> > used,
-> > > > then the IOMMU is available to non-secure kernel, correct?
-> > >
-> > > No. The meaning of this register is whether to enable iommu. If the
-> > > register are not set, the IOMMU for that master is disabled.
-> >
-> > For clarity, I'm referring to PERI_MST_PROT [1], not the registers in
-> > the
-> > IOMMU or LARBs. So not any of the registers used in this patch.
-> >
-> > If that register doesn't restrict access to IOMMU register space to
-> > secure
-> > only, then I assume it is controlled by fuses?
->
-> Thanks for the clarification. Understand this now. If that register
-> doesn't restrict this, the register for enabling the iommu could be
-> accessed in normal world.
->
-> > [1]
-> > https://review.trustedfirmware.org/plugins/gitiles/TF-A/trusted-firmwar=
-e-a/+/be457248c6b0a7f3c61bd95af58372938d13decd/plat/mediatek/drivers/iommu/=
-mt8188/mtk_iommu_plat.c#93
-> >
-> > > >
-> > > > That's why I said that it should not be tied to a particular
-> > hardware
-> > > > platform, but set using a boolean device tree property.
-> > > >
-> > > > > >
-> > > > > > If on some other project there is no such security
-> > requirement
-> > > > and
-> > > > > > the
-> > > > > > IOMMU is opened up to non-secure world, and ATF not even
-> > having
-> > > > > > support
-> > > > > > for the SMC call, this becomes unusable and hard to rectify
-> > > > without
-> > > > > > introducing a new compatible string.
->
-> Then this make sense. Sorry, I don't know if such project exist, I
-> guess no, right? we could add it when necessary?
 
-I guess that works. It would be a negative property, such as
-"mediatek,iommu-is-non-secure". However, since this lock down is orthogonal
-to the SoC model, it would be better to model it as such from the beginning=
-.
 
-ChenYu
+On 2023/8/14 18:16, Xingyu Wu wrote:
+> Add timer driver for the StarFive JH7110 SoC.
+> 
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> ---
+>  MAINTAINERS                        |   7 +
+>  drivers/clocksource/Kconfig        |  11 +
+>  drivers/clocksource/Makefile       |   1 +
+>  drivers/clocksource/timer-jh7110.c | 415 +++++++++++++++++++++++++++++
+>  4 files changed, 434 insertions(+)
+>  create mode 100644 drivers/clocksource/timer-jh7110.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0903d87b17cb..00cf6a22e13c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20287,6 +20287,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+>  F:	sound/soc/starfive/jh7110_tdm.c
+>  
+> +STARFIVE JH7110 TIMER DRIVER
+> +M:	Samin Guo <samin.guo@starfivetech.com>
+> +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+> +F:	drivers/clocksource/timer-jh7110.c
+> +
+>  STARFIVE JH71X0 CLOCK DRIVERS
+>  M:	Emil Renner Berthing <kernel@esmil.dk>
+>  M:	Hal Feng <hal.feng@starfivetech.com>
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index c4d671a5a13d..171b9b54a499 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -648,6 +648,17 @@ config RISCV_TIMER
+>  	  is accessed via both the SBI and the rdcycle instruction.  This is
+>  	  required for all RISC-V systems.
+>  
+> +config STARFIVE_JH7110_TIMER
+> +	bool "Timer for the STARFIVE JH7110 SoC"
+> +	depends on ARCH_STARFIVE || COMPILE_TEST
+> +	select TIMER_OF
+> +	select CLKSRC_MMIO
+> +	default ARCH_STARFIVE
+> +	help
+> +	  This enables the timer for StarFive JH7110 SoCs. On RISC-V platform,
+> +	  the system has started RISCV_TIMER. But you can also use this timer
+> +	  which can provides four channels to do a lot more on JH7110 SoC.
+
+Correct some grammar errors as follows:
+This enables the timer for StarFive JH7110 SoC. On RISC-V platform,
+the system has started RISCV_TIMER, but you can also use this timer
+which can provide four channels to do a lot more things on JH7110 SoC.
+
+> +
+>  config CLINT_TIMER
+>  	bool "CLINT Timer for the RISC-V platform" if COMPILE_TEST
+>  	depends on GENERIC_SCHED_CLOCK && RISCV
+> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
+> index 5d93c9e3fc55..56bd6d9ddd87 100644
+> --- a/drivers/clocksource/Makefile
+> +++ b/drivers/clocksource/Makefile
+> @@ -81,6 +81,7 @@ obj-$(CONFIG_INGENIC_TIMER)		+= ingenic-timer.o
+>  obj-$(CONFIG_CLKSRC_ST_LPC)		+= clksrc_st_lpc.o
+>  obj-$(CONFIG_X86_NUMACHIP)		+= numachip.o
+>  obj-$(CONFIG_RISCV_TIMER)		+= timer-riscv.o
+> +obj-$(CONFIG_STARFIVE_JH7110_TIMER)	+= timer-jh7110.o
+>  obj-$(CONFIG_CLINT_TIMER)		+= timer-clint.o
+>  obj-$(CONFIG_CSKY_MP_TIMER)		+= timer-mp-csky.o
+>  obj-$(CONFIG_GX6605S_TIMER)		+= timer-gx6605s.o
+> diff --git a/drivers/clocksource/timer-jh7110.c b/drivers/clocksource/timer-jh7110.c
+> new file mode 100644
+> index 000000000000..fe3cfed55df7
+> --- /dev/null
+> +++ b/drivers/clocksource/timer-jh7110.c
+> @@ -0,0 +1,415 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Starfive JH7110 Timer driver
+> + *
+> + * Copyright (C) 2022-2023 StarFive Technology Co., Ltd.
+> + *
+> + * Author:
+> + * Xingyu Wu <xingyu.wu@starfivetech.com>
+> + * Samin Guo <samin.guo@starfivetech.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clockchips.h>
+> +#include <linux/clocksource.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/irq.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/sched_clock.h>
+> +
+> +/* Bias: Ch0-0x0, Ch1-0x40, Ch2-0x80, and so on. */
+> +#define JH7110_TIMER_CH_LEN		0x40
+> +#define JH7110_TIMER_CH_BASE(x)		((x) * JH7110_TIMER_CH_LEN)
+> +#define JH7110_TIMER_CH_MAX		4
+> +
+> +#define JH7110_CLOCK_SOURCE_RATING	200
+> +#define JH7110_VALID_BITS		32
+> +#define JH7110_DELAY_US			0
+> +#define JH7110_TIMEOUT_US		10000
+> +#define JH7110_CLOCKEVENT_RATING	300
+> +#define JH7110_TIMER_MAX_TICKS		0xffffffff
+> +#define JH7110_TIMER_MIN_TICKS		0xf
+> +#define JH7110_TIMER_NAME_NUM		20
+> +
+> +#define JH7110_TIMER_INT_STATUS		0x00 /* RO[0:4]: Interrupt Status for channel0~4 */
+> +#define JH7110_TIMER_CTL		0x04 /* RW[0]: 0-continuous run, 1-single run */
+> +#define JH7110_TIMER_LOAD		0x08 /* RW: load value to counter */
+> +#define JH7110_TIMER_ENABLE		0x10 /* RW[0]: timer enable register */
+> +#define JH7110_TIMER_RELOAD		0x14 /* RW: write 1 or 0 both reload counter */
+> +#define JH7110_TIMER_VALUE		0x18 /* RO: timer value register */
+> +#define JH7110_TIMER_INT_CLR		0x20 /* RW: timer interrupt clear register */
+> +#define JH7110_TIMER_INT_MASK		0x24 /* RW[0]: timer interrupt mask register */
+> +#define JH7110_TIMER_INT_CLR_AVA_MASK	BIT(1)
+> +
+> +enum JH7110_TIMER_INTMASK {
+> +	JH7110_TIMER_INTMASK_DIS = 0,
+> +	JH7110_TIMER_INTMASK_ENA = 1
+> +};
+> +
+> +enum JH7110_TIMER_MOD {
+> +	JH7110_TIMER_MOD_CONTIN = 0,
+> +	JH7110_TIMER_MOD_SINGLE = 1
+> +};
+> +
+> +enum JH7110_TIMER_CTL_EN {
+> +	JH7110_TIMER_DIS = 0,
+> +	JH7110_TIMER_ENA = 1
+> +};
+> +
+> +struct jh7110_clkevt {
+> +	struct clock_event_device evt;
+> +	struct clocksource cs;
+> +	struct clk *clk;
+> +	char name[JH7110_TIMER_NAME_NUM];
+> +	int irq;
+> +	u32 periodic;
+> +	u32 rate;
+> +	u32 reload_val;
+> +	void __iomem *base;
+> +};
+> +
+> +struct jh7110_timer_priv {
+> +	struct device *dev;
+> +	void __iomem *base;
+> +	struct jh7110_clkevt clkevt[JH7110_TIMER_CH_MAX];
+> +};
+> +
+> +static inline struct jh7110_clkevt *to_jh7110_clkevt(struct clock_event_device *evt)
+> +{
+> +	return container_of(evt, struct jh7110_clkevt, evt);
+> +}
+> +
+> +/* 0:continuous-run mode, 1:single-run mode */
+> +static inline void jh7110_timer_set_continuous_mod(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(JH7110_TIMER_MOD_CONTIN, clkevt->base + JH7110_TIMER_CTL);
+
+Why not write 0 directly? Seems that the macro JH7110_TIMER_MOD_CONTIN is redundant, because the function 
+name 'jh7110_timer_set_continuous_mod' already expresses its purpose. 
+
+> +}
+> +
+> +static inline void jh7110_timer_set_single_mod(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(JH7110_TIMER_MOD_SINGLE, clkevt->base + JH7110_TIMER_CTL);
+
+Same as above.
+
+> +}
+> +
+> +/* Interrupt Mask Register, 0:Unmask, 1:Mask */
+> +static inline void jh7110_timer_int_enable(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(JH7110_TIMER_INTMASK_DIS, clkevt->base + JH7110_TIMER_INT_MASK);
+
+Same, the enum variable 'JH7110_TIMER_INTMASK_DIS' is redundant, should be replaced with specific integer value
+and drop the definition of enum JH7110_TIMER_INTMASK.
+
+> +}
+> +
+> +static inline void jh7110_timer_int_disable(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(JH7110_TIMER_INTMASK_ENA, clkevt->base + JH7110_TIMER_INT_MASK);
+
+Same.
+
+> +}
+> +
+> +/*
+> + * BIT(0): Read value represent channel intr status.
+> + * Write 1 to this bit to clear interrupt. Write 0 has no effects.
+> + * BIT(1): "1" means that it is clearing interrupt. BIT(0) can not be written.
+> + */
+> +static inline int jh7110_timer_int_clear(struct jh7110_clkevt *clkevt)
+> +{
+> +	u32 value;
+> +	int ret;
+> +
+> +	/* waiting interrupt can be to clearing */
+> +	ret = readl_poll_timeout_atomic(clkevt->base + JH7110_TIMER_INT_CLR, value,
+> +					!(value & JH7110_TIMER_INT_CLR_AVA_MASK),
+> +					JH7110_DELAY_US, JH7110_TIMEOUT_US);
+> +	if (!ret)
+> +		writel(0x1, clkevt->base + JH7110_TIMER_INT_CLR);
+> +
+> +	return ret;
+> +}
+> +
+> +/*
+> + * The initial value to be loaded into the
+> + * counter and is also used as the reload value.
+> + * val = clock rate --> 1s
+> + */
+> +static inline void jh7110_timer_set_load(struct jh7110_clkevt *clkevt, u32 val)
+> +{
+> +	writel(val, clkevt->base + JH7110_TIMER_LOAD);
+> +}
+> +
+> +static inline u32 jh7110_timer_get_val(struct jh7110_clkevt *clkevt)
+> +{
+> +	return readl(clkevt->base + JH7110_TIMER_VALUE);
+> +}
+> +
+> +/*
+> + * Write RELOAD register to reload preset value to counter.
+> + * Write 0 and write 1 are both ok.
+> + */
+> +static inline void jh7110_timer_set_reload(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(0, clkevt->base + JH7110_TIMER_RELOAD);
+> +}
+> +
+> +static inline void jh7110_timer_enable(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(JH7110_TIMER_ENA, clkevt->base + JH7110_TIMER_ENABLE);
+
+should be replaced with specific integer value and drop the definition of enum JH7110_TIMER_CTL_EN.
+
+> +}
+> +
+> +static inline void jh7110_timer_disable(struct jh7110_clkevt *clkevt)
+> +{
+> +	writel(JH7110_TIMER_DIS, clkevt->base + JH7110_TIMER_ENABLE);
+
+Same as above.
+
+> +}
+> +
+> +static int jh7110_timer_int_init_enable(struct jh7110_clkevt *clkevt)
+> +{
+> +	int ret;
+> +
+> +	jh7110_timer_int_disable(clkevt);
+> +	ret = jh7110_timer_int_clear(clkevt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	jh7110_timer_int_enable(clkevt);
+> +	jh7110_timer_enable(clkevt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int jh7110_timer_shutdown(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	jh7110_timer_disable(clkevt);
+> +	return jh7110_timer_int_clear(clkevt);
+> +}
+> +
+> +static void jh7110_timer_suspend(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	clkevt->reload_val = jh7110_timer_get_val(clkevt);
+> +	jh7110_timer_shutdown(evt);
+> +}
+> +
+> +static void jh7110_timer_resume(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	jh7110_timer_set_load(clkevt, clkevt->reload_val);
+> +	jh7110_timer_set_reload(clkevt);
+> +	jh7110_timer_int_enable(clkevt);
+> +	jh7110_timer_enable(clkevt);
+> +}
+> +
+> +static int jh7110_timer_tick_resume(struct clock_event_device *evt)
+> +{
+> +	jh7110_timer_resume(evt);
+> +
+> +	return 0;
+> +}
+> +
+> +/* IRQ handler for the timer */
+> +static irqreturn_t jh7110_timer_interrupt(int irq, void *priv)
+> +{
+> +	struct clock_event_device *evt = (struct clock_event_device *)priv;
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	if (jh7110_timer_int_clear(clkevt))
+> +		return IRQ_NONE;
+> +
+> +	if (evt->event_handler)
+> +		evt->event_handler(evt);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int jh7110_timer_set_periodic(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	clkevt->periodic = DIV_ROUND_CLOSEST(clkevt->rate, HZ);
+> +	jh7110_timer_disable(clkevt);
+> +	jh7110_timer_set_continuous_mod(clkevt);
+> +	jh7110_timer_set_load(clkevt, clkevt->periodic);
+> +
+> +	return jh7110_timer_int_init_enable(clkevt);
+> +}
+> +
+> +static int jh7110_timer_set_oneshot(struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	jh7110_timer_disable(clkevt);
+> +	jh7110_timer_set_single_mod(clkevt);
+> +	jh7110_timer_set_load(clkevt, JH7110_TIMER_MAX_TICKS);
+> +
+> +	return jh7110_timer_int_init_enable(clkevt);
+> +}
+> +
+> +static int jh7110_timer_set_next_event(unsigned long next,
+> +				       struct clock_event_device *evt)
+> +{
+> +	struct jh7110_clkevt *clkevt = to_jh7110_clkevt(evt);
+> +
+> +	jh7110_timer_disable(clkevt);
+> +	jh7110_timer_set_single_mod(clkevt);
+> +	jh7110_timer_set_load(clkevt, next);
+> +	jh7110_timer_enable(clkevt);
+> +
+> +	return 0;
+> +}
+> +
+> +static void jh7110_set_clockevent(struct clock_event_device *evt)
+> +{
+> +	evt->features = CLOCK_EVT_FEAT_PERIODIC |
+> +			CLOCK_EVT_FEAT_ONESHOT |
+> +			CLOCK_EVT_FEAT_DYNIRQ;
+> +	evt->set_state_shutdown = jh7110_timer_shutdown;
+> +	evt->set_state_periodic = jh7110_timer_set_periodic;
+> +	evt->set_state_oneshot = jh7110_timer_set_oneshot;
+> +	evt->set_state_oneshot_stopped = jh7110_timer_shutdown;
+> +	evt->tick_resume = jh7110_timer_tick_resume;
+> +	evt->set_next_event = jh7110_timer_set_next_event;
+> +	evt->suspend = jh7110_timer_suspend;
+> +	evt->resume = jh7110_timer_resume;
+> +	evt->rating = JH7110_CLOCKEVENT_RATING;
+> +}
+> +
+> +static u64 jh7110_timer_clocksource_read(struct clocksource *cs)
+> +{
+> +	struct jh7110_clkevt *clkevt = container_of(cs, struct jh7110_clkevt, cs);
+> +
+> +	return (u64)jh7110_timer_get_val(clkevt);
+> +}
+> +
+> +static int jh7110_clocksource_init(struct jh7110_clkevt *clkevt)
+> +{
+> +	int ret;
+> +
+> +	jh7110_timer_set_continuous_mod(clkevt);
+> +	jh7110_timer_set_load(clkevt, JH7110_TIMER_MAX_TICKS);
+> +
+> +	ret = jh7110_timer_int_init_enable(clkevt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	clkevt->cs.name = clkevt->name;
+> +	clkevt->cs.rating = JH7110_CLOCK_SOURCE_RATING;
+> +	clkevt->cs.read = jh7110_timer_clocksource_read;
+> +	clkevt->cs.mask = CLOCKSOURCE_MASK(JH7110_VALID_BITS);
+> +	clkevt->cs.flags = CLOCK_SOURCE_IS_CONTINUOUS;
+> +
+> +	return clocksource_register_hz(&clkevt->cs, clkevt->rate);
+> +}
+> +
+> +static void jh7110_clockevents_register(struct jh7110_clkevt *clkevt)
+> +{
+> +	clkevt->rate = clk_get_rate(clkevt->clk);
+> +
+> +	jh7110_set_clockevent(&clkevt->evt);
+> +	clkevt->evt.name = clkevt->name;
+> +	clkevt->evt.irq = clkevt->irq;
+> +	clkevt->evt.cpumask = cpu_possible_mask;
+> +
+> +	clockevents_config_and_register(&clkevt->evt, clkevt->rate,
+> +					JH7110_TIMER_MIN_TICKS, JH7110_TIMER_MAX_TICKS);
+> +}
+> +
+> +static int jh7110_timer_probe(struct platform_device *pdev)
+> +{
+> +	char name[JH7110_TIMER_NAME_NUM];
+> +	struct jh7110_timer_priv *priv;
+> +	struct jh7110_clkevt *clkevt;
+> +	struct clk *pclk;
+> +	struct reset_control *rst;
+> +	int ch;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, struct_size(priv, clkevt, JH7110_TIMER_CH_MAX),
+> +			    GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->base),
+> +				     "failed to map registers\n");
+> +
+> +	rst = devm_reset_control_get_exclusive(&pdev->dev, "apb");
+> +	if (IS_ERR(rst))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rst), "failed to get apb reset\n");
+> +
+> +	pclk = devm_clk_get_enabled(&pdev->dev, "apb");
+> +	if (IS_ERR(pclk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(pclk),
+> +				     "failed to get & enable apb clock\n");
+> +
+> +	ret = reset_control_deassert(rst);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to deassert apb reset\n");
+> +
+> +	priv->dev = &pdev->dev;
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	for (ch = 0; ch < JH7110_TIMER_CH_MAX; ch++) {
+> +		clkevt = &priv->clkevt[ch];
+> +		snprintf(name, sizeof(name), "ch%d", ch);
+> +
+> +		clkevt->base = priv->base + JH7110_TIMER_CH_BASE(ch);
+> +		/* Ensure timers are disabled */
+> +		jh7110_timer_disable(clkevt);
+> +
+> +		rst = devm_reset_control_get_exclusive(&pdev->dev, name);
+> +		if (IS_ERR(rst))
+> +			return PTR_ERR(rst);
+> +
+> +		clkevt->clk = devm_clk_get_enabled(&pdev->dev, name);
+> +		if (IS_ERR(clkevt->clk))
+> +			return PTR_ERR(clkevt->clk);
+> +
+> +		ret = reset_control_deassert(rst);
+> +		if (ret)
+> +			return ret;
+> +
+> +		clkevt->irq = platform_get_irq(pdev, ch);
+> +		if (clkevt->irq < 0)
+> +			return clkevt->irq;
+> +
+> +		snprintf(clkevt->name, sizeof(clkevt->name), "%s.ch%d", pdev->name, ch);
+> +		jh7110_clockevents_register(clkevt);
+> +
+> +		ret = devm_request_irq(&pdev->dev, clkevt->irq, jh7110_timer_interrupt,
+> +				       IRQF_TIMER | IRQF_IRQPOLL,
+> +				       clkevt->name, &clkevt->evt);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = jh7110_clocksource_init(clkevt);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id jh7110_timer_match[] = {
+> +	{ .compatible = "starfive,jh7110-timer", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, jh7110_timer_match);
+> +
+> +static struct platform_driver jh7110_timer_driver = {
+> +	.probe = jh7110_timer_probe,
+> +	.driver = {
+> +		.name = "jh7110-timer",
+> +		.of_match_table = jh7110_timer_match,
+> +	},
+> +};
+> +module_platform_driver(jh7110_timer_driver);
+> +
+> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
+> +MODULE_DESCRIPTION("StarFive JH7110 timer driver");
+> +MODULE_LICENSE("GPL");
