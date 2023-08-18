@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14BB6780F8B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9C32780FD6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:07:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244799AbjHRPro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 11:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
+        id S1378410AbjHRQGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 12:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378303AbjHRPrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:47:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9693BF;
-        Fri, 18 Aug 2023 08:47:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6FC8C617A7;
-        Fri, 18 Aug 2023 15:47:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAB7AC433C8;
-        Fri, 18 Aug 2023 15:47:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692373658;
-        bh=UJoBya+wdS9sWcpW5mjYgKHW60p+meiYnGzDA/IaDSM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=L0yaXP2oATAqSCXMvSAwxjWzaZtukjl4iKkscqm2A8oU1zjn7aJixPofHhfHJP9yN
-         uaCuFsmVhp6w1EH1ChEXwBOqFeUb1RC3++06i3gckcNbAy3E+xxMhnao9MeMECBDG8
-         sTjWxwZyr6Eedz5nVfosqfa3RO0ayhTFqts4zQ/LoDbQYFNcGJCROLJhBqtfv04XOR
-         7MoMelTOVBOSVuoEI82iwdag29oOvnxx5CEdNtu6ERgUe5kROxGygGgdmVaFYP70Mw
-         rdW66MTmTXQfGmSw87ToXzz4yM1EZyLWnhfzX2jGJ1RUEAvAvzvTY5utV6uEU3W7rK
-         z158YDZJ3YGSA==
-From:   Lee Jones <lee@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nikita Travkin <nikita@trvn.ru>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-In-Reply-To: <20230815-aw2013-vio-v3-0-2505296b0856@gerhold.net>
-References: <20230815-aw2013-vio-v3-0-2505296b0856@gerhold.net>
-Subject: Re: [PATCH v3 0/3] leds: aw2013: Document interrupt and pull-up
- supply
-Message-Id: <169237365663.1285443.14239471615825184081.b4-ty@kernel.org>
-Date:   Fri, 18 Aug 2023 16:47:36 +0100
+        with ESMTP id S1378390AbjHRQGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:06:24 -0400
+Received: from forward101c.mail.yandex.net (forward101c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 951C03AB5;
+        Fri, 18 Aug 2023 09:06:22 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:150a:0:640:1aa5:0])
+        by forward101c.mail.yandex.net (Yandex) with ESMTP id 1AE346004C;
+        Fri, 18 Aug 2023 19:06:20 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id A6lUUeCWp4Y0-jg6h8aLA;
+        Fri, 18 Aug 2023 19:06:18 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail; t=1692374779;
+        bh=rnraiTdpoybkBjqWdLC31dG14hD9xpbVadxDMSoBAPU=;
+        h=Message-ID:Date:Cc:Subject:To:From;
+        b=Sf5T2rKemdu0lYVcL/iI4C6Q+QRnKajhtSwCrnB5Q+q2mo3fieLOFjTqFtIwVR/Tr
+         8Maf+UlDyDmNA/85GHcgysuN/mZMovOEIp9QQNfjllubfWlWrdlurPHmF6davv2VSh
+         U8EthaBJkwyTBrvaDEoduxXkWVIsQsR73p9W7wPY=
+Authentication-Results: mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net; dkim=pass header.i=@6tel.net
+From:   Muhammed Efe Cetin <efectn@6tel.net>
+To:     linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, sebastian.reichel@collabora.com, jonas@kwiboo.se,
+        megi@xff.cz, Muhammed Efe Cetin <efectn@6tel.net>
+Subject: [PATCH v2 0/3] Add Support for Orange Pi 5
+Date:   Fri, 18 Aug 2023 19:05:48 +0300
+Message-ID: <cover.1692372351.git.efectn@6tel.net>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,T_SPF_PERMERROR,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Aug 2023 19:21:03 +0200, Stephan Gerhold wrote:
-> AW2013 has an optional interrupt pin "INTN" which is used to report
-> completion of started operations (e.g. power up or LED breath effects).
-> The driver does not use it (yet) but it should be already described for
-> completeness inside the DT schema.
-> 
-> Since the interrupt and I2C lines operate in open drain low active mode
-> a pull-up supply is needed for correct operation. Unfortunately there
-> is no ideal place to describe it in the DT: The pull-up needed for the
-> I2C lines could be described on the I2C bus. However, the pull-up
-> needed for the interrupt line belongs neither directly to the interrupt
-> controller nor to AW2013. Since the AW2013 driver will be typically in
-> control of the power management and interrupt masking it makes more
-> sense to describe it inside the AW2013 device tree node.
-> 
-> [...]
+Hi,
 
-Applied, thanks!
+These series add initial support for Orange Pi 5 and SFC node for RK3588S.
 
-[1/3] dt-bindings: leds: aw2013: Document interrupt
-      commit: 9422bcf125b94e553c795af4f6c59d8e8fd8affa
-[2/3] dt-bindings: leds: Document pull-up supply for interrupt and I2C
-      commit: 2cccb179addedff6a5234e37237fc6b22d9217d4
-[3/3] leds: aw2013: Enable pull-up supply for interrupt and I2C
-      commit: baca986e1f2c31f8e4b2a6d99d47c3bc844033e8
+Changes in v2:
+* Fix CHECK_DTBS warnings and add dtb to makefile.
+* Remove assigned-clock-rates from sfc node and fix wrong interrupts property.
+* Remove non-existent adc buttons and add button-recovery instead.
+* Remove backlight_1, backlight, vcc12v_dcin, vcc5v0_usbdcin, vcc5v0_usb, combophy_avdd0v85, combophy_avdd1v8, sata0, u2phy0, u2phy0_otg nodes.
+* Rename vcc3v3_pcie2x1l2 to vcc3v3_pcie20, vbus5v0_typec to vbus_typec.
+* Remove regulator-always-on property from vcc_3v3_sd_s0 and vcc3v3_pcie20.
 
---
-Lee Jones [李琼斯]
+Muhammed Efe Cetin (3):
+  dt-bindings: arm: rockchip: Add Orange Pi 5 board
+  arm64: dts: rockchip: Add sfc node to rk3588s
+  arm64: dts: rockchip: Add Orange Pi 5
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 687 ++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  12 +
+ 4 files changed, 705 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+
+-- 
+2.41.0
 
