@@ -2,109 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66DE37805F8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 08:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64B40780619
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 09:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358062AbjHRGrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 02:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51878 "EHLO
+        id S1358132AbjHRHFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 03:05:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358068AbjHRGr3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 02:47:29 -0400
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F463AAE
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 23:47:28 -0700 (PDT)
-Received: by mail-vs1-xe34.google.com with SMTP id ada2fe7eead31-44ac6638896so200591137.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Aug 2023 23:47:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1692341247; x=1692946047;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dsuQn1BxTC8Yj1I6NI1mDMJ9aPHe50M4YRpGUAh4E7A=;
-        b=2lOK4wJZJPLwZ8kz2P9O3QHT7HcNS6UKUVtRKife3/nFLpq8tlLis+j54/E15SwPoI
-         jl7qmqR9ZZxzv8HkttAP7sWoCfYhqLXqMRAGP67NnIxGjNrnBQ1elAmSgwCrpxwPLmYz
-         bvW8trmaSQ1PCL4oIzXcHi3k85qTn4beWj2NudqUCPABZoVDPkZ3fBrVGtNb07LOb/M+
-         Rh8ymQfkHsn9kK0SwxlaNqrv8kMwj1udnlVZVUtV4jo9CKCk8FfEFMh6o9G+Ka5PEpDk
-         hyP8Q4bqADSsxTYsxUIAMHESX7rUqIHc1gNJIvxqnltT285HN9mG6mLomPv7uupK/EXI
-         ++Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692341247; x=1692946047;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dsuQn1BxTC8Yj1I6NI1mDMJ9aPHe50M4YRpGUAh4E7A=;
-        b=IsfMvq5ncDsLVEyEYI0E+Y3WKklRw5vhVNBnEcH067VGT3vu+yDDqOVZ6cQQB4T/hc
-         4NUJ1OB2SBHbtHxxYuuhlVqw2gzt7pszhxWZnDjHCk4swW/hsOu13qU7Ue9hhUSv4lmI
-         BmwfM7Kij08DCUDKecG/4vDMsLlG92xvmONeIVMmXyBqU1962YJxqj+7+XginKoERBsz
-         yuTzo0XvJmtDhL/fdjUppTKr9fQWPRjGaAm7NHQZvn03yFuL0KF5d8f+2W6kyqSXNjTw
-         zJJ9Tb2vs0xI4OPubDecCryOubn7WCOd4B7mQekpK5lgkoCjcLvx3r5NIlAgGjKTPA2p
-         qJUw==
-X-Gm-Message-State: AOJu0Yz0ahmKKSaFio+fwcIM0n+bBnXpIYohQve9lprOTUWvsy6B7grW
-        3I1+twx9koAEHauKuBj32BF0NQ6zhiFCdhLuAWjJTA==
-X-Google-Smtp-Source: AGHT+IEtDT2/+FR+A97ceifdC7PqyHRqllmyGGmnrEAcdJw7eiDFdrPcJB9HZEAN6AFPZyBG7c6t3d6KdUqWM1Z2B48=
-X-Received: by 2002:a05:6102:317a:b0:443:92dc:51ce with SMTP id
- l26-20020a056102317a00b0044392dc51cemr1350719vsm.35.1692341247562; Thu, 17
- Aug 2023 23:47:27 -0700 (PDT)
+        with ESMTP id S1357988AbjHRHFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 03:05:03 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D07D130D1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 00:05:00 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qWtXL-00045m-7q; Fri, 18 Aug 2023 09:04:47 +0200
+Message-ID: <96898dbb-3fdf-7a74-ae80-f18ae2244f50@pengutronix.de>
+Date:   Fri, 18 Aug 2023 09:04:34 +0200
 MIME-Version: 1.0
-References: <20230817213815.638189-1-ahalaney@redhat.com> <20230817213815.638189-3-ahalaney@redhat.com>
-In-Reply-To: <20230817213815.638189-3-ahalaney@redhat.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 18 Aug 2023 08:47:16 +0200
-Message-ID: <CAMRc=MfVe7W1Jj6UVJ==GWaP-eFeWRyfcHuuTFvc+bQEYcpV5Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p-ride: Describe sgmii_phy1 irq
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v4 3/3] drm/panel-simple: allow LVDS format override
+Content-Language: en-US, de-DE
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     kernel test robot <lkp@intel.com>,
+        Dan Carpenter <error27@gmail.com>,
+        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
+ <20230523-simplepanel_support_nondefault_datamapping-v4-3-e6e7011f34b5@pengutronix.de>
+From:   Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v4-3-e6e7011f34b5@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 17, 2023 at 11:38=E2=80=AFPM Andrew Halaney <ahalaney@redhat.co=
-m> wrote:
->
-> There's an irq hooked up, so let's describe it.
->
-> Prior to commit 9757300d2750
-> ("pinctrl: qcom: Add intr_target_width field to support increased number =
-of interrupt targets")
-> one would not see the IRQ fire, despite some (invasive) debugging
-> showing that the GPIO was in fact asserted, resulting in the interface
-> staying down.
->
-> Now that the IRQ is properly routed we can describe it.
->
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/=
-dts/qcom/sa8775p-ride.dts
-> index 8fde6935cd6e..9760bb4b468c 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> @@ -295,6 +295,7 @@ sgmii_phy1: phy@a {
->                         compatible =3D "ethernet-phy-id0141.0dd4";
->                         reg =3D <0xa>;
->                         device_type =3D "ethernet-phy";
-> +                       interrupts-extended =3D <&tlmm 26 IRQ_TYPE_EDGE_F=
-ALLING>;
->                         reset-gpios =3D <&pmm8654au_2_gpios 9 GPIO_ACTIVE=
-_LOW>;
->                         reset-assert-us =3D <11000>;
->                         reset-deassert-us =3D <70000>;
-> --
-> 2.41.0
->
+Hi Dan,
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+do you have any input on this for me?
+
+Best regards
+Johannes
+
+On 7/28/23 16:16, Johannes Zink wrote:
+> Some panels support multiple LVDS data mapping formats, which can be
+> used e.g. run displays on jeida-18 format when only 3 LVDS lanes are
+> available.
+> 
+> Add parsing of an optional data-mapping devicetree property, which also
+> touches up the bits per color to match the bus format.
+> 
+> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> 
+> ---
+> 
+> Changes:
+> 
+>    v3 -> v4: - worked in Dan's feedback (thanks for reviewing my work):
+>                  - return with a proper error in case the call to
+> 		  panel_simple_override_nondefault_lvds_datamapping()
+> 		  fails
+>                  - drop the unneeded and ambiguous ret variable
+> 
+>    v2 -> v3: - worked in Laurent's review findings (thanks for reviewing
+>                my work):
+> 	        - extract fixing up the bus format to separate
+> 		  function
+> 		- only call function on LVDS panels
+> 		- fix typos found by Laurent
+> 		- simplified error handling
+> 
+>    v1 -> v2: - fix missing unwind goto found by test robot
+>                Reported-by: kernel test robot <lkp@intel.com>
+>                Reported-by: Dan Carpenter <error27@gmail.com>
+>                Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 53 ++++++++++++++++++++++++++++++++++++
+>   1 file changed, 53 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 4badda6570d5..3a164931093e 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -40,6 +40,7 @@
+>   #include <drm/drm_edid.h>
+>   #include <drm/drm_mipi_dsi.h>
+>   #include <drm/drm_panel.h>
+> +#include <drm/drm_of.h>
+>   
+>   /**
+>    * struct panel_desc - Describes a simple panel.
+> @@ -549,6 +550,51 @@ static void panel_simple_parse_panel_timing_node(struct device *dev,
+>   		dev_err(dev, "Reject override mode: No display_timing found\n");
+>   }
+>   
+> +static int panel_simple_override_nondefault_lvds_datamapping(struct device *dev,
+> +							     struct panel_simple *panel)
+> +{
+> +	int ret, bpc;
+> +
+> +	ret = drm_of_lvds_get_data_mapping(dev->of_node);
+> +	if (ret < 0) {
+> +		if (ret == -EINVAL)
+> +			dev_warn(dev, "Ignore invalid data-mapping property\n");
+> +
+> +		/*
+> +		 * Ignore non-existing or malformatted property, fallback to
+> +		 * default data-mapping, and return 0.
+> +		 */
+> +		return 0;
+> +	}
+> +
+> +	switch (ret) {
+> +	default:
+> +		WARN_ON(1);
+> +		fallthrough;
+> +	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
+> +		fallthrough;
+> +	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
+> +		bpc = 8;
+> +		break;
+> +	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
+> +		bpc = 6;
+> +	}
+> +
+> +	if (panel->desc->bpc != bpc || panel->desc->bus_format != ret) {
+> +		struct panel_desc *override_desc;
+> +
+> +		override_desc = devm_kmemdup(dev, panel->desc, sizeof(*panel->desc), GFP_KERNEL);
+> +		if (!override_desc)
+> +			return -ENOMEM;
+> +
+> +		override_desc->bus_format = ret;
+> +		override_desc->bpc = bpc;
+> +		panel->desc = override_desc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
+>   {
+>   	struct panel_simple *panel;
+> @@ -601,6 +647,13 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
+>   			panel_simple_parse_panel_timing_node(dev, panel, &dt);
+>   	}
+>   
+> +	if (desc->connector_type == DRM_MODE_CONNECTOR_LVDS) {
+> +		/* Optional data-mapping property for overriding bus format */
+> +		err = panel_simple_override_nondefault_lvds_datamapping(dev, panel);
+> +		if (err)
+> +			goto free_ddc;
+> +	}
+> +
+>   	connector_type = desc->connector_type;
+>   	/* Catch common mistakes for panels. */
+>   	switch (connector_type) {
+> 
+
+-- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
