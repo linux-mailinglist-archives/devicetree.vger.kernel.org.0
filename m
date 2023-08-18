@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31AEE7808CB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFD57808C8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359288AbjHRJjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:39:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
+        id S245309AbjHRJjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 05:39:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359351AbjHRJjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:39:21 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5592D73
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:38:54 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99cdb0fd093so89168766b.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:38:54 -0700 (PDT)
+        with ESMTP id S1359367AbjHRJjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:39:25 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC6E3A84
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:38:59 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99c1f6f3884so86412766b.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:38:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692351533; x=1692956333;
+        d=linaro.org; s=google; t=1692351538; x=1692956338;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oZOscNxwfNoVZVStzGtqlJV+8GQoiF43Kvj9BwOa4uo=;
-        b=cszq6LExToh88vOQqwbM5dzhlRK6+HTG43nN+h+A0Ai1huVdv8MA2qOk4Q03uw1eOP
-         m/ZsxU6x5wIq103IuK0cxbybg+1sNEdrg4GxPYPyBL8O/ldT0+8HEwVYTArX0bPNovtl
-         u1sckMKrhr8arFDBRBchYsbi2YvaAGUSusDeyAebaQ0E9MOEz6EZuZqHtaQjWH3Zm+ys
-         8lCAKBSyuBqbEM7axYa09Y5sq5eppx0qs/n5Ij8sqCfpdtADh2QY9ZUKVoM/IT1XK4bC
-         6Qn9wZW5RqA2WWO3ONR7EDKtpDhcwUHW+YPnBGmfh107PzRORmvD9ngl3aWjav3rbx2J
-         rJVQ==
+        bh=nqZ6MWOxrmCXsW/1kQTa72MKrzFFrYHg0blm9NC3dMI=;
+        b=FNHUYJDSoulIb7iBs9FTgQW++CfGhDKiloUS7Ei7239N+/KHeex3fNWNdYCiHHWdIS
+         GgY/EyKIKD0lANvQD7eyF7k/vvIWL0G/e0Gyf0lLcQJOQjRPCxOnwWzWIhLpfXrJKTL5
+         z82c3H2rkwg2iXI5NBI3G/3310GYiZ8lGvE7FQ3Fgd7KNNr1W5Y5SqhykMCAp6DXCCU7
+         HYKgnikcSRFk45zJ6ausrUk523XHNPRYXS+h/JUJG1a3oLZ/Gssj7QezNNWrWsYUypFt
+         +CxIdItsvSYvDKqrGsM+YJeccaHUklQ4NbfPaw3GBiiwrMpf3v1VGsCvhgqpqhoEyPRB
+         zGUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692351533; x=1692956333;
+        d=1e100.net; s=20221208; t=1692351538; x=1692956338;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oZOscNxwfNoVZVStzGtqlJV+8GQoiF43Kvj9BwOa4uo=;
-        b=BSWWmmwuoj4Tfs2FGXpz7g6yLQkYZ3A+JqpKe63OAZWI10SBIjXJUQ6ywRwjIO2A9F
-         B2xeHql2jEESNyGmxA+KddzahL1ZnVmIZUIFYkUWof7xgRNtTHsSohhnIeGkjVJfopy/
-         VCMR9XDBZBQt5Vh/189NbOh9822+YwX/D5Zga0/dRfNfX9vGHhQ56M4hEUaLomslSogH
-         WdBwPbsV7gfHh8iDuwVw0fKspVLGWLVey4hXH5LvREoVQv6kkTqBsmKW1ykQfqIxJ6bb
-         w4xzgKBSd4YqZyQWydcDq4d/oDjhZvhFFYtEb1QXuYFpP2+nEtJO0F4V1xDedQdkSR+5
-         ss+A==
-X-Gm-Message-State: AOJu0YyhyBMWCnXKmRwmk5Ajipy6eQkxF5yCl/xN8i+sChfAkSRyckXS
-        XX3rStkHSNLPIX5BrO0ujNXR5TM3mGYTY82pvROtXw==
-X-Google-Smtp-Source: AGHT+IHA7uBzx5VfK9Nb/cCnjqFySevbzj6KkZTYwOBBY5dNuh4oV44pkGQj9/t3s++R1YTVwO5Lug==
-X-Received: by 2002:a17:907:2c57:b0:992:a9c3:244f with SMTP id hf23-20020a1709072c5700b00992a9c3244fmr1517656ejc.4.1692351532928;
-        Fri, 18 Aug 2023 02:38:52 -0700 (PDT)
+        bh=nqZ6MWOxrmCXsW/1kQTa72MKrzFFrYHg0blm9NC3dMI=;
+        b=OHBKg2TNYnzpGD1ltV/p6TmPe9lxt3DLWpC58In5CPDcqqoMuqUOGwomYc52Xiuv7e
+         SlI42707+zEeZY9sSWsx205zcuSOuAbHqJvP7DPvWmtwT5ry8kReRiuIO76PCVZxAlUr
+         da7oNo4JwIq1Jbadp6B7C9BEXkMOKViBYzgqmFE7lzxpBzG8aVLhkp9o0flTFwPP7Hhg
+         MXorHWxzsaLsR/ObMUykZAM29Q3vxRRleoG/4IL2edrORQITaNuP+XO+xSNlnblE3IIF
+         uI51WgcZU68e1EFEtrksorgcuQE0AZNNiFlkqB+WopxGWjEWjTgagrB/pSsKRbqVmWpQ
+         +rlg==
+X-Gm-Message-State: AOJu0YyIh21D0JihTfyM0satHbjIw7y2c1c3iPNhVdNF1LPl7+ywhr0Z
+        Nxx1U0cjt5Cffs4KzgslIZ/P+g==
+X-Google-Smtp-Source: AGHT+IEK5isAGbMqbI3eLOVuD1pqDu9watKUUal3vatHRjDp8dA8ntj8RXcltrZlxugpJdSKvlFLug==
+X-Received: by 2002:a17:907:6e20:b0:99b:5689:1331 with SMTP id sd32-20020a1709076e2000b0099b56891331mr1886009ejc.59.1692351538183;
+        Fri, 18 Aug 2023 02:38:58 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id lc21-20020a170906dff500b0099cc15f09a0sm974014ejc.55.2023.08.18.02.38.51
+        by smtp.gmail.com with ESMTPSA id o26-20020a17090608da00b009a1082f423esm454543eje.88.2023.08.18.02.38.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 02:38:52 -0700 (PDT)
-Message-ID: <5892382d-f26e-8add-0e27-13f25d279639@linaro.org>
-Date:   Fri, 18 Aug 2023 11:38:51 +0200
+        Fri, 18 Aug 2023 02:38:57 -0700 (PDT)
+Message-ID: <6dda7952-9622-0fe9-3daf-52816f399d2c@linaro.org>
+Date:   Fri, 18 Aug 2023 11:38:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sm8550: add UART14 nodes
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sm8550-qrd: add bluetooth
+ support
 Content-Language: en-US
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -66,15 +67,15 @@ To:     Neil Armstrong <neil.armstrong@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230817-topic-sm8550-upstream-bt-v3-0-33f386e7b461@linaro.org>
- <20230817-topic-sm8550-upstream-bt-v3-1-33f386e7b461@linaro.org>
+ <20230817-topic-sm8550-upstream-bt-v3-2-33f386e7b461@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230817-topic-sm8550-upstream-bt-v3-1-33f386e7b461@linaro.org>
+In-Reply-To: <20230817-topic-sm8550-upstream-bt-v3-2-33f386e7b461@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,13 +83,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 17/08/2023 10:47, Neil Armstrong wrote:
-> Add the Geni High Speed UART QUP instance 2 element 6
-> node and associated default pinctrl.
+> Enable the WCN7850 bluetooth over the UART14 link.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 30 +++++++++++++++++++++++++
-
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
