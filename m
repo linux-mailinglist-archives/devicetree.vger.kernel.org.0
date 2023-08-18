@@ -2,117 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA71780F69
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 410A0780F73
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344995AbjHRPlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 11:41:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
+        id S1357921AbjHRPmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 11:42:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378256AbjHRPku (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:40:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB862D58;
-        Fri, 18 Aug 2023 08:40:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S1378332AbjHRPmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:42:10 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DCCA3C3E;
+        Fri, 18 Aug 2023 08:42:05 -0700 (PDT)
+Received: from localhost.localdomain (93-41-0-106.ip79.fastwebnet.it [93.41.0.106])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3355D60202;
-        Fri, 18 Aug 2023 15:40:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10EB2C433CB;
-        Fri, 18 Aug 2023 15:40:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692373248;
-        bh=Sza0iKQ79SrdT2ka/ImFhnwgczlzzbMIPQJckqJEnlk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OJHylxsXmbe1O7TRHgPYtHiOQ9+g/EXekAGzeh2ERlsL2Bupn0cr+OLi0AbrpV7d0
-         YNpGNMcqqxYn1v/S/IzQBiKAlW4aOFCnojT2+FZwKbdbHRhsAQq5b3HiNYa86JnsxU
-         txVFGqvzAR/RZk+b9T6l2rThO7XoKkFiQ6ONypgOgntC6iMnZGe/rUzk0eZMXG6CjN
-         rpIKGK7EDt97PiHEiDaleqLPnGQI74L5rsBBq2LKC19XR+E0P8Lzn4LfIRYqMTEX2b
-         usCuAJ34ayhHYTF8rR0IlqUE4nCno3KFRZoMUdhWMk0fYEzZ9uApXTFW6g1HI1KMn/
-         5bcv1WmHriA9w==
-Date:   Fri, 18 Aug 2023 16:40:42 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [GIT PULL] Immutable branch between MFD, Pinctrl and soundwire due
- for the v6.6 merge window
-Message-ID: <20230818154042.GX986605@google.com>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+        (Authenticated sender: laura.nao)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1EFE4660724F;
+        Fri, 18 Aug 2023 16:42:03 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1692373324;
+        bh=+Hv9exfgv7xX14b0KoI7ObSiwdSECkno/LP+jJg9ooQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Vmy/G2bKH6FeAMy35lKKk+oJcCxYOwNm/Cc4IC4K6DsOHDkjd+uKO4DqSXP8hHHOf
+         asenBDMHlh5j5geVgJnQ8l9gvaeMzNtXX2ks/7NyRtw1L8iCmG8KRil8yuNn85nsdb
+         2MgurU6RtpMgmi9yI56xUZLiyuKnzj6uQ786C8q/KlwxEi7OHVwt/R1eSOFkiSe+Zr
+         tXv8bcM39/h6KnzFTvaQkmJw0TDIPoge4RufR2qawErNKRLa72Gyu9UN3jhy5pRku2
+         DOeFJZ3r160AJORKKMB0jcMFAfcMh2hmBsKGA/Ro0W3wOsBldOUN3OAYIzqC0wl/lI
+         H7uBezxrCMkwA==
+From:   Laura Nao <laura.nao@collabora.com>
+To:     yong.wu@mediatek.com
+Cc:     angelogioacchino.delregno@collabora.com, chengci.xu@mediatek.com,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        jianjiao.zeng@mediatek.com, joro@8bytes.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+        mingyuan.ma@mediatek.com, robh+dt@kernel.org, robin.murphy@arm.com,
+        will@kernel.org, yf.wang@mediatek.com, kernel@collabora.com
+Subject: Re: [PATCH v12 2/7] iommu/mediatek: Fix two IOMMU share pagetable issue
+Date:   Fri, 18 Aug 2023 17:41:56 +0200
+Message-Id: <20230818154156.314742-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230602090227.7264-3-yong.wu@mediatek.com>
+References: <20230602090227.7264-3-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good afternoon,
+Hello,
 
-The following changes since commit 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5:
+This patch is causing fluster tests to fail on MT8192, IOMMU read and write faults are reported in the log. Here's an extract is from the VP9 tests:
 
-  Linux 6.5-rc1 (2023-07-09 13:53:13 -0700)
+mtk-iommu 1401d000.m4u: fault type=0x280 iova=0x1ff7c0000 pa=0x0 master=0x5000480(larb=5 port=0) layer=0 read
+mtk-iommu 1401d000.m4u: fault type=0x280 iova=0x1fe3ee000 pa=0x0 master=0x5000492(larb=5 port=4) layer=0 write
 
-are available in the Git repository at:
+Tests are failing for H264, VP8 and VP9 decoding on next-20230817 with fluster in the same way, complete logs can be found here: 
+- H264: https://storage.kernelci.org/next/master/next-20230817/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/v4l2-decoder-conformance-h264-mt8192-asurada-spherion-r0.html
+- VP8: https://storage.kernelci.org/next/master/next-20230817/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/v4l2-decoder-conformance-vp8-mt8192-asurada-spherion-r0.html
+- VP9: https://storage.kernelci.org/next/master/next-20230817/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/v4l2-decoder-conformance-vp9-mt8192-asurada-spherion-r0.html
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-pinctrl-soundwire-v6.6
+Reverting this patch fixes the issue. 
 
-for you to fetch changes up to d5282a53929791071b17dde3eed52e40f76b101c:
+From my understanding, on MT8192 the 16GB iova space is partitioned between display, vcodec and camera. The iommu domain configuration for vcodec was loaded from frstdata->bank[0]->m4u_dom (vcodec is preassigned to a specific iova range), while after this patch a new pagetable is created instead. 
 
-  pinctrl: cs42l43: Add support for the cs42l43 (2023-08-17 12:06:11 +0100)
+Do you have any insight on how to fix this while keeping compatibility with MT8188 and MT8195?
 
-----------------------------------------------------------------
-Immutable branch between MFD, Pinctrl and soundwire due for the v6.6 merge window
+Best,
 
-----------------------------------------------------------------
-Charles Keepax (3):
-      dt-bindings: mfd: cirrus,cs42l43: Add initial DT binding
-      mfd: cs42l43: Add support for cs42l43 core driver
-      pinctrl: cs42l43: Add support for the cs42l43
-
-Lucas Tanure (1):
-      soundwire: bus: Allow SoundWire peripherals to register IRQ handlers
-
- .../devicetree/bindings/sound/cirrus,cs42l43.yaml  |  313 ++++++
- MAINTAINERS                                        |    3 +
- drivers/mfd/Kconfig                                |   23 +
- drivers/mfd/Makefile                               |    3 +
- drivers/mfd/cs42l43-i2c.c                          |   98 ++
- drivers/mfd/cs42l43-sdw.c                          |  239 ++++
- drivers/mfd/cs42l43.c                              | 1188 ++++++++++++++++++++
- drivers/mfd/cs42l43.h                              |   28 +
- drivers/pinctrl/cirrus/Kconfig                     |   11 +
- drivers/pinctrl/cirrus/Makefile                    |    2 +
- drivers/pinctrl/cirrus/pinctrl-cs42l43.c           |  609 ++++++++++
- drivers/soundwire/bus.c                            |   32 +
- drivers/soundwire/bus_type.c                       |   12 +
- include/linux/mfd/cs42l43-regs.h                   | 1184 +++++++++++++++++++
- include/linux/mfd/cs42l43.h                        |  102 ++
- include/linux/soundwire/sdw.h                      |    9 +
- 16 files changed, 3856 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
- create mode 100644 drivers/mfd/cs42l43-i2c.c
- create mode 100644 drivers/mfd/cs42l43-sdw.c
- create mode 100644 drivers/mfd/cs42l43.c
- create mode 100644 drivers/mfd/cs42l43.h
- create mode 100644 drivers/pinctrl/cirrus/pinctrl-cs42l43.c
- create mode 100644 include/linux/mfd/cs42l43-regs.h
- create mode 100644 include/linux/mfd/cs42l43.h
-
--- 
-Lee Jones [李琼斯]
+Laura
