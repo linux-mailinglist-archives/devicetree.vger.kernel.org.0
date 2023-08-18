@@ -2,55 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64B40780619
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 09:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D490778064E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 09:27:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358132AbjHRHFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 03:05:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
+        id S1349342AbjHRH0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 03:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357988AbjHRHFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 03:05:03 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D07D130D1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 00:05:00 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1qWtXL-00045m-7q; Fri, 18 Aug 2023 09:04:47 +0200
-Message-ID: <96898dbb-3fdf-7a74-ae80-f18ae2244f50@pengutronix.de>
-Date:   Fri, 18 Aug 2023 09:04:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 3/3] drm/panel-simple: allow LVDS format override
-Content-Language: en-US, de-DE
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1358171AbjHRH0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 03:26:22 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C9030E6;
+        Fri, 18 Aug 2023 00:26:20 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37I7Pgwj016351;
+        Fri, 18 Aug 2023 02:25:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692343542;
+        bh=bm4x7kxqWvWv3qzJzqySj6fmSFubOtRfgMiZakk91HU=;
+        h=From:To:CC:Subject:In-Reply-To:References:Date;
+        b=QrdPfjdTnJ3toEmR05ynqxTJNyXv2WwWNY9iqNKI5ZFikSVIzBqXWCiawp34x8gv+
+         q9ZOlSy14oa7NSbs74lPmlzUEun8L6d9cg+dyi4woQpGHnYbIIQ8v4jjz/wS/h0Sew
+         1Goe9HX9BfhtVSaISpEEynKj6eLUjPqbAUTFqAyI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37I7PgPS006923
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Aug 2023 02:25:42 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
+ Aug 2023 02:25:42 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 18 Aug 2023 02:25:42 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37I7Pf40110519;
+        Fri, 18 Aug 2023 02:25:41 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+To:     Eric Biggers <ebiggers@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     kernel test robot <lkp@intel.com>,
-        Dan Carpenter <error27@gmail.com>,
-        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
- <20230523-simplepanel_support_nondefault_datamapping-v4-3-e6e7011f34b5@pengutronix.de>
-From:   Johannes Zink <j.zink@pengutronix.de>
-In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v4-3-e6e7011f34b5@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v2 2/6] crypto: crc64 - add crc64-iso
+ framework
+In-Reply-To: <20230812025520.GE971@sol.localdomain>
+References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
+ <20230719-mcrc-upstream-v2-2-4152b987e4c2@ti.com>
+ <20230812025520.GE971@sol.localdomain>
+Date:   Fri, 18 Aug 2023 12:55:40 +0530
+Message-ID: <87jztserrf.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,132 +77,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
+Eric Biggers <ebiggers@kernel.org> writes:
 
-do you have any input on this for me?
+> On Fri, Aug 11, 2023 at 12:58:49AM +0530, Kamlesh Gurudasani wrote:
+>> diff --git a/include/linux/crc64.h b/include/linux/crc64.h
+>> index 70202da51c2c..10b792080374 100644
+>> --- a/include/linux/crc64.h
+>> +++ b/include/linux/crc64.h
+>> @@ -8,11 +8,15 @@
+>>  #include <linux/types.h>
+>>  
+>>  #define CRC64_ROCKSOFT_STRING "crc64-rocksoft"
+>> +#define CRC64_ISO_STRING "crc64-iso"
+>>  
+>>  u64 __pure crc64_be(u64 crc, const void *p, size_t len);
+>>  u64 __pure crc64_iso_generic(u64 crc, const void *p, size_t len);
+>>  u64 __pure crc64_rocksoft_generic(u64 crc, const void *p, size_t len);
+>>  
+>> +u64 crc64_iso(const unsigned char *buffer, size_t len);
+>> +u64 crc64_iso_update(u64 crc, const unsigned char *buffer, size_t len);
+>> +
+>>  u64 crc64_rocksoft(const unsigned char *buffer, size_t len);
+>>  u64 crc64_rocksoft_update(u64 crc, const unsigned char *buffer, size_t len);
+>
+> Is "crc64-iso" clear enough, or should it be "crc64-iso3309"?  There are
+> thousands of ISO standards.  Different CRC variants are specified by different
+> ISO standards.  Is this particular variant indeed commonly referred to as simply
+> the "ISO" CRC-64?  Even if it's currently the case that all other CRCs in ISO
+> standards are different widths than 64 bits (which may be unlikely?), I'm not
+> sure we should count on no CRC-64 variant ever being standardized by ISO.
+>
+> - Eric
+https://en.wikipedia.org/wiki/Cyclic_redundancy_check
 
-Best regards
-Johannes
+Last entry CRC-64-ISO in the table.
+It is mentioned as crc64-iso and that's the
+only 64-bit CRC standardized by ISO. But I do agree that crc64-iso3309 would
+be more specific, will change it to crc64-iso3309 in next
+revision. Thanks.
 
-On 7/28/23 16:16, Johannes Zink wrote:
-> Some panels support multiple LVDS data mapping formats, which can be
-> used e.g. run displays on jeida-18 format when only 3 LVDS lanes are
-> available.
-> 
-> Add parsing of an optional data-mapping devicetree property, which also
-> touches up the bits per color to match the bus format.
-> 
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> 
-> ---
-> 
-> Changes:
-> 
->    v3 -> v4: - worked in Dan's feedback (thanks for reviewing my work):
->                  - return with a proper error in case the call to
-> 		  panel_simple_override_nondefault_lvds_datamapping()
-> 		  fails
->                  - drop the unneeded and ambiguous ret variable
-> 
->    v2 -> v3: - worked in Laurent's review findings (thanks for reviewing
->                my work):
-> 	        - extract fixing up the bus format to separate
-> 		  function
-> 		- only call function on LVDS panels
-> 		- fix typos found by Laurent
-> 		- simplified error handling
-> 
->    v1 -> v2: - fix missing unwind goto found by test robot
->                Reported-by: kernel test robot <lkp@intel.com>
->                Reported-by: Dan Carpenter <error27@gmail.com>
->                Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
-> ---
->   drivers/gpu/drm/panel/panel-simple.c | 53 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 53 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 4badda6570d5..3a164931093e 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -40,6 +40,7 @@
->   #include <drm/drm_edid.h>
->   #include <drm/drm_mipi_dsi.h>
->   #include <drm/drm_panel.h>
-> +#include <drm/drm_of.h>
->   
->   /**
->    * struct panel_desc - Describes a simple panel.
-> @@ -549,6 +550,51 @@ static void panel_simple_parse_panel_timing_node(struct device *dev,
->   		dev_err(dev, "Reject override mode: No display_timing found\n");
->   }
->   
-> +static int panel_simple_override_nondefault_lvds_datamapping(struct device *dev,
-> +							     struct panel_simple *panel)
-> +{
-> +	int ret, bpc;
-> +
-> +	ret = drm_of_lvds_get_data_mapping(dev->of_node);
-> +	if (ret < 0) {
-> +		if (ret == -EINVAL)
-> +			dev_warn(dev, "Ignore invalid data-mapping property\n");
-> +
-> +		/*
-> +		 * Ignore non-existing or malformatted property, fallback to
-> +		 * default data-mapping, and return 0.
-> +		 */
-> +		return 0;
-> +	}
-> +
-> +	switch (ret) {
-> +	default:
-> +		WARN_ON(1);
-> +		fallthrough;
-> +	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
-> +		fallthrough;
-> +	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-> +		bpc = 8;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-> +		bpc = 6;
-> +	}
-> +
-> +	if (panel->desc->bpc != bpc || panel->desc->bus_format != ret) {
-> +		struct panel_desc *override_desc;
-> +
-> +		override_desc = devm_kmemdup(dev, panel->desc, sizeof(*panel->desc), GFP_KERNEL);
-> +		if (!override_desc)
-> +			return -ENOMEM;
-> +
-> +		override_desc->bus_format = ret;
-> +		override_desc->bpc = bpc;
-> +		panel->desc = override_desc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
->   {
->   	struct panel_simple *panel;
-> @@ -601,6 +647,13 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
->   			panel_simple_parse_panel_timing_node(dev, panel, &dt);
->   	}
->   
-> +	if (desc->connector_type == DRM_MODE_CONNECTOR_LVDS) {
-> +		/* Optional data-mapping property for overriding bus format */
-> +		err = panel_simple_override_nondefault_lvds_datamapping(dev, panel);
-> +		if (err)
-> +			goto free_ddc;
-> +	}
-> +
->   	connector_type = desc->connector_type;
->   	/* Catch common mistakes for panels. */
->   	switch (connector_type) {
-> 
-
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-
+Regards,
+Kamlesh
