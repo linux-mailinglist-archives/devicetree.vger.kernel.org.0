@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF0F780828
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A3B2780833
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359088AbjHRJUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:20:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
+        id S1350551AbjHRJX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 05:23:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359017AbjHRJTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:19:41 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFB1359D
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:19:39 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-991c786369cso85271666b.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:19:39 -0700 (PDT)
+        with ESMTP id S1344184AbjHRJXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:23:02 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11205358D
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:23:01 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-991c786369cso85655066b.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:23:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692350378; x=1692955178;
+        d=linaro.org; s=google; t=1692350579; x=1692955379;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DY8KEU42wJyONdvFAuAwtQpgN/LqKQPJnRBi7LCo0Jw=;
-        b=PGCZDux2vtV7ztu4QilXBDEBove9IzsV9bl/zTfi31T6aTBe71Vb1BXL5UTCJNwAvH
-         cFidTdHFSiaLUP+m+db/JpNKcXmUy/60trAlwsWokAy7/+5n38qmS/NUgRQ9lCZuQoFM
-         T/3KbwyjXEstRavj7uXJb3yXZL4/TuStlvWVvtjkU2RUwP5GV1QZh7riYtq+y7PXhb/B
-         ezlGCmkrUsVVr3SWhNe9CdvyFuK1n+0M622BRRU0c1Wac/rxtEiPt2zWGJ+T+eQFGxAM
-         rGNNbgbmSlewKRSOfu0ubc/S9tM5+u6MWBW9usCMVQ0XZULry+Auq4oNKgXGsjURb2HI
-         lElw==
+        bh=pO/NLfSXQCGnKg4+bEM0fLqxGi3J0/6qioKdfhMjmdo=;
+        b=nOTMo+/1Nw73rHt39/57JPvg8AsFjBbuGVIRDhbSLc9e9KEsQhYu2qCHwlHXrm7kUn
+         QwdXc0JDCMyvRljUROn2cOHO03isnm6xLcG0vz8OhYXxtGH6KjtC8zF+/2Ltar+s0PZm
+         vkPw8nJwF5xBeSvs84CB/vJ5uCmbdqyVdvpWWA39YIQ7tDWd5ObhOT1TPoJctvyixJWd
+         antEv6SML394RmMhEtniBfsR6ierMCyMRaZ9L9ZK+qIaoY+WvhxvlezxAeitjZfzE+GY
+         fAzGGf0gUR3Rbblxj7emd0z/pIpTZb5x58pRdZ2O7Ik46Ya7OQmsuN3tVeenahjDAXA5
+         4sFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692350378; x=1692955178;
+        d=1e100.net; s=20221208; t=1692350579; x=1692955379;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DY8KEU42wJyONdvFAuAwtQpgN/LqKQPJnRBi7LCo0Jw=;
-        b=LoOnlc9UL1tmfwXlM9smuQKKTCdjW1Vv2FkMkoQvjflnmjLzgyp2HDpR55id+F9nSh
-         xRq4d9aE3WTEUzG4CJ0aU2AEiRAsS5OOINOtMg8pVy/YTBJ7wQaVJu8CrpmSRrwIpJOc
-         D9kD5yy0CUtA8tk9NKbXj55k0khucwdBKI0uaHyPIy6pdXie2QpAOpVc+ViqZnUU+swF
-         g57Cw37LFB2UZ1WKYVwxyt8HWXCUMb38dpLk77KkgodzUbgkbMbEkQYIIcGR9YJlDWjj
-         PpwPK7PQ6Fy7xhasrHsPXI/9vAYCq4r6fgAiRqFkjxGgUznggGbrVc8Mtd14xJa51SlL
-         LA9Q==
-X-Gm-Message-State: AOJu0Ywb4R0QCq4eLlQdCMTOkFsF6mJzM2WVao69jBcWpoe2yzc9Si5b
-        ZoTnE/9D0+cj6SD5ppo4zMy4eQ==
-X-Google-Smtp-Source: AGHT+IHBgmT3LP7egpVe8pisvlD08m+U3szA9+vzZ9fLwy3b5TghIPmErMjDWF2xtxDtB8hW1zNRbQ==
-X-Received: by 2002:a17:906:7395:b0:992:d013:1131 with SMTP id f21-20020a170906739500b00992d0131131mr1663697ejl.52.1692350378359;
-        Fri, 18 Aug 2023 02:19:38 -0700 (PDT)
+        bh=pO/NLfSXQCGnKg4+bEM0fLqxGi3J0/6qioKdfhMjmdo=;
+        b=TmTIl7doq5AsrTRCum5LPxLlv57dEW84p7sFh/ah7/pzsNOc0UVBVzmE3uH8iyvCLs
+         wxFwgLKtuIkoZS2cZCnottfPlB36fNLQzF1DXUd74mIYoL7CBlIo2CmISqfYJMvG201Y
+         Dhl9I7jS/IlfL+PCqLKnLwdorqEyYzXtV9gw2emPRMM6iePws6nleKPc/Ld5Lop9JLxF
+         G//oEbtHurX+2QxMRqsj0otS0qb+J5xFgsLEevHIgD469LxQG4wC2rR+L5YJJzrBE0yR
+         msfsUj2SZLcWZASh02DS4KyThmkIiYKQW+AP6J1nCiMJ9ilpBPgzb404oDO+J/2Y3cOv
+         M22w==
+X-Gm-Message-State: AOJu0Yz8aV8n2+VyNMkW7lOYFK9A4EP7ooeXb/oT6geHj9LSVem7UrB/
+        9MOu95wTqoP+bxEJa+lBnSNnfw==
+X-Google-Smtp-Source: AGHT+IFw9N3TQC1B1E4pRPOoPEQa1tQS+7EU7C2gCPA40q+AD0dhQe3+j9nAbySNev9yshEM1YHHWg==
+X-Received: by 2002:a17:906:311b:b0:99d:e417:d6f6 with SMTP id 27-20020a170906311b00b0099de417d6f6mr1477184ejx.32.1692350579419;
+        Fri, 18 Aug 2023 02:22:59 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id jw11-20020a17090776ab00b0099d0a8ccb5fsm941471ejc.152.2023.08.18.02.19.36
+        by smtp.gmail.com with ESMTPSA id k21-20020a1709063fd500b0099bcf1c07c6sm956182ejj.138.2023.08.18.02.22.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 02:19:37 -0700 (PDT)
-Message-ID: <05550eda-d95a-6847-ad5d-cdc64b7f4bbd@linaro.org>
-Date:   Fri, 18 Aug 2023 11:19:36 +0200
+        Fri, 18 Aug 2023 02:22:58 -0700 (PDT)
+Message-ID: <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
+Date:   Fri, 18 Aug 2023 11:22:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: pci: qcom: Add opp table
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
 Content-Language: en-US
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        quic_parass@quicinc.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1692192264-18515-1-git-send-email-quic_krichai@quicinc.com>
- <1692192264-18515-2-git-send-email-quic_krichai@quicinc.com>
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
+ <20230808-stand-cheddar-b76b0b7509a0@spud>
+ <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
+ <20230808-esquire-epidemic-f9bd74ffde25@spud>
+ <CABqG17jm938MaEeqS03WeryVWSRBS7Bqq2Vwq9SL4QOGqXU43A@mail.gmail.com>
+ <b3eebd2b-c73b-fdc7-2b2b-07e97db26d92@linaro.org>
+ <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1692192264-18515-2-git-send-email-quic_krichai@quicinc.com>
+In-Reply-To: <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,18 +88,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 15:24, Krishna chaitanya chundru wrote:
-> PCIe needs to choose the appropriate performance state of RPMH power
-> domain based upon the PCIe gen speed.
+On 16/08/2023 10:51, Naresh Solanki wrote:
+> Hi Krzysztof,
 > 
-> Adding the Operating Performance Points table allows to adjust power domain
-> performance state, depending on the PCIe gen speed.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
+> On Tue, 15 Aug 2023 at 01:02, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 11/08/2023 18:00, Naresh Solanki wrote:
+>>> Hi,
+>>>
+>>> On Tue, 8 Aug 2023 at 19:58, Conor Dooley <conor@kernel.org> wrote:
+>>>>
+>>>> On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
+>>>>> On 8/8/23 04:46, Conor Dooley wrote:
+>>>>>> On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
+>>>>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>>>>>
+>>>>>>> The TDA38640 chip has different output control mechanisms depending on
+>>>>>>> its mode of operation. When the chip is in SVID mode, only
+>>>>>>> hardware-based output control is supported via ENABLE pin. However, when
+>>>>>>> it operates in PMBus mode, software control works perfectly.
+>>>>>>>
+>>>>>>> To enable software control as a workaround in SVID mode, add the DT
+>>>>>>> property 'infineon,en-svid-control'. This property will enable the
+>>>>>>> workaround, which utilizes ENABLE pin polarity flipping for output when
+>>>>>>> the chip is in SVID mode.
+>>>>>>
+>>>>>> Why do you need a custom property for this? How come it is not possible
+>>>>>> to determine what bus you are on?
+>>>>>>
+>>>>>
+>>>>> That is not the point. Yes, it can be detected if the control method is
+>>>>> PMBus or SVID. However, in SVID mode, SVID is supposed to control the
+>>>>> output, not PMBUs. This is bypassed by controlling the polarity of the
+>>>>> (physical) output enable signal. We do _not_ want this enabled automatically
+>>>>> in SVID mode. Its side effects on random boards using this chip are unknown.
+>>>>> Thus, this needs a property which specifically enables this functionality
+>>>>> for users who _really_ need to use it and (hopefully) know what they are
+>>>>> doing.
+>>>>
+>>>> Hmm, reading this it makes a lot more sense why this is a property - I
+>>>> guess I just struggled to understand the commit message here,
+>>>> particularly what the benefit of using the workaround is. I'm still
+>>>> having difficulty parsing the commit & property text though - its
+>>>> unclear to me when you would need to use it - so I will stay out
+>>>> of the way & let Rob or Krzysztof handle things.
+>>>
+>>> To provide context, my system employs a unique power sequence
+>>> strategy utilizing a BMC (Baseboard Management Controller),
+>>> rendering the reliance on the ENABLE pin unnecessary.
+>>> In this configuration, the ENABLE pin is grounded in the hardware.
+>>> While most regulators facilitate PMBus Operation for output control,
+>>> the TDA38640 chip, when in SVID mode, is constrained by the
+>>> ENABLE pin to align with Intel specifications.
+>>> My communication with Infineon confirmed that the recommended
+>>> approach is to invert the Enable Pin for my use case.
+>>>
+>>> Since this is not typically the use case for most setup & hence DT property
+>>> is must for enabling the special case.
+>>>
+>>> For further insight into my setup's power sequence strategy, you can
+>>> refer to the following link: https://github.com/9elements/pwrseqd
+>>>
+>>
+>> This justifies to me the property, but still you described desired
+>> driver behavior, not the hardware characteristic. Don't describe what
+>> you want to control, but describe the entire system.
+> I guess by entire system you mean how the regulators(including
+> TDA38640) connected & operated in our setup ?
 
+I mean, property name and description should say what is the
+characteristic of the hardware/firmware/entire system.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
