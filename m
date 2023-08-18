@@ -2,173 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DAE878114C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 19:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6129B781217
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 19:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378848AbjHRRKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 13:10:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57008 "EHLO
+        id S1344122AbjHRRhj convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Aug 2023 13:37:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378922AbjHRRK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 13:10:28 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A04C3C2D;
-        Fri, 18 Aug 2023 10:10:26 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fe85fd3d27so1810294e87.0;
-        Fri, 18 Aug 2023 10:10:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692378625; x=1692983425;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qZncaXQLSh9js0I4WjpTSahy4Bvx67wGvUaNA9X9QL4=;
-        b=mWiVtgsWZW2NgtZV2B1VWpSdYomDbnE5IM3I8NwhrcqW1ICl6KDFCrHBvLEuRWsiw4
-         h68dv3P2mof7Uvn0W27wQKaU+szILp/iQk+ZZ7NCHMVhJhaaxYk1+a6IgcFBFaY8cReV
-         hvVjg6Cg+nEmYiod4CbK7H4JM4/8z4fuiu3u9xolueCbV5aqABwD/8/5V7g2I2feoYCR
-         G5ILCR+KA5LzRYlbIJJR4nNGFEdPFRL7j0QSshp/zTF4GjzyaXgW7MjbGUrCcX5PuhQv
-         Ye3hwRCyudxym7NAyPZZLQ5am6U3HSWki/kp7aWRPkMXCwRq46p0gkXyFdFG+B5oJG4d
-         a9GQ==
+        with ESMTP id S1379131AbjHRRhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 13:37:13 -0400
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103EF4223;
+        Fri, 18 Aug 2023 10:37:03 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5862a6ae535so12178047b3.0;
+        Fri, 18 Aug 2023 10:37:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692378625; x=1692983425;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qZncaXQLSh9js0I4WjpTSahy4Bvx67wGvUaNA9X9QL4=;
-        b=Qozq4dgkE4kcxKEk2ycHumjRQ/xLNoZg6VwmiWfVEIZ355q82sRmczw+rK/9rGHwrQ
-         UHUH3UU81Mbc2zh0ZsZzdiNIVFA8q1dZVctsW6ekri3yhpwZXP/tJLQTO1aw6kkxew8q
-         bRZrUo42bG8dM4lma+pjnpY+3tSSnu61BvmXuMmMufWwm09gMulrcnyh8yeUzQhWW5MW
-         mZQGYJ9ErPJ2P9qtMtJKwBUgGe/tSZVdnvY8U+wqv9k8kb+lpK4Iam715jH/5Lsq0oUQ
-         rR3b27dvZCS5Nq/Xv6geJVIvuPTLmY38BV0VncwFZbMEamILgEkv8s3DaEO6VAsmbv36
-         bXrQ==
-X-Gm-Message-State: AOJu0Ywn/Nxtj7Sar8VjLZpWCWDICumAgzrhYVbz9wqNtd32ePTcT389
-        px6NIgzgZFHs1ACj3kMrQgI=
-X-Google-Smtp-Source: AGHT+IHsEr3WOE514VOmtMPl7fzHNR2vgMsIyU//tQb/ScBsu4i9rGSZix1w2kzZUdJX/qwEfDWk5Q==
-X-Received: by 2002:a05:6512:477:b0:4f8:49a7:2deb with SMTP id x23-20020a056512047700b004f849a72debmr2118416lfd.8.1692378624613;
-        Fri, 18 Aug 2023 10:10:24 -0700 (PDT)
-Received: from mobilestation ([93.157.254.210])
-        by smtp.gmail.com with ESMTPSA id v20-20020ac25934000000b004faf6a87d63sm417332lfi.38.2023.08.18.10.10.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Aug 2023 10:10:24 -0700 (PDT)
-Date:   Fri, 18 Aug 2023 20:10:21 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v5 5/9] net: stmmac: xgmac: support per-channel
- irq
-Message-ID: <k57laovdsomy4eblyu5neujkkcqinitfmdvojcph3zh2ygn4jt@iton4m73y6nz>
-References: <20230817165749.672-1-jszhang@kernel.org>
- <20230817165749.672-6-jszhang@kernel.org>
+        d=1e100.net; s=20221208; t=1692380222; x=1692985022;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q5oH2jYhBX6xr0+lSvBfeZSga3rbN0f7TFFwU/2+2ic=;
+        b=XJSzZeDynVL0GDF2BUZsPchE6vccFJBWp9X22MnZ2E1no8CDg2vjTAUdqsnNSN6GuV
+         FS4S18joj7fk4EhTIdu1pwF8VXBfR6cQnGmRrmx4+X8+wmIo1ZBy4oWxkLAeB+h0qoU0
+         vh0FZOSz+fD0d9hEytygNYtUmB4WEh83eVvEXjINzKmT8TCA5izH2rVuuDugrGhJGoRs
+         fNw2WMtp1KJz7KpT+TEF1W+y7OkJzJakKJjfMl8/6xzMP6FcReuHSgQT1tU4W5BFigdd
+         g0k/c3y4mOlAAbm8ayP6eStzJQMqQmMryHwrnZv8fdswLfH9MafirHCJSrZ6YlsmJZak
+         0DfA==
+X-Gm-Message-State: AOJu0YyWqeMHDFuN2v/9P2ex8sv+wsTpGT/6Bx45vO/wI/4XqeyjGzPI
+        sHWLAh1uZ74JswFxk226oblCV0xCubxzHw==
+X-Google-Smtp-Source: AGHT+IGU0udC3UBus1+nBfmgs36YgAxNRnE24/AUlnzKokvGPRWHywav12Y4dplxvjaCsnffEW8ydw==
+X-Received: by 2002:a81:69d5:0:b0:586:9c8b:4bb4 with SMTP id e204-20020a8169d5000000b005869c8b4bb4mr2814178ywc.29.1692380221973;
+        Fri, 18 Aug 2023 10:37:01 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id d15-20020a814f0f000000b00584554be59dsm619011ywb.85.2023.08.18.10.37.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Aug 2023 10:37:01 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d72cf9156easo1103599276.0;
+        Fri, 18 Aug 2023 10:37:01 -0700 (PDT)
+X-Received: by 2002:a25:489:0:b0:d07:d88b:4843 with SMTP id
+ 131-20020a250489000000b00d07d88b4843mr3622130ybe.20.1692380221415; Fri, 18
+ Aug 2023 10:37:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230817165749.672-6-jszhang@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
+ <20230801-dt-changeset-fixes-v2-2-c2b701579dee@kernel.org>
+ <CAMuHMdX4gqPLv5ZWiWe-B+bQtHSfF9AxZTKWisFZEKa29Ge2KQ@mail.gmail.com> <CAL_Jsq+2nz9MCLffKEHxygUbMNisNAFh_i-8BaZjXy_eDHEi0g@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+2nz9MCLffKEHxygUbMNisNAFh_i-8BaZjXy_eDHEi0g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 18 Aug 2023 19:36:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVN+A6XDHAThz-7gNWvdeFgSfPFW0EYSEJQ12CmRKVaHg@mail.gmail.com>
+Message-ID: <CAMuHMdVN+A6XDHAThz-7gNWvdeFgSfPFW0EYSEJQ12CmRKVaHg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] of: dynamic: Refactor action prints to not use
+ "%pOF" inside devtree_lock
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 18, 2023 at 12:57:45AM +0800, Jisheng Zhang wrote:
-> The IP supports per channel interrupt, add support for this usage case.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  2 ++
->  .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 33 +++++++++++--------
->  2 files changed, 22 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> index 7f68bef456b7..18a042834d75 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> @@ -340,6 +340,8 @@
->  
->  /* DMA Registers */
->  #define XGMAC_DMA_MODE			0x00003000
-> +#define XGMAC_INTM			GENMASK(13, 12)
-> +#define XGMAC_INTM_MODE1		0x1
->  #define XGMAC_SWR			BIT(0)
->  #define XGMAC_DMA_SYSBUS_MODE		0x00003004
->  #define XGMAC_WR_OSR_LMT		GENMASK(29, 24)
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> index 1ef8fc132c2d..ce228c362403 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> @@ -31,6 +31,13 @@ static void dwxgmac2_dma_init(void __iomem *ioaddr,
->  		value |= XGMAC_EAME;
->  
->  	writel(value, ioaddr + XGMAC_DMA_SYSBUS_MODE);
-> +
-> +	if (dma_cfg->perch_irq_en) {
-> +		value = readl(ioaddr + XGMAC_DMA_MODE);
-> +		value &= ~XGMAC_INTM;
-> +		value |= FIELD_PREP(XGMAC_INTM, XGMAC_INTM_MODE1);
-> +		writel(value, ioaddr + XGMAC_DMA_MODE);
-> +	}
->  }
->  
->  static void dwxgmac2_dma_init_chan(struct stmmac_priv *priv,
-> @@ -365,20 +372,20 @@ static int dwxgmac2_dma_interrupt(struct stmmac_priv *priv,
->  	}
->  
->  	/* TX/RX NORMAL interrupts */
+Hi Rob,
 
-> -	if (likely(intr_status & XGMAC_NIS)) {
-> -		if (likely(intr_status & XGMAC_RI)) {
-> -			u64_stats_update_begin(&rx_q->rxq_stats.syncp);
-> -			rx_q->rxq_stats.rx_normal_irq_n++;
-> -			u64_stats_update_end(&rx_q->rxq_stats.syncp);
-> -			ret |= handle_rx;
-> -		}
-> -		if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
-> -			u64_stats_update_begin(&tx_q->txq_stats.syncp);
-> -			tx_q->txq_stats.tx_normal_irq_n++;
-> -			u64_stats_update_end(&tx_q->txq_stats.syncp);
-> -			ret |= handle_tx;
-> -		}
-> +	if (likely(intr_status & XGMAC_RI)) {
-> +		u64_stats_update_begin(&rx_q->rxq_stats.syncp);
-> +		rx_q->rxq_stats.rx_normal_irq_n++;
-> +		u64_stats_update_end(&rx_q->rxq_stats.syncp);
-> +		ret |= handle_rx;
-> +	}
-> +	if (likely(intr_status & XGMAC_TI)) {
-> +		u64_stats_update_begin(&tx_q->txq_stats.syncp);
-> +		tx_q->txq_stats.tx_normal_irq_n++;
-> +		u64_stats_update_end(&tx_q->txq_stats.syncp);
-> +		ret |= handle_tx;
->  	}
-> +	if (unlikely(intr_status & XGMAC_TBU))
-> +		ret |= handle_tx;
+On Fri, Aug 18, 2023 at 6:17 PM Rob Herring <robh@kernel.org> wrote:
+> On Fri, Aug 18, 2023 at 10:36 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Sat, Aug 5, 2023 at 12:42 AM Rob Herring <robh@kernel.org> wrote:
+> > > While originally it was fine to format strings using "%pOF" while
+> > > holding devtree_lock, this now causes a deadlock.  Lockdep reports:
+> > >
+> > >     of_get_parent from of_fwnode_get_parent+0x18/0x24
+> > >     ^^^^^^^^^^^^^
+> > >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
+> > >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
+> > >     fwnode_full_name_string from device_node_string+0x1a0/0x404
+> > >     device_node_string from pointer+0x3c0/0x534
+> > >     pointer from vsnprintf+0x248/0x36c
+> > >     vsnprintf from vprintk_store+0x130/0x3b4
+> > >
+> > > Fix this by moving the printing in __of_changeset_entry_apply() outside
+> > > the lock. As the only difference in the the multiple prints is the
+> > > action name, use the existing "action_names" to refactor the prints into
+> > > a single print.
+> > >
+> > > Fixes: a92eb7621b9fb2c2 ("lib/vsprintf: Make use of fwnode API to obtain node names and separators")
+> > > Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > v5 (v2 in this series):
+> > >  - Move majority of refactoring to separate patch and minimize the fix
+> > >    to just moving the print out of the locked section.
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/drivers/of/dynamic.c
+> > > +++ b/drivers/of/dynamic.c
+> >
+> > > @@ -648,20 +634,17 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
+> > >                 }
+> > >
+> > >                 ret = __of_update_property(ce->np, ce->prop, &old_prop);
+> > > -               if (ret) {
+> > > -                       pr_err("changeset: update_property failed @%pOF/%s\n",
+> > > -                               ce->np,
+> > > -                               ce->prop->name);
+> > > -                       break;
+> > > -               }
+> > >                 break;
+> > >         default:
+> > >                 ret = -EINVAL;
+> > >         }
+> > >         raw_spin_unlock_irqrestore(&devtree_lock, flags);
+> > >
+> > > -       if (ret)
+> > > +       if (ret) {
+> > > +               pr_err("changeset: apply failed: cset<%p> %-15s %pOF:%s\n",
+> >
+> > Printing the cset pointer will (needlessly?) complicate the EXPECT_*()
+> > handling in the unit test.
+>
+> That's added largely because the other prints which I rework later in
+> this series had them. Either printing the changeset ptr is useful or
+> it isn't. I think people running the unittest and the post-processor
+> can easily enough filter this out when looking at the results.
+> Honestly, even I probably run it less than once a cycle.
 
-Just curious. Is this change really necessary seeing NIS IRQ is
-unmasked and it is unmasked-OR of the RI/TI/TBU flags in the
-DMA_CHx_Status register? Moreover based on the HW manual,
-DMA_CHx_Status reflects raw IRQ flags status except NIS and AIS which
-are the masked OR of the respective flags. So AFAIU NIS will be set in
-anyway if you have RI/TI/TBU IRQs enabled.
+Do you have a use for printing the pointer value?
+And by default, it will be an obfuscated cookie anyway.
 
--Serge(y)
+> > > +                      ce, action_names[ce->action], ce->np, ce->prop->name);
+> >
+> > This should check ce->action to avoid an out-of-bounds access beyond
+> > the end of action_names[].
+>
+> Indeed.
+>
+> I think I'll add "invalid" to action_names names and then do something
+> like: "(ce->action < FOO) ? ce->action : 0".
 
->  
->  	/* Clear interrupts */
->  	writel(intr_en & intr_status, ioaddr + XGMAC_DMA_CH_STATUS(chan));
-> -- 
-> 2.40.1
-> 
-> 
+OK, zero is invalid.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
