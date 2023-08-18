@@ -2,129 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1A2780EEF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6641A780F09
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:24:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378086AbjHRPSc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Aug 2023 11:18:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50324 "EHLO
+        id S1378120AbjHRPX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 11:23:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378048AbjHRPR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:17:58 -0400
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A832235A1;
-        Fri, 18 Aug 2023 08:17:57 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-58439daf39fso10768307b3.1;
-        Fri, 18 Aug 2023 08:17:57 -0700 (PDT)
+        with ESMTP id S1376715AbjHRPXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:23:51 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87893A94
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 08:23:49 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b9b50be31aso15610431fa.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 08:23:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692372228; x=1692977028;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dIIcxuAFlx9aKs7Cl7Yl1eDvCrH/6fa/raCeERHWYVE=;
+        b=CAUxaecAh7++RhSd0uSyMCt9cmkLu6U1lusWQ45opS3vkU6mp1In+zYTdEjApMTNMl
+         1tQ7trWYDNqj3fKPxGTC0VPbpV+D1CxE7p9j0wPnr48kxA3S2FCRxtG1loy0tBxUnljG
+         Jvxp3HajD5Z4enZEproAurNlCbIiYA1rhb2jWzzsViWs4dpt0cs0o1JZdMZHE9nbX3ZB
+         JdkcBq8AMx2tExbz3l6zF+cWtTPhG6oPCZosttxMdsYSb/EnY/XpRYgTYrueDttGWwrO
+         QOMHB7Jq2PLOHN7V6buhsoqG8xtPMPeN4sanx8stUOB2GBwBJ0t7LXBuO+uyq0F7YITM
+         RRLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692371876; x=1692976676;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2N194ARL0/KzZa8KoNgGxFPEhbq3PBex382jco3e17o=;
-        b=TKSbOh9LBQsNM6P4teMjgm7YmrWazk6o0mVIxi9uiYCN0IcFazffFkru2S0sa8hCFr
-         eHv3PwPr/MttwWQv/c5WFxj9GO1UZDZ3hrNPZTesjTSbM+jJ+WqeNG2oTkevk+5S7Ib+
-         rGbw4WK2LupTgP0qLHmjmjMg4Lr0wPhGP7IWgOjKjcd0XV3N0hDaGLE9lLMKlYdaKGIr
-         RFvc/uMqZWWr/OcB0gDM0E7nUC0acBvCBl2CRilNnXrsz1+rO1yJa7FLBAACWxFZW//y
-         qSAJBFPqjJl667px/qFd0ZEXrNwnOW4EYD0XsMHHVbbIss4uaoua1qx6Ic59cHVOMMSD
-         vjsw==
-X-Gm-Message-State: AOJu0YxnM4oql/hpIyazxN2LQtX9uzJDyzBO8auPAXdkzuZNPv9eGppB
-        V0kiXuwcFCzOe8WaBIbR0h2XgeXVWbohaqdX
-X-Google-Smtp-Source: AGHT+IF9EkUXfYKWDpugr9PlIGEUUogtfEJyfqA/Xcd1WL53C62nM9twgktMS+ftnLsDOxBFn+fLsw==
-X-Received: by 2002:a81:6241:0:b0:58c:9974:b660 with SMTP id w62-20020a816241000000b0058c9974b660mr3128915ywb.22.1692371876510;
-        Fri, 18 Aug 2023 08:17:56 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id l4-20020a81d544000000b005839a780c29sm535202ywj.102.2023.08.18.08.17.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 08:17:56 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-58a24ac48eeso10868337b3.0;
-        Fri, 18 Aug 2023 08:17:56 -0700 (PDT)
-X-Received: by 2002:a25:250f:0:b0:d11:45d3:b25d with SMTP id
- l15-20020a25250f000000b00d1145d3b25dmr3091291ybl.46.1692371875925; Fri, 18
- Aug 2023 08:17:55 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692372228; x=1692977028;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dIIcxuAFlx9aKs7Cl7Yl1eDvCrH/6fa/raCeERHWYVE=;
+        b=iuu4vqtdYaZRinRGZ+A4qbw7DMlpEBZIS8GyCI//WK6fw4tbwjwlGNZb+OKp/svqp+
+         reT4Uffipxdeb6npq76eLMgMO7UD5j4+Xfm3nL4N3EqePYiY1W5oWGw45ixp+eDoFZGL
+         bJlJGAO+HdRaggsDROQ+E40xOBzO2iksPOdZ/cRI5qE+nWdDkqojDXhJWXIwToRv8r0v
+         30ULLRS3BCQfF1pFsCpaejFp4C1gdL6HfV8Z6ZKGDRemKESA/VhbYN8E351F5Bla8KvC
+         ncn1KYx75kCtZDad8+YWhN88os6ZcrE8o4sW0n9vt84UCXrqHpwlTHlfpyGhKMx60LNI
+         FCLA==
+X-Gm-Message-State: AOJu0YyCW7SWn29dU2lvX058157JLZATg8kWheZI3jSHiMghRa0lAUO0
+        SvHP1ZB0luCm8kic+nQLvWDF0g==
+X-Google-Smtp-Source: AGHT+IHcOAgqi0DbvVWG2679OAf/dVwZshTIEbHUxcjcL9zp0fNGpOjrzec/v1MxyQdD1Tj8m2SpRg==
+X-Received: by 2002:a05:6512:2243:b0:4ff:8f45:677a with SMTP id i3-20020a056512224300b004ff8f45677amr2635386lfu.51.1692372227774;
+        Fri, 18 Aug 2023 08:23:47 -0700 (PDT)
+Received: from [192.168.1.101] (abxh52.neoplus.adsl.tpnet.pl. [83.9.1.52])
+        by smtp.gmail.com with ESMTPSA id y2-20020ac24202000000b004fe4d122a66sm383715lfh.187.2023.08.18.08.23.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Aug 2023 08:23:47 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/5] Xperia 10 V support
+Date:   Fri, 18 Aug 2023 17:23:23 +0200
+Message-Id: <20230818-topic-10v-v1-0-dbb6464223c6@linaro.org>
 MIME-Version: 1.0
-References: <20230818075600.24277-1-biju.das.jz@bp.renesas.com>
- <20230818075600.24277-5-biju.das.jz@bp.renesas.com> <ZN9WCKQ/hv4zKfsK@smile.fi.intel.com>
- <OS0PR01MB5922F93ABF408AA9037A8EAC861BA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <ZN+IDGfc0MJfqOV9@smile.fi.intel.com>
-In-Reply-To: <ZN+IDGfc0MJfqOV9@smile.fi.intel.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Aug 2023 17:17:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWwo1hYnbztoRUtHD7iw53f7Np-vPsfMMBdwbMP7-Q98A@mail.gmail.com>
-Message-ID: <CAMuHMdWwo1hYnbztoRUtHD7iw53f7Np-vPsfMMBdwbMP7-Q98A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] iio: magnetometer: ak8975: Drop deprecated enums
- from OF table
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOuM32QC/x2NSwqAMAwFryJZG2jrB/Eq4qLGqAGp0qoI4t0NL
+ ucxj3kgcRRO0GYPRL4kyRYUbJ4BLT7MjDIqgzOuMI1t8Nh2IbTmQkNU1Tx5HksH6g8+MQ7RB1r
+ 0Ec511XGPPMn9B7r+fT9WeKGCcAAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-hardening@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692372226; l=1108;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=h39Fv6t1ifFMpAjhSmArTsFTxZXueMRnwkKIjDcqYDs=;
+ b=/mFQLKpXRMGPCWUbSTyxCkB0b6DtLWHPg6Jhycfq6B1w/zr4Su9S8oz6JZsjnm126selNuCkP
+ FiFkBgahbCFBgf53h3Wx24uennBg3FKnfOCHpyUmTK6CYBXvw7BWs2U
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+This series brings support for the new Sony Xperia 10 V and with it a
+couple of improvements to sm6375.
 
-CC devicetree
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (5):
+      dt-bindings: qcom: Add Sony Xperia 10 V
+      arm64: dts: qcom: sm6375: Fix I2C10 GPIO function
+      arm64: dts: qcom: sm6375: Hook up I2C7 GPIOs
+      arm64: dts: qcom: sm6375-murray: Separate out common parts
+      arm64: dts: qcom: Add Sony Xperia 10 V (PDX235) support
 
-On Fri, Aug 18, 2023 at 5:03 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> On Fri, Aug 18, 2023 at 11:40:37AM +0000, Biju Das wrote:
-> > > Subject: Re: [PATCH v2 4/5] iio: magnetometer: ak8975: Drop deprecated
-> > > enums from OF table
-> > >
-> > > On Fri, Aug 18, 2023 at 08:55:59AM +0100, Biju Das wrote:
-> > > > Drop deprecated enums from OF table as corresponding entries are
-> > > > removed from bindings and it also saves memory.
-> > >
-> > > You can't do this.
-> > >
-> > > Only sorting by "prefixed first" criteria is possible.
-> >
-> > The rule applies only for fallback compatible. I checked bindings and I don't
-> > find any fallback compatibles. All compatibles are just enums. Am I missing
-> > anything here??
->
-> Yes. As per above patch. The _whole_ world is not under your / our control.
-> NAK to this change, sorry.
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../dts/qcom/sm6375-sony-xperia-murray-pdx225.dts  | 421 +-------------------
+ .../dts/qcom/sm6375-sony-xperia-murray-pdx235.dts  |  54 +++
+ .../boot/dts/qcom/sm6375-sony-xperia-murray.dtsi   | 427 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6375.dtsi               |  11 +-
+ 6 files changed, 495 insertions(+), 421 deletions(-)
+---
+base-commit: 7271b2a530428b879443b274c191b34536a4ea11
+change-id: 20230818-topic-10v-0cc56efaed42
 
-The single user ever in the upstream kernel was fixed in commit
-9846210b1ec9bbaa ("ARM: tegra: seaboard: add missing DT vendor
-prefixes") in v3.8 back in 2012.
-And it had to be fixed again 9 years later in commit fa0fdb78cb5d4cde
-("ARM: dts: am335x: Use correct vendor prefix for Asahi Kasei Corp.").
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
-There may be other out-of-tree users, which would be broken by this
-change.  Typically we wait a few years between deprecating a compatible
-value and removing support from the driver.
-
-As Biju is only deprecating these compatible values in PATCH 3/5 of
-his series, this may be a bit premature.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
