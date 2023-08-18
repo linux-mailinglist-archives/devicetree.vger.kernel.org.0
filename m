@@ -2,82 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B6CA780D3E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 15:58:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37161780D88
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 16:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377523AbjHRN6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 09:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
+        id S1377638AbjHROGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 10:06:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377477AbjHRN5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 09:57:47 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 999553C2D;
-        Fri, 18 Aug 2023 06:57:46 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bb99fbaebdso14998611fa.0;
-        Fri, 18 Aug 2023 06:57:46 -0700 (PDT)
+        with ESMTP id S1377622AbjHROGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 10:06:09 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A92C2102
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 07:06:08 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6874a386ec7so125763b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 07:06:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692367065; x=1692971865;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1692367568; x=1692972368;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3YWWR1nS6vb2OHIsahOY5Qls7LOXPtQs7I7ZgEhlX1g=;
-        b=CznlxsSftDnKiCJU+W3lkFf52eMZ8aYWBA7JchxklP0oWEoWuXsXvGudx/m3EEZLGk
-         nwMfAcTuCIzwToovGL/7/e56dXAWUAM8J/VQSj8Z3HBUV7jEdinC6dKtnb1VV37mQXz2
-         p1L3DMxMaZWW89n+FPGnoxO8zVLcp3Ahfbj86N6csa9fTKTLHmpjRe+4Rd3U/9mGI/8v
-         NfwgEAinGkj8VwLKwCBxUi/ZKOmgmxsX0w2oprTTlaTF3j5ucg9UOZ1lMxb0J1/wv5N0
-         GG8mNaFl3th7bfYonMlx6KBB8PpamaO8XEnn3mcOggTjEX7CBVRrb14E+iVck261f1BD
-         cvZA==
+        bh=eR23u7rhf2bJViMqwRiTykMNM4H4yseR+TFTHv2cXJA=;
+        b=mzOOK6OHUpqe2u4FBqTtdMQ7QWuaIrQLLupyCvBeklg/cCS/g+BJk1/QMU3JwOn0kP
+         uvvjdHFHODs1dNZqtlOd8VJ2MOI0JF+Rde39gMRd5JTk5tL/z/eWhbvHMNCislHebIrK
+         6fakhL6JAmLudQGaJalScWzC2SJkTCQfeEeEvrLemmnlmEA0SoGXHwiPt/RoidtKw4+J
+         /Ff3VsK+HS5+TUUWaV1CVB5UMpvKJNBjJ8gqfx8bYPYPm4zqTHi9MAYZJ3UMF81jQkS/
+         h4vmWV0+1vP/WdbpCA3YNTftWIcwlOsHNUkSe3MxQDqerOH5d0QltZOHA7wrfm93xv0D
+         gLrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692367065; x=1692971865;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1692367568; x=1692972368;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3YWWR1nS6vb2OHIsahOY5Qls7LOXPtQs7I7ZgEhlX1g=;
-        b=cp4dn7J2tveNB+eyARZZI8Mn6p1TVuHudsZNPNruIZHESDaXb0c1dsb562BE07ETk5
-         XLpoIPPmOu4U2jucGZULjU3ZvcgaNNPm4gSlSERchtgOqjKfSNrqCQVGnGVyBvrLBQXY
-         sMmyvDjTbyNFHJKrO5dHkBNwpxaPeoNEWzYCSt/qO42aSAae2Lpmp5NVhxbq9g0LDyII
-         r+0J9HfwLUN/NWbGxgZSnciB621wifc0yk3qQnqGVOaO+MT+lgrsKZDiswZM9a2hpyYd
-         ZLl4fz/tQOoQCjU35ue8/px38YC1eUIZgxkfOY51cOcv+/n4Zef95eair58CNBL1Z55N
-         kYvg==
-X-Gm-Message-State: AOJu0YwvGl1+pliGORVF6msQF5P0ZGX5G5hYNWeJEyqiQmpBFGxSkfpV
-        ro79OXLGWpMrN8dBdztxcDo=
-X-Google-Smtp-Source: AGHT+IEL69oFLf3nqw2LLZ/AVS7OWP11M44RmEWTICV+XBU/q9SReVOt6vvBx/Ezdw0LpLTugUP3pA==
-X-Received: by 2002:a05:651c:145:b0:2bb:94e4:490 with SMTP id c5-20020a05651c014500b002bb94e40490mr1867517ljd.23.1692367064754;
-        Fri, 18 Aug 2023 06:57:44 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:4b30:13e8:1d57:42fb])
-        by smtp.gmail.com with ESMTPSA id s14-20020a05600c044e00b003fa96fe2bd9sm6444055wmb.22.2023.08.18.06.57.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Aug 2023 06:57:44 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org,
-        Christoph Hellwig <hch@infradead.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v12 6/6] soc: renesas: Kconfig: Select the required configs for RZ/Five SoC
-Date:   Fri, 18 Aug 2023 14:57:23 +0100
-Message-Id: <20230818135723.80612-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230818135723.80612-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230818135723.80612-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        bh=eR23u7rhf2bJViMqwRiTykMNM4H4yseR+TFTHv2cXJA=;
+        b=lFWUGz1Nhr0rbj/xVGxRYWyVqcIlJQzy5Qiu5JmRkS7YGYCuZ3HSmBt94Lc/xf2zjg
+         XOrPq7WejS6kTGa4dRi6OtYzfIIEf2nVooe7IKGiWC1Grkd5nEpk1VQ2F1Ni1aqA4Tmp
+         SHAn9OQY2SsypLnfKVyE68CBaUYaOhAGsg3V//G4sDz21DMUcYhQQ+CeP9S/qWYKfcGh
+         6N+9cKIs6URS2Uru9ul1gYjawT2fiBr0p/rGE3T8j9Xywln49HCDgtLidh7qTbwgGA/h
+         A6vGMNCyPlTVX9/C0gwoZtMk0g40KU7oIw/T9RV9qdtzVfyAMSXbuOWujXSx9g0tMcNN
+         PI7A==
+X-Gm-Message-State: AOJu0YxMsTTZfQi2J0XVEfYt2ATGdx/93eOhY5EHQdHIZHcQaWPo5uAY
+        kYyUIKivDN6hXcNNRx77ksNQxf3DUqusgFS6ms0=
+X-Google-Smtp-Source: AGHT+IGu7ywOMV7AdXtzhR70o/rb0vCkCU+FuTC1iA12347Pi4C75SS41+EoWAYP1wjhDOqxwwhZMv+9D4Ecr9AM8As=
+X-Received: by 2002:a17:90a:6806:b0:25c:1ad3:a4a1 with SMTP id
+ p6-20020a17090a680600b0025c1ad3a4a1mr2518935pjj.1.1692367567630; Fri, 18 Aug
+ 2023 07:06:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230814081148.4027053-1-victor.liu@nxp.com> <20230814081148.4027053-2-victor.liu@nxp.com>
+In-Reply-To: <20230814081148.4027053-2-victor.liu@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 18 Aug 2023 11:05:56 -0300
+Message-ID: <CAOMZO5BktVaO1hRgv-WvwY2tV3eUrNnNMiQJKH654K+-AT5ECA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm-evk: Add VDDEXT_3V3 fixed regulator
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -88,56 +70,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Liu,
 
-Explicitly select the required Cache management and Errata configs
-required for the RZ/Five SoC.
+On Mon, Aug 14, 2023 at 5:07=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrote=
+:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Conor Dooley <conor.dooley@microchip.com> # tyre-kicking on a d1
----
-v11 -> v12
-* No change
+> +       reg_vddext_3v3: regulator-vddext-3v3 {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "VDDEXT_3V3";
+> +               regulator-min-microvolt =3D <3300000>;
+> +               regulator-max-microvolt =3D <300000>;
+> +       };
 
-v10 -> v11
-* No change
+Booting the dtb with this change will cause this regulator to be
+disabled as there is no consumer for it.
 
-v9 -> v10
-* No change
+I suggest squashing both patches:
 
-v8 -> v9
-* No change
-
-v7 -> v8
-* Included RB tag from Geert
-
-v6 -> v7
-* Included RB tag from Conor
-
-v5 -> v6
-* New patch
----
- drivers/soc/renesas/Kconfig | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index de31589ed054..67604f24973e 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -334,6 +334,10 @@ if RISCV
- config ARCH_R9A07G043
- 	bool "RISC-V Platform support for RZ/Five"
- 	select ARCH_RZG2L
-+	select AX45MP_L2_CACHE
-+	select DMA_GLOBAL_POOL
-+	select ERRATA_ANDES
-+	select ERRATA_ANDES_CMO
- 	help
- 	  This enables support for the Renesas RZ/Five SoC.
- 
--- 
-2.34.1
-
+Tested-by: Fabio Estevam <festevam@gmail.com>
