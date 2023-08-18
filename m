@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FA578146B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 22:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F116781474
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 22:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380055AbjHRUqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 16:46:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36938 "EHLO
+        id S240367AbjHRUwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 16:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380045AbjHRUpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 16:45:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A57128;
-        Fri, 18 Aug 2023 13:45:35 -0700 (PDT)
+        with ESMTP id S236167AbjHRUwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 16:52:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55D3C30C2;
+        Fri, 18 Aug 2023 13:52:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A225961A04;
-        Fri, 18 Aug 2023 20:45:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5316AC433C8;
-        Fri, 18 Aug 2023 20:45:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DF9C264631;
+        Fri, 18 Aug 2023 20:52:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A666C433C8;
+        Fri, 18 Aug 2023 20:52:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692391534;
-        bh=M6w/nKu6/Yxbouu45YEKnR0/SvvbC0Gr7FbEcvV2fP0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u/n39ent+RqY8GQKx0DIxiMH4PF3Y41Y0vLV8piv61s8QG3Cv2b2rJsMajy5ld9WF
-         hZT20u7PEGW7+ivTq2xPVH3LWCE0DL74Xb3cZJZWH5+pzky2bryOBESemYUP0Ovl/p
-         Chm0VostUmuCnmCOdKVLLtsCV9nAUZsHIxk1e7aUezo3H33uFzZBAJCI9DO+pkJ5L2
-         Il8epCKe+AqgbWFZd+S8tr5mdbySrARK5HCxE8iKHSgeow6LIyqaDLMuvGknUw5fOh
-         NukADmEbC/y7CCmXoHxwnudbc/a9iEKBXJDV4yCiOR7l2/fmpnoO0HZZ6IX/ceeIp5
-         H8YVLEYf5Vjog==
-Received: (nullmailer pid 550632 invoked by uid 1000);
-        Fri, 18 Aug 2023 20:45:32 -0000
-Date:   Fri, 18 Aug 2023 15:45:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, conor+dt@kernel.org,
-        Fabio Estevam <festevam@denx.de>,
-        krzysztof.kozlowski+dt@linaro.org, giometti@enneenne.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pps: pps-gpio: Convert to yaml
-Message-ID: <169239152974.550532.12741438096585377722.robh@kernel.org>
-References: <20230818174159.1680572-1-festevam@gmail.com>
+        s=k20201202; t=1692391926;
+        bh=2591KLTh34UdCImi9XsrGqT9RFuSjRzducgPr6mHRwc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RgxU+SV7mH3znQsNZFqDW5Yp5aTzKPsOHkAq5Z3fgA1k++Tp5ozEF9HHf6YWVEZlw
+         wB9yWIxvCRnXiRL14T4vEiY8sn4YmSLv0bIoGZew3iQRC/VwAhzi5RgFixqTQfYRSj
+         KRQ7Qmpc6S+QPNYcZnCRT9a8Fs8BxPM0EZpp3Qe8+fMCjlSeT2rlrw/LoU2QTS9fIu
+         /nfWUNvYT0sMBKOEJ0SkzFBjGFRbxpeNn/0ceuNc9AY60srOZXGFyuzA46RuVDh8zD
+         rppPP7+Y8HEF/dKG84UO5DJQ68oL9hdpoO2hc1nXigob2ysgsxvJ7i4PM3PO7vvHzl
+         fFpfMzLSINX5Q==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b9f48b6796so20611191fa.3;
+        Fri, 18 Aug 2023 13:52:06 -0700 (PDT)
+X-Gm-Message-State: AOJu0YyMCJcSJuF5eavKoop/r24wIqUvXI4SK7XnaCVdyFd04TyoSHTW
+        vMAE3Vn8F69MykVTCUPnh2YoWAtvIjIl9qdDYg==
+X-Google-Smtp-Source: AGHT+IE+Ok/XyvO+uFADbXPAxOEICkIRa47fmEPW0YlmMjo/NQsJesPj00UvPrW+8iAiJ0f0mYLDfEnZR4zKfIGzn8c=
+X-Received: by 2002:a2e:98d2:0:b0:2b6:e958:5700 with SMTP id
+ s18-20020a2e98d2000000b002b6e9585700mr268641ljj.4.1692391924315; Fri, 18 Aug
+ 2023 13:52:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230818174159.1680572-1-festevam@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+In-Reply-To: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 18 Aug 2023 15:51:52 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+To:     Shenwei Wang <shenwei.wang@nxp.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, imx@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Aug 18, 2023 at 10:35=E2=80=AFAM Shenwei Wang <shenwei.wang@nxp.com=
+> wrote:
+>
+> Documenting the regulator power domain properties and usage examples.
 
-On Fri, 18 Aug 2023 14:41:59 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Convert from pps-gpio.txt to pps-gpio.yaml to allow schema validation.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> Acked-by: Rodolfo Giometti <giometti@enneenne.com>
-> ---
-> Changes since v1:
-> - Pass maxItems to 'gpios' and 'echo-gpios'. (Rob)
-> - Pass 'type: boolean' to 'assert-falling-edge'. (Rob)
-> - Added Rodolfo's Acked-by tag.
-> 
->  .../devicetree/bindings/pps/pps-gpio.txt      | 30 ------------
->  .../devicetree/bindings/pps/pps-gpio.yaml     | 49 +++++++++++++++++++
->  2 files changed, 49 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pps/pps-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/pps/pps-gpio.yaml
-> 
+This needs to answer why we need this.
 
-Applied, thanks!
+It looks like just an abstraction layer to make regulators look like a
+power domain.
 
+Rob
