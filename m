@@ -2,246 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA73781057
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FBBC78105F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237214AbjHRQ2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 12:28:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40032 "EHLO
+        id S232593AbjHRQ3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 12:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378639AbjHRQ2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:28:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2577E30F1;
-        Fri, 18 Aug 2023 09:28:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B76DA62128;
-        Fri, 18 Aug 2023 16:28:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DE97C433C7;
-        Fri, 18 Aug 2023 16:28:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692376100;
-        bh=LiRICI2/J0/ebyHM3s44JO/H09M7s9q4Pw4YKyi40B0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YIaTiWx0iaadO9GLlgdR6Ynxq3YrTjhjpdgNAkFQWKT7kLmgd+JX9/L84HhR1DWCv
-         dtZXjWMIQ8JBm3DtBbEXwsj/kySmHVdHYfaqRWqOTv1E4T3XWZTpVJbAIGVvg2BagW
-         o8H2c2bumPoOEw8UcawwBMw3inaoHGhV8EsnVWYAHeDJuBOldN2vI261VoTgX8YD+b
-         jlCa72GaimHOO5prpaZvSexRLogB8/Au7lBrL6gddOvwKlIV4FU8F509VdSKBIytVU
-         3ujpO6dPeix+zMebzmVA7JJnfQzvVcawJjjG4VnA3yI7i5ite0sl8GnZ1XqRasSSSg
-         1mXOq4f12Gwzg==
-Received: (nullmailer pid 124312 invoked by uid 1000);
-        Fri, 18 Aug 2023 16:28:18 -0000
-Date:   Fri, 18 Aug 2023 11:28:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: Fix typos
-Message-ID: <169237591222.120900.11534361495306625818.robh@kernel.org>
-References: <20230814212822.193684-1-helgaas@kernel.org>
- <20230814212822.193684-3-helgaas@kernel.org>
+        with ESMTP id S1378645AbjHRQ3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:29:31 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094CC3C04;
+        Fri, 18 Aug 2023 09:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1692376170; x=1723912170;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=z2iRC3Gu761m6km9C2nX1hx7Lt5GioL7+xXrJRKL4o4=;
+  b=h8rVFuH5r5tGhZVU5sjNTbRe0VoNXkChuTm3IH+ys/U/Of+hda9nL3PY
+   B5iQQ7OwGf9ZYyRs+hNg+m3ZTt2UW3ZORquv64FiuOVsD+o7/VoBNjIqa
+   Zu0qqFTLtZ7AlejjvpVq21ccmKzq9UdSBBqUylaMMKD6LjESUUGSWyFus
+   Y5u0LjnvyFsazjbSzKjkquvSvn7RjZyf2vW9i/M7wgQPgThU8JT2hX1X4
+   dMwRy5/dV/sUcOoSrjQzxAgudxLgKq34ucxIpl76ionxOPIerzlxgdAKl
+   /PVMSf5iM5B/jSJaOarxDf91xcj+84QQb/pdq93gdk1zIBGRrgLxAYAcK
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; 
+   d="scan'208";a="137051"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Aug 2023 09:29:29 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 18 Aug 2023 09:29:29 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 18 Aug 2023 09:29:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RYEzzz1D+tDnt/3UQ/8ducVywPn9z1BcSRFWco5d25sW+gB3xZI31D8NLluLoLKWS60ERHyHo02ajwxjjIBAY+LqMIoLkpUWWw7dpix0tSW/0M7hswwKhLlfIMOrR7V9Hb6z6Zp1/NISaJL3Bfiz+7XqQ3uWy7iE56fhhWqCbckI2mpQSZMyaH7xTqyNP7rRECFmmiKKh07OIp5DIHyT8NcK5X00bOZ5LScxbLxS51b6FBmbPXLQ4t+mdSFiPMjLRRr5FLWfCwoN19F8W+gEDLsy+5aD3JhRp5PALa1dQ228AIHsMgdisfo899Ke2lKplFcadM7NgAt5NFAt/0cgEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z2iRC3Gu761m6km9C2nX1hx7Lt5GioL7+xXrJRKL4o4=;
+ b=fplS+z//B+weXxRH0G8JcTpw+bYaBBOAd4iRCO+3TR6MRrLMvImHrDNxhnRF51PIJa3gAzmApbu9kv44r7pLXfUErqoJTgpVrHYa3utletPEF2dadh1nCvDiXgMOYW+g/1yk7pHznC/iFXb1+gTklyqCapsylEdhGA62KTmTbxDofZDs8kpjujVIKPg6cL5n5aEUTNKqMKGSGAehAKJCMpJhsuw9kl4zGOdOfeMBS7X6gF67f4cplcC2JV9xmvxDV4wrHLvS+axBpzgrZt14+HlHEQy/BU79S4fe09O++l4poge2+gByQHLLSrNC7KowBXwLNi4PA+anAG4AvTY8QQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z2iRC3Gu761m6km9C2nX1hx7Lt5GioL7+xXrJRKL4o4=;
+ b=PFWNeVqI+LYohYg0v6CCx3EtHcLPU4EZc2msXVBA0eu4ZDq4ZlmK1pNG0tUod0R7M4ec0bYdgwW3auJgkXhRFumtLWT4eRgx8AOUG+AwRzcFdAZTfqChYsymvzsAj8Vh6t6iMtbXM/6Ljt4StJwBWkqIZ7i/ecV/yY7AnPvEIPw=
+Received: from IA1PR11MB6395.namprd11.prod.outlook.com (2603:10b6:208:3ac::14)
+ by CY8PR11MB7746.namprd11.prod.outlook.com (2603:10b6:930:86::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.30; Fri, 18 Aug
+ 2023 16:29:26 +0000
+Received: from IA1PR11MB6395.namprd11.prod.outlook.com
+ ([fe80::6ca0:521:dd8e:b296]) by IA1PR11MB6395.namprd11.prod.outlook.com
+ ([fe80::6ca0:521:dd8e:b296%7]) with mapi id 15.20.6678.031; Fri, 18 Aug 2023
+ 16:29:26 +0000
+From:   <Marius.Cristea@microchip.com>
+To:     <jic23@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lars@metafoo.de>,
+        <linux-iio@vger.kernel.org>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: adc: adding support for MCP3564 ADC
+Thread-Topic: [PATCH v3 2/2] iio: adc: adding support for MCP3564 ADC
+Thread-Index: AQHZxuAR8aV7wOpdPUiNu/ootgnZAq/b/0UAgBRVRYA=
+Date:   Fri, 18 Aug 2023 16:29:26 +0000
+Message-ID: <1c0f578669737e7f27a8ff9e0416b6c96eb917f2.camel@microchip.com>
+References: <20230804142820.89593-1-marius.cristea@microchip.com>
+         <20230804142820.89593-3-marius.cristea@microchip.com>
+         <20230805185900.2441a20e@jic23-huawei>
+In-Reply-To: <20230805185900.2441a20e@jic23-huawei>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6395:EE_|CY8PR11MB7746:EE_
+x-ms-office365-filtering-correlation-id: e950bda8-9103-4f61-4478-08dba00849fb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SnpmpYKR0dvGNTol/pr7TsTla1K0Snq4PaaCHzt6ElFWgrUqU2lbu4rDpriEaPa6e0e15633auKcN5oWvM1+bQi8ZOqpzbCTBJnimG6tDqwvB++waQ20d81WKDvKqZ7196a1ey/ytH0YNZB4ZTpQAEOSZthajUoEqcjhBIDGBAjk0ioY2k3yBQgUK8b2EvXyLFe0BOodZQHSng/9wqBkVRPHfYZFaBWyBIz7NqY5z1l0/4gXZenWZIkOFTnCselapk7AAo9Ym96OyZISXEIutWPVMZFFvbhUQvHiOyUCOmv+OR9Ft39l+n2otrOQdxVMQkap/6Uav8CAobI3igWgEh+u/DHhYl/p0CsqsNbYtkZO8cnHHKeMe9KudzHNMpWDk0sEeVO0AW4ABABTpwX1kC5xpWfuTZnGqtr1A4gBzLJKm5i4gldJzO7AyCbOxfCV4hTWE0jMP+h5BNo8STc9SQDH+Eh6o59zlUB+IvHPBrZcAV3eh/wA1MxCL6MnF09gcRI/9ZwcbhSjMfNtYsJCAdMhW22WfSZZu7TRERiSQNEErWhnumzfSK3VFrgNKf9Kvavj8lNmklOy51hHd1DFcRR0ieNLO+Bqg/ervXDibOZts8/QoGRQCZnodQxUgswV
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB6395.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(376002)(396003)(39860400002)(346002)(186009)(451199024)(1800799009)(2906002)(4744005)(26005)(6506007)(86362001)(478600001)(71200400001)(6486002)(2616005)(6512007)(36756003)(5660300002)(41300700001)(66446008)(122000001)(66476007)(54906003)(76116006)(91956017)(66946007)(66556008)(64756008)(316002)(6916009)(4326008)(8936002)(8676002)(38070700005)(38100700002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MFAvdUdORDR0elFJSXgwQmc2MzBTaTllU0ZFSjBqQ1JJRjZvQ0N2aHVJdUtY?=
+ =?utf-8?B?ZWQxWFVzU3BnTDhFSDZvSy9XSUkrbk5QT0FoNGIyWXNtN0hrMUtLYmRJNXdh?=
+ =?utf-8?B?MWw3cW4xREgxeUVZOEk3VlQzTC9mTXJGakM5Y2ZjaUlGdUFCS0tzTnlsaGRS?=
+ =?utf-8?B?WFVxaTdKUUVYVk5ucklZemhGRUFZRkxSMDRCaCtYMVFoN3k4RnR1MmZ5Y21z?=
+ =?utf-8?B?YWtNcnZhZkxrcncrVTROdVdNczRnTWFIaktVb3ZoL0pNK1JmWEVINXVBL3h2?=
+ =?utf-8?B?MFNHQitBK0pVTXowVlV0eDQ5a2lFaitsUk11UzJBUVU1TStndndKckJYVjJT?=
+ =?utf-8?B?NVV5VnlGMEVqVmtvMVl1c1FGYjRodkdMNml3Z1hmcjJyUEVrKy9KcE1YenZp?=
+ =?utf-8?B?VHVVdjFBNHdBNWZzY0dZVWxYMmVGQUx1dkxBVzN0MDB3MkwrU1NUU09BTHpr?=
+ =?utf-8?B?TGNWNm9Gc0dHM1I4TDRMaVNqcHUvSXpZcEd0eCttR1J4dUduaGIxT1huL2F5?=
+ =?utf-8?B?MHFrMkFyb3JnQ2tYaTNPQWxsV3hwclRyZHhoNFJqam84a3Q5bzZLTmQyb2lC?=
+ =?utf-8?B?NUtnZk9OOE5PZWlkemljM3FBWjVOMzU3cTF4RG5aWHJPT3RTeWM3Ynd6SnR5?=
+ =?utf-8?B?alZxSnBBWHNxN0lncEIxVzlWT2loM0FSRWY5R1BycEFRcU5RVXZqdTZiMm5Q?=
+ =?utf-8?B?cFdscEJqek5OM3JkcHpCeEgzZ1FzT2ZqTlVHc2xWMGpvNXpCSDJsL0owOEdn?=
+ =?utf-8?B?UTBJN3QxZkd1WlpwRkR5S0NzUVFyeVlHZ3c4S2JSU0ZqejJsMm40NUNvRkd0?=
+ =?utf-8?B?N0tlenhYQmVBRG1RQ0ZqamRwb2JnLzRFbkYwUTdzcTRjbVNtdVMxVDM0MnMy?=
+ =?utf-8?B?SHlOTXFPejFTTXNoYnp4LzRpazVGK1FVUzNJTTBLMzhjQS9JNWh4QlV4TkVE?=
+ =?utf-8?B?UmZGcWpXODQwemE2RnBIL0JMcnFNSEtFRytNZ2diUHgwRHpzZFhjT2FZSTFp?=
+ =?utf-8?B?LzZ2c1pnREJNUUFnaXJzZGJKUlk0Skh0bmljWVVtTnZ1MTMyTFd4bVcrZm55?=
+ =?utf-8?B?NEQzUW1GbmxTdDl4WWVkVGZqUm1JRlRoNkhmNks1clBZb3FNMjV1WFZ1OHBp?=
+ =?utf-8?B?eTRZTUJvR081c3I0ZG1SU0tLeFFzcjhvQTVLZ1h1RGtSZ1hldDQwM3kzTEtK?=
+ =?utf-8?B?anlkN3ZnZy9vTlp5d0dlTW1RbE15M0FQQjdKRlAxVGJ1bDBvblphZjlrT3Ra?=
+ =?utf-8?B?empVdG9BTWRMZVJRdVBubVA1azdJakJhUGp0N1UrcHFFckVDamJPS3RJYmVs?=
+ =?utf-8?B?bDk4VndHUWVGaFBKVFpUZVhoL3QrbW1KNHUzK3J4S3lXMWVPdFQvUXQ0VC9z?=
+ =?utf-8?B?dW56K0Z2cDV2dXl3Qm5QelJRR2FxN01BU3dOVXVlOElocVcrTWpjQ0ZqUDQ2?=
+ =?utf-8?B?UDY0NVZPMmNwbThYWTFDS1pQTnhwZ2cvRnBmV0c1RGxFMys2RkZqQTdQWGVL?=
+ =?utf-8?B?cG1tc3FQQ0FDSm8xeWlYcUxNUUoySnV2aytmbkUrMFZzRHJRbFpnL3RFRE5D?=
+ =?utf-8?B?V3hiQkU3bGQ2a2FTRlIzODh1UkRmWWxRTW9LRGc0czZoUDRTNFF2ZkJ5QkV2?=
+ =?utf-8?B?eDd6WGl4NVMwVXhGZ0hadncvdGxiVkMzRzl0dkdWOE1OczNBRS80bFg1ZW04?=
+ =?utf-8?B?NGRkc2RpTjNCSU5yWkFQc2lHc2pLUlVrNm04SG1UVWh4OEUzQ3JVdVRYWG9Y?=
+ =?utf-8?B?OHJGK2s1M2RNOHRRcGxPbC9UeWpoc0VoL0ZObjQzSUVrYzdseTV2RU1VL1pY?=
+ =?utf-8?B?NklEZERvcmU3dy9SalREczZ5TEU1OTVLSklGTUphY1lRdTFhdWtGYTNZNXE1?=
+ =?utf-8?B?UVNlU2IrZEJTMUQvZEhFMFgyejg1S0tNVlpZQ3lMNWcxRmpFU1FyT2N5b2xn?=
+ =?utf-8?B?bmhyQnZyQWR1cExsRS9nRWthQzg1MW51OHdoUEYxZllNZVllcTBQeWVnbVRD?=
+ =?utf-8?B?OVNMVnE1SnRiQjVwdVA5Q2JsN1VSRG1QVkQ2eFUvc29VL0pUa0pIOFFnUjly?=
+ =?utf-8?B?NEd1M0ZqNWdGbDRUNU04YUJqdEE2RUd1cjhrTnhaZys3Ly80NW1HQ2hUMEp2?=
+ =?utf-8?B?ektCUzMreHFhTGUyQ1k5Y0t0a3lva2Z5bmNhVXZSL3BHTERObUtQK0JCUDYw?=
+ =?utf-8?B?eFE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0FE0DA7CE14D7D4885985D714BE3F9CA@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230814212822.193684-3-helgaas@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6395.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e950bda8-9103-4f61-4478-08dba00849fb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Aug 2023 16:29:26.3895
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6m9V0JtLsZs8bggxQiDmGBVKxE9gneuIzU7D7CXRhbuGc5B2YZw42fk50KpNVV+V/LIJt66AXfmZOGmFNX2QQOopw3jQrw+zkauIMw3nUqs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7746
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 14 Aug 2023 16:28:21 -0500, Bjorn Helgaas wrote:
-> From: Bjorn Helgaas <bhelgaas@google.com>
-> 
-> Fix typos in Documentation/devicetree/bindings.  The changes are in
-> descriptions or comments where they shouldn't affect functionality.
-> 
-> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml   |  4 ++--
->  .../arm/marvell/cp110-system-controller.txt      |  8 ++++----
->  .../bindings/arm/mediatek/mediatek,mipi0a.txt    |  2 +-
->  .../bindings/arm/mediatek/mediatek,vcodecsys.txt |  2 +-
->  Documentation/devicetree/bindings/arm/sunxi.yaml |  4 ++--
->  .../devicetree/bindings/ata/pata-common.yaml     |  2 +-
->  .../devicetree/bindings/bus/brcm,gisb-arb.yaml   |  2 +-
->  .../bindings/bus/nvidia,tegra210-aconnect.yaml   |  4 ++--
->  .../clock/allwinner,sun4i-a10-osc-clk.yaml       |  2 +-
->  .../devicetree/bindings/clock/alphascale,acc.txt |  4 ++--
->  .../devicetree/bindings/clock/keystone-pll.txt   |  2 +-
->  .../devicetree/bindings/clock/lpc1850-ccu.txt    |  2 +-
->  .../bindings/clock/lpc1850-creg-clk.txt          |  4 ++--
->  .../devicetree/bindings/clock/maxim,max9485.txt  |  2 +-
->  .../bindings/clock/qcom,gcc-sm8450.yaml          |  2 +-
->  .../bindings/clock/qcom,kpss-acc-v1.yaml         |  2 +-
->  .../bindings/clock/sprd,sc9863a-clk.yaml         |  2 +-
->  .../devicetree/bindings/clock/ti/mux.txt         |  2 +-
->  .../devicetree/bindings/clock/vf610-clock.txt    |  2 +-
->  .../bindings/clock/xlnx,zynqmp-clk.txt           |  2 +-
->  .../bindings/connector/usb-connector.yaml        |  2 +-
->  .../devfreq/event/samsung,exynos-ppmu.yaml       |  2 +-
->  .../bindings/display/atmel/hlcdc-dc.txt          |  2 +-
->  .../display/bridge/snps,dw-mipi-dsi.yaml         |  2 +-
->  .../bindings/display/cirrus,clps711x-fb.txt      |  2 +-
->  .../bindings/display/msm/qcom,mdss.yaml          |  2 +-
->  .../display/panel/olimex,lcd-olinuxino.yaml      |  2 +-
->  .../bindings/display/panel/panel-common.yaml     |  2 +-
->  .../display/tegra/nvidia,tegra124-sor.yaml       |  2 +-
->  .../devicetree/bindings/dma/ingenic,dma.yaml     |  2 +-
->  .../bindings/dma/nvidia,tegra20-apbdma.txt       |  2 +-
->  .../devicetree/bindings/dma/qcom,bam-dma.yaml    |  2 +-
->  .../bindings/dma/stericsson,dma40.yaml           |  2 +-
->  .../devicetree/bindings/fpga/fpga-region.txt     |  4 ++--
->  .../devicetree/bindings/gpio/gpio-xgene-sb.txt   |  2 +-
->  .../bindings/gpio/snps,dw-apb-gpio.yaml          |  2 +-
->  .../devicetree/bindings/gpio/ti,omap-gpio.yaml   |  4 ++--
->  .../devicetree/bindings/hwmon/adi,adm1177.yaml   |  2 +-
->  .../bindings/hwmon/adi,axi-fan-control.yaml      |  2 +-
->  .../devicetree/bindings/hwmon/adi,ltc2992.yaml   |  2 +-
->  .../bindings/hwmon/aspeed-pwm-tacho.txt          |  2 +-
->  Documentation/devicetree/bindings/hwmon/lm87.txt |  2 +-
->  .../devicetree/bindings/hwmon/ltq-cputemp.txt    |  2 +-
->  .../bindings/hwmon/moortec,mr75203.yaml          |  2 +-
->  .../bindings/hwmon/npcm750-pwm-fan.txt           |  2 +-
->  .../bindings/hwmon/sensirion,shtc1.yaml          |  2 +-
->  .../devicetree/bindings/hwmon/ti,tmp513.yaml     |  2 +-
->  .../devicetree/bindings/hwmon/ti,tps23861.yaml   |  2 +-
->  .../devicetree/bindings/i2c/i2c-sprd.txt         |  2 +-
->  .../bindings/iio/adc/xlnx,zynqmp-ams.yaml        |  2 +-
->  .../devicetree/bindings/iio/cdc/adi,ad7150.yaml  |  2 +-
->  .../devicetree/bindings/iio/common.yaml          |  2 +-
->  .../bindings/iio/frequency/adi,admv1014.yaml     |  2 +-
->  .../bindings/iio/humidity/ti,hdc2010.yaml        |  2 +-
->  .../iio/pressure/honeywell,mprls0025pa.yaml      |  2 +-
->  .../bindings/iio/proximity/ams,as3935.yaml       |  2 +-
->  .../devicetree/bindings/iio/st,st-sensors.yaml   |  2 +-
->  .../bindings/input/rmi4/rmi_2d_sensor.txt        |  4 ++--
->  .../bindings/input/touchscreen/stmpe.txt         |  2 +-
->  .../bindings/input/touchscreen/tsc2007.txt       |  2 +-
->  .../interrupt-controller/arm,gic-v3.yaml         |  2 +-
->  .../brcm,bcm2835-armctrl-ic.txt                  |  2 +-
->  .../brcm,bcm7120-l2-intc.yaml                    |  2 +-
->  .../backlight/mediatek,mt6370-backlight.yaml     |  2 +-
->  .../devicetree/bindings/leds/leds-lp55xx.yaml    |  4 ++--
->  .../devicetree/bindings/leds/leds-qcom-lpg.yaml  |  2 +-
->  .../bindings/mailbox/brcm,iproc-flexrm-mbox.txt  |  2 +-
->  .../bindings/mailbox/ti,omap-mailbox.yaml        |  2 +-
->  .../bindings/media/i2c/toshiba,tc358746.yaml     |  2 +-
->  .../devicetree/bindings/media/i2c/tvp5150.txt    |  2 +-
->  .../media/mediatek,vcodec-subdev-decoder.yaml    |  2 +-
->  .../memory-controllers/mediatek,smi-larb.yaml    |  2 +-
->  .../memory-controllers/rockchip,rk3399-dmc.yaml  |  4 ++--
->  .../memory-controllers/xlnx,zynq-ddrc-a05.yaml   |  2 +-
->  .../devicetree/bindings/mfd/aspeed-lpc.yaml      |  2 +-
->  .../bindings/mfd/rohm,bd9576-pmic.yaml           |  4 ++--
->  .../bindings/mfd/stericsson,ab8500.yaml          | 16 ++++++++--------
->  .../bindings/mfd/stericsson,db8500-prcmu.yaml    |  2 +-
->  .../devicetree/bindings/mmc/pxa-mmc.txt          |  2 +-
->  .../devicetree/bindings/mmc/ti-omap-hsmmc.txt    |  2 +-
->  .../bindings/net/brcm,bcm7445-switch-v4.0.txt    |  2 +-
->  .../devicetree/bindings/net/can/cc770.txt        |  2 +-
->  .../devicetree/bindings/net/dsa/brcm,sf2.yaml    |  2 +-
->  .../devicetree/bindings/net/ethernet-phy.yaml    |  2 +-
->  .../devicetree/bindings/net/mediatek-dwmac.yaml  |  2 +-
->  .../bindings/net/microchip,lan95xx.yaml          |  2 +-
->  .../devicetree/bindings/net/nfc/marvell,nci.yaml |  4 ++--
->  .../devicetree/bindings/net/samsung-sxgbe.txt    |  4 ++--
->  .../bindings/net/snps,dwc-qos-ethernet.txt       |  2 +-
->  .../devicetree/bindings/net/sti-dwmac.txt        |  2 +-
->  .../bindings/net/xilinx_gmii2rgmii.txt           |  2 +-
->  .../devicetree/bindings/nios2/nios2.txt          |  2 +-
->  .../bindings/nvmem/layouts/onie,tlv-layout.yaml  |  2 +-
->  .../bindings/phy/phy-hisi-inno-usb2.txt          |  2 +-
->  .../bindings/phy/pistachio-usb-phy.txt           |  2 +-
->  .../devicetree/bindings/phy/pxa1928-usb-phy.txt  |  2 +-
->  .../bindings/phy/rockchip-inno-csi-dphy.yaml     |  2 +-
->  .../bindings/phy/ti,phy-j721e-wiz.yaml           |  2 +-
->  Documentation/devicetree/bindings/phy/ti-phy.txt |  2 +-
->  .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml     |  2 +-
->  .../bindings/pinctrl/canaan,k210-fpioa.yaml      |  2 +-
->  .../pinctrl/mediatek,mt6779-pinctrl.yaml         |  2 +-
->  .../pinctrl/mediatek,mt6795-pinctrl.yaml         |  2 +-
->  .../pinctrl/mediatek,mt7981-pinctrl.yaml         |  4 ++--
->  .../pinctrl/mediatek,mt7986-pinctrl.yaml         |  4 ++--
->  .../pinctrl/mediatek,mt8183-pinctrl.yaml         |  2 +-
->  .../pinctrl/mediatek,mt8365-pinctrl.yaml         |  2 +-
->  .../bindings/pinctrl/pinctrl-max77620.txt        |  2 +-
->  .../bindings/pinctrl/pinctrl-rk805.txt           |  2 +-
->  .../devicetree/bindings/pinctrl/sprd,pinctrl.txt |  2 +-
->  .../devicetree/bindings/pmem/pmem-region.txt     |  4 ++--
->  .../bindings/power/renesas,sysc-rmobile.yaml     |  2 +-
->  .../bindings/power/supply/sbs,sbs-manager.yaml   |  2 +-
->  .../devicetree/bindings/powerpc/fsl/cpus.txt     |  2 +-
->  .../devicetree/bindings/powerpc/fsl/dcsr.txt     |  4 ++--
->  .../devicetree/bindings/powerpc/fsl/raideng.txt  |  2 +-
->  .../bindings/powerpc/nintendo/gamecube.txt       |  2 +-
->  .../devicetree/bindings/powerpc/nintendo/wii.txt |  2 +-
->  .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml    |  2 +-
->  .../bindings/regulator/regulator-max77620.txt    |  2 +-
->  .../devicetree/bindings/regulator/regulator.yaml |  8 ++++----
->  .../regulator/richtek,rt5190a-regulator.yaml     |  2 +-
->  .../devicetree/bindings/regulator/vctrl.txt      |  2 +-
->  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml     |  2 +-
->  .../bindings/reset/ti-syscon-reset.txt           |  2 +-
->  .../devicetree/bindings/rng/omap_rng.yaml        |  4 ++--
->  .../devicetree/bindings/rtc/rtc-cmos.txt         |  2 +-
->  .../bindings/serial/nvidia,tegra20-hsuart.txt    |  2 +-
->  .../devicetree/bindings/serial/st-asc.txt        |  2 +-
->  .../soc/mediatek/mediatek,mt7986-wo-ccif.yaml    |  2 +-
->  .../microchip/microchip,mpfs-sys-controller.yaml |  2 +-
->  .../bindings/soc/qcom/qcom,aoss-qmp.yaml         |  2 +-
->  .../bindings/sound/axentia,tse850-pcm5142.txt    |  2 +-
->  .../devicetree/bindings/sound/cs35l35.txt        |  2 +-
->  .../devicetree/bindings/sound/cs35l36.txt        |  2 +-
->  .../devicetree/bindings/sound/cs53l30.txt        |  2 +-
->  .../devicetree/bindings/sound/fsl,esai.txt       |  2 +-
->  .../bindings/sound/mediatek,mt8188-afe.yaml      |  2 +-
->  .../devicetree/bindings/sound/mt2701-afe-pcm.txt |  2 +-
->  .../bindings/sound/mt8195-afe-pcm.yaml           |  4 ++--
->  .../bindings/sound/qcom,msm8916-wcd-analog.txt   |  2 +-
->  .../devicetree/bindings/sound/renesas,rsnd.txt   |  2 +-
->  .../sound/rockchip,rk3288-hdmi-analog.txt        |  2 +-
->  .../devicetree/bindings/sound/rt5663.txt         |  2 +-
->  .../devicetree/bindings/sound/serial-midi.yaml   |  2 +-
->  .../devicetree/bindings/sound/sprd-pcm.txt       |  2 +-
->  .../devicetree/bindings/sound/st,stm32-sai.yaml  |  2 +-
->  .../bindings/sound/ti,j721e-cpb-ivi-audio.yaml   |  2 +-
->  .../devicetree/bindings/sound/ti,tas2781.yaml    |  2 +-
->  .../devicetree/bindings/sound/tlv320adcx140.yaml |  2 +-
->  .../bindings/soundwire/qcom,soundwire.yaml       |  4 ++--
->  .../bindings/spi/brcm,bcm2835-aux-spi.txt        |  4 ++--
->  .../bindings/spi/brcm,spi-bcm-qspi.yaml          |  4 ++--
->  .../devicetree/bindings/spi/omap-spi.yaml        |  2 +-
->  .../thermal/nvidia,tegra124-soctherm.txt         |  2 +-
->  .../devicetree/bindings/timer/snps,arc-timer.txt |  2 +-
->  .../devicetree/bindings/trivial-devices.yaml     |  8 ++++----
->  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml    |  2 +-
->  .../devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml |  2 +-
->  .../devicetree/bindings/usb/msm-hsusb.txt        |  2 +-
->  .../devicetree/bindings/usb/richtek,rt1719.yaml  |  2 +-
->  161 files changed, 199 insertions(+), 199 deletions(-)
-> 
-
-Applied, thanks!
-
-These conflict with linux-next as presumably because they've been 
-converted to schema. So I've just dropped them:
-
-* Unmerged path Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-* Unmerged path Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
-* Unmerged path Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-* Unmerged path Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt
-* Unmerged path Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
-
+SGkgSm9uYXRoYW4sDQoNCj4gDQo+ID4gQEAgLTAsMCArMSw1MyBAQA0KPiA+ICtXaGF0OsKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoA0KPiA+IC9zeXMvYnVzL2lpby9kZXZpY2VzL2lpbzpk
+ZXZpY2VYL2Jvb3N0X2N1cnJlbnQNCj4gPiArS2VybmVsVmVyc2lvbjrCoMKgwqDCoMKgwqAgNi40
+DQo+ID4gK0NvbnRhY3Q6wqDCoMKgwqAgbGludXgtaWlvQHZnZXIua2VybmVsLm9yZw0KPiA+ICtE
+ZXNjcmlwdGlvbjoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFRoaXMgYXR0cmlidXRl
+IGlzIHVzZWQgdG8gc2V0IHRoZSBiaWFzaW5nIGNpcmN1aXQgb2YNCj4gPiB0aGUNCj4gPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIERlbHRhLVNpZ21hIG1vZHVsYXRvci4gVGhlIGRpZmZlcmVu
+dCBCT09TVCBzZXR0aW5ncw0KPiA+IGFyZSBhcHBsaWVkDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCB0byB0aGUgZW50aXJlIG1vZHVsYXRvciBjaXJjdWl0LCBpbmNsdWRpbmcgdGhlDQo+
+ID4gdm9sdGFnZSByZWZlcmVuY2UNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJ1ZmZl
+cnMuDQo+IA0KPiBVbml0cz/CoCBTaG91bGQgYmXCoCBtQSBnaXZlbiB0aGF0IGlzIHdoYXQgd2Ug
+dXNlIGZvciBvdGhlciBjdXJyZW50DQo+IGF0dHJpYnV0ZXMNCj4gaW4gSUlPLg0KPiANCg0KVGhp
+cyBzaG91bGQgaGF2ZSBubyB1bml0cyBiZWNhdXNlIGlzIGEgImdhaW4iIGZvciB0aGUgYmlhcyBj
+dXJyZW50LiBJDQp0aGluayBpdCB3aWxsIGJlIGJldHRlciB0byBjaGFuZ2UgdGhlIG5hbWUgb2Yg
+dGhlIGF0dHJpYnV0ZSB0bw0KImJvb3N0X2N1cnJlbnRfZ2FpbiIuDQoNCg0KPiBUaGlzIG9uZSBt
+YXkgY2F1c2UgdXMgcHJvYmxlbXMgd2l0aCBnZW5lcmFsaXR5IG9mIHRoZSBkZXNjcmlwdGlvbiBp
+Zg0KPiB3ZSByZXVzZQ0KPiBpZiBmb3Igb3RoZXIgZGV2aWNlcyAoYW5kIGhlbmNlIG1vdmUgaXQg
+dG8gdGhlIG1vcmUgZ2VuZXJhbCBmaWxlcyksDQo+IGJ1dCB3ZQ0KPiBjYW4gZmlndXJlIHRoaXMg
+b3V0IGF0IHRoZSB0aW1lLg0KPiANCj4gPiANCg0KVGhhbmtzIGFuZCBCZXN0IFJlZ2FyZHMsDQpN
+YXJpdXMNCg0K
