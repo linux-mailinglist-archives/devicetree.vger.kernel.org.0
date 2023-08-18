@@ -2,92 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 836E7780F2C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED15780F39
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232561AbjHRP2P convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Aug 2023 11:28:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36474 "EHLO
+        id S237204AbjHRPb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 11:31:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378185AbjHRP2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:28:10 -0400
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC9C272D;
-        Fri, 18 Aug 2023 08:28:09 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-58e6c05f529so10488117b3.3;
-        Fri, 18 Aug 2023 08:28:09 -0700 (PDT)
+        with ESMTP id S1378193AbjHRPbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:31:03 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0DB420F;
+        Fri, 18 Aug 2023 08:30:48 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id d75a77b69052e-40fd2de0ddcso6722581cf.2;
+        Fri, 18 Aug 2023 08:30:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692372647; x=1692977447;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EovJ1fXMMd2dM0JF3L0MbrSsBqCZpLKmOn2nea/Ku5k=;
+        b=M9ZS9vZdYQMh6oasfvZS99zeQYafduR+3Myt1uDdzI9OoIvqNklpegDyEvTi/rQnYQ
+         eHVMoNmuMuS8mV8pmO71GC5cr8C/vluVc1eEcIkx4nlzIjdrdAoHBaS8iVRp88R9CrBD
+         C5p2lZtFl2Y+24u15ZWoCYlG43afJkltyHgKrnnJ5+ErHza/UYl9g/FgC7nFdvCF9ynq
+         XCHUY4aonQebAIW7ZOm5HAsAzXAXRgJNlIdMwXG/oVEDtU2bKxswOFJyYKEgf0UZwxK7
+         PswDBTN3k/J6cIGQkn31nsXCwQxr/iabnPdPr0DNELgbyFi/d52E6raToY6M0z4DGi5I
+         FbiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692372488; x=1692977288;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IMYfPhpdXZY/HNpd60MMH7BNe+/RbVz/FE+3GuTWXvg=;
-        b=aLZkT48hjCbcaINPls+qnieKi9tEUr90oUugyjc9APLKVe7SuSAOLUTG6OvU78wyBS
-         ftU0ncG8uBQhBVPE7iFnz2JdTerWoy5I/VlrEU89U6vqHH/QI08i1qkkLJvK/R+y7tIV
-         YsLyoES1IDuKhAvm2AimMxnLk8CzxrYO8NXePhv8PIppWSyEd1+NfYK6SJ9zi+U8eV4Z
-         aaBQkrXoNkninqbM3t0Y8ut5nKyCGY5hjaU2FB6+yBxafDuLUlseH9RywxnBIbhhJ1cL
-         eyOFZR1q2h30Vkk7oiu9kcNI0kDWkk+sp+8VDDEhIDBoXuQ41lYVsvwDyBiapAZkJ2A2
-         ESCg==
-X-Gm-Message-State: AOJu0Ywxg8Id/DjWGPOEpuC6ztuI/Tr7ZVgv4iK4S6F8z/hn1tbTXHps
-        uE2NR1ULMDl2bCDECB08Wiu3LfIf2TGipOcu
-X-Google-Smtp-Source: AGHT+IGieLwezm+fCxxQMA1a6qEqjWKA8sEQDCaBIuyYQkd9RknYeZpFDMuPv7LVO8Gm0o5gPTxarw==
-X-Received: by 2002:a0d:d646:0:b0:570:77b3:1c78 with SMTP id y67-20020a0dd646000000b0057077b31c78mr2683597ywd.25.1692372488101;
-        Fri, 18 Aug 2023 08:28:08 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id u128-20020a816086000000b00589ace164besm546555ywb.61.2023.08.18.08.28.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 08:28:07 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-cfcebc33d04so1001395276.2;
-        Fri, 18 Aug 2023 08:28:07 -0700 (PDT)
-X-Received: by 2002:a25:2314:0:b0:c4b:ada8:8b86 with SMTP id
- j20-20020a252314000000b00c4bada88b86mr2923043ybj.64.1692372487654; Fri, 18
- Aug 2023 08:28:07 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692372647; x=1692977447;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EovJ1fXMMd2dM0JF3L0MbrSsBqCZpLKmOn2nea/Ku5k=;
+        b=Lp2uhAZu6HZnEWc4d9mzHjylKmewxqOLhzSXKOJTopwm6HA1+8SjehU0WPF2SbPwiP
+         gnboEMzoDXZ9JNCT2hTYHl+sxjv8aJaEfS9VMoAnOfs/bZufz1pbbQgHV7eRa5iMOtUw
+         tWBKRNTF1aD7BWxwfPYlLwjd6aZFflXFyzyuJ8K/hRLf7T93sHKZhHWQQ3xQaHhO8pS7
+         Ge+yvnoyvXQSZCdi/IDZK6IuKn5mf+seHl1R6t3eWwL7l0DW90/VflVwzjefA90nGVW8
+         N7+IvMBY0u1etCyUwy3ittVLFVYb/wmoS0q6mRpkM+xILLbKZOsyT0T/M0BnaDGFRHxA
+         Hv5w==
+X-Gm-Message-State: AOJu0Yx4dDCwC9jVYAY+F5oYb4gNX17m2T4DhFMhybf4OcEmzios1l3t
+        A5+mwNZbELuv/eRVY8n4nwsCn+Y441CH2g==
+X-Google-Smtp-Source: AGHT+IFJYRo7zcZ81XXrqon9epCCaN6aQ8Kq4ALBK6MLgbNJ3w/AD6oiWyZazy/6HokG71CgoYD7bA==
+X-Received: by 2002:ac8:5bc9:0:b0:405:5ae6:9f3e with SMTP id b9-20020ac85bc9000000b004055ae69f3emr3871100qtb.33.1692372647350;
+        Fri, 18 Aug 2023 08:30:47 -0700 (PDT)
+Received: from localhost.localdomain ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id b16-20020ac87550000000b003f9c6a311e1sm582850qtr.47.2023.08.18.08.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Aug 2023 08:30:46 -0700 (PDT)
+From:   Abdel Alkuor <alkuor@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Abdel Alkuor <abdelalkuor@geotab.com>
+Subject: [PATCH] dt-bindings: usb: Add ti,tps25750
+Date:   Fri, 18 Aug 2023 11:30:15 -0400
+Message-Id: <20230818153015.513053-1-alkuor@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org> <20230801-dt-changeset-fixes-v2-1-c2b701579dee@kernel.org>
-In-Reply-To: <20230801-dt-changeset-fixes-v2-1-c2b701579dee@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Aug 2023 17:27:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUtXt2MGNddapmkZN1uamKd=C39gJ0iFXpZPFR3BDj-6A@mail.gmail.com>
-Message-ID: <CAMuHMdUtXt2MGNddapmkZN1uamKd=C39gJ0iFXpZPFR3BDj-6A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] of: unittest: Fix EXPECT for parse_phandle_with_args_map()
- test
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 5, 2023 at 12:42 AM Rob Herring <robh@kernel.org> wrote:
-> Commit 12e17243d8a1 ("of: base: improve error msg in
-> of_phandle_iterator_next()") added printing of the phandle value on
-> error, but failed to update the unittest.
->
-> Fixes: 12e17243d8a1 ("of: base: improve error msg in of_phandle_iterator_next()")
-> Signed-off-by: Rob Herring <robh@kernel.org>
+From: Abdel Alkuor <abdelalkuor@geotab.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+TPS25750 provides power negotiation and capabilities management
+for USB Type-C applications.
 
-Gr{oetje,eeting}s,
+Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+---
+v2: 
+ - Remove redundant word 'binding' from Subject
+ - Add new line before reg property
+ - Remove unused description in interrupts property
+ - Drop interrupt-names property
+ - Add maxItems to firmware-name property
+ - Use generic node name 'typec' instead of 'tps25750'
+---
+ .../devicetree/bindings/usb/ti,tps25750.yaml  | 81 +++++++++++++++++++
+ 1 file changed, 81 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,tps25750.yaml
 
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/usb/ti,tps25750.yaml b/Documentation/devicetree/bindings/usb/ti,tps25750.yaml
+new file mode 100644
+index 000000000000..d98c34df340d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/ti,tps25750.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/ti,tps25750.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments 25750 Type-C Port Switch and Power Delivery controller
++
++maintainers:
++  - Abdel Alkuor <abdelalkuor@geotab.com>
++
++description: |
++  Texas Instruments 25750 Type-C Port Switch and Power Delivery controller
++
++properties:
++  compatible:
++    enum:
++      - ti,tps25750
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  firmware-name:
++    description: |
++      Should contain the name of the default patch binary
++      file located on the firmware search path which is
++      used to switch the controller into APP mode
++    maxItems: 1
++
++  connector:
++    type: object
++    $ref: ../connector/usb-connector.yaml#
++    description:
++      Properties for usb c connector.
++    required:
++      - data-role
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - connector
++
++additionalProperties: true
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        typec: tps25750@21 {
++            compatible = "ti,tps25750";
++            reg = <0x21>;
++
++            interrupt-parent = <&msmgpio>;
++            interrupts = <107 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-names = "irq";
++
++            firmware-name = "tps25750.bin";
++
++            pinctrl-names = "default";
++            pinctrl-0 = <&typec_pins>;
++
++            typec_con: connector {
++                compatible = "usb-c-connector";
++                label = "USB-C";
++                data-role = "dual";
++                port {
++                    typec_ep: endpoint {
++                        remote-endpoint = <&otg_ep>;
++                    };
++                };
++            };
++        };
++    };
++...
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
